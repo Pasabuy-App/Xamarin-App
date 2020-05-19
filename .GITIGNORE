@@ -11,3 +11,6 @@
 #   !wp-content/plugins/
 #   !wp-content/themes/sample-theme/
 #
+
+# Flutter/Dart/Pub related
+.flutter-plugins-dependencies
