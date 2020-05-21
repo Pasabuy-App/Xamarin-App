@@ -475,3 +475,4 @@ C:\xampp\apache\vhost\pasabuy.dev\xamarin_mobileapp\PasaBuy.App.Android\obj\Debu
 C:\xampp\apache\vhost\pasabuy.dev\xamarin_mobileapp\PasaBuy.App.Android\obj\Debug\90\stamp\_GenerateJavaStubs.stamp
 C:\xampp\apache\vhost\pasabuy.dev\xamarin_mobileapp\PasaBuy.App.Android\obj\Debug\90\stamp\_GeneratePackageManagerJava.stamp
 C:\xampp\apache\vhost\pasabuy.dev\xamarin_mobileapp\PasaBuy.App.Android\obj\Debug\90\stamp\_ResolveLibraryProjectImports.stamp
+C:\xampp\apache\vhost\pasabuy.dev\xamarin_mobileapp\PasaBuy.App.Android\obj\Debug\90\res\drawable\logo.png

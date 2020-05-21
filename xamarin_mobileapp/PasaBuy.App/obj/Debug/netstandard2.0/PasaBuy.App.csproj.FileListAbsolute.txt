@@ -4,7 +4,6 @@ C:\xampp\apache\vhost\pasabuy.dev\xamarin_mobileapp\PasaBuy.App\bin\Debug\netsta
 C:\xampp\apache\vhost\pasabuy.dev\xamarin_mobileapp\PasaBuy.App\bin\Debug\netstandard2.0\PasaBuy.App.pdb
 C:\xampp\apache\vhost\pasabuy.dev\xamarin_mobileapp\PasaBuy.App\obj\Debug\netstandard2.0\PasaBuy.App.csprojAssemblyReference.cache
 C:\xampp\apache\vhost\pasabuy.dev\xamarin_mobileapp\PasaBuy.App\obj\Debug\netstandard2.0\App.xaml.g.cs
-C:\xampp\apache\vhost\pasabuy.dev\xamarin_mobileapp\PasaBuy.App\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
 C:\xampp\apache\vhost\pasabuy.dev\xamarin_mobileapp\PasaBuy.App\obj\Debug\netstandard2.0\PasaBuy.App.csproj.CoreCompileInputs.cache
 C:\xampp\apache\vhost\pasabuy.dev\xamarin_mobileapp\PasaBuy.App\obj\Debug\netstandard2.0\PasaBuy.App.AssemblyInfoInputs.cache
 C:\xampp\apache\vhost\pasabuy.dev\xamarin_mobileapp\PasaBuy.App\obj\Debug\netstandard2.0\PasaBuy.App.AssemblyInfo.cs
@@ -12,3 +11,4 @@ C:\xampp\apache\vhost\pasabuy.dev\xamarin_mobileapp\PasaBuy.App\obj\Debug\netsta
 C:\xampp\apache\vhost\pasabuy.dev\xamarin_mobileapp\PasaBuy.App\obj\Debug\netstandard2.0\PasaBuy.App.dll
 C:\xampp\apache\vhost\pasabuy.dev\xamarin_mobileapp\PasaBuy.App\obj\Debug\netstandard2.0\ref\PasaBuy.App.dll
 C:\xampp\apache\vhost\pasabuy.dev\xamarin_mobileapp\PasaBuy.App\obj\Debug\netstandard2.0\PasaBuy.App.pdb
+C:\xampp\apache\vhost\pasabuy.dev\xamarin_mobileapp\PasaBuy.App\obj\Debug\netstandard2.0\View\HomePage.xaml.g.cs
