@@ -7,12 +7,12 @@
              x:Class="PasaBuy.App.Views.Master.MainPage"
              xmlns:pages="clr-namespace:PasaBuy.App.Views.Master">
   <MasterDetailPage.Master>
-    <pages:MainPageMaster x:Name="MasterPage" />
+    <pages:MainPageMaster />
   </MasterDetailPage.Master>
   <MasterDetailPage.Detail>
     <NavigationPage>
       <x:Arguments>
-        <pages:MainPageDetail />
+         <pages:MainPageDetail />
       </x:Arguments>
     </NavigationPage>
   </MasterDetailPage.Detail>

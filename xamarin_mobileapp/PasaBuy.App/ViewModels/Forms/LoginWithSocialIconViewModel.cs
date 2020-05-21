@@ -109,8 +109,6 @@ namespace PasaBuy.App.ViewModels.Forms
 
             //IF SUCCESS AUTH, SAVE USER TOKEN AND CONTINUE.
             Application.Current.MainPage = new MainPage();
-            //var mainpage = new mainpage();
-            //    mainpage.detail = new navigationpage(new masterpage());
         }
 
         /// <summary>
