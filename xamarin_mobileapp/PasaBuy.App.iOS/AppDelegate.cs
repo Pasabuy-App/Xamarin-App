@@ -1,3 +1,4 @@
+using  Syncfusion.XForms.iOS.Graphics;
 using Syncfusion.SfRating.XForms.iOS;
 using Syncfusion.XForms.iOS.ComboBox;
 using Syncfusion.XForms.iOS.Border;
@@ -27,6 +28,7 @@ namespace PasaBuy.App.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            SfGradientViewRenderer.Init();
             SfRatingRenderer.Init();
             SfComboBoxRenderer.Init();
             SfBorderRenderer.Init();

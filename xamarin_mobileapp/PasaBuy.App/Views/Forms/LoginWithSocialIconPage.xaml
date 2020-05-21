@@ -116,6 +116,7 @@
                         FontFamily="{StaticResource Montserrat-SemiBold}"
                         FontSize="12" 
                         HorizontalOptions="End" 
+                        Command="{Binding ForgotPasswordCommand}"
                         Style="{StaticResource SfFlatButtonStyle}"
                         Text="FORGOT PASSWORD?"
                         TextColor="{DynamicResource Gray-White}"/>

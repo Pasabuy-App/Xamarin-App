@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using PasaBuy.App.Views.Forms;
+using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -110,19 +112,16 @@ namespace PasaBuy.App.ViewModels.Forms
         /// <param name="obj">The Object</param>
         private void SignUpClicked(object obj)
         {
-            // Do something
+            Application.Current.MainPage = new NavigationPage(new SignUpPage());
         }
 
         /// <summary>
         /// Invoked when the Forgot Password button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
-        private async void ForgotPasswordClicked(object obj)
+        private void ForgotPasswordClicked(object obj)
         {
-            var label = obj as Label;
-            label.BackgroundColor = Color.FromHex("#70FFFFFF");
-            await Task.Delay(100);
-            label.BackgroundColor = Color.Transparent;
+            Application.Current.MainPage = new NavigationPage(new ForgotPasswordPage());
         }
 
         /// <summary>
@@ -131,7 +130,7 @@ namespace PasaBuy.App.ViewModels.Forms
         /// <param name="obj">The Object</param>
         private void FaceBookClicked(object obj)
         {
-            // Do something
+            Launcher.OpenAsync("http://facebook.com");
         }
 
         /// <summary>
@@ -140,7 +139,7 @@ namespace PasaBuy.App.ViewModels.Forms
         /// <param name="obj">The Object</param>
         private void TwitterClicked(object obj)
         {
-            // Do something
+            Launcher.OpenAsync("http://twitter.com");
         }
 
         /// <summary>
@@ -149,7 +148,7 @@ namespace PasaBuy.App.ViewModels.Forms
         /// <param name="obj">The Object</param>
         private void GmailClicked(object obj)
         {
-            // Do something
+            Launcher.OpenAsync("http://google.com");
         }
 
         #endregion
