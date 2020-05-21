@@ -1,4 +1,10 @@
 FormsViewGroup
+Syncfusion.Buttons.XForms.Android
+Syncfusion.Cards.XForms.Android
+Syncfusion.Core.XForms.Android
+Syncfusion.SfComboBox.XForms.Android
+Syncfusion.SfRating.Android
+Syncfusion.SfRating.XForms.Android
 Xamarin.Android.Arch.Core.Common
 Xamarin.Android.Arch.Core.Runtime
 Xamarin.Android.Arch.Lifecycle.Common
