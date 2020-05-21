@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "PE+aA2Iqm7xnigKY7Uwe3kmmLM6wUu9hxavGTUsXBwT35vtdgiGXSJNjCg/p5bcxOCQ48D2/G13ONOpuS5rLog==",
+  "success": true,
+  "projectFilePath": "C:\\xampp\\apache\\vhost\\pasabuy.dev\\xamarin_mobileapp\\PasaBuy.App.iOS\\PasaBuy.App.iOS.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\bytes\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.3.1\\xamarin.essentials.1.3.1.nupkg.sha512",
+    "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\4.4.0.991265\\xamarin.forms.4.4.0.991265.nupkg.sha512"
+  ],
+  "logs": []
+}
