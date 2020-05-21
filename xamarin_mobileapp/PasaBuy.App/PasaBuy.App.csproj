@@ -45,6 +45,15 @@
     <EmbeddedResource Update="Views\Forms\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Master\MainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Master\MainPageDetail.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Master\MainPageMaster.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Profile\MasterPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
@@ -57,9 +66,5 @@
     <EmbeddedResource Update="Views\Templates\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\Master\" />
   </ItemGroup>
 </Project>

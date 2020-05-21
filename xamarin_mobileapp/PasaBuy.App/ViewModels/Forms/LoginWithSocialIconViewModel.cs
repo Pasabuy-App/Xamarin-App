@@ -1,4 +1,6 @@
 ﻿using PasaBuy.App.Views.Forms;
+using PasaBuy.App.Views.Master;
+using PasaBuy.App.Views.Profile;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -103,7 +105,12 @@ namespace PasaBuy.App.ViewModels.Forms
         /// <param name="obj">The Object</param>
         private void LoginClicked(object obj)
         {
-            // Do something
+            //IF FAILED SHOW FAILED MODAL AND RETURN
+
+            //IF SUCCESS AUTH, SAVE USER TOKEN AND CONTINUE.
+            Application.Current.MainPage = new MainPage();
+            //var mainpage = new mainpage();
+            //    mainpage.detail = new navigationpage(new masterpage());
         }
 
         /// <summary>
