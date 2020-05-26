@@ -19,7 +19,7 @@
     <ContentView.Content>
         <StackLayout>
             <border:SfBorder
-                BackgroundColor="{DynamicResource Gray-White}" CornerRadius="4"
+                CornerRadius="7"
                 BorderColor="{Binding Path=IsFocused, Source={x:Reference EmailEntry}, Converter={x:StaticResource ErrorValidationColorConverter}, ConverterParameter={x:Reference EmailEntry}}"
                 Style="{StaticResource SfBorderStyle}">
                 <Grid>
@@ -30,12 +30,11 @@
 
                     <control:BorderlessEntry
                         x:Name="EmailEntry"
-                        Placeholder="Email"
-                        PlaceholderColor="{DynamicResource Gray-700}"
+                        Placeholder="Email Address"
+                        PlaceholderColor="{DynamicResource PlaceholderColor}"
                         Style="{StaticResource EntryStyle}"
                         Keyboard="Email"
-                        Text="{Binding Email}"
-                        TextColor="{DynamicResource Gray-900}" />
+                        Text="{Binding Email}" />
                     
                     <!--  Login entry label -->
 

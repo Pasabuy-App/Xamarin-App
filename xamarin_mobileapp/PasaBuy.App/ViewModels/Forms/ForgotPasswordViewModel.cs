@@ -54,7 +54,7 @@ namespace PasaBuy.App.ViewModels.Forms
         /// <param name="obj">The Object</param>
         private void SignUpClicked(object obj)
         {
-            Application.Current.MainPage = new NavigationPage(new SignUpPage());
+            Application.Current.MainPage = new NavigationPage(new LoginWithSocialIconPage());
         }
 
         #endregion

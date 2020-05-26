@@ -32,8 +32,8 @@
 
                     <control:BorderlessEntry
                         x:Name="Email"
-                        Placeholder="Email" Keyboard="Email"
-                        Style="{StaticResource EntryStyle}"
+                        Placeholder="Email Address" Keyboard="Email"
+                        Style="{StaticResource EntryStyle}" 
                         Text="{Binding Email}" />
 
                     <Label
@@ -46,7 +46,6 @@
                         Text="&#xe707;"
                         TextColor="{DynamicResource Red}"
                         VerticalOptions="Center" />
-
 
                 </Grid>
             </border:SfBorder>

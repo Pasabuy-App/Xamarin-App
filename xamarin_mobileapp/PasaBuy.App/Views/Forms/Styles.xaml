@@ -11,9 +11,9 @@
 
     <Color x:Key="EntryPlaceholderColor">#A0FFFFFF</Color>
     <Color x:Key="BorderBackgroundColor">#20FFFFFF</Color>
-    <Color x:Key="GradientStartColor">#eb9100</Color>
-    <Color x:Key="GradientEndColor">#f0aa3a</Color>
-    <Color x:Key="GradientStart">#ed9200</Color>
+    <Color x:Key="GradientStartColor">#dd9300</Color>
+    <Color x:Key="GradientEndColor">#d6c700</Color>
+    <Color x:Key="GradientStart">#FF9205</Color>
     <Color x:Key="GradientEnd">#c9800a</Color>
     <Color x:Key="TwitterBlue">#55acee</Color>
     <Color x:Key="Red">#dc4e41</Color>
@@ -39,16 +39,16 @@
 
     <!--  Common style for labels  -->
     <Style x:Key="LabelStyle" TargetType="Label">
-        <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="TextColor" Value="{DynamicResource LabelColor}" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="LineHeight" Value="1.25" />
     </Style>
 
     <!--  Common style for entries  -->
     <Style x:Key="EntryStyle" TargetType="control:BorderlessEntry">
-        <Setter Property="PlaceholderColor" Value="{StaticResource EntryPlaceholderColor}" />
+        <Setter Property="PlaceholderColor" Value="{DynamicResource PlaceholderColor}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="TextColor" Value="{DynamicResource TextColor}" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="Margin" Value="15,0" />
         <Setter Property="HeightRequest" Value="40" />
@@ -62,13 +62,13 @@
             <Setter.Value>
                 <graphics:SfLinearGradientBrush>
                     <graphics:SfLinearGradientBrush.GradientStops>
-                        <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
-                        <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                        <graphics:SfGradientStop Offset="0" Color="{DynamicResource ButtonBGColor}" />
+                        <graphics:SfGradientStop Offset="1" Color="{DynamicResource ButtonBGColor}" />
                     </graphics:SfLinearGradientBrush.GradientStops>
                 </graphics:SfLinearGradientBrush>
             </Setter.Value>
         </Setter>
-        <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="TextColor" Value="{DynamicResource ButtonTextColor}" />
         <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
         <Setter Property="BorderWidth" Value="0" />
         <Setter Property="FontSize" Value="16" />
@@ -80,7 +80,7 @@
     <!--  Common style for flat buttons  -->
     <Style x:Key="SfFlatButtonStyle" TargetType="buttons:SfButton">
         <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="TextColor" Value="{DynamicResource LinkColor}" />
         <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="VerticalTextAlignment" Value="Center" />

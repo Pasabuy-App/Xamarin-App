@@ -4,6 +4,16 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
+
+    <Color x:Key="LabelColor">#fff</Color>
+    <Color x:Key="PlaceholderColor">#e8e8e8</Color>
+    <Color x:Key="TextColor">#fff</Color>
+    <Color x:Key="LinkColor">#ccedff</Color>
+    <Color x:Key="IconColor">#fff</Color>
+    <Color x:Key="ButtonBGColor">#eddd09</Color>
+    <Color x:Key="ButtonTextColor">#525252</Color>
+    
+
     <Color x:Key="PrimaryColor">#2d2d2d</Color>
     <Color x:Key="PrimaryDarkColor">#d0424f</Color>
     <Color x:Key="PrimaryDarkenColor">#ab3641</Color>
@@ -28,7 +38,7 @@
     <Color x:Key="Gray-800">#4a515e</Color>
     <Color x:Key="Gray-900">#333942</Color>
     <Color x:Key="Gray-Black">#000000</Color>
-    <Color x:Key="Gray-White">#ffffff</Color>
+    <Color x:Key="Gray-White">blue</Color>
 
     <OnPlatform x:Key="FontIcons" x:TypeArguments="x:String">
         <OnPlatform.Platforms>

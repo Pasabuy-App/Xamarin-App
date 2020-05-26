@@ -30,7 +30,7 @@ namespace PasaBuy.App.Controllers
 
             sub.Children.Add(splashImage);
 
-            this.BackgroundColor = Color.FromHex("#2d2d2d");
+            this.BackgroundColor = Color.FromHex("#f4f4f4");
             this.Content = sub;
         }
 

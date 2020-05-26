@@ -17,15 +17,15 @@
 
         <buttons:SfButton    BackgroundColor="{DynamicResource FacebookLogin}" HorizontalOptions="Start"
                                             Style="{StaticResource SocialIconButtonStyle}"  Command="{Binding FaceBookLoginCommand}"
-                                            Text="{StaticResource FaceBook}" TextColor="{StaticResource Gray-White}"/>
+                                            Text="{StaticResource FaceBook}" TextColor="{StaticResource IconColor}"/>
 
         <buttons:SfButton   BackgroundColor="{DynamicResource TwitterBlue}" HorizontalOptions="Center"
                                             Style="{StaticResource SocialIconButtonStyle}"  Command="{Binding TwitterLoginCommand}"
-                                            Text="{StaticResource Twitter}" />
+                                            Text="{StaticResource Twitter}" TextColor="{StaticResource IconColor}"/>
 
         <buttons:SfButton  BackgroundColor="{DynamicResource Red}" HorizontalOptions="End"
                                             Style="{StaticResource SocialIconButtonStyle}"  Command="{Binding GmailLoginCommand}"
-                                            Text="{StaticResource Google}"/>
+                                            Text="{StaticResource Google}" TextColor="{StaticResource IconColor}"/>
 
     </Grid>
 </Grid>

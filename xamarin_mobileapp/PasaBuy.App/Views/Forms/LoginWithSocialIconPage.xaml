@@ -8,11 +8,14 @@
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:control="clr-namespace:PasaBuy.App.Controls"
              xmlns:local="clr-namespace:PasaBuy.App.Views.Forms"
-             xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
              xmlns:template="clr-namespace:PasaBuy.App.Views.Templates"
-             x:Class="PasaBuy.App.Views.Forms.LoginWithSocialIconPage"  
-             BackgroundColor="{DynamicResource Gray-200}"
-             NavigationPage.HasNavigationBar="False">
+             x:Class="PasaBuy.App.Views.Forms.LoginWithSocialIconPage" 
+             NavigationPage.HasNavigationBar="False" 
+             xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms" 
+             BackgroundImageSource="{core:OnPlatformOrientationStringValue Default=LoginBackground.png,
+                                                                           iOSPhoneLandscape=LoginBackground-Landscape.png,
+                                                                           iOSTabletLandscape=LoginBackground-Landscape.png}"
+             Style="{StaticResource ContentPageStyle}" >
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -30,7 +33,7 @@
 
     <ContentPage.Content>
         <Grid>
-            <gradient:SfGradientView Style="{StaticResource SfGradientStyle}" />
+            <gradient:SfGradientView Style="{StaticResource SfGradientViewStyle}" />
             <ScrollView HorizontalOptions="Center">
 
                 <ScrollView.VerticalOptions>
@@ -66,7 +69,7 @@
                         </Grid.RowDefinitions>
 
                         <!--  Logo to display the title of this page  -->
-                        <Image Source="Logo_BG.png" 
+                        <Image Source="Logo.png" 
                                WidthRequest="125"
                                HeightRequest="125"/>
                         
@@ -81,13 +84,12 @@
 
                         <!--  Label to display the description of this page  -->
                         <Label
-                        Grid.Row="1"
-                        Margin="14,8"
-                        FontFamily="{StaticResource Montserrat-Medium}"
-                        HorizontalTextAlignment="Center"
-                        Style="{StaticResource LabelStyle}"
-                        Text="Stay safe with Us"
-                        TextColor="{DynamicResource Gray-White}" />
+                            Grid.Row="1"
+                            Margin="14,8"
+                            FontFamily="{StaticResource Montserrat-Medium}"
+                            HorizontalTextAlignment="Center"
+                            Style="{StaticResource LabelStyle}"
+                            Text="Stay safe with Us" />
                         
                         <!--  Entry to get email ID from user  -->
                         <local:LoginEmailEntry Grid.Row="2" Padding="0,24" />
@@ -95,40 +97,37 @@
                         <!--  Entry to get password from user  -->
                         <border:SfBorder
                         Grid.Row="3"
-                        BackgroundColor="{DynamicResource Gray-White}"
                         BorderColor="{Binding Source={x:Reference PasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
-                        Style="{StaticResource SfBorderStyle}" CornerRadius="4">
+                        Style="{StaticResource SfBorderStyle}" CornerRadius="7">
                             <control:BorderlessEntry
                             x:Name="PasswordEntry"
                             IsPassword="True"
                             Placeholder="Password"
-                            PlaceholderColor="{DynamicResource Gray-700}"
+                            PlaceholderColor="{DynamicResource PlaceholderColor}"
                             Style="{StaticResource EntryStyle}"
-                            Text="{Binding Password}"
-                            TextColor="{DynamicResource Gray-900}" />
+                            Text="{Binding Password}" />
                         </border:SfBorder>
 
                         <!--  Forgot password link  -->
                         <buttons:SfButton
-                        x:Name="ForgotPasswordLabel"
-                        Grid.Row="4" CornerRadius="4"
-                        Margin="0,16"
-                        FontFamily="{StaticResource Montserrat-SemiBold}"
-                        FontSize="12" 
-                        HorizontalOptions="End" 
-                        Command="{Binding ForgotPasswordCommand}"
-                        Style="{StaticResource SfFlatButtonStyle}"
-                        Text="FORGOT PASSWORD?"
-                        TextColor="{DynamicResource Gray-White}"/>
+                            x:Name="ForgotPasswordLabel"
+                            Grid.Row="4" CornerRadius="7"
+                            Margin="0,16"
+                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                            FontSize="12" 
+                            HorizontalOptions="End" 
+                            Command="{Binding ForgotPasswordCommand}"
+                            Style="{StaticResource SfFlatButtonStyle}"
+                            Text="FORGOT PASSWORD?" />
 
 
                         <buttons:SfButton
-                        Grid.Row="5"
-                        Margin="0,16"
-                        CornerRadius="4"
-                        Command="{Binding LoginCommand}"
-                        Style="{StaticResource SfButtonStyle}"
-                        Text="LOG IN" />
+                            Grid.Row="5"
+                            Margin="0,16"
+                            CornerRadius="7"
+                            Command="{Binding LoginCommand}"
+                            Style="{StaticResource SfButtonStyle}"
+                            Text="LOG IN" />
 
 
                         <Label
@@ -136,8 +135,7 @@
                         FontFamily="{StaticResource Montserrat-Medium}"
                         HorizontalTextAlignment="Center"
                         Style="{StaticResource LabelStyle}"
-                        Text="Or create an account using social media"
-                        TextColor="{DynamicResource Gray-White}" />
+                        Text="Or create an account using social media" />
 
                         <!--  Login button with social icons -->
                         <Grid Grid.Row="7">
@@ -158,7 +156,6 @@
                         HorizontalTextAlignment="Center"
                         Style="{StaticResource LabelStyle}"
                         Text="Don't have an account?"
-                        TextColor="{DynamicResource Gray-White}"
                         VerticalTextAlignment="Center" />
 
                         <!--  Sign-up button  -->
