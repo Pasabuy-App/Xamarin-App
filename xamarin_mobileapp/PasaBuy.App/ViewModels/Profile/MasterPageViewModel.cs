@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using PasaBuy.App.Views.Forms;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -225,6 +226,8 @@ namespace PasaBuy.App.ViewModels.Profile
         private void LogoutButtonClicked(object obj)
         {
             this.UpdateSelectedItemColor(obj);
+
+            Application.Current.MainPage = new NavigationPage(new LoginWithSocialIconPage());
         }
 
 

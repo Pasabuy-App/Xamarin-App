@@ -179,16 +179,16 @@
                         Text="Messages" />
 
                     <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ProfileCommand}" CommandParameter="{x:Reference ProfileGrid}" />
+                        <TapGestureRecognizer Command="{Binding MessageCommand}" CommandParameter="{x:Reference MessageGrid}" />
                     </Grid.GestureRecognizers>
 
                 </Grid>
 
                 <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                <!--  Grid for bookmark label and icon  -->
+                <!--  Grid for mystore label and icon  -->
                 <Grid
-                    x:Name="BookmarkGrid"
+                    x:Name="MyStoreGrid"
                     BackgroundColor="{DynamicResource Transparent}">
 
                     <Grid.ColumnDefinitions>
@@ -211,16 +211,16 @@
                         Text="My Store" />
 
                     <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding BookmarkCommand}" CommandParameter="{x:Reference BookmarkGrid}" />
+                        <TapGestureRecognizer Command="{Binding MyStoreCommand}" CommandParameter="{x:Reference MyStoreGrid}" />
                     </Grid.GestureRecognizers>
 
                 </Grid>
 
                 <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                <!--  Grid for activity label and icon  -->
+                <!--  Grid for request label and icon  -->
                 <Grid
-                    x:Name="ActivityGrid"
+                    x:Name="RequestGrid"
                     BackgroundColor="{DynamicResource Transparent}">
 
                     <Grid.ColumnDefinitions>
@@ -243,7 +243,7 @@
                         Text="Request" />
 
                     <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ActivityCommand}" CommandParameter="{x:Reference ActivityGrid}" />
+                        <TapGestureRecognizer Command="{Binding RequestCommand}" CommandParameter="{x:Reference RequestGrid}" />
                     </Grid.GestureRecognizers>
 
                 </Grid>
@@ -275,7 +275,7 @@
                         Text="Setting" />
 
                     <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ProfileCommand}" CommandParameter="{x:Reference ProfileGrid}" />
+                        <TapGestureRecognizer Command="{Binding SettingCommand}" CommandParameter="{x:Reference SettingGrid}" />
                     </Grid.GestureRecognizers>
 
                 </Grid>
@@ -307,7 +307,7 @@
                         Text="Help" />
 
                     <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ProfileCommand}" CommandParameter="{x:Reference ProfileGrid}" />
+                        <TapGestureRecognizer Command="{Binding HelpCommand}" CommandParameter="{x:Reference HelpGrid}" />
                     </Grid.GestureRecognizers>
 
                 </Grid>
@@ -339,7 +339,7 @@
                         Text="Logout" />
 
                     <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ProfileCommand}" CommandParameter="{x:Reference ProfileGrid}" />
+                        <TapGestureRecognizer Command="{Binding LogoutCommand}" CommandParameter="{x:Reference LogoutGrid}" />
                     </Grid.GestureRecognizers>
 
                 </Grid>
