@@ -29,15 +29,19 @@ namespace PasaBuy.App.ViewModels.Profile
         /// </summary>
         public MasterPageViewModel()
         {
-            this.profileName = "John Doe";
+            this.profileName = "Juan Dela Cruz";
             this.profileImage = App.BaseImageUrl + "ProfileImage1.png";
-            this.email = "johndoe@gmail.com";
+            this.email = "juandelacruz@pasabuy.app";
 
             this.HomeCommand = new Command(this.HomeButtonClicked);
-            this.InterestsCommand = new Command(this.InterestsButtonClicked);
-            this.BookmarkCommand = new Command(this.BookmarkButtonClicked);
-            this.ActivityCommand = new Command(this.ActivityButtonClicked);
             this.ProfileCommand = new Command(this.ProfileButtonClicked);
+            this.MessageCommand = new Command(this.MessageButtonClicked);
+            this.MyStoreCommand = new Command(this.MyStoreButtonClicked);
+            this.RequestCommand = new Command(this.RequestButtonClicked);
+            this.SettingCommand = new Command(this.SettingButtonClicked);
+            this.HelpCommand = new Command(this.HelpButtonClicked);
+            this.LogoutCommand = new Command(this.LogoutButtonClicked);
+            
         }
 
         #endregion
@@ -113,24 +117,39 @@ namespace PasaBuy.App.ViewModels.Profile
         public Command HomeCommand { get; set; }
 
         /// <summary>
-        /// Gets or sets the command that is executed when the interests view is clicked.
-        /// </summary>
-        public Command InterestsCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command that is executed when the bookmark view is clicked.
-        /// </summary>
-        public Command BookmarkCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command that is executed when the activity view is clicked.
-        /// </summary>
-        public Command ActivityCommand { get; set; }
-
-        /// <summary>
         /// Gets or sets the command that is executed when the profile view is clicked.
         /// </summary>
         public Command ProfileCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command that is executed when the message view is clicked.
+        /// </summary>
+        public Command MessageCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command that is executed when the mystore view is clicked.
+        /// </summary>
+        public Command MyStoreCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command that is executed when the request view is clicked.
+        /// </summary>
+        public Command RequestCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command that is executed when the request view is clicked.
+        /// </summary>
+        public Command SettingCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command that is executed when the help view is clicked.
+        /// </summary>
+        public Command HelpCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command that is executed when the logout view is clicked.
+        /// </summary>
+        public Command LogoutCommand { get; set; }
 
         #endregion
 
@@ -146,33 +165,6 @@ namespace PasaBuy.App.ViewModels.Profile
         }
 
         /// <summary>
-        /// Invoked when the interests button is clicked.
-        /// </summary>
-        /// <param name="obj">The object</param>
-        private void InterestsButtonClicked(object obj)
-        {
-            this.UpdateSelectedItemColor(obj);
-        }
-
-        /// <summary>
-        /// Invoked when the bookmark button is clicked.
-        /// </summary>
-        /// <param name="obj">The object</param>
-        private void BookmarkButtonClicked(object obj)
-        {
-            this.UpdateSelectedItemColor(obj);
-        }
-
-        /// <summary>
-        /// Invoked when the activity button is clicked.
-        /// </summary>
-        /// <param name="obj">The object</param>
-        private void ActivityButtonClicked(object obj)
-        {
-            this.UpdateSelectedItemColor(obj);
-        }
-
-        /// <summary>
         /// Invoked when the profile button is clicked.
         /// </summary>
         /// <param name="obj">The object</param>
@@ -180,6 +172,62 @@ namespace PasaBuy.App.ViewModels.Profile
         {
             this.UpdateSelectedItemColor(obj);
         }
+
+        /// <summary>
+        /// Invoked when the message button is clicked.
+        /// </summary>
+        /// <param name="obj">The object</param>
+        private void MessageButtonClicked(object obj)
+        {
+            this.UpdateSelectedItemColor(obj);
+        }
+
+        /// <summary>
+        /// Invoked when the mystore button is clicked.
+        /// </summary>
+        /// <param name="obj">The object</param>
+        private void MyStoreButtonClicked(object obj)
+        {
+            this.UpdateSelectedItemColor(obj);
+        }
+
+        /// <summary>
+        /// Invoked when the request button is clicked.
+        /// </summary>
+        /// <param name="obj">The object</param>
+        private void RequestButtonClicked(object obj)
+        {
+            this.UpdateSelectedItemColor(obj);
+        }
+
+        /// <summary>
+        /// Invoked when the setting button is clicked.
+        /// </summary>
+        /// <param name="obj">The object</param>
+        private void SettingButtonClicked(object obj)
+        {
+            this.UpdateSelectedItemColor(obj);
+        }
+
+        /// <summary>
+        /// Invoked when the help button is clicked.
+        /// </summary>
+        /// <param name="obj">The object</param>
+        private void HelpButtonClicked(object obj)
+        {
+            this.UpdateSelectedItemColor(obj);
+        }
+
+        /// <summary>
+        /// Invoked when the logout button is clicked.
+        /// </summary>
+        /// <param name="obj">The object</param>
+        private void LogoutButtonClicked(object obj)
+        {
+            this.UpdateSelectedItemColor(obj);
+        }
+
+
 
         /// <summary>
         /// Changes the selection color when an item is tapped.

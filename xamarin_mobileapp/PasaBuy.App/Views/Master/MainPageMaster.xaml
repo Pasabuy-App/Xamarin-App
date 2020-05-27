@@ -7,7 +7,7 @@
              x:Class="PasaBuy.App.Views.Master.MainPageMaster"
              Title="Detail"
              xmlns:user_menu="clr-namespace:PasaBuy.App.Views.Profile" >
-    <StackLayout Padding="10">
+    <StackLayout >
         <user_menu:MasterPage />
     </StackLayout>
 </ContentPage>
