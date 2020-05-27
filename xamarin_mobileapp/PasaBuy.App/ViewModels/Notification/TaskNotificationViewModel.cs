@@ -3,6 +3,7 @@ using System.Runtime.Serialization;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using PasaBuy.App.Models.Notification;
+using PasaBuy.App.Views.Master;
 
 namespace PasaBuy.App.ViewModels.Notification
 {
@@ -96,7 +97,7 @@ namespace PasaBuy.App.ViewModels.Notification
         /// <param name="obj">The object.</param>
         private void BackButtonClicked(object obj)
         {
-            // Do something
+            Application.Current.MainPage = new MainPage();
         }
 
         /// <summary>

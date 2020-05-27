@@ -218,6 +218,7 @@ namespace PasaBuy.App.ViewModels.Profile
             this.UpdateSelectedItemColor(obj);
 
             Application.Current.MainPage = new NavigationPage(new TaskNotificationPage());
+            System.Diagnostics.Debug.WriteLine("Bytes Crafter: Called TaskNotificationPage");
         }
 
         /// <summary>
@@ -266,7 +267,7 @@ namespace PasaBuy.App.ViewModels.Profile
             Application.Current.Resources.TryGetValue("Gray-White", out var retValue);
             grid.BackgroundColor = (Color)retValue;
 
-            ((MainPage)App.Current.MainPage).HideSidebar();
+            //((MainPage)App.Current.MainPage).HideSidebar();
         }
 
         #endregion

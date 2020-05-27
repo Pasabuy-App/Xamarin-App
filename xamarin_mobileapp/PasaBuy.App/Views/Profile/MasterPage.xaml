@@ -275,7 +275,7 @@
                         Text="Notification" />
 
                     <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding SettingCommand}" CommandParameter="{x:Reference NotificationGrid}" />
+                        <TapGestureRecognizer Command="{Binding NotificationCommand}" CommandParameter="{x:Reference NotificationGrid}" />
                     </Grid.GestureRecognizers>
 
                 </Grid>

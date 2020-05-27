@@ -65,10 +65,13 @@
       <Version>18.1.0.53</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Core">
-      <Version>18.1.0.53</Version>
+      <Version>18.1.0.54</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfComboBox">
       <Version>18.1.0.53</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfListView">
+      <Version>18.1.0.54</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfRating">
       <Version>18.1.0.53</Version>

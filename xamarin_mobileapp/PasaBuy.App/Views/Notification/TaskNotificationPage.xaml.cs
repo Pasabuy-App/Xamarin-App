@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
-//using PasaBuy.App.DataService;
+using PasaBuy.App.DataService;
 
 namespace PasaBuy.App.Views.Notification
 {
@@ -17,6 +17,7 @@ namespace PasaBuy.App.Views.Notification
         public TaskNotificationPage()
         {
             InitializeComponent();
+
             this.BindingContext = TaskNotificationDataService.Instance.TaskNotificationViewModel;
         }
 

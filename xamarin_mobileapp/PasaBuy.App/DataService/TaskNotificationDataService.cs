@@ -45,7 +45,7 @@ namespace PasaBuy.App.DataService
         /// <returns>Returns the view model object.</returns>
         private static T PopulateData<T>(string fileName)
         {
-            var file = "XamDetail.Data." + fileName;
+            var file = "PasaBuy.App.Data." + fileName;
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
