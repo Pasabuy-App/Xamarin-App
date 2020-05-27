@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using PasaBuy.App.Models.Chat;
+using PasaBuy.App.Views.Chat;
 using PasaBuy.App.Views.Master;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -280,7 +281,7 @@ namespace PasaBuy.App.ViewModels.Chat
         /// </summary>
         private void ItemSelected(object selectedItem)
         {
-            // Do something
+            Application.Current.MainPage = new NavigationPage(new ChatMessagePage());
         }
 
         /// <summary>
