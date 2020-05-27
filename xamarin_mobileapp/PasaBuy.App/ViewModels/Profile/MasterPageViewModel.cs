@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using PasaBuy.App.Views.Notification;
 using PasaBuy.App.Views.Settings;
+using PasaBuy.App.Views.Chat;
 
 namespace PasaBuy.App.ViewModels.Profile
 {
@@ -190,6 +191,8 @@ namespace PasaBuy.App.ViewModels.Profile
         private void MessageButtonClicked(object obj)
         {
             this.UpdateSelectedItemColor(obj);
+
+            Application.Current.MainPage = new NavigationPage(new RecentChatPage());
         }
 
         /// <summary>

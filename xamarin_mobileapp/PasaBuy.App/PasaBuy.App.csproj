@@ -22,6 +22,7 @@
     <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.1.0.54" />
     <PackageReference Include="Syncfusion.Xamarin.Cards" Version="18.1.0.54" />
     <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.1.0.54" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="18.1.0.54" />
     <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="18.1.0.54" />
     <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="18.1.0.54" />
     <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="18.1.0.54" />
@@ -31,6 +32,12 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Themes\LightTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Chat\RecentChatPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Chat\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Forms\EmailEntry.xaml">
