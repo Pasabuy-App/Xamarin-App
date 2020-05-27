@@ -228,6 +228,8 @@ namespace PasaBuy.App.ViewModels.Profile
         private void SettingButtonClicked(object obj)
         {
             this.UpdateSelectedItemColor(obj);
+
+            Application.Current.MainPage = new NavigationPage(new SettingPage());
         }
 
         /// <summary>

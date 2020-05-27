@@ -1,3 +1,4 @@
+using Syncfusion.XForms.iOS.Graphics;
 using  Syncfusion.XForms.iOS.Graphics;
 using Syncfusion.SfRating.XForms.iOS;
 using Syncfusion.XForms.iOS.ComboBox;
