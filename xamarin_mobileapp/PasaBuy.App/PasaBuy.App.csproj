@@ -106,6 +106,15 @@
     <EmbeddedResource Update="Views\Settings\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Social\SocialProfileWithMessagePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Social\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Social\Templates\ProfileTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\SocialIconTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

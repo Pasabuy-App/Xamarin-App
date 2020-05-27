@@ -8,6 +8,7 @@ using Xamarin.Forms.Internals;
 using PasaBuy.App.Views.Notification;
 using PasaBuy.App.Views.Settings;
 using PasaBuy.App.Views.Chat;
+using PasaBuy.App.Views.Social;
 
 namespace PasaBuy.App.ViewModels.Profile
 {
@@ -182,6 +183,8 @@ namespace PasaBuy.App.ViewModels.Profile
         private void ProfileButtonClicked(object obj)
         {
             this.UpdateSelectedItemColor(obj);
+
+            Application.Current.MainPage = new NavigationPage(new SocialProfileWithMessagePage());
         }
 
         /// <summary>

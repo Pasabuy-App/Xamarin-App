@@ -1,3 +1,4 @@
+using Syncfusion.XForms.iOS.Core;
 using Syncfusion.XForms.iOS.Cards;
 using Syncfusion.XForms.iOS.BadgeView;
 using Syncfusion.ListView.XForms.iOS;
@@ -32,6 +33,7 @@ namespace PasaBuy.App.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            Core.Init();
             SfCardViewRenderer.Init();
             SfBadgeViewRenderer.Init();
             SfListViewRenderer.Init();
