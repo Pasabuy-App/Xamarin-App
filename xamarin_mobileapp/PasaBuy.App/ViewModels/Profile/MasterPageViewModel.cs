@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using PasaBuy.App.Views.Notification;
+using PasaBuy.App.Views.Settings;
 
 namespace PasaBuy.App.ViewModels.Profile
 {
@@ -218,7 +219,6 @@ namespace PasaBuy.App.ViewModels.Profile
             this.UpdateSelectedItemColor(obj);
 
             Application.Current.MainPage = new NavigationPage(new TaskNotificationPage());
-            System.Diagnostics.Debug.WriteLine("Bytes Crafter: Called TaskNotificationPage");
         }
 
         /// <summary>
@@ -237,6 +237,8 @@ namespace PasaBuy.App.ViewModels.Profile
         private void HelpButtonClicked(object obj)
         {
             this.UpdateSelectedItemColor(obj);
+
+            Application.Current.MainPage = new NavigationPage(new HelpPage());
         }
 
         /// <summary>
