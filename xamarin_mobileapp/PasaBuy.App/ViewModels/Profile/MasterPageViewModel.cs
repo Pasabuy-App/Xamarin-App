@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using PasaBuy.App.Views.Notification;
 
 namespace PasaBuy.App.ViewModels.Profile
 {
@@ -215,6 +216,8 @@ namespace PasaBuy.App.ViewModels.Profile
         private void NotificationButtonClicked(object obj)
         {
             this.UpdateSelectedItemColor(obj);
+
+            Application.Current.MainPage = new NavigationPage(new TaskNotificationPage());
         }
 
         /// <summary>
