@@ -4,13 +4,15 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="PasaBuy.App.Views.Master.MainPageDetail">
+             x:Class="PasaBuy.App.Views.Master.MainPageDetail" 
+             Title="PasaBuy.app" 
+             NavigationPage.TitleIconImageSource="LogoHeader.png" 
+             >
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Search" Icon="MySearchIcon.png" Order="Primary" 
+        <ToolbarItem Text="Search" Icon="ic_search.png" Order="Primary" 
                 Command="{Binding SearchCommandBinding}" />
         </ContentPage.ToolbarItems>
     <StackLayout Padding="10">
-        <Image Source="Logo.png"></Image>
         <Label Text="This is a detail page. To get the 'triple' line icon on each platform add a icon to each platform and update the 'Master' page with an Icon that references it."/>
     </StackLayout>
 </ContentPage>

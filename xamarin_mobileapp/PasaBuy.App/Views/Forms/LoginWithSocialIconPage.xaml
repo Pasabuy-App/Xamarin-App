@@ -74,22 +74,24 @@
                                HeightRequest="125"/>
                         
                         <!--  Label to display the title of this page  -->
-                        <!-- <Label
-                            FontFamily="{StaticResource Montserrat-SemiBold}"
-                            FontSize="20"
-                            HorizontalTextAlignment="Center"
-                            Style="{StaticResource LabelStyle}"
-                            Text="PasaBuy"
-                            TextColor="{DynamicResource Gray-White}" /> -->
-
-                        <!--  Label to display the description of this page  -->
                         <Label
                             Grid.Row="1"
-                            Margin="14,8"
+                            Margin="0, 5, 0, 25"
+                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                            FontSize="16"
+                            HorizontalTextAlignment="Center"
+                            Style="{StaticResource LabelStyle}"
+                            Text="PasaBuy.app"
+                            TextColor="{DynamicResource Gray-White}" />
+
+                        <!--  Label to display the description of this page  -->
+                        <!--<Label
+                            Grid.Row="2"
+                            Margin="14,2"
                             FontFamily="{StaticResource Montserrat-Medium}"
                             HorizontalTextAlignment="Center"
                             Style="{StaticResource LabelStyle}"
-                            Text="Stay safe with Us" />
+                            Text="Stay safe with Us" />-->
                         
                         <!--  Entry to get email ID from user  -->
                         <local:LoginEmailEntry Grid.Row="2" Padding="0,24" />
@@ -103,7 +105,7 @@
                             x:Name="PasswordEntry"
                             IsPassword="True"
                             Placeholder="Password"
-                            PlaceholderColor="{DynamicResource PlaceholderColor}"
+                            PlaceholderColor="{DynamicResource Gray-700}"
                             Style="{StaticResource EntryStyle}"
                             Text="{Binding Password}" />
                         </border:SfBorder>
@@ -163,7 +165,7 @@
                         Command="{Binding SignUpCommand}"
                         CornerRadius="4"
                         Style="{StaticResource SfFlatButtonStyle}"
-                        Text="Sign Up" />
+                        Text="REGISTER" />
 
                     </StackLayout>
 

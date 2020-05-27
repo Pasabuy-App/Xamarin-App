@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="PasaBuy.App.Views.Master.MainPageMaster"
              Title="Detail"
-             xmlns:user_menu="clr-namespace:PasaBuy.App.Views.Profile">
+             xmlns:user_menu="clr-namespace:PasaBuy.App.Views.Profile" >
     <StackLayout Padding="10">
         <user_menu:MasterPage />
     </StackLayout>

@@ -10,11 +10,10 @@
     xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms">
 
     <Color x:Key="EntryPlaceholderColor">#A0FFFFFF</Color>
-    <Color x:Key="BorderBackgroundColor">#20FFFFFF</Color>
+    
     <Color x:Key="GradientStartColor">#dd9300</Color>
     <Color x:Key="GradientEndColor">#d6c700</Color>
-    <Color x:Key="GradientStart">#FF9205</Color>
-    <Color x:Key="GradientEnd">#c9800a</Color>
+    
     <Color x:Key="TwitterBlue">#55acee</Color>
     <Color x:Key="Red">#dc4e41</Color>
     <Color x:Key="FacebookBlue">#4267B2</Color>
@@ -39,16 +38,16 @@
 
     <!--  Common style for labels  -->
     <Style x:Key="LabelStyle" TargetType="Label">
-        <Setter Property="TextColor" Value="{DynamicResource LabelColor}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="LineHeight" Value="1.25" />
     </Style>
 
     <!--  Common style for entries  -->
     <Style x:Key="EntryStyle" TargetType="control:BorderlessEntry">
-        <Setter Property="PlaceholderColor" Value="{DynamicResource PlaceholderColor}" />
+        <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-800}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="TextColor" Value="{DynamicResource TextColor}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-Black}" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="Margin" Value="15,0" />
         <Setter Property="HeightRequest" Value="40" />
@@ -62,13 +61,13 @@
             <Setter.Value>
                 <graphics:SfLinearGradientBrush>
                     <graphics:SfLinearGradientBrush.GradientStops>
-                        <graphics:SfGradientStop Offset="0" Color="{DynamicResource ButtonBGColor}" />
-                        <graphics:SfGradientStop Offset="1" Color="{DynamicResource ButtonBGColor}" />
+                        <graphics:SfGradientStop Offset="0" Color="{DynamicResource Yellow}" />
+                        <graphics:SfGradientStop Offset="1" Color="{DynamicResource Yellow}" />
                     </graphics:SfLinearGradientBrush.GradientStops>
                 </graphics:SfLinearGradientBrush>
             </Setter.Value>
         </Setter>
-        <Setter Property="TextColor" Value="{DynamicResource ButtonTextColor}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-Black}" />
         <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
         <Setter Property="BorderWidth" Value="0" />
         <Setter Property="FontSize" Value="16" />
@@ -80,7 +79,7 @@
     <!--  Common style for flat buttons  -->
     <Style x:Key="SfFlatButtonStyle" TargetType="buttons:SfButton">
         <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="TextColor" Value="{DynamicResource LinkColor}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-200}" />
         <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="VerticalTextAlignment" Value="Center" />
@@ -90,7 +89,7 @@
     <Style x:Key="SfBorderStyle" TargetType="border:SfBorder">
         <Setter Property="BackgroundColor" Value="{StaticResource BorderBackgroundColor}" />
         <Setter Property="BorderColor" Value="Transparent" />
-        <Setter Property="CornerRadius" Value="20" />
+        <Setter Property="CornerRadius" Value="7" />
         <Setter Property="BorderWidth" Value="1" />
     </Style>
 
@@ -120,8 +119,8 @@
                 <graphics:SfLinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                     <graphics:SfLinearGradientBrush.GradientStops>
                         
-                        <graphics:SfGradientStop Offset="0.0" Color="{StaticResource GradientStart}" />
-                        <graphics:SfGradientStop Offset="1.0" Color="{StaticResource GradientEnd}" />
+                        <graphics:SfGradientStop Offset="0.0" Color="{DynamicResource GradientStart}" />
+                        <graphics:SfGradientStop Offset="1.0" Color="{DynamicResource GradientEnd}" />
                     </graphics:SfLinearGradientBrush.GradientStops>
                 </graphics:SfLinearGradientBrush>
             </Setter.Value>

@@ -93,7 +93,7 @@
                                 x:Name="FnameEntry"
                                 Placeholder="First Name"
                                 Style="{StaticResource EntryStyle}"
-                                Text="{Binding Name}" />
+                                Text="{Binding Fname}" />
                         </border:SfBorder>
 
                         <!--  Entry to get last name from user  -->
@@ -102,7 +102,7 @@
                                 x:Name="LnameEntry"
                                 Placeholder="Last Name"
                                 Style="{StaticResource EntryStyle}"
-                                Text="{Binding Name}" />
+                                Text="{Binding Lname}" />
                         </border:SfBorder>
 
                         <!--  Entry to get password from user  -->
