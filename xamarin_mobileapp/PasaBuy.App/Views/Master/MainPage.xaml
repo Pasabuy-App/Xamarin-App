@@ -5,14 +5,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="PasaBuy.App.Views.Master.MainPage"
-             xmlns:pages="clr-namespace:PasaBuy.App.Views.Master" >
+             xmlns:master="clr-namespace:PasaBuy.App.Views.Master" >
   <MasterDetailPage.Master>
-    <pages:MainPageMaster />
+        <master:MainPageMaster />
   </MasterDetailPage.Master>
   <MasterDetailPage.Detail>
     <NavigationPage>
       <x:Arguments>
-         <pages:MainPageDetail />
+         <master:MainPageDetail />
       </x:Arguments>
     </NavigationPage>
   </MasterDetailPage.Detail>
