@@ -1,4 +1,5 @@
 ﻿using PasaBuy.App.Views.Forms;
+using PasaBuy.App.Views.Master;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -39,6 +40,7 @@ namespace PasaBuy.App.ViewModels.Profile
             this.MessageCommand = new Command(this.MessageButtonClicked);
             this.MyStoreCommand = new Command(this.MyStoreButtonClicked);
             this.RequestCommand = new Command(this.RequestButtonClicked);
+            this.NotificationCommand = new Command(this.NotificationButtonClicked);
             this.SettingCommand = new Command(this.SettingButtonClicked);
             this.HelpCommand = new Command(this.HelpButtonClicked);
             this.LogoutCommand = new Command(this.LogoutButtonClicked);
@@ -143,6 +145,11 @@ namespace PasaBuy.App.ViewModels.Profile
         public Command SettingCommand { get; set; }
 
         /// <summary>
+        /// Gets or sets the command that is executed when the notification view is clicked.
+        /// </summary>
+        public Command NotificationCommand { get; set; }
+
+        /// <summary>
         /// Gets or sets the command that is executed when the help view is clicked.
         /// </summary>
         public Command HelpCommand { get; set; }
@@ -202,6 +209,15 @@ namespace PasaBuy.App.ViewModels.Profile
         }
 
         /// <summary>
+        /// Invoked when the notification button is clicked.
+        /// </summary>
+        /// <param name="obj">The object</param>
+        private void NotificationButtonClicked(object obj)
+        {
+            this.UpdateSelectedItemColor(obj);
+        }
+
+        /// <summary>
         /// Invoked when the setting button is clicked.
         /// </summary>
         /// <param name="obj">The object</param>
@@ -246,6 +262,8 @@ namespace PasaBuy.App.ViewModels.Profile
             await Task.Delay(100);
             Application.Current.Resources.TryGetValue("Gray-White", out var retValue);
             grid.BackgroundColor = (Color)retValue;
+
+            ((MainPage)App.Current.MainPage).HideSidebar();
         }
 
         #endregion

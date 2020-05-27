@@ -250,6 +250,38 @@
 
                 <BoxView Style="{StaticResource SeparatorStyle}" />
 
+                <!--  Grid for notification label and icon  -->
+                <Grid
+                    x:Name="NotificationGrid"
+                    BackgroundColor="{DynamicResource Transparent}">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Grid.Column="0"
+                        helper:RTLHelper.Margin="16, 0, 8, 0"
+                        Style="{StaticResource ProfileIconLabelStyle}"
+                        Text="{StaticResource Notification}" />
+
+                    <Label
+                        Grid.Column="1"
+                        Margin="0,14"
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        FontSize="14"
+                        Style="{StaticResource ProfileLabelStyle}"
+                        Text="Notification" />
+
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SettingCommand}" CommandParameter="{x:Reference NotificationGrid}" />
+                    </Grid.GestureRecognizers>
+
+                </Grid>
+
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+                
                 <!--  Grid for setting label and icon  -->
                 <Grid
                     x:Name="SettingGrid"

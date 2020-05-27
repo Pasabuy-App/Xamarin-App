@@ -21,5 +21,10 @@ namespace PasaBuy.App.Views.Master
             //Detail = new NavigationPage(new MainPageDetail());
             //IsPresented = false;
         }
+
+        public void HideSidebar()
+        {
+            IsPresented = false;
+        }
     }
 }
