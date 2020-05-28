@@ -67,6 +67,9 @@
     <PackageReference Include="Syncfusion.Xamarin.Core">
       <Version>18.1.0.54</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.Expander">
+      <Version>18.1.0.54</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfBadgeView">
       <Version>18.1.0.54</Version>
     </PackageReference>

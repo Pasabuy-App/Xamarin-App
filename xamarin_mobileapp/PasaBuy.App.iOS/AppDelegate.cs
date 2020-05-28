@@ -1,3 +1,4 @@
+using Syncfusion.XForms.iOS.Expander;
 using Syncfusion.XForms.iOS.TabView;
 using Syncfusion.SfRotator.XForms.iOS;
 using Syncfusion.XForms.iOS.Core;
@@ -35,6 +36,8 @@ namespace PasaBuy.App.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            SfExpanderRenderer.Init();
+            SfCheckBoxRenderer.Init();
             SfTabViewRenderer.Init();
             SfRotatorRenderer.Init();
             Core.Init();

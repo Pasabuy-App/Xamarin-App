@@ -41,9 +41,9 @@ namespace PasaBuy.App.ViewModels.Social
             this.ProfileImage = "ProfileImage16.png";
             this.BackgroundImage = "Sky-Image.png";
             this.ProfileName = "Juan Dela Cruz";
-            this.Designation = "Designer";
-            this.State = "San Francisco";
-            this.Country = "CA";
+            this.Designation = "APPROVED";
+            this.State = "Biñan City";
+            this.Country = "PH";
             this.About = "I’m a UMN graduate (go Gophers!) and Minnesota native, but I’m already loving my new home in the Golden Gate City! I can’t wait to explore more of the great music scene here.";
             this.PostsCount = 8;
             this.FollowersCount = 45;

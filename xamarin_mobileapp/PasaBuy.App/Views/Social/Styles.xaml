@@ -67,8 +67,9 @@
     </Style>
 
     <!--Common follower count label style-->
-    <Style x:Key="FollowerCountLabelStyle" TargetType="Label">
-        <Setter Property="FontSize" Value="16"/>
+    <Style x:Key="AttribbuteValueStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="HeightRequest" Value="25"/>
         <Setter Property="FontAttributes" Value="Bold"/>
         <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}"/>
         <Setter Property="TextColor" Value="{DynamicResource Gray-900}"/>
@@ -76,7 +77,7 @@
     </Style>
 
     <!--Common follwer title label style-->
-    <Style x:Key="FollowerTitleLabelStyle" TargetType="Label">
+    <Style x:Key="AttribbuteLabelStyle" TargetType="Label">
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontFamily" Value="{StaticResource Montserrat-Medium}"/>
         <Setter Property="TextColor" Value="{DynamicResource Gray-700}"/>
@@ -108,7 +109,7 @@
 
     <!--  Common style for icon buttons  -->
     <Style x:Key="IconButtonStyle" TargetType="buttons:SfButton">
-        <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-Black}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
         <Setter Property="FontSize" Value="18" />
@@ -120,7 +121,7 @@
 
     <!--  Common style for square buttons  -->
     <Style x:Key="SquareButtonStyle" TargetType="buttons:SfButton">
-        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}" />
         <Setter Property="WidthRequest" Value="163" />
         <Setter Property="CornerRadius" Value="1" />
         <Setter Property="BorderWidth" Value="0"/>

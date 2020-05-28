@@ -59,30 +59,32 @@
                     </Image>
 
                     <!-- Title View -->
-                    <Grid Grid.Row="0" Grid.ColumnSpan="2" RowSpacing="0" ColumnSpacing="0" HeightRequest="60">
+                    <Grid Grid.Row="0" 
+                          Grid.ColumnSpan="2" 
+                          RowSpacing="0" 
+                          ColumnSpacing="0" 
+                          BackgroundColor="{DynamicResource PrimaryColor}"
+                          HeightRequest="55">
 
-                        <buttons:SfButton Margin="8,0"
-                                          Text="{StaticResource Back}"
-                                          CornerRadius="4"
+                        <buttons:SfButton Text="{StaticResource Back}"
                                           Command="{Binding MenuBackCommand}"
                                           Style="{StaticResource IconButtonStyle}"
                                           HorizontalOptions="Start"
                                           VerticalOptions="Center" />
 
-                        <Label Text="Profile Page"
-                               TextColor="{DynamicResource Gray-White}"
-                               FontSize="16"
+                        <Label Text="Profile"
+                               TextColor="{DynamicResource Gray-Black}"
                                FontFamily="{DynamicResource Montserrat-Medium}"
                                LineHeight="{OnPlatform Android=1.5, Default=-1}"
                                HorizontalOptions="Center"
                                VerticalOptions="Center" />
 
-                        <buttons:SfButton Margin="8,0"
+                        <!--<buttons:SfButton Margin="8,0"
                                           Text="{StaticResource Settings}"
                                           CornerRadius="4"
                                           Style="{StaticResource IconButtonStyle}"
                                           HorizontalOptions="End"
-                                          VerticalOptions="Center" />
+                                          VerticalOptions="Center" />-->
 
                     </Grid>
 
@@ -91,15 +93,15 @@
 
                     <border:SfBorder Grid.Row="2"
                                      Grid.Column="0"
-                                     Margin="16,8,16,52"
+                                     Margin="16,12,16,52"
                                      BackgroundColor="{DynamicResource Gray-White}"
                                      BorderColor="White"
                                      BorderWidth="2"
-                                     CornerRadius="10"
-                                     HeightRequest="80"
+                                     CornerRadius="50"
+                                     HeightRequest="70"
                                      HorizontalOptions="StartAndExpand"
                                      VerticalOptions="StartAndExpand"
-                                     WidthRequest="80">
+                                     WidthRequest="70">
 
                         <!-- Profile image -->
                         <Image Aspect="AspectFill"
@@ -119,7 +121,7 @@
                                  Grid.Column="1"
                                  Padding="0"
                                  Spacing="0"
-                                 Margin="0,8,0,32">
+                                 Margin="0,24,0,32">
 
                         <!-- Profile name -->
                         <Label FontFamily="{StaticResource Montserrat-SemiBold}"
@@ -169,48 +171,45 @@
                             <!-- Posts count -->
                             <Label Grid.Row="0"
                                    Grid.Column="0"
-                                   HeightRequest="24"
-                                   Style="{StaticResource FollowerCountLabelStyle}"
+                                   Style="{StaticResource AttribbuteValueStyle}"
                                    Text="{Binding PostsCount}" 
                                    TextColor="{DynamicResource Gray-White}" />
 
                             <!-- Posts title -->
                             <Label Grid.Row="1"
                                    Grid.Column="0"
-                                   HeightRequest="18"
-                                   Style="{StaticResource FollowerTitleLabelStyle}"
+                                   HeightRequest="15"
+                                   Style="{StaticResource AttribbuteLabelStyle}"
                                    Text="Posts"
                                    TextColor="{DynamicResource Gray-White}" />
 
                             <!-- Followers count -->
                             <Label Grid.Row="0"
                                    Grid.Column="1"
-                                   HeightRequest="24"
-                                   Style="{StaticResource FollowerCountLabelStyle}"
+                                   Style="{StaticResource AttribbuteValueStyle}"
                                    Text="{Binding FollowersCount}"
                                    TextColor="{DynamicResource Gray-White}" />
 
                             <!-- Followers title -->
                             <Label Grid.Row="1"
                                    Grid.Column="1"
-                                   HeightRequest="18"
-                                   Style="{StaticResource FollowerTitleLabelStyle}"
+                                   HeightRequest="15"
+                                   Style="{StaticResource AttribbuteLabelStyle}"
                                    Text="Followers"
                                    TextColor="{DynamicResource Gray-White}" />
 
                             <!-- Following count -->
                             <Label Grid.Row="0"
                                    Grid.Column="2"
-                                   HeightRequest="24"
-                                   Style="{StaticResource FollowerCountLabelStyle}"
+                                   Style="{StaticResource AttribbuteValueStyle}"
                                    Text="{Binding FollowingCount}"
                                    TextColor="{DynamicResource Gray-White}" />
 
                             <!-- Following title -->
                             <Label Grid.Row="1"
                                    Grid.Column="2"
-                                   HeightRequest="18"
-                                   Style="{StaticResource FollowerTitleLabelStyle}"
+                                   HeightRequest="15"
+                                   Style="{StaticResource AttribbuteLabelStyle}"
                                    Text="Ratings"
                                    TextColor="{DynamicResource Gray-White}" />
 
@@ -218,24 +217,32 @@
 
                     </StackLayout>
 
-                    <StackLayout Grid.Row="3" Grid.ColumnSpan="2" Spacing="16" Margin="16,0,16,44" Orientation="Horizontal" >
+                    <StackLayout Grid.Row="3" Grid.ColumnSpan="2" Spacing="20" Margin="0,0,0,30" Orientation="Horizontal" HorizontalOptions="Center">
 
                         <!-- Follow button -->
                         <buttons:SfButton x:Name="follow"
                             Command="{Binding FollowCommand}" CommandParameter="{x:Reference follow}"
-                            WidthRequest="155" 
-                            Style="{StaticResource SfGradientButtonStyle}"
-                            CornerRadius="1"
-                            Text="FOLLOW" HorizontalTextAlignment="Center"
+                            WidthRequest="120" 
+                            Style="{StaticResource SquareButtonStyle}"
+                            CornerRadius="7"
+                            Text="FOLLOW" 
+                            TextColor="{DynamicResource Gray-Black}" 
+                            FontSize="14" 
+                            FontFamily="{DynamicResource Montserrat-SemiBold}"
+                            HorizontalTextAlignment="Center"
                             VerticalTextAlignment="Center"/>
 
                         <!-- Message button -->
                         <buttons:SfButton Command="{Binding MessageCommand}" 
                             Style="{StaticResource SquareButtonStyle}" 
-                            WidthRequest="155"
-                            Text="STORE" TextColor="{DynamicResource Gray-900}" 
-                            FontSize="14" FontFamily="{DynamicResource Montserrat-SemiBold}" 
-                            HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                            CornerRadius="7"
+                            WidthRequest="120"
+                            Text="STORE" 
+                            TextColor="{DynamicResource Gray-Black}" 
+                            FontSize="14" 
+                            FontFamily="{DynamicResource Montserrat-SemiBold}" 
+                            HorizontalTextAlignment="Center" 
+                            VerticalTextAlignment="Center" />
 
                     </StackLayout>
 
@@ -254,7 +261,7 @@
 
                     <!-- About title -->
                     <Label Grid.Row="0"
-                           Text="About" 
+                           Text="ABOUT ME" 
                            FontSize="14"                     
                            Margin="16,24,16,8" 
                            LineHeight="{OnPlatform Android=1.5, Default=-1}"
@@ -272,8 +279,8 @@
                            TextColor="{DynamicResource Gray-700}" />
 
                     <!-- Connections title -->
-                    <Label Grid.Row="2"
-                           Text="CONNECTIONS"
+                    <!--<Label Grid.Row="2"
+                           Text="INTERACTIONS"
                            FontSize="12"                     
                            Margin="16,0" 
                            LineHeight="{OnPlatform Android=1.5, Default=-1}"
@@ -298,7 +305,7 @@
                         
                         <listView:SfListView 
                               HeightRequest="100"
-                              Margin="0,0,0,25"
+                              Margin="16, 0, 16, 16"
                               Padding="0"
                               AutoFitMode="DynamicHeight"
                               ColumnSpacing="0"
@@ -321,10 +328,10 @@
 
                         </listView:SfListView>
 
-                    </StackLayout>
+                    </StackLayout>-->
 
                     <!-- Photos title -->
-                    <Label Grid.Row="4"
+                    <!--<Label Grid.Row="4"
                            Text="PHOTOS"
                            FontSize="12"                     
                            Margin="16,0,16,16" 
@@ -349,7 +356,7 @@
                             <DataTemplate>
                                 <Grid>
 
-                                    <!-- Photos -->
+                                    --><!-- Photos --><!--
                                     <Image Aspect="AspectFill"
                                            BackgroundColor="{DynamicResource Gray-200}"
                                            HeightRequest="90"
@@ -369,7 +376,7 @@
                             <listView:GridLayout SpanCount="{core:OnPlatformOrientationIntValue PhonePortrait=3, PhoneLandscape=5, TabletPortrait=6, TabletLandscape=10, Desktop=10}" />
                         </listView:SfListView.LayoutManager>
 
-                    </listView:SfListView>
+                    </listView:SfListView>-->
                 </Grid>
             </Grid>
         </ScrollView>
