@@ -29,22 +29,22 @@
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <StackLayout Spacing="0">
+        <StackLayout Spacing="0" >
             <StackLayout
                 x:Name="TitleBar"
                 Padding="16,8"
-                BackgroundColor="{StaticResource Transparent}"
+                BackgroundColor="{DynamicResource PrimaryColor}"
                 HeightRequest="48"
                 HorizontalOptions="FillAndExpand"
                 Orientation="Horizontal"
                 Spacing="0">
 
-                <StackLayout
+                <StackLayout 
                     x:Name="ProfileView"
                     HorizontalOptions="FillAndExpand"
                     IsVisible="True"
                     Orientation="Horizontal"
-                    Spacing="0"
+                    Spacing="0" 
                     VerticalOptions="FillAndExpand">
 
                     <!--  Menu Button  -->
@@ -72,19 +72,19 @@
 
                     <!--  Recent Chat page Title  -->
                     <Label
-                        Margin="16,0"
+                        Margin="16,0" 
                         FontFamily="{StaticResource Montserrat-SemiBold}"
-                        FontSize="20"
+                        FontSize="18"
                         HorizontalOptions="Start"
                         LineHeight="1.25"
                         Text="Messages"
-                        TextColor="{DynamicResource Gray-900}"
+                        TextColor="{DynamicResource Gray-White}"
                         VerticalOptions="Center"
                         VerticalTextAlignment="Center" />
 
                 </StackLayout>
 
-                <StackLayout
+                <StackLayout 
                     x:Name="SearchBox"
                     HorizontalOptions="EndAndExpand"
                     IsVisible="False"
@@ -104,8 +104,9 @@
                             x:Name="SearchEntry"
                             BindingContext="{x:Reference ListView}"
                             HorizontalOptions="FillAndExpand"
-                            Placeholder="Search here"
+                            Placeholder="Search here..."
                             Style="{StaticResource ChatSearchEntryStyle}"
+                            Margin="16, 0, 16, 0"
                             Text="{Binding SearchText, Mode=TwoWay}" />
 
                     </border:SfBorder>

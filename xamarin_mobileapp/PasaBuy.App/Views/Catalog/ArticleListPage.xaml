@@ -33,7 +33,7 @@
         <ControlTemplate>
             <StackLayout Spacing="0">
                 <!--  Title View  -->
-                <controls:TitleView Title="Updates">
+                <controls:TitleView Title="Updates" BackgroundColor="{DynamicResource PrimaryColor}">
                     <controls:TitleView.LeadingView>
                         <buttons:SfButton
                             Command="{TemplateBinding BindingContext.BackCommand}"

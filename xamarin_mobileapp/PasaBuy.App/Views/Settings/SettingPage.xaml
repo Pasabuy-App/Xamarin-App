@@ -19,9 +19,10 @@
 
     <ContentPage.ControlTemplate>
         <ControlTemplate>
-            <StackLayout Spacing="0">
+            <StackLayout Spacing="0" >
                 <!--  Title View  -->
-                <controls:TitleView Title="Settings" BackgroundColor="{DynamicResource Gray-White} ">
+                <controls:TitleView Title="Settings" 
+                                    BackgroundColor="{DynamicResource PrimaryColor}" >
                     <controls:TitleView.LeadingView>
                         <buttons:SfButton
                             x:Name="backButton"
@@ -331,7 +332,7 @@
                     <Label
                         Grid.Column="1"
                         Style="{StaticResource LabelStyle}"
-                        Text="Help" />
+                        Text="Help Center" />
                     <!--  Navigation icon  -->
                     <Label
                         Grid.Column="2"
@@ -424,7 +425,7 @@
                     <Label
                         Grid.Column="1"
                         Style="{StaticResource LabelStyle}"
-                        Text="FAQs" />
+                        Text="Frequently Asked Questions" />
                     <!--  Navigation icon  -->
                     <Label
                         Grid.Column="2"
@@ -436,16 +437,8 @@
                 <buttons:SfButton
                     Command="{Binding LogoutCommand}"
                     Margin="0,24,0,32"
-                    BackgroundColor="{DynamicResource PrimaryColor}"
-                    BorderColor="{DynamicResource PrimaryColor}"
-                    BorderWidth="1"
-                    FontFamily="{StaticResource Montserrat-SemiBold}"
-                    HeightRequest="40"
-                    HorizontalOptions="Center"
                     Style="{StaticResource RoundButtonStyle}"
-                    Text="LOG OUT"
-                    TextColor="{DynamicResource Gray-White}"
-                    WidthRequest="245" />
+                    Text="LOG OUT" />
 
             </StackLayout>
         </ScrollView>

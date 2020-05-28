@@ -223,7 +223,7 @@ namespace PasaBuy.App.Controls
                 titleView.titleLabel = new Label
                 {
                     Text = newText,
-                    TextColor = (Color)Application.Current.Resources["Gray-900"],
+                    TextColor = (Color)Application.Current.Resources["Gray-White"],
                     FontSize = 16,
                     Margin = new Thickness(0, 8),
                     FontFamily = Device.RuntimePlatform == Device.Android

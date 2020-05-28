@@ -28,7 +28,7 @@
             <StackLayout Spacing="0">
                 
                 <!--  Title View  -->
-                <controls:TitleView Title="Notifications" BackgroundColor="{DynamicResource Gray-White} ">
+                <controls:TitleView Title="Notifications" BackgroundColor="{DynamicResource PrimaryColor} ">
                     
                     <!-- Back button -->
                     <controls:TitleView.LeadingView>
@@ -37,10 +37,10 @@
                     </controls:TitleView.LeadingView>
 
                     <!-- More button -->
-                    <controls:TitleView.TrailingView>
+                    <!--<controls:TitleView.TrailingView>
                         <buttons:SfButton Text="{StaticResource More}" Style="{StaticResource IconButtonStyle}" CornerRadius="4"
                                           Command="{Binding Path=BindingContext.MenuCommand, Source={x:Reference taskNotificationPage}}" />
-                    </controls:TitleView.TrailingView>
+                    </controls:TitleView.TrailingView>-->
                     
                 </controls:TitleView>
                 <ContentPresenter />
@@ -75,7 +75,7 @@
                                   HorizontalOptions="End">
                     
                     <Label Text="MARK ALL AS READ"
-                           TextColor="{DynamicResource Link}"
+                           TextColor="{DynamicResource Gray-900}"
                            FontSize="12"
                            VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Center"
@@ -157,14 +157,14 @@
                                                       Grid.Column="1" 
                                                       Margin="0,0,0,12" 
                                                       CornerRadius="12" 
-                                                      BackgroundColor="{DynamicResource Link}"
+                                                      BackgroundColor="{DynamicResource Hyperlink}"
                                                       Opacity="0.08"
                                                       HorizontalOptions="Start" 
                                                       WidthRequest="100"
                                                       HeightRequest="24"/>
 
                                         <Label Text="{Binding TaskID}" Grid.Row="2" Grid.Column="1" Margin="13,3,13,15"
-                                               TextColor="{DynamicResource Link}"
+                                               TextColor="{DynamicResource Orange}"
                                                FontSize="12"  HorizontalOptions="Start"
                                                LineHeight="{OnPlatform Android=1.5,Default=-1}"
                                                VerticalTextAlignment="Center"

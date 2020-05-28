@@ -69,7 +69,7 @@
                         <DataTemplate>
                             <StackLayout
                                 Padding="10"
-                                BackgroundColor="{DynamicResource Gray-White}"
+                                BackgroundColor="{DynamicResource PrimaryColor}"
                                 HorizontalOptions="FillAndExpand"
                                 Orientation="Horizontal"
                                 Spacing="0"
@@ -103,7 +103,7 @@
                                     FontSize="16"
                                     HorizontalOptions="FillAndExpand"
                                     Text="{Binding ProfileName}"
-                                    TextColor="{DynamicResource Gray-900}"
+                                    TextColor="{DynamicResource Gray-White}"
                                     VerticalOptions="Center"
                                     VerticalTextAlignment="Center">
                                     <Label.GestureRecognizers>
@@ -112,22 +112,22 @@
                                 </Label>
 
                                 <!--  Video call button  -->
-                                <buttons:SfButton
+                                <!--<buttons:SfButton
                                     Command="{Binding MakeVideoCall}"
                                     Style="{StaticResource NavigationBarButtonStyle}"
-                                    Text="{StaticResource VideoCall}" />
+                                    Text="{StaticResource VideoCall}" />-->
 
                                 <!--  Voice call button  -->
-                                <buttons:SfButton
+                                <!--<buttons:SfButton
                                     Command="{Binding MakeVoiceCall}"
                                     Style="{StaticResource NavigationBarButtonStyle}"
-                                    Text="{StaticResource VoiceCall}" />
+                                    Text="{StaticResource VoiceCall}" />-->
 
                                 <!--  Menu Button  -->
-                                <buttons:SfButton
+                                <!--<buttons:SfButton
                                     Command="{Binding MenuCommand}"
                                     Style="{StaticResource NavigationBarButtonStyle}"
-                                    Text="{StaticResource Menu}" />
+                                    Text="{StaticResource Menu}" />-->
 
                             </StackLayout>
                         </DataTemplate>

@@ -35,7 +35,7 @@
             </Grid.RowDefinitions>
 
             <StackLayout x:Name="TitleView"  Padding="8,8" Grid.Row="0" HeightRequest="50"
-                         BackgroundColor="{DynamicResource Gray-White}" Spacing="0"
+                         BackgroundColor="{DynamicResource PrimaryColor}" Spacing="0"
                          HorizontalOptions="FillAndExpand" Orientation="Horizontal">
 
                 <StackLayout x:Name="Title" HorizontalOptions="FillAndExpand"  IsVisible="True"
@@ -48,7 +48,7 @@
 
                     <!--   Event list page Title  -->
                     <Label  Margin="16,0" FontFamily="{StaticResource Montserrat-Medium}" FontSize="16"
-                            HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource Gray-900}"
+                            HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource Gray-White}"
                             LineHeight="1.25"  Text="Stores"  VerticalOptions="Center" VerticalTextAlignment="Center" />
 
                 </StackLayout>
