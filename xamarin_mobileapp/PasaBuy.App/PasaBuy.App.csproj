@@ -26,12 +26,19 @@
     <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="18.1.0.54" />
     <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="18.1.0.54" />
     <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="18.1.0.54" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRotator" Version="18.1.0.54" />
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.800" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="Themes\LightTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Catalog\ArticleListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Catalog\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Chat\ChatMessagePage.xaml">
@@ -113,6 +120,9 @@
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Social\Templates\ProfileTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\ArticleListTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\SocialIconTemplate.xaml">

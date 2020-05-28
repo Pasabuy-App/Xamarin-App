@@ -9,7 +9,7 @@ using PasaBuy.App.Views.Notification;
 using PasaBuy.App.Views.Settings;
 using PasaBuy.App.Views.Chat;
 using PasaBuy.App.Views.Social;
-using System.Diagnostics;
+using PasaBuy.App.Views.Catalog;
 
 namespace PasaBuy.App.ViewModels.Profile
 {
@@ -203,6 +203,8 @@ namespace PasaBuy.App.ViewModels.Profile
         private void UpdatesButtonClicked(object obj)
         {
             this.UpdateSelectedItemColor(obj);
+
+            Application.Current.MainPage = new NavigationPage(new ArticleListPage());
         }
 
         /// <summary>
@@ -250,7 +252,6 @@ namespace PasaBuy.App.ViewModels.Profile
             catch(System.InvalidCastException err)
             {
                 //Do nothing...
-                Debug.WriteLine("Bytes Crafter - " + err);
             }
             
         }
