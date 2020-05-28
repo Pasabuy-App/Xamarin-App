@@ -220,7 +220,7 @@
 
                 <!--  Grid for mystore label and icon  -->
                 <Grid
-                    x:Name="MyStoreGrid"
+                    x:Name="StoreGrid"
                     BackgroundColor="{DynamicResource Transparent}">
 
                     <Grid.ColumnDefinitions>
@@ -240,10 +240,10 @@
                         FontFamily="{StaticResource Montserrat-SemiBold}"
                         FontSize="14"
                         Style="{StaticResource ProfileLabelStyle}"
-                        Text="My Store" />
+                        Text="Stores" />
 
                     <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding MyStoreCommand}" CommandParameter="{x:Reference MyStoreGrid}" />
+                        <TapGestureRecognizer Command="{Binding StoreCommand}" CommandParameter="{x:Reference StoreGrid}" />
                     </Grid.GestureRecognizers>
 
                 </Grid>

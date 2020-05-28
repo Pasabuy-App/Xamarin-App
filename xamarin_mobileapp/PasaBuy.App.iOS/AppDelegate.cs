@@ -1,3 +1,4 @@
+using Syncfusion.XForms.iOS.TabView;
 using Syncfusion.SfRotator.XForms.iOS;
 using Syncfusion.XForms.iOS.Core;
 using Syncfusion.XForms.iOS.Cards;
@@ -34,6 +35,7 @@ namespace PasaBuy.App.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            SfTabViewRenderer.Init();
             SfRotatorRenderer.Init();
             Core.Init();
             SfCardViewRenderer.Init();

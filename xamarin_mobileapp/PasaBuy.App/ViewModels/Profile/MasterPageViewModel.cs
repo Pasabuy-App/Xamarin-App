@@ -43,7 +43,7 @@ namespace PasaBuy.App.ViewModels.Profile
             this.HomeCommand = new Command(this.HomeButtonClicked);
             this.ProfileCommand = new Command(this.ProfileButtonClicked);
             this.MessageCommand = new Command(this.MessageButtonClicked);
-            this.MyStoreCommand = new Command(this.MyStoreButtonClicked);
+            this.StoreCommand = new Command(this.StoreButtonClicked);
             this.UpdatesCommand = new Command(this.UpdatesButtonClicked);
             this.NotificationCommand = new Command(this.NotificationButtonClicked);
             this.SettingCommand = new Command(this.SettingButtonClicked);
@@ -135,7 +135,7 @@ namespace PasaBuy.App.ViewModels.Profile
         /// <summary>
         /// Gets or sets the command that is executed when the mystore view is clicked.
         /// </summary>
-        public Command MyStoreCommand { get; set; }
+        public Command StoreCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the command that is executed when the request view is clicked.
@@ -191,9 +191,11 @@ namespace PasaBuy.App.ViewModels.Profile
         /// Invoked when the mystore button is clicked.
         /// </summary>
         /// <param name="obj">The object</param>
-        private void MyStoreButtonClicked(object obj)
+        private void StoreButtonClicked(object obj)
         {
             this.UpdateSelectedItemColor(obj);
+
+            Application.Current.MainPage = new NavigationPage(new EventListPage());
         }
 
         /// <summary>
