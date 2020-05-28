@@ -1,5 +1,6 @@
 ﻿using PasaBuy.App.Views.Master;
 using PasaBuy.App.Views.Settings;
+using PasaBuy.App.Views.Forms;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -31,6 +32,7 @@ namespace PasaBuy.App.ViewModels.Settings
             this.TermsCommand = new Command(this.TermsServiceClicked);
             this.PolicyCommand = new Command(this.PrivacyPolicyClicked);
             this.FAQCommand = new Command(this.FAQClicked);
+            this.LogoutCommand = new Command(this.LogoutClicked);
         }
 
         #endregion
@@ -76,6 +78,11 @@ namespace PasaBuy.App.ViewModels.Settings
         /// Gets or sets the command is executed when the FAQ option is clicked.
         /// </summary>
         public Command FAQCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command is executed when the logout option is clicked.
+        /// </summary>
+        public Command LogoutCommand { get; set; }
 
         #endregion
 
@@ -152,7 +159,16 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void HelpClicked(object obj)
         {
-            // Do something
+            Application.Current.MainPage = new NavigationPage(new HelpPage());
+        }
+
+        /// <summary>
+        /// Invoked when the help option is clicked
+        /// </summary>
+        /// <param name="obj">The object</param>
+        private void LogoutClicked(object obj)
+        {
+            Application.Current.MainPage = new NavigationPage(new LoginWithSocialIconPage());
         }
 
         #endregion

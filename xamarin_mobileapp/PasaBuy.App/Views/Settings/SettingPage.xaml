@@ -108,7 +108,7 @@
                         Grid.Column="0"
                         Margin="16,0,0,0"
                         Style="{StaticResource IconLabelStyle}"
-                        Text="{StaticResource Account}" />
+                        Text="{StaticResource Edit}" />
                     <!--  Change password label  -->
                     <Label
                         Grid.Column="1"
@@ -357,7 +357,7 @@
                         Grid.Column="0"
                         Margin="16,0,0,0"
                         Style="{StaticResource IconLabelStyle}"
-                        Text="{StaticResource Account}" />
+                        Text="{StaticResource Help}" />
                     <!--  Terms of service label  -->
                     <Label
                         Grid.Column="1"
@@ -388,7 +388,7 @@
                         Grid.Column="0"
                         Margin="16,0,0,0"
                         Style="{StaticResource IconLabelStyle}"
-                        Text="{StaticResource Account}" />
+                        Text="{StaticResource Help}" />
                     <!--  Privacy policy text label  -->
                     <Label
                         Grid.Column="1"
@@ -419,7 +419,7 @@
                         Grid.Column="0"
                         Margin="16,0,0,0"
                         Style="{StaticResource IconLabelStyle}"
-                        Text="{StaticResource Account}" />
+                        Text="{StaticResource Help}" />
                     <!--  FAQs text label  -->
                     <Label
                         Grid.Column="1"
@@ -434,6 +434,7 @@
 
                 <!--  Logout button  -->
                 <buttons:SfButton
+                    Command="{Binding LogoutCommand}"
                     Margin="0,24,0,32"
                     BackgroundColor="{DynamicResource PrimaryColor}"
                     BorderColor="{DynamicResource PrimaryColor}"

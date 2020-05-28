@@ -1,6 +1,7 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using PasaBuy.App.Views.Master;
+using PasaBuy.App.Views.Settings;
 
 namespace PasaBuy.App.ViewModels.Settings
 {
@@ -90,7 +91,7 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void BackButtonClicked(object obj)
         {
-            Application.Current.MainPage = new MainPage();
+            Application.Current.MainPage = new NavigationPage(new SettingPage());
         }
         #endregion
 

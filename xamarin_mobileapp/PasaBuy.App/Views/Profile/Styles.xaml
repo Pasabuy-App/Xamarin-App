@@ -12,7 +12,7 @@
     
     <x:String x:Key="Home">&#xe706;</x:String>
     <x:String x:Key="Store">&#xe708;</x:String>
-    <x:String x:Key="Request">&#xe734;</x:String>
+    <x:String x:Key="Updates">&#xe734;</x:String>
     <x:String x:Key="Profile">&#xe70e;</x:String>
     <x:String x:Key="Notification">&#xe700;</x:String>
     <x:String x:Key="Help">&#xe72c;</x:String>

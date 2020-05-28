@@ -186,6 +186,38 @@
 
                 <BoxView Style="{StaticResource SeparatorStyle}" />
 
+                <!--  Grid for notification label and icon  -->
+                <Grid
+                    x:Name="NotificationGrid"
+                    BackgroundColor="{DynamicResource Transparent}">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Grid.Column="0"
+                        helper:RTLHelper.Margin="16, 0, 8, 0"
+                        Style="{StaticResource ProfileIconLabelStyle}"
+                        Text="{StaticResource Notification}" />
+
+                    <Label
+                        Grid.Column="1"
+                        Margin="0,14"
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        FontSize="14"
+                        Style="{StaticResource ProfileLabelStyle}"
+                        Text="Notification" />
+
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NotificationCommand}" CommandParameter="{x:Reference NotificationGrid}" />
+                    </Grid.GestureRecognizers>
+
+                </Grid>
+
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
                 <!--  Grid for mystore label and icon  -->
                 <Grid
                     x:Name="MyStoreGrid"
@@ -220,7 +252,7 @@
 
                 <!--  Grid for request label and icon  -->
                 <Grid
-                    x:Name="RequestGrid"
+                    x:Name="UpdatesGrid"
                     BackgroundColor="{DynamicResource Transparent}">
 
                     <Grid.ColumnDefinitions>
@@ -232,7 +264,7 @@
                         Grid.Column="0"
                         helper:RTLHelper.Margin="16, 0, 8, 0"
                         Style="{StaticResource ProfileIconLabelStyle}"
-                        Text="{StaticResource Request}" />
+                        Text="{StaticResource Updates}" />
 
                     <Label
                         Grid.Column="1"
@@ -240,42 +272,10 @@
                         FontFamily="{StaticResource Montserrat-SemiBold}"
                         FontSize="14"
                         Style="{StaticResource ProfileLabelStyle}"
-                        Text="Request" />
+                        Text="Updates" />
 
                     <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding RequestCommand}" CommandParameter="{x:Reference RequestGrid}" />
-                    </Grid.GestureRecognizers>
-
-                </Grid>
-
-                <BoxView Style="{StaticResource SeparatorStyle}" />
-
-                <!--  Grid for notification label and icon  -->
-                <Grid
-                    x:Name="NotificationGrid"
-                    BackgroundColor="{DynamicResource Transparent}">
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-                    <Label
-                        Grid.Column="0"
-                        helper:RTLHelper.Margin="16, 0, 8, 0"
-                        Style="{StaticResource ProfileIconLabelStyle}"
-                        Text="{StaticResource Notification}" />
-
-                    <Label
-                        Grid.Column="1"
-                        Margin="0,14"
-                        FontFamily="{StaticResource Montserrat-SemiBold}"
-                        FontSize="14"
-                        Style="{StaticResource ProfileLabelStyle}"
-                        Text="Notification" />
-
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding NotificationCommand}" CommandParameter="{x:Reference NotificationGrid}" />
+                        <TapGestureRecognizer Command="{Binding UpdatesCommand}" CommandParameter="{x:Reference UpdatesGrid}" />
                     </Grid.GestureRecognizers>
 
                 </Grid>
@@ -308,70 +308,6 @@
 
                     <Grid.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding SettingCommand}" CommandParameter="{x:Reference SettingGrid}" />
-                    </Grid.GestureRecognizers>
-
-                </Grid>
-
-                <BoxView Style="{StaticResource SeparatorStyle}" />
-
-                <!--  Grid for help label and icon  -->
-                <Grid
-                    x:Name="HelpGrid"
-                    BackgroundColor="{DynamicResource Transparent}">
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-                    <Label
-                        Grid.Column="0"
-                        helper:RTLHelper.Margin="16, 0, 8, 0"
-                        Style="{StaticResource ProfileIconLabelStyle}"
-                        Text="{StaticResource Help}" />
-
-                    <Label
-                        Grid.Column="1"
-                        Margin="0,14"
-                        FontFamily="{StaticResource Montserrat-SemiBold}"
-                        FontSize="14"
-                        Style="{StaticResource ProfileLabelStyle}"
-                        Text="Help" />
-
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding HelpCommand}" CommandParameter="{x:Reference HelpGrid}" />
-                    </Grid.GestureRecognizers>
-
-                </Grid>
-
-                <BoxView Style="{StaticResource SeparatorStyle}" />
-
-                <!--  Grid for logout label and icon  -->
-                <Grid
-                    x:Name="LogoutGrid"
-                    BackgroundColor="{DynamicResource Transparent}">
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-                    <Label
-                        Grid.Column="0"
-                        helper:RTLHelper.Margin="16, 0, 8, 0"
-                        Style="{StaticResource ProfileIconLabelStyle}"
-                        Text="{StaticResource Logout}" />
-
-                    <Label
-                        Grid.Column="1"
-                        Margin="0,14"
-                        FontFamily="{StaticResource Montserrat-SemiBold}"
-                        FontSize="14"
-                        Style="{StaticResource ProfileLabelStyle}"
-                        Text="Logout" />
-
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding LogoutCommand}" CommandParameter="{x:Reference LogoutGrid}" />
                     </Grid.GestureRecognizers>
 
                 </Grid>

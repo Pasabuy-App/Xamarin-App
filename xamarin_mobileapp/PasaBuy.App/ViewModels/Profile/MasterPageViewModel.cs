@@ -43,11 +43,9 @@ namespace PasaBuy.App.ViewModels.Profile
             this.ProfileCommand = new Command(this.ProfileButtonClicked);
             this.MessageCommand = new Command(this.MessageButtonClicked);
             this.MyStoreCommand = new Command(this.MyStoreButtonClicked);
-            this.RequestCommand = new Command(this.RequestButtonClicked);
+            this.UpdatesCommand = new Command(this.UpdatesButtonClicked);
             this.NotificationCommand = new Command(this.NotificationButtonClicked);
             this.SettingCommand = new Command(this.SettingButtonClicked);
-            this.HelpCommand = new Command(this.HelpButtonClicked);
-            this.LogoutCommand = new Command(this.LogoutButtonClicked);
             
         }
 
@@ -141,7 +139,7 @@ namespace PasaBuy.App.ViewModels.Profile
         /// <summary>
         /// Gets or sets the command that is executed when the request view is clicked.
         /// </summary>
-        public Command RequestCommand { get; set; }
+        public Command UpdatesCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the command that is executed when the request view is clicked.
@@ -152,16 +150,6 @@ namespace PasaBuy.App.ViewModels.Profile
         /// Gets or sets the command that is executed when the notification view is clicked.
         /// </summary>
         public Command NotificationCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command that is executed when the help view is clicked.
-        /// </summary>
-        public Command HelpCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command that is executed when the logout view is clicked.
-        /// </summary>
-        public Command LogoutCommand { get; set; }
 
         #endregion
 
@@ -211,7 +199,7 @@ namespace PasaBuy.App.ViewModels.Profile
         /// Invoked when the request button is clicked.
         /// </summary>
         /// <param name="obj">The object</param>
-        private void RequestButtonClicked(object obj)
+        private void UpdatesButtonClicked(object obj)
         {
             this.UpdateSelectedItemColor(obj);
         }
@@ -237,29 +225,6 @@ namespace PasaBuy.App.ViewModels.Profile
 
             Application.Current.MainPage = new NavigationPage(new SettingPage());
         }
-
-        /// <summary>
-        /// Invoked when the help button is clicked.
-        /// </summary>
-        /// <param name="obj">The object</param>
-        private void HelpButtonClicked(object obj)
-        {
-            this.UpdateSelectedItemColor(obj);
-
-            Application.Current.MainPage = new NavigationPage(new HelpPage());
-        }
-
-        /// <summary>
-        /// Invoked when the logout button is clicked.
-        /// </summary>
-        /// <param name="obj">The object</param>
-        private void LogoutButtonClicked(object obj)
-        {
-            this.UpdateSelectedItemColor(obj);
-
-            Application.Current.MainPage = new NavigationPage(new LoginWithSocialIconPage());
-        }
-
 
 
         /// <summary>
