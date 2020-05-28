@@ -9,6 +9,7 @@ using PasaBuy.App.Views.Notification;
 using PasaBuy.App.Views.Settings;
 using PasaBuy.App.Views.Chat;
 using PasaBuy.App.Views.Social;
+using System.Diagnostics;
 
 namespace PasaBuy.App.ViewModels.Profile
 {
@@ -242,7 +243,16 @@ namespace PasaBuy.App.ViewModels.Profile
             Application.Current.Resources.TryGetValue("Gray-White", out var retValue);
             grid.BackgroundColor = (Color)retValue;
 
-            //((MainPage)App.Current.MainPage).HideSidebar();
+            try
+            {
+                ((MainPage)App.Current.MainPage).HideSidebar();
+            } 
+            catch(System.InvalidCastException err)
+            {
+                //Do nothing...
+                Debug.WriteLine("Bytes Crafter - " + err);
+            }
+            
         }
 
         #endregion
