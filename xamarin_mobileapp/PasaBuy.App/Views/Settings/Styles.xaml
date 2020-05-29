@@ -18,7 +18,7 @@
     <x:String x:Key="Mail">&#xe725;</x:String>
     <x:String x:Key="Help">&#xe72c;</x:String>
     <x:String x:Key="Edit">&#xe727;</x:String>
-   
+    <x:String x:Key="Pin">&#xe729;</x:String>
 
     <!--  Common style for entries  -->
     <Style x:Key="ChatSearchEntryStyle" TargetType="control:BorderlessEntry">

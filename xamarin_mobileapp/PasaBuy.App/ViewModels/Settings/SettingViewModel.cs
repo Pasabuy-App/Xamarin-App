@@ -1,6 +1,7 @@
 ﻿using PasaBuy.App.Views.Master;
 using PasaBuy.App.Views.Settings;
 using PasaBuy.App.Views.Forms;
+using PasaBuy.App.Views.Detail;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -26,6 +27,7 @@ namespace PasaBuy.App.ViewModels.Settings
         {
             this.BackButtonCommand = new Command(this.BackButtonClicked);
             this.EditProfileCommand = new Command(this.EditProfileClicked);
+            this.MyAddressCommand = new Command(this.MyAddressClicked);
             this.ChangePasswordCommand = new Command(this.ChangePasswordClicked);
             this.LinkAccountCommand = new Command(this.LinkAccountClicked);
             this.HelpCommand = new Command(this.HelpClicked);
@@ -48,6 +50,11 @@ namespace PasaBuy.App.ViewModels.Settings
         /// Gets or sets the command is executed when the edit profile option is clicked.
         /// </summary>
         public Command EditProfileCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command is executed when the my address option is clicked.
+        /// </summary>
+        public Command MyAddressCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the command is executed when the change password option is clicked.
@@ -104,6 +111,15 @@ namespace PasaBuy.App.ViewModels.Settings
         private void EditProfileClicked(object obj)
         {
             // Do something
+        }
+
+        /// <summary>
+        /// Invoked when the edit profile option clicked
+        /// </summary>
+        /// <param name="obj">The object</param>
+        private void MyAddressClicked(object obj)
+        {
+            Application.Current.MainPage = new NavigationPage(new MyAddressPage());
         }
 
         /// <summary>
