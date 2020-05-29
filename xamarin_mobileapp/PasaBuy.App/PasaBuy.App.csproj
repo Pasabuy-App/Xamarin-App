@@ -161,6 +161,9 @@
     <EmbeddedResource Update="Views\Templates\EventListTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\PostFeedItem.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\ProductListTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
