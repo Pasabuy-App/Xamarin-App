@@ -12,11 +12,13 @@
 
   <ItemGroup>
     <None Remove="Data\ecommerce.json" />
+    <None Remove="Data\navigation.json" />
     <None Remove="Data\notification.json" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Data\ecommerce.json" />
+    <EmbeddedResource Include="Data\navigation.json" />
     <EmbeddedResource Include="Data\notification.json" />
   </ItemGroup>
 
@@ -113,6 +115,12 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Master\MainPageMaster.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Navigation\FAQPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Navigation\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Notification\Styles.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

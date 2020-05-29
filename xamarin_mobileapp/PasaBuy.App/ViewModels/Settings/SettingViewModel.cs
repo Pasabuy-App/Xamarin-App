@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using PasaBuy.App.Views.Navigation;
 
 namespace PasaBuy.App.ViewModels.Settings
 {
@@ -166,7 +167,7 @@ namespace PasaBuy.App.ViewModels.Settings
 
         private void FAQClicked(object obj)
         {
-            // Do something
+            Application.Current.MainPage = new NavigationPage(new FAQPage());
         }
 
         /// <summary>
