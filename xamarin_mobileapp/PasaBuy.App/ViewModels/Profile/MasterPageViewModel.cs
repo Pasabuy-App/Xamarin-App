@@ -10,6 +10,7 @@ using PasaBuy.App.Views.Settings;
 using PasaBuy.App.Views.Chat;
 using PasaBuy.App.Views.Social;
 using PasaBuy.App.Views.Catalog;
+using System.Linq;
 
 namespace PasaBuy.App.ViewModels.Profile
 {
@@ -47,7 +48,6 @@ namespace PasaBuy.App.ViewModels.Profile
             this.UpdatesCommand = new Command(this.UpdatesButtonClicked);
             this.NotificationCommand = new Command(this.NotificationButtonClicked);
             this.SettingCommand = new Command(this.SettingButtonClicked);
-            
         }
 
         #endregion
@@ -163,6 +163,8 @@ namespace PasaBuy.App.ViewModels.Profile
         private void HomeButtonClicked(object obj)
         {
             this.UpdateSelectedItemColor(obj);
+
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new MainPageDetail());
         }
 
         /// <summary>
@@ -173,7 +175,7 @@ namespace PasaBuy.App.ViewModels.Profile
         {
             this.UpdateSelectedItemColor(obj);
 
-            Application.Current.MainPage = new NavigationPage(new SocialProfileWithMessagePage());
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new SocialProfileWithMessagePage());
         }
 
         /// <summary>
@@ -184,7 +186,7 @@ namespace PasaBuy.App.ViewModels.Profile
         {
             this.UpdateSelectedItemColor(obj);
 
-            Application.Current.MainPage = new NavigationPage(new RecentChatPage());
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new RecentChatPage());
         }
 
         /// <summary>
@@ -195,7 +197,7 @@ namespace PasaBuy.App.ViewModels.Profile
         {
             this.UpdateSelectedItemColor(obj);
 
-            Application.Current.MainPage = new NavigationPage(new EventListPage());
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new EventListPage());
         }
 
         /// <summary>
@@ -206,7 +208,7 @@ namespace PasaBuy.App.ViewModels.Profile
         {
             this.UpdateSelectedItemColor(obj);
 
-            Application.Current.MainPage = new NavigationPage(new ArticleListPage());
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new ArticleListPage());
         }
 
         /// <summary>
@@ -217,7 +219,7 @@ namespace PasaBuy.App.ViewModels.Profile
         {
             this.UpdateSelectedItemColor(obj);
 
-            Application.Current.MainPage = new NavigationPage(new TaskNotificationPage());
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new TaskNotificationPage());
         }
 
         /// <summary>
@@ -228,9 +230,11 @@ namespace PasaBuy.App.ViewModels.Profile
         {
             this.UpdateSelectedItemColor(obj);
 
-            Application.Current.MainPage = new NavigationPage(new SettingPage());
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new SettingPage());
         }
 
+        public Label iconLabel = null;
+        public Label textLabel = null;
 
         /// <summary>
         /// Changes the selection color when an item is tapped.
@@ -239,13 +243,38 @@ namespace PasaBuy.App.ViewModels.Profile
         private async void UpdateSelectedItemColor(object obj)
         {
             var grid = obj as Grid;
-            Application.Current.Resources.TryGetValue("Gray-100", out var retVal);
-            grid.BackgroundColor = (Color)retVal;
+            Application.Current.Resources.TryGetValue("PrimaryColor", out var primeColor);
+            Application.Current.Resources.TryGetValue("Gray-900", out var normalColor);
+            //grid.BackgroundColor = (Color)retVal;
+            if (iconLabel != null)
+            {
+                iconLabel.TextColor = (Color)normalColor;
+            }
+            if (textLabel != null)
+            {
+                textLabel.TextColor = (Color)normalColor;
+            }
+
+            var iconview = grid.Children.FirstOrDefault(v => Grid.GetRow(v) == 0 && Grid.GetColumn(v) == 0);
+            var iconTar = iconview as Label;
+            if (iconTar != null)
+            {
+                iconTar.TextColor = (Color)primeColor;
+                iconLabel = iconTar;
+            }
+
+            var textView = grid.Children.FirstOrDefault(v => Grid.GetRow(v) == 0 && Grid.GetColumn(v) == 1);
+            var textTar = textView as Label;
+            if (textTar != null)
+            {
+                textTar.TextColor = (Color)primeColor;
+                textLabel = textTar;
+            }
 
             // Makes the selected item color change for 100 milliseconds.
-            await Task.Delay(100);
-            Application.Current.Resources.TryGetValue("Gray-White", out var retValue);
-            grid.BackgroundColor = (Color)retValue;
+            //await Task.Delay(100);
+            //Application.Current.Resources.TryGetValue("PrimaryColor", out var retValue);
+            //grid.BackgroundColor = (Color)retValue;
 
             try
             {

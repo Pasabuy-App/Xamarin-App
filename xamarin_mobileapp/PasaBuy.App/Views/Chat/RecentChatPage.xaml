@@ -11,7 +11,8 @@
     xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
     xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Chat"
     BackgroundColor="{DynamicResource Gray-White}"
-    NavigationPage.HasNavigationBar="False" >
+    Title="Messages"
+    NavigationPage.HasNavigationBar="True" >
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -33,7 +34,7 @@
             <StackLayout
                 x:Name="TitleBar"
                 Padding="16,8"
-                BackgroundColor="{DynamicResource PrimaryColor}"
+                BackgroundColor="{DynamicResource Transparent}"
                 HeightRequest="48"
                 HorizontalOptions="FillAndExpand"
                 Orientation="Horizontal"
@@ -48,11 +49,11 @@
                     VerticalOptions="FillAndExpand">
 
                     <!--  Menu Button  -->
-                    <buttons:SfButton
+                    <!--<buttons:SfButton
                         x:Name="MenuBackButton"
                         Command="{Binding BackCommand}"
                         Style="{StaticResource NavigationBarButtonStyle}"
-                        Text="{StaticResource Back}" />
+                        Text="{StaticResource Back}" />-->
 
                     <!--  Rounded Profile Image  -->
                     <border:SfBorder BackgroundColor="{DynamicResource Gray-200}" Style="{StaticResource ProfileBorderStyle}">
@@ -71,7 +72,7 @@
                     </border:SfBorder>
 
                     <!--  Recent Chat page Title  -->
-                    <Label
+                    <!--<Label
                         Margin="16,0" 
                         FontFamily="{StaticResource Montserrat-SemiBold}"
                         FontSize="18"
@@ -80,7 +81,7 @@
                         Text="Messages"
                         TextColor="{DynamicResource Gray-White}"
                         VerticalOptions="Center"
-                        VerticalTextAlignment="Center" />
+                        VerticalTextAlignment="Center" />-->
 
                 </StackLayout>
 
@@ -95,7 +96,7 @@
                         x:Name="BackButton"
                         Clicked="BackButton_Clicked"
                         Style="{StaticResource NavigationBarButtonStyle}"
-                        Text="{StaticResource Back}" />
+                        Text="{StaticResource Next}" />
 
                     <!--  Rounded Search Entry  -->
                     <border:SfBorder Style="{DynamicResource SfBorderStyle}">
@@ -122,11 +123,11 @@
                     Text="{StaticResource Search}" />
 
                 <!--  Menu Button  -->
-                <buttons:SfButton
+                <!--<buttons:SfButton
                     x:Name="MenuButton"
                     Command="{Binding MenuCommand}"
                     Style="{StaticResource NavigationBarButtonStyle}"
-                    Text="{StaticResource Menu}" />
+                    Text="{StaticResource Menu}" />-->
                 
             </StackLayout>
 

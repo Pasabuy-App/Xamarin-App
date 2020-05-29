@@ -12,7 +12,8 @@
     xmlns:local="clr-namespace:PasaBuy.App.Views.Chat"
     xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Chat"
     BackgroundImage="ChatMessageBackground.png"
-    NavigationPage.HasNavigationBar="False">
+    Title="Conversation"
+    NavigationPage.HasNavigationBar="True">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -69,7 +70,7 @@
                         <DataTemplate>
                             <StackLayout
                                 Padding="10"
-                                BackgroundColor="{DynamicResource PrimaryColor}"
+                                BackgroundColor="{DynamicResource Gray-200}"
                                 HorizontalOptions="FillAndExpand"
                                 Orientation="Horizontal"
                                 Spacing="0"
@@ -103,7 +104,7 @@
                                     FontSize="16"
                                     HorizontalOptions="FillAndExpand"
                                     Text="{Binding ProfileName}"
-                                    TextColor="{DynamicResource Gray-White}"
+                                    TextColor="{DynamicResource Gray-Black}"
                                     VerticalOptions="Center"
                                     VerticalTextAlignment="Center">
                                     <Label.GestureRecognizers>

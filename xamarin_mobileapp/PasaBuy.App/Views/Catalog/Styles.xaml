@@ -25,6 +25,7 @@
     <x:String x:Key="Favourite">&#xe701;</x:String>
     <x:String x:Key="Share">&#xe704;</x:String>
     <x:String x:Key="ArrowRight">&#xe728;</x:String>
+    <x:String x:Key="Next">&#xe71a;</x:String>
 
     <converter:DynamicResourceToColorConverter x:Key="DynamicResourceToColorConverter" />
 
@@ -39,7 +40,7 @@
 
     <!--  Common style for icon buttons  -->
     <Style x:Key="IconButtonStyle" TargetType="buttons:SfButton">
-        <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-Black}" />
         <Setter Property="BackgroundColor" Value="{StaticResource Transparent}" />
         <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
         <Setter Property="FontSize" Value="18" />
@@ -181,7 +182,7 @@
 
     <!--  Common style for Navigation bar SfButton  -->
     <Style x:Key="NavigationBarButtonStyle" TargetType="buttons:SfButton">
-        <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-Black}" />
         <Setter Property="FontSize" Value="18" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="HorizontalOptions" Value="Fill" />

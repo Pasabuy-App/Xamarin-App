@@ -38,7 +38,7 @@
 
     <!--  Common style for Navigation bar SfButton  -->
     <Style x:Key="NavigationBarButtonStyle" TargetType="buttons:SfButton">
-        <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-Black}" />
         <Setter Property="FontSize" Value="18" />
         <Setter Property="WidthRequest" Value="38" />
         <Setter Property="HeightRequest" Value="38" />

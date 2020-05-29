@@ -11,7 +11,8 @@
              xmlns:template="clr-namespace:PasaBuy.App.Views.Templates"
              x:Class="PasaBuy.App.Views.Catalog.EventListPage"
              BackgroundColor="{DynamicResource Gray-White}"
-             NavigationPage.HasNavigationBar="False"
+             Title="Partner Stores"
+             NavigationPage.HasNavigationBar="True"
              x:Name="eventListPage">
 
     <ContentPage.Resources>
@@ -26,6 +27,12 @@
         <viewModel:EventListViewModel />
     </ContentPage.BindingContext>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem>
+            
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <Grid RowSpacing="0" >
             <Grid.RowDefinitions>
@@ -35,21 +42,21 @@
             </Grid.RowDefinitions>
 
             <StackLayout x:Name="TitleView"  Padding="8,8" Grid.Row="0" HeightRequest="50"
-                         BackgroundColor="{DynamicResource PrimaryColor}" Spacing="0"
+                         BackgroundColor="{DynamicResource Transparent}" Spacing="0"
                          HorizontalOptions="FillAndExpand" Orientation="Horizontal">
 
                 <StackLayout x:Name="Title" HorizontalOptions="FillAndExpand"  IsVisible="True"
                              Orientation="Horizontal"  VerticalOptions="FillAndExpand"  Spacing="0">
 
-                    <!--  Back button command  -->
+                    <!--  Back button command  --><!--
                     <buttons:SfButton  x:Name="backButton"  Command="{Binding BackButtonCommand}"
                                        CommandParameter="{x:Reference backButton}" CornerRadius="4"
                                        Style="{StaticResource IconButtonStyle}" Text="{StaticResource Back}"/>
 
-                    <!--   Event list page Title  -->
+                    --><!--   Event list page Title  -->
                     <Label  Margin="16,0" FontFamily="{StaticResource Montserrat-Medium}" FontSize="16"
-                            HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource Gray-White}"
-                            LineHeight="1.25"  Text="Stores"  VerticalOptions="Center" VerticalTextAlignment="Center" />
+                            HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource Gray-900}"
+                            LineHeight="1.25"  Text="Welcome to our Marketplace!"  VerticalOptions="Center" VerticalTextAlignment="Center" />
 
                 </StackLayout>
 
@@ -57,7 +64,7 @@
                                 Orientation="Horizontal" Spacing="0">
 
                     <!--  Back to title layout  -->
-                    <buttons:SfButton x:Name="BackToTitle" Clicked="BackToTitle_Clicked"  Text="{StaticResource Back}"
+                    <buttons:SfButton x:Name="BackToTitle" Clicked="BackToTitle_Clicked"  Text="{StaticResource Next}"
                                       Style="{StaticResource NavigationBarButtonStyle}" />
 
                     <!--  Rounded Search Entry  -->

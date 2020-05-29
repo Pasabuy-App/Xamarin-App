@@ -6,8 +6,8 @@
              mc:Ignorable="d"
              x:Class="PasaBuy.App.Views.Master.MainPageDetail" 
              Title="PasaBuy.app" 
-             NavigationPage.TitleIconImageSource="LogoHeader.png" 
-             >
+             NavigationPage.TitleIconImageSource="LogoHeader.png">
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Search" Icon="ic_search.png" Order="Primary" 
                 Command="{Binding SearchCommandBinding}" />

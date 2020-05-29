@@ -13,7 +13,8 @@
     xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Catalog"
     x:Name="articleList"
     BackgroundColor="{DynamicResource Gray-White}"
-    NavigationPage.HasNavigationBar="False">
+    Title="Updates"
+    NavigationPage.HasNavigationBar="True">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -29,10 +30,9 @@
         <viewModel:ArticleListViewModel />
     </ContentPage.BindingContext>
 
-    <ContentPage.ControlTemplate>
+    <!--<ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0">
-                <!--  Title View  -->
                 <controls:TitleView Title="Updates" BackgroundColor="{DynamicResource PrimaryColor}">
                     <controls:TitleView.LeadingView>
                         <buttons:SfButton
@@ -48,7 +48,7 @@
                 <ContentPresenter />
             </StackLayout>
         </ControlTemplate>
-    </ContentPage.ControlTemplate>
+    </ContentPage.ControlTemplate>-->
 
 
     <ContentPage.Content>

@@ -18,7 +18,7 @@
     </ContentView.Resources>
 
     <ContentView.BindingContext>
-        <viewModel:MasterPageViewModel />
+        <viewModel:MasterPageViewModel x:Name="viewModel"/>
     </ContentView.BindingContext>
 
     <ContentView.Content>
@@ -98,12 +98,11 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <Label
+                    <Label 
                         Grid.Column="0"
                         helper:RTLHelper.Margin="16, 0, 8, 0"
                         Style="{StaticResource ProfileIconLabelStyle}"
-                        Text="{StaticResource Home}"
-                        TextColor="{DynamicResource PrimaryColor}" />
+                        Text="{StaticResource Home}"/>
 
                     <Label
                         Grid.Column="1"
@@ -111,8 +110,7 @@
                         FontFamily="{StaticResource Montserrat-SemiBold}"
                         FontSize="14"
                         Style="{StaticResource ProfileLabelStyle}"
-                        Text="Home"
-                        TextColor="{DynamicResource PrimaryColor}" />
+                        Text="Home"/>
 
                     <Grid.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding HomeCommand}" CommandParameter="{x:Reference HomeGrid}" />

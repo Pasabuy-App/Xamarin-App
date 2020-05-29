@@ -10,7 +10,8 @@
              xmlns:local="clr-namespace:PasaBuy.App.Views.Social.Templates"
              xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Social"
              BackgroundColor="{DynamicResource Gray-White}"
-             NavigationPage.HasNavigationBar="False">
+             Title="Profile" 
+             NavigationPage.HasNavigationBar="True">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -59,7 +60,7 @@
                     </Image>
 
                     <!-- Title View -->
-                    <Grid Grid.Row="0" 
+                    <!--<Grid Grid.Row="0" 
                           Grid.ColumnSpan="2" 
                           RowSpacing="0" 
                           ColumnSpacing="0" 
@@ -79,14 +80,14 @@
                                HorizontalOptions="Center"
                                VerticalOptions="Center" />
 
-                        <!--<buttons:SfButton Margin="8,0"
+                        --><!--<buttons:SfButton Margin="8,0"
                                           Text="{StaticResource Settings}"
                                           CornerRadius="4"
                                           Style="{StaticResource IconButtonStyle}"
                                           HorizontalOptions="End"
-                                          VerticalOptions="Center" />-->
+                                          VerticalOptions="Center" />--><!--
 
-                    </Grid>
+                    </Grid>-->
 
                     <!-- Seperator -->
                     <BoxView Grid.Row="1" Grid.ColumnSpan="2" HeightRequest="1" BackgroundColor="Transparent" />

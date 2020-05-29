@@ -9,7 +9,8 @@
     xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Settings"
     x:Name="settingPage"
     BackgroundColor="{DynamicResource Gray-100}"
-    NavigationPage.HasNavigationBar="False">
+    Title="Settings"
+    NavigationPage.HasNavigationBar="True">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -17,10 +18,9 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ContentPage.ControlTemplate>
+    <!--<ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0" >
-                <!--  Title View  -->
                 <controls:TitleView Title="Settings" 
                                     BackgroundColor="{DynamicResource PrimaryColor}" >
                     <controls:TitleView.LeadingView>
@@ -36,7 +36,7 @@
                 <ContentPresenter />
             </StackLayout>
         </ControlTemplate>
-    </ContentPage.ControlTemplate>
+    </ContentPage.ControlTemplate>-->
 
     <ContentPage.BindingContext>
         <viewModel:SettingViewModel />
