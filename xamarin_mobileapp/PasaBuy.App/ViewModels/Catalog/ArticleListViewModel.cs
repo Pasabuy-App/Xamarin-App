@@ -1,4 +1,5 @@
 ﻿using PasaBuy.App.Views.Master;
+using PasaBuy.App.Views.Article;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -221,7 +222,7 @@ namespace PasaBuy.App.ViewModels.Catalog
         /// <param name="obj">The Object</param>
         private void ItemSelected(object obj)
         {
-            // Do something
+            Application.Current.MainPage = new NavigationPage(new ArticleParallaxHeaderPage());
         }
 
         #endregion
