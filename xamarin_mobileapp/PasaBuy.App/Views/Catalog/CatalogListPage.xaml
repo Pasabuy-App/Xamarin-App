@@ -14,12 +14,12 @@
     xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
     xmlns:template="clr-namespace:PasaBuy.App.Views.Templates"
     x:Name="catalogListPage"
-    Title="Catalog List page"
+    Title="Store Products"
     NavigationPage.HasNavigationBar="False"
     Style="{StaticResource ContentPageStyle}">
 
     <ContentPage.Behaviors>
-        <behavior:CartBehavior />
+        <behavior:CartBehavior/>
     </ContentPage.Behaviors>
 
     <ContentPage.Resources>
@@ -28,7 +28,7 @@
             <converter:BooleanToStringConverter x:Key="boolToStringConverter" />
             <converter:IntToThicknessConverter x:Key="intToThicknessConverter" />
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
+                <ResourceDictionary Source="Styles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -40,11 +40,11 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-
+            
             <!--  Title View  -->
-            <controls:TitleView Title="Dress" Grid.Row="0">
+            <controls:TitleView Title="Store Products" Grid.Row="0" BackgroundColor="{DynamicResource PrimaryColor}">
                 <controls:TitleView.TrailingView>
-                    <StackLayout HorizontalOptions="End" Orientation="Horizontal">
+                    <StackLayout HorizontalOptions="End" Orientation="Horizontal" >
                         <badge:SfBadgeView
                             Margin="{Binding Path=BindingContext.CartItemCount, Source={x:Reference catalogListPage}, Converter={x:StaticResource intToThicknessConverter}}"
                             Padding="0"
@@ -62,7 +62,7 @@
                             </badge:SfBadgeView.Content>
                             <badge:SfBadgeView.BadgeSettings>
                                 <badge:BadgeSetting
-                                    BackgroundColor="{DynamicResource PrimaryColor}"
+                                    BackgroundColor="{DynamicResource Gray-White}"
                                     BadgeType="None"
                                     FontSize="9"
                                     Offset="-5,10" />

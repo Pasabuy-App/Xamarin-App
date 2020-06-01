@@ -5,6 +5,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using ProfileModel = PasaBuy.App.Models.Profile;
+using PasaBuy.App.Views.Catalog;
 
 namespace PasaBuy.App.ViewModels.Social
 {
@@ -285,7 +286,7 @@ namespace PasaBuy.App.ViewModels.Social
         /// <param name="obj">The Object</param>
         private void MessageClicked(object obj)
         {
-            // Do something
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new CatalogListPage());
         }
 
         /// <summary>

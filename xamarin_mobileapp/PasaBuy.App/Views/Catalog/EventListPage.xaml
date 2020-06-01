@@ -41,19 +41,19 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <StackLayout x:Name="TitleView"  Padding="8,8" Grid.Row="0" HeightRequest="50"
+            <!--<StackLayout x:Name="TitleView"  Padding="8,8" Grid.Row="0" HeightRequest="50"
                          BackgroundColor="{DynamicResource Transparent}" Spacing="0"
                          HorizontalOptions="FillAndExpand" Orientation="Horizontal">
 
                 <StackLayout x:Name="Title" HorizontalOptions="FillAndExpand"  IsVisible="True"
                              Orientation="Horizontal"  VerticalOptions="FillAndExpand"  Spacing="0">
 
-                    <!--  Back button command  --><!--
+                    --><!--  Back button command  --><!--
                     <buttons:SfButton  x:Name="backButton"  Command="{Binding BackButtonCommand}"
                                        CommandParameter="{x:Reference backButton}" CornerRadius="4"
                                        Style="{StaticResource IconButtonStyle}" Text="{StaticResource Back}"/>
 
-                    --><!--   Event list page Title  -->
+                    --><!--   Event list page Title  --><!--
                     <Label  Margin="16,0" FontFamily="{StaticResource Montserrat-Medium}" FontSize="16"
                             HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource Gray-900}"
                             LineHeight="1.25"  Text="Welcome to our Marketplace!"  VerticalOptions="Center" VerticalTextAlignment="Center" />
@@ -63,11 +63,11 @@
                 <StackLayout  x:Name="Search" HorizontalOptions="EndAndExpand" IsVisible="False"
                                 Orientation="Horizontal" Spacing="0">
 
-                    <!--  Back to title layout  -->
+                    --><!--  Back to title layout  --><!--
                     <buttons:SfButton x:Name="BackToTitle" Clicked="BackToTitle_Clicked"  Text="{StaticResource Next}"
                                       Style="{StaticResource NavigationBarButtonStyle}" />
 
-                    <!--  Rounded Search Entry  -->
+                    --><!--  Rounded Search Entry  --><!--
                     <border:SfBorder Style="{StaticResource SfBorderStyle}">
                         <controls:BorderlessEntry x:Name="SearchEntry" 
                                                   Text="{Binding SearchText, Mode=TwoWay}" Placeholder="Search here"
@@ -75,10 +75,10 @@
                     </border:SfBorder>
                 </StackLayout>
 
-                <!--  Search Button  -->
+                --><!--  Search Button  --><!--
                 <buttons:SfButton  x:Name="SearchButton" IsVisible="True" Clicked="SearchButton_Clicked" Style="{StaticResource IconButtonStyle }"
                                    Text="{StaticResource Search}" />
-            </StackLayout>
+            </StackLayout>-->
 
             <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}"/>
 
