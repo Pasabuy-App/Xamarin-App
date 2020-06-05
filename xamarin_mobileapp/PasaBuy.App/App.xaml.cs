@@ -1,4 +1,4 @@
-using PasaBuy.App.Controllers;
+using PasaBuy.App.Views.Splash;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -14,7 +14,7 @@ namespace PasaBuy.App
 
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjYwNjY0QDMxMzgyZTMxMmUzMGlJTnpSZVBDTG4raGhBaU5DOVRFbFBKWmxRYVVHd1hxNUx2cXcrZFliMmc9");
 
-            MainPage = new NavigationPage(new SplashScreen());
+            MainPage = new NavigationPage(new SplashPage());
         }
 
         protected override void OnStart()
