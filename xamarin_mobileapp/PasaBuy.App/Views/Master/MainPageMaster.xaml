@@ -6,8 +6,8 @@
              mc:Ignorable="d"
              x:Class="PasaBuy.App.Views.Master.MainPageMaster"
              Title="Detail"
-             xmlns:user_menu="clr-namespace:PasaBuy.App.Views.Profile" >
+             xmlns:user_menu="clr-namespace:PasaBuy.App.Views.Sidebar" >
     <StackLayout >
-        <user_menu:MasterPage />
+        <user_menu:MasterMenu />
     </StackLayout>
 </ContentPage>

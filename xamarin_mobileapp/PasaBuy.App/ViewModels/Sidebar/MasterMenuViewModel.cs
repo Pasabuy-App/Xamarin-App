@@ -12,19 +12,21 @@ using PasaBuy.App.Views.Social;
 using PasaBuy.App.Views.Catalog;
 using System.Linq;
 
-namespace PasaBuy.App.ViewModels.Profile
+namespace PasaBuy.App.ViewModels.Sidebar
 {
     /// <summary>
     /// ViewModel for burger menu expand page.
     /// </summary> 
     [Preserve(AllMembers = true)]
-    public class MasterPageViewModel : BaseViewModel
+    public class MasterMenuViewModel : BaseViewModel
     {
         #region Fields
 
         private string profileName;
 
         private string profileImage;
+
+        private string userBanner;
 
         private string email;
 
@@ -33,13 +35,14 @@ namespace PasaBuy.App.ViewModels.Profile
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance for the <see cref="MasterPageViewModel" /> class.
+        /// Initializes a new instance for the <see cref="MasterMenuViewModel" /> class.
         /// </summary>
-        public MasterPageViewModel()
+        public MasterMenuViewModel()
         {
             this.profileName = "Juan Dela Cruz";
             this.profileImage = App.BaseImageUrl + "ProfileImage1.png";
-            this.email = "juandelacruz@pasabuy.app";
+            this.userBanner = App.BaseImageUrl + "Sky-Image.png";
+            this.email = "juandc20@pasabuy.app";
 
             this.HomeCommand = new Command(this.HomeButtonClicked);
             this.ProfileCommand = new Command(this.ProfileButtonClicked);
@@ -57,7 +60,7 @@ namespace PasaBuy.App.ViewModels.Profile
         /// <summary>
         /// Gets or sets the profile name.
         /// </summary>
-        public string ProfileName
+        public string UserFullname
         {
             get
             {
@@ -77,7 +80,7 @@ namespace PasaBuy.App.ViewModels.Profile
         /// <summary>
         /// Gets or sets the profile image.
         /// </summary>
-        public string ProfileImage
+        public string UserPhoto
         {
             get
             {
@@ -95,9 +98,29 @@ namespace PasaBuy.App.ViewModels.Profile
         }
 
         /// <summary>
+        /// Gets or sets the user banner.
+        /// </summary>
+        public string UserBanner
+        {
+            get
+            {
+                return this.userBanner;
+            }
+
+            set
+            {
+                if (this.userBanner != value)
+                {
+                    this.userBanner = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the email.
         /// </summary>
-        public string Email
+        public string UserEmail
         {
             get
             {

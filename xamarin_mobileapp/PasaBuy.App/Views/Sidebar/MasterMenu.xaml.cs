@@ -3,19 +3,19 @@ using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
-namespace PasaBuy.App.Views.Profile
+namespace PasaBuy.App.Views.Sidebar
 {
     /// <summary>
     /// Page to show article master page
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MasterPage
+    public partial class MasterMenu
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MasterPage" /> class.
+        /// Initializes a new instance of the <see cref="MainMenu" /> class.
         /// </summary>
-        public MasterPage()
+        public MasterMenu()
         {
             InitializeComponent();
 
