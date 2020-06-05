@@ -255,7 +255,7 @@
                                 FontFamily="{StaticResource Montserrat-SemiBold}"
                                 FontSize="14"
                                 Style="{StaticResource ProfileLabelStyle}"
-                                Text="Stores" />
+                                Text="Marketplace" />
 
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding StoreCommand}" CommandParameter="{x:Reference StoreGrid}" />
@@ -265,7 +265,7 @@
 
                         <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                        <!--  Grid for request label and icon  -->
+                        <!--  Grid for advisory label and icon  -->
                         <Grid x:Name="UpdatesGrid"
                             BackgroundColor="{DynamicResource Transparent}">
 
@@ -286,7 +286,7 @@
                                 FontFamily="{StaticResource Montserrat-SemiBold}"
                                 FontSize="14"
                                 Style="{StaticResource ProfileLabelStyle}"
-                                Text="Updates" />
+                                Text="Advisory" />
 
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding UpdatesCommand}" CommandParameter="{x:Reference UpdatesGrid}" />
