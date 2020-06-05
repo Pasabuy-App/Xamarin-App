@@ -448,10 +448,15 @@
                                                    HorizontalTextAlignment="Start"
                                                    VerticalOptions="CenterAndExpand"
                                                    HorizontalOptions="Center"/>
-                                            <Image Source="Chicken.jpg"
-                                                   VerticalOptions="End"
+                                        <Image VerticalOptions="End"
                                                    HorizontalOptions="FillAndExpand"
-                                                   Margin="0,15,0,0"/>
+                                                   Margin="0,15,0,0">
+                                            <Image.Source>
+                                                <UriImageSource Uri="{Binding TempPostImage}" 
+			                                        CacheValidity="14" 
+			                                        CachingEnabled="true"/>
+                                            </Image.Source>
+                                        </Image>
                                         </StackLayout>
 
                                         <Button Text="ACCEPT"
@@ -509,10 +514,15 @@
                                                    HorizontalTextAlignment="Start"
                                                    VerticalOptions="CenterAndExpand"
                                                    HorizontalOptions="Center"/>
-                                            <Image Source="Chicken.jpg"
-                                               VerticalOptions="End"
+                                        <Image VerticalOptions="End"
                                                HorizontalOptions="FillAndExpand"
-                                               Margin="0,15,0,0"/>
+                                               Margin="0,15,0,0">
+                                            <Image.Source>
+                                                <UriImageSource Uri="{Binding TempPostImage}" 
+			                                        CacheValidity="14" 
+			                                        CachingEnabled="true"/>
+                                            </Image.Source>
+                                        </Image>
                                         </StackLayout>
 
                                         <Button Text="ACCEPT"

@@ -168,8 +168,5 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ChatMessageBackground.png" />
   </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Chicken.jpg" />
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

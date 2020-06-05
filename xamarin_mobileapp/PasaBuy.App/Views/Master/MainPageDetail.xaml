@@ -6,12 +6,18 @@
              mc:Ignorable="d"
              x:Class="PasaBuy.App.Views.Master.MainPageDetail" 
              Title="PasaBuy.app" 
+             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Social"
              NavigationPage.TitleIconImageSource="LogoHeader.png">
     
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Search" Icon="ic_search.png" Order="Primary" 
                 Command="{Binding SearchCommandBinding}" />
     </ContentPage.ToolbarItems>
+
+    <!-- Binding context for social profile with message page -->
+    <ContentPage.BindingContext>
+        <viewModel:SocialProfileViewModel />
+    </ContentPage.BindingContext>
 
     <ContentPage.Content>
         <ScrollView VerticalScrollBarVisibility="Never" Padding="0, 0, 0, 20">
@@ -82,10 +88,15 @@
                                HorizontalTextAlignment="Start"
                                VerticalOptions="CenterAndExpand"
                                HorizontalOptions="Center"/>
-                            <Image Source="Chicken.jpg"
-                               VerticalOptions="End"
+                            <Image VerticalOptions="End"
                                HorizontalOptions="FillAndExpand"
-                               Margin="0,15,0,0"/>
+                               Margin="0,15,0,0">
+                                <Image.Source>
+                                    <UriImageSource Uri="{Binding TempPostImage}" 
+			                                        CacheValidity="14" 
+			                                        CachingEnabled="true"/>
+                                </Image.Source>
+                            </Image>
                         </StackLayout>
 
                         <Button Text="ACCEPT"
@@ -143,10 +154,15 @@
                                HorizontalTextAlignment="Start"
                                VerticalOptions="CenterAndExpand"
                                HorizontalOptions="Center"/>
-                            <Image Source="Chicken.jpg"
-                               VerticalOptions="End"
+                            <Image VerticalOptions="End"
                                HorizontalOptions="FillAndExpand"
-                               Margin="0,15,0,0"/>
+                               Margin="0,15,0,0">
+                                <Image.Source>
+                                    <UriImageSource Uri="{Binding TempPostImage}" 
+			                                        CacheValidity="14" 
+			                                        CachingEnabled="true"/>
+                                </Image.Source>
+                            </Image>
                         </StackLayout>
 
                         <Button Text="ACCEPT"

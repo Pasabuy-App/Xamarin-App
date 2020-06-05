@@ -317,5 +317,16 @@ namespace PasaBuy.App.ViewModels.Social
         }
 
         #endregion
+
+
+        // TEMPORARY
+        public string TempPostImage
+        {
+            get
+            {
+                return App.BaseImageUrl + "ArticleImage2.png";
+            }
+        }
+            
     }
 }

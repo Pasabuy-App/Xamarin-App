@@ -215,4 +215,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\ChatMessageBackground.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\LogoHeader.png" />
+  </ItemGroup>
 </Project>
