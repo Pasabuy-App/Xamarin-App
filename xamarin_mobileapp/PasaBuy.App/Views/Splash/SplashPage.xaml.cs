@@ -1,4 +1,5 @@
 ﻿using PasaBuy.App.Views.Forms;
+using PasaBuy.App.Views.Onboarding;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,9 @@ namespace PasaBuy.App.Views.Splash
             //Application.Current.MainPage = new NavigationPage(new MasterDetailPage1());
 
             //IF NOT
-            Application.Current.MainPage = new NavigationPage(new LoginWithSocialIconPage());
+            //Application.Current.MainPage = new NavigationPage(new LoginWithSocialIconPage());
+
+            Application.Current.MainPage = new NavigationPage(new OnBoardingAnimationPage());
         }
     }
 }

@@ -221,4 +221,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\LogoHeader.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\OnBoarding.png" />
+  </ItemGroup>
 </Project>
