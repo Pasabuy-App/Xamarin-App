@@ -1,5 +1,7 @@
+using PasaBuy.App.Views.Forms;
 using PasaBuy.App.Views.Splash;
 using System;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

@@ -10,6 +10,7 @@ using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using PasaBuy.App.Views.Navigation;
+using Xamarin.Essentials;
 
 namespace PasaBuy.App.ViewModels.Settings
 {
@@ -186,6 +187,8 @@ namespace PasaBuy.App.ViewModels.Settings
         private void LogoutClicked(object obj)
         {
             Application.Current.MainPage = new NavigationPage(new LoginWithSocialIconPage());
+
+            Preferences.Remove("UserToken");
         }
 
         #endregion

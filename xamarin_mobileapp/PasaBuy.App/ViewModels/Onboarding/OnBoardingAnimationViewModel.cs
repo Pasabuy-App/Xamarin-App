@@ -7,6 +7,7 @@ using PasaBuy.App.Models.Onboarding;
 using PasaBuy.App.Views.Forms;
 using PasaBuy.App.Views.Onboarding;
 using Syncfusion.SfRotator.XForms;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -207,6 +208,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
             {
                 this.MoveToNextPage();
                 Application.Current.MainPage = new NavigationPage(new LoginWithSocialIconPage());
+                Preferences.Set("ReturnUser", true);
             }
         }
 

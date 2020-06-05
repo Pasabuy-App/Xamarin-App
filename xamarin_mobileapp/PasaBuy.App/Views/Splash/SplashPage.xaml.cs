@@ -1,11 +1,12 @@
 ﻿using PasaBuy.App.Views.Forms;
+using PasaBuy.App.Views.Master;
 using PasaBuy.App.Views.Onboarding;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -23,19 +24,27 @@ namespace PasaBuy.App.Views.Splash
         {
             base.OnAppearing();
 
-            //Check if currently login. TO DO!
-
             //Animate log here.
             await SplashLogo.ScaleTo(1.0, 1000);
             await SplashLogo.ScaleTo(1.5, 1500, Easing.Linear);
 
-            //IF LOGIN
-            //Application.Current.MainPage = new NavigationPage(new MasterDetailPage1());
+            if (Preferences.ContainsKey("ReturnUser"))
+            {
+                if (Preferences.ContainsKey("UserToken"))
+                {
+                    Application.Current.MainPage = new MainPage();
+                }
 
-            //IF NOT
-            //Application.Current.MainPage = new NavigationPage(new LoginWithSocialIconPage());
+                else
+                {
+                    Application.Current.MainPage = new NavigationPage(new LoginWithSocialIconPage());
+                }
+            }
 
-            Application.Current.MainPage = new NavigationPage(new OnBoardingAnimationPage());
+            else
+            {
+                Application.Current.MainPage = new NavigationPage(new OnBoardingAnimationPage());
+            }
         }
     }
 }

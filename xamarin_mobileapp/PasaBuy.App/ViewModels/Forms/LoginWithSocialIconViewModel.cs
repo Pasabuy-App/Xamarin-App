@@ -109,6 +109,8 @@ namespace PasaBuy.App.ViewModels.Forms
 
             //IF SUCCESS AUTH, SAVE USER TOKEN AND CONTINUE.
             Application.Current.MainPage = new MainPage();
+
+            Preferences.Set("UserToken", "hashvalue"); //Temporary!
         }
 
         /// <summary>
