@@ -5,8 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <Color x:Key="BorderBackgroundColor">#70FFFFFF</Color>
-    <Color x:Key="GradientStart">#FF9205</Color>
-    <Color x:Key="GradientEnd">#c9800a</Color>
+    <Color x:Key="GradientStart">#dd9300</Color>
+    <Color x:Key="GradientEnd">#d6c700</Color>
 
     <Color x:Key="PrimaryColor">#f7b900</Color>
     <Color x:Key="PrimaryDarkColor">#2d2d2d</Color>
@@ -21,7 +21,7 @@
     <Color x:Key="Yellow">#f7ce00</Color>
     <Color x:Key="Orange">#ffaa00</Color>
     <Color x:Key="Blue">#0091ff</Color>
-    <Color x:Key="HyperLink">#80ceff</Color>
+    <Color x:Key="HyperLink">#fff</Color>
 
     <!-- PLAIN LIGHT COLOR TO DARKEN COLOR -->
     <Color x:Key="Gray-White">#fafafa</Color> <!-- PLAIN WHITE -->
