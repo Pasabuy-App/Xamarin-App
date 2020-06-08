@@ -11,8 +11,9 @@
     xmlns:template="clr-namespace:PasaBuy.App.Views.Templates"
     xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Article"
     x:Name="articleParallaxPage"
+    Title="Read More"
     BackgroundColor="{DynamicResource Gray-White}"
-    NavigationPage.HasNavigationBar="False">
+    NavigationPage.HasNavigationBar="True">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -31,8 +32,8 @@
         <ControlTemplate>
             <StackLayout Spacing="0" >
                 <!--  Title View  -->
-                <controls:TitleView Title="Read More"
-                                    BackgroundColor="{StaticResource PrimaryColor}">
+                <controls:TitleView Title="" 
+                                    BackgroundColor="{StaticResource Gray-White}">
                     <controls:TitleView.LeadingView>
                         <buttons:SfButton
                             x:Name="backButton"

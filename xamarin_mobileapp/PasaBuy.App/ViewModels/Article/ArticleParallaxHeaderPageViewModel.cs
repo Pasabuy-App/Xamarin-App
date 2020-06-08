@@ -5,6 +5,7 @@ using Syncfusion.XForms.Buttons;
 using PasaBuy.App.Models;
 using Model = PasaBuy.App.Models.Article;
 using PasaBuy.App.Views.Catalog;
+using PasaBuy.App.Views.Master;
 
 namespace PasaBuy.App.ViewModels.Article
 {
@@ -506,7 +507,7 @@ namespace PasaBuy.App.ViewModels.Article
         /// <param name="obj">The object</param>
         private void BackButtonClicked(object obj)
         {
-            Application.Current.MainPage = new NavigationPage(new ArticleListPage());
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new ArticleListPage());
         }
 
         /// <summary>

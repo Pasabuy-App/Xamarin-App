@@ -13,7 +13,7 @@
     xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Catalog"
     x:Name="articleList"
     BackgroundColor="{DynamicResource Gray-White}"
-    Title="Updates"
+    Title="Advisory"
     NavigationPage.HasNavigationBar="True">
 
     <ContentPage.Resources>

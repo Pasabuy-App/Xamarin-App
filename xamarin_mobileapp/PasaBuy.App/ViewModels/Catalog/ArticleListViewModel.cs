@@ -213,7 +213,7 @@ namespace PasaBuy.App.ViewModels.Catalog
         /// <param name="obj">The object</param>
         private void FeatureStoriesClicked(object obj)
         {
-            // Do something
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new ArticleParallaxHeaderPage());
         }
 
         /// <summary>
@@ -222,7 +222,7 @@ namespace PasaBuy.App.ViewModels.Catalog
         /// <param name="obj">The Object</param>
         private void ItemSelected(object obj)
         {
-            Application.Current.MainPage = new NavigationPage(new ArticleParallaxHeaderPage());
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new ArticleParallaxHeaderPage());
         }
 
         #endregion
