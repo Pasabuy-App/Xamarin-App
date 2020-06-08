@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="PasaBuy.App.Views.Master.MainPageDetail" 
+             x:Class="PasaBuy.App.Views.Master.DetailPage" 
              xmlns:local="clr-namespace:PasaBuy.App.Views.Social.Templates"
              Title="PasaBuy.app" 
              BackgroundColor="{DynamicResource Gray-300}"

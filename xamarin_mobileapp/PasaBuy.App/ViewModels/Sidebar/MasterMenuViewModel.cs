@@ -187,7 +187,7 @@ namespace PasaBuy.App.ViewModels.Sidebar
         {
             this.UpdateSelectedItemColor(obj);
 
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new MainPageDetail());
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new DetailPage());
         }
 
         /// <summary>
