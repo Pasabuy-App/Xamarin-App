@@ -155,7 +155,7 @@
                                 Grid.Column="0"
                                 helper:RTLHelper.Margin="35, 0, 8, 0"
                                 Style="{StaticResource ProfileIconLabelStyle}"
-                                Text="&#xf2bd;" />
+                                Text="&#xf406;" />
 
                             <Label
                                 Grid.Column="1"
@@ -275,7 +275,7 @@
                                 Grid.Column="0"
                                 helper:RTLHelper.Margin="35, 0, 8, 0"
                                 Style="{StaticResource ProfileIconLabelStyle}"
-                                Text="&#xf02e;" />
+                                Text="&#xf0a1;" />
 
                             <Label
                                 Grid.Column="1"
