@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="PasaBuy.App.Views.Social.Templates.PostEntry"
+             xmlns:converter="clr-namespace:PasaBuy.App.Converters"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:control="clr-namespace:PasaBuy.App.Controls">
+    
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    
+    <ContentView.Content>
+        <Grid RowSpacing="0" BackgroundColor="{DynamicResource Gray-100}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackLayout Grid.Row="0" Grid.ColumnSpan="2">
+                <Grid Padding="20">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="15"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Row="0" 
+                          Grid.RowSpan="2"
+                          Margin="0, 0, 5, 0"
+                          VerticalOptions="StartAndExpand">
+
+                        <border:SfBorder CornerRadius="50"
+                                         border:BorderColor="White" 
+                                         BorderWidth="2">
+                            <Image WidthRequest="40" HeightRequest="40"
+                                   BackgroundColor="{DynamicResource Transparent}">
+                                <Image.Source>
+                                    <UriImageSource
+                                            CacheValidity="14"
+                                            CachingEnabled="true"
+                                            Uri="{Binding ProfileImage}" />
+                                </Image.Source>
+                            </Image>
+                        </border:SfBorder>
+                    </Grid>
+
+                    <Grid Grid.Row="0" 
+                          HeightRequest="20"
+                          Grid.Column="1">
+                        <Label Text="Juan Dela Cruz" Style="{StaticResource HeaderLabelStyle}"/>
+                    </Grid>
+                    <Grid Grid.Row="1" 
+                          HeightRequest="20"
+                          Grid.Column="1">
+                        <Label Text="7 December 2020 at 7:00AM" Style="{StaticResource SubLabelStyle}"/>
+                    </Grid>
+
+                    <Grid Grid.Row="0" 
+                          HeightRequest="20"
+                          Grid.Column="2" 
+                          HorizontalOptions="End">
+                        <Label Text="Selling" Style="{StaticResource HeaderLabelStyle}"/>
+                    </Grid>
+                    <Grid Grid.Row="1" 
+                          HeightRequest="20"
+                          Grid.Column="2"
+                          HorizontalOptions="End">
+                        <Label Text="4,000 Seen" Style="{StaticResource SubLabelStyle}"/>
+                    </Grid>
+
+                    <Grid Grid.Row="0" 
+                        WidthRequest="12"
+                        Grid.RowSpan="2"
+                        Grid.Column="3" 
+                        Margin="5, 0, 0, 0"
+                        HorizontalOptions="End">
+                        <Label Text=":" Style="{StaticResource HeaderLabelStyle}"/>
+                    </Grid>
+
+                </Grid>
+            </StackLayout>
+
+            <Grid Grid.Row="1" 
+                  Padding="30, 5, 30, 25"
+                  Grid.ColumnSpan="2">
+                <StackLayout>
+                    <Label Text="Lorem ipsum dolor sit amet" Style="{StaticResource HeaderLabelStyle}"/>
+                    <Label Text="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo." Style="{StaticResource ContentLabelStyle}"/>
+                </StackLayout>
+            </Grid>
+
+            <Grid Grid.Row="2" 
+                    Grid.ColumnSpan="2"
+                    HorizontalOptions="FillAndExpand">
+                <Image Aspect="AspectFill"
+                    BackgroundColor="{DynamicResource Transparent}">
+                    <Image.Source>
+                        <UriImageSource
+                                        CacheValidity="14"
+                                        CachingEnabled="true"
+                                        Uri="https://cdn.syncfusion.com/essential-ui-kit-for-xamarin.forms/common/uikitimages/ArticleImage2.png" />
+                    </Image.Source>
+                    </Image>
+            </Grid>
+
+            <Grid Grid.Row="3" Grid.ColumnSpan="2" 
+                  ColumnSpacing="0"
+                  RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <Button Text="Accept" 
+                            BorderColor="{DynamicResource Gray-300}"
+                            BorderWidth="1"
+                            BackgroundColor="{DynamicResource Gray-100}"/>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Button Text="Share" 
+                            BorderColor="{DynamicResource Gray-300}"
+                            BorderWidth="1"
+                            BackgroundColor="{DynamicResource Gray-100}"/>
+                </Grid>
+            </Grid>
+
+        </Grid>
+
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:converter="clr-namespace:PasaBuy.App.Converters"
+             x:Class="PasaBuy.App.Views.Social.Templates.InputEntry"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:control="clr-namespace:PasaBuy.App.Controls">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    
+    <ContentView.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="0" 
+                  Grid.ColumnSpan="1"
+                              Margin="20, 25, 10, 20">
+                <border:SfBorder Grid.Row="0"
+                                         border:BorderColor="White" 
+                                         BorderWidth="2"
+                                         CornerRadius="50">
+                    <Image
+                                    BackgroundColor="{DynamicResource Transparent}"
+                                    WidthRequest="40">
+                        <Image.Source>
+                            <UriImageSource
+                                            CacheValidity="14"
+                                            CachingEnabled="true"
+                                            Uri="{Binding ProfileImage}" />
+                        </Image.Source>
+                    </Image>
+                </border:SfBorder>
+            </Grid>
+
+            <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
+                              Margin="0, 25, 20, 20">
+                <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                    <control:BorderlessEntry
+                                x:Name="PostEntry"
+                                Placeholder="Say something..."
+                                Style="{StaticResource EntryStyle}"
+                                Text="{Binding PostEntry}" />
+                </border:SfBorder>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.ColumnSpan="3" 
+                  ColumnSpacing="0"
+                  RowSpacing="0"
+                  Padding="0, 0, 0, 12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <Button Text="Status" 
+                            BorderColor="{DynamicResource Gray-300}"
+                            BorderWidth="1"
+                            BackgroundColor="{DynamicResource Gray-100}"/>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Button Text="Request" 
+                            BorderColor="{DynamicResource Gray-300}"
+                            BorderWidth="1"
+                            BackgroundColor="{DynamicResource Gray-100}"/>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="2">
+                    <Button Text="Sell" 
+                            BorderColor="{DynamicResource Gray-300}"
+                            BorderWidth="1"
+                            BackgroundColor="{DynamicResource Gray-100}"/>
+                </Grid>
+            </Grid>
+
+        </Grid>
+  </ContentView.Content>
+</ContentView>

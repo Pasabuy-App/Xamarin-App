@@ -81,6 +81,7 @@
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontFamily" Value="{StaticResource Montserrat-Medium}"/>
         <Setter Property="TextColor" Value="{DynamicResource Gray-700}"/>
+        <Setter Property="HorizontalTextAlignment" Value="Center"/>
     </Style>     
 
     <!--  Common style for buttons  -->

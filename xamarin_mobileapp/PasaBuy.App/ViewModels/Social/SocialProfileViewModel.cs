@@ -39,7 +39,7 @@ namespace PasaBuy.App.ViewModels.Social
         public SocialProfileViewModel()
         {
             this.HeaderImagePath = "Album2.png";
-            this.ProfileImage = "ProfileImage16.png";
+            this.ProfileImage = "ProfileImage1.png";
             this.BackgroundImage = "Sky-Image.png";
             this.ProfileName = "Juan Dela Cruz";
             this.Designation = "APPROVED";
