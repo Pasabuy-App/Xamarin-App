@@ -54,7 +54,7 @@
                                          border:BorderColor="White" 
                                          BorderWidth="2">
                             <Image WidthRequest="40" HeightRequest="40"
-                                   BackgroundColor="{DynamicResource Transparent}">
+                                   BackgroundColor="{DynamicResource Gray-400}">
                                 <Image.Source>
                                     <UriImageSource
                                             CacheValidity="14"

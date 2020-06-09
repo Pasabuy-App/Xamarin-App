@@ -38,7 +38,7 @@
                                          BorderWidth="2"
                                          CornerRadius="50">
                     <Image
-                                    BackgroundColor="{DynamicResource Transparent}"
+                                    BackgroundColor="{DynamicResource Gray-400}"
                                     WidthRequest="40">
                         <Image.Source>
                             <UriImageSource

@@ -40,7 +40,7 @@
 
                         <!--  UserBanner  -->
                         <Image Grid.RowSpan="2" Aspect="AspectFill" HeightRequest="175"
-                           BackgroundColor="{DynamicResource PrimaryColor}">
+                           BackgroundColor="{DynamicResource Gray-300}">
                             <Image.Source>
                                 <UriImageSource Uri="{Binding UserBanner}" 
 			                                CacheValidity="14" 
@@ -68,7 +68,7 @@
                                              Margin="0, 0, 5, 0"
                                              Style="{StaticResource ProfileBorderStyle}">
                                 <Image
-                                    BackgroundColor="{DynamicResource Transparent}"
+                                    BackgroundColor="{DynamicResource Gray-400}"
                                     Aspect="AspectFill"
                                     HeightRequest="60"
                                     WidthRequest="60">
