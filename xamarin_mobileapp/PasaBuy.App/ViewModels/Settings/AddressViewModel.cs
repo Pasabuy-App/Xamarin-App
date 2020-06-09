@@ -1,24 +1,24 @@
 ﻿using Xamarin.Forms;
-using PasaBuy.App.Models.Detail;
+using PasaBuy.App.Models.Settings;
 using System.Collections.ObjectModel;
 using Xamarin.Forms.Internals;
 using PasaBuy.App.Views.Master;
 using PasaBuy.App.Views.Settings;
 
-namespace PasaBuy.App.ViewModels.Detail
+namespace PasaBuy.App.ViewModels.Settings
 {
     /// <summary>
     /// ViewModel for my address page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class MyAddressViewModel : BaseViewModel
+    public class AddressViewModel : BaseViewModel
     {
         #region Properties
         public ObservableCollection<Address> AddressDetails { get; set; }
         #endregion
 
         #region Constructor
-        public MyAddressViewModel()
+        public AddressViewModel()
         {
             this.BackCommand = new Command(this.BackButtonClicked);
             this.EditCommand = new Command(this.EditButtonClicked);
@@ -54,7 +54,7 @@ namespace PasaBuy.App.ViewModels.Detail
         /// <param name="obj">The object</param>
         private void BackButtonClicked(object obj)
         {
-            Application.Current.MainPage = new NavigationPage(new SettingPage());
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new SettingPage());
         }
 
         /// <summary>

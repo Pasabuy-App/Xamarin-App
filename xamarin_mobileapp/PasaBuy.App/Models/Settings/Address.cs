@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms.Internals;
 
-namespace PasaBuy.App.Models.Detail
+namespace PasaBuy.App.Models.Settings
 {
     /// <summary>
     /// Model for my address page.

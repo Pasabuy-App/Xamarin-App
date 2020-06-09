@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasaBuy.App.Android", "Pasa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasaBuy.App.iOS", "PasaBuy.App.iOS\PasaBuy.App.iOS.csproj", "{72727F5A-BF8D-4291-8E56-8C663FE0C63A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasaBuy.App", "PasaBuy.App\PasaBuy.App.csproj", "{00FF1747-6BD6-4C6A-9D96-F66F1214DD67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PasaBuy.App", "PasaBuy.App\PasaBuy.App.csproj", "{00FF1747-6BD6-4C6A-9D96-F66F1214DD67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

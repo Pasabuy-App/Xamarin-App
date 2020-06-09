@@ -45,6 +45,9 @@
     <x:String x:Key="Category">&#xe733;</x:String>
     <x:String x:Key="FileExplorer">&#xe74a;</x:String>
 
+    <x:String x:Key="MapPin">&#xe729;</x:String>
+    <x:String x:Key="Delete">&#xe716;</x:String>
+
     <!--  Common style for entries  -->
     <Style x:Key="ChatSearchEntryStyle" TargetType="control:BorderlessEntry">
         <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-700}" />
@@ -342,6 +345,34 @@
         <Setter Property="HeightRequest" Value="38" />
         <Setter Property="HorizontalOptions" Value="EndAndExpand" />
         <Setter Property="Margin" Value="16,0,0,0"/>
+    </Style>
+
+    <!--  Common style for Magenta buttons  -->
+    <Style
+        x:Key="MagentaButtonStyle"
+        BasedOn="{StaticResource SfButtonStyle}"
+        TargetType="buttons:SfButton">
+        <Setter Property="BackgroundGradient">
+            <Setter.Value>
+                <graphics:SfLinearGradientBrush>
+                    <graphics:SfLinearGradientBrush.GradientStops>
+                        <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                        <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                    </graphics:SfLinearGradientBrush.GradientStops>
+                </graphics:SfLinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--  Common style for labels  -->
+    <Style x:Key="CommonLabelStyle" TargetType="Label">
+        <Setter Property="LineHeight" Value="{OnPlatform Android=1.25, Default=-1}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-700}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Start" />
     </Style>
 
 </ResourceDictionary>

@@ -1,7 +1,6 @@
 ﻿using PasaBuy.App.Views.Master;
 using PasaBuy.App.Views.Settings;
 using PasaBuy.App.Views.Forms;
-using PasaBuy.App.Views.Detail;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -120,7 +119,7 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void MyAddressClicked(object obj)
         {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new MyAddressPage());
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new AddressPage());
         }
 
         /// <summary>
