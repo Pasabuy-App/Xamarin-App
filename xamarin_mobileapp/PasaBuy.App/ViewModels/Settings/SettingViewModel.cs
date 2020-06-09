@@ -9,7 +9,6 @@ using System.ComponentModel;
 using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using PasaBuy.App.Views.Navigation;
 using Xamarin.Essentials;
 
 namespace PasaBuy.App.ViewModels.Settings

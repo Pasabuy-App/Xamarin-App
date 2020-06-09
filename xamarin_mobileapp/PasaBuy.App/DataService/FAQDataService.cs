@@ -1,4 +1,4 @@
-﻿using PasaBuy.App.ViewModels.Navigation;
+﻿using PasaBuy.App.ViewModels.Settings;
 using System.Reflection;
 using System.Runtime.Serialization.Json;
 using Xamarin.Forms.Internals;

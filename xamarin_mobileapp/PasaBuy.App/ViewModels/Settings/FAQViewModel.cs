@@ -1,9 +1,9 @@
-﻿using PasaBuy.App.Models.Navigation;
+﻿using PasaBuy.App.Models.Settings;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Xamarin.Forms.Internals;
 
-namespace PasaBuy.App.ViewModels.Navigation
+namespace PasaBuy.App.ViewModels.Settings
 {
     /// <summary>
     /// ViewModel for FAQ page.

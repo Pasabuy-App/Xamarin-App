@@ -19,7 +19,7 @@ namespace PasaBuy.App.Controls
         {
             if (base.FilterContacts(obj))
             {
-                var taskInfo = obj as Models.Navigation.FAQ;
+                var taskInfo = obj as Models.Settings.FAQ;
 
                 if (taskInfo == null || string.IsNullOrEmpty(taskInfo.Question))
                 {

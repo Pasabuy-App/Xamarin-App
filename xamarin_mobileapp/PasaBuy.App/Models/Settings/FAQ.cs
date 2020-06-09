@@ -2,7 +2,7 @@
 using System.Runtime.Serialization;
 using Xamarin.Forms.Internals;
 
-namespace PasaBuy.App.Models.Navigation
+namespace PasaBuy.App.Models.Settings
 {
     /// <summary>
     /// Model for the FAQ page.

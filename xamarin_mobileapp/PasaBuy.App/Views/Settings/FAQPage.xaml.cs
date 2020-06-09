@@ -1,11 +1,11 @@
 ﻿using PasaBuy.App.DataService;
-using PasaBuy.App.Views.Settings;
+using PasaBuy.App.Views.Master;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
-namespace PasaBuy.App.Views.Navigation
+namespace PasaBuy.App.Views.Settings
 {
     /// <summary>
     /// Page to show the FAQ page details.
@@ -116,7 +116,7 @@ namespace PasaBuy.App.Views.Navigation
         /// </summary>
         public void BackButtonClicked(object sender, EventArgs e)
         {
-            Application.Current.MainPage = new NavigationPage(new SettingPage());
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new SettingPage());
         }
 
     }

@@ -131,10 +131,7 @@
     <EmbeddedResource Update="Views\Master\MasterPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Navigation\FAQPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Navigation\Styles.xaml">
+    <EmbeddedResource Update="Views\Settings\FAQPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Notification\Styles.xaml">
