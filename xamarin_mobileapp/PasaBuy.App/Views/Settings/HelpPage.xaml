@@ -26,7 +26,14 @@
 
 
     <StackLayout Spacing="0">
-        <StackLayout
+        <Grid RowSpacing="0" ColumnSpacing="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout Grid.Row="0"
                 x:Name="TitleView"
                 Padding="16,8"
                 BackgroundColor="{DynamicResource Gray-100} "
@@ -35,7 +42,7 @@
                 Orientation="Horizontal"
                 Spacing="0">
 
-            <StackLayout
+                <StackLayout
                     x:Name="Title"
                     HorizontalOptions="FillAndExpand"
                     IsVisible="True"
@@ -43,14 +50,14 @@
                     Spacing="0"
                     VerticalOptions="FillAndExpand">
 
-                <buttons:SfButton
+                    <buttons:SfButton
                             x:Name="backButton"
                             Command="{Binding BackButtonCommand}"
                             CommandParameter="{x:Reference backButton}"
                             CornerRadius="4"
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
-                <Label
+                    <Label
                         Margin="16,0"
                         FontFamily="{StaticResource Montserrat-Medium}"
                         FontSize="16"
@@ -62,47 +69,50 @@
                         VerticalOptions="Center"
                         VerticalTextAlignment="Center" />
 
-            </StackLayout>
+                </StackLayout>
 
-            <StackLayout
+                <StackLayout
                     x:Name="Search"
                     HorizontalOptions="EndAndExpand"
                     IsVisible="False"
                     Orientation="Horizontal"
                     Spacing="0">
 
-                <buttons:SfButton
+                    <buttons:SfButton
                         x:Name="BackToTitle"
                         Style="{StaticResource NavigationBarButtonStyle}"
                         Clicked="BackToTitle_Clicked"
                         Text="{StaticResource Back}" />
 
-                <!--  Rounded Search Entry  -->
-                <border:SfBorder Style="{DynamicResource SfBorderStyle}" Padding="15, 0, 0, 0">
-                    <controls:BorderlessEntry
+                    <!--  Rounded Search Entry  -->
+                    <border:SfBorder Style="{DynamicResource SfBorderStyle}" Padding="15, 0, 0, 0">
+                        <controls:BorderlessEntry
                             x:Name="SearchEntry"
                             HorizontalOptions="FillAndExpand"
                             Placeholder="Search here"
                             Style="{StaticResource ChatSearchEntryStyle}"/>
-                </border:SfBorder>
+                    </border:SfBorder>
 
-            </StackLayout>
+                </StackLayout>
 
-            <buttons:SfButton
+                <buttons:SfButton
                     x:Name="SearchButton"
                     Clicked="SearchButton_Clicked"
                     IsVisible="True"
                     Style="{StaticResource IconButtonStyle }"
                     Text="{StaticResource Search}" />
 
-        </StackLayout>
+            </StackLayout>
+            
+            <!-- Seperator -->
+            <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}"/>
 
-        <ScrollView>
+            <ScrollView Grid.Row="2">
 
-            <StackLayout BackgroundColor="{DynamicResource Gray-100}" Spacing="0">
+                <StackLayout BackgroundColor="{DynamicResource Gray-100}" Spacing="0">
 
-                <!--  Header label for help with recent orders -->
-                <Label 
+                    <!--  Header label for help with recent orders -->
+                    <Label 
                     Margin ="16,0"
                     FontFamily="{StaticResource Montserrat-SemiBold}"
                     FontSize="12"
@@ -115,58 +125,58 @@
                     Text="HELP WITH RECENT ORDERS"
                     TextColor="{DynamicResource Gray-800}" />
 
-                <!--  Previous order label and navigation bar icon  -->
-                <controls:TapAnimationGrid
+                    <!--  Previous order label and navigation bar icon  -->
+                    <controls:TapAnimationGrid
                     HeightRequest="48"
                     BackgroundColor="{DynamicResource Gray-White}"
                     ColumnSpacing="0"
                     Command="{Binding IssuePreviousOrderCommand}"
                     RowSpacing="0"
                     Tapped="False">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <!--  Previous order label  -->
-                    <Label
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <!--  Previous order label  -->
+                        <Label
                         Grid.Column="0"
                         Style="{StaticResource LabelStyle}"
                         Text="Issues with Previous Order" />
-                    <!--  Navigation icon  -->
-                    <Label
+                        <!--  Navigation icon  -->
+                        <Label
                         Grid.Column="1"
                         Style="{StaticResource IconLabelStyle}"
                         Text="{StaticResource Next}" />
-                </controls:TapAnimationGrid>
-                <BoxView Style="{StaticResource SeparatorStyle}" />
+                    </controls:TapAnimationGrid>
+                    <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                <!--  Return & refund label and navigation bar icon  -->
-                <controls:TapAnimationGrid
+                    <!--  Return & refund label and navigation bar icon  -->
+                    <controls:TapAnimationGrid
                      HeightRequest="48"
                     BackgroundColor="{DynamicResource Gray-White}"
                     ColumnSpacing="0"
                     Command="{Binding Return_RefundCommand}"
                     RowSpacing="0"
                     Tapped="False">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <!--  Return and Refunds label  -->
-                    <Label
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <!--  Return and Refunds label  -->
+                        <Label
                         Grid.Column="0"
                         Style="{StaticResource LabelStyle}"
                         Text="Returns and Refunds" />
-                    <!--  Navigation icon  -->
-                    <Label
+                        <!--  Navigation icon  -->
+                        <Label
                         Grid.Column="1"
                         Style="{StaticResource IconLabelStyle}"
                         Text="{StaticResource Next}" />
-                </controls:TapAnimationGrid>
-                <BoxView Style="{StaticResource SeparatorStyle}" />
+                    </controls:TapAnimationGrid>
+                    <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                <!--  Header label for help with other queries -->
-                <Label
+                    <!--  Header label for help with other queries -->
+                    <Label
                     Margin ="16,0"
                     FontFamily="{StaticResource Montserrat-SemiBold}"
                     FontSize="12"
@@ -179,108 +189,110 @@
                     Text="HELP WITH OTHER QUERIES"
                     TextColor="{DynamicResource Gray-800}" />
 
-                <!-- Payment related queries and navigation bar icon  -->
-                <controls:TapAnimationGrid
+                    <!-- Payment related queries and navigation bar icon  -->
+                    <controls:TapAnimationGrid
                      HeightRequest="48"
                     BackgroundColor="{DynamicResource Gray-White}"
                     ColumnSpacing="0"
                     Command="{Binding PaymentQueriesCommand}"
                     RowSpacing="0"
                     Tapped="False">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <!--  Payment related queries label  -->
-                    <Label
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <!--  Payment related queries label  -->
+                        <Label
                         Grid.Column="0"
                         Style="{StaticResource LabelStyle}"
                         Text="Payment-Related Queries" />
-                    <!--  Navigation icon  -->
-                    <Label
+                        <!--  Navigation icon  -->
+                        <Label
                         Grid.Column="1"
                         Style="{StaticResource IconLabelStyle}"
                         Text="{StaticResource Next}" />
-                </controls:TapAnimationGrid>
-                <BoxView Style="{StaticResource SeparatorStyle}" />
+                    </controls:TapAnimationGrid>
+                    <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                <!--  Offers related queries and navigation bar icon  -->
-                <controls:TapAnimationGrid
+                    <!--  Offers related queries and navigation bar icon  -->
+                    <controls:TapAnimationGrid
                     HeightRequest="48"
                     BackgroundColor="{DynamicResource Gray-White}"
                     ColumnSpacing="0"
                     Command="{Binding OffersQueriesCommand}"
                     RowSpacing="0"
                     Tapped="False">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <!--  Offers related queries label  -->
-                    <Label
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <!--  Offers related queries label  -->
+                        <Label
                         Grid.Column="0"
                         Style="{StaticResource LabelStyle}"
                         Text="Offer-Related Queries" />
-                    <!--  Navigation icon  -->
-                    <Label
+                        <!--  Navigation icon  -->
+                        <Label
                         Grid.Column="1"
                         Style="{StaticResource IconLabelStyle}"
                         Text="{StaticResource Next}" />
-                </controls:TapAnimationGrid>
-                <BoxView Style="{StaticResource SeparatorStyle}" />
+                    </controls:TapAnimationGrid>
+                    <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                <!--  Account related queries and navigation bar icon  -->
-                <controls:TapAnimationGrid
+                    <!--  Account related queries and navigation bar icon  -->
+                    <controls:TapAnimationGrid
                     HeightRequest="48"
                     BackgroundColor="{DynamicResource Gray-White}"
                     ColumnSpacing="0"
                     Command="{Binding AccountQueriesCommand}"
                     RowSpacing="0"
                     Tapped="False">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <!--  Account related queries label  -->
-                    <Label
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <!--  Account related queries label  -->
+                        <Label
                         Grid.Column="0"
                         Style="{StaticResource LabelStyle}"
                         Text="Account-Related Queries" />
-                    <!--  Navigation icon  -->
-                    <Label
+                        <!--  Navigation icon  -->
+                        <Label
                         Grid.Column="1"
                         Style="{StaticResource IconLabelStyle}"
                         Text="{StaticResource Next}" />
-                </controls:TapAnimationGrid>
-                <BoxView Style="{StaticResource SeparatorStyle}" />
+                    </controls:TapAnimationGrid>
+                    <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                <!--  Other queries and navigation bar icon  -->
-                <controls:TapAnimationGrid
+                    <!--  Other queries and navigation bar icon  -->
+                    <controls:TapAnimationGrid
                     HeightRequest="48"  
                     BackgroundColor="{DynamicResource Gray-White}"
                     ColumnSpacing="0"
                     Command="{Binding OtherQueriesCommand}"
                     RowSpacing="0"
                     Tapped="False">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <!--  Other queries label  -->
-                    <Label
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <!--  Other queries label  -->
+                        <Label
                         Grid.Column="0"
                         Style="{StaticResource LabelStyle}"
                         Text="Other Queries" />
-                    <!--  Navigation icon  -->
-                    <Label
+                        <!--  Navigation icon  -->
+                        <Label
                         Grid.Column="1"
                         Style="{StaticResource IconLabelStyle}"
                         Text="{StaticResource Next}" />
-                </controls:TapAnimationGrid>
-                <BoxView Style="{StaticResource SeparatorStyle}" />
+                    </controls:TapAnimationGrid>
+                    <BoxView Style="{StaticResource SeparatorStyle}" />
 
-            </StackLayout>
-        </ScrollView>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+
     </StackLayout>
 
 </ContentPage>

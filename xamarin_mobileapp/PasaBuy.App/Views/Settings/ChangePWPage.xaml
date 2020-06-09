@@ -22,6 +22,7 @@
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
@@ -54,7 +55,7 @@
             <!-- Seperator -->
             <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}"/>
 
-            <StackLayout Grid.Row="1">
+            <StackLayout Grid.Row="2">
                 <Label Text="Welcome to Change Password Page!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
