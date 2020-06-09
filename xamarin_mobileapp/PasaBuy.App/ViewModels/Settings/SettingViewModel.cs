@@ -121,7 +121,7 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void MyAddressClicked(object obj)
         {
-            Application.Current.MainPage = new NavigationPage(new MyAddressPage());
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new MyAddressPage());
         }
 
         /// <summary>
@@ -168,7 +168,7 @@ namespace PasaBuy.App.ViewModels.Settings
 
         private void FAQClicked(object obj)
         {
-            Application.Current.MainPage = new NavigationPage(new FAQPage());
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new FAQPage());
         }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void HelpClicked(object obj)
         {
-            Application.Current.MainPage = new NavigationPage(new HelpPage());
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new HelpPage());
         }
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void LogoutClicked(object obj)
         {
-            Application.Current.MainPage = new NavigationPage(new LoginWithSocialIconPage());
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new LoginWithSocialIconPage());
 
             Preferences.Remove("UserToken");
         }

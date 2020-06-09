@@ -10,8 +10,9 @@
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              mc:Ignorable="d"
              x:Name="helpPage"
+             Title="Settings"
              BackgroundColor="{DynamicResource Gray-100}"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="True">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -28,7 +29,7 @@
         <StackLayout
                 x:Name="TitleView"
                 Padding="16,8"
-                BackgroundColor="{DynamicResource PrimaryColor} "
+                BackgroundColor="{DynamicResource Gray-100} "
                 HeightRequest="48"
                 HorizontalOptions="FillAndExpand"
                 Orientation="Horizontal"
@@ -57,7 +58,7 @@
                         LineHeight="{OnPlatform Default=-1,
                                             Android=1.25}"
                         Text="Help Center"
-                        TextColor="{DynamicResource Gray-White}"
+                        TextColor="{DynamicResource Gray-Black}"
                         VerticalOptions="Center"
                         VerticalTextAlignment="Center" />
 
@@ -77,7 +78,7 @@
                         Text="{StaticResource Back}" />
 
                 <!--  Rounded Search Entry  -->
-                <border:SfBorder Style="{DynamicResource SfBorderStyle}">
+                <border:SfBorder Style="{DynamicResource SfBorderStyle}" Padding="15, 0, 0, 0">
                     <controls:BorderlessEntry
                             x:Name="SearchEntry"
                             HorizontalOptions="FillAndExpand"

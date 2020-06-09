@@ -91,7 +91,7 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void BackButtonClicked(object obj)
         {
-            Application.Current.MainPage = new NavigationPage(new SettingPage());
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new SettingPage());
         }
         #endregion
 
