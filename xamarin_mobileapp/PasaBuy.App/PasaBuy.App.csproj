@@ -44,9 +44,6 @@
     <Compile Update="Views\Master\MasterPage.xaml.cs">
       <DependentUpon>MasterPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Sidebar\MasterMenu.xaml.cs">
-      <DependentUpon>MasterMenu.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -149,10 +146,7 @@
     <EmbeddedResource Update="Views\Onboarding\WalkthroughItemPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Sidebar\MasterMenu.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Sidebar\Styles.xaml">
+    <EmbeddedResource Update="Views\Master\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Settings\HelpPage.xaml">

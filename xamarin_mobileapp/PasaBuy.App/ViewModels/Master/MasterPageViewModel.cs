@@ -12,13 +12,13 @@ using PasaBuy.App.Views.Social;
 using PasaBuy.App.Views.Catalog;
 using System.Linq;
 
-namespace PasaBuy.App.ViewModels.Sidebar
+namespace PasaBuy.App.ViewModels.Master
 {
     /// <summary>
     /// ViewModel for burger menu expand page.
     /// </summary> 
     [Preserve(AllMembers = true)]
-    public class MasterMenuViewModel : BaseViewModel
+    public class MasterPageViewModel : BaseViewModel
     {
         #region Fields
 
@@ -35,9 +35,9 @@ namespace PasaBuy.App.ViewModels.Sidebar
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance for the <see cref="MasterMenuViewModel" /> class.
+        /// Initializes a new instance for the <see cref="MasterPageViewModel" /> class.
         /// </summary>
-        public MasterMenuViewModel()
+        public MasterPageViewModel()
         {
             this.profileName = "Juan Dela Cruz";
             this.profileImage = App.BaseImageUrl + "ProfileImage1.png";
