@@ -44,6 +44,12 @@
     <Compile Update="Views\Master\MasterPage.xaml.cs">
       <DependentUpon>MasterPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Onboarding\GettingStarted.xaml.cs">
+      <DependentUpon>GettingStarted.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Onboarding\WalkthroughItem.xaml.cs">
+      <DependentUpon>WalkthroughItem.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -137,13 +143,13 @@
     <EmbeddedResource Update="Views\Notification\TaskNotificationPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Onboarding\OnBoardingAnimationPage.xaml">
+    <EmbeddedResource Update="Views\Onboarding\GettingStarted.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Onboarding\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Onboarding\WalkthroughItemPage.xaml">
+    <EmbeddedResource Update="Views\Onboarding\WalkthroughItem.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Master\Styles.xaml">
@@ -176,7 +182,7 @@
     <EmbeddedResource Update="Views\Social\Templates\Styles.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Splash\SplashPage.xaml">
+    <EmbeddedResource Update="Views\Onboarding\SplashPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\ArticleListTemplate.xaml">

@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="PasaBuy.App.Views.Splash.SplashPage"
+             x:Class="PasaBuy.App.Views.Onboarding.SplashPage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout BackgroundColor="#f4f4f4">

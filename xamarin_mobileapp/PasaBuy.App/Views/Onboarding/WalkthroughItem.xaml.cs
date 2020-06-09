@@ -8,12 +8,12 @@ namespace PasaBuy.App.Views.Onboarding
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class WalkthroughItemPage
+    public partial class WalkthroughItem
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="WalkthroughItemPage" /> class.
+        /// Initializes a new instance of the <see cref="WalkthroughItem" /> class.
         /// </summary>
-        public WalkthroughItemPage()
+        public WalkthroughItem()
         {
             InitializeComponent();
         }

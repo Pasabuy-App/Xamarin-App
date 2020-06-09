@@ -1,6 +1,5 @@
 ﻿using PasaBuy.App.Views.Forms;
 using PasaBuy.App.Views.Master;
-using PasaBuy.App.Views.Onboarding;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +9,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PasaBuy.App.Views.Splash
+namespace PasaBuy.App.Views.Onboarding
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SplashPage : ContentPage
@@ -43,7 +42,7 @@ namespace PasaBuy.App.Views.Splash
 
             else
             {
-                Application.Current.MainPage = new NavigationPage(new OnBoardingAnimationPage());
+                Application.Current.MainPage = new NavigationPage(new GettingStarted());
             }
         }
     }

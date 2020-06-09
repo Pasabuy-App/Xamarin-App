@@ -17,7 +17,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
     /// ViewModel for on-boarding gradient page with animation.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class OnBoardingAnimationViewModel : BaseViewModel
+    public class GettingStartedViewModel : BaseViewModel
     {
         #region Fields
 
@@ -34,9 +34,9 @@ namespace PasaBuy.App.ViewModels.Onboarding
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance for the <see cref="OnBoardingAnimationViewModel" /> class.
+        /// Initializes a new instance for the <see cref="GettingStartedViewModel" /> class.
         /// </summary>
-        public OnBoardingAnimationViewModel()
+        public GettingStartedViewModel()
         {
             this.SkipCommand = new Command(this.Skip);
             this.NextCommand = new Command(this.Next);
@@ -47,28 +47,28 @@ namespace PasaBuy.App.ViewModels.Onboarding
                     ImagePath = "OnBoarding.png",
                     Header = "PASABUY.APP",
                     Content = "Short description of the company and what the company is wanting to achieve towards the community.",
-                    RotatorItem = new WalkthroughItemPage()
+                    RotatorItem = new WalkthroughItem()
                 },
                 new Boarding()
                 {
                     ImagePath = "OnBoarding.png",
                     Header = "ALIQUAM",
                     Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                    RotatorItem = new WalkthroughItemPage()
+                    RotatorItem = new WalkthroughItem()
                 },
                 new Boarding()
                 {
                     ImagePath = "OnBoarding.png",
                     Header = "VIVAMUS",
                     Content = "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-                    RotatorItem = new WalkthroughItemPage()
+                    RotatorItem = new WalkthroughItem()
                 },
                 new Boarding()
                 {
                     ImagePath = "OnBoarding.png",
                     Header = "INTERDUM",
                     Content = "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-                    RotatorItem = new WalkthroughItemPage()
+                    RotatorItem = new WalkthroughItem()
                 }
             };
 

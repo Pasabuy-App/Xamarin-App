@@ -9,12 +9,12 @@ namespace PasaBuy.App.Views.Onboarding
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class OnBoardingAnimationPage
+    public partial class GettingStarted
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="OnBoardingAnimationPage" /> class.
+        /// Initializes a new instance of the <see cref="GettingStarted" /> class.
         /// </summary>
-        public OnBoardingAnimationPage()
+        public GettingStarted()
         {
             InitializeComponent();
         }
