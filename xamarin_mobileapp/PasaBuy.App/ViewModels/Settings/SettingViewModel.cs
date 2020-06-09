@@ -111,7 +111,7 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void EditProfileClicked(object obj)
         {
-            // Do something
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new EditProfilePage());
         }
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void ChangePasswordClicked(object obj)
         {
-            // Do something
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new ChangePWPage());
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void LinkAccountClicked(object obj)
         {
-            // Do something
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new LinkedPage());
         }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void TermsServiceClicked(object obj)
         {
-            // Do something
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new TermsPage());
         }
 
         /// <summary>
@@ -156,7 +156,7 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void PrivacyPolicyClicked(object obj)
         {
-            // Do something
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new PrivacyPage());
         }
 
         /// <summary>

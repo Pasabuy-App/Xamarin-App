@@ -8,8 +8,7 @@
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              x:Name="FAQ"   
              Title="Settings"
-             NavigationPage.HasNavigationBar="True"
-             BackgroundColor="{DynamicResource PrimaryColor}">
+             NavigationPage.HasNavigationBar="True">
 
     <ContentPage.Resources>
         <ResourceDictionary>
