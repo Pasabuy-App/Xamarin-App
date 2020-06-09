@@ -244,7 +244,7 @@ namespace PasaBuy.App.ViewModels.Catalog
         /// <param name="obj">The Object</param>
         private void BackButtonClicked(object obj)
         {
-            Application.Current.MainPage = new MainPage();
+            //Do something...
         }
         #endregion
     }

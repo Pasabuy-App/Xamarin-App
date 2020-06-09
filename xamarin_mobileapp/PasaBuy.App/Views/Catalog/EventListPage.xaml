@@ -11,7 +11,7 @@
              xmlns:template="clr-namespace:PasaBuy.App.Views.Templates"
              x:Class="PasaBuy.App.Views.Catalog.EventListPage"
              BackgroundColor="{DynamicResource Gray-White}"
-             Title="Partner Stores"
+             Title="Marketplace"
              NavigationPage.HasNavigationBar="True"
              x:Name="eventListPage">
 
@@ -42,21 +42,21 @@
             </Grid.RowDefinitions>
 
             <StackLayout x:Name="TitleView"  Padding="8,8" Grid.Row="0" HeightRequest="50"
-                         BackgroundColor="{DynamicResource Transparent}" Spacing="0"
+                         BackgroundColor="{DynamicResource Gray-100}" Spacing="0"
                          HorizontalOptions="FillAndExpand" Orientation="Horizontal">
 
                 <StackLayout x:Name="Title" HorizontalOptions="FillAndExpand"  IsVisible="True"
                              Orientation="Horizontal"  VerticalOptions="FillAndExpand"  Spacing="0">
 
                     <!--  Back button command  -->
-                    <buttons:SfButton  x:Name="backButton"  Command="{Binding BackButtonCommand}"
+                    <!--<buttons:SfButton  x:Name="backButton"  Command="{Binding BackButtonCommand}"
                                        CommandParameter="{x:Reference backButton}" CornerRadius="4"
-                                       Style="{StaticResource IconButtonStyle}" Text="{StaticResource Back}"/>
+                                       Style="{StaticResource IconButtonStyle}" Text="{StaticResource Back}"/>-->
 
                     <!--   Event list page Title  -->
-                    <Label  Margin="16,0" FontFamily="{StaticResource Montserrat-Medium}" FontSize="16"
+                    <!--<Label  Margin="16,0" FontFamily="{StaticResource Montserrat-Medium}" FontSize="16"
                             HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource Gray-900}"
-                            LineHeight="1.25"  Text="Welcome to our Marketplace!"  VerticalOptions="Center" VerticalTextAlignment="Center" />
+                            LineHeight="1.25"  Text="Welcome to our Marketplace!"  VerticalOptions="Center" VerticalTextAlignment="Center" />-->
 
                 </StackLayout>
 
@@ -68,7 +68,7 @@
                                       Style="{StaticResource NavigationBarButtonStyle}" />
 
                     <!--  Rounded Search Entry  -->
-                    <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                    <border:SfBorder Style="{StaticResource SfBorderStyle}" Padding="15, 0, 0, 0">
                         <controls:BorderlessEntry x:Name="SearchEntry" 
                                                   Text="{Binding SearchText, Mode=TwoWay}" Placeholder="Search here"
                                                   HorizontalOptions="FillAndExpand"  Style="{StaticResource SearchEntryStyle}"/>
@@ -226,6 +226,10 @@
                                                          VerticalOptions="FillAndExpand">
                                                         <template:EventListTemplate />
                                                     </controls:CustomShadowFrame>
+
+                                                    <!--<StackLayout.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.FeatureStoriesCommand, Source={x:Reference Rotator}}" CommandParameter="{Binding .}" />
+                                                    </StackLayout.GestureRecognizers>-->
                                                 </StackLayout>
                                             </ViewCell>
                                         </DataTemplate>
