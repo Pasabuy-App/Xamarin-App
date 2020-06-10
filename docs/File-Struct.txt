@@ -1,4 +1,52 @@
+Onboarding
+- SplashPage
+- GettingStarted - { WalkthroughItem }
+- Activate
+- ResetPW
+- SignIn
+- SignUp
+- ForgotPW
+- Verify
+
 Master
-- MainPage (PRIMARY)
+- MainPage
 - MasterPage
 - DetailPage
+
+Profile
+- HomeFeed
+- MyProfile
+- OtherProfile
+
+Messages
+- ChatList
+- ChatItem
+
+Notification
+- NotifyList
+- NotifyItem
+
+Marketplace
+- StoreBrowser
+- StoreFront
+- ProductViewer
+- ProductReview
+- CartViewer
+- CartCheckout
+- CartPayment
+- CartConfirm
+- OrderTracker
+
+Advisory
+- ArticleList
+- ArticleItem
+
+Settings
+- EditProfilePage
+- MyAddressPage
+- ChangePWPage
+- LinkedPage
+- HelpPage
+- TermsPage
+- PrivacyPage
+- FAQsPage
