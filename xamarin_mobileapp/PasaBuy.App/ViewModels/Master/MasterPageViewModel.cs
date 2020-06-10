@@ -10,6 +10,7 @@ using PasaBuy.App.Views.Chat;
 using PasaBuy.App.Views.Catalog;
 using System.Linq;
 using PasaBuy.App.Views.Feeds;
+using PasaBuy.App.Views.Advisory;
 
 namespace PasaBuy.App.ViewModels.Master
 {
@@ -230,7 +231,7 @@ namespace PasaBuy.App.ViewModels.Master
         {
             this.UpdateSelectedItemColor(obj);
 
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new ArticleListPage());
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new ArticleList());
         }
 
         /// <summary>

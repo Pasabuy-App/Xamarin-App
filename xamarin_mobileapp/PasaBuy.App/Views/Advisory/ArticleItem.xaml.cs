@@ -8,19 +8,19 @@ using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
-namespace PasaBuy.App.Views.Article
+namespace PasaBuy.App.Views.Advisory
 {
     /// <summary>
     /// Article parallax header page.
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ArticleParallaxHeaderPage : ContentPage
+    public partial class ArticleItem : ContentPage
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ArticleParallaxHeaderPage"/> class.
+        /// Initializes a new instance of the <see cref="ArticleItem"/> class.
         /// </summary>
-        public ArticleParallaxHeaderPage()
+        public ArticleItem()
         {
             InitializeComponent();
         }

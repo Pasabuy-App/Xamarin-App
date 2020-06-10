@@ -4,16 +4,16 @@ using Xamarin.Forms.Internals;
 using Syncfusion.XForms.Buttons;
 using PasaBuy.App.Models;
 using Model = PasaBuy.App.Models.Article;
-using PasaBuy.App.Views.Catalog;
 using PasaBuy.App.Views.Master;
+using PasaBuy.App.Views.Advisory;
 
-namespace PasaBuy.App.ViewModels.Article
+namespace PasaBuy.App.ViewModels.Advisory
 {
     /// <summary>
     /// ViewModel for Article parallax page 
     /// </summary> 
     [Preserve(AllMembers = true)]
-    public class ArticleParallaxHeaderPageViewModel : BaseViewModel
+    public class ArticleItemViewModel : BaseViewModel
     {
         #region Fields
 
@@ -89,7 +89,7 @@ namespace PasaBuy.App.ViewModels.Article
         /// <summary>
         /// Initializes a new instance of the <see cref="DetailViewModel" /> class
         /// </summary>
-        public ArticleParallaxHeaderPageViewModel()
+        public ArticleItemViewModel()
         {
             this.articleName = "How we help small business strive in times of Pandemic";
             this.articleParallaxHeaderImage = App.BaseImageUrl + "ArticleParallaxHeaderImage.png";
@@ -507,7 +507,7 @@ namespace PasaBuy.App.ViewModels.Article
         /// <param name="obj">The object</param>
         private void BackButtonClicked(object obj)
         {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new ArticleListPage());
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new ArticleList());
         }
 
         /// <summary>

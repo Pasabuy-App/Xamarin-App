@@ -4,8 +4,9 @@ using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Model = PasaBuy.App.Models.Article;
+using PasaBuy.App.Views.Advisory;
 
-namespace PasaBuy.App.ViewModels.Catalog
+namespace PasaBuy.App.ViewModels.Advisory
 {
     /// <summary>
     /// ViewModel for article list page.
@@ -107,7 +108,6 @@ namespace PasaBuy.App.ViewModels.Catalog
                 },
             };
 
-            this.BackCommand = new Command(this.BackClicked);
             this.BookmarkCommand = new Command(this.BookmarkButtonClicked);
             this.FeatureStoriesCommand = new Command(this.FeatureStoriesClicked);
             this.ItemSelectedCommand = new Command(this.ItemSelected);
@@ -163,11 +163,6 @@ namespace PasaBuy.App.ViewModels.Catalog
         #region Command
 
         /// <summary>
-        /// Gets or sets the command that will be executed when the menu button is clicked.
-        /// </summary>
-        public Command BackCommand { get; set; }
-
-        /// <summary>
         /// Gets or sets the command that will be executed when the bookmark button is clicked.
         /// </summary>
         public Command BookmarkCommand { get; set; }
@@ -187,15 +182,6 @@ namespace PasaBuy.App.ViewModels.Catalog
         #region Methods
 
         /// <summary>
-        /// Invoked when the menu button is clicked.
-        /// </summary>
-        /// <param name="obj">The Object</param>
-        private void BackClicked(object obj)
-        {
-            Application.Current.MainPage = new MainPage();
-        }
-
-        /// <summary>
         /// Invoked when the bookmark button is clicked.
         /// </summary>
         /// <param name="obj">The object</param>
@@ -213,7 +199,7 @@ namespace PasaBuy.App.ViewModels.Catalog
         /// <param name="obj">The object</param>
         private void FeatureStoriesClicked(object obj)
         {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new ArticleParallaxHeaderPage());
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new ArticleItem());
         }
 
         /// <summary>
@@ -222,7 +208,7 @@ namespace PasaBuy.App.ViewModels.Catalog
         /// <param name="obj">The Object</param>
         private void ItemSelected(object obj)
         {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new ArticleParallaxHeaderPage());
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new ArticleItem());
         }
 
         #endregion

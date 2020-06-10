@@ -38,8 +38,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\Advisory\ArticleItem.xaml.cs">
+      <DependentUpon>ArticleItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Advisory\ArticleList.xaml.cs">
+      <DependentUpon>ArticleList.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Advisory\Style.xaml.cs">
+      <DependentUpon>Style.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Feeds\MyProfile.xaml.cs">
       <DependentUpon>MyProfile.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Advisory\Styles.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
     <Compile Update="Views\Onboarding\ForgotPwPage.xaml.cs">
       <DependentUpon>ForgotPwPage.xaml</DependentUpon>
@@ -71,13 +83,13 @@
     <EmbeddedResource Update="Themes\LightTheme.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Article\ArticleParallaxHeaderPage.xaml">
+    <EmbeddedResource Update="Views\Advisory\ArticleItem.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Article\Styles.xaml">
+    <EmbeddedResource Update="Views\Advisory\Style.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Catalog\ArticleListPage.xaml">
+    <EmbeddedResource Update="Views\Advisory\ArticleList.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Catalog\CatalogListPage.xaml">
@@ -108,6 +120,9 @@
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Chat\Templates\OutgoingTextTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Advisory\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Settings\AddressPage.xaml">
