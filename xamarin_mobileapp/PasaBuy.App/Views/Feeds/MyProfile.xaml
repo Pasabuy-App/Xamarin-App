@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="PasaBuy.App.Views.Social.SocialProfileWithMessagePage"
+<ContentPage x:Class="PasaBuy.App.Views.Feeds.MyProfile"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
@@ -7,8 +7,8 @@
              xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:listviewBahavior="clr-namespace:PasaBuy.App.Behaviors"
-             xmlns:local="clr-namespace:PasaBuy.App.Views.Social.Templates"
-             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Social"
+             xmlns:local="clr-namespace:PasaBuy.App.Views.Feeds.Templates"
+             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Feeds"
              BackgroundColor="{DynamicResource Gray-300}"
              Title="Profile" 
              NavigationPage.HasNavigationBar="True">
@@ -23,7 +23,7 @@
 
     <!-- Binding context for social profile with message page -->
     <ContentPage.BindingContext>
-        <viewModel:SocialProfileViewModel />
+        <viewModel:MyProfileViewModel />
     </ContentPage.BindingContext>
 
     <ContentPage.Content>

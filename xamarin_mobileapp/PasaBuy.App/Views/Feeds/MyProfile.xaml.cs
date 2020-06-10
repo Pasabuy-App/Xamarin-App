@@ -2,19 +2,19 @@
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
-namespace PasaBuy.App.Views.Social
+namespace PasaBuy.App.Views.Feeds
 {
     /// <summary>
     /// Page to show the social profile.
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SocialProfileWithMessagePage : ContentPage
+    public partial class MyProfile : ContentPage
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SocialProfileWithMessagePage" /> class.
+        /// Initializes a new instance of the <see cref="MyProfile" /> class.
         /// </summary>
-        public SocialProfileWithMessagePage()
+        public MyProfile()
         {
             InitializeComponent();
         }

@@ -5,10 +5,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="PasaBuy.App.Views.Master.DetailPage" 
-             xmlns:local="clr-namespace:PasaBuy.App.Views.Social.Templates"
+             xmlns:local="clr-namespace:PasaBuy.App.Views.Feeds.Templates"
              Title="PasaBuy.app" 
              BackgroundColor="{DynamicResource Gray-300}"
-             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Social"
+             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Feeds"
              NavigationPage.TitleIconImageSource="LogoHeader.png">
     
     <ContentPage.ToolbarItems>
@@ -18,7 +18,7 @@
 
     <!-- Binding context for social profile with message page -->
     <ContentPage.BindingContext>
-        <viewModel:SocialProfileViewModel />
+        <viewModel:MyProfileViewModel />
     </ContentPage.BindingContext>
 
     <ContentPage.Content>

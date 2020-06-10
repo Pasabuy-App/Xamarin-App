@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="PasaBuy.App.Views.Social.Templates.PostEntry"
+             x:Class="PasaBuy.App.Views.Feeds.Templates.PostEntry"
              xmlns:converter="clr-namespace:PasaBuy.App.Converters"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:control="clr-namespace:PasaBuy.App.Controls">

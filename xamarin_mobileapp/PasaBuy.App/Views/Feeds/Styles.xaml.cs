@@ -1,10 +1,10 @@
 ﻿using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
-namespace PasaBuy.App.Views.Social.Templates
+namespace PasaBuy.App.Views.Feeds
 {
     /// <summary>
-    /// Class helps to reduce repetitive markup, and allows an apps appearance to be more easily changed.
+    /// Class helps to reduce repetitive markup and allows to change the appearance of apps more easily.
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]

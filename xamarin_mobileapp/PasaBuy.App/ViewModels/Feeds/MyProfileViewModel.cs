@@ -7,13 +7,13 @@ using Xamarin.Forms.Internals;
 using ProfileModel = PasaBuy.App.Models.Profile;
 using PasaBuy.App.Views.Catalog;
 
-namespace PasaBuy.App.ViewModels.Social
+namespace PasaBuy.App.ViewModels.Feeds
 {
     /// <summary>
     /// ViewModel for social profile pages.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class SocialProfileViewModel : BaseViewModel
+    public class MyProfileViewModel : BaseViewModel
     {
         #region Fields
 
@@ -34,9 +34,9 @@ namespace PasaBuy.App.ViewModels.Social
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance for the <see cref="SocialProfileViewModel" /> class.
+        /// Initializes a new instance for the <see cref="MyProfileViewModel" /> class.
         /// </summary>
-        public SocialProfileViewModel()
+        public MyProfileViewModel()
         {
             this.HeaderImagePath = "Album2.png";
             this.ProfileImage = "ProfileImage1.png";

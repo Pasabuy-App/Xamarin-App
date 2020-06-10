@@ -38,6 +38,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\Feeds\MyProfile.xaml.cs">
+      <DependentUpon>MyProfile.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Onboarding\ForgotPwPage.xaml.cs">
       <DependentUpon>ForgotPwPage.xaml</DependentUpon>
     </Compile>
@@ -185,22 +188,22 @@
     <EmbeddedResource Update="Views\Settings\TermsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Social\SocialProfileWithMessagePage.xaml">
+    <EmbeddedResource Update="Views\Feeds\MyProfile.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Social\Styles.xaml">
+    <EmbeddedResource Update="Views\Feeds\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Social\Templates\InputEntry.xaml">
+    <EmbeddedResource Update="Views\Feeds\Templates\InputEntry.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Social\Templates\PostEntry.xaml">
+    <EmbeddedResource Update="Views\Feeds\Templates\PostEntry.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Social\Templates\ProfileTemplate.xaml">
+    <EmbeddedResource Update="Views\Feeds\Templates\ProfileTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Social\Templates\Styles.xaml">
+    <EmbeddedResource Update="Views\Feeds\Templates\Styles.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Onboarding\SplashPage.xaml">
