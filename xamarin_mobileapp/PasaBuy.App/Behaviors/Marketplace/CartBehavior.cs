@@ -2,7 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
-namespace PasaBuy.App.Behaviors.Catalog
+namespace PasaBuy.App.Behaviors.Marketplace
 {
     /// <summary>
     /// This class extends the behavior of the catalog page and detail page

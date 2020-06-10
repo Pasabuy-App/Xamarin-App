@@ -9,40 +9,29 @@ namespace PasaBuy.App.DataService
     /// Data service to load the data from json file.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class CatalogDataService
+    public class RestaurantDataService
     {
         #region fields
 
-        private static CatalogDataService instance;
+        private static RestaurantDataService instance;
 
-        private StoreFrontViewModel catalogPageViewModel;
-
-        #endregion
-
-        #region Constructor
-
-        /// <summary>
-        /// Creates an instance for the <see cref="CatalogDataService"/> class.
-        /// </summary>
-        private CatalogDataService()
-        {
-        }
+        private RestaurantViewModel restaurantViewModel;
 
         #endregion
 
         #region Properties
 
         /// <summary>
-        /// Gets an instance of the <see cref="CatalogDataService"/>.
+        /// Gets an instance of the <see cref="RestaurantDataService"/>.
         /// </summary>
-        public static CatalogDataService Instance => instance ?? (instance = new CatalogDataService());
+        public static RestaurantDataService Instance => instance ?? (instance = new RestaurantDataService());
 
         /// <summary>
-        /// Gets or sets the value of catalog page view model.
+        /// Gets or sets the value of Restaurant view model.
         /// </summary>
-        public StoreFrontViewModel CatalogPageViewModel =>
-            this.catalogPageViewModel ??
-            (this.catalogPageViewModel = PopulateData<StoreFrontViewModel>("ecommerce.json"));
+        public RestaurantViewModel RestaurantViewModel =>
+            this.restaurantViewModel ??
+            (this.restaurantViewModel = PopulateData<RestaurantViewModel>("navigation.json"));
 
         #endregion
 
@@ -70,7 +59,6 @@ namespace PasaBuy.App.DataService
 
             return obj;
         }
-
         #endregion
     }
 }

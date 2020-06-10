@@ -5,14 +5,14 @@ using PasaBuy.App.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
-namespace PasaBuy.App.ViewModels.Catalog
+namespace PasaBuy.App.ViewModels.Marketplace
 {
     /// <summary>
     /// ViewModel for catalog page.
     /// </summary>
     [Preserve(AllMembers = true)]
     [DataContract]
-    public class CatalogPageViewModel : BaseViewModel
+    public class StoreFrontViewModel : BaseViewModel
     {
         #region Fields
 
@@ -39,9 +39,9 @@ namespace PasaBuy.App.ViewModels.Catalog
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance for the <see cref="CatalogPageViewModel" /> class.
+        /// Initializes a new instance for the <see cref="StoreFrontViewModel" /> class.
         /// </summary>
-        public CatalogPageViewModel()
+        public StoreFrontViewModel()
         {
             this.FilterOptions = new ObservableCollection<Category>
             {

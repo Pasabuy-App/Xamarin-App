@@ -27,7 +27,7 @@ Notification
 
 Marketplace
 - DONE -> StoreBrowser
-- StoreFront
+- DONE -> StoreFront
 - ProductViewer
 - ProductReview
 - CartViewer

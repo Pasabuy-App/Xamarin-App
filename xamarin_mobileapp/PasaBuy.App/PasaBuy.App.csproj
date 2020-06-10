@@ -53,6 +53,15 @@
     <Compile Update="Views\Advisory\Styles.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
+    <Compile Update="Views\Marketplace\StoreFrontPage.xaml.cs">
+      <DependentUpon>StoreFrontPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Marketplace\Styles.xaml.cs">
+      <DependentUpon>Styles.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Marketplace\Stylex.xaml.cs">
+      <DependentUpon>Stylex.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Onboarding\ForgotPwPage.xaml.cs">
       <DependentUpon>ForgotPwPage.xaml</DependentUpon>
     </Compile>
@@ -92,13 +101,13 @@
     <EmbeddedResource Update="Views\Advisory\ArticleList.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Catalog\CatalogListPage.xaml">
+    <EmbeddedResource Update="Views\Marketplace\RestaurantPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Catalog\EventListPage.xaml">
+    <EmbeddedResource Update="Views\Marketplace\StoreFrontPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Catalog\Styles.xaml">
+    <EmbeddedResource Update="Views\Marketplace\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Chat\ChatMessagePage.xaml">
@@ -123,6 +132,9 @@
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Advisory\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Marketplace\Stylex.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Settings\AddressPage.xaml">
@@ -228,9 +240,6 @@
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\ArticleTileTemplate.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Templates\EventListTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\PostFeedItem.xaml">

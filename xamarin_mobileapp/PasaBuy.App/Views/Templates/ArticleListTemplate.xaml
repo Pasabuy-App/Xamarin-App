@@ -30,9 +30,9 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition>
-                <ColumnDefinition.Width>
+                <!--<ColumnDefinition.Width>
                     <OnPlatform Default="*" UWP="Auto" />
-                </ColumnDefinition.Width>
+                </ColumnDefinition.Width>-->
             </ColumnDefinition>
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>

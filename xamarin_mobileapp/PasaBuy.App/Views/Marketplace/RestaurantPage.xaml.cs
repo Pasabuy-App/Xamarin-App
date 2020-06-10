@@ -1,25 +1,26 @@
-﻿using System;
+﻿using PasaBuy.App.DataService;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
-namespace PasaBuy.App.Views.Catalog
+namespace PasaBuy.App.Views.Marketplace
 {
     /// <summary>
-    /// The event detail page 
+    /// Page to show the Restaurant page details.
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EventListPage
+    public partial class RestaurantPage : ContentPage
     {
-        public EventListPage()
+        public RestaurantPage()
         {
             InitializeComponent();
+            this.BindingContext = RestaurantDataService.Instance.RestaurantViewModel;
         }
-
         /// <summary>
         /// Invoked when view size is changed.
-        /// </summary>x
+        /// </summary>
         /// <param name="width">The Width</param>
         /// <param name="height">The Height</param>
         protected override void OnSizeAllocated(double width, double height)
@@ -42,9 +43,9 @@ namespace PasaBuy.App.Views.Catalog
         /// <param name="e">Event Args</param>
         private void SearchButton_Clicked(object sender, EventArgs e)
         {
-            this.SearchButton.IsVisible = false;
             this.Search.IsVisible = true;
             this.Title.IsVisible = false;
+            this.SearchButton.IsVisible = false;
 
             if (this.TitleView != null)
             {

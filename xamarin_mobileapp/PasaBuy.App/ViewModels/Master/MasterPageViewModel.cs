@@ -7,7 +7,7 @@ using Xamarin.Forms.Internals;
 using PasaBuy.App.Views.Notification;
 using PasaBuy.App.Views.Settings;
 using PasaBuy.App.Views.Chat;
-using PasaBuy.App.Views.Catalog;
+using PasaBuy.App.Views.Marketplace;
 using System.Linq;
 using PasaBuy.App.Views.Feeds;
 using PasaBuy.App.Views.Advisory;
@@ -220,7 +220,7 @@ namespace PasaBuy.App.ViewModels.Master
         {
             this.UpdateSelectedItemColor(obj);
 
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new EventListPage());
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new RestaurantPage());
         }
 
         /// <summary>

@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="PasaBuy.App.Views.Catalog.CatalogListPage"
+    x:Class="PasaBuy.App.Views.Marketplace.StoreFrontPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
-    xmlns:behavior="clr-namespace:PasaBuy.App.Behaviors.Catalog"
+    xmlns:behavior="clr-namespace:PasaBuy.App.Behaviors.Marketplace"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:commonBehavior="clr-namespace:PasaBuy.App.Behaviors"
     xmlns:controls="clr-namespace:PasaBuy.App.Controls"
@@ -14,8 +14,8 @@
     xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
     xmlns:template="clr-namespace:PasaBuy.App.Views.Templates"
     x:Name="catalogListPage"
-    Title="Store Products"
-    NavigationPage.HasNavigationBar="False"
+    Title="Marketplace"
+    NavigationPage.HasNavigationBar="True"
     Style="{StaticResource ContentPageStyle}">
 
     <ContentPage.Behaviors>
@@ -38,44 +38,43 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             
-            <!--  Title View  -->
-            <controls:TitleView Title="Store Products" Grid.Row="0" BackgroundColor="{DynamicResource PrimaryColor}">
-                <controls:TitleView.TrailingView>
-                    <StackLayout HorizontalOptions="End" Orientation="Horizontal" >
-                        <badge:SfBadgeView
-                            Margin="{Binding Path=BindingContext.CartItemCount, Source={x:Reference catalogListPage}, Converter={x:StaticResource intToThicknessConverter}}"
-                            Padding="0"
-                            BadgeText="{Binding Path=BindingContext.CartItemCount, Source={x:Reference catalogListPage}, Mode=TwoWay}"
-                            HeightRequest="42"
-                            HorizontalOptions="End"
-                            VerticalOptions="Center"
-                            WidthRequest="40">
-                            <badge:SfBadgeView.Content>
-                                <buttons:SfButton
-                                    Command="{Binding Path=BindingContext.CardItemCommand, Source={x:Reference ListViewList}}"
-                                    CornerRadius="4"
-                                    Style="{StaticResource IconButtonStyle}"
-                                    Text="{StaticResource Cart}" />
-                            </badge:SfBadgeView.Content>
-                            <badge:SfBadgeView.BadgeSettings>
-                                <badge:BadgeSetting
-                                    BackgroundColor="{DynamicResource Gray-White}"
-                                    BadgeType="None"
-                                    FontSize="9"
-                                    Offset="-5,10" />
-                            </badge:SfBadgeView.BadgeSettings>
-                        </badge:SfBadgeView>
-                    </StackLayout>
-                </controls:TitleView.TrailingView>
-            </controls:TitleView>
+            <!--  Title view  -->
+            <StackLayout x:Name="TitleView"  Padding="8,8" Grid.Row="0" HeightRequest="50"
+                         BackgroundColor="{DynamicResource Gray-100}" Spacing="0"
+                         HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+
+                <StackLayout x:Name="Title" HorizontalOptions="FillAndExpand"  IsVisible="True"
+                             Orientation="Horizontal"  VerticalOptions="FillAndExpand"  Spacing="0">
+
+                    <!--  Back button command  -->
+                    <buttons:SfButton  x:Name="backButton" 
+                                       Clicked="BackButtonClicked"
+                                       CornerRadius="4"
+                                       Style="{StaticResource IconButtonStyle}" Text="{StaticResource Back}"/>
+
+                    <!--   Icon Names List page Title  -->
+                    <Label  Margin="16,0" FontFamily="{StaticResource Montserrat-Medium}" FontSize="16"
+                            HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource Gray-Black}"
+                            LineHeight="1.25" Text="Name of Store"  VerticalOptions="Center" VerticalTextAlignment="Center" />
+
+                </StackLayout>
+
+                <!--  Search Button  -->
+                <buttons:SfButton  x:Name="SearchButton" IsVisible="True" Clicked="OptionButton_Clicked" Style="{StaticResource IconButtonStyle }"
+                                   Text="{StaticResource Cart}" />
+            </StackLayout>
+
+            <!-- Seperator -->
+            <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}"/>
 
             <!--  ListView for catalog list  -->
             <listView:SfListView
                 x:Name="ListViewList"
-                Grid.Row="1"
+                Grid.Row="2"
                 Margin="{OnIdiom Default='0,8,8,0',
                                  Desktop='15,15,15,0'}"
                 AutoFitMode="Height"
