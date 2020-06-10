@@ -1,33 +1,33 @@
 Onboarding
-- SplashPage
-- GettingStarted - { WalkthroughItem }
+- DONE -> SplashPage
+- DONE -> GettingStarted - { WalkthroughItem }
 - Activate
-- ResetPW
-- SignIn
-- SignUp
-- ForgotPW
+- DONE -> ResetPW
+- DONE -> SignIn
+- DONE -> SignUp
+- DONE -> ForgotPW
 - Verify
 
 Master
-- MainPage
-- MasterPage
-- DetailPage
+- DONE -> MainPage
+- DONE -> MasterPage
+- DONE -> DetailPage
 
 Profile
-- HomeFeed
-- MyProfile
+- DONE -> HomeFeed
+- DONE -> MyProfile
 - OtherProfile
 
 Messages
-- ChatList
-- ChatItem
+- DONE -> ChatList
+- DONE -> ChatItem
 
 Notification
-- NotifyList
+- DONE -> NotifyList
 - NotifyItem
 
 Marketplace
-- StoreBrowser
+- DONE -> StoreBrowser
 - StoreFront
 - ProductViewer
 - ProductReview
@@ -38,15 +38,15 @@ Marketplace
 - OrderTracker
 
 Advisory
-- ArticleList
-- ArticleItem
+- DONE -> ArticleList
+- DONE -> ArticleItem
 
 Settings
-- EditProfilePage
-- MyAddressPage
-- ChangePWPage
-- LinkedPage
-- HelpPage
-- TermsPage
-- PrivacyPage
-- FAQsPage
+- ONGOING -> EditProfilePage
+- DONE -> MyAddressPage
+- ONGOING -> ChangePWPage
+- ONGOING -> LinkedPage
+- DONE -> HelpPage
+- ONGOING -> TermsPage
+- ONGOING -> PrivacyPage
+- DONE -> FAQsPage
