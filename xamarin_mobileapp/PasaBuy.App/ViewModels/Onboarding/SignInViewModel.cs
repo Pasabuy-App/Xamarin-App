@@ -1,17 +1,17 @@
-﻿using PasaBuy.App.Views.Forms;
+﻿using PasaBuy.App.Views.Onboarding;
 using PasaBuy.App.Views.Master;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
-namespace PasaBuy.App.ViewModels.Forms
+namespace PasaBuy.App.ViewModels.Onboarding
 {
     /// <summary>
     /// ViewModel for login with social icon page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class LoginWithSocialIconViewModel : LoginViewModel
+    public class SignInViewModel : LoginViewModel
     {
         #region Fields
 
@@ -22,9 +22,9 @@ namespace PasaBuy.App.ViewModels.Forms
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance for the <see cref="LoginWithSocialIconViewModel" /> class.
+        /// Initializes a new instance for the <see cref="SignInViewModel" /> class.
         /// </summary>
-        public LoginWithSocialIconViewModel()
+        public SignInViewModel()
         {
             this.LoginCommand = new Command(this.LoginClicked);
             this.SignUpCommand = new Command(this.SignUpClicked);
@@ -127,7 +127,7 @@ namespace PasaBuy.App.ViewModels.Forms
         /// <param name="obj">The Object</param>
         private void ForgotPasswordClicked(object obj)
         {
-            Application.Current.MainPage = new NavigationPage(new ForgotPasswordPage());
+            Application.Current.MainPage = new NavigationPage(new ForgotPwPage());
         }
 
         /// <summary>

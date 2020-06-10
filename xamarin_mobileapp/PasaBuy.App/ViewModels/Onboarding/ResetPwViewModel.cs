@@ -1,14 +1,14 @@
-﻿using PasaBuy.App.Views.Forms;
+﻿using PasaBuy.App.Views.Onboarding;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
-namespace PasaBuy.App.ViewModels.Forms
+namespace PasaBuy.App.ViewModels.Onboarding
 {
     /// <summary>
     /// ViewModel for reset password page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class ResetPasswordViewModel : BaseViewModel
+    public class ResetPwViewModel : BaseViewModel
     {
         #region Fields
 
@@ -21,9 +21,9 @@ namespace PasaBuy.App.ViewModels.Forms
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ResetPasswordViewModel" /> class.
+        /// Initializes a new instance of the <see cref="ResetPwViewModel" /> class.
         /// </summary>
-        public ResetPasswordViewModel()
+        public ResetPwViewModel()
         {
             this.SubmitCommand = new Command(this.SubmitClicked);
             this.SignUpCommand = new Command(this.SignUpClicked);
@@ -110,7 +110,7 @@ namespace PasaBuy.App.ViewModels.Forms
         /// <param name="obj">The Object</param>
         private void SignUpClicked(object obj)
         {
-            Application.Current.MainPage = new NavigationPage(new LoginWithSocialIconPage());
+            Application.Current.MainPage = new NavigationPage(new SignInPage());
         }
 
         #endregion

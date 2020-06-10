@@ -1,19 +1,19 @@
 ﻿using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
-namespace PasaBuy.App.Views.Forms
+namespace PasaBuy.App.Views.Onboarding
 {
     /// <summary>
-    /// View used to show the email entry with validation status.
+    /// Page to sign in with user details.
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EmailEntry
+    public partial class SignUpPage
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="EmailEntry" /> class.
+        /// Initializes a new instance of the <see cref="SignUpPage" /> class.
         /// </summary>
-        public EmailEntry()
+        public SignUpPage()
         {
             InitializeComponent();
         }

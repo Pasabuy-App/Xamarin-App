@@ -43,7 +43,7 @@
                 HorizontalTextAlignment="Center"
                 Opacity="{OnPlatform Default=0,
                                      UWP=1}"
-                Style="{StaticResource LabelStyle}"
+                Style="{StaticResource LabelStyles}"
                 Text="{Binding Header}"
                 TranslationY="{OnPlatform Default=60,
                                           UWP=0}"
@@ -56,7 +56,7 @@
                 HorizontalOptions="Center"
                 Opacity="{OnPlatform Default=0,
                                      UWP=1}"
-                Style="{StaticResource LabelStyle}"
+                Style="{StaticResource LabelStyles}"
                 Text="{Binding Content}"
                 TranslationY="{OnPlatform Default=60,
                                           UWP=0}" />

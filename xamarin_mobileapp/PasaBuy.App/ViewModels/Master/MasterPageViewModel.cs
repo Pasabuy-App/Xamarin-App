@@ -1,5 +1,4 @@
-﻿using PasaBuy.App.Views.Forms;
-using PasaBuy.App.Views.Master;
+﻿using PasaBuy.App.Views.Master;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;

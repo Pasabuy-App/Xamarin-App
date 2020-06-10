@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms.Internals;
 
-namespace PasaBuy.App.ViewModels.Forms
+namespace PasaBuy.App.ViewModels.Onboarding
 {
     /// <summary>
     /// ViewModel for login page.

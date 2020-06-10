@@ -1,6 +1,5 @@
 ﻿using PasaBuy.App.Views.Master;
 using PasaBuy.App.Views.Settings;
-using PasaBuy.App.Views.Forms;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,6 +8,7 @@ using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Essentials;
+using PasaBuy.App.Views.Onboarding;
 
 namespace PasaBuy.App.ViewModels.Settings
 {
@@ -184,7 +184,7 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void LogoutClicked(object obj)
         {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new LoginWithSocialIconPage());
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new SignInPage());
 
             Preferences.Remove("UserToken");
         }

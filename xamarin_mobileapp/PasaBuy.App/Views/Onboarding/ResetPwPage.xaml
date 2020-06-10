@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="PasaBuy.App.Views.Forms.ForgotPasswordPage"
+    x:Class="PasaBuy.App.Views.Onboarding.ResetPwPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:control="clr-namespace:PasaBuy.App.Controls"
+    xmlns:converter="clr-namespace:PasaBuy.App.Converters"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
-    xmlns:local="clr-namespace:PasaBuy.App.Views.Forms"
-    xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Forms"
-    Title="Forgot Password"
+    xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Onboarding"
+    Title="Reset Password" 
     BackgroundImageSource="{core:OnPlatformOrientationStringValue Default=LoginBackground.png,
                                                                   iOSPhoneLandscape=LoginBackground-Landscape.png,
                                                                   iOSTabletLandscape=LoginBackground-Landscape.png}"
@@ -17,15 +19,16 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <!--  Binding context for forgot password page  -->
+    <!--  Binding context for reset password page  -->
     <ContentPage.BindingContext>
-        <viewModel:ForgotPasswordViewModel />
+        <viewModel:ResetPwViewModel />
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
@@ -58,6 +61,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
                         <!--  Label to display the title of this page  -->
@@ -67,8 +71,8 @@
                             FontSize="25"
                             HorizontalOptions="Center"
                             Style="{StaticResource LabelStyle}"
-                            Text="Forgot Your Password?"
-                            VerticalTextAlignment="End" />
+                            Text="Reset Password"
+                            VerticalOptions="Center" />
 
                         <!--  Label to display the description of this page  -->
                         <Label
@@ -77,18 +81,41 @@
                             FontFamily="{StaticResource Montserrat-Medium}"
                             HorizontalTextAlignment="Center"
                             Style="{StaticResource LabelStyle}"
-                            Text="We'll send instructions on how to reset your password to the email address you have registered with us"
-                            VerticalTextAlignment="Start" />
+                            Text="Enter your new password to reset the old password" />
 
-                        <!--  Entry to get email ID from user  -->
-                        <local:EmailEntry Grid.Row="2" />
+                        <!--  Entry to get new password from user  -->
+                        <border:SfBorder
+                            Grid.Row="2"
+                            BorderColor="{Binding Source={x:Reference NewPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}"
+                            Style="{StaticResource SfBorderStyle}">
+                            <control:BorderlessEntry
+                                x:Name="NewPasswordEntry"
+                                IsPassword="True"
+                                Placeholder="New Password"
+                                Style="{StaticResource EntryStyle}"
+                                Text="{Binding NewPassword}" />
+                        </border:SfBorder>
 
-                        <buttons:SfButton
+                        <!--  Entry to get confirm password from user  -->
+                        <border:SfBorder
                             Grid.Row="3"
-                            Command="{Binding SendCommand}"
+                            BorderColor="{Binding Source={x:Reference ConfirmNewPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}"
+                            Style="{StaticResource SfBorderStyle}">
+                            <control:BorderlessEntry
+                                x:Name="ConfirmNewPasswordEntry"
+                                IsPassword="True"
+                                Placeholder="Confirm New Password"
+                                Style="{StaticResource EntryStyle}"
+                                Text="{Binding ConfirmPassword}" />
+                        </border:SfBorder>
+
+                        <!--  Submit button  -->
+                        <buttons:SfButton
+                            Grid.Row="4"
+                            Command="{Binding SubmitCommand}"
                             CornerRadius="7"
                             Style="{StaticResource SfButtonStyle}"
-                            Text="SEND" />
+                            Text="SUBMIT" />
 
                     </Grid>
 
@@ -115,6 +142,7 @@
 
                         <buttons:SfButton
                             Command="{Binding SignUpCommand}"
+                            CornerRadius="4"
                             Style="{StaticResource SfFlatButtonStyle}"
                             Text="LOGIN" />
 
@@ -123,5 +151,4 @@
             </ScrollView>
         </Grid>
     </ContentPage.Content>
-
 </ContentPage>

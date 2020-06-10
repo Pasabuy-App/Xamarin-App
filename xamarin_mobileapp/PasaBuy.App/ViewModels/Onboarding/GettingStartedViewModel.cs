@@ -4,7 +4,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using PasaBuy.App.Models.Onboarding;
-using PasaBuy.App.Views.Forms;
 using PasaBuy.App.Views.Onboarding;
 using Syncfusion.SfRotator.XForms;
 using Xamarin.Essentials;
@@ -207,7 +206,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
             if (this.ValidateAndUpdateSelectedIndex(itemCount))
             {
                 this.MoveToNextPage();
-                Application.Current.MainPage = new NavigationPage(new LoginWithSocialIconPage());
+                Application.Current.MainPage = new NavigationPage(new SignInPage());
                 Preferences.Set("ReturnUser", true);
             }
         }

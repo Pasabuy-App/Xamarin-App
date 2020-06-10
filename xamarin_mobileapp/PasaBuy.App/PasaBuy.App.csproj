@@ -38,6 +38,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\Onboarding\ForgotPwPage.xaml.cs">
+      <DependentUpon>ForgotPwPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Onboarding\ResetPwPage.xaml.cs">
+      <DependentUpon>ResetPwPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Onboarding\SigninPage.xaml.cs">
+      <DependentUpon>SignInPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Settings\AddressPage.xaml.cs">
       <DependentUpon>AddressPage.xaml</DependentUpon>
     </Compile>
@@ -101,25 +110,25 @@
     <EmbeddedResource Update="Views\Settings\AddressPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Forms\EmailEntry.xaml">
+    <EmbeddedResource Update="Views\Inputs\EmailEntry.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Forms\ForgotPasswordPage.xaml">
+    <EmbeddedResource Update="Views\Onboarding\ForgotPwPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Forms\LoginEmailEntry.xaml">
+    <EmbeddedResource Update="Views\Onboarding\LoginEmailEntry.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Forms\LoginWithSocialIconPage.xaml">
+    <EmbeddedResource Update="Views\Onboarding\SignInPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Forms\ResetPasswordPage.xaml">
+    <EmbeddedResource Update="Views\Onboarding\ResetPwPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Forms\SignUpPage.xaml">
+    <EmbeddedResource Update="Views\Onboarding\SignUpPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Forms\Styles.xaml">
+    <EmbeddedResource Update="Views\Inputs\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Master\MainPage.xaml">

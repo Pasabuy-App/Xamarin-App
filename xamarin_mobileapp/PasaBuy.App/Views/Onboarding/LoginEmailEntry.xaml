@@ -4,7 +4,7 @@
              xmlns:control="clr-namespace:PasaBuy.App.Controls"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:converter="clr-namespace:PasaBuy.App.Converters"
-             x:Class="PasaBuy.App.Views.Forms.LoginEmailEntry">
+             x:Class="PasaBuy.App.Views.Onboarding.LoginEmailEntry">
     
     <ContentView.Resources>
         <ResourceDictionary>

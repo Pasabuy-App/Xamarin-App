@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage
-    x:Class="PasaBuy.App.Views.Forms.SignUpPage"
+    x:Class="PasaBuy.App.Views.Onboarding.SignUpPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
@@ -9,8 +9,8 @@
     xmlns:converter="clr-namespace:PasaBuy.App.Converters"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
-    xmlns:local="clr-namespace:PasaBuy.App.Views.Forms"
-    xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Forms"
+    xmlns:local="clr-namespace:PasaBuy.App.Views.Inputs"
+    xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Onboarding"
     Title="Sign Up"
     BackgroundImageSource="{core:OnPlatformOrientationStringValue Default=LoginBackground.png,
                                                                   iOSPhoneLandscape=LoginBackground-Landscape.png,
@@ -140,12 +140,12 @@
                         Spacing="1"
                         VerticalOptions="End">
 
-                        <StackLayout.Padding>
+                        <!--<StackLayout.Padding>
                             <OnIdiom
                                 x:DataType="Thickness"
                                 Default="0, 48, 0, 0"
                                 Phone="0" />
-                        </StackLayout.Padding>
+                        </StackLayout.Padding>-->
 
                         <Label
                             FontFamily="{StaticResource Montserrat-Medium}"

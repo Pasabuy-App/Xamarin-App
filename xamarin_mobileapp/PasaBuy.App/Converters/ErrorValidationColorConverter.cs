@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using PasaBuy.App.Controls;
-using PasaBuy.App.ViewModels.Forms;
+using PasaBuy.App.ViewModels.Onboarding;
 
 namespace PasaBuy.App.Converters
 {

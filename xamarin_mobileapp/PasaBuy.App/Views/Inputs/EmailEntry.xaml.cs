@@ -1,19 +1,19 @@
 ﻿using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
-namespace PasaBuy.App.Views.Forms
+namespace PasaBuy.App.Views.Inputs
 {
     /// <summary>
-    /// Page to retrieve the password forgotten.
+    /// View used to show the email entry with validation status.
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ForgotPasswordPage
+    public partial class EmailEntry
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ForgotPasswordPage" /> class.
+        /// Initializes a new instance of the <see cref="EmailEntry" /> class.
         /// </summary>
-        public ForgotPasswordPage()
+        public EmailEntry()
         {
             InitializeComponent();
         }

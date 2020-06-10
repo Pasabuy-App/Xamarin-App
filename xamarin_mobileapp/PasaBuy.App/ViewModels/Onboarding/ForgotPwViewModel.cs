@@ -1,21 +1,21 @@
-﻿using PasaBuy.App.Views.Forms;
+﻿using PasaBuy.App.Views.Onboarding;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
-namespace PasaBuy.App.ViewModels.Forms
+namespace PasaBuy.App.ViewModels.Onboarding
 {
     /// <summary>
     /// ViewModel for forgot password page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class ForgotPasswordViewModel : LoginViewModel
+    public class ForgotPwViewModel : LoginViewModel
     {
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ForgotPasswordViewModel" /> class.
+        /// Initializes a new instance of the <see cref="ForgotPwViewModel" /> class.
         /// </summary>
-        public ForgotPasswordViewModel()
+        public ForgotPwViewModel()
         {
             this.SignUpCommand = new Command(this.SignUpClicked);
             this.SendCommand = new Command(this.SendClicked);
@@ -45,7 +45,7 @@ namespace PasaBuy.App.ViewModels.Forms
         /// <param name="obj">The Object</param>
         private void SendClicked(object obj)
         {
-            Application.Current.MainPage = new NavigationPage(new ResetPasswordPage());
+            Application.Current.MainPage = new NavigationPage(new ResetPwPage());
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace PasaBuy.App.ViewModels.Forms
         /// <param name="obj">The Object</param>
         private void SignUpClicked(object obj)
         {
-            Application.Current.MainPage = new NavigationPage(new LoginWithSocialIconPage());
+            Application.Current.MainPage = new NavigationPage(new SignInPage());
         }
 
         #endregion

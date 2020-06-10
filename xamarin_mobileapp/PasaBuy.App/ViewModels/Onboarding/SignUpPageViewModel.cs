@@ -1,8 +1,8 @@
-﻿using PasaBuy.App.Views.Forms;
+﻿using PasaBuy.App.Views.Onboarding;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
-namespace PasaBuy.App.ViewModels.Forms
+namespace PasaBuy.App.ViewModels.Onboarding
 {
     /// <summary>
     /// ViewModel for sign-up page.
@@ -125,7 +125,7 @@ namespace PasaBuy.App.ViewModels.Forms
         /// <param name="obj">The Object</param>
         private void LoginClicked(object obj)
         {
-            Application.Current.MainPage = new NavigationPage(new LoginWithSocialIconPage());
+            Application.Current.MainPage = new NavigationPage(new SignInPage());
         }
 
         /// <summary>
