@@ -44,7 +44,7 @@ Settings
 - ONGOING -> EditProfilePage
 - DONE -> MyAddressPage
 - ONGOING -> ChangePWPage
-- ONGOING -> LinkedPage
+- DONE -> LinkedPage
 - DONE -> HelpPage
 - ONGOING -> TermsPage
 - ONGOING -> PrivacyPage
