@@ -14,7 +14,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
     /// </summary>
     [Preserve(AllMembers = true)]
     [DataContract]
-    public class RestaurantViewModel
+    public class StoreBrowserViewModel
     {
         #region Fields
 
@@ -25,9 +25,9 @@ namespace PasaBuy.App.ViewModels.Marketplace
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance for the <see cref=RestaurantViewModel"/> class.
+        /// Initializes a new instance for the <see cref=StoreBrowserViewModel"/> class.
         /// </summary>
-        public RestaurantViewModel()
+        public StoreBrowserViewModel()
         {
         }
 
@@ -50,7 +50,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         /// Gets or sets a collection of values to be displayed in the Restaurant page.
         /// </summary>
         [DataMember(Name = "navigationList")]
-        public ObservableCollection<Restaurant> NavigationList { get; set; }
+        public ObservableCollection<Store> NavigationList { get; set; }
 
         #endregion
 

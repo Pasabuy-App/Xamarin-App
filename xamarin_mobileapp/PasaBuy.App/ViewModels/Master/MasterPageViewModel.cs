@@ -220,7 +220,7 @@ namespace PasaBuy.App.ViewModels.Master
         {
             this.UpdateSelectedItemColor(obj);
 
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new RestaurantPage());
+            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new StoreBrowserPage());
         }
 
         /// <summary>

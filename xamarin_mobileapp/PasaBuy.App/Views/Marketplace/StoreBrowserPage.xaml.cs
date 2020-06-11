@@ -11,12 +11,12 @@ namespace PasaBuy.App.Views.Marketplace
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RestaurantPage : ContentPage
+    public partial class StoreBrowserPage : ContentPage
     {
-        public RestaurantPage()
+        public StoreBrowserPage()
         {
             InitializeComponent();
-            this.BindingContext = RestaurantDataService.Instance.RestaurantViewModel;
+            this.BindingContext = StoreDataService.Instance.RestaurantViewModel;
         }
         /// <summary>
         /// Invoked when view size is changed.

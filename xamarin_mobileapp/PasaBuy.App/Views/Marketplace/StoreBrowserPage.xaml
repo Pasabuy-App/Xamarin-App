@@ -8,10 +8,10 @@
              BackgroundColor="{DynamicResource Gray-White}"
              Title="Marketplace"
              NavigationPage.HasNavigationBar="True"
-             x:Class="PasaBuy.App.Views.Marketplace.RestaurantPage">
+             x:Class="PasaBuy.App.Views.Marketplace.StoreBrowserPage">
 
     <ContentPage.BindingContext>
-        <viewModel:RestaurantViewModel />
+        <viewModel:StoreBrowserViewModel />
     </ContentPage.BindingContext>
 
     <ContentPage.Resources>
@@ -107,7 +107,7 @@
 
             <StackLayout Grid.Row="2"  Spacing="0" >
 
-                <controls:SearchableRestaurantPage  x:Name="RestaurantList"
+                <controls:SearchableStorePage  x:Name="RestaurantList"
                     Padding="0"
                     AutoFitMode="Height"
                     IsScrollBarVisible="false"
@@ -118,7 +118,7 @@
                     VerticalOptions="FillAndExpand"
                     StickyFooterPosition="Body">
 
-                    <controls:SearchableRestaurantPage.ItemTemplate>
+                    <controls:SearchableStorePage.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <!--  View of each card item  -->
@@ -192,8 +192,8 @@
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
-                    </controls:SearchableRestaurantPage.ItemTemplate>
-                </controls:SearchableRestaurantPage>
+                    </controls:SearchableStorePage.ItemTemplate>
+                </controls:SearchableStorePage>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

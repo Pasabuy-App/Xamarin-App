@@ -9,29 +9,29 @@ namespace PasaBuy.App.DataService
     /// Data service to load the data from json file.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class RestaurantDataService
+    public class StoreDataService
     {
         #region fields
 
-        private static RestaurantDataService instance;
+        private static StoreDataService instance;
 
-        private RestaurantViewModel restaurantViewModel;
+        private StoreBrowserViewModel restaurantViewModel;
 
         #endregion
 
         #region Properties
 
         /// <summary>
-        /// Gets an instance of the <see cref="RestaurantDataService"/>.
+        /// Gets an instance of the <see cref="StoreDataService"/>.
         /// </summary>
-        public static RestaurantDataService Instance => instance ?? (instance = new RestaurantDataService());
+        public static StoreDataService Instance => instance ?? (instance = new StoreDataService());
 
         /// <summary>
         /// Gets or sets the value of Restaurant view model.
         /// </summary>
-        public RestaurantViewModel RestaurantViewModel =>
+        public StoreBrowserViewModel RestaurantViewModel =>
             this.restaurantViewModel ??
-            (this.restaurantViewModel = PopulateData<RestaurantViewModel>("navigation.json"));
+            (this.restaurantViewModel = PopulateData<StoreBrowserViewModel>("navigation.json"));
 
         #endregion
 

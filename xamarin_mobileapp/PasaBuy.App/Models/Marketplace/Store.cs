@@ -8,7 +8,7 @@ namespace PasaBuy.App.Models.Marketplace
     /// </summary>
     [Preserve(AllMembers = true)]
     [DataContract]
-    public class Restaurant
+    public class Store
     {
         #region Field
 

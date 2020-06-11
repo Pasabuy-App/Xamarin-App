@@ -53,6 +53,9 @@
     <Compile Update="Views\Advisory\Styles.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
+    <Compile Update="Views\Marketplace\StoreBrowserPage.xaml.cs">
+      <DependentUpon>StoreBrowserPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Marketplace\StoreFrontPage.xaml.cs">
       <DependentUpon>StoreFrontPage.xaml</DependentUpon>
     </Compile>
@@ -101,7 +104,7 @@
     <EmbeddedResource Update="Views\Advisory\ArticleList.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Marketplace\RestaurantPage.xaml">
+    <EmbeddedResource Update="Views\Marketplace\StoreBrowserPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Marketplace\StoreFrontPage.xaml">

@@ -6,7 +6,7 @@ namespace PasaBuy.App.Controls
     /// This class extends the behavior of the SfListView control to filter the items in Restaurant page based on text.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class SearchableRestaurantPage : SearchableListView
+    public class SearchableStorePage : SearchableListView
     {
         #region Method
 
@@ -19,7 +19,7 @@ namespace PasaBuy.App.Controls
         {
             if (base.FilterContacts(obj))
             {
-                var taskInfo = obj as Models.Marketplace.Restaurant;
+                var taskInfo = obj as Models.Marketplace.Store;
 
                 if (taskInfo == null || string.IsNullOrEmpty(taskInfo.Name) || string.IsNullOrEmpty(taskInfo.Description) ||
                     string.IsNullOrEmpty(taskInfo.Offer) || string.IsNullOrEmpty(taskInfo.ItemRating))
