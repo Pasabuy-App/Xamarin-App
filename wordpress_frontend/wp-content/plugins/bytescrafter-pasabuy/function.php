@@ -33,3 +33,6 @@
 
     //Make sure to create required mysql tables.
     include_once ( plugin_dir_path( __FILE__ ) . '/includes/core/hook.php' );
+
+    //Include the REST API of USocketNet to be accessible.
+    include_once ( plugin_dir_path( __FILE__ ) . '/includes/api/routes.php' );
