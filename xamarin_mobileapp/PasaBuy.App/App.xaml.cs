@@ -10,6 +10,19 @@ namespace PasaBuy.App
     {
         public static string BaseImageUrl { get; } = "https://cdn.syncfusion.com/essential-ui-kit-for-xamarin.forms/common/uikitimages/";
 
+        private static RestService rservice = null;
+        public static RestService RestService 
+        {
+            get
+            {
+                if(rservice == null)
+                {
+                    rservice = new RestService();
+                }
+                return rservice;
+            }
+        }
+
         public App()
         {
             InitializeComponent();

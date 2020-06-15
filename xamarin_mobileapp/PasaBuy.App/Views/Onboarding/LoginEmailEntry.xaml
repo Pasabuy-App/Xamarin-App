@@ -30,7 +30,7 @@
 
                     <control:BorderlessEntry
                         x:Name="EmailEntry"
-                        Placeholder="Email Address"
+                        Placeholder="Username / Email"
                         PlaceholderColor="{DynamicResource PlaceholderColor}"
                         Style="{StaticResource EntryStyle}"
                         Keyboard="Email"
@@ -38,7 +38,7 @@
                     
                     <!--  Login entry label -->
 
-                    <Label
+                    <!--<Label
                         Margin="15,0"
                         FontFamily="{StaticResource FontIcons}"
                         FontSize="18"
@@ -47,20 +47,20 @@
                         IsVisible="{Binding Path=IsVisible, Source={x:Reference ValidationLabel}}"
                         Text="&#xe707;"
                         TextColor="{DynamicResource Red}"
-                        VerticalOptions="Center" />
+                        VerticalOptions="Center" />-->
 
                 </Grid>
             </border:SfBorder>
 
             <!--  Login validation label -->
-            <Label
+            <!--<Label
                 x:Name="ValidationLabel"
                 Margin="15,-5,0,0"
                 FontSize="12"
                 IsVisible="{Binding Path=IsFocused, Source={x:Reference EmailEntry}, Converter={StaticResource StringToBooleanConverter}, ConverterParameter={x:Reference EmailEntry}}"
                 Text="Please enter the valid e-mail"
                 TextColor="{DynamicResource Red}"
-                VerticalOptions="FillAndExpand" />
+                VerticalOptions="FillAndExpand" />-->
 
         </StackLayout>
     </ContentView.Content>

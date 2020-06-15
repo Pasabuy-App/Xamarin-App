@@ -64,20 +64,14 @@
 				);
 			}
 	
+			//Return user token and id with success message.
 			return rest_ensure_response( 
 				array(
 					"status" => "success",
-					"data" => array(
-						"snid" => PSP_Authenticate::psp_get_session($user->ID), 
-						"wpid" => $user->ID,
-						"uname" => $user->data->user_login,
-						"dname" => $user->data->display_name,
-						"email" => $user->data->user_email,
-						"avatar" => get_avatar_url($user->ID, array('size' => 150)),
-						"roles" => $user->roles,
-						)
-					)  
-				);
+					"wpid" => $user->ID,
+					"snid" => PSP_Authenticate::psp_get_session($user->ID),
+				)
+			);
 		}
 	}
 

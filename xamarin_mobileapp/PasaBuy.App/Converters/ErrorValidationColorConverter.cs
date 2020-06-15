@@ -92,6 +92,8 @@ namespace PasaBuy.App.Converters
         /// <returns>Returns the boolean value.</returns>
         private static bool CheckValidEmail(string email)
         {
+            return true;
+
             if (string.IsNullOrEmpty(email))
             {
                 return true;

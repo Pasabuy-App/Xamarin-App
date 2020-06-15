@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using System.Diagnostics;
 
 namespace PasaBuy.App.ViewModels.Onboarding
 {
@@ -105,11 +106,19 @@ namespace PasaBuy.App.ViewModels.Onboarding
         private void LoginClicked(object obj)
         {
             //IF FAILED SHOW FAILED MODAL AND RETURN
+            App.RestService.Authenticate(Email, Password, (bool success, string message) =>
+            {
+                if(success)
+                {
+                    Preferences.Set("UserToken", message);
+                    Application.Current.MainPage = new MainPage();
+                }
 
-            //IF SUCCESS AUTH, SAVE USER TOKEN AND CONTINUE.
-            Application.Current.MainPage = new MainPage();
-
-            Preferences.Set("UserToken", "hashvalue"); //Temporary!
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("BytesCrafter: Failed->" + success + " message->" + message);
+                }
+            });
         }
 
         /// <summary>

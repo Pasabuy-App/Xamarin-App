@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
