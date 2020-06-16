@@ -1,3 +1,4 @@
+using Syncfusion.XForms.iOS.ProgressBar;
 using Syncfusion.XForms.iOS.PopupLayout;
 using Syncfusion.SfChart.XForms.iOS.Renderers;
 using Syncfusion.XForms.iOS.Expander;
@@ -38,6 +39,7 @@ namespace PasaBuy.App.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            SfLinearProgressBarRenderer.Init();
             SfPopupLayoutRenderer.Init();
             SfChartRenderer.Init();
             SfExpanderRenderer.Init();
