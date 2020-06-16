@@ -1,4 +1,5 @@
-﻿using System;
+using Syncfusion.XForms.Android.PopupLayout;
+using System;
 
 using Android.App;
 using Android.Content.PM;
@@ -21,6 +22,7 @@ namespace PasaBuy.App.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            SfPopupLayoutRenderer.Init();
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
