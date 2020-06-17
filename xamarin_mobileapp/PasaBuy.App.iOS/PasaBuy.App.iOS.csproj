@@ -152,10 +152,16 @@
     <PackageReference Include="Syncfusion.Xamarin.SfBadgeView">
       <Version>18.1.0.54</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfChart">
+      <Version>18.1.0.54</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfComboBox">
       <Version>18.1.0.54</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfListView">
+      <Version>18.1.0.54</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout">
       <Version>18.1.0.54</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfRating">
@@ -233,5 +239,8 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\OnBoarding.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Card.png" />
   </ItemGroup>
 </Project>
