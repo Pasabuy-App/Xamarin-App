@@ -11,26 +11,54 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Data\deliverytracking.json" />
     <None Remove="Data\ecommerce.json" />
     <None Remove="Data\navigation.json" />
     <None Remove="Data\notification.json" />
+    <None Remove="Images\EmptyCart.svg" />
+    <None Remove="Images\LocationAccessDenied.svg" />
+    <None Remove="Images\NoCredits.svg" />
+    <None Remove="Images\NoInternet.svg" />
+    <None Remove="Images\NoItem.svg" />
+    <None Remove="Images\NotEnoughCredit.svg" />
+    <None Remove="Images\PaymentFailed.svg" />
+    <None Remove="Images\PaymentFailure.svg" />
+    <None Remove="Images\PaymentSuccess.svg" />
+    <None Remove="Images\SomethingWentWrong.svg" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Data\deliverytracking.json" />
     <EmbeddedResource Include="Data\ecommerce.json" />
     <EmbeddedResource Include="Data\navigation.json" />
     <EmbeddedResource Include="Data\notification.json" />
+    <EmbeddedResource Include="Images\EmptyCart.svg" />
+    <EmbeddedResource Include="Images\LocationAccessDenied.svg" />
+    <EmbeddedResource Include="Images\NoCredits.svg" />
+    <EmbeddedResource Include="Images\NoInternet.svg" />
+    <EmbeddedResource Include="Images\NoItem.svg" />
+    <EmbeddedResource Include="Images\NotEnoughCredit.svg" />
+    <EmbeddedResource Include="Images\PaymentFailed.svg" />
+    <EmbeddedResource Include="Images\PaymentFailure.svg" />
+    <EmbeddedResource Include="Images\PaymentSuccess.svg" />
+    <EmbeddedResource Include="Images\SomethingWentWrong.svg" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="SkiaSharp.Extended" Version="1.60.0" />
+    <PackageReference Include="SkiaSharp.Svg" Version="1.60.0" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.3" />
     <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.1.0.54" />
     <PackageReference Include="Syncfusion.Xamarin.Cards" Version="18.1.0.54" />
     <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.1.0.54" />
     <PackageReference Include="Syncfusion.Xamarin.Expander" Version="18.1.0.54" />
     <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="18.1.0.54" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="18.1.0.54" />
     <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="18.1.0.54" />
     <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="18.1.0.54" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="18.1.0.54" />
+    <PackageReference Include="Syncfusion.Xamarin.SfProgressBar" Version="18.1.0.54" />
     <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="18.1.0.54" />
     <PackageReference Include="Syncfusion.Xamarin.SfRotator" Version="18.1.0.54" />
     <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="18.1.0.54" />
@@ -106,6 +134,51 @@
     <EmbeddedResource Update="Views\Advisory\ArticleList.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Currency\MyWalletPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Currency\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\eCommerce\CartPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\eCommerce\CheckoutPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\eCommerce\DeliveryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\eCommerce\FeedbackPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\eCommerce\MyOrdersPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\eCommerce\MyOrdersView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\eCommerce\PaymentFailurePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\eCommerce\PaymentSuccessPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\eCommerce\PaymentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\eCommerce\PriceDetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\eCommerce\ProductDeliveryTrackingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\eCommerce\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\eCommerce\TransactionHistoryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Marketplace\StoreBrowserPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
@@ -140,6 +213,33 @@
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Marketplace\Stylex.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Notice\EmptyCartPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Notice\LocationDeniedPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Notice\NoCreditsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Notice\NoInternetConnectionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Notice\NoItemPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Notice\NotEnoughCreditPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Notice\PaymentFailedPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Notice\SomethingWentWrongPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Notice\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Settings\AddressPage.xaml">
@@ -245,6 +345,15 @@
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\ArticleTileTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\CartItemListTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\ExpenseChartTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\OrderHistoryTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\PostFeedItem.xaml">

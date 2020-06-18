@@ -22,10 +22,28 @@ namespace PasaBuy.App.Views.Onboarding
         {
             base.OnAppearing();
 
-            //Animate log here.
             await SplashLogo.ScaleTo(1.0, 1000);
             await SplashLogo.ScaleTo(1.5, 1500, Easing.Linear);
 
+            CheckConnectivity();
+        }
+        public static void CheckConnectivity()
+        {
+            var current = Connectivity.NetworkAccess;
+
+            if (current == NetworkAccess.Internet)
+            {
+                CheckToken();
+            }
+
+            else
+            {
+                Application.Current.MainPage = new NavigationPage(new PasaBuy.App.Views.ErrorAndEmpty.NoInternetConnectionPage());
+            }
+        }
+
+        public static void CheckToken()
+        {
             if (Preferences.ContainsKey("ReturnUser"))
             {
                 if (Preferences.ContainsKey("UserToken"))

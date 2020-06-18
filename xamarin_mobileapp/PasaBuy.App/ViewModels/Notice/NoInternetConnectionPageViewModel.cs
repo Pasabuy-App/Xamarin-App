@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using PasaBuy.App.Views.Onboarding;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -30,8 +31,8 @@ namespace PasaBuy.App.ViewModels.ErrorAndEmpty
         public NoInternetConnectionPageViewModel()
         {
             this.ImagePath = "NoInternet.svg";
-            this.Header = "NO INTERNET";
-            this.Content = "You must be connected to the internet to complete this action";
+            this.Header = "CONNECTIVITY ISSUE";
+            this.Content = "You must be connected to the internet to use the app.";
             this.TryAgainCommand = new Command(this.TryAgain);
         }
 
@@ -109,7 +110,7 @@ namespace PasaBuy.App.ViewModels.ErrorAndEmpty
         /// <param name="obj">The Object</param>
         private void TryAgain(object obj)
         {
-            // Do something
+            SplashPage.CheckConnectivity();
         }
 
         #endregion
