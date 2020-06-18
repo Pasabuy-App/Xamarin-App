@@ -21,8 +21,8 @@
 <?php
 
     //Require the USocketNet class which have the core function of this plguin. 
-    require plugin_dir_path(__FILE__) . '/v1/class-user-auth.php';
-    require plugin_dir_path(__FILE__) . '/v1/class-user-verify.php';
+    require plugin_dir_path(__FILE__) . '/v1/user/class-auth.php';
+    require plugin_dir_path(__FILE__) . '/v1/user/class-verify.php';
 
     //require plugin_dir_path(__FILE__) . '/class-demoguy.php';
     include_once( plugin_dir_path( __FILE__ ) . '/v1/demo-callback.php' );

@@ -64,7 +64,10 @@
 						"status" => "success",
 						"data" => array(
 							"uname" => $wp_user->data->user_nicename,
-							"dname" => $wp_user->data->display_name
+							"dname" => $wp_user->data->display_name,
+							"email" => $wp_user->data->user_email,
+							"avatar" => get_avatar_url($user_id, array('size' => 150)),
+							"regdate" => $wp_user->data->user_registered
 						)
 					)
 				);
