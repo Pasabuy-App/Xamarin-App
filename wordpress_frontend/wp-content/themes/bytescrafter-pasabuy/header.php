@@ -105,6 +105,3 @@
             </div>
         </nav> <!-- end of navbar -->
         <!-- end of navigation -->
-
-        <div class="container">
-            <div class="row">

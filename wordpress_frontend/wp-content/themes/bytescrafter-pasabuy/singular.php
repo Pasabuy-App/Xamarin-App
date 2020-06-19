@@ -11,35 +11,41 @@
 
 <?php get_header(); ?>
 
-    <div class="col-md-8">
-		<section class="section section-padding">
-			<?php
-				while ( have_posts() ) : the_post(); 
-			?>
-				<div class="short-info">
-					<?php the_content(); ?>
-				</div>
-			<?php
-				endwhile;
-				wp_reset_query();
-			?>
-		</section>
+	<div class="container spacetop-100">
+    	<div class="row">
 
-		<?php
-			if ( ( is_single() || is_page() ) && ( comments_open() || get_comments_number() ) && ! post_password_required() ) {
-		?>
-		
-				<!-- <div class="comments-wrapper section-inner">
-					<?php //comments_template(); ?>
-				</div> -->
+			<div class="col-md-8">
+				<section class="section section-padding">
+					<?php
+						while ( have_posts() ) : the_post(); 
+					?>
+						<div class="short-info">
+							<?php the_content(); ?>
+						</div>
+					<?php
+						endwhile;
+						wp_reset_query();
+					?>
+				</section>
 
-		<?php
-			}
-		?>
-    </div>
+				<?php
+					if ( ( is_single() || is_page() ) && ( comments_open() || get_comments_number() ) && ! post_password_required() ) {
+				?>
+				
+						<!-- <div class="comments-wrapper section-inner">
+							<?php //comments_template(); ?>
+						</div> -->
 
-    <div class="col-md-4" id="sidebar">
-        <?php get_sidebar( 'primary' );; ?>
+				<?php
+					}
+				?>
+			</div>
+
+			<div class="col-md-4" id="sidebar">
+				<?php get_sidebar( 'primary' );; ?>
+			</div>
+
+		</div>
     </div>
 
 <?php get_footer(); ?>
