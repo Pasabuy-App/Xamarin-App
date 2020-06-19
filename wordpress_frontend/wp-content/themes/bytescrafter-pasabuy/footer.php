@@ -79,7 +79,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <p class="p-small">Copyright © 2020 <a href="https://pasabuy.app">PasaBuy Tech</a> - All rights reserved</p>
+                        <p class="p-small">Copyright © <?php echo Date('Y'); ?> <a href="https://pasabuy.app">PasaBuy Tech</a> - All rights reserved</p>
                     </div>
                 </div>
             </div>
