@@ -1,4 +1,7 @@
-﻿using PasaBuy.App.Views.Master;
+﻿using Newtonsoft.Json;
+using PasaBuy.App.Controllers;
+using PasaBuy.App.Models.Onboarding;
+using PasaBuy.App.Views.Master;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +30,7 @@ namespace PasaBuy.App.Views.Onboarding
 
             CheckConnectivity();
         }
+
         public static void CheckConnectivity()
         {
             var current = Connectivity.NetworkAccess;

@@ -5,6 +5,11 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using System.Diagnostics;
+using System;
+using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Controllers;
+using Newtonsoft.Json;
+using PasaBuy.App.Models.Onboarding;
 
 namespace PasaBuy.App.ViewModels.Onboarding
 {
@@ -105,18 +110,33 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void LoginClicked(object obj)
         {
-            //IF FAILED SHOW FAILED MODAL AND RETURN
-            App.RestService.Authenticate(Email, Password, (bool success, string message) =>
+            RestService.Instance.Authenticate(Email, Password, (bool success, string data) =>
             {
                 if(success)
                 {
-                    Preferences.Set("UserToken", message);
+                    UserPrefs.Instance.Token = JsonConvert.DeserializeObject<Token>(data);
+
+                    RestService.Instance.GetUserInfo((bool success2, string data2) =>
+                    {
+                        if (success2)
+                        {
+                            UserInfo uinfo = JsonConvert.DeserializeObject<UserInfo>(data2);
+
+                            if (uinfo.status == "success")
+                            {
+                                UserPrefs.Instance.UserInfo = uinfo;
+                            }
+                        }
+
+                        //TO DO! Make sure to notify when user info does not return correctly.
+                    });
+
                     Application.Current.MainPage = new MainPage();
                 }
 
                 else
                 {
-                    System.Diagnostics.Debug.WriteLine("BytesCrafter: Failed->" + success + " message->" + message);
+                    new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
                 }
             });
         }

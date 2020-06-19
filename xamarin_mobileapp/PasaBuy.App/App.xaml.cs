@@ -1,5 +1,8 @@
+using Newtonsoft.Json;
+using PasaBuy.App.Models.Onboarding;
 using PasaBuy.App.Views.Onboarding;
 using System;
+using System.Diagnostics;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -9,19 +12,6 @@ namespace PasaBuy.App
     public partial class App : Application
     {
         public static string BaseImageUrl { get; } = "https://cdn.syncfusion.com/essential-ui-kit-for-xamarin.forms/common/uikitimages/";
-
-        private static RestService rservice = null;
-        public static RestService RestService 
-        {
-            get
-            {
-                if(rservice == null)
-                {
-                    rservice = new RestService();
-                }
-                return rservice;
-            }
-        }
 
         public App()
         {

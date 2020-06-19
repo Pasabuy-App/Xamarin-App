@@ -1,4 +1,5 @@
-﻿using PasaBuy.App.Views.Master;
+﻿using PasaBuy.App.Controllers;
+using PasaBuy.App.Views.Master;
 using Syncfusion.XForms.Buttons;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -38,9 +39,9 @@ namespace PasaBuy.App.ViewModels.Feeds
         public MyProfileViewModel()
         {
             this.HeaderImagePath = "Album2.png";
-            this.ProfileImage = "ProfileImage1.png";
+            this.ProfileImage = UserPrefs.Instance.UserInfo.avatar;
             this.BackgroundImage = "Sky-Image.png";
-            this.ProfileName = "Juan Dela Cruz";
+            this.ProfileName = UserPrefs.Instance.UserInfo.dname;
             this.Designation = "APPROVED";
             this.State = "Biñan City";
             this.Country = "PH";

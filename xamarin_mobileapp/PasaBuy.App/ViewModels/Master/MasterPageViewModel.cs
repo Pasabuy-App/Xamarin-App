@@ -11,6 +11,7 @@ using PasaBuy.App.Views.Marketplace;
 using System.Linq;
 using PasaBuy.App.Views.Feeds;
 using PasaBuy.App.Views.Advisory;
+using PasaBuy.App.Controllers;
 
 namespace PasaBuy.App.ViewModels.Master
 {
@@ -39,10 +40,10 @@ namespace PasaBuy.App.ViewModels.Master
         /// </summary>
         public MasterPageViewModel()
         {
-            this.profileName = "Juan Dela Cruz";
-            this.profileImage = App.BaseImageUrl + "ProfileImage1.png";
+            this.profileName = UserPrefs.Instance.UserInfo.dname;
+            this.profileImage = UserPrefs.Instance.UserInfo.avatar;
             this.userBanner = App.BaseImageUrl + "Sky-Image.png";
-            this.email = "juandc20@pasabuy.app";
+            this.email = UserPrefs.Instance.UserInfo.email;
 
             this.HomeCommand = new Command(this.HomeButtonClicked);
             this.ProfileCommand = new Command(this.ProfileButtonClicked);
