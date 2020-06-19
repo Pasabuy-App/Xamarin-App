@@ -88,7 +88,7 @@
                         <a class="nav-link page-scroll" href="#contact">Contact</a>
                     </li>
                 </ul>
-                <span class="nav-item social-icons">
+                <!-- <span class="nav-item social-icons">
                     <span class="fa-stack">
                         <a href="#your-link">
                             <i class="fas fa-circle fa-stack-2x facebook"></i>
@@ -101,7 +101,7 @@
                             <i class="fab fa-twitter fa-stack-1x"></i>
                         </a>
                     </span>
-                </span>
+                </span> -->
             </div>
         </nav> <!-- end of navbar -->
         <!-- end of navigation -->

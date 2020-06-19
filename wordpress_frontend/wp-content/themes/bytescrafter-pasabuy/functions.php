@@ -20,6 +20,12 @@
     //include post supports for formats.
     include_once( "include/override/postsupport.php" );
 
+    //Theme customizer fields.
+    include_once( "include/override/customizer.php" );
+
+    //Include theme mod here.
+    include_once( "include/override/thememod.php" );
+
     //Include scripts that is needed js and css.
     function ps_plugin_frontend_enqueue()
     {    
