@@ -11,7 +11,7 @@
 
 <?php get_header(); ?>
 
-    <div class="col-md-8 ">
+    <div class="col-md-8">
 		<section class="section section-padding">
 			<?php
 				while ( have_posts() ) : the_post(); 
@@ -29,9 +29,9 @@
 			if ( ( is_single() || is_page() ) && ( comments_open() || get_comments_number() ) && ! post_password_required() ) {
 		?>
 		
-				<div class="comments-wrapper section-inner">
-					<?php comments_template(); ?>
-				</div>
+				<!-- <div class="comments-wrapper section-inner">
+					<?php //comments_template(); ?>
+				</div> -->
 
 		<?php
 			}

@@ -17,6 +17,9 @@
 
 <?php
 
+    //include post supports for formats.
+    include_once( "include/override/postsupport.php" );
+
     //Include scripts that is needed js and css.
     function ps_plugin_frontend_enqueue()
     {    
@@ -62,12 +65,12 @@
     }
     add_action( 'wp_enqueue_scripts', 'ps_plugin_frontend_enqueue' );
 
-    function my_filter_head() {
-        // show admin bar only for admins and editors. 
-        // if admin only, use: manage_options
-        if (!current_user_can('edit_posts')) {
-            add_filter('show_admin_bar', '__return_false');
-            remove_action('wp_head', '_admin_bar_bump_cb');
-        }
-    } add_action('get_header', 'my_filter_head');
+    // function my_filter_head() {
+    //     // show admin bar only for admins and editors. 
+    //     // if admin only, use: manage_options
+    //     if (!current_user_can('edit_posts')) {
+    //         add_filter('show_admin_bar', '__return_false');
+    //         remove_action('wp_head', '_admin_bar_bump_cb');
+    //     }
+    // } add_action('get_header', 'my_filter_head');
     
