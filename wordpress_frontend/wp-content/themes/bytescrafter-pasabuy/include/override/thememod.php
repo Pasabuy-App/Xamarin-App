@@ -20,3 +20,17 @@
         }
         echo $tarField;
     }
+
+    //Get featured image of a post by id.
+    function getPostFeaturedImage( $postId, $sizeGroup ) {   
+        $returningImage = get_template_directory_uri()."/assets/images/default-thumbnail.png"; 
+
+        if ( has_post_thumbnail( $postId ) ) {
+            $imageAttachment = wp_get_attachment_image_src( get_post_thumbnail_id( $postId ), $sizeGroup );
+            if( !empty($imageAttachment) ) {
+                $returningImage = $imageAttachment[0];
+            }
+        }
+
+        echo $returningImage;
+    }

@@ -11,14 +11,15 @@
 
 <?php get_header(); ?>
 
-	<div class="container spacetop-100">
+	<?php
+		while ( have_posts() ) : the_post(); 
+	?>
+	<div style="background: url(<?php getPostFeaturedImage($post->ID, 'featured-image'); ?>) no-repeat center; background-size: cover; height: 70vh; margin-bottom: 70px;">
+	</div>
+	<div class="container">
     	<div class="row">
-
 			<div class="col-md-8">
 				<section class="section section-padding">
-					<?php
-						while ( have_posts() ) : the_post(); 
-					?>
 						<div class="short-info">
 							<?php the_content(); ?>
 						</div>
