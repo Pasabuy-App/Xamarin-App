@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using PasaBuy.App.Controllers;
+using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Models.Onboarding;
 using System;
 using System.Collections.Generic;
@@ -71,6 +72,12 @@ namespace PasaBuy.App
         #region Methods
         public async void Authenticate(string username, string password, Action<bool, string> callback)
         {
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                new Alert("Notice to User", "Connectivity Issue Occur! Please check your internet connection.", "Try Again");
+                return;
+            }
+
             var dict = new Dictionary<string, string>();
                 dict.Add("UN", username);
                 dict.Add("PW", password);
@@ -95,10 +102,13 @@ namespace PasaBuy.App
             }            
         }
 
-        public async void GetUserInfo(Action<bool, string> callback)
+        public async void GetUserInfo(Token userToken, Action<bool, string> callback)
         {
-            string utok = Preferences.Get("UserToken", "");
-            Token userToken = JsonConvert.DeserializeObject<Token>(utok);
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                new Alert("Notice to User", "Connectivity Issue Occur! Please check your internet connection.", "Try Again");
+                return;
+            }
 
             var dict = new Dictionary<string, string>();
                 dict.Add("wpid", userToken.wpid);

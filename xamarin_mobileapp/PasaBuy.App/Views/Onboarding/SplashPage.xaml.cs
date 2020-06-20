@@ -48,9 +48,9 @@ namespace PasaBuy.App.Views.Onboarding
 
         public static void CheckToken()
         {
-            if (Preferences.ContainsKey("ReturnUser"))
+            if ( UserPrefs.Instance.hasToken )
             {
-                if (Preferences.ContainsKey("UserToken"))
+                if ( UserPrefs.Instance.hasUserinfo )
                 {
                     Application.Current.MainPage = new MainPage();
                 }

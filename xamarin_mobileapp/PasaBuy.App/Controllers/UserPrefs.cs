@@ -116,13 +116,34 @@ namespace PasaBuy.App.Controllers
         /// </summary>
         private UserPrefs()
         {
-            if(Preferences.ContainsKey("UserToken"))
+            
+        }
+
+        public bool hasToken
+        {
+            get
+            {
+                return token != null ? true : false;
+            }
+        }
+
+        public bool hasUserinfo
+        {
+            get
+            {
+                return userInfo != null ? true : false;
+            }
+        }
+
+        public void Initialize()
+        {
+            if (Preferences.ContainsKey("UserToken"))
             {
                 string data = Preferences.Get("UserToken", "{}");
                 token = JsonConvert.DeserializeObject<Token>(data);
             }
 
-            if(Preferences.ContainsKey("UserInfo"))
+            if (Preferences.ContainsKey("UserInfo"))
             {
                 string data = Preferences.Get("UserInfo", "{}");
                 userInfo = JsonConvert.DeserializeObject<UserInfo>(data);
@@ -131,7 +152,7 @@ namespace PasaBuy.App.Controllers
         #endregion
 
         #region Methods
-        
+
         #endregion
     }
 }

@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using PasaBuy.App.Controllers;
 using PasaBuy.App.Models.Onboarding;
 using PasaBuy.App.Views.Onboarding;
 using System;
@@ -20,6 +21,8 @@ namespace PasaBuy.App
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjYwNjY0QDMxMzgyZTMxMmUzMGlJTnpSZVBDTG4raGhBaU5DOVRFbFBKWmxRYVVHd1hxNUx2cXcrZFliMmc9");
 
             MainPage = new NavigationPage(new SplashPage());
+
+            UserPrefs.Instance.Initialize();
         }
 
         protected override void OnStart()

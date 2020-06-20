@@ -116,7 +116,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
                 {
                     UserPrefs.Instance.Token = JsonConvert.DeserializeObject<Token>(data);
 
-                    RestService.Instance.GetUserInfo((bool success2, string data2) =>
+                    RestService.Instance.GetUserInfo(UserPrefs.Instance.Token, (bool success2, string data2) =>
                     {
                         if (success2)
                         {
@@ -125,13 +125,22 @@ namespace PasaBuy.App.ViewModels.Onboarding
                             if (uinfo.status == "success")
                             {
                                 UserPrefs.Instance.UserInfo = uinfo;
+
+                                Application.Current.MainPage = new MainPage();
+                            }
+
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data2), "Try Again");
                             }
                         }
 
-                        //TO DO! Make sure to notify when user info does not return correctly.
+                        else 
+                        {
+                            new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data2), "Try Again");
+                        }
+                        
                     });
-
-                    Application.Current.MainPage = new MainPage();
                 }
 
                 else
