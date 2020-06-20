@@ -13,7 +13,10 @@ namespace PasaBuy.App.Models.Onboarding
         public string message = string.Empty;
         public string uname = string.Empty;
         public string dname = string.Empty;
+        public string verify = "UNVERIFIED";
+        public string city = string.Empty;
         public string email = string.Empty;
+        public string banner = string.Empty;
         public string avatar = string.Empty;
         public string regdate = string.Empty;
 

@@ -2,11 +2,7 @@
 <ContentPage x:Class="PasaBuy.App.Views.Feeds.MyProfile"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
-             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-             xmlns:listviewBahavior="clr-namespace:PasaBuy.App.Behaviors"
              xmlns:local="clr-namespace:PasaBuy.App.Views.Feeds.Templates"
              xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Feeds"
              BackgroundColor="{DynamicResource Gray-300}"
@@ -43,7 +39,7 @@
                     <!--  UserBanner  -->
                     <Image Grid.RowSpan="3" Aspect="AspectFill" HeightRequest="170" BackgroundColor="{DynamicResource Gray-300}">
                         <Image.Source>
-                            <UriImageSource Uri="{Binding BackgroundImage}" 
+                            <UriImageSource Uri="{Binding BannerImage}" 
 			                                CacheValidity="14" 
 			                                CachingEnabled="true"/>
                         </Image.Source>
@@ -103,7 +99,7 @@
                                 LineHeight="{OnPlatform Default=-1,
                                                         Android=1.25}"
                                 MaxLines="2"
-                                Text="{Binding ProfileName}"
+                                Text="{Binding DisplayName}"
                                 TextColor="{DynamicResource Gray-Black}" />
 
                         <!--  UserStatus  -->
@@ -111,14 +107,14 @@
                                      Margin="7,5,0,0"
                                      Grid.Column="1" >
                             <Label FontFamily="{StaticResource Montserrat-Bold}"
-                                FontSize="15"
+                                FontSize="14"
                                 HorizontalOptions="StartAndExpand"
                                 LineBreakMode="TailTruncation"
                                 LineHeight="{OnPlatform Default=-1,
                                                         Android=1.25}"
                                 MaxLines="2"
-                                Text="VERIFIED"
-                                TextColor="{DynamicResource Green}" />
+                                Text="{Binding Verification}"
+                                TextColor="{DynamicResource Gray-900}" />
                         </StackLayout>
 
                     </Grid>
@@ -144,7 +140,7 @@
                             <Image Grid.Column="3" Source="Logo.png"
                                    HeightRequest="22"/>
                         </Grid>
-                        <Label Text="(ic) Lives in Biñan City"/>
+                        <Label Text="{Binding City}"/>
                         <Label Text="(ic) Joined at October 2020"/>
                         <Label Text="(ic) Refered by mariaclara01"/>
                     </StackLayout>
