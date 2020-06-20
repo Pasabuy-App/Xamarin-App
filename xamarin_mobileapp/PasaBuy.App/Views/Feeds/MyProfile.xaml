@@ -72,7 +72,7 @@
                                          CornerRadius="50">
                             <Image
                                 BackgroundColor="{DynamicResource Gray-400}"
-                                WidthRequest="100"
+                                WidthRequest="95"
                                 Aspect="AspectFill">
                                 <Image.Source>
                                     <UriImageSource
@@ -87,23 +87,9 @@
                         <StackLayout Grid.Row="0"
                                      Grid.Column="1"
                                      Margin="7,12,0,0"
+                                     HeightRequest="22"
                                      VerticalOptions="Start"
                                      HorizontalOptions="StartAndExpand">
-                            <Grid RowSpacing="0">
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-
-                                <Image Grid.Column="0" Source="Logo.png"
-                                   HeightRequest="22"/>
-                                <Image Grid.Column="1" Source="Logo.png"
-                                   HeightRequest="22"/>
-                                <Image Grid.Column="2" Source="Logo.png"
-                                   HeightRequest="22"/>
-                            </Grid>
                         </StackLayout>
 
                         <!--  UserFullname  -->
@@ -131,7 +117,7 @@
                                 LineHeight="{OnPlatform Default=-1,
                                                         Android=1.25}"
                                 MaxLines="2"
-                                Text="ONLINE"
+                                Text="VERIFIED"
                                 TextColor="{DynamicResource Green}" />
                         </StackLayout>
 
@@ -141,6 +127,23 @@
                              Spacing="15"
                              TranslationY="-15"
                              Padding="50, 0, 50, 15">
+                        <Grid RowSpacing="0">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="(ic) Badges: "/>
+                            <Image Grid.Column="1" Source="Logo.png"
+                                   HeightRequest="22"/>
+                            <Image Grid.Column="2" Source="Logo.png"
+                                   HeightRequest="22"/>
+                            <Image Grid.Column="3" Source="Logo.png"
+                                   HeightRequest="22"/>
+                        </Grid>
                         <Label Text="(ic) Lives in Biñan City"/>
                         <Label Text="(ic) Joined at October 2020"/>
                         <Label Text="(ic) Refered by mariaclara01"/>
@@ -173,7 +176,7 @@
                                Grid.Column="0"
                                HeightRequest="15"
                                Style="{StaticResource AttribbuteLabelStyle}"
-                               Text="Posts"
+                               Text="POSTS"
                                TextColor="{DynamicResource Gray-Black}" />
 
                         <BoxView Grid.RowSpan="2" 
@@ -194,7 +197,7 @@
                                Grid.Column="2"
                                HeightRequest="15"
                                Style="{StaticResource AttribbuteLabelStyle}"
-                               Text="Followers"
+                               Text="TRANSACT"
                                TextColor="{DynamicResource Gray-Black}" />
 
                         <BoxView Grid.RowSpan="2" 
@@ -214,7 +217,7 @@
                                Grid.Column="4"
                                HeightRequest="15"
                                Style="{StaticResource AttribbuteLabelStyle}"
-                               Text="Ratings"
+                               Text="RATINGS"
                                TextColor="{DynamicResource Gray-Black}" />
 
                     </Grid>
@@ -226,14 +229,14 @@
                              BackgroundColor="{DynamicResource Gray-100}">
                     <local:InputEntry/>
                 </StackLayout>
-                
+
                 <!-- FEED VIEW -->
                 <StackLayout Grid.Row="2">
                     <local:PostEntry/>
                 </StackLayout>
-                
+
             </Grid>
-        
+
         </ScrollView>
     </ContentPage.Content>
 
