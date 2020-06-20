@@ -41,9 +41,9 @@ namespace PasaBuy.App.Controllers
         {
             set
             {
-                token = value;
-                string data = JsonConvert.SerializeObject(token);
+                string data = JsonConvert.SerializeObject(value);
                 Preferences.Set("UserToken", data);
+                token = value;
             }
 
             get
@@ -81,9 +81,9 @@ namespace PasaBuy.App.Controllers
         {
             set
             {
-                userInfo = value;
-                string data = JsonConvert.SerializeObject(userInfo);
+                string data = JsonConvert.SerializeObject(value);
                 Preferences.Set("UserInfo", data);
+                userInfo = value;
             }
 
             get
@@ -119,14 +119,12 @@ namespace PasaBuy.App.Controllers
             if(Preferences.ContainsKey("UserToken"))
             {
                 string data = Preferences.Get("UserToken", "{}");
-                Debug.WriteLine("BytesCrafter: " + data);
                 token = JsonConvert.DeserializeObject<Token>(data);
             }
 
             if(Preferences.ContainsKey("UserInfo"))
             {
                 string data = Preferences.Get("UserInfo", "{}");
-                Debug.WriteLine("BytesCrafter: " + data);
                 userInfo = JsonConvert.DeserializeObject<UserInfo>(data);
             }
         }
