@@ -16,6 +16,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <tabView:SfTabView BackgroundColor="{DynamicResource PrimaryColor}" 
+                           TabItemTapped="TabView_TabItemTapped"
                            TabHeaderPosition="Top"
                            VisibleHeaderCount="5" 
                            EnableSwiping="true" 

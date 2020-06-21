@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PasaBuy.App.Controllers.Notice;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,11 @@ namespace PasaBuy.App.Views
         public MainTabs()
         {
             InitializeComponent();
+        }
+
+        private void TabView_TabItemTapped(object sender, Syncfusion.XForms.TabView.TabItemTappedEventArgs e)
+        {
+            //new Alert("TabViewItemTapped", e.TabItem.Title + " Item Tapped", "Ok");
         }
     }
 }
