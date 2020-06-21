@@ -28,7 +28,7 @@ namespace PasaBuy.App.Views.Marketplace
         /// </summary>
         public void BackButtonClicked(object sender, EventArgs e)
         {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new StoreBrowserPage());
+            //((MainPage)App.Current.MainPage).Detail = new NavigationPage(new StoreBrowserPage());
         }
 
         /// <summary>

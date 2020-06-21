@@ -52,7 +52,7 @@ namespace PasaBuy.App.Views.Onboarding
             {
                 if ( UserPrefs.Instance.hasUserinfo )
                 {
-                    Application.Current.MainPage = new MainPage();
+                    Application.Current.MainPage = new MainTabs();
                 }
 
                 else

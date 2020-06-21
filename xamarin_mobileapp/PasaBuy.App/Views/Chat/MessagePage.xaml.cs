@@ -10,12 +10,12 @@ namespace PasaBuy.App.Views.Chat
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RecentChatPage
+    public partial class MessagePage : ContentView
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RecentChatPage" /> class.
+        /// Initializes a new instance of the <see cref="MessagePage" /> class.
         /// </summary>
-        public RecentChatPage()
+        public MessagePage()
         {
             InitializeComponent();
         }

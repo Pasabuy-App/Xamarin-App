@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PasaBuy.App.Views.Master
+namespace PasaBuy.App.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MasterPage : ContentView
+    public partial class MainTabs : ContentPage
     {
-        public MasterPage()
+        public MainTabs()
         {
             InitializeComponent();
         }

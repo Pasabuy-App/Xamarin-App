@@ -281,7 +281,7 @@ namespace PasaBuy.App.ViewModels.Chat
         /// </summary>
         private void ItemSelected(object selectedItem)
         {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new ChatMessagePage());
+            App.Current.MainPage = new NavigationPage(new ChatMessagePage());
         }
 
         /// <summary>

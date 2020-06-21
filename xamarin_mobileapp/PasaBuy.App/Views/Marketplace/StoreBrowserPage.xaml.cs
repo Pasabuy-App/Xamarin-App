@@ -11,7 +11,7 @@ namespace PasaBuy.App.Views.Marketplace
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class StoreBrowserPage : ContentPage
+    public partial class StoreBrowserPage : ContentView
     {
         public StoreBrowserPage()
         {

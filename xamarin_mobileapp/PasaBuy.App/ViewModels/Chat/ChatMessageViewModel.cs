@@ -284,7 +284,7 @@ namespace PasaBuy.App.ViewModels.Chat
         /// <param name="obj">The object</param>
         private void BackButtonClicked(object obj)
         {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new RecentChatPage());
+            //App.Current.MainPage = new NavigationPage(new RecentChatPage());
         }
 
         /// <summary>

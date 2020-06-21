@@ -1,28 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"            
              xmlns:controls="clr-namespace:PasaBuy.App.Controls"         
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Marketplace"
              BackgroundColor="{DynamicResource Gray-White}"
-             Title="Marketplace"
              NavigationPage.HasNavigationBar="True"
              x:Class="PasaBuy.App.Views.Marketplace.StoreBrowserPage">
 
-    <ContentPage.BindingContext>
+    <ContentView.BindingContext>
         <viewModel:StoreBrowserViewModel />
-    </ContentPage.BindingContext>
+    </ContentView.BindingContext>
 
-    <ContentPage.Resources>
+    <ContentView.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Stylex.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-    </ContentPage.Resources>
+    </ContentView.Resources>
 
-    <ContentPage.Content>
+    <ContentView.Content>
 
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
@@ -33,7 +32,7 @@
 
             <StackLayout x:Name="TitleView"
                 Padding="16,8"
-                Grid.Row="0" HeightRequest="64"
+                Grid.Row="0" HeightRequest="50"
                 BackgroundColor="{DynamicResource Gray-White}"
                 HorizontalOptions="FillAndExpand"
                 Orientation="Horizontal"
@@ -69,10 +68,10 @@
                 </StackLayout>
 
                 <StackLayout x:Name="Search"
-                    HorizontalOptions="EndAndExpand"
-                    IsVisible="False"
-                    Orientation="Horizontal"
-                    Spacing="0">
+                             HorizontalOptions="EndAndExpand"
+                             IsVisible="False"
+                             Orientation="Horizontal"
+                             Spacing="0">
 
                     <!--  Back to title layout  -->
                     <buttons:SfButton x:Name="BackToTitle"
@@ -133,7 +132,7 @@
 
                                         <border:SfBorder  BackgroundColor="{DynamicResource Gray-200}"
                                             Style="{StaticResource ProfileBorderStyle}" HorizontalOptions="Start">
-                                            <Image HeightRequest="80" WidthRequest="80" BackgroundColor="{DynamicResource Gray-200}" 
+                                            <Image HeightRequest="170" WidthRequest="150" BackgroundColor="{DynamicResource Gray-200}" 
                                                    Aspect="AspectFill" >
                                                 <Image.Source>
                                                     <UriImageSource
@@ -178,12 +177,12 @@
                                                      TextColor="{DynamicResource PrimaryColor}" />
                                         </StackLayout>
 
-                                            <border:SfBorder BackgroundColor="{DynamicResource LightGreen}" WidthRequest="24" HeightRequest="20"
+                                            <border:SfBorder BackgroundColor="{DynamicResource LightGreen}" WidthRequest="40" HeightRequest="40"
                                                       HorizontalOptions="End" Margin="0,8,0,0" VerticalOptions="Start"
-                                                      Grid.Column="2" CornerRadius="4" BorderColor="Transparent">
+                                                      Grid.Column="2" CornerRadius="7" BorderColor="Transparent">
                                                 <Label  FontFamily="{StaticResource Montserrat-Medium}" 
                                                         Text="{Binding ItemRating}" HorizontalOptions="Center"
-                                                        FontSize="12" LineHeight="{OnPlatform Android=1.5,
+                                                        FontSize="16" LineHeight="{OnPlatform Android=1.5,
                                                         Default=-1}" TextColor="{DynamicResource Gray-White}" VerticalTextAlignment="Center" />
                                             </border:SfBorder>
                                     </Grid>
@@ -196,5 +195,5 @@
                 </controls:SearchableStorePage>
             </StackLayout>
         </Grid>
-    </ContentPage.Content>
-</ContentPage>
+    </ContentView.Content>
+</ContentView>

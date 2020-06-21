@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+             xmlns:home="clr-namespace:PasaBuy.App.Views.Feeds"
+             xmlns:chat="clr-namespace:PasaBuy.App.Views.Chat"
+             xmlns:market="clr-namespace:PasaBuy.App.Views.Marketplace"
+             xmlns:menu="clr-namespace:PasaBuy.App.Views.Master"
+             x:Class="PasaBuy.App.Views.MainTabs">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <tabView:SfTabView BackgroundColor="{DynamicResource PrimaryColor}" 
+                           TabHeaderPosition="Top"
+                           VisibleHeaderCount="5" 
+                           EnableSwiping="true" 
+                           DisplayMode="Image">
+            <tabView:SfTabView.SelectionIndicatorSettings>
+                <tabView:SelectionIndicatorSettings
+                    AnimationDuration="250"
+                    Color="{DynamicResource Gray-White}" 
+                    Position="Bottom" 
+                    StrokeThickness="3"/>
+            </tabView:SfTabView.SelectionIndicatorSettings>
+            <!--ImageWithText-->
+            <tabView:SfTabItem Title="HOME"
+                               IconFont="{StaticResource Home}"
+                               FontIconFontColor="{DynamicResource Gray-200}"
+                               FontIconFontFamily="{StaticResource FontFamily}"
+                               TitleFontColor="{DynamicResource Gray-200}"
+                               SelectionColor="{DynamicResource Gray-White}">
+                <tabView:SfTabItem.Content>
+                    <home:HomePage/>
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+            <tabView:SfTabItem Title="MARKET"
+                               IconFont="{StaticResource Market}"
+                               FontIconFontColor="{DynamicResource Gray-200}"
+                               FontIconFontFamily="{StaticResource FontFamily}"
+                               TitleFontColor="{DynamicResource Gray-200}"
+                               SelectionColor="{DynamicResource Gray-White}">
+                <tabView:SfTabItem.Content>
+                    <Grid BackgroundColor="White" x:Name="MarketGrid" />
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+            <tabView:SfTabItem Title="STORE"
+                               IconFont="{StaticResource Stores}"
+                               FontIconFontColor="{DynamicResource Gray-200}"
+                               FontIconFontFamily="{StaticResource FontFamily}"
+                               TitleFontColor="{DynamicResource Gray-200}"
+                               SelectionColor="{DynamicResource Gray-White}">
+                <tabView:SfTabItem.Content>
+                    <market:StoreBrowserPage/>
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+            <tabView:SfTabItem Title="MESSAGE"
+                               IconFont="{StaticResource Message}"
+                               FontIconFontColor="{DynamicResource Gray-200}"
+                               FontIconFontFamily="{StaticResource FontFamily}"
+                               TitleFontColor="{DynamicResource Gray-200}"
+                               SelectionColor="{DynamicResource Gray-White}">
+                <tabView:SfTabItem.Content>
+                    <chat:MessagePage/>
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+            <tabView:SfTabItem Title="MENU"
+                               IconFont="{StaticResource Menu}"
+                               FontIconFontColor="{DynamicResource Gray-200}"
+                               FontIconFontFamily="{StaticResource FontFamily}"
+                               TitleFontColor="{DynamicResource Gray-200}"
+                               SelectionColor="{DynamicResource Gray-White}">
+                <tabView:SfTabItem.Content>
+                    <menu:MasterPage/>
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+        </tabView:SfTabView>
+    </ContentPage.Content>
+</ContentPage>
+
+<!--<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:home="clr-namespace:PasaBuy.App.Views.Feeds"
+            xmlns:message="clr-namespace:PasaBuy.App.Views.Chat"
+            xmlns:option="clr-namespace:PasaBuy.App.Views.Master"
+            mc:Ignorable="d"
+            x:Class="PasaBuy.App.Views.MainTabs">
+
+    <TabbedPage.Children>
+        <home:HomePage/>
+        <ContentPage Title="MARKET" />
+        <ContentPage Title="VENDOR" />
+        <message:RecentChatPage/>
+        <option:MasterPage/>
+    </TabbedPage.Children>
+    
+</TabbedPage>-->

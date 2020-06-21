@@ -9,7 +9,7 @@
     xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Settings"
     x:Name="settingPage"
     BackgroundColor="{DynamicResource Gray-100}"
-    Title="Settings"
+    Title="MENU"
     NavigationPage.HasNavigationBar="True">
 
     <ContentPage.Resources>

@@ -210,7 +210,7 @@ namespace PasaBuy.App.ViewModels.Master
         {
             this.UpdateSelectedItemColor(obj);
 
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new RecentChatPage());
+            //((MainPage)App.Current.MainPage).Detail = new NavigationPage(new RecentChatPage());
         }
 
         /// <summary>
@@ -221,7 +221,7 @@ namespace PasaBuy.App.ViewModels.Master
         {
             this.UpdateSelectedItemColor(obj);
 
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new StoreBrowserPage());
+            //((MainPage)App.Current.MainPage).Detail = new NavigationPage(new StoreBrowserPage());
         }
 
         /// <summary>

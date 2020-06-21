@@ -1,30 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="PasaBuy.App.Views.Master.MasterPage"
-             Title="Detail"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:helper="clr-namespace:PasaBuy.App.Helpers"
              xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Master"
              BackgroundColor="{DynamicResource Gray-100}"
              NavigationPage.HasNavigationBar="False">
 
-    <ContentPage.Resources>
+    <ContentView.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-    </ContentPage.Resources>
+    </ContentView.Resources>
 
-    <ContentPage.BindingContext>
+    <ContentView.BindingContext>
         <viewModel:MasterPageViewModel x:Name="viewModel"/>
-    </ContentPage.BindingContext>
-    
-    <ContentPage.Content>
+    </ContentView.BindingContext>
+
+    <ContentView.Content>
         <ScrollView>
             <StackLayout Spacing="0">
 
@@ -330,5 +329,5 @@
 
             </StackLayout>
         </ScrollView>
-    </ContentPage.Content>
-</ContentPage>
+    </ContentView.Content>
+</ContentView>
