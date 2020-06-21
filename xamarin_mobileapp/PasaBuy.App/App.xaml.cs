@@ -14,6 +14,8 @@ namespace PasaBuy.App
     {
         public static string BaseImageUrl { get; } = "https://cdn.syncfusion.com/essential-ui-kit-for-xamarin.forms/common/uikitimages/";
 
+        public static string BaseRootUrl { get; } = "http://10.0.2.2";
+
         public App()
         {
             InitializeComponent();

@@ -147,6 +147,19 @@ namespace PasaBuy.App.Controllers
             {
                 string data = Preferences.Get("UserInfo", "{}");
                 userInfo = JsonConvert.DeserializeObject<UserInfo>(data);
+
+                RestAPI.Instance.GetUserInfo(token, (bool success, string info) =>
+                {
+                    if(success)
+                    {
+                        UserInfo uinfo = JsonConvert.DeserializeObject<UserInfo>(info);
+
+                        if (uinfo.Succeed)
+                        {
+                            UserInfo = uinfo;
+                        }
+                    }
+                });
             }
         }
         #endregion

@@ -20,8 +20,8 @@
 
 <?php
 	// Global as Plugin URL of USocketNet.
-	DEFINE('PSP_PLUGIN', plugin_dir_path( __FILE__ ) . '../../' );
+	DEFINE('PS_PLUGIN', plugin_dir_path( __FILE__ ) . '../../' );
 	
 	// Global as Plugin URL of USocketNet.
-	DEFINE('PSP_PLUGIN_URL', plugin_dir_url( __FILE__ ) . '../../' );
+	DEFINE('PS_PLUGIN_URL', plugin_dir_url( __FILE__ ) . '../../' );
 ?>

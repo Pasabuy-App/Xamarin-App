@@ -16,9 +16,30 @@ namespace PasaBuy.App.Models.Onboarding
         public string verify = "UNVERIFIED";
         public string city = string.Empty;
         public string email = string.Empty;
-        public string banner = string.Empty;
         public string avatar = string.Empty;
+        public string avatarUrl
+        {
+            get
+            {
+                return App.BaseRootUrl + avatar;
+            }
+        }
+        public string banner = string.Empty;
+        public string bannerUrl
+        {
+            get
+            {
+                return App.BaseRootUrl + banner;
+            }
+        }
         public string regdate = string.Empty;
+        public bool Succeed
+        {
+            get
+            {
+                return this.status == "success" ? true : false;
+            }
+        }
 
         public static bool Exist
         {

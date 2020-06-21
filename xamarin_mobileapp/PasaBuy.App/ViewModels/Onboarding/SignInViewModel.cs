@@ -110,13 +110,13 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void LoginClicked(object obj)
         {
-            RestService.Instance.Authenticate(Email, Password, (bool success, string data) =>
+            RestAPI.Instance.Authenticate(Email, Password, (bool success, string data) =>
             {
                 if(success)
                 {
                     UserPrefs.Instance.Token = JsonConvert.DeserializeObject<Token>(data);
 
-                    RestService.Instance.GetUserInfo(UserPrefs.Instance.Token, (bool success2, string data2) =>
+                    RestAPI.Instance.GetUserInfo(UserPrefs.Instance.Token, (bool success2, string data2) =>
                     {
                         if (success2)
                         {

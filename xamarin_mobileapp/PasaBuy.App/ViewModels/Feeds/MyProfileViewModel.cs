@@ -25,8 +25,8 @@ namespace PasaBuy.App.ViewModels.Feeds
         /// </summary>
         public MyProfileViewModel()
         {
-            this.BannerImage = UserPrefs.Instance.UserInfo.banner;
-            this.ProfileImage = UserPrefs.Instance.UserInfo.avatar;
+            this.BannerImage = UserPrefs.Instance.UserInfo.bannerUrl;
+            this.ProfileImage = UserPrefs.Instance.UserInfo.avatarUrl;
             this.DisplayName = UserPrefs.Instance.UserInfo.dname;
             this.Verification = UserPrefs.Instance.UserInfo.verify;
 

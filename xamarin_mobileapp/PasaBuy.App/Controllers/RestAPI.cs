@@ -27,20 +27,20 @@ namespace PasaBuy.App
     /// <summary>
     /// Main interface for RestAPI.
     /// </summary>
-    public class RestService
+    public class RestAPI
     {
         #region Fields
 
         /// <summary>
         /// Singleton instance of this class.
         /// </summary>
-        private static RestService instance;
-        public static RestService Instance
+        private static RestAPI instance;
+        public static RestAPI Instance
         {
             get
             {
                 if (instance == null)
-                    instance = new RestService();
+                    instance = new RestAPI();
                 return instance;
             }
         }
@@ -48,12 +48,24 @@ namespace PasaBuy.App
         /// <summary>
         /// Primary base url for fetching custom data.
         /// </summary>
-        string BaseApiUrl { get; } = "http://10.0.2.2/wp-json/pasabuy/v1/";
+        string BaseApiUrl 
+        {
+            get 
+            {
+                return App.BaseRootUrl + "/wp-json/pasabuy/v1/";
+            }
+        }
 
         /// <summary>
         /// Default WordPress RestAPI base url.
         /// </summary>
-        string DemoApiUrl { get; } = "http://10.0.2.2/wp-json/wp/v2/"; 
+        string DemoApiUrl
+        {
+            get 
+            {
+                return App.BaseRootUrl + "/wp-json/wp/v2/";
+            }
+        }
 
         /// <summary>
         /// Web service for communication to our Backend.
@@ -63,7 +75,7 @@ namespace PasaBuy.App
         #endregion
 
         #region Constructor
-        public RestService()
+        public RestAPI()
         {
             client = new HttpClient();
         }

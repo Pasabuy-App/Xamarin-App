@@ -185,7 +185,7 @@
                         <Label Grid.Row="0"
                                Grid.Column="2"
                                Style="{StaticResource AttribbuteValueStyle}"
-                               Text="{Binding FollowersCount}" 
+                               Text="{Binding Transacts}" 
                                TextColor="{DynamicResource Gray-Black}" />
 
                         <!-- Following count -->
@@ -205,7 +205,7 @@
                         <Label Grid.Row="0"
                                Grid.Column="4"
                                Style="{StaticResource AttribbuteValueStyle}"
-                               Text="{Binding FollowingCount}" 
+                               Text="{Binding Ratings}" 
                                TextColor="{DynamicResource Gray-Black}" />
 
                         <!-- Following count -->

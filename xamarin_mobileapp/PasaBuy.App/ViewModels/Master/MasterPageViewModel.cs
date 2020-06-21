@@ -41,8 +41,8 @@ namespace PasaBuy.App.ViewModels.Master
         public MasterPageViewModel()
         {
             this.profileName = UserPrefs.Instance.UserInfo.dname;
-            this.profileImage = UserPrefs.Instance.UserInfo.avatar;
-            this.userBanner = App.BaseImageUrl + "Sky-Image.png";
+            this.profileImage = UserPrefs.Instance.UserInfo.avatarUrl;
+            this.userBanner = UserPrefs.Instance.UserInfo.bannerUrl;
             this.email = UserPrefs.Instance.UserInfo.email;
 
             this.HomeCommand = new Command(this.HomeButtonClicked);
