@@ -1,4 +1,5 @@
-﻿using PasaBuy.App.Views.Onboarding;
+﻿using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Views.Onboarding;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -125,7 +126,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void LoginClicked(object obj)
         {
-            Application.Current.MainPage = new NavigationPage(new SignInPage());
+            App.Current.MainPage.Navigation.PopModalAsync();
         }
 
         /// <summary>
@@ -134,7 +135,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void SignUpClicked(object obj)
         {
-            // Do something
+            new Alert("Demoguy Notice", "Registration is not yet implemented. Thank you for your patience!", "AGREE");
         }
 
         #endregion

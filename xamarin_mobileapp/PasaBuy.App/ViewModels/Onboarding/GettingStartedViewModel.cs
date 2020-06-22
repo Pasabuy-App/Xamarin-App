@@ -205,15 +205,14 @@ namespace PasaBuy.App.ViewModels.Onboarding
             var itemCount = (obj as SfRotator).ItemsSource.Count();
             if (this.ValidateAndUpdateSelectedIndex(itemCount))
             {
-                this.MoveToNextPage();
-                Application.Current.MainPage = new NavigationPage(new SignInPage());
                 Preferences.Set("ReturnUser", true);
+                this.MoveToNextPage();
             }
         }
 
         private void MoveToNextPage()
         {
-            Application.Current.MainPage.Navigation.PopAsync();
+            App.Current.MainPage.Navigation.PopModalAsync();
         }
 
         #endregion

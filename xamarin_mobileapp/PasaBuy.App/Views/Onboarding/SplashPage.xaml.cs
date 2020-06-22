@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using PasaBuy.App.Views.ErrorAndEmpty;
 
 namespace PasaBuy.App.Views.Onboarding
 {
@@ -42,7 +43,7 @@ namespace PasaBuy.App.Views.Onboarding
 
             else
             {
-                Application.Current.MainPage = new NavigationPage(new PasaBuy.App.Views.ErrorAndEmpty.NoInternetConnectionPage());
+                App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new NoInternetConnectionPage()));
             }
         }
 
@@ -63,7 +64,12 @@ namespace PasaBuy.App.Views.Onboarding
 
             else
             {
-                Application.Current.MainPage = new NavigationPage(new GettingStarted());
+                Application.Current.MainPage = new NavigationPage(new SignInPage());
+
+                if(!Preferences.ContainsKey("ReturnUser"))
+                {
+                    App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new GettingStarted()));
+                }
             }
         }
     }

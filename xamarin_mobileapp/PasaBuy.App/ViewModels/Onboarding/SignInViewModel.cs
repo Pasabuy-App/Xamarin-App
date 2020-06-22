@@ -156,7 +156,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void SignUpClicked(object obj)
         {
-            Application.Current.MainPage = new NavigationPage(new SignUpPage());
+            App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new SignUpPage()));
         }
 
         /// <summary>
@@ -165,7 +165,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void ForgotPasswordClicked(object obj)
         {
-            Application.Current.MainPage = new NavigationPage(new ForgotPwPage());
+            App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new ForgotPwPage()));
         }
 
         /// <summary>
@@ -175,6 +175,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
         private void FaceBookClicked(object obj)
         {
             Launcher.OpenAsync("http://facebook.com");
+
         }
 
         /// <summary>

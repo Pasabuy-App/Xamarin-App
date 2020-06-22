@@ -8,10 +8,6 @@
     xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
     xmlns:local="clr-namespace:PasaBuy.App.Views.Inputs"
     xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Onboarding"
-    Title="Forgot Password"
-    BackgroundImageSource="{core:OnPlatformOrientationStringValue Default=LoginBackground.png,
-                                                                  iOSPhoneLandscape=LoginBackground-Landscape.png,
-                                                                  iOSTabletLandscape=LoginBackground-Landscape.png}"
     NavigationPage.HasNavigationBar="False"
     Style="{StaticResource ContentPageStyle}">
 

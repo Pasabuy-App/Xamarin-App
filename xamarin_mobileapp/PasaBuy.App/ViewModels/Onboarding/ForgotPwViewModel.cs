@@ -1,4 +1,5 @@
-﻿using PasaBuy.App.Views.Onboarding;
+﻿using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Views.Onboarding;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -45,7 +46,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void SendClicked(object obj)
         {
-            Application.Current.MainPage = new NavigationPage(new ResetPwPage());
+            new Alert("Demoguy Notice", "Password reset is not yet implemented. Thank you for your patience!", "AGREE");
         }
 
         /// <summary>
@@ -54,7 +55,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void SignUpClicked(object obj)
         {
-            Application.Current.MainPage = new NavigationPage(new SignInPage());
+            App.Current.MainPage.Navigation.PopModalAsync();
         }
 
         #endregion
