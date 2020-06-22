@@ -21,7 +21,7 @@ namespace PasaBuy.App.Views.Settings
         }
 
         /// <summary>
-        /// Invokes when search expand Animation completed.
+        /// Invokes when back button is clicked.
         /// </summary>
         public void BackButtonClicked(object sender, EventArgs e)
         {

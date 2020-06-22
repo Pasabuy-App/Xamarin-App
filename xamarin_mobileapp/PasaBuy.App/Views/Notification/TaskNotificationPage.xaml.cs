@@ -1,6 +1,7 @@
 ﻿using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 using PasaBuy.App.DataService;
+using System;
 
 namespace PasaBuy.App.Views.Notification
 {
@@ -21,5 +22,12 @@ namespace PasaBuy.App.Views.Notification
             this.BindingContext = TaskNotificationDataService.Instance.TaskNotificationViewModel;
         }
 
+        /// <summary>
+        /// Invokes when back button is clicked.
+        /// </summary>
+        public void BackButtonClicked(object sender, EventArgs e)
+        {
+            Navigation.PopModalAsync();
+        }
     }
 }

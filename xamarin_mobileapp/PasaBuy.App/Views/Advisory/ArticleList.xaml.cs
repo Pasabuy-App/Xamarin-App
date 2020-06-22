@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms.Internals;
+﻿using System;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace PasaBuy.App.Views.Advisory
@@ -16,6 +17,14 @@ namespace PasaBuy.App.Views.Advisory
         public ArticleList()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Invokes when back button is clicked.
+        /// </summary>
+        public void BackButtonClicked(object sender, EventArgs e)
+        {
+            Navigation.PopModalAsync();
         }
     }
 }

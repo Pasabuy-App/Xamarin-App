@@ -5,6 +5,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Model = PasaBuy.App.Models.Article;
 using PasaBuy.App.Views.Advisory;
+using PasaBuy.App.Views;
 
 namespace PasaBuy.App.ViewModels.Advisory
 {
@@ -199,7 +200,7 @@ namespace PasaBuy.App.ViewModels.Advisory
         /// <param name="obj">The object</param>
         private void FeatureStoriesClicked(object obj)
         {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new ArticleItem());
+            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ArticleItem()));
         }
 
         /// <summary>
@@ -208,7 +209,7 @@ namespace PasaBuy.App.ViewModels.Advisory
         /// <param name="obj">The Object</param>
         private void ItemSelected(object obj)
         {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new ArticleItem());
+            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ArticleItem()));
         }
 
         #endregion

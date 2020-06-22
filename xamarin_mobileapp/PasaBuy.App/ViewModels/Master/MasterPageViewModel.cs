@@ -46,11 +46,8 @@ namespace PasaBuy.App.ViewModels.Master
             this.userBanner = UserPrefs.Instance.UserInfo.bannerUrl;
             this.email = UserPrefs.Instance.UserInfo.email;
 
-            this.HomeCommand = new Command(this.HomeButtonClicked);
             this.ProfileCommand = new Command(this.ProfileButtonClicked);
-            this.MessageCommand = new Command(this.MessageButtonClicked);
-            this.StoreCommand = new Command(this.StoreButtonClicked);
-            this.UpdatesCommand = new Command(this.UpdatesButtonClicked);
+            this.AdvisoryCommand = new Command(this.AdvisoryButtonClicked);
             this.NotificationCommand = new Command(this.NotificationButtonClicked);
             this.SettingCommand = new Command(this.SettingButtonClicked);
         }
@@ -142,10 +139,6 @@ namespace PasaBuy.App.ViewModels.Master
         #endregion
 
         #region Command
-        /// <summary>
-        /// Gets or sets the command that is executed when the home view is clicked.
-        /// </summary>
-        public Command HomeCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the command that is executed when the profile view is clicked.
@@ -153,19 +146,9 @@ namespace PasaBuy.App.ViewModels.Master
         public Command ProfileCommand { get; set; }
 
         /// <summary>
-        /// Gets or sets the command that is executed when the message view is clicked.
-        /// </summary>
-        public Command MessageCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command that is executed when the mystore view is clicked.
-        /// </summary>
-        public Command StoreCommand { get; set; }
-
-        /// <summary>
         /// Gets or sets the command that is executed when the request view is clicked.
         /// </summary>
-        public Command UpdatesCommand { get; set; }
+        public Command AdvisoryCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the command that is executed when the request view is clicked.
@@ -182,48 +165,12 @@ namespace PasaBuy.App.ViewModels.Master
         #region Methods
 
         /// <summary>
-        /// Invoked when the home button is clicked.
-        /// </summary>
-        /// <param name="obj">The object</param>
-        private void HomeButtonClicked(object obj)
-        {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new DetailPage());
-        }
-
-        /// <summary>
         /// Invoked when the profile button is clicked.
         /// </summary>
         /// <param name="obj">The object</param>
         private void ProfileButtonClicked(object obj)
         {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new MyProfile());
-        }
-
-        /// <summary>
-        /// Invoked when the message button is clicked.
-        /// </summary>
-        /// <param name="obj">The object</param>
-        private void MessageButtonClicked(object obj)
-        {
-            //((MainPage)App.Current.MainPage).Detail = new NavigationPage(new RecentChatPage());
-        }
-
-        /// <summary>
-        /// Invoked when the mystore button is clicked.
-        /// </summary>
-        /// <param name="obj">The object</param>
-        private void StoreButtonClicked(object obj)
-        {
-            //((MainPage)App.Current.MainPage).Detail = new NavigationPage(new StoreBrowserPage());
-        }
-
-        /// <summary>
-        /// Invoked when the request button is clicked.
-        /// </summary>
-        /// <param name="obj">The object</param>
-        private void UpdatesButtonClicked(object obj)
-        {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new ArticleList());
+            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
         }
 
         /// <summary>
@@ -232,7 +179,16 @@ namespace PasaBuy.App.ViewModels.Master
         /// <param name="obj">The object</param>
         private void NotificationButtonClicked(object obj)
         {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new TaskNotificationPage());
+            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new TaskNotificationPage()));
+        }
+
+        /// <summary>
+        /// Invoked when the request button is clicked.
+        /// </summary>
+        /// <param name="obj">The object</param>
+        private void AdvisoryButtonClicked(object obj)
+        {
+            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ArticleList()));
         }
 
         /// <summary>

@@ -24,5 +24,13 @@ namespace PasaBuy.App.Views.Advisory
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Invokes when back button is clicked.
+        /// </summary>
+        public void BackButtonClicked(object sender, EventArgs e)
+        {
+            Navigation.PopModalAsync();
+        }
     }
 }
