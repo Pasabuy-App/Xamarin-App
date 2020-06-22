@@ -126,7 +126,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
                             {
                                 UserPrefs.Instance.UserInfo = uinfo;
 
-                                Application.Current.MainPage = new MainPage();
+                                Application.Current.MainPage = new PasaBuy.App.Views.MainTabs();
                             }
 
                             else

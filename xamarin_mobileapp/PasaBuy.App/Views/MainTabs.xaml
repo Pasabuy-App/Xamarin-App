@@ -14,6 +14,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
+    
     <ContentPage.Content>
         <tabView:SfTabView BackgroundColor="{DynamicResource PrimaryColor}" 
                            TabItemTapped="TabView_TabItemTapped"
@@ -46,7 +47,62 @@
                                TitleFontColor="{DynamicResource Gray-200}"
                                SelectionColor="{DynamicResource Gray-White}">
                 <tabView:SfTabItem.Content>
-                    <Grid BackgroundColor="White" x:Name="MarketGrid" />
+                    <tabView:SfTabView BackgroundColor="{DynamicResource Gray-100}" 
+                           TabItemTapped="TabView_TabItemTapped"
+                           TabHeaderPosition="Bottom"
+                           VisibleHeaderCount="3" 
+                           EnableSwiping="true" 
+                           DisplayMode="Text">
+                        <tabView:SfTabView.SelectionIndicatorSettings>
+                            <tabView:SelectionIndicatorSettings
+                                AnimationDuration="250"
+                                Color="{DynamicResource Gray-White}" 
+                                Position="Bottom" 
+                                StrokeThickness="3"/>
+                        </tabView:SfTabView.SelectionIndicatorSettings>
+                        <tabView:SfTabItem Title="NEWEST"
+                               IconFont="{StaticResource Home}"
+                               FontIconFontColor="{DynamicResource Gray-200}"
+                               FontIconFontFamily="{StaticResource FontFamily}"
+                               TitleFontColor="{DynamicResource Gray-Black}"
+                               SelectionColor="{DynamicResource Gray-900}">
+                            <tabView:SfTabItem.Content>
+                                <StackLayout>
+                                    <Label Text="CONTENT HERE" 
+                                           HorizontalOptions="CenterAndExpand"
+                                           VerticalOptions="CenterAndExpand"/>
+                                </StackLayout>
+                            </tabView:SfTabItem.Content>
+                        </tabView:SfTabItem>
+                        <tabView:SfTabItem Title="POPULAR"
+                               IconFont="{StaticResource Market}"
+                               FontIconFontColor="{DynamicResource Gray-200}"
+                               FontIconFontFamily="{StaticResource FontFamily}"
+                               TitleFontColor="{DynamicResource Gray-Black}"
+                               SelectionColor="{DynamicResource Gray-900}">
+                            <tabView:SfTabItem.Content>
+                                <StackLayout>
+                                    <Label Text="CONTENT HERE" 
+                                           HorizontalOptions="CenterAndExpand"
+                                           VerticalOptions="CenterAndExpand"/>
+                                </StackLayout>
+                            </tabView:SfTabItem.Content>
+                        </tabView:SfTabItem>
+                        <tabView:SfTabItem Title="STORE"
+                               IconFont="{StaticResource Stores}"
+                               FontIconFontColor="{DynamicResource Gray-200}"
+                               FontIconFontFamily="{StaticResource FontFamily}"
+                               TitleFontColor="{DynamicResource Gray-Black}"
+                               SelectionColor="{DynamicResource Gray-900}">
+                            <tabView:SfTabItem.Content>
+                                <StackLayout>
+                                    <Label Text="CONTENT HERE" 
+                                           HorizontalOptions="CenterAndExpand"
+                                           VerticalOptions="CenterAndExpand"/>
+                                </StackLayout>
+                            </tabView:SfTabItem.Content>
+                        </tabView:SfTabItem>
+                    </tabView:SfTabView>
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
             <tabView:SfTabItem Title="STORE"

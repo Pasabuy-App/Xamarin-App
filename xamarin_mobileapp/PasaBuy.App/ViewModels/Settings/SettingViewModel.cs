@@ -1,14 +1,10 @@
 ﻿using PasaBuy.App.Views.Master;
 using PasaBuy.App.Views.Settings;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Essentials;
 using PasaBuy.App.Views.Onboarding;
+using PasaBuy.App.Views;
 
 namespace PasaBuy.App.ViewModels.Settings
 {
@@ -25,7 +21,6 @@ namespace PasaBuy.App.ViewModels.Settings
         /// </summary>
         public SettingViewModel()
         {
-            this.BackButtonCommand = new Command(this.BackButtonClicked);
             this.EditProfileCommand = new Command(this.EditProfileClicked);
             this.MyAddressCommand = new Command(this.MyAddressClicked);
             this.ChangePasswordCommand = new Command(this.ChangePasswordClicked);
@@ -40,11 +35,6 @@ namespace PasaBuy.App.ViewModels.Settings
         #endregion
 
         #region Commands
-
-        /// <summary>
-        /// Gets or sets the command is executed when the favourite button is clicked.
-        /// </summary>
-        public Command BackButtonCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the command is executed when the edit profile option is clicked.
@@ -96,21 +86,12 @@ namespace PasaBuy.App.ViewModels.Settings
         #region Methods
 
         /// <summary>
-        /// Invoked when the back button clicked
-        /// </summary>
-        /// <param name="obj">The object</param>
-        private void BackButtonClicked(object obj)
-        {
-            Application.Current.MainPage = new MainPage();
-        }
-
-        /// <summary>
         /// Invoked when the edit profile option clicked
         /// </summary>
         /// <param name="obj">The object</param>
         private void EditProfileClicked(object obj)
         {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new EditProfilePage());
+            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new EditProfilePage()));
         }
 
         /// <summary>
@@ -119,7 +100,7 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void MyAddressClicked(object obj)
         {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new AddressPage());
+            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new AddressPage()));
         }
 
         /// <summary>
@@ -128,7 +109,7 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void ChangePasswordClicked(object obj)
         {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new ChangePWPage());
+            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ChangePWPage()));
         }
 
         /// <summary>
@@ -137,7 +118,7 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void LinkAccountClicked(object obj)
         {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new LinkedPage());
+            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new LinkedPage()));
         }
 
         /// <summary>
@@ -146,7 +127,7 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void TermsServiceClicked(object obj)
         {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new TermsPage());
+            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new TermsPage()));
         }
 
         /// <summary>
@@ -155,7 +136,7 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void PrivacyPolicyClicked(object obj)
         {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new PrivacyPage());
+            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new PrivacyPage()));
         }
 
         /// <summary>
@@ -163,10 +144,9 @@ namespace PasaBuy.App.ViewModels.Settings
         /// </summary>
         /// <param name="obj">The object</param>
         /// 
-
         private void FAQClicked(object obj)
         {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new FAQPage());
+            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new FAQPage()));
         }
 
         /// <summary>
@@ -175,7 +155,7 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void HelpClicked(object obj)
         {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new HelpPage());
+            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new HelpPage()));
         }
 
         /// <summary>
@@ -184,7 +164,7 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void LogoutClicked(object obj)
         {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new SignInPage());
+            Application.Current.MainPage = new NavigationPage(new SignInPage());
 
             Preferences.Remove("UserToken");
         }

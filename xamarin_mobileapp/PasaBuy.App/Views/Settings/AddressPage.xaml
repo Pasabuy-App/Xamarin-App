@@ -7,8 +7,7 @@
              xmlns:ViewModel="clr-namespace:PasaBuy.App.ViewModels.Settings"
              x:Class="PasaBuy.App.Views.Settings.AddressPage"
              x:Name="MyAdressPage"
-             Title="Settings"
-             NavigationPage.HasNavigationBar="True"
+             NavigationPage.HasNavigationBar="False"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms">
 
     <ContentPage.Resources>
@@ -37,7 +36,7 @@
 
             <!--  Title view  -->
             <StackLayout x:Name="TitleView"  Padding="8,8" Grid.Row="0" HeightRequest="50"
-                         BackgroundColor="{DynamicResource Gray-100}" Spacing="0"
+                         BackgroundColor="{DynamicResource PrimaryColor}" Spacing="0"
                          HorizontalOptions="FillAndExpand" Orientation="Horizontal">
 
                 <StackLayout x:Name="Title" HorizontalOptions="FillAndExpand"  IsVisible="True"
@@ -51,13 +50,16 @@
 
                     <!--   Icon Names List page Title  -->
                     <Label  Margin="16,0" FontFamily="{StaticResource Montserrat-Medium}" FontSize="16"
-                            HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource Gray-Black}"
+                            HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource Gray-White}"
                             LineHeight="1.25" Text="My Addresses"  VerticalOptions="Center" VerticalTextAlignment="Center" />
 
                 </StackLayout>
 
-                <!--  Search Button  -->
-                <buttons:SfButton  x:Name="SearchButton" IsVisible="True"  Style="{StaticResource IconButtonStyle }"
+                <!--  Add Button  -->
+                <buttons:SfButton  x:Name="SearchButton"
+                                   IsVisible="True" 
+                                   Clicked="AddButtonClicked"
+                                   Style="{StaticResource IconButtonStyle }"
                                    Text="{StaticResource Add}" />
             </StackLayout>
 
@@ -103,13 +105,13 @@
 
                                     <!--  Edit button command  -->
                                     <buttons:SfButton  x:Name="editButton" CornerRadius="4" Grid.Column="2" HorizontalOptions="EndAndExpand"
-                                                   VerticalOptions="StartAndExpand" Style="{StaticResource IconButtonStyle}"
+                                                   VerticalOptions="StartAndExpand" Style="{StaticResource IconButtonDarkStyle}"
                                                    Text="{StaticResource Edit}" Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference myAddress}}"
                                                    CommandParameter="{x:Reference editButton }"/>
 
                                     <!--  Delete button command  -->
                                     <buttons:SfButton  x:Name="DeleteButton" CornerRadius="4" Grid.Column="3" HorizontalOptions="EndAndExpand"
-                                                   VerticalOptions="StartAndExpand" Style="{StaticResource IconButtonStyle}"
+                                                   VerticalOptions="StartAndExpand" Style="{StaticResource IconButtonDarkStyle}"
                                                    Text="{StaticResource Delete}" Command="{Binding Path=BindingContext.DeleteCommand,Source={x:Reference myAddress}}"
                                                    CommandParameter="{x:Reference DeleteButton}"/>
 

@@ -4,8 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             Title="Settings"
-             NavigationPage.HasNavigationBar="True"
+             NavigationPage.HasNavigationBar="False"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"    
              x:Class="PasaBuy.App.Views.Settings.EditProfilePage">
 
@@ -29,7 +28,7 @@
 
             <!--  Title view  -->
             <StackLayout x:Name="TitleView"  Padding="8,8" Grid.Row="0" HeightRequest="50"
-                         BackgroundColor="{DynamicResource Gray-100}" Spacing="0"
+                         BackgroundColor="{DynamicResource PrimaryColor}" Spacing="0"
                          HorizontalOptions="FillAndExpand" Orientation="Horizontal">
 
                 <StackLayout x:Name="Title" HorizontalOptions="FillAndExpand"  IsVisible="True"
@@ -43,14 +42,17 @@
 
                     <!--   Icon Names List page Title  -->
                     <Label  Margin="16,0" FontFamily="{StaticResource Montserrat-Medium}" FontSize="16"
-                            HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource Gray-Black}"
+                            HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource Gray-White}"
                             LineHeight="1.25" Text="Edit Profile"  VerticalOptions="Center" VerticalTextAlignment="Center" />
 
                 </StackLayout>
 
-                <!--  Search Button  -->
-                <buttons:SfButton  x:Name="SearchButton" IsVisible="True" Clicked="OptionButton_Clicked" Style="{StaticResource IconButtonStyle }"
-                                   Text="{StaticResource More}" />
+                <!--  Save Button  -->
+                <buttons:SfButton  x:Name="SearchButton" 
+                                   IsVisible="True" 
+                                   BackgroundColor="Transparent"
+                                   Clicked="SaveButton_Clicked"
+                                   Text="SAVE" />
             </StackLayout>
 
             <!-- Seperator -->

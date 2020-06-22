@@ -9,8 +9,7 @@
     xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Settings"
     x:Name="settingPage"
     BackgroundColor="{DynamicResource Gray-100}"
-    Title="MENU"
-    NavigationPage.HasNavigationBar="True">
+    NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -18,16 +17,15 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <!--<ContentPage.ControlTemplate>
+    <ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0" >
-                <controls:TitleView Title="Settings" 
+                <controls:TitleView Title="SETTINGS" 
                                     BackgroundColor="{DynamicResource PrimaryColor}" >
                     <controls:TitleView.LeadingView>
                         <buttons:SfButton
                             x:Name="backButton"
-                            Command="{TemplateBinding BindingContext.BackButtonCommand}"
-                            CommandParameter="{x:Reference backButton}"
+                            Clicked="BackButtonClicked"
                             CornerRadius="4"
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
@@ -36,7 +34,7 @@
                 <ContentPresenter />
             </StackLayout>
         </ControlTemplate>
-    </ContentPage.ControlTemplate>-->
+    </ContentPage.ControlTemplate>
 
     <ContentPage.BindingContext>
         <viewModel:SettingViewModel />
@@ -59,7 +57,6 @@
                     TextColor="{DynamicResource Gray-800}"
                     VerticalOptions="Center"
                     VerticalTextAlignment="Center" />
-
 
                 <!--  Grid for Edit profile label and navigation bar icon  -->
                 <controls:TapAnimationGrid

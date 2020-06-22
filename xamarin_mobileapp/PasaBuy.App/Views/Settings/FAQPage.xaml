@@ -5,16 +5,33 @@
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"          
              x:Class="PasaBuy.App.Views.Settings.FAQPage" 
              xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Expander;assembly=Syncfusion.Expander.XForms"
-             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              x:Name="FAQ"   
-             Title="Settings"
-             NavigationPage.HasNavigationBar="True">
+             NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary Source="Styles.xaml" />
         </ResourceDictionary>
     </ContentPage.Resources>
+
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Spacing="0" >
+                <controls:TitleView Title="FAQs" 
+                                    BackgroundColor="{DynamicResource PrimaryColor}" >
+                    <controls:TitleView.LeadingView>
+                        <buttons:SfButton
+                            x:Name="backButton"
+                            Clicked="BackButtonClicked"
+                            CornerRadius="4"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                    </controls:TitleView.LeadingView>
+                </controls:TitleView>
+                <ContentPresenter />
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
 
     <ContentPage.Padding>
         <OnPlatform  x:TypeArguments="Thickness" iOS="0,20,0,0"  Default="0,0,0,0"/>
@@ -28,65 +45,24 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <!--  Title view  -->
-            <StackLayout x:Name="TitleView"  Padding="8,8" Grid.Row="0" HeightRequest="50"
-                         BackgroundColor="{DynamicResource Gray-100}" Spacing="0"
-                         HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-
-                <StackLayout x:Name="Title" HorizontalOptions="FillAndExpand"  IsVisible="True"
-                             Orientation="Horizontal"  VerticalOptions="FillAndExpand"  Spacing="0">
-
-                    <!--  Back button command  -->
-                    <buttons:SfButton  x:Name="backButton" 
-                                       Clicked="BackButtonClicked"
-                                       CornerRadius="4"
-                                       Style="{StaticResource IconButtonStyle}" Text="{StaticResource Back}"/>
-
-                    <!--   Icon Names List page Title  -->
-                    <Label  Margin="16,0" FontFamily="{StaticResource Montserrat-Medium}" FontSize="16"
-                            HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource Gray-Black}"
-                            LineHeight="1.25" Text="FAQs"  VerticalOptions="Center" VerticalTextAlignment="Center" />
-
-                </StackLayout>
-
-                <StackLayout  x:Name="Search" HorizontalOptions="EndAndExpand" IsVisible="False"
-                                Orientation="Horizontal" Spacing="0">
-
-                    <!--  Back to title layout  -->
-                    <buttons:SfButton x:Name="BackToTitle" Clicked="BackToTitle_Clicked"  Text="{StaticResource Back}"
-                                      Style="{StaticResource NavigationBarButtonStyle}" />
-
-                    <!--  Rounded Search Entry  -->
-                    <border:SfBorder Style="{DynamicResource SfBorderStyle}">
-                        <controls:BorderlessEntry x:Name="SearchEntry"  BindingContext="{x:Reference FAQList}" Margin="16, 0, 16, 0"
-                                                  Text="{Binding SearchText, Mode=TwoWay}" Placeholder="Search here"
-                                                  HorizontalOptions="FillAndExpand"  Style="{StaticResource SearchEntryStyle}"/>
-                    </border:SfBorder>
-                </StackLayout>
-
-                <!--  Search Button  -->
-                <buttons:SfButton  x:Name="SearchButton" IsVisible="True" Clicked="SearchButton_Clicked" Style="{StaticResource IconButtonStyle }"
-                                   Text="{StaticResource Search}" />
-            </StackLayout>
-
+            <!--  Header label for help with recent orders -->
+            <Label Grid.Row="0"
+                    Margin ="16,0"
+                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                    FontSize="12"
+                    HeightRequest="50"
+                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalTextAlignment="Center"
+                    LineHeight="{OnPlatform Default=-1,
+                                            Android=1.25}"
+                    Text="FREQUENTLY ASKED QUESTIONS"
+                    TextColor="{DynamicResource Gray-800}" />
+            
             <!-- Seperator -->
             <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}"/>
 
             <StackLayout Grid.Row="2" Spacing="0" BackgroundColor="{DynamicResource Gray-100}">
-
-                <!--  Header label Top Questions -->
-                <!--<Label  Margin ="0,24,0,24"
-                    FontFamily="{StaticResource Montserrat-SemiBold}"
-                    BackgroundColor="{DynamicResource Gray-100}"
-                    FontSize="20"
-                    FontAttributes="Bold"
-                    HorizontalTextAlignment="Center"                  
-                    LineHeight="{OnPlatform Default=-1,
-                                            Android=1.25}"
-                    Text="Top Questions"
-                    TextColor="{DynamicResource Gray-900}"
-                    HorizontalOptions="FillAndExpand" 
-                    VerticalOptions="Center"/>-->
 
                 <controls:SearchableFAQList  x:Name="FAQList"
                     Padding="0"

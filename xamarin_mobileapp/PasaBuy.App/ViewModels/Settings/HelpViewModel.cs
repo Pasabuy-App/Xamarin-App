@@ -2,6 +2,7 @@
 using Xamarin.Forms.Internals;
 using PasaBuy.App.Views.Master;
 using PasaBuy.App.Views.Settings;
+using PasaBuy.App.Views;
 
 namespace PasaBuy.App.ViewModels.Settings
 {
@@ -18,14 +19,12 @@ namespace PasaBuy.App.ViewModels.Settings
         /// </summary>
         public HelpViewModel()
         {
-            this.BackButtonCommand = new Command(this.BackButtonClicked);
             this.IssuePreviousOrderCommand = new Command(this.IssuePreviousOrderClicked);
             this.Return_RefundCommand = new Command(this.RefundClicked);
             this.PaymentQueriesCommand = new Command(this.PaymentQueriesClicked);
             this.OffersQueriesCommand = new Command(this.OffersQueriesClicked);
             this.AccountQueriesCommand = new Command(this.AccountQueriesClicked);
             this.OtherQueriesCommand = new Command(this.OtherQueriesClicked);
-
         }
         #endregion
 
@@ -84,24 +83,9 @@ namespace PasaBuy.App.ViewModels.Settings
         {
             // Do something
         }
-
-        /// <summary>
-        /// Invoked when the back button clicked
-        /// </summary>
-        /// <param name="obj">The object</param>
-        private void BackButtonClicked(object obj)
-        {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new SettingPage());
-        }
         #endregion
 
         #region Command
-
-        /// <summary>
-        /// Gets or sets the command is executed when the back button is clicked.
-        /// </summary>
-        public Command BackButtonCommand { get; set; }
-
         /// <summary>
         /// Gets or sets the command is executed when the issue previous order option is clicked.
         /// </summary>

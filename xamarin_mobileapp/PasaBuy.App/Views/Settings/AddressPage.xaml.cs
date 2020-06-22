@@ -3,6 +3,7 @@ using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
+using PasaBuy.App.Controllers.Notice;
 
 namespace PasaBuy.App.Views.Settings
 {
@@ -26,7 +27,12 @@ namespace PasaBuy.App.Views.Settings
         /// </summary>
         public void BackButtonClicked(object sender, EventArgs e)
         {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new SettingPage());
+            Navigation.PopModalAsync();
+        }
+
+        public void AddButtonClicked(object sender, EventArgs e)
+        {
+            new Alert("Demoguy Notice", "Adding address entry is not yet implemented. Thank you for your patience!", "AGREE");
         }
     }
 }

@@ -23,7 +23,7 @@ namespace PasaBuy.App.Views.Settings
         /// </summary>
         public void BackButtonClicked(object sender, EventArgs e)
         {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new SettingPage());
+            Navigation.PopModalAsync();
         }
 
         /// <summary>

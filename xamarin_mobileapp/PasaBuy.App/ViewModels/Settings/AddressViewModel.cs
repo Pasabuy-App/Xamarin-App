@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using Xamarin.Forms.Internals;
 using PasaBuy.App.Views.Master;
 using PasaBuy.App.Views.Settings;
+using PasaBuy.App.Views;
 
 namespace PasaBuy.App.ViewModels.Settings
 {
@@ -20,7 +21,6 @@ namespace PasaBuy.App.ViewModels.Settings
         #region Constructor
         public AddressViewModel()
         {
-            this.BackCommand = new Command(this.BackButtonClicked);
             this.EditCommand = new Command(this.EditButtonClicked);
             this.DeleteCommand = new Command(this.DeleteButtonClicked);
             this.AddCardCommand = new Command(this.AddCardButtonClicked);
@@ -47,16 +47,6 @@ namespace PasaBuy.App.ViewModels.Settings
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// Invoked when the back button clicked
-        /// </summary>
-        /// <param name="obj">The object</param>
-        private void BackButtonClicked(object obj)
-        {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new SettingPage());
-        }
-
         /// <summary>
         /// Invoked when the edit button clicked
         /// </summary>
@@ -86,12 +76,6 @@ namespace PasaBuy.App.ViewModels.Settings
         #endregion
 
         #region Command
-
-        /// <summary>
-        /// Gets or sets the command is executed when the back button is clicked.
-        /// </summary>
-        public Command BackCommand { get; set; }
-
         /// <summary>
         /// Gets or sets the command is executed when the edit button is clicked.
         /// </summary>

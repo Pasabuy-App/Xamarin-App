@@ -1,7 +1,6 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
-using PasaBuy.App.Views.Master;
 using System;
 
 namespace PasaBuy.App.Views.Settings
@@ -26,17 +25,7 @@ namespace PasaBuy.App.Views.Settings
         /// </summary>
         public void BackButtonClicked(object sender, EventArgs e)
         {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new SettingPage());
-        }
-
-        /// <summary>
-        /// Invoked when option button is clicked.
-        /// </summary>
-        /// <param name="sender">The Sender</param>
-        /// <param name="e">Event Args</param>
-        private void OptionButton_Clicked(object sender, EventArgs e)
-        {
-            //Do something...
+            Navigation.PopModalAsync();
         }
     }
 }

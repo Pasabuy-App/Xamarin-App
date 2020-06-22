@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using PasaBuy.App.Views.Master;
+using PasaBuy.App.Controllers.Notice;
 
 namespace PasaBuy.App.Views.Settings
 {
@@ -23,17 +24,17 @@ namespace PasaBuy.App.Views.Settings
         /// </summary>
         public void BackButtonClicked(object sender, EventArgs e)
         {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new SettingPage());
+            Navigation.PopModalAsync();
         }
 
         /// <summary>
-        /// Invoked when option button is clicked.
+        /// Invoked when save button is clicked.
         /// </summary>
         /// <param name="sender">The Sender</param>
         /// <param name="e">Event Args</param>
-        private void OptionButton_Clicked(object sender, EventArgs e)
+        private void SaveButton_Clicked(object sender, EventArgs e)
         {
-            //Do something...
+            new Alert("Demoguy Notice", "Saving of new user password is not yet implemented. Thank you for your patience!", "AGREE");
         }
     }
 }
