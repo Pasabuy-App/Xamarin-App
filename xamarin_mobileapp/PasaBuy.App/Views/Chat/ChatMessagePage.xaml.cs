@@ -1,5 +1,6 @@
 using PasaBuy.App.Models.Chat;
 using Syncfusion.DataSource;
+using System;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
@@ -28,6 +29,14 @@ namespace PasaBuy.App.Views.Chat
                     return item.Time.Date;
                 }
             });
+        }
+
+        /// <summary>
+        /// Invokes when back button is clicked.
+        /// </summary>
+        public void BackButtonClicked(object sender, EventArgs e)
+        {
+            Navigation.PopModalAsync();
         }
     }
 }

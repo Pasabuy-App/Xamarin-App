@@ -5,6 +5,7 @@ using PasaBuy.App.Views.Master;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using PasaBuy.App.Views.Chat;
+using PasaBuy.App.Controllers.Notice;
 
 namespace PasaBuy.App.ViewModels.Chat
 {
@@ -221,7 +222,7 @@ namespace PasaBuy.App.ViewModels.Chat
         /// <param name="obj">The object</param>
         private void VoiceCallClicked(object obj)
         {
-            // Do something
+            new Alert("Demoguy Notice", "Voice call is not yet implemented, stay tune on our advisory section for updates. Thank you for your patience!", "AGREE");
         }
 
         /// <summary>
@@ -230,7 +231,7 @@ namespace PasaBuy.App.ViewModels.Chat
         /// <param name="obj">The object</param>
         private void VideoCallClicked(object obj)
         {
-            // Do something
+            new Alert("Demoguy Notice", "Video call is not yet implemented, stay tune on our advisory section for updates. Thank you for your patience!", "AGREE");
         }
 
         /// <summary>
@@ -239,7 +240,7 @@ namespace PasaBuy.App.ViewModels.Chat
         /// <param name="obj">The object</param>
         private void MenuClicked(object obj)
         {
-            // Do something
+            new Alert("Demoguy Notice", "We plan to add a popup window as an action list for this current conversation. Thank you for your patience!", "AGREE");
         }
 
         /// <summary>
@@ -248,7 +249,7 @@ namespace PasaBuy.App.ViewModels.Chat
         /// <param name="obj">The object</param>
         private void CameraClicked(object obj)
         {
-            // Do something
+            new Alert("Demoguy Notice", "Sorry! Camera or Gallery upload is not yet implemented. Thank you for your patience!", "AGREE");
         }
 
         /// <summary>

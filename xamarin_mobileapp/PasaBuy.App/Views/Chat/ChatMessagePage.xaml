@@ -11,9 +11,7 @@
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:local="clr-namespace:PasaBuy.App.Views.Chat"
     xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Chat"
-    BackgroundImage="ChatMessageBackground.png"
-    Title="Conversation"
-    NavigationPage.HasNavigationBar="True">
+    NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -24,6 +22,25 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
+
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Spacing="0" >
+                <controls:TitleView Title="Conversation" 
+                                    BackgroundColor="{DynamicResource PrimaryColor}" >
+                    <controls:TitleView.LeadingView>
+                        <buttons:SfButton
+                            x:Name="backButton"
+                            Clicked="BackButtonClicked"
+                            CornerRadius="4"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                    </controls:TitleView.LeadingView>
+                </controls:TitleView>
+                <ContentPresenter />
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
 
     <ContentPage.BindingContext>
         <viewModel:ChatMessageViewModel />
@@ -69,18 +86,12 @@
                     <listView:SfListView.HeaderTemplate>
                         <DataTemplate>
                             <StackLayout
-                                Padding="10"
+                                Padding="20, 10"
                                 BackgroundColor="{DynamicResource Gray-200}"
                                 HorizontalOptions="FillAndExpand"
                                 Orientation="Horizontal"
                                 Spacing="0"
                                 VerticalOptions="Fill">
-
-                                <!--  Back Button  -->
-                                <buttons:SfButton
-                                    Command="{Binding BackCommand}"
-                                    Style="{StaticResource NavigationBarButtonStyle}"
-                                    Text="{StaticResource Back}" />
 
                                 <!--  Rounded Profile Image  -->
                                 <border:SfBorder
@@ -119,16 +130,16 @@
                                     Text="{StaticResource VideoCall}" />-->
 
                                 <!--  Voice call button  -->
-                                <!--<buttons:SfButton
+                                <buttons:SfButton
                                     Command="{Binding MakeVoiceCall}"
                                     Style="{StaticResource NavigationBarButtonStyle}"
-                                    Text="{StaticResource VoiceCall}" />-->
+                                    Text="{StaticResource VoiceCall}" />
 
                                 <!--  Menu Button  -->
-                                <!--<buttons:SfButton
+                                <buttons:SfButton
                                     Command="{Binding MenuCommand}"
                                     Style="{StaticResource NavigationBarButtonStyle}"
-                                    Text="{StaticResource Menu}" />-->
+                                    Text="{StaticResource Menu}" />
 
                             </StackLayout>
                         </DataTemplate>
@@ -174,14 +185,6 @@
                                             Command="{Binding ShowCamera}"
                                             Style="{StaticResource NavigationBarButtonStyle}"
                                             Text="{StaticResource Camera}"
-                                            VerticalOptions="End" />
-
-                                        <!--  Attachment Button  -->
-                                        <buttons:SfButton
-                                            Grid.Column="2"
-                                            Command="{Binding SendAttachment}"
-                                            Style="{StaticResource NavigationBarButtonStyle}"
-                                            Text="{StaticResource Attachment}"
                                             VerticalOptions="End" />
 
                                     </Grid>
