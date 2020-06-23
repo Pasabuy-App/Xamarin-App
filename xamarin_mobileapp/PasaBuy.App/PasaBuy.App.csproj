@@ -234,6 +234,12 @@
     <EmbeddedResource Update="Views\Marketplace\Stylex.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Market\CatalogTilePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Market\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Notice\EmptyCartPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

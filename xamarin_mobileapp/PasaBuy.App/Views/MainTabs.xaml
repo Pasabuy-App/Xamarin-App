@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
              xmlns:home="clr-namespace:PasaBuy.App.Views.Feeds"
+             xmlns:market="clr-namespace:PasaBuy.App.Views.Market"
              xmlns:chat="clr-namespace:PasaBuy.App.Views.Chat"
-             xmlns:market="clr-namespace:PasaBuy.App.Views.Marketplace"
+             xmlns:store="clr-namespace:PasaBuy.App.Views.Marketplace"
              xmlns:menu="clr-namespace:PasaBuy.App.Views.Master"
              x:Class="PasaBuy.App.Views.MainTabs">
     <ContentPage.Resources>
@@ -40,6 +41,11 @@
                     <home:HomePage/>
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
+            
+            
+            
+            
+            
             <tabView:SfTabItem Title="MARKET"
                                IconFont="{StaticResource Market}"
                                FontIconFontColor="{DynamicResource Gray-200}"
@@ -51,7 +57,7 @@
                            TabItemTapped="TabView_TabItemTapped"
                            TabHeaderPosition="Bottom"
                            VisibleHeaderCount="3" 
-                           EnableSwiping="true" 
+                           EnableSwiping="False" 
                            DisplayMode="Text">
                         <tabView:SfTabView.SelectionIndicatorSettings>
                             <tabView:SelectionIndicatorSettings
@@ -60,51 +66,44 @@
                                 Position="Bottom" 
                                 StrokeThickness="3"/>
                         </tabView:SfTabView.SelectionIndicatorSettings>
-                        <tabView:SfTabItem Title="NEWEST"
+                        <tabView:SfTabItem Title="ALL"
                                IconFont="{StaticResource Home}"
                                FontIconFontColor="{DynamicResource Gray-200}"
                                FontIconFontFamily="{StaticResource FontFamily}"
                                TitleFontColor="{DynamicResource Gray-Black}"
                                SelectionColor="{DynamicResource Gray-900}">
                             <tabView:SfTabItem.Content>
-                                <StackLayout>
-                                    <Label Text="CONTENT HERE" 
-                                           HorizontalOptions="CenterAndExpand"
-                                           VerticalOptions="CenterAndExpand"/>
-                                </StackLayout>
+                                <market:CatalogTilePage/>
                             </tabView:SfTabItem.Content>
                         </tabView:SfTabItem>
-                        <tabView:SfTabItem Title="POPULAR"
+                        <tabView:SfTabItem Title="NEWEST"
                                IconFont="{StaticResource Market}"
                                FontIconFontColor="{DynamicResource Gray-200}"
                                FontIconFontFamily="{StaticResource FontFamily}"
                                TitleFontColor="{DynamicResource Gray-Black}"
                                SelectionColor="{DynamicResource Gray-900}">
                             <tabView:SfTabItem.Content>
-                                <StackLayout>
-                                    <Label Text="CONTENT HERE" 
-                                           HorizontalOptions="CenterAndExpand"
-                                           VerticalOptions="CenterAndExpand"/>
-                                </StackLayout>
+                                <market:CatalogTilePage/>
                             </tabView:SfTabItem.Content>
                         </tabView:SfTabItem>
-                        <tabView:SfTabItem Title="STORE"
+                        <tabView:SfTabItem Title="POPULAR"
                                IconFont="{StaticResource Stores}"
                                FontIconFontColor="{DynamicResource Gray-200}"
                                FontIconFontFamily="{StaticResource FontFamily}"
                                TitleFontColor="{DynamicResource Gray-Black}"
                                SelectionColor="{DynamicResource Gray-900}">
                             <tabView:SfTabItem.Content>
-                                <StackLayout>
-                                    <Label Text="CONTENT HERE" 
-                                           HorizontalOptions="CenterAndExpand"
-                                           VerticalOptions="CenterAndExpand"/>
-                                </StackLayout>
+                                <market:CatalogTilePage/>
                             </tabView:SfTabItem.Content>
                         </tabView:SfTabItem>
                     </tabView:SfTabView>
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
+            
+            
+            
+            
+            
             <tabView:SfTabItem Title="STORE"
                                IconFont="{StaticResource Stores}"
                                FontIconFontColor="{DynamicResource Gray-200}"
@@ -112,7 +111,7 @@
                                TitleFontColor="{DynamicResource Gray-200}"
                                SelectionColor="{DynamicResource Gray-White}">
                 <tabView:SfTabItem.Content>
-                    <market:StoreBrowserPage/>
+                    <store:StoreBrowserPage/>
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
             <tabView:SfTabItem Title="MESSAGE"
