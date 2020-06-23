@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
@@ -17,6 +18,14 @@ namespace PasaBuy.App.Views.Currency
         public MyWalletPage()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Invokes when back button is clicked.
+        /// </summary>
+        public void BackButtonClicked(object sender, EventArgs e)
+        {
+            Navigation.PopModalAsync();
         }
     }
 }

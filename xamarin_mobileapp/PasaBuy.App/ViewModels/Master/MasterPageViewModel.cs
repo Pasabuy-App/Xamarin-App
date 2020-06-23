@@ -13,6 +13,7 @@ using PasaBuy.App.Views.Feeds;
 using PasaBuy.App.Views.Advisory;
 using PasaBuy.App.Controllers;
 using PasaBuy.App.Views;
+using PasaBuy.App.Views.Currency;
 
 namespace PasaBuy.App.ViewModels.Master
 {
@@ -47,6 +48,7 @@ namespace PasaBuy.App.ViewModels.Master
             this.email = UserPrefs.Instance.UserInfo.email;
 
             this.ProfileCommand = new Command(this.ProfileButtonClicked);
+            this.WalletCommand = new Command(this.WalletButtonClicked);
             this.AdvisoryCommand = new Command(this.AdvisoryButtonClicked);
             this.NotificationCommand = new Command(this.NotificationButtonClicked);
             this.SettingCommand = new Command(this.SettingButtonClicked);
@@ -146,6 +148,11 @@ namespace PasaBuy.App.ViewModels.Master
         public Command ProfileCommand { get; set; }
 
         /// <summary>
+        /// Gets or sets the command that is executed when the wallet view is clicked.
+        /// </summary>
+        public Command WalletCommand { get; set; }
+
+        /// <summary>
         /// Gets or sets the command that is executed when the request view is clicked.
         /// </summary>
         public Command AdvisoryCommand { get; set; }
@@ -171,6 +178,15 @@ namespace PasaBuy.App.ViewModels.Master
         private void ProfileButtonClicked(object obj)
         {
             ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
+        }
+
+        /// <summary>
+        /// Invoked when the wallet button is clicked.
+        /// </summary>
+        /// <param name="obj">The object</param>
+        private void WalletButtonClicked(object obj)
+        {
+            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyWalletPage()));
         }
 
         /// <summary>

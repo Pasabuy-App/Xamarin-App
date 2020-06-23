@@ -30,8 +30,8 @@
             <gradient:SfGradientView.BackgroundBrush>
                 <gradient:SfLinearGradientBrush>
                     <gradient:SfLinearGradientBrush.GradientStops>
-                        <gradient:SfGradientStop Color="{DynamicResource Liliac}" Offset="0.0" />
-                        <gradient:SfGradientStop Color="{DynamicResource Purpleish-Blue}" Offset="1.0" />
+                        <gradient:SfGradientStop Color="{DynamicResource Gray-700}" Offset="0.0" />
+                        <gradient:SfGradientStop Color="{DynamicResource Gray-900}" Offset="1.0" />
                     </gradient:SfLinearGradientBrush.GradientStops>
                 </gradient:SfLinearGradientBrush>
             </gradient:SfGradientView.BackgroundBrush>
@@ -39,7 +39,7 @@
 
         <!-- Title -->
         <Label Margin="0,28,0,12" 
-               Text="Wallet" 
+               Text="Summary Overview" 
                TextColor="{DynamicResource Gray-White}"
                FontSize="16"
                FontFamily="{DynamicResource Montserrat-Medium}"
