@@ -21,7 +21,7 @@
     </ContentPage.Resources>
 
     <ContentPage.BindingContext>
-        <viewModel:DriverMenuViewModel x:Name="viewModel"/>
+        <viewModel:StoreMenuViewModel x:Name="viewModel"/>
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
