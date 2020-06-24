@@ -9,12 +9,12 @@ namespace PasaBuy.App.Views.ErrorAndEmpty
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NoInternetConnectionPage
+    public partial class NoInternetPage
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="NoInternetConnectionPage" /> class.
+        /// Initializes a new instance of the <see cref="NoInternetPage" /> class.
         /// </summary>
-        public NoInternetConnectionPage()
+        public NoInternetPage()
         {
             InitializeComponent();
         }

@@ -9,13 +9,13 @@
              xmlns:control="clr-namespace:PasaBuy.App.Controls"
              xmlns:local="clr-namespace:PasaBuy.App.Views.Onboarding"
              xmlns:template="clr-namespace:PasaBuy.App.Views.Templates"
-             x:Class="PasaBuy.App.Views.Onboarding.SignInPage" 
-             NavigationPage.HasNavigationBar="False" 
              xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms" 
              BackgroundImageSource="{core:OnPlatformOrientationStringValue Default=LoginBackground.png,
                                                                            iOSPhoneLandscape=LoginBackground-Landscape.png,
                                                                            iOSTabletLandscape=LoginBackground-Landscape.png}"
-             Style="{StaticResource ContentPageStyle}" >
+             Style="{StaticResource ContentPageStyle}" 
+             NavigationPage.HasNavigationBar="False" 
+             x:Class="PasaBuy.App.Views.Onboarding.SignInPage" >
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -33,7 +33,7 @@
 
     <ContentPage.Content>
         <Grid>
-            <gradient:SfGradientView Style="{StaticResource SfGradientViewStyle}" />
+            <gradient:SfGradientView Style="{StaticResource SfGradientStyle}" />
             <ScrollView HorizontalOptions="Center">
 
                 <ScrollView.VerticalOptions>
@@ -69,29 +69,16 @@
                         </Grid.RowDefinitions>
 
                         <!--  Logo to display the title of this page  -->
-                        <Image Source="Logo.png" 
-                               WidthRequest="125"
-                               HeightRequest="125"/>
+                        <Image Source="LogoHeader.png" 
+                               HeightRequest="75"/>
                         
-                        <!--  Label to display the title of this page  -->
+                        <!--  Label to display the description of this page  -->
                         <Label
                             Grid.Row="1"
-                            Margin="0, 5, 0, 25"
-                            FontFamily="{StaticResource Montserrat-SemiBold}"
-                            FontSize="16"
+                            Margin="0,0,0,40"
                             HorizontalTextAlignment="Center"
                             Style="{StaticResource LabelStyle}"
-                            Text="PasaBuy.app"
-                            TextColor="{DynamicResource Gray-White}" />
-
-                        <!--  Label to display the description of this page  -->
-                        <!--<Label
-                            Grid.Row="2"
-                            Margin="14,2"
-                            FontFamily="{StaticResource Montserrat-Medium}"
-                            HorizontalTextAlignment="Center"
-                            Style="{StaticResource LabelStyle}"
-                            Text="Stay safe with Us" />-->
+                            Text="v1.0.0 - Beta Release" />
                         
                         <!--  Entry to get email ID from user  -->
                         <local:LoginEmailEntry Grid.Row="2" Padding="0,24" />

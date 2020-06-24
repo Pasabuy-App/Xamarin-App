@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="PasaBuy.App.Views.Onboarding.GettingStarted"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:behavior="clr-namespace:PasaBuy.App.Behaviors.Onboarding"
@@ -9,7 +8,8 @@
     xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
     xmlns:rotator="clr-namespace:Syncfusion.SfRotator.XForms;assembly=Syncfusion.SfRotator.XForms"
     xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Onboarding"
-    NavigationPage.HasNavigationBar="False">
+    x:Class="PasaBuy.App.Views.Onboarding.GettingStarted">
+    
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -20,9 +20,11 @@
             </DataTemplate>
         </ResourceDictionary>
     </ContentPage.Resources>
+    
     <ContentPage.BindingContext>
         <viewModel:GettingStartedViewModel />
     </ContentPage.BindingContext>
+    
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>

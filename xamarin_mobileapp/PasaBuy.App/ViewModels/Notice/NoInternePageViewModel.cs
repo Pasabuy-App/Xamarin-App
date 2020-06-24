@@ -11,7 +11,7 @@ namespace PasaBuy.App.ViewModels.ErrorAndEmpty
     /// ViewModel for no internet connection page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class NoInternetConnectionPageViewModel : BaseViewModel
+    public class NoInternePageViewModel : BaseViewModel
     {
         #region Fields
 
@@ -26,9 +26,9 @@ namespace PasaBuy.App.ViewModels.ErrorAndEmpty
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance for the <see cref="NoInternetConnectionPageViewModel" /> class.
+        /// Initializes a new instance for the <see cref="NoInternePageViewModel" /> class.
         /// </summary>
-        public NoInternetConnectionPageViewModel()
+        public NoInternePageViewModel()
         {
             this.ImagePath = "NoInternet.svg";
             this.Header = "CONNECTIVITY ISSUE";
@@ -110,7 +110,7 @@ namespace PasaBuy.App.ViewModels.ErrorAndEmpty
         /// <param name="obj">The Object</param>
         private void TryAgain(object obj)
         {
-            SplashPage.CheckConnectivity();
+            SplashPage.CheckConnectivityAndToken();
         }
 
         #endregion

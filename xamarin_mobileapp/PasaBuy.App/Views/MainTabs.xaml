@@ -7,7 +7,9 @@
              xmlns:chat="clr-namespace:PasaBuy.App.Views.Chat"
              xmlns:store="clr-namespace:PasaBuy.App.Views.Marketplace"
              xmlns:menu="clr-namespace:PasaBuy.App.Views.Menu"
-             x:Class="PasaBuy.App.Views.MainTabs">
+             x:Class="PasaBuy.App.Views.MainTabs"
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False">
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

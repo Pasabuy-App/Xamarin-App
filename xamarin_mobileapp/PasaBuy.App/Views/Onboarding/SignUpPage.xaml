@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage
-    x:Class="PasaBuy.App.Views.Onboarding.SignUpPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
@@ -12,7 +11,7 @@
     xmlns:local="clr-namespace:PasaBuy.App.Views.Inputs"
     xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Onboarding"
     NavigationPage.HasNavigationBar="False" 
-    Style="{StaticResource ContentPageStyle}">
+    x:Class="PasaBuy.App.Views.Onboarding.SignUpPage">
 
     <ContentPage.Resources>
         <ResourceDictionary>

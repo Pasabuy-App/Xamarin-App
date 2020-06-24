@@ -40,7 +40,7 @@ namespace PasaBuy.App.Behaviors.Onboarding
                 var viewModel = rotator.BindingContext as GettingStartedViewModel;
                 if (selectedIndex == itemsCount - 1)
                 {
-                    viewModel.NextButtonText = "DONE";
+                    viewModel.NextButtonText = "COMPLETE";
                     viewModel.IsSkipButtonVisible = false;
                 }
                 else

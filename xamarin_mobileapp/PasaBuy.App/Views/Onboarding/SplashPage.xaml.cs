@@ -1,12 +1,4 @@
-﻿using Newtonsoft.Json;
-using PasaBuy.App.Controllers;
-using PasaBuy.App.Models.Onboarding;
-using PasaBuy.App.Views.Master;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PasaBuy.App.Controllers;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -29,48 +21,36 @@ namespace PasaBuy.App.Views.Onboarding
             await SplashLogo.ScaleTo(1.0, 1000);
             await SplashLogo.ScaleTo(1.5, 1500, Easing.Linear);
 
-            CheckConnectivity();
+            CheckConnectivityAndToken();
         }
 
-        public static void CheckConnectivity()
+        public static void CheckConnectivityAndToken()
         {
-            var current = Connectivity.NetworkAccess;
-
-            if (current == NetworkAccess.Internet)
+            if ( App.HasInternet )
             {
-                CheckToken();
-            }
-
-            else
-            {
-                App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new NoInternetConnectionPage()));
-            }
-        }
-
-        public static void CheckToken()
-        {
-            if ( UserPrefs.Instance.hasToken )
-            {
-                if ( UserPrefs.Instance.hasUserinfo )
+                if (UserPrefs.Instance.hasToken)
                 {
-                    Application.Current.MainPage = new MainTabs();
+                    if (UserPrefs.Instance.hasUserinfo)
+                    {
+                        App.Current.MainPage = new MainTabs();
+
+                        return; //Cancel all after this line.
+                    }
                 }
 
-                else
+                App.Current.MainPage = new SignInPage();
+
+                if ( !App.DoneWithGettingStarted )
                 {
-                    Application.Current.MainPage = new NavigationPage(new SignInPage());
+                    App.Current.MainPage = new GettingStarted();
                 }
             }
 
             else
             {
-                Application.Current.MainPage = new NavigationPage(new SignInPage());
-
-                if(!Preferences.ContainsKey("ReturnUser"))
-                {
-                    App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new GettingStarted()));
-                }
+                App.Current.MainPage = new NoInternetPage();
             }
         }
+
     }
 }

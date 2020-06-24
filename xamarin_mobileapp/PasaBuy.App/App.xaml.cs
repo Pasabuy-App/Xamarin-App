@@ -22,9 +22,40 @@ namespace PasaBuy.App
 
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjYwNjY0QDMxMzgyZTMxMmUzMGlJTnpSZVBDTG4raGhBaU5DOVRFbFBKWmxRYVVHd1hxNUx2cXcrZFliMmc9");
 
-            MainPage = new NavigationPage(new SplashPage());
-
             UserPrefs.Instance.Initialize();
+
+            MainPage = new NavigationPage(new SplashPage());
+        }
+
+        /// <summary>
+        /// Check if the user skip or completed the Getting Started.
+        /// </summary>
+        public static bool DoneWithGettingStarted
+        {
+            get
+            {
+                return Preferences.ContainsKey("ReturnUser") ? true : false;
+            }
+        }
+
+        /// <summary>
+        /// Set and save the action of the user toward the Getting Started page.
+        /// </summary>
+        /// <param name="isSkipped"></param>
+        public static void SetGettingStartedAction(bool isSkipped)
+        {
+            Preferences.Set("ReturnUser", true);
+        }
+
+        /// <summary>
+        /// Check if the application is able to reach the internet.
+        /// </summary>
+        public static bool HasInternet
+        {
+            get
+            {
+                return Connectivity.NetworkAccess == NetworkAccess.Internet ? true : false;
+            }
         }
 
         protected override void OnStart()

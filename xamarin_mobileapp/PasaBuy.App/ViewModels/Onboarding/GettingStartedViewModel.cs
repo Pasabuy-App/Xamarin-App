@@ -193,7 +193,8 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void Skip(object obj)
         {
-            this.MoveToNextPage();
+            App.SetGettingStartedAction(true);
+            this.EndGettingStarted();
         }
 
         /// <summary>
@@ -205,14 +206,14 @@ namespace PasaBuy.App.ViewModels.Onboarding
             var itemCount = (obj as SfRotator).ItemsSource.Count();
             if (this.ValidateAndUpdateSelectedIndex(itemCount))
             {
-                Preferences.Set("ReturnUser", true);
-                this.MoveToNextPage();
+                App.SetGettingStartedAction(false);
+                this.EndGettingStarted();
             }
         }
 
-        private void MoveToNextPage()
+        private void EndGettingStarted()
         {
-            App.Current.MainPage.Navigation.PopModalAsync();
+            App.Current.MainPage = new SignInPage();
         }
 
         #endregion

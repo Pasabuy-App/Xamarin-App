@@ -123,6 +123,9 @@
     <Compile Update="Views\Menu\DriverMenu.xaml.cs">
       <DependentUpon>DriverMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Notice\NoInternetPage.xaml.cs">
+      <DependentUpon>NoInternetPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Onboarding\ForgotPwPage.xaml.cs">
       <DependentUpon>ForgotPwPage.xaml</DependentUpon>
     </Compile>
@@ -276,7 +279,7 @@
     <EmbeddedResource Update="Views\Notice\NoCreditsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Notice\NoInternetConnectionPage.xaml">
+    <EmbeddedResource Update="Views\Notice\NoInternetPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Notice\NoItemPage.xaml">

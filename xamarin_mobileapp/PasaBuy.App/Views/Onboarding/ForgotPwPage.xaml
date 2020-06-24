@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="PasaBuy.App.Views.Onboarding.ForgotPwPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
@@ -9,7 +8,7 @@
     xmlns:local="clr-namespace:PasaBuy.App.Views.Inputs"
     xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Onboarding"
     NavigationPage.HasNavigationBar="False"
-    Style="{StaticResource ContentPageStyle}">
+    x:Class="PasaBuy.App.Views.Onboarding.ForgotPwPage">
 
     <ContentPage.Resources>
         <ResourceDictionary>

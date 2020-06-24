@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="PasaBuy.App.Views.Onboarding.ResetPwPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
@@ -10,12 +9,8 @@
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
     xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Onboarding"
-    Title="Reset Password" 
-    BackgroundImageSource="{core:OnPlatformOrientationStringValue Default=LoginBackground.png,
-                                                                  iOSPhoneLandscape=LoginBackground-Landscape.png,
-                                                                  iOSTabletLandscape=LoginBackground-Landscape.png}"
     NavigationPage.HasNavigationBar="False"
-    Style="{StaticResource ContentPageStyle}">
+    x:Class="PasaBuy.App.Views.Onboarding.ResetPwPage">
 
     <ContentPage.Resources>
         <ResourceDictionary>
