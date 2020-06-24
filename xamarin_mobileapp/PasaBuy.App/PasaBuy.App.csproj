@@ -81,6 +81,12 @@
     <Compile Update="Views\Advisory\Style.xaml.cs">
       <DependentUpon>Style.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Backend\MainDetail.xaml.cs">
+      <DependentUpon>MainDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Backend\StoreMain.xaml.cs">
+      <DependentUpon>StoreMain.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Chat\MessagePage.xaml.cs">
       <DependentUpon>MessagePage.xaml</DependentUpon>
     </Compile>
@@ -110,6 +116,9 @@
     </Compile>
     <Compile Update="Views\Marketplace\Stylex.xaml.cs">
       <DependentUpon>Stylex.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Menu\StoreMenu.xaml.cs">
+      <DependentUpon>StoreMenu.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Menu\DriverMenu.xaml.cs">
       <DependentUpon>DriverMenu.xaml</DependentUpon>
@@ -159,7 +168,7 @@
     <EmbeddedResource Update="Views\Backend\DriverMain.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Backend\DriverMainDetail.xaml">
+    <EmbeddedResource Update="Views\Backend\MainDetail.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Currency\WalletCredit.xaml">

@@ -53,6 +53,7 @@ namespace PasaBuy.App.ViewModels.Menu
             this.AdvisoryCommand = new Command(this.AdvisoryButtonClicked);
             this.NotificationCommand = new Command(this.NotificationButtonClicked);
             this.DriverCommand = new Command(this.DriverButtonClicked);
+            this.StoreCommand = new Command(this.StoreButtonClicked);
             this.SettingCommand = new Command(this.SettingButtonClicked);
         }
 
@@ -165,9 +166,14 @@ namespace PasaBuy.App.ViewModels.Menu
         public Command AdvisoryCommand { get; set; }
 
         /// <summary>
-        /// Gets or sets the command that is executed when the notification view is clicked.
+        /// Gets or sets the command that is executed when the driver view is clicked.
         /// </summary>
         public Command DriverCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command that is executed when the store view is clicked.
+        /// </summary>
+        public Command StoreCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the command that is executed when the request view is clicked.
@@ -214,12 +220,21 @@ namespace PasaBuy.App.ViewModels.Menu
         }
 
         /// <summary>
-        /// Invoked when the setting button is clicked.
+        /// Invoked when the driver button is clicked.
         /// </summary>
         /// <param name="obj">The object</param>
         private void DriverButtonClicked(object obj)
         {
             App.Current.MainPage = new DriverMain();
+        }
+
+        /// <summary>
+        /// Invoked when the store button is clicked.
+        /// </summary>
+        /// <param name="obj">The object</param>
+        private void StoreButtonClicked(object obj)
+        {
+            App.Current.MainPage = new StoreMain();
         }
 
         /// <summary>

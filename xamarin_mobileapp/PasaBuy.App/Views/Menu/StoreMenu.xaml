@@ -1,29 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="PasaBuy.App.Views.Menu.MasterMenu"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:helper="clr-namespace:PasaBuy.App.Helpers"
              xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Menu"
              BackgroundColor="{DynamicResource Gray-100}"
+             Title="Master"
+             x:Class="PasaBuy.App.Views.Menu.StoreMenu"
              NavigationPage.HasNavigationBar="False">
 
-    <ContentView.Resources>
+    <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-    </ContentView.Resources>
+    </ContentPage.Resources>
 
-    <ContentView.BindingContext>
-        <viewModel:MasterMenuViewModel x:Name="viewModel"/>
-    </ContentView.BindingContext>
+    <ContentPage.BindingContext>
+        <viewModel:DriverMenuViewModel x:Name="viewModel"/>
+    </ContentPage.BindingContext>
 
-    <ContentView.Content>
+    <ContentPage.Content>
         <ScrollView>
             <StackLayout Spacing="0">
 
@@ -115,8 +116,8 @@
 
                         <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                        <!--  Grid for profile label and icon  -->
-                        <Grid x:Name="ProfileGrid"
+                        <!--  Grid for dashboard label and icon  -->
+                        <Grid x:Name="DashboardGrid"
                             BackgroundColor="{DynamicResource Transparent}">
 
                             <Grid.ColumnDefinitions>
@@ -128,25 +129,25 @@
                                 Grid.Column="0"
                                 helper:RTLHelper.Margin="35, 0, 8, 0"
                                 Style="{StaticResource ProfileIconLabelStyle}"
-                                Text="&#xf406;" />
+                                Text="&#xf200;" />
 
                             <Label
                                 Grid.Column="1"
                                 Margin="0,14"
                                 FontFamily="{StaticResource Montserrat-SemiBold}"
                                 Style="{StaticResource ProfileLabelStyle}"
-                                Text="Profile" />
+                                Text="Dashboard" />
 
                             <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding ProfileCommand}" CommandParameter="{x:Reference ProfileGrid}" />
+                                <TapGestureRecognizer Command="{Binding DashboardCommand}" CommandParameter="{x:Reference DashboardGrid}" />
                             </Grid.GestureRecognizers>
 
                         </Grid>
 
                         <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                        <!--  Grid for wallet label and icon  -->
-                        <Grid x:Name="WalletGrid"
+                        <!--  Grid for storefront label and icon  -->
+                        <Grid x:Name="StorefrontGrid"
                             BackgroundColor="{DynamicResource Transparent}">
 
                             <Grid.ColumnDefinitions>
@@ -158,25 +159,25 @@
                                 Grid.Column="0"
                                 helper:RTLHelper.Margin="35, 0, 8, 0"
                                 Style="{StaticResource ProfileIconLabelStyle}"
-                                Text="&#xf555;" />
+                                Text="&#xf14e;" />
 
                             <Label
                                 Grid.Column="1"
                                 Margin="0,14"
                                 FontFamily="{StaticResource Montserrat-SemiBold}"
                                 Style="{StaticResource ProfileLabelStyle}"
-                                Text="Wallet" />
+                                Text="Storefront" />
 
                             <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding WalletCommand}" CommandParameter="{x:Reference WalletGrid}" />
+                                <TapGestureRecognizer Command="{Binding StorefrontCommand}" CommandParameter="{x:Reference StorefrontGrid}" />
                             </Grid.GestureRecognizers>
 
                         </Grid>
 
                         <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                        <!--  Grid for notification label and icon  -->
-                        <Grid x:Name="NotificationGrid"
+                        <!--  Grid for product label and icon  -->
+                        <Grid x:Name="ProductGrid"
                             BackgroundColor="{DynamicResource Transparent}">
 
                             <Grid.ColumnDefinitions>
@@ -188,25 +189,25 @@
                                 Grid.Column="0"
                                 helper:RTLHelper.Margin="35, 0, 8, 0"
                                 Style="{StaticResource ProfileIconLabelStyle}"
-                                Text="&#xf0f3;" />
+                                Text="&#xf49e;" />
 
                             <Label
                                 Grid.Column="1"
                                 Margin="0,14"
                                 FontFamily="{StaticResource Montserrat-SemiBold}"
                                 Style="{StaticResource ProfileLabelStyle}"
-                                Text="Notification" />
+                                Text="Products" />
 
                             <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding NotificationCommand}" CommandParameter="{x:Reference NotificationGrid}" />
+                                <TapGestureRecognizer Command="{Binding ProductCommand}" CommandParameter="{x:Reference ProductGrid}" />
                             </Grid.GestureRecognizers>
 
                         </Grid>
 
                         <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                        <!--  Grid for advisory label and icon  -->
-                        <Grid x:Name="AdvisoryGrid"
+                        <!--  Grid for category label and icon  -->
+                        <Grid x:Name="CategoryGrid"
                             BackgroundColor="{DynamicResource Transparent}">
 
                             <Grid.ColumnDefinitions>
@@ -218,17 +219,107 @@
                                 Grid.Column="0"
                                 helper:RTLHelper.Margin="35, 0, 8, 0"
                                 Style="{StaticResource ProfileIconLabelStyle}"
-                                Text="&#xf0a1;" />
+                                Text="&#xf0e8;" />
 
                             <Label
                                 Grid.Column="1"
                                 Margin="0,14"
                                 FontFamily="{StaticResource Montserrat-SemiBold}"
                                 Style="{StaticResource ProfileLabelStyle}"
-                                Text="Advisory" />
+                                Text="Category" />
 
                             <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding AdvisoryCommand}" CommandParameter="{x:Reference  AdvisoryGrid}" />
+                                <TapGestureRecognizer Command="{Binding CategoryCommand}" CommandParameter="{x:Reference CategoryGrid}" />
+                            </Grid.GestureRecognizers>
+
+                        </Grid>
+
+                        <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                        <!--  Grid for transaction label and icon  -->
+                        <Grid x:Name="TransactionGrid"
+                            BackgroundColor="{DynamicResource Transparent}">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                Grid.Column="0"
+                                helper:RTLHelper.Margin="35, 0, 8, 0"
+                                Style="{StaticResource ProfileIconLabelStyle}"
+                                Text="&#xf00b;" />
+
+                            <Label
+                                Grid.Column="1"
+                                Margin="0,14"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                Style="{StaticResource ProfileLabelStyle}"
+                                Text="Transactions" />
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding TransactionCommand}" CommandParameter="{x:Reference TransactionGrid}" />
+                            </Grid.GestureRecognizers>
+
+                        </Grid>
+
+                        <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                        <!--  Grid for message label and icon  -->
+                        <Grid x:Name="MessageGrid"
+                            BackgroundColor="{DynamicResource Transparent}">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                Grid.Column="0"
+                                helper:RTLHelper.Margin="35, 0, 8, 0"
+                                Style="{StaticResource ProfileIconLabelStyle}"
+                                Text="&#xf4ad;" />
+
+                            <Label
+                                Grid.Column="1"
+                                Margin="0,14"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                Style="{StaticResource ProfileLabelStyle}"
+                                Text="Messages" />
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding MessageCommand}" CommandParameter="{x:Reference  MessageGrid}" />
+                            </Grid.GestureRecognizers>
+
+                        </Grid>
+
+                        <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                        <!--  Grid for voucher label and icon  -->
+                        <Grid x:Name="VoucherGrid"
+                            BackgroundColor="{DynamicResource Transparent}">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                Grid.Column="0"
+                                helper:RTLHelper.Margin="35, 0, 8, 0"
+                                Style="{StaticResource ProfileIconLabelStyle}"
+                                Text="&#xf3ff;" />
+
+                            <Label
+                                Grid.Column="1"
+                                Margin="0,14"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                Style="{StaticResource ProfileLabelStyle}"
+                                Text="Voucher" />
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding VoucherCommand}" CommandParameter="{x:Reference  VoucherGrid}" />
                             </Grid.GestureRecognizers>
 
                         </Grid>
@@ -236,7 +327,7 @@
                         <BoxView Style="{StaticResource SeparatorStyle}" />
 
                         <!--  Grid for driver label and icon  -->
-                        <Grid x:Name="DriverGrid"
+                        <Grid x:Name="DocumentGrid"
                             BackgroundColor="{DynamicResource Transparent}">
 
                             <Grid.ColumnDefinitions>
@@ -248,47 +339,17 @@
                                 Grid.Column="0"
                                 helper:RTLHelper.Margin="35, 0, 8, 0"
                                 Style="{StaticResource ProfileIconLabelStyle}"
-                                Text="&#xf48b;" />
+                                Text="&#xf0ea;" />
 
                             <Label
                                 Grid.Column="1"
                                 Margin="0,14"
                                 FontFamily="{StaticResource Montserrat-SemiBold}"
                                 Style="{StaticResource ProfileLabelStyle}"
-                                Text="Use as Driver" />
+                                Text="Documents" />
 
                             <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding DriverCommand}" CommandParameter="{x:Reference DriverGrid}" />
-                            </Grid.GestureRecognizers>
-
-                        </Grid>
-
-                        <BoxView Style="{StaticResource SeparatorStyle}" />
-
-                        <!--  Grid for driver label and icon  -->
-                        <Grid x:Name="StoreGrid"
-                            BackgroundColor="{DynamicResource Transparent}">
-
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-
-                            <Label
-                                Grid.Column="0"
-                                helper:RTLHelper.Margin="35, 0, 8, 0"
-                                Style="{StaticResource ProfileIconLabelStyle}"
-                                Text="&#xf788;" />
-
-                            <Label
-                                Grid.Column="1"
-                                Margin="0,14"
-                                FontFamily="{StaticResource Montserrat-SemiBold}"
-                                Style="{StaticResource ProfileLabelStyle}"
-                                Text="Use as Store" />
-
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding StoreCommand}" CommandParameter="{x:Reference StoreGrid}" />
+                                <TapGestureRecognizer Command="{Binding DocumentCommand}" CommandParameter="{x:Reference DocumentGrid}" />
                             </Grid.GestureRecognizers>
 
                         </Grid>
@@ -296,7 +357,7 @@
                         <BoxView Style="{StaticResource SeparatorStyle}" />
                         
                         <!--  Grid for setting label and icon  -->
-                        <Grid x:Name="SettingGrid"
+                        <Grid x:Name="HomepageGrid"
                             BackgroundColor="{DynamicResource Transparent}">
 
                             <Grid.ColumnDefinitions>
@@ -308,17 +369,17 @@
                                 Grid.Column="0"
                                 helper:RTLHelper.Margin="35, 0, 8, 0"
                                 Style="{StaticResource ProfileIconLabelStyle}"
-                                Text="&#xf013;" />
+                                Text="&#xf359;" />
 
                             <Label
                                 Grid.Column="1"
                                 Margin="0,14"
                                 FontFamily="{StaticResource Montserrat-SemiBold}"
                                 Style="{StaticResource ProfileLabelStyle}"
-                                Text="Setting" />
+                                Text="HOMEPAGE" />
 
                             <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding SettingCommand}" CommandParameter="{x:Reference SettingGrid}" />
+                                <TapGestureRecognizer Command="{Binding HomepageCommand}" CommandParameter="{x:Reference HomepageGrid}" />
                             </Grid.GestureRecognizers>
 
                         </Grid>
@@ -330,5 +391,5 @@
 
             </StackLayout>
         </ScrollView>
-    </ContentView.Content>
-</ContentView>
+    </ContentPage.Content>
+</ContentPage>

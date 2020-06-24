@@ -4,8 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="PasaBuy.App.Views.Backend.DriverMainDetail"
-             Title="DRIVER"
+             x:Class="PasaBuy.App.Views.Backend.MainDetail"
+             Title="MAIN"
              NavigationPage.HasNavigationBar="True">
   <StackLayout Padding="10"
                VerticalOptions="Center"

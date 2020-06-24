@@ -4,11 +4,11 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="PasaBuy.App.Views.Backend.DriverMain"
+             x:Class="PasaBuy.App.Views.Backend.StoreMain"
              xmlns:menu="clr-namespace:PasaBuy.App.Views.Menu"
              xmlns:pages="clr-namespace:PasaBuy.App.Views.Backend">
   <MasterDetailPage.Master>
-        <menu:DriverMenu x:Name="MasterPage" />
+        <menu:StoreMenu x:Name="MasterPage" />
   </MasterDetailPage.Master>
   <MasterDetailPage.Detail>
     <NavigationPage>
