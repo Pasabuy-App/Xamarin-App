@@ -14,6 +14,7 @@ using PasaBuy.App.Views.Advisory;
 using PasaBuy.App.Controllers;
 using PasaBuy.App.Views;
 using PasaBuy.App.Views.Currency;
+using PasaBuy.App.Views.Courier;
 
 namespace PasaBuy.App.ViewModels.Master
 {
@@ -51,6 +52,7 @@ namespace PasaBuy.App.ViewModels.Master
             this.WalletCommand = new Command(this.WalletButtonClicked);
             this.AdvisoryCommand = new Command(this.AdvisoryButtonClicked);
             this.NotificationCommand = new Command(this.NotificationButtonClicked);
+            this.DriverCommand = new Command(this.DriverButtonClicked);
             this.SettingCommand = new Command(this.SettingButtonClicked);
         }
 
@@ -153,20 +155,24 @@ namespace PasaBuy.App.ViewModels.Master
         public Command WalletCommand { get; set; }
 
         /// <summary>
+        /// Gets or sets the command that is executed when the notification view is clicked.
+        /// </summary>
+        public Command NotificationCommand { get; set; }
+
+        /// <summary>
         /// Gets or sets the command that is executed when the request view is clicked.
         /// </summary>
         public Command AdvisoryCommand { get; set; }
 
         /// <summary>
+        /// Gets or sets the command that is executed when the notification view is clicked.
+        /// </summary>
+        public Command DriverCommand { get; set; }
+
+        /// <summary>
         /// Gets or sets the command that is executed when the request view is clicked.
         /// </summary>
         public Command SettingCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command that is executed when the notification view is clicked.
-        /// </summary>
-        public Command NotificationCommand { get; set; }
-
         #endregion
 
         #region Methods
@@ -205,6 +211,15 @@ namespace PasaBuy.App.ViewModels.Master
         private void AdvisoryButtonClicked(object obj)
         {
             ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ArticleList()));
+        }
+
+        /// <summary>
+        /// Invoked when the setting button is clicked.
+        /// </summary>
+        /// <param name="obj">The object</param>
+        private void DriverButtonClicked(object obj)
+        {
+            App.Current.MainPage = new CourierMainPage();
         }
 
         /// <summary>
