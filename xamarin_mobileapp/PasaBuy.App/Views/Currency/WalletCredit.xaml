@@ -10,7 +10,7 @@
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:template="clr-namespace:PasaBuy.App.Views.Templates"
-             x:Class="PasaBuy.App.Views.Currency.WalletSaving"
+             x:Class="PasaBuy.App.Views.Currency.WalletCredit"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
 
