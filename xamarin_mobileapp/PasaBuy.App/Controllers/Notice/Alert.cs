@@ -16,7 +16,10 @@ namespace PasaBuy.App.Controllers.Notice
 
         public async void ShowMessage(string title, string message, string confirm)
         {
-            await App.Current.MainPage.DisplayAlert(title, message, confirm);
+            if (App.Current.MainPage != null)
+            {
+                await App.Current.MainPage.DisplayAlert(title, message, confirm);
+            }
         }
     }
 }

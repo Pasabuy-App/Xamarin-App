@@ -84,7 +84,7 @@ namespace PasaBuy.App
         #region Methods
         public async void Authenticate(string username, string password, Action<bool, string> callback)
         {
-            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            if (!App.HasInternet)
             {
                 new Alert("Notice to User", "Connectivity Issue Occur! Please check your internet connection.", "Try Again");
                 return;
@@ -116,7 +116,7 @@ namespace PasaBuy.App
 
         public async void GetUserInfo(Token userToken, Action<bool, string> callback)
         {
-            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            if (!App.HasInternet)
             {
                 new Alert("Notice to User", "Connectivity Issue Occur! Please check your internet connection.", "Try Again");
                 return;
