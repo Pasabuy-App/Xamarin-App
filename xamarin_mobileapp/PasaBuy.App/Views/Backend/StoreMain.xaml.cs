@@ -16,5 +16,10 @@ namespace PasaBuy.App.Views.Backend
         {
             InitializeComponent();
         }
+
+        public void HideSidebar()
+        {
+            IsPresented = false;
+        }
     }
 }
