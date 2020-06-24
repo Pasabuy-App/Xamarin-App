@@ -12,7 +12,7 @@ namespace PasaBuy.App.ViewModels.Currency
     /// ViewModel for my wallet page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class MyWalletViewModel : BaseViewModel
+    public class WalletSavingViewModel : BaseViewModel
     {
         #region Fields
 
@@ -41,9 +41,9 @@ namespace PasaBuy.App.ViewModels.Currency
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance for the <see cref="MyWalletViewModel" /> class.
+        /// Initializes a new instance for the <see cref="WalletSavingViewModel" /> class.
         /// </summary>
-        public MyWalletViewModel()
+        public WalletSavingViewModel()
         {
             WeekData();
             MonthData();

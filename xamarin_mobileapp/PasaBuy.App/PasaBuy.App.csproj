@@ -84,6 +84,9 @@
     <Compile Update="Views\Chat\MessagePage.xaml.cs">
       <DependentUpon>MessagePage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Currency\WalletSaving.xaml.cs">
+      <DependentUpon>WalletSaving.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Feeds\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -150,11 +153,14 @@
     <EmbeddedResource Update="Views\Advisory\ArticleList.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Currency\MyWalletPage.xaml">
+    <EmbeddedResource Update="Views\Currency\WalletSaving.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Currency\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Currency\WalletPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\eCommerce\CartPage.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -186,7 +186,7 @@ namespace PasaBuy.App.ViewModels.Master
         /// <param name="obj">The object</param>
         private void WalletButtonClicked(object obj)
         {
-            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyWalletPage()));
+            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new WalletPage()));
         }
 
         /// <summary>
