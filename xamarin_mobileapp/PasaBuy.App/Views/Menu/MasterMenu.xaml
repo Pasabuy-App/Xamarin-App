@@ -4,10 +4,10 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="PasaBuy.App.Views.Master.MasterPage"
+             x:Class="PasaBuy.App.Views.Menu.MasterMenu"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:helper="clr-namespace:PasaBuy.App.Helpers"
-             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Master"
+             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Menu"
              BackgroundColor="{DynamicResource Gray-100}"
              NavigationPage.HasNavigationBar="False">
 
@@ -20,7 +20,7 @@
     </ContentView.Resources>
 
     <ContentView.BindingContext>
-        <viewModel:MasterPageViewModel x:Name="viewModel"/>
+        <viewModel:MasterMenuViewModel x:Name="viewModel"/>
     </ContentView.BindingContext>
 
     <ContentView.Content>

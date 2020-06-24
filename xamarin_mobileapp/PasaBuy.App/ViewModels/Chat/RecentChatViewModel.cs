@@ -185,7 +185,6 @@ namespace PasaBuy.App.ViewModels.Chat
             this.MakeVoiceCallCommand = new Command(this.VoiceCallClicked);
             this.MakeVideoCallCommand = new Command(this.VideoCallClicked);
             this.ShowSettingsCommand = new Command(this.SettingsClicked);
-            this.BackCommand = new Command(this.BackClicked);
             this.MenuCommand = new Command(this.MenuClicked);
             this.ProfileImageCommand = new Command(this.ProfileImageClicked);
         }
@@ -256,11 +255,6 @@ namespace PasaBuy.App.ViewModels.Chat
         public Command MenuCommand { get; set; }
 
         /// <summary>
-        /// Gets or sets the command that is executed when the back button is clicked.
-        /// </summary>
-        public Command BackCommand { get; set; }
-
-        /// <summary>
         /// Gets the command that is executed when an item is selected.
         /// </summary>
         public Command ItemSelectedCommand
@@ -318,15 +312,6 @@ namespace PasaBuy.App.ViewModels.Chat
         private void SettingsClicked(object obj)
         {
             // Do something
-        }
-        
-        /// <summary>
-        /// Invoked when the back button is clicked.
-        /// </summary>
-        /// <param name="obj">The Object</param>
-        private void BackClicked(object obj)
-        {
-            Application.Current.MainPage = new MainPage();
         }
 
         /// <summary>

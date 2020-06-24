@@ -123,11 +123,8 @@
     <Compile Update="Views\Settings\AddressPage.xaml.cs">
       <DependentUpon>AddressPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Master\DetailPage.xaml.cs">
-      <DependentUpon>DetailPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Master\MasterPage.xaml.cs">
-      <DependentUpon>MasterPage.xaml</DependentUpon>
+    <Compile Update="Views\Menu\MasterMenu.xaml.cs">
+      <DependentUpon>MasterMenu.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Onboarding\GettingStarted.xaml.cs">
       <DependentUpon>GettingStarted.xaml</DependentUpon>
@@ -312,10 +309,7 @@
     <EmbeddedResource Update="Views\Inputs\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Master\DetailPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Master\MasterPage.xaml">
+    <EmbeddedResource Update="Views\Menu\MasterMenu.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Settings\ChangePWPage.xaml">
@@ -342,7 +336,7 @@
     <EmbeddedResource Update="Views\Onboarding\WalkthroughItem.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Master\Styles.xaml">
+    <EmbeddedResource Update="Views\Menu\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Settings\HelpPage.xaml">

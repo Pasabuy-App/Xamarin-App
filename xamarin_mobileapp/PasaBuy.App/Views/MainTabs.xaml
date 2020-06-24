@@ -6,7 +6,7 @@
              xmlns:market="clr-namespace:PasaBuy.App.Views.Market"
              xmlns:chat="clr-namespace:PasaBuy.App.Views.Chat"
              xmlns:store="clr-namespace:PasaBuy.App.Views.Marketplace"
-             xmlns:menu="clr-namespace:PasaBuy.App.Views.Master"
+             xmlns:menu="clr-namespace:PasaBuy.App.Views.Menu"
              x:Class="PasaBuy.App.Views.MainTabs">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -15,7 +15,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
     <ContentPage.Content>
         <tabView:SfTabView BackgroundColor="{DynamicResource PrimaryColor}" 
                            TabItemTapped="TabView_TabItemTapped"
@@ -41,11 +41,11 @@
                     <home:HomePage/>
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
-            
-            
-            
-            
-            
+
+
+
+
+
             <tabView:SfTabItem Title="MARKET"
                                IconFont="{StaticResource Market}"
                                FontIconFontColor="{DynamicResource Gray-200}"
@@ -99,11 +99,11 @@
                     </tabView:SfTabView>
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
-            
-            
-            
-            
-            
+
+
+
+
+
             <tabView:SfTabItem Title="STORE"
                                IconFont="{StaticResource Stores}"
                                FontIconFontColor="{DynamicResource Gray-200}"
@@ -131,30 +131,9 @@
                                TitleFontColor="{DynamicResource Gray-200}"
                                SelectionColor="{DynamicResource Gray-White}">
                 <tabView:SfTabItem.Content>
-                    <menu:MasterPage/>
+                    <menu:MasterMenu/>
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
         </tabView:SfTabView>
     </ContentPage.Content>
 </ContentPage>
-
-<!--<?xml version="1.0" encoding="utf-8" ?>
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
-            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-            xmlns:home="clr-namespace:PasaBuy.App.Views.Feeds"
-            xmlns:message="clr-namespace:PasaBuy.App.Views.Chat"
-            xmlns:option="clr-namespace:PasaBuy.App.Views.Master"
-            mc:Ignorable="d"
-            x:Class="PasaBuy.App.Views.MainTabs">
-
-    <TabbedPage.Children>
-        <home:HomePage/>
-        <ContentPage Title="MARKET" />
-        <ContentPage Title="VENDOR" />
-        <message:RecentChatPage/>
-        <option:MasterPage/>
-    </TabbedPage.Children>
-    
-</TabbedPage>-->

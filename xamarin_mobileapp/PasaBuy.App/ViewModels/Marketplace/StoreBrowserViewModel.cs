@@ -62,8 +62,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         /// <param name="selectedItem">Selected item from the list view.</param>
         private void NavigateToNextPage(object selectedItem)
         {
-            Debug.WriteLine("Bytes Crafter");
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new StoreFrontPage());
+            //Do something
         }
 
         #endregion

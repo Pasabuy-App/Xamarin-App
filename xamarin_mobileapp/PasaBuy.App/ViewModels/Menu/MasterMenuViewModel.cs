@@ -16,13 +16,13 @@ using PasaBuy.App.Views;
 using PasaBuy.App.Views.Currency;
 using PasaBuy.App.Views.Courier;
 
-namespace PasaBuy.App.ViewModels.Master
+namespace PasaBuy.App.ViewModels.Menu
 {
     /// <summary>
     /// ViewModel for burger menu expand page.
     /// </summary> 
     [Preserve(AllMembers = true)]
-    public class MasterPageViewModel : BaseViewModel
+    public class MasterMenuViewModel : BaseViewModel
     {
         #region Fields
 
@@ -39,9 +39,9 @@ namespace PasaBuy.App.ViewModels.Master
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance for the <see cref="MasterPageViewModel" /> class.
+        /// Initializes a new instance for the <see cref="MasterMenuViewModel" /> class.
         /// </summary>
-        public MasterPageViewModel()
+        public MasterMenuViewModel()
         {
             this.profileName = UserPrefs.Instance.UserInfo.dname;
             this.profileImage = UserPrefs.Instance.UserInfo.avatarUrl;

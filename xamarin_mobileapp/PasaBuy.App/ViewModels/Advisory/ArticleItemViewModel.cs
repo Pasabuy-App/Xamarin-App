@@ -174,7 +174,6 @@ namespace PasaBuy.App.ViewModels.Advisory
             };
 
             this.ShareButtonCommand = new Command(this.ShareButtonClicked);
-            this.BackButtonCommand = new Command(this.BackButtonClicked);
             this.BookmarkCommand = new Command(this.BookmarkButtonClicked);
             this.RelatedFeaturesCommand = new Command(this.RelatedFeaturesItemClicked);
             this.AddNewCommentCommand = new Command(this.CommentButtonClicked);
@@ -464,11 +463,6 @@ namespace PasaBuy.App.ViewModels.Advisory
         public Command ShareButtonCommand { get; set; }
 
         /// <summary>
-        /// Gets or sets the command is executed when the back button is clicked.
-        /// </summary>
-        public Command BackButtonCommand { get; set; }
-
-        /// <summary>
         /// Gets or sets the command is executed when the book mark button is clicked.
         /// </summary>
         public Command BookmarkCommand { get; set; }
@@ -499,15 +493,6 @@ namespace PasaBuy.App.ViewModels.Advisory
         private void ShareButtonClicked(object obj)
         {
             // Do something
-        }
-
-        /// <summary>
-        /// Invoked when the back button clicked
-        /// </summary>
-        /// <param name="obj">The object</param>
-        private void BackButtonClicked(object obj)
-        {
-            ((MainPage)App.Current.MainPage).Detail = new NavigationPage(new ArticleList());
         }
 
         /// <summary>

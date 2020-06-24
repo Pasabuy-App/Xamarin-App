@@ -18,8 +18,6 @@ namespace PasaBuy.App.ViewModels.Notification
 
         private Command<object> itemTappedCommand;
 
-        private Command<object> backCommand;
-
         private Command<object> menuCommand;
 
         #endregion
@@ -46,17 +44,6 @@ namespace PasaBuy.App.ViewModels.Notification
             get
             {
                 return this.itemTappedCommand ?? (this.itemTappedCommand = new Command<object>(this.ItemSelected));
-            }
-        }
-
-        /// <summary>
-        /// Gets the command that will be executed when back button is selected.
-        /// </summary>
-        public Command<object> BackCommand
-        {
-            get
-            {
-                return this.backCommand ?? (this.backCommand = new Command<object>(this.BackButtonClicked));
             }
         }
 
@@ -89,15 +76,6 @@ namespace PasaBuy.App.ViewModels.Notification
         {
             ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as TaskNotificationsListModel).IsRead = true;
             // Do something
-        }
-
-        /// <summary>
-        /// Invoked when back button is clicked in the task notification page.
-        /// </summary>
-        /// <param name="obj">The object.</param>
-        private void BackButtonClicked(object obj)
-        {
-            Application.Current.MainPage = new MainPage();
         }
 
         /// <summary>

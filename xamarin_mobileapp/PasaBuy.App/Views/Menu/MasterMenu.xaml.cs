@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PasaBuy.App.Views.Master
+namespace PasaBuy.App.Views.Menu
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DetailPage : ContentPage
+    public partial class MasterMenu : ContentView
     {
-        public DetailPage()
+        public MasterMenu()
         {
             InitializeComponent();
-            //Demo.Source = "https://www.facebook.com";
         }
     }
 }
