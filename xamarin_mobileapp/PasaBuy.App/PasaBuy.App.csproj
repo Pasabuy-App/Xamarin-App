@@ -111,6 +111,9 @@
     <Compile Update="Views\Marketplace\Stylex.xaml.cs">
       <DependentUpon>Stylex.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Menu\DriverMenu.xaml.cs">
+      <DependentUpon>DriverMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Onboarding\ForgotPwPage.xaml.cs">
       <DependentUpon>ForgotPwPage.xaml</DependentUpon>
     </Compile>
@@ -157,9 +160,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Backend\DriverMainDetail.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Backend\DriverMainMaster.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Currency\WalletCredit.xaml">

@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PasaBuy.App.Views.Backend
+namespace PasaBuy.App.Views.Menu
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DriverMain : MasterDetailPage
+    public partial class DriverMenu : ContentPage
     {
-        public DriverMain()
+        public DriverMenu()
         {
             InitializeComponent();
         }
