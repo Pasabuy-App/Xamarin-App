@@ -50,7 +50,7 @@ namespace PasaBuy.App.ViewModels.Menu
 
             this.DashboardCommand = new Command(this.DashboardButtonClicked);
             this.StorefrontCommand = new Command(this.StorefrontButtonClicked);
-            this.ProductsCommand = new Command(this.ProductButtonClicked);
+            this.ProductCommand = new Command(this.ProductButtonClicked);
             this.CategoryCommand = new Command(this.CategoryButtonClicked);
             this.TransactionCommand = new Command(this.TransactionButtonClicked);
             this.MessageCommand = new Command(this.MessageButtonClicked);
@@ -160,7 +160,7 @@ namespace PasaBuy.App.ViewModels.Menu
         /// <summary>
         /// Gets or sets the command that is executed when the products view is clicked.
         /// </summary>
-        public Command ProductsCommand { get; set; }
+        public Command ProductCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the command that is executed when the category view is clicked.
@@ -201,6 +201,8 @@ namespace PasaBuy.App.ViewModels.Menu
         /// <param name="obj">The object</param>
         private void DashboardButtonClicked(object obj)
         {
+            this.UpdateSelectedItemColor(obj);
+
             //Do something
         }
 
@@ -210,6 +212,8 @@ namespace PasaBuy.App.ViewModels.Menu
         /// <param name="obj">The object</param>
         private void StorefrontButtonClicked(object obj)
         {
+            this.UpdateSelectedItemColor(obj);
+
             //Do something
         }
 
@@ -219,6 +223,8 @@ namespace PasaBuy.App.ViewModels.Menu
         /// <param name="obj">The object</param>
         private void ProductButtonClicked(object obj)
         {
+            this.UpdateSelectedItemColor(obj);
+
             //Do something
         }
 
@@ -228,6 +234,8 @@ namespace PasaBuy.App.ViewModels.Menu
         /// <param name="obj">The object</param>
         private void CategoryButtonClicked(object obj)
         {
+            this.UpdateSelectedItemColor(obj);
+
             //Do something
         }
 
@@ -237,6 +245,8 @@ namespace PasaBuy.App.ViewModels.Menu
         /// <param name="obj">The object</param>
         private void TransactionButtonClicked(object obj)
         {
+            this.UpdateSelectedItemColor(obj);
+
             //Do something
         }
 
@@ -246,6 +256,8 @@ namespace PasaBuy.App.ViewModels.Menu
         /// <param name="obj">The object</param>
         private void MessageButtonClicked(object obj)
         {
+            this.UpdateSelectedItemColor(obj);
+
             //Do something
         }
 
@@ -255,6 +267,8 @@ namespace PasaBuy.App.ViewModels.Menu
         /// <param name="obj">The object</param>
         private void VoucherButtonClicked(object obj)
         {
+            this.UpdateSelectedItemColor(obj);
+
             //Do something
         }
 
@@ -264,6 +278,8 @@ namespace PasaBuy.App.ViewModels.Menu
         /// <param name="obj">The object</param>
         private void DocumentButtonClicked(object obj)
         {
+            this.UpdateSelectedItemColor(obj);
+
             //Do something
         }
 
@@ -273,7 +289,66 @@ namespace PasaBuy.App.ViewModels.Menu
         /// <param name="obj">The object</param>
         private void HomepageButtonClicked(object obj)
         {
+            this.UpdateSelectedItemColor(obj);
+
             App.Current.MainPage = new MainTabs();
+        }
+
+        public Label iconLabel = null;
+        public Label textLabel = null;
+
+        /// <summary>
+        /// Changes the selection color when an item is tapped.
+        /// </summary>
+        /// <param name="obj">The object</param>
+        private async void UpdateSelectedItemColor(object obj)
+        {
+            var grid = obj as Grid;
+            Application.Current.Resources.TryGetValue("PrimaryColor", out var primeColor);
+            Application.Current.Resources.TryGetValue("Gray-900", out var normalColor);
+            Application.Current.Resources.TryGetValue("Gray-200", out var highlight);
+            //grid.BackgroundColor = (Color)retVal;
+            if (iconLabel != null)
+            {
+                iconLabel.TextColor = (Color)normalColor;
+            }
+            if (textLabel != null)
+            {
+                textLabel.TextColor = (Color)normalColor;
+            }
+
+            var iconview = grid.Children.FirstOrDefault(v => Grid.GetRow(v) == 0 && Grid.GetColumn(v) == 0);
+            var iconTar = iconview as Label;
+            if (iconTar != null)
+            {
+                iconTar.TextColor = (Color)primeColor;
+                iconLabel = iconTar;
+            }
+
+            var textView = grid.Children.FirstOrDefault(v => Grid.GetRow(v) == 0 && Grid.GetColumn(v) == 1);
+            var textTar = textView as Label;
+            if (textTar != null)
+            {
+                textTar.TextColor = (Color)primeColor;
+                textLabel = textTar;
+            }
+
+            // Makes the selected item color change for 100 milliseconds.
+            await Task.Delay(100);
+            Color origColor = grid.BackgroundColor;
+            grid.BackgroundColor = (Color)highlight;
+            await Task.Delay(200);
+            grid.BackgroundColor = origColor;
+
+            try
+            {
+                ((StoreMain)App.Current.MainPage).HideSidebar();
+            }
+            catch (System.InvalidCastException err)
+            {
+                //Do nothing...
+            }
+
         }
         #endregion
     }
