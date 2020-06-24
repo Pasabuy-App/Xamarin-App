@@ -255,7 +255,7 @@
                                 Margin="0,14"
                                 FontFamily="{StaticResource Montserrat-SemiBold}"
                                 Style="{StaticResource ProfileLabelStyle}"
-                                Text="Use as Driver" />
+                                Text="My Drive" />
 
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding DriverCommand}" CommandParameter="{x:Reference DriverGrid}" />
@@ -285,7 +285,7 @@
                                 Margin="0,14"
                                 FontFamily="{StaticResource Montserrat-SemiBold}"
                                 Style="{StaticResource ProfileLabelStyle}"
-                                Text="Use as Store" />
+                                Text="My Store" />
 
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding StoreCommand}" CommandParameter="{x:Reference StoreGrid}" />
