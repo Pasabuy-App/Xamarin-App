@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="PasaBuy.App.Views.Courier.CourierMainPageMaster"
+             x:Class="PasaBuy.App.Views.Backend.DriverMainMaster"
              Title="Master">
   <StackLayout>
     <ListView x:Name="MenuItemsListView"

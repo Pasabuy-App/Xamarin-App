@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PasaBuy.App.Views.Courier
+namespace PasaBuy.App.Views.Backend
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CourierMainPage : MasterDetailPage
+    public partial class DriverMain : MasterDetailPage
     {
-        public CourierMainPage()
+        public DriverMain()
         {
             InitializeComponent();
             MasterPage.ListView.ItemSelected += ListView_ItemSelected;
@@ -20,7 +20,7 @@ namespace PasaBuy.App.Views.Courier
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var item = e.SelectedItem as CourierMainPageMasterMenuItem;
+            var item = e.SelectedItem as DriverMainMasterMenuItem;
             if (item == null)
                 return;
 

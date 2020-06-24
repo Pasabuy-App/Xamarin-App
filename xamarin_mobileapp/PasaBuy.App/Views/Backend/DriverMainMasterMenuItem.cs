@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PasaBuy.App.Views.Courier
+namespace PasaBuy.App.Views.Backend
 {
 
-    public class CourierMainPageMasterMenuItem
+    public class DriverMainMasterMenuItem
     {
-        public CourierMainPageMasterMenuItem()
+        public DriverMainMasterMenuItem()
         {
-            TargetType = typeof(CourierMainPageMasterMenuItem);
+            TargetType = typeof(DriverMainMasterMenuItem);
         }
         public int Id { get; set; }
         public string Title { get; set; }

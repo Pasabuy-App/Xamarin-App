@@ -4,15 +4,15 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="PasaBuy.App.Views.Courier.CourierMainPage"
-             xmlns:pages="clr-namespace:PasaBuy.App.Views.Courier">
+             x:Class="PasaBuy.App.Views.Backend.DriverMain"
+             xmlns:pages="clr-namespace:PasaBuy.App.Views.Backend">
   <MasterDetailPage.Master>
-    <pages:CourierMainPageMaster x:Name="MasterPage" />
+    <pages:DriverMainMaster x:Name="MasterPage" />
   </MasterDetailPage.Master>
   <MasterDetailPage.Detail>
     <NavigationPage>
       <x:Arguments>
-        <pages:CourierMainPageDetail />
+        <pages:DriverMainDetail />
       </x:Arguments>
     </NavigationPage>
   </MasterDetailPage.Detail>

@@ -14,7 +14,7 @@ using PasaBuy.App.Views.Advisory;
 using PasaBuy.App.Controllers;
 using PasaBuy.App.Views;
 using PasaBuy.App.Views.Currency;
-using PasaBuy.App.Views.Courier;
+using PasaBuy.App.Views.Backend;
 
 namespace PasaBuy.App.ViewModels.Menu
 {
@@ -219,7 +219,7 @@ namespace PasaBuy.App.ViewModels.Menu
         /// <param name="obj">The object</param>
         private void DriverButtonClicked(object obj)
         {
-            App.Current.MainPage = new CourierMainPage();
+            App.Current.MainPage = new DriverMain();
         }
 
         /// <summary>

@@ -10,34 +10,34 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PasaBuy.App.Views.Courier
+namespace PasaBuy.App.Views.Backend
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CourierMainPageMaster : ContentPage
+    public partial class DriverMainMaster : ContentPage
     {
         public ListView ListView;
 
-        public CourierMainPageMaster()
+        public DriverMainMaster()
         {
             InitializeComponent();
 
-            BindingContext = new CourierMainPageMasterViewModel();
+            BindingContext = new DriverMainMasterViewModel();
             ListView = MenuItemsListView;
         }
 
-        class CourierMainPageMasterViewModel : INotifyPropertyChanged
+        class DriverMainMasterViewModel : INotifyPropertyChanged
         {
-            public ObservableCollection<CourierMainPageMasterMenuItem> MenuItems { get; set; }
+            public ObservableCollection<DriverMainMasterMenuItem> MenuItems { get; set; }
 
-            public CourierMainPageMasterViewModel()
+            public DriverMainMasterViewModel()
             {
-                MenuItems = new ObservableCollection<CourierMainPageMasterMenuItem>(new[]
+                MenuItems = new ObservableCollection<DriverMainMasterMenuItem>(new[]
                 {
-                    new CourierMainPageMasterMenuItem { Id = 0, Title = "Page 1" },
-                    new CourierMainPageMasterMenuItem { Id = 1, Title = "Page 2" },
-                    new CourierMainPageMasterMenuItem { Id = 2, Title = "Page 3" },
-                    new CourierMainPageMasterMenuItem { Id = 3, Title = "Page 4" },
-                    new CourierMainPageMasterMenuItem { Id = 4, Title = "Page 5" },
+                    new DriverMainMasterMenuItem { Id = 0, Title = "Page 1" },
+                    new DriverMainMasterMenuItem { Id = 1, Title = "Page 2" },
+                    new DriverMainMasterMenuItem { Id = 2, Title = "Page 3" },
+                    new DriverMainMasterMenuItem { Id = 3, Title = "Page 4" },
+                    new DriverMainMasterMenuItem { Id = 4, Title = "Page 5" },
                 });
             }
 

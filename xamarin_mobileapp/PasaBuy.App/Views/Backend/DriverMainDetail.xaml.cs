@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PasaBuy.App.Views.Courier
+namespace PasaBuy.App.Views.Backend
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CourierMainPageDetail : ContentPage
+    public partial class DriverMainDetail : ContentPage
     {
-        public CourierMainPageDetail()
+        public DriverMainDetail()
         {
             InitializeComponent();
         }

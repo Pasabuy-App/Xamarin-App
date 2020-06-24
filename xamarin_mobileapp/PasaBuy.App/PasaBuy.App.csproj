@@ -153,13 +153,13 @@
     <EmbeddedResource Update="Views\Advisory\ArticleList.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Courier\CourierMainPage.xaml">
+    <EmbeddedResource Update="Views\Backend\DriverMain.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Courier\CourierMainPageDetail.xaml">
+    <EmbeddedResource Update="Views\Backend\DriverMainDetail.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Courier\CourierMainPageMaster.xaml">
+    <EmbeddedResource Update="Views\Backend\DriverMainMaster.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Currency\WalletCredit.xaml">
