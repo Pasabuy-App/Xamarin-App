@@ -46,24 +46,25 @@
                     VerticalOptions="FillAndExpand">
 
                     <!--  Back button command  -->
-                    <!--<buttons:SfButton x:Name="backButton"
-                        Command="{Binding BackButtonCommand}"
-                        CommandParameter="{x:Reference backButton}"
-                        CornerRadius="4"
-                        Style="{StaticResource IconButtonStyle}"
-                        Text="{StaticResource Back}" />-->
+                    <buttons:SfButton x:Name="backButton"
+                                      HeightRequest="40"
+                                      WidthRequest="40"
+                                      CornerRadius="4"
+                                      BackgroundColor="{DynamicResource Transparent}"
+                                      TextColor="{DynamicResource Transparent}"
+                                      Text="{StaticResource Back}" />
 
-                    <!--  Restaurant page Title  -->
-                    <!--<Label Margin="16,0"
+                    <!-- Restaurant page Title  -->
+                    <Label Margin="16,0"
                         HeightRequest="24"
                         FontFamily="{StaticResource Montserrat-Medium}"
                         FontSize="16"
                         HorizontalOptions="CenterAndExpand"
                         LineHeight="1.25"
-                        Text="Restaurants"
+                        Text="StoreHub"
                         TextColor="{DynamicResource Gray-900}"
                         VerticalOptions="Center"
-                        VerticalTextAlignment="Center" />-->
+                        VerticalTextAlignment="Center" />
 
                 </StackLayout>
 
