@@ -23,18 +23,18 @@
     /**
      * Activation hook.
      */
-    function usocketnet_activate() {
+    function pasabuy_activate() {
         global $wpdb;
         //echo "ACTIVATED";
     } 
-    add_action( 'activated_plugin', 'usocketnet_activate' );
+    add_action( 'activated_plugin', 'pasabuy_activate' );
 
     /**
      * Deactivation hook.
      */
-    function usocketnet_deactivate() {
+    function pasabuy_deactivate() {
         //echo "DEACTIVATED";
     }
-    register_deactivation_hook( __FILE__, 'usocketnet_deactivate' );
+    register_deactivation_hook( __FILE__, 'pasabuy_deactivate' );
 
 ?>
