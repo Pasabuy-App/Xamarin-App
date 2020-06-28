@@ -12,7 +12,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12 padding-0">
-            <object style="border:0; height: 450px; width: 100%;" data="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2298.086410870481!2d121.04569847410248!3d14.374893822043816!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x3052c84e74639775!2sOne%20Roof%20Coworking%20Space!5e0!3m2!1sen!2sph!4v1593337194124!5m2!1sen!2sph"></object>
+            <object style="border:0; height: 450px; width: 100%;" data="<?php echo getThemeField( 'uid_googlemap', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3865.69438588003!2d121.03918311631925!3d14.329176389975753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d7accf8e5839%3A0xbfdc9ef48149ab86!2sBytes%20Crafter!5e0!3m2!1sen!2sph!4v1593358808233!5m2!1sen!2sph' ); ?>"></object>
           </div>
         </div>
       </div>

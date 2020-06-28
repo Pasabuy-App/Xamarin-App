@@ -175,3 +175,27 @@
         ));
 
     } add_action('customize_register', 'uid_platform_download_customizer');
+
+    //adding setting for downloads
+    function uid_company_info_customizer($wp_customize) {
+
+        //adding section in wordpress customizer   
+        $wp_customize->add_section('company_info_section', array(
+            'title' => 'Company Info'
+        ));
+
+        //adding setting google map
+        $wp_customize->add_setting('uid_googlemap', array(
+            'default'        => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3865.69438588003!2d121.03918311631925!3d14.329176389975753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d7accf8e5839%3A0xbfdc9ef48149ab86!2sBytes%20Crafter!5e0!3m2!1sen!2sph!4v1593358808233!5m2!1sen!2sph',
+            'transport' => 'refresh',
+        )); $wp_customize->add_control('uid_googlemap', array(
+            'label'   => 'Google Map',
+            'section' => 'company_info_section',
+            'type'    => 'text',
+            'description' => __('Put Embed source here: {uid_googlemap}', 'googlemap' ),
+            'input_attrs' => array(
+                'placeholder' => __( 'https://www.google.com/maps/embed?...', 'googlemap' ),
+            )
+        ));
+
+    } add_action('customize_register', 'uid_company_info_customizer');
