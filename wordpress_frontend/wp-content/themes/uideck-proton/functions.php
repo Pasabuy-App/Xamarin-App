@@ -131,6 +131,8 @@
     }
     add_action( 'after_setup_theme', 'uideck_proton_theme_support' );
 
+    require get_template_directory() . '/classes/class-customizer.php';
+
     //Include scripts that is needed js and css.
     function uid_plugin_frontend_enqueue()
     {   

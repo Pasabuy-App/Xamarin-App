@@ -388,7 +388,7 @@ button:focus {
 }
 
 .facebook a:hover {
-  background: #4867AA;
+  background: #2d2d2d;
 }
 
 .twitter a {
@@ -396,15 +396,7 @@ button:focus {
 }
 
 .twitter a:hover {
-  background: #1DA1F2;
-}
-
-.google-plus a {
-  color: #DD4D42;
-}
-
-.google-plus a:hover {
-  background: #DD4D42;
+  background: #2d2d2d;
 }
 
 .youtube a {
@@ -412,7 +404,7 @@ button:focus {
 }
 
 .youtube a:hover {
-  background: #DF2926;
+  background: #2d2d2d;
 }
 
 .linkedin a {
@@ -420,7 +412,7 @@ button:focus {
 }
 
 .linkedin a:hover {
-  background: #007BB6;
+  background: #2d2d2d;
 }
 
 .pinterest a {
@@ -428,7 +420,7 @@ button:focus {
 }
 
 .pinterest a:hover {
-  background: #BD081C;
+  background: #2d2d2d;
 }
 
 .dribbble a {
@@ -436,7 +428,7 @@ button:focus {
 }
 
 .dribbble a:hover {
-  background: #EA4C89;
+  background: #2d2d2d;
 }
 
 .behance a {
@@ -444,7 +436,7 @@ button:focus {
 }
 
 .behance a:hover {
-  background: #0B7CFF;
+  background: #2d2d2d;
 }
 
 /* Preloader */

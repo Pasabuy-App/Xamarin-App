@@ -64,10 +64,18 @@
                 </div>              
                 <div class="float-right">  
                   <ul class="footer-social">
-                    <li><a class="facebook" href="#"><i class="lni-facebook-filled"></i></a></li>
-                    <li><a class="twitter" href="#"><i class="lni-twitter-filled"></i></a></li>
-                    <li><a class="linkedin" href="#"><i class="lni-linkedin-fill"></i></a></li>
-                    <li><a class="google-plus" href="#"><i class="lni-google-plus"></i></a></li>
+                    <?php if(!empty(getThemeField( 'uid_social_fb', '' ))) { ?>
+                      <li><a class="facebook" href="<?php echo getThemeField( 'uid_social_fb', '#' ); ?>"><i class="lni-facebook-filled"></i></a></li>
+                    <?php } ?>
+                    <?php if(!empty(getThemeField( 'uid_social_tw', '' ))) { ?>
+                      <li><a class="twitter" href="<?php echo getThemeField( 'uid_social_tw', '#' ); ?>"><i class="lni-twitter-filled"></i></a></li>
+                    <?php } ?>
+                    <?php if(!empty(getThemeField( 'uid_social_yt', '' ))) { ?>
+                      <li><a class="linkedin" href="<?php echo getThemeField( 'uid_social_yt', '#' ); ?>"><i class="lni-playstore"></i></a></li>
+                    <?php } ?>
+                    <?php if(!empty(getThemeField( 'uid_social_li', '' ))) { ?>
+                      <li><a class="google-plus" href="<?php echo getThemeField( 'uid_social_li', '#' ); ?>"><i class="lni-linkedin-fill"></i></a></li>
+                    <?php } ?>
                   </ul> 
                 </div>
               </div>
