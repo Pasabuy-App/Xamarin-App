@@ -72,11 +72,12 @@
         <div class="row space-100">
           <div class="col-lg-7 col-md-12 col-xs-12">
             <div class="contents">
-              <h2 class="head-title">Get Your App Landing Page <br> With Proton Template</h2>
-              <p>lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse unde blanditiis nostrum mollitia aliquam sed. Numquam ipsum unde repellendus similique autem non ab quibusdam enim provident distinctio! Fugit tenetur, iusto.</p>
+              <h2 class="head-title">On-demand Social Media <br> Delivery App in the South</h2>
+              <p>Become a community where honesty, integrity, quality, profitability, and on time delivery happens for the benefit of all App users. To be the leading on-demand services and E-commerce platform that exceeds all the needs of users. </p>
               <div class="header-button">
-                <a href="#" class="btn btn-border-filled">Learn More</a>
-                <a href="#" class="btn btn-border">Get Started</a>
+                <a href="#" class="btn btn-border-filled"><i class="fab fa-google-play" Style="margin-right: 10px;"> </i>PlayStore</a></a>
+                
+                <a href="#" class="btn btn-border-filled"><i class="fab fa-apple" Style="margin-right: 10px;"></i>AppStore</a></a>
               </div>
             </div>
           </div>
