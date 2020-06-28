@@ -1,27 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="keywords" content="Bootstrap, Landing page, Template, Registration, Landing">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="author" content="Grayrids">
-    <title>Proton - Bootstrap 4 Template</title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/line-icons.css">
-    <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="css/owl.theme.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/nivo-lightbox.css">
-    <link rel="stylesheet" href="css/main.css">    
-    <link rel="stylesheet" href="css/responsive.css">
-
-  </head>
-  
   <body>
 
     <!-- Header Section Start -->
@@ -29,7 +6,7 @@
       <div class="overlay"></div>
       <nav class="navbar navbar-expand-md bg-inverse fixed-top scrolling-navbar">
         <div class="container">
-          <a href="index.html" class="navbar-brand"><img src="img/logo.png" alt=""></a>  
+          <a href="index.html" class="navbar-brand"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.png" alt=""></a>  
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <i class="lni-menu"></i>
           </button>
@@ -74,7 +51,7 @@
           </div>
           <div class="col-lg-5 col-md-12 col-xs-12">
             <div class="intro-img">
-              <img src="img/intro-mobile.png" alt="">
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/intro-mobile.png" alt="">
             </div>            
           </div>
         </div> 
@@ -123,7 +100,7 @@
           </div>
           <div class="col-lg-4 col-md-12 col-xs-12">
             <div class="show-box">
-              <img src="img/features/app.png" alt="">
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/features/app.png" alt="">
             </div>
           </div>
           <div class="col-lg-4 col-md-12 col-xs-12">
@@ -184,7 +161,7 @@
         <div class="row">
           <div class="col-lg-6 col-md-12 col-sm-12">
             <div class="img-thumb wow fadeInLeft" data-wow-delay="0.3s">
-              <img class="img-fluid" src="img/features/img1.png" alt="">
+              <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/img/features/img1.png" alt="">
             </div>
           </div>
           <div class="col-lg-6 col-md-12 col-sm-12">
@@ -211,7 +188,7 @@
           </div>
            <div class="col-lg-6 col-md-12 col-sm-12">
             <div class="img-thumb wow fadeInLeft" data-wow-delay="1.2s">
-              <img class="img-fluid" src="img/features/img2.png" alt="">
+              <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/img/features/img2.png" alt="">
             </div>
           </div>
         </div>
@@ -230,32 +207,32 @@
           <div class="touch-slider owl-carousel">
             <div class="item">
               <div class="screenshot-thumb">
-                <img class="img-fluid" src="img/screenshot/img-1.png" alt="">
+                <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/img/screenshot/img-1.png" alt="">
               </div>
             </div>
             <div class="item">
               <div class="screenshot-thumb">
-                <img class="img-fluid" src="img/screenshot/img-2.png" alt="">
+                <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/img/screenshot/img-2.png" alt="">
               </div>
             </div>
             <div class="item">
               <div class="screenshot-thumb">
-                <img class="img-fluid" src="img/screenshot/img-3.png" alt="">
+                <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/img/screenshot/img-3.png" alt="">
               </div>
             </div>
             <div class="item">
               <div class="screenshot-thumb">
-                <img class="img-fluid" src="img/screenshot/img-4.png" alt="">
+                <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/img/screenshot/img-4.png" alt="">
               </div>
             </div>
             <div class="item">
               <div class="screenshot-thumb">
-                <img class="img-fluid" src="img/screenshot/img-5.png" alt="">
+                <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/img/screenshot/img-5.png" alt="">
               </div>
             </div>
             <div class="item">
               <div class="screenshot-thumb">
-                <img class="img-fluid" src="img/screenshot/img-6.png" alt="">
+                <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/img/screenshot/img-6.png" alt="">
               </div>
             </div>
           </div>
@@ -275,7 +252,7 @@
           <div class="col-lg-3 col-md-6 col-xs-12">
             <div class="single-team wow fadeInUp" data-wow-delay="0.2s">
               <div class="team-thumb">
-                <img src="img/team/team1.jpg" alt="">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/team/team1.jpg" alt="">
                 <ul class="social-list">
                   <li class="facebook"><a href="#"><i class="lni-facebook-filled"></i></a></li>
                   <li class="twitter"><a href="#"><i class="lni-twitter-filled"></i></a></li>
@@ -294,7 +271,7 @@
           <div class="col-lg-3 col-md-6 col-xs-12">
             <div class="single-team wow fadeInUp" data-wow-delay="0.3s">
               <div class="team-thumb">
-                <img src="img/team/team2.jpg" alt="">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/team/team2.jpg" alt="">
                 <ul class="social-list">
                   <li class="facebook"><a href="#"><i class="lni-facebook-filled"></i></a></li>
                   <li class="twitter"><a href="#"><i class="lni-twitter-filled"></i></a></li>
@@ -313,7 +290,7 @@
           <div class="col-lg-3 col-md-6 col-xs-12">
             <div class="single-team wow fadeInUp" data-wow-delay="0.4s">
               <div class="team-thumb">
-                <img src="img/team/team3.jpg" alt="">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/team/team3.jpg" alt="">
                 <ul class="social-list">
                   <li class="facebook"><a href="#"><i class="lni-facebook-filled"></i></a></li>
                   <li class="twitter"><a href="#"><i class="lni-twitter-filled"></i></a></li>
@@ -332,7 +309,7 @@
           <div class="col-lg-3 col-md-6 col-xs-12">
             <div class="single-team wow fadeInUp" data-wow-delay="0.5s">
               <div class="team-thumb">
-                <img src="img/team/team4.jpg" alt="">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/team/team4.jpg" alt="">
                 <ul class="social-list">
                   <li class="facebook"><a href="#"><i class="lni-facebook-filled"></i></a></li>
                   <li class="twitter"><a href="#"><i class="lni-twitter-filled"></i></a></li>
@@ -367,7 +344,7 @@
                 <div class="testimonial-item">
                   <div class="author">
                     <div class="img-thumb">
-                      <img src="img/testimonial/img1.png" alt="">
+                      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/testimonial/img1.png" alt="">
                     </div>
                   </div>
                   <div class="content-inner">
@@ -383,7 +360,7 @@
                 <div class="testimonial-item">
                   <div class="author">
                     <div class="img-thumb">
-                    <img src="img/testimonial/img2.png" alt="">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/testimonial/img2.png" alt="">
                     </div>
                   </div>
                   <div class="content-inner">
@@ -399,7 +376,7 @@
                 <div class="testimonial-item">
                   <div class="author">
                     <div class="img-thumb">
-                    <img src="img/testimonial/img3.png" alt="">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/testimonial/img3.png" alt="">
                     </div>
                   </div>
                   <div class="content-inner">
@@ -415,7 +392,7 @@
                 <div class="testimonial-item">
                   <div class="author">
                     <div class="img-thumb">
-                      <img src="img/testimonial/img2.png" alt="">
+                      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/testimonial/img2.png" alt="">
                     </div>
                   </div>
                   <div class="content-inner">
@@ -431,7 +408,7 @@
                 <div class="testimonial-item">
                   <div class="author">
                     <div class="img-thumb">
-                      <img src="img/testimonial/img1.png" alt="">
+                      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/testimonial/img1.png" alt="">
                     </div>
                   </div>
                   <div class="content-inner">
@@ -457,19 +434,19 @@
         <!-- Row and Scroller Wrapper Starts -->
         <div class="row" id="clients-scroller">
           <div class="client-item-wrapper">
-            <img src="img/clients/img1.png" alt="">
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/clients/img1.png" alt="">
           </div>
           <div class="client-item-wrapper">
-            <img src="img/clients/img2.png" alt="">
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/clients/img2.png" alt="">
           </div>
           <div class="client-item-wrapper">
-            <img src="img/clients/img3.png" alt="">
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/clients/img3.png" alt="">
           </div>
           <div class="client-item-wrapper">
-            <img src="img/clients/img4.png" alt="">
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/clients/img4.png" alt="">
           </div>
           <div class="client-item-wrapper">
-            <img src="img/clients/img5.png" alt="">
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/clients/img5.png" alt="">
           </div>
         </div>
       </div>
@@ -594,7 +571,7 @@
         <div class="row">
           <div class="col-lg-6 col-md-6 col-xs-12">            
             <div class="download-thumb wow fadeInLeft" data-wow-delay="0.2s">
-              <img class="img-fluid" src="img/mac.png" alt="">
+              <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/img/mac.png" alt="">
             </div>
           </div>
           <div class="col-lg-6 col-md-6 col-xs-12">
@@ -628,10 +605,10 @@
             <div class="blog-item-wrapper">
               <div class="blog-item-img">
                 <a href="single-post.html">
-                  <img src="img/blog/img1.jpg" alt="">
+                  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/blog/img1.jpg" alt="">
                 </a>   
                 <div class="author-img">
-                  <img src="img/blog/author.png" alt="">
+                  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/blog/author.png" alt="">
                 </div>             
               </div>
               <div class="blog-item-text"> 
@@ -650,10 +627,10 @@
             <div class="blog-item-wrapper">
               <div class="blog-item-img">
                 <a href="single-post.html">
-                  <img src="img/blog/img2.jpg" alt="">
+                  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/blog/img2.jpg" alt="">
                 </a>   
                 <div class="author-img">
-                  <img src="img/blog/author.png" alt="">
+                  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/blog/author.png" alt="">
                 </div>             
               </div>
               <div class="blog-item-text"> 
@@ -672,10 +649,10 @@
             <div class="blog-item-wrapper">
               <div class="blog-item-img">
                 <a href="single-post.html">
-                  <img src="img/blog/img3.jpg" alt="">
+                  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/blog/img3.jpg" alt="">
                 </a>   
                 <div class="author-img">
-                  <img src="img/blog/author.png" alt="">
+                  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/blog/author.png" alt="">
                 </div>             
               </div>
               <div class="blog-item-text"> 
@@ -758,109 +735,3 @@
       </div>        
     </section>
     <!-- Contact Section End -->
-
-    <!-- Footer Section Start -->
-    <footer>
-      <!-- Footer Area Start -->
-      <section class="footer-Content">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">
-              <img src="img/logo.png" alt="">
-              <div class="textwidget">
-                <p>Appropriately implement one-to-one catalysts for change vis-a-vis wireless catalysts for change. Enthusiastically architect adaptive.</p>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">
-              <div class="widget">
-                <h3 class="block-title">Create a Free Account</h3>
-                <ul class="menu">
-                  <li><a href="#">Sign In</a></li>
-                  <li><a href="#">About Us</a></li>
-                  <li><a href="#">Pricing</a></li>
-                  <li><a href="#">Jobs</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">
-              <div class="widget">
-                <h3 class="block-title">Resource</h3>
-                <ul class="menu">
-                  <li><a href="#">Comunnity</a></li>
-                  <li><a href="#">Become a Partner</a></li>
-                  <li><a href="#">Our Technology</a></li>
-                  <li><a href="#">Documentation</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">
-              <div class="widget">
-                <h3 class="block-title">Support</h3>
-                <ul class="menu">
-                  <li><a href="#">Terms & Condition</a></li>
-                  <li><a href="#">Contact Us</a></li>
-                  <li><a href="#">Privacy Policy</a></li>
-                  <li><a href="#">Help</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Copyright Start  -->
-        <div class="copyright">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="site-info float-left">
-                  <p>&copy; 2020 - Designed by <a href="http://uideck.com" rel="nofollow">UIdeck</a></p>
-                </div>              
-                <div class="float-right">  
-                  <ul class="footer-social">
-                    <li><a class="facebook" href="#"><i class="lni-facebook-filled"></i></a></li>
-                    <li><a class="twitter" href="#"><i class="lni-twitter-filled"></i></a></li>
-                    <li><a class="linkedin" href="#"><i class="lni-linkedin-fill"></i></a></li>
-                    <li><a class="google-plus" href="#"><i class="lni-google-plus"></i></a></li>
-                  </ul> 
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      <!-- Copyright End -->
-      </section>
-      <!-- Footer area End -->
-      
-    </footer>
-    <!-- Footer Section End --> 
-
-    <!-- Go To Top Link -->
-    <a href="#" class="back-to-top">
-      <i class="lni-chevron-up"></i>
-    </a> 
-
-    <!-- Preloader -->
-    <div id="preloader">
-      <div class="loader" id="loader-1"></div>
-    </div>
-    <!-- End Preloader -->
-
-    <!-- jQuery first, then Tether, then Bootstrap JS. -->
-    <script src="js/jquery-min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/owl.carousel.js"></script> 
-    <script src="js/jquery.mixitup.js"></script>       
-    <script src="js/jquery.nav.js"></script>    
-    <script src="js/scrolling-nav.js"></script>    
-    <script src="js/jquery.easing.min.js"></script>     
-    <script src="js/wow.js"></script>   
-    <script src="js/jquery.counterup.min.js"></script>     
-    <script src="js/nivo-lightbox.js"></script>     
-    <script src="js/jquery.magnific-popup.min.js"></script>     
-    <script src="js/waypoints.min.js"></script>      
-    <script src="js/form-validator.min.js"></script>
-    <script src="js/contact-form-script.js"></script>   
-    <script src="js/main.js"></script>
-    
-  </body>
-</html>
