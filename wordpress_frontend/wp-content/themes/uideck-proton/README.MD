@@ -1,6 +1,6 @@
-# PasaBuy - WordPress Theme
+# UIDECK Proton - WordPress Theme
 
-PasaBuy is design and develop for you PasaBuy App frontend website owned by PasaBuy Tech.
+UIDECK Proton is a purchased assets from UIDECK website and the sub-developer is entitled to to do some customization. In this case, we port this single web page to a WordPress theme.
 
 ## Getting Started
 
@@ -33,13 +33,13 @@ Please read [CONTRIBUTING](CONTRIBUTING) for details on our code of conduct, and
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/BytesCrafter). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/PasaBuy-Theme-WordPress/tags). 
 
 ## Authors
 
-* **Bytes Crafter** - *Initial work* - [Github](https://github.com/BytesCrafter/PasaBuy-Theme-WordPress.git)
+* **Bytes Crafter** - *Initial work* - [Github](https://github.com/PasaBuy-Theme-WordPress.git)
 
-See also the list of [contributors](https://github.com/BytesCrafter) who participated in this project.
+See also the list of [contributors](https://github.com/PasaBuy-Theme-WordPress/graphs/contributors) who participated in this project.
 
 ## License
 
@@ -48,3 +48,4 @@ This project is licensed under the GNU GPL License - see the [LICENSE](LICENSE) 
 ## Acknowledgments
 
 * WordPress.org
+* UIDeck
