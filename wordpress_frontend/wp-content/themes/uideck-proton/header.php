@@ -25,23 +25,67 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
   <head>
-    <!-- Required meta tags -->
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title><?php echo get_bloginfo( 'name' ).$page_subname; ?></title>
     <?php wp_head(); ?>
-
-    <!-- Bootstrap CSS -->
-    <!-- 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/line-icons.css">
-    <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="css/owl.theme.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/nivo-lightbox.css">
-    <link rel="stylesheet" href="css/main.css">    
-    <link rel="stylesheet" href="css/responsive.css">
-    -->
   </head>
+
+    <!-- Header Section Start -->
+    <header id="home" class="hero-area-2">    
+      <div class="overlay"></div>
+      <nav class="navbar navbar-expand-md bg-inverse fixed-top scrolling-navbar">
+        <div class="container">
+          <a href="<?php echo home_url(); ?>" class="navbar-brand"><img src="<?php getCustomLogo(); ?>" alt="" style="width: 160px;"></a>  
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="lni-menu"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto w-100 justify-content-end">
+              <li class="nav-item">
+                <a class="nav-link page-scroll" href="#home">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link page-scroll" href="#app-features">Features</a>
+              </li>  
+              <li class="nav-item">
+                <a class="nav-link page-scroll" href="#screenshots">Screenshots</a>
+              </li>                            
+              <li class="nav-item">
+                <a class="nav-link page-scroll" href="#testimonial">Testimonial</a>
+              </li> 
+              <li class="nav-item">
+                <a class="nav-link page-scroll" href="#pricing">Plans</a>
+              </li>  
+              <li class="nav-item">
+                <a class="nav-link page-scroll" href="#download">Download</a>
+              </li> 
+              <li class="nav-item">
+                <a class="nav-link page-scroll" href="#map-area">Contact</a>
+              </li> 
+            </ul>
+          </div>
+        </div>
+      </nav>  
+      <div class="container">      
+        <div class="row space-100">
+          <div class="col-lg-7 col-md-12 col-xs-12">
+            <div class="contents">
+              <h2 class="head-title">Get Your App Landing Page <br> With Proton Template</h2>
+              <p>lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse unde blanditiis nostrum mollitia aliquam sed. Numquam ipsum unde repellendus similique autem non ab quibusdam enim provident distinctio! Fugit tenetur, iusto.</p>
+              <div class="header-button">
+                <a href="#" class="btn btn-border-filled">Learn More</a>
+                <a href="#" class="btn btn-border">Get Started</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5 col-md-12 col-xs-12">
+            <div class="intro-img">
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/intro-mobile.png" alt="">
+            </div>            
+          </div>
+        </div> 
+      </div>             
+    </header>
+    <!-- Header Section End --> 

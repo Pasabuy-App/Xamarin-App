@@ -66,7 +66,7 @@
         set_post_thumbnail_size( 1200, 9999 );
 
         // Add custom image size used in Cover Template.
-        add_image_size( 'uideckproton-fullscreen', 1980, 9999 );
+        add_image_size( 'header-icon-size', 163, 50 );
 
         // Custom logo.
         $logo_width  = 120;
@@ -142,6 +142,7 @@
     }
     add_action( 'after_setup_theme', 'uideck_proton_theme_support' );
 
+    //Customizer class and functions.
     require get_template_directory() . '/classes/class-customizer.php';
 
     //Include scripts that is needed js and css.
@@ -216,6 +217,22 @@
         // wp_enqueue_script('uid-script-js', get_template_directory_uri() . '/assets/js/script.js', array(''),'script', false);
     }
     add_action( 'wp_enqueue_scripts', 'uid_plugin_frontend_enqueue' );
+
+    //Sideabr widget.
+    function uid_register_sidebars() {
+        register_sidebar(
+            array(
+                'id'            => 'primary',
+                'name'          => __( 'Primary Sidebar' ),
+                'description'   => __( 'Put all content that you want to show in this site wide sidebar.' ),
+                'before_widget' => '<div id="%1$s" class="widget %2$s">',
+                'after_widget'  => '</div>',
+                'before_title'  => '<h3 class="widget-title">',
+                'after_title'   => '</h3>',
+            )
+        );
+    }
+    add_action( 'widgets_init', 'uid_register_sidebars' );
 
     function my_filter_head() {
         // show admin bar only for admins and editors. 

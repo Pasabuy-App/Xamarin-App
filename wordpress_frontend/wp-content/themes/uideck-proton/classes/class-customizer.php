@@ -20,6 +20,20 @@
         echo $tarField;
     }
 
+    //Get custom logo of a post by id.
+    // add_image_size('featured', 370, 240, true); on function theme support.
+    function getCustomLogo() {   
+        $returningImage = get_template_directory_uri()."/assets/img/logo.png"; 
+
+        $custom_logo_id = get_theme_mod( 'custom_logo' );
+        $image = wp_get_attachment_image_src( $custom_logo_id , 'header-icon-size' );
+        if( !empty($image) ) {
+            $returningImage = $image[0];
+        }
+
+        echo $returningImage;
+    }
+
     //adding setting for Footer text
     function uid_social_link_customizer($wp_customize) {
 
