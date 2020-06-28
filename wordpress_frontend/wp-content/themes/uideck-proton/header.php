@@ -56,7 +56,7 @@
                 <a class="nav-link page-scroll" href="<?php getSingleMenuItem('#testimonial'); ?>">Testimonial</a>
               </li> 
               <li class="nav-item">
-                <a class="nav-link page-scroll" href="<?php getSingleMenuItem('#pricing'); ?>">Plans</a>
+                <a class="nav-link page-scroll" href="<?php getSingleMenuItem('#pricing'); ?>">Request</a>
               </li>  
               <li class="nav-item">
                 <a class="nav-link page-scroll" href="<?php getSingleMenuItem('#download'); ?>">Download</a>
@@ -90,5 +90,5 @@
       </div>             
     </header>
     <!-- Header Section End --> 
-    
+
   <body>
