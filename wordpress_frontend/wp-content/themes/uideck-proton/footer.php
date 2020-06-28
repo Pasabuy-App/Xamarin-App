@@ -14,9 +14,9 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.png" alt="">
+              <a href="<?php echo home_url(); ?>" class="navbar-brand"><img src="<?php getCustomLogo(); ?>" alt="" style="width: 220px;"></a>  
               <div class="textwidget">
-                <p>Appropriately implement one-to-one catalysts for change vis-a-vis wireless catalysts for change. Enthusiastically architect adaptive.</p>
+                <p>Our mission is to become a community where honesty, integrity, quality, profitability, and on time delivery happens for the benefit of all users.</p>
               </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">

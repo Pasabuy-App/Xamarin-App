@@ -70,7 +70,7 @@
           <div class="col-lg-7 col-md-12 col-xs-12">
             <div class="contents">
               <h2 class="head-title">On-demand Social Media <br> Delivery App in the South</h2>
-              <p>Become a community where honesty, integrity, quality, profitability, and on time delivery happens for the benefit of all App users. To be the leading on-demand services and E-commerce platform that exceeds all the needs of users. </p>
+              <p>Everyone can join this community as long as we benefit from each other whether you’re a seller, buyer, mover, or merchant.</p>
               <div class="header-button">
                 <a href="#" class="btn btn-border-filled"><i class="fab fa-google-play" Style="margin-right: 10px;"> </i>PlayStore</a></a>
                 

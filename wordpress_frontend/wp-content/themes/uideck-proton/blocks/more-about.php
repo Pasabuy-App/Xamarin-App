@@ -47,7 +47,7 @@
         <div class="row">
           <div class="col-lg-6 col-md-12 col-sm-12">
             <div class="img-thumb wow fadeInLeft" data-wow-delay="0.3s">
-              <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/img/features/img1.png" alt="">
+              <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/img/features/img4.png" alt="">
             </div>
           </div>
           <div class="col-lg-6 col-md-12 col-sm-12">
