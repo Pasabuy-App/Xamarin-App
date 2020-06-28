@@ -154,6 +154,12 @@
             false
         );
 
+        wp_enqueue_style('uid_fontawesome_css', 
+            get_template_directory_uri() . '/assets/css/fontawesome-all.css', 
+            array(), 
+            false
+        );
+
         wp_enqueue_style('uid_lineicons_css', 
             get_template_directory_uri() . '/assets/css/line-icons.css', 
             array(), 
