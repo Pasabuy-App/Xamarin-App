@@ -52,10 +52,8 @@
         $tarField = get_theme_mod( $key );
         if( empty($tarField) ) {
             $tarField = $default;
-        } else {
-            $tarField = $tarField;
         }
-        echo $tarField;
+        return $tarField;
     }
 
     //Get custom logo of a post by id.

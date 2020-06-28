@@ -65,16 +65,16 @@
                 <div class="float-right">  
                   <ul class="footer-social">
                     <?php if(!empty(getThemeField( 'uid_social_fb', '' ))) { ?>
-                      <li><a class="facebook" href="<?php echo getThemeField( 'uid_social_fb', '#' ); ?>"><i class="lni-facebook-filled"></i></a></li>
+                      <li><a class="facebook" href="<?php echo getThemeField( 'uid_social_fb', '#' ); ?>"><i class="fab fa-facebook-f"></i></a></li>
                     <?php } ?>
                     <?php if(!empty(getThemeField( 'uid_social_tw', '' ))) { ?>
-                      <li><a class="twitter" href="<?php echo getThemeField( 'uid_social_tw', '#' ); ?>"><i class="lni-twitter-filled"></i></a></li>
+                      <li><a class="twitter" href="<?php echo getThemeField( 'uid_social_tw', '#' ); ?>"><i class="fab fa-twitter"></i></a></li>
                     <?php } ?>
                     <?php if(!empty(getThemeField( 'uid_social_yt', '' ))) { ?>
-                      <li><a class="linkedin" href="<?php echo getThemeField( 'uid_social_yt', '#' ); ?>"><i class="lni-playstore"></i></a></li>
+                      <li><a class="youtube" href="<?php echo getThemeField( 'uid_social_yt', '#' ); ?>"><i class="fab fa-youtube"></i></a></li>
                     <?php } ?>
                     <?php if(!empty(getThemeField( 'uid_social_li', '' ))) { ?>
-                      <li><a class="google-plus" href="<?php echo getThemeField( 'uid_social_li', '#' ); ?>"><i class="lni-linkedin-fill"></i></a></li>
+                      <li><a class="linkedin" href="<?php echo getThemeField( 'uid_social_li', '#' ); ?>"><i class="fab fa-linkedin"></i></a></li>
                     <?php } ?>
                   </ul> 
                 </div>
