@@ -83,7 +83,7 @@
               </div>
               <div class="team-details">
                 <div class="team-inner">
-                  <h4 class="team-title">Glynis Lynn Belaguin</h4>
+                  <h4 class="team-title">Glynis Lynn Jamandre</h4>
                   <p>Chief Marketing Officer</p>
                 </div>
               </div>
