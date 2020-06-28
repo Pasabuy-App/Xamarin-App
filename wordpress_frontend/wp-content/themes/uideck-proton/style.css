@@ -20,6 +20,12 @@
     * WC tested up to: 5.4
 */
 
+/* 
+    THEMING
+    - GradientStart: #d6c700 
+    - GradientEnd: #dd9300 
+*/
+
 /*TABLE OF CONTENT */
 /* CORE: */
 /* ____Bootstrap */
@@ -49,7 +55,7 @@
 /* ==========================================================================
    GENERAL
    ========================================================================== */
-   
+
 body {
   font-family: 'Roboto', sans-serif;
   color: #a0a6ad;
@@ -144,10 +150,10 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-fill-color: transparent;
-  background-color: #2dfbff;
-  background-image: -webkit-linear-gradient(bottom right, #3c96ff, #2dfbff);
-  background-image: -o-linear-gradient(bottom right, #3c96ff, #2dfbff);
-  background-image: linear-gradient(to top left, #3c96ff, #2dfbff);
+  background-color: #dd9300;
+  background-image: -webkit-linear-gradient(bottom right, #d6c700, #dd9300);
+  background-image: -o-linear-gradient(bottom right, #d6c700, #dd9300);
+  background-image: linear-gradient(to top left, #d6c700, #dd9300);
   position: relative;
 }
 
@@ -178,9 +184,9 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
 }
 
 .btn-common {
-  background-image: -moz-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
-  background-image: -webkit-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
-  background-image: -ms-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
+  background-image: -moz-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
+  background-image: -webkit-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
+  background-image: -ms-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
   position: relative;
   z-index: 1;
 }
@@ -270,9 +276,9 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
 
 .btn-apple {
   border-width: 2px;
-  border-color: #3c96ff;
+  border-color: #d6c700;
   border-style: solid;
-  background: linear-gradient(to right, #3c96ff 0%, #2dfbff 100%);
+  background: linear-gradient(to right, #d6c700 0%, #dd9300 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: all 0.3s ease-in-out;
@@ -282,7 +288,7 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
 }
 
 .btn-apple i {
-  background: linear-gradient(to right, #3c96ff 0%, #2dfbff 100%);
+  background: linear-gradient(to right, #d6c700 0%, #dd9300 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -290,7 +296,7 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
 .btn-apple:hover,
 .btn-apple:active,
 .btn-apple:focus {
-  background: linear-gradient(to right, #3c96ff 0%, #2dfbff 100%) !important;
+  background: linear-gradient(to right, #d6c700 0%, #dd9300 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
@@ -516,7 +522,7 @@ button:focus {
 }
 
 .back-to-top i {
-  background: linear-gradient(to right, #3c96ff 0%, #2dfbff 100%);
+  background: linear-gradient(to right, #d6c700 0%, #dd9300 100%);
   -webkit-background-clip: text;
   font-size: 20px;
   -webkit-transition: all 0.3s ease-in-out;
@@ -534,8 +540,8 @@ button:focus {
 }
 
 .menu-bg {
-  background: -webkit-linear-gradient(left, #3c96ff 0%, #2dfbff 100%) !important;
-  background: linear-gradient(to right, #3c96ff 0%, #2dfbff 100%) !important;
+  background: -webkit-linear-gradient(left, #d6c700 0%, #dd9300 100%) !important;
+  background: linear-gradient(to right, #d6c700 0%, #dd9300 100%) !important;
   box-shadow: 0 0 7px 1px rgba(0, 0, 0, 0.1);
   z-index: 9999;
   padding: 5px;
@@ -632,7 +638,7 @@ button:focus {
    Hero Area
    ========================================================================== */
 .hero-area {
-  background: #3c96ff;
+  background: #d6c700;
   background-size: cover;
   color: #fff;
   overflow: hidden;
@@ -645,9 +651,9 @@ button:focus {
   height: 100%;
   top: 0px;
   left: 0px;
-  background-image: -moz-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
-  background-image: -webkit-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
-  background-image: -ms-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
+  background-image: -moz-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
+  background-image: -webkit-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
+  background-image: -ms-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
 }
 
 .hero-area .contents {
@@ -704,9 +710,9 @@ button:focus {
   height: 100%;
   top: 0px;
   left: 0px;
-  background-image: -moz-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
-  background-image: -webkit-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
-  background-image: -ms-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
+  background-image: -moz-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
+  background-image: -webkit-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
+  background-image: -ms-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
 }
 
 .hero-area-2 .contents {
@@ -843,9 +849,9 @@ button:focus {
    Video promo Style
    ========================================================================== */
 .video-promo {
-  background-image: -moz-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
-  background-image: -webkit-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
-  background-image: -ms-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
+  background-image: -moz-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
+  background-image: -webkit-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
+  background-image: -ms-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
 }
 
 .video-promo .video-promo-content {
@@ -947,7 +953,7 @@ button:focus {
 .services-item .icon i {
   font-size: 42px;
   line-height: 60px;
-  background: linear-gradient(to right, #3c96ff 0%, #2dfbff 100%);
+  background: linear-gradient(to right, #d6c700 0%, #dd9300 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: all 0.3s ease-in-out;
@@ -982,7 +988,7 @@ button:focus {
 
 .single-feature i {
   font-size: 42px;
-  background: linear-gradient(to right, #3c96ff 0%, #2dfbff 100%);
+  background: linear-gradient(to right, #d6c700 0%, #dd9300 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
@@ -1070,9 +1076,9 @@ button:focus {
 
 #features .nav-tabs .nav-item.show .nav-link i,
 #features .nav-tabs .nav-link.active i {
-  background: -webkit-linear-gradient(left, #3c96ff 0%, #2dfbff 100%);
-  background: -o-linear-gradient(left, #3c96ff 0%, #2dfbff 100%);
-  background: linear-gradient(to right, #3c96ff 0%, #2dfbff 100%);
+  background: -webkit-linear-gradient(left, #d6c700 0%, #dd9300 100%);
+  background: -o-linear-gradient(left, #d6c700 0%, #dd9300 100%);
+  background: linear-gradient(to right, #d6c700 0%, #dd9300 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -1154,9 +1160,9 @@ button:focus {
   border-radius: 50px;
   text-align: center;
   position: relative;
-  background-image: -moz-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
-  background-image: -webkit-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
-  background-image: -ms-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
+  background-image: -moz-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
+  background-image: -webkit-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
+  background-image: -ms-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
   z-index: 1;
   -webkit-transition: all 0.2s linear;
   -moz-transition: all 0.2s linear;
@@ -1230,9 +1236,9 @@ button:focus {
   width: 40px;
   height: 40px;
   display: block !important;
-  background-image: -moz-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%) !important;
-  background-image: -webkit-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%) !important;
-  background-image: -ms-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%) !important;
+  background-image: -moz-linear-gradient(0deg, #d6c700 0%, #dd9300 100%) !important;
+  background-image: -webkit-linear-gradient(0deg, #d6c700 0%, #dd9300 100%) !important;
+  background-image: -ms-linear-gradient(0deg, #d6c700 0%, #dd9300 100%) !important;
   text-align: center;
   display: inline-block;
   opacity: 1 !important;
@@ -1312,9 +1318,9 @@ button:focus {
 
 .single-team .social-list {
   position: absolute;
-  background-image: -moz-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
-  background-image: -webkit-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
-  background-image: -ms-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
+  background-image: -moz-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
+  background-image: -webkit-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
+  background-image: -ms-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
   border-top-right-radius: 30px;
   bottom: 0;
   left: -40px;
@@ -1514,9 +1520,9 @@ button:focus {
   -moz-transition: background-image 0.3s  ease-out;
   -o-transition: background-image 0.3s  ease-out;
   transition: background-image 0.3s  ease-out;
-  background-image: -moz-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
-  background-image: -webkit-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
-  background-image: -ms-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
+  background-image: -moz-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
+  background-image: -webkit-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
+  background-image: -ms-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
   box-shadow: 0px 0px 43px 0px rgba(131, 131, 131, 0.38);
 }
 
@@ -1583,9 +1589,9 @@ button:focus {
 
 .controls a:hover,
 .controls .active {
-  background-image: -moz-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
-  background-image: -webkit-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
-  background-image: -ms-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
+  background-image: -moz-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
+  background-image: -webkit-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
+  background-image: -ms-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
   color: #fff !important;
 }
 
@@ -1686,9 +1692,9 @@ button:focus {
   height: 100%;
   top: 0px;
   left: 0px;
-  background-image: -moz-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
-  background-image: -webkit-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
-  background-image: -ms-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
+  background-image: -moz-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
+  background-image: -webkit-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
+  background-image: -ms-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
   opacity: 0.6;
 }
 
@@ -2006,9 +2012,9 @@ textarea {
   Subscribe Style
   ========================================================================== */
 #subscribe {
-  background-image: -moz-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
-  background-image: -webkit-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
-  background-image: -ms-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
+  background-image: -moz-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
+  background-image: -webkit-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
+  background-image: -ms-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
   position: relative;
 }
 
@@ -2067,7 +2073,7 @@ textarea {
   width: 156px;
   font-weight: 600;
   background: #fff;
-  color: #3c96ff;
+  color: #d6c700;
   height: 52px;
   text-align: center;
   position: absolute;
@@ -2162,9 +2168,9 @@ textarea {
 }
 
 footer .footer-Content {
-  background-image: -moz-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
-  background-image: -webkit-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
-  background-image: -ms-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
+  background-image: -moz-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
+  background-image: -webkit-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
+  background-image: -ms-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
   padding: 60px 0 0px;
   color: #546E7A;
 }
@@ -2335,9 +2341,9 @@ footer .menu li a:hover {
 }
 
 #counter .bg-color-1 {
-  background-image: -moz-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
-  background-image: -webkit-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
-  background-image: -ms-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
+  background-image: -moz-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
+  background-image: -webkit-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
+  background-image: -ms-linear-gradient(-70deg, #d6c700 0%, #dd9300 100%);
 }
 
 #counter .bg-color-2 {
