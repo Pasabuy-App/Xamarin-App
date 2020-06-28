@@ -20,9 +20,8 @@
               <div class="team-thumb">
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/img/team/team1.jpg" alt="">
                 <ul class="social-list">
-                  <li class="facebook"><a href="#"><i class="lni-facebook-filled"></i></a></li>
+                  <li class="facebook"><a href="https://www.facebook.com/josephronald.calara"><i class="lni-facebook-filled"></i></a></li>
                   <li class="twitter"><a href="#"><i class="lni-twitter-filled"></i></a></li>
-                  <li class="google-plus"><a href="#"><i class="lni-google-plus"></i></a></li>
                   <li class="linkedin"><a href="#"><i class="lni-linkedin-fill"></i></a></li>
                 </ul>
               </div>
@@ -39,9 +38,8 @@
               <div class="team-thumb">
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/img/team/team2.jpg" alt="">
                 <ul class="social-list">
-                  <li class="facebook"><a href="#"><i class="lni-facebook-filled"></i></a></li>
+                  <li class="facebook"><a href="https://www.facebook.com/mibelaguin"><i class="lni-facebook-filled"></i></a></li>
                   <li class="twitter"><a href="#"><i class="lni-twitter-filled"></i></a></li>
-                  <li class="google-plus"><a href="#"><i class="lni-google-plus"></i></a></li>
                   <li class="linkedin"><a href="#"><i class="lni-linkedin-fill"></i></a></li>
                 </ul>
               </div>
@@ -58,9 +56,9 @@
               <div class="team-thumb">
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/img/team/team3.jpg" alt="">
                 <ul class="social-list">
-                  <li class="facebook"><a href="#"><i class="lni-facebook-filled"></i></a></li>
-                  <li class="twitter"><a href="#"><i class="lni-twitter-filled"></i></a></li>
-                  <li class="linkedin"><a href="#"><i class="lni-linkedin-fill"></i></a></li>
+                  <li class="facebook"><a href="https://www.facebook.com/CaezarVibalDeCastroII"><i class="lni-facebook-filled"></i></a></li>
+                  <li class="twitter"><a href="https://twitter.com/CaezarJepoy"><i class="lni-twitter-filled"></i></a></li>
+                  <li class="linkedin"><a href="https://www.linkedin.com/in/caezar-ii-de-castro-302945140/"><i class="lni-linkedin-fill"></i></a></li>
                 </ul>
               </div>
               <div class="team-details">
@@ -71,10 +69,10 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-6 col-xs-12">
+          <!-- <div class="col-lg-4 col-md-6 col-xs-12">
             <div class="single-team wow fadeInUp" data-wow-delay="0.5s">
               <div class="team-thumb">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/team/team4.jpg" alt="">
+                <img src="<?php //echo get_template_directory_uri(); ?>/assets/img/team/team4.jpg" alt="">
                 <ul class="social-list">
                   <li class="facebook"><a href="#"><i class="lni-facebook-filled"></i></a></li>
                   <li class="twitter"><a href="#"><i class="lni-twitter-filled"></i></a></li>
@@ -92,7 +90,7 @@
           <div class="col-lg-4 col-md-6 col-xs-12">
             <div class="single-team wow fadeInUp" data-wow-delay="0.5s">
               <div class="team-thumb">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/team/team4.jpg" alt="">
+                <img src="<?php //echo get_template_directory_uri(); ?>/assets/img/team/team4.jpg" alt="">
                 <ul class="social-list">
                   <li class="facebook"><a href="#"><i class="lni-facebook-filled"></i></a></li>
                   <li class="twitter"><a href="#"><i class="lni-twitter-filled"></i></a></li>
@@ -110,7 +108,7 @@
           <div class="col-lg-4 col-md-6 col-xs-12">
             <div class="single-team wow fadeInUp" data-wow-delay="0.5s">
               <div class="team-thumb">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/team/team4.jpg" alt="">
+                <img src="<?php //echo get_template_directory_uri(); ?>/assets/img/team/team4.jpg" alt="">
                 <ul class="social-list">
                   <li class="facebook"><a href="#"><i class="lni-facebook-filled"></i></a></li>
                   <li class="twitter"><a href="#"><i class="lni-twitter-filled"></i></a></li>
@@ -124,7 +122,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
