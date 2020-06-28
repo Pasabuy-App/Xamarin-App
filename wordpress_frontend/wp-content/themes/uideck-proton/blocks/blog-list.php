@@ -23,8 +23,8 @@
                   <h4>Join our growing Community of Users</h4>
                   <p>We make sure that our availability on all the platforms available on the market is supported. Aside from this two major medium for our app, we are still looking for a potential platforms to have our application deployed.</p>
                 </div>
-                <a href="#" class="btn btn-common btn-effect"><i class="lni-android"></i> PlayStore<br></a>
-                <a href="#" class="btn btn-common btn-effect"><i class="lni-apple"></i> AppStore<br></a>
+                <a target="_blank"  href="<?php echo getThemeField( 'uid_download_playstore', '#' ); ?>" class="btn btn-common btn-effect"><i class="lni-android"></i> PlayStore<br></a>
+                <a target="_blank"  href="<?php echo getThemeField( 'uid_download_appstore', '#' ); ?>" class="btn btn-common btn-effect"><i class="lni-apple"></i> AppStore<br></a>
               </div>
             </div>
           </div>

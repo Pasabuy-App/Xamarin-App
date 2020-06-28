@@ -138,3 +138,40 @@
 
     } add_action('customize_register', 'uid_social_link_customizer');
 
+    //adding setting for downloads
+    function uid_platform_download_customizer($wp_customize) {
+
+        //adding section in wordpress customizer   
+        $wp_customize->add_section('download_links_section', array(
+            'title' => 'Download Links'
+        ));
+
+        //adding setting playstore
+        $wp_customize->add_setting('uid_download_playstore', array(
+            'default'        => 'https://play.google.com/store/apps/',
+            'transport' => 'refresh',
+        )); $wp_customize->add_control('uid_download_playstore', array(
+            'label'   => 'Google Play',
+            'section' => 'download_links_section',
+            'type'    => 'text',
+            'description' => __('Put Developer page url here: {uid_download_playstore}', 'playstore' ),
+            'input_attrs' => array(
+                'placeholder' => __( 'https://play.google.com/store/apps/DeveloperName', 'playstore' ),
+            )
+        ));
+
+        //adding setting appstore
+        $wp_customize->add_setting('uid_download_appstore', array(
+            'default'        => 'https://www.apple.com/ph/ios/app-store/',
+            'transport' => 'refresh',
+        )); $wp_customize->add_control('uid_download_appstore', array(
+            'label'   => 'Apple Store',
+            'section' => 'download_links_section',
+            'type'    => 'text',
+            'description' => __('Put Developer page url here: {uid_download_appstore}', 'appstore' ),
+            'input_attrs' => array(
+                'placeholder' => __( 'https://www.apple.com/ph/ios/app-store/DeveloperName', 'appstore' ),
+            )
+        ));
+
+    } add_action('customize_register', 'uid_platform_download_customizer');

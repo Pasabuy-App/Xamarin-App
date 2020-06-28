@@ -72,9 +72,8 @@
               <h2 class="head-title">On-demand Social Media <br> Delivery App in the South</h2>
               <p>Everyone can join this community as long as we benefit from each other whether you’re a seller, buyer, mover, or merchant.</p>
               <div class="header-button">
-                <a href="#" class="btn btn-border-filled"><i class="fab fa-google-play" Style="margin-right: 10px;"> </i>PlayStore</a></a>
-                
-                <a href="#" class="btn btn-border-filled"><i class="fab fa-apple" Style="margin-right: 10px;"></i>AppStore</a></a>
+                <a target="_blank" href="<?php echo getThemeField( 'uid_download_playstore', '#' ); ?>" class="btn btn-border-filled"><i class="fab fa-google-play" Style="margin-right: 10px;"> </i>PlayStore</a></a>
+                <a target="_blank" href="<?php echo getThemeField( 'uid_download_appstore', '#' ); ?>" class="btn btn-border-filled"><i class="fab fa-apple" Style="margin-right: 10px;"></i>AppStore</a></a>
               </div>
             </div>
           </div>
