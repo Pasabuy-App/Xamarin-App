@@ -1,3 +1,12 @@
+<?php
+	/**
+	 * UIDECK Proton blocks for video demo.
+	 *
+	 * @package uideck-proton
+	 * @since 0.1.0
+	 */
+?>
+    
     <!-- Start Video promo Section -->
     <section class="video-promo section">
       <div class="overlay"></div>

@@ -15,5 +15,6 @@
     <?php  include_once( "blocks/features.php" ); ?>
     <?php  include_once( "blocks/video-demo.php" ); ?>
     <?php  include_once( "assets/app.php" ); ?>
+    <?php  include_once( "blocks/map-contact.php" ); ?>
 
 <?php get_footer(); ?>
