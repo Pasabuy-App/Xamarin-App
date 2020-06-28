@@ -14,7 +14,8 @@
 
     <?php  include_once( "blocks/features.php" ); ?>
     <?php  include_once( "blocks/video-demo.php" ); ?>
-    <?php  include_once( "assets/app.php" ); ?>
+    <?php  include_once( "blocks/more-about.php" ); ?>
+    <?php  include_once( "blocks/screenshot.php" ); ?>
     <?php  include_once( "blocks/our-team.php" ); ?>
     <?php  include_once( "blocks/subscribe.php" ); ?>
     <?php  include_once( "blocks/pricing.php" ); ?>
