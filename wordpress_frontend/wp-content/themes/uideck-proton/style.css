@@ -2400,3 +2400,7 @@ footer .menu li a:hover {
   height: 245px;
   margin-bottom: 50px;
 }
+
+.widget {
+  padding-left: 25px;
+}

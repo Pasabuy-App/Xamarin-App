@@ -13,7 +13,7 @@
       <section class="footer-Content">
         <div class="container">
           <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12 widget">
               <a href="<?php echo home_url(); ?>" class="navbar-brand"><img src="<?php getCustomLogo(); ?>" alt="" style="width: 220px;"></a>  
               <div class="textwidget">
                 <p>Our mission is to become a community where honesty, integrity, quality, profitability, and on time delivery happens for the benefit of all users.</p>
@@ -21,12 +21,12 @@
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">
               <div class="widget">
-                <h3 class="block-title">Create a Free Account</h3>
+                <h3 class="block-title">Company</h3>
                 <ul class="menu">
-                  <li><a href="#">Sign In</a></li>
-                  <li><a href="#">About Us</a></li>
-                  <li><a href="#">Pricing</a></li>
-                  <li><a href="#">Jobs</a></li>
+                  <li><a href="<?php echo home_url() . "/about-us"; ?>">About Us</a></li>
+                  <li><a href="<?php echo home_url() . "/contacts"; ?>">Contacts</a></li>
+                  <li><a href="<?php echo home_url() . "/our-team"; ?>">Our Team</a></li>
+                  <li><a href="<?php echo home_url() . "/career"; ?>">Career</a></li>
                 </ul>
               </div>
             </div>
@@ -34,10 +34,10 @@
               <div class="widget">
                 <h3 class="block-title">Resource</h3>
                 <ul class="menu">
-                  <li><a href="#">Comunnity</a></li>
-                  <li><a href="#">Become a Partner</a></li>
-                  <li><a href="#">Our Technology</a></li>
-                  <li><a href="#">Documentation</a></li>
+                  <li><a href="<?php echo home_url() . "/become-a-partner"; ?>">Become a Partner</a></li>
+                  <li><a href="<?php echo home_url() . "/documentation"; ?>">Documentation</a></li>
+                  <li><a href="<?php echo home_url() . "/community"; ?>">Comunnity</a></li>
+                  <li><a href="<?php echo home_url() . "/advisory"; ?>">Advisory</a></li>
                 </ul>
               </div>
             </div>
@@ -45,10 +45,10 @@
               <div class="widget">
                 <h3 class="block-title">Support</h3>
                 <ul class="menu">
-                  <li><a href="#">Terms & Condition</a></li>
-                  <li><a href="#">Contact Us</a></li>
-                  <li><a href="#">Privacy Policy</a></li>
-                  <li><a href="#">Help</a></li>
+                  <li><a href="<?php echo home_url() . "/terms-and-conditions"; ?>">Terms & Condition</a></li>
+                  <li><a href="<?php echo home_url() . "/privacy-policy"; ?>">Privacy Policy</a></li>
+                  <li><a href="<?php echo home_url() . "/help-center"; ?>">Help Center</a></li>
+                  <li><a href="<?php echo home_url() . "/frequently-asked-questions"; ?>">FAQs</a></li>
                 </ul>
               </div>
             </div>
