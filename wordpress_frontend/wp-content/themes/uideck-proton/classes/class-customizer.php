@@ -9,13 +9,22 @@
 
 <?php
 
+    //Return a string of home url, if not exist use default.
+    function getSingleMenuItem($redirect) {
+        $tarField = $redirect;
+        if( !is_front_page() ) {
+            $tarField = home_url() . "/" . $redirect;
+        }
+        echo $tarField;
+    }
+
     //Return a string of theme mod, if not exist use default.
     function getThemeField($key, $default) {
         $tarField = get_theme_mod( $key );
         if( empty($tarField) ) {
-            return $default;
+            $tarField = $default;
         } else {
-            return $tarField;
+            $tarField = $tarField;
         }
         echo $tarField;
     }

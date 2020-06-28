@@ -44,25 +44,25 @@
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto w-100 justify-content-end">
               <li class="nav-item">
-                <a class="nav-link page-scroll" href="#home">Home</a>
+                <a class="nav-link page-scroll" href="<?php getSingleMenuItem('#home'); ?>">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link page-scroll" href="#app-features">Features</a>
+                <a class="nav-link page-scroll" href="<?php getSingleMenuItem('#app-features'); ?>">Features</a>
               </li>  
               <li class="nav-item">
-                <a class="nav-link page-scroll" href="#screenshots">Screenshots</a>
+                <a class="nav-link page-scroll" href="<?php getSingleMenuItem('#screenshots'); ?>">Screenshots</a>
               </li>                            
               <li class="nav-item">
-                <a class="nav-link page-scroll" href="#testimonial">Testimonial</a>
+                <a class="nav-link page-scroll" href="<?php getSingleMenuItem('#testimonial'); ?>">Testimonial</a>
               </li> 
               <li class="nav-item">
-                <a class="nav-link page-scroll" href="#pricing">Plans</a>
+                <a class="nav-link page-scroll" href="<?php getSingleMenuItem('#pricing'); ?>">Plans</a>
               </li>  
               <li class="nav-item">
-                <a class="nav-link page-scroll" href="#download">Download</a>
+                <a class="nav-link page-scroll" href="<?php getSingleMenuItem('#download'); ?>">Download</a>
               </li> 
               <li class="nav-item">
-                <a class="nav-link page-scroll" href="#map-area">Contact</a>
+                <a class="nav-link page-scroll" href="<?php getSingleMenuItem('#map-area'); ?>">Contact</a>
               </li> 
             </ul>
           </div>
