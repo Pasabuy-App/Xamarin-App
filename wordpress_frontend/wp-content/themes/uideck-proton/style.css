@@ -821,7 +821,7 @@ button:focus {
    ========================================================================== */
 #download {
   background: #f6fbfd;
-  padding: 80px 0 0px;
+  padding: 80px 0px;
 }
 
 #download .download-wrapper {
@@ -835,6 +835,8 @@ button:focus {
 #download .btn {
   margin: 20px 20px 0px 0px;
   text-align: left;
+  height: 50px;
+  font-size: 18px;
 }
 
 /* ==========================================================================
@@ -1872,12 +1874,13 @@ button:focus {
 
 #blog .blog-item-img .author-img {
   position: absolute;
-  bottom: -30px;
+  bottom: -10px;
   right: 30px;
+  width: 75px;
 }
 
 #blog .blog-item-text {
-  padding: 60px 20px 30px;
+  padding: 30px 20px 30px;
 }
 
 #blog .blog-item-text h3 {
@@ -1892,7 +1895,7 @@ button:focus {
 }
 
 #blog .blog-item-text h3 a:hover {
-  color: #3c9cfd;
+  color: #dd9300;
 }
 
 #blog .author .name a {
@@ -1902,7 +1905,7 @@ button:focus {
 }
 
 #blog .author .name a:hover {
-  color: #3c9cfd;
+  color: #dd9300;
 }
 
 #blog .author .date {

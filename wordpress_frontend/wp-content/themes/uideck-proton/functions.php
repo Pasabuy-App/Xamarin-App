@@ -68,6 +68,12 @@
         // Add custom image size used in Cover Template.
         add_image_size( 'header-icon-size', 163, 50 );
 
+        // Add custom image size used in Blog list blocks.
+        add_image_size( 'blog-list-thumbnail', 360, 230 );
+
+        // Add custom image size used in avatar display.
+        add_image_size( 'user-avatar-size', 120, 120 );
+
         // Custom logo.
         $logo_width  = 120;
         $logo_height = 90;
