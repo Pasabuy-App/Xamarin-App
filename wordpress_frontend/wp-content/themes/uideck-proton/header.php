@@ -51,10 +51,7 @@
               </li>  
               <li class="nav-item">
                 <a class="nav-link page-scroll" href="<?php getSingleMenuItem('#screenshots'); ?>">Screenshots</a>
-              </li>                            
-              <li class="nav-item">
-                <a class="nav-link page-scroll" href="<?php getSingleMenuItem('#testimonial'); ?>">Testimonial</a>
-              </li> 
+              </li>
               <li class="nav-item">
                 <a class="nav-link page-scroll" href="<?php getSingleMenuItem('#pricing'); ?>">Request</a>
               </li>  
