@@ -60,7 +60,7 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="site-info float-left">
-                  <p>Copyright &copy; 2020 - Powered by <a href="http://bytescrafter.net" rel="nofollow">Bytes Crafter</a></p>
+                  <p>Copyright &copy; 2020 - <a href="http://bytescrafter.net" rel="nofollow">Bytes Crafter</a></p>
                 </div>              
                 <div class="float-right">  
                   <ul class="footer-social">
