@@ -1,0 +1,4 @@
+﻿Nowadays, people are trying to take advantage of the technology to either buy or sell anything. The problem is, sometimes the current application is not design to the current activity of the users.
+Knowing that a lot of the Filipino lost their jobs this year, we decided to build this application from scratch, to provide Filipino with daily source of income, just by becoming a logistic partner or online seller.
+We wish to support businesses from big to small, importantly this time of pandemic, and that is why we encourage business owners to join, and harness the potential of this application.
+Everyone can join this community whether you’re a customer, online seller, logistic partner, or a merchant. Our primary goal is to be the specific platform our merchant and seller to riders or customers.
