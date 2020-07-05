@@ -1,0 +1,27 @@
+Report created: 
+	05/07/2020	10:44:14 AM
+
+Project name: Intro.aep
+
+Source files collected to: 
+	C:\Users\bytes\Videos\PasaBuy.App Intro\Intro folder
+
+Source files collected: For all comps
+
+Collected comps:  
+	Intro
+	
+Number of collected files:  1
+
+Size of collected files:  97 KB
+
+Collected source files: 
+	C:\xampp\apache\vhost\pasabuy.dev\assets\Animations\Image\Logo-PasaBuy.png
+	
+Rendering plug-ins:
+	Classic 3D
+	
+Layer:  Text Layer
+	External dependencies:  
+		Font family: “Haettenschweiler”, Font style: “Regular”
+
