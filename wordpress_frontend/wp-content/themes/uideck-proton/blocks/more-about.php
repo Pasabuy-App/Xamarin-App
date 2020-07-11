@@ -27,7 +27,7 @@
             </div>
           </div>
         </div>
-        <div class="row mt">
+        <div class="row mt-50">
           <div class="col-lg-6 col-md-12 col-sm-12">
             <div class="text-wrapper wow fadeInRight" data-wow-delay="0.9s">
               <div>

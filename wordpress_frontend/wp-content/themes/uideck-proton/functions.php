@@ -151,6 +151,9 @@
     //Customizer class and functions.
     require get_template_directory() . '/classes/class-customizer.php';
 
+    //Walker Comment class and functions.
+    require get_template_directory() . '/classes/class-walker-comment.php';
+
     //Include scripts that is needed js and css.
     function uid_plugin_frontend_enqueue()
     {   

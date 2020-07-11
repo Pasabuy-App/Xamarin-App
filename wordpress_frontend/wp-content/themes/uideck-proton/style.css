@@ -58,7 +58,7 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  color: #a0a6ad;
+  color: #5d5d5d;;
   font-size: 14px;
   font-weight: 400;
   background: #fff;
@@ -71,7 +71,7 @@ html {
 
 p {
   font-size: 14px;
-  color: #a0a6ad;
+  color: #5d5d5d;
   line-height: 26px;
   font-family: 'Roboto', sans-serif;
   margin-bottom: 0;
@@ -91,18 +91,32 @@ a {
 
 h1, h2, h3, h4, h5 {
   font-family: 'Poppins', sans-serif;
-  font-size: 40px;
   font-weight: 700;
   color: #191c1e;
 }
 
-ul {
-  margin: 0;
-  padding: 0;
+h1 {
+  font-size: 40px;
 }
 
-ul li {
-  list-style: none;
+h2 {
+  font-size: 35px;
+}
+
+h3 {
+  font-size: 30px;
+}
+
+h4 {
+  font-size: 25px;
+}
+
+h5 {
+  font-size: 20px;
+}
+
+h6 {
+  font-size: 15px;
 }
 
 a:hover,
@@ -328,16 +342,40 @@ button:focus {
   clear: both;
 }
 
-.mt {
-  margin-top: 80px;
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mt-20 {
+  margin-top: 20px;
 }
 
 .mt-30 {
   margin-top: 30px;
 }
 
+.mt-40 {
+  margin-top: 40px;
+}
+
+.mt-50 {
+  margin-top: 50px;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
 .mb-30 {
   margin-bottom: 30px;
+}
+
+.mb-40 {
+  margin-bottom: 40px;
 }
 
 .mb-50 {
@@ -2294,8 +2332,9 @@ footer .menu li a:hover {
 
 /* ==========================================================================
  Counter Section Style
- ========================================================================== */
-#counter {
+========================================================================== */
+
+ #counter {
   background: url(../img/bg/bg-counter.png) right no-repeat;
   position: relative;
   padding-bottom: 50px !important;
@@ -2403,4 +2442,68 @@ footer .menu li a:hover {
 
 .widget {
   padding-left: 25px;
+}
+
+.single-content .widget ul {
+  list-style: initial;
+  padding-left: 15px;
+}
+
+.single-content .widget ul li {
+  display: list-item;
+}
+
+/* ==========================================================================
+  Singular.php
+========================================================================== */
+
+.singular-content {
+  margin: 40px 0;
+}
+
+.singular-sidebar {
+  margin: 40px 0;
+}
+
+.singular-content blockquote{
+  text-align: center;
+  margin: 20px;
+  font-family: Arial,Helvetica,Helvetica,sans-serif;
+  font-size: 20px;
+}
+
+.singular-content blockquote p {
+  padding: 20px 0;
+  font-family: Arial,Helvetica,Helvetica,sans-serif;
+  font-size: 20px;
+}
+
+.singular-content p {
+  margin: 12px 0;
+}
+
+/* ==========================================================================
+  Comments and Reply Section
+========================================================================== */
+
+.comment-section {
+  margin-bottom: 40px;
+}
+
+.comment-form {
+  padding: 0 15px;
+}
+
+.comment-reply-title {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.comment-textfield {
+  padding: 10px;
+  width: -webkit-fill-available;
+}
+
+.comment-submit {
+  margin: 20px;
 }
