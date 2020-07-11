@@ -12,6 +12,64 @@
     <x:String x:Key="Settings">&#xe72b;</x:String>
     <x:String x:Key="Back">&#xe709;</x:String>
 
+
+
+
+    
+
+    <!-- PostAuthor -->
+    <Style x:Key="PostAuthor" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}"/>
+        <Setter Property="FontSize" Value="17"/>
+        <Setter Property="LineHeight" Value="1"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-Black}"/>
+    </Style>
+
+    <!-- PostType -->
+    <Style x:Key="PostType" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="LineHeight" Value="1"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-Black}"/>
+    </Style>
+
+    <!-- PostDate -->
+    <Style x:Key="PostDate" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="LineHeight" Value="1"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-Black}"/>
+    </Style>
+
+    <!-- PostSeen -->
+    <Style x:Key="PostSeen" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="LineHeight" Value="1"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-Black}"/>
+    </Style>
+
+    <!-- PostTitle -->
+    <Style x:Key="PostTitle" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="LineHeight" Value="1"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-Black}"/>
+    </Style>
+
+    <!-- PostDescription -->
+    <Style x:Key="PostDescription" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="LineHeight" Value="1"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-Black}"/>
+    </Style>
+
+
+
+
+
+
     <!--Common shadow frame style-->
     <Style x:Key="ShadowFrameStyle" TargetType="control:CustomShadowFrame">
         <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}"/>
@@ -45,6 +103,13 @@
         <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
         <Setter Property="HorizontalTextAlignment" Value="Start"/>
         <Setter Property="TextColor" Value="{DynamicResource Gray-900}"/>
+    </Style>
+
+    <Style x:Key="SubLabelStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="LineHeight" Value="1"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-Black}"/>
     </Style>
 
     <!--Common content label style-->

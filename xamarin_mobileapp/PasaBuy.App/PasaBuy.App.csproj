@@ -378,9 +378,6 @@
     <EmbeddedResource Update="Views\Feeds\Templates\InputEntry.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Feeds\Templates\PostEntry.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\Feeds\Templates\ProfileTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

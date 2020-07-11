@@ -44,7 +44,7 @@
                             <UriImageSource
                                             CacheValidity="14"
                                             CachingEnabled="true"
-                                            Uri="{Binding ProfileImage}" />
+                                            Uri="{Binding Photo}" />
                         </Image.Source>
                     </Image>
                 </border:SfBorder>
@@ -57,7 +57,7 @@
                                 x:Name="PostEntry"
                                 Placeholder="Say something..."
                                 Style="{StaticResource EntryStyle}"
-                                Text="{Binding PostEntry}" />
+                                Text="{Binding Placeholder}" />
                 </border:SfBorder>
             </Grid>
 
