@@ -1,6 +1,0 @@
-﻿Here are the modern Technologies involved to make Pasa Buy dot App User Friendly, Responsive, Reliable, Secured, and Most importantly, Relevant.
-First is, NodeJS server environment, used by Netflix to make their service reliable and scalable at the same time, which let them serve more customer.
-Google  API, taking advantage of the data that requires vast amount of users, which can give us an edge, even we are just starting to have our own. 
-Google Cloud, online server solution with the highest server availability and lower latency, as data center is strategically scattered around the world.
-Cryptocurrency or Blockchain technology, first proposed on 2009, a decentralized currency making transaction secure and frequently validated.
-Last but one of the most important is, WordPress, which is the Top 1 Content Management System which designed for Search Engine Optimization.
