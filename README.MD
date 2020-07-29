@@ -1,10 +1,6 @@
-# PasaBuy - WordPress Development
+# PasaBuy.App - Xamarin Development
 
 We at PasaBuy.App offer the best online platform that every seller, buyer, requester, and rider could wish for.  A seamless transaction is what we promise for the convenience of all app users.  This is a win-win app for all kinds of users.
-
-We screen all users through our proven process to avoid scammers, joy buyers and anyone that can hinder the success of this community.  We use the latest IT strategies, innovations, and infrastructures to operate our systems and processes for a hassle free use of our platform.
-
-Everyone can join this community as long as we benefit from each other whether you’re a seller, a buyer, a requester, or a rider. Review from previous customers.  Everyone is encouraged to build their user profile credibility.  The more successful transaction you have, the more badges you can have.
 
 #### Mission
 - Become a community where honesty, integrity, quality, profitability, and on time delivery happens for the benefit of all App users.
@@ -22,7 +18,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **PasaBuy.App Team** - *Initial work* - [Github](https://github.com/PasaBuyApp/WordPress.git)
+* **PasaBuy.App Team** - *Initial work* - [Github](https://github.com/PasaBuyApp/Xamarin.git)
 
 See also the list of [contributors](https://github.com/PasaBuyApp) who participated in this project.
 
