@@ -76,18 +76,21 @@
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Row="1" Grid.Column="0">
                     <Button Text="Status" 
+                            Clicked="PostStatus"
                             BorderColor="{DynamicResource Gray-300}"
                             BorderWidth="1"
                             BackgroundColor="{DynamicResource Gray-100}"/>
                 </Grid>
                 <Grid Grid.Row="1" Grid.Column="1">
                     <Button Text="Request" 
+                            Clicked="PostRequest"
                             BorderColor="{DynamicResource Gray-300}"
                             BorderWidth="1"
                             BackgroundColor="{DynamicResource Gray-100}"/>
                 </Grid>
                 <Grid Grid.Row="1" Grid.Column="2">
                     <Button Text="Sell" 
+                            Clicked="PostSell"
                             BorderColor="{DynamicResource Gray-300}"
                             BorderWidth="1"
                             BackgroundColor="{DynamicResource Gray-100}"/>

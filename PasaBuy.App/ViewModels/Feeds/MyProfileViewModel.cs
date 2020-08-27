@@ -25,12 +25,12 @@ namespace PasaBuy.App.ViewModels.Feeds
         /// </summary>
         public MyProfileViewModel()
         {
-            this.BannerImage = UserPrefs.Instance.UserInfo.bannerUrl;
-            this.ProfileImage = UserPrefs.Instance.UserInfo.avatarUrl;
-            this.DisplayName = UserPrefs.Instance.UserInfo.dname;
-            this.Verification = UserPrefs.Instance.UserInfo.verify;
+            //this.BannerImage = UserPrefs.Instance.UserInfo.bannerUrl;
+            //this.ProfileImage = UserPrefs.Instance.UserInfo.avatarUrl;
+            //this.DisplayName = UserPrefs.Instance.UserInfo.dname;
+            //this.Verification = UserPrefs.Instance.UserInfo.verify;
 
-            this.City = "Lives in " + UserPrefs.Instance.UserInfo.city;
+            //this.City = "Lives in " + UserPrefs.Instance.UserInfo.city;
             //Joined
             //Refered
             this.PostsCount = 8;

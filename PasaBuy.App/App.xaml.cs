@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using PasaBuy.App.Controllers;
 using PasaBuy.App.Models.Onboarding;
+using PasaBuy.App.Views.Feeds;
 using PasaBuy.App.Views.Onboarding;
 using System;
 using System.Diagnostics;
@@ -24,7 +25,7 @@ namespace PasaBuy.App
 
             UserPrefs.Instance.Initialize();
 
-            MainPage = new NavigationPage(new SplashPage());
+            MainPage = new NavigationPage(new MyProfile());
         }
 
         /// <summary>

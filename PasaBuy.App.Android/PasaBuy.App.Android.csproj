@@ -123,6 +123,8 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Renderers\BorderlessEditorRenderer.cs" />
     <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
+    <Compile Include="Renderers\RoundedEntryRendererAndroid.cs" />
+    <Compile Include="Renderers\RoundedPickerRendererAndroid.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

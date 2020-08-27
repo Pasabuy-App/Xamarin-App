@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="PasaBuy.App.Views.Posts.PostStatusPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:controls="clr-namespace:PasaBuy.App.Controls"
+             xmlns:local="clr-namespace:PasaBuy.App.CustomRenderers"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             BackgroundColor="{DynamicResource Gray-300}"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Spacing="0" >
+                <controls:TitleView Title="Share Thoughts" 
+                                    BackgroundColor="{DynamicResource PrimaryColor}" >
+                    <controls:TitleView.LeadingView >
+                        <buttons:SfButton
+                            x:Name="backButton"
+                            Clicked="BackButtonClicked"
+                            CornerRadius="4"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                    </controls:TitleView.LeadingView>
+                    <controls:TitleView.TrailingView>
+                        <buttons:SfButton
+                            x:Name="submitButton"
+                            Clicked="SubmitPostButton"
+                            CornerRadius="4"
+                            Style="{StaticResource SubmitButtonStyle}"
+                            Text="{StaticResource Submit}" />
+                    </controls:TitleView.TrailingView>
+                </controls:TitleView>
+                <ContentPresenter />
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid RowSpacing="10" ColumnSpacing="0" Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <!--<border:SfBorder Grid.Row="0"
+                                         Grid.RowSpan="2"
+                                         border:BorderColor="White" 
+                                         BorderWidth="2"
+                                         CornerRadius="50"
+                                         Grid.ColumnSpan="1">
+                    <Image
+                                BackgroundColor="{DynamicResource Gray-400}"
+                                WidthRequest="95"
+                                HeightRequest="75"
+                                Aspect="AspectFill">
+                        <Image.Source>
+                            <UriImageSource
+                                            CacheValidity="14"
+                                            CachingEnabled="true"
+                                            Uri="{Binding ProfileImage}" />
+                        </Image.Source>
+                    </Image>
+                </border:SfBorder>-->
+
+                <local:RoundedEntry Placeholder="Share what's on your mind" VerticalTextAlignment="Start" Grid.Row="0" HeightRequest="175" Grid.ColumnSpan="5"/>
+
+
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

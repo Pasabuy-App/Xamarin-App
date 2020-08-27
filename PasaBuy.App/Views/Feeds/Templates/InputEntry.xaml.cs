@@ -1,4 +1,5 @@
 ﻿using PasaBuy.App.Controllers;
+using PasaBuy.App.Views.Posts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,5 +18,21 @@ namespace PasaBuy.App.Views.Feeds.Templates
         {
             InitializeComponent();
         }
+
+        public void PostStatus(object sender, EventArgs args)
+        {
+            Navigation.PushModalAsync(new PostStatusPage());
+        }
+
+        public void PostRequest(object sender, EventArgs args)
+        {
+            Navigation.PushModalAsync(new PostRequestPage());
+        }
+        public void PostSell(object sender, EventArgs args)
+        {
+            Navigation.PushModalAsync(new PostSellPage());
+        }
+
+
     }
 }
