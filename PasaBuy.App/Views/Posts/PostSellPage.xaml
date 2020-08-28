@@ -83,14 +83,13 @@
                         </Image.Source>
                     </Image>
                 </border:SfBorder>
-                <Button Text="Choose Item Photo"  Grid.Row="3" CornerRadius="15" Grid.ColumnSpan="5" BorderColor="White" BorderWidth="2" TextColor="Gray"  BackgroundColor="LightGray" />
+                <Button Text="Choose Item Photo"  Grid.Row="3" CornerRadius="15" Grid.ColumnSpan="5" BorderColor="White" BorderWidth="2" TextColor="Gray"  BackgroundColor="{DynamicResource PrimaryColor}" />
 
                 <local:RoundedPicker x:Name="itemCategory" Grid.Row="4" Grid.ColumnSpan="5" Title="Item Category"></local:RoundedPicker>
 
                 <local:RoundedEntry Placeholder="Item Name" Grid.Row="5" Grid.ColumnSpan="5"/>
 
                 <local:RoundedEntry Placeholder="Item Description" VerticalTextAlignment="Start" Grid.Row="6" HeightRequest="75" Grid.ColumnSpan="5"/>
-
                 <local:RoundedEntry Placeholder="Item Price" Grid.Row="7" Grid.ColumnSpan="5"/>
 
                 <local:RoundedPicker x:Name="vehicleType" Grid.Row="8" Grid.ColumnSpan="5" Title="Vehicle Type"></local:RoundedPicker>

@@ -3,6 +3,7 @@ using PasaBuy.App.Controllers;
 using PasaBuy.App.Models.Onboarding;
 using PasaBuy.App.Views.Feeds;
 using PasaBuy.App.Views.Onboarding;
+using PasaBuy.App.Views.Settings;
 using System;
 using System.Diagnostics;
 using Xamarin.Essentials;
@@ -25,7 +26,7 @@ namespace PasaBuy.App
 
             UserPrefs.Instance.Initialize();
 
-            MainPage = new NavigationPage(new MyProfile());
+            MainPage = new NavigationPage(new EditProfilePage());
         }
 
         /// <summary>

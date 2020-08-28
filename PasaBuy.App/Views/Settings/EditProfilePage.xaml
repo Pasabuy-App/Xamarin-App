@@ -3,9 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              mc:Ignorable="d"
              NavigationPage.HasNavigationBar="False"
+             xmlns:controls="clr-namespace:PasaBuy.App.Controls"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"    
+             xmlns:local="clr-namespace:PasaBuy.App.CustomRenderers"
              x:Class="PasaBuy.App.Views.Settings.EditProfilePage">
 
     <ContentPage.Resources>
@@ -18,52 +21,138 @@
         <OnPlatform  x:TypeArguments="Thickness" iOS="0,20,0,0"  Default="0,0,0,0"/>
     </ContentPage.Padding>
     
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Spacing="0" >
+                <controls:TitleView Title="Edit Profile" 
+                                    BackgroundColor="{DynamicResource PrimaryColor}" >
+                    <controls:TitleView.LeadingView>
+                        <buttons:SfButton
+                            x:Name="backButton"
+                            Clicked="BackButtonClicked"
+                            CornerRadius="4"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                    </controls:TitleView.LeadingView>
+                    <controls:TitleView.TrailingView>
+                        <buttons:SfButton  x:Name="SearchButton" 
+                                       IsVisible="True" 
+                                       BackgroundColor="Transparent"
+                                       Clicked="SaveButton_Clicked"
+                                       Text="SAVE" />
+                    </controls:TitleView.TrailingView>
+                </controls:TitleView>
+                <ContentPresenter />
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+
     <ContentPage.Content>
-        <Grid RowSpacing="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <ScrollView>
+            <Grid RowSpacing="20" Padding="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-            <!--  Title view  -->
-            <StackLayout x:Name="TitleView"  Padding="8,8" Grid.Row="0" HeightRequest="50"
-                         BackgroundColor="{DynamicResource PrimaryColor}" Spacing="0"
-                         HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
 
-                <StackLayout x:Name="Title" HorizontalOptions="FillAndExpand"  IsVisible="True"
-                             Orientation="Horizontal"  VerticalOptions="FillAndExpand"  Spacing="0">
+                </Grid.ColumnDefinitions>
 
-                    <!--  Back button command  -->
-                    <buttons:SfButton  x:Name="backButton" 
-                                       Clicked="BackButtonClicked"
-                                       CornerRadius="4"
-                                       Style="{StaticResource IconButtonStyle}" Text="{StaticResource Back}"/>
 
-                    <!--   Icon Names List page Title  -->
-                    <Label  Margin="16,0" FontFamily="{StaticResource Montserrat-Medium}" FontSize="16"
-                            HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource Gray-White}"
-                            LineHeight="1.25" Text="Edit Profile"  VerticalOptions="Center" VerticalTextAlignment="Center" />
+                <Button Grid.ColumnSpan="1" HorizontalOptions="Start"  Grid.Column="0" BorderColor="Transparent"  BackgroundColor="Transparent" BorderWidth="0" Text="Profile Image"></Button>
+                <Button Grid.ColumnSpan="1" HorizontalOptions="End" Grid.Column="1" BorderColor="Transparent"  BackgroundColor="Transparent" BorderWidth="0" Text="Upload"></Button>
 
-                </StackLayout>
+                <border:SfBorder Grid.Row="1"
+                                             Grid.RowSpan="1"
+                                             border:BorderColor="White" 
+                                             BorderWidth="2"
+                                             CornerRadius="100"
+                                             Grid.ColumnSpan="2"
+                                             HorizontalOptions="Center"
+                                             VerticalOptions="Center"
+                                             IsClippedToBounds="True">
+                    <Image
+                                        BackgroundColor="{DynamicResource Gray-400}"
+                                        WidthRequest="200"
+                                        HeightRequest="200"
+                                        Aspect="AspectFill">
+                        <Image.Source>
+                            <UriImageSource
+                                                    CacheValidity="14"
+                                                    CachingEnabled="true"
+                                                    Uri="{Binding ProfileImage}" />
+                        </Image.Source>
+                    </Image>
+                </border:SfBorder>
 
-                <!--  Save Button  -->
-                <buttons:SfButton  x:Name="SearchButton" 
-                                   IsVisible="True" 
-                                   BackgroundColor="Transparent"
-                                   Clicked="SaveButton_Clicked"
-                                   Text="SAVE" />
-            </StackLayout>
 
-            <!-- Seperator -->
-            <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}"/>
+                <!-- Seperator -->
+                <BoxView Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource SeparatorStyle}"/>
 
-            <StackLayout Grid.Row="2">
-                <Label Text="Welcome to EditProfile Page!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            </StackLayout>
-        </Grid>
-        
+                <Button Grid.Row="3" Grid.ColumnSpan="1" HorizontalOptions="Start"  Grid.Column="0" BorderColor="Transparent"  BackgroundColor="Transparent" BorderWidth="0" Text="Banner Image"></Button>
+                <Button Grid.Row="3" Grid.ColumnSpan="1" HorizontalOptions="End" Grid.Column="1" BorderColor="Transparent"  BackgroundColor="Transparent" BorderWidth="0" Text="Upload"></Button>
+   
+                <border:SfBorder Grid.Row="4"
+                                             Grid.RowSpan="1"
+                                             border:BorderColor="White" 
+                                             BorderWidth="2"
+                                             Grid.ColumnSpan="2"
+                                             
+                                             IsClippedToBounds="True">
+                    <Image
+                                        BackgroundColor="{DynamicResource Gray-400}"
+                                        WidthRequest="200"
+                                        HeightRequest="200"
+                                        Aspect="AspectFill">
+                        <Image.Source>
+                            <UriImageSource
+                                                    CacheValidity="14"
+                                                    CachingEnabled="true"
+                                                    Uri="{Binding ProfileImage}" />
+                        </Image.Source>
+                    </Image>
+                </border:SfBorder>
+                
+                <BoxView Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource SeparatorStyle}"/>
+
+                <Button Grid.Row="6" Grid.ColumnSpan="1" HorizontalOptions="Start"  Grid.Column="0" BorderColor="Transparent"  BackgroundColor="Transparent" BorderWidth="0" Text="Peronsal Info "></Button>
+                <Button Grid.Row="6" Grid.ColumnSpan="1" HorizontalOptions="End" Grid.Column="1" BorderColor="Transparent"  BackgroundColor="Transparent" BorderWidth="0" Text="Fixed"></Button>
+
+                
+                <local:RoundedEntry  Grid.ColumnSpan="2" Grid.Row="7" Placeholder="First Name"></local:RoundedEntry>
+                <local:RoundedEntry Grid.ColumnSpan="2" Grid.Row="8" Placeholder="Middle Name"></local:RoundedEntry>
+                <local:RoundedEntry Grid.ColumnSpan="2" Grid.Row="9" Placeholder="Last Name"></local:RoundedEntry>
+                <local:RoundedEntry Grid.ColumnSpan="2" Grid.Row="10" Placeholder="Nickname"></local:RoundedEntry>
+                
+                    
+                
+              
+                    
+
+                
+
+
+            </Grid>
+        </ScrollView>
+
+
+
+
+
+
+
+
+
     </ContentPage.Content>
 </ContentPage>

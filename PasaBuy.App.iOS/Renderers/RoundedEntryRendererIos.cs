@@ -23,7 +23,7 @@ namespace PasaBuy.App.iOS.Renderers
                 Control.Layer.CornerRadius = 15;
                 Control.Layer.BorderWidth = 2f;
                 Control.Layer.BorderColor = Color.Yellow.ToCGColor();
-                Control.Layer.BackgroundColor = Color.LightGray.ToCGColor();
+                Control.Layer.BackgroundColor = Color.Transparent.ToCGColor();
 
                 Control.LeftView = new UIKit.UIView(new CGRect(0, 0, 10, 0));
                 Control.LeftViewMode = UIKit.UITextFieldViewMode.Always;

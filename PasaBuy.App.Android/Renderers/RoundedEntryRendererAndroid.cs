@@ -31,6 +31,7 @@ namespace PasaBuy.App.Droid.Renderers
 
             if (e.OldElement == null)
             {
+
                 var gradientDrawable = new GradientDrawable();
                 gradientDrawable.SetCornerRadius(60f);
                 gradientDrawable.SetStroke(5, Android.Graphics.Color.LightYellow);
