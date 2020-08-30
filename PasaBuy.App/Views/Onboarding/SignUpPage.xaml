@@ -122,7 +122,7 @@
                         </border:SfBorder>
 
                         <border:SfBorder BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
-                            <control:BorderlessPicker x:Name="genderPicker" HeightRequest="40" >
+                            <control:BorderlessPicker x:Name="genderPicker" HeightRequest="40" Title="Gender">
                             </control:BorderlessPicker>
                         </border:SfBorder>
 
