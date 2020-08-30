@@ -87,37 +87,9 @@
                 
                 <local:RoundedEntry Placeholder="Item Name" Grid.Row="3" Grid.ColumnSpan="5"/>
 
-                <border:SfBorder Grid.Row="4"
-                                         border:BorderColor="Orange" 
-                                         BorderWidth="2"
-                                         CornerRadius="10"
-                                         Grid.ColumnSpan="5">
-                    <combobox:SfComboBox x:Name="postStyle" TextSize="Default" ItemPadding="21, 0, 0, 0"  HeightRequest="40" BorderColor="White" DropDownCornerRadius="15" BackgroundColor="White" Watermark="   Post Style" WatermarkColor="DarkGray">
-                        <combobox:SfComboBox.ComboBoxSource>
-                            <ListCollection:List x:TypeArguments="x:String">
-                                <x:String>Option 1</x:String>
-                                <x:String>Option 2</x:String>
-                                <x:String>Option 3</x:String>
-                            </ListCollection:List>
-                        </combobox:SfComboBox.ComboBoxSource>
-                    </combobox:SfComboBox>
-                </border:SfBorder>
+                <local:RoundedPicker x:Name="postStyle" Grid.Row="4" Grid.ColumnSpan="5" Title="Post Type"></local:RoundedPicker>
 
-                <border:SfBorder Grid.Row="5"
-                                         border:BorderColor="Orange" 
-                                         BorderWidth="2"
-                                         CornerRadius="10"
-                                         Grid.ColumnSpan="5">
-                    <combobox:SfComboBox x:Name="vehicleType" TextSize="Default" ItemPadding="21, 0, 0, 0"  HeightRequest="40" BorderColor="White" DropDownCornerRadius="15" BackgroundColor="White" Watermark="   Vehicle Type" WatermarkColor="DarkGray">
-                            <combobox:SfComboBox.ComboBoxSource>
-                                <ListCollection:List x:TypeArguments="x:String">
-                                    <x:String>Bicycle</x:String>
-                                    <x:String>Motorcycle</x:String>
-                                <x:String>Four-wheeled</x:String>
-                            </ListCollection:List>
-                            </combobox:SfComboBox.ComboBoxSource>
-                        </combobox:SfComboBox>
-                </border:SfBorder>
+                <local:RoundedPicker x:Name="vehicleType" Grid.Row="5" Grid.ColumnSpan="5" Title="Vehicle Type"></local:RoundedPicker>
 
                 <local:RoundedEntry Placeholder="Pick up Location" Grid.Row="6" Grid.ColumnSpan="5"/>
                 

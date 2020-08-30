@@ -67,9 +67,9 @@
 
                 <border:SfBorder Grid.Row="0"
                                          Grid.RowSpan="2"
-                                         border:BorderColor="White" 
+                                         border:BorderColor="Orange" 
                                          BorderWidth="2"
-                                         CornerRadius="50"
+                                         CornerRadius="15"
                                          Grid.ColumnSpan="5">
                     <Image
                                 BackgroundColor="{DynamicResource Gray-400}"
@@ -83,19 +83,18 @@
                         </Image.Source>
                     </Image>
                 </border:SfBorder>
-                <Button Text="Choose Item Photo"  Grid.Row="3" CornerRadius="15" Grid.ColumnSpan="5" BorderColor="White" BorderWidth="2" TextColor="Gray"  BackgroundColor="{DynamicResource PrimaryColor}" />
 
-                <local:RoundedPicker x:Name="itemCategory" Grid.Row="4" Grid.ColumnSpan="5" Title="Item Category"></local:RoundedPicker>
+                <local:RoundedPicker x:Name="itemCategory" Grid.Row="3" Grid.ColumnSpan="5" Title="Item Category"></local:RoundedPicker>
 
-                <local:RoundedEntry Placeholder="Item Name" Grid.Row="5" Grid.ColumnSpan="5"/>
+                <local:RoundedEntry Placeholder="Item Name" Grid.Row="4" Grid.ColumnSpan="5"/>
 
-                <local:RoundedEntry Placeholder="Item Description" VerticalTextAlignment="Start" Grid.Row="6" HeightRequest="75" Grid.ColumnSpan="5"/>
-                <local:RoundedEntry Placeholder="Item Price" Grid.Row="7" Grid.ColumnSpan="5"/>
+                <local:RoundedEntry Placeholder="Item Description" VerticalTextAlignment="Start" Grid.Row="5" HeightRequest="75" Grid.ColumnSpan="5"/>
+                <local:RoundedEntry Placeholder="Item Price" Grid.Row="6" Grid.ColumnSpan="5"/>
 
-                <local:RoundedPicker x:Name="vehicleType" Grid.Row="8" Grid.ColumnSpan="5" Title="Vehicle Type"></local:RoundedPicker>
+                <local:RoundedPicker x:Name="vehicleType" Grid.Row="7" Grid.ColumnSpan="5" Title="Vehicle Type"></local:RoundedPicker>
                 <!--<Image Grid.Row="8" Grid.Column="5" Source="ic_arrow_drop_down.png" HeightRequest="10" WidthRequest="10" InputTransparent="True" HorizontalOptions="End" VerticalOptions="Center"/>-->
 
-                <local:RoundedEntry Placeholder="Pick up Location" Grid.Row="9" Grid.ColumnSpan="5"/>
+                <local:RoundedEntry Placeholder="Pick up Location" Grid.Row="8" Grid.ColumnSpan="5"/>
 
 
 
