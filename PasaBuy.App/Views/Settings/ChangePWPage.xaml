@@ -6,7 +6,9 @@
              mc:Ignorable="d"
              NavigationPage.HasNavigationBar="False"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
-             x:Class="PasaBuy.App.Views.Settings.ChangePWPage">
+             xmlns:local="clr-namespace:PasaBuy.App.CustomRenderers"
+             x:Class="PasaBuy.App.Views.Settings.ChangePWPage"
+             xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms">
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary Source="Styles.xaml" />
@@ -57,10 +59,22 @@
             <!-- Seperator -->
             <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}"/>
 
-            <StackLayout Grid.Row="2">
-                <Label Text="Welcome to Change Password Page!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <StackLayout Grid.Row="2" Padding="20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <local:RoundedEntry Grid.Row="0" Placeholder="Current Password"></local:RoundedEntry>
+                    <local:RoundedEntry Grid.Row="1" Placeholder="New Password"></local:RoundedEntry>
+                    <local:RoundedEntry Grid.Row="2" Placeholder="Re-type New Password"></local:RoundedEntry>
+                    <Label Text="Response Message" Margin="15" Grid.Row="3"></Label>
+
+                </Grid>
             </StackLayout>
         </Grid>
 

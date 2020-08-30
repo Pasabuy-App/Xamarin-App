@@ -15,12 +15,12 @@ namespace PasaBuy.App
 {
     public class UserAuth
     {
-        public string UN { get; set; }
-        public string PW { get; set; }
+        public string un { get; set; }
+        public string pw { get; set; }
         public UserAuth(string username, string password)
         {
-            this.UN = username;
-            this.PW = password;
+            this.un = username;
+            this.pw = password;
         }
     }
 
@@ -52,7 +52,7 @@ namespace PasaBuy.App
         {
             get 
             {
-                return App.BaseRootUrl + "/wp-json/pasabuy/v1/";
+                return App.BaseRootUrl + "/wp-json/datavice/v1/";
             }
         }
 
@@ -63,7 +63,7 @@ namespace PasaBuy.App
         {
             get 
             {
-                return App.BaseRootUrl + "/wp-json/wp/v2/";
+                return App.BaseRootUrl + "/wp-json/datavice/v1/";
             }
         }
 
@@ -91,12 +91,12 @@ namespace PasaBuy.App
             }
 
             var dict = new Dictionary<string, string>();
-                dict.Add("UN", username);
-                dict.Add("PW", password);
+                dict.Add("un", username);
+                dict.Add("pw", password);
             var content = new FormUrlEncodedContent(dict);
-
+          
             var response = await client.PostAsync(BaseApiUrl + "user/auth", content);
-                response.EnsureSuccessStatusCode();
+            response.EnsureSuccessStatusCode();
 
             if (response.IsSuccessStatusCode)
             {
@@ -105,7 +105,11 @@ namespace PasaBuy.App
 
                 bool success = token.status == "success" ? true : false;
                 string data = token.status == "success" ? result : token.message;
-                callback(success, data);                
+                Token info = JsonConvert.DeserializeObject<Token>(data);
+                Token.wp(info.data.wpid);
+                Token.sn(info.data.snky);
+                callback(success, data);
+
             }
 
             else
@@ -123,8 +127,8 @@ namespace PasaBuy.App
             }
 
             var dict = new Dictionary<string, string>();
-                dict.Add("wpid", userToken.wpid);
-                dict.Add("snid", userToken.snid);
+                dict.Add("wpid", Token.wpids);
+                dict.Add("snky", Token.snkys);
             var content = new FormUrlEncodedContent(dict);
 
             var response = await client.PostAsync(BaseApiUrl + "user/verify", content);

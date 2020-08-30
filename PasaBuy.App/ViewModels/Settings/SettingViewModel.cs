@@ -92,6 +92,9 @@ namespace PasaBuy.App.ViewModels.Settings
         private void EditProfileClicked(object obj)
         {
             ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new EditProfilePage()));
+
+            
+
         }
 
         /// <summary>

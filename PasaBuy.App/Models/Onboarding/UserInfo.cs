@@ -17,6 +17,8 @@ namespace PasaBuy.App.Models.Onboarding
         public string city = string.Empty;
         public string email = string.Empty;
         public string avatar = string.Empty;
+
+
         public string avatarUrl
         {
             get

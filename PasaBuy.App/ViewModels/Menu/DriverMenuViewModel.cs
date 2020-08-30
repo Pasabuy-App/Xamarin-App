@@ -43,10 +43,10 @@ namespace PasaBuy.App.ViewModels.Menu
         /// </summary>
         public DriverMenuViewModel()
         {
-            this.profileName = UserPrefs.Instance.UserInfo.dname;
-            this.profileImage = UserPrefs.Instance.UserInfo.avatarUrl;
-            this.userBanner = UserPrefs.Instance.UserInfo.bannerUrl;
-            this.email = UserPrefs.Instance.UserInfo.email;
+            //this.profileName = UserPrefs.Instance.UserInfo.dname;
+            //this.profileImage = UserPrefs.Instance.UserInfo.avatarUrl;
+            //this.userBanner = UserPrefs.Instance.UserInfo.bannerUrl;
+            //this.email = UserPrefs.Instance.UserInfo.email;
 
             this.DashboardCommand = new Command(this.DashboardButtonClicked);
             this.NavigationCommand = new Command(this.NavigationButtonClicked);

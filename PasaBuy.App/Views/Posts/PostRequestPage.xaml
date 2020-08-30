@@ -3,8 +3,10 @@
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
              xmlns:controls="clr-namespace:PasaBuy.App.Controls"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
              xmlns:local="clr-namespace:PasaBuy.App.CustomRenderers"
              BackgroundColor="{DynamicResource Gray-300}"
              NavigationPage.HasNavigationBar="False">
@@ -43,10 +45,9 @@
         </ControlTemplate>
     </ContentPage.ControlTemplate>
     <ContentPage.Content>
-        <ScrollView VerticalScrollBarVisibility="Never" Padding="0, 0, 0, 20">
+        <StackLayout Padding="0, 0, 0, 20">
             <Grid RowSpacing="15" ColumnSpacing="0" Padding="10">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -69,7 +70,7 @@
                                          Grid.RowSpan="2"
                                          border:BorderColor="White" 
                                          BorderWidth="2"
-                                         CornerRadius="50"
+                                         Margin="10"
                                          Grid.ColumnSpan="5">
                     <Image
                                 BackgroundColor="{DynamicResource Gray-400}"
@@ -83,26 +84,49 @@
                         </Image.Source>
                     </Image>
                 </border:SfBorder>
-                <Button Text="Choose Item Photo"  Grid.Row="3" CornerRadius="15" Grid.ColumnSpan="5" BorderColor="White" BorderWidth="2" TextColor="Gray"  BackgroundColor="{DynamicResource PrimaryColor}" />
                 
-                <Entry Placeholder="Name of Item" Grid.Row="4" Grid.ColumnSpan="5"  ></Entry>
-               
-                <local:RoundedEntry Placeholder="Item Name" Grid.Row="4" Grid.ColumnSpan="5"/>
-                
+                <local:RoundedEntry Placeholder="Item Name" Grid.Row="3" Grid.ColumnSpan="5"/>
 
-                <local:RoundedPicker x:Name="postStyle" Grid.Row="6" Grid.ColumnSpan="5" Title="Post Style"></local:RoundedPicker>
-                
-                <local:RoundedPicker x:Name="vehicleType" Grid.Row="7" Grid.ColumnSpan="5" Title="Vehicle Type"></local:RoundedPicker>
+                <border:SfBorder Grid.Row="4"
+                                         border:BorderColor="Orange" 
+                                         BorderWidth="2"
+                                         CornerRadius="10"
+                                         Grid.ColumnSpan="5">
+                    <combobox:SfComboBox x:Name="postStyle" TextSize="Default" ItemPadding="21, 0, 0, 0"  HeightRequest="40" BorderColor="White" DropDownCornerRadius="15" BackgroundColor="White" Watermark="   Post Style" WatermarkColor="DarkGray">
+                        <combobox:SfComboBox.ComboBoxSource>
+                            <ListCollection:List x:TypeArguments="x:String">
+                                <x:String>Option 1</x:String>
+                                <x:String>Option 2</x:String>
+                                <x:String>Option 3</x:String>
+                            </ListCollection:List>
+                        </combobox:SfComboBox.ComboBoxSource>
+                    </combobox:SfComboBox>
+                </border:SfBorder>
 
-                <local:RoundedEntry Placeholder="Pick up Location" Grid.Row="8" Grid.ColumnSpan="5"/>
+                <border:SfBorder Grid.Row="5"
+                                         border:BorderColor="Orange" 
+                                         BorderWidth="2"
+                                         CornerRadius="10"
+                                         Grid.ColumnSpan="5">
+                    <combobox:SfComboBox x:Name="vehicleType" TextSize="Default" ItemPadding="21, 0, 0, 0"  HeightRequest="40" BorderColor="White" DropDownCornerRadius="15" BackgroundColor="White" Watermark="   Vehicle Type" WatermarkColor="DarkGray">
+                            <combobox:SfComboBox.ComboBoxSource>
+                                <ListCollection:List x:TypeArguments="x:String">
+                                    <x:String>Bicycle</x:String>
+                                    <x:String>Motorcycle</x:String>
+                                <x:String>Four-wheeled</x:String>
+                            </ListCollection:List>
+                            </combobox:SfComboBox.ComboBoxSource>
+                        </combobox:SfComboBox>
+                </border:SfBorder>
+
+                <local:RoundedEntry Placeholder="Pick up Location" Grid.Row="6" Grid.ColumnSpan="5"/>
                 
-                <local:RoundedEntry Placeholder="Drop off Location" Grid.Row="9" Grid.ColumnSpan="5"/>
-                
+                <local:RoundedEntry Placeholder="Drop off Location" Grid.Row="7" Grid.ColumnSpan="5"/>
 
      
 
 
             </Grid>
-        </ScrollView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

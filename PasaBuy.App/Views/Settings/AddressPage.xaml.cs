@@ -28,6 +28,7 @@ namespace PasaBuy.App.Views.Settings
         public void BackButtonClicked(object sender, EventArgs e)
         {
             Navigation.PopModalAsync();
+
         }
 
         public void AddButtonClicked(object sender, EventArgs e)

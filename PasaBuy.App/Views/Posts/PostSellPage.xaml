@@ -93,6 +93,7 @@
                 <local:RoundedEntry Placeholder="Item Price" Grid.Row="7" Grid.ColumnSpan="5"/>
 
                 <local:RoundedPicker x:Name="vehicleType" Grid.Row="8" Grid.ColumnSpan="5" Title="Vehicle Type"></local:RoundedPicker>
+                <!--<Image Grid.Row="8" Grid.Column="5" Source="ic_arrow_drop_down.png" HeightRequest="10" WidthRequest="10" InputTransparent="True" HorizontalOptions="End" VerticalOptions="Center"/>-->
 
                 <local:RoundedEntry Placeholder="Pick up Location" Grid.Row="9" Grid.ColumnSpan="5"/>
 

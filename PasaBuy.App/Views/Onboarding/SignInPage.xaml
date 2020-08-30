@@ -33,6 +33,7 @@
 
     <ContentPage.Content>
         <Grid>
+            
             <gradient:SfGradientView Style="{StaticResource SfGradientStyle}" />
             <ScrollView HorizontalOptions="Center">
 
@@ -108,8 +109,7 @@
                             Command="{Binding ForgotPasswordCommand}"
                             Style="{StaticResource SfFlatButtonStyle}"
                             Text="FORGOT PASSWORD?" />
-
-
+                        
                         <buttons:SfButton
                             Grid.Row="5"
                             Margin="0,16"
@@ -117,7 +117,7 @@
                             Command="{Binding LoginCommand}"
                             Style="{StaticResource SfButtonStyle}"
                             Text="LOG IN" />
-
+                        
 
                         <Label
                         Grid.Row="6"
@@ -158,6 +158,9 @@
 
                 </StackLayout>
             </ScrollView>
+            
+            
         </Grid>
+        
     </ContentPage.Content>
 </ContentPage>

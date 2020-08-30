@@ -88,7 +88,7 @@
                 </controls:TapAnimationGrid>
                 <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                <!--  Grid for Edit profile label and navigation bar icon  -->
+                <!--  Grid for my address label and navigation bar icon  -->
                 <controls:TapAnimationGrid
                     BackgroundColor="{DynamicResource Gray-White}"
                     ColumnSpacing="0"

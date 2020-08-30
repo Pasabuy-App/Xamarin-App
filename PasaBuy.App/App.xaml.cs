@@ -1,8 +1,19 @@
 using Newtonsoft.Json;
 using PasaBuy.App.Controllers;
 using PasaBuy.App.Models.Onboarding;
+using PasaBuy.App.Views;
+using PasaBuy.App.Views.Backend;
+using PasaBuy.App.Views.Chat;
+using PasaBuy.App.Views.Currency;
+using PasaBuy.App.Views.eCommerce;
+using PasaBuy.App.Views.ErrorAndEmpty;
 using PasaBuy.App.Views.Feeds;
+using PasaBuy.App.Views.Market;
+using PasaBuy.App.Views.Marketplace;
+using PasaBuy.App.Views.Menu;
+using PasaBuy.App.Views.Notification;
 using PasaBuy.App.Views.Onboarding;
+using PasaBuy.App.Views.Posts;
 using PasaBuy.App.Views.Settings;
 using System;
 using System.Diagnostics;
@@ -16,7 +27,7 @@ namespace PasaBuy.App
     {
         public static string BaseImageUrl { get; } = "https://cdn.syncfusion.com/essential-ui-kit-for-xamarin.forms/common/uikitimages/";
 
-        public static string BaseRootUrl { get; } = "http://10.0.2.2";
+        public static string BaseRootUrl { get; } = "http://10.0.2.2/wordpress";
 
         public App()
         {
@@ -26,7 +37,7 @@ namespace PasaBuy.App
 
             UserPrefs.Instance.Initialize();
 
-            MainPage = new NavigationPage(new EditProfilePage());
+            MainPage = new NavigationPage(new PostRequestPage());
         }
 
         /// <summary>

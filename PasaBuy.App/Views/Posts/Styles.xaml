@@ -5,7 +5,8 @@
     x:Class="PasaBuy.App.Views.Posts.Styles"     
     xmlns:control="clr-namespace:PasaBuy.App.Controls" 
     xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
-    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms">
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms">
 
     <!--  Font Icon Text  -->
     <x:String x:Key="Add">&#xe730;</x:String>
@@ -201,5 +202,6 @@
         <Setter Property="CornerRadius" Value="1" />
         <Setter Property="BorderWidth" Value="0"/>
     </Style>
+
 
 </ResourceDictionary>

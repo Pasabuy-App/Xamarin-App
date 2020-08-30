@@ -33,9 +33,9 @@ namespace PasaBuy.App.Droid.Renderers
             {
 
                 var gradientDrawable = new GradientDrawable();
-                gradientDrawable.SetCornerRadius(60f);
-                gradientDrawable.SetStroke(5, Android.Graphics.Color.LightYellow);
-                gradientDrawable.SetColor(Android.Graphics.Color.LightGray);
+                gradientDrawable.SetCornerRadius(30f);
+                gradientDrawable.SetStroke(5, Android.Graphics.Color.Orange);
+                gradientDrawable.SetColor(Android.Graphics.Color.White);
                 Control.SetBackground(gradientDrawable);
            
                 Control.SetPadding(50, Control.PaddingTop, Control.PaddingRight, Control.PaddingBottom);

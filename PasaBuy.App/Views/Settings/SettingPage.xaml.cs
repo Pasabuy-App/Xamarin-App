@@ -27,5 +27,7 @@ namespace PasaBuy.App.Views.Settings
         {
             Navigation.PopModalAsync();
         }
+
+       
     }
 }
