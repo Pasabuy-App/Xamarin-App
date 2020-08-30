@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
     xmlns:control="clr-namespace:PasaBuy.App.Controls"
     xmlns:converter="clr-namespace:PasaBuy.App.Converters"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
@@ -118,6 +119,11 @@
                                 Placeholder="Confirm Password"
                                 Style="{StaticResource EntryStyle}"
                                 Text="{Binding ConfirmPassword}" />
+                        </border:SfBorder>
+
+                        <border:SfBorder BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
+                            <control:BorderlessPicker x:Name="genderPicker" HeightRequest="40" >
+                            </control:BorderlessPicker>
                         </border:SfBorder>
 
                         <!--  Sign-up button  -->

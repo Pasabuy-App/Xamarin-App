@@ -37,7 +37,7 @@ namespace PasaBuy.App
 
             UserPrefs.Instance.Initialize();
 
-            MainPage = new NavigationPage(new PostSellPage());
+            MainPage = new NavigationPage(new SignInPage());
         }
 
         /// <summary>

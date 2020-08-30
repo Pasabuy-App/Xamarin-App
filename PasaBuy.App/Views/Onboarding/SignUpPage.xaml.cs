@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms.Internals;
+﻿using System.Collections.Generic;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace PasaBuy.App.Views.Onboarding
@@ -16,6 +17,12 @@ namespace PasaBuy.App.Views.Onboarding
         public SignUpPage()
         {
             InitializeComponent();
+
+            genderPicker.ItemsSource = new List<string>
+            {
+                "Male",
+                "Female"
+            };
         }
     }
 }

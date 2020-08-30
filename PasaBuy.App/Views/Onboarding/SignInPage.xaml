@@ -33,9 +33,11 @@
 
     <ContentPage.Content>
         <Grid>
-            
-            <gradient:SfGradientView Style="{StaticResource SfGradientStyle}" />
-            <ScrollView HorizontalOptions="Center">
+            <AbsoluteLayout>
+
+                <gradient:SfGradientView Style="{StaticResource SfGradientStyle}" />
+                
+                <ScrollView HorizontalOptions="Center">
 
                 <ScrollView.VerticalOptions>
                     <OnIdiom
@@ -158,8 +160,25 @@
 
                 </StackLayout>
             </ScrollView>
-            
-            
+                
+                <StackLayout
+                    x:Name="aiLayout"
+                    IsVisible="false"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    BackgroundColor="Gray" Opacity="0.5">
+                    <ActivityIndicator
+                        x:Name="isBusy"
+                        IsRunning="false"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand"
+                        HeightRequest="100"
+                        WidthRequest="100"
+                        Color="Black"/>
+                </StackLayout>
+
+            </AbsoluteLayout>
+
         </Grid>
         
     </ContentPage.Content>

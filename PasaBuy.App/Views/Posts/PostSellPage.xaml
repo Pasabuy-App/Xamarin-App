@@ -67,7 +67,7 @@
 
                 <border:SfBorder Grid.Row="0"
                                          Grid.RowSpan="2"
-                                         border:BorderColor="Orange" 
+                                         border:BorderColor="White" 
                                          BorderWidth="2"
                                          CornerRadius="15"
                                          Grid.ColumnSpan="5">

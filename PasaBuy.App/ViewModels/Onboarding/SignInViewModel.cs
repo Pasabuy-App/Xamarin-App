@@ -23,6 +23,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
 
         private string password;
 
+
         #endregion
 
         #region Constructor
@@ -32,12 +33,14 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// </summary>
         public SignInViewModel()
         {
+            
             this.LoginCommand = new Command(this.LoginClicked);
             this.SignUpCommand = new Command(this.SignUpClicked);
             this.ForgotPasswordCommand = new Command(this.ForgotPasswordClicked);
             this.FaceBookLoginCommand = new Command(this.FaceBookClicked);
             this.TwitterLoginCommand = new Command(this.TwitterClicked);
             this.GmailLoginCommand = new Command(this.GmailClicked);
+       
         }
 
         #endregion
@@ -110,6 +113,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void LoginClicked(object obj)
         {
+            
             RestAPI.Instance.Authenticate(Email, Password, (bool success, string data) =>
             {
                 if(success)

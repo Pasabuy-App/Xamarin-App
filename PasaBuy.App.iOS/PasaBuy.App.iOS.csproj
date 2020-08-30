@@ -66,6 +66,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
+    <Compile Include="Renderers\BorderlessPickerRendererIos.cs" />
     <Compile Include="Renderers\FrameShadowRenderer.cs" />
     <Compile Include="Renderers\RoundedEntryRendererIos.cs" />
     <Compile Include="Renderers\RoundedPickerRendererIos.cs" />

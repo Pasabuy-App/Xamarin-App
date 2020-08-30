@@ -402,6 +402,9 @@
     <EmbeddedResource Update="Views\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\ActivityIndicator.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\ArticleListTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
