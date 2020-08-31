@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="PasaBuy.App.Views.Posts.PostStatusPage"
+<ContentPage x:Class="PasaBuy.App.Views.Settings.AddAddressPage"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:controls="clr-namespace:PasaBuy.App.Controls"
              xmlns:local="clr-namespace:PasaBuy.App.CustomRenderers"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-             BackgroundColor="{DynamicResource Gray-300}"
+             BackgroundColor="White"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -19,7 +19,7 @@
     <ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0" >
-                <controls:TitleView Title="Share Thoughts" 
+                <controls:TitleView Title="New Address" 
                                     BackgroundColor="{DynamicResource PrimaryColor}" >
                     <controls:TitleView.LeadingView >
                         <buttons:SfButton
@@ -43,42 +43,31 @@
         </ControlTemplate>
     </ContentPage.ControlTemplate>
     <ContentPage.Content>
-        <StackLayout>
-            <Grid RowSpacing="10" ColumnSpacing="0" Padding="10">
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center"> 
+            <Grid RowSpacing="20" ColumnSpacing="0" Padding="10" HorizontalOptions="Center" VerticalOptions="Center">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                
-                <!--<border:SfBorder Grid.Row="0"
-                                         Grid.RowSpan="2"
-                                         border:BorderColor="White" 
-                                         BorderWidth="2"
-                                         CornerRadius="50"
-                                         Grid.ColumnSpan="1">
-                    <Image
-                                BackgroundColor="{DynamicResource Gray-400}"
-                                WidthRequest="95"
-                                HeightRequest="75"
-                                Aspect="AspectFill">
-                        <Image.Source>
-                            <UriImageSource
-                                            CacheValidity="14"
-                                            CachingEnabled="true"
-                                            Uri="{Binding ProfileImage}" />
-                        </Image.Source>
-                    </Image>
-                </border:SfBorder>-->
 
-                <local:RoundedEntry Placeholder="Share what's on your mind" VerticalTextAlignment="Start" Grid.Row="0" HeightRequest="175" Grid.ColumnSpan="5"/>
+                <local:RoundedPicker x:Name="countryPicker" Title="Country" Grid.Row="0">
+                    
+                </local:RoundedPicker>
+                <local:RoundedPicker x:Name="provincePicker" Title="Province" Grid.Row="1">
 
+                </local:RoundedPicker>
+                <local:RoundedPicker x:Name="cityPicker" Title="City" Grid.Row="2">
 
+                </local:RoundedPicker>
+                <local:RoundedPicker x:Name="barangayPicker" Title="Barangay" Grid.Row="3">
+
+                </local:RoundedPicker>
+                <local:RoundedEntry x:Name="streetPicker" Placeholder="Street/Unit/Bldg/Flr" Grid.Row="4">
+                    
+                </local:RoundedEntry>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

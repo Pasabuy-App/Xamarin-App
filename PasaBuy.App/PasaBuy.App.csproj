@@ -310,6 +310,9 @@
     <EmbeddedResource Update="Views\Posts\Styles.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Settings\AddAddressPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Settings\AddressPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

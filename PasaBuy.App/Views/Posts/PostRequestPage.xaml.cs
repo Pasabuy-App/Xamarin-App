@@ -51,33 +51,33 @@ namespace PasaBuy.App.Views.Posts
             Navigation.PopModalAsync();
         }
 
-        async void OnImageButtonClicked(object sender, System.EventArgs e)
-        {
-            await CrossMedia.Current.Initialize();
+        //async void OnImageButtonClicked(object sender, System.EventArgs e)
+        //{
+        //    await CrossMedia.Current.Initialize();
 
-            if (!CrossMedia.Current.IsPickPhotoSupported)
-            {
-                await DisplayAlert("Not Supported", "Your current device does not currently suppport this functionality", "Ok");
-                return;
-            }
+        //    if (!CrossMedia.Current.IsPickPhotoSupported)
+        //    {
+        //        await DisplayAlert("Not Supported", "Your current device does not currently suppport this functionality", "Ok");
+        //        return;
+        //    }
 
-            var mediaOptions = new PickMediaOptions()
-            {
-                PhotoSize = PhotoSize.Medium
-            };
+        //    var mediaOptions = new PickMediaOptions()
+        //    {
+        //        PhotoSize = PhotoSize.Medium
+        //    };
 
-            var selectedImageFile = await CrossMedia.Current.PickPhotoAsync(mediaOptions);
+        //    var selectedImageFile = await CrossMedia.Current.PickPhotoAsync(mediaOptions);
 
 
-            if (selectedImage == null)
-            {
-                await DisplayAlert("Error", "Could not get the image, please try again", "Ok");
-                return;
-            }
+        //    if (selectedImage == null)
+        //    {
+        //        await DisplayAlert("Error", "Could not get the image, please try again", "Ok");
+        //        return;
+        //    }
 
-            selectedImage.Source = ImageSource.FromStream(() => selectedImageFile.GetStream());
+        //    selectedImage.Source = ImageSource.FromStream(() => selectedImageFile.GetStream());
 
-        }
+        //}
 
 
 

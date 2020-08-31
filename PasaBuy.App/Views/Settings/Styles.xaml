@@ -47,6 +47,7 @@
 
     <x:String x:Key="MapPin">&#xe729;</x:String>
     <x:String x:Key="Delete">&#xe716;</x:String>
+    <x:String x:Key="Submit">Submit</x:String>
 
     <!--  Common style for entries  -->
     <Style x:Key="ChatSearchEntryStyle" TargetType="control:BorderlessEntry">
@@ -404,6 +405,17 @@
                 </graphics:SfLinearGradientBrush>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="SubmitButtonStyle" TargetType="buttons:SfButton">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="WidthRequest" Value="80" />
     </Style>
 
 </ResourceDictionary>

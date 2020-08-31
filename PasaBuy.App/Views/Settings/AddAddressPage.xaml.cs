@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PasaBuy.App.Views.Posts
+namespace PasaBuy.App.Views.Settings
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PostStatusPage : ContentPage
+    public partial class AddAddressPage : ContentPage
     {
-        public PostStatusPage()
+        public AddAddressPage()
         {
             InitializeComponent();
         }
@@ -26,7 +26,5 @@ namespace PasaBuy.App.Views.Posts
         {
             Navigation.PopModalAsync();
         }
-
-
     }
 }

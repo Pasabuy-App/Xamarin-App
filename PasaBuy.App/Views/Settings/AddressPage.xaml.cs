@@ -33,7 +33,7 @@ namespace PasaBuy.App.Views.Settings
 
         public void AddButtonClicked(object sender, EventArgs e)
         {
-            new Alert("Demoguy Notice", "Adding address entry is not yet implemented. Thank you for your patience!", "AGREE");
+            Navigation.PushModalAsync(new AddAddressPage());
         }
     }
 }
