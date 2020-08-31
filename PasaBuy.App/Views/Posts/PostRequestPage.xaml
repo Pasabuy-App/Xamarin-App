@@ -66,13 +66,39 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <border:SfBorder Grid.Row="0"
+                <!--<border:SfBorder Grid.Row="0"
                                          Grid.RowSpan="2"
                                          border:BorderColor="White" 
                                          BorderWidth="2"
                                          Margin="10"
-                                         Grid.ColumnSpan="5">
-                    <Image
+                                         Grid.ColumnSpan="5">-->
+                    <ImageButton Source="{Binding ProfileImage}"
+                    HorizontalOptions="Center"
+                    x:Name="selectedImage"
+                    VerticalOptions="CenterAndExpand"
+                    HeightRequest="175"
+                    IsEnabled="True"
+                    Clicked="OnImageButtonClicked" Grid.Row="0" Grid.ColumnSpan="5"  Grid.RowSpan="2">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="Scale" Value="1"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="Scale" Value="0.8"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                    </ImageButton>
+
+                    <!--<Image
                                 BackgroundColor="{DynamicResource Gray-400}"
                                 HeightRequest="175"
                                 Aspect="AspectFill">
@@ -82,8 +108,8 @@
                                             CachingEnabled="true"
                                             Uri="{Binding ProfileImage}" />
                         </Image.Source>
-                    </Image>
-                </border:SfBorder>
+                    </Image>-->
+                <!--</border:SfBorder>-->
                 
                 <local:RoundedEntry Placeholder="Item Name" Grid.Row="3" Grid.ColumnSpan="5"/>
 

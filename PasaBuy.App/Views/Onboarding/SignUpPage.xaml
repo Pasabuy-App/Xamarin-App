@@ -126,6 +126,40 @@
                             </control:BorderlessPicker>
                         </border:SfBorder>
 
+                        <border:SfBorder BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
+                            <!--<control:BorderlessDatePicker HeightRequest="40" x:Name="birthDate">
+                            </control:BorderlessDatePicker>-->
+                            <control:BorderlessDatePicker Placeholder="Birthday" HeightRequest="40">
+                                
+                            </control:BorderlessDatePicker>
+                        </border:SfBorder>
+
+                        <border:SfBorder BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
+                            <control:BorderlessPicker x:Name="countryPicker" HeightRequest="40" Title="Country">
+                            </control:BorderlessPicker>
+                        </border:SfBorder>
+
+                        <border:SfBorder BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
+                            <control:BorderlessPicker x:Name="provincePicker" HeightRequest="40" Title="Province">
+                            </control:BorderlessPicker>
+                        </border:SfBorder>
+
+                        <border:SfBorder BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
+                            <control:BorderlessPicker x:Name="cityPicker" HeightRequest="40" Title="City">
+                            </control:BorderlessPicker>
+                        </border:SfBorder>
+
+                        <border:SfBorder BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
+                            <control:BorderlessPicker x:Name="barangayPicker" HeightRequest="40" Title="Barangay">
+                            </control:BorderlessPicker>
+                        </border:SfBorder>
+
+                        <border:SfBorder BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
+                            <control:BorderlessPicker x:Name="streetPicker" HeightRequest="40" Title="Street/Unit/Bldg">
+                            </control:BorderlessPicker>
+                        </border:SfBorder>
+                        
+
                         <!--  Sign-up button  -->
                         <buttons:SfButton
                             Command="{Binding SignUpCommand}"
@@ -167,3 +201,5 @@
         </Grid>
     </ContentPage.Content>
 </ContentPage>
+
+

@@ -12,6 +12,9 @@ namespace PasaBuy.App.Views.Posts
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PostStatusPage : ContentPage
     {
+        int clickTotal = 0;
+
+
         public PostStatusPage()
         {
             InitializeComponent();
@@ -25,6 +28,12 @@ namespace PasaBuy.App.Views.Posts
         public void SubmitPostButton(object sender, EventArgs e)
         {
             Navigation.PopModalAsync();
+        }
+
+        void OnImageButtonClicked(object sender, EventArgs e)
+        {
+            clickTotal += 1;
+            testlabel.Text = $"{clickTotal} ImageButton click{(clickTotal == 1 ? "" : "s")}";
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Xamarin.Forms.Internals;
+using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.Xaml;
 
 namespace PasaBuy.App.Views.Onboarding
@@ -23,6 +24,11 @@ namespace PasaBuy.App.Views.Onboarding
                 "Male",
                 "Female"
             };
+
+            
+           
         }
+       
+
     }
 }

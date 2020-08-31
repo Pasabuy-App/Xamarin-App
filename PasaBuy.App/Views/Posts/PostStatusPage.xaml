@@ -46,7 +46,9 @@
         <StackLayout>
             <Grid RowSpacing="10" ColumnSpacing="0" Padding="10">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -55,7 +57,22 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                
+
+                <ImageButton Source="{Binding ProfileImage}"
+                    HorizontalOptions="Center"
+                             Grid.Row="0"
+                             HeightRequest="175"
+                    VerticalOptions="CenterAndExpand"
+                              Grid.ColumnSpan="5"
+                    Clicked="OnImageButtonClicked" />
+
+                <Label x:Name="testlabel"
+               Text="0 ImageButton clicks"
+               FontSize="Large"
+                         Grid.Row="1"
+                Grid.ColumnSpan="5"
+               HorizontalOptions="Center"
+               VerticalOptions="CenterAndExpand" />
                 <!--<border:SfBorder Grid.Row="0"
                                          Grid.RowSpan="2"
                                          border:BorderColor="White" 
@@ -76,7 +93,7 @@
                     </Image>
                 </border:SfBorder>-->
 
-                <local:RoundedEntry Placeholder="Share what's on your mind" VerticalTextAlignment="Start" Grid.Row="0" HeightRequest="175" Grid.ColumnSpan="5"/>
+                <!--<local:RoundedEntry Placeholder="Share what's on your mind" VerticalTextAlignment="Start" Grid.Row="0" HeightRequest="175" Grid.ColumnSpan="5"/>-->
 
 
             </Grid>

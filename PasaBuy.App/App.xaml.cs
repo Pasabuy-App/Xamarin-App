@@ -8,6 +8,7 @@ using PasaBuy.App.Views.Currency;
 using PasaBuy.App.Views.eCommerce;
 using PasaBuy.App.Views.ErrorAndEmpty;
 using PasaBuy.App.Views.Feeds;
+using PasaBuy.App.Views.Feeds.Templates;
 using PasaBuy.App.Views.Market;
 using PasaBuy.App.Views.Marketplace;
 using PasaBuy.App.Views.Menu;
@@ -37,7 +38,7 @@ namespace PasaBuy.App
 
             UserPrefs.Instance.Initialize();
 
-            MainPage = new NavigationPage(new SignInPage());
+            MainPage = new NavigationPage(new PostStatusPage());
         }
 
         /// <summary>

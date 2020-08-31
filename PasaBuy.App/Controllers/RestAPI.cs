@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
-//test
+
 namespace PasaBuy.App
 {
     public class UserAuth

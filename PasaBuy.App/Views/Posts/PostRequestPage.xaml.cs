@@ -1,4 +1,6 @@
 ﻿using PasaBuy.App.CustomRenderers;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
 using Syncfusion.XForms.ComboBox;
 using System;
 using System.Collections.Generic;
@@ -22,7 +24,7 @@ namespace PasaBuy.App.Views.Posts
         {
             InitializeComponent();
 
-
+         
 
             vehicleType.ItemsSource = new List<string>
             {
@@ -49,7 +51,35 @@ namespace PasaBuy.App.Views.Posts
             Navigation.PopModalAsync();
         }
 
-         
+        async void OnImageButtonClicked(object sender, System.EventArgs e)
+        {
+            await CrossMedia.Current.Initialize();
+
+            if (!CrossMedia.Current.IsPickPhotoSupported)
+            {
+                await DisplayAlert("Not Supported", "Your current device does not currently suppport this functionality", "Ok");
+                return;
+            }
+
+            var mediaOptions = new PickMediaOptions()
+            {
+                PhotoSize = PhotoSize.Medium
+            };
+
+            var selectedImageFile = await CrossMedia.Current.PickPhotoAsync(mediaOptions);
+
+
+            if (selectedImage == null)
+            {
+                await DisplayAlert("Error", "Could not get the image, please try again", "Ok");
+                return;
+            }
+
+            selectedImage.Source = ImageSource.FromStream(() => selectedImageFile.GetStream());
+
+        }
+
+
 
     }
 }
