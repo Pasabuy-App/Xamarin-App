@@ -122,14 +122,14 @@
                         </border:SfBorder>
 
                         <border:SfBorder BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
-                            <control:BorderlessPicker x:Name="genderPicker" HeightRequest="40" Title="Gender">
+                            <control:BorderlessPicker x:Name="genderPicker" HeightRequest="40" Title="Gender" SelectedItem="{Binding Gender}">
                             </control:BorderlessPicker>
                         </border:SfBorder>
 
                         <border:SfBorder BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
                             <!--<control:BorderlessDatePicker HeightRequest="40" x:Name="birthDate">
                             </control:BorderlessDatePicker>-->
-                            <control:BorderlessDatePicker Placeholder="Birthday" HeightRequest="40">
+                            <control:BorderlessDatePicker Placeholder="Birthday" HeightRequest="40"  Format="yyyy-MM-dd" Date="{Binding BDay}">
                                 
                             </control:BorderlessDatePicker>
                         </border:SfBorder>

@@ -119,6 +119,50 @@ namespace PasaBuy.App
             }            
         }
 
+
+        public async void SignUp(string username, string email, string firstname, string lastname, string gender, string bday,
+                string country, string province, string city, string brgy, string street, Action<bool, string> callback)
+        {
+            if (!App.HasInternet)
+            {
+                new Alert("Notice to User", "Connectivity Issue Occur! Please check your internet connection.", "Try Again");
+                return;
+            }
+
+            var dict = new Dictionary<string, string>();
+                dict.Add("un", username);
+                dict.Add("em", email);
+                dict.Add("fn", firstname);
+                dict.Add("ln", lastname);
+                dict.Add("gd", gender);
+                dict.Add("bd", bday);
+                dict.Add("co", country);
+                dict.Add("pv", province);
+                dict.Add("ct", city);
+                dict.Add("bg", brgy);
+                dict.Add("st", street);
+            var content = new FormUrlEncodedContent(dict);
+
+            var response = await client.PostAsync(BaseApiUrl + "user/signup", content);
+            response.EnsureSuccessStatusCode();
+
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+                UserInfo info = JsonConvert.DeserializeObject<UserInfo>(result);
+                info.SaveToPreference();
+
+                bool success = info.status == "success" ? true : false;
+                string data = info.status == "success" ? result : info.message;
+                callback(success, data);
+            }
+
+            else
+            {
+                callback(false, "Network Error! Check your connection.");
+            }
+        }
+
         public async void GetUserInfo(Token userToken, Action<bool, string> callback)
         {
             if (!App.HasInternet)
@@ -169,6 +213,37 @@ namespace PasaBuy.App
                 Debug.WriteLine("BytesCrafter: Failed! -> " + response.StatusCode);
             }
 
+        }
+
+        public async void Countries(Action<bool, string> callback)
+        {
+            if (!App.HasInternet)
+            {
+                new Alert("Notice to User", "Connectivity Issue Occur! Please check your internet connection.", "Try Again");
+                return;
+            }
+
+            var dict = new Dictionary<string, string>();
+            var content = new FormUrlEncodedContent(dict);
+
+            var response = await client.PostAsync(BaseApiUrl + "location/country/active", content);
+            response.EnsureSuccessStatusCode();
+
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+                UserInfo info = JsonConvert.DeserializeObject<UserInfo>(result);
+                info.SaveToPreference();
+
+                bool success = info.status == "success" ? true : false;
+                string data = info.status == "success" ? result : info.message;
+                callback(success, data);
+            }
+
+            else
+            {
+                callback(false, "Network Error! Check your connection.");
+            }
         }
         #endregion
     }
