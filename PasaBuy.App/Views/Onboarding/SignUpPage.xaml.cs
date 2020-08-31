@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Syncfusion.SfCalendar.XForms;
+using Syncfusion.XForms.Cards;
+using System.Collections.Generic;
+using System.Drawing;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.Xaml;
@@ -12,6 +15,7 @@ namespace PasaBuy.App.Views.Onboarding
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SignUpPage
     {
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="SignUpPage" /> class.
         /// </summary>
@@ -19,15 +23,9 @@ namespace PasaBuy.App.Views.Onboarding
         {
             InitializeComponent();
 
-            genderPicker.ItemsSource = new List<string>
-            {
-                "Male",
-                "Female"
-            };
 
-            
-           
         }
+
        
 
     }

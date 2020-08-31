@@ -55,6 +55,7 @@
     <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.1.0.57" />
     <PackageReference Include="Syncfusion.Xamarin.Expander" Version="18.1.0.57" />
     <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="18.1.0.57" />
+    <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="18.1.0.57" />
     <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="18.1.0.57" />
     <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="18.1.0.57" />
     <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="18.1.0.57" />

@@ -2,6 +2,7 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
@@ -12,6 +13,7 @@
     xmlns:local="clr-namespace:PasaBuy.App.Views.Inputs"
     xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Onboarding"
     NavigationPage.HasNavigationBar="False" 
+    BackgroundColor="{DynamicResource Gray-100}"
     x:Class="PasaBuy.App.Views.Onboarding.SignUpPage">
 
     <ContentPage.Resources>
@@ -30,7 +32,6 @@
 
     <ContentPage.Content>
         <Grid>
-            <gradient:SfGradientView Style="{StaticResource SfGradientViewStyle}" />
 
             <ScrollView HorizontalOptions="Center">
                 <ScrollView.VerticalOptions>
@@ -72,93 +73,242 @@
                             Text="Join the Community!" />
 
                         <!--  Entry to get username from user  -->
-                        <border:SfBorder BorderColor="{Binding Source={x:Reference NameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
+                        <border:SfBorder BorderColor="{Binding Source={x:Reference UserNameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+                                 Style="{StaticResource SfBorderStyle}">
                             <control:BorderlessEntry
-                                x:Name="NameEntry"
-                                Placeholder="Username"
-                                Style="{StaticResource EntryStyle}"
-                                Text="{Binding Name}" />
+                            x:Name="UserNameEntry"
+                            Placeholder="Username"
+                            Text="{Binding Username}"
+                            Style="{StaticResource EntryTextBoxStyle}" />
                         </border:SfBorder>
 
                         <!--  Entry to get email ID from user  -->
-                        <local:EmailEntry />
-
-                        <!--  Entry to get first name from user  -->
-                        <border:SfBorder BorderColor="{Binding Source={x:Reference FnameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
+                        <border:SfBorder BorderColor="{Binding Source={x:Reference EmailEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+                                 Style="{StaticResource SfBorderStyle}">
                             <control:BorderlessEntry
-                                x:Name="FnameEntry"
-                                Placeholder="First Name"
-                                Style="{StaticResource EntryStyle}"
-                                Text="{Binding Fname}" />
+                            x:Name="EmailEntry"
+                            Placeholder="Email Address"
+                            Text="{Binding Email}"
+                            Style="{StaticResource EntryTextBoxStyle}" />
                         </border:SfBorder>
 
                         <!--  Entry to get last name from user  -->
-                        <border:SfBorder BorderColor="{Binding Source={x:Reference LnameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
+                        <border:SfBorder BorderColor="{Binding Source={x:Reference LnameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+                                 Style="{StaticResource SfBorderStyle}">
                             <control:BorderlessEntry
-                                x:Name="LnameEntry"
-                                Placeholder="Last Name"
-                                Style="{StaticResource EntryStyle}"
-                                Text="{Binding Lname}" />
+                            x:Name="LnameEntry"
+                            Placeholder="Last Name"
+                            Text="{Binding Lname}"
+                            Style="{StaticResource EntryTextBoxStyle}" />
                         </border:SfBorder>
 
-                        <!--  Entry to get password from user  -->
-                        <border:SfBorder BorderColor="{Binding Source={x:Reference PasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
+                        <!--  Entry to get first name from user  -->
+                        <border:SfBorder BorderColor="{Binding Source={x:Reference FnameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+                                 Style="{StaticResource SfBorderStyle}">
                             <control:BorderlessEntry
-                                x:Name="PasswordEntry"
-                                IsPassword="true"
-                                Placeholder="Password"
-                                Style="{StaticResource EntryStyle}"
-                                Text="{Binding Password}" />
-                        </border:SfBorder>
-
-                        <!--  Entry to get the confirm password from user  -->
-                        <border:SfBorder BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
-                            <control:BorderlessEntry
-                                x:Name="ConfirmPasswordEntry"
-                                IsPassword="true"
-                                Placeholder="Confirm Password"
-                                Style="{StaticResource EntryStyle}"
-                                Text="{Binding ConfirmPassword}" />
-                        </border:SfBorder>
-
-                        <border:SfBorder BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
-                            <control:BorderlessPicker x:Name="genderPicker" HeightRequest="40" Title="Gender">
-                            </control:BorderlessPicker>
-                        </border:SfBorder>
-
-                        <border:SfBorder BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
-                            <!--<control:BorderlessDatePicker HeightRequest="40" x:Name="birthDate">
-                            </control:BorderlessDatePicker>-->
-                            <control:BorderlessDatePicker Placeholder="Birthday" HeightRequest="40">
-                                
-                            </control:BorderlessDatePicker>
-                        </border:SfBorder>
-
-                        <border:SfBorder BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
-                            <control:BorderlessPicker x:Name="countryPicker" HeightRequest="40" Title="Country">
-                            </control:BorderlessPicker>
-                        </border:SfBorder>
-
-                        <border:SfBorder BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
-                            <control:BorderlessPicker x:Name="provincePicker" HeightRequest="40" Title="Province">
-                            </control:BorderlessPicker>
-                        </border:SfBorder>
-
-                        <border:SfBorder BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
-                            <control:BorderlessPicker x:Name="cityPicker" HeightRequest="40" Title="City">
-                            </control:BorderlessPicker>
-                        </border:SfBorder>
-
-                        <border:SfBorder BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
-                            <control:BorderlessPicker x:Name="barangayPicker" HeightRequest="40" Title="Barangay">
-                            </control:BorderlessPicker>
-                        </border:SfBorder>
-
-                        <border:SfBorder BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
-                            <control:BorderlessPicker x:Name="streetPicker" HeightRequest="40" Title="Street/Unit/Bldg">
-                            </control:BorderlessPicker>
+                            x:Name="FnameEntry"
+                            Placeholder="First Name"
+                            Text="{Binding Fname}"
+                            Style="{StaticResource EntryTextBoxStyle}" />
                         </border:SfBorder>
                         
+                        <!--  Entry to get password from user  -->
+                        <border:SfBorder BorderColor="{Binding Source={x:Reference PasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+                                 Style="{StaticResource SfBorderStyle}">
+                            <control:BorderlessEntry
+                            x:Name="PasswordEntry"
+                            IsPassword="true"
+                            Placeholder="Password"
+                            Text="{Binding Password}"
+                            Style="{StaticResource EntryTextBoxStyle}" />
+                        </border:SfBorder>
+                        
+                        <!--  Entry to get the confirm password from user  -->
+                        <border:SfBorder BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+                                 Style="{StaticResource SfBorderStyle}">
+                            <control:BorderlessEntry
+                            x:Name="ConfirmPasswordEntry"
+                            IsPassword="true"
+                            Placeholder="Confirm Password"
+                            Text="{Binding Password}"
+                            Style="{StaticResource EntryTextBoxStyle}" />
+                        </border:SfBorder>
+
+                        <border:SfBorder
+                        BorderColor="{Binding Source={x:Reference CountryPicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=2}"
+                        HeightRequest="40"
+                        Style="{StaticResource SfBorderStyle}">
+                            <control:CalenderDatePicker Date="{Binding Date}" 
+                                x:Name="CustomDatePicker"
+                                Style="{StaticResource SfBorderStyle}"
+                                FontFamily="{StaticResource Montserrat-Regular}"
+                                FontSize="16"
+                                Format="yyyy-MM-dd"
+                                TextColor="{DynamicResource Gray-800}"
+                                PlaceHolderText="Date of Birth" />
+                        </border:SfBorder>
+
+                        <border:SfBorder
+                        BorderColor="{Binding Source={x:Reference GenderPicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=2}"
+                        Style="{StaticResource SfBorderStyle}">
+                            <combobox:SfComboBox
+                                x:Name="GenderPicker"
+                                SelectedValue="{Binding Signup, Mode=TwoWay}"
+                                Style="{StaticResource ComboBoxStyle}"
+                                Watermark="Gender"
+                                VerticalOptions="CenterAndExpand">
+                                <combobox:SfComboBox.ComboBoxSource>
+                                    <ListCollection:List x:TypeArguments="x:String">
+                                        <x:String>Male</x:String>
+                                        <x:String>Female</x:String>
+                                    </ListCollection:List>
+                                </combobox:SfComboBox.ComboBoxSource>
+                                <combobox:SfComboBox.DropDownButtonSettings>
+                                    <combobox:DropDownButtonSettings>
+                                        <combobox:DropDownButtonSettings.View>
+                                            <Label
+                                                    FontFamily="{StaticResource FontIcons}"
+                                                    FontSize="25"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="{StaticResource DropDownButtonIcon}"
+                                                    TextColor="{DynamicResource Gray-600}"
+                                                    VerticalTextAlignment="Center" />
+                                        </combobox:DropDownButtonSettings.View>
+                                    </combobox:DropDownButtonSettings>
+                                </combobox:SfComboBox.DropDownButtonSettings>
+                            </combobox:SfComboBox>
+                        </border:SfBorder>
+
+                        <border:SfBorder
+                        BorderColor="{Binding Source={x:Reference CountryPicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=2}"
+                        Style="{StaticResource SfBorderStyle}">
+                            <combobox:SfComboBox
+                                x:Name="CountryPicker"
+                                SelectedValue="{Binding Signup, Mode=TwoWay}"
+                                Style="{StaticResource ComboBoxStyle}"
+                                Watermark="Country"
+                                VerticalOptions="CenterAndExpand">
+                                <combobox:SfComboBox.ComboBoxSource>
+                                    <ListCollection:List x:TypeArguments="x:String">
+                                        <x:String>Philippines</x:String>
+                                    </ListCollection:List>
+                                </combobox:SfComboBox.ComboBoxSource>
+                                <combobox:SfComboBox.DropDownButtonSettings>
+                                    <combobox:DropDownButtonSettings>
+                                        <combobox:DropDownButtonSettings.View>
+                                            <Label
+                                                    FontFamily="{StaticResource FontIcons}"
+                                                    FontSize="25"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="{StaticResource DropDownButtonIcon}"
+                                                    TextColor="{DynamicResource Gray-600}"
+                                                    VerticalTextAlignment="Center" />
+                                        </combobox:DropDownButtonSettings.View>
+                                    </combobox:DropDownButtonSettings>
+                                </combobox:SfComboBox.DropDownButtonSettings>
+                            </combobox:SfComboBox>
+                        </border:SfBorder>
+                        
+                        <border:SfBorder
+                        BorderColor="{Binding Source={x:Reference ProvincePicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=2}"
+                        Style="{StaticResource SfBorderStyle}">
+                            <combobox:SfComboBox
+                                x:Name="ProvincePicker"
+                                SelectedValue="{Binding Signup, Mode=TwoWay}"
+                                Style="{StaticResource ComboBoxStyle}"
+                                Watermark="Province"
+                                VerticalOptions="CenterAndExpand">
+                                <combobox:SfComboBox.ComboBoxSource>
+                                    <ListCollection:List x:TypeArguments="x:String">
+                                        <x:String>Select Country First</x:String>
+                                    </ListCollection:List>
+                                </combobox:SfComboBox.ComboBoxSource>
+                                <combobox:SfComboBox.DropDownButtonSettings>
+                                    <combobox:DropDownButtonSettings>
+                                        <combobox:DropDownButtonSettings.View>
+                                            <Label
+                                                    FontFamily="{StaticResource FontIcons}"
+                                                    FontSize="25"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="{StaticResource DropDownButtonIcon}"
+                                                    TextColor="{DynamicResource Gray-600}"
+                                                    VerticalTextAlignment="Center" />
+                                        </combobox:DropDownButtonSettings.View>
+                                    </combobox:DropDownButtonSettings>
+                                </combobox:SfComboBox.DropDownButtonSettings>
+                            </combobox:SfComboBox>
+                        </border:SfBorder>
+
+                        <border:SfBorder
+                        BorderColor="{Binding Source={x:Reference CityPicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=2}"
+                        Style="{StaticResource SfBorderStyle}">
+                            <combobox:SfComboBox
+                                x:Name="CityPicker"
+                                SelectedValue="{Binding Signup, Mode=TwoWay}"
+                                Style="{StaticResource ComboBoxStyle}"
+                                Watermark="City"
+                                VerticalOptions="CenterAndExpand">
+                                <combobox:SfComboBox.ComboBoxSource>
+                                    <ListCollection:List x:TypeArguments="x:String">
+                                        <x:String>Select Province First</x:String>
+                                    </ListCollection:List>
+                                </combobox:SfComboBox.ComboBoxSource>
+                                <combobox:SfComboBox.DropDownButtonSettings>
+                                    <combobox:DropDownButtonSettings>
+                                        <combobox:DropDownButtonSettings.View>
+                                            <Label
+                                                    FontFamily="{StaticResource FontIcons}"
+                                                    FontSize="25"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="{StaticResource DropDownButtonIcon}"
+                                                    TextColor="{DynamicResource Gray-600}"
+                                                    VerticalTextAlignment="Center" />
+                                        </combobox:DropDownButtonSettings.View>
+                                    </combobox:DropDownButtonSettings>
+                                </combobox:SfComboBox.DropDownButtonSettings>
+                            </combobox:SfComboBox>
+                        </border:SfBorder>
+
+                        <border:SfBorder
+                        BorderColor="{Binding Source={x:Reference BarangayPicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=2}"
+                        Style="{StaticResource SfBorderStyle}">
+                            <combobox:SfComboBox
+                                x:Name="BarangayPicker"
+                                SelectedValue="{Binding Signup, Mode=TwoWay}"
+                                Style="{StaticResource ComboBoxStyle}"
+                                Watermark="Barangay"
+                                VerticalOptions="CenterAndExpand">
+                                <combobox:SfComboBox.ComboBoxSource>
+                                    <ListCollection:List x:TypeArguments="x:String">
+                                        <x:String>Select City First</x:String>
+                                    </ListCollection:List>
+                                </combobox:SfComboBox.ComboBoxSource>
+                                <combobox:SfComboBox.DropDownButtonSettings>
+                                    <combobox:DropDownButtonSettings>
+                                        <combobox:DropDownButtonSettings.View>
+                                            <Label
+                                                    FontFamily="{StaticResource FontIcons}"
+                                                    FontSize="25"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="{StaticResource DropDownButtonIcon}"
+                                                    TextColor="{DynamicResource Gray-600}"
+                                                    VerticalTextAlignment="Center" />
+                                        </combobox:DropDownButtonSettings.View>
+                                    </combobox:DropDownButtonSettings>
+                                </combobox:SfComboBox.DropDownButtonSettings>
+                            </combobox:SfComboBox>
+                        </border:SfBorder>
+
+                        <!--  Entry to get street address from user  -->
+                        <border:SfBorder BorderColor="{Binding Source={x:Reference StreetEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+                                 Style="{StaticResource SfBorderStyle}">
+                            <control:BorderlessEntry
+                            x:Name="StreetEntry"
+                            Placeholder="Street/Unit/Flr/Bldg"
+                            Text="{Binding StreetEntry}"
+                            Style="{StaticResource EntryTextBoxStyle}" />
+                        </border:SfBorder>
+
 
                         <!--  Sign-up button  -->
                         <buttons:SfButton

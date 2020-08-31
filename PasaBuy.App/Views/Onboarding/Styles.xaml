@@ -57,7 +57,7 @@
 
     <!--  Common style for labels  -->
     <Style x:Key="LabelStyle" TargetType="Label">
-        <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-Black}" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="LineHeight" Value="1.25" />
     </Style>
@@ -97,7 +97,7 @@
     <!--  Common style for flat buttons  -->
     <Style x:Key="SfFlatButtonStyle" TargetType="buttons:SfButton">
         <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="TextColor" Value="{DynamicResource HyperLink}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-Black}" />
         <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="VerticalTextAlignment" Value="Center" />
@@ -169,7 +169,7 @@
     <Style x:Key="EntryTextStyle" TargetType="control:BorderlessEntry">
         <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}"/>
         <Setter Property="FontSize" Value="16"/>
-        <Setter Property="TextColor" Value="{DynamicResource Gray-900}"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-800}"/>
         <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-700}"/>
     </Style>
 
@@ -177,14 +177,15 @@
         <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}"/>
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="TextColor" Value="{DynamicResource Gray-700}"/>
+
     </Style>
 
     <Style x:Key="ComboBoxStyle" TargetType="combobox:SfComboBox">
         <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}"/>
         <Setter Property="TextSize" Value="16"/>
-        <Setter Property="TextColor" Value="{DynamicResource Gray-700}"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}"/>
         <Setter Property="ShowBorder" Value="False"/>
-        <Setter Property="WatermarkColor" Value="{DynamicResource Gray-700}"/>
+        <Setter Property="WatermarkColor" Value="{DynamicResource Gray-600}"/>
         <Setter Property="Margin" Value="8,3,0,-3"/>
         <Setter Property="HeightRequest" Value="40"/>
     </Style>
@@ -193,7 +194,7 @@
         <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}"/>
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="TextColor" Value="{DynamicResource Gray-900}"/>
-        <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-700}"/>
+        <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-600}"/>
         <Setter Property="Margin" Value="12,0"/>
         <Setter Property="HeightRequest" Value="40"/>
     </Style>
