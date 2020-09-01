@@ -215,7 +215,7 @@ namespace PasaBuy.App
 
         }
 
-        public async void Countries(Action<bool, string> callback)
+        public async void Countries(string master_key, Action<bool, string> callback)
         {
             if (!App.HasInternet)
             {
@@ -224,9 +224,109 @@ namespace PasaBuy.App
             }
 
             var dict = new Dictionary<string, string>();
+            dict.Add("mkey", master_key);
             var content = new FormUrlEncodedContent(dict);
 
             var response = await client.PostAsync(BaseApiUrl + "location/country/active", content);
+            response.EnsureSuccessStatusCode();
+
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+                UserInfo info = JsonConvert.DeserializeObject<UserInfo>(result);
+                info.SaveToPreference();
+
+                bool success = info.status == "success" ? true : false;
+                string data = info.status == "success" ? result : info.message;
+                callback(success, data);
+            }
+
+            else
+            {
+                callback(false, "Network Error! Check your connection.");
+            }
+        }
+
+        public async void Provinces(string master_key, string country_code, Action<bool, string> callback)
+        {
+            if (!App.HasInternet)
+            {
+                new Alert("Notice to User", "Connectivity Issue Occur! Please check your internet connection.", "Try Again");
+                return;
+            }
+
+            var dict = new Dictionary<string, string>();
+            dict.Add("mkey", master_key);
+            dict.Add("country_code", country_code);
+            var content = new FormUrlEncodedContent(dict);
+
+            var response = await client.PostAsync(BaseApiUrl + "location/province/active", content);
+            response.EnsureSuccessStatusCode();
+
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+                UserInfo info = JsonConvert.DeserializeObject<UserInfo>(result);
+                info.SaveToPreference();
+
+                bool success = info.status == "success" ? true : false;
+                string data = info.status == "success" ? result : info.message;
+                callback(success, data);
+            }
+
+            else
+            {
+                callback(false, "Network Error! Check your connection.");
+            }
+        }
+
+        public async void Cities(string master_key, string prov_code, Action<bool, string> callback)
+        {
+            if (!App.HasInternet)
+            {
+                new Alert("Notice to User", "Connectivity Issue Occur! Please check your internet connection.", "Try Again");
+                return;
+            }
+
+            var dict = new Dictionary<string, string>();
+            dict.Add("mkey", master_key);
+            dict.Add("prov_code", prov_code);
+            var content = new FormUrlEncodedContent(dict);
+
+            var response = await client.PostAsync(BaseApiUrl + "location/city/active", content);
+            response.EnsureSuccessStatusCode();
+
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+                UserInfo info = JsonConvert.DeserializeObject<UserInfo>(result);
+                info.SaveToPreference();
+
+                bool success = info.status == "success" ? true : false;
+                string data = info.status == "success" ? result : info.message;
+                callback(success, data);
+            }
+
+            else
+            {
+                callback(false, "Network Error! Check your connection.");
+            }
+        }
+
+        public async void Barangay(string master_key, string city_code, Action<bool, string> callback)
+        {
+            if (!App.HasInternet)
+            {
+                new Alert("Notice to User", "Connectivity Issue Occur! Please check your internet connection.", "Try Again");
+                return;
+            }
+
+            var dict = new Dictionary<string, string>();
+            dict.Add("mkey", master_key);
+            dict.Add("city_code", city_code);
+            var content = new FormUrlEncodedContent(dict);
+
+            var response = await client.PostAsync(BaseApiUrl + "location/brgy/active", content);
             response.EnsureSuccessStatusCode();
 
             if (response.IsSuccessStatusCode)

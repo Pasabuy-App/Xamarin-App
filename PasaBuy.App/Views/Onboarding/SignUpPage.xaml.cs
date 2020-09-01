@@ -30,7 +30,7 @@ namespace PasaBuy.App.Views.Onboarding
                 "Female"
             };
 
-            RestAPI.Instance.Countries((bool success, string data) =>
+            RestAPI.Instance.Countries("datavice", (bool success, string data) =>
             {
                 if (success)
                 {
@@ -51,6 +51,96 @@ namespace PasaBuy.App.Views.Onboarding
                 }
             });
 
+        }
+
+        private void countryPicker_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            int selectedIndex = countryPicker.SelectedIndex;
+
+            if (selectedIndex != -1)
+            {
+                RestAPI.Instance.Provinces("datavice", "PH", (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        var provinceList = new List<string>();
+                        Province province = JsonConvert.DeserializeObject<Province>(data);
+                        for (int i = 0; i < province.data.Length; i++)
+                        {
+                            string code = province.data[i].code;
+                            string name = province.data[i].name;
+                            provinceList.Add(name);
+                            //Console.WriteLine(countryPicker.SelectedItem + name);
+                        }
+                        provincePicker.ItemsSource = provinceList;
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+                //monkeyNameLabel.Text = (string)picker.ItemsSource[selectedIndex];
+            }
+        }
+
+        private void provincePicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = countryPicker.SelectedIndex;
+
+            if (selectedIndex != -1)
+            {
+                RestAPI.Instance.Cities("datavice", "1376", (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        var cityList = new List<string>();
+                        City city = JsonConvert.DeserializeObject<City>(data);
+                        for (int i = 0; i < city.data.Length; i++)
+                        {
+                            string code = city.data[i].code;
+                            string name = city.data[i].name;
+                            cityList.Add(name);
+                            //Console.WriteLine(countryPicker.SelectedItem + name);
+                        }
+                        cityPicker.ItemsSource = cityList;
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+                //monkeyNameLabel.Text = (string)picker.ItemsSource[selectedIndex];
+            }
+        }
+
+        private void cityPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = countryPicker.SelectedIndex;
+
+            if (selectedIndex != -1)
+            {
+                RestAPI.Instance.Barangay("datavice", "137603", (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        var brgyList = new List<string>();
+                        Barangay brgy = JsonConvert.DeserializeObject<Barangay>(data);
+                        for (int i = 0; i < brgy.data.Length; i++)
+                        {
+                            string code = brgy.data[i].code;
+                            string name = brgy.data[i].name;
+                            brgyList.Add(name);
+                            //Console.WriteLine(countryPicker.SelectedItem + name);
+                        }
+                        barangayPicker.ItemsSource = brgyList;
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+                //monkeyNameLabel.Text = (string)picker.ItemsSource[selectedIndex];
+            }
         }
 
 

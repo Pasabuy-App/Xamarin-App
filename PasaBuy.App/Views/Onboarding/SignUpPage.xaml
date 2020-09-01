@@ -135,17 +135,17 @@
                         </border:SfBorder>
 
                         <border:SfBorder BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
-                            <control:BorderlessPicker x:Name="countryPicker" HeightRequest="40" Title="Country">
+                            <control:BorderlessPicker x:Name="countryPicker" HeightRequest="40" Title="Country" SelectedIndexChanged="countryPicker_SelectedIndexChanged">
                             </control:BorderlessPicker>
                         </border:SfBorder>
 
                         <border:SfBorder BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
-                            <control:BorderlessPicker x:Name="provincePicker" HeightRequest="40" Title="Province">
+                            <control:BorderlessPicker x:Name="provincePicker" HeightRequest="40" Title="Province" SelectedIndexChanged="provincePicker_SelectedIndexChanged">
                             </control:BorderlessPicker>
                         </border:SfBorder>
 
                         <border:SfBorder BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource SfBorderStyle}">
-                            <control:BorderlessPicker x:Name="cityPicker" HeightRequest="40" Title="City">
+                            <control:BorderlessPicker x:Name="cityPicker" HeightRequest="40" Title="City" SelectedIndexChanged="cityPicker_SelectedIndexChanged">
                             </control:BorderlessPicker>
                         </border:SfBorder>
 
