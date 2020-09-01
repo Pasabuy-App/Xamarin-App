@@ -1,4 +1,5 @@
-﻿using PasaBuy.App.Controllers.Notice;
+﻿using PasaBuy.App.Controllers;
+using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Views.Onboarding;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -46,7 +47,19 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void SendClicked(object obj)
         {
-            new Alert("Demoguy Notice", "Password reset is not yet implemented. Thank you for your patience!", "AGREE");
+            //new Alert("Demoguy Notice", "Password reset is not yet implemented. Thank you for your patience!", "AGREE");
+            RestAPI.Instance.Forgot(Email, (bool success, string data) =>
+            {
+                if (success)
+                {
+                    Application.Current.MainPage = new PasaBuy.App.Views.Onboarding.SignInPage();
+                }
+
+                else
+                {
+                    new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
+                }
+            });
         }
 
         /// <summary>

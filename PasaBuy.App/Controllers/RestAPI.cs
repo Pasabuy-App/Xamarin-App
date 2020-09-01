@@ -345,6 +345,38 @@ namespace PasaBuy.App
                 callback(false, "Network Error! Check your connection.");
             }
         }
+
+        public async void Forgot(string username, Action<bool, string> callback)
+        {
+            if (!App.HasInternet)
+            {
+                new Alert("Notice to User", "Connectivity Issue Occur! Please check your internet connection.", "Try Again");
+                return;
+            }
+
+            var dict = new Dictionary<string, string>();
+            dict.Add("un", username);
+            var content = new FormUrlEncodedContent(dict);
+
+            var response = await client.PostAsync(BaseApiUrl + "user/forgot", content);
+            response.EnsureSuccessStatusCode();
+
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+                UserInfo info = JsonConvert.DeserializeObject<UserInfo>(result);
+                info.SaveToPreference();
+
+                bool success = info.status == "success" ? true : false;
+                string data = info.status == "success" ? result : info.message;
+                callback(success, data);
+            }
+
+            else
+            {
+                callback(false, "Network Error! Check your connection.");
+            }
+        }
         #endregion
     }
 }

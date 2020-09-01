@@ -70,7 +70,6 @@ namespace PasaBuy.App.Views.Onboarding
                             string code = province.data[i].code;
                             string name = province.data[i].name;
                             provinceList.Add(name);
-                            //Console.WriteLine(countryPicker.SelectedItem + name);
                         }
                         provincePicker.ItemsSource = provinceList;
                     }
@@ -79,7 +78,6 @@ namespace PasaBuy.App.Views.Onboarding
                         new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
                     }
                 });
-                //monkeyNameLabel.Text = (string)picker.ItemsSource[selectedIndex];
             }
         }
 
@@ -100,7 +98,6 @@ namespace PasaBuy.App.Views.Onboarding
                             string code = city.data[i].code;
                             string name = city.data[i].name;
                             cityList.Add(name);
-                            //Console.WriteLine(countryPicker.SelectedItem + name);
                         }
                         cityPicker.ItemsSource = cityList;
                     }
@@ -109,7 +106,6 @@ namespace PasaBuy.App.Views.Onboarding
                         new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
                     }
                 });
-                //monkeyNameLabel.Text = (string)picker.ItemsSource[selectedIndex];
             }
         }
 
@@ -130,7 +126,6 @@ namespace PasaBuy.App.Views.Onboarding
                             string code = brgy.data[i].code;
                             string name = brgy.data[i].name;
                             brgyList.Add(name);
-                            //Console.WriteLine(countryPicker.SelectedItem + name);
                         }
                         barangayPicker.ItemsSource = brgyList;
                     }
@@ -139,7 +134,6 @@ namespace PasaBuy.App.Views.Onboarding
                         new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
                     }
                 });
-                //monkeyNameLabel.Text = (string)picker.ItemsSource[selectedIndex];
             }
         }
 
