@@ -12,8 +12,9 @@
     xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
     xmlns:local="clr-namespace:PasaBuy.App.Views.Inputs"
     xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Onboarding"
+    xmlns:serv="clr-namespace:PasaBuy.App.DataService.LocationDataService"
     NavigationPage.HasNavigationBar="False" 
-    BackgroundColor="{DynamicResource Gray-100}"
+    BackgroundColor="{DynamicResource Gray-White}"
     x:Class="PasaBuy.App.Views.Onboarding.SignUpPage">
 
     <ContentPage.Resources>
@@ -112,34 +113,12 @@
                             Style="{StaticResource EntryTextBoxStyle}" />
                         </border:SfBorder>
                         
-                        <!--  Entry to get password from user  -->
-                        <border:SfBorder BorderColor="{Binding Source={x:Reference PasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
-                                 Style="{StaticResource SfBorderStyle}">
-                            <control:BorderlessEntry
-                            x:Name="PasswordEntry"
-                            IsPassword="true"
-                            Placeholder="Password"
-                            Text="{Binding Password}"
-                            Style="{StaticResource EntryTextBoxStyle}" />
-                        </border:SfBorder>
-                        
-                        <!--  Entry to get the confirm password from user  -->
-                        <border:SfBorder BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
-                                 Style="{StaticResource SfBorderStyle}">
-                            <control:BorderlessEntry
-                            x:Name="ConfirmPasswordEntry"
-                            IsPassword="true"
-                            Placeholder="Confirm Password"
-                            Text="{Binding Password}"
-                            Style="{StaticResource EntryTextBoxStyle}" />
-                        </border:SfBorder>
-
                         <border:SfBorder
-                        BorderColor="{Binding Source={x:Reference CountryPicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=2}"
+                        BorderColor="{Binding Source={x:Reference BirthdayPicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=2}"
                         HeightRequest="40"
                         Style="{StaticResource SfBorderStyle}">
                             <control:CalenderDatePicker Date="{Binding Date}" 
-                                x:Name="CustomDatePicker"
+                                x:Name="BirthdayPicker"
                                 Style="{StaticResource SfBorderStyle}"
                                 FontFamily="{StaticResource Montserrat-Regular}"
                                 FontSize="16"
@@ -190,7 +169,7 @@
                                 VerticalOptions="CenterAndExpand">
                                 <combobox:SfComboBox.ComboBoxSource>
                                     <ListCollection:List x:TypeArguments="x:String">
-                                        <x:String>Philippines</x:String>
+                                        <x:String></x:String>
                                     </ListCollection:List>
                                 </combobox:SfComboBox.ComboBoxSource>
                                 <combobox:SfComboBox.DropDownButtonSettings>

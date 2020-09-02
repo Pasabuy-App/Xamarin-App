@@ -124,7 +124,8 @@
                                 <!--  View of each card item  -->
                                 <StackLayout BackgroundColor="{DynamicResource Gray-White}" Spacing="0">
 
-                                    <Grid Margin="16,8,8,8"  ColumnSpacing="0" RowSpacing="0" >
+                                    <Grid Margin="16,8,8,8"  ColumnSpacing="0" RowSpacing="0"  >
+                                        
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="*"/>

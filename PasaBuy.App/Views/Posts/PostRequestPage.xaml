@@ -8,7 +8,7 @@
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
              xmlns:local="clr-namespace:PasaBuy.App.CustomRenderers"
-             BackgroundColor="{DynamicResource Gray-300}"
+             BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <ResourceDictionary>

@@ -40,10 +40,13 @@ namespace PasaBuy.App.ViewModels.Marketplace
         /// </summary>
         public Command<object> ItemTappedCommand
         {
+     
             get
             {
                 return this.itemTappedCommand ?? (this.itemTappedCommand = new Command<object>(this.NavigateToNextPage));
+               
             }
+
         }
 
         /// <summary>
@@ -62,7 +65,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
         /// <param name="selectedItem">Selected item from the list view.</param>
         private void NavigateToNextPage(object selectedItem)
         {
-            //Do something
+
+            
         }
 
         #endregion

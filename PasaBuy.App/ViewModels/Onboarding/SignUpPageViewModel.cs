@@ -138,6 +138,8 @@ namespace PasaBuy.App.ViewModels.Onboarding
             new Alert("Demoguy Notice", "Registration is not yet implemented. Thank you for your patience!", "AGREE");
         }
 
+
+
         #endregion
     }
 }

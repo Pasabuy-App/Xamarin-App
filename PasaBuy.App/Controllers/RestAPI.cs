@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using PasaBuy.App.Controllers;
 using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Models.Locations;
 using PasaBuy.App.Models.Onboarding;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace PasaBuy.App
             this.un = username;
             this.pw = password;
         }
+
     }
 
     /// <summary>
@@ -57,6 +59,14 @@ namespace PasaBuy.App
             }
         }
 
+        string DataApiUrl
+        {
+            get
+            {
+                return App.BaseRootUrl + "/wp-json/datavice/v1/";
+            }
+        }
+
         /// <summary>
         /// Default WordPress RestAPI base url.
         /// </summary>
@@ -85,7 +95,7 @@ namespace PasaBuy.App
         #region Methods
         public async void Authenticate(string username, string password, Action<bool, string> callback)
         {
-            if (!App.HasInternet)
+            /*if (!App.HasInternet)
             {
                 new Alert("Notice to User", "Connectivity Issue Occur! Please check your internet connection.", "Try Again");
                 return;
@@ -116,7 +126,34 @@ namespace PasaBuy.App
             else
             {
                 callback(false, "Network Error! Check your connection.");
-            }            
+            } */
+
+   
+            using (var cl = new HttpClient())
+            {
+                var formcontent = new FormUrlEncodedContent(new[]
+                {
+                    new KeyValuePair<string, string>("mkey", "123")
+                });
+
+                var request = await cl.PostAsync(DataApiUrl + "location/country/active", formcontent);
+
+                request.EnsureSuccessStatusCode();
+
+                if (request.IsSuccessStatusCode)
+                {
+                    var response = await request.Content.ReadAsStringAsync();
+
+                    Country country = JsonConvert.DeserializeObject<Country>(response);
+
+                }
+
+                else
+                {
+                    Debug.WriteLine("PasaBuy: Failed! -> " + request.StatusCode);
+                }
+
+            }
         }
 
         public async void GetUserInfo(Token userToken, Action<bool, string> callback)
@@ -170,6 +207,42 @@ namespace PasaBuy.App
             }
 
         }
+
+
+        public async void GetCountries(string mkey)
+        {
+            using (var cl = new HttpClient())
+            {
+                var formcontent = new FormUrlEncodedContent(new[]
+                {
+                    new KeyValuePair<string, string>("mkey", mkey)
+                });
+
+                var request = await cl.PostAsync(DataApiUrl + "location/country/active", formcontent);
+
+                request.EnsureSuccessStatusCode();
+
+                if (request.IsSuccessStatusCode)
+                {
+                    var response = await request.Content.ReadAsStringAsync();
+
+                    Country country = JsonConvert.DeserializeObject<Country>(response);
+                    
+                }
+
+                else
+                {
+                    Debug.WriteLine("PasaBuy: Failed! -> " + request.StatusCode);
+                }
+
+            }
+
+        }
+            
+
+     
         #endregion
+
+
     }
 }

@@ -105,5 +105,7 @@ namespace PasaBuy.App.Views.Marketplace
         {
             this.SearchEntry.Focus();
         }
+
+       
     }
 }

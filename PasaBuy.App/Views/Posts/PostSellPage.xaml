@@ -6,7 +6,7 @@
              xmlns:controls="clr-namespace:PasaBuy.App.Controls"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:local="clr-namespace:PasaBuy.App.CustomRenderers"
-             BackgroundColor="{DynamicResource Gray-300}"
+             BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <ResourceDictionary>
