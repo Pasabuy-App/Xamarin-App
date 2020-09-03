@@ -30,8 +30,12 @@ namespace PasaBuy.App
 
         public static string BaseRootUrl { get; } = "http://10.0.2.2/wordpress";
 
+
         public App()
         {
+
+            DataVice.DVHost.Instance.Initialized("http://10.0.2.2/wordpress");
+
             InitializeComponent();
 
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjYwNjY0QDMxMzgyZTMxMmUzMGlJTnpSZVBDTG4raGhBaU5DOVRFbFBKWmxRYVVHd1hxNUx2cXcrZFliMmc9");

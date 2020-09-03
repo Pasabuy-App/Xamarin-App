@@ -19,6 +19,17 @@ namespace PasaBuy.App.Models.Onboarding
         public string avatar = string.Empty;
 
 
+        public UserInfoData data = new UserInfoData();
+
+        public class UserInfoData
+        {
+            public string uname = string.Empty;
+            public string dname = string.Empty;
+            public string city = string.Empty;
+            public string email = string.Empty;
+            public string avatar = string.Empty;
+        }
+
         public string avatarUrl
         {
             get

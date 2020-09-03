@@ -9,11 +9,15 @@ namespace PasaBuy.App.ViewModels.Location
 {
     public class CountryViewModel : BaseViewModel
     {
+        internal IEnumerable<object> countryCollection;
+
         public ObservableCollection<Country> CountryList
         {
             get;
             set;
         }
+        public IEnumerable<object> CountryCollection { get; internal set; }
+
         public CountryViewModel()
         {
             CountryList = new ObservableCollection<Country>();

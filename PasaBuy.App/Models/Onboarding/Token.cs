@@ -18,12 +18,12 @@ namespace PasaBuy.App.Models.Onboarding
         public static string wp(string x)
         {
             wpids = x;
-            return "suucces";
+            return wpids;
         }
         public static string sn(string x)
         {
             snkys = x;
-            return "suucces";
+            return snkys;
         }
     }
 

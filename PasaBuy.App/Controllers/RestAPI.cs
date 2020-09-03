@@ -93,9 +93,9 @@ namespace PasaBuy.App
         #endregion
 
         #region Methods
-        public async void Authenticate(string username, string password, Action<bool, string> callback)
+        /*public async void Authenticate(string username, string password, Action<bool, string> callback)
         {
-            /*if (!App.HasInternet)
+            *//*if (!App.HasInternet)
             {
                 new Alert("Notice to User", "Connectivity Issue Occur! Please check your internet connection.", "Try Again");
                 return;
@@ -129,7 +129,7 @@ namespace PasaBuy.App
             } */
 
    
-            using (var cl = new HttpClient())
+            /*using (var cl = new HttpClient())
             {
                 var formcontent = new FormUrlEncodedContent(new[]
                 {
@@ -153,8 +153,8 @@ namespace PasaBuy.App
                     Debug.WriteLine("PasaBuy: Failed! -> " + request.StatusCode);
                 }
 
-            }
-        }
+            }*//*
+        }*/
 
         public async void GetUserInfo(Token userToken, Action<bool, string> callback)
         {
@@ -209,7 +209,7 @@ namespace PasaBuy.App
         }
 
 
-        public async void GetCountries(string mkey)
+        /*public async void GetCountries(string mkey)
         {
             using (var cl = new HttpClient())
             {
@@ -237,7 +237,7 @@ namespace PasaBuy.App
 
             }
 
-        }
+        }*/
             
 
      

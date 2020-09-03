@@ -1,7 +1,10 @@
 ﻿using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Views.Onboarding;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using DataVice;
+using PasaBuy.App.Controllers;
 
 namespace PasaBuy.App.ViewModels.Onboarding
 {
@@ -13,11 +16,15 @@ namespace PasaBuy.App.ViewModels.Onboarding
     {
         #region Fields
 
-        private string name;
+        private string username;
 
-        private string password;
+        private string lastname;
 
-        private string confirmPassword;
+        private string firstname;
+
+        private string gender;
+
+        private string street;
 
         #endregion
 
@@ -37,67 +44,128 @@ namespace PasaBuy.App.ViewModels.Onboarding
         #region Property
 
         /// <summary>
-        /// Gets or sets the property that bounds with an entry that gets the name from user in the Sign Up page.
+        /// Gets or sets the property that bounds with an entry that gets the username from user in the Sign Up page.
         /// </summary>
-        public string Name
+        public string Username
         {
             get
             {
-                return this.name;
+                return this.username;
             }
 
             set
             {
-                if (this.name == value)
+                if (this.username == value)
                 {
                     return;
                 }
 
-                this.name = value;
+                this.username = value;
                 this.NotifyPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Gets or sets the property that bounds with an entry that gets the password from users in the Sign Up page.
+        /// Gets or sets the property that bounds with an entry that gets the lastname from users in the Sign Up page.
         /// </summary>
-        public string Password
+        public string Lname
         {
             get
             {
-                return this.password;
+                return this.lastname;
             }
 
             set
             {
-                if (this.password == value)
+                if (this.lastname == value)
                 {
                     return;
                 }
 
-                this.password = value;
+                this.lastname = value;
                 this.NotifyPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Gets or sets the property that bounds with an entry that gets the password confirmation from users in the Sign Up page.
+        /// Gets or sets the property that bounds with an entry that gets the firstname from users in the Sign Up page.
         /// </summary>
-        public string ConfirmPassword
+        public string Fname
         {
             get
             {
-                return this.confirmPassword;
+                return this.firstname;
             }
 
             set
             {
-                if (this.confirmPassword == value)
+                if (this.firstname == value)
                 {
                     return;
                 }
 
-                this.confirmPassword = value;
+                this.firstname = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the property that bounds with an entry that gets the birthday from user in the Sign Up page.
+        /// </summary>
+        public DateTime BirthDay
+        {
+            get;
+            set;
+        } = DateTime.Now;
+
+        public string BornDate
+        {
+            get
+            {
+                return this.BirthDay.ToString("yyyy-MM-dd");
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the property that bounds with an entry that gets the gender from user in the Sign Up page.
+        /// </summary>
+        public string Gender
+        {
+            get
+            {
+                return this.gender;
+            }
+
+            set
+            {
+                if (this.gender == value)
+                {
+                    return;
+                }
+
+                this.gender = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the property that bounds with an entry that gets the street from users in the Sign Up page.
+        /// </summary>
+        public string StreetEntry
+        {
+            get
+            {
+                return this.street;
+            }
+
+            set
+            {
+                if (this.street == value)
+                {
+                    return;
+                }
+
+                this.street = value;
                 this.NotifyPropertyChanged();
             }
         }
@@ -135,7 +203,19 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void SignUpClicked(object obj)
         {
-            new Alert("Demoguy Notice", "Registration is not yet implemented. Thank you for your patience!", "AGREE");
+            //new Alert("Demoguy Notice", "Registration is not yet implemented. Thank you for your patience!", "AGREE");
+            //Console.WriteLine(Username +  " " + Email + " " + Lname + " " + Fname + " " + BornDate + " " + Gender);
+            User.Instance.SignUp(Username, Email, Fname, Lname, Gender, BornDate, "175", "1376", "137603", "36794", StreetEntry, (bool success, string data) =>
+            {
+                if (success)
+                {
+                    Application.Current.MainPage = new SignInPage();
+                }
+                else
+                {
+                    new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
+                }
+            });
         }
 
 

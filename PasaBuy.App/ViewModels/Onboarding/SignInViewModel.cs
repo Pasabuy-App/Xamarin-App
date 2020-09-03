@@ -10,6 +10,7 @@ using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Controllers;
 using Newtonsoft.Json;
 using PasaBuy.App.Models.Onboarding;
+using DataVice;
 
 namespace PasaBuy.App.ViewModels.Onboarding
 {
@@ -113,8 +114,47 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void LoginClicked(object obj)
         {
-            
-            RestAPI.Instance.Authenticate(Email, Password, (bool success, string data) =>
+            User.Instance.Auth(Email, Password, (bool success, string data) =>
+            {
+                if (success)
+                {
+                    Token token  = JsonConvert.DeserializeObject<Token>(data);
+                    User.Instance.Profile(token.data.wpid, token.data.snky, (bool success2, string data2) =>
+                    {
+                        if (success2)
+                        {
+                            UserInfo uinfo = JsonConvert.DeserializeObject<UserInfo>(data2);
+
+                            if (uinfo.status == "success")
+                            {
+                                //UserPrefs.Instance.UserInfo = uinfo;
+                                UserPrefs.Instance.UserInfo.dname = uinfo.data.dname;
+                                UserPrefs.Instance.UserInfo.uname = uinfo.data.uname;
+                                UserPrefs.Instance.UserInfo.email = uinfo.data.email;
+                                UserPrefs.Instance.UserInfo.city = uinfo.data.city;
+                                //Console.WriteLine(UserPrefs.Instance.UserInfo.dname + " display name");
+
+                                Application.Current.MainPage = new Views.MainTabs();
+                            }
+
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data2), "Try Again");
+                            }
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
+                        }
+                    });
+                }
+                else
+                {
+                    new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
+                }
+            });
+
+            /*RestAPI.Instance.Authenticate(Email, Password, (bool success, string data) =>
             {
                 if(success)
                 {
@@ -151,7 +191,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
                 {
                     new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
                 }
-            });
+            });*/
         }
 
         /// <summary>

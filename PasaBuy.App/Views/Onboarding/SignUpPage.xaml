@@ -117,14 +117,14 @@
                         BorderColor="{Binding Source={x:Reference BirthdayPicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=2}"
                         HeightRequest="40"
                         Style="{StaticResource SfBorderStyle}">
-                            <control:CalenderDatePicker Date="{Binding Date}" 
+                            <control:CalenderDatePicker Date="{Binding BirthDay}" 
                                 x:Name="BirthdayPicker"
                                 Style="{StaticResource SfBorderStyle}"
                                 FontFamily="{StaticResource Montserrat-Regular}"
                                 FontSize="16"
                                 Format="yyyy-MM-dd"
                                 TextColor="{DynamicResource Gray-800}"
-                                PlaceHolderText="Date of Birth" />
+                                PlaceHolderText="Date of Birth"/>
                         </border:SfBorder>
 
                         <border:SfBorder
@@ -132,7 +132,7 @@
                         Style="{StaticResource SfBorderStyle}">
                             <combobox:SfComboBox
                                 x:Name="GenderPicker"
-                                SelectedValue="{Binding Signup, Mode=TwoWay}"
+                                SelectedValue="{Binding Gender, Mode=TwoWay}"
                                 Style="{StaticResource ComboBoxStyle}"
                                 Watermark="Gender"
                                 VerticalOptions="CenterAndExpand">
