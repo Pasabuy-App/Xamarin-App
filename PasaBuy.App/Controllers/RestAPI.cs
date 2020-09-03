@@ -126,34 +126,7 @@ namespace PasaBuy.App
             else
             {
                 callback(false, "Network Error! Check your connection.");
-            } */
-
-   
-            /*using (var cl = new HttpClient())
-            {
-                var formcontent = new FormUrlEncodedContent(new[]
-                {
-                    new KeyValuePair<string, string>("mkey", "123")
-                });
-
-                var request = await cl.PostAsync(DataApiUrl + "location/country/active", formcontent);
-
-                request.EnsureSuccessStatusCode();
-
-                if (request.IsSuccessStatusCode)
-                {
-                    var response = await request.Content.ReadAsStringAsync();
-
-                    Country country = JsonConvert.DeserializeObject<Country>(response);
-
-                }
-
-                else
-                {
-                    Debug.WriteLine("PasaBuy: Failed! -> " + request.StatusCode);
-                }
-
-            }*//*
+            } 
         }*/
 
         public async void GetUserInfo(Token userToken, Action<bool, string> callback)
@@ -207,39 +180,6 @@ namespace PasaBuy.App
             }
 
         }
-
-
-        /*public async void GetCountries(string mkey)
-        {
-            using (var cl = new HttpClient())
-            {
-                var formcontent = new FormUrlEncodedContent(new[]
-                {
-                    new KeyValuePair<string, string>("mkey", mkey)
-                });
-
-                var request = await cl.PostAsync(DataApiUrl + "location/country/active", formcontent);
-
-                request.EnsureSuccessStatusCode();
-
-                if (request.IsSuccessStatusCode)
-                {
-                    var response = await request.Content.ReadAsStringAsync();
-
-                    Country country = JsonConvert.DeserializeObject<Country>(response);
-                    
-                }
-
-                else
-                {
-                    Debug.WriteLine("PasaBuy: Failed! -> " + request.StatusCode);
-                }
-
-            }
-
-        }*/
-            
-
      
         #endregion
 
