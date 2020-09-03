@@ -160,9 +160,9 @@
                             <Image Grid.Column="3" Source="Logo.png"
                                    HeightRequest="22"/>
                         </Grid>
-                        <Label Text="(ic) Lives in Binan City"/>
-                        <Label Text="(ic) Joined at October 2020"/>
-                        <Label Text="(ic) Refered by mariaclara01"/>
+                        <Label Text="{Binding City}"/>
+                        <Label Text="{Binding Joined}"/>
+                        <Label Text="{Binding Refered}"/>
                     </StackLayout>
 
                     <Grid ColumnSpacing="0" RowSpacing="0">

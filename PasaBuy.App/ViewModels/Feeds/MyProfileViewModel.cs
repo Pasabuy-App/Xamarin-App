@@ -30,7 +30,9 @@ namespace PasaBuy.App.ViewModels.Feeds
             this.DisplayName = UserPrefs.Instance.UserInfo.dname;
             this.Verification = UserPrefs.Instance.UserInfo.verify;
 
-            //this.City = "Lives in " + UserPrefs.Instance.UserInfo.city;
+            this.City = "(ic) Lives in ";// + UserPrefs.Instance.UserInfo.city;
+            this.Joined = "(ic) Joined at ";// + UserPrefs.Instance.UserInfo.joined;
+            this.Refered = "(ic) Refered by ";// + UserPrefs.Instance.UserInfo.city;
             //Joined
             //Refered
             this.PostsCount = 8;
@@ -108,6 +110,16 @@ namespace PasaBuy.App.ViewModels.Feeds
         /// Gets or sets the City
         /// </summary>
         public string City { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Joined
+        /// </summary>
+        public string Joined { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Refered
+        /// </summary>
+        public string Refered { get; set; }
 
         /// <summary>
         /// Gets or sets the posts count

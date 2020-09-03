@@ -114,12 +114,12 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void LoginClicked(object obj)
         {
-            User.Instance.Auth(Email, Password, (bool success, string data) =>
+            Users.Instance.Auth(Email, Password, (bool success, string data) =>
             {
                 if (success)
                 {
                     Token token  = JsonConvert.DeserializeObject<Token>(data);
-                    User.Instance.Profile(token.data.wpid, token.data.snky, (bool success2, string data2) =>
+                    Users.Instance.Profile(token.data.wpid, token.data.snky, (bool success2, string data2) =>
                     {
                         if (success2)
                         {
@@ -132,6 +132,10 @@ namespace PasaBuy.App.ViewModels.Onboarding
                                 UserPrefs.Instance.UserInfo.uname = uinfo.data.uname;
                                 UserPrefs.Instance.UserInfo.email = uinfo.data.email;
                                 UserPrefs.Instance.UserInfo.city = uinfo.data.city;
+                                UserPrefs.Instance.UserInfo.email = uinfo.data.email;
+                                UserPrefs.Instance.UserInfo.city = uinfo.data.city;
+                                UserPrefs.Instance.UserInfo.lname = uinfo.data.lname;
+                                UserPrefs.Instance.UserInfo.fname = uinfo.data.fname;
                                 //Console.WriteLine(UserPrefs.Instance.UserInfo.dname + " display name");
 
                                 Application.Current.MainPage = new Views.MainTabs();

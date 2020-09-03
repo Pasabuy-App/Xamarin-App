@@ -36,7 +36,7 @@ namespace PasaBuy.App.Views.Onboarding
             CountryPicker.DataSource = country.CountryCollection;
             CountryPicker.DisplayMemberPath = "Name";*/
 
-            Location.Instance.Countries("datavice", (bool success, string data) =>
+            /*Locations.Instance.Country("datavice", (bool success, string data) =>
             {
                 if (success)
                 {
@@ -56,7 +56,7 @@ namespace PasaBuy.App.Views.Onboarding
                 {
                     new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
                 }
-            });
+            });*/
         }
     }
 }

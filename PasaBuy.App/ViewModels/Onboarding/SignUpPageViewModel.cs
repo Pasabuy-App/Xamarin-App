@@ -205,7 +205,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
         {
             //new Alert("Demoguy Notice", "Registration is not yet implemented. Thank you for your patience!", "AGREE");
             //Console.WriteLine(Username +  " " + Email + " " + Lname + " " + Fname + " " + BornDate + " " + Gender);
-            User.Instance.SignUp(Username, Email, Fname, Lname, Gender, BornDate, "175", "1376", "137603", "36794", StreetEntry, (bool success, string data) =>
+            Users.Instance.SignUp(Username, Email, Fname, Lname, Gender, BornDate, "175", "1376", "137603", "36794", StreetEntry, (bool success, string data) =>
             {
                 if (success)
                 {

@@ -129,11 +129,11 @@
                 <Button Grid.Row="6" Grid.ColumnSpan="1" HorizontalOptions="Start"  Grid.Column="0" BorderColor="Transparent"  BackgroundColor="Transparent" BorderWidth="0" Text="Personal Info "></Button>
                 <Button Grid.Row="6" Grid.ColumnSpan="1" HorizontalOptions="End" Grid.Column="1" BorderColor="Transparent"  BackgroundColor="Transparent" BorderWidth="0" Text="Fixed"></Button>
 
-                
-                <local:RoundedEntry  Grid.ColumnSpan="2" Grid.Row="7" Placeholder="First Name"></local:RoundedEntry>
-                <local:RoundedEntry Grid.ColumnSpan="2" Grid.Row="8" Placeholder="Middle Name"></local:RoundedEntry>
-                <local:RoundedEntry Grid.ColumnSpan="2" Grid.Row="9" Placeholder="Last Name"></local:RoundedEntry>
-                <local:RoundedEntry Grid.ColumnSpan="2" Grid.Row="10" Placeholder="Nickname"></local:RoundedEntry>
+
+                <local:RoundedEntry  Grid.ColumnSpan="2" Grid.Row="7" Placeholder="First Name" x:Name="Fname" Text="{Binding Fname}"></local:RoundedEntry>
+                <local:RoundedEntry Grid.ColumnSpan="2" Grid.Row="8" Placeholder="Middle Name" ></local:RoundedEntry>
+                <local:RoundedEntry Grid.ColumnSpan="2" Grid.Row="9" Placeholder="Last Name" x:Name="Lname"  Text="{Binding Lname}" ></local:RoundedEntry>
+                <local:RoundedEntry  Grid.ColumnSpan="2" Grid.Row="10" Placeholder="Nickname" x:Name="Nname" Text="{Binding Nname}"></local:RoundedEntry>
                 
                     
                 

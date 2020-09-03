@@ -1,4 +1,5 @@
-﻿using PasaBuy.App.Controllers.Notice;
+﻿using PasaBuy.App.Controllers;
+using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Views.Master;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,10 @@ namespace PasaBuy.App.Views.Settings
         public EditProfilePage()
         {
             InitializeComponent();
+
+            Fname.Text = UserPrefs.Instance.UserInfo.fname;
+            Lname.Text = UserPrefs.Instance.UserInfo.lname;
+            Nname.Text = UserPrefs.Instance.UserInfo.dname;
         }
 
         /// <summary>

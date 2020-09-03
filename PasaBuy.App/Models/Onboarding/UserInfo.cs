@@ -16,6 +16,9 @@ namespace PasaBuy.App.Models.Onboarding
         public string verify = "UNVERIFIED";
         public string city = string.Empty;
         public string email = string.Empty;
+        public string lname = string.Empty;
+        public string fname = string.Empty;
+        public string banner = string.Empty;
         public string avatar = string.Empty;
 
 
@@ -27,6 +30,9 @@ namespace PasaBuy.App.Models.Onboarding
             public string dname = string.Empty;
             public string city = string.Empty;
             public string email = string.Empty;
+            public string lname = string.Empty;
+            public string fname = string.Empty;
+            public string banner = string.Empty;
             public string avatar = string.Empty;
         }
 
@@ -37,7 +43,6 @@ namespace PasaBuy.App.Models.Onboarding
                 return App.BaseRootUrl + avatar;
             }
         }
-        public string banner = string.Empty;
         public string bannerUrl
         {
             get

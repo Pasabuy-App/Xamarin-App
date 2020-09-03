@@ -49,7 +49,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void SendClicked(object obj)
         {
-            User.Instance.Forgot( Email, (bool success, string data) =>
+            Users.Instance.Forgot( Email, (bool success, string data) =>
             {
                 if (success)
                 {
