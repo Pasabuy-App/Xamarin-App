@@ -2,6 +2,9 @@
 using PasaBuy.App.Views.Onboarding;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using DataVice;
+using PasaBuy.App.Controllers;
+using System;
 
 namespace PasaBuy.App.ViewModels.Onboarding
 {
@@ -46,7 +49,18 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void SendClicked(object obj)
         {
-            new Alert("Demoguy Notice", "Password reset is not yet implemented. Thank you for your patience!", "AGREE");
+            User.Instance.Forgot( Email, (bool success, string data) =>
+            {
+                if (success)
+                {
+                    //Application.Current.MainPage = new SignInPage();
+                    // TODO : Go to next page which is activation
+                } 
+                else
+                {
+                    new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
+                }
+            });
         }
 
         /// <summary>
