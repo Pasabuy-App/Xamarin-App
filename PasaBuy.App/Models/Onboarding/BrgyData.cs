@@ -6,14 +6,14 @@ namespace PasaBuy.App.Models.Onboarding
             public BrgyList[] data;
             public class BrgyList
         {
-                public string id = string.Empty;
+                public string code = string.Empty;
                 public string name = string.Empty;
             }
-            private string id;
-            public string BrgyID
+            private string code;
+            public string BrgyCode
             {
-                get { return id; }
-                set { id = value; }
+                get { return code; }
+                set { code = value; }
             }
             private string name;
             public string Name

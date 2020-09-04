@@ -28,9 +28,9 @@ namespace PasaBuy.App.ViewModels.Onboarding
 						BrgyData brgy = JsonConvert.DeserializeObject<BrgyData>(data);
 						for (int i = 0; i < brgy.data.Length; i++)
 						{
-							string id = brgy.data[i].id;
+							string id = brgy.data[i].code;
 							string name = brgy.data[i].name;
-							brgyCollection.Add(new BrgyData() { BrgyID = id, Name = name });
+							brgyCollection.Add(new BrgyData() { BrgyCode = id, Name = name });
 						}
 					}
 					else

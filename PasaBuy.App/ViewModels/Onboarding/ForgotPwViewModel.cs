@@ -55,6 +55,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
                 {
                     //Application.Current.MainPage = new SignInPage();
                     // TODO : Go to next page which is activation
+                    new Alert("Demoguy Notice", "Forgot Password is Done, proceed to activate account and enter actiavtvion key.", "AGREE");
                 } 
                 else
                 {

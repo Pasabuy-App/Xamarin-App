@@ -118,7 +118,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
             {
                 if (success)
                 {
-                    Token token  = JsonConvert.DeserializeObject<Token>(data);
+                    Token token = JsonConvert.DeserializeObject<Token>(data);
                     SocioPress.Profile.Instance.GetData(token.data.wpid, token.data.snky, (bool success2, string data2) =>
                     {
                         if (success2)

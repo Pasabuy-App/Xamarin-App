@@ -71,6 +71,7 @@ namespace PasaBuy.App.Views.Onboarding
         private void CityPicker_SelectionChanged(object sender, Syncfusion.XForms.ComboBox.SelectionChangedEventArgs e)
         {
             string val = CityPicker.SelectedValue.ToString();
+            Console.WriteLine(val + "city");
             AddressVar.ct = val;
             if (val != "")
             {
@@ -85,8 +86,8 @@ namespace PasaBuy.App.Views.Onboarding
 
         private void BarangayPicker_SelectionChanged(object sender, Syncfusion.XForms.ComboBox.SelectionChangedEventArgs e)
         {
-
             string val = BarangayPicker.SelectedValue.ToString();
+            Console.WriteLine(val + "brgy");
             AddressVar.br = val;
         }
     }

@@ -256,7 +256,7 @@
                         Style="{StaticResource SfBorderStyle}">
                             <combobox:SfComboBox
                                 x:Name="BarangayPicker"
-                                SelectedValuePath="BrgyID"
+                                SelectedValuePath="BrgyCode"
                                 SelectionChanged="BarangayPicker_SelectionChanged"
                                 Style="{StaticResource ComboBoxStyle}"
                                 Watermark="Barangay"
