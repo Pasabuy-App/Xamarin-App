@@ -23,6 +23,7 @@ namespace PasaBuy.App.ViewModels.Settings
         {
             this.EditProfileCommand = new Command(this.EditProfileClicked);
             this.MyAddressCommand = new Command(this.MyAddressClicked);
+            this.MyContactCommand = new Command(this.MyContactClicked);
             this.ChangePasswordCommand = new Command(this.ChangePasswordClicked);
             this.LinkAccountCommand = new Command(this.LinkAccountClicked);
             this.HelpCommand = new Command(this.HelpClicked);
@@ -45,6 +46,11 @@ namespace PasaBuy.App.ViewModels.Settings
         /// Gets or sets the command is executed when the my address option is clicked.
         /// </summary>
         public Command MyAddressCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command is executed when the my contact option is clicked.
+        /// </summary>
+        public Command MyContactCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the command is executed when the change password option is clicked.
@@ -104,6 +110,11 @@ namespace PasaBuy.App.ViewModels.Settings
         private void MyAddressClicked(object obj)
         {
             ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new AddressPage()));
+        }
+
+        private void MyContactClicked(object obj)
+        {
+            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ContactPage()));
         }
 
         /// <summary>
