@@ -25,6 +25,10 @@
         <OnPlatform  x:TypeArguments="Thickness" iOS="0,20,0,0"  Default="0,0,0,0"/>
     </ContentPage.Padding>
 
+    <ContentPage.BindingContext>
+        <viewModel:VerifyAccountViewModel />
+    </ContentPage.BindingContext>
+
     <ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0" >
@@ -34,8 +38,8 @@
                         <buttons:SfButton
                             x:Name="backButton"
                             CornerRadius="4"
-                            Style="{StaticResource IconButtonStyle}"
                             BackgroundColor="Transparent"
+                            Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
                     </controls:TitleView.LeadingView>
 
@@ -93,7 +97,7 @@
                             Grid.Row="2"
                             Padding="15,0,0,0"
                             Style="{StaticResource FormBorderStyle}">
-                        <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Username" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
+                        <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Username" x:Name="Username" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
 
                     </border:SfBorder>
 
@@ -102,7 +106,7 @@
                             Grid.Row="3"
                             Padding="15,0,0,0"
                             Style="{StaticResource FormBorderStyle}">
-                        <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Activation key" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
+                        <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Activation key" x:Name="ActivationKey" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
 
                     </border:SfBorder>
 
