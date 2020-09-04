@@ -43,8 +43,8 @@ namespace PasaBuy.App
 
             UserPrefs.Instance.Initialize();
 
-            MainPage = new NavigationPage(new SignInPage());
-            //MainPage = new PasaBuy.App.Views.StoreDetail.StoreDetailPage();
+            MainPage = new NavigationPage(new VerifyAccountPage());
+            //MainPage = new PasaBuy.App.Views.eCommerce.PaymentFailurePage();
         }
 
         /// <summary>

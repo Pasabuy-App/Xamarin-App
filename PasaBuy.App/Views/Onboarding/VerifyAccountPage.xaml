@@ -1,27 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             NavigationPage.HasNavigationBar="False"
-             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
-             xmlns:local="clr-namespace:PasaBuy.App.CustomRenderers"
-             xmlns:converter="clr-namespace:PasaBuy.App.Converters"
-             xmlns:controls="clr-namespace:PasaBuy.App.Controls"
-             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
-             x:Class="PasaBuy.App.Views.Settings.ChangePWPage"
-             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-             BackgroundColor="{DynamicResource Gray-100}"
-             xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms">
-    
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:controls="clr-namespace:PasaBuy.App.Controls"
+    xmlns:converter="clr-namespace:PasaBuy.App.Converters"
+    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+    xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+    xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Onboarding"
+    NavigationPage.HasNavigationBar="False"
+    x:Class="PasaBuy.App.Views.Onboarding.VerifyAccountPage">
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:BooleanToColorConverter x:Key="ColorConverter" />
-            <ResourceDictionary Source="Styles.xaml" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
-
+    
     <ContentPage.Padding>
         <OnPlatform  x:TypeArguments="Thickness" iOS="0,20,0,0"  Default="0,0,0,0"/>
     </ContentPage.Padding>
@@ -29,14 +28,14 @@
     <ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0" >
-                <controls:TitleView Title="Change Password" FontSize="14"
+                <controls:TitleView Title="Activatation" FontSize="14"
                                     BackgroundColor="{DynamicResource PrimaryColor}" >
                     <controls:TitleView.LeadingView >
                         <buttons:SfButton
                             x:Name="backButton"
-                            Clicked="BackButtonClicked"
                             CornerRadius="4"
                             Style="{StaticResource IconButtonStyle}"
+                            BackgroundColor="Transparent"
                             Text="{StaticResource Back}" />
                     </controls:TitleView.LeadingView>
 
@@ -45,6 +44,7 @@
             </StackLayout>
         </ControlTemplate>
     </ContentPage.ControlTemplate>
+
     <ContentPage.Content>
         <StackLayout
                     Margin="{core:OnPlatformOrientationThickness PhonePortrait='20,32',
@@ -76,7 +76,7 @@
                             FontSize="20"
                             HorizontalOptions="Center"
                             Style="{StaticResource LabelStyle}"
-                            Text="Reset Password"
+                            Text="Activate Account"
                             VerticalOptions="Center" />
 
                     <!--  Label to display the description of this page  -->
@@ -86,14 +86,14 @@
                             FontFamily="{StaticResource Montserrat-Medium}"
                             HorizontalTextAlignment="Center"
                             Style="{StaticResource LabelStyle}"
-                            Text="Enter your new password to reset the old password" />
+                            Text="Enter username and activation key" />
 
                     <!--  Entry to get new password from user  -->
                     <border:SfBorder
                             Grid.Row="2"
                             Padding="15,0,0,0"
                             Style="{StaticResource FormBorderStyle}">
-                        <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="New Password" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
+                        <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Username" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
 
                     </border:SfBorder>
 
@@ -102,7 +102,7 @@
                             Grid.Row="3"
                             Padding="15,0,0,0"
                             Style="{StaticResource FormBorderStyle}">
-                        <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Confirm New Password" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
+                        <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Activation key" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
 
                     </border:SfBorder>
 
@@ -122,6 +122,4 @@
 
         </StackLayout>
     </ContentPage.Content>
-
-
 </ContentPage>
