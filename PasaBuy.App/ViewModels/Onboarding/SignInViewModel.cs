@@ -136,11 +136,8 @@ namespace PasaBuy.App.ViewModels.Onboarding
                                 UserPrefs.Instance.UserInfo.lname = uinfo.data.lname;
                                 UserPrefs.Instance.UserInfo.fname = uinfo.data.fname;
                                 UserPrefs.Instance.UserInfo.date_registered = uinfo.data.date_registered;
-                                UserPrefs.Instance.UserInfo.fname = uinfo.data.fname;
-                                UserPrefs.Instance.UserInfo.date_registered = uinfo.data.date_registered;
 
                                 ProfileGetData.CountPost(token.data.wpid, token.data.snky);
-                                //Console.WriteLine(UserPrefs.Instance.UserInfo.dname + " display name");
 
                                 Application.Current.MainPage = new Views.MainTabs();
                             }
