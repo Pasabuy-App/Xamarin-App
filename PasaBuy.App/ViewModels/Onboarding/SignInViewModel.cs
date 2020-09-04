@@ -127,7 +127,6 @@ namespace PasaBuy.App.ViewModels.Onboarding
 
                             if (uinfo.status == "success")
                             {
-                                //UserPrefs.Instance.UserInfo = uinfo;
                                 UserPrefs.Instance.UserInfo.dname = uinfo.data.dname;
                                 UserPrefs.Instance.UserInfo.uname = uinfo.data.uname;
                                 UserPrefs.Instance.UserInfo.email = uinfo.data.email;
@@ -139,7 +138,6 @@ namespace PasaBuy.App.ViewModels.Onboarding
                                 ProfileGetData.CountPost(token.data.wpid, token.data.snky);
                                 UserPrefs.Instance.UserInfo.wpid = token.data.wpid;
                                 UserPrefs.Instance.UserInfo.snky = token.data.snky;
-                                //Console.WriteLine(UserPrefs.Instance.UserInfo.dname + " display name");
 
                                 Application.Current.MainPage = new Views.MainTabs();
                             }
@@ -160,45 +158,6 @@ namespace PasaBuy.App.ViewModels.Onboarding
                     new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
                 }
             });
-
-            /*RestAPI.Instance.Authenticate(Email, Password, (bool success, string data) =>
-            {
-                if(success)
-                {
-                    UserPrefs.Instance.Token = JsonConvert.DeserializeObject<Token>(data);
-
-                    RestAPI.Instance.GetUserInfo(UserPrefs.Instance.Token, (bool success2, string data2) =>
-                    {
-                        if (success2)
-                        {
-                            UserInfo uinfo = JsonConvert.DeserializeObject<UserInfo>(data2);
-
-                            if (uinfo.status == "success")
-                            {
-                                UserPrefs.Instance.UserInfo = uinfo;
-
-                                Application.Current.MainPage = new PasaBuy.App.Views.MainTabs();
-                            }
-
-                            else
-                            {
-                                new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data2), "Try Again");
-                            }
-                        }
-
-                        else 
-                        {
-                            new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data2), "Try Again");
-                        }
-                        
-                    });
-                }
-
-                else
-                {
-                    new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
-                }
-            });*/
         }
 
         /// <summary>
