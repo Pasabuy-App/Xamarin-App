@@ -78,6 +78,7 @@
                 
                 <border:SfBorder Padding="8, 0, 0, 0" HeightRequest="120" Grid.Row="1" Grid.ColumnSpan="5" Style="{StaticResource SfBorderStyle}">
                     <controls:BorderlessEditor
+                                x:Name="StatusEditor"
                                 HeightRequest="120"
                                 Placeholder="Share what's on your mind"
                                 PlaceholderColor="{DynamicResource Gray-700}"
