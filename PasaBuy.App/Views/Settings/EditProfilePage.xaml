@@ -71,7 +71,7 @@
 
 
                 <Button Grid.ColumnSpan="1" HorizontalOptions="Start"  Grid.Column="0" BorderColor="Transparent"  BackgroundColor="Transparent" BorderWidth="0" Text="Profile Image"></Button>
-                <Button Grid.ColumnSpan="1" HorizontalOptions="End" Grid.Column="1" BorderColor="Transparent"  BackgroundColor="Transparent" BorderWidth="0" Text="Upload"></Button>
+                <Button Grid.ColumnSpan="1" HorizontalOptions="End" Grid.Column="1" CornerRadius="15" BorderColor="{DynamicResource Gray-200}"  BackgroundColor="{DynamicResource Gray-100}" BorderWidth="0" Text="Save"></Button>
 
                 <border:SfBorder Grid.Row="1"
                                              Grid.RowSpan="1"
@@ -100,8 +100,8 @@
                 <!-- Seperator -->
                 <BoxView Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource SeparatorStyle}"/>
 
-                <Button Grid.Row="3" Grid.ColumnSpan="1" HorizontalOptions="Start"  Grid.Column="0" BorderColor="Transparent"  BackgroundColor="Transparent" BorderWidth="0" Text="Banner Image"></Button>
-                <Button Grid.Row="3" Grid.ColumnSpan="1" HorizontalOptions="End" Grid.Column="1" BorderColor="Transparent"  BackgroundColor="Transparent" BorderWidth="0" Text="Upload"></Button>
+                <Button Grid.Row="3" Grid.ColumnSpan="1" HorizontalOptions="Start"  Grid.Column="0" BorderColor="Transparent"  BackgroundColor="Transparent" BorderWidth="1" Text="Banner Image"></Button>
+                <Button Grid.Row="3" Grid.ColumnSpan="1" HorizontalOptions="End" CornerRadius="15" Grid.Column="1" BorderColor="{DynamicResource Gray-200}"  BackgroundColor="{DynamicResource Gray-100}" BorderWidth="1" Text="Save"></Button>
    
                 <border:SfBorder Grid.Row="4"
                                              Grid.RowSpan="1"
