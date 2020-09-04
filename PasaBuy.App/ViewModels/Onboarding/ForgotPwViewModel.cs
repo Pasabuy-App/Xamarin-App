@@ -5,6 +5,7 @@ using Xamarin.Forms.Internals;
 using DataVice;
 using PasaBuy.App.Controllers;
 using System;
+using PasaBuy.App.Models.Onboarding;
 
 namespace PasaBuy.App.ViewModels.Onboarding
 {
@@ -14,6 +15,25 @@ namespace PasaBuy.App.ViewModels.Onboarding
     [Preserve(AllMembers = true)]
     public class ForgotPwViewModel : LoginViewModel
     {
+
+        private Boolean _state = false;
+
+        /// <summary>
+        /// Gets or sets the property that is bound with stacklayout that gets the visibility state from user in the login page.
+        /// </summary>
+        public Boolean State
+        {
+            get
+            {
+                return _state;
+            }
+            set
+            {
+                _state = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
         #region Constructor
 
         /// <summary>
@@ -49,19 +69,22 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void SendClicked(object obj)
         {
-            Users.Instance.Forgot( Email, (bool success, string data) =>
-            {
-                if (success)
-                {
-                    //Application.Current.MainPage = new SignInPage();
-                    // TODO : Go to next page which is activation
-                    new Alert("Demoguy Notice", "Forgot Password is Done, proceed to activate account and enter actiavtvion key.", "AGREE");
-                } 
-                else
-                {
-                    new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
-                }
-            });
+            State = true;
+            Users.Instance.Forgot(Email, (bool success, string data) =>
+           {
+               if (success)
+               {
+                   State = false;
+                   Application.Current.MainPage = new VerifyResetPage();
+                   VerifyAccountVar.un = Email;
+                   //new Alert("Demoguy Notice", "Forgot Password is Done, proceed to activate account and enter actiavtvion key.", "AGREE");
+               }
+               else
+               {
+                   new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
+                   State = false;
+               }
+           });
         }
 
         /// <summary>

@@ -119,7 +119,7 @@
                             TextColor="White"
                             BackgroundColor="{DynamicResource PrimaryColor}"
                             Style="{StaticResource SfButtonStyle}"
-                            Text="SUBMIT" />
+                            Text="SUBMIT" Clicked="SfButton_Clicked" />
 
                 </Grid>
             </border:SfBorder>

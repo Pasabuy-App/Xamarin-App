@@ -111,6 +111,7 @@
                             TextColor="White"
                             BackgroundColor="{DynamicResource PrimaryColor}"
                             Style="{StaticResource SfButtonStyle}"
+                            Clicked="SfButton_Clicked"
                             Text="SUBMIT" />
 
                 </Grid>

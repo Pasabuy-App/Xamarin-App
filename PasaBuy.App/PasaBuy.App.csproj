@@ -487,10 +487,10 @@
 
   <ItemGroup>
     <Reference Include="DataVice-PCL">
-      <HintPath>D:\Project\DataVice-PCL\bin\Release\netstandard2.0\DataVice-PCL.dll</HintPath>
+      <HintPath>Resources\DataVice-PCL.dll</HintPath>
     </Reference>
     <Reference Include="SocioPress-PCL">
-      <HintPath>D:\Project\SocioPress-PCL\bin\Release\netstandard2.0\SocioPress-PCL.dll</HintPath>
+      <HintPath>Resources\SocioPress-PCL.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>

@@ -24,6 +24,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
 
         private string password;
 
+        private Boolean _state = false;
 
         #endregion
 
@@ -66,6 +67,22 @@ namespace PasaBuy.App.ViewModels.Onboarding
                 }
 
                 this.password = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the property that is bound with stacklayout that gets the visibility state from user in the login page.
+        /// </summary>
+        public Boolean State
+        {
+            get
+            {
+                return _state;
+            }
+            set
+            {
+                _state = value;
                 this.NotifyPropertyChanged();
             }
         }
@@ -114,6 +131,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void LoginClicked(object obj)
         {
+            State = true;
             Users.Instance.Auth(Email, Password, (bool success, string data) =>
             {
                 if (success)
@@ -139,23 +157,26 @@ namespace PasaBuy.App.ViewModels.Onboarding
                                 UserPrefs.Instance.UserInfo.wpid = token.data.wpid;
                                 UserPrefs.Instance.UserInfo.snky = token.data.snky;
 
+                                State = false;
                                 Application.Current.MainPage = new Views.MainTabs();
                             }
-
                             else
                             {
                                 new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data2), "Try Again");
+                                State = false;
                             }
                         }
                         else
                         {
                             new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
+                            State = false;
                         }
                     });
                 }
                 else
                 {
                     new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
+                    State = false;
                 }
             });
         }

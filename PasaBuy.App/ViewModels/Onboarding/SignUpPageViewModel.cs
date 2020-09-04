@@ -212,20 +212,20 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void SignUpClicked(object obj)
         {
-            new Alert("Demoguy Notice", "SignUp is Done, proceed to activate account and enter actiavtvion key.", "AGREE");
+            //new Alert("Demoguy Notice", "SignUp is Done, proceed to activate account and enter actiavtvion key.", "AGREE");
             //Console.WriteLine("un: " + Username + " em: " + Email + " ln : " + Lname + " fn: " + Fname + " bd: " + BornDate + " gd: " + Gender + " co: " + AddressVar.co + " pv: " + AddressVar.pr + " ct: " + AddressVar.ct + " br: " + AddressVar.br + " st: " + StreetEntry );
-            
-            /*Users.Instance.SignUp(Username, Email, Fname, Lname, Gender, BornDate, AddressVar.co, AddressVar.pr, AddressVar.ct, AddressVar.br, StreetEntry, (bool success, string data) =>
+
+            Users.Instance.SignUp(Username, Email, Fname, Lname, Gender, BornDate, AddressVar.co, AddressVar.pr, AddressVar.ct, AddressVar.br, StreetEntry, (bool success, string data) =>
             {
                 if (success)
                 {
-                    //Application.Current.MainPage = new SignInPage();
+                    Application.Current.MainPage = new VerifyAccountPage();
                 }
                 else
                 {
                     new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
                 }
-            });*/
+            });
         }
 
 

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using PasaBuy.App.Controllers;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Models.Feeds;
-
+using PasaBuy.App.ViewModels.Feeds;
+using PasaBuy.App.Views.Feeds;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -33,6 +34,7 @@ namespace PasaBuy.App.Views.Posts
                 if (success)
                 {
                     Navigation.PopModalAsync();
+                    //HomepageViewModel.RefreshData();
                 }
                 else
                 {

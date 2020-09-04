@@ -81,7 +81,7 @@
                             Grid.Row="2"
                             Padding="15,0,0,0"
                             Style="{StaticResource FormBorderStyle}">
-                            <control:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Emaill Address" x:Name="EmaillAddress" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
+                            <control:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Email Address" x:Name="EmailAddress" HeightRequest="40"  Text="{Binding Email}"  Keyboard="Email" Style="{StaticResource EntryTextStyle}" />
 
                         </border:SfBorder>
 
@@ -123,6 +123,22 @@
                     </StackLayout>
                 </StackLayout>
             </ScrollView>
+
+            <StackLayout
+                    x:Name="aiLayout"
+                    IsVisible="{Binding State}"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    BackgroundColor="Gray" Opacity="0.5" ClassId="123">
+                <ActivityIndicator
+                        x:Name="isBusy"
+                        IsRunning="true"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand"
+                        HeightRequest="100"
+                        WidthRequest="100"
+                        Color="Black"/>
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 
