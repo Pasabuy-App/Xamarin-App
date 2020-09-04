@@ -35,6 +35,7 @@ namespace PasaBuy.App
         {
 
             DataVice.DVHost.Instance.Initialized("http://10.0.2.2/wordpress");
+            SocioPress.SPHost.Instance.Initialized("http://10.0.2.2/wordpress");
 
             InitializeComponent();
 

@@ -1,4 +1,9 @@
-﻿using PasaBuy.App.Controllers;
+﻿using Newtonsoft.Json;
+using PasaBuy.App.Controllers;
+using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Models.Onboarding;
+using System;
+using System.Globalization;
 using System.Windows.Input;
 using Xamarin.Forms.Internals;
 
@@ -25,19 +30,35 @@ namespace PasaBuy.App.ViewModels.Feeds
         /// </summary>
         public MyProfileViewModel()
         {
+            CultureInfo provider = new CultureInfo("fr-FR");
+            DateTime date = DateTime.ParseExact(UserPrefs.Instance.UserInfo.date_registered, "yyyy-MM-dd HH:mm:ss", provider);
+
             this.BannerImage = UserPrefs.Instance.UserInfo.bannerUrl;
             this.ProfileImage = UserPrefs.Instance.UserInfo.avatarUrl;
             this.DisplayName = UserPrefs.Instance.UserInfo.dname;
             this.Verification = UserPrefs.Instance.UserInfo.verify;
 
-            this.City = "(ic) Lives in ";// + UserPrefs.Instance.UserInfo.city;
-            this.Joined = "(ic) Joined at ";// + UserPrefs.Instance.UserInfo.joined;
+            this.City = "(ic) Lives in " + UserPrefs.Instance.UserInfo.city;
+            this.Joined = "(ic) Joined at " + date.ToString("MMMM yyyy");
             this.Refered = "(ic) Refered by ";// + UserPrefs.Instance.UserInfo.city;
             //Joined
             //Refered
-            this.PostsCount = 8;
-            this.Transacts = 45;
+            SocioPress.Transaction.Instance.GetTotal(UserPrefs.Instance.UserInfo.wpid, UserPrefs.Instance.UserInfo.snky, (bool success, string data) =>
+            {
+                if (success)
+                {
+                    ProfileGetData getdata = JsonConvert.DeserializeObject<ProfileGetData>(data);
+                    ProfileGetData.totaltransact = getdata.data.transac;
+                }
+                else
+                {
+                    ProfileGetData.totaltransact = 0;
+                }
+                Console.WriteLine(ProfileGetData.totaltransact.ToString());
+                this.Transacts = ProfileGetData.totaltransact;
+            });
             this.Ratings = 4.5f;
+            this.PostsCount = 4;
         }
 
         #endregion

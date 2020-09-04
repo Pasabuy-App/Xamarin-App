@@ -13,6 +13,7 @@ using PasaBuy.App.Controllers;
 using PasaBuy.App.Controllers.Notice;
 using Newtonsoft.Json;
 using PasaBuy.App.Models.Onboarding;
+using PasaBuy.App.ViewModels.Onboarding;
 
 namespace PasaBuy.App.Views.Onboarding
 {
@@ -30,33 +31,63 @@ namespace PasaBuy.App.Views.Onboarding
         public SignUpPage()
         {
             InitializeComponent();
-
-            /*CountryViewModel country = new CountryViewModel();
+            ViewModels.Onboarding.CountryViewModel country = new ViewModels.Onboarding.CountryViewModel();
             CountryPicker.BindingContext = country;
             CountryPicker.DataSource = country.CountryCollection;
-            CountryPicker.DisplayMemberPath = "Name";*/
+            CountryPicker.DisplayMemberPath = "Name";
+        }
 
-            /*Locations.Instance.Country("datavice", (bool success, string data) =>
+        private void CountryPicker_SelectionChanged(object sender, Syncfusion.XForms.ComboBox.SelectionChangedEventArgs e)
+        {
+            string val = CountryPicker.SelectedValue.ToString();
+            AddressVar.co = val;
+            if (val != "")
             {
-                if (success)
-                {
-                    var countryList = new List<string>();
-                    CountryData country = JsonConvert.DeserializeObject<CountryData>(data);
-                    for (int i = 0; i < country.data.Length; i++)
-                    {
-                        string id = country.data[i].ID;
-                        string code = country.data[i].code;
-                        string name = country.data[i].name;
-                        countryList.Add(name);
-                    }
+                ProvincePicker.Clear();
+                CityPicker.Clear();
+                BarangayPicker.Clear();
+                ProvinceViewModel province = new ProvinceViewModel(val);
+                ProvincePicker.BindingContext = province;
+                ProvincePicker.DataSource = province.ProvinceCollection;
+                ProvincePicker.DisplayMemberPath = "Name";
+            }
+        }
 
-                    CountryPicker.ComboBoxSource = countryList;
-                }
-                else
-                {
-                    new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
-                }
-            });*/
+        private void ProvincePicker_SelectionChanged(object sender, Syncfusion.XForms.ComboBox.SelectionChangedEventArgs e)
+        {
+            string val = ProvincePicker.SelectedValue.ToString();
+            AddressVar.pr = val;
+            if (val != "")
+            {
+                CityPicker.Clear();
+                BarangayPicker.Clear();
+                CityViewModel city = new CityViewModel(val);
+                CityPicker.BindingContext = city;
+                CityPicker.DataSource = city.CityCollection;
+                CityPicker.DisplayMemberPath = "Name";
+            }
+        }
+
+        private void CityPicker_SelectionChanged(object sender, Syncfusion.XForms.ComboBox.SelectionChangedEventArgs e)
+        {
+            string val = CityPicker.SelectedValue.ToString();
+            AddressVar.ct = val;
+            if (val != "")
+            {
+                BarangayPicker.Clear();
+                BrgyViewModel brgy = new BrgyViewModel(val);
+                BarangayPicker.BindingContext = brgy;
+                BarangayPicker.DataSource = brgy.BrgyCollection;
+                BarangayPicker.DisplayMemberPath = "Name";
+            }
+
+        }
+
+        private void BarangayPicker_SelectionChanged(object sender, Syncfusion.XForms.ComboBox.SelectionChangedEventArgs e)
+        {
+
+            string val = BarangayPicker.SelectedValue.ToString();
+            AddressVar.br = val;
         }
     }
-}
+}   

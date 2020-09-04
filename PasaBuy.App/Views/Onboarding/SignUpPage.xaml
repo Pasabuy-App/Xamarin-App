@@ -158,14 +158,16 @@
                             </combobox:SfComboBox>
                         </border:SfBorder>
 
+                        
                         <border:SfBorder
                         BorderColor="{Binding Source={x:Reference CountryPicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=2}"
                         Style="{StaticResource SfBorderStyle}">
                             <combobox:SfComboBox
                                 x:Name="CountryPicker"
-                                SelectedValue="{Binding Signup, Mode=TwoWay}"
                                 Style="{StaticResource ComboBoxStyle}"
                                 Watermark="Country"
+                                SelectionChanged="CountryPicker_SelectionChanged"
+                                SelectedValuePath="CountryCode"
                                 VerticalOptions="CenterAndExpand">
                                 <combobox:SfComboBox.ComboBoxSource>
                                     <ListCollection:List x:TypeArguments="x:String">
@@ -193,9 +195,10 @@
                         Style="{StaticResource SfBorderStyle}">
                             <combobox:SfComboBox
                                 x:Name="ProvincePicker"
-                                SelectedValue="{Binding Signup, Mode=TwoWay}"
                                 Style="{StaticResource ComboBoxStyle}"
                                 Watermark="Province"
+                                SelectedValuePath="ProvinceCode"
+                                SelectionChanged="ProvincePicker_SelectionChanged"
                                 VerticalOptions="CenterAndExpand">
                                 <combobox:SfComboBox.ComboBoxSource>
                                     <ListCollection:List x:TypeArguments="x:String">
@@ -223,7 +226,8 @@
                         Style="{StaticResource SfBorderStyle}">
                             <combobox:SfComboBox
                                 x:Name="CityPicker"
-                                SelectedValue="{Binding Signup, Mode=TwoWay}"
+                                SelectedValuePath="CityCode"
+                                SelectionChanged="CityPicker_SelectionChanged"
                                 Style="{StaticResource ComboBoxStyle}"
                                 Watermark="City"
                                 VerticalOptions="CenterAndExpand">
@@ -253,7 +257,8 @@
                         Style="{StaticResource SfBorderStyle}">
                             <combobox:SfComboBox
                                 x:Name="BarangayPicker"
-                                SelectedValue="{Binding Signup, Mode=TwoWay}"
+                                SelectedValuePath="BrgyID"
+                                SelectionChanged="BarangayPicker_SelectionChanged"
                                 Style="{StaticResource ComboBoxStyle}"
                                 Watermark="Barangay"
                                 VerticalOptions="CenterAndExpand">

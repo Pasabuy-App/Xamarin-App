@@ -119,7 +119,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
                 if (success)
                 {
                     Token token  = JsonConvert.DeserializeObject<Token>(data);
-                    Users.Instance.Profile(token.data.wpid, token.data.snky, (bool success2, string data2) =>
+                    SocioPress.Profile.Instance.GetData(token.data.wpid, token.data.snky, (bool success2, string data2) =>
                     {
                         if (success2)
                         {
@@ -133,9 +133,13 @@ namespace PasaBuy.App.ViewModels.Onboarding
                                 UserPrefs.Instance.UserInfo.email = uinfo.data.email;
                                 UserPrefs.Instance.UserInfo.city = uinfo.data.city;
                                 UserPrefs.Instance.UserInfo.email = uinfo.data.email;
-                                UserPrefs.Instance.UserInfo.city = uinfo.data.city;
                                 UserPrefs.Instance.UserInfo.lname = uinfo.data.lname;
                                 UserPrefs.Instance.UserInfo.fname = uinfo.data.fname;
+                                UserPrefs.Instance.UserInfo.date_registered = uinfo.data.date_registered;
+                                UserPrefs.Instance.UserInfo.fname = uinfo.data.fname;
+                                UserPrefs.Instance.UserInfo.date_registered = uinfo.data.date_registered;
+                                UserPrefs.Instance.UserInfo.wpid = token.data.wpid;
+                                UserPrefs.Instance.UserInfo.snky = token.data.snky;
                                 //Console.WriteLine(UserPrefs.Instance.UserInfo.dname + " display name");
 
                                 Application.Current.MainPage = new Views.MainTabs();

@@ -5,6 +5,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using DataVice;
 using PasaBuy.App.Controllers;
+using PasaBuy.App.Models.Onboarding;
 
 namespace PasaBuy.App.ViewModels.Onboarding
 {
@@ -23,6 +24,14 @@ namespace PasaBuy.App.ViewModels.Onboarding
         private string firstname;
 
         private string gender;
+
+        /*private string country_code;
+
+        private string prov_code;
+
+        private string city_code;
+
+        private string brgy_id;*/
 
         private string street;
 
@@ -147,7 +156,94 @@ namespace PasaBuy.App.ViewModels.Onboarding
                 this.NotifyPropertyChanged();
             }
         }
+/*
+        /// <summary>
+        /// Gets or sets the property that bounds with an entry that gets the street from users in the Sign Up page.
+        /// </summary>
+        public string CountryCode
+        {
+            get
+            {
+                return this.country_code;
+            }
 
+            set
+            {
+                if (this.country_code == value)
+                {
+                    return;
+                }
+
+                this.country_code = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the property that bounds with an entry that gets the street from users in the Sign Up page.
+        /// </summary>
+        public string ProvinceCode
+        {
+            get
+            {
+                return this.prov_code;
+            }
+
+            set
+            {
+                if (this.prov_code == value)
+                {
+                    return;
+                }
+
+                this.prov_code = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the property that bounds with an entry that gets the street from users in the Sign Up page.
+        /// </summary>
+        public string CityCode
+        {
+            get
+            {
+                return this.city_code;
+            }
+
+            set
+            {
+                if (this.city_code == value)
+                {
+                    return;
+                }
+
+                this.city_code = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the property that bounds with an entry that gets the street from users in the Sign Up page.
+        /// </summary>
+        public string BrgyID
+        {
+            get
+            {
+                return this.brgy_id;
+            }
+
+            set
+            {
+                if (this.brgy_id == value)
+                {
+                    return;
+                }
+
+                this.brgy_id = value;
+                this.NotifyPropertyChanged();
+            }
+        }*/
         /// <summary>
         /// Gets or sets the property that bounds with an entry that gets the street from users in the Sign Up page.
         /// </summary>
@@ -204,8 +300,8 @@ namespace PasaBuy.App.ViewModels.Onboarding
         private void SignUpClicked(object obj)
         {
             //new Alert("Demoguy Notice", "Registration is not yet implemented. Thank you for your patience!", "AGREE");
-            //Console.WriteLine(Username +  " " + Email + " " + Lname + " " + Fname + " " + BornDate + " " + Gender);
-            Users.Instance.SignUp(Username, Email, Fname, Lname, Gender, BornDate, "175", "1376", "137603", "36794", StreetEntry, (bool success, string data) =>
+            //Console.WriteLine("un: " + Username + " em: " + Email + " ln : " + Lname + " fn: " + Fname + " bd: " + BornDate + " gd: " + Gender + " co: " + AddressVar.co + " pv: " + AddressVar.pr + " ct: " + AddressVar.ct + " br: " + AddressVar.br + " st: " + StreetEntry );
+            Users.Instance.SignUp(Username, Email, Fname, Lname, Gender, BornDate, "AddressVar.co", "AddressVar.pv", "AddressVar.ct", "AddressVar.br", StreetEntry, (bool success, string data) =>
             {
                 if (success)
                 {

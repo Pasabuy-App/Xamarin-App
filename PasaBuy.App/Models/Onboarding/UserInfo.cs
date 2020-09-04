@@ -20,6 +20,9 @@ namespace PasaBuy.App.Models.Onboarding
         public string fname = string.Empty;
         public string banner = string.Empty;
         public string avatar = string.Empty;
+        public string date_registered = string.Empty;
+        public string wpid = string.Empty;
+        public string snky = string.Empty;
 
 
         public UserInfoData data = new UserInfoData();
@@ -34,6 +37,9 @@ namespace PasaBuy.App.Models.Onboarding
             public string fname = string.Empty;
             public string banner = string.Empty;
             public string avatar = string.Empty;
+            public string date_registered = string.Empty;
+            public string wpid = string.Empty;
+            public string snky = string.Empty;
         }
 
         public string avatarUrl

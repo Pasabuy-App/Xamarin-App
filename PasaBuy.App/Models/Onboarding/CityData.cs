@@ -1,16 +1,16 @@
 ﻿
 namespace PasaBuy.App.Models.Onboarding
 {
-    public class CountryData
+    public class CityData
     {
-        public CountryList[] data;
-        public class CountryList
+        public CityList[] data;
+        public class CityList
         {
             public string code = string.Empty;
             public string name = string.Empty;
         }
         private string code;
-        public string CountryCode
+        public string CityCode
         {
             get { return code; }
             set { code = value; }

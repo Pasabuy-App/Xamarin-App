@@ -1,4 +1,8 @@
-﻿using PasaBuy.App.Models.Onboarding;
+﻿using DataVice;
+using Newtonsoft.Json;
+using PasaBuy.App.Controllers;
+using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Models.Onboarding;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,15 +21,25 @@ namespace PasaBuy.App.ViewModels.Onboarding
 		public CountryViewModel()
 		{
 			countryCollection = new ObservableCollection<CountryData>();
-			countryCollection.Add(new CountryData() { Code = 1, Name = "Frank" });
-			countryCollection.Add(new CountryData() { Code = 2, Name = "James" });
-			countryCollection.Add(new CountryData() { Code = 3, Name = "Steve" });
-			countryCollection.Add(new CountryData() { Code = 4, Name = "Lucas" });
-			countryCollection.Add(new CountryData() { Code = 5, Name = "Mark" });
-			countryCollection.Add(new CountryData() { Code = 6, Name = "Michael" });
-			countryCollection.Add(new CountryData() { Code = 7, Name = "Aldrin" });
-			countryCollection.Add(new CountryData() { Code = 8, Name = "Jack" });
-			countryCollection.Add(new CountryData() { Code = 9, Name = "Howard" });
+			Locations.Instance.Countries("datavice", (bool success, string data) =>
+            {
+                if (success)
+                {
+                    CountryData country = JsonConvert.DeserializeObject<CountryData>(data);
+                    for (int i = 0; i < country.data.Length; i++)
+                    {
+						string code = country.data[i].code;
+						string name = country.data[i].name;
+						countryCollection.Add(new CountryData() { CountryCode = code, Name = name });
+					}
+                }
+                else
+				{
+					new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
+					countryCollection.Clear();
+
+				}
+            });
 		}
 	}
 }
