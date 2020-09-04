@@ -24,22 +24,6 @@ namespace PasaBuy.App.Views.Posts
         {
             InitializeComponent();
 
-         
-
-            vehicleType.ItemsSource = new List<string>
-            {
-                "bicycle",
-                "motorcycle",
-                "four-wheeled vehicle"
-            };
-
-            postStyle.ItemsSource = new List<string>
-            {
-                "option 1",
-                "option 2"
-
-            };
-
         }
         public void BackButtonClicked(object sender, EventArgs e)
         {

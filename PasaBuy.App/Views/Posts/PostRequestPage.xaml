@@ -53,21 +53,17 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
                 <border:SfBorder Grid.Row="0"
-                                         Grid.RowSpan="2"
                                          border:BorderColor="White" 
                                          BorderWidth="2"
                                          Margin="10"
@@ -84,18 +80,80 @@
                         </Image.Source>
                     </Image>
                 </border:SfBorder>
-                
-                <local:RoundedEntry Placeholder="Item Name" Grid.Row="3" Grid.ColumnSpan="5"/>
 
-                <local:RoundedPicker x:Name="postStyle" Grid.Row="4" Grid.ColumnSpan="5" Title="Post Type"></local:RoundedPicker>
+                <border:SfBorder Grid.Row="1"  Grid.ColumnSpan="5"
+                                 HeightRequest="40"
+                                 Padding="0, 0, 0, 0"
+                                 Style="{StaticResource SfBorderStyle}">
+                    <controls:BorderlessEntry
+                            x:Name="ItemName"
+                            FontSize="16"
+                            Placeholder="Item Name"
+                            PlaceholderColor="{DynamicResource Gray-700}"
+                            Text="{Binding ItemName}"
+                            Style="{StaticResource EntryTextBoxStyle}" />
+                </border:SfBorder>
 
-                <local:RoundedPicker x:Name="vehicleType" Grid.Row="5" Grid.ColumnSpan="5" Title="Vehicle Type"></local:RoundedPicker>
+                <border:SfBorder
+                    Grid.Row="2"
+                    Grid.ColumnSpan="5"
+                        Style="{StaticResource SfBorderStyle}">
+                    <combobox:SfComboBox
+                                x:Name="VehicleType"
+                                SelectedValue="{Binding VehicleType, Mode=TwoWay}"
+                                Style="{StaticResource ComboBoxStyle}"
+                                Watermark="Vehicle Type"
+                                VerticalOptions="CenterAndExpand">
+                        <combobox:SfComboBox.ComboBoxSource>
+                            <ListCollection:List x:TypeArguments="x:String">
+                                <x:String>Bicycle</x:String>
+                                <x:String>Motorcycle</x:String>
+                            </ListCollection:List>
+                        </combobox:SfComboBox.ComboBoxSource>
+                        <combobox:SfComboBox.DropDownButtonSettings>
+                            <combobox:DropDownButtonSettings>
+                                <combobox:DropDownButtonSettings.View>
+                                    <Label
+                                                    FontFamily="{StaticResource FontIcons}"
+                                                    FontSize="25"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="{StaticResource DropDownButtonIcon}"
+                                                    TextColor="{DynamicResource Gray-600}"
+                                                    VerticalTextAlignment="Center" />
+                                </combobox:DropDownButtonSettings.View>
+                            </combobox:DropDownButtonSettings>
+                        </combobox:SfComboBox.DropDownButtonSettings>
+                    </combobox:SfComboBox>
+                </border:SfBorder>
 
-                <local:RoundedEntry Placeholder="Pick up Location" Grid.Row="6" Grid.ColumnSpan="5"/>
-                
-                <local:RoundedEntry Placeholder="Drop off Location" Grid.Row="7" Grid.ColumnSpan="5"/>
+                <border:SfBorder Grid.Row="3"  Grid.ColumnSpan="5"
+                                 HeightRequest="40"
+                                 Padding="0, 0, 0, 0"
+                                 Style="{StaticResource SfBorderStyle}">
+                    <controls:BorderlessEntry
+                            x:Name="PickUpLocation"
+                            FontSize="16"
+                            Placeholder="Pick up Location"
+                            PlaceholderColor="{DynamicResource Gray-700}"
+                            Text="{Binding PickUpLocation}"
+                            Style="{StaticResource EntryTextBoxStyle}" />
+                </border:SfBorder>
 
-     
+                <border:SfBorder Grid.Row="4"  Grid.ColumnSpan="5"
+                                 HeightRequest="40"
+                                 Padding="0, 0, 0, 0"
+                                 Style="{StaticResource SfBorderStyle}">
+                    <controls:BorderlessEntry
+                            x:Name="DropOffLocation"
+                            FontSize="16"
+                            Placeholder="Drop off Location"
+                            PlaceholderColor="{DynamicResource Gray-700}"
+                            Text="{Binding DropOffLocation}"
+                            Style="{StaticResource EntryTextBoxStyle}" />
+                </border:SfBorder>
+
+
+
 
 
             </Grid>

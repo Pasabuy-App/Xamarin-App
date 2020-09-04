@@ -41,24 +41,11 @@ namespace PasaBuy.App.ViewModels.Feeds
             this.City = "(ic) Lives in " + UserPrefs.Instance.UserInfo.city;
             this.Joined = "(ic) Joined at " + date.ToString("MMMM yyyy");
             this.Refered = "(ic) Refered by ";// + UserPrefs.Instance.UserInfo.city;
-            //Joined
-            //Refered
-            SocioPress.Transaction.Instance.GetTotal(UserPrefs.Instance.UserInfo.wpid, UserPrefs.Instance.UserInfo.snky, (bool success, string data) =>
-            {
-                if (success)
-                {
-                    ProfileGetData getdata = JsonConvert.DeserializeObject<ProfileGetData>(data);
-                    ProfileGetData.totaltransact = getdata.data.transac;
-                }
-                else
-                {
-                    ProfileGetData.totaltransact = 0;
-                }
-                Console.WriteLine(ProfileGetData.totaltransact.ToString());
-                this.Transacts = ProfileGetData.totaltransact;
-            });
-            this.Ratings = 4.5f;
-            this.PostsCount = 4;
+                                              //Joined
+                                              //Refered
+            this.Transacts = ProfileGetData.totaltransact;
+            this.Ratings = ProfileGetData.totalratings;
+            this.PostsCount = ProfileGetData.totalpost;
         }
 
         #endregion
