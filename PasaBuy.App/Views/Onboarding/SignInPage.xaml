@@ -169,7 +169,7 @@
                     BackgroundColor="Gray" Opacity="0.5">
                     <ActivityIndicator
                         x:Name="isBusy"
-                        IsRunning="false"
+                        IsRunning="true"
                         HorizontalOptions="CenterAndExpand"
                         VerticalOptions="CenterAndExpand"
                         HeightRequest="100"

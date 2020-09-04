@@ -95,17 +95,17 @@ namespace PasaBuy.App
         #region Methods
         public async void Authenticate(string username, string password, Action<bool, string> callback)
         {
-            /*if (!App.HasInternet)
+            if (!App.HasInternet)
             {
                 new Alert("Notice to User", "Connectivity Issue Occur! Please check your internet connection.", "Try Again");
                 return;
             }
 
             var dict = new Dictionary<string, string>();
-                dict.Add("un", username);
-                dict.Add("pw", password);
+            dict.Add("un", username);
+            dict.Add("pw", password);
             var content = new FormUrlEncodedContent(dict);
-          
+
             var response = await client.PostAsync(BaseApiUrl + "user/auth", content);
             response.EnsureSuccessStatusCode();
 
@@ -126,34 +126,8 @@ namespace PasaBuy.App
             else
             {
                 callback(false, "Network Error! Check your connection.");
-            } */
-
-   
-            using (var cl = new HttpClient())
-            {
-                var formcontent = new FormUrlEncodedContent(new[]
-                {
-                    new KeyValuePair<string, string>("mkey", "123")
-                });
-
-                var request = await cl.PostAsync(DataApiUrl + "location/country/active", formcontent);
-
-                request.EnsureSuccessStatusCode();
-
-                if (request.IsSuccessStatusCode)
-                {
-                    var response = await request.Content.ReadAsStringAsync();
-
-                    Country country = JsonConvert.DeserializeObject<Country>(response);
-
-                }
-
-                else
-                {
-                    Debug.WriteLine("PasaBuy: Failed! -> " + request.StatusCode);
-                }
-
             }
+
         }
 
         public async void GetUserInfo(Token userToken, Action<bool, string> callback)

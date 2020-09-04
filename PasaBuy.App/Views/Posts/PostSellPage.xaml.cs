@@ -16,20 +16,7 @@ namespace PasaBuy.App.Views.Posts
         public PostSellPage()
         {
             InitializeComponent();
-       
-            itemCategory.ItemsSource = new List<string>
-            {
-                "Food & Drinks",
-                "Apparels",
-                "Gadgets"
-            };
 
-            vehicleType.ItemsSource = new List<string>
-            {
-                "Bicycle",
-                "Motorcycle",
-                "Four-Wheeled Vehicle"
-            };
         }
         public void BackButtonClicked(object sender, EventArgs e)
         {

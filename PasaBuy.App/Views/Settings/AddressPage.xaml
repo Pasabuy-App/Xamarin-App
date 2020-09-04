@@ -3,11 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:PasaBuy.App.Controls"
              xmlns:ListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
              xmlns:ViewModel="clr-namespace:PasaBuy.App.ViewModels.Settings"
              x:Class="PasaBuy.App.Views.Settings.AddressPage"
              x:Name="MyAdressPage"
              NavigationPage.HasNavigationBar="False"
+              BackgroundColor="White"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms">
 
     <ContentPage.Resources>
@@ -73,75 +75,80 @@
                                  ItemsSource="{Binding AddressDetails}">
                     <ListView:SfListView.ItemTemplate>
                         <DataTemplate>
-                            <cards:SfCardView CornerRadius="4" HasShadow="True" WidthRequest="343" BackgroundColor="{DynamicResource Gray-White}" 
+                            <border:SfBorder
+                        Grid.Row="0"
+                        Padding="6,0,0,0"
+                        Style="{StaticResource FormBorderStyle}">
+                                <cards:SfCardView CornerRadius="4" HasShadow="True" WidthRequest="343" BackgroundColor="{DynamicResource Gray-White}" 
                                           HorizontalOptions="Center" Padding="16,16,8,16">
-                                <Grid ColumnSpacing="8" RowSpacing="8" >
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
+                                    <Grid ColumnSpacing="8" RowSpacing="8" >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
 
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
 
-                                    <!--  Name and Type of the address  -->
-                                    <Label  LineBreakMode="NoWrap" HorizontalOptions="Start" Grid.ColumnSpan="2"
+                                        <!--  Name and Type of the address  -->
+                                        <Label  LineBreakMode="NoWrap" HorizontalOptions="Start" Grid.ColumnSpan="2"
                                         VerticalOptions="Center" LineHeight="{OnPlatform Default=-1, Android=1.5}" >
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="{Binding Name}" FontSize="16" TextColor="{DynamicResource Gray-900}" 
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding Name}" FontSize="16" TextColor="{DynamicResource Gray-900}" 
                                                   FontFamily="{StaticResource Montserrat-SemiBold}"/>
-                                                <Span Text="  "/>
-                                                <Span Text="{Binding AddressType}" FontSize="12" TextColor="{DynamicResource Gray-800}"
+                                                    <Span Text="  "/>
+                                                    <Span Text="{Binding AddressType}" FontSize="12" TextColor="{DynamicResource Gray-800}"
                                                   FontFamily="{StaticResource Montserrat-SemiBold}"/>
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
 
-                                    <!--  Edit button command  -->
-                                    <buttons:SfButton  x:Name="editButton" CornerRadius="4" Grid.Column="2" HorizontalOptions="EndAndExpand"
+                                        <!--  Edit button command  -->
+                                        <buttons:SfButton  x:Name="editButton" CornerRadius="4" Grid.Column="2" HorizontalOptions="EndAndExpand"
                                                    VerticalOptions="StartAndExpand" Style="{StaticResource IconButtonDarkStyle}"
                                                    Text="{StaticResource Edit}" Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference myAddress}}"
                                                    CommandParameter="{x:Reference editButton }"/>
 
-                                    <!--  Delete button command  -->
-                                    <buttons:SfButton  x:Name="DeleteButton" CornerRadius="4" Grid.Column="3" HorizontalOptions="EndAndExpand"
+                                        <!--  Delete button command  -->
+                                        <buttons:SfButton  x:Name="DeleteButton" CornerRadius="4" Grid.Column="3" HorizontalOptions="EndAndExpand"
                                                    VerticalOptions="StartAndExpand" Style="{StaticResource IconButtonDarkStyle}"
                                                    Text="{StaticResource Delete}" Command="{Binding Path=BindingContext.DeleteCommand,Source={x:Reference myAddress}}"
                                                    CommandParameter="{x:Reference DeleteButton}"/>
 
-                                    <!--  Map Pin Icon -->
-                                    <Label Text="{StaticResource MapPin}" Grid.Row="1" Grid.Column="0" FontSize="18"  
+                                        <!--  Map Pin Icon -->
+                                        <Label Text="{StaticResource MapPin}" Grid.Row="1" Grid.Column="0" FontSize="18"  
                                        FontFamily="{StaticResource FontIcons}" 
                                        LineHeight="{OnPlatform Default=-1, Android=1.5}" VerticalOptions="Start"
                                        TextColor="{DynamicResource Gray-600}"/>
 
-                                    <!-- Delivery Address -->
-                                    <Label  Text="{Binding Location}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource CommonLabelStyle}" 
+                                        <!-- Delivery Address -->
+                                        <Label  Text="{Binding Location}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource CommonLabelStyle}" 
                                         FontFamily="{StaticResource Montserrat-Medium}" LineBreakMode="WordWrap" HorizontalOptions="StartAndExpand"
                                         VerticalOptions="Start"/>
 
-                                    <!--  Phone Icon -->
-                                    <Label Text="{StaticResource Phone}" Grid.Row="2" Grid.Column="0"  FontSize="18" FontFamily="{StaticResource FontIcons}" 
+                                        <!--  Phone Icon -->
+                                        <Label Text="{StaticResource Phone}" Grid.Row="2" Grid.Column="0"  FontSize="18" FontFamily="{StaticResource FontIcons}" 
                                        LineHeight="{OnPlatform Default=-1, Android=1.5}" TextColor="{DynamicResource Gray-600}" />
 
-                                    <!--  Contact Number-->
-                                    <Label Style="{StaticResource CommonLabelStyle}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="{StaticResource Montserrat-Medium}"
+                                        <!--  Contact Number-->
+                                        <Label Style="{StaticResource CommonLabelStyle}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="{StaticResource Montserrat-Medium}"
                                        VerticalOptions="Start">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="Phone: " />
-                                                <Span Text="{Binding ContactNumber}" TextColor="{DynamicResource Gray-900}"/>
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                </Grid>
-                            </cards:SfCardView>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Phone: " />
+                                                    <Span Text="{Binding ContactNumber}" TextColor="{DynamicResource Gray-900}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </Grid>
+                                </cards:SfCardView>
+                            </border:SfBorder>
                         </DataTemplate>
                     </ListView:SfListView.ItemTemplate>
                 </ListView:SfListView>

@@ -7,10 +7,17 @@
              NavigationPage.HasNavigationBar="False"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
              xmlns:local="clr-namespace:PasaBuy.App.CustomRenderers"
+             xmlns:converter="clr-namespace:PasaBuy.App.Converters"
+             xmlns:controls="clr-namespace:PasaBuy.App.Controls"
+             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
              x:Class="PasaBuy.App.Views.Settings.ChangePWPage"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             BackgroundColor="{DynamicResource Gray-100}"
              xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms">
+    
     <ContentPage.Resources>
         <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
             <ResourceDictionary Source="Styles.xaml" />
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -19,64 +26,126 @@
         <OnPlatform  x:TypeArguments="Thickness" iOS="0,20,0,0"  Default="0,0,0,0"/>
     </ContentPage.Padding>
 
-    <ContentPage.Content>
-        <Grid RowSpacing="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Spacing="0" >
+                <controls:TitleView Title="Change Password" FontSize="14"
+                                    BackgroundColor="{DynamicResource PrimaryColor}" >
+                    <controls:TitleView.LeadingView >
+                        <buttons:SfButton
+                            x:Name="backButton"
+                            Clicked="BackButtonClicked"
+                            CornerRadius="4"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                    </controls:TitleView.LeadingView>
 
-            <!--  Title view  -->
-            <StackLayout x:Name="TitleView"  Padding="8,8" Grid.Row="0" HeightRequest="50"
-                         BackgroundColor="{DynamicResource PrimaryColor}" Spacing="0"
-                         HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-
-                <StackLayout x:Name="Title" HorizontalOptions="FillAndExpand"  IsVisible="True"
-                             Orientation="Horizontal"  VerticalOptions="FillAndExpand"  Spacing="0">
-
-                    <!--  Back button command  -->
-                    <buttons:SfButton  x:Name="backButton" 
-                                       Clicked="BackButtonClicked"
-                                       CornerRadius="4"
-                                       Style="{StaticResource IconButtonStyle}" Text="{StaticResource Back}"/>
-
-                    <!--   Icon Names List page Title  -->
-                    <Label  Margin="16,0" FontFamily="{StaticResource Montserrat-Medium}" FontSize="16"
-                            HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource Gray-White}"
-                            LineHeight="1.25" Text="Change Password"  VerticalOptions="Center" VerticalTextAlignment="Center" />
-
-                </StackLayout>
-
-                <!--  Save Button  -->
-                <buttons:SfButton  x:Name="SearchButton" 
-                                   IsVisible="True" 
-                                   BackgroundColor="Transparent"
-                                   Clicked="SaveButton_Clicked"
-                                   Text="SAVE" />
+                </controls:TitleView>
+                <ContentPresenter />
             </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+    <ContentPage.Content>
+        <StackLayout
+                    Margin="{core:OnPlatformOrientationThickness PhonePortrait='20,32',
+                                                                 PhoneLandscape='150,32',
+                                                                 TabletPortrait='200,50',
+                                                                 TabletLandscape='300,50',
+                                                                 Desktop='30'}"
+                    Spacing="0"
+                    VerticalOptions="FillAndExpand"
+                    WidthRequest="{OnPlatform Default='-1',
+                                              UWP='350'}">
+            <border:SfBorder
+                            Padding="15, 50, 15, 50"
+                            Style="{StaticResource FormBorderStyle}">
+                <Grid RowSpacing="24" VerticalOptions="CenterAndExpand">
 
-            <!-- Seperator -->
-            <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}"/>
-
-            <StackLayout Grid.Row="2" Padding="20">
-                <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <local:RoundedEntry Grid.Row="0" Placeholder="Current Password"></local:RoundedEntry>
-                    <local:RoundedEntry Grid.Row="1" Placeholder="New Password"></local:RoundedEntry>
-                    <local:RoundedEntry Grid.Row="2" Placeholder="Re-type New Password"></local:RoundedEntry>
-                    <Label Text="Response Message" Margin="15" Grid.Row="3"></Label>
+                    <!--  Label to display the title of this page  -->
+                    <Label
+                            Grid.Row="0"
+                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                            FontSize="20"
+                            HorizontalOptions="Center"
+                            Style="{StaticResource LabelStyle}"
+                            Text="Reset Password"
+                            VerticalOptions="Center" />
+
+                    <!--  Label to display the description of this page  -->
+                    <Label
+                            Grid.Row="1"
+                            Margin="0,-16,0,8"
+                            FontFamily="{StaticResource Montserrat-Medium}"
+                            HorizontalTextAlignment="Center"
+                            Style="{StaticResource LabelStyle}"
+                            Text="Enter your new password to reset the old password" />
+
+                    <!--  Entry to get new password from user  -->
+                    <border:SfBorder
+                            Grid.Row="2"
+                            Padding="15,0,0,0"
+                            Style="{StaticResource FormBorderStyle}">
+                        <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="New Password" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
+
+                    </border:SfBorder>
+
+                    <!--  Entry to get confirm password from user  -->
+                    <border:SfBorder
+                            Grid.Row="3"
+                            Padding="15,0,0,0"
+                            Style="{StaticResource FormBorderStyle}">
+                        <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Confirm New Password" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
+
+                    </border:SfBorder>
+
+                    <!--  Submit button  -->
+                    <buttons:SfButton
+                            Grid.Row="4"
+                            Margin="0, 20, 0, 20"
+                            Command="{Binding SubmitCommand}"
+                            CornerRadius="20"
+                            TextColor="White"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            Style="{StaticResource SfButtonStyle}"
+                            Text="SUBMIT" />
 
                 </Grid>
-            </StackLayout>
-        </Grid>
+            </border:SfBorder>
 
+
+
+            <StackLayout
+                        HorizontalOptions="Center"
+                        Orientation="Horizontal"
+                        Spacing="1"
+                        VerticalOptions="End">
+
+
+                <Label
+                            FontFamily="{StaticResource Montserrat-Medium}"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            Style="{StaticResource LabelStyle}"
+                            Text="Don't have an account?"
+                            VerticalTextAlignment="Center" />
+
+                <buttons:SfButton
+                            Command="{Binding SignUpCommand}"
+                            CornerRadius="4"
+                            Style="{StaticResource SfFlatButtonStyle}"
+                            Text="Sign Up" />
+
+            </StackLayout>
+        </StackLayout>
     </ContentPage.Content>
+
+
 </ContentPage>

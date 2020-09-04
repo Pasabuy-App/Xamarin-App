@@ -4,12 +4,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:controls="clr-namespace:PasaBuy.App.Controls"
+             xmlns:converter="clr-namespace:PasaBuy.App.Converters"
+             xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
              xmlns:local="clr-namespace:PasaBuy.App.CustomRenderers"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
              BackgroundColor="White"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -44,8 +48,9 @@
     </ContentPage.ControlTemplate>
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Center" VerticalOptions="Center"> 
-            <Grid RowSpacing="20" ColumnSpacing="0" Padding="10" HorizontalOptions="Center" VerticalOptions="Center">
+            <Grid RowSpacing="10" ColumnSpacing="0" Padding="10" Margin="0, 35, 0, 0" HorizontalOptions="Center" VerticalOptions="Center">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
@@ -53,21 +58,168 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <local:RoundedPicker x:Name="countryPicker" Title="Country" Grid.Row="0">
-                    
-                </local:RoundedPicker>
-                <local:RoundedPicker x:Name="provincePicker" Title="Province" Grid.Row="1">
+                <border:SfBorder
+                        Grid.Row="0"
+                        Padding="6,0,0,0"
+                        Style="{StaticResource FormBorderStyle}">
+                    <combobox:SfComboBox
+                            x:Name="AddressTypePicker" SelectedValue="{Binding AddressTypePicker, Mode=TwoWay}"
+                            Style="{StaticResource ComboBoxStyle}"
+                            Watermark="Address Type">
+                        <combobox:SfComboBox.ComboBoxSource>
+                            <ListCollection:List x:TypeArguments="x:String">
+                                <x:String>Home</x:String>
+                                <x:String>Business</x:String>
+                            </ListCollection:List>
+                        </combobox:SfComboBox.ComboBoxSource>
+                        <combobox:SfComboBox.DropDownButtonSettings>
+                            <combobox:DropDownButtonSettings Width="30" Height="30">
+                                <combobox:DropDownButtonSettings.View>
+                                    <Label
+                                            Margin="0"
+                                            FontFamily="{StaticResource FontIcons}"
+                                            FontSize="25"
+                                            HorizontalTextAlignment="Center"
+                                            Text="{StaticResource DropDownButtonIcon}"
+                                            TextColor="{DynamicResource Gray-600}"
+                                            VerticalTextAlignment="Center" />
+                                </combobox:DropDownButtonSettings.View>
+                            </combobox:DropDownButtonSettings>
+                        </combobox:SfComboBox.DropDownButtonSettings>
+                    </combobox:SfComboBox>
+                </border:SfBorder>
 
-                </local:RoundedPicker>
-                <local:RoundedPicker x:Name="cityPicker" Title="City" Grid.Row="2">
+                <border:SfBorder
+                        Grid.Row="1"
+                        Padding="6,0,0,0"
+                        Style="{StaticResource FormBorderStyle}">
+                    <combobox:SfComboBox
+                            x:Name="CountryPicker" SelectedValue="{Binding Countries, Mode=TwoWay}"
+                            Style="{StaticResource ComboBoxStyle}"
+                            Watermark="Country">
+                        <combobox:SfComboBox.ComboBoxSource>
+                            <ListCollection:List x:TypeArguments="x:String">
+                                <x:String>Philippines</x:String>
+                            </ListCollection:List>
+                        </combobox:SfComboBox.ComboBoxSource>
+                        <combobox:SfComboBox.DropDownButtonSettings>
+                            <combobox:DropDownButtonSettings Width="30" Height="30">
+                                <combobox:DropDownButtonSettings.View>
+                                    <Label
+                                            Margin="0"
+                                            FontFamily="{StaticResource FontIcons}"
+                                            FontSize="25"
+                                            HorizontalTextAlignment="Center"
+                                            Text="{StaticResource DropDownButtonIcon}"
+                                            TextColor="{DynamicResource Gray-600}"
+                                            VerticalTextAlignment="Center" />
+                                </combobox:DropDownButtonSettings.View>
+                            </combobox:DropDownButtonSettings>
+                        </combobox:SfComboBox.DropDownButtonSettings>
+                    </combobox:SfComboBox>
+                </border:SfBorder>
 
-                </local:RoundedPicker>
-                <local:RoundedPicker x:Name="barangayPicker" Title="Barangay" Grid.Row="3">
+                <border:SfBorder
+                        Grid.Row="2"
+                        Padding="6,0,0,0"
+                        Style="{StaticResource FormBorderStyle}">
+                    <combobox:SfComboBox
+                            x:Name="ProvincePicker" SelectedValue="{Binding Provinces, Mode=TwoWay}"
+                            Style="{StaticResource ComboBoxStyle}"
+                            Watermark="Province">
+                        <combobox:SfComboBox.ComboBoxSource>
+                            <ListCollection:List x:TypeArguments="x:String">
+                                <x:String>Laguna</x:String>
+                            </ListCollection:List>
+                        </combobox:SfComboBox.ComboBoxSource>
+                        <combobox:SfComboBox.DropDownButtonSettings>
+                            <combobox:DropDownButtonSettings Width="30" Height="30">
+                                <combobox:DropDownButtonSettings.View>
+                                    <Label
+                                            Margin="0"
+                                            FontFamily="{StaticResource FontIcons}"
+                                            FontSize="25"
+                                            HorizontalTextAlignment="Center"
+                                            Text="{StaticResource DropDownButtonIcon}"
+                                            TextColor="{DynamicResource Gray-600}"
+                                            VerticalTextAlignment="Center" />
+                                </combobox:DropDownButtonSettings.View>
+                            </combobox:DropDownButtonSettings>
+                        </combobox:SfComboBox.DropDownButtonSettings>
+                    </combobox:SfComboBox>
+                </border:SfBorder>
 
-                </local:RoundedPicker>
-                <local:RoundedEntry x:Name="streetPicker" Placeholder="Street/Unit/Bldg/Flr" Grid.Row="4">
-                    
-                </local:RoundedEntry>
+                <border:SfBorder
+                        Grid.Row="3"
+                        Padding="6,0,0,0"
+                        Style="{StaticResource FormBorderStyle}">
+                    <combobox:SfComboBox
+                            x:Name="CityPicker" SelectedValue="{Binding Cities, Mode=TwoWay}"
+                            Style="{StaticResource ComboBoxStyle}"
+                            Watermark="City">
+                        <combobox:SfComboBox.ComboBoxSource>
+                            <ListCollection:List x:TypeArguments="x:String">
+                                <x:String>Biñan</x:String>
+                            </ListCollection:List>
+                        </combobox:SfComboBox.ComboBoxSource>
+                        <combobox:SfComboBox.DropDownButtonSettings>
+                            <combobox:DropDownButtonSettings Width="30" Height="30">
+                                <combobox:DropDownButtonSettings.View>
+                                    <Label
+                                            Margin="0"
+                                            FontFamily="{StaticResource FontIcons}"
+                                            FontSize="25"
+                                            HorizontalTextAlignment="Center"
+                                            Text="{StaticResource DropDownButtonIcon}"
+                                            TextColor="{DynamicResource Gray-600}"
+                                            VerticalTextAlignment="Center" />
+                                </combobox:DropDownButtonSettings.View>
+                            </combobox:DropDownButtonSettings>
+                        </combobox:SfComboBox.DropDownButtonSettings>
+                    </combobox:SfComboBox>
+                </border:SfBorder>
+
+                <border:SfBorder
+                        Grid.Row="4"
+                        Padding="6,0,0,0"
+                        Style="{StaticResource FormBorderStyle}">
+                    <combobox:SfComboBox
+                            x:Name="BarangayPicker" SelectedValue="{Binding Cities, Mode=TwoWay}"
+                            Style="{StaticResource ComboBoxStyle}"
+                            Watermark="Barangay">
+                        <combobox:SfComboBox.ComboBoxSource>
+                            <ListCollection:List x:TypeArguments="x:String">
+                                <x:String>Canlalay</x:String>
+                            </ListCollection:List>
+                        </combobox:SfComboBox.ComboBoxSource>
+                        <combobox:SfComboBox.DropDownButtonSettings>
+                            <combobox:DropDownButtonSettings Width="30" Height="30">
+                                <combobox:DropDownButtonSettings.View>
+                                    <Label
+                                            Margin="0"
+                                            FontFamily="{StaticResource FontIcons}"
+                                            FontSize="25"
+                                            HorizontalTextAlignment="Center"
+                                            Text="{StaticResource DropDownButtonIcon}"
+                                            TextColor="{DynamicResource Gray-600}"
+                                            VerticalTextAlignment="Center" />
+                                </combobox:DropDownButtonSettings.View>
+                            </combobox:DropDownButtonSettings>
+                        </combobox:SfComboBox.DropDownButtonSettings>
+                    </combobox:SfComboBox>
+                </border:SfBorder>
+                <border:SfBorder
+                        Grid.Row="5"
+                        Padding="15,0,0,0"
+                        Style="{StaticResource FormBorderStyle}">
+                    <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Street/Bldg/Unit" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
+
+                </border:SfBorder>
+
+
+
+
+
             </Grid>
         </StackLayout>
     </ContentPage.Content>

@@ -12,7 +12,6 @@
     xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
     xmlns:local="clr-namespace:PasaBuy.App.Views.Inputs"
     xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Onboarding"
-    xmlns:serv="clr-namespace:PasaBuy.App.DataService.LocationDataService"
     NavigationPage.HasNavigationBar="False" 
     BackgroundColor="{DynamicResource Gray-White}"
     x:Class="PasaBuy.App.Views.Onboarding.SignUpPage">
