@@ -10,7 +10,7 @@
     xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
     xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Onboarding"
     NavigationPage.HasNavigationBar="False"
-    x:Class="PasaBuy.App.Views.Onboarding.CreatePassword">
+    x:Class="PasaBuy.App.Views.Onboarding.VerifyResetPage">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -26,13 +26,13 @@
     </ContentPage.Padding>
 
     <ContentPage.BindingContext>
-        <viewModel:CreatePasswordViewModel />
+        <viewModel:VerifyResetViewModel />
     </ContentPage.BindingContext>
 
     <ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0" >
-                <controls:TitleView Title="Create Password" FontSize="14"
+                <controls:TitleView Title="Reset Password" FontSize="14"
                                     BackgroundColor="{DynamicResource PrimaryColor}" >
                     <!--<controls:TitleView.LeadingView >
                         <buttons:SfButton
@@ -70,7 +70,6 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
                     <!--  Label to display the title of this page  -->
@@ -80,7 +79,7 @@
                             FontSize="20"
                             HorizontalOptions="Center"
                             Style="{StaticResource LabelStyle}"
-                            Text="Create your password"
+                            Text="Verify Account"
                             VerticalOptions="Center" />
 
                     <!--  Label to display the description of this page  -->
@@ -90,29 +89,22 @@
                             FontFamily="{StaticResource Montserrat-Medium}"
                             HorizontalTextAlignment="Center"
                             Style="{StaticResource LabelStyle}"
-                            Text="Create a strong and secured password" />
+                            Text="Check your email for the activation key and type it here to reset your password" />
 
                     <!--  Entry to get new password from user  -->
+
+                    <!--  Entry to get confirm password from user  -->
                     <border:SfBorder
                             Grid.Row="2"
                             Padding="15,0,0,0"
                             Style="{StaticResource FormBorderStyle}">
-                        <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Password" x:Name="Password" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
-
-                    </border:SfBorder>
-
-                    <!--  Entry to get confirm password from user  -->
-                    <border:SfBorder
-                            Grid.Row="3"
-                            Padding="15,0,0,0"
-                            Style="{StaticResource FormBorderStyle}">
-                        <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="ConfirmedPassword" x:Name="ConfirmPassowrd" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
+                        <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Activation key" x:Name="ActivationKey" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
 
                     </border:SfBorder>
 
                     <!--  Submit button  -->
                     <buttons:SfButton
-                            Grid.Row="4"
+                            Grid.Row="3"
                             Margin="0, 20, 0, 20"
                             Command="{Binding SubmitCommand}"
                             CornerRadius="20"

@@ -25,7 +25,6 @@
 
     <ContentPage.Content>
         <Grid>
-            <gradient:SfGradientView Style="{StaticResource SfGradientViewStyle}" />
 
             <ScrollView HorizontalOptions="Center">
                 <ScrollView.VerticalOptions>
