@@ -6,7 +6,9 @@
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
     xmlns:local="clr-namespace:PasaBuy.App.Views.Inputs"
-    xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Onboarding"
+    xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Onboarding" 
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
+    xmlns:control="clr-namespace:PasaBuy.App.Controls"
     NavigationPage.HasNavigationBar="False"
     x:Class="PasaBuy.App.Views.Onboarding.ForgotPwPage">
 
@@ -75,7 +77,13 @@
                             VerticalTextAlignment="Start" />
 
                         <!--  Entry to get email ID from user  -->
-                        <local:EmailEntry Grid.Row="2" />
+                        <border:SfBorder
+                            Grid.Row="2"
+                            Padding="15,0,0,0"
+                            Style="{StaticResource FormBorderStyle}">
+                            <control:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Emaill Address" x:Name="EmaillAddress" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
+
+                        </border:SfBorder>
 
                         <buttons:SfButton
                             Grid.Row="3"
