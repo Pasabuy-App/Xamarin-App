@@ -19,7 +19,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
         private Boolean _state = false;
 
         /// <summary>
-        /// Gets or sets the property that is bound with stacklayout that gets the visibility state from user in the login page.
+        /// Gets or sets the property that is bound with stacklayout that gets the visibility state from user in the forgot page.
         /// </summary>
         public Boolean State
         {

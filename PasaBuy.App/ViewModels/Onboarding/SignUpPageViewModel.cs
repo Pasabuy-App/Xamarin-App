@@ -25,6 +25,8 @@ namespace PasaBuy.App.ViewModels.Onboarding
 
         private string gender;
 
+        private Boolean _state = false;
+
         /*private string country_code;
 
         private string prov_code;
@@ -179,6 +181,22 @@ namespace PasaBuy.App.ViewModels.Onboarding
             }
         }
 
+        /// <summary>
+        /// Gets or sets the property that is bound with stacklayout that gets the visibility state from user in the forgot page.
+        /// </summary>
+        public Boolean State
+        {
+            get
+            {
+                return _state;
+            }
+            set
+            {
+                _state = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region Command
@@ -215,15 +233,18 @@ namespace PasaBuy.App.ViewModels.Onboarding
             //new Alert("Demoguy Notice", "SignUp is Done, proceed to activate account and enter actiavtvion key.", "AGREE");
             //Console.WriteLine("un: " + Username + " em: " + Email + " ln : " + Lname + " fn: " + Fname + " bd: " + BornDate + " gd: " + Gender + " co: " + AddressVar.co + " pv: " + AddressVar.pr + " ct: " + AddressVar.ct + " br: " + AddressVar.br + " st: " + StreetEntry );
 
+            State = true;
             Users.Instance.SignUp(Username, Email, Fname, Lname, Gender, BornDate, AddressVar.co, AddressVar.pr, AddressVar.ct, AddressVar.br, StreetEntry, (bool success, string data) =>
             {
                 if (success)
                 {
+                    State = false;
                     Application.Current.MainPage = new VerifyAccountPage();
                 }
                 else
                 {
                     new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
+                    State = false;
                 }
             });
         }
