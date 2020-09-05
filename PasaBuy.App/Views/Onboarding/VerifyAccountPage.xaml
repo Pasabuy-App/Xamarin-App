@@ -60,21 +60,21 @@
                     VerticalOptions="FillAndExpand"
                     WidthRequest="{OnPlatform Default='-1',
                                               UWP='350'}">
-            <border:SfBorder
+                <border:SfBorder
                             Padding="15, 50, 15, 50"
                             Style="{StaticResource FormBorderStyle}">
-                <Grid RowSpacing="24" VerticalOptions="CenterAndExpand">
+                    <Grid RowSpacing="24" VerticalOptions="CenterAndExpand">
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                    <!--  Label to display the title of this page  -->
-                    <Label
+                        <!--  Label to display the title of this page  -->
+                        <Label
                             Grid.Row="0"
                             FontFamily="{StaticResource Montserrat-SemiBold}"
                             FontSize="20"
@@ -83,8 +83,8 @@
                             Text="Activate Account"
                             VerticalOptions="Center" />
 
-                    <!--  Label to display the description of this page  -->
-                    <Label
+                        <!--  Label to display the description of this page  -->
+                        <Label
                             Grid.Row="1"
                             Margin="0,-16,0,8"
                             FontFamily="{StaticResource Montserrat-Medium}"
@@ -92,38 +92,40 @@
                             Style="{StaticResource LabelStyle}"
                             Text="Enter username and activation key" />
 
-                    <!--  Entry to get new password from user  -->
-                    <border:SfBorder
+                        <!--  Entry to get new password from user  -->
+                        <border:SfBorder
                             Grid.Row="2"
                             Padding="15,0,0,0"
                             Style="{StaticResource FormBorderStyle}">
-                        <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Username" x:Name="Username" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
+                            <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Username" x:Name="Username" Text="{Binding Username}" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
 
-                    </border:SfBorder>
+                        </border:SfBorder>
 
-                    <!--  Entry to get confirm password from user  -->
-                    <border:SfBorder
+                        <!--  Entry to get confirm password from user  -->
+                        <border:SfBorder
                             Grid.Row="3"
                             Padding="15,0,0,0"
                             Style="{StaticResource FormBorderStyle}">
-                        <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Activation key" x:Name="ActivationKey" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
+                            <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Activation key" x:Name="ActivationKey" Text="{Binding ActivationKey}" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
 
-                    </border:SfBorder>
+                        </border:SfBorder>
 
-                    <!--  Submit button  -->
-                    <buttons:SfButton
+                        <!--  Submit button  -->
+                        <buttons:SfButton
                             Grid.Row="4"
                             Margin="0, 20, 0, 20"
                             Command="{Binding SubmitCommand}"
                             CornerRadius="20"
                             TextColor="White"
                             BackgroundColor="{DynamicResource PrimaryColor}"
-                            Style="{StaticResource SfButtonStyle}"
-                            Text="SUBMIT" Clicked="SfButton_Clicked" />
+                            Text="SUBMIT"
+                            Style="{StaticResource SfButtonStyle}" />
 
-                </Grid>
-            </border:SfBorder>
+                    </Grid>
+                </border:SfBorder>
 
-        </StackLayout>
+            </StackLayout>
+
     </ContentPage.Content>
+    
 </ContentPage>

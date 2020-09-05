@@ -20,23 +20,5 @@ namespace PasaBuy.App.Views.Onboarding
         {
             InitializeComponent();
         }
-
-        private void SfButton_Clicked(object sender, EventArgs e)
-        {
-            Users.Instance.Activate(ActivationKey.Text, Username.Text, (bool success, string data) =>
-            {
-                if (success)
-                {
-                    VerifyAccountVar.ak = ActivationKey.Text;
-                    VerifyAccountVar.un = Username.Text;
-                    Application.Current.MainPage = new CreatePassword();
-                }
-                else
-                {
-                    new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
-                }
-            });
-
-        }
     }
 }

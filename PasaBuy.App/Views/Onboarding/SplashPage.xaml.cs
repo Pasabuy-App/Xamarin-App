@@ -21,6 +21,9 @@ namespace PasaBuy.App.Views.Onboarding
             await SplashLogo.ScaleTo(1.0, 1000);
             await SplashLogo.ScaleTo(1.5, 1500, Easing.Linear);
 
+            DataVice.DVHost.Instance.Initialized("http://10.0.2.2/wordpress");
+            SocioPress.SPHost.Instance.Initialized("http://10.0.2.2/wordpress");
+
             CheckConnectivityAndToken();
         }
 

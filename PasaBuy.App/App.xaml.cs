@@ -33,7 +33,7 @@ namespace PasaBuy.App
 
         public App()
         {
-
+            // remove this if the first page is splash page
             DataVice.DVHost.Instance.Initialized("http://10.0.2.2/wordpress");
             SocioPress.SPHost.Instance.Initialized("http://10.0.2.2/wordpress");
 

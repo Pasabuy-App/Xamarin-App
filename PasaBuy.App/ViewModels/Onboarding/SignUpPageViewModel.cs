@@ -230,10 +230,11 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void SignUpClicked(object obj)
         {
+            Application.Current.MainPage = new VerifyAccountPage();
             //new Alert("Demoguy Notice", "SignUp is Done, proceed to activate account and enter actiavtvion key.", "AGREE");
             //Console.WriteLine("un: " + Username + " em: " + Email + " ln : " + Lname + " fn: " + Fname + " bd: " + BornDate + " gd: " + Gender + " co: " + AddressVar.co + " pv: " + AddressVar.pr + " ct: " + AddressVar.ct + " br: " + AddressVar.br + " st: " + StreetEntry );
 
-            State = true;
+            /*State = true;
             Users.Instance.SignUp(Username, Email, Fname, Lname, Gender, BornDate, AddressVar.co, AddressVar.pr, AddressVar.ct, AddressVar.br, StreetEntry, (bool success, string data) =>
             {
                 if (success)
@@ -246,7 +247,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
                     new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
                     State = false;
                 }
-            });
+            });*/
         }
 
 
