@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using PasaBuy.App.Local;
 using Syncfusion.XForms.ProgressBar;
 using System;
 using System.Collections.Generic;
@@ -46,14 +47,14 @@ namespace PasaBuy.App.Models.Onboarding
         {
             get
             {
-                return App.BaseRootUrl + avatar;
+                return PSAConfig.baseRestUrl + avatar;
             }
         }
         public string bannerUrl
         {
             get
             {
-                return App.BaseRootUrl + banner;
+                return PSAConfig.baseRestUrl + banner;
             }
         }
         public string regdate = string.Empty;

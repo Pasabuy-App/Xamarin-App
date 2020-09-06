@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using PasaBuy.App.Views.Chat;
 using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
 
 namespace PasaBuy.App.ViewModels.Chat
 {
@@ -34,7 +35,7 @@ namespace PasaBuy.App.ViewModels.Chat
 
         private string newMessage;
 
-        private string profileImage = App.BaseImageUrl + "ProfileImage3.png";
+        private string profileImage = PSAConfig.sfRootUrl + "ProfileImage3.png";
 
         private ObservableCollection<ChatMessage> chatMessageInfo = new ObservableCollection<ChatMessage>();
 
@@ -199,7 +200,7 @@ namespace PasaBuy.App.ViewModels.Chat
                 },
                 new ChatMessage
                 {
-                    ImagePath = App.BaseImageUrl + "Electronics.png",
+                    ImagePath = PSAConfig.sfRootUrl + "Electronics.png",
                     Time = currentTime.AddMinutes(-2405),
                 },
                 new ChatMessage

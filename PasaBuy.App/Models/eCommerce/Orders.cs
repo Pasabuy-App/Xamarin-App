@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using PasaBuy.App.Local;
+using System.Runtime.Serialization;
 using Xamarin.Forms.Internals;
 
 namespace PasaBuy.App.Models.eCommerce
@@ -24,7 +25,7 @@ namespace PasaBuy.App.Models.eCommerce
         [DataMember(Name = "productimage")]
         public string ProductImage
         {
-            get { return App.BaseImageUrl + this.productImage; }
+            get { return PSAConfig.sfRootUrl + this.productImage; }
             set { this.productImage = value; }
         }
 

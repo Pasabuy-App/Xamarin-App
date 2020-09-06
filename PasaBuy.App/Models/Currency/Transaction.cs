@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PasaBuy.App.Local;
+using System;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 using Xamarin.Forms.Internals;
@@ -36,7 +37,7 @@ namespace PasaBuy.App.Models.Currency
         /// </summary>
         public string ProfileImage
         {
-            get { return App.BaseImageUrl + this.profileImage; }
+            get { return PSAConfig.sfRootUrl + this.profileImage; }
             set { this.profileImage = value; }
         }
 

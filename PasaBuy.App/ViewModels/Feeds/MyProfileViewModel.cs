@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using PasaBuy.App.Controllers;
 using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
 using PasaBuy.App.Models.Onboarding;
 using System;
 using System.Globalization;
@@ -31,14 +32,14 @@ namespace PasaBuy.App.ViewModels.Feeds
         public MyProfileViewModel()
         {
             CultureInfo provider = new CultureInfo("fr-FR");
-            DateTime date = DateTime.ParseExact(UserPrefs.Instance.UserInfo.date_registered, "yyyy-MM-dd HH:mm:ss", provider);
+            DateTime date = DateTime.ParseExact(PSACache.Instance.UserInfo.date_registered, "yyyy-MM-dd HH:mm:ss", provider);
 
-            this.BannerImage = UserPrefs.Instance.UserInfo.bannerUrl;
-            this.ProfileImage = UserPrefs.Instance.UserInfo.avatarUrl;
-            this.DisplayName = UserPrefs.Instance.UserInfo.dname;
-            this.Verification = UserPrefs.Instance.UserInfo.verify;
+            this.BannerImage = PSACache.Instance.UserInfo.bannerUrl;
+            this.ProfileImage = PSACache.Instance.UserInfo.avatarUrl;
+            this.DisplayName = PSACache.Instance.UserInfo.dname;
+            this.Verification = PSACache.Instance.UserInfo.verify;
 
-            this.City = "(ic) Lives in " + UserPrefs.Instance.UserInfo.city;
+            this.City = "(ic) Lives in " + PSACache.Instance.UserInfo.city;
             this.Joined = "(ic) Joined at " + date.ToString("MMMM yyyy");
             this.Refered = "(ic) Refered by ";// + UserPrefs.Instance.UserInfo.city;
                                               //Joined

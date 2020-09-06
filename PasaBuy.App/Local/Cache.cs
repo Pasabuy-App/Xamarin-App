@@ -6,24 +6,24 @@ using System.Diagnostics;
 using System.Text;
 using Xamarin.Essentials;
 
-namespace PasaBuy.App.Controllers
+namespace PasaBuy.App.Local
 {
     /// <summary>
     /// Global access of user preferences.
     /// </summary>
-    public class UserPrefs
+    public class PSACache
     {
         #region Fields
         /// <summary>
         /// Singleton instance of this class.
         /// </summary>
-        private static UserPrefs instance;
-        public static UserPrefs Instance
+        private static PSACache instance;
+        public static PSACache Instance
         {
             get
             {
                 if (instance == null)
-                    instance = new UserPrefs();
+                    instance = new PSACache();
                 return instance;
             }
         }
@@ -114,7 +114,7 @@ namespace PasaBuy.App.Controllers
         /// <summary>
         /// Initialized the class.
         /// </summary>
-        private UserPrefs()
+        private PSACache()
         {
             
         }
@@ -148,9 +148,9 @@ namespace PasaBuy.App.Controllers
                 string data = Preferences.Get("UserInfo", "{}");
                 userInfo = JsonConvert.DeserializeObject<UserInfo>(data);
 
-                RestAPI.Instance.GetUserInfo(token, (bool success, string info) =>
+                /*RestAPI.Instance.GetUserInfo(token, (bool success, string info) =>
                 {
-                    if(success)
+                    if (success)
                     {
                         UserInfo uinfo = JsonConvert.DeserializeObject<UserInfo>(info);
 
@@ -159,13 +159,31 @@ namespace PasaBuy.App.Controllers
                             UserInfo = uinfo;
                         }
                     }
-                });
+                });*/
             }
         }
         #endregion
 
         #region Methods
+        /// <summary>
+        /// Check if the user skip or completed the Getting Started.
+        /// </summary>
+        public static bool DoneWithGettingStarted
+        {
+            get
+            {
+                return Preferences.ContainsKey("ReturnUser") ? true : false;
+            }
+        }
 
+        /// <summary>
+        /// Set and save the action of the user toward the Getting Started page.
+        /// </summary>
+        /// <param name="isSkipped"></param>
+        public static void SetGettingStartedAction(bool isSkipped)
+        {
+            Preferences.Set("ReturnUser", true);
+        }
         #endregion
     }
 }

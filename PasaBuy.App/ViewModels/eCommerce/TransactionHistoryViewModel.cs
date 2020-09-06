@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using PasaBuy.App.Local;
 using PasaBuy.App.Models.eCommerce;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -22,7 +23,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 {
                      CustomerName = "Alice",
                      TransactionDescription = "Cashback",
-                     Image = App.BaseImageUrl + "ProfileImage15.png",
+                     Image = PSAConfig.sfRootUrl + "ProfileImage15.png",
                      TransactionAmount = "+ $70",
                      Date = DateTime.Now.AddDays(randomNum.Next(-1000, 0)),
                      IsCredited = true
@@ -31,7 +32,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 {
                      CustomerName = "Jessica Park",
                      TransactionDescription = "XXXXXXX6585",
-                     Image = App.BaseImageUrl + "ProfileImage10.png",
+                     Image = PSAConfig.sfRootUrl + "ProfileImage10.png",
                      TransactionAmount = "+ $80",
                      Date = DateTime.Now.AddDays(randomNum.Next(-1000, 0)),
                      IsCredited = true
@@ -40,7 +41,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 {
                      CustomerName = "Lisa",
                      TransactionDescription = "Recharge",
-                     Image = App.BaseImageUrl + "ProfileImage11.png",
+                     Image = PSAConfig.sfRootUrl + "ProfileImage11.png",
                      TransactionAmount = "- $50",
                      Date = DateTime.Now.AddDays(randomNum.Next(-1000, 0)),
                      IsCredited = false
@@ -49,7 +50,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 {
                      CustomerName = "Rebecca",
                      TransactionDescription = "Credit Card Bill",
-                     Image = App.BaseImageUrl + "ProfileImage12.png",
+                     Image = PSAConfig.sfRootUrl + "ProfileImage12.png",
                      TransactionAmount = "- $180",
                      Date = DateTime.Now.AddDays(randomNum.Next(-1000, 0)),
                      IsCredited = false

@@ -7,6 +7,7 @@ using DataVice;
 using Newtonsoft.Json;
 using PasaBuy.App.Controllers;
 using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
 
 namespace PasaBuy.App.ViewModels.Onboarding
 {
@@ -35,7 +36,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
 					}
 					else
 					{
-						new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
+						new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
 					}
 				});
 		}

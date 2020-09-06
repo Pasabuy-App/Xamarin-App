@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using PasaBuy.App.Local;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Xamarin.Forms.Internals;
 
@@ -20,7 +21,7 @@ namespace PasaBuy.App.Models
         [DataMember(Name = "icon")]
         public string Icon
         {
-            get { return App.BaseImageUrl + this.icon; }
+            get { return PSAConfig.baseRestUrl + this.icon; }
             set { this.icon = value; }
         }
 

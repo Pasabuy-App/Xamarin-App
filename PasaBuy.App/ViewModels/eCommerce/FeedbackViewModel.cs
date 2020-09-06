@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using PasaBuy.App.Local;
 using PasaBuy.App.Models.eCommerce;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -25,12 +26,12 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     CustomerName = "Jessica Park",
                     Comment = "These boots are stunning and I look stunning in them.",
                     ReviewedDate = DateTime.Now.AddDays(randomNum.Next(0, 1000)),
-                    CustomerImage = App.BaseImageUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
+                    CustomerImage = PSAConfig.sfRootUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
                     Rating = randomNum.Next(0, 5),
                     Images = new List<string>
                     {
-                        App.BaseImageUrl + "ReviewShoe.png",
-                        App.BaseImageUrl + "ReviewShoe.png"
+                        PSAConfig.sfRootUrl + "ReviewShoe.png",
+                        PSAConfig.sfRootUrl + "ReviewShoe.png"
                     }
                 },
                 new Review
@@ -38,7 +39,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     CustomerName = "Alice",
                     Comment = "Greatest purchase I have ever made in my life. No lie.",
                     ReviewedDate = DateTime.Now.AddDays(randomNum.Next(0, 1000)),
-                    CustomerImage = App.BaseImageUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
+                    CustomerImage = PSAConfig.sfRootUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
                     Rating = randomNum.Next(0, 5)
                 },
                 new Review
@@ -46,7 +47,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     CustomerName = "John",
                     Comment = "Absolutely love them! Can’t stop wearing!",
                     ReviewedDate = DateTime.Now.AddDays(randomNum.Next(0, 1000)),
-                    CustomerImage = App.BaseImageUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
+                    CustomerImage = PSAConfig.sfRootUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
                     Rating = randomNum.Next(0, 5)
                 },
                 new Review
@@ -54,13 +55,13 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     CustomerName = "Lisa",
                     Comment = "These boots are very much comfortable for wearing.",
                     ReviewedDate = DateTime.Now.AddDays(randomNum.Next(0, 1000)),
-                    CustomerImage = App.BaseImageUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
+                    CustomerImage = PSAConfig.sfRootUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
                     Rating = randomNum.Next(0, 5),
                     Images = new List<string>
                     {
-                        App.BaseImageUrl + "ReviewShoe.png",
-                        App.BaseImageUrl + "ReviewShoe.png",
-                        App.BaseImageUrl + "ReviewShoe.png"
+                        PSAConfig.sfRootUrl + "ReviewShoe.png",
+                        PSAConfig.sfRootUrl + "ReviewShoe.png",
+                        PSAConfig.sfRootUrl + "ReviewShoe.png"
                     }
                 },
                 new Review
@@ -68,7 +69,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     CustomerName = "Rebacca",
                     Comment = "Absolutely love them! Can’t stop wearing!",
                     ReviewedDate = DateTime.Now.AddDays(randomNum.Next(0, 1000)),
-                    CustomerImage = App.BaseImageUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
+                    CustomerImage = PSAConfig.sfRootUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
                     Rating = randomNum.Next(0, 5)
                 },
                 new Review
@@ -76,7 +77,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     CustomerName = "Jessica Park",
                     Comment = "Happy purchasing!",
                     ReviewedDate = DateTime.Now.AddDays(randomNum.Next(0, 1000)),
-                    CustomerImage = App.BaseImageUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
+                    CustomerImage = PSAConfig.sfRootUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
                     Rating = randomNum.Next(4, 5)
                 },
                 new Review
@@ -84,14 +85,14 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     CustomerName = "Alice",
                     Comment = "Happy buying!",
                     ReviewedDate = DateTime.Now.AddDays(randomNum.Next(0, 1000)),
-                    CustomerImage = App.BaseImageUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
+                    CustomerImage = PSAConfig.sfRootUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
                     Rating = randomNum.Next(0, 5),
                     Images = new List<string>
                     {
-                        App.BaseImageUrl + "ReviewShoe.png",
-                        App.BaseImageUrl + "ReviewShoe.png",
-                        App.BaseImageUrl + "ReviewShoe.png",
-                        App.BaseImageUrl + "ReviewShoe.png"
+                        PSAConfig.sfRootUrl + "ReviewShoe.png",
+                        PSAConfig.sfRootUrl + "ReviewShoe.png",
+                        PSAConfig.sfRootUrl + "ReviewShoe.png",
+                        PSAConfig.sfRootUrl + "ReviewShoe.png"
                     }
                 }
             };

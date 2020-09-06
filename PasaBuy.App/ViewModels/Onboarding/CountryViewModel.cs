@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using PasaBuy.App.Controllers;
 using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
 using PasaBuy.App.Models.Onboarding;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
                 }
                 else
 				{
-					new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
+					new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
 					countryCollection.Clear();
 
 				}

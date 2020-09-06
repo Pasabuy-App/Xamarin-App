@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using PasaBuy.App.Local;
 using PasaBuy.App.Models.Chat;
 using PasaBuy.App.Views;
 using PasaBuy.App.Views.Chat;
@@ -18,7 +19,7 @@ namespace PasaBuy.App.ViewModels.Chat
 
         private ObservableCollection<ChatDetail> chatItems;
 
-        private string profileImage = App.BaseImageUrl + "ProfileImage1.png";
+        private string profileImage = PSAConfig.sfRootUrl + "ProfileImage1.png";
 
         private Command itemSelectedCommand;
 
@@ -34,7 +35,7 @@ namespace PasaBuy.App.ViewModels.Chat
             {
                 new ChatDetail
                 {
-                    ImagePath = App.BaseImageUrl + "ProfileImage2.png",
+                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage2.png",
                     SenderName = "Alice Russell",
                     MessageType = "Text",
                     Message = "https://app.syncfusion",
@@ -43,7 +44,7 @@ namespace PasaBuy.App.ViewModels.Chat
                 },
                 new ChatDetail
                 {
-                    ImagePath = App.BaseImageUrl + "ProfileImage3.png",
+                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage3.png",
                     SenderName = "Danielle Schneider",
                     MessageType = "Audio",
                     Time = "23 min",
@@ -52,7 +53,7 @@ namespace PasaBuy.App.ViewModels.Chat
                 },
                 new ChatDetail
                 {
-                    ImagePath = App.BaseImageUrl + "ProfileImage4.png",
+                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage4.png",
                     SenderName = "Jessica Park",
                     MessageType = "Text",
                     Message = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
@@ -61,7 +62,7 @@ namespace PasaBuy.App.ViewModels.Chat
                 },
                 new ChatDetail
                 {
-                    ImagePath = App.BaseImageUrl + "ProfileImage5.png",
+                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage5.png",
                     SenderName = "Julia Grant",
                     MessageType = "Video",
                     Time = "3 hr",
@@ -70,7 +71,7 @@ namespace PasaBuy.App.ViewModels.Chat
                 },
                 new ChatDetail
                 {
-                    ImagePath = App.BaseImageUrl + "ProfileImage6.png",
+                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage6.png",
                     SenderName = "kyle Greene",
                     MessageType = "Contact",
                     Message = "Jhone Deo Sync",
@@ -79,7 +80,7 @@ namespace PasaBuy.App.ViewModels.Chat
                 },
                 new ChatDetail
                 {
-                    ImagePath = App.BaseImageUrl + "ProfileImage7.png",
+                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage7.png",
                     SenderName = "Danielle Booker",
                     MessageType = "Text",
                     Message = "Val Geisier is a writer who",
@@ -89,7 +90,7 @@ namespace PasaBuy.App.ViewModels.Chat
                 },
                 new ChatDetail
                 {
-                    ImagePath = App.BaseImageUrl + "ProfileImage8.png",
+                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage8.png",
                     SenderName = "Jazmine Simmons",
                     MessageType = "Text",
                     Message = "Contrary to popular belief, Lorem Ipsum is not simply random text." +
@@ -99,7 +100,7 @@ namespace PasaBuy.App.ViewModels.Chat
                 },
                 new ChatDetail
                 {
-                    ImagePath = App.BaseImageUrl + "ProfileImage9.png",
+                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage9.png",
                     SenderName = "Ira Membrit",
                     MessageType = "Photo",
                     Time = "8/8/2018",
@@ -108,7 +109,7 @@ namespace PasaBuy.App.ViewModels.Chat
                 },
                 new ChatDetail
                 {
-                    ImagePath = App.BaseImageUrl + "ProfileImage10.png",
+                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage10.png",
                     MessageType = "Text",
                     Message = "A customer who bought your",
                     SenderName = "Serina Willams",
@@ -117,7 +118,7 @@ namespace PasaBuy.App.ViewModels.Chat
                 },
                  new ChatDetail
                  {
-                    ImagePath = App.BaseImageUrl + "ProfileImage11.png",
+                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage11.png",
                     SenderName = "Alise Valasquez",
                     MessageType = "Text",
                     Message = "Syncfusion components help you deliver applications with great user experiences across iOS, Android, and Universal Windows Platform from a single code base.",
@@ -126,7 +127,7 @@ namespace PasaBuy.App.ViewModels.Chat
                 },
                 new ChatDetail
                 {
-                    ImagePath = App.BaseImageUrl + "ProfileImage12.png",
+                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage12.png",
                     SenderName = "Allie Bellew",
                     MessageType = "Audio",
                     Time = "24/4/2018",
@@ -135,7 +136,7 @@ namespace PasaBuy.App.ViewModels.Chat
                 },
                 new ChatDetail
                 {
-                    ImagePath = App.BaseImageUrl + "ProfileImage13.png",
+                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage13.png",
                     SenderName = "Navya Sharma",
                     MessageType = "Text",
                     Message = "https://www.syncfusion.com",
@@ -144,7 +145,7 @@ namespace PasaBuy.App.ViewModels.Chat
                 },
                 new ChatDetail
                 {
-                    ImagePath = App.BaseImageUrl + "ProfileImage14.png",
+                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage14.png",
                     SenderName = "Carly Ling",
                     MessageType = "Video",
                     Time = "22/3/2018",
@@ -153,7 +154,7 @@ namespace PasaBuy.App.ViewModels.Chat
                 },
                 new ChatDetail
                 {
-                    ImagePath = App.BaseImageUrl + "ProfileImage15.png",
+                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage15.png",
                     SenderName = "Diayana Sebastine",
                     MessageType = "Contact",
                     Message = "Kishore Nisanth",
@@ -162,7 +163,7 @@ namespace PasaBuy.App.ViewModels.Chat
                 },
                 new ChatDetail
                 {
-                    ImagePath = App.BaseImageUrl + "ProfileImage16.png",
+                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage16.png",
                     SenderName = "Marc Sherry",
                     MessageType = "Text",
                     Message = "Val Geisier is a writer who",
@@ -172,7 +173,7 @@ namespace PasaBuy.App.ViewModels.Chat
                 },
                 new ChatDetail
                 {
-                    ImagePath = App.BaseImageUrl + "ProfileImage17.png",
+                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage17.png",
                     SenderName = "Dona Merina",
                     MessageType = "Text",
                     Message = "Contrary to popular belief, Lorem Ipsum is not simply random text." +

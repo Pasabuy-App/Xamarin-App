@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
+using PasaBuy.App.Local;
 using PasaBuy.App.Models.eCommerce;
 using Xamarin.Forms.Internals;
 
@@ -58,7 +59,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
         {
             get
             {
-                return App.BaseImageUrl + this.productImage;
+                return PSAConfig.sfRootUrl + this.productImage;
             }
 
             set

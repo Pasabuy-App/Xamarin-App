@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using PasaBuy.App.Local;
+using System.Runtime.Serialization;
 using Xamarin.Forms.Internals;
 
 namespace PasaBuy.App.Models.Marketplace
@@ -26,7 +27,7 @@ namespace PasaBuy.App.Models.Marketplace
         {
             get
             {
-                return App.BaseImageUrl + this.itemImage;
+                return PSAConfig.sfRootUrl + this.itemImage;
             }
 
             set

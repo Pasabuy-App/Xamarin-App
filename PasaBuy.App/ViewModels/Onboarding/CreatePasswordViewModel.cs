@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using PasaBuy.App.Controllers;
 using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
 using PasaBuy.App.Models.Onboarding;
 using PasaBuy.App.Views;
 using System;
@@ -136,40 +137,40 @@ namespace PasaBuy.App.ViewModels.Onboarding
 
                                     if (uinfo.status == "success")
                                     {
-                                        UserPrefs.Instance.UserInfo.dname = uinfo.data.dname;
-                                        UserPrefs.Instance.UserInfo.uname = uinfo.data.uname;
-                                        UserPrefs.Instance.UserInfo.email = uinfo.data.email;
-                                        UserPrefs.Instance.UserInfo.lname = uinfo.data.lname;
-                                        UserPrefs.Instance.UserInfo.fname = uinfo.data.fname;
-                                        UserPrefs.Instance.UserInfo.city = uinfo.data.city;
-                                        UserPrefs.Instance.UserInfo.date_registered = uinfo.data.date_registered;
+                                        PSACache.Instance.UserInfo.dname = uinfo.data.dname;
+                                        PSACache.Instance.UserInfo.uname = uinfo.data.uname;
+                                        PSACache.Instance.UserInfo.email = uinfo.data.email;
+                                        PSACache.Instance.UserInfo.lname = uinfo.data.lname;
+                                        PSACache.Instance.UserInfo.fname = uinfo.data.fname;
+                                        PSACache.Instance.UserInfo.city = uinfo.data.city;
+                                        PSACache.Instance.UserInfo.date_registered = uinfo.data.date_registered;
 
                                         ProfileGetData.CountPost(token.data.wpid, token.data.snky);
-                                        UserPrefs.Instance.UserInfo.wpid = token.data.wpid;
-                                        UserPrefs.Instance.UserInfo.snky = token.data.snky;
+                                        PSACache.Instance.UserInfo.wpid = token.data.wpid;
+                                        PSACache.Instance.UserInfo.snky = token.data.snky;
 
                                         Application.Current.MainPage = new Views.MainTabs();
                                     }
                                     else
                                     {
-                                        new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data2), "Try Again");
+                                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data2), "Try Again");
                                     }
                                 }
                                 else
                                 {
-                                    new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
+                                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                                 }
                             });
                         }
                         else
                         {
-                            new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                         }
                     });
                 }
                 else
                 {
-                    new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data1), "Try Again");
+                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data1), "Try Again");
                 }
             });
         }

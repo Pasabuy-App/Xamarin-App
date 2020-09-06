@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using PasaBuy.App.Controllers.Notice;
 using Newtonsoft.Json;
+using PasaBuy.App.Local;
 
 namespace PasaBuy.App.ViewModels.Feeds
 {
@@ -30,7 +31,7 @@ namespace PasaBuy.App.ViewModels.Feeds
             homePostList = new ObservableCollection<Post>();
             Random rnd = new Random();
 
-            SocioPress.Feeds.Instance.Home(UserPrefs.Instance.UserInfo.wpid, UserPrefs.Instance.UserInfo.snky, "", (bool success, string data) =>
+            SocioPress.Feeds.Instance.Home(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", (bool success, string data) =>
             {
                 if (success)
                 {
@@ -58,7 +59,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                     }
                     else
                     {
-                        new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
 
                     }
                 });
@@ -76,7 +77,7 @@ namespace PasaBuy.App.ViewModels.Feeds
         {
             get
             {
-                return UserPrefs.Instance.UserInfo.avatarUrl;
+                return PSACache.Instance.UserInfo.avatarUrl;
             }
         }
     }

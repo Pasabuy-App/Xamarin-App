@@ -1,5 +1,6 @@
 ﻿using PasaBuy.App.Controllers;
 using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
 using PasaBuy.App.Views.Master;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,9 @@ namespace PasaBuy.App.Views.Settings
         {
             InitializeComponent();
 
-            Fname.Text = UserPrefs.Instance.UserInfo.fname;
-            Lname.Text = UserPrefs.Instance.UserInfo.lname;
-            Nname.Text = UserPrefs.Instance.UserInfo.dname;
+            Fname.Text = PSACache.Instance.UserInfo.fname;
+            Lname.Text = PSACache.Instance.UserInfo.lname;
+            Nname.Text = PSACache.Instance.UserInfo.dname;
         }
 
         /// <summary>

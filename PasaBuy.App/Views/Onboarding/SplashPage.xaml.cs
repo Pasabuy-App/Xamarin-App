@@ -1,8 +1,8 @@
 ﻿using PasaBuy.App.Controllers;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using PasaBuy.App.Views.ErrorAndEmpty;
+using PasaBuy.App.Local;
 
 namespace PasaBuy.App.Views.Onboarding
 {
@@ -21,19 +21,16 @@ namespace PasaBuy.App.Views.Onboarding
             await SplashLogo.ScaleTo(1.0, 1000);
             await SplashLogo.ScaleTo(1.5, 1500, Easing.Linear);
 
-            DataVice.DVHost.Instance.Initialized("http://10.0.2.2/wordpress");
-            SocioPress.SPHost.Instance.Initialized("http://10.0.2.2/wordpress");
-
             CheckConnectivityAndToken();
         }
 
         public static void CheckConnectivityAndToken()
         {
-            if ( App.HasInternet )
+            if (PSADevice.HasInternet )
             {
-                if (UserPrefs.Instance.hasToken)
+                if (PSACache.Instance.hasToken)
                 {
-                    if (UserPrefs.Instance.hasUserinfo)
+                    if (PSACache.Instance.hasUserinfo)
                     {
                         App.Current.MainPage = new MainTabs();
 
@@ -43,7 +40,7 @@ namespace PasaBuy.App.Views.Onboarding
 
                 App.Current.MainPage = new SignInPage();
 
-                if ( !App.DoneWithGettingStarted )
+                if ( !PSACache.DoneWithGettingStarted )
                 {
                     App.Current.MainPage = new GettingStarted();
                 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PasaBuy.App.Local;
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Xamarin.Forms.Internals;
@@ -32,7 +33,7 @@ namespace PasaBuy.App.Models
         [DataMember(Name = "profileimage")]
         public string CustomerImage
         {
-            get { return App.BaseImageUrl + this.customerImage; }
+            get { return PSAConfig.sfRootUrl + this.customerImage; }
             set { this.customerImage = value; }
         }
 
@@ -48,7 +49,7 @@ namespace PasaBuy.App.Models
                 {
                     for (var i = 0; i < this.images.Count; i++)
                     {
-                        this.images[i] = this.images[i].Contains(App.BaseImageUrl) ? this.images[i] : App.BaseImageUrl + this.images[i];
+                        this.images[i] = this.images[i].Contains(PSAConfig.sfRootUrl) ? this.images[i] : PSAConfig.sfRootUrl + this.images[i];
                     }
                 }
                 return this.images;

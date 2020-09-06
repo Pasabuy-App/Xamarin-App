@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using PasaBuy.App.Local;
 using PasaBuy.App.Models.Onboarding;
 using PasaBuy.App.Views.Onboarding;
 using Syncfusion.SfRotator.XForms;
@@ -193,7 +194,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void Skip(object obj)
         {
-            App.SetGettingStartedAction(true);
+            PSACache.SetGettingStartedAction(true);
             this.EndGettingStarted();
         }
 
@@ -206,7 +207,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
             var itemCount = (obj as SfRotator).ItemsSource.Count();
             if (this.ValidateAndUpdateSelectedIndex(itemCount))
             {
-                App.SetGettingStartedAction(false);
+                PSACache.SetGettingStartedAction(false);
                 this.EndGettingStarted();
             }
         }

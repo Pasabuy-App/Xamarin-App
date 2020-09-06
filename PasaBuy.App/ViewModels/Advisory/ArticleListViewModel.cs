@@ -6,6 +6,7 @@ using Xamarin.Forms.Internals;
 using Model = PasaBuy.App.Models.Article;
 using PasaBuy.App.Views.Advisory;
 using PasaBuy.App.Views;
+using PasaBuy.App.Local;
 
 namespace PasaBuy.App.ViewModels.Advisory
 {
@@ -33,7 +34,7 @@ namespace PasaBuy.App.ViewModels.Advisory
             {
                 new Model
                 {
-                    ImagePath = App.BaseImageUrl + "ArticleImage2.png",
+                    ImagePath = PSAConfig.sfRootUrl + "ArticleImage2.png",
                     Name = "Learning to Reset",
                     Author = "John Doe",
                     Date = "Aug 2010",
@@ -41,7 +42,7 @@ namespace PasaBuy.App.ViewModels.Advisory
                 },
                 new Model
                 {
-                    ImagePath = App.BaseImageUrl + "ArticleImage3.png",
+                    ImagePath = PSAConfig.sfRootUrl + "ArticleImage3.png",
                     Name = "Holistic Approach to UI Design",
                     Author = "John Doe",
                     Date = "Apr 16",
@@ -49,7 +50,7 @@ namespace PasaBuy.App.ViewModels.Advisory
                 },
                 new Model
                 {
-                    ImagePath = App.BaseImageUrl + "ArticleImage4.png",
+                    ImagePath = PSAConfig.sfRootUrl + "ArticleImage4.png",
                     Name = "Guiding Your Flock to Success",
                     Author = "John Doe",
                     Date = "May 2012",
@@ -57,7 +58,7 @@ namespace PasaBuy.App.ViewModels.Advisory
                 },
                 new Model
                 {
-                    ImagePath = App.BaseImageUrl + "ArticleImage5.png",
+                    ImagePath = PSAConfig.sfRootUrl + "ArticleImage5.png",
                     Name = "Be a Nurturing, Fierce Team Leader",
                     Author = "John Doe",
                     Date = "Apr 16",
@@ -65,7 +66,7 @@ namespace PasaBuy.App.ViewModels.Advisory
                 },
                 new Model
                 {
-                    ImagePath = App.BaseImageUrl + "ArticleImage6.png",
+                    ImagePath = PSAConfig.sfRootUrl + "ArticleImage6.png",
                     Name = "Holistic Approach to UI Design",
                     Author = "John Doe",
                     Date = "Dec 2013",
@@ -77,7 +78,7 @@ namespace PasaBuy.App.ViewModels.Advisory
             {
                 new Model
                 {
-                    ImagePath = App.BaseImageUrl + "Article_image1.png",
+                    ImagePath = PSAConfig.sfRootUrl + "Article_image1.png",
                     Name = "Learning to Reset",
                     Author = "John Doe",
                     Date = "Apr 16",
@@ -85,7 +86,7 @@ namespace PasaBuy.App.ViewModels.Advisory
                 },
                 new Model
                 {
-                    ImagePath = App.BaseImageUrl + "Article_image2.png",
+                    ImagePath = PSAConfig.sfRootUrl + "Article_image2.png",
                     Name = "Holistic Approach to UI Design",
                     Author = "John Doe",
                     Date = "May 26",
@@ -93,7 +94,7 @@ namespace PasaBuy.App.ViewModels.Advisory
                 },
                 new Model
                 {
-                    ImagePath = App.BaseImageUrl + "Article_image3.png",
+                    ImagePath = PSAConfig.sfRootUrl + "Article_image3.png",
                     Name = "Guiding Your Flock to Success",
                     Author = "John Doe",
                     Date = "Apr 10",
@@ -101,7 +102,7 @@ namespace PasaBuy.App.ViewModels.Advisory
                 },
                 new Model
                 {
-                    ImagePath = App.BaseImageUrl + "Article_image4.png",
+                    ImagePath = PSAConfig.sfRootUrl + "Article_image4.png",
                     Name = "Holistic Approach to UI Design",
                     Author = "John Doe",
                     Date = "Apr 16",

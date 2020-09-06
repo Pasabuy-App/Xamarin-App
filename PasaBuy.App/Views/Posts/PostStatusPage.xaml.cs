@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PasaBuy.App.Controllers;
 using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
 using PasaBuy.App.Models.Feeds;
 using PasaBuy.App.ViewModels.Feeds;
 using PasaBuy.App.Views.Feeds;
@@ -29,7 +30,7 @@ namespace PasaBuy.App.Views.Posts
 
         public void SubmitPostButton(object sender, EventArgs e)
         {
-            SocioPress.Posts.Instance.Insert(UserPrefs.Instance.UserInfo.wpid, UserPrefs.Instance.UserInfo.snky, "Title", StatusEditor.Text, "status", (bool success, string data) =>
+            SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "Title", StatusEditor.Text, "status", (bool success, string data) =>
             {
                 if (success)
                 {
@@ -38,7 +39,7 @@ namespace PasaBuy.App.Views.Posts
                 }
                 else
                 {
-                    new Alert("Notice to User", HtmlUtilities.ConvertToPlainText(data), "Try Again");
+                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                 }
             });
         }

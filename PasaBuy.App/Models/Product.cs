@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using PasaBuy.App.Local;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.Serialization;
@@ -56,7 +57,7 @@ namespace PasaBuy.App.Models
         [DataMember(Name = "previewimage")]
         public string PreviewImage
         {
-            get { return App.BaseImageUrl + this.previewImage; }
+            get { return PSAConfig.sfRootUrl + this.previewImage; }
             set { this.previewImage = value; }
         }
 
@@ -70,7 +71,7 @@ namespace PasaBuy.App.Models
             {
                 for (var i = 0; i < this.previewImages.Count; i++)
                 {
-                    this.previewImages[i] = this.previewImages[i].Contains(App.BaseImageUrl) ? this.previewImages[i] : App.BaseImageUrl + this.previewImages[i];
+                    this.previewImages[i] = this.previewImages[i].Contains(PSAConfig.sfRootUrl) ? this.previewImages[i] : PSAConfig.sfRootUrl + this.previewImages[i];
                 }
 
                 return this.previewImages;

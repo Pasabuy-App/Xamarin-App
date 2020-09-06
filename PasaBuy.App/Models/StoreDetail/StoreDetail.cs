@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using PasaBuy.App.Local;
+using System.Runtime.Serialization;
 using Xamarin.Forms.Internals;
 
 namespace PasaBuy.App.Models.StoreDetail
@@ -39,7 +40,7 @@ namespace PasaBuy.App.Models.StoreDetail
         {
             get
             {
-                return App.BaseImageUrl + this.image;
+                return PSAConfig.sfRootUrl + this.image;
             }
 
             set

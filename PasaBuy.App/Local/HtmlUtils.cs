@@ -2,9 +2,9 @@
 using System;
 using System.IO;
 
-namespace PasaBuy.App.Controllers
+namespace PasaBuy.App.Local
 {
-    public class HtmlUtilities
+    public class HtmlUtils
     {
         /// <summary>
         /// Converts HTML to plain text / strips tags.
