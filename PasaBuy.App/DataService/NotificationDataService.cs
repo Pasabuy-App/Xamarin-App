@@ -9,13 +9,13 @@ namespace PasaBuy.App.DataService
     /// Data service for task notification page to load the data from json file.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class TaskNotificationDataService
+    public class NotificationDataService
     {
         #region fields 
 
-        private static TaskNotificationDataService instance;
+        private static NotificationDataService instance;
 
-        private TaskNotificationViewModel taskNotificationViewModel;
+        private NotificationViewModel notificationViewModel;
 
         #endregion
 
@@ -24,14 +24,14 @@ namespace PasaBuy.App.DataService
         /// <summary>
         /// Gets an instance of the <see cref="TaskNotificationDataService"/>.
         /// </summary>
-        public static TaskNotificationDataService Instance => instance ?? (instance = new TaskNotificationDataService());
+        public static NotificationDataService Instance => instance ?? (instance = new NotificationDataService());
 
         /// <summary>
         /// Gets or sets the value of task notification page view model.
         /// </summary>
-        public TaskNotificationViewModel TaskNotificationViewModel =>
-            this.taskNotificationViewModel ??
-            (this.taskNotificationViewModel = PopulateData<TaskNotificationViewModel>("notification.json"));
+        public NotificationViewModel TaskNotificationViewModel =>
+            this.notificationViewModel ??
+            (this.notificationViewModel = PopulateData<NotificationViewModel>("notification.json"));
 
         #endregion
 

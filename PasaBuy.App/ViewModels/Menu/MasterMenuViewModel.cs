@@ -208,7 +208,7 @@ namespace PasaBuy.App.ViewModels.Menu
         /// <param name="obj">The object</param>
         private void NotificationButtonClicked(object obj)
         {
-            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new TaskNotificationPage()));
+            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new NotificationPage()));
         }
 
         /// <summary>

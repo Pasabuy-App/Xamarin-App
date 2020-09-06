@@ -10,16 +10,16 @@ namespace PasaBuy.App.Views.Notification
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TaskNotificationPage
+    public partial class NotificationPage
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TaskNotificationPage" /> class.
+        /// Initializes a new instance of the <see cref="NotificationPage" /> class.
         /// </summary>
-        public TaskNotificationPage()
+        public NotificationPage()
         {
             InitializeComponent();
 
-            this.BindingContext = TaskNotificationDataService.Instance.TaskNotificationViewModel;
+            this.BindingContext = NotificationDataService.Instance.TaskNotificationViewModel;
         }
 
         /// <summary>

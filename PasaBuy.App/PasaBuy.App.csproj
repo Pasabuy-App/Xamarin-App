@@ -128,6 +128,9 @@
     <Compile Update="Views\Notice\NoInternetPage.xaml.cs">
       <DependentUpon>NoInternetPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Notification\NotificationPage.xaml.cs">
+      <DependentUpon>NotificationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Onboarding\ForgotPwPage.xaml.cs">
       <DependentUpon>ForgotPwPage.xaml</DependentUpon>
     </Compile>
@@ -383,7 +386,7 @@
     <EmbeddedResource Update="Views\Notification\Styles.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Notification\TaskNotificationPage.xaml">
+    <EmbeddedResource Update="Views\Notification\NotificationPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Onboarding\GettingStarted.xaml">

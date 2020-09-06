@@ -12,7 +12,7 @@ namespace PasaBuy.App.ViewModels.Notification
     /// </summary>
     [Preserve(AllMembers = true)]
     [DataContract]
-    public class TaskNotificationViewModel : BaseViewModel
+    public class NotificationViewModel : BaseViewModel
     {
         #region Fields
 
@@ -25,9 +25,9 @@ namespace PasaBuy.App.ViewModels.Notification
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance for the <see cref="TaskNotificationViewModel"/> class.
+        /// Initializes a new instance for the <see cref="NotificationViewModel"/> class.
         /// </summary>
-        public TaskNotificationViewModel()
+        public NotificationViewModel()
         {
 
         }
