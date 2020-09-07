@@ -5,6 +5,8 @@ using PasaBuy.App.Views.ErrorAndEmpty;
 using PasaBuy.App.Views.Feeds;
 using PasaBuy.App.Views.Notification;
 using PasaBuy.App.Views.Onboarding;
+using PasaBuy.App.Views.Posts;
+using PasaBuy.App.Views.Settings;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -24,7 +26,7 @@ namespace PasaBuy.App
 
             PSACache.Instance.Initialize();
 
-            MainPage = new NavigationPage(new SignInPage());
+            MainPage = new NavigationPage(new ChangePWPage());
         }
 
         protected override void OnStart()

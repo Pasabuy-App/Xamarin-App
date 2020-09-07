@@ -56,9 +56,7 @@
                     VerticalOptions="FillAndExpand"
                     WidthRequest="{OnPlatform Default='-1',
                                               UWP='350'}">
-            <border:SfBorder
-                            Padding="15, 40, 15, 40"
-                            Style="{StaticResource FormBorderStyle}">
+            
                 <Grid RowSpacing="24" VerticalOptions="CenterAndExpand">
 
                     <Grid.RowDefinitions>
@@ -129,7 +127,6 @@
                             Text="SUBMIT" />
 
                 </Grid>
-            </border:SfBorder>
 
         </StackLayout>
     </ContentPage.Content>
