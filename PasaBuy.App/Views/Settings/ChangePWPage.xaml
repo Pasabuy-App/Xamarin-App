@@ -93,7 +93,12 @@
                             Grid.Row="2"
                             Padding="15,0,0,0"
                             Style="{StaticResource FormBorderStyle}">
-                        <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Old Password" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
+                        <controls:BorderlessEntry 
+                            x:Name="OldPassword"
+                            PlaceholderColor="{DynamicResource Gray-800}" 
+                            Placeholder="Old Password" 
+                            HeightRequest="40"  
+                            Style="{StaticResource EntryTextStyle}" />
 
                     </border:SfBorder>
 
@@ -102,7 +107,12 @@
                             Grid.Row="3"
                             Padding="15,0,0,0"
                             Style="{StaticResource FormBorderStyle}">
-                        <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="New Password" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
+                        <controls:BorderlessEntry 
+                            x:Name="NewPassword"
+                            PlaceholderColor="{DynamicResource Gray-800}" 
+                            Placeholder="New Password" 
+                            HeightRequest="40"  
+                            Style="{StaticResource EntryTextStyle}" />
 
                     </border:SfBorder>
 
@@ -111,7 +121,12 @@
                             Grid.Row="4"
                             Padding="15,0,0,0"
                             Style="{StaticResource FormBorderStyle}">
-                        <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Confirm New Password" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
+                        <controls:BorderlessEntry 
+                            x:Name="ConfirmNewPassword"
+                            PlaceholderColor="{DynamicResource Gray-800}" 
+                            Placeholder="Confirm New Password" 
+                            HeightRequest="40"  
+                            Style="{StaticResource EntryTextStyle}" />
 
                     </border:SfBorder>
 
