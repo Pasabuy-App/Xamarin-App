@@ -22,4 +22,6 @@ namespace PasaBuy.App.Controllers.Notice
             }
         }
     }
+
+
 }

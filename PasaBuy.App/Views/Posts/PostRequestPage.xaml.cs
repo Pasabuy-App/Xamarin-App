@@ -24,7 +24,7 @@ namespace PasaBuy.App.Views.Posts
         public PostRequestPage()
         {
             InitializeComponent();
-
+           
         }
         public void BackButtonClicked(object sender, EventArgs e)
         {
@@ -58,7 +58,7 @@ namespace PasaBuy.App.Views.Posts
                 var stream = file.GetStream();
                 return stream;
             });
-
+           
             ItemImage.Source = imageSource;
             var filePath = file.Path;
 

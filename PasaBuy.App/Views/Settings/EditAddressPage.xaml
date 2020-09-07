@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="PasaBuy.App.Views.Settings.AddAddressPage"
+<ContentPage x:Class="PasaBuy.App.Views.Settings.EditAddressPage"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
@@ -23,7 +23,7 @@
     <ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0" >
-                <controls:TitleView Title="New Address" 
+                <controls:TitleView Title="Edit Address" 
                                     BackgroundColor="{DynamicResource PrimaryColor}" >
                     <controls:TitleView.LeadingView >
                         <buttons:SfButton
@@ -39,7 +39,7 @@
         </ControlTemplate>
     </ContentPage.ControlTemplate>
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="Center" VerticalOptions="Center"> 
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
             <Grid RowSpacing="10" ColumnSpacing="0" Padding="10" Margin="0, 35, 0, 0" HorizontalOptions="Center" VerticalOptions="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>

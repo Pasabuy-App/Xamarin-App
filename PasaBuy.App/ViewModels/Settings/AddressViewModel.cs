@@ -5,6 +5,21 @@ using Xamarin.Forms.Internals;
 using PasaBuy.App.Views.Master;
 using PasaBuy.App.Views.Settings;
 using PasaBuy.App.Views;
+using PasaBuy.App.CustomRenderers;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
+using Syncfusion.XForms.ComboBox;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
+
+using Xamarin.Forms.Markup;
+using Xamarin.Forms.Xaml;
+using PasaBuy.App.Controllers.Notice;
+using System.Diagnostics;
 
 namespace PasaBuy.App.ViewModels.Settings
 {
@@ -53,7 +68,7 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void EditButtonClicked(object obj)
         {
-            // Do something
+            App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new EditAddressPage()));
         }
 
         /// <summary>
@@ -62,7 +77,12 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void DeleteButtonClicked(object obj)
         {
-            // Do something
+            var answer = new ConfirmAlert("Delete Address", "Are you sure you want to delete this address", "Ok", "Cancel");
+            Debug.WriteLine("Answer +", answer);
+            //if (answer)
+            //{
+            //    //Implement Delete ( set to inactive, status = 0 )
+            //}
         }
 
         /// <summary>
