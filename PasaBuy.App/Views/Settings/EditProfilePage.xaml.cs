@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using DataVice;
 
 namespace PasaBuy.App.Views.Settings
 {
@@ -40,7 +41,21 @@ namespace PasaBuy.App.Views.Settings
         /// <param name="e">Event Args</param>
         private void SaveButton_Clicked(object sender, EventArgs e)
         {
-            new Alert("Demoguy Notice", "Saving of user profile data is not yet implemented. Thank you for your patience!", "AGREE");
+            //new Alert("Demoguy Notice", "Saving of user profile data is not yet implemented. Thank you for your patience!", "AGREE");
+            Users.Instance.EditProfile(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, Fname.Text, Lname.Text, Nname.Text, (bool success, string data) =>
+            {
+                if (success)
+                {
+                    PSACache.Instance.UserInfo.dname = Nname.Text;
+                    PSACache.Instance.UserInfo.lname = Lname.Text;
+                    PSACache.Instance.UserInfo.fname = Fname.Text;
+                    Navigation.PopModalAsync();
+                }
+                else
+                {
+                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                }
+            });
         }
     }
 }

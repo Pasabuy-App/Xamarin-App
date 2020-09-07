@@ -16,6 +16,8 @@ using PasaBuy.App.Views;
 using PasaBuy.App.Views.Currency;
 using PasaBuy.App.Views.Backend;
 using PasaBuy.App.Local;
+using PasaBuy.App.Models.Onboarding;
+using PasaBuy.App.ViewModels.Feeds;
 
 namespace PasaBuy.App.ViewModels.Menu
 {
@@ -27,7 +29,7 @@ namespace PasaBuy.App.ViewModels.Menu
     {
         #region Fields
 
-        private string profileName;
+        public string profileName;
 
         private string profileImage;
 
@@ -190,6 +192,8 @@ namespace PasaBuy.App.ViewModels.Menu
         /// <param name="obj">The object</param>
         private void ProfileButtonClicked(object obj)
         {
+            HomepageViewModel.LoadData();
+            ProfileGetData.CountPost(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky);
             ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
         }
 

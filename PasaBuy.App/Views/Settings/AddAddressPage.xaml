@@ -94,12 +94,14 @@
                         Padding="6,0,0,0"
                         Style="{StaticResource FormBorderStyle}">
                     <combobox:SfComboBox
-                            x:Name="CountryPicker" SelectedValue="{Binding Countries, Mode=TwoWay}"
+                            x:Name="CountryPicker"
+                            SelectionChanged="CountryPicker_SelectionChanged"
+                            SelectedValuePath="CountryCode"
                             Style="{StaticResource ComboBoxStyle}"
                             Watermark="Country">
                         <combobox:SfComboBox.ComboBoxSource>
                             <ListCollection:List x:TypeArguments="x:String">
-                                <x:String>Philippines</x:String>
+                                <x:String></x:String>
                             </ListCollection:List>
                         </combobox:SfComboBox.ComboBoxSource>
                         <combobox:SfComboBox.DropDownButtonSettings>
@@ -124,12 +126,14 @@
                         Padding="6,0,0,0"
                         Style="{StaticResource FormBorderStyle}">
                     <combobox:SfComboBox
-                            x:Name="ProvincePicker" SelectedValue="{Binding Provinces, Mode=TwoWay}"
+                            x:Name="ProvincePicker"
+                            SelectionChanged="ProvincePicker_SelectionChanged"
+                            SelectedValuePath="ProvinceCode"
                             Style="{StaticResource ComboBoxStyle}"
                             Watermark="Province">
                         <combobox:SfComboBox.ComboBoxSource>
                             <ListCollection:List x:TypeArguments="x:String">
-                                <x:String>Laguna</x:String>
+                                <x:String></x:String>
                             </ListCollection:List>
                         </combobox:SfComboBox.ComboBoxSource>
                         <combobox:SfComboBox.DropDownButtonSettings>
@@ -154,12 +158,14 @@
                         Padding="6,0,0,0"
                         Style="{StaticResource FormBorderStyle}">
                     <combobox:SfComboBox
-                            x:Name="CityPicker" SelectedValue="{Binding Cities, Mode=TwoWay}"
+                            x:Name="CityPicker"
+                            SelectionChanged="CityPicker_SelectionChanged"
+                            SelectedValuePath="CityCode"
                             Style="{StaticResource ComboBoxStyle}"
                             Watermark="City">
                         <combobox:SfComboBox.ComboBoxSource>
                             <ListCollection:List x:TypeArguments="x:String">
-                                <x:String>Biñan</x:String>
+                                <x:String></x:String>
                             </ListCollection:List>
                         </combobox:SfComboBox.ComboBoxSource>
                         <combobox:SfComboBox.DropDownButtonSettings>
@@ -184,12 +190,14 @@
                         Padding="6,0,0,0"
                         Style="{StaticResource FormBorderStyle}">
                     <combobox:SfComboBox
-                            x:Name="BarangayPicker" SelectedValue="{Binding Cities, Mode=TwoWay}"
+                            x:Name="BarangayPicker"
+                            SelectionChanged="BarangayPicker_SelectionChanged"
+                            SelectedValuePath="BrgyCode"
                             Style="{StaticResource ComboBoxStyle}"
                             Watermark="Barangay">
                         <combobox:SfComboBox.ComboBoxSource>
                             <ListCollection:List x:TypeArguments="x:String">
-                                <x:String>Canlalay</x:String>
+                                <x:String></x:String>
                             </ListCollection:List>
                         </combobox:SfComboBox.ComboBoxSource>
                         <combobox:SfComboBox.DropDownButtonSettings>
@@ -212,7 +220,7 @@
                         Grid.Row="5"
                         Padding="15,0,0,0"
                         Style="{StaticResource FormBorderStyle}">
-                    <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Street/Bldg/Unit" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
+                    <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Street/Bldg/Unit" HeightRequest="40" x:Name="StreetEntry" Style="{StaticResource EntryTextStyle}" />
 
                 </border:SfBorder>
 

@@ -93,7 +93,7 @@
                             Grid.Row="2"
                             Padding="15,0,0,0"
                             Style="{StaticResource FormBorderStyle}">
-                        <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="New Password" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
+                        <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="New Password" x:Name="NewPassword" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
 
                     </border:SfBorder>
 
@@ -102,7 +102,7 @@
                             Grid.Row="3"
                             Padding="15,0,0,0"
                             Style="{StaticResource FormBorderStyle}">
-                        <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Confirm New Password" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
+                        <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Confirm New Password" x:Name="ConfirmNewPassword" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
 
                     </border:SfBorder>
 
@@ -110,7 +110,7 @@
                     <buttons:SfButton
                             Grid.Row="4"
                             Margin="0, 20, 0, 20"
-                            Command="{Binding SubmitCommand}"
+                            Clicked="SaveButton_Clicked"
                             CornerRadius="20"
                             TextColor="White"
                             BackgroundColor="{DynamicResource PrimaryColor}"

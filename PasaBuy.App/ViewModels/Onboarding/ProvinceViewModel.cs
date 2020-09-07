@@ -1,11 +1,8 @@
 ﻿using PasaBuy.App.Models.Onboarding;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using DataVice;
 using Newtonsoft.Json;
-using PasaBuy.App.Controllers;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 
@@ -21,7 +18,9 @@ namespace PasaBuy.App.ViewModels.Onboarding
 		}
 		public ProvinceViewModel(string val)
 		{
-				provinceCollection = new ObservableCollection<ProvincesData>();
+			provinceCollection = new ObservableCollection<ProvincesData>();
+            try
+			{
 				Locations.Instance.Provinces(val, "datavice", (bool success, string data) =>
 				{
 					if (success)
@@ -39,6 +38,11 @@ namespace PasaBuy.App.ViewModels.Onboarding
 						new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
 					}
 				});
-		}
+			}
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
 	}
 }

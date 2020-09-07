@@ -1,27 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using DataVice;
 using Newtonsoft.Json;
-using PasaBuy.App.Controllers;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Onboarding;
 
 namespace PasaBuy.App.ViewModels.Onboarding
 {
-	public class CityViewModel
+	public class CityViewModel : BaseViewModel
 	{
-		private ObservableCollection<CityData> cityCollection;
+		public static ObservableCollection<CityData> cityCollection;
 		public ObservableCollection<CityData> CityCollection
 		{
 			get { return cityCollection; }
-			set { cityCollection = value; }
+			set { cityCollection = value; this.NotifyPropertyChanged(); }
 		}
 		public CityViewModel(string val)
 		{
-				cityCollection = new ObservableCollection<CityData>();
+			cityCollection = new ObservableCollection<CityData>();
+            try
+			{
 				Locations.Instance.Cities(val, "datavice", (bool success, string data) =>
 				{
 					if (success)
@@ -39,6 +38,16 @@ namespace PasaBuy.App.ViewModels.Onboarding
 						new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
 					}
 				});
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+			}
+		}
+		public static void ClearList()
+		{
+			cityCollection.Clear();
+			cityCollection.Add(new CityData() { CityCode = "", Name = "Select Province First" });
 		}
 	}
 }

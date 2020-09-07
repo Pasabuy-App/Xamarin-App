@@ -21,6 +21,7 @@ namespace PasaBuy.App.Views.Feeds.Templates
 
         public void PostStatus(object sender, EventArgs args)
         {
+
             Navigation.PushModalAsync(new PostStatusPage());
         }
 

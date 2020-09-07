@@ -22,6 +22,8 @@ namespace PasaBuy.App.ViewModels.Feeds
 
         private string profileImage;
 
+        private Boolean isreferred = false;
+
         #endregion
 
         #region Constructor
@@ -41,7 +43,8 @@ namespace PasaBuy.App.ViewModels.Feeds
 
             this.City = "(ic) Lives in " + PSACache.Instance.UserInfo.city;
             this.Joined = "(ic) Joined at " + date.ToString("MMMM yyyy");
-            this.Refered = "(ic) Refered by ";// + UserPrefs.Instance.UserInfo.city;
+            isRefered = false;
+            this.Refered = "";// "(ic) Refered by " + UserPrefs.Instance.UserInfo.city;
                                               //Joined
                                               //Refered
             this.Transacts = ProfileGetData.totaltransact;
@@ -145,11 +148,27 @@ namespace PasaBuy.App.ViewModels.Feeds
         /// </summary>
         public float Ratings { get; set; }
 
+        /// <summary>
+        /// Gets or sets the property that is bound with label that gets the visibility of referred from user in the myprofile page.
+        /// </summary>
+        public Boolean isRefered
+        {
+            get
+            {
+                return isreferred;
+            }
+            set
+            {
+                isreferred = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region Methods
 
         #endregion
-            
+
     }
 }

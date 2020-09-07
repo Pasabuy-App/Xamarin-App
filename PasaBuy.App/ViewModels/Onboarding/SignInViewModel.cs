@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using PasaBuy.App.Models.Onboarding;
 using DataVice;
 using PasaBuy.App.Local;
+using PasaBuy.App.ViewModels.Feeds;
 
 namespace PasaBuy.App.ViewModels.Onboarding
 {
@@ -22,7 +23,6 @@ namespace PasaBuy.App.ViewModels.Onboarding
     public class SignInViewModel : LoginViewModel
     {
         #region Fields
-
         private string password;
 
         private Boolean _state = false;
@@ -138,41 +138,50 @@ namespace PasaBuy.App.ViewModels.Onboarding
                 if (success)
                 {
                     Token token = JsonConvert.DeserializeObject<Token>(data);
-                    SocioPress.Profile.Instance.GetData(token.data.wpid, token.data.snky, (bool success2, string data2) =>
+                    if (token.status == "success")
                     {
-                        if (success2)
+
+                        SocioPress.Profile.Instance.GetData(token.data.wpid, token.data.snky, (bool success2, string data2) =>
                         {
-                            UserInfo uinfo = JsonConvert.DeserializeObject<UserInfo>(data2);
-
-                            if (uinfo.status == "success")
+                            if (success2)
                             {
-                                PSACache.Instance.UserInfo.dname = uinfo.data.dname;
-                                PSACache.Instance.UserInfo.uname = uinfo.data.uname;
-                                PSACache.Instance.UserInfo.email = uinfo.data.email;
-                                PSACache.Instance.UserInfo.lname = uinfo.data.lname;
-                                PSACache.Instance.UserInfo.fname = uinfo.data.fname;
-                                PSACache.Instance.UserInfo.city = uinfo.data.city;
-                                PSACache.Instance.UserInfo.date_registered = uinfo.data.date_registered;
+                                UserInfo uinfo = JsonConvert.DeserializeObject<UserInfo>(data2);
 
-                                ProfileGetData.CountPost(token.data.wpid, token.data.snky);
-                                PSACache.Instance.UserInfo.wpid = token.data.wpid;
-                                PSACache.Instance.UserInfo.snky = token.data.snky;
+                                if (uinfo.status == "success")
+                                {
+                                    PSACache.Instance.UserInfo.dname = uinfo.data.dname;
+                                    PSACache.Instance.UserInfo.uname = uinfo.data.uname;
+                                    PSACache.Instance.UserInfo.email = uinfo.data.email;
+                                    PSACache.Instance.UserInfo.lname = uinfo.data.lname;
+                                    PSACache.Instance.UserInfo.fname = uinfo.data.fname;
+                                    PSACache.Instance.UserInfo.city = uinfo.data.city;
+                                    PSACache.Instance.UserInfo.date_registered = uinfo.data.date_registered;
 
-                                State = false;
-                                Application.Current.MainPage = new Views.MainTabs();
+                                    ProfileGetData.CountPost(token.data.wpid, token.data.snky);
+                                    PSACache.Instance.UserInfo.wpid = token.data.wpid;
+                                    PSACache.Instance.UserInfo.snky = token.data.snky;
+
+                                    State = false;
+                                    Application.Current.MainPage = new Views.MainTabs();
+                                }
+                                else
+                                {
+                                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data2), "Try Again");
+                                    State = false;
+                                }
                             }
                             else
                             {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data2), "Try Again");
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                                 State = false;
                             }
-                        }
-                        else
-                        {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                            State = false;
-                        }
-                    });
+                        });
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        State = false;
+                    }
                 }
                 else
                 {
@@ -186,18 +195,18 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// Invoked when the Sign Up button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
-        private void SignUpClicked(object obj)
+        private async void SignUpClicked(object obj)
         {
-            App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new SignUpPage()));
+            await App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new SignUpPage()));
         }
 
         /// <summary>
         /// Invoked when the Forgot Password button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
-        private void ForgotPasswordClicked(object obj)
+        private async void ForgotPasswordClicked(object obj)
         {
-            App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new ForgotPwPage()));
+             await App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new ForgotPwPage()));
         }
 
         /// <summary>

@@ -7,36 +7,36 @@ using System.Text;
 using PasaBuy.App.Controllers.Notice;
 using Newtonsoft.Json;
 using PasaBuy.App.Local;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.Feeds
 {
-    public class HomepageViewModel
+    public class HomepageViewModel : BaseViewModel
     {
-
-        public ObservableCollection<Post> homePostList;
+        public static ObservableCollection<Post> homePostList;
 
         public ObservableCollection<Post> HomePosts
         {
             get { return homePostList; }
-            set { this.homePostList = value; }
+            set { homePostList = value; this.NotifyPropertyChanged(); }
         }
-
         public HomepageViewModel()
         {
-            RefreshData();
+            LoadData();
         }
-        public void RefreshData()
+        public static void LoadData()
         {
-            //This is a Test.
             homePostList = new ObservableCollection<Post>();
             Random rnd = new Random();
+
 
             SocioPress.Feeds.Instance.Home(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", (bool success, string data) =>
             {
                 if (success)
                 {
                     PostListData post = JsonConvert.DeserializeObject<PostListData>(data);
-                    for (int i = 0; i<post.data.Length; i++)
+                    for (int i = 0; i < post.data.Length; i++)
                     {
                         string name = post.data[i].name;
                         string type = post.data[i].type;
@@ -55,14 +55,52 @@ namespace PasaBuy.App.ViewModels.Feeds
                                         content,
                                         "https://cdn.syncfusion.com/essential-ui-kit-for-xamarin.forms/common/uikitimages/ArticleImage2.png"
                                     ));
-                                }
                     }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                }
+                else
+                {
+                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
 
+                }
+            });
+        }
+        public static void RefreshList()
+        {
+            Random rnd = new Random();
+
+            homePostList.Clear();
+            SocioPress.Feeds.Instance.Home(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", (bool success, string data) =>
+            {
+                if (success)
+                {
+                    PostListData post = JsonConvert.DeserializeObject<PostListData>(data);
+                    for (int i = 0; i < post.data.Length; i++)
+                    {
+                        string name = post.data[i].name;
+                        string type = post.data[i].type;
+                        string status = post.data[i].status;
+                        string title = post.data[i].title;
+                        string content = post.data[i].content;
+                        string date_post = post.data[i].date_post;
+
+                        homePostList.Add(new Post(
+                                        "https://cdn.syncfusion.com/essential-ui-kit-for-xamarin.forms/common/uikitimages/ArticleImage2.png",
+                            name,
+                            type,
+                            date_post,
+                            rnd.Next(500, 10000).ToString(),
+                                        title,
+                                        content,
+                                        "https://cdn.syncfusion.com/essential-ui-kit-for-xamarin.forms/common/uikitimages/ArticleImage2.png"
+                                    ));
                     }
-                });
+                }
+                else
+                {
+                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+
+                }
+            });
         }
 
         public string Placeholder

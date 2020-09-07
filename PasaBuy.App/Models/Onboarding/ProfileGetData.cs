@@ -1,5 +1,6 @@
 ﻿
 using Newtonsoft.Json;
+using PasaBuy.App.ViewModels.Feeds;
 using System;
 
 namespace PasaBuy.App.Models.Onboarding
