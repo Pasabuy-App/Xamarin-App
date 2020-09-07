@@ -24,5 +24,7 @@ namespace PasaBuy.App.Local
         /// </summary>
         public static string sfApiKey = "MjYwNjY0QDMxMzgyZTMxMmUzMGlJTnpSZVBDTG4raGhBaU5DOVRFbFBKWmxRYVVHd1hxNUx2cXcrZFliMmc9"; //Test Key
 
+        public static bool isProduction = false;
+
     }
 }

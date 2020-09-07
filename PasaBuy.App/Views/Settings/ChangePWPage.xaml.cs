@@ -8,6 +8,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using PasaBuy.App.Views.Master;
 using PasaBuy.App.Controllers.Notice;
+using DataVice;
+using PasaBuy.App.Local;
 
 namespace PasaBuy.App.Views.Settings
 {
@@ -34,7 +36,18 @@ namespace PasaBuy.App.Views.Settings
         /// <param name="e">Event Args</param>
         private void SaveButton_Clicked(object sender, EventArgs e)
         {
-            new Alert("Demoguy Notice", "Saving of new user password is not yet implemented. Thank you for your patience!", "AGREE");
+            //new Alert("Demoguy Notice", "Saving of new user password is not yet implemented. Thank you for your patience!", "AGREE");
+            Users.Instance.ChangePassword(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "123", NewPassword.Text, ConfirmNewPassword.Text, (bool success, string data) =>
+            {
+                if (success)
+                {
+                    Navigation.PopModalAsync();
+                }
+                else
+                {
+                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                }
+            });
         }
     }
 }

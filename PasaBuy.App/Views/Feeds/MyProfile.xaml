@@ -162,7 +162,7 @@
                         </Grid>
                         <Label Text="{Binding City}"/>
                         <Label Text="{Binding Joined}"/>
-                        <Label Text="{Binding Refered}"/>
+                        <Label Text="{Binding Refered}" IsVisible="{Binding isRefered}"/>
                     </StackLayout>
 
                     <Grid ColumnSpacing="0" RowSpacing="0">

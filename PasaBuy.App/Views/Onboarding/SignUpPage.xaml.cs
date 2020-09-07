@@ -39,56 +39,44 @@ namespace PasaBuy.App.Views.Onboarding
 
         private void CountryPicker_SelectionChanged(object sender, Syncfusion.XForms.ComboBox.SelectionChangedEventArgs e)
         {
-            string val = CountryPicker.SelectedValue.ToString();
-            AddressVar.co = val;
-            if (val != "")
-            {
-                ProvincePicker.Clear();
-                CityPicker.Clear();
-                BarangayPicker.Clear();
-                ProvinceViewModel province = new ProvinceViewModel(val);
-                ProvincePicker.BindingContext = province;
-                ProvincePicker.DataSource = province.ProvinceCollection;
-                ProvincePicker.DisplayMemberPath = "Name";
-            }
+            AddressVar.co = CountryPicker.SelectedValue.ToString();
+            ProvincePicker.Clear();
+            CityPicker.Clear();
+            BarangayPicker.Clear();
+            ProvinceViewModel province = new ProvinceViewModel(CountryPicker.SelectedValue.ToString());
+            ProvincePicker.BindingContext = province;
+            ProvincePicker.DataSource = province.ProvinceCollection;
+            ProvincePicker.DisplayMemberPath = "Name";
+            BrgyViewModel.ClearList();
+            CityViewModel.ClearList();
         }
 
         private void ProvincePicker_SelectionChanged(object sender, Syncfusion.XForms.ComboBox.SelectionChangedEventArgs e)
         {
-            string val = ProvincePicker.SelectedValue.ToString();
-            AddressVar.pr = val;
-            if (val != "")
-            {
-                CityPicker.Clear();
-                BarangayPicker.Clear();
-                CityViewModel city = new CityViewModel(val);
-                CityPicker.BindingContext = city;
-                CityPicker.DataSource = city.CityCollection;
-                CityPicker.DisplayMemberPath = "Name";
-            }
+            CityPicker.Clear();
+            BarangayPicker.Clear();
+            AddressVar.pr = ProvincePicker.SelectedValue.ToString();
+            CityViewModel city = new CityViewModel(ProvincePicker.SelectedValue.ToString());
+            CityPicker.BindingContext = city;
+            CityPicker.DataSource = city.CityCollection;
+            CityPicker.DisplayMemberPath = "Name";
+            BrgyViewModel.ClearList();
         }
 
         private void CityPicker_SelectionChanged(object sender, Syncfusion.XForms.ComboBox.SelectionChangedEventArgs e)
         {
-            string val = CityPicker.SelectedValue.ToString();
-            Console.WriteLine(val + "city");
-            AddressVar.ct = val;
-            if (val != "")
-            {
-                BarangayPicker.Clear();
-                BrgyViewModel brgy = new BrgyViewModel(val);
-                BarangayPicker.BindingContext = brgy;
-                BarangayPicker.DataSource = brgy.BrgyCollection;
-                BarangayPicker.DisplayMemberPath = "Name";
-            }
+            BarangayPicker.Clear();
+            AddressVar.ct = CityPicker.SelectedValue.ToString();
+            BrgyViewModel brgy = new BrgyViewModel(CityPicker.SelectedValue.ToString());
+            BarangayPicker.BindingContext = brgy;
+            BarangayPicker.DataSource = brgy.BrgyCollection;
+            BarangayPicker.DisplayMemberPath = "Name";
 
         }
 
         private void BarangayPicker_SelectionChanged(object sender, Syncfusion.XForms.ComboBox.SelectionChangedEventArgs e)
         {
-            string val = BarangayPicker.SelectedValue.ToString();
-            Console.WriteLine(val + "brgy");
-            AddressVar.br = val;
+            AddressVar.br = BarangayPicker.SelectedValue.ToString();
         }
     }
 }   

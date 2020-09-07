@@ -1,27 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using DataVice;
 using Newtonsoft.Json;
-using PasaBuy.App.Controllers;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Onboarding;
 
 namespace PasaBuy.App.ViewModels.Onboarding
 {
-	public class BrgyViewModel
+	public class BrgyViewModel : BaseViewModel
 	{
-		private ObservableCollection<BrgyData> brgyCollection;
+		public static ObservableCollection<BrgyData> brgyCollection;
 		public ObservableCollection<BrgyData> BrgyCollection
 		{
 			get { return brgyCollection; }
-			set { brgyCollection = value; }
+			set { brgyCollection = value; this.NotifyPropertyChanged(); }
 		}
 		public BrgyViewModel(string val)
 		{
-				brgyCollection = new ObservableCollection<BrgyData>();
+			brgyCollection = new ObservableCollection<BrgyData>();
+            try
+			{
 				Locations.Instance.Barangays(val, "datavice", (bool success, string data) =>
 				{
 					if (success)
@@ -39,6 +38,16 @@ namespace PasaBuy.App.ViewModels.Onboarding
 						new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
 					}
 				});
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+			}
+		}
+		public static void ClearList()
+        {
+			brgyCollection.Clear();
+			brgyCollection.Add(new BrgyData() { BrgyCode = "", Name = "Select City First" });
 		}
 	}
 }
