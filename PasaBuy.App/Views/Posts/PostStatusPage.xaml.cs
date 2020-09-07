@@ -9,6 +9,7 @@ using PasaBuy.App.Local;
 using PasaBuy.App.Models.Feeds;
 using PasaBuy.App.ViewModels.Feeds;
 using PasaBuy.App.Views.Feeds;
+using Plugin.Media;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -44,6 +45,89 @@ namespace PasaBuy.App.Views.Posts
             });
         }
 
+        async void AddStatusImage(object sender, EventArgs args)
+        {
+            await CrossMedia.Current.Initialize();
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                new Alert("Error", "No camera available", "Failed");
+            }
+
+            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            {
+                Directory = "StatusImageFolder",
+                SaveToAlbum = true,
+                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
+            });
+
+            if (file == null)
+                return;
+
+            ImageSource imageSource = ImageSource.FromStream(() =>
+            {
+                var stream = file.GetStream();
+                return stream;
+            });
+
+            StatusImage.Source = imageSource;
+            var filePath = file.Path;
+        }
+
+        async void TakePhoto(object sender, EventArgs args)
+        {
+            await CrossMedia.Current.Initialize();
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                new Alert("Error", "No camera available", "Failed");
+            }
+
+            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            {
+                Directory = "Sample",
+                Name = "item-image.jpg"
+            });
+
+            if (file == null)
+                return;
+
+            ImageSource imageSource = ImageSource.FromStream(() =>
+            {
+                var stream = file.GetStream();
+                return stream;
+            });
+
+            StatusImage.Source = imageSource;
+            var filePath = file.Path;
+          
+        }
+
+        async void SelectPhoto(object sender, EventArgs args)
+        {
+            await CrossMedia.Current.Initialize();
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                new Alert("Error", "No camera available", "Failed");
+            }
+
+            var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+            {
+                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
+            });
+
+
+            if (file == null)
+                return;
+
+            ImageSource imageSource = ImageSource.FromStream(() =>
+            {
+                var stream = file.GetStream();
+                return stream;
+            });
+
+            StatusImage.Source = imageSource;
+            var filePath = file.Path;
+            
+        }
 
     }
 }

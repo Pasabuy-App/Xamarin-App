@@ -1,4 +1,5 @@
-﻿using PasaBuy.App.CustomRenderers;
+﻿using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.CustomRenderers;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Syncfusion.XForms.ComboBox;
@@ -35,34 +36,87 @@ namespace PasaBuy.App.Views.Posts
             Navigation.PopModalAsync();
         }
 
-        //async void OnImageButtonClicked(object sender, System.EventArgs e)
-        //{
-        //    await CrossMedia.Current.Initialize();
+        async void AddItemImage(object sender, EventArgs args)
+        {
+            await CrossMedia.Current.Initialize();
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                new Alert("Error", "No camera available", "Failed");
+            }
 
-        //    if (!CrossMedia.Current.IsPickPhotoSupported)
-        //    {
-        //        await DisplayAlert("Not Supported", "Your current device does not currently suppport this functionality", "Ok");
-        //        return;
-        //    }
+            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            {
+                Directory = "Sample",
+                Name = "item-image.jpg"
+            });
 
-        //    var mediaOptions = new PickMediaOptions()
-        //    {
-        //        PhotoSize = PhotoSize.Medium
-        //    };
+            if (file == null)
+                return;
 
-        //    var selectedImageFile = await CrossMedia.Current.PickPhotoAsync(mediaOptions);
+            ImageSource imageSource = ImageSource.FromStream(() =>
+            {
+                var stream = file.GetStream();
+                return stream;
+            });
+
+            ItemImage.Source = imageSource;
+            var filePath = file.Path;
+
+        }
+
+        async void TakePhoto(object sender, EventArgs args)
+        {
+            await CrossMedia.Current.Initialize();
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                new Alert("Error", "No camera available", "Failed");
+            }
+
+            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            {
+                Directory = "Sample",
+                Name = "item-image.jpg"
+            });
+
+            if (file == null)
+                return;
+
+            ImageSource imageSource = ImageSource.FromStream(() =>
+            {
+                var stream = file.GetStream();
+                return stream;
+            });
+
+            ItemImage.Source = imageSource;
+            var filePath = file.Path;
+        }
+
+        async void SelectPhoto(object sender, EventArgs args)
+        {
+            await CrossMedia.Current.Initialize();
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                new Alert("Error", "No camera available", "Failed");
+            }
+
+            var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+            {
+                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
+            });
 
 
-        //    if (selectedImage == null)
-        //    {
-        //        await DisplayAlert("Error", "Could not get the image, please try again", "Ok");
-        //        return;
-        //    }
+            if (file == null)
+                return;
 
-        //    selectedImage.Source = ImageSource.FromStream(() => selectedImageFile.GetStream());
+            ImageSource imageSource = ImageSource.FromStream(() =>
+            {
+                var stream = file.GetStream();
+                return stream;
+            });
 
-        //}
-
+            ItemImage.Source = imageSource;
+            var filePath = file.Path;
+        }
 
 
     }

@@ -19,7 +19,8 @@
     <ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0" >
-                <controls:TitleView Title="Share Thoughts" 
+                <controls:TitleView Title="Share thoughts" 
+                                    FontSize="16"
                                     BackgroundColor="{DynamicResource PrimaryColor}" >
                     <controls:TitleView.LeadingView >
                         <buttons:SfButton
@@ -29,14 +30,6 @@
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
                     </controls:TitleView.LeadingView>
-                    <controls:TitleView.TrailingView>
-                        <buttons:SfButton
-                            x:Name="submitButton"
-                            Clicked="SubmitPostButton"
-                            CornerRadius="4"
-                            Style="{StaticResource SubmitButtonStyle}"
-                            Text="{StaticResource Submit}" />
-                    </controls:TitleView.TrailingView>
                 </controls:TitleView>
                 <ContentPresenter />
             </StackLayout>
@@ -48,35 +41,69 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                
+
                 <border:SfBorder Grid.Row="0"
                                          border:BorderColor="White" 
                                          BorderWidth="2"
-                                         CornerRadius="5"
-                                         Grid.ColumnSpan="5">
+                                         CornerRadius="15"
+                                         Grid.ColumnSpan="3">
                     <Image
-                                BackgroundColor="{DynamicResource Gray-400}"
-                                WidthRequest="95"
-                                HeightRequest="175"
-                                Aspect="AspectFill">
+                        BackgroundColor="{DynamicResource Gray-400}"
+                        HeightRequest="175"
+                        x:Name="StatusImage"
+                        Aspect="AspectFill">
                         <Image.Source>
                             <UriImageSource
-                                            CacheValidity="14"
-                                            CachingEnabled="true"
-                                            Uri="{Binding ProfileImage}" />
+                                 CacheValidity="14"
+                                 CachingEnabled="true"
+                                 Uri="{Binding SellingImage}" />
                         </Image.Source>
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="AddStatusImage"
+                                NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
                     </Image>
                 </border:SfBorder>
-                
-                <border:SfBorder Padding="8, 0, 0, 0" HeightRequest="120" Grid.Row="1" Grid.ColumnSpan="5" Style="{StaticResource SfBorderStyle}">
+
+                <!--  Submit button  -->
+                <buttons:SfButton
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="1"
+                            Margin="0, 20, 0, 20"
+                            CornerRadius="10"
+                            Clicked="TakePhoto"
+                            TextColor="White"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            Style="{StaticResource SfButtonStyle}"
+                            Text="Take Photo" />
+
+                <!--  Submit button  -->
+                <buttons:SfButton
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            Grid.ColumnSpan="1"
+                            Margin="10, 20, 0, 20"
+                            Clicked="SelectPhoto"
+                            CornerRadius="10"
+                            TextColor="White"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            Style="{StaticResource SfButtonStyle}"
+                            Text="Upload Photo" />
+
+                <border:SfBorder Padding="8, 0, 0, 0" 
+                                 HeightRequest="120"
+                                 Grid.Row="2"  
+                                 Grid.ColumnSpan="3"
+                                 Style="{StaticResource SfBorderStyle}">
                     <controls:BorderlessEditor
                                 x:Name="StatusEditor"
                                 HeightRequest="120"
@@ -94,7 +121,17 @@
 
                 </border:SfBorder>
 
-                <!--<local:RoundedEntry Placeholder="Share what's on your mind" VerticalTextAlignment="Start" Grid.Row="0" HeightRequest="175" Grid.ColumnSpan="5"/>-->
+                <!--  Submit button  -->
+                <buttons:SfButton
+                            Grid.Row="3"
+                            Grid.ColumnSpan="3"
+                            Margin="0, 20, 0, 20"
+                            Command="{Binding SubmitCommand}"
+                            CornerRadius="20"
+                            TextColor="White"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            Style="{StaticResource SfButtonStyle}"
+                            Text="SUBMIT" />
 
 
             </Grid>

@@ -96,7 +96,7 @@
                     <combobox:SfComboBox
                             x:Name="CountryPicker" SelectedValue="{Binding Countries, Mode=TwoWay}"
                             Style="{StaticResource ComboBoxStyle}"
-                            Watermark="Country">
+                            Watermark="Select Country">
                         <combobox:SfComboBox.ComboBoxSource>
                             <ListCollection:List x:TypeArguments="x:String">
                                 <x:String>Philippines</x:String>
@@ -126,7 +126,7 @@
                     <combobox:SfComboBox
                             x:Name="ProvincePicker" SelectedValue="{Binding Provinces, Mode=TwoWay}"
                             Style="{StaticResource ComboBoxStyle}"
-                            Watermark="Province">
+                            Watermark="Select Country first">
                         <combobox:SfComboBox.ComboBoxSource>
                             <ListCollection:List x:TypeArguments="x:String">
                                 <x:String>Laguna</x:String>
@@ -156,7 +156,7 @@
                     <combobox:SfComboBox
                             x:Name="CityPicker" SelectedValue="{Binding Cities, Mode=TwoWay}"
                             Style="{StaticResource ComboBoxStyle}"
-                            Watermark="City">
+                            Watermark="Select Province first">
                         <combobox:SfComboBox.ComboBoxSource>
                             <ListCollection:List x:TypeArguments="x:String">
                                 <x:String>Biñan</x:String>
@@ -186,7 +186,7 @@
                     <combobox:SfComboBox
                             x:Name="BarangayPicker" SelectedValue="{Binding Cities, Mode=TwoWay}"
                             Style="{StaticResource ComboBoxStyle}"
-                            Watermark="Barangay">
+                            Watermark="Select City first">
                         <combobox:SfComboBox.ComboBoxSource>
                             <ListCollection:List x:TypeArguments="x:String">
                                 <x:String>Canlalay</x:String>
