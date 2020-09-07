@@ -66,12 +66,14 @@
                 </Grid.ColumnDefinitions>
 
                 <border:SfBorder Grid.Row="0"
+                                        
                                          Grid.RowSpan="2"
                                          border:BorderColor="White" 
                                          BorderWidth="2"
                                          CornerRadius="15"
                                          Grid.ColumnSpan="5">
                     <Image
+                                x:Name="ItemImage"
                                 BackgroundColor="{DynamicResource Gray-400}"
                                 HeightRequest="175"
                                 Aspect="AspectFill">
@@ -81,7 +83,13 @@
                                             CachingEnabled="true"
                                             Uri="{Binding SellingImage}" />
                         </Image.Source>
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="AddItemImage"
+                                NumberOfTapsRequired="1" />         
+                        </Image.GestureRecognizers>
                     </Image>
+                    
                 </border:SfBorder>
 
                 <border:SfBorder

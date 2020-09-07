@@ -227,6 +227,7 @@ namespace PasaBuy.App.ViewModels.Menu
         private void DriverButtonClicked(object obj)
         {
             App.Current.MainPage = new DriverMain();
+            
         }
 
         /// <summary>

@@ -129,13 +129,31 @@
                 <Button Grid.Row="6" Grid.ColumnSpan="1" HorizontalOptions="Start"  Grid.Column="0" BorderColor="Transparent"  BackgroundColor="Transparent" BorderWidth="0" Text="Personal Info "></Button>
                 <Button Grid.Row="6" Grid.ColumnSpan="1" HorizontalOptions="End" Grid.Column="1" BorderColor="Transparent"  BackgroundColor="Transparent" BorderWidth="0" Text="Fixed"></Button>
 
+                <border:SfBorder
+                            Grid.Row="7"
+                             Grid.ColumnSpan="2"
+                            Padding="15,0,0,0"
+                            Style="{StaticResource FormBorderStyle}">
+                    <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" TextColor="Black" Placeholder="First Name" x:Name="Fname" Text="{Binding Fname}" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
+                </border:SfBorder>
 
-                <local:RoundedEntry  Grid.ColumnSpan="2" Grid.Row="7" Placeholder="First Name" x:Name="Fname" Text="{Binding Fname}"></local:RoundedEntry>
-                <local:RoundedEntry Grid.ColumnSpan="2" Grid.Row="8" Placeholder="Middle Name" ></local:RoundedEntry>
-                <local:RoundedEntry Grid.ColumnSpan="2" Grid.Row="9" Placeholder="Last Name" x:Name="Lname"  Text="{Binding Lname}" ></local:RoundedEntry>
-                <local:RoundedEntry  Grid.ColumnSpan="2" Grid.Row="10" Placeholder="Nickname" x:Name="Nname" Text="{Binding Nname}"></local:RoundedEntry>
-                
-                    
+                <border:SfBorder
+                            Grid.Row="8"
+                             Grid.ColumnSpan="2"
+                            Padding="15,0,0,0"
+                            Style="{StaticResource FormBorderStyle}">
+                    <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" TextColor="Black" Placeholder="Last Name" x:Name="Lname" Text="{Binding Lname}" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
+                </border:SfBorder>
+
+                <border:SfBorder
+                            Grid.Row="9"
+                             Grid.ColumnSpan="2"
+                            Padding="15,0,0,0"
+                            Style="{StaticResource FormBorderStyle}">
+                    <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" TextColor="Black" Placeholder="Display Name" x:Name="Nname" Text="{Binding Nname}" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
+                </border:SfBorder>
+
+
                 
               
                     

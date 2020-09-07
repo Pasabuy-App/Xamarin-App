@@ -10,6 +10,6 @@
   <StackLayout Padding="10"
                VerticalOptions="Center"
                HorizontalOptions="Center">
-    <Label Text="CONTENT HERE"/>
+    <Label Text="CONTENT HERE TEST"/>
   </StackLayout>
 </ContentPage>

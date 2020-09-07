@@ -15,6 +15,7 @@ using PasaBuy.App.Controllers;
 using PasaBuy.App.Views;
 using PasaBuy.App.Views.Currency;
 using PasaBuy.App.Views.Backend;
+using PasaBuy.App.Views.Driver;
 
 namespace PasaBuy.App.ViewModels.Menu
 {
@@ -184,9 +185,11 @@ namespace PasaBuy.App.ViewModels.Menu
         private void DashboardButtonClicked(object obj)
         {
             this.UpdateSelectedItemColor(obj);
-
+            (App.Current.MainPage as MasterDetailPage).Detail = new NavigationPage(new DashboardPage());
             //Do something
         }
+
+    
 
         /// <summary>
         /// Invoked when the navigation button is clicked.
@@ -214,9 +217,11 @@ namespace PasaBuy.App.ViewModels.Menu
         /// Invoked when the message button is clicked.
         /// </summary>
         /// <param name="obj">The object</param>
-        private void MessageButtonClicked(object obj)
+        private  void MessageButtonClicked(object obj)
         {
             this.UpdateSelectedItemColor(obj);
+            (App.Current.MainPage as MasterDetailPage).Detail = new NavigationPage(new DriverMessagePage());
+
 
             //Do something
         }
