@@ -73,6 +73,7 @@ namespace PasaBuy.App.Views.Posts
             var filePath = file.Path;
         }
 
+        //test commmit
         async void TakePhoto(object sender, EventArgs args)
         {
             await CrossMedia.Current.Initialize();
