@@ -1,6 +1,7 @@
 using Xamarin.Forms;
 using PasaBuy.App.Local;
 using PasaBuy.App.Views.Settings;
+using PasaBuy.App.Views.Onboarding;
 
 namespace PasaBuy.App
 {
@@ -18,7 +19,7 @@ namespace PasaBuy.App
 
             PSACache.Instance.Initialize();
 
-            MainPage = new NavigationPage(new ChangePWPage());
+            MainPage = new NavigationPage(new SplashPage());
         }
 
         protected override void OnStart()
