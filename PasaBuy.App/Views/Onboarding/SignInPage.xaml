@@ -172,8 +172,8 @@
                         IsRunning="true"
                         HorizontalOptions="CenterAndExpand"
                         VerticalOptions="CenterAndExpand"
-                        HeightRequest="100"
-                        WidthRequest="100"
+                        HeightRequest="80"
+                        WidthRequest="80"
                         Color="Black"/>
                 </StackLayout>
 

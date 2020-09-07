@@ -57,7 +57,7 @@
                     WidthRequest="{OnPlatform Default='-1',
                                               UWP='350'}">
             <border:SfBorder
-                            Padding="15, 50, 15, 50"
+                            Padding="15, 40, 15, 40"
                             Style="{StaticResource FormBorderStyle}">
                 <Grid RowSpacing="24" VerticalOptions="CenterAndExpand">
 
@@ -67,6 +67,8 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+
                     </Grid.RowDefinitions>
 
                     <!--  Label to display the title of this page  -->
@@ -88,9 +90,18 @@
                             Style="{StaticResource LabelStyle}"
                             Text="Enter your new password to reset the old password" />
 
-                    <!--  Entry to get new password from user  -->
+                    <!--  Entry to get old password from user  -->
                     <border:SfBorder
                             Grid.Row="2"
+                            Padding="15,0,0,0"
+                            Style="{StaticResource FormBorderStyle}">
+                        <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Old Password" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
+
+                    </border:SfBorder>
+
+                    <!--  Entry to get new password from user  -->
+                    <border:SfBorder
+                            Grid.Row="3"
                             Padding="15,0,0,0"
                             Style="{StaticResource FormBorderStyle}">
                         <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="New Password" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
@@ -99,7 +110,7 @@
 
                     <!--  Entry to get confirm password from user  -->
                     <border:SfBorder
-                            Grid.Row="3"
+                            Grid.Row="4"
                             Padding="15,0,0,0"
                             Style="{StaticResource FormBorderStyle}">
                         <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Confirm New Password" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
@@ -108,7 +119,7 @@
 
                     <!--  Submit button  -->
                     <buttons:SfButton
-                            Grid.Row="4"
+                            Grid.Row="5"
                             Margin="0, 20, 0, 20"
                             Command="{Binding SubmitCommand}"
                             CornerRadius="20"

@@ -7,27 +7,14 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PasaBuy.App.Views.Backend
+namespace PasaBuy.App.Views.Driver
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DriverMain : MasterDetailPage
+    public partial class DashboardPage : ContentPage
     {
-        public DriverMain()
+        public DashboardPage()
         {
             InitializeComponent();
         }
-
-        public void HideSidebar()
-        {
-            IsPresented = false;
-           
-        }
-
-        
-
-
-
-
-      
     }
 }

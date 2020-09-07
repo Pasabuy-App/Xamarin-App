@@ -6,14 +6,14 @@
              mc:Ignorable="d"
              x:Class="PasaBuy.App.Views.Backend.DriverMain"
              xmlns:menu="clr-namespace:PasaBuy.App.Views.Menu"
-             xmlns:pages="clr-namespace:PasaBuy.App.Views.Backend">
+             xmlns:pages="clr-namespace:PasaBuy.App.Views.Driver">
   <MasterDetailPage.Master>
-        <menu:DriverMenu x:Name="MasterPage" />
-  </MasterDetailPage.Master>
+            <menu:DriverMenu x:Name="MasterPage" />
+    </MasterDetailPage.Master>
   <MasterDetailPage.Detail>
     <NavigationPage>
       <x:Arguments>
-        <pages:MainDetail />
+        <pages:DashboardPage />
       </x:Arguments>
     </NavigationPage>
   </MasterDetailPage.Detail>
