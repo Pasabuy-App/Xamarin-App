@@ -138,6 +138,13 @@ namespace PasaBuy.App.ViewModels.Onboarding
                 if (success)
                 {
                     Token token = JsonConvert.DeserializeObject<Token>(data);
+
+                    if(!token.isSuccess)
+                    {
+                        new Alert("Something went Wrong", HtmlUtils.ConvertToPlainText(token.message), "OK");
+                        return;
+                    }
+
                     SocioPress.Profile.Instance.GetData(token.data.wpid, token.data.snky, (bool success2, string data2) =>
                     {
                         if (success2)

@@ -25,6 +25,14 @@ namespace PasaBuy.App.Models.Onboarding
             snkys = x;
             return snkys;
         }
+
+        public bool isSuccess
+        {
+            get
+            {
+                return status == "success" ? true : false;
+            }
+        }
     }
 
     public class TokenData
