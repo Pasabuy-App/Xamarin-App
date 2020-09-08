@@ -19,7 +19,7 @@ namespace PasaBuy.App
 
             PSACache.Instance.Initialize();
 
-            MainPage = new NavigationPage(new SignInPage());
+            MainPage = new NavigationPage(new EditProfilePage());
         }
 
         protected override void OnStart()
