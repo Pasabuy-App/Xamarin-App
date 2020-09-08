@@ -31,20 +31,26 @@ namespace PasaBuy.App.Views.Feeds.Templates
 
         public void SubmitPostButton(object sender, EventArgs e)
         {
-            //Console.WriteLine(filePath); -> image file path upload
-            SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "Title", PostEntry.Text, "status", "", "", "", "", "", "", "", "", (bool success, string data) =>
+            try
             {
-                if (success)
+                SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "Title", PostEntry.Text, "status", "", "", "", "", "", "", "", "", (bool success, string data) =>
                 {
-                    ProfileGetData.CountPost(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky);
-                    HomepageViewModel.RefreshList();
-                    PostEntry.Text = string.Empty;
-                }
-                else
-                {
-                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                }
-            });
+                    if (success)
+                    {
+                        ProfileGetData.CountPost(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky);
+                        HomepageViewModel.RefreshList();
+                        PostEntry.Text = string.Empty;
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
 
 
