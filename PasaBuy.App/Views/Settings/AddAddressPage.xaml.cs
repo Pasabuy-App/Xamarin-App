@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using DataVice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.ViewModels.Settings;
 
 namespace PasaBuy.App.Views.Settings
 {
@@ -36,14 +36,14 @@ namespace PasaBuy.App.Views.Settings
             string type = string.Empty;
             if (AddressTypePicker.Text == "Business") { type = "business"; }
             if (AddressTypePicker.Text == "Home") { type = "home"; }
-            if (AddressTypePicker.Text == "Office") { type = "office"; }
 
             //Console.WriteLine("type: " + type + " co: " + AddressVar.co + " pv: " + AddressVar.pr + " ct: " + AddressVar.ct + " br: " + AddressVar.br + " st: " + StreetEntry.Text );
-            Address.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, type, AddressVar.co, AddressVar.pr, AddressVar.ct, AddressVar.br, StreetEntry.Text, (bool success, string data) =>
+            DataVice.Address.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, type, AddressVar.co, AddressVar.pr, AddressVar.ct, AddressVar.br, StreetEntry.Text, (bool success, string data) =>
             {
                 if (success)
                 {
                     Navigation.PopModalAsync();
+                    AddressViewModel.RefreshData();
                 }
                 else
                 {
@@ -51,6 +51,11 @@ namespace PasaBuy.App.Views.Settings
                 }
             });
 
+        }
+
+        private void RefreshData()
+        {
+            throw new NotImplementedException();
         }
 
         private void CountryPicker_SelectionChanged(object sender, Syncfusion.XForms.ComboBox.SelectionChangedEventArgs e)

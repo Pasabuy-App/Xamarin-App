@@ -30,7 +30,6 @@ namespace PasaBuy.App.ViewModels.Feeds
             homePostList = new ObservableCollection<Post>();
             Random rnd = new Random();
 
-
             SocioPress.Feeds.Instance.Home(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", (bool success, string data) =>
             {
                 if (success)
