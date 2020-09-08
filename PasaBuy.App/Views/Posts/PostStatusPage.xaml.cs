@@ -124,9 +124,9 @@ namespace PasaBuy.App.Views.Posts
             //Console.WriteLine("image filepath ." + filePath + ". " + StatusEditor.Text); //-> image file path upload
             try
             {
-                SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "title123", StatusEditor.Text, "status", "", "", "", "", "", "", "", "", (bool success, string data) =>
+                SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "title123", StatusEditor.Text, "status", filePath, "", "", "", "", "", "", "", (bool success, string data) =>
                 {
-                        if (success)
+                    if (success)
                     {
                         ProfileGetData.CountPost(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky);
                         Navigation.PopModalAsync();
@@ -142,7 +142,7 @@ namespace PasaBuy.App.Views.Posts
             {
                 Console.WriteLine(ex);
             }
-            
+
         }
     }
 }
