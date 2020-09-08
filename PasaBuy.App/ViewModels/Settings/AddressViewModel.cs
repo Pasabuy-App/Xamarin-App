@@ -175,7 +175,7 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void EditButtonClicked(object obj)
         {
-            // Do something
+            App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new EditAddressPage()));
         }
 
         /// <summary>
@@ -184,7 +184,7 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void DeleteButtonClicked(object obj)
         {
-            // Do something
+            var answer = new ConfirmAlert("Delete Address", "Are you sure you want to delete this address", "Ok", "Cancel");
         }
 
         /// <summary>
