@@ -21,6 +21,7 @@ namespace PasaBuy.App.Views.Posts
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PostSellPage : ContentPage
     {
+        private string filePath = string.Empty;
         public PostSellPage()
         {
             InitializeComponent();
@@ -35,7 +36,7 @@ namespace PasaBuy.App.Views.Posts
         {
             try
             {
-                SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "sell title", "sell content", "sell", "", ItemCategory.Text, ItemName.Text, ItemDescription.Text, ItemPrice.Text, PickUpLocation.Text, "", VehicleType.Text, (bool success, string data) =>
+                SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "sell title", "sell content", "sell", filePath, ItemCategory.Text, ItemName.Text, ItemDescription.Text, ItemPrice.Text, PickUpLocation.Text, "", VehicleType.Text, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -83,6 +84,7 @@ namespace PasaBuy.App.Views.Posts
 
             ItemImage.Source = imageSource;
             var filePath = file.Path;
+            //filePath = file.Path;
 
         }
 
@@ -110,7 +112,8 @@ namespace PasaBuy.App.Views.Posts
             });
 
             ItemImage.Source = imageSource;
-            var filePath = file.Path;
+            //var filePath = file.Path;
+            filePath = file.Path;
         }
 
         async void SelectPhoto(object sender, EventArgs args)
@@ -137,7 +140,8 @@ namespace PasaBuy.App.Views.Posts
             });
 
             ItemImage.Source = imageSource;
-            var filePath = file.Path;
+            //var filePath = file.Path;
+            filePath = file.Path;
         }
 
 
