@@ -1,5 +1,8 @@
 ﻿using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.CustomRenderers;
+using PasaBuy.App.Local;
+using PasaBuy.App.Models.Onboarding;
+using PasaBuy.App.ViewModels.Feeds;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Syncfusion.XForms.ComboBox;
@@ -20,7 +23,7 @@ namespace PasaBuy.App.Views.Posts
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PostRequestPage : ContentPage
     {
-
+        private string filePath = string.Empty;
         public PostRequestPage()
         {
             InitializeComponent();
@@ -33,7 +36,26 @@ namespace PasaBuy.App.Views.Posts
 
         public void SubmitPostButton(object sender, EventArgs e)
         {
-            Navigation.PopModalAsync();
+            try
+            {
+                SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "titlemove", "contentmove", "move", filePath, "", ItemName.Text, "", "", PickUpLocation.Text, DropOffLocation.Text, VehicleType.Text, (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        ProfileGetData.CountPost(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky);
+                        Navigation.PopModalAsync();
+                        HomepageViewModel.RefreshList();
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
 
         async void AddItemImage(object sender, EventArgs args)
@@ -60,7 +82,8 @@ namespace PasaBuy.App.Views.Posts
             });
            
             ItemImage.Source = imageSource;
-            var filePath = file.Path;
+            //var filePath = file.Path;
+            filePath = file.Path;
 
         }
 
@@ -88,7 +111,8 @@ namespace PasaBuy.App.Views.Posts
             });
 
             ItemImage.Source = imageSource;
-            var filePath = file.Path;
+            //var filePath = file.Path;
+            filePath = file.Path;
         }
 
         async void SelectPhoto(object sender, EventArgs args)
@@ -115,7 +139,8 @@ namespace PasaBuy.App.Views.Posts
             });
 
             ItemImage.Source = imageSource;
-            var filePath = file.Path;
+            //var filePath = file.Path;
+            filePath = file.Path;
         }
 
 

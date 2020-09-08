@@ -126,7 +126,7 @@
                             Grid.Row="3"
                             Grid.ColumnSpan="3"
                             Margin="0, 20, 0, 20"
-                            Clicked="SubmitPostButton"
+                            Clicked="SfButton_Clicked"
                             CornerRadius="20"
                             TextColor="White"
                             BackgroundColor="{DynamicResource PrimaryColor}"

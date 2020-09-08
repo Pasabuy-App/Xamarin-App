@@ -192,7 +192,7 @@ namespace PasaBuy.App.ViewModels.Menu
         /// <param name="obj">The object</param>
         private void ProfileButtonClicked(object obj)
         {
-            HomepageViewModel.LoadData();
+            //HomepageViewModel.LoadData();
             ProfileGetData.CountPost(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky);
             ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
         }
