@@ -182,7 +182,7 @@
                             Grid.Row="6"
                             Grid.ColumnSpan="3"
                             Margin="0, 20, 0, 20"
-                            Command="{Binding SubmitCommand}"
+                            Clicked="SubmitPostButton"
                             CornerRadius="20"
                             TextColor="White"
                             BackgroundColor="{DynamicResource PrimaryColor}"
