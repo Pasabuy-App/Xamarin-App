@@ -28,19 +28,16 @@
 
     <ContentView.Content>
         <ScrollView VerticalScrollBarVisibility="Never" Padding="0, 0, 0, 20">
-
             <Grid RowSpacing="10" ColumnSpacing="0" TranslationY="-10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-
                 <!-- INPUT VIEW -->
                 <StackLayout Grid.Row="1" 
                              BackgroundColor="{DynamicResource Gray-100}">
                     <local:InputEntry/>
                 </StackLayout>
-
                 <!-- FEED VIEW -->
                 <StackLayout Grid.Row="2">
                     <!--<local:PostEntry/>-->
@@ -50,11 +47,6 @@
                         
                         <listView:SfListView.ItemTemplate>
                             <DataTemplate>
-                                
-                                
-                                
-                                
-                                
                                 <Grid RowSpacing="0"  
                                       Margin="0,0,0,10"
                                       BackgroundColor="{DynamicResource Gray-100}">
