@@ -50,18 +50,22 @@ namespace PasaBuy.App.ViewModels.Feeds
                         string drop_off_location = post.data[i].drop_off_location;
                         string author = post.data[i].author;
                         string views = post.data[i].views;
+                        string item_image = post.data[i].item_image;
 
-                        homePostList.Add(new Post(
-                                        //"https://cdn.syncfusion.com/essential-ui-kit-for-xamarin.forms/common/uikitimages/ArticleImage2.png",
-                                        author,
-                                        name,
-                                        type,
-                                        date_post,
-                                        rnd.Next(500, 10000).ToString(),
-                                        title,
-                                        content,
-                                        "https://cdn.syncfusion.com/essential-ui-kit-for-xamarin.forms/common/uikitimages/ArticleImage2.png"
-                                    ));
+                        string image = string.Empty;
+                        string image_item = string.Empty;
+                        if (author.Substring(0, PSAConfig.baseRestUrl.Length) != PSAConfig.baseRestUrl)
+                        {
+                            image = PSAConfig.baseRestUrl + author.Substring(PSAConfig.baseRestUrl.Length + 1);
+                            image_item = PSAConfig.baseRestUrl + item_image.Substring(PSAConfig.baseRestUrl.Length + 1);
+                        }
+                        else
+                        {
+                            image = author;
+                            image_item = item_image;
+                        }
+
+                        homePostList.Add(new Post( image, name, type, date_post, views, title, content, image_item));
                     }
                 }
                 else
@@ -96,18 +100,22 @@ namespace PasaBuy.App.ViewModels.Feeds
                         string drop_off_location = post.data[i].drop_off_location;
                         string author = post.data[i].author;
                         string views = post.data[i].views;
+                        string item_image = post.data[i].item_image;
 
-                        homePostList.Add(new Post(
-                                        //"https://cdn.syncfusion.com/essential-ui-kit-for-xamarin.forms/common/uikitimages/ArticleImage2.png",
-                                        author,
-                                        name,
-                                        type,
-                                        date_post,
-                                        rnd.Next(500, 10000).ToString(),
-                                        title,
-                                        content,
-                                        "https://cdn.syncfusion.com/essential-ui-kit-for-xamarin.forms/common/uikitimages/ArticleImage2.png"
-                                    ));
+                        string image = string.Empty;
+                        string image_item = string.Empty;
+                        if (author.Substring(0, PSAConfig.baseRestUrl.Length) != PSAConfig.baseRestUrl)
+                        {
+                            image = PSAConfig.baseRestUrl + author.Substring(PSAConfig.baseRestUrl.Length + 1);
+                            image_item = PSAConfig.baseRestUrl + item_image.Substring(PSAConfig.baseRestUrl.Length + 1);
+                        }
+                        else
+                        {
+                            image = author;
+                            image_item = item_image;
+                        }
+
+                        homePostList.Add(new Post( image, name, type, date_post, views, title, content, image_item)); //"https://cdn.syncfusion.com/essential-ui-kit-for-xamarin.forms/common/uikitimages/ArticleImage2.png"
                     }
                 }
                 else

@@ -168,7 +168,6 @@ namespace PasaBuy.App.ViewModels.Onboarding
                                 PSACache.Instance.UserInfo.snky = token.data.snky;
 
                                 State = false;
-                                //Console.WriteLine(PSACache.Instance.UserInfo.avatar + " " + PSACache.Instance.UserInfo.banner);
                                 Application.Current.MainPage = new Views.MainTabs();
                             }
                             else
