@@ -49,9 +49,12 @@ namespace PasaBuy.App.Models.Onboarding
             get
             {
                 //return PSAConfig.baseRestUrl + avatar;
-                if (PSAConfig.baseRestUrl != avatar.Substring(0, PSAConfig.baseRestUrl.Length))
+                if (avatar != "")
                 {
-                    return PSAConfig.baseRestUrl + avatar.Substring(PSAConfig.baseRestUrl.Length + 1);
+                    if (PSAConfig.baseRestUrl != avatar.Substring(0, PSAConfig.baseRestUrl.Length))
+                    {
+                        return PSAConfig.baseRestUrl + avatar.Substring(PSAConfig.baseRestUrl.Length + 1);
+                    }
                 }
                 return avatar;
             }
@@ -61,9 +64,12 @@ namespace PasaBuy.App.Models.Onboarding
             get
             {
                 //return PSAConfig.baseRestUrl + banner;
-                if (PSAConfig.baseRestUrl != banner.Substring(0, PSAConfig.baseRestUrl.Length))
+                if (banner != "")
                 {
-                    return PSAConfig.baseRestUrl + banner.Substring(PSAConfig.baseRestUrl.Length + 1);
+                    if (PSAConfig.baseRestUrl != banner.Substring(0, PSAConfig.baseRestUrl.Length))
+                    {
+                        return PSAConfig.baseRestUrl + banner.Substring(PSAConfig.baseRestUrl.Length + 1);
+                    }
                 }
                 return banner;
             }

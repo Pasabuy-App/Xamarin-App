@@ -132,6 +132,16 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void LoginClicked(object obj)
         {
+            /*SocioPress.Posts.Instance.Insert("1", "5iDB5Bbq29Abjaxwq8tyei2Q7PySrlT5FN1kmWJLtBZ", "title123", "/storage/emulated/0/Android/data/com.pasabuy.app/files/Pictures/Sample/item-image_3.jpg", "status", (bool success, string data) =>
+            {
+                if (success)
+                {
+                }
+                else
+                {
+                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                }
+            });*/
             State = true;
             Users.Instance.Auth(Email, Password, (bool success, string data) =>
             {
@@ -139,7 +149,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
                 {
                     Token token = JsonConvert.DeserializeObject<Token>(data);
 
-                    if(!token.isSuccess)
+                    if (!token.isSuccess)
                     {
                         new Alert("Something went Wrong", HtmlUtils.ConvertToPlainText(token.message), "OK");
                         return;

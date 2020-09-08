@@ -13,6 +13,7 @@ using PasaBuy.App.Views.Feeds;
 using Plugin.Media;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using SocioPress;
 
 namespace PasaBuy.App.Views.Posts
 {
@@ -28,24 +29,6 @@ namespace PasaBuy.App.Views.Posts
         public void BackButtonClicked(object sender, EventArgs e)
         {
             Navigation.PopModalAsync();
-        }
-
-        public void SubmitPostButton(object sender, EventArgs e)
-        {
-            //Console.WriteLine(filePath); -> image file path upload
-            SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "Title", StatusEditor.Text, "status", "", "", "", "", "", "", "", "", (bool success, string data) =>
-            {
-                if (success)
-                {
-                    ProfileGetData.CountPost(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky);
-                    Navigation.PopModalAsync();
-                    HomepageViewModel.RefreshList();
-                }
-                else
-                {
-                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                }
-            });
         }
 
         async void AddStatusImage(object sender, EventArgs args)
@@ -136,5 +119,62 @@ namespace PasaBuy.App.Views.Posts
 
         }
 
+        private void SfButton_Clicked(object sender, EventArgs e)
+        {
+            //Console.WriteLine("image filepath ." + filePath + ". " + StatusEditor.Text); //-> image file path upload
+            /*SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "title123", StatusEditor.Text, "status", (bool success, string data) =>
+            {
+                if (success)
+                {
+                    ProfileGetData.CountPost(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky);
+                    Navigation.PopModalAsync();
+                    HomepageViewModel.RefreshList();
+                }
+                else
+                {
+                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                }
+            });*/
+            /*SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "title123", StatusEditor.Text, "status", (bool success, string data) =>
+            {
+                if (success)
+                {
+                    ProfileGetData.CountPost(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky);
+                    Navigation.PopModalAsync();
+                    HomepageViewModel.RefreshList();
+                }
+                else
+                {
+                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                }
+            });
+            /*Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "title123", StatusEditor.Text, "status", (bool success, string data) =>
+            {
+                *//*if (success)
+                {
+                    ProfileGetData.CountPost(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky);
+                    Navigation.PopModalAsync();
+                    HomepageViewModel.RefreshList();
+                }
+                else
+                {
+                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                }*//*
+                Console.WriteLine("image filepath ." + filePath + ". " + StatusEditor.Text); //-> image file path upload
+            });*/
+            /*SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "title123", StatusEditor.Text, "status", (bool success, string data) =>
+            {
+                if (success)
+                {
+                    ProfileGetData.CountPost(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky);
+                    Navigation.PopModalAsync();
+                    HomepageViewModel.RefreshList();
+                }
+                else
+                {
+                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                }
+            });*/
+        }
     }
 }

@@ -5,6 +5,7 @@ using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Onboarding;
 using PasaBuy.App.Views;
+using PasaBuy.App.Views.Onboarding;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -129,6 +130,13 @@ namespace PasaBuy.App.ViewModels.Onboarding
                         if (success)
                         {
                             Token token = JsonConvert.DeserializeObject<Token>(data);
+
+                            if (!token.isSuccess)
+                            {
+                                new Alert("Something went Wrong", HtmlUtils.ConvertToPlainText(token.message), "OK");
+                                return;
+                            }
+
                             SocioPress.Profile.Instance.GetData(token.data.wpid, token.data.snky, (bool success2, string data2) =>
                             {
                                 if (success2)
@@ -150,6 +158,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
                                         PSACache.Instance.UserInfo.snky = token.data.snky;
 
                                         Application.Current.MainPage = new Views.MainTabs();
+                                        //Console.WriteLine("futa");
                                     }
                                     else
                                     {
