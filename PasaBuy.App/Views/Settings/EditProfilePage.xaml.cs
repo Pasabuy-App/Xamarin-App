@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using DataVice;
+using Plugin.Media;
 
 namespace PasaBuy.App.Views.Settings
 {
@@ -56,6 +57,60 @@ namespace PasaBuy.App.Views.Settings
                     new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                 }
             });
+        }
+
+        async void AddAvatar(object sender, EventArgs args)
+        {
+            await CrossMedia.Current.Initialize();
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                new Alert("Error", "No camera available", "Failed");
+            }
+
+            var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+            {
+                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
+            });
+
+
+            if (file == null)
+                return;
+
+            ImageSource imageSource = ImageSource.FromStream(() =>
+            {
+                var stream = file.GetStream();
+                return stream;
+            });
+
+            Avatar.Source = imageSource;
+            var filePath = file.Path;
+        }
+
+        async void AddBanner(object sender, EventArgs args)
+        {
+            await CrossMedia.Current.Initialize();
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                new Alert("Error", "No camera available", "Failed");
+            }
+
+            var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+            {
+                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
+            });
+
+
+            if (file == null)
+                return;
+
+            ImageSource imageSource = ImageSource.FromStream(() =>
+            {
+                var stream = file.GetStream();
+                return stream;
+            });
+
+            Banner.Source = imageSource;
+            var filePath = file.Path;
         }
     }
 }
