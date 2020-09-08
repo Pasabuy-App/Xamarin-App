@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using PasaBuy.App.Views.ErrorAndEmpty;
 using PasaBuy.App.Local;
+using PasaBuy.App.Library;
 
 namespace PasaBuy.App.Views.Onboarding
 {
@@ -33,6 +34,9 @@ namespace PasaBuy.App.Views.Onboarding
                     if (PSACache.Instance.hasUserinfo)
                     {
                         App.Current.MainPage = new MainTabs();
+
+                        PSAUsocketNet usn = new PSAUsocketNet();
+                        usn.Connect();
 
                         return; //Cancel all after this line.
                     }
