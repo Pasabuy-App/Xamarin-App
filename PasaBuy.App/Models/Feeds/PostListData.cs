@@ -23,6 +23,7 @@ namespace PasaBuy.App.Models.Feeds
             public string drop_off_location = string.Empty;
             public string author = string.Empty;
             public string views = string.Empty;
+            public string item_image = string.Empty;
         }
         private string id;
         public string ID
@@ -101,6 +102,12 @@ namespace PasaBuy.App.Models.Feeds
         {
             get { return views; }
             set { views = value; }
+        }
+        private string item_image;
+        public string Item_image
+        {
+            get { return item_image; }
+            set { item_image = value; }
         }
     }
 }
