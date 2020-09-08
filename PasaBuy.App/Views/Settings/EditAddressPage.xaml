@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="PasaBuy.App.Views.Settings.AddAddressPage"
+<ContentPage x:Class="PasaBuy.App.Views.Settings.EditAddressPage"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
@@ -23,7 +23,7 @@
     <ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0" >
-                <controls:TitleView Title="New Address" 
+                <controls:TitleView Title="Edit Address" 
                                     BackgroundColor="{DynamicResource PrimaryColor}" >
                     <controls:TitleView.LeadingView >
                         <buttons:SfButton
@@ -39,7 +39,7 @@
         </ControlTemplate>
     </ContentPage.ControlTemplate>
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="Center" VerticalOptions="Center"> 
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
             <Grid RowSpacing="10" ColumnSpacing="0" Padding="10" Margin="0, 35, 0, 0" HorizontalOptions="Center" VerticalOptions="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
@@ -87,14 +87,12 @@
                         Padding="6,0,0,0"
                         Style="{StaticResource FormBorderStyle}">
                     <combobox:SfComboBox
-                            x:Name="CountryPicker"
-                            SelectionChanged="CountryPicker_SelectionChanged"
-                            SelectedValuePath="CountryCode"
+                            x:Name="CountryPicker" SelectedValue="{Binding Countries, Mode=TwoWay}"
                             Style="{StaticResource ComboBoxStyle}"
                             Watermark="Select Country">
                         <combobox:SfComboBox.ComboBoxSource>
                             <ListCollection:List x:TypeArguments="x:String">
-                                <x:String></x:String>
+                                <x:String>Philippines</x:String>
                             </ListCollection:List>
                         </combobox:SfComboBox.ComboBoxSource>
                         <combobox:SfComboBox.DropDownButtonSettings>
@@ -119,14 +117,12 @@
                         Padding="6,0,0,0"
                         Style="{StaticResource FormBorderStyle}">
                     <combobox:SfComboBox
-                            x:Name="ProvincePicker"
-                            SelectionChanged="ProvincePicker_SelectionChanged"
-                            SelectedValuePath="ProvinceCode"
+                            x:Name="ProvincePicker" SelectedValue="{Binding Provinces, Mode=TwoWay}"
                             Style="{StaticResource ComboBoxStyle}"
                             Watermark="Select Country first">
                         <combobox:SfComboBox.ComboBoxSource>
                             <ListCollection:List x:TypeArguments="x:String">
-                                <x:String></x:String>
+                                <x:String>Laguna</x:String>
                             </ListCollection:List>
                         </combobox:SfComboBox.ComboBoxSource>
                         <combobox:SfComboBox.DropDownButtonSettings>
@@ -151,14 +147,12 @@
                         Padding="6,0,0,0"
                         Style="{StaticResource FormBorderStyle}">
                     <combobox:SfComboBox
-                            x:Name="CityPicker"
-                            SelectionChanged="CityPicker_SelectionChanged"
-                            SelectedValuePath="CityCode"
+                            x:Name="CityPicker" SelectedValue="{Binding Cities, Mode=TwoWay}"
                             Style="{StaticResource ComboBoxStyle}"
                             Watermark="Select Province first">
                         <combobox:SfComboBox.ComboBoxSource>
                             <ListCollection:List x:TypeArguments="x:String">
-                                <x:String></x:String>
+                                <x:String>Biñan</x:String>
                             </ListCollection:List>
                         </combobox:SfComboBox.ComboBoxSource>
                         <combobox:SfComboBox.DropDownButtonSettings>
@@ -183,14 +177,12 @@
                         Padding="6,0,0,0"
                         Style="{StaticResource FormBorderStyle}">
                     <combobox:SfComboBox
-                            x:Name="BarangayPicker"
-                            SelectionChanged="BarangayPicker_SelectionChanged"
-                            SelectedValuePath="BrgyCode"
+                            x:Name="BarangayPicker" SelectedValue="{Binding Cities, Mode=TwoWay}"
                             Style="{StaticResource ComboBoxStyle}"
                             Watermark="Select City first">
                         <combobox:SfComboBox.ComboBoxSource>
                             <ListCollection:List x:TypeArguments="x:String">
-                                <x:String></x:String>
+                                <x:String>Canlalay</x:String>
                             </ListCollection:List>
                         </combobox:SfComboBox.ComboBoxSource>
                         <combobox:SfComboBox.DropDownButtonSettings>
@@ -213,7 +205,7 @@
                         Grid.Row="5"
                         Padding="15,0,0,0"
                         Style="{StaticResource FormBorderStyle}">
-                    <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Street/Bldg/Unit" HeightRequest="40" x:Name="StreetEntry" Style="{StaticResource EntryTextStyle}" />
+                    <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Street/Bldg/Unit" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
 
                 </border:SfBorder>
 
@@ -221,7 +213,7 @@
                 <buttons:SfButton
                             Grid.Row="6"
                             Margin="0, 20, 0, 20"
-                            Clicked="SubmitPostButton"
+                            Command="{Binding SubmitCommand}"
                             CornerRadius="20"
                             TextColor="White"
                             BackgroundColor="{DynamicResource PrimaryColor}"

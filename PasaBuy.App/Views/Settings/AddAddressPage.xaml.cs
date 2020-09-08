@@ -20,7 +20,7 @@ namespace PasaBuy.App.Views.Settings
         public AddAddressPage()
         {
             InitializeComponent();
-            ViewModels.Onboarding.CountryViewModel country = new ViewModels.Onboarding.CountryViewModel();
+            CountryViewModel country = new CountryViewModel();
             CountryPicker.BindingContext = country;
             CountryPicker.DataSource = country.CountryCollection;
             CountryPicker.DisplayMemberPath = "Name";

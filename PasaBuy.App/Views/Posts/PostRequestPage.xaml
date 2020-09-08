@@ -21,7 +21,8 @@
     <ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0" >
-                <controls:TitleView Title="Request" 
+                <controls:TitleView Title="Request Something" 
+                                    FontSize="12"
                                     BackgroundColor="{DynamicResource PrimaryColor}" >
                     <controls:TitleView.LeadingView >
                         <buttons:SfButton
@@ -31,23 +32,16 @@
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
                     </controls:TitleView.LeadingView>
-                    <controls:TitleView.TrailingView>
-                        <buttons:SfButton
-                            x:Name="submitButton"
-                            Clicked="SubmitPostButton"
-                            CornerRadius="4"
-                            Style="{StaticResource SubmitButtonStyle}"
-                            Text="{StaticResource Submit}" />
-                    </controls:TitleView.TrailingView>
                 </controls:TitleView>
                 <ContentPresenter />
             </StackLayout>
         </ControlTemplate>
     </ContentPage.ControlTemplate>
     <ContentPage.Content>
-        <StackLayout Padding="0, 0, 0, 20">
+        <ScrollView Padding="0, 0, 0, 20">
             <Grid RowSpacing="15" ColumnSpacing="0" Padding="10">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -57,31 +51,62 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <border:SfBorder Grid.Row="0"
                                          border:BorderColor="White" 
                                          BorderWidth="2"
-                                         Margin="10"
-                                         Grid.ColumnSpan="5">
+                                         CornerRadius="15"
+                                         Grid.ColumnSpan="3">
                     <Image
-                                BackgroundColor="{DynamicResource Gray-400}"
-                                HeightRequest="175"
-                                Aspect="AspectFill">
+                         BackgroundColor="{DynamicResource Gray-400}"
+                         HeightRequest="175"
+                         x:Name="ItemImage"
+                         Aspect="AspectFill">
                         <Image.Source>
                             <UriImageSource
+                                            
                                             CacheValidity="14"
                                             CachingEnabled="true"
-                                            Uri="{Binding ProfileImage}" />
+                                            Uri="{Binding SellingImage}" />
                         </Image.Source>
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="AddItemImage"
+                                NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
                     </Image>
+
                 </border:SfBorder>
 
-                <border:SfBorder Grid.Row="1"  Grid.ColumnSpan="5"
+                <!--  take photo button  -->
+                <buttons:SfButton
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="1"
+                            Margin="0, 20, 0, 20"
+                            Clicked="TakePhoto"
+                            CornerRadius="10"
+                            TextColor="White"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            Style="{StaticResource SfButtonStyle}"
+                            Text="Take Photo" />
+
+                <!--  select photo button  -->
+                <buttons:SfButton
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            Grid.ColumnSpan="1"
+                            Margin="10, 20, 0, 20"
+                            Clicked="SelectPhoto"
+                            CornerRadius="10"
+                            TextColor="White"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            Style="{StaticResource SfButtonStyle}"
+                            Text="Upload Photo" />
+
+                <border:SfBorder Grid.Row="2"  Grid.ColumnSpan="3"
                                  HeightRequest="40"
                                  Padding="0, 0, 0, 0"
                                  Style="{StaticResource SfBorderStyle}">
@@ -95,8 +120,8 @@
                 </border:SfBorder>
 
                 <border:SfBorder
-                    Grid.Row="2"
-                    Grid.ColumnSpan="5"
+                    Grid.Row="3"
+                    Grid.ColumnSpan="3"
                         Style="{StaticResource SfBorderStyle}">
                     <combobox:SfComboBox
                                 x:Name="VehicleType"
@@ -126,7 +151,7 @@
                     </combobox:SfComboBox>
                 </border:SfBorder>
 
-                <border:SfBorder Grid.Row="3"  Grid.ColumnSpan="5"
+                <border:SfBorder Grid.Row="4"  Grid.ColumnSpan="3"
                                  HeightRequest="40"
                                  Padding="0, 0, 0, 0"
                                  Style="{StaticResource SfBorderStyle}">
@@ -139,7 +164,7 @@
                             Style="{StaticResource EntryTextBoxStyle}" />
                 </border:SfBorder>
 
-                <border:SfBorder Grid.Row="4"  Grid.ColumnSpan="5"
+                <border:SfBorder Grid.Row="5"  Grid.ColumnSpan="3"
                                  HeightRequest="40"
                                  Padding="0, 0, 0, 0"
                                  Style="{StaticResource SfBorderStyle}">
@@ -152,11 +177,23 @@
                             Style="{StaticResource EntryTextBoxStyle}" />
                 </border:SfBorder>
 
+                <!--  Submit button  -->
+                <buttons:SfButton
+                            Grid.Row="6"
+                            Grid.ColumnSpan="3"
+                            Margin="0, 20, 0, 20"
+                            Command="{Binding SubmitCommand}"
+                            CornerRadius="20"
+                            TextColor="White"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            Style="{StaticResource SfButtonStyle}"
+                            Text="SUBMIT" />
+
 
 
 
 
             </Grid>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
