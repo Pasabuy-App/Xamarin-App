@@ -50,18 +50,17 @@
                     </Image>
                 </border:SfBorder>
             </Grid>
-
-            <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
-                              Margin="0, 25, 20, 20">
-                <border:SfBorder Style="{StaticResource SfBorderStyle}">
-                    <control:BorderlessEntry
-                                x:Name="PostEntry"
-                                Placeholder="Say something..."
-                                Style="{StaticResource EntryStyle}"
-                                Text="{Binding Placeholder}" />
-                </border:SfBorder>
-            </Grid>
-
+                <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
+                                  Margin="0, 25, 20, 20">
+                    <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                        <control:BorderlessEntry
+                              x:Name="PostEntry"
+                              ReturnType="Send"
+                              Placeholder="Say something..."
+                              Style="{StaticResource EntryStyle}">
+                        </control:BorderlessEntry>
+                    </border:SfBorder>
+                </Grid>
             <Grid Grid.Row="1" Grid.ColumnSpan="3" 
                   ColumnSpacing="0"
                   RowSpacing="0"

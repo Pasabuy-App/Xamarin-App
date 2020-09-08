@@ -1,4 +1,8 @@
 ﻿using PasaBuy.App.Controllers;
+using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
+using PasaBuy.App.Models.Onboarding;
+using PasaBuy.App.ViewModels.Feeds;
 using PasaBuy.App.Views.Posts;
 using System;
 using System.Collections.Generic;
@@ -14,10 +18,35 @@ namespace PasaBuy.App.Views.Feeds.Templates
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class InputEntry : ContentView
     {
+
+        
         public InputEntry()
         {
             InitializeComponent();
+
+            PostEntry.Completed += (sender, args) => SubmitPostButton(sender, args);
+
+
         }
+
+        public void SubmitPostButton(object sender, EventArgs e)
+        {
+            //Console.WriteLine(filePath); -> image file path upload
+            SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "Title", PostEntry.Text, "status", "", "", "", "", "", "", "", "", (bool success, string data) =>
+            {
+                if (success)
+                {
+                    ProfileGetData.CountPost(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky);
+                    HomepageViewModel.RefreshList();
+                    PostEntry.Text = string.Empty;
+                }
+                else
+                {
+                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                }
+            });
+        }
+
 
         public void PostStatus(object sender, EventArgs args)
         {
@@ -34,6 +63,17 @@ namespace PasaBuy.App.Views.Feeds.Templates
             Navigation.PushModalAsync(new PostSellPage());
         }
 
+        public  void AddStatusPost(object sender, EventArgs args)
+        {
+            Navigation.PushModalAsync(new PostStatusPage());
+        }
 
+
+
+
+
+
+
+
+        }
     }
-}
