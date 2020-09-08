@@ -89,6 +89,7 @@
                             <Image
                                 BackgroundColor="{DynamicResource Gray-400}"
                                 WidthRequest="95"
+                                HeightRequest="95"
                                 Aspect="AspectFill">
                                 <Image.Source>
                                     <UriImageSource

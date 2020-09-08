@@ -150,6 +150,37 @@
                 </controls:TapAnimationGrid>
                 <BoxView Style="{StaticResource SeparatorStyle}" />
 
+                <!--  Grid for my transactions label and navigation bar icon  -->
+                <controls:TapAnimationGrid
+                    BackgroundColor="{DynamicResource Gray-White}"
+                    ColumnSpacing="0"
+                    Command="{Binding MyTransactionsCommand}"
+                    RowSpacing="0"
+                    Tapped="False">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <!--  My transactions icon  -->
+                    <Label
+                        Grid.Column="0"
+                        Margin="16,0,0,0"
+                        Style="{StaticResource IconLabelStyle}"
+                        Text="{StaticResource Cart}" />
+                    <!--  My transactions label  -->
+                    <Label
+                        Grid.Column="1"
+                        Style="{StaticResource LabelStyle}"
+                        Text="My Transactions" />
+                    <!--  Navigation icon  -->
+                    <Label
+                        Grid.Column="2"
+                        Style="{StaticResource IconLabelStyle}"
+                        Text="{StaticResource Next}" />
+                </controls:TapAnimationGrid>
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
                 <!--  Grid for Change password label and navigation bar icon  -->
                 <controls:TapAnimationGrid
                     BackgroundColor="{DynamicResource Gray-White}"

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using Xamarin.Forms.Internals;
 using PasaBuy.App.Views.Settings;
 using PasaBuy.App.Views;
+using PasaBuy.App.Controllers.Notice;
 
 namespace PasaBuy.App.ViewModels.Settings
 {
@@ -52,7 +53,7 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void EditButtonClicked(object obj)
         {
-            // Do something
+            App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new EditContact()));
         }
 
         /// <summary>
@@ -61,7 +62,8 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void DeleteButtonClicked(object obj)
         {
-            // Do something
+            var answer = new ConfirmAlert("Delete Contact", "Are you sure you want to delete this contact", "Ok", "Cancel");
+
         }
 
         /// <summary>

@@ -17,6 +17,12 @@ namespace PasaBuy.App.Models.Feeds
             public string content = string.Empty;
             public string date_post = string.Empty;
             public string type = string.Empty;
+            public string item_name = string.Empty;
+            public string pickup_location = string.Empty;
+            public string vehicle_type = string.Empty;
+            public string drop_off_location = string.Empty;
+            public string author = string.Empty;
+            public string views = string.Empty;
         }
         private string id;
         public string ID
@@ -59,6 +65,42 @@ namespace PasaBuy.App.Models.Feeds
         {
             get { return type; }
             set { type = value; }
+        }
+        private string item_name;
+        public string Item_name
+        {
+            get { return item_name; }
+            set { item_name = value; }
+        }
+        private string pickup_location;
+        public string Pickup_location
+        {
+            get { return pickup_location; }
+            set { pickup_location = value; }
+        }
+        private string vehicle_type;
+        public string Vehicle_type
+        {
+            get { return vehicle_type; }
+            set { vehicle_type = value; }
+        }
+        private string drop_off_location;
+        public string Drop_off_location
+        {
+            get { return drop_off_location; }
+            set { drop_off_location = value; }
+        }
+        private string author;
+        public string Author
+        {
+            get { return author; }
+            set { author = value; }
+        }
+        private string views;
+        public string Views
+        {
+            get { return views; }
+            set { views = value; }
         }
     }
 }

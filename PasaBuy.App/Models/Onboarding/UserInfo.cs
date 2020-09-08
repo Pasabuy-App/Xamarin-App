@@ -41,20 +41,23 @@ namespace PasaBuy.App.Models.Onboarding
             public string date_registered = string.Empty;
             public string wpid = string.Empty;
             public string snky = string.Empty;
+            public string verify = "UNVERIFIED";
         }
 
         public string avatarUrl
         {
             get
             {
-                return PSAConfig.baseRestUrl + avatar;
+                //return PSAConfig.baseRestUrl + avatar;
+                return avatar;
             }
         }
         public string bannerUrl
         {
             get
             {
-                return PSAConfig.baseRestUrl + banner;
+                //return PSAConfig.baseRestUrl + banner;
+                return banner;
             }
         }
         public string regdate = string.Empty;
