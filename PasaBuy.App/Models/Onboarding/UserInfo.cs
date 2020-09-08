@@ -48,14 +48,16 @@ namespace PasaBuy.App.Models.Onboarding
         {
             get
             {
-                return PSAConfig.baseRestUrl + avatar;
+                //return PSAConfig.baseRestUrl + avatar;
+                return avatar;
             }
         }
         public string bannerUrl
         {
             get
             {
-                return PSAConfig.baseRestUrl + banner;
+                //return PSAConfig.baseRestUrl + banner;
+                return banner;
             }
         }
         public string regdate = string.Empty;

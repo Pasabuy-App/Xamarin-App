@@ -160,12 +160,15 @@ namespace PasaBuy.App.ViewModels.Onboarding
                                 PSACache.Instance.UserInfo.fname = uinfo.data.fname;
                                 PSACache.Instance.UserInfo.city = uinfo.data.city;
                                 PSACache.Instance.UserInfo.date_registered = uinfo.data.date_registered;
+                                PSACache.Instance.UserInfo.avatar = uinfo.data.avatar;
+                                PSACache.Instance.UserInfo.banner = uinfo.data.banner;
 
                                 ProfileGetData.CountPost(token.data.wpid, token.data.snky);
                                 PSACache.Instance.UserInfo.wpid = token.data.wpid;
                                 PSACache.Instance.UserInfo.snky = token.data.snky;
 
                                 State = false;
+                                //Console.WriteLine(PSACache.Instance.UserInfo.avatar + " " + PSACache.Instance.UserInfo.banner);
                                 Application.Current.MainPage = new Views.MainTabs();
                             }
                             else
