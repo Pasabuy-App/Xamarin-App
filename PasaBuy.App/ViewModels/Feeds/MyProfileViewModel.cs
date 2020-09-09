@@ -40,67 +40,32 @@ namespace PasaBuy.App.ViewModels.Feeds
             set { homePostList = value; this.NotifyPropertyChanged(); }
         }
 
-
         public static void LoadData()
         {
-            homePostList = new ObservableCollection<Post>();
-           
-
             try
             {
+                homePostList = new ObservableCollection<Post>();
                 SocioPress.Feeds.Instance.Profile(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky,"", PSACache.Instance.UserInfo.wpid, (bool success, string data) =>
                 {
                     if (success)
                     {
-                        try
+                        PostListData post = JsonConvert.DeserializeObject<PostListData>(data);
+                        Console.WriteLine(data);
+                        for (int i = 0; i < post.data.Length; i++)
                         {
-                            PostListData post = JsonConvert.DeserializeObject<PostListData>(data);
-                            Console.WriteLine(data);
-                            for (int i = 0; i < post.data.Length; i++)
-                            {
-                                string post_author = post.data[i].post_author;
-                                string id = post.data[i].id;
-                                string content = post.data[i].content;
-                                string title = post.data[i].title;
-                                string date_post = post.data[i].date_post; 
-                                string type = post.data[i].type;
-                                string item_image = post.data[i].item_image;
-                                string author = post.data[i].author;
-                                string name = post.data[i].name;
-                                string views = post.data[i].views;
-                                string image = string.Empty;
-                                string image_item = string.Empty;
-                                if (author != "")
-                                {
-                                    if (author.Substring(0, PSAConfig.baseRestUrl.Length) != PSAConfig.baseRestUrl)
-                                    {
-                                        image = PSAConfig.baseRestUrl + author.Substring(PSAConfig.baseRestUrl.Length + 1);
-                                    }
-                                    else
-                                    {
-                                        image = author;
-                                    }
-                                }
+                            string post_author = post.data[i].post_author;
+                            string id = post.data[i].id;
+                            string content = post.data[i].content;
+                            string title = post.data[i].title;
+                            string date_post = post.data[i].date_post;
+                            string type = post.data[i].type;
+                            string item_image = post.data[i].item_image;
+                            string author = post.data[i].author;
+                            string name = post.data[i].name;
+                            string views = post.data[i].views;
 
-                                if (item_image != "")
-                                {
-                                    if (item_image.Substring(0, PSAConfig.baseRestUrl.Length) != PSAConfig.baseRestUrl)
-                                    {
-                                        image_item = PSAConfig.baseRestUrl + item_image.Substring(PSAConfig.baseRestUrl.Length + 1);
-                                    }
-                                    else
-                                    {
-                                        image_item = item_image;
-                                    }
-                                }
-
-                                homePostList.Add(new Post(image,
-                                    name, type, date_post, views, title, content, image_item));
-                            }
-                        }
-                        catch (Exception)
-                        {
-                            new Alert("Oops", "Something went wrong in loading data. Please contact administrator", "OK");
+                            homePostList.Add(new Post(PSAProc.GetUrl(author),
+                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image)));
                         }
                     }
                     else
@@ -118,63 +83,30 @@ namespace PasaBuy.App.ViewModels.Feeds
 
         public static void RefreshList()
         {
-            homePostList.Clear();
-
             try
             {
+                homePostList.Clear();
                 SocioPress.Feeds.Instance.Profile(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", PSACache.Instance.UserInfo.wpid, (bool success, string data) =>
                 {
                     if (success)
                     {
-                        try
+                        PostListData post = JsonConvert.DeserializeObject<PostListData>(data);
+                        Console.WriteLine(data);
+                        for (int i = 0; i < post.data.Length; i++)
                         {
-                            PostListData post = JsonConvert.DeserializeObject<PostListData>(data);
-                            Console.WriteLine(data);
-                            for (int i = 0; i < post.data.Length; i++)
-                            {
-                                string post_author = post.data[i].post_author;
-                                string id = post.data[i].id;
-                                string content = post.data[i].content;
-                                string title = post.data[i].title;
-                                string date_post = post.data[i].date_post;
-                                string type = post.data[i].type;
-                                string item_image = post.data[i].item_image;
-                                string author = post.data[i].author;
-                                string name = post.data[i].name;
-                                string views = post.data[i].views;
-                                string image = string.Empty;
-                                string image_item = string.Empty;
-                                if (author != "")
-                                {
-                                    if (author.Substring(0, PSAConfig.baseRestUrl.Length) != PSAConfig.baseRestUrl)
-                                    {
-                                        image = PSAConfig.baseRestUrl + author.Substring(PSAConfig.baseRestUrl.Length + 1);
-                                    }
-                                    else
-                                    {
-                                        image = author;
-                                    }
-                                }
+                            string post_author = post.data[i].post_author;
+                            string id = post.data[i].id;
+                            string content = post.data[i].content;
+                            string title = post.data[i].title;
+                            string date_post = post.data[i].date_post;
+                            string type = post.data[i].type;
+                            string item_image = post.data[i].item_image;
+                            string author = post.data[i].author;
+                            string name = post.data[i].name;
+                            string views = post.data[i].views;
 
-                                if (item_image != "")
-                                {
-                                    if (item_image.Substring(0, PSAConfig.baseRestUrl.Length) != PSAConfig.baseRestUrl)
-                                    {
-                                        image_item = PSAConfig.baseRestUrl + item_image.Substring(PSAConfig.baseRestUrl.Length + 1);
-                                    }
-                                    else
-                                    {
-                                        image_item = item_image;
-                                    }
-                                }
-
-                                homePostList.Add(new Post(image,
-                                    name, type, date_post, views, title, content, image_item));
-                            }
-                        }
-                        catch (Exception)
-                        {
-                            new Alert("Oops", "Something went wrong in loading data. Please contact administrator", "OK");
+                            homePostList.Add(new Post(PSAProc.GetUrl(author),
+                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image)));
                         }
                     }
                     else
@@ -350,7 +282,7 @@ namespace PasaBuy.App.ViewModels.Feeds
         {
             get
             {
-                return PSACache.Instance.UserInfo.avatarUrl;
+                return PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
             }
         }
 
