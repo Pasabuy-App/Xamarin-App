@@ -18,6 +18,10 @@ namespace PasaBuy.App.Views.Settings
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditProfilePage : ContentPage
     {
+        public string avatarUrl;
+        public string bannerUrl;
+
+
         public EditProfilePage()
         {
             InitializeComponent();
@@ -40,25 +44,16 @@ namespace PasaBuy.App.Views.Settings
 
         public void SaveAvatar(object sender, EventArgs e)
         {
-            new Alert("test", "avatar", "ok");
-        }
-
-        public void SaveBanner(object sender, EventArgs e)
-        {
-            new Alert("test", "banner", "ok");
-        }
-
-        public void SaveProfileData(object sender, EventArgs e)
-        {
-            Users.Instance.EditProfile(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, Fname.Text, Lname.Text, Nname.Text, (bool success, string data) =>
+            if (avatarUrl == null)
             {
-/* some comment */
-                if (success)
+                new Alert("Failed", "Please select an image for avatar first", "Ok");
+                return;
+            }
+            Upload.Instance.Image(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, avatarUrl, "", "", "avatar", "", (bool success, string data) =>
+            {
+                if(success)
                 {
-                    PSACache.Instance.UserInfo.dname = Nname.Text;
-                    PSACache.Instance.UserInfo.lname = Lname.Text;
-                    PSACache.Instance.UserInfo.fname = Fname.Text;
-                    Navigation.PopModalAsync();
+                    new Alert("Success", "Avatar successfully updated", "Ok");
                 }
                 else
                 {
@@ -67,29 +62,45 @@ namespace PasaBuy.App.Views.Settings
             });
         }
 
-        /// <summary>
-        /// Invoked when save button is clicked.
-        /// </summary>
-        /// <param name="sender">The Sender</param>
-        /// <param name="e">Event Args</param>
-        //private void SaveButton_Clicked(object sender, EventArgs e)
-        //{
-        //    //new Alert("Demoguy Notice", "Saving of user profile data is not yet implemented. Thank you for your patience!", "AGREE");
-        //    Users.Instance.EditProfile(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, Fname.Text, Lname.Text, Nname.Text, (bool success, string data) =>
-        //    {
-        //        if (success)
-        //        {
-        //            PSACache.Instance.UserInfo.dname = Nname.Text;
-        //            PSACache.Instance.UserInfo.lname = Lname.Text;
-        //            PSACache.Instance.UserInfo.fname = Fname.Text;
-        //            Navigation.PopModalAsync();
-        //        }
-        //        else
-        //        {
-        //            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-        //        }
-        //    });
-        //}
+        public void SaveBanner(object sender, EventArgs e)
+        {
+            if(bannerUrl == null)
+            {
+                new Alert("Failed", "Please select an image for banner first", "Ok");
+                return;
+            }
+            Upload.Instance.Image(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, bannerUrl, "", "", "banner", "", (bool success, string data) =>
+            {
+                if (success)
+                {
+                    new Alert("Success", "Banner successfully updated", "Ok");
+                }
+                else
+                {
+                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                }
+            });
+        }
+
+        public void SaveProfileData(object sender, EventArgs e)
+        {
+            Users.Instance.EditProfile(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, Fname.Text, Lname.Text, Nname.Text, (bool success, string data) =>
+            {
+                if (success)
+                {
+                    PSACache.Instance.UserInfo.dname = Nname.Text;
+                    PSACache.Instance.UserInfo.lname = Lname.Text;
+                    PSACache.Instance.UserInfo.fname = Fname.Text;
+                    new Alert("Success", "Data successfully updated", "Ok");
+                }
+                else
+                {
+                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                }
+            });
+        }
+
+
 
         async void AddAvatar(object sender, EventArgs args)
         {
@@ -115,7 +126,7 @@ namespace PasaBuy.App.Views.Settings
             });
 
             Avatar.Source = imageSource;
-            var filePath = file.Path;
+            avatarUrl = file.Path;
         }
 
         async void AddBanner(object sender, EventArgs args)
@@ -142,7 +153,7 @@ namespace PasaBuy.App.Views.Settings
             });
 
             Banner.Source = imageSource;
-            var filePath = file.Path;
+            bannerUrl = file.Path;
         }
     }
 }
