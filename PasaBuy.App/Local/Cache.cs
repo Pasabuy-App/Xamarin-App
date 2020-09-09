@@ -29,6 +29,18 @@ namespace PasaBuy.App.Local
         }
 
         /// <summary>
+        /// Store Primary user information on memory.
+        /// by Preferences
+        /// </summary>
+        private UserInfo userInfo;
+
+        public void SaveUserData()
+        {
+            string data = JsonConvert.SerializeObject(userInfo);
+            Preferences.Set("UserInfo", data);
+        }
+
+        /// <summary>
         /// Store user token here.
         /// </summary>
         private Token token;
@@ -69,26 +81,20 @@ namespace PasaBuy.App.Local
         }
 
         /// <summary>
-        /// Store Primary user information on memory.
-        /// by Preferences
-        /// </summary>
-        private UserInfo userInfo;
-
-        /// <summary>
         /// Responsible for checking and getting user prefs.
         /// </summary>
         public UserInfo UserInfo
         {
             set
             {
-                string data = JsonConvert.SerializeObject(value);
-                Preferences.Set("UserInfo", data);
+                /*string data = JsonConvert.SerializeObject(value);
+                Preferences.Set("UserInfo", data);*/
                 userInfo = value;
             }
 
             get
             {
-                if (userInfo != null)
+                /*if (userInfo != null)
                 {
                     return userInfo;
                 }
@@ -102,7 +108,7 @@ namespace PasaBuy.App.Local
                     {
                         return userInfo;
                     }
-                }
+                }*/
 
                 return userInfo;
             }

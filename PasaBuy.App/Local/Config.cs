@@ -15,7 +15,7 @@ namespace PasaBuy.App.Local
         /// 
         public static bool isProduction = false;
 
-        public static string baseRestUrl { get; } = "http://10.0.2.2/wordpress";
+        public static string baseRestUrl { get; } = "http://10.0.2.2";
 
 
         /// <summary>

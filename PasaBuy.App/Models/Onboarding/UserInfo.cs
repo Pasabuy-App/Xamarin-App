@@ -26,7 +26,6 @@ namespace PasaBuy.App.Models.Onboarding
         public string wpid = string.Empty;
         public string snky = string.Empty;
 
-
         public UserInfoData data = new UserInfoData();
 
         public class UserInfoData
