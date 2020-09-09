@@ -87,29 +87,11 @@ namespace PasaBuy.App.Local
         {
             set
             {
-                /*string data = JsonConvert.SerializeObject(value);
-                Preferences.Set("UserInfo", data);*/
                 userInfo = value;
             }
 
             get
             {
-                /*if (userInfo != null)
-                {
-                    return userInfo;
-                }
-
-                if (Preferences.ContainsKey("UserInfo"))
-                {
-                    string data = Preferences.Get("UserInfo", "{}");
-                    userInfo = JsonConvert.DeserializeObject<UserInfo>(data);
-
-                    if (userInfo.status != string.Empty)
-                    {
-                        return userInfo;
-                    }
-                }*/
-
                 return userInfo;
             }
         }

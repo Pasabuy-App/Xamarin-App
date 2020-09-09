@@ -48,21 +48,6 @@ namespace PasaBuy.App.Models.Onboarding
         {
             get
             {
-                try
-                {
-                    //return PSAConfig.baseRestUrl + avatar;
-                    if (avatar != "")
-                    {
-                        if (PSAConfig.baseRestUrl != avatar.Substring(0, PSAConfig.baseRestUrl.Length))
-                        {
-                            return PSAConfig.baseRestUrl + avatar.Substring(PSAConfig.baseRestUrl.Length + 1);
-                        }
-                    }
-                }
-                catch (Exception)
-                {
-                    new Alert("Something went Wrong", "Please contact administrator.", "OK");
-                }
                 return avatar;
             }
         }
@@ -70,21 +55,6 @@ namespace PasaBuy.App.Models.Onboarding
         {
             get
             {
-                try
-                {
-                    //return PSAConfig.baseRestUrl + banner;
-                    if (banner != "")
-                    {
-                        if (PSAConfig.baseRestUrl != banner.Substring(0, PSAConfig.baseRestUrl.Length))
-                        {
-                            return PSAConfig.baseRestUrl + banner.Substring(PSAConfig.baseRestUrl.Length + 1);
-                        }
-                    }
-                }
-                catch (Exception)
-                {
-                    new Alert("Something went Wrong", "Please contact administrator.", "OK");
-                }
                 return banner;
             }
         }

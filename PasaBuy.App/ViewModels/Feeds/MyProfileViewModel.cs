@@ -38,8 +38,8 @@ namespace PasaBuy.App.ViewModels.Feeds
             CultureInfo provider = new CultureInfo("fr-FR");
             DateTime date = DateTime.ParseExact(PSACache.Instance.UserInfo.date_registered, "yyyy-MM-dd HH:mm:ss", provider);
 
-            this.BannerImage = PSACache.Instance.UserInfo.bannerUrl;
-            this.ProfileImage = PSACache.Instance.UserInfo.avatarUrl;
+            this.BannerImage = PSAProc.GetUrl(PSACache.Instance.UserInfo.bannerUrl);
+            this.ProfileImage = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
             this.DisplayName = PSACache.Instance.UserInfo.dname;
             this.Verification = PSACache.Instance.UserInfo.verify;
             if (PSACache.Instance.UserInfo.city != "")
