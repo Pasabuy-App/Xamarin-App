@@ -231,23 +231,27 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void SignUpClicked(object obj)
         {
-            //new Alert("Demoguy Notice", "SignUp is Done, proceed to activate account and enter actiavtvion key.", "AGREE");
-            //Console.WriteLine("un: " + Username + " em: " + Email + " ln : " + Lname + " fn: " + Fname + " bd: " + BornDate + " gd: " + Gender + " co: " + AddressVar.co + " pv: " + AddressVar.pr + " ct: " + AddressVar.ct + " br: " + AddressVar.br + " st: " + StreetEntry );
-
-            State = true;
-            Users.Instance.SignUp(Username, Email, Fname, Lname, Gender, BornDate, AddressVar.co, AddressVar.pr, AddressVar.ct, AddressVar.br, StreetEntry, (bool success, string data) =>
+            try
             {
-                if (success)
+                State = true;
+                Users.Instance.SignUp(Username, Email, Fname, Lname, Gender, BornDate, AddressVar.co, AddressVar.pr, AddressVar.ct, AddressVar.br, StreetEntry, (bool success, string data) =>
                 {
-                    State = false;
-                    Application.Current.MainPage = new VerifyAccountPage();
-                }
-                else
-                {
-                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    State = false;
-                }
-            });
+                    if (success)
+                    {
+                        State = false;
+                        Application.Current.MainPage = new VerifyAccountPage();
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        State = false;
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                new Alert("Something went Wrong", "Please contact administrator.", "OK");
+            }
         }
 
 

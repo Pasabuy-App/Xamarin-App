@@ -185,6 +185,14 @@ namespace PasaBuy.App.ViewModels.Feeds
             }
         }
 
+        public string Photo
+        {
+            get
+            {
+                return PSACache.Instance.UserInfo.avatarUrl;
+            }
+        }
+
         #endregion
 
         #region Methods

@@ -70,22 +70,28 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void SendClicked(object obj)
         {
-            State = true;
-            Users.Instance.Forgot(Email, (bool success, string data) =>
-           {
-               if (success)
-               {
-                   State = false;
-                   Application.Current.MainPage = new VerifyResetPage();
-                   VerifyAccountVar.un = Email;
-                   //new Alert("Demoguy Notice", "Forgot Password is Done, proceed to activate account and enter actiavtvion key.", "AGREE");
-               }
-               else
-               {
-                   new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                   State = false;
-               }
-           });
+            try
+            {
+                State = true;
+                Users.Instance.Forgot(Email, (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        State = false;
+                        Application.Current.MainPage = new VerifyResetPage();
+                        VerifyAccountVar.un = Email;
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        State = false;
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                new Alert("Something went Wrong", "Please contact administrator.", "OK");
+            }
         }
 
         /// <summary>
