@@ -54,7 +54,7 @@ namespace PasaBuy.App.Views.Posts
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                new Alert("Something went Wrong", "Please contact administrator.", "OK");
             }
         }
 

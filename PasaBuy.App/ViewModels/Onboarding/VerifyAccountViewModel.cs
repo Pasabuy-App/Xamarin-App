@@ -121,23 +121,30 @@ namespace PasaBuy.App.ViewModels.Onboarding
 
         private void SfButton_Clicked(object obj)
         {
-            //State = true;
-            Users.Instance.Activate(ActivationKey, Username, (bool success, string data) =>
+            try
             {
-                if (success)
+                //State = true;
+                Users.Instance.Activate(ActivationKey, Username, (bool success, string data) =>
                 {
-                    VerifyAccountData akey = JsonConvert.DeserializeObject<VerifyAccountData>(data);
-                    //State = false;
-                    VerifyAccountVar.un = Username;
-                    VerifyAccountVar.ak = akey.key;
-                    Application.Current.MainPage = new CreatePassword();
-                }
-                else
-                {
-                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    //State = false;
-                }
-            });
+                    if (success)
+                    {
+                        VerifyAccountData akey = JsonConvert.DeserializeObject<VerifyAccountData>(data);
+                        //State = false;
+                        VerifyAccountVar.un = Username;
+                        VerifyAccountVar.ak = akey.key;
+                        Application.Current.MainPage = new CreatePassword();
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        //State = false;
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                new Alert("Something went Wrong", "Please contact administrator.", "OK");
+            }
         }
 
 

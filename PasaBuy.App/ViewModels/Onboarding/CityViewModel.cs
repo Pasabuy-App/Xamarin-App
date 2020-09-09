@@ -41,7 +41,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
 			}
 			catch (Exception e)
 			{
-				Console.WriteLine(e);
+				new Alert("Something went Wrong", "Please contact administrator.", "OK");
 			}
 		}
 		public static void ClearList()
