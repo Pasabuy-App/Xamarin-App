@@ -6,6 +6,7 @@ using Xamarin.Forms.Xaml;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Models.Settings;
 using PasaBuy.App.ViewModels.Settings;
+using PasaBuy.App.Local;
 
 namespace PasaBuy.App.Views.Settings
 {
@@ -43,11 +44,13 @@ namespace PasaBuy.App.Views.Settings
             string addressid = string.Empty;
             var item = e.ItemData as Address;
             addressid = item.SelectedAddress;
-            //Console.WriteLine("selected item = " + item.SelectedAddress);
             bool answer = await DisplayAlert("Delete Address?", "Are you sure to delete this?", "Yes", "No");
             if (answer)
             {
-                
+                DataVice.Address.Instance.Delete(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, addressid, (bool success, string data) =>
+                {
+
+                });
             }
         }
 
