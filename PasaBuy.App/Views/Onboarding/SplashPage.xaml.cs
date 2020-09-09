@@ -29,17 +29,14 @@ namespace PasaBuy.App.Views.Onboarding
         {
             if (PSADevice.HasInternet )
             {
-                if (PSACache.Instance.hasToken)
+                if (PSACache.Instance.hasUserinfo)
                 {
-                    if (PSACache.Instance.hasUserinfo)
-                    {
-                        App.Current.MainPage = new MainTabs();
+                    App.Current.MainPage = new MainTabs();
 
-                        PSAUsocketNet usn = new PSAUsocketNet();
-                        usn.Connect();
+                    PSAUsocketNet usn = new PSAUsocketNet();
+                    usn.Connect();
 
-                        return; //Cancel all after this line.
-                    }
+                    return; //Cancel all after this line.
                 }
 
                 App.Current.MainPage = new SignInPage();
