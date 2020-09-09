@@ -10,6 +10,7 @@
              x:Class="PasaBuy.App.Views.MainTabs"
              NavigationPage.HasNavigationBar="False"
              NavigationPage.HasBackButton="False">
+    
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -25,6 +26,8 @@
                            VisibleHeaderCount="5" 
                            EnableSwiping="true" 
                            DisplayMode="Image">
+            
+            <!--TAB SETTINGS-->
             <tabView:SfTabView.SelectionIndicatorSettings>
                 <tabView:SelectionIndicatorSettings
                     AnimationDuration="250"
@@ -32,7 +35,8 @@
                     Position="Bottom" 
                     StrokeThickness="3"/>
             </tabView:SfTabView.SelectionIndicatorSettings>
-            <!--ImageWithText-->
+            
+            <!--HOME TAB-->
             <tabView:SfTabItem Title="HOME"
                                IconFont="{StaticResource Home}"
                                FontIconFontColor="{DynamicResource Gray-200}"
@@ -44,10 +48,7 @@
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
 
-
-
-
-
+            <!--MARKET TAB-->
             <tabView:SfTabItem Title="MARKET"
                                IconFont="{StaticResource Market}"
                                FontIconFontColor="{DynamicResource Gray-200}"
@@ -102,10 +103,7 @@
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
 
-
-
-
-
+            <!--STORE TAB-->
             <tabView:SfTabItem Title="STORE"
                                IconFont="{StaticResource Stores}"
                                FontIconFontColor="{DynamicResource Gray-200}"
@@ -116,6 +114,8 @@
                     <store:StoreBrowserPage/>
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
+            
+            <!--MESSAGE TAB-->
             <tabView:SfTabItem Title="MESSAGE"
                                IconFont="{StaticResource Message}"
                                FontIconFontColor="{DynamicResource Gray-200}"
@@ -126,6 +126,8 @@
                     <chat:MessagePage/>
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
+            
+            <!--BURGER TAB-->
             <tabView:SfTabItem Title="MENU"
                                IconFont="{StaticResource Menu}"
                                FontIconFontColor="{DynamicResource Gray-200}"
@@ -136,6 +138,7 @@
                     <menu:MasterMenu/>
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
+            
         </tabView:SfTabView>
     </ContentPage.Content>
 </ContentPage>

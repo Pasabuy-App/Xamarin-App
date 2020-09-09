@@ -13,10 +13,17 @@ namespace PasaBuy.App.Local
         /// Rest API base url using WP PLugins.
         /// </summary>
         /// 
-        public static bool isProduction = false;
+        public static bool onProduction { get; } = false;
 
-        public static string baseRestUrl { get; } = "http://10.0.2.2/wordpress";
+        /// <summary>
+        /// Development url.
+        /// </summary>
+        public static string devBaseUrl { get; } = "wordpress.dev";
 
+        /// <summary>
+        /// RestAPI Root url c/o WordPress.
+        /// </summary>
+        public static string baseRestUrl { get; } = "http://10.0.2.2";
 
         /// <summary>
         /// Syncfusion Demo image root URL.
@@ -26,9 +33,6 @@ namespace PasaBuy.App.Local
         /// <summary>
         /// Syncfusion Application API Key Secret
         /// </summary>
-        public static string sfApiKey = "MjYwNjY0QDMxMzgyZTMxMmUzMGlJTnpSZVBDTG4raGhBaU5DOVRFbFBKWmxRYVVHd1hxNUx2cXcrZFliMmc9"; //Test Key
-
-        
-
+        public static string sfApiKey { get; } = "MjYwNjY0QDMxMzgyZTMxMmUzMGlJTnpSZVBDTG4raGhBaU5DOVRFbFBKWmxRYVVHd1hxNUx2cXcrZFliMmc9"; //Test Key
     }
 }
