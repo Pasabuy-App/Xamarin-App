@@ -35,5 +35,26 @@ namespace PasaBuy.App.Views.Settings
         {
             Navigation.PushModalAsync(new AddAddressPage());
         }
+
+        private async void DeleteButton_Clicked(object sender, EventArgs e)
+        {
+            bool answer = await DisplayAlert("Delete Address", "Are you sure you want to delete this?", "Yes", "No");
+            if (answer == true)
+            {
+                try
+                {
+                    //new Alert("Yes", "Deleted successfully!", "OK");
+                    /*DataVice.Address.Instance.Delete("1", "GNAyLSwWVKkeemhktBSqa9UjGlLXxzUEOdfoCojYJAD", "11", "", (bool success, string message) =>
+                    {
+                        Console.WriteLine(message);
+                    });*/
+                }
+                catch (Exception ex)
+                {
+                    new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                    Console.WriteLine("Error: " + ex);
+                }
+            }
+        }
     }
 }

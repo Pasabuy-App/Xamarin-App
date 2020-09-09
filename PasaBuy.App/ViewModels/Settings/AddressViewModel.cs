@@ -67,9 +67,10 @@ namespace PasaBuy.App.ViewModels.Settings
                                 });
                             }
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
                             new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                            Console.WriteLine("Error: " + ex);
                         }
                     }
                     else
@@ -79,9 +80,10 @@ namespace PasaBuy.App.ViewModels.Settings
                     }
                 });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                Console.WriteLine("Error: " + ex);
             }
         }
         public static void RefreshData()
@@ -119,9 +121,10 @@ namespace PasaBuy.App.ViewModels.Settings
                                 });
                             }
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
                             new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                            Console.WriteLine("Error: " + ex);
                         }
                     }
                     else
@@ -131,9 +134,10 @@ namespace PasaBuy.App.ViewModels.Settings
                     }
                 });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                Console.WriteLine("Error: " + ex);
             }
         }
 
@@ -154,7 +158,7 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void DeleteButtonClicked(object obj)
         {
-            var answer = new ConfirmAlert("Delete Address", "Are you sure you want to delete this address", "Ok", "Cancel");
+            //var answer = new ConfirmAlert("Delete Address", "Are you sure you want to delete this address", "Ok", "Cancel");
         }
 
         /// <summary>

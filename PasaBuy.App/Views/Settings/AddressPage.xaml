@@ -118,7 +118,7 @@
                                         <!--  Delete button command  -->
                                         <buttons:SfButton  x:Name="DeleteButton" CornerRadius="4" Grid.Column="3" HorizontalOptions="EndAndExpand"
                                                    VerticalOptions="StartAndExpand" Style="{StaticResource IconButtonDarkStyle}"
-                                                   Text="{StaticResource Delete}" Command="{Binding Path=BindingContext.DeleteCommand,Source={x:Reference myAddress}}"
+                                                   Text="{StaticResource Delete}" Clicked="DeleteButton_Clicked"
                                                    CommandParameter="{x:Reference DeleteButton}"/>
 
                                         <!--  Map Pin Icon -->
