@@ -18,7 +18,7 @@ namespace PasaBuy.App
             SocioPress.SPHost.Instance.Initialized(PSAConfig.baseRestUrl);
 
             PSACache.Instance.Initialize();
-
+            //commit
             MainPage = new NavigationPage(new SignInPage());
         }
 

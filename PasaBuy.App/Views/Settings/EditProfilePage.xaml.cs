@@ -38,6 +38,35 @@ namespace PasaBuy.App.Views.Settings
             Navigation.PopModalAsync();
         }
 
+        public void SaveAvatar(object sender, EventArgs e)
+        {
+            new Alert("test", "avatar", "ok");
+        }
+
+        public void SaveBanner(object sender, EventArgs e)
+        {
+            new Alert("test", "banner", "ok");
+        }
+
+        public void SaveProfileData(object sender, EventArgs e)
+        {
+            Users.Instance.EditProfile(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, Fname.Text, Lname.Text, Nname.Text, (bool success, string data) =>
+            {
+/* some comment */
+                if (success)
+                {
+                    PSACache.Instance.UserInfo.dname = Nname.Text;
+                    PSACache.Instance.UserInfo.lname = Lname.Text;
+                    PSACache.Instance.UserInfo.fname = Fname.Text;
+                    Navigation.PopModalAsync();
+                }
+                else
+                {
+                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                }
+            });
+        }
+
         /// <summary>
         /// Invoked when save button is clicked.
         /// </summary>
