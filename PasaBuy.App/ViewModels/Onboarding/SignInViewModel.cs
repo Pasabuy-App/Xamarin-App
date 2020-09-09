@@ -149,7 +149,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
 
                         try
                         {
-                            SocioPress.Profile.Instance.GetData(token.data.wpid, token.data.snky, (bool success2, string data2) =>
+                            SocioPress.Profile.Instance.GetData(token.data.wpid, token.data.snky, "", (bool success2, string data2) =>
                             {
                                 if (success2)
                                 {
@@ -177,7 +177,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
                                             State = false;
                                             Application.Current.MainPage = new Views.MainTabs();
                                         }
-                                        catch (Exception ex)
+                                        catch (Exception)
                                         {
                                             new Alert("Something went Wrong", "Please contact administrator.", "OK");
                                             State = false;
@@ -196,7 +196,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
                                 }
                             });
                         }
-                        catch (Exception ex)
+                        catch (Exception)
                         {
                             new Alert("Something went Wrong", "Please contact administrator.", "OK");
                             State = false;
@@ -209,7 +209,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
                     }
                 });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 new Alert("Something went Wrong", "Please contact administrator.", "OK");
             }

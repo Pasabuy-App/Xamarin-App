@@ -36,7 +36,7 @@ namespace PasaBuy.App.Views.Posts
         {
             try
             {
-                SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "sell title", "sell content", "sell", filePath, ItemCategory.Text, ItemName.Text, ItemDescription.Text, ItemPrice.Text, PickUpLocation.Text, "", VehicleType.Text, (bool success, string data) =>
+                SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, ItemName.Text, ItemDescription.Text, "sell", filePath, ItemCategory.Text, ItemPrice.Text, PickUpLocation.Text, "", VehicleType.Text, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -50,7 +50,7 @@ namespace PasaBuy.App.Views.Posts
                     }
                 });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 new Alert("Something went Wrong", "Please contact administrator.", "OK");
             }

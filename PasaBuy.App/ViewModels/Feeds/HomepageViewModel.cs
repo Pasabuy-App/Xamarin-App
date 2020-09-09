@@ -87,7 +87,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                                     name, type, date_post, views, title, content, image_item));
                             }
                         }
-                        catch (Exception ex)
+                        catch (Exception)
                         {
                             new Alert("Something went Wrong", "Please contact administrator.", "OK");
                         }
@@ -99,7 +99,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                     }
                 });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 new Alert("Something went Wrong", "Please contact administrator.", "OK");
             }
@@ -159,7 +159,7 @@ namespace PasaBuy.App.ViewModels.Feeds
 
                             }
                         }
-                        catch (Exception ex)
+                        catch (Exception)
                         {
                             new Alert("Something went Wrong", "Please contact administrator.", "OK");
                         }
@@ -171,7 +171,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                     }
                 });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 new Alert("Something went Wrong", "Please contact administrator.", "OK");
             }

@@ -39,7 +39,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
 					}
 				});
 			}
-            catch (Exception e)
+            catch (Exception)
 			{
 				new Alert("Something went Wrong", "Please contact administrator.", "OK");
 			}
