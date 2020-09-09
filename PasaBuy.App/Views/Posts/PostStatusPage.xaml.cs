@@ -124,7 +124,7 @@ namespace PasaBuy.App.Views.Posts
             //Console.WriteLine("image filepath ." + filePath + ". " + StatusEditor.Text); //-> image file path upload
             try
             {
-                SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "title123", StatusEditor.Text, "status", filePath, "", "", "", "", "", "", "", (bool success, string data) =>
+                SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, StatusEditor.Text, "", "status", filePath, "", "", "", "", "", (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -138,9 +138,9 @@ namespace PasaBuy.App.Views.Posts
                     }
                 });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine(ex);
+                new Alert("Something went Wrong", "Please contact administrator.", "OK");
             }
 
         }

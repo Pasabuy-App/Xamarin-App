@@ -50,7 +50,11 @@
     </ContentPage.ControlTemplate>
 
     <ContentPage.Content>
-        <StackLayout
+        <AbsoluteLayout>
+            <Grid AbsoluteLayout.LayoutFlags="All"
+              AbsoluteLayout.LayoutBounds="0,1,1,1">
+                <StackLayout
+                    Padding="0, 50, 0, 50"
                     Margin="{core:OnPlatformOrientationThickness PhonePortrait='20,32',
                                                                  PhoneLandscape='150,32',
                                                                  TabletPortrait='200,50',
@@ -60,9 +64,7 @@
                     VerticalOptions="FillAndExpand"
                     WidthRequest="{OnPlatform Default='-1',
                                               UWP='350'}">
-                <border:SfBorder
-                            Padding="15, 50, 15, 50"
-                            Style="{StaticResource FormBorderStyle}">
+
                     <Grid RowSpacing="24" VerticalOptions="CenterAndExpand">
 
                         <Grid.RowDefinitions>
@@ -71,6 +73,13 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+
+                            <RowDefinition Height="Auto" />
+
                         </Grid.RowDefinitions>
 
                         <!--  Label to display the title of this page  -->
@@ -122,10 +131,25 @@
                             Style="{StaticResource SfButtonStyle}" />
 
                     </Grid>
-                </border:SfBorder>
 
-            </StackLayout>
-
+                </StackLayout>
+                <StackLayout
+                    x:Name="aiLayout"
+                    IsVisible="{Binding State}"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    BackgroundColor="Gray" Opacity="0.5" ClassId="123">
+                    <ActivityIndicator
+                        x:Name="isBusy"
+                        IsRunning="true"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand"
+                        HeightRequest="100"
+                        WidthRequest="100"
+                        Color="Black"/>
+                </StackLayout>
+            </Grid>
+        </AbsoluteLayout>
     </ContentPage.Content>
     
 </ContentPage>

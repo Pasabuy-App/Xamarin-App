@@ -17,6 +17,7 @@ namespace PasaBuy.App.Models.Feeds
         private string title;
         private string description;
         private string images;
+        private Boolean isaccept = false;
 
         public Post(string photo, string author, string types, string date, string seen, string title, string description, string images)
         {
@@ -29,6 +30,14 @@ namespace PasaBuy.App.Models.Feeds
             this.title = title;
             this.description = description;
             this.images = images;
+            if (types == "Status")
+            {
+                isAccept = false;
+            }
+            else
+            {
+                isAccept = true;
+            }
         }
 
         public string Photo
@@ -108,6 +117,18 @@ namespace PasaBuy.App.Models.Feeds
             {
                 images = value;
                 OnPropertyChanged("Images");
+            }
+        }
+        public Boolean isAccept
+        {
+            get
+            {
+                return isaccept;
+            }
+            set
+            {
+                isaccept = value;
+                OnPropertyChanged("isAccept");
             }
         }
 

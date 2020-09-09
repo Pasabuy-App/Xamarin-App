@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:PasaBuy.App.Views.Feeds.Templates"
              xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Feeds"
              xmlns:controls="clr-namespace:PasaBuy.App.Controls"
-             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              BackgroundColor="{DynamicResource Gray-300}"
              NavigationPage.HasNavigationBar="False">
 
@@ -44,7 +44,6 @@
 
     <ContentPage.Content>
         <ScrollView>
-
             <Grid RowSpacing="10" ColumnSpacing="0" TranslationY="-10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -161,7 +160,7 @@
                             <Image Grid.Column="3" Source="Logo.png"
                                    HeightRequest="22"/>
                         </Grid>
-                        <Label Text="{Binding City}"/>
+                        <Label Text="{Binding City}" IsVisible="{Binding isCity}"/>
                         <Label Text="{Binding Joined}"/>
                         <Label Text="{Binding Refered}" IsVisible="{Binding isRefered}"/>
                     </StackLayout>
@@ -249,7 +248,151 @@
 
                 <!-- FEED VIEW -->
                 <StackLayout Grid.Row="2">
-                    <local:PostEntry/>
+                    <!--<local:PostEntry/>-->
+                    <listView:SfListView x:Name="profileListView" 
+                                         ItemsSource="{Binding ProfilePosts}"
+                                         AutoFitMode="DynamicHeight">
+
+                        <listView:SfListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid RowSpacing="0"  
+                                      Margin="0,0,0,10"
+                                      BackgroundColor="{DynamicResource Gray-100}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackLayout Grid.Row="0" Grid.ColumnSpan="2">
+                                        <Grid Padding="20">
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="15"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid Grid.Row="0" 
+                                                  Grid.RowSpan="2"
+                                                  Margin="0, 0, 5, 0"
+                                                  VerticalOptions="StartAndExpand">
+
+                                                <border:SfBorder CornerRadius="50"
+                                                                 border:BorderColor="White" 
+                                                                 BorderWidth="2">
+                                                    <Image WidthRequest="40" HeightRequest="40"
+                                                           BackgroundColor="{DynamicResource Gray-400}">
+                                                        <Image.Source>
+                                                            <UriImageSource
+                                                                CacheValidity="14"
+                                                                CachingEnabled="true"
+                                                                Uri="{Binding Photo}" />
+                                                        </Image.Source>
+                                                    </Image>
+                                                </border:SfBorder>
+                                            </Grid>
+
+                                            <Grid Grid.Row="0" 
+                                                  HeightRequest="20"
+                                                  Grid.Column="1">
+                                                <Label Text="{Binding Author}" Style="{StaticResource PostAuthor}"/>
+                                            </Grid>
+                                            <Grid Grid.Row="1" 
+                                                  HeightRequest="20"
+                                                  Grid.Column="1">
+                                                <Label Text="{Binding Date}" Style="{StaticResource PostDate}"/>
+                                            </Grid>
+
+                                            <Grid Grid.Row="0" 
+                                                  HeightRequest="20"
+                                                  Grid.Column="2" 
+                                                  HorizontalOptions="End">
+                                                <Label Text="{Binding Types}" Style="{StaticResource PostType}"/>
+                                            </Grid>
+                                            <Grid Grid.Row="1" 
+                                                  HeightRequest="20"
+                                                  Grid.Column="2"
+                                                  HorizontalOptions="End">
+                                                <Label Text="{Binding Seen}" Style="{StaticResource PostSeen}"/>
+                                            </Grid>
+
+                                            <Grid Grid.Row="0" 
+                                                WidthRequest="12"
+                                                Grid.RowSpan="2"
+                                                Grid.Column="3" 
+                                                Margin="5, 0, 0, 0"
+                                                HorizontalOptions="End">
+                                                <Label Text=":" Style="{StaticResource HeaderLabelStyle}"/>
+                                            </Grid>
+
+                                        </Grid>
+                                    </StackLayout>
+
+                                    <Grid Grid.Row="1" 
+                                          Padding="30, 5, 30, 25"
+                                          Grid.ColumnSpan="2">
+                                        <StackLayout>
+                                            <Label Text="{Binding Title}" Style="{StaticResource PostTitle}"/>
+                                            <Label Text="{Binding Description}" Style="{StaticResource PostDescription}"/>
+                                        </StackLayout>
+                                    </Grid>
+
+                                    <Grid Grid.Row="2" 
+                                        Grid.ColumnSpan="2"
+                                        HorizontalOptions="FillAndExpand">
+                                        <Image Aspect="AspectFill"
+                                            BackgroundColor="{DynamicResource Transparent}">
+                                            <Image.Source>
+                                                <UriImageSource
+                                                    CacheValidity="14"
+                                                    CachingEnabled="true"
+                                                    Uri="{Binding Images}" />
+                                            </Image.Source>
+                                        </Image>
+                                    </Grid>
+
+                                    <Grid Grid.Row="3" Grid.ColumnSpan="2" 
+                                      ColumnSpacing="0"
+                                      RowSpacing="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Row="1" Grid.Column="0">
+                                            <Button Text="Accept" 
+                                                IsEnabled="False"
+                                                BorderColor="{DynamicResource Gray-300}"
+                                                BorderWidth="1"
+                                                BackgroundColor="{DynamicResource Gray-100}"/>
+                                        </Grid>
+                                        <Grid Grid.Row="1" Grid.Column="1">
+                                            <Button Text="Share" 
+                                                IsEnabled="False"
+                                                BorderColor="{DynamicResource Gray-300}"
+                                                BorderWidth="1"
+                                                BackgroundColor="{DynamicResource Gray-100}"/>
+                                        </Grid>
+                                    </Grid>
+
+                                </Grid>
+                            </DataTemplate>
+                        </listView:SfListView.ItemTemplate>
+                    </listView:SfListView>
                 </StackLayout>
 
             </Grid>

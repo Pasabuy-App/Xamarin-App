@@ -20,7 +20,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
 
         private string ak;
 
-        //private Boolean _state = false;
+        private Boolean _state = false;
 
         #endregion
 
@@ -63,7 +63,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <summary>
         /// Gets or sets the property that is bound with stacklayout that gets the visibility state from user in the Verify Reset  page.
         /// </summary>
-        /*public Boolean State
+        public Boolean State
         {
             get
             {
@@ -74,7 +74,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
                 _state = value;
                 this.NotifyPropertyChanged();
             }
-        }*/
+        }
 
         #endregion
 
@@ -97,23 +97,31 @@ namespace PasaBuy.App.ViewModels.Onboarding
 
         private void SfButton_Clicked(object obj)
         {
-            //State = true;
-            Users.Instance.Activate(ActivationKey, VerifyAccountVar.un, (bool success, string data) =>
+            try
             {
-                if (success)
+                //State = true;
+                Users.Instance.Activate(ActivationKey, VerifyAccountVar.un, (bool success, string data) =>
                 {
-                    //State = false;
-                    VerifyAccountData akey = JsonConvert.DeserializeObject<VerifyAccountData>(data);
+                    if (success)
+                    {
+                        //State = false;
+                        VerifyAccountData akey = JsonConvert.DeserializeObject<VerifyAccountData>(data);
                         //Console.WriteLine(ActivationKey + " " + akey.key);
-                    VerifyAccountVar.ak = akey.key;
-                    Application.Current.MainPage = new CreatePassword();
-                }
-                else
-                {
-                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    //State = false;
-                }
-            });
+                        VerifyAccountVar.ak = akey.key;
+                        Application.Current.MainPage = new CreatePassword();
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        //State = false;
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                Console.WriteLine("Error: " + ex);
+            }
         }
 
 

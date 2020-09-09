@@ -121,67 +121,110 @@ namespace PasaBuy.App.ViewModels.Onboarding
 
         private void SfButton_Clicked(object obj)
         {
-            Users.Instance.NewPassword(VerifyAccountVar.ak, VerifyAccountVar.un, Password, ConfirmPassowrd, (bool success1, string data1) =>
+            try
             {
-                if (success1)
+                //State = true;
+                Users.Instance.NewPassword(VerifyAccountVar.ak, VerifyAccountVar.un, Password, ConfirmPassowrd, (bool success1, string data1) =>
                 {
-                    Users.Instance.Auth(VerifyAccountVar.un, Password, (bool success, string data) =>
+                    if (success1)
                     {
-                        if (success)
+                        try
                         {
-                            Token token = JsonConvert.DeserializeObject<Token>(data);
-
-                            if (!token.isSuccess)
+                            Users.Instance.Auth(VerifyAccountVar.un, Password, (bool success, string data) =>
                             {
-                                new Alert("Something went Wrong", HtmlUtils.ConvertToPlainText(token.message), "OK");
-                                return;
-                            }
-
-                            SocioPress.Profile.Instance.GetData(token.data.wpid, token.data.snky, (bool success2, string data2) =>
-                            {
-                                if (success2)
+                                if (success)
                                 {
-                                    UserInfo uinfo = JsonConvert.DeserializeObject<UserInfo>(data2);
+                                    Token token = JsonConvert.DeserializeObject<Token>(data);
 
-                                    if (uinfo.status == "success")
+                                    if (!token.isSuccess)
                                     {
-                                        PSACache.Instance.UserInfo.dname = uinfo.data.dname;
-                                        PSACache.Instance.UserInfo.uname = uinfo.data.uname;
-                                        PSACache.Instance.UserInfo.email = uinfo.data.email;
-                                        PSACache.Instance.UserInfo.lname = uinfo.data.lname;
-                                        PSACache.Instance.UserInfo.fname = uinfo.data.fname;
-                                        PSACache.Instance.UserInfo.city = uinfo.data.city;
-                                        PSACache.Instance.UserInfo.date_registered = uinfo.data.date_registered;
-
-                                        ProfileGetData.CountPost(token.data.wpid, token.data.snky);
-                                        PSACache.Instance.UserInfo.wpid = token.data.wpid;
-                                        PSACache.Instance.UserInfo.snky = token.data.snky;
-
-                                        Application.Current.MainPage = new Views.MainTabs();
-                                        //Console.WriteLine("futa");
+                                        new Alert("Something went Wrong", HtmlUtils.ConvertToPlainText(token.message), "OK");
+                                        return;
                                     }
-                                    else
+
+                                    try
                                     {
-                                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data2), "Try Again");
+                                        SocioPress.Profile.Instance.GetData(token.data.wpid, token.data.snky, "", (bool success2, string data2) =>
+                                        {
+                                            if (success2)
+                                            {
+                                                UserInfo uinfo = JsonConvert.DeserializeObject<UserInfo>(data2);
+
+                                                if (uinfo.status == "success")
+                                                {
+                                                    try
+                                                    {
+                                                        PSACache.Instance.UserInfo.dname = uinfo.data.dname;
+                                                        PSACache.Instance.UserInfo.uname = uinfo.data.uname;
+                                                        PSACache.Instance.UserInfo.email = uinfo.data.email;
+                                                        PSACache.Instance.UserInfo.lname = uinfo.data.lname;
+                                                        PSACache.Instance.UserInfo.fname = uinfo.data.fname;
+                                                        PSACache.Instance.UserInfo.city = uinfo.data.city;
+                                                        PSACache.Instance.UserInfo.date_registered = uinfo.data.date_registered;
+                                                        PSACache.Instance.UserInfo.avatar = uinfo.data.avatar;
+                                                        PSACache.Instance.UserInfo.banner = uinfo.data.banner;
+                                                        PSACache.Instance.UserInfo.verify = uinfo.data.verify;
+
+                                                        ProfileGetData.CountPost(token.data.wpid, token.data.snky);
+                                                        PSACache.Instance.UserInfo.wpid = token.data.wpid;
+                                                        PSACache.Instance.UserInfo.snky = token.data.snky;
+
+                                                        //State = false;
+                                                        Application.Current.MainPage = new Views.MainTabs();
+                                                    }
+                                                    catch (Exception ex)
+                                                    {
+                                                        new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                                                        Console.WriteLine("Error: " + ex);
+                                                        //State = false;
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data2), "Try Again");
+                                                    //State = false;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                                //State = false;
+                                            }
+                                        });
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                                        Console.WriteLine("Error: " + ex);
+                                        //State = false;
                                     }
                                 }
                                 else
                                 {
                                     new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                    //State = false;
                                 }
                             });
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                            Console.WriteLine("Error: " + ex);
+                            //State = false;
                         }
-                    });
-                }
-                else
-                {
-                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data1), "Try Again");
-                }
-            });
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data1), "Try Again");
+                        //State = false;
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                Console.WriteLine("Error: " + ex);
+            }
         }
         #endregion
     }

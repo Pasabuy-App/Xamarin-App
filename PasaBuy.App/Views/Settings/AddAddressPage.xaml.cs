@@ -33,23 +33,29 @@ namespace PasaBuy.App.Views.Settings
 
         public void SubmitPostButton(object sender, EventArgs e)
         {
-            string type = string.Empty;
-            if (AddressTypePicker.Text == "Business") { type = "business"; }
-            if (AddressTypePicker.Text == "Home") { type = "home"; }
-
-            //Console.WriteLine("type: " + type + " co: " + AddressVar.co + " pv: " + AddressVar.pr + " ct: " + AddressVar.ct + " br: " + AddressVar.br + " st: " + StreetEntry.Text );
-            DataVice.Address.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, type, AddressVar.co, AddressVar.pr, AddressVar.ct, AddressVar.br, StreetEntry.Text, (bool success, string data) =>
+            try
             {
-                if (success)
+                string type = string.Empty;
+                if (AddressTypePicker.Text == "Business") { type = "business"; }
+                if (AddressTypePicker.Text == "Home") { type = "home"; }
+
+                DataVice.Address.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, type, AddressVar.co, AddressVar.pr, AddressVar.ct, AddressVar.br, StreetEntry.Text, (bool success, string data) =>
                 {
-                    Navigation.PopModalAsync();
-                    AddressViewModel.RefreshData();
-                }
-                else
-                {
-                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                }
-            });
+                    if (success)
+                    {
+                        Navigation.PopModalAsync();
+                        AddressViewModel.RefreshData();
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+            }
+            catch (Exception)
+            {
+                new Alert("Something went Wrong", "Please contact administrator.", "OK");
+            }
 
         }
 

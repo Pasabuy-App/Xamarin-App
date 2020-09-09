@@ -8,6 +8,7 @@ using PasaBuy.App.Views;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using Newtonsoft.Json;
+using System;
 
 namespace PasaBuy.App.ViewModels.Settings
 {
@@ -31,140 +32,113 @@ namespace PasaBuy.App.ViewModels.Settings
 
             addressDetails = new ObservableCollection<Address>();
             LoadData();
-            /*DataVice.Address.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, (bool success, string data) =>
+        }
+        public void LoadData()
+        {
+            try
             {
-                if (success)
+                DataVice.Address.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, (bool success, string data) =>
                 {
-                    AddressData address = JsonConvert.DeserializeObject<AddressData>(data);
-                    for (int i = 0; i < address.data.Length; i++)
+                    if (success)
                     {
-                        string id = address.data[i].id;
-                        string types = address.data[i].types;
-                        string status = address.data[i].status;
-                        string street = address.data[i].street;
-                        string brgy = address.data[i].brgy;
-                        string city = address.data[i].city;
-                        string province = address.data[i].province;
-                        string country = address.data[i].country;
-                        string type = string.Empty;
-                        if (types == "home") { type = "Home"; }
-                        if (types == "office") { type = "Office"; }
-                        if (types == "business") { type = "Business"; }
-                        addressDetails.Add(new Address
+                        try
                         {
-                            Name = "Juan Dela Cruz",
-                            AddressType = type,
-                            Location = street + " " + brgy + " " + city + " " + province + ", " + country,
-                            ContactNumber = "(123) 456-7890"
-                        });
-                    }
+                            AddressData address = JsonConvert.DeserializeObject<AddressData>(data);
+                            for (int i = 0; i < address.data.Length; i++)
+                            {
+                                string id = address.data[i].id;
+                                string types = address.data[i].types;
+                                string status = address.data[i].status;
+                                string street = address.data[i].street;
+                                string brgy = address.data[i].brgy;
+                                string city = address.data[i].city;
+                                string province = address.data[i].province;
+                                string country = address.data[i].country;
+                                string type = string.Empty;
+                                if (types == "home") { type = "Home"; }
+                                if (types == "office") { type = "Office"; }
+                                if (types == "business") { type = "Business"; }
+                                addressDetails.Add(new Address
+                                {
+                                    Name = "Juan Dela Cruz",
+                                    AddressType = type,
+                                    Location = street + " " + brgy + " " + city + " " + province + ", " + country,
+                                    ContactNumber = "(123) 456-7890"
+                                });
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                            Console.WriteLine("Error: " + ex);
+                        }
                     }
                     else
                     {
                         new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
 
                     }
-                });*/
-            /*
-                        this.AddressDetails.Add(new Address
-                        {
-                            Name = "Juan Dela Cruz",
-                            AddressType = "Work",
-                            Location = "114 Ridge St NW, San Pedro City, PH 2401",
-                            ContactNumber = "(123) 456-7890"
-                        });*/
-            /*this.AddressDetails = new ObservableCollection<Address>()
+                });
+            }
+            catch (Exception ex)
             {
-                new Address
-                {
-                    Name = "Juan Dela Cruz",
-                    AddressType = "Work",
-                    Location = "114 Ridge St NW, San Pedro City, PH 2401",
-                    ContactNumber = "(123) 456-7890"
-                },
-                new Address
-                {
-                    Name = "Maria Makiling",
-                    AddressType = "Home",
-                    Location = "100 S 4th St, Binan City, PH 4024",
-                    ContactNumber = "(123) 456-7891"
-                },
-            };*/
-        }
-        public void LoadData()
-        {
-            DataVice.Address.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, (bool success, string data) =>
-            {
-                if (success)
-                {
-                    AddressData address = JsonConvert.DeserializeObject<AddressData>(data);
-                    for (int i = 0; i < address.data.Length; i++)
-                    {
-                        string id = address.data[i].id;
-                        string types = address.data[i].types;
-                        string status = address.data[i].status;
-                        string street = address.data[i].street;
-                        string brgy = address.data[i].brgy;
-                        string city = address.data[i].city;
-                        string province = address.data[i].province;
-                        string country = address.data[i].country;
-                        string type = string.Empty;
-                        if (types == "home") { type = "Home"; }
-                        if (types == "office") { type = "Office"; }
-                        if (types == "business") { type = "Business"; }
-                        addressDetails.Add(new Address
-                        {
-                            Name = "Juan Dela Cruz",
-                            AddressType = type,
-                            Location = street + " " + brgy + " " + city + " " + province + ", " + country,
-                            ContactNumber = "(123) 456-7890"
-                        });
-                    }
-                }
-                else
-                {
-                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-
-                }
-            });
+                new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                Console.WriteLine("Error: " + ex);
+            }
         }
         public static void RefreshData()
         {
-            addressDetails.Clear();
-            DataVice.Address.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, (bool success, string data) =>
+            try
             {
-                if (success)
+                addressDetails.Clear();
+                DataVice.Address.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, (bool success, string data) =>
                 {
-                    AddressData address = JsonConvert.DeserializeObject<AddressData>(data);
-                    for (int i = 0; i < address.data.Length; i++)
+                    if (success)
                     {
-                        string id = address.data[i].id;
-                        string types = address.data[i].types;
-                        string status = address.data[i].status;
-                        string street = address.data[i].street;
-                        string brgy = address.data[i].brgy;
-                        string city = address.data[i].city;
-                        string province = address.data[i].province;
-                        string country = address.data[i].country;
-                        string type = string.Empty;
-                        if (types == "home") { type = "Home"; }
-                        if (types == "office") { type = "Office"; }
-                        if (types == "business") { type = "Business"; }
-                        addressDetails.Add(new Address
+                        try
                         {
-                            Name = "Juan Dela Cruz",
-                            AddressType = type,
-                            Location = street + " " + brgy + ", " + city + " " + province + ", " + country,
-                            ContactNumber = "(123) 456-7890"
-                        });
+                            AddressData address = JsonConvert.DeserializeObject<AddressData>(data);
+                            for (int i = 0; i < address.data.Length; i++)
+                            {
+                                string id = address.data[i].id;
+                                string types = address.data[i].types;
+                                string status = address.data[i].status;
+                                string street = address.data[i].street;
+                                string brgy = address.data[i].brgy;
+                                string city = address.data[i].city;
+                                string province = address.data[i].province;
+                                string country = address.data[i].country;
+                                string type = string.Empty;
+                                if (types == "home") { type = "Home"; }
+                                if (types == "office") { type = "Office"; }
+                                if (types == "business") { type = "Business"; }
+                                addressDetails.Add(new Address
+                                {
+                                    Name = "Juan Dela Cruz",
+                                    AddressType = type,
+                                    Location = street + " " + brgy + ", " + city + " " + province + ", " + country,
+                                    ContactNumber = "(123) 456-7890"
+                                });
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                            Console.WriteLine("Error: " + ex);
+                        }
                     }
-                }
-                else
-                {
-                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
 
-                }
-            });
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                Console.WriteLine("Error: " + ex);
+            }
         }
 
         #endregion
@@ -184,7 +158,7 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void DeleteButtonClicked(object obj)
         {
-            var answer = new ConfirmAlert("Delete Address", "Are you sure you want to delete this address", "Ok", "Cancel");
+            //var answer = new ConfirmAlert("Delete Address", "Are you sure you want to delete this address", "Ok", "Cancel");
         }
 
         /// <summary>

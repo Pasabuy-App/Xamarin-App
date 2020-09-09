@@ -134,7 +134,7 @@
                     <buttons:SfButton
                             Grid.Row="5"
                             Margin="0, 20, 0, 20"
-                            Command="{Binding SubmitCommand}"
+                            Clicked="SaveButton_Clicked"
                             CornerRadius="20"
                             TextColor="White"
                             BackgroundColor="{DynamicResource PrimaryColor}"

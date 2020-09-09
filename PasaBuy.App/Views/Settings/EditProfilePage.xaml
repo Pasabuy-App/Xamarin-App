@@ -34,13 +34,6 @@
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
                     </controls:TitleView.LeadingView>
-                    <controls:TitleView.TrailingView>
-                        <buttons:SfButton  x:Name="SearchButton" 
-                                       IsVisible="True" 
-                                       BackgroundColor="Transparent"
-                                       Clicked="SaveButton_Clicked"
-                                       Text="SAVE" />
-                    </controls:TitleView.TrailingView>
                 </controls:TitleView>
                 <ContentPresenter />
             </StackLayout>
@@ -138,7 +131,7 @@
                 <BoxView Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource SeparatorStyle}"/>
 
                 <Button Grid.Row="6" Grid.ColumnSpan="1" HorizontalOptions="Start"  Grid.Column="0" BorderColor="Transparent"  BackgroundColor="Transparent" BorderWidth="0" Text="Personal Info "></Button>
-                <Button Grid.Row="6" Grid.ColumnSpan="1" HorizontalOptions="End" Grid.Column="1" BorderColor="Transparent"  BackgroundColor="Transparent" BorderWidth="0" Text="Fixed"></Button>
+                <Button Grid.Row="6" Grid.ColumnSpan="1" HorizontalOptions="End" CornerRadius="15" Grid.Column="1" BorderColor="{DynamicResource Gray-200}"  BackgroundColor="{DynamicResource Gray-100}" BorderWidth="1" Text="Save"></Button>
 
                 <border:SfBorder
                             Grid.Row="7"
