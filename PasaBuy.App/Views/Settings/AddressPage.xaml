@@ -71,12 +71,12 @@
             <StackLayout Grid.Row="2">
                 <!--  ListView displaying address  -->
                 <ListView:SfListView x:Name="myAddress" AutoFitMode="Height" IsScrollBarVisible="False" Padding="8" ItemSpacing="8" BackgroundColor="Transparent"
-                                 SelectionGesture="Tap" SelectionBackgroundColor="Transparent" SelectionMode="Single" AllowSwiping="True" 
-                                 ItemsSource="{Binding AddressDetails}">
+                                 SelectionGesture="Tap" SelectionBackgroundColor="Transparent" SelectionMode="Single" AllowSwiping="True" ItemTapped="myAddress_ItemTapped"
+                                 ItemsSource="{Binding AddressDetails}"  >
                     <ListView:SfListView.ItemTemplate>
                         <DataTemplate>
                             <border:SfBorder
-                        Grid.Row="0"
+                        Grid.Row="0" 
                         Padding="6,0,0,0"
                         Style="{StaticResource FormBorderStyle}">
                                 <cards:SfCardView CornerRadius="4" HasShadow="True" WidthRequest="343" BackgroundColor="{DynamicResource Gray-White}" 
@@ -100,9 +100,9 @@
                                         VerticalOptions="Center" LineHeight="{OnPlatform Default=-1, Android=1.5}" >
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="{Binding Name}" FontSize="16" TextColor="{DynamicResource Gray-900}" 
+                                                    <!--Span Text="{Binding Name}" FontSize="16" TextColor="{DynamicResource Gray-900}" 
                                                   FontFamily="{StaticResource Montserrat-SemiBold}"/>
-                                                    <Span Text="  "/>
+                                                    <Span Text="  "/-->
                                                     <Span Text="{Binding AddressType}" FontSize="12" TextColor="{DynamicResource Gray-800}"
                                                   FontFamily="{StaticResource Montserrat-SemiBold}"/>
                                                 </FormattedString>
@@ -112,13 +112,13 @@
                                         <!--  Edit button command  -->
                                         <buttons:SfButton  x:Name="editButton" CornerRadius="4" Grid.Column="2" HorizontalOptions="EndAndExpand"
                                                    VerticalOptions="StartAndExpand" Style="{StaticResource IconButtonDarkStyle}"
-                                                   Text="{StaticResource Edit}" Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference myAddress}}"
+                                                   Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference myAddress}}"
                                                    CommandParameter="{x:Reference editButton }"/>
 
                                         <!--  Delete button command  -->
                                         <buttons:SfButton  x:Name="DeleteButton" CornerRadius="4" Grid.Column="3" HorizontalOptions="EndAndExpand"
-                                                   VerticalOptions="StartAndExpand" Style="{StaticResource IconButtonDarkStyle}"
-                                                   Text="{StaticResource Delete}" Clicked="DeleteButton_Clicked"
+                                                   VerticalOptions="StartAndExpand" Style="{StaticResource IconButtonDarkStyle}"  IsVisible="false"
+                                                   Text="{StaticResource Delete}"
                                                    CommandParameter="{x:Reference DeleteButton}"/>
 
                                         <!--  Map Pin Icon -->
@@ -133,11 +133,11 @@
                                         VerticalOptions="Start"/>
 
                                         <!--  Phone Icon -->
-                                        <Label Text="{StaticResource Phone}" Grid.Row="2" Grid.Column="0"  FontSize="18" FontFamily="{StaticResource FontIcons}" 
-                                       LineHeight="{OnPlatform Default=-1, Android=1.5}" TextColor="{DynamicResource Gray-600}" />
+                                        <!--Label Text="{StaticResource Phone}" Grid.Row="2" Grid.Column="0"  FontSize="18" FontFamily="{StaticResource FontIcons}" 
+                                       LineHeight="{OnPlatform Default=-1, Android=1.5}" TextColor="{DynamicResource Gray-600}" /-->
 
                                         <!--  Contact Number-->
-                                        <Label Style="{StaticResource CommonLabelStyle}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="{StaticResource Montserrat-Medium}"
+                                        <!--Label Style="{StaticResource CommonLabelStyle}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="{StaticResource Montserrat-Medium}"
                                        VerticalOptions="Start">
                                             <Label.FormattedText>
                                                 <FormattedString>
@@ -145,7 +145,7 @@
                                                     <Span Text="{Binding ContactNumber}" TextColor="{DynamicResource Gray-900}"/>
                                                 </FormattedString>
                                             </Label.FormattedText>
-                                        </Label>
+                                        </-->
                                     </Grid>
                                 </cards:SfCardView>
                             </border:SfBorder>

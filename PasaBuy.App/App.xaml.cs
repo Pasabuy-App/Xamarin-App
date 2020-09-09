@@ -2,6 +2,7 @@ using Xamarin.Forms;
 using PasaBuy.App.Local;
 using PasaBuy.App.Views.Settings;
 using PasaBuy.App.Views.Onboarding;
+using System;
 
 namespace PasaBuy.App
 {
@@ -16,10 +17,10 @@ namespace PasaBuy.App
             //Initialized all PCL required by PasaBuy.App
             DataVice.DVHost.Instance.Initialized(PSAConfig.baseRestUrl);
             SocioPress.SPHost.Instance.Initialized(PSAConfig.baseRestUrl);
-
+            
             PSACache.Instance.Initialize();
             //commit
-            MainPage = new NavigationPage(new SignInPage());
+            MainPage = new NavigationPage(new SplashPage());
         }
 
         protected override void OnStart()

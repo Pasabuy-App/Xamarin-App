@@ -2,8 +2,10 @@
 using PasaBuy.App.Controllers;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
+using PasaBuy.App.Models.Feeds;
 using PasaBuy.App.Models.Onboarding;
 using System;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows.Input;
 using Xamarin.Forms.Internals;
@@ -18,6 +20,8 @@ namespace PasaBuy.App.ViewModels.Feeds
     {
         #region Fields
 
+        public static ObservableCollection<Post> homePostList;
+
         private string bannerImage;
 
         private string profileImage;
@@ -30,11 +34,100 @@ namespace PasaBuy.App.ViewModels.Feeds
 
         #region Constructor
 
+        public ObservableCollection<Post> HomePosts
+        {
+            get { return homePostList; }
+            set { homePostList = value; this.NotifyPropertyChanged(); }
+        }
+
+        public static void LoadData()
+        {
+            try
+            {
+                homePostList = new ObservableCollection<Post>();
+                SocioPress.Feeds.Instance.Profile(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky,"", PSACache.Instance.UserInfo.wpid, (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        PostListData post = JsonConvert.DeserializeObject<PostListData>(data);
+                        Console.WriteLine(data);
+                        for (int i = 0; i < post.data.Length; i++)
+                        {
+                            string post_author = post.data[i].post_author;
+                            string id = post.data[i].id;
+                            string content = post.data[i].content;
+                            string title = post.data[i].title;
+                            string date_post = post.data[i].date_post;
+                            string type = post.data[i].type;
+                            string item_image = post.data[i].item_image;
+                            string author = post.data[i].author;
+                            string name = post.data[i].name;
+                            string views = post.data[i].views;
+
+                            homePostList.Add(new Post(PSAProc.GetUrl(author),
+                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image)));
+                        }
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+
+                    }
+                });
+            }
+            catch (Exception)
+            {
+                new Alert("Something went Wrong", "Please contact administrator.", "OK");
+            }
+        }
+
+        public static void RefreshList()
+        {
+            try
+            {
+                homePostList.Clear();
+                SocioPress.Feeds.Instance.Profile(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", PSACache.Instance.UserInfo.wpid, (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        PostListData post = JsonConvert.DeserializeObject<PostListData>(data);
+                        Console.WriteLine(data);
+                        for (int i = 0; i < post.data.Length; i++)
+                        {
+                            string post_author = post.data[i].post_author;
+                            string id = post.data[i].id;
+                            string content = post.data[i].content;
+                            string title = post.data[i].title;
+                            string date_post = post.data[i].date_post;
+                            string type = post.data[i].type;
+                            string item_image = post.data[i].item_image;
+                            string author = post.data[i].author;
+                            string name = post.data[i].name;
+                            string views = post.data[i].views;
+
+                            homePostList.Add(new Post(PSAProc.GetUrl(author),
+                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image)));
+                        }
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+
+                    }
+                });
+            }
+            catch (Exception)
+            {
+                new Alert("Something went Wrong", "Please contact administrator.", "OK");
+            }
+        }
+
         /// <summary>
         /// Initializes a new instance for the <see cref="MyProfileViewModel" /> class.
         /// </summary>
         public MyProfileViewModel()
         {
+            LoadData();
             CultureInfo provider = new CultureInfo("fr-FR");
             DateTime date = DateTime.ParseExact(PSACache.Instance.UserInfo.date_registered, "yyyy-MM-dd HH:mm:ss", provider);
 
@@ -189,9 +282,10 @@ namespace PasaBuy.App.ViewModels.Feeds
         {
             get
             {
-                return PSACache.Instance.UserInfo.avatarUrl;
+                return PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
             }
         }
+
 
         #endregion
 

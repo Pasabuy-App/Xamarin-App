@@ -21,7 +21,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
             {
                 new Transactions
                 {
-                     CustomerName = "Alice",
+                     CustomerName = "Lorz Dela Cruz",
                      TransactionDescription = "Cashback",
                      Image = PSAConfig.sfRootUrl + "ProfileImage15.png",
                      TransactionAmount = "+ $70",
@@ -30,7 +30,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 },
                 new Transactions
                 {
-                     CustomerName = "Jessica Park",
+                     CustomerName = "Miguel San Miguel",
                      TransactionDescription = "XXXXXXX6585",
                      Image = PSAConfig.sfRootUrl + "ProfileImage10.png",
                      TransactionAmount = "+ $80",
@@ -39,7 +39,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 },
                 new Transactions
                 {
-                     CustomerName = "Lisa",
+                     CustomerName = "Russel Desiguel",
                      TransactionDescription = "Recharge",
                      Image = PSAConfig.sfRootUrl + "ProfileImage11.png",
                      TransactionAmount = "- $50",
@@ -48,7 +48,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 },
                 new Transactions
                 {
-                     CustomerName = "Rebecca",
+                     CustomerName = "Caezar Baltazar",
                      TransactionDescription = "Credit Card Bill",
                      Image = PSAConfig.sfRootUrl + "ProfileImage12.png",
                      TransactionAmount = "- $180",

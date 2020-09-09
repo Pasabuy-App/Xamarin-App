@@ -10,6 +10,7 @@ namespace PasaBuy.App.Models.Feeds
         public PostData[] data;
         public class PostData
         {
+            public string post_author = string.Empty;
             public string id = string.Empty;
             public string name = string.Empty;
             public string status = string.Empty;
@@ -25,6 +26,14 @@ namespace PasaBuy.App.Models.Feeds
             public string views = string.Empty;
             public string item_image = string.Empty;
         }
+
+        private string post_author;
+        public string Post_author
+        {
+            get { return post_author; }
+            set { post_author = value; }
+        }
+
         private string id;
         public string ID
         {

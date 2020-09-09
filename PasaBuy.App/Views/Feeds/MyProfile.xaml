@@ -249,8 +249,8 @@
                 <!-- FEED VIEW -->
                 <StackLayout Grid.Row="2">
                     <!--<local:PostEntry/>-->
-                    <listView:SfListView x:Name="profileListView" 
-                                         ItemsSource="{Binding ProfilePosts}"
+                    <listView:SfListView x:Name="homeListView" 
+                                         ItemsSource="{Binding HomePosts}"
                                          AutoFitMode="DynamicHeight">
 
                         <listView:SfListView.ItemTemplate>

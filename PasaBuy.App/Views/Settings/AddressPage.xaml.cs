@@ -4,6 +4,9 @@ using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Models.Settings;
+using PasaBuy.App.ViewModels.Settings;
+using PasaBuy.App.Local;
 
 namespace PasaBuy.App.Views.Settings
 {
@@ -14,6 +17,7 @@ namespace PasaBuy.App.Views.Settings
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddressPage
     {
+        private string add_id = string.Empty;
         /// <summary>
         /// Initializes a new instance of the <see cref="MyAddressPage" /> class.
         /// </summary>
@@ -36,18 +40,25 @@ namespace PasaBuy.App.Views.Settings
             Navigation.PushModalAsync(new AddAddressPage());
         }
 
-        private async void DeleteButton_Clicked(object sender, EventArgs e)
+        private async void myAddress_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
-            bool answer = await DisplayAlert("Delete Address", "Are you sure you want to delete this?", "Yes", "No");
-            if (answer == true)
+            bool answer = await DisplayAlert("Delete Address?", "Are you sure to delete this?", "Yes", "No");
+            if (answer)
             {
                 try
                 {
-                    //new Alert("Yes", "Deleted successfully!", "OK");
-                    /*DataVice.Address.Instance.Delete("1", "GNAyLSwWVKkeemhktBSqa9UjGlLXxzUEOdfoCojYJAD", "11", "", (bool success, string message) =>
+                    var item = e.ItemData as Address;
+                    DataVice.Address.Instance.Delete(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, item.SelectedAddress, (bool success, string data) =>
                     {
-                        Console.WriteLine(message);
-                    });*/
+                        if (success)
+                        {
+                            AddressViewModel.RefreshData();
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        }
+                    });
                 }
                 catch (Exception ex)
                 {
@@ -55,6 +66,8 @@ namespace PasaBuy.App.Views.Settings
                     Console.WriteLine("Error: " + ex);
                 }
             }
+
         }
     }
-}
+
+ }

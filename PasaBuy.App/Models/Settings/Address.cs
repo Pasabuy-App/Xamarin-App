@@ -12,6 +12,7 @@ namespace PasaBuy.App.Models.Settings
         /// <summary>
         /// Gets or sets user name.
         /// </summary>
+        public string SelectedAddress { get; set; }
         public string Name { get; set; }
 
         /// <summary>
