@@ -17,6 +17,7 @@ namespace PasaBuy.App.Views.Settings
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddressPage
     {
+        private string add_id = string.Empty;
         /// <summary>
         /// Initializes a new instance of the <see cref="MyAddressPage" /> class.
         /// </summary>
@@ -41,18 +42,32 @@ namespace PasaBuy.App.Views.Settings
 
         private async void myAddress_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
-            string addressid = string.Empty;
-            var item = e.ItemData as Address;
-            addressid = item.SelectedAddress;
             bool answer = await DisplayAlert("Delete Address?", "Are you sure to delete this?", "Yes", "No");
             if (answer)
             {
-                DataVice.Address.Instance.Delete(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, addressid, (bool success, string data) =>
+                try
                 {
-
-                });
+                    var item = e.ItemData as Address;
+                    DataVice.Address.Instance.Delete(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, item.SelectedAddress, (bool success, string data) =>
+                    {
+                        if (success)
+                        {
+                            AddressViewModel.RefreshData();
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        }
+                    });
+                }
+                catch (Exception ex)
+                {
+                    new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                    Console.WriteLine("Error: " + ex);
+                }
             }
-        }
 
+        }
     }
-}
+
+ }

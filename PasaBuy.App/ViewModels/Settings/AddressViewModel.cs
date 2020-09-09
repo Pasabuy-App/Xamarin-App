@@ -116,6 +116,7 @@ namespace PasaBuy.App.ViewModels.Settings
                                 if (types == "business") { type = "Business"; }
                                 addressDetails.Add(new Address
                                 {
+                                    SelectedAddress = id,
                                     Name = "Juan Dela Cruz",
                                     AddressType = type,
                                     Location = street + " " + brgy + ", " + city + " " + province + ", " + country,
