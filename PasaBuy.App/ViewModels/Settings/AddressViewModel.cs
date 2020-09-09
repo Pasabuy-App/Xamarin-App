@@ -18,6 +18,7 @@ namespace PasaBuy.App.ViewModels.Settings
     [Preserve(AllMembers = true)]
     public class AddressViewModel : BaseViewModel
     {
+        public static string addressID = string.Empty;
         #region Properties
         public static ObservableCollection<Address> addressDetails;
         public ObservableCollection<Address> AddressDetails { get { return addressDetails; } set { addressDetails = value; this.NotifyPropertyChanged(); } }
@@ -58,13 +59,14 @@ namespace PasaBuy.App.ViewModels.Settings
                                 if (types == "home") { type = "Home"; }
                                 if (types == "office") { type = "Office"; }
                                 if (types == "business") { type = "Business"; }
-                                addressDetails.Add(new Address
+                                addressDetails.Add(new Address()
                                 {
+                                    SelectedAddress = id,
                                     Name = "Juan Dela Cruz",
                                     AddressType = type,
                                     Location = street + " " + brgy + " " + city + " " + province + ", " + country,
                                     ContactNumber = "(123) 456-7890"
-                                });
+                                }); ;
                             }
                         }
                         catch (Exception ex)
@@ -158,7 +160,7 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void DeleteButtonClicked(object obj)
         {
-            //var answer = new ConfirmAlert("Delete Address", "Are you sure you want to delete this address", "Ok", "Cancel");
+            //SelectedAddressvar answer = new ConfirmAlert("Delete Address", "Are you sure you want to delete this address", "Ok", "Cancel");
         }
 
         /// <summary>
