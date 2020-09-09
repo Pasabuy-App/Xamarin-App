@@ -47,7 +47,7 @@
                 </ScrollView.VerticalOptions>
 
                 <StackLayout
-                Margin="{core:OnPlatformOrientationThickness PhonePortrait='24,32',
+                Margin="{core:OnPlatformOrientationThickness PhonePortrait='24,62',
                                                              PhoneLandscape='150,32',
                                                              TabletPortrait='200,50',
                                                              TabletLandscape='350,50',

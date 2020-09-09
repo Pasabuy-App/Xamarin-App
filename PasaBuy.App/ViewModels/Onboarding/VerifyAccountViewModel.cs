@@ -22,7 +22,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
 
         private string un;
 
-        //private Boolean _state = false;
+        private Boolean _state = false;
 
         #endregion
 
@@ -87,7 +87,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <summary>
         /// Gets or sets the property that is bound with stacklayout that gets the visibility state from user in the Verify Account page.
         /// </summary>
-        /*public Boolean State
+        public Boolean State
         {
             get
             {
@@ -98,7 +98,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
                 _state = value;
                 this.NotifyPropertyChanged();
             }
-        }*/
+        }
 
         #endregion
 
