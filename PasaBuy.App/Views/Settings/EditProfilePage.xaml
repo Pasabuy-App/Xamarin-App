@@ -63,8 +63,26 @@
                 </Grid.ColumnDefinitions>
 
 
-                <Button Grid.ColumnSpan="1" HorizontalOptions="Start"  Grid.Column="0" BorderColor="Transparent"  BackgroundColor="Transparent" BorderWidth="0" Text="Profile Image"></Button>
-                <Button Grid.ColumnSpan="1" HorizontalOptions="End" Grid.Column="1" CornerRadius="15" BorderColor="{DynamicResource Gray-200}"  BackgroundColor="{DynamicResource Gray-100}" BorderWidth="0" Text="Save"></Button>
+                <Button Grid.ColumnSpan="1" 
+                        HorizontalOptions="Start"  
+                        Grid.Column="0" 
+                        BorderColor="Transparent"  
+                        BackgroundColor="Transparent" 
+                        BorderWidth="0" 
+                        Text="Profile Image">
+                    
+                </Button>
+                <Button Grid.ColumnSpan="1" 
+                        HorizontalOptions="End" 
+                        Grid.Column="1" 
+                        CornerRadius="15"
+                        BorderColor="{DynamicResource Gray-200}"  
+                        BackgroundColor="{DynamicResource Gray-100}" 
+                        BorderWidth="0" 
+                        Clicked="SaveAvatar"
+                        Text="Save">
+                    
+                </Button>
 
                 <border:SfBorder Grid.Row="1"
                                              Grid.RowSpan="1"
@@ -99,8 +117,24 @@
                 <!-- Seperator -->
                 <BoxView Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource SeparatorStyle}"/>
 
-                <Button Grid.Row="3" Grid.ColumnSpan="1" HorizontalOptions="Start"  Grid.Column="0" BorderColor="Transparent"  BackgroundColor="Transparent" BorderWidth="1" Text="Banner Image"></Button>
-                <Button Grid.Row="3" Grid.ColumnSpan="1" HorizontalOptions="End" CornerRadius="15" Grid.Column="1" BorderColor="{DynamicResource Gray-200}"  BackgroundColor="{DynamicResource Gray-100}" BorderWidth="1" Text="Save"></Button>
+                <Button Grid.Row="3" 
+                        Grid.ColumnSpan="1" 
+                        HorizontalOptions="Start" 
+                        Grid.Column="0" 
+                        BorderColor="Transparent"  
+                        BackgroundColor="Transparent" 
+                        BorderWidth="1" 
+                        Text="Banner Image"></Button>
+                <Button Grid.Row="3" 
+                        Grid.ColumnSpan="1" 
+                        HorizontalOptions="End" 
+                        CornerRadius="15"
+                        Grid.Column="1"
+                        BorderColor="{DynamicResource Gray-200}"  
+                        BackgroundColor="{DynamicResource Gray-100}" 
+                        BorderWidth="1" 
+                        Clicked="SaveBanner"
+                        Text="Save"></Button>
    
                 <border:SfBorder Grid.Row="4"
                                  Grid.RowSpan="1"
@@ -130,15 +164,37 @@
                 
                 <BoxView Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource SeparatorStyle}"/>
 
-                <Button Grid.Row="6" Grid.ColumnSpan="1" HorizontalOptions="Start"  Grid.Column="0" BorderColor="Transparent"  BackgroundColor="Transparent" BorderWidth="0" Text="Personal Info "></Button>
-                <Button Grid.Row="6" Grid.ColumnSpan="1" HorizontalOptions="End" CornerRadius="15" Grid.Column="1" BorderColor="{DynamicResource Gray-200}"  BackgroundColor="{DynamicResource Gray-100}" BorderWidth="1" Text="Save"></Button>
+                <Button Grid.Row="6"
+                        Grid.ColumnSpan="1" 
+                        HorizontalOptions="Start" 
+                        Grid.Column="0" 
+                        BorderColor="Transparent" 
+                        BackgroundColor="Transparent" 
+                        BorderWidth="0" 
+                        Text="Personal Info "></Button>
+                <Button Grid.Row="6" 
+                        Grid.ColumnSpan="1"
+                        HorizontalOptions="End"
+                        CornerRadius="15" 
+                        Grid.Column="1" 
+                        BorderColor="{DynamicResource Gray-200}"  
+                        BackgroundColor="{DynamicResource Gray-100}" 
+                        BorderWidth="1" 
+                        Clicked="SaveProfileData"
+                        Text="Save"></Button>
 
                 <border:SfBorder
                             Grid.Row="7"
                              Grid.ColumnSpan="2"
                             Padding="15,0,0,0"
                             Style="{StaticResource FormBorderStyle}">
-                    <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" TextColor="Black" Placeholder="First Name" x:Name="Fname" Text="{Binding Fname}" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
+                    <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" 
+                                              TextColor="Black" 
+                                              Placeholder="First Name" 
+                                              x:Name="Fname" 
+                                              Text="{Binding Fname}"
+                                              HeightRequest="40" 
+                                              Style="{StaticResource EntryTextStyle}" />
                 </border:SfBorder>
 
                 <border:SfBorder
@@ -146,7 +202,13 @@
                              Grid.ColumnSpan="2"
                             Padding="15,0,0,0"
                             Style="{StaticResource FormBorderStyle}">
-                    <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" TextColor="Black" Placeholder="Last Name" x:Name="Lname" Text="{Binding Lname}" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
+                    <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" 
+                                              TextColor="Black"
+                                              Placeholder="Last Name" 
+                                              x:Name="Lname" 
+                                              Text="{Binding Lname}" 
+                                              HeightRequest="40"  
+                                              Style="{StaticResource EntryTextStyle}" />
                 </border:SfBorder>
 
                 <border:SfBorder
@@ -154,7 +216,13 @@
                              Grid.ColumnSpan="2"
                             Padding="15,0,0,0"
                             Style="{StaticResource FormBorderStyle}">
-                    <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" TextColor="Black" Placeholder="Display Name" x:Name="Nname" Text="{Binding Nname}" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
+                    <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" 
+                                              TextColor="Black" 
+                                              Placeholder="Display Name" 
+                                              x:Name="Nname" 
+                                              Text="{Binding Nname}" 
+                                              HeightRequest="40"  
+                                              Style="{StaticResource EntryTextStyle}" />
                 </border:SfBorder>
 
 
