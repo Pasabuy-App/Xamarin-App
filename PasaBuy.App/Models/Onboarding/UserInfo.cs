@@ -60,7 +60,7 @@ namespace PasaBuy.App.Models.Onboarding
                         }
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     new Alert("Something went Wrong", "Please contact administrator.", "OK");
                 }
@@ -82,7 +82,7 @@ namespace PasaBuy.App.Models.Onboarding
                         }
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     new Alert("Something went Wrong", "Please contact administrator.", "OK");
                 }

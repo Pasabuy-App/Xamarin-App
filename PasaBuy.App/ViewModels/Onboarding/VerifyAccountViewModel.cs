@@ -144,6 +144,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
             catch (Exception ex)
             {
                 new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                Console.WriteLine("Error: " + ex);
             }
         }
 

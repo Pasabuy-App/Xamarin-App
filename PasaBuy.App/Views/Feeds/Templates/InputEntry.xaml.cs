@@ -33,7 +33,7 @@ namespace PasaBuy.App.Views.Feeds.Templates
         {
             try
             {
-                SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "Title", PostEntry.Text, "status", "", "", "", "", "", "", "", "", (bool success, string data) =>
+                SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PostEntry.Text, "", "status", "", "", "", "", "", "", (bool success, string data) =>
                 {
                     if (success)
                     {
