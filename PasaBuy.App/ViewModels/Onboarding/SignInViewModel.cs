@@ -149,7 +149,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
 
                         try
                         {
-                            SocioPress.Profile.Instance.GetData(token.data.wpid, token.data.snky, "", (bool success2, string data2) =>
+                            SocioPress.Profile.Instance.GetData(token.data.wpid, token.data.snky, token.data.wpid, (bool success2, string data2) =>
                             {
                                 if (success2)
                                 {
