@@ -47,6 +47,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -119,8 +120,22 @@
                             Style="{StaticResource EntryTextBoxStyle}" />
                 </border:SfBorder>
 
+                <border:SfBorder Grid.Row="3"  Grid.ColumnSpan="3"
+                                 HeightRequest="75"
+                                 Padding="0, 0, 0, 0"
+                                 Style="{StaticResource SfBorderStyle}">
+                    <controls:BorderlessEntry
+                            x:Name="ItemDescription"
+                            FontSize="16"
+                            Placeholder="Item Description"
+                            VerticalTextAlignment="Start"
+                            PlaceholderColor="{DynamicResource Gray-700}"
+                            Text="{Binding ItemDescription}"
+                            Style="{StaticResource EntryTextBoxStyle}" />
+                </border:SfBorder>
+
                 <border:SfBorder
-                    Grid.Row="3"
+                    Grid.Row="4"
                     Grid.ColumnSpan="3"
                         Style="{StaticResource SfBorderStyle}">
                     <combobox:SfComboBox
@@ -151,7 +166,7 @@
                     </combobox:SfComboBox>
                 </border:SfBorder>
 
-                <border:SfBorder Grid.Row="4"  Grid.ColumnSpan="3"
+                <border:SfBorder Grid.Row="5"  Grid.ColumnSpan="3"
                                  HeightRequest="40"
                                  Padding="0, 0, 0, 0"
                                  Style="{StaticResource SfBorderStyle}">
@@ -164,7 +179,7 @@
                             Style="{StaticResource EntryTextBoxStyle}" />
                 </border:SfBorder>
 
-                <border:SfBorder Grid.Row="5"  Grid.ColumnSpan="3"
+                <border:SfBorder Grid.Row="6"  Grid.ColumnSpan="3"
                                  HeightRequest="40"
                                  Padding="0, 0, 0, 0"
                                  Style="{StaticResource SfBorderStyle}">
@@ -179,7 +194,7 @@
 
                 <!--  Submit button  -->
                 <buttons:SfButton
-                            Grid.Row="6"
+                            Grid.Row="7"
                             Grid.ColumnSpan="3"
                             Margin="0, 20, 0, 20"
                             Clicked="SubmitPostButton"

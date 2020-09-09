@@ -38,7 +38,7 @@ namespace PasaBuy.App.Views.Posts
         {
             try
             {
-                SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, ItemName.Text, "item description", "move", filePath, "", "", PickUpLocation.Text, DropOffLocation.Text, VehicleType.Text, (bool success, string data) =>
+                SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, ItemName.Text, ItemDescription.Text, "move", filePath, "", "", PickUpLocation.Text, DropOffLocation.Text, VehicleType.Text, (bool success, string data) =>
                 {
                     if (success)
                     {
