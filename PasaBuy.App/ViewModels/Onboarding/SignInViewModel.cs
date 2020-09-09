@@ -132,63 +132,87 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void LoginClicked(object obj)
         {
-            State = true;
-            Users.Instance.Auth(Email, Password, (bool success, string data) =>
+            try
             {
-                if (success)
+                State = true;
+                Users.Instance.Auth(Email, Password, (bool success, string data) =>
                 {
-                    Token token = JsonConvert.DeserializeObject<Token>(data);
-
-                    if (!token.isSuccess)
+                    if (success)
                     {
-                        new Alert("Something went Wrong", HtmlUtils.ConvertToPlainText(token.message), "OK");
-                        return;
-                    }
+                        Token token = JsonConvert.DeserializeObject<Token>(data);
 
-                    SocioPress.Profile.Instance.GetData(token.data.wpid, token.data.snky, (bool success2, string data2) =>
-                    {
-                        if (success2)
+                        if (!token.isSuccess)
                         {
-                            UserInfo uinfo = JsonConvert.DeserializeObject<UserInfo>(data2);
-
-                            if (uinfo.status == "success")
-                            {
-                                PSACache.Instance.UserInfo.dname = uinfo.data.dname;
-                                PSACache.Instance.UserInfo.uname = uinfo.data.uname;
-                                PSACache.Instance.UserInfo.email = uinfo.data.email;
-                                PSACache.Instance.UserInfo.lname = uinfo.data.lname;
-                                PSACache.Instance.UserInfo.fname = uinfo.data.fname;
-                                PSACache.Instance.UserInfo.city = uinfo.data.city;
-                                PSACache.Instance.UserInfo.date_registered = uinfo.data.date_registered;
-                                PSACache.Instance.UserInfo.avatar = uinfo.data.avatar;
-                                PSACache.Instance.UserInfo.banner = uinfo.data.banner;
-
-                                ProfileGetData.CountPost(token.data.wpid, token.data.snky);
-                                PSACache.Instance.UserInfo.wpid = token.data.wpid;
-                                PSACache.Instance.UserInfo.snky = token.data.snky;
-
-                                State = false;
-                                Application.Current.MainPage = new Views.MainTabs();
-                            }
-                            else
-                            {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data2), "Try Again");
-                                State = false;
-                            }
+                            new Alert("Something went Wrong", HtmlUtils.ConvertToPlainText(token.message), "OK");
+                            return;
                         }
-                        else
+
+                        try
                         {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            SocioPress.Profile.Instance.GetData(token.data.wpid, token.data.snky, (bool success2, string data2) =>
+                            {
+                                if (success2)
+                                {
+                                    UserInfo uinfo = JsonConvert.DeserializeObject<UserInfo>(data2);
+
+                                    if (uinfo.status == "success")
+                                    {
+                                        try
+                                        {
+                                            PSACache.Instance.UserInfo.dname = uinfo.data.dname;
+                                            PSACache.Instance.UserInfo.uname = uinfo.data.uname;
+                                            PSACache.Instance.UserInfo.email = uinfo.data.email;
+                                            PSACache.Instance.UserInfo.lname = uinfo.data.lname;
+                                            PSACache.Instance.UserInfo.fname = uinfo.data.fname;
+                                            PSACache.Instance.UserInfo.city = uinfo.data.city;
+                                            PSACache.Instance.UserInfo.date_registered = uinfo.data.date_registered;
+                                            PSACache.Instance.UserInfo.avatar = uinfo.data.avatar;
+                                            PSACache.Instance.UserInfo.banner = uinfo.data.banner;
+                                            PSACache.Instance.UserInfo.verify = uinfo.data.verify;
+
+                                            ProfileGetData.CountPost(token.data.wpid, token.data.snky);
+                                            PSACache.Instance.UserInfo.wpid = token.data.wpid;
+                                            PSACache.Instance.UserInfo.snky = token.data.snky;
+
+                                            State = false;
+                                            Application.Current.MainPage = new Views.MainTabs();
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                                            State = false;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data2), "Try Again");
+                                        State = false;
+                                    }
+                                }
+                                else
+                                {
+                                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                    State = false;
+                                }
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            new Alert("Something went Wrong", "Please contact administrator.", "OK");
                             State = false;
                         }
-                    });
-                }
-                else
-                {
-                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    State = false;
-                }
-            });
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        State = false;
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                new Alert("Something went Wrong", "Please contact administrator.", "OK");
+            }
         }
 
         /// <summary>

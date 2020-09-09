@@ -29,109 +29,149 @@ namespace PasaBuy.App.ViewModels.Feeds
         {
             homePostList = new ObservableCollection<Post>();
             Random rnd = new Random();
-
-            SocioPress.Feeds.Instance.Home(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", (bool success, string data) =>
+            try
             {
-                if (success)
+                SocioPress.Feeds.Instance.Home(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", (bool success, string data) =>
                 {
-                    PostListData post = JsonConvert.DeserializeObject<PostListData>(data);
-                    for (int i = 0; i < post.data.Length; i++)
+                    if (success)
                     {
-                        //string id = post.data[i].id;
-                        string name = post.data[i].name;
-                        string type = post.data[i].type;
-                        string date_post = post.data[i].date_post;
-                        string title = post.data[i].title;
-                        string content = post.data[i].content;
-                        string views = post.data[i].views;
-                        string status = post.data[i].status;
-                        string item_name = post.data[i].item_name;
-                        string pickup_location = post.data[i].pickup_location;
-                        string vehicle_type = post.data[i].vehicle_type;
-                        string drop_off_location = post.data[i].drop_off_location;
-                        string author = post.data[i].author;
-                        string item_image = post.data[i].item_image;
-
-                        string image = string.Empty;
-                        string image_item = string.Empty;
-                        if (author.Substring(0, PSAConfig.baseRestUrl.Length) != PSAConfig.baseRestUrl)
+                        try
                         {
-                            image = PSAConfig.baseRestUrl + author.Substring(PSAConfig.baseRestUrl.Length + 1);
-                            if (item_image != "")
+                            PostListData post = JsonConvert.DeserializeObject<PostListData>(data);
+                            for (int i = 0; i < post.data.Length; i++)
                             {
-                                image_item = PSAConfig.baseRestUrl + item_image.Substring(PSAConfig.baseRestUrl.Length + 1);
+                                string id = post.data[i].id;
+                                string name = post.data[i].name;
+                                string type = post.data[i].type;
+                                string date_post = post.data[i].date_post;
+                                string title = post.data[i].title;
+                                string content = post.data[i].content;
+                                string views = post.data[i].views;
+                                string status = post.data[i].status;
+                                string item_name = post.data[i].item_name;
+                                string pickup_location = post.data[i].pickup_location;
+                                string vehicle_type = post.data[i].vehicle_type;
+                                string drop_off_location = post.data[i].drop_off_location;
+                                string author = post.data[i].author;
+                                string item_image = post.data[i].item_image;
+
+                                string image = string.Empty;
+                                string image_item = string.Empty;
+                                if (author != "")
+                                {
+                                    if (author.Substring(0, PSAConfig.baseRestUrl.Length) != PSAConfig.baseRestUrl)
+                                    {
+                                        image = PSAConfig.baseRestUrl + author.Substring(PSAConfig.baseRestUrl.Length + 1);
+                                    }
+                                    else
+                                    {
+                                        image = author;
+                                    }
+                                }
+
+                                if (item_image != "")
+                                {
+                                    if (item_image.Substring(0, PSAConfig.baseRestUrl.Length) != PSAConfig.baseRestUrl)
+                                    {
+                                        image_item = PSAConfig.baseRestUrl + item_image.Substring(PSAConfig.baseRestUrl.Length + 1);
+                                    }
+                                    else
+                                    {
+                                        image_item = item_image;
+                                    }
+                                }
+
+                                homePostList.Add(new Post(image,
+                                    name, type, date_post, views, title, content, image_item));
                             }
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            image = author;
-                            if (item_image != "") { image_item = item_image; }
+                            new Alert("Something went Wrong", "Please contact administrator.", "OK");
                         }
-
-                        homePostList.Add(new Post(image, 
-                            name, type, date_post, views, title, content, image_item));
                     }
-                }
-                else
-                {
-                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
 
-                }
-            });
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                new Alert("Something went Wrong", "Please contact administrator.", "OK");
+            }
         }
         public static void RefreshList()
         {
-            Random rnd = new Random();
-
             homePostList.Clear();
-            SocioPress.Feeds.Instance.Home(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", (bool success, string data) =>
+            Random rnd = new Random();
+            try
             {
-                if (success)
+                SocioPress.Feeds.Instance.Home(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", (bool success, string data) =>
                 {
-                    PostListData post = JsonConvert.DeserializeObject<PostListData>(data);
-                    for (int i = 0; i < post.data.Length; i++)
+                    if (success)
                     {
-                        //string id = post.data[i].id;
-                        string name = post.data[i].name;
-                        string type = post.data[i].type;
-                        string date_post = post.data[i].date_post;
-                        string title = post.data[i].title;
-                        string content = post.data[i].content;
-                        string views = post.data[i].views;
-                        string status = post.data[i].status;
-                        string item_name = post.data[i].item_name;
-                        string pickup_location = post.data[i].pickup_location;
-                        string vehicle_type = post.data[i].vehicle_type;
-                        string drop_off_location = post.data[i].drop_off_location;
-                        string author = post.data[i].author;
-                        string item_image = post.data[i].item_image;
-
-                        string image = string.Empty;
-                        string image_item = string.Empty;
-                        if (author.Substring(0, PSAConfig.baseRestUrl.Length) != PSAConfig.baseRestUrl)
+                        try
                         {
-                            image = PSAConfig.baseRestUrl + author.Substring(PSAConfig.baseRestUrl.Length + 1);
-                            if (item_image != "")
+                            PostListData post = JsonConvert.DeserializeObject<PostListData>(data);
+                            for (int i = 0; i < post.data.Length; i++)
                             {
-                                image_item = PSAConfig.baseRestUrl + item_image.Substring(PSAConfig.baseRestUrl.Length + 1);
+                                //string id = post.data[i].id;
+                                string name = post.data[i].name;
+                                string type = post.data[i].type;
+                                string date_post = post.data[i].date_post;
+                                string title = post.data[i].title;
+                                string content = post.data[i].content;
+                                string views = post.data[i].views;
+                                string status = post.data[i].status;
+                                string item_name = post.data[i].item_name;
+                                string pickup_location = post.data[i].pickup_location;
+                                string vehicle_type = post.data[i].vehicle_type;
+                                string drop_off_location = post.data[i].drop_off_location;
+                                string author = post.data[i].author;
+                                string item_image = post.data[i].item_image;
+
+                                string image = string.Empty;
+                                string image_item = string.Empty;
+                                if (author != "")
+                                {
+                                    if (author.Substring(0, PSAConfig.baseRestUrl.Length) != PSAConfig.baseRestUrl)
+                                    {
+                                        image = PSAConfig.baseRestUrl + author.Substring(PSAConfig.baseRestUrl.Length + 1);
+                                    }
+                                    else { image = author; }
+                                }
+
+                                if (item_image != "")
+                                {
+                                    if (item_image.Substring(0, PSAConfig.baseRestUrl.Length) != PSAConfig.baseRestUrl)
+                                    {
+                                        image_item = PSAConfig.baseRestUrl + item_image.Substring(PSAConfig.baseRestUrl.Length + 1);
+                                    }
+                                    else { image_item = item_image; }
+                                }
+
+                                homePostList.Add(new Post(image,
+                                    name, type, date_post, views, title, content, image_item)); //"https://cdn.syncfusion.com/essential-ui-kit-for-xamarin.forms/common/uikitimages/ArticleImage2.png"
                             }
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            image = author;
-                            if (item_image != "") { image_item = item_image; }
+                            new Alert("Something went Wrong", "Please contact administrator.", "OK");
                         }
-
-                        homePostList.Add(new Post(image, 
-                            name, type, date_post, views, title, content, image_item)); //"https://cdn.syncfusion.com/essential-ui-kit-for-xamarin.forms/common/uikitimages/ArticleImage2.png"
                     }
-                }
-                else
-                {
-                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
 
-                }
-            });
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                new Alert("Something went Wrong", "Please contact administrator.", "OK");
+            }
         }
 
         public string Placeholder

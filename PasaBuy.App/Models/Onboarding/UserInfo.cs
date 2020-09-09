@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using Syncfusion.XForms.ProgressBar;
 using System;
@@ -48,13 +49,20 @@ namespace PasaBuy.App.Models.Onboarding
         {
             get
             {
-                //return PSAConfig.baseRestUrl + avatar;
-                if (avatar != "")
+                try
                 {
-                    if (PSAConfig.baseRestUrl != avatar.Substring(0, PSAConfig.baseRestUrl.Length))
+                    //return PSAConfig.baseRestUrl + avatar;
+                    if (avatar != "")
                     {
-                        return PSAConfig.baseRestUrl + avatar.Substring(PSAConfig.baseRestUrl.Length + 1);
+                        if (PSAConfig.baseRestUrl != avatar.Substring(0, PSAConfig.baseRestUrl.Length))
+                        {
+                            return PSAConfig.baseRestUrl + avatar.Substring(PSAConfig.baseRestUrl.Length + 1);
+                        }
                     }
+                }
+                catch (Exception ex)
+                {
+                    new Alert("Something went Wrong", "Please contact administrator.", "OK");
                 }
                 return avatar;
             }
@@ -63,13 +71,20 @@ namespace PasaBuy.App.Models.Onboarding
         {
             get
             {
-                //return PSAConfig.baseRestUrl + banner;
-                if (banner != "")
+                try
                 {
-                    if (PSAConfig.baseRestUrl != banner.Substring(0, PSAConfig.baseRestUrl.Length))
+                    //return PSAConfig.baseRestUrl + banner;
+                    if (banner != "")
                     {
-                        return PSAConfig.baseRestUrl + banner.Substring(PSAConfig.baseRestUrl.Length + 1);
+                        if (PSAConfig.baseRestUrl != banner.Substring(0, PSAConfig.baseRestUrl.Length))
+                        {
+                            return PSAConfig.baseRestUrl + banner.Substring(PSAConfig.baseRestUrl.Length + 1);
+                        }
                     }
+                }
+                catch (Exception ex)
+                {
+                    new Alert("Something went Wrong", "Please contact administrator.", "OK");
                 }
                 return banner;
             }

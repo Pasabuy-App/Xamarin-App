@@ -24,6 +24,8 @@ namespace PasaBuy.App.ViewModels.Feeds
 
         private Boolean isreferred = false;
 
+        private Boolean iscity = false;
+
         #endregion
 
         #region Constructor
@@ -40,8 +42,11 @@ namespace PasaBuy.App.ViewModels.Feeds
             this.ProfileImage = PSACache.Instance.UserInfo.avatarUrl;
             this.DisplayName = PSACache.Instance.UserInfo.dname;
             this.Verification = PSACache.Instance.UserInfo.verify;
-
-            this.City = "(ic) Lives in " + PSACache.Instance.UserInfo.city;
+            if (PSACache.Instance.UserInfo.city != "")
+            {
+                isCity = true;
+                this.City = "(ic) Lives in " + PSACache.Instance.UserInfo.city;
+            }
             this.Joined = "(ic) Joined at " + date.ToString("MMMM yyyy");
             isRefered = false;
             this.Refered = "";// "(ic) Refered by " + UserPrefs.Instance.UserInfo.city;
@@ -160,6 +165,22 @@ namespace PasaBuy.App.ViewModels.Feeds
             set
             {
                 isreferred = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the property that is bound with label that gets the visibility of joined from user in the myprofile page.
+        /// </summary>
+        public Boolean isCity
+        {
+            get
+            {
+                return iscity;
+            }
+            set
+            {
+                iscity = value;
                 this.NotifyPropertyChanged();
             }
         }
