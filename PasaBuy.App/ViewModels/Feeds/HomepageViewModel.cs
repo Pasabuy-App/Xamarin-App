@@ -14,6 +14,7 @@ namespace PasaBuy.App.ViewModels.Feeds
 {
     public class HomepageViewModel : BaseViewModel
     {
+
         public static ObservableCollection<Post> homePostList;
 
         public ObservableCollection<Post> HomePosts
@@ -29,6 +30,7 @@ namespace PasaBuy.App.ViewModels.Feeds
         {
             homePostList = new ObservableCollection<Post>();
             Random rnd = new Random();
+
             try
             {
                 SocioPress.Feeds.Instance.Home(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", (bool success, string data) =>
@@ -117,7 +119,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                             PostListData post = JsonConvert.DeserializeObject<PostListData>(data);
                             for (int i = 0; i < post.data.Length; i++)
                             {
-                                //string id = post.data[i].id;
+                                string id = post.data[i].id;
                                 string name = post.data[i].name;
                                 string type = post.data[i].type;
                                 string date_post = post.data[i].date_post;
@@ -154,6 +156,7 @@ namespace PasaBuy.App.ViewModels.Feeds
 
                                 homePostList.Add(new Post(image,
                                     name, type, date_post, views, title, content, image_item)); //"https://cdn.syncfusion.com/essential-ui-kit-for-xamarin.forms/common/uikitimages/ArticleImage2.png"
+
                             }
                         }
                         catch (Exception ex)
