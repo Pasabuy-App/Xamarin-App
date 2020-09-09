@@ -39,6 +39,7 @@ namespace PasaBuy.App.Views.Feeds.Templates
                     {
                         ProfileGetData.CountPost(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky);
                         HomepageViewModel.RefreshList();
+                        MyProfileViewModel.RefreshList();
                         PostEntry.Text = string.Empty;
                     }
                     else
