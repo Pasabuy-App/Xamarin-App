@@ -42,12 +42,12 @@ namespace PasaBuy.App.Views.Settings
 
         private async void myAddress_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
-            var item = e.ItemData as Address;
             bool answer = await DisplayAlert("Delete Address?", "Are you sure to delete this?", "Yes", "No");
             if (answer)
             {
                 try
                 {
+                    var item = e.ItemData as Address;
                     DataVice.Address.Instance.Delete(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, item.SelectedAddress, (bool success, string data) =>
                     {
                         if (success)
