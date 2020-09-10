@@ -121,7 +121,6 @@ namespace PasaBuy.App.Views.Posts
 
         private void SfButton_Clicked(object sender, EventArgs e)
         {
-            //Console.WriteLine("image filepath ." + filePath + ". " + StatusEditor.Text); //-> image file path upload
             try
             {
                 SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, StatusEditor.Text, "", "status", filePath, "", "", "", "", "", (bool success, string data) =>
@@ -129,9 +128,9 @@ namespace PasaBuy.App.Views.Posts
                     if (success)
                     {
                         ProfileGetData.CountPost(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky);
-                        Navigation.PopModalAsync();
                         HomepageViewModel.RefreshList();
                         MyProfileViewModel.RefreshList();
+                        Navigation.PopModalAsync();
                     }
                     else
                     {

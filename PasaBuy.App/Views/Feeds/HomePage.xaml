@@ -136,7 +136,7 @@
                                           Grid.ColumnSpan="2">
                                         <StackLayout>
                                             <Label Text="{Binding Title}" Style="{StaticResource PostTitle}"/>
-                                            <Label Text="{Binding Description}" Style="{StaticResource PostDescription}"/>
+                                            <Label Text="{Binding Description}" Style="{StaticResource PostDescription}" IsVisible="{Binding isContent}"/>
                                         </StackLayout>
                                     </Grid>
 
