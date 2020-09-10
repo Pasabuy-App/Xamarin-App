@@ -29,6 +29,7 @@ namespace PasaBuy.App.ViewModels.Menu
     {
         #region Fields
 
+        public static string postbutton = string.Empty;
         public string profileName;
 
         private string profileImage;
@@ -193,6 +194,7 @@ namespace PasaBuy.App.ViewModels.Menu
         private void ProfileButtonClicked(object obj)
         {
             //HomepageViewModel.LoadData();
+            postbutton = "Profile";
             ProfileGetData.CountPost(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky);
             ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
         }

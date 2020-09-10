@@ -189,7 +189,7 @@ namespace PasaBuy.App.ViewModels.Settings
         {
             Application.Current.MainPage = new NavigationPage(new SignInPage());
 
-            Preferences.Remove("UserToken");
+            Preferences.Remove("UserInfo");
         }
 
         #endregion

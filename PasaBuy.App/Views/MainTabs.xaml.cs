@@ -21,6 +21,12 @@ namespace PasaBuy.App.Views
         private void TabView_TabItemTapped(object sender, Syncfusion.XForms.TabView.TabItemTappedEventArgs e)
         {
             //new Alert("TabViewItemTapped", e.TabItem.Title + " Item Tapped", "Ok");
+            if (e.TabItem.Title == "HOME")
+            {
+                PasaBuy.App.ViewModels.Feeds.HomepageViewModel.RefreshList();
+                PasaBuy.App.ViewModels.Menu.MasterMenuViewModel.postbutton = string.Empty;
+
+            }
         }
     }
 }

@@ -108,7 +108,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                             string id = post.data[i].id;
                             string content = post.data[i].content;
                             string title = post.data[i].title;
-                            string date_post = post.data[i].date_post;
+                            string date_post = post.data[i].date_post == string.Empty ? new DateTime().ToString() : post.data[i].date_post;
                             string type = post.data[i].type;
                             string item_image = post.data[i].item_image;
                             string author = post.data[i].author;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PasaBuy.App.ViewModels.Feeds;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
@@ -25,6 +26,8 @@ namespace PasaBuy.App.Views.Feeds
         /// </summary>
         public void BackButtonClicked(object sender, EventArgs e)
         {
+            PasaBuy.App.ViewModels.Menu.MasterMenuViewModel.postbutton = string.Empty;
+            HomepageViewModel.RefreshList();
             Navigation.PopModalAsync();
         }
     }

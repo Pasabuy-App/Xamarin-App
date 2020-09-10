@@ -49,8 +49,8 @@
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <!--<Grid Grid.Row="0"  Grid.ColumnSpan="3" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="200">-->
-                <aspectratio:AspecRatioContainer Grid.Row="0"  Grid.ColumnSpan="3" AspectRatio="1">
+                <Grid Grid.Row="0"  Grid.ColumnSpan="3" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="200">
+                <!--<aspectratio:AspecRatioContainer Grid.Row="0"  Grid.ColumnSpan="3" AspectRatio="1">-->
                     <Image
                         BackgroundColor="{DynamicResource Gray-400}"
                         x:Name="StatusImage"
@@ -68,9 +68,9 @@
                                 NumberOfTapsRequired="1" />
                         </Image.GestureRecognizers>
                     </Image>
-                </aspectratio:AspecRatioContainer>
+                <!--</aspectratio:AspecRatioContainer>-->
                     
-                <!--</Grid>-->
+                </Grid>
 
                 <!--  Submit button  -->
                 <buttons:SfButton

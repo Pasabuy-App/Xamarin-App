@@ -43,9 +43,15 @@ namespace PasaBuy.App.Views.Posts
                     if (success)
                     {
                         ProfileGetData.CountPost(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky);
+                        if (PasaBuy.App.ViewModels.Menu.MasterMenuViewModel.postbutton == string.Empty)
+                        {
+                            HomepageViewModel.RefreshList();
+                        }
+                        else
+                        {
+                            MyProfileViewModel.RefreshList();
+                        }
                         Navigation.PopModalAsync();
-                        HomepageViewModel.RefreshList();
-                        MyProfileViewModel.RefreshList();
                     }
                     else
                     {
