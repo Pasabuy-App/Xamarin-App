@@ -163,8 +163,8 @@ namespace PasaBuy.App.ViewModels.Onboarding
                             {
                                 UserInfo uinfo = JsonConvert.DeserializeObject<UserInfo>(data2);
 
-                                Debug.WriteLine("Demoguy1: " + data2);
-                                Debug.WriteLine("Demoguy2: " + JsonConvert.SerializeObject(uinfo));
+                                /*Debug.WriteLine("Demoguy1: " + data2);
+                                Debug.WriteLine("Demoguy2: " + JsonConvert.SerializeObject(uinfo));*/
 
                                 if (uinfo.Succeed)
                                 {

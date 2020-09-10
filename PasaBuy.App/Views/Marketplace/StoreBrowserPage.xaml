@@ -112,7 +112,7 @@
                     AutoFitMode="Height"
                     IsScrollBarVisible="false"
                     ItemSpacing="0"
-                    ItemsSource="{Binding NavigationList}"
+                    ItemsSource="{Binding Storelist}"
                     SelectionBackgroundColor="Transparent"
                     TapCommand="{Binding ItemTappedCommand}"
                     VerticalOptions="FillAndExpand"
@@ -140,7 +140,7 @@
                                                     <UriImageSource
                                                              CacheValidity="14"
                                                              CachingEnabled="true"
-                                                             Uri="{Binding ItemImage}"/>
+                                                             Uri="{Binding Logo}"/>
                                                 </Image.Source>
                                             </Image>
                                         </border:SfBorder>
@@ -157,7 +157,7 @@
                                                     FontSize="16" 
                                                     LineHeight="{OnPlatform Android=1.5,
                                                                              Default=-1}"
-                                                    Text="{Binding Name}"
+                                                    Text="{Binding Title}"
                                                     TextColor="{DynamicResource Gray-800}" />
 
                                                 <!--  Description about the item  -->

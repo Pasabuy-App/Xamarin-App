@@ -1,64 +1,165 @@
 ﻿using PasaBuy.App.Local;
 using System.Runtime.Serialization;
 using Xamarin.Forms.Internals;
+using System.ComponentModel;
+using PasaBuy.App.Controllers;
+
 
 namespace PasaBuy.App.Models.Marketplace
 {
-    /// <summary>
-    /// Model for the Restaurant page.
-    /// </summary>
-    [Preserve(AllMembers = true)]
-    [DataContract]
-    public class Store
+
+    public class Store 
     {
         #region Field
 
-        private string itemImage;
+        private string id = string.Empty;
+        private string catid = string.Empty;
+        private string add_id = string.Empty;
+        private string comm = string.Empty;
+        private string cat_name = string.Empty;
+        private string title = string.Empty;         // store name
+        private string short_info = string.Empty;
+        private string long_info = string.Empty;
+        private string avatar = string.Empty;
+        private string banner = string.Empty;
+        private string status = string.Empty;
+        private string street = string.Empty;
+        private string brgy = string.Empty;
+        private string city = string.Empty;
+        private string province = string.Empty;
+        private string country = string.Empty;
+        private string lat = string.Empty;
+        private string longs = string.Empty;
+        private string phone = string.Empty;
+        private string email = string.Empty;
+        private string offer = string.Empty;
+        private string itemRating = string.Empty;
+
 
         #endregion
 
         #region Properties
 
-        /// <summary>
-        /// Gets or sets the image of an item.
-        /// </summary>
-        [DataMember(Name = "itemImage")]
-        public string ItemImage
+        public string Title 
         {
             get
             {
-                return PSAConfig.sfRootUrl + this.itemImage;
+                return title;
             }
-
             set
             {
-                this.itemImage = value;
+                this.title = value;
+            } 
+        }
+
+     
+        public string Description 
+        {
+            get
+            {
+                return short_info;
+            }
+            set
+            {
+                this.short_info = value;
+            } 
+        }
+
+        public string Logo
+        {
+            get
+            {
+                return avatar;
+            }
+            set
+            {
+                this.avatar = value;
             }
         }
 
-        /// <summary>
-        /// Gets or sets the name of an Restaurant.
-        /// </summary>
-        [DataMember(Name = "name")]
-        public string Name { get; set; }
+        public string City
+        {
+            get
+            {
+                return city;
+            }
+            set
+            {
+                this.city = value;
+            }
+        }
 
-        /// <summary>
-        /// Gets or sets the description of food varieties.
-        /// </summary>
-        [DataMember(Name = "description")]
-        public string Description { get; set; }
+        public string Barangay
+        {
+            get
+            {
+                return brgy;
+            }
+            set
+            {
+                this.brgy = value;
+            }
+        }
 
-        /// <summary>
-        /// Gets or sets the Offer of a Restaurant.
-        /// </summary>
-        [DataMember(Name = "offer")]
-        public string Offer { get; set; }
+        public string Province
+        {
+            get
+            {
+                return province;
+            }
+            set
+            {
+                this.province = value;
+            }
+        }
 
-        /// <summary>
-        /// Gets or sets the average rating of an Restaurant.
-        /// </summary>
-        [DataMember(Name = "itemRating")]
-        public string ItemRating { get; set; }
+        public string Street
+        {
+            get
+            {
+                return street;
+            }
+            set
+            {
+                this.street = value;
+            }
+        }
+
+        public string Country
+        {
+            get
+            {
+                return country;
+            }
+            set
+            {
+                this.country = value;
+            }
+        }
+
+
+        public string Offer 
+        {
+            get
+            {
+                return offer;
+            }
+            set
+            {
+                this.offer = value;
+            }
+        }
+        public string ItemRating 
+        {
+            get
+            {
+                return itemRating;
+            }
+            set
+            {
+                this.itemRating = value;
+            }
+        }
 
         #endregion
 
