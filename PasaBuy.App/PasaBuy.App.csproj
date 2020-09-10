@@ -513,6 +513,9 @@
     <Reference Include="SocioPress-PCL">
       <HintPath>Resources\SocioPress-PCL.dll</HintPath>
     </Reference>
+    <Reference Include="TindaPress-PCL">
+      <HintPath>Resources\TindaPress-PCL.dll</HintPath>
+    </Reference>
     <Reference Include="USocketNet">
       <HintPath>Dependencies\USocketNet.dll</HintPath>
     </Reference>

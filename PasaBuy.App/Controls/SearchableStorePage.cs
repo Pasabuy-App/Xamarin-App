@@ -21,13 +21,13 @@ namespace PasaBuy.App.Controls
             {
                 var taskInfo = obj as Models.Marketplace.Store;
 
-                if (taskInfo == null || string.IsNullOrEmpty(taskInfo.Name) || string.IsNullOrEmpty(taskInfo.Description) ||
+                if (taskInfo == null || string.IsNullOrEmpty(taskInfo.Title) || string.IsNullOrEmpty(taskInfo.Description) ||
                     string.IsNullOrEmpty(taskInfo.Offer) || string.IsNullOrEmpty(taskInfo.ItemRating))
                 {
                     return false;
                 }
 
-                return taskInfo.Name.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant())
+                return taskInfo.Title.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant())
                        || taskInfo.Description.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant()) ||
                        taskInfo.Offer.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant()) ||
                        taskInfo.ItemRating.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant());
