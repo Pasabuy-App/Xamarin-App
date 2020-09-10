@@ -45,23 +45,32 @@ namespace PasaBuy.App.ViewModels.Feeds
             try
             {
                 homePostList = new ObservableCollection<Post>();
-                SocioPress.Feeds.Instance.Profile(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", PSACache.Instance.UserInfo.wpid, (bool success, string data) =>
+                SocioPress.Feeds.Instance.Profile(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky,"", PSACache.Instance.UserInfo.wpid, (bool success, string data) =>
                 {
                     if (success)
                     {
                         PostListData post = JsonConvert.DeserializeObject<PostListData>(data);
+                        
                         for (int i = 0; i < post.data.Length; i++)
                         {
+                            string image_height = "-1";
+                            if (post.data[i].item_image != "")
+                            {
+                                image_height = "400";
+                            }
                             string post_author = post.data[i].post_author;
+                            string id = post.data[i].id;
                             string content = post.data[i].content;
                             string title = post.data[i].title;
                             string date_post = post.data[i].date_post == string.Empty ? new DateTime().ToString() : post.data[i].date_post;
                             string type = post.data[i].type;
                             string item_image = post.data[i].item_image;
+                            string author = post.data[i].author;
+                            string name = post.data[i].name;
                             string views = post.data[i].views;
 
-                            homePostList.Add(new Post(PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl),
-                                PSACache.Instance.UserInfo.dname, type, date_post, views, title, content, PSAProc.GetUrl(item_image)));
+                            homePostList.Add(new Post(PSAProc.GetUrl(author),
+                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height));
                         }
                     }
                     else
@@ -76,6 +85,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                 new Alert("Something went Wrong", "Please contact administrator.", "OK");
             }
         }
+
         public static void RefreshList()
         {
             try
@@ -86,18 +96,27 @@ namespace PasaBuy.App.ViewModels.Feeds
                     if (success)
                     {
                         PostListData post = JsonConvert.DeserializeObject<PostListData>(data);
+                        
                         for (int i = 0; i < post.data.Length; i++)
                         {
+                            string image_height = "-1";
+                            if (post.data[i].item_image != "")
+                            {
+                                image_height = "400";
+                            }
                             string post_author = post.data[i].post_author;
+                            string id = post.data[i].id;
                             string content = post.data[i].content;
                             string title = post.data[i].title;
-                            string date_post = post.data[i].date_post == string.Empty ? new DateTime().ToString() : post.data[i].date_post;
+                            string date_post = post.data[i].date_post;
                             string type = post.data[i].type;
                             string item_image = post.data[i].item_image;
+                            string author = post.data[i].author;
+                            string name = post.data[i].name;
                             string views = post.data[i].views;
 
-                            homePostList.Add(new Post(PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl),
-                                PSACache.Instance.UserInfo.dname, type, date_post, views, title, content, PSAProc.GetUrl(item_image)));
+                            homePostList.Add(new Post(PSAProc.GetUrl(author),
+                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height));
                         }
                     }
                     else

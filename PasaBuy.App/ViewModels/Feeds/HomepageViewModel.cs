@@ -38,6 +38,11 @@ namespace PasaBuy.App.ViewModels.Feeds
                             PostListData post = JsonConvert.DeserializeObject<PostListData>(data);
                             for (int i = 0; i < post.data.Length; i++)
                             {
+                                string image_height = "-1";
+                                if (post.data[i].item_image != "")
+                                {
+                                    image_height = "400";
+                                }
                             string post_author = post.data[i].post_author;
                             string id = post.data[i].id;
                             string content = post.data[i].content;
@@ -50,7 +55,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                             string views = post.data[i].views;
 
                             homePostList.Add(new Post(PSAProc.GetUrl(author),
-                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image)));
+                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height));
                             }
                     }
                     else
@@ -77,6 +82,11 @@ namespace PasaBuy.App.ViewModels.Feeds
                             PostListData post = JsonConvert.DeserializeObject<PostListData>(data);
                             for (int i = 0; i < post.data.Length; i++)
                             {
+                                string image_height = "-1";
+                                if (post.data[i].item_image != "")
+                                {
+                                    image_height = "400";
+                                }
                                 string post_author = post.data[i].post_author;
                                 string id = post.data[i].id;
                                 string content = post.data[i].content;
@@ -89,7 +99,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                                 string views = post.data[i].views;
 
                                 homePostList.Add(new Post(PSAProc.GetUrl(author),
-                                    name, type, date_post, views, title, content, PSAProc.GetUrl(item_image)));
+                                    name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height));
 
                             }
                     }
