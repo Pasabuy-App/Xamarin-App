@@ -99,21 +99,20 @@ namespace PasaBuy.App.ViewModels.Onboarding
         {
             try
             {
-                //State = true;
+                State = true;
                 Users.Instance.Activate(ActivationKey, VerifyAccountVar.un, (bool success, string data) =>
                 {
                     if (success)
                     {
-                        //State = false;
+                        State = false;
                         VerifyAccountData akey = JsonConvert.DeserializeObject<VerifyAccountData>(data);
-                        //Console.WriteLine(ActivationKey + " " + akey.key);
                         VerifyAccountVar.ak = akey.key;
                         Application.Current.MainPage = new CreatePassword();
                     }
                     else
                     {
                         new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                        //State = false;
+                        State = false;
                     }
                 });
             }

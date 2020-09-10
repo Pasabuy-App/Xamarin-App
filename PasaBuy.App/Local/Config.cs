@@ -18,12 +18,12 @@ namespace PasaBuy.App.Local
         /// <summary>
         /// Development url.
         /// </summary>
-        public static string devBaseUrl { get; } = "wordpress.dev";
+        public static string devBaseUrl { get; } = "localhost/wordpress";
 
         /// <summary>
         /// RestAPI Root url c/o WordPress.
         /// </summary>
-        public static string baseRestUrl { get; } = "http://10.0.2.2";
+        public static string baseRestUrl { get; } = "http://10.0.2.2/wordpress";
 
         /// <summary>
         /// Syncfusion Demo image root URL.

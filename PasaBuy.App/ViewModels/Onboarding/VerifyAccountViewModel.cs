@@ -123,13 +123,13 @@ namespace PasaBuy.App.ViewModels.Onboarding
         {
             try
             {
-                //State = true;
+                State = true;
                 Users.Instance.Activate(ActivationKey, Username, (bool success, string data) =>
                 {
                     if (success)
                     {
                         VerifyAccountData akey = JsonConvert.DeserializeObject<VerifyAccountData>(data);
-                        //State = false;
+                        State = false;
                         VerifyAccountVar.un = Username;
                         VerifyAccountVar.ak = akey.key;
                         Application.Current.MainPage = new CreatePassword();
@@ -137,7 +137,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
                     else
                     {
                         new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                        //State = false;
+                        State = false;
                     }
                 });
             }
