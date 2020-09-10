@@ -29,8 +29,8 @@ namespace PasaBuy.App.Views.Settings
             Fname.Text = PSACache.Instance.UserInfo.fname;
             Lname.Text = PSACache.Instance.UserInfo.lname;
             Nname.Text = PSACache.Instance.UserInfo.dname;
-            Avatar.Source = PSACache.Instance.UserInfo.avatar;
-            Banner.Source = PSACache.Instance.UserInfo.banner;
+            Avatar.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatar);
+            Banner.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.banner);
 
         }
 

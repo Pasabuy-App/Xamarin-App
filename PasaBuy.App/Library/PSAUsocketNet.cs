@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using USocketNet;
 using Newtonsoft.Json;
+using PasaBuy.App.Local;
 
 namespace PasaBuy.App.Library
 {
@@ -19,8 +20,8 @@ namespace PasaBuy.App.Library
             {
                 Query = new Dictionary<string, string>
                 {
-                    {"wpid", "7" },
-                    {"snid", "bsraR54ukbpUgNhl2HBdvsIDde8rH0guQXrsG4QgdSh" }
+                    {"wpid", PSACache.Instance.UserInfo.wpid },
+                    {"snid", PSACache.Instance.UserInfo.snky }
                 },
                 ConnectionTimeout = TimeSpan.FromSeconds(10)
             });
