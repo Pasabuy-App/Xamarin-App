@@ -13,7 +13,7 @@ namespace PasaBuy.App.Local
         /// Rest API base url using WP PLugins.
         /// </summary>
         /// 
-        public static bool onProduction { get; } = false;
+        public static bool onProduction { get; } = true;
 
         /// <summary>
         /// Development url.
@@ -23,7 +23,7 @@ namespace PasaBuy.App.Local
         /// <summary>
         /// RestAPI Root url c/o WordPress.
         /// </summary>
-        public static string baseRestUrl { get; } = "http://10.0.2.2";
+        public static string baseRestUrl { get; } = "https://pasabuy.app";
 
         /// <summary>
         /// Syncfusion Demo image root URL.

@@ -129,7 +129,7 @@ namespace PasaBuy.App.ViewModels.Feeds
         {
             LoadData();
             CultureInfo provider = new CultureInfo("fr-FR");
-            DateTime date = DateTime.ParseExact(PSACache.Instance.UserInfo.date_registered, "yyyy-MM-dd HH:mm:ss", provider);
+            DateTime date = DateTime.ParseExact(PSACache.Instance.UserInfo.date_registered == string.Empty ? new DateTime().ToString() : PSACache.Instance.UserInfo.date_registered, "yyyy-MM-dd HH:mm:ss", provider);
 
             this.BannerImage = PSAProc.GetUrl(PSACache.Instance.UserInfo.bannerUrl);
             this.ProfileImage = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);

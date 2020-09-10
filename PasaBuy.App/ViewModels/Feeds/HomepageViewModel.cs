@@ -188,7 +188,7 @@ namespace PasaBuy.App.ViewModels.Feeds
         {
             get
             {
-                return PSACache.Instance.UserInfo.avatarUrl;
+                return PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
             }
         }
     }
