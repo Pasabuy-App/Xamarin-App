@@ -9,6 +9,7 @@
              xmlns:converter="clr-namespace:PasaBuy.App.Converters"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:posts="clr-namespace:PasaBuy.App.ViewModels.Feeds"
+             xmlns:aspectratio ="clr-namespace:PasaBuy.App.Views.Feeds.Templates" 
              BackgroundColor="{DynamicResource Gray-300}"
              xmlns:local="clr-namespace:PasaBuy.App.Views.Feeds.Templates"
              NavigationPage.TitleIconImageSource="LogoHeader.png">
@@ -142,9 +143,13 @@
 
                                     <Grid Grid.Row="2" 
                                         Grid.ColumnSpan="2"
-                                        HorizontalOptions="FillAndExpand">
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand">
                                         <Image Aspect="AspectFill"
-                                            BackgroundColor="{DynamicResource Transparent}">
+                                               HeightRequest="{Binding ImageHeight}"
+                                               HorizontalOptions="FillAndExpand"
+                                               VerticalOptions="FillAndExpand"
+                                               BackgroundColor="{DynamicResource Transparent}">
                                             <Image.Source>
                                                 <UriImageSource
                                                     CacheValidity="14"
@@ -152,6 +157,7 @@
                                                     Uri="{Binding Images}" />
                                             </Image.Source>
                                         </Image>
+                                            
                                     </Grid>
 
                                     <Grid Grid.Row="3" Grid.ColumnSpan="2" 

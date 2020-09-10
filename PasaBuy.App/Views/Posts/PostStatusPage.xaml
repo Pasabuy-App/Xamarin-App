@@ -5,6 +5,7 @@
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:controls="clr-namespace:PasaBuy.App.Controls"
              xmlns:local="clr-namespace:PasaBuy.App.CustomRenderers"
+             xmlns:aspectratio ="clr-namespace:PasaBuy.App.Views.Feeds.Templates" 
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
@@ -48,16 +49,12 @@
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-
-                <border:SfBorder Grid.Row="0"
-                                         border:BorderColor="White" 
-                                         BorderWidth="2"
-                                         CornerRadius="15"
-                                         Grid.ColumnSpan="3">
+                <!--<Grid Grid.Row="0"  Grid.ColumnSpan="3" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="200">-->
+                <aspectratio:AspecRatioContainer Grid.Row="0"  Grid.ColumnSpan="3" AspectRatio="1">
                     <Image
                         BackgroundColor="{DynamicResource Gray-400}"
-                        HeightRequest="175"
                         x:Name="StatusImage"
+                        HorizontalOptions="Fill"
                         Aspect="AspectFill">
                         <Image.Source>
                             <UriImageSource
@@ -71,7 +68,9 @@
                                 NumberOfTapsRequired="1" />
                         </Image.GestureRecognizers>
                     </Image>
-                </border:SfBorder>
+                </aspectratio:AspecRatioContainer>
+                    
+                <!--</Grid>-->
 
                 <!--  Submit button  -->
                 <buttons:SfButton

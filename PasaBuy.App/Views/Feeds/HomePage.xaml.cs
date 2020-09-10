@@ -16,6 +16,7 @@ namespace PasaBuy.App.Views.Feeds
         public HomePage()
         {
             InitializeComponent();
+
         }
 
     }

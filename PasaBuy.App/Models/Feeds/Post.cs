@@ -13,21 +13,21 @@ namespace PasaBuy.App.Models.Feeds
         private string types = "Status";
         private DateTime date = DateTime.Now;
         private int seen = 1234;
-
+        private int image_height;
         private string title;
         private string description;
         private string images;
         private Boolean isaccept = false;
         private Boolean iscontent = false;
 
-        public Post(string photo, string author, string types, string date, string seen, string title, string description, string images)
+        public Post(string photo, string author, string types, string date, string seen, string title, string description, string images, string image_height)
         {
             this.photo = photo;
             this.author = author;
             this.types = types;
             this.date = System.Convert.ToDateTime(date);
-            this.seen = System.Convert.ToInt32(seen); ;
-
+            this.seen = System.Convert.ToInt32(seen);
+            this.image_height = System.Convert.ToInt32(image_height);
             this.title = title;
             this.description = description;
             this.images = images;
@@ -150,6 +150,19 @@ namespace PasaBuy.App.Models.Feeds
             {
                 iscontent = value;
                 OnPropertyChanged("isAccept");
+            }
+        }
+
+        public int ImageHeight
+        {
+            get
+            {
+                return image_height;
+            }
+            set
+            {
+                image_height = System.Convert.ToInt32(value);
+                OnPropertyChanged("ImageHeight");
             }
         }
 

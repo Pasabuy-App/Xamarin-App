@@ -100,7 +100,8 @@ namespace PasaBuy.App.Views.Posts
 
             var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
             {
-                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
+                //PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
+                PhotoSize = Plugin.Media.Abstractions.PhotoSize.MaxWidthHeight,
             });
 
 
