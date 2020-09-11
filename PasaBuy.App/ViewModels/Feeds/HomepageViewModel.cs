@@ -10,6 +10,7 @@ using PasaBuy.App.Local;
 using System.Windows.Input;
 using Xamarin.Forms;
 using PasaBuy.App.Models.Onboarding;
+using System.Diagnostics;
 
 namespace PasaBuy.App.ViewModels.Feeds
 {
@@ -31,6 +32,11 @@ namespace PasaBuy.App.ViewModels.Feeds
         public HomepageViewModel()
         {
             LoadData();
+            RefreshCommand = new Command<string>((key) =>
+            {
+                RefreshList();
+                IsRefreshing = false;
+            });
         }
         /// <summary>
         /// Load post data in listview using observablecollection in HomePage
@@ -64,7 +70,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                             string views = post.data[i].views;
 
                             homePostList.Add(new Post(PSAProc.GetUrl(author),
-                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height));
+                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id));
                         }
 
                     }
@@ -114,7 +120,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                             string views = post.data[i].views;
 
                             homePostList.Add(new Post(PSAProc.GetUrl(author),
-                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height));
+                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id));
 
                         }
                     }
@@ -131,6 +137,57 @@ namespace PasaBuy.App.ViewModels.Feeds
                 new Alert("Something went Wrong", "Please contact administrator - HP Refresh.", "OK");
             }
         }
+
+        /// <summary>
+        /// Load more post data in listview using observablecollection in HomePage
+        /// </summary>
+        public static void LoadMore(string lastid)
+        {
+            try
+            {
+                SocioPress.Feeds.Instance.Home(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, lastid, (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        PostListData post = JsonConvert.DeserializeObject<PostListData>(data);
+                        for (int i = 0; i < post.data.Length; i++)
+                        {
+                            string image_height = "-1";
+                            if (post.data[i].item_image != "")
+                            {
+                                image_height = "400";
+                            }
+                            string post_author = post.data[i].post_author;
+                            string id = post.data[i].id;
+                            string content = post.data[i].content;
+                            string title = post.data[i].title;
+                            string date_post = post.data[i].date_post == string.Empty ? new DateTime().ToString() : post.data[i].date_post;
+                            string type = post.data[i].type;
+                            string item_image = post.data[i].item_image;
+                            string author = post.data[i].author;
+                            string name = post.data[i].name;
+                            string views = post.data[i].views;
+
+                            homePostList.Add(new Post(PSAProc.GetUrl(author),
+                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id));
+                            Debug.WriteLine(name + " " + type + " " + date_post + views + title + id);
+
+                        }
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+
+                    }
+                });
+                LoadTotal();
+            }
+            catch (Exception)
+            {
+                new Alert("Something went Wrong", "Please contact administrator - HP Refresh.", "OK");
+            }
+        }
+
         /// <summary>
         /// Load post count, total transaction and ratings in MyProfilePage
         /// </summary>
@@ -170,10 +227,30 @@ namespace PasaBuy.App.ViewModels.Feeds
             }
         }
 
-
         #endregion
 
         #region Property
+        public ICommand RefreshCommand { protected set; get; }
+
+        bool _isRefreshing = false;
+        public bool IsRefreshing
+        {
+            get
+            {
+                return _isRefreshing;
+            }
+
+            set
+            {
+                if (_isRefreshing != value)
+                {
+                    _isRefreshing = value;
+                    this.NotifyPropertyChanged();
+
+                }
+            }
+
+        }
         public string Placeholder
         {
             get

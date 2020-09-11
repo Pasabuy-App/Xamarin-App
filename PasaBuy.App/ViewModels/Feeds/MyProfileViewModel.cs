@@ -64,7 +64,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                         if (post.data.Length == 0)
                         {
                             homePostList.Add(new Post(PSAProc.GetUrl("http://localhost/wordpress/wp-content/plugins/SocioPress-WP-Plugin/assets/default-avatar.png"), // PasaBuy.App avatar
-                                "Pasabuy.App", "Status", new DateTime().ToString(), "0", "Welcome to Pasabuy.App!", "", "", "-1"));
+                                "Pasabuy.App", "Status", new DateTime().ToString(), "0", "Welcome to Pasabuy.App!", "", "", "-1", ""));
                         }
                         else
                         {
@@ -87,7 +87,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                                 string views = post.data[i].views;
 
                                 homePostList.Add(new Post(PSAProc.GetUrl(author),
-                                    name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height));
+                                    name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id));
                             }
                         }
                     }
@@ -136,7 +136,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                             string views = post.data[i].views;
 
                             homePostList.Add(new Post(PSAProc.GetUrl(author),
-                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height));
+                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id));
                         }
                     }
                     else

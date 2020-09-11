@@ -8,6 +8,7 @@ namespace PasaBuy.App.Models.Feeds
 {
     public class Post : INotifyPropertyChanged
     {
+        private string last_id = string.Empty;
         private string photo = string.Empty;
         private string author = string.Empty;
         private string types = "Status";
@@ -19,9 +20,11 @@ namespace PasaBuy.App.Models.Feeds
         private string images;
         private Boolean isaccept = false;
         private Boolean iscontent = false;
+        private Boolean isimage = false;
 
-        public Post(string photo, string author, string types, string date, string seen, string title, string description, string images, string image_height)
+        public Post(string photo, string author, string types, string date, string seen, string title, string description, string images, string image_height, string last_id)
         {
+            this.last_id = last_id;
             this.photo = photo;
             this.author = author;
             this.types = types;
@@ -31,6 +34,15 @@ namespace PasaBuy.App.Models.Feeds
             this.title = title;
             this.description = description;
             this.images = images;
+
+            if (images == "")
+            {
+                isImage = false;
+            }
+            else
+            {
+                isImage = true;
+            }
             if (description == "")
             {
                 isContent = false;
@@ -46,6 +58,16 @@ namespace PasaBuy.App.Models.Feeds
             else
             {
                 isAccept = true;
+            }
+        }
+
+        public string Last_ID
+        {
+            get { return last_id; }
+            set
+            {
+                last_id = value;
+                OnPropertyChanged("Last_ID");
             }
         }
 
@@ -149,6 +171,18 @@ namespace PasaBuy.App.Models.Feeds
             set
             {
                 iscontent = value;
+                OnPropertyChanged("isAccept");
+            }
+        }
+        public Boolean isImage
+        {
+            get
+            {
+                return isimage;
+            }
+            set
+            {
+                isimage = value;
                 OnPropertyChanged("isAccept");
             }
         }
