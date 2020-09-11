@@ -1,4 +1,5 @@
-﻿using PasaBuy.App.Models.Feeds;
+﻿using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Models.Feeds;
 using PasaBuy.App.ViewModels.Feeds;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace PasaBuy.App.Views.Feeds
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : ContentView
     {
+        public static int LastIndex = 11;
         public HomePage()
         {
             InitializeComponent();
@@ -36,13 +38,17 @@ namespace PasaBuy.App.Views.Feeds
 
         private void homeListView_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
         {
-            //var item = e.ItemData as Post;
-            /*var itemTypeObject = e.ItemData as Post;
-            if (HomepageViewModel.homePostList.Last() == itemTypeObject && HomepageViewModel.homePostList.Count() != 12)
+            var item = e.ItemData as Post;
+            if (HomepageViewModel.homePostList.Last() == item && HomepageViewModel.homePostList.Count() != 1)
             {
-                //HomepageViewModel.LoadMore(itemTypeObject.Last_ID);
-                Debug.WriteLine("Last ID "+ itemTypeObject.Last_ID);
-            }*/
+                if (HomepageViewModel.homePostList.IndexOf(item) >= LastIndex)
+                {
+                    LastIndex += 6;
+                    Debug.WriteLine("Last ID " + item.Last_ID + " " + HomepageViewModel.homePostList.IndexOf(item));
+                    HomepageViewModel.LoadMore(item.Last_ID);
+                }
+            }
+
         }
     }
 }

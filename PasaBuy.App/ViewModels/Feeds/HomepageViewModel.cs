@@ -11,6 +11,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using PasaBuy.App.Models.Onboarding;
 using System.Diagnostics;
+using PasaBuy.App.Views.Feeds;
 
 namespace PasaBuy.App.ViewModels.Feeds
 {
@@ -95,6 +96,7 @@ namespace PasaBuy.App.ViewModels.Feeds
         {
             try
             {
+                HomePage.LastIndex = 11;
                 homePostList.Clear();
                 SocioPress.Feeds.Instance.Home(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", (bool success, string data) =>
                 {
