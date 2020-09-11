@@ -4,6 +4,8 @@ using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Feeds;
 using PasaBuy.App.Models.Onboarding;
+using PasaBuy.App.ViewModels.Menu;
+using PasaBuy.App.Views.Menu;
 using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -29,6 +31,12 @@ namespace PasaBuy.App.ViewModels.Feeds
         private Boolean isreferred = false;
 
         private Boolean iscity = false;
+
+        public static int postcount;
+
+        public static int transactcount;
+
+        public static float ratingscount;
 
         #endregion
 
@@ -76,7 +84,6 @@ namespace PasaBuy.App.ViewModels.Feeds
                     else
                     {
                         new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-
                     }
                 });
             }
@@ -132,12 +139,49 @@ namespace PasaBuy.App.ViewModels.Feeds
             }
         }
 
+        /*public static void LoadTotal()
+        {
+            try
+            {
+                SocioPress.Posts.Instance.Count(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.wpid, (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        ProfileGetData getdata = JsonConvert.DeserializeObject<ProfileGetData>(data);
+                        postcount = getdata.data.count;
+                    }
+                });
+
+                SocioPress.Reviews.Instance.Get(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        ProfileGetData getdata = JsonConvert.DeserializeObject<ProfileGetData>(data);
+                        ratingscount = getdata.data.ave_rating;
+                    }
+                });
+                SocioPress.Transaction.Instance.GetTotal(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        ProfileGetData getdata = JsonConvert.DeserializeObject<ProfileGetData>(data);
+                        transactcount = getdata.data.transac;
+                    }
+                });
+            }
+            catch (Exception)
+            {
+                new Alert("Something went Wrong", "Please contact administrator.", "OK");
+            }
+        }*/
+
         /// <summary>
         /// Initializes a new instance for the <see cref="MyProfileViewModel" /> class.
         /// </summary>
         public MyProfileViewModel()
         {
             LoadData();
+            //LoadTotal();
             CultureInfo provider = new CultureInfo("fr-FR");
             DateTime date = DateTime.ParseExact(PSACache.Instance.UserInfo.date_registered == string.Empty ? new DateTime().ToString() : PSACache.Instance.UserInfo.date_registered, "yyyy-MM-dd HH:mm:ss", provider);
 
@@ -153,11 +197,11 @@ namespace PasaBuy.App.ViewModels.Feeds
             this.Joined = "(ic) Joined at " + date.ToString("MMMM yyyy");
             isRefered = false;
             this.Refered = "";// "(ic) Refered by " + UserPrefs.Instance.UserInfo.city;
-                                              //Joined
-                                              //Refered
-            this.Transacts = ProfileGetData.totaltransact;
-            this.Ratings = ProfileGetData.totalratings;
-            this.PostsCount = ProfileGetData.totalpost;
+                              //Joined
+                              //Refered
+            this.Transacts = transactcount; // PSACache.Instance.UserInfo.totaltransact;//PSACache.Instance.UserInfo.totaltransact; 
+            this.Ratings = ratingscount; //PSACache.Instance.UserInfo.rating; //ProfileGetData.totalratings;
+            this.PostsCount = postcount; //PSACache.Instance.UserInfo.countpost; // ProfileGetData.totalpost;
         }
 
         #endregion

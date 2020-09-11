@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using PasaBuy.App.Local;
 using System.Windows.Input;
 using Xamarin.Forms;
+using PasaBuy.App.Models.Onboarding;
 
 namespace PasaBuy.App.ViewModels.Feeds
 {
@@ -65,6 +66,7 @@ namespace PasaBuy.App.ViewModels.Feeds
 
                     }
                 });
+                LoadTotal();
             }
             catch (Exception)
             {
@@ -110,10 +112,46 @@ namespace PasaBuy.App.ViewModels.Feeds
 
                     }
                 });
+                LoadTotal();
             }
             catch (Exception)
             {
                 new Alert("Something went Wrong", "Please contact administrator - HP Refresh.", "OK");
+            }
+        }
+        public static void LoadTotal()
+        {
+            try
+            {
+                SocioPress.Posts.Instance.Count(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.wpid, (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        ProfileGetData getdata = JsonConvert.DeserializeObject<ProfileGetData>(data);
+                        MyProfileViewModel.postcount = getdata.data.count;
+                    }
+                });
+
+                SocioPress.Reviews.Instance.Get(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        ProfileGetData getdata = JsonConvert.DeserializeObject<ProfileGetData>(data);
+                        MyProfileViewModel.ratingscount = getdata.data.ave_rating;
+                    }
+                });
+                SocioPress.Transaction.Instance.GetTotal(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        ProfileGetData getdata = JsonConvert.DeserializeObject<ProfileGetData>(data);
+                        MyProfileViewModel.transactcount = getdata.data.transac;
+                    }
+                });
+            }
+            catch (Exception)
+            {
+                new Alert("Something went Wrong", "Please contact administrator.", "OK");
             }
         }
 
