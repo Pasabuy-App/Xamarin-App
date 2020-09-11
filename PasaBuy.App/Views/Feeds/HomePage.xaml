@@ -179,7 +179,8 @@
                                                 BackgroundColor="{DynamicResource Gray-100}"/>
                                         </Grid>
                                         <Grid Grid.Row="1" Grid.Column="1">
-                                            <Button Text="Share" 
+                                            <Button Text="Share"
+                                                Clicked="Button_Clicked"
                                                 IsEnabled="True"
                                                 BorderColor="{DynamicResource Gray-300}"
                                                 BorderWidth="1"
