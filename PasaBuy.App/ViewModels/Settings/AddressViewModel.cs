@@ -18,10 +18,13 @@ namespace PasaBuy.App.ViewModels.Settings
     [Preserve(AllMembers = true)]
     public class AddressViewModel : BaseViewModel
     {
+        #region Fields
+
         public static string addressID = string.Empty;
-        #region Properties
+
         public static ObservableCollection<Address> addressDetails;
         public ObservableCollection<Address> AddressDetails { get { return addressDetails; } set { addressDetails = value; this.NotifyPropertyChanged(); } }
+
         #endregion
 
         #region Constructor
@@ -42,37 +45,29 @@ namespace PasaBuy.App.ViewModels.Settings
                 {
                     if (success)
                     {
-                        try
+                        AddressData address = JsonConvert.DeserializeObject<AddressData>(data);
+                        for (int i = 0; i < address.data.Length; i++)
                         {
-                            AddressData address = JsonConvert.DeserializeObject<AddressData>(data);
-                            for (int i = 0; i < address.data.Length; i++)
+                            string id = address.data[i].id;
+                            string types = address.data[i].types;
+                            string status = address.data[i].status;
+                            string street = address.data[i].street;
+                            string brgy = address.data[i].brgy;
+                            string city = address.data[i].city;
+                            string province = address.data[i].province;
+                            string country = address.data[i].country;
+                            string type = string.Empty;
+                            if (types == "home") { type = "Home"; }
+                            if (types == "office") { type = "Office"; }
+                            if (types == "business") { type = "Business"; }
+                            addressDetails.Add(new Address()
                             {
-                                string id = address.data[i].id;
-                                string types = address.data[i].types;
-                                string status = address.data[i].status;
-                                string street = address.data[i].street;
-                                string brgy = address.data[i].brgy;
-                                string city = address.data[i].city;
-                                string province = address.data[i].province;
-                                string country = address.data[i].country;
-                                string type = string.Empty;
-                                if (types == "home") { type = "Home"; }
-                                if (types == "office") { type = "Office"; }
-                                if (types == "business") { type = "Business"; }
-                                addressDetails.Add(new Address()
-                                {
-                                    SelectedAddress = id,
-                                    Name = "Juan Dela Cruz",
-                                    AddressType = type,
-                                    Location = street + " " + brgy + " " + city + " " + province + ", " + country,
-                                    ContactNumber = "(123) 456-7890"
-                                }); ;
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            new Alert("Something went Wrong", "Please contact administrator.", "OK");
-                            Console.WriteLine("Error: " + ex);
+                                SelectedAddress = id,
+                                Name = "Juan Dela Cruz",
+                                AddressType = type,
+                                Location = street + " " + brgy + " " + city + " " + province + ", " + country,
+                                ContactNumber = "(123) 456-7890"
+                            }); ;
                         }
                     }
                     else
@@ -97,37 +92,29 @@ namespace PasaBuy.App.ViewModels.Settings
                 {
                     if (success)
                     {
-                        try
+                        AddressData address = JsonConvert.DeserializeObject<AddressData>(data);
+                        for (int i = 0; i < address.data.Length; i++)
                         {
-                            AddressData address = JsonConvert.DeserializeObject<AddressData>(data);
-                            for (int i = 0; i < address.data.Length; i++)
+                            string id = address.data[i].id;
+                            string types = address.data[i].types;
+                            string status = address.data[i].status;
+                            string street = address.data[i].street;
+                            string brgy = address.data[i].brgy;
+                            string city = address.data[i].city;
+                            string province = address.data[i].province;
+                            string country = address.data[i].country;
+                            string type = string.Empty;
+                            if (types == "home") { type = "Home"; }
+                            if (types == "office") { type = "Office"; }
+                            if (types == "business") { type = "Business"; }
+                            addressDetails.Add(new Address
                             {
-                                string id = address.data[i].id;
-                                string types = address.data[i].types;
-                                string status = address.data[i].status;
-                                string street = address.data[i].street;
-                                string brgy = address.data[i].brgy;
-                                string city = address.data[i].city;
-                                string province = address.data[i].province;
-                                string country = address.data[i].country;
-                                string type = string.Empty;
-                                if (types == "home") { type = "Home"; }
-                                if (types == "office") { type = "Office"; }
-                                if (types == "business") { type = "Business"; }
-                                addressDetails.Add(new Address
-                                {
-                                    SelectedAddress = id,
-                                    Name = "Juan Dela Cruz",
-                                    AddressType = type,
-                                    Location = street + " " + brgy + ", " + city + " " + province + ", " + country,
-                                    ContactNumber = "(123) 456-7890"
-                                });
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            new Alert("Something went Wrong", "Please contact administrator.", "OK");
-                            Console.WriteLine("Error: " + ex);
+                                SelectedAddress = id,
+                                Name = "Juan Dela Cruz",
+                                AddressType = type,
+                                Location = street + " " + brgy + ", " + city + " " + province + ", " + country,
+                                ContactNumber = "(123) 456-7890"
+                            });
                         }
                     }
                     else
@@ -145,6 +132,7 @@ namespace PasaBuy.App.ViewModels.Settings
         }
 
         #endregion
+
         #region Methods
         /// <summary>
         /// Invoked when the edit button clicked
