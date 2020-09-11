@@ -21,8 +21,9 @@ namespace PasaBuy.App.Models.Feeds
         private Boolean isaccept = false;
         private Boolean iscontent = false;
         private Boolean isimage = false;
+        private string linkpost;
 
-        public Post(string photo, string author, string types, string date, string seen, string title, string description, string images, string image_height, string last_id)
+        public Post(string photo, string author, string types, string date, string seen, string title, string description, string images, string image_height, string last_id, string post_link)
         {
             this.last_id = last_id;
             this.photo = photo;
@@ -34,6 +35,7 @@ namespace PasaBuy.App.Models.Feeds
             this.title = title;
             this.description = description;
             this.images = images;
+            this.linkpost = post_link;
 
             if (images == "")
             {
@@ -58,6 +60,16 @@ namespace PasaBuy.App.Models.Feeds
             else
             {
                 isAccept = true;
+            }
+        }
+
+        public string LinkPost
+        {
+            get { return linkpost; }
+            set
+            {
+                linkpost = value;
+                OnPropertyChanged("LinkPost");
             }
         }
 

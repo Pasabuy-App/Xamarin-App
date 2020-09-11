@@ -69,11 +69,11 @@ namespace PasaBuy.App.ViewModels.Feeds
                             string author = post.data[i].author;
                             string name = post.data[i].name;
                             string views = post.data[i].views;
+                            string post_link = post.data[i].post_link;
 
                             homePostList.Add(new Post(PSAProc.GetUrl(author),
-                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id));
+                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link));
                         }
-
                     }
                     else
                     {
@@ -120,10 +120,10 @@ namespace PasaBuy.App.ViewModels.Feeds
                             string author = post.data[i].author;
                             string name = post.data[i].name;
                             string views = post.data[i].views;
+                            string post_link = post.data[i].post_link;
 
                             homePostList.Add(new Post(PSAProc.GetUrl(author),
-                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id));
-
+                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link));
                         }
                     }
                     else
@@ -169,11 +169,10 @@ namespace PasaBuy.App.ViewModels.Feeds
                             string author = post.data[i].author;
                             string name = post.data[i].name;
                             string views = post.data[i].views;
+                            string post_link = post.data[i].post_link;
 
                             homePostList.Add(new Post(PSAProc.GetUrl(author),
-                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id));
-                            Debug.WriteLine(name + " " + type + " " + date_post + views + title + id);
-
+                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link));
                         }
                     }
                     else
@@ -251,8 +250,8 @@ namespace PasaBuy.App.ViewModels.Feeds
 
                 }
             }
-
         }
+
         public string Placeholder
         {
             get

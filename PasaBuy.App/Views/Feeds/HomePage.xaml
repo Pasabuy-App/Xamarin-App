@@ -5,7 +5,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="PasaBuy.App.Views.Feeds.HomePage" 
-             xmlns:pulltoRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:converter="clr-namespace:PasaBuy.App.Converters"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
@@ -187,7 +186,7 @@
                                                     BackgroundColor="{DynamicResource Gray-100}"/>
                                             </Grid>
                                             <Grid Grid.Row="1" Grid.Column="1">
-                                                <Button Text="Share" x:Name="ShareButton" ClassId="asd"
+                                                <Button Text="Share" x:Name="ShareButton" ClassId="{Binding LinkPost}"
                                                     Clicked="Button_Clicked"
                                                     IsEnabled="True"
                                                     BorderColor="{DynamicResource Gray-300}"

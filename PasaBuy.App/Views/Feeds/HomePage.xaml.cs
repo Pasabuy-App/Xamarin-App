@@ -25,14 +25,15 @@ namespace PasaBuy.App.Views.Feeds
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            await ShareUri("http://localhost/wordpress/status/15/");
+            var button = (Button)sender;
+            var classId = button.ClassId;
+            await ShareUri(classId);
         }
         public async Task ShareUri(string uri)
         {
             await Share.RequestAsync(new ShareTextRequest
             {
-                Uri = uri,
-                Title = "Share Web Link"
+                Uri = uri
             });
         }
 
