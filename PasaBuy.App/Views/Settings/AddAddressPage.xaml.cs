@@ -59,11 +59,6 @@ namespace PasaBuy.App.Views.Settings
 
         }
 
-        private void RefreshData()
-        {
-            throw new NotImplementedException();
-        }
-
         private void CountryPicker_SelectionChanged(object sender, Syncfusion.XForms.ComboBox.SelectionChangedEventArgs e)
         {
             AddressVar.co = CountryPicker.SelectedValue.ToString();

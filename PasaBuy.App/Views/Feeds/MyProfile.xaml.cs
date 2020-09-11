@@ -3,7 +3,6 @@ using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
-using Plugin.Share;
 using Xamarin.Essentials;
 using System.Threading.Tasks;
 

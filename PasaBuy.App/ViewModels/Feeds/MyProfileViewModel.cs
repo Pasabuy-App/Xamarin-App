@@ -24,6 +24,12 @@ namespace PasaBuy.App.ViewModels.Feeds
 
         public static ObservableCollection<Post> homePostList;
 
+        public ObservableCollection<Post> HomePosts
+        {
+            get { return homePostList; }
+            set { homePostList = value; this.NotifyPropertyChanged(); }
+        }
+
         private string bannerImage;
 
         private string profileImage;
@@ -42,12 +48,9 @@ namespace PasaBuy.App.ViewModels.Feeds
 
         #region Constructor
 
-        public ObservableCollection<Post> HomePosts
-        {
-            get { return homePostList; }
-            set { homePostList = value; this.NotifyPropertyChanged(); }
-        }
-
+        /// <summary>
+        /// Load post data in listview using observablecollection in MyProfilePage
+        /// </summary>
         public static void LoadData()
         {
             try
@@ -100,6 +103,9 @@ namespace PasaBuy.App.ViewModels.Feeds
             }
         }
 
+        /// <summary>
+        /// Refresh post data in listview using observablecollection in MyProfilePage
+        /// </summary>
         public static void RefreshList()
         {
             try
@@ -204,8 +210,6 @@ namespace PasaBuy.App.ViewModels.Feeds
             this.Joined = "(ic) Joined at " + date.ToString("MMMM yyyy");
             isRefered = false;
             this.Refered = "";// "(ic) Refered by " + UserPrefs.Instance.UserInfo.city;
-                              //Joined
-                              //Refered
             this.Transacts = transactcount; // PSACache.Instance.UserInfo.totaltransact;//PSACache.Instance.UserInfo.totaltransact; 
             this.Ratings = ratingscount; //PSACache.Instance.UserInfo.rating; //ProfileGetData.totalratings;
             this.PostsCount = postcount; //PSACache.Instance.UserInfo.countpost; // ProfileGetData.totalpost;

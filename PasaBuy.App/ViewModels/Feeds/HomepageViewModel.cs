@@ -1,4 +1,4 @@
-﻿using PasaBuy.App.Models.Feeds;
+﻿    using PasaBuy.App.Models.Feeds;
 using System;
 using System.Collections.Generic;
 using PasaBuy.App.Controllers;
@@ -15,6 +15,7 @@ namespace PasaBuy.App.ViewModels.Feeds
 {
     public class HomepageViewModel : BaseViewModel
     {
+        #region Fields
 
         public static ObservableCollection<Post> homePostList;
 
@@ -23,10 +24,17 @@ namespace PasaBuy.App.ViewModels.Feeds
             get { return homePostList; }
             set { homePostList = value; this.NotifyPropertyChanged(); }
         }
+
+        #endregion
+
+        #region Constructor
         public HomepageViewModel()
         {
             LoadData();
         }
+        /// <summary>
+        /// Load post data in listview using observablecollection in HomePage
+        /// </summary>
         public static void LoadData()
         {
             try
@@ -73,6 +81,10 @@ namespace PasaBuy.App.ViewModels.Feeds
                 new Alert("Something went Wrong", "Please contact administrator.", "OK");
             }
         }
+        
+        /// <summary>
+        /// Refresh post data in listview using observablecollection in HomePage
+        /// </summary>
         public static void RefreshList()
         {
             try
@@ -82,29 +94,29 @@ namespace PasaBuy.App.ViewModels.Feeds
                 {
                     if (success)
                     {
-                            PostListData post = JsonConvert.DeserializeObject<PostListData>(data);
-                            for (int i = 0; i < post.data.Length; i++)
+                        PostListData post = JsonConvert.DeserializeObject<PostListData>(data);
+                        for (int i = 0; i < post.data.Length; i++)
+                        {
+                            string image_height = "-1";
+                            if (post.data[i].item_image != "")
                             {
-                                string image_height = "-1";
-                                if (post.data[i].item_image != "")
-                                {
-                                    image_height = "400";
-                                }
-                                string post_author = post.data[i].post_author;
-                                string id = post.data[i].id;
-                                string content = post.data[i].content;
-                                string title = post.data[i].title;
+                                image_height = "400";
+                            }
+                            string post_author = post.data[i].post_author;
+                            string id = post.data[i].id;
+                            string content = post.data[i].content;
+                            string title = post.data[i].title;
                             string date_post = post.data[i].date_post == string.Empty ? new DateTime().ToString() : post.data[i].date_post;
                             string type = post.data[i].type;
-                                string item_image = post.data[i].item_image;
-                                string author = post.data[i].author;
-                                string name = post.data[i].name;
-                                string views = post.data[i].views;
+                            string item_image = post.data[i].item_image;
+                            string author = post.data[i].author;
+                            string name = post.data[i].name;
+                            string views = post.data[i].views;
 
-                                homePostList.Add(new Post(PSAProc.GetUrl(author),
-                                    name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height));
+                            homePostList.Add(new Post(PSAProc.GetUrl(author),
+                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height));
 
-                            }
+                        }
                     }
                     else
                     {
@@ -119,6 +131,9 @@ namespace PasaBuy.App.ViewModels.Feeds
                 new Alert("Something went Wrong", "Please contact administrator - HP Refresh.", "OK");
             }
         }
+        /// <summary>
+        /// Load post count, total transaction and ratings in MyProfilePage
+        /// </summary>
         public static void LoadTotal()
         {
             try
@@ -155,6 +170,10 @@ namespace PasaBuy.App.ViewModels.Feeds
             }
         }
 
+
+        #endregion
+
+        #region Property
         public string Placeholder
         {
             get
@@ -170,5 +189,10 @@ namespace PasaBuy.App.ViewModels.Feeds
                 return PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
             }
         }
+
+        #endregion
+
+        #region Method
+        #endregion
     }
 }

@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Plugin.Share;
 
 namespace PasaBuy.App.Views.Feeds
 {
