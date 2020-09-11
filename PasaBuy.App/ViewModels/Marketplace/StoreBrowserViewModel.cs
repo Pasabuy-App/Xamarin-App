@@ -44,7 +44,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
         #region Loadata
         public static void loadstore()
         {
-
             try
             {
                 storelist = new ObservableCollection<Store>();
@@ -57,8 +56,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         {
                             string title = datas.data[i].title;
                             string short_info = datas.data[i].short_info;
-                            string avatar = datas.data[i].avatar;
-                            Console.WriteLine(avatar);
+                            string avatar = datas.data[i].avatar == "None" ? "" : datas.data[i].avatar;
                             storelist.Add(new Store() 
                             { 
                                 Title = title, 
