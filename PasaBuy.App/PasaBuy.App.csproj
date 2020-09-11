@@ -250,6 +250,9 @@
     <EmbeddedResource Update="Views\MainTabs.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Marketplace\FoodBrowserPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Marketplace\StoreBrowserPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

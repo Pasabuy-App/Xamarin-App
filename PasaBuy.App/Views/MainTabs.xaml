@@ -6,6 +6,7 @@
              xmlns:market="clr-namespace:PasaBuy.App.Views.Market"
              xmlns:chat="clr-namespace:PasaBuy.App.Views.Chat"
              xmlns:store="clr-namespace:PasaBuy.App.Views.Marketplace"
+             xmlns:food="clr-namespace:PasaBuy.App.Views.Marketplace"
              xmlns:menu="clr-namespace:PasaBuy.App.Views.Menu"
              x:Class="PasaBuy.App.Views.MainTabs"
              NavigationPage.HasNavigationBar="False"
@@ -23,7 +24,7 @@
         <tabView:SfTabView BackgroundColor="{DynamicResource PrimaryColor}" 
                            TabItemTapped="TabView_TabItemTapped"
                            TabHeaderPosition="Top"
-                           VisibleHeaderCount="5" 
+                           VisibleHeaderCount="6" 
                            EnableSwiping="true" 
                            DisplayMode="Image">
             
@@ -114,7 +115,19 @@
                     <store:StoreBrowserPage/>
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
-            
+
+            <!--FOOD TAB-->
+            <tabView:SfTabItem Title="FOOD"
+                               IconFont="{StaticResource Food}"
+                               FontIconFontColor="{DynamicResource Gray-200}"
+                               FontIconFontFamily="{StaticResource FontFamily}"
+                               TitleFontColor="{DynamicResource Gray-200}"
+                               SelectionColor="{DynamicResource Gray-White}">
+                <tabView:SfTabItem.Content>
+                    <food:FoodBrowserPage/>
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+
             <!--MESSAGE TAB-->
             <tabView:SfTabItem Title="MESSAGE"
                                IconFont="{StaticResource Message}"

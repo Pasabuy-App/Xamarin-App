@@ -11,7 +11,9 @@
     <x:String x:Key="Stores">&#xf54e;</x:String>
     <x:String x:Key="Message">&#xf4ad;</x:String>
     <x:String x:Key="Menu">&#xf0c9;</x:String>
-    
-    
+    <x:String x:Key="Food">&#xf805;</x:String>
+
+
+
 
 </ResourceDictionary>
