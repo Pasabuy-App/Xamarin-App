@@ -57,13 +57,16 @@ namespace PasaBuy.App.ViewModels.Marketplace
                             string title = datas.data[i].title;
                             string short_info = datas.data[i].short_info;
                             string avatar = datas.data[i].avatar == "None" ? "" : datas.data[i].avatar;
+                            string banner = datas.data[i].banner == "None" ? "" : datas.data[i].banner;
+
                             storelist.Add(new Store() 
                             { 
                                 Title = title, 
                                 Description = short_info,
                                 Logo = PSAProc.GetUrl(avatar),
                                 Offer = "50% off",
-                                ItemRating = "4.5"
+                                ItemRating = "4.5",
+                                Banner = banner
                             });
                         }
                     }

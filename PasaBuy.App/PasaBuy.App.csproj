@@ -486,6 +486,9 @@
     <EmbeddedResource Update="Views\Templates\ExpenseChartTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\FoodListTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\OrderHistoryTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
@@ -503,6 +506,9 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\SocialIconTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\StoreListTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>

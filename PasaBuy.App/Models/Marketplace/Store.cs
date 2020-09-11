@@ -3,13 +3,16 @@ using System.Runtime.Serialization;
 using Xamarin.Forms.Internals;
 using System.ComponentModel;
 using PasaBuy.App.Controllers;
-
+using System;
+using Xamarin.Forms;
+using Syncfusion.XForms.Buttons;
 
 namespace PasaBuy.App.Models.Marketplace
 {
 
-    public class Store 
+    public class Store
     {
+
         #region Field
 
         private string id = string.Empty;
@@ -34,8 +37,19 @@ namespace PasaBuy.App.Models.Marketplace
         private string email = string.Empty;
         private string offer = string.Empty;
         private string itemRating = string.Empty;
+        #endregion
+
+        #region Constructor
+        public Store()
+        {
+            this.FavouriteCommand = new Command(this.FavouriteButtonClicked);
+        }
+        #endregion
 
 
+
+        #region Commands
+        public Command FavouriteCommand { get; set; }
         #endregion
 
         #region Properties
@@ -74,6 +88,18 @@ namespace PasaBuy.App.Models.Marketplace
             set
             {
                 this.avatar = value;
+            }
+        }
+
+        public string Banner
+        {
+            get
+            {
+                return banner;
+            }
+            set
+            {
+                this.banner = value;
             }
         }
 
@@ -162,6 +188,39 @@ namespace PasaBuy.App.Models.Marketplace
         }
 
         #endregion
+
+
+        #region Methods
+
+        /// <summary>
+        /// Invoked when the favourite button clicked
+        /// </summary>
+        /// <param name="obj">The object</param>
+        private void FavouriteButtonClicked(object obj)
+        {
+            var button = obj as SfButton;
+
+            if (button == null)
+            {
+                return;
+            }
+
+            if (button.Text == "\ue701")
+            {
+                button.Text = "\ue732";
+                Application.Current.Resources.TryGetValue("PrimaryColor", out var retVal);
+                button.TextColor = (Color)retVal;
+            }
+            else
+            {
+                button.Text = "\ue701";
+                Application.Current.Resources.TryGetValue("Gray-600", out var retVal);
+                button.TextColor = (Color)retVal;
+            }
+        }
+        #endregion
+
+
 
     }
 }

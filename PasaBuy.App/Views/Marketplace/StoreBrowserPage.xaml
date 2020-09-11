@@ -4,7 +4,8 @@
              xmlns:controls="clr-namespace:PasaBuy.App.Controls"         
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Marketplace"
+             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Marketplace" 
+             xmlns:template="clr-namespace:PasaBuy.App.Views.Templates"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="True"
              x:Class="PasaBuy.App.Views.Marketplace.StoreBrowserPage">
@@ -122,74 +123,19 @@
                         <DataTemplate>
                             <ViewCell>
                                 <!--  View of each card item  -->
-                                <StackLayout BackgroundColor="{DynamicResource Gray-White}" Spacing="0">
-
-                                    <Grid Margin="16,8,8,8"  ColumnSpacing="0" RowSpacing="0"  >
-                                        
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <border:SfBorder  BackgroundColor="{DynamicResource Gray-200}"
-                                            Style="{StaticResource ProfileBorderStyle}" HorizontalOptions="Start">
-                                            <Image HeightRequest="170" WidthRequest="150" BackgroundColor="{DynamicResource Gray-200}" 
-                                                   Aspect="AspectFill" >
-                                                <Image.Source>
-                                                    <UriImageSource
-                                                             CacheValidity="14"
-                                                             CachingEnabled="true"
-                                                             Uri="{Binding Logo}"/>
-                                                </Image.Source>
-                                            </Image>
-                                        </border:SfBorder>
-
-                                        <StackLayout Grid.Column="1"
-                                            Margin="16,5"
-                                            HorizontalOptions="Start"
-                                            Spacing="2"
-                                            VerticalOptions="FillAndExpand">
-
-                                                <!--  Name of the Restaurant  -->
-                                                <Label 
-                                                    FontFamily="{StaticResource Montserrat-Medium}"
-                                                    FontSize="16" 
-                                                    LineHeight="{OnPlatform Android=1.5,
-                                                                             Default=-1}"
-                                                    Text="{Binding Title}"
-                                                    TextColor="{DynamicResource Gray-800}" />
-
-                                                <!--  Description about the item  -->
-                                                <Label 
-                                                    FontFamily="{StaticResource Montserrat-Medium}"
-                                                    FontSize="14"
-                                                    LineHeight="{OnPlatform Android=1.25,
-                                                                        Default=-1}"
-                                                    Text="{Binding Description}"
-                                                    TextColor="{DynamicResource Gray-700}" />
-
-                                                <!--  Label for Offer  -->
-                                                <Label 
-                                                     FontFamily="{StaticResource Montserrat-Medium}"
-                                                     FontSize="14"
-                                                     LineHeight="{OnPlatform Android=1.25,
-                                                     Default=-1}"
-                                                     Text="{Binding Offer}"
-                                                     TextColor="{DynamicResource PrimaryColor}" />
-                                        </StackLayout>
-
-                                            <border:SfBorder BackgroundColor="{DynamicResource LightGreen}" WidthRequest="40" HeightRequest="40"
-                                                      HorizontalOptions="End" Margin="0,8,0,0" VerticalOptions="Start"
-                                                      Grid.Column="2" CornerRadius="7" BorderColor="Transparent">
-                                                <Label  FontFamily="{StaticResource Montserrat-Medium}" 
-                                                        Text="{Binding ItemRating}" HorizontalOptions="Center"
-                                                        FontSize="16" LineHeight="{OnPlatform Android=1.5,
-                                                        Default=-1}" TextColor="{DynamicResource Gray-White}" VerticalTextAlignment="Center" />
-                                            </border:SfBorder>
-                                    </Grid>
-                                    <!--  Separator -->
-                                    <BoxView Style="{StaticResource SeparatorStyle}" />
+                                <StackLayout>
+                                    <controls:CustomShadowFrame
+                                                         Margin="4"
+                                                         Padding="0"
+                                                         BackgroundColor="{DynamicResource Gray-White}"
+                                                         BorderColor="{DynamicResource Gray-White}"
+                                                         BorderWidth="1"
+                                                         CornerRadius="4"
+                                                         HasShadow="True"
+                                                         HorizontalOptions="FillAndExpand"
+                                                         VerticalOptions="FillAndExpand">
+                                        <template:StoreListTemplate />
+                                    </controls:CustomShadowFrame >
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
