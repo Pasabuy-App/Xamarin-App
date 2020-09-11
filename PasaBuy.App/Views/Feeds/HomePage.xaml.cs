@@ -19,11 +19,11 @@ namespace PasaBuy.App.Views.Feeds
             InitializeComponent();
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
+        private async void Button_Clicked(object sender, EventArgs e)
         {
-            ShareUri("http://localhost/wordpress/status/15/");
+            await ShareUri("http://localhost/wordpress/status/15/");
         }
-        public static async Task ShareUri(string uri)
+        public async Task ShareUri(string uri)
         {
             await Share.RequestAsync(new ShareTextRequest
             {

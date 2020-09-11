@@ -3,6 +3,9 @@ using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
+using Plugin.Share;
+using Xamarin.Essentials;
+using System.Threading.Tasks;
 
 namespace PasaBuy.App.Views.Feeds
 {
@@ -29,6 +32,19 @@ namespace PasaBuy.App.Views.Feeds
             PasaBuy.App.ViewModels.Menu.MasterMenuViewModel.postbutton = string.Empty;
             HomepageViewModel.RefreshList();
             Navigation.PopModalAsync();
+        }
+
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            await ShareUri("http://localhost/wordpress/status/15/");
+        }
+        public async Task ShareUri(string uri)
+        {
+            await Share.RequestAsync(new ShareTextRequest
+            {
+                Uri = uri,
+                Title = "Share Web Link"
+            });
         }
     }
 }

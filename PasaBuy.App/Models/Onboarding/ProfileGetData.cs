@@ -14,8 +14,6 @@ namespace PasaBuy.App.Models.Onboarding
 
         public static void CountPost(string wpid, string snky)
         {
-            //UserPrefs.Instance.UserInfo.snky UserPrefs.Instance.UserInfo.wpid
-
             SocioPress.Transaction.Instance.GetTotal(wpid, snky, (bool success, string data) =>
             {
                 if (success)
