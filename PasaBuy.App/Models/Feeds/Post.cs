@@ -183,7 +183,7 @@ namespace PasaBuy.App.Models.Feeds
             set
             {
                 iscontent = value;
-                OnPropertyChanged("isAccept");
+                OnPropertyChanged("isContent");
             }
         }
         public Boolean isImage
@@ -195,7 +195,7 @@ namespace PasaBuy.App.Models.Feeds
             set
             {
                 isimage = value;
-                OnPropertyChanged("isAccept");
+                OnPropertyChanged("isImage");
             }
         }
 

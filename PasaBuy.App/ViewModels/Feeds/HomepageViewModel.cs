@@ -32,12 +32,14 @@ namespace PasaBuy.App.ViewModels.Feeds
         #region Constructor
         public HomepageViewModel()
         {
-            LoadData();
             RefreshCommand = new Command<string>((key) =>
             {
-                RefreshList();
+                homePostList.Clear();
+                LoadData();
                 IsRefreshing = false;
             });
+            homePostList = new ObservableCollection<Post>();
+            LoadData();
         }
         /// <summary>
         /// Load post data in listview using observablecollection in HomePage
@@ -46,7 +48,7 @@ namespace PasaBuy.App.ViewModels.Feeds
         {
             try
             {
-                homePostList = new ObservableCollection<Post>();
+                HomePage.LastIndex = 11;
                 SocioPress.Feeds.Instance.Home(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", (bool success, string data) =>
                 {
                     if (success)
@@ -86,57 +88,6 @@ namespace PasaBuy.App.ViewModels.Feeds
             catch (Exception)
             {
                 new Alert("Something went Wrong", "Please contact administrator.", "OK");
-            }
-        }
-        
-        /// <summary>
-        /// Refresh post data in listview using observablecollection in HomePage
-        /// </summary>
-        public static void RefreshList()
-        {
-            try
-            {
-                HomePage.LastIndex = 11;
-                homePostList.Clear();
-                SocioPress.Feeds.Instance.Home(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", (bool success, string data) =>
-                {
-                    if (success)
-                    {
-                        PostListData post = JsonConvert.DeserializeObject<PostListData>(data);
-                        for (int i = 0; i < post.data.Length; i++)
-                        {
-                            string image_height = "-1";
-                            if (post.data[i].item_image != "")
-                            {
-                                image_height = "400";
-                            }
-                            string post_author = post.data[i].post_author;
-                            string id = post.data[i].id;
-                            string content = post.data[i].content;
-                            string title = post.data[i].title;
-                            string date_post = post.data[i].date_post == string.Empty ? new DateTime().ToString() : post.data[i].date_post;
-                            string type = post.data[i].type;
-                            string item_image = post.data[i].item_image;
-                            string author = post.data[i].author;
-                            string name = post.data[i].name;
-                            string views = post.data[i].views;
-                            string post_link = post.data[i].post_link;
-
-                            homePostList.Add(new Post(PSAProc.GetUrl(author),
-                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link));
-                        }
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-
-                    }
-                });
-                LoadTotal();
-            }
-            catch (Exception)
-            {
-                new Alert("Something went Wrong", "Please contact administrator - HP Refresh.", "OK");
             }
         }
 
@@ -185,7 +136,7 @@ namespace PasaBuy.App.ViewModels.Feeds
             }
             catch (Exception)
             {
-                new Alert("Something went Wrong", "Please contact administrator - HP Refresh.", "OK");
+                new Alert("Something went Wrong", "Please contact administrator.", "OK");
             }
         }
 

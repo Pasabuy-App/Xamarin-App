@@ -45,7 +45,6 @@ namespace PasaBuy.App.Views.Feeds
                 if (HomepageViewModel.homePostList.IndexOf(item) >= LastIndex)
                 {
                     LastIndex += 6;
-                    Debug.WriteLine("Last ID " + item.Last_ID + " " + HomepageViewModel.homePostList.IndexOf(item));
                     HomepageViewModel.LoadMore(item.Last_ID);
                 }
             }

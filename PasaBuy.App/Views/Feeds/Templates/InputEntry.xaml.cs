@@ -40,11 +40,13 @@ namespace PasaBuy.App.Views.Feeds.Templates
                         ProfileGetData.CountPost(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky);
                         if (PasaBuy.App.ViewModels.Menu.MasterMenuViewModel.postbutton == string.Empty)
                         {
-                            HomepageViewModel.RefreshList();
+                            HomepageViewModel.homePostList.Clear();
+                            HomepageViewModel.LoadData();
                         }
                         else
                         {
-                            MyProfileViewModel.RefreshList();
+                            MyProfileViewModel.profilePostList.Clear();
+                            MyProfileViewModel.LoadData();
                         }
                         PostEntry.Text = string.Empty;
                     }

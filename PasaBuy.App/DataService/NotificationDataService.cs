@@ -29,9 +29,9 @@ namespace PasaBuy.App.DataService
         /// <summary>
         /// Gets or sets the value of task notification page view model.
         /// </summary>
-        public NotificationViewModel TaskNotificationViewModel =>
+        /*public NotificationViewModel TaskNotificationViewModel =>
             this.notificationViewModel ??
-            (this.notificationViewModel = PopulateData<NotificationViewModel>("notification.json"));
+            (this.notificationViewModel = PopulateData<NotificationViewModel>("notification.json"));*/
 
         #endregion
 

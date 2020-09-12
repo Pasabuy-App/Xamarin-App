@@ -9,7 +9,7 @@ namespace PasaBuy.App.Models.Notification
     /// Model for the task notifications list page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    [DataContract]
+    //[DataContract]
     public class TaskNotificationsListModel : INotifyPropertyChanged
     {
         #region Field
@@ -23,43 +23,43 @@ namespace PasaBuy.App.Models.Notification
         /// <summary>
         /// Gets or sets the name of the user.
         /// </summary>
-        [DataMember(Name = "userName")]
+        //[DataMember(Name = "userName")]
         public string UserName { get; set; }
 
         /// <summary>
         /// Gets or sets the background color inside the circular avatar.
         /// </summary>
-        [DataMember(Name = "backgroundColor")]
+        //[DataMember(Name = "backgroundColor")]
         public string BackgroundColor { get; set; }
 
         /// <summary>
         /// Gets or sets the description.
         /// </summary>
-        [DataMember(Name = "description")]
+        //[DataMember(Name = "description")]
         public string Description { get; set; }
 
         /// <summary>
         /// Gets or sets the detailed description.
         /// </summary>
-        [DataMember(Name = "detail")]
+        //[DataMember(Name = "detail")]
         public string Detail { get; set; }
 
         /// <summary>
         /// Gets or sets the task-id.
         /// </summary>
-        [DataMember(Name = "taskID")]
+        //[DataMember(Name = "taskID")]
         public string TaskID { get; set; }
 
         /// <summary>
         /// Gets or sets the time.
         /// </summary>
-        [DataMember(Name = "time")]
+        //[DataMember(Name = "time")]
         public string Time { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the notification item is read or not.
         /// </summary>
-        [DataMember(Name = "isRead")]
+        //[DataMember(Name = "isRead")]
         public bool IsRead
         {
             get { return isRead; }

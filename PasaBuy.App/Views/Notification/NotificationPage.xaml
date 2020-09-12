@@ -43,43 +43,50 @@
     </ContentPage.ControlTemplate>
 
     <ContentPage.Content>
-        <Grid RowSpacing="0" ColumnSpacing="0">
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"   
+                     x:Name="rv" 
+                     Command="{Binding RefreshCommand}" >
 
-            <Grid Grid.Row="0" >
-                <Label Margin="16,16,16,8"
+            <ScrollView VerticalScrollBarVisibility="Never" Padding="0, 0, 0, 0">
+            <Grid RowSpacing="0" ColumnSpacing="0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" >
+                    <Label Margin="16,16,16,8"
                        Text="RECENT"
                        TextColor="{DynamicResource Gray-900}"
                        FontSize="12"
                        FontFamily="{DynamicResource Montserrat-SemiBold}"
                        HorizontalOptions="Start"/>
 
-                <buttons:SfButton Margin="16,16,16,8"
+                    <buttons:SfButton Margin="16,16,16,8"
                                   BorderWidth="0" 
                                   WidthRequest="134" 
                                   HeightRequest="18"
                                   BackgroundColor="{DynamicResource Gray-White}" 
                                   TextColor="{DynamicResource Gray-600}"
                                   CornerRadius="4"
+                                  Command="{Binding MarkReadAll}"
                                   HorizontalOptions="End">
-                    
-                    <Label Text="MARK ALL AS READ"
+
+                        <Label Text="MARK ALL AS READ"
                            TextColor="{DynamicResource Gray-900}"
                            FontSize="12"
                            VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Center"
                            LineHeight="{OnPlatform Android=1.5,Default=-1}"
                            FontFamily="{DynamicResource Montserrat-SemiBold}" />
-                    
-                </buttons:SfButton>
-            </Grid>
 
-            <StackLayout Grid.Row="1" Spacing="0">
-                <listView:SfListView x:Name="TaskNotifications"
+                    </buttons:SfButton>
+                </Grid>
+
+                <StackLayout Grid.Row="1" Spacing="0">
+                        <listView:SfListView x:Name="TaskNotifications" ItemAppearing="TaskNotifications_ItemAppearing"
                                      IsScrollBarVisible="False"
                                      AllowSwiping="True"
                                      AutoFitMode="Height"
@@ -91,30 +98,29 @@
                                      ItemsSource="{Binding TaskNotificationsList}"
                                      SelectionBackgroundColor="Transparent">
 
-                    <listView:SfListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid RowSpacing="0" ColumnSpacing="0" HeightRequest="101" 
+                        <listView:SfListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid RowSpacing="0" ColumnSpacing="0" HeightRequest="101" 
                                       BackgroundColor="{Binding IsRead, Converter={x:StaticResource BoolToColorConverter}, ConverterParameter=7}">
 
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
 
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
 
-                                    <!-- User Name Avatar -->
-                                    <sfavatar:SfAvatarView Grid.RowSpan="4" 
+                                        <!-- User Name Avatar -->
+                                        <sfavatar:SfAvatarView Grid.RowSpan="4" 
                                                            Margin="16,12,8,41"
                                                            AvatarName="{Binding UserName}"
                                                            InitialsColor="{DynamicResource Gray-White}"
-                                                           InitialsType="DoubleCharacter"
                                                            BackgroundColor="{Binding BackgroundColor}"
                                                            AvatarShape="Circle"
                                                            AvatarSize="Medium"
@@ -123,8 +129,8 @@
                                                            HeightRequest="48"
                                                            BorderWidth="0" />
 
-                                    <!-- Description -->
-                                    <Label Grid.Column="1"
+                                        <!-- Description -->
+                                        <Label Grid.Column="1"
                                            Margin="8,12,16,0"
                                            Text="{Binding Description}"
                                            TextColor="{DynamicResource Gray-900}"
@@ -133,8 +139,8 @@
                                            LineBreakMode="TailTruncation"
                                            FontFamily="{DynamicResource Montserrat-SemiBold}"/>
 
-                                    <!-- Detailed Description -->
-                                    <Label Grid.Row="1"
+                                        <!-- Detailed Description -->
+                                        <Label Grid.Row="1"
                                            Grid.Column="1"
                                            Margin="8,0,16,8"
                                            Text="{Binding Detail}"
@@ -145,8 +151,8 @@
                                            FontFamily="{DynamicResource Montserrat-medium}"
                                            HeightRequest="21" />
 
-                                    <!-- Task-ID -->
-                                    <buttons:SfButton Grid.Row="2" 
+                                        <!-- Task-ID -->
+                                        <buttons:SfButton Grid.Row="2" 
                                                       Grid.Column="1" 
                                                       Margin="0,0,0,12" 
                                                       CornerRadius="12" 
@@ -164,8 +170,8 @@
                                                HorizontalTextAlignment="Center"
                                                FontFamily="{DynamicResource Montserrat-SemiBold}" />
 
-                                    <!-- Time -->
-                                    <Label Grid.RowSpan="4" 
+                                        <!-- Time -->
+                                        <Label Grid.RowSpan="4" 
                                            Grid.Column="1"
                                            Margin="0,68,16,15"
                                            Text="{Binding Time}"
@@ -176,15 +182,20 @@
                                            HorizontalOptions="End"
                                            HeightRequest="18" />
 
-                                    <!-- Seperator -->
-                                    <BoxView Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource SeparatorStyle}" />
+                                        <!-- Seperator -->
+                                        <BoxView Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource SeparatorStyle}" />
 
-                                </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </listView:SfListView.ItemTemplate>
-                </listView:SfListView>
-            </StackLayout>
-        </Grid>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </listView:SfListView.ItemTemplate>
+                    </listView:SfListView>
+
+                </StackLayout>
+            </Grid>
+
+
+            </ScrollView>
+        </RefreshView>
     </ContentPage.Content>
 </ContentPage>

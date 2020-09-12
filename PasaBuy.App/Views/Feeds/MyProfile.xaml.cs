@@ -34,7 +34,8 @@ namespace PasaBuy.App.Views.Feeds
         public void BackButtonClicked(object sender, EventArgs e)
         {
             PasaBuy.App.ViewModels.Menu.MasterMenuViewModel.postbutton = string.Empty;
-            HomepageViewModel.RefreshList();
+            HomepageViewModel.homePostList.Clear();
+            HomepageViewModel.LoadData();
             Navigation.PopModalAsync();
         }
 
@@ -60,7 +61,6 @@ namespace PasaBuy.App.Views.Feeds
                 if (MyProfileViewModel.profilePostList.IndexOf(item) >= LastIndex)
                 {
                     LastIndex += 6;
-                    Debug.WriteLine("Last ID " + item.Last_ID + " " + MyProfileViewModel.profilePostList.IndexOf(item));
                     MyProfileViewModel.LoadMore(item.Last_ID);
                 }
             }

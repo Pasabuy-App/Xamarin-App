@@ -4,6 +4,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using PasaBuy.App.Models.Notification;
 using PasaBuy.App.Views.Master;
+using PasaBuy.App.Controllers.Notice;
 
 namespace PasaBuy.App.ViewModels.Notification
 {
@@ -11,7 +12,7 @@ namespace PasaBuy.App.ViewModels.Notification
     /// ViewModel for task notification page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    [DataContract]
+    //[DataContract]
     public class NotificationViewModel : BaseViewModel
     {
         #region Fields
@@ -61,7 +62,7 @@ namespace PasaBuy.App.ViewModels.Notification
         /// <summary>
         /// Gets or sets a collction of value to be displayed in task notifications list page.
         /// </summary>
-        [DataMember(Name = "taskNotificationPageList")]
+        // [DataMember(Name = "taskNotificationPageList")]
         public ObservableCollection<TaskNotificationsListModel> TaskNotificationsList { get; set; }
 
         #endregion

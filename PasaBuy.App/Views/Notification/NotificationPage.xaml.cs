@@ -2,6 +2,10 @@
 using Xamarin.Forms.Xaml;
 using PasaBuy.App.DataService;
 using System;
+using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.ViewModels.Notification;
+using PasaBuy.App.Models.Notification;
+using System.Linq;
 
 namespace PasaBuy.App.Views.Notification
 {
@@ -12,6 +16,7 @@ namespace PasaBuy.App.Views.Notification
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NotificationPage
     {
+        public static int LastIndex = 11;
         /// <summary>
         /// Initializes a new instance of the <see cref="NotificationPage" /> class.
         /// </summary>
@@ -19,7 +24,7 @@ namespace PasaBuy.App.Views.Notification
         {
             InitializeComponent();
 
-            this.BindingContext = NotificationDataService.Instance.TaskNotificationViewModel;
+            this.BindingContext = new ViewModels.Notification.NotificationPageViewModel();
         }
 
         /// <summary>
@@ -28,6 +33,19 @@ namespace PasaBuy.App.Views.Notification
         public void BackButtonClicked(object sender, EventArgs e)
         {
             Navigation.PopModalAsync();
+        }
+
+        private void TaskNotifications_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
+        {
+            var item = e.ItemData as TaskNotification;
+            if (NotificationPageViewModel.taskNotificationList.Last() == item && NotificationPageViewModel.taskNotificationList.Count() != 1)
+            {
+                if (NotificationPageViewModel.taskNotificationList.IndexOf(item) >= LastIndex)
+                {
+                    LastIndex += 6;
+                    NotificationPageViewModel.LoadMore(item.ID);
+                }
+            }
         }
     }
 }
