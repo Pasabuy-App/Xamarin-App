@@ -7,6 +7,7 @@
              xmlns:local="clr-namespace:PasaBuy.App.CustomRenderers"
              xmlns:aspectratio ="clr-namespace:PasaBuy.App.Views.Feeds.Templates" 
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
@@ -21,7 +22,7 @@
         <ControlTemplate>
             <StackLayout Spacing="0" >
                 <controls:TitleView Title="Share thoughts" 
-                                    FontSize="16"
+                                    FontSize="14"
                                     BackgroundColor="{DynamicResource PrimaryColor}" >
                     <controls:TitleView.LeadingView >
                         <buttons:SfButton
@@ -37,8 +38,8 @@
         </ControlTemplate>
     </ContentPage.ControlTemplate>
     <ContentPage.Content>
-        <StackLayout>
-            <Grid RowSpacing="15" ColumnSpacing="0" Padding="10">
+        <ScrollView>
+            <Grid RowSpacing="15" ColumnSpacing="0" Padding="10, 10, 10, 20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
@@ -49,29 +50,20 @@
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Row="0"  Grid.ColumnSpan="3" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="200">
-                <!--<aspectratio:AspecRatioContainer Grid.Row="0"  Grid.ColumnSpan="3" AspectRatio="1">-->
-                    <Image
-                        BackgroundColor="{DynamicResource Gray-400}"
-                        x:Name="StatusImage"
-                        HorizontalOptions="Fill"
-                        Aspect="AspectFill">
-                        <Image.Source>
-                            <UriImageSource
-                                 CacheValidity="14"
-                                 CachingEnabled="true"
-                                 Uri="{Binding SellingImage}" />
-                        </Image.Source>
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer
+                <Grid Grid.Row="0"  Grid.ColumnSpan="3" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="350">
+                    <ffimageloading:CachedImage Aspect="Fill"
+                                                x:Name="StatusImage"
+			                                    DownsampleToViewSize="true" FadeAnimationEnabled="True" LoadingPriority="Highest">
+                    </ffimageloading:CachedImage>
+                    
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer
                                 Tapped="AddStatusImage"
                                 NumberOfTapsRequired="1" />
-                        </Image.GestureRecognizers>
-                    </Image>
-                <!--</aspectratio:AspecRatioContainer>-->
-                    
+                    </Grid.GestureRecognizers>
                 </Grid>
-
+                
+   
                 <!--  Submit button  -->
                 <buttons:SfButton
                             Grid.Row="1"
@@ -134,6 +126,6 @@
 
 
             </Grid>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

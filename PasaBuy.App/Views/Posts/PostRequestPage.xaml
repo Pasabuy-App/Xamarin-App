@@ -21,8 +21,8 @@
     <ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0" >
-                <controls:TitleView Title="Request Something" 
-                                    FontSize="12"
+                <controls:TitleView Title="Pasabuy" 
+                                    FontSize="14"
                                     BackgroundColor="{DynamicResource PrimaryColor}" >
                     <controls:TitleView.LeadingView >
                         <buttons:SfButton
@@ -148,6 +148,7 @@
                             <ListCollection:List x:TypeArguments="x:String">
                                 <x:String>Bicycle</x:String>
                                 <x:String>Motorcycle</x:String>
+                                <x:String>4-Wheeled Vehicle</x:String>
                             </ListCollection:List>
                         </combobox:SfComboBox.ComboBoxSource>
                         <combobox:SfComboBox.DropDownButtonSettings>

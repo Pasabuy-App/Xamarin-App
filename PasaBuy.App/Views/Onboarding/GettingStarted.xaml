@@ -35,8 +35,8 @@
             </Grid.RowDefinitions>
 
             <!--  Gradient view  -->
-            <gradient:SfGradientView Grid.RowSpan="3" Style="{StaticResource SfGradientViewStyle}" />
-
+            <gradient:SfGradientView Grid.RowSpan="3" Style="{StaticResource SfGradientStyle}" />
+            
             <!--  Skip button  -->
             <button:SfButton
                 x:Name="SkipButton"

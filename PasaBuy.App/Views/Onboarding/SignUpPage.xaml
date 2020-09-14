@@ -31,7 +31,7 @@
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <Grid>
+        <Grid Padding="0, 40, 0, 40">
 
             <ScrollView HorizontalOptions="Center">
                 <ScrollView.VerticalOptions>

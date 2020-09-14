@@ -82,7 +82,7 @@
                             BackgroundColor="{DynamicResource Gray-100}"/>
                 </Grid>
                 <Grid Grid.Row="1" Grid.Column="1">
-                    <Button Text="Request" 
+                    <Button Text="Pasabuy" 
                             IsEnabled="True"
                             Clicked="PostRequest"
                             BorderColor="{DynamicResource Gray-300}"

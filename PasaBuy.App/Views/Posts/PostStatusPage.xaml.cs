@@ -14,6 +14,7 @@ using Plugin.Media;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using SocioPress;
+using FFImageLoading;
 
 namespace PasaBuy.App.Views.Posts
 {
@@ -24,6 +25,14 @@ namespace PasaBuy.App.Views.Posts
         public PostStatusPage()
         {
             InitializeComponent();
+            //if (StatusImage.IsLoading)
+            //{
+
+            //}
+            StatusImage.Source = "https://i2.wp.com/seds.org/wp-content/uploads/2020/06/placeholder.png?fit=1200%2C800&ssl=1";
+            StatusImage.LoadingPlaceholder = "https://i2.wp.com/seds.org/wp-content/uploads/2020/06/placeholder.png?fit=1200%2C800&ssl=1";
+            
+
         }
 
         public void BackButtonClicked(object sender, EventArgs e)
@@ -43,7 +52,7 @@ namespace PasaBuy.App.Views.Posts
             {
                 Directory = "StatusImageFolder",
                 SaveToAlbum = true,
-                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
+                CompressionQuality = 40
             });
 
             if (file == null)
@@ -72,7 +81,9 @@ namespace PasaBuy.App.Views.Posts
             var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
             {
                 Directory = "Sample",
-                Name = "item-image.jpg"
+                Name = "item-image.jpg",
+                CompressionQuality = 40,
+                AllowCropping = true
             });
 
             if (file == null)
@@ -100,8 +111,8 @@ namespace PasaBuy.App.Views.Posts
 
             var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
             {
-                //PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
-                PhotoSize = Plugin.Media.Abstractions.PhotoSize.MaxWidthHeight,
+                CompressionQuality = 40,
+
             });
 
 

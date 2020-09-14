@@ -104,7 +104,7 @@
                                                 </Grid>
 
                                                 <Grid Grid.Row="0" 
-                                                      HeightRequest="20"
+                                                      HeightRequest="25"
                                                       Grid.Column="1">
                                                     <Label Text="{Binding Author}" Style="{StaticResource PostAuthor}"/>
                                                 </Grid>
