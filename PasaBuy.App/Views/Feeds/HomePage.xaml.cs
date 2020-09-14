@@ -21,6 +21,7 @@ namespace PasaBuy.App.Views.Feeds
         public HomePage()
         {
             InitializeComponent();
+     
         }
 
         private async void Button_Clicked(object sender, EventArgs e)

@@ -9,7 +9,8 @@
              xmlns:converter="clr-namespace:PasaBuy.App.Converters"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:posts="clr-namespace:PasaBuy.App.ViewModels.Feeds"
-             xmlns:aspectratio ="clr-namespace:PasaBuy.App.Views.Feeds.Templates" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:shimmer="clr-namespace:Syncfusion.XForms.Shimmer;assembly=Syncfusion.Core.XForms"
              BackgroundColor="{DynamicResource Gray-300}"
              xmlns:local="clr-namespace:PasaBuy.App.Views.Feeds.Templates"
              NavigationPage.TitleIconImageSource="LogoHeader.png">
@@ -42,19 +43,21 @@
                 </Grid.RowDefinitions>
                     
                     <!-- INPUT VIEW -->
-                    <StackLayout Grid.Row="1" 
-                                 BackgroundColor="{DynamicResource Gray-100}">
-                        <local:InputEntry/>
-                    </StackLayout>
-                    <!-- FEED VIEW -->
-                    <StackLayout Grid.Row="2">
+                    
+                            <StackLayout Grid.Row="1" 
+                                     BackgroundColor="{DynamicResource Gray-100}">
+                                <local:InputEntry/>
+                            </StackLayout>
+                    
+                            <!-- FEED VIEW -->
+                            <StackLayout Grid.Row="2">
                         <!--<local:PostEntry/>-->
                         <listView:SfListView x:Name="homeListView" ItemAppearing="homeListView_ItemAppearing"
                                              ItemsSource="{Binding HomePosts}"
                                              AutoFitMode="DynamicHeight">
-
                             <listView:SfListView.ItemTemplate>
                                 <DataTemplate>
+                                    
                                     <Grid RowSpacing="0"  
                                           Margin="0,0,0,10"
                                           BackgroundColor="{DynamicResource Gray-100}">
@@ -152,19 +155,30 @@
                                             Grid.ColumnSpan="2"
                                             HorizontalOptions="FillAndExpand"
                                             VerticalOptions="FillAndExpand">
-                                            <Image Aspect="AspectFill"
+                                            
+                                            <!--<Image Aspect="AspectFill"
                                                    HeightRequest="{Binding ImageHeight}"
                                                    HorizontalOptions="FillAndExpand"
                                                    VerticalOptions="FillAndExpand"
                                                    BackgroundColor="{DynamicResource Transparent}">
                                                 <Image.Source>
-                                                    <UriImageSource
-                                                        CacheValidity="14"
+                                                    <UriImageSource  CacheValidity="14"
                                                         CachingEnabled="true"
                                                         Uri="{Binding Images}" />
                                                 </Image.Source>
-                                            </Image>
-
+                                            </Image>-->
+                                            <ffimageloading:CachedImage 
+                                                Aspect="AspectFill"
+			                                    DownsampleToViewSize="true"
+                                                HeightRequest="{Binding ImageHeight}"
+                                                HorizontalOptions="FillAndExpand"
+                                                VerticalOptions="FillAndExpand"
+                                                x:Name="HomeImages"
+                                                LoadingPlaceholder="https://i2.wp.com/seds.org/wp-content/uploads/2020/06/placeholder.png?fit=1200%2C800&amp;ssl=1"
+                                                BackgroundColor="{DynamicResource Transparent}"
+                                                Source="{Binding Images}"
+                                                CacheDuration="30.00:00:00">
+                                            </ffimageloading:CachedImage>
                                         </Grid>
 
                                         <Grid Grid.Row="3" Grid.ColumnSpan="2" 
@@ -185,7 +199,7 @@
                                                     BorderWidth="1"
                                                     BackgroundColor="{DynamicResource Gray-100}"/>
                                             </Grid>
-                                            <Grid Grid.Row="1" Grid.Column="1">
+                                            <Grid Grid.Row="1" Grid.Column="{Binding HomeCol}" Grid.ColumnSpan="{Binding HomeColSpan}">
                                                 <Button Text="Share" x:Name="ShareButton" ClassId="{Binding LinkPost}"
                                                     Clicked="Button_Clicked"
                                                     IsEnabled="True"
@@ -196,15 +210,11 @@
                                         </Grid>
 
                                     </Grid>
-
                                 </DataTemplate>
                             </listView:SfListView.ItemTemplate>
-                            
                         </listView:SfListView>
-
-
                     </StackLayout>
-                    
+                        
                 </Grid>
 
         </ScrollView>

@@ -22,6 +22,8 @@ namespace PasaBuy.App.Models.Feeds
         private Boolean iscontent = false;
         private Boolean isimage = false;
         private string linkpost;
+        private int column = 1;
+        private int colspan = 1;
 
         public Post(string photo, string author, string types, string date, string seen, string title, string description, string images, string image_height, string last_id, string post_link)
         {
@@ -56,10 +58,14 @@ namespace PasaBuy.App.Models.Feeds
             if (types == "Status")
             {
                 isAccept = false;
+                HomeColSpan = 2;
+                HomeCol = 0;
             }
             else
             {
                 isAccept = true;
+                HomeColSpan = 1;
+                HomeCol = 1;
             }
         }
 
@@ -211,6 +217,35 @@ namespace PasaBuy.App.Models.Feeds
                 OnPropertyChanged("ImageHeight");
             }
         }
+
+        public int HomeColSpan
+        {
+            get
+            {
+                return colspan;
+            }
+            set
+            {
+                colspan = System.Convert.ToInt32(value);
+                OnPropertyChanged("HomeColSpan");
+            }
+        }
+
+        public int HomeCol
+        {
+            get
+            {
+                return column;
+            }
+            set
+            {
+                column = System.Convert.ToInt32(value);
+                OnPropertyChanged("HomeCol");
+            }
+        }
+
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
