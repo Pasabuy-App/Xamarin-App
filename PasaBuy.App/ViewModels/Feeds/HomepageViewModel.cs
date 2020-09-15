@@ -65,6 +65,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                             string post_author = post.data[i].post_author;
                             string id = post.data[i].id;
                             string content = post.data[i].content;
+                            string category = post.data[i].item_category;
                             string title = post.data[i].title;
                             string date_post = post.data[i].date_post == string.Empty ? new DateTime().ToString() : post.data[i].date_post;
                             string type = post.data[i].type;
@@ -73,9 +74,17 @@ namespace PasaBuy.App.ViewModels.Feeds
                             string name = post.data[i].name;
                             string views = post.data[i].views;
                             string post_link = post.data[i].post_link;
+                            string vehicle_type = post.data[i].vehicle_type;
+                            string pickup_location = post.data[i].pickup_location;
+                            string do_price = "Drop-off: " + post.data[i].drop_off_location;
+                            if (type == "Selling")
+                            {
+                                title = category + " : " + title;
+                                do_price = "Price: " + post.data[i].item_price;
+                            }
 
                             homePostList.Add(new Post(PSAProc.GetUrl(author),
-                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link, post_author));
+                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link, post_author, pickup_location, vehicle_type, do_price));
                         }
                     }
                     else
@@ -113,6 +122,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                             string post_author = post.data[i].post_author;
                             string id = post.data[i].id;
                             string content = post.data[i].content;
+                            string category = post.data[i].item_category;
                             string title = post.data[i].title;
                             string date_post = post.data[i].date_post == string.Empty ? new DateTime().ToString() : post.data[i].date_post;
                             string type = post.data[i].type;
@@ -121,9 +131,17 @@ namespace PasaBuy.App.ViewModels.Feeds
                             string name = post.data[i].name;
                             string views = post.data[i].views;
                             string post_link = post.data[i].post_link;
+                            string vehicle_type = post.data[i].vehicle_type;
+                            string pickup_location = post.data[i].pickup_location;
+                            string do_price = "Drop-off: " + post.data[i].drop_off_location;
+                            if (type == "Selling")
+                            {
+                                title = category + " : " + title;
+                                do_price = "Price: " + post.data[i].item_price;
+                            }
 
                             homePostList.Add(new Post(PSAProc.GetUrl(author),
-                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link, post_author));
+                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link, post_author, pickup_location, vehicle_type, do_price));
                         }
                     }
                     else
