@@ -188,7 +188,7 @@
                         <Label Grid.Row="0"
                                Grid.Column="0"
                                Style="{StaticResource AttribbuteValueStyle}"
-                               Text="{Binding PostsCount}" 
+                               Text="{Binding PostsCount, Mode=TwoWay}" 
                                TextColor="{DynamicResource Gray-Black}" />
 
                         <!-- Posts title -->
@@ -209,7 +209,7 @@
                         <Label Grid.Row="0"
                                Grid.Column="2"
                                Style="{StaticResource AttribbuteValueStyle}"
-                               Text="{Binding Transacts}" 
+                               Text="{Binding Transacts, Mode=TwoWay}" 
                                TextColor="{DynamicResource Gray-Black}" />
 
                         <!-- Following count -->
@@ -229,7 +229,7 @@
                         <Label Grid.Row="0"
                                Grid.Column="4"
                                Style="{StaticResource AttribbuteValueStyle}"
-                               Text="{Binding Ratings}" 
+                               Text="{Binding Ratings, Mode=TwoWay}" 
                                TextColor="{DynamicResource Gray-Black}" />
 
                         <!-- Following count -->

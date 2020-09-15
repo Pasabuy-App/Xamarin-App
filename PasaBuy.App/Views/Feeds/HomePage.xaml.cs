@@ -1,6 +1,8 @@
 ﻿using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
 using PasaBuy.App.Models.Feeds;
 using PasaBuy.App.ViewModels.Feeds;
+using Syncfusion.XForms.Buttons;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -49,7 +51,16 @@ namespace PasaBuy.App.Views.Feeds
                     HomepageViewModel.LoadMore(item.Last_ID);
                 }
             }
+        }
 
+        private void SfButton_Clicked(object sender, EventArgs e)
+        {
+            var btn = (SfButton)sender;
+            var classId = btn.ClassId;
+            if (classId != PSACache.Instance.UserInfo.wpid)
+            {
+                new Alert("Title", "Message" + classId, "OK");
+            }
         }
     }
 }

@@ -180,8 +180,6 @@ namespace PasaBuy.App.ViewModels.Onboarding
                                     PSACache.Instance.UserInfo.banner = uinfo.data.banner;
                                     PSACache.Instance.UserInfo.verify = uinfo.data.verify;
 
-                                    //ProfileGetData.CountPost(token.data.wpid, token.data.snky);
-
                                     State = false;
                                     Application.Current.MainPage = new Views.MainTabs();
                                     PSACache.Instance.SaveUserData();

@@ -66,7 +66,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                         if (post.data.Length == 0)
                         {
                             profilePostList.Add(new Post(PSAProc.GetUrl("http://localhost/wordpress/wp-content/plugins/SocioPress-WP-Plugin/assets/default-avatar.png"), // PasaBuy.App avatar
-                                "Pasabuy.App", "Status", new DateTime().ToString(), "0", "Welcome to Pasabuy.App!", "", "", "-1", "", ""));
+                                "Pasabuy.App", "Status", new DateTime().ToString(), "0", "Welcome to Pasabuy.App!", "", "", "-1", "", "", ""));
                         }
                         else
                         {
@@ -90,7 +90,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                                 string post_link = post.data[i].post_link;
 
                                 profilePostList.Add(new Post(PSAProc.GetUrl(author),
-                                    name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link));
+                                    name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link, ""));
                             }
                         }
                     }
@@ -139,7 +139,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                             string post_link = post.data[i].post_link;
 
                             profilePostList.Add(new Post(PSAProc.GetUrl(author),
-                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link));
+                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link, ""));
                         }
                     }
                     else
@@ -148,7 +148,6 @@ namespace PasaBuy.App.ViewModels.Feeds
 
                     }
                 });
-                LoadTotal();
             }
             catch (Exception)
             {
@@ -211,16 +210,15 @@ namespace PasaBuy.App.ViewModels.Feeds
             }
             this.Joined = "(ic) Joined at " + date.ToString("MMMM yyyy");
             isRefered = false;
-            this.Refered = "";// "(ic) Refered by " + UserPrefs.Instance.UserInfo.city;
-            this.Transacts = transactcount; // PSACache.Instance.UserInfo.totaltransact;//PSACache.Instance.UserInfo.totaltransact; 
-            this.Ratings = ratingscount; //PSACache.Instance.UserInfo.rating; //ProfileGetData.totalratings;
-            this.PostsCount = postcount; //PSACache.Instance.UserInfo.countpost; // ProfileGetData.totalpost;
+            this.Refered = "";
+            this.Transacts = transactcount;
+            this.PostsCount = postcount;
+            this.Ratings = ratingscount;
 
             RefreshCommand = new Command<string>((key) =>
             {
                 profilePostList.Clear();
                 LoadData();
-                LoadTotal();
                 IsRefreshing = false;
             });
             profilePostList = new ObservableCollection<Post>();
@@ -263,7 +261,52 @@ namespace PasaBuy.App.ViewModels.Feeds
 
         #endregion
 
-        #region Propertiy
+        #region Property
+        /*public int PostsCount
+        {
+            get
+            {
+                return postcount;
+            }
+            set
+            { 
+                if (postcount != value)
+                {
+                    postcount = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        public float Ratings
+        {
+            get
+            {
+                return ratingscount;
+            }
+            set
+            {
+                if (ratingscount != value)
+                {
+                    ratingscount = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        public int Transacts
+        {
+            get
+            {
+                return transactcount;
+            }
+            set
+            {
+                if (transactcount != value)
+                {
+                    transactcount = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }*/
         public ICommand RefreshCommand { protected set; get; }
 
         bool _isRefreshing = false;
@@ -273,7 +316,6 @@ namespace PasaBuy.App.ViewModels.Feeds
             {
                 return _isRefreshing;
             }
-
             set
             {
                 if (_isRefreshing != value)

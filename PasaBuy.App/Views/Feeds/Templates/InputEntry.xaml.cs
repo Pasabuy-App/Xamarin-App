@@ -37,7 +37,6 @@ namespace PasaBuy.App.Views.Feeds.Templates
                 {
                     if (success)
                     {
-                        ProfileGetData.CountPost(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky);
                         if (PasaBuy.App.ViewModels.Menu.MasterMenuViewModel.postbutton == string.Empty)
                         {
                             HomepageViewModel.homePostList.Clear();

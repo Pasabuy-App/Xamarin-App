@@ -32,6 +32,7 @@ namespace PasaBuy.App.ViewModels.Feeds
         #region Constructor
         public HomepageViewModel()
         {
+            MyProfileViewModel.LoadTotal();
             RefreshCommand = new Command<string>((key) =>
             {
                 homePostList.Clear();
@@ -74,7 +75,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                             string post_link = post.data[i].post_link;
 
                             homePostList.Add(new Post(PSAProc.GetUrl(author),
-                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link));
+                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link, post_author));
                         }
                     }
                     else
@@ -83,7 +84,6 @@ namespace PasaBuy.App.ViewModels.Feeds
 
                     }
                 });
-                LoadTotal();
             }
             catch (Exception)
             {
@@ -123,53 +123,13 @@ namespace PasaBuy.App.ViewModels.Feeds
                             string post_link = post.data[i].post_link;
 
                             homePostList.Add(new Post(PSAProc.GetUrl(author),
-                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link));
+                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link, post_author));
                         }
                     }
                     else
                     {
                         new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
 
-                    }
-                });
-                LoadTotal();
-            }
-            catch (Exception)
-            {
-                new Alert("Something went Wrong", "Please contact administrator.", "OK");
-            }
-        }
-
-        /// <summary>
-        /// Load post count, total transaction and ratings in MyProfilePage
-        /// </summary>
-        public static void LoadTotal()
-        {
-            try
-            {
-                SocioPress.Posts.Instance.Count(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.wpid, (bool success, string data) =>
-                {
-                    if (success)
-                    {
-                        ProfileGetData getdata = JsonConvert.DeserializeObject<ProfileGetData>(data);
-                        MyProfileViewModel.postcount = getdata.data.count;
-                    }
-                });
-
-                SocioPress.Reviews.Instance.Get(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", (bool success, string data) =>
-                {
-                    if (success)
-                    {
-                        ProfileGetData getdata = JsonConvert.DeserializeObject<ProfileGetData>(data);
-                        MyProfileViewModel.ratingscount = getdata.data.ave_rating;
-                    }
-                });
-                SocioPress.Transaction.Instance.GetTotal(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, (bool success, string data) =>
-                {
-                    if (success)
-                    {
-                        ProfileGetData getdata = JsonConvert.DeserializeObject<ProfileGetData>(data);
-                        MyProfileViewModel.transactcount = getdata.data.transac;
                     }
                 });
             }

@@ -12,7 +12,7 @@
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:shimmer="clr-namespace:Syncfusion.XForms.Shimmer;assembly=Syncfusion.Core.XForms"
              BackgroundColor="{DynamicResource Gray-300}"
-             xmlns:local="clr-namespace:PasaBuy.App.Views.Feeds.Templates"
+             xmlns:local="clr-namespace:PasaBuy.App.Views.Feeds.Templates" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              NavigationPage.TitleIconImageSource="LogoHeader.png">
 
     <ContentView.Resources>
@@ -109,8 +109,21 @@
                                                 <Grid Grid.Row="0" 
                                                       HeightRequest="25"
                                                       Grid.Column="1">
-                                                    <Label Text="{Binding Author}" Style="{StaticResource PostAuthor}"/>
+
+                                                    <buttons:SfButton
+                                                                  BorderWidth="0" 
+                                                                  WidthRequest="134" 
+                                                                  HeightRequest="18"
+                                                                  BackgroundColor="Transparent"
+                                                                  CornerRadius="4" Clicked="SfButton_Clicked" ClassId="{Binding Post_author}"
+                                                                  HorizontalOptions="End">
+
+                                                        <Label Text="{Binding Author}" Style="{StaticResource PostAuthor}"/>
+
+                                                    </buttons:SfButton>
+                                                    
                                                 </Grid>
+                                                
                                                 <Grid Grid.Row="1" 
                                                       HeightRequest="20"
                                                       Grid.Column="1">
