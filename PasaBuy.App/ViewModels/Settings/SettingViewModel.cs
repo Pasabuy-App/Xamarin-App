@@ -5,6 +5,7 @@ using Xamarin.Forms.Internals;
 using Xamarin.Essentials;
 using PasaBuy.App.Views.Onboarding;
 using PasaBuy.App.Views;
+using System;
 
 namespace PasaBuy.App.ViewModels.Settings
 {
@@ -26,6 +27,8 @@ namespace PasaBuy.App.ViewModels.Settings
             this.MyContactCommand = new Command(this.MyContactClicked);
             this.MyTransactionsCommand = new Command(this.MyTransactionsClicked);
             this.ChangePasswordCommand = new Command(this.ChangePasswordClicked);
+            this.VerifyAccountCommand = new Command(this.VerifyAccountClicked);
+
             this.LinkAccountCommand = new Command(this.LinkAccountClicked);
             this.HelpCommand = new Command(this.HelpClicked);
             this.TermsCommand = new Command(this.TermsServiceClicked);
@@ -33,6 +36,7 @@ namespace PasaBuy.App.ViewModels.Settings
             this.FAQCommand = new Command(this.FAQClicked);
             this.LogoutCommand = new Command(this.LogoutClicked);
         }
+
 
         #endregion
 
@@ -60,6 +64,7 @@ namespace PasaBuy.App.ViewModels.Settings
         /// Gets or sets the command is executed when the change password option is clicked.
         /// </summary>
         public Command ChangePasswordCommand { get; set; }
+        public Command VerifyAccountCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the command is executed when the account link option is clicked.
@@ -103,7 +108,7 @@ namespace PasaBuy.App.ViewModels.Settings
         {
             ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new EditProfilePage()));
 
-            
+
 
         }
 
@@ -191,6 +196,12 @@ namespace PasaBuy.App.ViewModels.Settings
 
             Preferences.Remove("UserInfo");
         }
+
+        private void VerifyAccountClicked(object obj)
+        {
+            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new VerifyAccountFront()));
+        }
+
 
         #endregion
     }

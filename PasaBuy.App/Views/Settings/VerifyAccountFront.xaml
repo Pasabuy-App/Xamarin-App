@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converter="clr-namespace:PasaBuy.App.Converters" 
+             xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             x:Class="PasaBuy.App.Views.Settings.VerifyAccountFront"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Spacing="0" >
+                <controls:TitleView Title="Get Verified" 
+                                    BackgroundColor="{DynamicResource PrimaryColor}" >
+                    <controls:TitleView.LeadingView >
+                        <buttons:SfButton
+                            x:Name="backButton"
+                            Clicked="BackButtonClicked"
+                            CornerRadius="4"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                    </controls:TitleView.LeadingView>
+                </controls:TitleView>
+                <ContentPresenter />
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            
+            <Grid Grid.Row="0" Padding="25">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0"
+                       Text="Your account is currently unverified"
+                       FontSize="20"/>
+                <Label Grid.Row="1"
+                       Text="Verify your account to ensure account security and gain access to all PasaBuy.App services."
+                       FontSize="16"
+                       LineHeight="1.2"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Padding="15, 40, 15, 40" Margin="10,0,10,0" BackgroundColor="{DynamicResource Gray-100}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <Label Grid.Row="0"
+                       Grid.Column="0"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Text="Step 1"
+                       FontSize="16"/>
+                <Label Grid.Row="0"
+                       Grid.Column="1"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Text="Step 2"
+                       FontSize="16"/>
+                <Label Grid.Row="0"
+                       Grid.Column="2"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Text="Step 3"
+                       FontSize="16"/>
+                <Label  Grid.Row="1"
+                        Grid.Column="0"
+                        FontSize="90"
+                        Margin="10, 0, 0, 0"
+                        Style="{StaticResource IconLabelStyle}"
+                        TextColor="{DynamicResource PrimaryColor}"
+                        Text="{StaticResource Reminder}" />
+                <Label  Grid.Row="1"
+                        Grid.Column="1"
+                        FontSize="90"
+                        Margin="5, 0, 0, 0"
+                        HorizontalTextAlignment="End"
+                        VerticalTextAlignment="End"
+                        Style="{StaticResource IconLabelStyle}"
+                        TextColor="{DynamicResource PrimaryColor}"
+                        Text="{StaticResource Image}" />
+                <Label  Grid.Row="1"
+                        Grid.Column="2"
+                        FontSize="90"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"
+                        Style="{StaticResource IconLabelStyle}"
+                        TextColor="{DynamicResource PrimaryColor}"
+                        Text="{StaticResource TermsofService}" />
+                <Label Grid.Row="2"
+                       Grid.Column="0"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Text="Take ID photo"
+                       FontSize="15"/>
+
+                <Label Grid.Row="2"
+                       Grid.Column="1"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Text="Upload a selfie"
+                       FontSize="15"/>
+
+                <Label Grid.Row="2"
+                       Grid.Column="2"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Text="Fill information"
+                       FontSize="15"/>
+
+            </Grid>
+
+            <buttons:SfButton
+                            Grid.Row="2"
+                            Margin="10, 50, 10, 20"
+                            Clicked="StartVerification"
+                            CornerRadius="20"
+                            TextColor="White"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            Style="{StaticResource SfButtonStyle}"
+                            Text="Verify Now" />
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

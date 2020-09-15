@@ -118,7 +118,7 @@
                         Text="{StaticResource Next}" />
                 </controls:TapAnimationGrid>
                 <BoxView Style="{StaticResource SeparatorStyle}" />
-                
+
                 <!--  Grid for my contacts label and navigation bar icon  -->
                 <controls:TapAnimationGrid
                     BackgroundColor="{DynamicResource Gray-White}"
@@ -204,6 +204,37 @@
                         Grid.Column="1"
                         Style="{StaticResource LabelStyle}"
                         Text="Change Password" />
+                    <!--  Navigation icon  -->
+                    <Label
+                        Grid.Column="2"
+                        Style="{StaticResource IconLabelStyle}"
+                        Text="{StaticResource Next}" />
+                </controls:TapAnimationGrid>
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                <!--  Grid for verify account label and navigation bar icon  -->
+                <controls:TapAnimationGrid
+                    BackgroundColor="{DynamicResource Gray-White}"
+                    ColumnSpacing="0"
+                    Command="{Binding VerifyAccountCommand}"
+                    RowSpacing="0"
+                    Tapped="False">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <!--  Change password icon  -->
+                    <Label
+                        Grid.Column="0"
+                        Margin="16,0,0,0"
+                        Style="{StaticResource IconLabelStyle}"
+                        Text="{StaticResource PrivacyPolicy}" />
+                    <!--  Change password label  -->
+                    <Label
+                        Grid.Column="1"
+                        Style="{StaticResource LabelStyle}"
+                        Text="Verify Account" />
                     <!--  Navigation icon  -->
                     <Label
                         Grid.Column="2"

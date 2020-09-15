@@ -22,6 +22,14 @@
     <x:String x:Key="Edit">&#xe727;</x:String>
     <x:String x:Key="Pin">&#xe729;</x:String>
     <x:String x:Key="Cart">&#xe708;</x:String>
+    <x:String x:Key="PrivacyPolicy">&#xe746;</x:String>
+    <x:String x:Key="TermsofService">&#xe737;</x:String>
+    <x:String x:Key="Reminder">&#xe752;</x:String>
+    <x:String x:Key="Image">&#xe71d;</x:String>
+
+
+
+
 
 
     <x:String x:Key="DropDownButtonIcon">&#xe70b;</x:String>
