@@ -66,7 +66,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                         if (post.data.Length == 0)
                         {
                             profilePostList.Add(new Post(PSAProc.GetUrl("http://localhost/wordpress/wp-content/plugins/SocioPress-WP-Plugin/assets/default-avatar.png"), // PasaBuy.App avatar
-                                "Pasabuy.App", "Status", new DateTime().ToString(), "0", "Welcome to Pasabuy.App!", "", "", "-1", "", "", ""));
+                                "Pasabuy.App", "Status", new DateTime().ToString(), "0", "Welcome to Pasabuy.App!", "", "", "-1", "", "", "", "", "", ""));
                         }
                         else
                         {
@@ -88,9 +88,18 @@ namespace PasaBuy.App.ViewModels.Feeds
                                 string name = post.data[i].name;
                                 string views = post.data[i].views;
                                 string post_link = post.data[i].post_link;
+                                string category = post.data[i].item_category;
+                                string vehicle_type = post.data[i].vehicle_type;
+                                string pickup_location = post.data[i].pickup_location;
+                                string do_price = "Drop-off: " + post.data[i].drop_off_location;
+                                if (type == "Selling")
+                                {
+                                    title = category + " : " + title;
+                                    do_price = "Price: " + post.data[i].item_price;
+                                }
 
                                 profilePostList.Add(new Post(PSAProc.GetUrl(author),
-                                    name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link, ""));
+                                    name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link, "", pickup_location, vehicle_type, do_price));
                             }
                         }
                     }
@@ -137,9 +146,18 @@ namespace PasaBuy.App.ViewModels.Feeds
                             string name = post.data[i].name;
                             string views = post.data[i].views;
                             string post_link = post.data[i].post_link;
+                            string category = post.data[i].item_category;
+                            string vehicle_type = post.data[i].vehicle_type;
+                            string pickup_location = post.data[i].pickup_location;
+                            string do_price = "Drop-off: " + post.data[i].drop_off_location;
+                            if (type == "Selling")
+                            {
+                                title = category + " : " + title;
+                                do_price = "Price: " + post.data[i].item_price;
+                            }
 
                             profilePostList.Add(new Post(PSAProc.GetUrl(author),
-                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link, ""));
+                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link, "", pickup_location, vehicle_type, do_price));
                         }
                     }
                     else

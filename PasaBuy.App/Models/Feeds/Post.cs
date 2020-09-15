@@ -25,8 +25,12 @@ namespace PasaBuy.App.Models.Feeds
         private string post_author = string.Empty;
         private int column = 1;
         private int colspan = 1;
+        private string vehicle = string.Empty;
+        private string pickup = string.Empty;
+        private string do_price = string.Empty;
 
-        public Post(string photo, string author, string types, string date, string seen, string title, string description, string images, string image_height, string last_id, string post_link, string post_author)
+        public Post(string photo, string author, string types, string date, string seen, string title, string description, string images, string image_height, 
+            string last_id, string post_link, string post_author, string pickup, string vehicle, string do_price)
         {
             this.last_id = last_id;
             this.photo = photo;
@@ -40,6 +44,9 @@ namespace PasaBuy.App.Models.Feeds
             this.images = images;
             this.linkpost = post_link;
             this.post_author = post_author;
+            this.pickup = "<b>Pick-up: " + pickup + "</b>";
+            this.vehicle = "<b>Vehicle: " + vehicle + "</b>";
+            this.do_price = "<b>" + do_price + "</b>";
 
             if (images == "")
             {
@@ -70,13 +77,41 @@ namespace PasaBuy.App.Models.Feeds
                 HomeCol = 1;
             }
         }
+
+        public string Vehicle
+        {
+            get { return vehicle; }
+            set
+            {
+                vehicle = value;
+                OnPropertyChanged("Vehicle");
+            }
+        }
+        public string PickUp
+        {
+            get { return pickup; }
+            set
+            {
+                pickup = value;
+                OnPropertyChanged("PickUp");
+            }
+        }
+        public string DO_Price
+        {
+            get { return do_price; }
+            set
+            {
+                do_price = value;
+                OnPropertyChanged("DO_Price");
+            }
+        }
         public string Post_author
         {
             get { return post_author; }
             set
             {
                 post_author = value;
-                OnPropertyChanged("LinkPost");
+                OnPropertyChanged("Post_author");
             }
         }
 

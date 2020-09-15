@@ -21,6 +21,7 @@ namespace PasaBuy.App.Views.Posts
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PostStatusPage : ContentPage
     {
+        private Boolean btn = false;
         private string filePath = string.Empty;
         public PostStatusPage()
         {
@@ -69,7 +70,6 @@ namespace PasaBuy.App.Views.Posts
             filePath = file.Path;
         }
 
-        //test commmit
         async void TakePhoto(object sender, EventArgs args)
         {
             await CrossMedia.Current.Initialize();
@@ -133,35 +133,38 @@ namespace PasaBuy.App.Views.Posts
 
         private void SfButton_Clicked(object sender, EventArgs e)
         {
-            try
+            if (btn == false)
             {
-                SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, StatusEditor.Text, "", "status", filePath, "", "", "", "", "", (bool success, string data) =>
+                btn = true;
+                try
                 {
-                    if (success)
+                    SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, StatusEditor.Text, "", "status", filePath, "", "", "", "", "", (bool success, string data) =>
                     {
-                        if (PasaBuy.App.ViewModels.Menu.MasterMenuViewModel.postbutton == string.Empty)
+                        if (success)
                         {
-                            HomepageViewModel.homePostList.Clear();
-                            HomepageViewModel.LoadData();
+                            if (PasaBuy.App.ViewModels.Menu.MasterMenuViewModel.postbutton == string.Empty)
+                            {
+                                HomepageViewModel.homePostList.Clear();
+                                HomepageViewModel.LoadData();
+                            }
+                            else
+                            {
+                                MyProfileViewModel.profilePostList.Clear();
+                                MyProfileViewModel.LoadData();
+                            }
+                            Navigation.PopModalAsync();
                         }
                         else
                         {
-                            MyProfileViewModel.profilePostList.Clear();
-                            MyProfileViewModel.LoadData();
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                         }
-                        Navigation.PopModalAsync();
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                });
+                    });
+                }
+                catch (Exception)
+                {
+                    new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                }
             }
-            catch (Exception)
-            {
-                new Alert("Something went Wrong", "Please contact administrator.", "OK");
-            }
-
         }
     }
 }

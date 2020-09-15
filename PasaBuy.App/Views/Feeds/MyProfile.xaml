@@ -349,6 +349,9 @@
                                             <StackLayout>
                                                 <Label Text="{Binding Title}" Style="{StaticResource PostTitle}"/>
                                                 <Label Text="{Binding Description}" Style="{StaticResource PostDescription}" IsVisible="{Binding isContent}"/>
+                                                <Label Margin="0,-2,0,0" Text="{Binding Vehicle}" Style="{StaticResource PostDescription}" TextType="Html" IsVisible="{Binding isContent}"/>
+                                                <Label Margin="0,-5,0,0" Text="{Binding PickUp}" Style="{StaticResource PostDescription}" TextType="Html" IsVisible="{Binding isContent}"/>
+                                                <Label Margin="0,-5,0,0" Text="{Binding DO_Price}" Style="{StaticResource PostDescription}" TextType="Html" IsVisible="{Binding isContent}"/>
                                             </StackLayout>
                                         </Grid>
 
