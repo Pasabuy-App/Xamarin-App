@@ -81,10 +81,12 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                         </Grid.ColumnDefinitions>
 
                         <!--  UserPhoto  -->
                         <border:SfBorder Grid.Row="0"
+                                         Grid.Column="0"
                                          Grid.RowSpan="3"
                                          border:BorderColor="White" 
                                          BorderWidth="2"
@@ -141,7 +143,23 @@
                                 TextColor="{DynamicResource Gray-900}" />
                         </StackLayout>
 
-                    </Grid>
+
+                            <Label  Grid.Row="1" 
+                                        Grid.RowSpan="2"
+                                        Grid.Column="2"
+                                        Margin="0,5, 15, 0"
+                                        FontSize="35"
+                                        Style="{StaticResource IconLabelStyle}"
+                                        TextColor="{DynamicResource Gray-Black}"
+                                        Text="{StaticResource Message}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding MessageClicked}"
+                                                          NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+
+
+                        </Grid>
 
                     <StackLayout BackgroundColor="{DynamicResource Gray-100}"
                              Spacing="15"

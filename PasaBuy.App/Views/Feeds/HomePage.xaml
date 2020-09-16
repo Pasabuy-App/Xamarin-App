@@ -112,9 +112,10 @@
 
                                                     <buttons:SfButton
                                                                   BorderWidth="0" 
-                                                                  WidthRequest="134" 
-                                                                  HeightRequest="18"
+                                                                  WidthRequest="210" 
+                                                                  HeightRequest="40"
                                                                   BackgroundColor="Transparent"
+                                                                  FontSize="15"
                                                                   CornerRadius="4" Clicked="SfButton_Clicked" ClassId="{Binding Post_author}"
                                                                   HorizontalOptions="End">
 

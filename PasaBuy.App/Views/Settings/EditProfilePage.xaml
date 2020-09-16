@@ -219,6 +219,7 @@
                     <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" 
                                               TextColor="Black" 
                                               Placeholder="Display Name" 
+                                              MaxLength="20"
                                               x:Name="Nname" 
                                               Text="{Binding Nname}" 
                                               HeightRequest="40"  

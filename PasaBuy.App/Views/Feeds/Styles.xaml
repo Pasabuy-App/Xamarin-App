@@ -11,11 +11,21 @@
     <x:String x:Key="Add">&#xe730;</x:String>
     <x:String x:Key="Settings">&#xe72b;</x:String>
     <x:String x:Key="Back">&#xe709;</x:String>
+    <x:String x:Key="Message">&#xe73b;</x:String>
 
 
 
 
-    
+
+    <Style x:Key="IconLabelStyle" TargetType="Label">
+        <Setter Property="Margin" Value="16,8" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+    </Style>
 
     <!-- PostAuthor -->
     <Style x:Key="PostAuthor" TargetType="Label">
