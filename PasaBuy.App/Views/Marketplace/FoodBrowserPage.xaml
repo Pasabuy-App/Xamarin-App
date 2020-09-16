@@ -1,10 +1,144 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Marketplace" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
+             xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
+             xmlns:template="clr-namespace:PasaBuy.App.Views.Templates"
              x:Class="PasaBuy.App.Views.Marketplace.FoodBrowserPage">
-  <ContentView.Content>
-      <StackLayout>
-          <Label Text="Hello Xamarin.Forms!" />
-      </StackLayout>
-  </ContentView.Content>
+    
+    <ContentView.BindingContext>
+        <viewModel:FoodBrowserViewModel />
+    </ContentView.BindingContext>
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Stylex.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <ContentView.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackLayout x:Name="TitleView"
+                Padding="16,8"
+                Grid.Row="0" HeightRequest="50"
+                BackgroundColor="{DynamicResource Gray-White}"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Horizontal"
+                Spacing="0">
+
+                <StackLayout  x:Name="Title"
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="True"
+                    Orientation="Horizontal"
+                    Spacing="0"
+                    VerticalOptions="FillAndExpand">
+
+                    <!--  Back button command  -->
+                    <buttons:SfButton x:Name="backButton"
+                                      HeightRequest="40"
+                                      WidthRequest="40"
+                                      CornerRadius="4"
+                                      BackgroundColor="{DynamicResource Transparent}"
+                                      TextColor="{DynamicResource Transparent}"
+                                      Text="{StaticResource Back}" />
+
+                    <!-- Restaurant page Title  -->
+                    <Label Margin="16,0"
+                        HeightRequest="24"
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        FontSize="16"
+                        HorizontalOptions="CenterAndExpand"
+                        LineHeight="1.25"
+                        Text="FoodHub"
+                        TextColor="{DynamicResource Gray-900}"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+
+                </StackLayout>
+
+                <StackLayout x:Name="Search"
+                             HorizontalOptions="EndAndExpand"
+                             IsVisible="False"
+                             Orientation="Horizontal"
+                             Spacing="0">
+
+                    <!--  Back to title layout  -->
+                    <buttons:SfButton x:Name="BackToTitle"
+                        Clicked="BackToTitle_Clicked"
+                        Style="{StaticResource NavigationBarButtonStyle}"
+                        Text="{StaticResource Back}" />
+
+                    <!--  Rounded Search Entry  -->
+                    <border:SfBorder Style="{DynamicResource SfBorderStyle}">
+
+                        <controls:BorderlessEntry x:Name="SearchEntry"
+                            BindingContext="{x:Reference RestaurantList}"
+                            HorizontalOptions="FillAndExpand"
+                            Placeholder="Search here"
+                            Text="{Binding SearchText, Mode=TwoWay}"
+                            Style="{StaticResource SearchEntryStyle}"/>
+                    </border:SfBorder>
+
+                </StackLayout>
+
+                <!--  Search Button  -->
+                <buttons:SfButton x:Name="SearchButton"
+                    IsVisible="True"
+                    Clicked="SearchButton_Clicked"
+                    Style="{StaticResource NavigationBarButtonStyle }"
+                    Text="{StaticResource Search}" />
+
+            </StackLayout>
+
+            <!--  Separator  -->
+            <BoxView   Grid.Row="1" Style="{StaticResource SeparatorStyle}" />
+
+            <StackLayout Grid.Row="2"  Spacing="0" >
+
+                <controls:SearchableStorePage  x:Name="RestaurantList"
+                    Padding="0"
+                    AutoFitMode="Height"
+                    IsScrollBarVisible="false"
+                    ItemSpacing="0"
+                    ItemsSource="{Binding Storelist}"
+                    SelectionBackgroundColor="Transparent"
+                    TapCommand="{Binding ItemTappedCommand}"
+                    VerticalOptions="FillAndExpand"
+                    StickyFooterPosition="Body">
+
+                    <controls:SearchableStorePage.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <!--  View of each card item  -->
+                                <StackLayout>
+                                    <controls:CustomShadowFrame
+                                                         Margin="4"
+                                                         Padding="0"
+                                                         BackgroundColor="{DynamicResource Gray-White}"
+                                                         BorderColor="{DynamicResource Gray-White}"
+                                                         BorderWidth="1"
+                                                         CornerRadius="4"
+                                                         HasShadow="True"
+                                                         HorizontalOptions="FillAndExpand"
+                                                         VerticalOptions="FillAndExpand">
+                                        <template:StoreListTemplate />
+                                    </controls:CustomShadowFrame >
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </controls:SearchableStorePage.ItemTemplate>
+                </controls:SearchableStorePage>
+            </StackLayout>
+        </Grid>
+    </ContentView.Content>
 </ContentView>
