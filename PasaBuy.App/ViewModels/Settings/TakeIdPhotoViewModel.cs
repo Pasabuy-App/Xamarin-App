@@ -1,4 +1,5 @@
 ﻿using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Views.Settings;
 using Plugin.Media;
 using System;
 using System.Collections.Generic;
@@ -11,36 +12,39 @@ namespace PasaBuy.App.ViewModels.Settings
     {
         public TakeIdPhotoViewModel()
         {
-             this.UmidCommand = new Command(this.UmidClicked);
+            this.UmidCommand = new Command(this.UmidClicked);
         }
 
         public Command UmidCommand { get; set; }
 
-        async void UmidClicked(object sender)
+        private void UmidClicked(object sender)
         {
-            await CrossMedia.Current.Initialize();
-            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
-            {
-                new Alert("Error", "No camera available", "Failed");
-            }
+            App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new IdPhotoPage()));
+            //await CrossMedia.Current.Initialize();
+            //if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            //{
+            //    new Alert("Error", "No camera available", "Failed");
+            //}
 
-            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
-            {
-                Directory = "DocumentsFolder",
-                SaveToAlbum = true,
-                CompressionQuality = 40
-            });
+            //var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            //{
+            //    Directory = "DocumentsFolder",
+            //    SaveToAlbum = true,
+            //    CompressionQuality = 40
+            //});
 
-            if (file == null)
-                return;
+            //if (file == null)
+            //    return;
 
-            ImageSource imageSource = ImageSource.FromStream(() =>
-            {
-                var stream = file.GetStream();
-                return stream;
-            });
+            //ImageSource imageSource = ImageSource.FromStream(() =>
+            //{
+            //    var stream = file.GetStream();
+            //    return stream;
+            //});
 
-            var filePath = file.Path;
+            //var filePath = file.Path;
+
+
         }
 
 

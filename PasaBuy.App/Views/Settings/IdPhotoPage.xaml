@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Settings" 
+             xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms" 
+             xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms" 
+             xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="PasaBuy.App.Views.Settings.IdPhotoPage"
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary Source="Styles.xaml" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <viewModel:TakeIdPhotoViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Spacing="0" >
+                <controls:TitleView Title="Take ID Photo" 
+                                    BackgroundColor="{DynamicResource PrimaryColor}" >
+                </controls:TitleView>
+                <ContentPresenter />
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+
+    <ContentPage.Content>
+
+        <Grid Padding="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+
+            <border:SfBorder Padding="0, 0, 0, 0"
+                             Grid.Row="0"
+                                 Margin="0, 0, 0, 0"
+                                 HeightRequest="250"
+                                 Grid.ColumnSpan="2"
+                                 CornerRadius="10"
+                                 BackgroundColor="{DynamicResource Gray-200}"
+                                 Style="{StaticResource SfBorderStyle}">
+                <!--<Image 
+                   Grid.ColumnSpan="2"
+                   Source="Idcard.png"
+                   WidthRequest="300"
+                   HeightRequest="300"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"/>-->
+                <ffimageloading:CachedImage Aspect="AspectFill"
+                                            Source="Idcard.png"
+                                            x:Name="ImageId"
+			                                DownsampleToViewSize="true" FadeAnimationEnabled="True" >
+                </ffimageloading:CachedImage>
+            </border:SfBorder>
+
+            <Label  Grid.ColumnSpan="2"
+                    Margin="16,10,0,10"
+                    FontFamily="{StaticResource Montserrat-Bold}"
+                    Grid.Row="1"
+                    FontSize="14"
+                    HeightRequest="35"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Make sure that the image is not blurry and the contents are readable."
+                    TextColor="{DynamicResource Gray-700}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+
+
+            <buttons:SfButton
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="1"
+                            Margin="0, 20, 0, 20"
+                            CornerRadius="10"
+                            Clicked="TakePhoto"
+                            TextColor="White"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            Style="{StaticResource SfButtonStyle}"
+                            Text="Take Photo" />
+
+            <buttons:SfButton
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="1"
+                            Margin="10, 20, 0, 20"
+                            CornerRadius="10"
+                            Clicked="SelectPhoto"
+                            TextColor="White"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            Style="{StaticResource SfButtonStyle}"
+                            Text="Upload Photo" />
+
+            <buttons:SfButton Grid.ColumnSpan="2"
+                                Grid.Row="3"
+                                Margin="10, 40, 10, 20"
+                                CornerRadius="20"
+                                Clicked="NextButtonClicked"
+                                TextColor="White"
+                                BackgroundColor="{DynamicResource PrimaryColor}"
+                                Style="{StaticResource SfButtonStyle}"
+                                Text="Next" />
+
+
+        </Grid>
+      
+
+    </ContentPage.Content>
+
+</ContentPage>

@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:converter="clr-namespace:PasaBuy.App.Converters" 
+             xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
+             xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             x:Class="PasaBuy.App.Views.Settings.VerificationFillPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Spacing="0" >
+                <controls:TitleView Title="Fill up Information"
+                                    FontSize="13"
+                                    BackgroundColor="{DynamicResource PrimaryColor}" >
+                </controls:TitleView>
+                <ContentPresenter />
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout BackgroundColor="{DynamicResource Transparent}" Spacing="0" Padding="16,24">
+                
+                <Label
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        Margin="0,0,0,-5"
+                        HeightRequest="30" 
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        Text="Complete your personal information."
+                        TextColor="Black" />
+                <Label
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        Margin="0,0,0,15"
+                        HeightRequest="20" 
+                        FontSize="14"
+                        Text="Dont worry! Your information is safe with us."
+                        TextColor="{DynamicResource Gray-800}" />
+                
+                
+                <Label
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        Margin="0,10,0,4"
+                        HeightRequest="18" 
+                        FontSize="12"
+                        Text="ID Type"
+                        TextColor="{DynamicResource Gray-800}" />
+                <border:SfBorder BorderColor="{Binding Source={x:Reference IdTypeEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+                                 Style="{StaticResource BusinessFormBorderStyle}">
+                    <controls:BorderlessEntry
+                            x:Name="IdTypeEntry"
+                            Placeholder="UMID/Driver's License/PRC ID"
+                            Text="{Binding IdType}"
+                            Style="{StaticResource EntryTextBoxStyle}" />
+                </border:SfBorder>
+
+                <Label
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        Margin="0,10,0,4"
+                        HeightRequest="18" 
+                        FontSize="12"
+                        Text="ID Number"
+                        TextColor="{DynamicResource Gray-800}" />
+                <border:SfBorder BorderColor="{Binding Source={x:Reference IDNumberEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+                                 Style="{StaticResource BusinessFormBorderStyle}">
+                    <controls:BorderlessEntry
+                            x:Name="IDNumberEntry"
+                            Placeholder="25-3320232-2"
+                            Text="{Binding IDNumberEntry}"
+                            Style="{StaticResource EntryTextBoxStyle}" />
+                </border:SfBorder>
+
+                <Label
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        Margin="0,10,0,4"
+                        HeightRequest="18" 
+                        FontSize="12"
+                        Text="Last Name"
+                        TextColor="{DynamicResource Gray-800}" />
+                <border:SfBorder BorderColor="{Binding Source={x:Reference LastNameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+                                 Style="{StaticResource BusinessFormBorderStyle}">
+                    <controls:BorderlessEntry
+                            x:Name="LastNameEntry"
+                            Placeholder="Dela Cruz"
+                            Text="{Binding LastNameEntry}"
+                            Style="{StaticResource EntryTextBoxStyle}" />
+                </border:SfBorder>
+
+                <Label
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        Margin="0,10,0,4"
+                        HeightRequest="18" 
+                        FontSize="12"
+                        Text="First Name"
+                        TextColor="{DynamicResource Gray-800}" />
+                <border:SfBorder BorderColor="{Binding Source={x:Reference FirstNameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+                                 Style="{StaticResource BusinessFormBorderStyle}">
+                    <controls:BorderlessEntry
+                            x:Name="FirstNameEntry"
+                            Placeholder="Juan"
+                            Text="{Binding FirstNameEntry}"
+                            Style="{StaticResource EntryTextBoxStyle}" />
+                </border:SfBorder>
+
+                <Label
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        Margin="0,10,0,4"
+                        HeightRequest="18" 
+                        FontSize="12"
+                        Text="Middle Name"
+                        TextColor="{DynamicResource Gray-800}" />
+                <border:SfBorder BorderColor="{Binding Source={x:Reference MiddleNameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+                                 Style="{StaticResource BusinessFormBorderStyle}">
+                    <controls:BorderlessEntry
+                            x:Name="MiddleNameEntry"
+                            Placeholder=""
+                            Text="{Binding MiddleNameEntry}"
+                            Style="{StaticResource EntryTextBoxStyle}" />
+                </border:SfBorder>
+
+                <Label
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        Margin="0,10,0,4"
+                        HeightRequest="18" 
+                        FontSize="12"
+                        Text="Nationality"
+                        TextColor="{DynamicResource Gray-800}" />
+                <border:SfBorder BorderColor="{Binding Source={x:Reference NationalityEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+                                 Style="{StaticResource BusinessFormBorderStyle}">
+                    <controls:BorderlessEntry
+                            x:Name="NationalityEntry"
+                            Placeholder="Filipino"
+                            Text="{Binding NationalityEntry}"
+                            Style="{StaticResource EntryTextBoxStyle}" />
+                </border:SfBorder>
+
+                <Label
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        Margin="0,20,0,-5"
+                        HeightRequest="30" 
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        Text="Work Details"
+                        TextColor="Black" />
+
+                <Label
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        Margin="0,10,0,4"
+                        HeightRequest="18" 
+                        FontSize="12"
+                        Text="Nature of Work"
+                        TextColor="{DynamicResource Gray-800}" />
+                <border:SfBorder
+                        BorderColor="{Binding Source={x:Reference WorkNaturePicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=2}"
+                        Style="{StaticResource SfBorderStyle}"
+                        CornerRadius="0">
+                    <combobox:SfComboBox
+                                x:Name="WorkNaturePicker"
+                                SelectedValue="{Binding Gender, Mode=TwoWay}"
+                                Style="{StaticResource ComboBoxStyle}"
+                                Watermark="Select One"
+                                VerticalOptions="CenterAndExpand">
+                        <combobox:SfComboBox.ComboBoxSource>
+                            <ListCollection:List x:TypeArguments="x:String">
+                                <x:String>IT Software/Hardware</x:String>
+                                <x:String>Business</x:String>
+                                <x:String>Admin/Human Resources</x:String>
+                                <x:String>Arts/Media/Communications</x:String>
+                                <x:String>Engineering</x:String>
+                                <x:String>Building/Construction</x:String>
+                            </ListCollection:List>
+                        </combobox:SfComboBox.ComboBoxSource>
+                        <combobox:SfComboBox.DropDownButtonSettings>
+                            <combobox:DropDownButtonSettings>
+                                <combobox:DropDownButtonSettings.View>
+                                    <Label
+                                                    FontFamily="{StaticResource FontIcons}"
+                                                    FontSize="25"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="{StaticResource DropDownButtonIcon}"
+                                                    TextColor="{DynamicResource Gray-600}"
+                                                    VerticalTextAlignment="Center" />
+                                </combobox:DropDownButtonSettings.View>
+                            </combobox:DropDownButtonSettings>
+                        </combobox:SfComboBox.DropDownButtonSettings>
+                    </combobox:SfComboBox>
+                </border:SfBorder>
+
+                <Label
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        Margin="0,10,0,4"
+                        HeightRequest="18" 
+                        FontSize="12"
+                        Text="Job Title"
+                        TextColor="{DynamicResource Gray-800}" />
+                <border:SfBorder BorderColor="{Binding Source={x:Reference JobTitleEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+                                 Style="{StaticResource BusinessFormBorderStyle}">
+                    <controls:BorderlessEntry
+                            x:Name="JobTitleEntry"
+                            Placeholder="Programmer, Accounting Associate"
+                            Text="{Binding JobTitleEntry}"
+                            Style="{StaticResource EntryTextBoxStyle}" />
+                </border:SfBorder>
+
+                <buttons:SfButton 
+                                Margin="10, 40, 10, 20"
+                                CornerRadius="20"
+                                Clicked="NextButtonClicked"
+                                TextColor="White"
+                                BackgroundColor="{DynamicResource PrimaryColor}"
+                                Style="{StaticResource SfButtonStyle}"
+                                Text="Next" />
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
