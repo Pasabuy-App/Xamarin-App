@@ -387,7 +387,7 @@
                                                 BorderWidth="1"
                                                 BackgroundColor="{DynamicResource Gray-100}"/>
                                             </Grid>
-                                            <Grid Grid.Row="1" Grid.Column="1">
+                                            <Grid Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="2">
                                                 <Button Text="Share" x:Name="ShareButton" ClassId="{Binding LinkPost}"
                                                 IsEnabled="True"
                                                 Clicked="Button_Clicked"

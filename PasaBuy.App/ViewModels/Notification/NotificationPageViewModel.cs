@@ -3,11 +3,8 @@ using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Notification;
 using PasaBuy.App.Views.Notification;
-using Syncfusion.SfChart.XForms;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -16,6 +13,7 @@ namespace PasaBuy.App.ViewModels.Notification
     public class NotificationPageViewModel : BaseViewModel
     {
         #region Fields
+        public static int count = 0;
 
         public static ObservableCollection<TaskNotification> taskNotificationList;
 
@@ -56,38 +54,54 @@ namespace PasaBuy.App.ViewModels.Notification
                 {
                     if (success)
                     {
+                        taskNotificationList.Clear();
                         string iconcolor = string.Empty;
                         TaskNotificationData taskdata = JsonConvert.DeserializeObject<TaskNotificationData>(data);
-                        for (int i = 0; i < taskdata.data.Length; i++)
-                        {
-                            bool isread = false;
-                            string iconname = string.Empty;
-                            string id = taskdata.data[i].id;
-                            string wpid = taskdata.data[i].wpid;
-                            string icon = taskdata.data[i].icon;
-                            string activity_title = taskdata.data[i].activity_title;
-                            string activity_info = taskdata.data[i].activity_info;
-                            string open = taskdata.data[i].open;
-                            string date_created = taskdata.data[i].date_created == string.Empty ? new DateTime().ToString() : taskdata.data[i].date_created;
-                            if (open != "") { isread = true; }
-                            if (icon == "info") { iconname = "?"; iconcolor = "#90CAF9"; }
-                            if (icon == "warn") { iconname = "!"; iconcolor = "#FFB74D"; }
-                            if (icon == "error") { iconname = "X"; iconcolor = "#EF5350"; }
-
-                            taskNotificationList.Add(new TaskNotification()
+                            for (int i = 0; i < taskdata.data.Length; i++)
                             {
-                                ID = id,
-                                UserName = iconname,
-                                BackgroundColor = iconcolor,
-                                Description = activity_title,
-                                Detail = activity_info,
-                                TaskID = "",
-                                Time = date_created,
-                                IsRead = isread
-                            });
-                        }
+                                bool isread = false;
+                                string iconname = string.Empty;
+                                string id = taskdata.data[i].id;
+                                string wpid = taskdata.data[i].wpid;
+                                string icon = taskdata.data[i].icon;
+                                string activity_title = taskdata.data[i].activity_title;
+                                string activity_info = taskdata.data[i].activity_info;
+                                string open = taskdata.data[i].open;
+                                string date_created = taskdata.data[i].date_created == string.Empty ? new DateTime().ToString() : taskdata.data[i].date_created;
+                                if (open != "") { isread = true; }
+                                if (icon == "info") { iconname = "?"; iconcolor = "#90CAF9"; }
+                                if (icon == "warn") { iconname = "!"; iconcolor = "#FFB74D"; }
+                                if (icon == "error") { iconname = "X"; iconcolor = "#EF5350"; }
+
+                                taskNotificationList.Add(new TaskNotification()
+                                {
+                                    ID = id,
+                                    UserName = iconname,
+                                    BackgroundColor = iconcolor,
+                                    Description = activity_title,
+                                    Detail = activity_info,
+                                    TaskID = "",
+                                    Time = date_created,
+                                    IsRead = isread
+                                });
+                            count = 1;
+                            }
                     }
                 });
+                if (count == 0)
+                {
+                    taskNotificationList.Add(new TaskNotification()
+                    {
+                        ID = "0",
+                        UserName = "?",
+                        BackgroundColor = "#90CAF9",
+                        Description = "No Notification.",
+                        Detail = "You don't have any notification yet.",
+                        TaskID = "",
+                        Time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                        IsRead = false
+                    });
+                }
             }
             catch (Exception)
             {
@@ -194,11 +208,14 @@ namespace PasaBuy.App.ViewModels.Notification
             try
             {
                 string id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as TaskNotification).ID;
-                SocioPress.Activity.Instance.Open(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, id, "", (bool success, string data) =>
+                if (id != "0")
                 {
-                    taskNotificationList.Clear();
-                    LoadData();
-                });
+                    SocioPress.Activity.Instance.Open(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, id, "", (bool success, string data) =>
+                    {
+                        taskNotificationList.Clear();
+                        LoadData();
+                    });
+                }
             }
             catch (Exception)
             {
