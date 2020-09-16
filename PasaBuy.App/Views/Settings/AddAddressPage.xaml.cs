@@ -17,6 +17,7 @@ namespace PasaBuy.App.Views.Settings
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddAddressPage : ContentPage
     {
+        private bool isEnable = false;
         public AddAddressPage()
         {
             InitializeComponent();
@@ -35,22 +36,31 @@ namespace PasaBuy.App.Views.Settings
         {
             try
             {
-                string type = string.Empty;
-                if (AddressTypePicker.Text == "Business") { type = "business"; }
-                if (AddressTypePicker.Text == "Home") { type = "home"; }
-
-                DataVice.Address.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, type, AddressVar.co, AddressVar.pr, AddressVar.ct, AddressVar.br, StreetEntry.Text, (bool success, string data) =>
+                if (!isEnable)
                 {
-                    if (success)
+                    isEnable = true;
+                    string type = string.Empty;
+                    if (AddressTypePicker.Text == "Business") { type = "business"; }
+                    if (AddressTypePicker.Text == "Home") { type = "home"; }
+
+                    DataVice.Address.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, type, AddressVar.co, AddressVar.pr, AddressVar.ct, AddressVar.br, StreetEntry.Text, (bool success, string data) =>
                     {
-                        Navigation.PopModalAsync();
-                        AddressViewModel.RefreshData();
-                    }
-                    else
+                        if (success)
+                        {
+                            Navigation.PopModalAsync();
+                            AddressViewModel.RefreshData();
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        }
+                    });
+                    Device.BeginInvokeOnMainThread(async () =>
                     {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                });
+                        await Task.Delay(1000);
+                        isEnable = false;
+                    });
+                }
             }
             catch (Exception)
             {

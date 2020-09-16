@@ -12,6 +12,7 @@ namespace PasaBuy.App.Views.Settings
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ContactPage : ContentPage
     {
+        private bool isEnable = false;
         public ContactPage()
         {
             InitializeComponent();
@@ -25,7 +26,16 @@ namespace PasaBuy.App.Views.Settings
 
         public void AddButtonClicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new AddContactPage());
+            if (!isEnable)
+            {
+                isEnable = true;
+                Navigation.PushModalAsync(new AddContactPage());
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(1000);
+                    isEnable = false;
+                });
+            }
         }
     }
 }

@@ -16,6 +16,7 @@ namespace PasaBuy.App.Views.Settings
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ChangePWPage : ContentPage
     {
+        private bool isEnable = false;
         public ChangePWPage()
         {
             InitializeComponent();
@@ -36,23 +37,39 @@ namespace PasaBuy.App.Views.Settings
         /// <param name="e">Event Args</param>
         private void SaveButton_Clicked(object sender, EventArgs e)
         {
-            try
+            if ( String.IsNullOrEmpty(OldPassword.Text) || String.IsNullOrEmpty(NewPassword.Text) || String.IsNullOrEmpty(ConfirmNewPassword.Text) )
             {
-                Users.Instance.ChangePassword(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, OldPassword.Text, NewPassword.Text, ConfirmNewPassword.Text, (bool success, string data) =>
-                {
-                    if (success)
-                    {
-                        Navigation.PopModalAsync();
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                });
+                new Alert("Failed", "Please complete all fields.", "Ok");
             }
-            catch (Exception)
+            else
             {
-                new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                try
+                {
+                    if (!isEnable)
+                    {
+                        isEnable = true;
+                        Users.Instance.ChangePassword(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, OldPassword.Text, NewPassword.Text, ConfirmNewPassword.Text, (bool success, string data) =>
+                        {
+                            if (success)
+                            {
+                                Navigation.PopModalAsync();
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            }
+                        });
+                        Device.BeginInvokeOnMainThread(async () =>
+                        {
+                            await Task.Delay(1000);
+                            isEnable = false;
+                        });
+                    }
+                }
+                catch (Exception)
+                {
+                    new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                }
             }
         }
     }

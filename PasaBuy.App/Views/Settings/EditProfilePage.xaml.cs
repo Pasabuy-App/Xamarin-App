@@ -20,7 +20,7 @@ namespace PasaBuy.App.Views.Settings
     {
         public string avatarUrl;
         public string bannerUrl;
-
+        private bool isEnable = false;
 
         public EditProfilePage()
         {
@@ -49,17 +49,27 @@ namespace PasaBuy.App.Views.Settings
                 new Alert("Failed", "Please select an image for avatar first", "Ok");
                 return;
             }
-            Upload.Instance.Image(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, avatarUrl, "", "", "avatar", "", (bool success, string data) =>
+
+            if (!isEnable)
             {
-                if(success)
+                isEnable = true;
+                Upload.Instance.Image(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, avatarUrl, "", "", "avatar", "", (bool success, string data) =>
                 {
-                    new Alert("Success", "Avatar successfully updated", "Ok");
-                }
-                else
+                    if (success)
+                    {
+                        new Alert("Success", "Avatar successfully updated", "Ok");
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+                Device.BeginInvokeOnMainThread(async () =>
                 {
-                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                }
-            });
+                    await Task.Delay(1000);
+                    isEnable = false;
+                });
+            }
         }
 
         public void SaveBanner(object sender, EventArgs e)
@@ -69,35 +79,54 @@ namespace PasaBuy.App.Views.Settings
                 new Alert("Failed", "Please select an image for banner first", "Ok");
                 return;
             }
-            Upload.Instance.Image(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, bannerUrl, "", "", "banner", "", (bool success, string data) =>
+
+            if (!isEnable)
             {
-                if (success)
+                isEnable = true;
+                Upload.Instance.Image(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, bannerUrl, "", "", "banner", "", (bool success, string data) =>
                 {
-                    new Alert("Success", "Banner successfully updated", "Ok");
-                }
-                else
+                    if (success)
+                    {
+                        new Alert("Success", "Banner successfully updated", "Ok");
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+                Device.BeginInvokeOnMainThread(async () =>
                 {
-                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                }
-            });
+                    await Task.Delay(1000);
+                    isEnable = false;
+                });
+            }
         }
 
         public void SaveProfileData(object sender, EventArgs e)
         {
-            Users.Instance.EditProfile(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, Fname.Text, Lname.Text, Nname.Text, (bool success, string data) =>
+            if (!isEnable)
             {
-                if (success)
+                isEnable = true;
+                Users.Instance.EditProfile(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, Fname.Text, Lname.Text, Nname.Text, (bool success, string data) =>
                 {
-                    PSACache.Instance.UserInfo.dname = Nname.Text;
-                    PSACache.Instance.UserInfo.lname = Lname.Text;
-                    PSACache.Instance.UserInfo.fname = Fname.Text;
-                    new Alert("Success", "Data successfully updated", "Ok");
-                }
-                else
+                    if (success)
+                    {
+                        PSACache.Instance.UserInfo.dname = Nname.Text;
+                        PSACache.Instance.UserInfo.lname = Lname.Text;
+                        PSACache.Instance.UserInfo.fname = Fname.Text;
+                        new Alert("Success", "Data successfully updated", "Ok");
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+                Device.BeginInvokeOnMainThread(async () =>
                 {
-                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                }
-            });
+                    await Task.Delay(1000);
+                    isEnable = false;
+                });
+            }
         }
 
 

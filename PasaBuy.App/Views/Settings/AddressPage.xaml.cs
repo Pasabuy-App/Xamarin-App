@@ -7,6 +7,7 @@ using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Models.Settings;
 using PasaBuy.App.ViewModels.Settings;
 using PasaBuy.App.Local;
+using System.Threading.Tasks;
 
 namespace PasaBuy.App.Views.Settings
 {
@@ -17,6 +18,7 @@ namespace PasaBuy.App.Views.Settings
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddressPage
     {
+        private bool isEnable = false;
         private string add_id = string.Empty;
         /// <summary>
         /// Initializes a new instance of the <see cref="MyAddressPage" /> class.
@@ -37,7 +39,16 @@ namespace PasaBuy.App.Views.Settings
 
         public void AddButtonClicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new AddAddressPage());
+            if (!isEnable)
+            {
+                isEnable = true;
+                Navigation.PushModalAsync(new AddAddressPage());
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(1000);
+                    isEnable = false;
+                });
+            }
         }
 
         private async void myAddress_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)

@@ -21,15 +21,14 @@ namespace PasaBuy.App.Views.Settings
         public void BackButtonClicked(object sender, EventArgs e)
         {
             Navigation.PopModalAsync();
-
         }
 
         public void StartVerification(object sender, EventArgs e)
         {
             if (!isEnable)
             {
-                Navigation.PushModalAsync(new TakeIdPhotoPage());
                 isEnable = true;
+                Navigation.PushModalAsync(new TakeIdPhotoPage());
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     await Task.Delay(1000);
