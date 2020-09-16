@@ -207,7 +207,6 @@ namespace PasaBuy.App.ViewModels.Menu
                     isEnable = false;
                 });
             }
-
         }
 
         /// <summary>

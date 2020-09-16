@@ -39,9 +39,34 @@ namespace PasaBuy.App.Views.Settings
                 if (!isEnable)
                 {
                     isEnable = true;
-                    //Save this to database
-
-                    Navigation.PushModalAsync(new VerificationFinal());
+                    try
+                    {
+                        DataVice.Documents.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "id", idDocType, idPath, (bool success, string data) =>
+                        {
+                            if (success)
+                            {
+                                DataVice.Documents.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "face", "", selfiePath, (bool success2, string data2) =>
+                                {
+                                    if (success)
+                                    {
+                                        Navigation.PushModalAsync(new VerificationFinal());
+                                    }
+                                    else
+                                    {
+                                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data2), "Try Again");
+                                    }
+                                });
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            }
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        new Alert("Something went Wrong", "Please contact administrator. "+ ex, "OK");
+                    }
                 }
             }
         }

@@ -12,6 +12,7 @@ namespace PasaBuy.App.Views.Settings
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class VerifyAccountFront : ContentPage
     {
+        private bool isEnable = false;
         public VerifyAccountFront()
         {
             InitializeComponent();
@@ -25,8 +26,16 @@ namespace PasaBuy.App.Views.Settings
 
         public void StartVerification(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new TakeIdPhotoPage());
-
+            if (!isEnable)
+            {
+                Navigation.PushModalAsync(new TakeIdPhotoPage());
+                isEnable = true;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(1000);
+                    isEnable = false;
+                });
+            }
         }
 
         

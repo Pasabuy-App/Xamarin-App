@@ -14,8 +14,8 @@ namespace PasaBuy.App.Views.Settings
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class IdPhotoPage : ContentPage
     {
-        public static string myTitle;
         private string filePath = string.Empty;
+        private bool isEnable = false;
         public IdPhotoPage()
         {
             InitializeComponent();
@@ -91,9 +91,17 @@ namespace PasaBuy.App.Views.Settings
             } 
             else
             {
-                //Save this to database
-
-                Navigation.PushModalAsync(new VerificationSelfieStepPage());
+                if (!isEnable)
+                {
+                    VerificationFillPage.idPath = filePath;
+                    Navigation.PushModalAsync(new VerificationSelfieStepPage());
+                    isEnable = true;
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        await Task.Delay(1000);
+                        isEnable = false;
+                    });
+                }
             }
         }
     }

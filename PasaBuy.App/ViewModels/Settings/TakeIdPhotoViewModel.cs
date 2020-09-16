@@ -4,12 +4,14 @@ using Plugin.Media;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.Settings
 {
     public class TakeIdPhotoViewModel : BaseViewModel
     {
+        private bool isEnable = false;
         public TakeIdPhotoViewModel()
         {
             this.UmidCommand = new Command(this.UmidClicked);
@@ -38,74 +40,164 @@ namespace PasaBuy.App.ViewModels.Settings
 
         private void PassportClicked(object sender)
         {
-            //IdPhotoPage.myTitle = "Take Passport Photo";
-            VerificationFillPage.idType = "Passport";
-            VerificationFillPage.idDocType = "passport";
-            App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new IdPhotoPage()));
+            if (!isEnable)
+            {
+                //IdPhotoPage.myTitle = "Take Passport Photo";
+                VerificationFillPage.idType = "Passport";
+                VerificationFillPage.idDocType = "passport";
+                App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new IdPhotoPage()));
+                isEnable = true;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(1000);
+                    isEnable = false;
+                });
+            }
         }
         private void SchoolClicked(object sender)
         {
-            //IdPhotoPage.myTitle = "Take School ID Photo";
-            VerificationFillPage.idType = "School ID";
-            VerificationFillPage.idDocType = "school_id";
-            App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new IdPhotoPage()));
+            if (!isEnable)
+            {
+                //IdPhotoPage.myTitle = "Take School ID Photo";
+                VerificationFillPage.idType = "School ID";
+                VerificationFillPage.idDocType = "school_id";
+                App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new IdPhotoPage()));
+                isEnable = true;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(1000);
+                    isEnable = false;
+                });
+            }
         }
         private void PostalClicked(object sender)
         {
-            //IdPhotoPage.myTitle = "Take Postal ID Photo";
-            VerificationFillPage.idType = "Postal ID";
-            VerificationFillPage.idDocType = "postal_id";
-            App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new IdPhotoPage()));
+            if (!isEnable)
+            {
+                //IdPhotoPage.myTitle = "Take Postal ID Photo";
+                VerificationFillPage.idType = "Postal ID";
+                VerificationFillPage.idDocType = "postal_id";
+                App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new IdPhotoPage()));
+                isEnable = true;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(1000);
+                    isEnable = false;
+                });
+            }
         }
         private void SeniorClicked(object sender)
         {
-            //IdPhotoPage.myTitle = "Take Senior Citizen's ID Photo";
-            VerificationFillPage.idType = "Senior Citizen's ID";
-            VerificationFillPage.idDocType = "senior_id";
-            App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new IdPhotoPage()));
+            if (!isEnable)
+            {
+                //IdPhotoPage.myTitle = "Take Senior Citizen's ID Photo";
+                VerificationFillPage.idType = "Senior Citizen's ID";
+                VerificationFillPage.idDocType = "senior_id";
+                App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new IdPhotoPage()));
+                isEnable = true;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(1000);
+                    isEnable = false;
+                });
+            }
         }
         private void PNPClicked(object sender)
         {
-            //IdPhotoPage.myTitle = "Take PNP ID Photo";
-            VerificationFillPage.idType = "Philippine National Police ID";
-            VerificationFillPage.idDocType = "pnp";
-            App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new IdPhotoPage()));
+            if (!isEnable)
+            {
+                //IdPhotoPage.myTitle = "Take PNP ID Photo";
+                VerificationFillPage.idType = "Philippine National Police ID";
+                VerificationFillPage.idDocType = "pnp";
+                App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new IdPhotoPage()));
+                isEnable = true;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(1000);
+                    isEnable = false;
+                });
+            }
         }
         private void VoterClicked(object sender)
         {
-            //IdPhotoPage.myTitle = "Take Voter's ID Photo";
-            VerificationFillPage.idType = "Voter's ID";
-            VerificationFillPage.idDocType = "voters_id";
-            App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new IdPhotoPage()));
+            if (!isEnable)
+            {
+                //IdPhotoPage.myTitle = "Take Voter's ID Photo";
+                VerificationFillPage.idType = "Voter's ID";
+                VerificationFillPage.idDocType = "voters_id";
+                App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new IdPhotoPage()));
+                isEnable = true;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(1000);
+                    isEnable = false;
+                });
+            }
         }
         private void OFWClicked(object sender)
         {
-            //IdPhotoPage.myTitle = "Take OFW e-CARD/OWWA ID Photo";
-            VerificationFillPage.idType = "OFW e-CARD/OWWA ID";
-            VerificationFillPage.idDocType = "owwa";
-            App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new IdPhotoPage()));
+            if (!isEnable)
+            {
+                //IdPhotoPage.myTitle = "Take OFW e-CARD/OWWA ID Photo";
+                VerificationFillPage.idType = "OFW e-CARD/OWWA ID";
+                VerificationFillPage.idDocType = "owwa";
+                App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new IdPhotoPage()));
+                isEnable = true;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(1000);
+                    isEnable = false;
+                });
+            }
         }
         private void PRCClicked(object sender)
         {
-            //IdPhotoPage.myTitle = "Take PRC ID Photo";
-            VerificationFillPage.idType = "Professional Identification ID";
-            VerificationFillPage.idDocType = "prc";
-            App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new IdPhotoPage()));
+            if (!isEnable)
+            {
+                //IdPhotoPage.myTitle = "Take PRC ID Photo";
+                VerificationFillPage.idType = "Professional Identification ID";
+                VerificationFillPage.idDocType = "prc";
+                App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new IdPhotoPage()));
+                isEnable = true;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(1000);
+                    isEnable = false;
+                });
+            }
         }
         private void DLClicked(object sender)
         {
-            //IdPhotoPage.myTitle = "Take Driver's License Photo";
-            VerificationFillPage.idType = "Driver's License";
-            VerificationFillPage.idDocType = "drivers_license";
-            App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new IdPhotoPage()));
+            if (!isEnable)
+            {
+                //IdPhotoPage.myTitle = "Take Driver's License Photo";
+                VerificationFillPage.idType = "Driver's License";
+                VerificationFillPage.idDocType = "drivers_license";
+                App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new IdPhotoPage()));
+                isEnable = true;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(1000);
+                    isEnable = false;
+                });
+            }
         }
 
         private void UmidClicked(object sender)
         {
-            //IdPhotoPage.myTitle = "Take UMID/SSS ID Photo";
-            VerificationFillPage.idType = "UMID/SSS ID";
-            VerificationFillPage.idDocType = "sss";
-            App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new IdPhotoPage()));
+            if (!isEnable)
+            {
+                //IdPhotoPage.myTitle = "Take UMID/SSS ID Photo";
+                VerificationFillPage.idType = "UMID/SSS ID";
+                VerificationFillPage.idDocType = "sss";
+                App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new IdPhotoPage()));
+                isEnable = true;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(1000);
+                    isEnable = false;
+                });
+            }
             //await CrossMedia.Current.Initialize();
             //if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
             //{

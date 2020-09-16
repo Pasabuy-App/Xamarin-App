@@ -15,6 +15,7 @@ namespace PasaBuy.App.Views.Settings
     public partial class VerificationSelfieStepPage : ContentPage
     {
         private string filePath = string.Empty;
+        private bool isEnable = false;
         public VerificationSelfieStepPage()
         {
             InitializeComponent();
@@ -91,9 +92,17 @@ namespace PasaBuy.App.Views.Settings
             }
             else
             {
-                //Save this to database
-
-                Navigation.PushModalAsync(new VerificationFillPage());
+                if (!isEnable)
+                {
+                    VerificationFillPage.selfiePath = filePath;
+                    Navigation.PushModalAsync(new VerificationFillPage());
+                    isEnable = true;
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        await Task.Delay(1000);
+                        isEnable = false;
+                    });
+                }
             }
         }
 

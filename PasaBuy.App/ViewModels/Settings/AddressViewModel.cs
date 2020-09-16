@@ -80,7 +80,6 @@ namespace PasaBuy.App.ViewModels.Settings
             catch (Exception ex)
             {
                 new Alert("Something went Wrong", "Please contact administrator.", "OK");
-                Console.WriteLine("Error: " + ex);
             }
         }
         public static void RefreshData()
@@ -127,7 +126,6 @@ namespace PasaBuy.App.ViewModels.Settings
             catch (Exception ex)
             {
                 new Alert("Something went Wrong", "Please contact administrator.", "OK");
-                Console.WriteLine("Error: " + ex);
             }
         }
 
