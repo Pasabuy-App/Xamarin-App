@@ -47,7 +47,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
             try
             {
                 storelist = new ObservableCollection<Store>();
-                TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", "", (bool success, string data) =>
+                TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", "", "", (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -56,9 +56,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         {
                             string title = datas.data[i].title;
                             string short_info = datas.data[i].short_info;
-                            string avatar = datas.data[i].avatar == "None" ? "" : datas.data[i].avatar;
-                            string banner = datas.data[i].banner == "None" ? "" : datas.data[i].banner;
-
+                            string avatar = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : datas.data[i].avatar;
+                            string banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png" : datas.data[i].banner;
                             storelist.Add(new Store() 
                             { 
                                 Title = title, 
@@ -66,7 +65,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 Logo = PSAProc.GetUrl(avatar),
                                 Offer = "50% off",
                                 ItemRating = "4.5",
-                                Banner = banner
+                                Banner = PSAProc.GetUrl(banner)
                             });
                         }
                     }

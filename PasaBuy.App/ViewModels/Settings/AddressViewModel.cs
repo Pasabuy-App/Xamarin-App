@@ -67,7 +67,7 @@ namespace PasaBuy.App.ViewModels.Settings
                                 AddressType = type,
                                 Location = street + " " + brgy + " " + city + " " + province + ", " + country,
                                 ContactNumber = "(123) 456-7890"
-                            }); ;
+                            });
                         }
                     }
                     else

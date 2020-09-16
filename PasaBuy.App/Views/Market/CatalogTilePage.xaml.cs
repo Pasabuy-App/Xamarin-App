@@ -18,7 +18,8 @@ namespace PasaBuy.App.Views.Market
         public CatalogTilePage()
         {
             InitializeComponent();
-            this.BindingContext = CatalogDataService.Instance.CatalogPageViewModel;
+            //this.BindingContext = CatalogDataService.Instance.CatalogPageViewModel;
+            this.BindingContext = new ViewModels.Market.CatalogTileViewModel();
         }
     }
 }
