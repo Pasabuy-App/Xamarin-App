@@ -6,6 +6,7 @@ using Xamarin.Essentials;
 using PasaBuy.App.Views.Onboarding;
 using PasaBuy.App.Views;
 using System;
+using System.Threading.Tasks;
 
 namespace PasaBuy.App.ViewModels.Settings
 {
@@ -15,6 +16,8 @@ namespace PasaBuy.App.ViewModels.Settings
     [Preserve(AllMembers = true)]
     public class SettingViewModel : BaseViewModel
     {
+        private bool isEnable = false;
+
         #region Constructor
 
         /// <summary>
@@ -106,10 +109,16 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void EditProfileClicked(object obj)
         {
-            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new EditProfilePage()));
-
-
-
+            if (!isEnable)
+            {
+                ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new EditProfilePage()));
+                isEnable = true;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(1000);
+                    isEnable = false;
+                });
+            }
         }
 
         /// <summary>
@@ -118,17 +127,44 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void MyAddressClicked(object obj)
         {
-            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new AddressPage()));
+            if (!isEnable)
+            {
+                ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new AddressPage()));
+                isEnable = true;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(1000);
+                    isEnable = false;
+                });
+            }
         }
 
         private void MyContactClicked(object obj)
         {
-            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ContactPage()));
+            if (!isEnable)
+            {
+                ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ContactPage()));
+                isEnable = true;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(1000);
+                    isEnable = false;
+                });
+            }
         }
 
         private void MyTransactionsClicked(object obj)
         {
-            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyTransactionsPage()));
+            if (!isEnable)
+            {
+                ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyTransactionsPage()));
+                isEnable = true;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(1000);
+                    isEnable = false;
+                });
+            }
         }
 
         /// <summary>
@@ -137,7 +173,16 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void ChangePasswordClicked(object obj)
         {
-            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ChangePWPage()));
+            if (!isEnable)
+            {
+                ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ChangePWPage()));
+                isEnable = true;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(1000);
+                    isEnable = false;
+                });
+            }
         }
 
         /// <summary>
@@ -146,7 +191,16 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void LinkAccountClicked(object obj)
         {
-            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new LinkedPage()));
+            if (!isEnable)
+            {
+                ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new LinkedPage()));
+                isEnable = true;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(1000);
+                    isEnable = false;
+                });
+            }
         }
 
         /// <summary>
@@ -155,7 +209,16 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void TermsServiceClicked(object obj)
         {
-            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new TermsPage()));
+            if (!isEnable)
+            {
+                ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new TermsPage()));
+                isEnable = true;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(1000);
+                    isEnable = false;
+                });
+            }
         }
 
         /// <summary>
@@ -164,7 +227,16 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void PrivacyPolicyClicked(object obj)
         {
-            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new PrivacyPage()));
+            if (!isEnable)
+            {
+                ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new PrivacyPage()));
+                isEnable = true;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(1000);
+                    isEnable = false;
+                });
+            }
         }
 
         /// <summary>
@@ -174,7 +246,16 @@ namespace PasaBuy.App.ViewModels.Settings
         /// 
         private void FAQClicked(object obj)
         {
-            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new FAQPage()));
+            if (!isEnable)
+            {
+                ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new FAQPage()));
+                isEnable = true;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(1000);
+                    isEnable = false;
+                });
+            }
         }
 
         /// <summary>
@@ -183,7 +264,16 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void HelpClicked(object obj)
         {
-            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new HelpPage()));
+            if (!isEnable)
+            {
+                ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new HelpPage()));
+                isEnable = true;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(1000);
+                    isEnable = false;
+                });
+            }
         }
 
         /// <summary>
@@ -192,14 +282,31 @@ namespace PasaBuy.App.ViewModels.Settings
         /// <param name="obj">The object</param>
         private void LogoutClicked(object obj)
         {
-            Application.Current.MainPage = new NavigationPage(new SignInPage());
-
-            Preferences.Remove("UserInfo");
+            if (!isEnable)
+            {
+                Application.Current.MainPage = new NavigationPage(new SignInPage());
+                Preferences.Remove("UserInfo");
+                isEnable = true;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(1000);
+                    isEnable = false;
+                });
+            }
         }
 
         private void VerifyAccountClicked(object obj)
         {
-            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new VerifyAccountFront()));
+            if (!isEnable)
+            {
+                ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new VerifyAccountFront()));
+                isEnable = true;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(1000);
+                    isEnable = false;
+                });
+            }
         }
 
 

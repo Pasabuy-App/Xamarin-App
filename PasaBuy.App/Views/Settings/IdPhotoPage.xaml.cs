@@ -14,6 +14,7 @@ namespace PasaBuy.App.Views.Settings
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class IdPhotoPage : ContentPage
     {
+        public static string myTitle;
         private string filePath = string.Empty;
         public IdPhotoPage()
         {
