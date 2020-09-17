@@ -8,7 +8,7 @@
              xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
              xmlns:local="clr-namespace:PasaBuy.App.CustomRenderers"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              BackgroundColor="White"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
@@ -23,7 +23,8 @@
     <ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0" >
-                <controls:TitleView Title="New Address" 
+                <controls:TitleView Title="New Contact Information" 
+                                    FontSize="14"
                                     BackgroundColor="{DynamicResource PrimaryColor}" >
                     <controls:TitleView.LeadingView >
                         <buttons:SfButton
@@ -39,8 +40,9 @@
         </ControlTemplate>
     </ContentPage.ControlTemplate>
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="Center" VerticalOptions="Center"> 
-            <Grid RowSpacing="10" ColumnSpacing="0" Padding="10" Margin="0, 35, 0, 0" HorizontalOptions="Center" VerticalOptions="Center">
+        <ScrollView>
+            <StackLayout HorizontalOptions="Center" VerticalOptions="Center"> 
+            <Grid RowSpacing="10" ColumnSpacing="0" Padding="10" Margin="0, 15, 0, 0" HorizontalOptions="Center" VerticalOptions="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
@@ -49,10 +51,86 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label 
+                    Margin="0,0,0,0"
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    FontFamily="{StaticResource Montserrat-Bold}"
+                    FontSize="12"
+                    HeightRequest="35"
+                    HorizontalOptions="FillAndExpand"
+                    Text="(Optional) You can add image of the front of your house."
+                    TextColor="{DynamicResource Gray-700}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+                
+                <border:SfBorder Padding="0, 0, 0, 0"
+                                 Grid.Row="1"
+                                 Margin="0, 0, 0, 0"
+                                 HeightRequest="250"
+                                 Grid.ColumnSpan="2"
+                                 CornerRadius="10"
+                                 BackgroundColor="{DynamicResource Gray-200}"
+                                 Style="{StaticResource SfBorderStyle}">
+               
+                    <ffimageloading:CachedImage Aspect="AspectFill"
+                                            Source="Idcard.png"
+                                            x:Name="HouseImage"
+			                                DownsampleToViewSize="true" FadeAnimationEnabled="True" >
+                    </ffimageloading:CachedImage>
+                </border:SfBorder>
+
+                <buttons:SfButton Grid.Row="2"
+                                  Grid.Column="0"
+                                  Grid.ColumnSpan="1"
+                                  Margin="0, 20, 0, 20"
+                                  CornerRadius="10"
+                                  Clicked="TakePhoto"
+                                  TextColor="White"
+                                  BackgroundColor="{DynamicResource PrimaryColor}"
+                                  Style="{StaticResource SfButtonStyle}"
+                                  Text="Take Photo" />
+
+                <buttons:SfButton Grid.Row="2"
+                                  Grid.Column="1"
+                                  Grid.ColumnSpan="1"
+                                  Margin="10, 20, 0, 20"
+                                  CornerRadius="10"
+                                  Clicked="SelectPhoto"
+                                  TextColor="White"
+                                  BackgroundColor="{DynamicResource PrimaryColor}"
+                                  Style="{StaticResource SfButtonStyle}"
+                                  Text="Upload Photo" />
+
+                    <Label 
+                        Margin="0,0,0,0"
+                        Grid.Row="3"
+                        Grid.ColumnSpan="2"
+                        FontFamily="{StaticResource Montserrat-Bold}"
+                        FontSize="16"
+                        HeightRequest="35"
+                        HorizontalOptions="FillAndExpand"
+                        Text="Address Information"
+                        TextColor="{DynamicResource Gray-700}"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
 
                 <border:SfBorder
-                        Grid.Row="0"
+                        Grid.Row="4"
+                        Grid.ColumnSpan="2"
                         Padding="6,0,0,0"
                         Style="{StaticResource FormBorderStyle}">
                     <combobox:SfComboBox
@@ -82,10 +160,10 @@
                     </combobox:SfComboBox>
                 </border:SfBorder>
 
-                <border:SfBorder
-                        Grid.Row="1"
-                        Padding="6,0,0,0"
-                        Style="{StaticResource FormBorderStyle}">
+                <border:SfBorder Grid.Row="5"
+                                 Grid.ColumnSpan="2"
+                                 Padding="6,0,0,0"
+                                 Style="{StaticResource FormBorderStyle}">
                     <combobox:SfComboBox
                             x:Name="CountryPicker"
                             SelectionChanged="CountryPicker_SelectionChanged"
@@ -115,7 +193,8 @@
                 </border:SfBorder>
 
                 <border:SfBorder
-                        Grid.Row="2"
+                        Grid.Row="6"
+                        Grid.ColumnSpan="2"
                         Padding="6,0,0,0"
                         Style="{StaticResource FormBorderStyle}">
                     <combobox:SfComboBox
@@ -123,7 +202,7 @@
                             SelectionChanged="ProvincePicker_SelectionChanged"
                             SelectedValuePath="ProvinceCode"
                             Style="{StaticResource ComboBoxStyle}"
-                            Watermark="Select Country first">
+                            Watermark="Select Province">
                         <combobox:SfComboBox.ComboBoxSource>
                             <ListCollection:List x:TypeArguments="x:String">
                                 <x:String></x:String>
@@ -147,7 +226,8 @@
                 </border:SfBorder>
 
                 <border:SfBorder
-                        Grid.Row="3"
+                        Grid.Row="7"
+                        Grid.ColumnSpan="2"
                         Padding="6,0,0,0"
                         Style="{StaticResource FormBorderStyle}">
                     <combobox:SfComboBox
@@ -155,7 +235,7 @@
                             SelectionChanged="CityPicker_SelectionChanged"
                             SelectedValuePath="CityCode"
                             Style="{StaticResource ComboBoxStyle}"
-                            Watermark="Select Province first">
+                            Watermark="Select City">
                         <combobox:SfComboBox.ComboBoxSource>
                             <ListCollection:List x:TypeArguments="x:String">
                                 <x:String></x:String>
@@ -179,7 +259,8 @@
                 </border:SfBorder>
 
                 <border:SfBorder
-                        Grid.Row="4"
+                        Grid.Row="8"
+                        Grid.ColumnSpan="2"
                         Padding="6,0,0,0"
                         Style="{StaticResource FormBorderStyle}">
                     <combobox:SfComboBox
@@ -187,7 +268,7 @@
                             SelectionChanged="BarangayPicker_SelectionChanged"
                             SelectedValuePath="BrgyCode"
                             Style="{StaticResource ComboBoxStyle}"
-                            Watermark="Select City first">
+                            Watermark="Select Barangay">
                         <combobox:SfComboBox.ComboBoxSource>
                             <ListCollection:List x:TypeArguments="x:String">
                                 <x:String></x:String>
@@ -210,18 +291,94 @@
                     </combobox:SfComboBox>
                 </border:SfBorder>
                 <border:SfBorder
-                        Grid.Row="5"
+                        Grid.Row="9"
+                        Grid.ColumnSpan="2"
                         Padding="15,0,0,0"
                         Style="{StaticResource FormBorderStyle}">
-                    <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Street/Bldg/Unit" HeightRequest="40" x:Name="StreetEntry" Style="{StaticResource EntryTextStyle}" />
+                <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Street/Bldg/Unit" HeightRequest="40" x:Name="StreetEntry" Style="{StaticResource EntryTextStyle}" />
 
                 </border:SfBorder>
 
-                <!--  Submit button  -->
+                <Label 
+                        Margin="0,0,0,0"
+                        Grid.Row="10"
+                        Grid.ColumnSpan="2"
+                        FontFamily="{StaticResource Montserrat-Bold}"
+                        FontSize="16"
+                        HeightRequest="35"
+                        HorizontalOptions="FillAndExpand"
+                        Text="Contact Information"
+                        TextColor="{DynamicResource Gray-700}"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+
+                <border:SfBorder
+                        Grid.Row="11"
+                        Grid.ColumnSpan="2"
+                        Padding="6,0,0,0"
+                        Style="{StaticResource FormBorderStyle}">
+                        <combobox:SfComboBox
+                            x:Name="ContactTypePicker" SelectedValue="{Binding ContactTypePicker, Mode=TwoWay}"
+                            Style="{StaticResource ComboBoxStyle}"
+                            Watermark="Contact Type">
+                            <combobox:SfComboBox.ComboBoxSource>
+                                <ListCollection:List x:TypeArguments="x:String">
+                                    <x:String>Phone</x:String>
+                                    <x:String>Email</x:String>
+                                    <x:String>Emergency</x:String>
+                                </ListCollection:List>
+                            </combobox:SfComboBox.ComboBoxSource>
+                            <combobox:SfComboBox.DropDownButtonSettings>
+                                <combobox:DropDownButtonSettings Width="30" Height="30">
+                                    <combobox:DropDownButtonSettings.View>
+                                        <Label
+                                            Margin="0"
+                                            FontFamily="{StaticResource FontIcons}"
+                                            FontSize="25"
+                                            HorizontalTextAlignment="Center"
+                                            Text="{StaticResource DropDownButtonIcon}"
+                                            TextColor="{DynamicResource Gray-600}"
+                                            VerticalTextAlignment="Center" />
+                                    </combobox:DropDownButtonSettings.View>
+                                </combobox:DropDownButtonSettings>
+                            </combobox:SfComboBox.DropDownButtonSettings>
+                        </combobox:SfComboBox>
+                 </border:SfBorder>
+
+                 <border:SfBorder
+                        Grid.Row="12"
+                        Grid.ColumnSpan="2"
+                        Padding="15,0,0,0"
+                        Style="{StaticResource FormBorderStyle}">
+                        <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" 
+                                                  Placeholder="Phone/Email" 
+                                                  HeightRequest="40"
+                                                  x:Name="ContactEntry" 
+                                                  Style="{StaticResource EntryTextStyle}" />
+
+                  </border:SfBorder>
+
+                    <border:SfBorder
+                        Grid.Row="13"
+                        Grid.ColumnSpan="2"
+                        Padding="15,0,0,0"
+                        Style="{StaticResource FormBorderStyle}">
+                        <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" 
+                                                  Placeholder="(Optional) Contact Person" 
+                                                  HeightRequest="40"
+                                                  x:Name="ContactPersonEntry" 
+                                                  Style="{StaticResource EntryTextStyle}" />
+
+                    </border:SfBorder>
+
+
+
+                 <!--  Submit button  -->
                 <buttons:SfButton
-                            Grid.Row="6"
-                            Margin="0, 20, 0, 20"
-                            Clicked="SubmitPostButton"
+                            Grid.Row="14"
+                            Grid.ColumnSpan="2"
+                            Margin="0, 20, 0, 50"
+                            Clicked="SubmitAddressButton"
                             CornerRadius="20"
                             TextColor="White"
                             BackgroundColor="{DynamicResource PrimaryColor}"
@@ -234,5 +391,6 @@
 
             </Grid>
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

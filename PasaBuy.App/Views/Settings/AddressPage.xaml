@@ -114,29 +114,6 @@
                                             </Label.FormattedText>
                                         </Label>
 
-                                        <buttons:SfButton  Margin="0,0,40,0" 
-                                                           Padding="0"  
-                                                           x:Name="editButton" 
-                                                           Grid.Row="0" 
-                                                           CornerRadius="4" 
-                                                           Grid.Column="2" 
-                                                           HorizontalOptions="EndAndExpand"
-                                                           VerticalOptions="StartAndExpand" 
-                                                           Style="{StaticResource IconButtonDarkStyle}"
-                                                           Text="{StaticResource Edit}"
-                                                           Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference myAddress}}"
-                                                           CommandParameter="{x:Reference editButton }"/>
-
-                                        <buttons:SfButton  x:Name="DeleteButton" 
-                                                           Grid.Row="0" Padding="0" 
-                                                           CornerRadius="4" 
-                                                           Grid.Column="2" 
-                                                           HorizontalOptions="EndAndExpand"
-                                                           VerticalOptions="StartAndExpand"
-                                                           Text="{StaticResource Delete}"
-                                                           Style="{StaticResource IconButtonDarkStyle}"  
-                                                           CommandParameter="{x:Reference DeleteButton}"/>
-
                                         <border:SfBorder Padding="0, 0, 0, 0"
                                                          Grid.Row="1"
                                                          Margin="0, 0, 0, 0"
