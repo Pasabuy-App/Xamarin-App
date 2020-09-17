@@ -56,6 +56,9 @@
                     CachingEnabled="true"
                     Uri="{Binding PreviewImage}" />
             </Image.Source>
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="ProductTapped"/>
+            </Image.GestureRecognizers>
         </Image>
 
         <!--  Product Name  -->

@@ -3,6 +3,12 @@ using System.Collections.ObjectModel;
 using PasaBuy.App.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using Xamarin.Forms.Xaml;
+using Xamarin.Essentials;
+using System.Threading.Tasks;
+using PasaBuy.App.Views;
+using PasaBuy.App.Views.Market;
+using PasaBuy.App.Views.Templates;
 
 namespace PasaBuy.App.ViewModels.ProductDetail
 {
@@ -394,9 +400,8 @@ namespace PasaBuy.App.ViewModels.ProductDetail
         /// Invoked when an back button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
-        private void BackButtonClicked(object obj)
+        private  async void BackButtonClicked(object obj)
         {
-            // Do something
         }
 
         #endregion

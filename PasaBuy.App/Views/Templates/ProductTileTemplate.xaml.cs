@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Views.ProductDetail;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
@@ -33,6 +35,13 @@ namespace PasaBuy.App.Views.Templates
 		public ProductTileTemplate()
         {
             InitializeComponent();
+        }
+
+        private void ProductTapped(object sender, System.EventArgs e)
+        {
+            App.Current.MainPage.Navigation.PushModalAsync(new DetailPage());
+            //new Alert("Something went Wrong", "Please contact administrator." + ' ' , "OK");
+
         }
     }
 }
