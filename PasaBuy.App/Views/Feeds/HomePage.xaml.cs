@@ -53,13 +53,22 @@ namespace PasaBuy.App.Views.Feeds
             }
         }
 
-        private void SfButton_Clicked(object sender, EventArgs e)
+        private async void SfButton_Clicked(object sender, EventArgs e)
         {
             var btn = (SfButton)sender;
             var classId = btn.ClassId;
             if (classId != PSACache.Instance.UserInfo.wpid)
             {
-                new Alert("Title", "Message" + classId, "OK");
+                //new Alert("Title", "Message" + classId, "OK");
+                MyProfileViewModel.GetProfile(classId);
+                MyProfileViewModel.LoadTotal(classId);
+                MyProfileViewModel.user_id = classId;
+
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(500);
+                    await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
+                });
             }
         }
     }

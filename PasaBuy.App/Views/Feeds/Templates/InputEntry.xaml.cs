@@ -45,7 +45,7 @@ namespace PasaBuy.App.Views.Feeds.Templates
                         else
                         {
                             MyProfileViewModel.profilePostList.Clear();
-                            MyProfileViewModel.LoadData();
+                            MyProfileViewModel.LoadData(PSACache.Instance.UserInfo.wpid);
                         }
                         PostEntry.Text = string.Empty;
                     }

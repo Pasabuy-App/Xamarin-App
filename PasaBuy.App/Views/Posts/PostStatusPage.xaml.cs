@@ -150,7 +150,7 @@ namespace PasaBuy.App.Views.Posts
                             else
                             {
                                 MyProfileViewModel.profilePostList.Clear();
-                                MyProfileViewModel.LoadData();
+                                MyProfileViewModel.LoadData(PSACache.Instance.UserInfo.wpid);
                             }
                             Navigation.PopModalAsync();
                         }

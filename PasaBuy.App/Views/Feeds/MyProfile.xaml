@@ -21,7 +21,7 @@
     <ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0" >
-                <controls:TitleView Title="My Profile" 
+                <controls:TitleView Title="Profile" 
                                     BackgroundColor="{DynamicResource PrimaryColor}" >
                     <controls:TitleView.LeadingView>
                         <buttons:SfButton
@@ -149,6 +149,7 @@
                                         Grid.Column="2"
                                         Margin="0,5, 15, 0"
                                         FontSize="35"
+                                        IsVisible="{Binding isMessage}"
                                         Style="{StaticResource IconLabelStyle}"
                                         TextColor="{DynamicResource Gray-Black}"
                                         Text="{StaticResource Message}">
@@ -263,7 +264,7 @@
                 </StackLayout>
 
                 <!-- INPUT VIEW -->
-                <StackLayout Grid.Row="1" 
+                <StackLayout Grid.Row="1" IsVisible="{Binding isInput}"
                              BackgroundColor="{DynamicResource Gray-100}">
                     <local:InputEntry/>
                 </StackLayout>
@@ -405,7 +406,7 @@
                                                 BorderWidth="1"
                                                 BackgroundColor="{DynamicResource Gray-100}"/>
                                             </Grid>
-                                            <Grid Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="2">
+                                            <Grid Grid.Row="1" Grid.Column="{Binding ProfileCol}" Grid.ColumnSpan="{Binding ProfileColSpan}">
                                                 <Button Text="Share" x:Name="ShareButton" ClassId="{Binding LinkPost}"
                                                 IsEnabled="True"
                                                 Clicked="Button_Clicked"

@@ -1,4 +1,6 @@
 ﻿using PasaBuy.App.Controllers;
+using PasaBuy.App.Local;
+using PasaBuy.App.ViewModels.Feeds;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,6 +27,8 @@ namespace PasaBuy.App.Models.Feeds
         private string post_author = string.Empty;
         private int column = 1;
         private int colspan = 1;
+        private int procolumn = 1;
+        private int procolspan = 1;
         private string vehicle = string.Empty;
         private string pickup = string.Empty;
         private string do_price = string.Empty;
@@ -69,12 +73,32 @@ namespace PasaBuy.App.Models.Feeds
                 isAccept = false;
                 HomeColSpan = 2;
                 HomeCol = 0;
+                ProfileColSpan = 2;
+                ProfileCol = 0;
             }
             else
             {
                 isAccept = true;
-                HomeColSpan = 1;
-                HomeCol = 1;
+                if (post_author == PSACache.Instance.UserInfo.wpid)
+                {
+                    HomeColSpan = 2;
+                    HomeCol = 0;
+                }
+                else
+                {
+                    HomeColSpan = 1;
+                    HomeCol = 1;
+                }
+                if (MyProfileViewModel.user_id == string.Empty)
+                {
+                    ProfileColSpan = 2;
+                    ProfileCol = 0;
+                }
+                else
+                {
+                    ProfileColSpan = 1;
+                    ProfileCol = 1;
+                }
             }
         }
 
@@ -287,6 +311,32 @@ namespace PasaBuy.App.Models.Feeds
             {
                 column = System.Convert.ToInt32(value);
                 OnPropertyChanged("HomeCol");
+            }
+        }
+
+        public int ProfileColSpan
+        {
+            get
+            {
+                return procolspan;
+            }
+            set
+            {
+                procolspan = System.Convert.ToInt32(value);
+                OnPropertyChanged("ProfileColSpan");
+            }
+        }
+
+        public int ProfileCol
+        {
+            get
+            {
+                return procolumn;
+            }
+            set
+            {
+                procolumn = System.Convert.ToInt32(value);
+                OnPropertyChanged("ProfileCol");
             }
         }
 

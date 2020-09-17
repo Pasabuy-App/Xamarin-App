@@ -34,8 +34,6 @@ namespace PasaBuy.App.Views.Feeds
         public void BackButtonClicked(object sender, EventArgs e)
         {
             PasaBuy.App.ViewModels.Menu.MasterMenuViewModel.postbutton = string.Empty;
-            HomepageViewModel.homePostList.Clear();
-            HomepageViewModel.LoadData();
             Navigation.PopModalAsync();
         }
 

@@ -32,7 +32,7 @@ namespace PasaBuy.App.ViewModels.Feeds
         #region Constructor
         public HomepageViewModel()
         {
-            MyProfileViewModel.LoadTotal();
+            MyProfileViewModel.LoadTotal(PSACache.Instance.UserInfo.wpid);
             RefreshCommand = new Command<string>((key) =>
             {
                 homePostList.Clear();

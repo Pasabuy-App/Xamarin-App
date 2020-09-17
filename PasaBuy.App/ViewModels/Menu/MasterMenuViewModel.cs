@@ -199,6 +199,7 @@ namespace PasaBuy.App.ViewModels.Menu
             if (!isEnable)
             {
                 postbutton = "Profile";
+                MyProfileViewModel.user_id = string.Empty;
                 ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
                 isEnable = true;
                 Device.BeginInvokeOnMainThread(async () =>
