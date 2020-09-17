@@ -104,7 +104,7 @@
             <BoxView   Grid.Row="1" Style="{StaticResource SeparatorStyle}" />
 
             <StackLayout Grid.Row="2"  Spacing="0" >
-
+                <!--{Binding ItemTappedCommand}-->
                 <controls:SearchableStorePage  x:Name="RestaurantList"
                     Padding="0"
                     AutoFitMode="Height"
@@ -112,7 +112,7 @@
                     ItemSpacing="0"
                     ItemsSource="{Binding Storelist}"
                     SelectionBackgroundColor="Transparent"
-                    TapCommand="{Binding ItemTappedCommand}"
+                    ItemTapped="FoodRestorantTapped"
                     VerticalOptions="FillAndExpand"
                     StickyFooterPosition="Body">
 

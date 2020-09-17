@@ -1,4 +1,5 @@
 ﻿using PasaBuy.App.DataService;
+using PasaBuy.App.Views.StoreDetail;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -84,6 +85,11 @@ namespace PasaBuy.App.Views.Marketplace
         private void SearchExpandAnimationCompleted()
         {
             this.SearchEntry.Focus();
+        }
+
+        private void FoodRestorantTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        {
+            App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailPage());
         }
     }
 }

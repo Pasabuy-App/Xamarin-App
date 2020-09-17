@@ -103,7 +103,7 @@
 
             </StackLayout>
 
-                <!--  Separator  -->
+            <!--  Separator  TapCommand="{Binding ItemTappedCommand}" -->
             <BoxView   Grid.Row="1" Style="{StaticResource SeparatorStyle}" />
 
             <StackLayout Grid.Row="2"  Spacing="0" >
@@ -115,7 +115,7 @@
                     ItemSpacing="0"
                     ItemsSource="{Binding Storelist}"
                     SelectionBackgroundColor="Transparent"
-                    TapCommand="{Binding ItemTappedCommand}"
+                    ItemTapped="StoreTapped"
                     VerticalOptions="FillAndExpand"
                     StickyFooterPosition="Body">
 
