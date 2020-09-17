@@ -53,7 +53,7 @@ namespace PasaBuy.App.Views.Feeds
             }
         }
 
-        private async void SfButton_Clicked(object sender, EventArgs e)
+        private void SfButton_Clicked(object sender, EventArgs e)
         {
             var btn = (SfButton)sender;
             var classId = btn.ClassId;
@@ -66,7 +66,26 @@ namespace PasaBuy.App.Views.Feeds
 
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    await Task.Delay(500);
+                    await Task.Delay(800);
+                    await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
+                });
+            }
+        }
+
+        private void ImageButton_Clicked(object sender, EventArgs e)
+        {
+            var btn = (ImageButton)sender;
+            var classId = btn.ClassId;
+            if (classId != PSACache.Instance.UserInfo.wpid)
+            {
+                //new Alert("Title", "Message" + classId, "OK");
+                MyProfileViewModel.GetProfile(classId);
+                MyProfileViewModel.LoadTotal(classId);
+                MyProfileViewModel.user_id = classId;
+
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(800);
                     await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
                 });
             }

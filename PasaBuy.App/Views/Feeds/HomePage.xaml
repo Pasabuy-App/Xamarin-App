@@ -94,15 +94,15 @@
                                                     <border:SfBorder CornerRadius="50"
                                                                      border:BorderColor="White" 
                                                                      BorderWidth="2">
-                                                        <Image WidthRequest="40" HeightRequest="40"
+                                                        <ImageButton WidthRequest="40" HeightRequest="40" ClassId="{Binding Post_author}" Clicked="ImageButton_Clicked"
                                                                BackgroundColor="{DynamicResource Gray-400}">
-                                                            <Image.Source>
+                                                            <ImageButton.Source>
                                                                 <UriImageSource
                                                                     CacheValidity="14"
                                                                     CachingEnabled="true"
                                                                     Uri="{Binding Photo}" />
-                                                            </Image.Source>
-                                                        </Image>
+                                                            </ImageButton.Source>
+                                                        </ImageButton>
                                                     </border:SfBorder>
                                                 </Grid>
 
