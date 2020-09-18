@@ -516,9 +516,6 @@
     <EmbeddedResource Update="Views\Templates\FoodListTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Templates\GroceryListTemplate.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\OrderHistoryTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

@@ -7,7 +7,6 @@
              xmlns:chat="clr-namespace:PasaBuy.App.Views.Chat"
              xmlns:store="clr-namespace:PasaBuy.App.Views.Marketplace"
              xmlns:food="clr-namespace:PasaBuy.App.Views.Marketplace"
-             xmlns:grocery="clr-namespace:PasaBuy.App.Views.Marketplace"
              xmlns:menu="clr-namespace:PasaBuy.App.Views.Menu"
              x:Class="PasaBuy.App.Views.MainTabs"
              NavigationPage.HasNavigationBar="False"
@@ -50,17 +49,9 @@
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
 
-            <!--GROCERY TAB-->
-            <tabView:SfTabItem Title="GROCERY"
-                               IconFont="{StaticResource Market}"
-                               FontIconFontColor="{DynamicResource Gray-200}"
-                               FontIconFontFamily="{StaticResource FontFamily}"
-                               TitleFontColor="{DynamicResource Gray-200}"
-                               SelectionColor="{DynamicResource Gray-White}">
-
-                <tabView:SfTabItem.Content>
-                    <grocery:GroceryBrowserPage/>
-                </tabView:SfTabItem.Content>
+            
+            
+            
                 <!--<tabView:SfTabItem.Content>
                     <tabView:SfTabView BackgroundColor="{DynamicResource Gray-100}" 
                            TabItemTapped="TabView_TabItemTapped"
@@ -108,7 +99,6 @@
                     </tabView:SfTabView>
                  
                 </tabView:SfTabItem.Content>-->
-            </tabView:SfTabItem>
 
             <!--STORE TAB-->
             <tabView:SfTabItem Title="STORE"
@@ -119,6 +109,18 @@
                                SelectionColor="{DynamicResource Gray-White}">
                 <tabView:SfTabItem.Content>
                     <store:StoreBrowserPage/>
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+
+            <!--GROCERY TAB-->
+            <tabView:SfTabItem Title="GROCERY"
+                               IconFont="{StaticResource Market}"
+                               FontIconFontColor="{DynamicResource Gray-200}"
+                               FontIconFontFamily="{StaticResource FontFamily}"
+                               TitleFontColor="{DynamicResource Gray-200}"
+                               SelectionColor="{DynamicResource Gray-White}">
+                <tabView:SfTabItem.Content>
+                    <food:GroceryBrowserPage/>
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
 
