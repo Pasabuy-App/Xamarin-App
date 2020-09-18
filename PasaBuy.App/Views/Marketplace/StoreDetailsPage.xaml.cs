@@ -75,8 +75,8 @@ namespace PasaBuy.App.Views.Marketplace
         {
             if (view.SelectedIndex == 1)
             {
-                await RootScrollView.ScrollToAsync(EmptyLayout, ScrollToPosition.Start, true);
-                view.ForceLayout();
+               // await RootScrollView.ScrollToAsync(EmptyLayout, ScrollToPosition.Start, true);
+               // view.ForceLayout();
             }
         }
     }
