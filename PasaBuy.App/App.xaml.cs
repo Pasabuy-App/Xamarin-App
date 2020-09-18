@@ -3,6 +3,7 @@ using PasaBuy.App.Local;
 using PasaBuy.App.Views.Settings;
 using PasaBuy.App.Views.Onboarding;
 using System;
+using PasaBuy.App.Views.Marketplace;
 
 namespace PasaBuy.App
 {
@@ -21,7 +22,7 @@ namespace PasaBuy.App
 
             PSACache.Instance.Initialize();
             //commit
-            MainPage = new NavigationPage(new SplashPage());
+            MainPage = new NavigationPage(new StoreDetailsPage());
         }
 
         protected override void OnStart()

@@ -1,12 +1,214 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:exp="clr-namespace:Expandable;assembly=ExpandableView"
+             xmlns:touch="clr-namespace:TouchEffect;assembly=TouchEffect"
+             xmlns:controls="clr-namespace:PanCardView.Controls;assembly=PanCardView" 
+             xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
+             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Marketplace"
              x:Class="PasaBuy.App.Views.Marketplace.StoreDetailsPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+    <ContentPage.BindingContext>
+        <viewModel:StoreDetailsViewModel />
+    </ContentPage.BindingContext>
+    <NavigationPage.TitleView>
+        <Label Text="{Binding Title}"
+                HorizontalOptions="CenterAndExpand"
+               TextColor="{StaticResource Gray-200}"
+               FontFamily="AvenirNext-Bold"
+               FontSize="18"/>
+    </NavigationPage.TitleView>
+
+    <AbsoluteLayout>
+        <AbsoluteLayout
+            x:Name="ImageLayout"
+            AbsoluteLayout.LayoutFlags="WidthProportional"
+            AbsoluteLayout.LayoutBounds="0,0,1,350">
+
+            <Image
+                x:Name="Picture"
+                AbsoluteLayout.LayoutFlags="All"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                Aspect="AspectFill"
+                Source="Idcard.png" />
+
+            <BoxView
+                x:Name="ImageOverlay"
+                Opacity="0"
+                AbsoluteLayout.LayoutFlags="All"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                Color="{StaticResource Gray-300}" />
+
+        </AbsoluteLayout>
+
+        <ScrollView x:Name="RootScrollView"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    Scrolled="OnRootScrollViewScrolled">
+            <AbsoluteLayout>
+                <StackLayout
+                    x:Name="EmptyLayout"
+                    AbsoluteLayout.LayoutFlags="WidthProportional"
+                    AbsoluteLayout.LayoutBounds="0,0,1,350"
+                    Spacing="0"
+                    Padding="10, 15"
+                    InputTransparent="True">
+
+                    <Label
+                        VerticalOptions="EndAndExpand"
+                        x:Name="Name"
+                        FontFamily="AvenirNext-Heavy"
+                        FontSize="24"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource Gray-300}"
+                        Text="{Binding Name}" />
+                    <Label
+                        FontFamily="AvenirNext-Bold"
+                        x:Name="Role"
+                        FontSize="20"
+                        TextColor="{StaticResource Gray-300}"
+                        Text="{Binding Role}" />
+                </StackLayout>
+
+                <!-- Carousel -->
+                <cards:CarouselView
+                    ItemAppeared="ItemAppeared"
+                    ShouldShareViewAmongSameItems="True"
+                    IsViewReusingEnabled="False"
+                    OppositePanDirectionDisablingThreshold="1"
+                    BackgroundColor="{StaticResource Gray-400}"
+                    x:Name="InfoLayout"
+                    AbsoluteLayout.LayoutFlags="WidthProportional"
+                    AbsoluteLayout.LayoutBounds="0,400,1,-1"
+                    SelectedItem="{Binding SelectedItem}"
+                    ItemsSource="{Binding Items}">
+                    <cards:CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout
+                                Margin="10"
+                                Spacing="10"
+                                BindableLayout.ItemsSource="{Binding Repos}">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout>
+                                            <exp:ExpandableView IsTouchToExpandEnabled="False" IsExpanded="{Binding IsExpanded}">
+                                                <exp:ExpandableView.PrimaryView>
+                                                    <StackLayout
+                                                        touch:TouchEff.Command="{Binding TapCommand}"
+                                                        touch:TouchEff.DisallowTouchThreshold="5"
+                                                        touch:TouchEff.NativeAnimation="True"
+                                                        Spacing="2"
+                                                        HeightRequest="80">
+                                                        <StackLayout.Effects>
+                                                            <touch:TouchEff />
+                                                        </StackLayout.Effects>
+
+                                                        <Label
+                                                            FontFamily="AvenirNext-Bold"
+                                                            TextColor="{StaticResource Gray-Black}"
+                                                            FontSize="16"
+                                                            Text="{Binding Title}" />
+                                                        <Label
+                                                            FontFamily="AvenirNext-Italic"
+                                                            FontAttributes="Italic"
+                                                            TextColor="{StaticResource Gray-Black}"
+                                                            FontSize="14"
+                                                            Text="{Binding Description}" />
+
+                                                        <StackLayout
+                                                            VerticalOptions="EndAndExpand"
+                                                            Spacing="2"
+                                                            Orientation="Horizontal">
+                                                            <Label FontSize="14" FontFamily="AvenirNext-Medium" Text="{Binding Issues}" TextColor="{StaticResource Gray-Black}" VerticalOptions="Center" FontAttributes="Bold" />
+                                                            <Image HeightRequest="16" Source="issue.png" VerticalOptions="Center" />
+                                                            <Label FontSize="14" FontFamily="AvenirNext-Medium" Text="{Binding PRs}" TextColor="{StaticResource Gray-Black}" Margin="8, 0, 0, 0" FontAttributes="Bold"/>
+                                                            <Image HeightRequest="16" Source="pull.png" VerticalOptions="Center" />
+
+                                                            <Label FontSize="14" FontFamily="AvenirNext-Medium" Text="{Binding Stars}" TextColor="{StaticResource Gray-Black}" HorizontalOptions="EndAndExpand" FontAttributes="Bold"/>
+                                                            <Image HeightRequest="16" Source="star.png" VerticalOptions="Center" />
+                                                            <Label FontSize="14" FontFamily="AvenirNext-Medium" Text="{Binding Forks}" TextColor="{StaticResource Gray-Black}" Margin="8, 0, 0, 0" FontAttributes="Bold"/>
+                                                            <Image HeightRequest="16" Source="fork.png" VerticalOptions="Center" />
+                                                        </StackLayout>
+                                                    </StackLayout>
+                                                </exp:ExpandableView.PrimaryView>
+
+                                                <exp:ExpandableView.SecondaryViewTemplate>
+                                                    <DataTemplate>
+                                                        <StackLayout
+                                                            touch:TouchEff.Command="{Binding OpenGitHubCommand}"
+                                                            Padding="0, 5"
+                                                            BindableLayout.ItemsSource="{Binding Contributors}">
+
+                                                            <StackLayout.Effects>
+                                                                <touch:TouchEff />
+                                                            </StackLayout.Effects>
+
+                                                            <BindableLayout.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <StackLayout>
+                                                                        <StackLayout Orientation="Horizontal">
+                                                                            <Label Text="{Binding Name}" FontFamily="AvenirNext-Bold" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource Gray-Black}"/>
+                                                                            <Label Text="{Binding Number}" FontFamily="AvenirNext-Regular" FontSize="16" HorizontalOptions="EndAndExpand" TextColor="{StaticResource Gray-Black}"/>
+                                                                        </StackLayout>
+                                                                        <StackLayout Orientation="Horizontal" Spacing="3">
+                                                                            <Label Text="{Binding Commits}" FontFamily="AvenirNextCondensed-Bold" FontSize="14" TextColor="{StaticResource Gray-Black}" />
+                                                                            <Label Text="{Binding Plus}" FontFamily="AvenirNextCondensed-Bold" FontSize="14" TextColor="{StaticResource Gray-Black}" />
+                                                                            <Label Text="{Binding Minus}" FontFamily="AvenirNextCondensed-Bold" FontSize="14" TextColor="{StaticResource Gray-Black}" />
+                                                                        </StackLayout>
+                                                                    </StackLayout>
+                                                                </DataTemplate>
+                                                            </BindableLayout.ItemTemplate>
+                                                        </StackLayout>
+                                                    </DataTemplate>
+                                                </exp:ExpandableView.SecondaryViewTemplate>
+                                            </exp:ExpandableView>
+                                            <BoxView
+                                                HeightRequest="1"
+                                                VerticalOptions="EndAndExpand"
+                                                HorizontalOptions="FillAndExpand"
+                                                Color="{StaticResource Gray-600}" />
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+                        </DataTemplate>
+                    </cards:CarouselView.ItemTemplate>
+
+                </cards:CarouselView>
+
+                <!-- Sticky Header-->
+                <Frame
+                    x:Name="TabsLayout"
+                    SizeChanged="OnTabsSizeChanged"
+                    Padding="0"
+                    CornerRadius="0"
+                    HasShadow="True"
+                    AbsoluteLayout.LayoutFlags="WidthProportional"
+                    AbsoluteLayout.LayoutBounds="0,350,1,50">
+                    <controls:TabsControl
+                        x:Name="Tabs"
+                        StripeHeight="3"
+                        StripePosition="Bottom"
+                        StripeColor="{StaticResource Gray-300}"
+                        BackgroundColor="{StaticResource Gray-300}">
+
+                        <controls:TabsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Label
+                                    FontFamily="{Binding FontFamily}"
+                                    FontSize="16"
+                                    VerticalTextAlignment="Center"
+                                    HorizontalTextAlignment="Center"
+                                    HorizontalOptions="FillAndExpand"
+                                    TextColor="{StaticResource Gray-Black}"
+                                    Text="{Binding Title}" />
+                            </DataTemplate>
+                        </controls:TabsControl.ItemTemplate>
+                    </controls:TabsControl>
+                </Frame>
+
+            </AbsoluteLayout>
+        </ScrollView>
+
+    
+    </AbsoluteLayout>
 </ContentPage>
