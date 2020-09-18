@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:converter="clr-namespace:PasaBuy.App.Converters" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
+             xmlns:behavior="clr-namespace:PasaBuy.App.Behaviors" 
+             xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
+             xmlns:template="clr-namespace:PasaBuy.App.Views.Templates"
+             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Marketplace" xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Accordion;assembly=Syncfusion.Expander.XForms"
+             x:Class="PasaBuy.App.Views.Marketplace.StoreDetailsPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        <converter:BooleanToStringConverter x:Key="boolToStringConverter" />
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <viewModel:StoreDetailsViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Spacing="0" >
+                <controls:TitleView Title="{Binding StoreStype}" 
+                                    FontSize="14"
+                                    BackgroundColor="{DynamicResource PrimaryColor}" >
+                    <controls:TitleView.LeadingView >
+                        <buttons:SfButton
+                            x:Name="backButton"
+                            Clicked="BackButtonClicked"
+                            CornerRadius="4"
+                            TextColor="White"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                    </controls:TitleView.LeadingView>
+                </controls:TitleView>
+                <ContentPresenter />
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+
+    <ContentPage.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <!--  Parallx header view  -->
+                <ScrollView>
+                    <ContentView
+                        x:Name="headerView"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <!--  Article header image  -->
+                            <Image
+                                x:Name="headerImage"
+                                Grid.Row="0"
+                                Aspect="AspectFill"
+                                Opacity="0.5"
+                                BackgroundColor="{DynamicResource Transparent}"
+                                HeightRequest="265"
+                                HorizontalOptions="FillAndExpand"
+                                Source="Idcard.png"
+                                VerticalOptions="Start">
+                            </Image>
+                        </Grid>
+                    </ContentView>
+                </ScrollView>
+
+                <!--  Custom control for parallax scroll view  -->
+                <controls:ParallaxScrollView
+                    HorizontalOptions="FillAndExpand"
+                    ParallaxHeaderView="{x:Reference headerView}"
+                    VerticalOptions="FillAndExpand">
+                    <Grid
+                        ColumnSpacing="0"
+                        RowSpacing="0"
+                        VerticalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="265" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <StackLayout
+                            Grid.Row="1"
+                            Margin="16,-65,0,0"
+                            Spacing="0">
+                            <!--  Article Tile  -->
+                            <Label
+                                Margin="0,0,0,8"
+                                FontFamily="{StaticResource Montserrat-Bold}"
+                                FontSize="20"
+                                LineHeight="{OnPlatform Default=-1,
+                                                        Android=1.25}"
+                                Text="{Binding ArticleName}"
+                                TextColor="{DynamicResource Gray-Black}"
+                                VerticalTextAlignment="End" />
+
+                            <!--  Article author, title & average reading time  -->
+                            <Label
+                                FontSize="12"
+                                LineHeight="{OnPlatform Default=-1,
+                                                        Android=1.5}"
+                                VerticalTextAlignment="End">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span
+                                            FontFamily="{StaticResource Montserrat-Medium}"
+                                            Text="{Binding ArticleAuthor}"
+                                            TextColor="{DynamicResource Gray-Black}" />
+                                        <Span Text="    " />
+                                        <Span
+                                            FontFamily="{StaticResource Montserrat-Regular}"
+                                            Text="{Binding ArticleDate}"
+                                            TextColor="{DynamicResource Gray-Black}" />
+                                        <Span Text=" | " TextColor="{DynamicResource Gray-Black}" />
+                                        <Span
+                                            FontFamily="{StaticResource Montserrat-Regular}"
+                                            Text="{Binding ArticleReadingTime}"
+                                            TextColor="{DynamicResource Gray-Black}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+
+                        <StackLayout
+                            Grid.Row="2"
+                            BackgroundColor="{DynamicResource Gray-White}"
+                            Spacing="0">
+                            <Label
+                                Margin="16,16,0,8"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="16"
+                                LineHeight="{OnPlatform Default=-1,
+                                                        Android=1.25}"
+                                Text="{Binding SubTitle1}"
+                                TextColor="{DynamicResource Gray-900}" />
+
+                            <StackLayout
+                                Margin="16,0,16,24"
+                                BindableLayout.ItemsSource="{Binding ContentList}"
+                                Spacing="16">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                            <syncfusion:SfAccordion Grid.Row="1" ExpandMode="SingleOrNone">
+                                                <syncfusion:SfAccordion.Items>
+                                                    <syncfusion:AccordionItem>
+                                                        <syncfusion:AccordionItem.Header>
+                                                            <Grid>
+                                                                <Label TextColor="#495F6E" Text="Cheese burger" HeightRequest="50" VerticalTextAlignment="Center"/>
+                                                            </Grid>
+                                                        </syncfusion:AccordionItem.Header>
+                                                        <syncfusion:AccordionItem.Content>
+                                                            <Grid Padding="10,10,10,10" BackgroundColor="#FFFFFF">
+                                                                <Label TextColor="#303030" Text="Hamburger accth mew it to melt." HeightRequest="50" VerticalTextAlignment="Center"/>
+                                                            </Grid>
+                                                        </syncfusion:AccordionItem.Content>
+                                                    </syncfusion:AccordionItem>
+                                                    <syncfusion:AccordionItem>
+                                                        <syncfusion:AccordionItem.Header>
+                                                            <Grid>
+                                                                <Label TextColor="#495F6E" Text="Veggie burger" HeightRequest="50" VerticalTextAlignment="Center"/>
+                                                            </Grid>
+                                                        </syncfusion:AccordionItem.Header>
+                                                        <syncfusion:AccordionItem.Content>
+                                                            <Grid Padding="10,10,10,10" BackgroundColor="#FFFFFF">
+                                                                <Label TextColor="#303030" Text="Veggie burger, garden burger, ort gluten), nto patties." HeightRequest="50" VerticalTextAlignment="Center"/>
+                                                            </Grid>
+                                                        </syncfusion:AccordionItem.Content>
+                                                    </syncfusion:AccordionItem>
+                                                    <syncfusion:AccordionItem>
+                                                        <syncfusion:AccordionItem.Header>
+                                                            <Grid>
+                                                                <Label TextColor="#495F6E" Text="Barbecue burger" HeightRequest="50" VerticalTextAlignment="Center"/>
+                                                            </Grid>
+                                                        </syncfusion:AccordionItem.Header>
+                                                        <syncfusion:AccordionItem.Content>
+                                                            <Grid Padding="10,10,10,10" BackgroundColor="#FFFFFF">
+                                                                <Label TextColor="#303030" Text="Prepared with ground beef, mixed wcue sauce is spamelizes." HeightRequest="50" VerticalTextAlignment="Center"/>
+                                                            </Grid>
+                                                        </syncfusion:AccordionItem.Content>
+                                                    </syncfusion:AccordionItem>
+                                                    <syncfusion:AccordionItem>
+                                                        <syncfusion:AccordionItem.Header>
+                                                            <Grid>
+                                                                <Label TextColor="#495F6E" Text="Chili burger" HeightRequest="50" VerticalTextAlignment="Center"/>
+                                                            </Grid>
+                                                        </syncfusion:AccordionItem.Header>
+                                                        <syncfusion:AccordionItem.Content>
+                                                            <Grid Padding="10,10,10,10" BackgroundColor="#FFFFFF">
+                                                                <Label TextColor="#303030" Text="Consists of a hamburger, with thn carne." HeightRequest="50" VerticalTextAlignment="Center"/>
+                                                            </Grid>
+                                                        </syncfusion:AccordionItem.Content>
+                                                    </syncfusion:AccordionItem>
+                                                </syncfusion:SfAccordion.Items>
+                                            </syncfusion:SfAccordion>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+
+
+
+                        </StackLayout>
+                    </Grid>
+                </controls:ParallaxScrollView>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -22,7 +22,7 @@ namespace PasaBuy.App
 
             PSACache.Instance.Initialize();
             //commit
-            MainPage = new NavigationPage(new SplashPage());
+            MainPage = new NavigationPage(new StoreDetailsPage());
         }
 
         protected override void OnStart()
