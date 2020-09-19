@@ -14,12 +14,12 @@ namespace PasaBuy.App.ViewModels.Marketplace
     {
         private Command<object> itemTappedCommand;
 
-        private static ObservableCollection<Store> storelist;
+        private static ObservableCollection<FoodStore> foodstorelist;
 
-        public ObservableCollection<Store> Storelist
+        public ObservableCollection<FoodStore> FoodStorelist
         {
-            get { return storelist; }
-            set { storelist = value; this.NotifyPropertyChanged(); }
+            get { return foodstorelist; }
+            set { foodstorelist = value; this.NotifyPropertyChanged(); }
         }
 
         public FoodBrowserViewModel()
@@ -29,22 +29,26 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public static void loadstore()
         {
+           
             try
             {
-                storelist = new ObservableCollection<Store>();
-                TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", "", "", (bool success, string data) =>
+                foodstorelist = new ObservableCollection<FoodStore>();
+                TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "1", "", "", "", (bool success, string data) =>
                 {
                     if (success)
                     {
-                        StoreListData datas = JsonConvert.DeserializeObject<StoreListData>(data);
+                        FoodStoreListData datas = JsonConvert.DeserializeObject<FoodStoreListData>(data);
                         for (int i = 0; i < datas.data.Length; i++)
                         {
+                            string ID = datas.data[i].ID;
+                            Console.WriteLine(ID + "HAHA");
                             string title = datas.data[i].title;
                             string short_info = datas.data[i].short_info;
                             string avatar = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : datas.data[i].avatar;
                             string banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png" : datas.data[i].banner;
-                            storelist.Add(new Store()
+                            foodstorelist.Add(new FoodStore()
                             {
+                                Id = ID,
                                 Title = title,
                                 Description = short_info,
                                 Logo = PSAProc.GetUrl(avatar),
@@ -52,6 +56,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 ItemRating = "4.5",
                                 Banner = PSAProc.GetUrl(banner)
                             });
+
                         }
                     }
                 });
@@ -60,11 +65,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
             {
                 new Alert("Something went Wrong", "Please contact administrator." + ' ' + e, "OK");
             }
-            /*
-                        storelist.Add(new Store() { Title = "1", Description = "4" });
-                        storelist.Add(new Store() { Title = "2", Description = "5" });
-                        storelist.Add(new Store() { Title = "3", Description = "6" });
-                        storelist.Add(new Store() { Title = "4", Description = "7" });*/
         }
 
         public Command<object> ItemTappedCommand
@@ -80,8 +80,9 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         private void NavigateToNextPage(object selectedItem)
         {
+           
         }
 
-        public ObservableCollection<Store> NavigationList { get; set; }
+        public ObservableCollection<FoodStore> NavigationList { get; set; }
     }
 }

@@ -111,7 +111,7 @@
                     AutoFitMode="Height"
                     IsScrollBarVisible="false"
                     ItemSpacing="0"
-                    ItemsSource="{Binding Storelist}"
+                    ItemsSource="{Binding FoodStorelist}"
                     SelectionBackgroundColor="Transparent"
                     ItemTapped="FoodRestorantTapped"
                     VerticalOptions="FillAndExpand"

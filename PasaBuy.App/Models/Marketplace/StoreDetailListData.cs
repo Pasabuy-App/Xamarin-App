@@ -4,11 +4,12 @@ using System.Text;
 
 namespace PasaBuy.App.Models.Marketplace
 {
-    public class StoreListData
+    public class StoreDetailListData
     {
-        public StoreData[] data;
 
-        public class StoreData
+        public StoreDetailData[] data;
+
+        public class StoreDetailData
         {
             public string ID = string.Empty;
             public string catid = string.Empty;

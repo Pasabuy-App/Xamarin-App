@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Models.Marketplace;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,5 +25,14 @@ namespace PasaBuy.App.Views.Marketplace
         {
             Navigation.PopModalAsync();
         }
+
+        /*private void CategoryTapped(object sender, EventArgs e)
+        {*/
+            //var item = e.ItemData as StoreDetails;
+           /* var btn = (TapGestureRecognizer)sender;
+            var id = btn.ClassId;
+            new Alert("sample", "data: "+ id, "ok");*/
+
+        //}
     }
 }

@@ -4,7 +4,14 @@ using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Syncfusion.XForms.Buttons;
 using PasaBuy.App.Models;
-using Model = PasaBuy.App.Models.Article;
+
+using PasaBuy.App.Models.Marketplace;
+using Plugin.Media.Abstractions;
+using Newtonsoft.Json;
+using System.Runtime.Serialization;
+using System;
+using PasaBuy.App.Local;
+using PasaBuy.App.Controllers.Notice;
 
 namespace PasaBuy.App.ViewModels.Marketplace
 {
@@ -16,545 +23,196 @@ namespace PasaBuy.App.ViewModels.Marketplace
     {
         #region Fields
 
-        /// <summary>
-        /// Gets or sets the article name
-        /// </summary>
-        private string articleName;
+        public static string store_id = string.Empty;
 
-        /// <summary>
-        /// Gets or sets the article image
-        /// </summary>
-        private string articleImage;
 
-        /// <summary>
-        /// Gets or sets the article parallax image
-        /// </summary>
-        private string articleParallaxHeaderImage;
+        private Command<object> itemTappedCommand;
 
-        /// <summary>
-        /// Gets or sets the article sub image
-        /// </summary>
-        private string articleSubImage;
+        /* store details observable collection */
+        private static ObservableCollection<StoreDetails> storedetailslist;
 
-        /// <summary>
-        /// Gets or sets article author
-        /// </summary>
-        private string articleAuthor;
+        public  ObservableCollection<StoreDetails> StoreDetailList
+        {
+            get { return storedetailslist; }
+            set { storedetailslist = value; this.NotifyPropertyChanged(); }
+        }
+        /* end store details observable collection */
 
-        /// <summary>
-        /// Gets or sets the arrticle published date
-        /// </summary>
-        private string articleDate;
 
-        /// <summary>
-        /// Gets or sets the article content
-        /// </summary>
-        private string articleContent;
+        /* product details observable collection */
+         private static ObservableCollection<Product> producdetailstlist;
 
-        /// <summary>
-        /// Gets or sets the article reading time
-        /// </summary>
-        private string articleReadingTime;
+        public  ObservableCollection<Product> Producdetailstlist
+        {
+            get { return producdetailstlist; }
+            set { producdetailstlist = value; this.NotifyPropertyChanged(); }
+        }
 
-        /// <summary>
-        /// Gets or sets the related stories.
-        /// </summary>
-        private ObservableCollection<Model> relatedStories;
+        /* end product details observable collection */
 
-        /// <summary>
-        /// Gets or sets the article content list.
-        /// </summary>
-        private ObservableCollection<Model> contentList;
 
-        /// <summary>
-        /// Gets or sets the article reviews
-        /// </summary>
-        private ObservableCollection<Review> reviews;
+        /* product details observable collection */
+        private static ObservableCollection<Categories> categoriesdata;
 
-        /// <summary>
-        /// Gets or sets the articlesub title
-        /// </summary>
-        private string subTitle1;
+        public ObservableCollection<Categories> Categoriesdata
+        {
+            get { return categoriesdata; }
+            set { categoriesdata = value; this.NotifyPropertyChanged(); }
+        }
 
-        /// <summary>
-        /// Gets or sets the article sub title
-        /// </summary>
-        private string subTitle2;
+        /* end product details observable collection */
 
-        #endregion
 
-        #region Constructor
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DetailViewModel" /> class
-        /// </summary>
+
+
         public StoreDetailsViewModel()
         {
-            this.articleName = "Better Brainstorming by Hand";
-            this.articleParallaxHeaderImage = "https://static.onecms.io/wp-content/uploads/sites/9/2019/05/Burger-National-Hamburger-Day-FT-Blog0619.jpg";
-            this.articleSubImage = "https://static.onecms.io/wp-content/uploads/sites/9/2019/05/Burger-National-Hamburger-Day-FT-Blog0619.jpg";
-            this.articleAuthor = "John Doe";
-            this.articleDate = "Apr 16";
-            this.articleReadingTime = "5 mins read";
-            this.articleContent = "Organizing projects is now predominantly a digital endeavor. Physical whiteboards have given way to electronic Gantt charts. Pocket calendars have yielded to smartphone scheduling apps. Even the most popular tool of the most ferocious organizers—the sticky note—now has a digital counterpart. Despite this digitization, one shouldn’t lose sight of the usefulness of articulating ideas on paper. Handwriting is still the most viable means for bringing ideas and concepts into the physical world for organizing and comparing.This isn’t to say you should remain in the archaic world of markers and pens; rather, handwriting should be harnessed as the initial step in understanding a project—a free association of all the ideas that pop into your head. After organizing and reorganizing your thoughts on paper, moving them into the digital realm as tasks, reminders, and schedules serves as the final refinement of what you’re trying to accomplishment and how you plan to accomplish it.";
-            this.SubTitle1 = "Procedure for writing out your ideas";
-            this.SubTitle2 = "RELATED STORIES";
+            //loadstoredetails(store_id);
+            loadstoredetails();
 
-            this.RelatedStories = new ObservableCollection<Model>
-            {
-                new Model
-                {
-                    ImagePath = "https://static.onecms.io/wp-content/uploads/sites/9/2019/05/Burger-National-Hamburger-Day-FT-Blog0619.jpg",
-                    Name = "Learning to Reset",
-                    Author = "John Doe",
-                    Date = "Aug 10",
-                    AverageReadingTime = "5 mins read"
-                },
-                new Model
-                {
-                    ImagePath = "https://static.onecms.io/wp-content/uploads/sites/9/2019/05/Burger-National-Hamburger-Day-FT-Blog0619.jpg",
-                    Name = "Holistic Approach to UI Design",
-                    Author = "John Doe",
-                    Date = "Apr 16",
-                    AverageReadingTime = "5 mins read"
-                },
-                new Model
-                {
-                    ImagePath = "https://static.onecms.io/wp-content/uploads/sites/9/2019/05/Burger-National-Hamburger-Day-FT-Blog0619.jpg",
-                    Name = "Guiding Your Flock to Success",
-                    Author = "John Doe",
-                    Date = "May 20",
-                    AverageReadingTime = "5 mins read"
-                },
-                new Model
-                {
-                    ImagePath = "https://static.onecms.io/wp-content/uploads/sites/9/2019/05/Burger-National-Hamburger-Day-FT-Blog0619.jpg",
-                    Name = "Be a Nurturing, Fierce Team Leader",
-                    Author = "John Doe",
-                    Date = "Apr 16",
-                    AverageReadingTime = "5 mins read"
-                },
-                new Model
-                {
-                    ImagePath = "https://static.onecms.io/wp-content/uploads/sites/9/2019/05/Burger-National-Hamburger-Day-FT-Blog0619.jpg",
-                    Name = "Holistic Approach to UI Design",
-                    Author = "John Doe",
-                    Date = "Dec 13",
-                    AverageReadingTime = "5 mins read"
-                }
-            };
-
-            this.ContentList = new ObservableCollection<Model>
-            {
-                new Model { Description = "Write a one- or two-sentence summary of the goal or project you want to complete." },
-                new Model { Description = "Then write every idea you associate with the goal or project on separate pieces of paper (sticky notes are ideal). Don’t self-edit at this point, write everything that comes to mind." },
-                new Model { Description = "Spread all the pieces of paper onto a table, a desk, a bed, or even the floor." },
-                new Model { Description = "Sort the ideas by category—some will be tasks to do, others will be equipment or training you need." },
-                new Model { Description = "Organize the categories from top to bottom according to the sequence in which they need to occur. This will help you remove items that are redundant and identify items that need to be added." },
-                new Model { Description = "Now you’re ready to SubTitle1enter the items in an organized fashion into your project management software." },
-            };
-
-            this.reviews = new ObservableCollection<Review>
-            {
-                new Review
-                {
-                    CustomerImage = "ProfileImage1.png",
-                    CustomerName = "Jhon Deo",
-                    Comment = "Greatest article I have ever read in my life.",
-                    ReviewedDate = "29 Dec, 2019",
-                },
-                new Review
-                {
-                    CustomerImage = "ProfileImage3.png",
-                    CustomerName = "David Son",
-                    Comment = "Absolutely love them! Can't stop learing!",
-                    ReviewedDate = "29 Dec, 2019",
-                }
-            };
-
-            this.ShareButtonCommand = new Command(this.ShareButtonClicked);
-            this.BackButtonCommand = new Command(this.BackButtonClicked);
-            this.BookmarkCommand = new Command(this.BookmarkButtonClicked);
-            this.RelatedFeaturesCommand = new Command(this.RelatedFeaturesItemClicked);
-            this.AddNewCommentCommand = new Command(this.CommentButtonClicked);
-            this.LoadMoreCommand = new Command(this.LoadMoreClicked);
         }
 
-        #endregion
-
-        #region Public properties
-
-        /// <summary>
-        /// Gets or sets the article name
-        /// </summary>
-        public string ArticleName
+        public static void loaddata(string stid)
         {
-            get
-            {
-                return this.articleName;
-            }
+            loadcategory(stid);
+            //loadproduct(stid, Id);
+        }
 
-            set
+        public static void loadstoredetails()
+        {
+            try
             {
-                if (this.articleName != value)
+                storedetailslist = new ObservableCollection<StoreDetails>();
+                TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", store_id, "1", "", (bool success, string data) =>
                 {
-                    this.articleName = value;
-                    this.NotifyPropertyChanged();
-                }
+                    if (success)
+                    {
+                        StoreDetailListData datas = JsonConvert.DeserializeObject<StoreDetailListData>(data);
+                        for(int i = 0; i < datas.data.Length; i++)
+                        {
+                            string title = datas.data[i].title;
+                            string short_info = datas.data[i].short_info;
+                            string avatar = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : datas.data[i].avatar;
+                            string banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png" : datas.data[i].banner;
+                            string longinfo = datas.data[i].long_info;
+                            string city = datas.data[i].city;
+                            storedetailslist.Add(new StoreDetails() { 
+                                StoreTitle = title,
+                                StoreDescription = short_info,
+                                Logo = PSAProc.GetUrl(banner),
+                                Banner = banner,
+                                LongInformation = longinfo,
+                                City = city
+
+                            });;
+                        }
+                    }
+                    else
+                    {
+                        new Alert("Something went wrong!", "Please contact your administratir for this issue. Error code 404", "");
+                    }
+                });
+            }
+            catch(Exception ex)
+            {
+                new Alert("Something went wrong!", "Please contact your administratir for this issue. Error code 404"+ ex, "");
             }
         }
-
-        /// <summary>
-        /// Gets or sets the article image
-        /// </summary>
-        public string ArticleImage
+        
+        
+        public static void loadcategory(string stid)
         {
-            get
+            try
             {
-                return this.articleImage;
-            }
-
-            set
-            {
-                if (this.articleImage != value)
+                categoriesdata = new ObservableCollection<Categories>();
+                TindaPress.Category.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", stid, "", "1", (bool success, string data) => 
                 {
-                    this.articleImage = value;
-                    this.NotifyPropertyChanged();
-                }
+                    if (success)
+                    { 
+                        CategoriesListData datas = JsonConvert.DeserializeObject<CategoriesListData>(data);
+                        for(int i = 0; i < datas.data.Length; i++)
+                        {
+                            //string id = datas.data[i].ID;
+                            string title = datas.data[i].title;
+                            categoriesdata.Add(new Categories()
+                            {
+                                Title = title,
+                     
+                            }) ;
+                            TindaPress.Category.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", stid, "", "1", (bool success, string data) =>
+                            {
+                                if (success)
+                                {
+                                    CategoriesListData datas = JsonConvert.DeserializeObject<CategoriesListData>(data);
+                                    for (int i = 0; i < datas.data.Length; i++)
+                                    {
+                                        //string id = datas.data[i].ID;
+                                        string title = datas.data[i].title;
+                                        categoriesdata.Add(new Categories()
+                                        {
+                                            Title = title,
+
+                                        });
+                                    }
+                                }
+                                else
+                                {
+                                    new Alert("Something went wrong!", "Please contact your administratir for this issue. Error code 404", "");
+                                }
+                            });
+                        }
+                    }
+                    else
+                    {
+                        new Alert("Something went wrong!", "Please contact your administratir for this issue. Error code 404", "");
+                    }
+                });
+                
+
+            }
+            catch (Exception e)
+            {
+
             }
         }
 
-        /// <summary>
-        /// Gets or sets the article image
-        /// </summary>
-        public string ArticleParallaxHeaderImage
+        public static void loadproduct(string stid, string catid)
         {
-            get
+            try
             {
-                return this.articleParallaxHeaderImage;
-            }
+                producdetailstlist = new ObservableCollection<Product>();
 
-            set
-            {
-                if (this.articleParallaxHeaderImage != value)
+                producdetailstlist.Add(new Product()
                 {
-                    this.articleParallaxHeaderImage = value;
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
+                    Name = "catid",
+                    Description = store_id
+                });
 
-        /// <summary>
-        /// Gets or sets the article sub image
-        /// </summary>
-        public string ArticleSubImage
-        {
-            get
-            {
-                return this.articleSubImage;
-            }
-
-            set
-            {
-                if (this.articleSubImage != value)
+                producdetailstlist.Add(new Product()
                 {
-                    this.articleSubImage = value;
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the articleAuthor
-        /// </summary>
-        public string ArticleAuthor
-        {
-            get
-            {
-                return this.articleAuthor;
-            }
-
-            set
-            {
-                if (this.articleAuthor != value)
+                    Name = "catid",
+                    Description = "The desciption 2."
+                });
+                producdetailstlist.Add(new Product()
                 {
-                    this.articleAuthor = value;
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the article reading time
-        /// </summary>
-        public string ArticleReadingTime
-        {
-            get
-            {
-                return this.articleReadingTime;
-            }
-
-            set
-            {
-                if (this.articleReadingTime != value)
+                    Name = "catid",
+                    Description = "The desciption 2."
+                });
+                producdetailstlist.Add(new Product()
                 {
-                    this.articleReadingTime = value;
-                    this.NotifyPropertyChanged();
-                }
+                    Name = "catid",
+                    Description = "The desciption 2."
+                });
+
+            }
+            catch (Exception e)
+            {
+
             }
         }
 
-        /// <summary>
-        /// Gets or sets the article date
-        /// </summary>
-        public string ArticleDate
-        {
-            get
-            {
-                return this.articleDate;
-            }
 
-            set
-            {
-                if (this.articleDate != value)
-                {
-                    this.articleDate = value;
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the article content
-        /// </summary>
-        public string ArticleContent
-        {
-            get
-            {
-                return this.articleContent;
-            }
-
-            set
-            {
-                if (this.articleContent != value)
-                {
-                    this.articleContent = value;
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the property has been bound with the list view which displays the articles related stories items.
-        /// </summary>
-        public ObservableCollection<Model> RelatedStories
-        {
-            get
-            {
-                return this.relatedStories;
-            }
-
-            set
-            {
-                if (this.relatedStories == value)
-                {
-                    return;
-                }
-
-                this.relatedStories = value;
-                this.NotifyPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the property has been bound with the list view which displays the articles content list items.
-        /// </summary>
-        public ObservableCollection<Model> ContentList
-        {
-            get
-            {
-                return this.contentList;
-            }
-
-            set
-            {
-                if (this.contentList == value)
-                {
-                    return;
-                }
-
-                this.contentList = value;
-                this.NotifyPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the article reviews
-        /// </summary>
-        public ObservableCollection<Review> Reviews
-        {
-            get
-            {
-                return this.reviews;
-            }
-
-            set
-            {
-                if (this.reviews == value)
-                {
-                    return;
-                }
-
-                this.reviews = value;
-                this.NotifyPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the article sub title
-        /// </summary>
-        public string SubTitle1
-        {
-            get
-            {
-                return this.subTitle1;
-            }
-
-            set
-            {
-                if (this.subTitle1 == value)
-                {
-                    return;
-                }
-
-                this.subTitle1 = value;
-                this.NotifyPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the article sub title
-        /// </summary>
-        public string SubTitle2
-        {
-            get
-            {
-                return this.subTitle2;
-            }
-
-            set
-            {
-                if (this.subTitle2 == value)
-                {
-                    return;
-                }
-
-                this.subTitle2 = value;
-                this.NotifyPropertyChanged();
-            }
-        }
-
-        #endregion
-
-        #region Commands
-        /// <summary>
-        /// Gets or sets the command is executed when the favourite button is clicked.
-        /// </summary>
-        public Command ShareButtonCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command is executed when the back button is clicked.
-        /// </summary>
-        public Command BackButtonCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command is executed when the book mark button is clicked.
-        /// </summary>
-        public Command BookmarkCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command is executed when the related features item is clicked.
-        /// </summary>
-        public Command RelatedFeaturesCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command that will be executed when the Comment button is clicked.
-        /// </summary>
-        public Command AddNewCommentCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command that will be executed when the Show All button is clicked.
-        /// </summary>
-        public Command LoadMoreCommand { get; set; }
-
-        #endregion
-
-        #region Methods
-
-        /// <summary>
-        /// Invoked when the favourite button clicked
-        /// </summary>
-        /// <param name="obj">The object</param>
-        private void ShareButtonClicked(object obj)
-        {
-            // Do something
-        }
-
-        /// <summary>
-        /// Invoked when the back button clicked
-        /// </summary>
-        /// <param name="obj">The object</param>
-        private void BackButtonClicked(object obj)
-        {
-            // Do something
-        }
-
-        /// <summary>
-        /// Invoked when the related features item clicked
-        /// </summary>
-        /// <param name="obj">The object</param>
-        private void RelatedFeaturesItemClicked(object obj)
-        {
-            // Do something
-        }
-
-        /// <summary>
-        /// Invoked when the bookmark button clicked
-        /// </summary>
-        /// <param name="obj">The object</param>
-        private void BookmarkButtonClicked(object obj)
-        {
-            if (obj != null && (obj is Model))
-            {
-                (obj as Model).IsBookmarked = (obj as Model).IsBookmarked ? false : true;
-            }
-            else
-            {
-                var button = obj as SfButton;
-                if (button != null)
-                {
-                    button.Text = (button.Text == "\ue72f") ? "\ue734" : "\ue72f";
-                }
-            }
-        }
-
-        /// <summary>
-        /// Invoked when Comment button is clicked.
-        /// </summary>
-        /// <param name="obj">The Object</param>
-        private void CommentButtonClicked(object obj)
-        {
-            // Do something
-        }
-
-        /// <summary>
-        /// Invoked when Load more button is clicked.
-        /// </summary>
-        /// <param name="obj">The Object</param>
-        private void LoadMoreClicked(object obj)
-        {
-            // Do something
-        }
 
         #endregion
     }
