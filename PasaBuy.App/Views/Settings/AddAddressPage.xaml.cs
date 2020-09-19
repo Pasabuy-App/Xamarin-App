@@ -11,6 +11,7 @@ using Xamarin.Forms.Xaml;
 using PasaBuy.App.Local;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.ViewModels.Settings;
+using Plugin.Media;
 
 namespace PasaBuy.App.Views.Settings
 {
@@ -18,6 +19,7 @@ namespace PasaBuy.App.Views.Settings
     public partial class AddAddressPage : ContentPage
     {
         private bool isEnable = false;
+        private string filePath = string.Empty;
         public AddAddressPage()
         {
             InitializeComponent();
@@ -32,7 +34,7 @@ namespace PasaBuy.App.Views.Settings
             Navigation.PopModalAsync();
         }
 
-        public void SubmitPostButton(object sender, EventArgs e)
+        public void SubmitAddressButton(object sender, EventArgs e)
         {
             try
             {
@@ -108,6 +110,68 @@ namespace PasaBuy.App.Views.Settings
             CityPicker.DataSource = city.CityCollection;
             CityPicker.DisplayMemberPath = "Name";
             BrgyViewModel.ClearList();
+        }
+
+        async void TakePhoto(object sender, EventArgs args)
+        {
+            await CrossMedia.Current.Initialize();
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                new Alert("Error", "No camera available", "Failed");
+            }
+
+            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            {
+                Directory = "House-Front",
+                Name = "front-house.jpg",
+                CompressionQuality = 40,
+                AllowCropping = true
+            });
+
+            if (file == null)
+                return;
+
+            ImageSource imageSource = ImageSource.FromStream(() =>
+            {
+                var stream = file.GetStream();
+                return stream;
+            });
+
+            HouseImage.Source = imageSource;
+            //var filePath = file.Path;
+            filePath = file.Path;
+
+
+        }
+
+        async void SelectPhoto(object sender, EventArgs args)
+        {
+            await CrossMedia.Current.Initialize();
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                new Alert("Error", "No camera available", "Failed");
+            }
+
+            var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+            {
+                CompressionQuality = 40,
+
+            });
+
+
+            if (file == null)
+                return;
+
+            ImageSource imageSource = ImageSource.FromStream(() =>
+            {
+                var stream = file.GetStream();
+                return stream;
+            });
+
+            HouseImage.Source = imageSource;
+            //var filePath = file.Path;
+            filePath = file.Path;
+
         }
     }
 }

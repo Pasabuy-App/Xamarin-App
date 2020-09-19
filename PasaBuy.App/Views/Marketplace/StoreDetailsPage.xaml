@@ -1,12 +1,356 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PasaBuy.App.Views.Marketplace.StoreDetailsPage">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:converter="clr-namespace:PasaBuy.App.Converters" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
+             xmlns:behavior="clr-namespace:PasaBuy.App.Behaviors.Market" 
+              xmlns:helper="clr-namespace:PasaBuy.App.Helpers"
+             xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
+             xmlns:template="clr-namespace:PasaBuy.App.Views.Templates"
+             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Marketplace" xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Accordion;assembly=Syncfusion.Expander.XForms"
+             x:Class="PasaBuy.App.Views.Marketplace.StoreDetailsPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        <converter:BooleanToStringConverter x:Key="boolToStringConverter" />
+    </ContentPage.Resources>
+    
+    
+    <ContentPage.Behaviors>
+        <behavior:CartBehavior />
+    </ContentPage.Behaviors>
+
+
+    <ContentPage.BindingContext>
+        <viewModel:StoreDetailsViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ControlTemplate>
+        <ControlTemplate >
+            <StackLayout Spacing="0" >
+                <controls:TitleView Title="{Binding StoreStype}" 
+                                    FontSize="14"
+                                    BackgroundColor="{DynamicResource PrimaryColor}" >
+                    <controls:TitleView.LeadingView >
+                        <buttons:SfButton
+                            x:Name="backButton"
+                            Clicked="BackButtonClicked"
+                            CornerRadius="4"
+                            TextColor="White"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                    </controls:TitleView.LeadingView>
+                </controls:TitleView>
+                <ContentPresenter />
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <!--  Parallx header view  -->
+                <ScrollView >
+                    <ContentView
+                        x:Name="headerView"
+                        
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <StackLayout BindableLayout.ItemsSource="{Binding StoreDetailList}">
+
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout>
+                                            <!--  Article header image  -->
+                                            <Image
+                                                x:Name="headerImage"
+                                                Grid.Row="0"
+                                                Aspect="AspectFill"
+                                                Opacity="0.5"
+                                                BackgroundColor="{DynamicResource Transparent}"
+                                                HeightRequest="265"
+                                                HorizontalOptions="FillAndExpand"
+                                                Source="{Binding Logo}"
+                                                VerticalOptions="Start">        
+                                            </Image>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                                
+                            </StackLayout>
+                            
+                        </Grid>
+                    </ContentView>
+                </ScrollView>
+
+                <!--  Custom control for parallax scroll view  -->
+                <controls:ParallaxScrollView
+                    HorizontalOptions="FillAndExpand"
+                    ParallaxHeaderView="{x:Reference headerView}"
+                    VerticalOptions="FillAndExpand">
+                    <Grid
+                        ColumnSpacing="0"
+                        RowSpacing="0"
+                        VerticalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="265" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <StackLayout
+                            Grid.Row="1"
+                            Margin="16,-65,0,0"
+                            BindableLayout.ItemsSource="{Binding StoreDetailList}"
+                            Spacing="0">
+                          
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Label
+                                        Margin="0,0,0,8"
+                                        FontFamily="{StaticResource Montserrat-Bold}"
+                                        FontSize="20"
+                                        LineHeight="{OnPlatform Default=-1,
+                                                                Android=1.25}"
+                                        Text="{Binding StoreTitle}"
+                                        TextColor="{DynamicResource Gray-Black}"
+                                        VerticalTextAlignment="End" />
+                                        <Label
+                                            FontSize="12"
+                                            LineHeight="{OnPlatform Default=-1,
+                                                                    Android=1.5}"
+                                            VerticalTextAlignment="End">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span
+                                                        FontFamily="{StaticResource Montserrat-Medium}"
+                                                        Text="{Binding StoreDescription}"
+                                                        TextColor="{DynamicResource Gray-Black}" /> 
+                                                    <Span Text="    " />
+                                                    <Span
+                                                        FontFamily="{StaticResource Montserrat-Regular}"
+                                                        Text="{Binding ArticleDate}"
+                                                        TextColor="{DynamicResource Gray-Black}" /> 
+                                                    <Span Text=" | " TextColor="{DynamicResource Gray-Black}" />
+                                                    <Span
+                                                        FontFamily="{StaticResource Montserrat-Regular}"
+                                                        Text="{Binding LongInformation}"
+                                                        TextColor="{DynamicResource Gray-Black}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+
+                            <!--  Article author, title & average reading time  -->
+                           
+                            
+
+                        </StackLayout>
+
+                        <StackLayout
+                            Grid.Row="2"
+                            BackgroundColor="{DynamicResource Gray-White}"
+                            Spacing="0">
+                            <Label
+                                Margin="16,16,0,8"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="16"
+                                LineHeight="{OnPlatform Default=-1,
+                                                        Android=1.25}"
+                                Text="{Binding SubTitle1}"
+                                TextColor="{DynamicResource Gray-900}" />
+
+                            <StackLayout
+                                Margin="16,0,16,24"
+                                
+                                BindableLayout.ItemsSource="{Binding Categoriesdata}"
+                                
+                                Spacing="16">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                            <syncfusion:SfAccordion Grid.Row="1" ExpandMode="SingleOrNone" >
+                                                <syncfusion:SfAccordion.Items>
+                                                    <syncfusion:AccordionItem>
+                                                        <syncfusion:AccordionItem.Header>
+                                                            <Grid>
+                                                                <Label TextColor="#495F6E" Text="{Binding Title}" HeightRequest="50" VerticalTextAlignment="Center" />
+                                                            </Grid>
+                                                        </syncfusion:AccordionItem.Header>
+                                                    <!--#FFFFFF-->
+                                                    <syncfusion:AccordionItem.Content>
+
+                                                     
+
+                                                                        <Grid Padding="10,10,10,10" BackgroundColor="#FFFFFF">
+                                                                            <Grid
+                                                                                Margin="0,0,0,8"
+                                                                                ColumnSpacing="0"
+                                                                                HorizontalOptions="FillAndExpand"
+                                                                                RowSpacing="0"
+                                                                                VerticalOptions="FillAndExpand">
+
+
+                                                                                <Grid.RowDefinitions>
+                                                                                    <RowDefinition Height="Auto" />
+                                                                                    <RowDefinition Height="Auto" />
+                                                                                    <RowDefinition Height="Auto" />
+                                                                                    <RowDefinition Height="Auto" />
+                                                                                </Grid.RowDefinitions>
+
+                                                                                <Grid.ColumnDefinitions>
+                                                                                    <ColumnDefinition Width="Auto" />
+                                                                                    <ColumnDefinition  Width="*" />
+                                                                                    <ColumnDefinition Width="32" />
+                                                                                </Grid.ColumnDefinitions>
+                                                                                <!--BackgroundColor="{DynamicResource Gray-F0}"-->
+
+                                                                                <Image
+                                                                                    Grid.Column="0"
+                                                                                    Grid.RowSpan="3"
+                                                                                    Margin="8,0,16,0"
+                                                                                    Aspect="Fill"
+                                                                                    BackgroundColor="{DynamicResource Gray-F0}"
+                                                                                    HeightRequest="70"
+                                                                                    WidthRequest="90">
+                                                                                    <Image.Source>
+                                                                                        <UriImageSource
+                                                                                            CacheValidity="14"
+                                                                                            CachingEnabled="true"
+                                                                                            Uri="https://s3-ap-southeast-1.amazonaws.com/prod-gadc-corp-2019/public/web/2020-07-07/5f037882478d8/NutritionalFacts-QuarterPounder-min-500.jpeg" />
+                                                                                    </Image.Source>
+
+
+                                                                                </Image>
+
+
+                                                                                <!--  Product Name  -->
+                                                                                <Label
+                                                                                    Grid.Column="1"
+                                                                                    Grid.Row="0"
+                                                                                    Margin="0,0,0,8"
+                                                                                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                                                    LineBreakMode="TailTruncation"
+                                                                                    MaxLines="1"
+                                                                                    Style="{StaticResource LabelStyle}"
+                                                                                    Text="{Binding Name}"
+                                                                                    TextColor="{DynamicResource Gray-900}" />
+
+                                                                                <!--  Favourite Icon 
+                                                                     Command="{Binding ParentBindingContext.AddFavouriteCommand, Source={x:Reference productListTemplate}}"
+                                                                    TextColor="{Binding IsFavourite, Converter={x:StaticResource boolToColorConverter}, ConverterParameter=4}" />
+                                                                    
+                                                                    -->
+                                                                                <Button
+                                                                                    Grid.Column="2"
+                                                                                    Margin="0,0,0,8"
+                                                                                    Padding="0"
+                                                                                    helper:RTLHelper.Margin="{OnIdiom Phone='0,0,0,0',
+                                                                                                                      Tablet='0,0,4,0',
+                                                                                                                      Desktop='0,0,8,0'}"
+                                                                                    CommandParameter="{Binding}"
+                                                                                    Style="{StaticResource FavouriteButtonStyle}"
+                                                                                    Text="{Binding IsFavourite, Converter={StaticResource boolToStringConverter}, ConverterParameter=1}"/>  
+
+
+                                                                                <!--  Favourite Icon   -->
+                                                                                <buttons:SfButton
+                                                                                     Grid.Column="2"
+                                                                                    Grid.RowSpan="4"
+                                                                                    x:Name="backButton"
+                                                                                    Clicked="BackButtonClicked"
+                                                                                    CornerRadius="4"
+                                                                                    TextColor="Black"
+                                                                                    Style="{StaticResource IconButtonStyle}"
+                                                                                    Text="{StaticResource Next}" /> 
+
+
+                                                                                <!--  Product Description {Binding Summary} -->
+                                                                                <Label
+                                                                                    Grid.Row="1"
+                                                                                    Grid.Column="1"
+                                                                                    Margin="0,0,0,8"
+                                                                                    FontFamily="{StaticResource Montserrat-Medium}"
+                                                                                    FontSize="12"
+                                                                                    LineBreakMode="TailTruncation"
+                                                                                    LineHeight="{OnPlatform Android=1.25,
+                                                                                                            Default=-1}"
+                                                                                    MaxLines="2"
+                                                                                    Style="{StaticResource LabelStyle}"
+                                                                                    Text="{Binding Description}" />
+
+
+                                                                                <!--  Product Price     Text="{Binding DiscountPrice, StringFormat='${0:0 }'}"   Total price = {Binding DiscountPrice, StringFormat='${0:0 }'} -->
+                                                                                <StackLayout
+                                                                                     Grid.Column="1"
+                                                                                    Grid.Row="2"
+                                                                                    Margin="0,0,0,10"
+                                                                                    Orientation="Horizontal"
+                                                                                    Spacing="2">
+
+                                                                                    <!--  Product Price  -->
+                                                                                    <Label
+                                                                                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                                                        FontSize="20"
+                                                                                        HorizontalOptions="Start"
+                                                                                        LineHeight="{OnPlatform Android=1.25,
+                                                                                                                Default=-1}"
+                                                                                        Style="{StaticResource LabelStyle}"
+                                                                                        Text="$100"
+                                                                                        TextColor="{DynamicResource PrimaryColor}"
+                                                                                        VerticalOptions="CenterAndExpand"
+                                                                                        VerticalTextAlignment="Center" />
+
+                                                                                    <Label
+                                                                                        Margin="0,6,0,6"
+                                                                                        FontFamily="{StaticResource Montserrat-Medium}"
+                                                                                        FontSize="12"
+                                                                                        HorizontalOptions="Start"
+                                                                                        Style="{StaticResource LabelStyle}"
+                                                                                        Text="$50"
+                                                                                        TextDecorations="Strikethrough"
+                                                                                        VerticalOptions="Center"
+                                                                                        VerticalTextAlignment="Center" />
+
+                                                                                </StackLayout>
+
+                                                                            </Grid>
+                                                                        </Grid>
+                                                           
+                                                        
+                                                        </syncfusion:AccordionItem.Content>
+                                                    </syncfusion:AccordionItem>
+                                                  
+                                                    
+                                                  
+                                                </syncfusion:SfAccordion.Items>
+                                            </syncfusion:SfAccordion>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+
+
+
+                        </StackLayout>
+                    </Grid>
+                </controls:ParallaxScrollView>
+            </Grid>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -5,7 +5,7 @@
       xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
       xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
       xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-      x:Class="PasaBuy.App.Views.Templates.FoodListTemplate">
+      x:Class="PasaBuy.App.Views.Templates.GroceryListTemplate">
 
     <Grid.Resources>
         <ResourceDictionary>

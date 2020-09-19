@@ -1,19 +1,15 @@
-﻿using PasaBuy.App.Local;
-using System.Runtime.Serialization;
-using Xamarin.Forms.Internals;
-using System.ComponentModel;
-using PasaBuy.App.Controllers;
-using System;
-using Xamarin.Forms;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using Syncfusion.XForms.Buttons;
-
+using Xamarin.Forms;
 namespace PasaBuy.App.Models.Marketplace
 {
-
-    public class Store
+    public class StoreDetails
     {
-
         #region Field
+
+        private string store_id = string.Empty;
 
         private string ID = string.Empty;
         private string catid = string.Empty;
@@ -37,16 +33,15 @@ namespace PasaBuy.App.Models.Marketplace
         private string email = string.Empty;
         private string offer = string.Empty;
         private string itemRating = string.Empty;
+
         #endregion
 
         #region Constructor
-        public Store()
+        public StoreDetails()
         {
             this.FavouriteCommand = new Command(this.FavouriteButtonClicked);
         }
         #endregion
-
-
 
         #region Commands
         public Command FavouriteCommand { get; set; }
@@ -66,7 +61,7 @@ namespace PasaBuy.App.Models.Marketplace
             }
         }
 
-        public string Title 
+        public string StoreTitle
         {
             get
             {
@@ -75,11 +70,11 @@ namespace PasaBuy.App.Models.Marketplace
             set
             {
                 this.title = value;
-            } 
+            }
         }
 
-     
-        public string Description 
+
+        public string StoreDescription
         {
             get
             {
@@ -88,7 +83,7 @@ namespace PasaBuy.App.Models.Marketplace
             set
             {
                 this.short_info = value;
-            } 
+            }
         }
 
         public string Logo
@@ -176,7 +171,7 @@ namespace PasaBuy.App.Models.Marketplace
         }
 
 
-        public string Offer 
+        public string Offer
         {
             get
             {
@@ -187,7 +182,7 @@ namespace PasaBuy.App.Models.Marketplace
                 this.offer = value;
             }
         }
-        public string ItemRating 
+        public string ItemRating
         {
             get
             {
@@ -199,8 +194,29 @@ namespace PasaBuy.App.Models.Marketplace
             }
         }
 
+        public string Category
+        {
+            get
+            {
+                return catid;
+            }
+            set
+            {
+                this.catid = value;
+            }
+        }
+        public string LongInformation
+        {
+            get
+            {
+                return long_info;
+            }
+            set
+            {
+                this.long_info = value;
+            }
+        }
         #endregion
-
 
         #region Methods
 
@@ -231,8 +247,5 @@ namespace PasaBuy.App.Models.Marketplace
             }
         }
         #endregion
-
-
-
     }
 }

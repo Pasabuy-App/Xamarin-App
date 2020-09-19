@@ -49,14 +49,10 @@
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
 
-            <!--MARKET TAB-->
-            <tabView:SfTabItem Title="MARKET"
-                               IconFont="{StaticResource Market}"
-                               FontIconFontColor="{DynamicResource Gray-200}"
-                               FontIconFontFamily="{StaticResource FontFamily}"
-                               TitleFontColor="{DynamicResource Gray-200}"
-                               SelectionColor="{DynamicResource Gray-White}">
-                <tabView:SfTabItem.Content>
+            
+            
+            
+                <!--<tabView:SfTabItem.Content>
                     <tabView:SfTabView BackgroundColor="{DynamicResource Gray-100}" 
                            TabItemTapped="TabView_TabItemTapped"
                            TabHeaderPosition="Bottom"
@@ -101,8 +97,8 @@
                             </tabView:SfTabItem.Content>
                         </tabView:SfTabItem>
                     </tabView:SfTabView>
-                </tabView:SfTabItem.Content>
-            </tabView:SfTabItem>
+                 
+                </tabView:SfTabItem.Content>-->
 
             <!--STORE TAB-->
             <tabView:SfTabItem Title="STORE"
@@ -113,6 +109,18 @@
                                SelectionColor="{DynamicResource Gray-White}">
                 <tabView:SfTabItem.Content>
                     <store:StoreBrowserPage/>
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+
+            <!--GROCERY TAB-->
+            <tabView:SfTabItem Title="GROCERY"
+                               IconFont="{StaticResource Market}"
+                               FontIconFontColor="{DynamicResource Gray-200}"
+                               FontIconFontFamily="{StaticResource FontFamily}"
+                               TitleFontColor="{DynamicResource Gray-200}"
+                               SelectionColor="{DynamicResource Gray-White}">
+                <tabView:SfTabItem.Content>
+                    <food:GroceryBrowserPage/>
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
 

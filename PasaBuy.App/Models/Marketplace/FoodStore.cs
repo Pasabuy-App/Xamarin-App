@@ -10,7 +10,7 @@ using Syncfusion.XForms.Buttons;
 namespace PasaBuy.App.Models.Marketplace
 {
 
-    public class Store
+    public class FoodStore
     {
 
         #region Field
@@ -40,7 +40,7 @@ namespace PasaBuy.App.Models.Marketplace
         #endregion
 
         #region Constructor
-        public Store()
+        public FoodStore()
         {
             this.FavouriteCommand = new Command(this.FavouriteButtonClicked);
         }
@@ -54,6 +54,8 @@ namespace PasaBuy.App.Models.Marketplace
 
         #region Properties
 
+
+
         public string Id
         {
             get
@@ -66,7 +68,7 @@ namespace PasaBuy.App.Models.Marketplace
             }
         }
 
-        public string Title 
+        public string Title
         {
             get
             {
@@ -75,11 +77,11 @@ namespace PasaBuy.App.Models.Marketplace
             set
             {
                 this.title = value;
-            } 
+            }
         }
 
-     
-        public string Description 
+
+        public string Description
         {
             get
             {
@@ -88,7 +90,7 @@ namespace PasaBuy.App.Models.Marketplace
             set
             {
                 this.short_info = value;
-            } 
+            }
         }
 
         public string Logo
@@ -176,7 +178,7 @@ namespace PasaBuy.App.Models.Marketplace
         }
 
 
-        public string Offer 
+        public string Offer
         {
             get
             {
@@ -187,7 +189,7 @@ namespace PasaBuy.App.Models.Marketplace
                 this.offer = value;
             }
         }
-        public string ItemRating 
+        public string ItemRating
         {
             get
             {

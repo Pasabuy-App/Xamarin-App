@@ -15,5 +15,10 @@ namespace PasaBuy.App.Views.StoreDetail
             InitializeComponent();
             this.BindingContext = MoviesDataService.Instance.MoviesPageViewModel;
         }
+
+        private void BackbuttonClicked(object sender, EventArgs e)
+        {
+            Navigation.PopModalAsync();
+        }
     }
 }

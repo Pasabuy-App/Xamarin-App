@@ -1,8 +1,11 @@
-﻿using System;
+﻿using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Models.Marketplace;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -15,6 +18,21 @@ namespace PasaBuy.App.Views.Marketplace
         public StoreDetailsPage()
         {
             InitializeComponent();
+           
+
         }
+        public void BackButtonClicked(object sender, EventArgs e)
+        {
+            Navigation.PopModalAsync();
+        }
+
+        /*private void CategoryTapped(object sender, EventArgs e)
+        {*/
+            //var item = e.ItemData as StoreDetails;
+           /* var btn = (TapGestureRecognizer)sender;
+            var id = btn.ClassId;
+            new Alert("sample", "data: "+ id, "ok");*/
+
+        //}
     }
 }

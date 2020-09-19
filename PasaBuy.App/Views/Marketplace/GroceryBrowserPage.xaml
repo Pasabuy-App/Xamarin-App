@@ -5,12 +5,12 @@
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
              xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
-             xmlns:template="clr-namespace:PasaBuy.App.Views.Templates"
               BackgroundColor="{DynamicResource Gray-White}"
-             x:Class="PasaBuy.App.Views.Marketplace.FoodBrowserPage">
-    
+             xmlns:template="clr-namespace:PasaBuy.App.Views.Templates"
+             x:Class="PasaBuy.App.Views.Marketplace.GroceryBrowserPage">
+
     <ContentView.BindingContext>
-        <viewModel:FoodBrowserViewModel />
+        <viewModel:GroceryBrowserViewModel />
     </ContentView.BindingContext>
 
     <ContentView.Resources>
@@ -60,7 +60,7 @@
                         FontSize="16"
                         HorizontalOptions="CenterAndExpand"
                         LineHeight="1.25"
-                        Text="FoodHub"
+                        Text="Grocery"
                         TextColor="{DynamicResource Gray-900}"
                         VerticalOptions="Center"
                         VerticalTextAlignment="Center" />
@@ -111,7 +111,7 @@
                     AutoFitMode="Height"
                     IsScrollBarVisible="false"
                     ItemSpacing="0"
-                    ItemsSource="{Binding FoodStorelist}"
+                    ItemsSource="{Binding Storelist}"
                     SelectionBackgroundColor="Transparent"
                     ItemTapped="FoodRestorantTapped"
                     VerticalOptions="FillAndExpand"
@@ -132,7 +132,7 @@
                                                          HasShadow="True"
                                                          HorizontalOptions="FillAndExpand"
                                                          VerticalOptions="FillAndExpand">
-                                        <template:FoodListTemplate />
+                                        <template:GroceryListTemplate />
                                     </controls:CustomShadowFrame >
                                 </StackLayout>
                             </ViewCell>

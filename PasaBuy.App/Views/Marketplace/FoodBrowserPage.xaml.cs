@@ -1,4 +1,8 @@
-﻿using PasaBuy.App.DataService;
+﻿using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.DataService;
+using PasaBuy.App.Models.Marketplace;
+using PasaBuy.App.ViewModels.Marketplace;
+using PasaBuy.App.Views.StoreDetail;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +20,7 @@ namespace PasaBuy.App.Views.Marketplace
         public FoodBrowserPage()
         {
             InitializeComponent();
-            this.BindingContext = StoreDataService.Instance.RestaurantViewModel;
+            this.BindingContext = FoodStoreDataService.Instance.RestaurantViewModel;
         }
 
         protected override void OnSizeAllocated(double width, double height)
@@ -84,6 +88,18 @@ namespace PasaBuy.App.Views.Marketplace
         private void SearchExpandAnimationCompleted()
         {
             this.SearchEntry.Focus();
+        }
+
+        private void FoodRestorantTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        {
+            var item = e.ItemData as FoodStore;
+
+            //new Alert("ok", "." + item.Id + ".HAHAHA", "ok");
+            StoreDetailsViewModel.store_id = item.Id;
+            /* StoreDetailsViewModel.loadcategory(item.Id);
+             StoreDetailsViewModel.loadstoredetails(item.Id);*/
+            StoreDetailsViewModel.loaddata(item.Id);
+            App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
         }
     }
 }

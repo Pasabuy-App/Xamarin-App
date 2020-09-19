@@ -39,5 +39,15 @@ namespace PasaBuy.App.Views.ProductDetail
                 Rotator.ItemTemplate = (DataTemplate)this.Resources["PortraitTemplate"];
             }
         }
+
+        private void backButton_Clicked(object sender, System.EventArgs e)
+        {
+            Navigation.PopModalAsync();
+        }
+
+        private void CartClick(object sender, System.EventArgs e)
+        {
+            App.Current.MainPage.Navigation.PushModalAsync(new PasaBuy.App.Views.eCommerce.CartPage());
+        }
     }
 }

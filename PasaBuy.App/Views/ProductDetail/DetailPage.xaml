@@ -80,12 +80,12 @@
         <ControlTemplate>
             <StackLayout Spacing="0">
 
-                <!--  Title View  -->
+                <!--  Title View   Command="{Binding Path=BindingContext.BackButtonCommand, Source={x:Reference detailPage}}"-->
                 <controls:TitleView Title="Cart">
                     <controls:TitleView.LeadingView>
                         <buttons:SfButton
                             x:Name="backButton"
-                            Command="{Binding Path=BindingContext.BackButtonCommand, Source={x:Reference detailPage}}"
+                           Clicked="backButton_Clicked"
                             CommandParameter="{x:Reference backButton}"
                             CornerRadius="4"
                             Style="{StaticResource IconButtonStyle}"
@@ -102,8 +102,9 @@
                             VerticalOptions="Center"
                             WidthRequest="40">
                             <badge:SfBadgeView.Content>
+                                <!-- Command="{TemplateBinding BindingContext.CardItemCommand}" -->
                                 <buttons:SfButton
-                                    Command="{TemplateBinding BindingContext.CardItemCommand}"
+                                    Clicked="CartClick"
                                     CornerRadius="4"
                                     HorizontalOptions="End"
                                     Style="{StaticResource IconButtonStyle}"

@@ -24,12 +24,12 @@
         <ControlTemplate>
             <StackLayout Spacing="0">
 
-                <!--  Title View  -->
+                <!--  Title View    Command="{TemplateBinding BindingContext.BackButtonCommand}" -->
                 <controls:TitleView Title="Cart" BackgroundColor="{DynamicResource Gray-White}">
                     <controls:TitleView.LeadingView>
                         <buttons:SfButton
                             x:Name="backButton"
-                            Command="{TemplateBinding BindingContext.BackButtonCommand}"
+                            Clicked="backButton_Clicked"
                             CommandParameter="{x:Reference backButton}"
                             CornerRadius="4"
                             Style="{StaticResource IconButtonStyle}"

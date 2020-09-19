@@ -78,6 +78,7 @@
                         <buttons:SfButton
                             x:Name="backButton"
                             CornerRadius="4"
+                            Clicked="BackbuttonClicked"
                             Style="{StaticResource IconButtonStyle}"
                             TextColor="White"
                             Text="{StaticResource Back}" />
