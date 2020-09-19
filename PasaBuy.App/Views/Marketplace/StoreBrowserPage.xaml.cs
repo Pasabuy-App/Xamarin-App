@@ -108,7 +108,7 @@ namespace PasaBuy.App.Views.Marketplace
 
         private void StoreTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
-            App.Current.MainPage.Navigation.PushModalAsync(new PasaBuy.App.Views.StoreDetail.StoreDetailPage());
+            App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
         }
     }
 }

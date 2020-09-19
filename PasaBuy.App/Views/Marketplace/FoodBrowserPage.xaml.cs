@@ -89,7 +89,7 @@ namespace PasaBuy.App.Views.Marketplace
 
         private void FoodRestorantTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
-            App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailPage());
+            App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
         }
     }
 }

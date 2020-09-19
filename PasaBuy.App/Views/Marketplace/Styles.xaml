@@ -26,6 +26,8 @@
     <x:String x:Key="Share">&#xe704;</x:String>
     <x:String x:Key="ArrowRight">&#xe728;</x:String>
     <x:String x:Key="Next">&#xe71a;</x:String>
+    <x:String x:Key="Pluss">&#xf146;</x:String>
+
 
     <converter:DynamicResourceToColorConverter x:Key="DynamicResourceToColorConverter" />
 
