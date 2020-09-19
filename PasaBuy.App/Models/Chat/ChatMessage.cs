@@ -12,6 +12,8 @@ namespace PasaBuy.App.Models.Chat
     {
         #region Fields
 
+        private string id;
+
         private string message;
 
         private DateTime time;
@@ -30,6 +32,19 @@ namespace PasaBuy.App.Models.Chat
         #endregion
 
         #region Properties
+        public string ID
+        {
+            get
+            {
+                return this.id;
+            }
+
+            set
+            {
+                this.id = value;
+                this.OnPropertyChanged("ID");
+            }
+        }
 
         /// <summary>
         /// Gets or sets the message.

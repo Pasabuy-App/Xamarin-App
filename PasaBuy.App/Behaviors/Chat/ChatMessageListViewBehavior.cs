@@ -1,4 +1,6 @@
-﻿using Syncfusion.ListView.XForms;
+﻿using PasaBuy.App.ViewModels.Chat;
+using Syncfusion.ListView.XForms;
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -53,8 +55,15 @@ namespace PasaBuy.App.Behaviors.Chat
         /// <param name="e">Collection changed Event Args</param>
         private void DataSource_SourceCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            ((LinearLayout)this.listView.LayoutManager).ScrollToRowIndex(
-                this.listView.DataSource.DisplayItems.Count - 1, Syncfusion.ListView.XForms.ScrollToPosition.End, true);
+            if (!ChatMessageViewModel.isFirstLoad)
+            {
+                ((LinearLayout)this.listView.LayoutManager).ScrollToRowIndex(
+                    this.listView.DataSource.DisplayItems.Count, Syncfusion.ListView.XForms.ScrollToPosition.End, true);
+            }
+            else
+            {
+                ((LinearLayout)this.listView.LayoutManager).ScrollToRowIndex(14, Syncfusion.ListView.XForms.ScrollToPosition.End, true);
+            }
         }
 
         /// <summary>
@@ -67,8 +76,15 @@ namespace PasaBuy.App.Behaviors.Chat
             ScrollView scrollView = this.listView.Parent as ScrollView;
             this.listView.HeightRequest = scrollView.Height;
 
-            ((LinearLayout)this.listView.LayoutManager).ScrollToRowIndex(
-                this.listView.DataSource.DisplayItems.Count - 1, Syncfusion.ListView.XForms.ScrollToPosition.End, true);
+            if (!ChatMessageViewModel.isFirstLoad)
+            {
+                ((LinearLayout)this.listView.LayoutManager).ScrollToRowIndex(
+                    this.listView.DataSource.DisplayItems.Count, Syncfusion.ListView.XForms.ScrollToPosition.End, true);
+            }
+            else
+            {
+                ((LinearLayout)this.listView.LayoutManager).ScrollToRowIndex(14, Syncfusion.ListView.XForms.ScrollToPosition.End, true);
+            }
         }
 
         #endregion

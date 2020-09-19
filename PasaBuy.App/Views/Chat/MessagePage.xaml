@@ -134,7 +134,7 @@
 
             <!--  Searchable List view  -->
             <controls:SearchableChatList
-                x:Name="ListView"
+                x:Name="ListView" ItemAppearing="ListView_ItemAppearing"
                 AllowSwiping="True"
                 AutoFitMode="Height"
                 FocusBorderThickness="0"

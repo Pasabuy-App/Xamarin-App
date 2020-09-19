@@ -4,13 +4,17 @@ using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Feeds;
 using PasaBuy.App.Models.Onboarding;
+using PasaBuy.App.ViewModels.Chat;
 using PasaBuy.App.ViewModels.Menu;
+using PasaBuy.App.Views;
+using PasaBuy.App.Views.Chat;
 using PasaBuy.App.Views.Feeds;
 using PasaBuy.App.Views.Menu;
 using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -24,8 +28,6 @@ namespace PasaBuy.App.ViewModels.Feeds
     public class MyProfileViewModel : BaseViewModel
     {
         #region Fields
-        public static string user_id = string.Empty;
-
         public static ObservableCollection<Post> profilePostList;
 
         public ObservableCollection<Post> ProfilePosts
@@ -34,37 +36,24 @@ namespace PasaBuy.App.ViewModels.Feeds
             set { profilePostList = value; this.NotifyPropertyChanged(); }
         }
 
-        private string istitle;
-
+        public static string user_id = string.Empty;
         private string bannerImage;
-
         private string profileImage;
-
         private Boolean ismessage = false;
-
         private Boolean isinput = false;
-
         private Boolean isreferred = false;
-
         private Boolean iscity = false;
-
         public static int postcount;
-
         public static int transactcount;
-
         public static float ratingscount;
-
         private static string bannerImages = string.Empty;
-
         private static string profileImages = string.Empty;
-
         private static string displayNames = string.Empty;
-
         private static string verification = string.Empty;
-
         private static string city = string.Empty;
-
         private static string joined = string.Empty;
+        private bool isEnable = false;
+        bool _isRefreshing = false;
 
         #endregion
 
@@ -136,7 +125,7 @@ namespace PasaBuy.App.ViewModels.Feeds
         }
 
         /// <summary>
-        /// Load more post data in listview using observablecollection in HomePage
+        /// Load more post data in listview using observablecollection in MyProfilePage
         /// </summary>
         public static void LoadMore(string lastid)
         {
@@ -197,6 +186,9 @@ namespace PasaBuy.App.ViewModels.Feeds
             }
         }
 
+        /// <summary>
+        /// Load Total of post, transact and ratings in MyProfilePage
+        /// </summary>
         public static void LoadTotal(string userid)
         {
             try
@@ -242,7 +234,6 @@ namespace PasaBuy.App.ViewModels.Feeds
             CultureInfo provider = new CultureInfo("fr-FR");
             if (user_id == string.Empty)
             {
-                this.isTitle = "My Profile";
                 isMessage = false;
                 isInput = true;
                 userid = PSACache.Instance.UserInfo.wpid;
@@ -266,7 +257,7 @@ namespace PasaBuy.App.ViewModels.Feeds
             }
             else
             {
-                this.isTitle = "Other Profile";
+                this.MessageCommand = new Command(this.MessageClicked);
                 isMessage = true;
                 isInput = false;
                 userid = user_id;
@@ -342,7 +333,6 @@ namespace PasaBuy.App.ViewModels.Feeds
         #endregion
 
         #region Commands
-
         /// <summary>
         /// Gets or sets the command that is executed when the menu back button is clicked.
         /// </summary>
@@ -378,7 +368,6 @@ namespace PasaBuy.App.ViewModels.Feeds
         #region Property
         public ICommand RefreshCommand { protected set; get; }
 
-        bool _isRefreshing = false;
         public bool IsRefreshing
         {
             get
@@ -472,7 +461,7 @@ namespace PasaBuy.App.ViewModels.Feeds
         }
 
         /// <summary>
-        /// Gets or sets the property that is bound with label that gets the visibility of joined from user in the myprofile page.
+        /// Gets or sets the property that is bound with label that gets the visibility of city from user in the myprofile page.
         /// </summary>
         public Boolean isCity
         {
@@ -486,6 +475,10 @@ namespace PasaBuy.App.ViewModels.Feeds
                 this.NotifyPropertyChanged();
             }
         }
+
+        /// <summary>
+        /// Gets or sets the property that is bound with button that gets the visibility of message from user in the myprofile page.
+        /// </summary>
         public Boolean isMessage
         {
             get
@@ -498,6 +491,10 @@ namespace PasaBuy.App.ViewModels.Feeds
                 this.NotifyPropertyChanged();
             }
         }
+
+        /// <summary>
+        /// Gets or sets the property that is bound with label that gets the visibility of input entry from user in the myprofile page.
+        /// </summary>
         public Boolean isInput
         {
             get
@@ -510,18 +507,6 @@ namespace PasaBuy.App.ViewModels.Feeds
                 this.NotifyPropertyChanged();
             }
         }
-        public string isTitle
-        {
-            get
-            {
-                return istitle;
-            }
-            set
-            {
-                istitle = value;
-                this.NotifyPropertyChanged();
-            }
-        }
 
         public string Photo
         {
@@ -531,11 +516,28 @@ namespace PasaBuy.App.ViewModels.Feeds
             }
         }
 
-
         #endregion
 
         #region Methods
 
+        private void MessageClicked(object obj)
+        {
+            if (!isEnable)
+            {
+                isEnable = true;
+                //ChatMessageViewModel.LoadMessage(user_id, "");
+                ChatMessageViewModel.ProfileNames = displayNames;
+                ChatMessageViewModel.ProfileImages = profileImages;
+                ChatMessageViewModel.user_id = user_id;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(700);
+                    await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ChatMessagePage()));
+                    //new Alert("Title", "Example", "OK");
+                    isEnable = false;
+                });
+            }
+        }
         #endregion
 
     }

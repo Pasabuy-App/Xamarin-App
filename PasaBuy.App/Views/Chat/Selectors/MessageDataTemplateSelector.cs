@@ -59,9 +59,9 @@ namespace PasaBuy.App.Views.Chat
         /// <returns>Returns the data template</returns>
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
-            if (((ChatMessage)item).IsReceived)
+            if (((ChatListItem)item).IsReceived)
             {
-                if (string.IsNullOrEmpty(((ChatMessage)item).ImagePath))
+                if (string.IsNullOrEmpty(((ChatListItem)item).ImagePath))
                 {
                     return this.IncomingTextTemplate;
                 }
@@ -72,7 +72,7 @@ namespace PasaBuy.App.Views.Chat
             }
             else
             {
-                if (string.IsNullOrEmpty(((ChatMessage)item).ImagePath))
+                if (string.IsNullOrEmpty(((ChatListItem)item).ImagePath))
                 {
                     return this.OutgoingTextTemplate;
                 }

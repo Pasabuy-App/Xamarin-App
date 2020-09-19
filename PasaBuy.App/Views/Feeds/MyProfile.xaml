@@ -154,7 +154,7 @@
                                         TextColor="{DynamicResource Gray-Black}"
                                         Text="{StaticResource Message}">
                                 <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding MessageClicked}"
+                                    <TapGestureRecognizer Command="{Binding MessageCommand}"
                                                           NumberOfTapsRequired="1" />
                                 </Label.GestureRecognizers>
                             </Label>
@@ -272,7 +272,7 @@
                 <!-- FEED VIEW -->
                 <StackLayout Grid.Row="2">
                     <!--<local:PostEntry/>-->
-                    <listView:SfListView x:Name="profileListView" ItemAppearing="profileListView_ItemAppearing"
+                    <listView:SfListView x:Name="profileListView" ItemAppearing="profileListView_ItemAppearing" ListViewCachingStrategy="RecycleTemplate"
                                          ItemsSource="{Binding ProfilePosts}"
                                          AutoFitMode="DynamicHeight">
 

@@ -1,4 +1,8 @@
-﻿using System;
+﻿using PasaBuy.App.Models.Chat;
+using PasaBuy.App.ViewModels.Chat;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
@@ -12,12 +16,19 @@ namespace PasaBuy.App.Views.Chat
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MessagePage : ContentView
     {
+        public static bool isFirstID = false;
+        public static int ids = 0;
+        public static int LastIndex = 11;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MessagePage" /> class.
         /// </summary>
         public MessagePage()
         {
             InitializeComponent();
+            LastIndex = 11;
+            isFirstID = false;
+            ids = 0;
         }
 
         /// <summary>
@@ -104,6 +115,35 @@ namespace PasaBuy.App.Views.Chat
         private void SearchExpandAnimationCompleted()
         {
             this.SearchEntry.Focus();
+        }
+
+        private async void ListView_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
+        {
+
+            var item = e.ItemData as ChatDetail;
+            if (RecentChatViewModel.chatItems.Last() == item && RecentChatViewModel.chatItems.Count() != 1)
+            {
+                if (RecentChatViewModel.chatItems.IndexOf(item) >= LastIndex)
+                {
+                    try
+                    {
+                        if (isFirstID)
+                        {
+                            ids += 7;
+                        }
+                        else
+                        {
+                            isFirstID = true;
+                        }
+                        LastIndex += 6;
+                        RecentChatViewModel.LoadMesssage(ids.ToString());
+                    }
+                    catch
+                    {
+
+                    }
+                }
+            }
         }
     }
 }

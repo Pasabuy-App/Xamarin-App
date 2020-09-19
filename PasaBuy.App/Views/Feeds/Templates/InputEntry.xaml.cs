@@ -31,33 +31,36 @@ namespace PasaBuy.App.Views.Feeds.Templates
 
         public void SubmitPostButton(object sender, EventArgs e)
         {
-            try
+            if (!string.IsNullOrWhiteSpace(PostEntry.Text))
             {
-                SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PostEntry.Text, "", "status", "", "", "", "", "", "", (bool success, string data) =>
+                try
                 {
-                    if (success)
+                    SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PostEntry.Text, "", "status", "", "", "", "", "", "", (bool success, string data) =>
                     {
-                        if (PasaBuy.App.ViewModels.Menu.MasterMenuViewModel.postbutton == string.Empty)
+                        if (success)
                         {
-                            HomepageViewModel.homePostList.Clear();
-                            HomepageViewModel.LoadData();
+                            if (PasaBuy.App.ViewModels.Menu.MasterMenuViewModel.postbutton == string.Empty)
+                            {
+                                HomepageViewModel.homePostList.Clear();
+                                HomepageViewModel.LoadData();
+                            }
+                            else
+                            {
+                                MyProfileViewModel.profilePostList.Clear();
+                                MyProfileViewModel.LoadData(PSACache.Instance.UserInfo.wpid);
+                            }
+                            PostEntry.Text = string.Empty;
                         }
                         else
                         {
-                            MyProfileViewModel.profilePostList.Clear();
-                            MyProfileViewModel.LoadData(PSACache.Instance.UserInfo.wpid);
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                         }
-                        PostEntry.Text = string.Empty;
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                });
-            }
-            catch (Exception ex)
-            {
-                new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                    });
+                }
+                catch (Exception ex)
+                {
+                    new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                }
             }
         }
 

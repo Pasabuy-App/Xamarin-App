@@ -11,6 +11,11 @@ namespace PasaBuy.App.Models.Chat
         #region Public Properties
 
         /// <summary>
+        /// Gets or sets the profile id.
+        /// </summary>
+        public string ID { get; set; }
+
+        /// <summary>
         /// Gets or sets the profile image path.
         /// </summary>
         public string ImagePath { get; set; }

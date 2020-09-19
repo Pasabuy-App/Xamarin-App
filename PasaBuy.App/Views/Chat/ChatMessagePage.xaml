@@ -52,7 +52,7 @@
             <ScrollView>
 
                 <!--  List view to show the recent chat history  -->
-                <listView:SfListView
+                <listView:SfListView LoadMorePosition="Top" LoadMoreOption="AutoOnScroll" IsBusy="{Binding isBusy}" LoadMoreCommand="{Binding LoadMoreItemsCommand}"
                     x:Name="ListView"
                     AutoFitMode="Height"
                     BackgroundColor="{StaticResource Transparent}"
@@ -60,7 +60,7 @@
                     IsStickyFooter="True"
                     IsStickyHeader="True"
                     ItemTemplate="{StaticResource MessageDataTemplateSelector}"
-                    ItemsSource="{Binding ChatMessageInfo}"
+                    ItemsSource="{Binding ChatList}"
                     RowSpacing="12"
                     SelectionMode="None"
                     VerticalOptions="Fill">
@@ -130,16 +130,16 @@
                                     Text="{StaticResource VideoCall}" />-->
 
                                 <!--  Voice call button  -->
-                                <buttons:SfButton
+                                <!--buttons:SfButton
                                     Command="{Binding MakeVoiceCall}"
                                     Style="{StaticResource NavigationBarButtonStyle}"
-                                    Text="{StaticResource VoiceCall}" />
+                                    Text="{StaticResource VoiceCall}" /-->
 
                                 <!--  Menu Button  -->
-                                <buttons:SfButton
+                                <!--buttons:SfButton
                                     Command="{Binding MenuCommand}"
                                     Style="{StaticResource NavigationBarButtonStyle}"
-                                    Text="{StaticResource Menu}" />
+                                    Text="{StaticResource Menu}" /-->
 
                             </StackLayout>
                         </DataTemplate>
@@ -180,12 +180,12 @@
                                             Text="{Binding NewMessage}" />
 
                                         <!--  Camera Button  -->
-                                        <buttons:SfButton
+                                        <!--buttons:SfButton
                                             Grid.Column="1"
                                             Command="{Binding ShowCamera}"
                                             Style="{StaticResource NavigationBarButtonStyle}"
                                             Text="{StaticResource Camera}"
-                                            VerticalOptions="End" />
+                                            VerticalOptions="End" /-->
 
                                     </Grid>
                                 </border:SfBorder>
