@@ -140,18 +140,18 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 Title = title,
                      
                             }) ;
-                            TindaPress.Category.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", stid, "", "1", (bool success, string data) =>
+                            TindaPress.Category.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", stid, "", "1", (bool success2, string data2) =>
                             {
-                                if (success)
+                                if (success2)
                                 {
-                                    CategoriesListData datas = JsonConvert.DeserializeObject<CategoriesListData>(data);
-                                    for (int i = 0; i < datas.data.Length; i++)
+                                    CategoriesListData datas2 = JsonConvert.DeserializeObject<CategoriesListData>(data2);
+                                    for (int ii = 0; ii < datas2.data.Length; ii++)
                                     {
                                         //string id = datas.data[i].ID;
-                                        string title = datas.data[i].title;
+                                        string titles = datas2.data[i].title;
                                         categoriesdata.Add(new Categories()
                                         {
-                                            Title = title,
+                                            Title = titles,
 
                                         });
                                     }

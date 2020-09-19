@@ -37,37 +37,44 @@ namespace PasaBuy.App.Views.Posts
 
         public void SubmitPostButton(object sender, EventArgs e)
         {
-            if (btn == false)
+            if (!string.IsNullOrWhiteSpace(ItemName.Text) || !string.IsNullOrWhiteSpace(ItemDescription.Text) || !string.IsNullOrWhiteSpace(PickUpLocation.Text) || !string.IsNullOrWhiteSpace(DropOffLocation.Text) || !string.IsNullOrWhiteSpace(VehicleType.Text))
             {
-                btn = true;
-                try
+                if (btn == false)
                 {
-                    SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, ItemName.Text, ItemDescription.Text, "move", filePath, "", "", PickUpLocation.Text, DropOffLocation.Text, VehicleType.Text, (bool success, string data) =>
+                    btn = true;
+                    try
                     {
-                        if (success)
+                        SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, ItemName.Text, ItemDescription.Text, "move", filePath, "", "", PickUpLocation.Text, DropOffLocation.Text, VehicleType.Text, (bool success, string data) =>
                         {
-                            if (PasaBuy.App.ViewModels.Menu.MasterMenuViewModel.postbutton == string.Empty)
+                            if (success)
                             {
-                                HomepageViewModel.homePostList.Clear();
-                                HomepageViewModel.LoadData();
+                                if (PasaBuy.App.ViewModels.Menu.MasterMenuViewModel.postbutton == string.Empty)
+                                {
+                                    HomepageViewModel.homePostList.Clear();
+                                    HomepageViewModel.LoadData();
+                                }
+                                else
+                                {
+                                    MyProfileViewModel.profilePostList.Clear();
+                                    MyProfileViewModel.LoadData(PSACache.Instance.UserInfo.wpid);
+                                }
+                                Navigation.PopModalAsync();
                             }
                             else
                             {
-                                MyProfileViewModel.profilePostList.Clear();
-                                MyProfileViewModel.LoadData(PSACache.Instance.UserInfo.wpid);
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                             }
-                            Navigation.PopModalAsync();
-                        }
-                        else
-                        {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                        }
-                    });
+                        });
+                    }
+                    catch (Exception)
+                    {
+                        new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                    }
                 }
-                catch (Exception)
-                {
-                    new Alert("Something went Wrong", "Please contact administrator.", "OK");
-                }
+            }
+            else
+            {
+                new Alert("Notice to user", "Please fill-up all fields.", "OK");
             }
         }
 

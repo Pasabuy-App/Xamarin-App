@@ -117,7 +117,7 @@ namespace PasaBuy.App.Views.Chat
             this.SearchEntry.Focus();
         }
 
-        private async void ListView_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
+        private void ListView_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
         {
 
             var item = e.ItemData as ChatDetail;

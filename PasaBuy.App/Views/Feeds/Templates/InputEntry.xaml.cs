@@ -26,7 +26,6 @@ namespace PasaBuy.App.Views.Feeds.Templates
 
             PostEntry.Completed += (sender, args) => SubmitPostButton(sender, args);
 
-
         }
 
         public void SubmitPostButton(object sender, EventArgs e)
@@ -61,6 +60,10 @@ namespace PasaBuy.App.Views.Feeds.Templates
                 {
                     new Alert("Something went Wrong", "Please contact administrator.", "OK");
                 }
+            }
+            else
+            {
+                new Alert("Notice to user", "Please fill-up all fields.", "OK");
             }
         }
 

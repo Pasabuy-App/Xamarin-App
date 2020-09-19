@@ -26,15 +26,15 @@ namespace PasaBuy.App.Views.Chat
         public ChatMessagePage()
         {
             InitializeComponent();
-            /*ListView.DataSource.GroupDescriptors.Add(new GroupDescriptor
+            ListView.DataSource.GroupDescriptors.Add(new GroupDescriptor
             {
                 PropertyName = "Time",
                 KeySelector = obj =>
                 {
-                    var item = obj as ChatMessage;
+                    var item = obj as ChatListItem;
                     return item.Time.Date;
                 }
-            });*/
+            });
         }
         /// <summary>
         /// Invokes when back button is clicked.
