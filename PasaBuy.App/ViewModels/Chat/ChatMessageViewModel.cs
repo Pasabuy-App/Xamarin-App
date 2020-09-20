@@ -116,7 +116,9 @@ namespace PasaBuy.App.ViewModels.Chat
             List<ChatListDetails> list = new List<ChatListDetails>();
             ChatList = new ChatList(list);
             FirstLoad();
-
+            isFirstID = false;
+            ids = 0;
+            isFirstLoad = false;
             //this.GenerateMessageInfo();
         }
         public async void FirstLoad()
@@ -403,6 +405,7 @@ namespace PasaBuy.App.ViewModels.Chat
                 });*/
 
                 isFirstLoad = false;
+                //ChatList.Add(new ChatListItem("0", "", DateTime.Now, this.NewMessage, false));
                 try
                 {
                     SocioPress.Message.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, this.NewMessage, user_id, (bool success, string data) =>
@@ -410,6 +413,7 @@ namespace PasaBuy.App.ViewModels.Chat
                         if (success)
                         {
                             ChatList.Add(new ChatListItem("0", "", DateTime.Now, this.NewMessage, false));
+                            this.NewMessage = null;
                         }
                         else
                         {
@@ -421,7 +425,6 @@ namespace PasaBuy.App.ViewModels.Chat
                 {
                     new Alert("Something went Wrong", "Please contact administrator.", "OK");
                 }
-                this.NewMessage = null;
             }
             
         }
@@ -458,7 +461,11 @@ namespace PasaBuy.App.ViewModels.Chat
                 {
                     isFirstID = true;
                 }
+                //Console.WriteLine("my ids: " + ids + " and " + isFirstID);
                 LoadMessage(user_id, ids.ToString());
+
+                /*Console.WriteLine("my ids: " + ChatList[11].ID + " another index" + ChatList[7].ID);
+                LoadMessage(user_id, ChatList[11].ID );*/
             }
             catch
             {

@@ -400,7 +400,7 @@ namespace PasaBuy.App.ViewModels.ProductDetail
         /// Invoked when an back button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
-        private  async void BackButtonClicked(object obj)
+        private  void BackButtonClicked(object obj)
         {
         }
 
