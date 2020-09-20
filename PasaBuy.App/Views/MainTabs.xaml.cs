@@ -15,12 +15,13 @@ namespace PasaBuy.App.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainTabs : ContentPage
     {
+        public int i = 0;
         public MainTabs()
         {
             InitializeComponent();
         }
 
-        private void TabView_TabItemTapped(object sender, Syncfusion.XForms.TabView.TabItemTappedEventArgs e)
+        private async void TabView_TabItemTapped(object sender, Syncfusion.XForms.TabView.TabItemTappedEventArgs e)
         {
             //new Alert("TabViewItemTapped", e.TabItem.Title + " Item Tapped", "Ok");
             if (e.TabItem.Title == "HOME")
@@ -31,11 +32,17 @@ namespace PasaBuy.App.Views
             }
             if (e.TabItem.Title == "MESSAGE")
             {
-                MessagePage.LastIndex = 11;
-                MessagePage.isFirstID = false;
-                MessagePage.ids = 0;
-                RecentChatViewModel.chatItems.Clear();
-                RecentChatViewModel.LoadMesssage("");
+                if (i == 0)
+                {
+                    i = 1;
+                    MessagePage.LastIndex = 11;
+                    MessagePage.isFirstID = false;
+                    MessagePage.ids = 0;
+                    await Task.Delay(500);
+                    RecentChatViewModel.chatItems.Clear();
+                    RecentChatViewModel.LoadMesssage("");
+                    i = 0;
+                }
             }
         }
     }

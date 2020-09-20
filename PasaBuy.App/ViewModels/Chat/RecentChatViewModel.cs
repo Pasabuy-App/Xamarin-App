@@ -71,9 +71,7 @@ namespace PasaBuy.App.ViewModels.Chat
                             string avatar = chat.data[i].avatar;
                             string sender_id = chat.data[i].sender_id;
 
-                            string notitype = string.Empty;
-                            if (sender_id == PSACache.Instance.UserInfo.wpid) { if (date_seen == "") { notitype = "Sent"; } else { notitype = "Received"; } }
-                            else { if (date_seen == "") { notitype = "New"; } else { notitype = "Viewed"; } }
+                            string notitype = sender_id == PSACache.Instance.UserInfo.wpid ? notitype = date_seen == "" ? "Sent" : "Received" : date_seen == "" ? "New" : "Viewed";
 
                             string showdate = string.Empty;
                             CultureInfo provider = new CultureInfo("fr-FR");
@@ -104,16 +102,7 @@ namespace PasaBuy.App.ViewModels.Chat
                                 }
                             }
 
-                            chatItems.Add(new ChatDetail()
-                            {
-                                ID = user_id,
-                                ImagePath = PSAProc.GetUrl(avatar),
-                                SenderName = name,
-                                MessageType = "Text",
-                                Message = content,
-                                Time = showdate,
-                                NotificationType = notitype
-                            });
+                            chatItems.Add(new ChatDetail(user_id, PSAProc.GetUrl(avatar), name, showdate, content, "Text", notitype, ""));
                         }
                     }
                     else
