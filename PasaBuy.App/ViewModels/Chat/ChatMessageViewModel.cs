@@ -125,7 +125,14 @@ namespace PasaBuy.App.ViewModels.Chat
         {
             isFirstLoad = false;
             await Task.Delay(100);
-            LoadMessage(user_id, "");
+            LoadMessage(user_id, "", "");
+
+            Device.StartTimer(TimeSpan.FromSeconds(5), doitt);
+            bool doitt()
+            {
+                PopupMessage();
+                return true;
+            }
         }
 
         private bool CanLoadMoreItems(object obj)
@@ -133,37 +140,43 @@ namespace PasaBuy.App.ViewModels.Chat
             return isLoad; 
         }
 
-        public void LoadMessage(string sender, string lastid)
+        public void LoadMessage(string sender, string offset, string lastid)
         {
             try
             {
-                SocioPress.Message.Instance.GetByRecepient(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, sender, lastid, (bool success, string data) =>
+                SocioPress.Message.Instance.GetByRecepient(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, sender, offset, lastid, (bool success, string data) =>
                 {
                     if (success)
                     {
                         ChatData chat = JsonConvert.DeserializeObject<ChatData>(data);
                         //Console.WriteLine("length: "+ chat.data.Length);
-                        int len = 12;
-                        if (lastid != string.Empty) { len = 7; }
-                        if (chat.data.Length < len)
+                        //if (offset != string.Empty) { len = 7; }
+                        /*if (chat.data.Length < len)
                         {
                             isLoad = false;
                         }
                         else
                         {
                             isLoad = true;
+                        }*/
+                        if (lastid == "")
+                        {
+                            int len = offset != string.Empty ? 7 : 12;
+                            isLoad = chat.data.Length < len ? false : true;
                         }
+
                         for (int i = 0; i < chat.data.Length; i++)
                         {
-                            bool isreceived = false;
                             string id = chat.data[i].id;
                             string senders = chat.data[i].sender;
                             string content = chat.data[i].content;
                             string date_created = chat.data[i].date_created;
-                            if (senders != PSACache.Instance.UserInfo.wpid)
+                            bool isreceived = senders != PSACache.Instance.UserInfo.wpid ? true : false;
+
+                            /*if (senders != PSACache.Instance.UserInfo.wpid)
                             {
                                 isreceived = true;
-                            }
+                            }*/
 
                             CultureInfo provider = new CultureInfo("fr-FR");
                             DateTime datenow = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "yyyy-MM-dd HH:mm:ss", provider);
@@ -171,8 +184,16 @@ namespace PasaBuy.App.ViewModels.Chat
                             TimeSpan ts = datedb - datenow;
                             var currentTime = DateTime.Now;
 
-                            //ChatList.Add(new ChatListItem(id, "", currentTime.AddMinutes(ts.TotalMinutes), content, isreceived));
-                            ChatList.Insert(0, new ChatListItem(id, "", currentTime.AddMinutes(ts.TotalMinutes), content, isreceived));
+                            if (lastid == "")
+                            {
+                                ChatList.Insert(0, new ChatListItem(id, "", currentTime.AddMinutes(ts.TotalMinutes), content, isreceived));
+                                //Console.WriteLine("Insert ID: ");
+                            }
+                            else
+                            {
+                                ChatList.Add(new ChatListItem(id, "", currentTime.AddMinutes(ts.TotalMinutes), content, isreceived));
+                                //Console.WriteLine("Add ID: ");
+                            }
                         }
                     }
                     else
@@ -412,7 +433,8 @@ namespace PasaBuy.App.ViewModels.Chat
                     {
                         if (success)
                         {
-                            ChatList.Add(new ChatListItem("0", "", DateTime.Now, this.NewMessage, false));
+                            //ChatList.Add(new ChatListItem("0", "", DateTime.Now, this.NewMessage, false));
+                            PopupMessage();
                             this.NewMessage = null;
                         }
                         else
@@ -426,7 +448,17 @@ namespace PasaBuy.App.ViewModels.Chat
                     new Alert("Something went Wrong", "Please contact administrator.", "OK");
                 }
             }
+            /*else
+            {
+                PopupMessage();
+            }*/
             
+        }
+        public async void PopupMessage()
+        {
+            Console.WriteLine("last ID: " + ChatList.Last().ID);
+            await Task.Delay(500);
+            LoadMessage(user_id, "", ChatList.Last().ID);
         }
 
         /// <summary>
@@ -462,7 +494,7 @@ namespace PasaBuy.App.ViewModels.Chat
                     isFirstID = true;
                 }
                 //Console.WriteLine("my ids: " + ids + " and " + isFirstID);
-                LoadMessage(user_id, ids.ToString());
+                LoadMessage(user_id, ids.ToString(), "");
 
                 /*Console.WriteLine("my ids: " + ChatList[11].ID + " another index" + ChatList[7].ID);
                 LoadMessage(user_id, ChatList[11].ID );*/
