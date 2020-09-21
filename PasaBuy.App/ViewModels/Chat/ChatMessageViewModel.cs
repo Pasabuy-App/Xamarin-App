@@ -132,7 +132,7 @@ namespace PasaBuy.App.ViewModels.Chat
             {
                 PopupMessage();
                 return true;
-            }
+            }        
         }
 
         private bool CanLoadMoreItems(object obj)
@@ -456,7 +456,7 @@ namespace PasaBuy.App.ViewModels.Chat
         }
         public async void PopupMessage()
         {
-            Console.WriteLine("last ID: " + ChatList.Last().ID);
+            //Console.WriteLine("last ID: " + ChatList.Last().ID);
             await Task.Delay(500);
             LoadMessage(user_id, "", ChatList.Last().ID);
         }

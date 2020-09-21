@@ -30,7 +30,7 @@ namespace PasaBuy.App.Models.Marketplace
             }
             set
             {
-                this.Id = value;
+                this.ID = value;
             }
         }
 

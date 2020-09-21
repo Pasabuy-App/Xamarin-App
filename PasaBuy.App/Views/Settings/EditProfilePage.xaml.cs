@@ -12,6 +12,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using DataVice;
 using Plugin.Media;
+using Newtonsoft.Json;
+using PasaBuy.App.Models.Settings;
 
 namespace PasaBuy.App.Views.Settings
 {
@@ -57,6 +59,9 @@ namespace PasaBuy.App.Views.Settings
                 {
                     if (success)
                     {
+                        EditProfile datas = JsonConvert.DeserializeObject<EditProfile>(data);
+                        PSACache.Instance.UserInfo.avatar = datas.data;
+                        PSACache.Instance.SaveUserData();
                         new Alert("Success", "Avatar successfully updated", "Ok");
                     }
                     else
@@ -87,6 +92,9 @@ namespace PasaBuy.App.Views.Settings
                 {
                     if (success)
                     {
+                        EditProfile datas = JsonConvert.DeserializeObject<EditProfile>(data);
+                        PSACache.Instance.UserInfo.banner = datas.data;
+                        PSACache.Instance.SaveUserData();
                         new Alert("Success", "Banner successfully updated", "Ok");
                     }
                     else
@@ -114,6 +122,7 @@ namespace PasaBuy.App.Views.Settings
                         PSACache.Instance.UserInfo.dname = Nname.Text;
                         PSACache.Instance.UserInfo.lname = Lname.Text;
                         PSACache.Instance.UserInfo.fname = Fname.Text;
+                        PSACache.Instance.SaveUserData();
                         new Alert("Success", "Data successfully updated", "Ok");
                     }
                     else
