@@ -128,6 +128,38 @@
                             Style="{StaticResource EntryTextBoxStyle}" />
                 </border:SfBorder>
 
+                <Label
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        Margin="0,20,0,-5"
+                        HeightRequest="30" 
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        Text="Phone number or facebook account."
+                        TextColor="Black" />
+                <Label
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        Margin="0,0,0,15"
+                        HeightRequest="20" 
+                        FontSize="12"
+                        Text="We will use this information to contact you within 24 hours"
+                        TextColor="{DynamicResource Gray-800}" />
+
+                <Label
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        Margin="0,10,0,4"
+                        HeightRequest="18" 
+                        FontSize="12"
+                        Text="Contact"
+                        TextColor="{DynamicResource Gray-800}" />
+                <border:SfBorder BorderColor="{Binding Source={x:Reference ContactEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+                                 Style="{StaticResource BusinessFormBorderStyle}">
+                    <controls:BorderlessEntry
+                            x:Name="ContactEntry"
+                            Placeholder="Facebook account or phone number"
+                            Text="{Binding ContactEntry}"
+                            Style="{StaticResource EntryTextBoxStyle}" />
+                </border:SfBorder>
+
                 <buttons:SfButton 
                                 Margin="10, 40, 10, 20"
                                 CornerRadius="20"

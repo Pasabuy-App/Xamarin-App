@@ -53,35 +53,35 @@ namespace PasaBuy.App.Views.Settings
 
         }
 
-        async void SelectPhoto(object sender, EventArgs args)
-        {
-            await CrossMedia.Current.Initialize();
-            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
-            {
-                new Alert("Error", "No camera available", "Failed");
-            }
+        //async void SelectPhoto(object sender, EventArgs args)
+        //{
+        //    await CrossMedia.Current.Initialize();
+        //    if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+        //    {
+        //        new Alert("Error", "No camera available", "Failed");
+        //    }
 
-            var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
-            {
-                CompressionQuality = 40,
+        //    var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+        //    {
+        //        CompressionQuality = 40,
 
-            });
+        //    });
 
 
-            if (file == null)
-                return;
+        //    if (file == null)
+        //        return;
 
-            ImageSource imageSource = ImageSource.FromStream(() =>
-            {
-                var stream = file.GetStream();
-                return stream;
-            });
+        //    ImageSource imageSource = ImageSource.FromStream(() =>
+        //    {
+        //        var stream = file.GetStream();
+        //        return stream;
+        //    });
 
-            ImageId.Source = imageSource;
-            //var filePath = file.Path;
-            filePath = file.Path;
+        //    ImageId.Source = imageSource;
+        //    //var filePath = file.Path;
+        //    filePath = file.Path;
 
-        }
+        //}
 
         private void NextButtonClicked(object sender, EventArgs e)
         {

@@ -120,7 +120,7 @@
                 <BoxView Style="{StaticResource SeparatorStyle}" />
 
                 <!--  Grid for my contacts label and navigation bar icon  -->
-                <controls:TapAnimationGrid
+                <!--<controls:TapAnimationGrid
                     BackgroundColor="{DynamicResource Gray-White}"
                     ColumnSpacing="0"
                     Command="{Binding MyContactCommand}"
@@ -131,24 +131,24 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <!--  Edit profile icon  -->
+                    --><!--  Edit profile icon  --><!--
                     <Label
                         Grid.Column="0"
                         Margin="16,0,0,0"
                         Style="{StaticResource IconLabelStyle}"
                         Text="{StaticResource Phone}" />
-                    <!--  Edit profile label  -->
+                    --><!--  Edit profile label  --><!--
                     <Label
                         Grid.Column="1"
                         Style="{StaticResource LabelStyle}"
                         Text="My Contacts" />
-                    <!--  Navigation icon  -->
+                    --><!--  Navigation icon  --><!--
                     <Label
                         Grid.Column="2"
                         Style="{StaticResource IconLabelStyle}"
                         Text="{StaticResource Next}" />
                 </controls:TapAnimationGrid>
-                <BoxView Style="{StaticResource SeparatorStyle}" />
+                <BoxView Style="{StaticResource SeparatorStyle}" />-->
 
                 <!--  Grid for my transactions label and navigation bar icon  -->
                 <controls:TapAnimationGrid
