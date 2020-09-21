@@ -41,7 +41,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         for (int i = 0; i < datas.data.Length; i++)
                         {
                             string ID = datas.data[i].ID;
-                            Console.WriteLine(ID + "HAHA");
                             string title = datas.data[i].title;
                             string short_info = datas.data[i].short_info;
                             string avatar = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : datas.data[i].avatar;

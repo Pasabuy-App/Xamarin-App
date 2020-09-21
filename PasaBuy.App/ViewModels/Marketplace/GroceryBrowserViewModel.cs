@@ -14,37 +14,40 @@ namespace PasaBuy.App.ViewModels.Marketplace
     {
         private Command<object> itemTappedCommand;
 
-        private static ObservableCollection<Store> storelist;
+        private static ObservableCollection<Groceries> grocerystorelist;
 
-        public ObservableCollection<Store> Storelist
+        public ObservableCollection<Groceries> Grocerystorelist
         {
-            get { return storelist; }
-            set { storelist = value; this.NotifyPropertyChanged(); }
+            get { return grocerystorelist; }
+            set { grocerystorelist = value; this.NotifyPropertyChanged(); }
         }
 
         public GroceryBrowserViewModel()
         {
-            loadstore();
+            Groceryloadstore();
         }
 
-        public static void loadstore()
+        public static void Groceryloadstore()
         {
             try
             {
-                storelist = new ObservableCollection<Store>();
+                grocerystorelist = new ObservableCollection<Groceries>();
                 TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", "", "", (bool success, string data) =>
                 {
                     if (success)
                     {
-                        StoreListData datas = JsonConvert.DeserializeObject<StoreListData>(data);
+                        GroceriesStoreListData datas = JsonConvert.DeserializeObject<GroceriesStoreListData>(data);
                         for (int i = 0; i < datas.data.Length; i++)
                         {
+                            string ID = datas.data[i].ID;
+                            Console.WriteLine(ID + "HAHAGrocery");
                             string title = datas.data[i].title;
                             string short_info = datas.data[i].short_info;
                             string avatar = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : datas.data[i].avatar;
                             string banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png" : datas.data[i].banner;
-                            storelist.Add(new Store()
+                            grocerystorelist.Add(new Groceries()
                             {
+                                Id = ID,
                                 Title = title,
                                 Description = short_info,
                                 Logo = PSAProc.GetUrl(avatar),
@@ -60,11 +63,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
             {
                 new Alert("Something went Wrong", "Please contact administrator." + ' ' + e, "OK");
             }
-            /*
-                        storelist.Add(new Store() { Title = "1", Description = "4" });
-                        storelist.Add(new Store() { Title = "2", Description = "5" });
-                        storelist.Add(new Store() { Title = "3", Description = "6" });
-                        storelist.Add(new Store() { Title = "4", Description = "7" });*/
+
         }
 
         public Command<object> ItemTappedCommand
@@ -80,8 +79,11 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         private void NavigateToNextPage(object selectedItem)
         {
+            //var item = selectedItem.ItemData as FoodStore;
+
+            new Alert("ok", "." +".HAHAHA", "ok");
         }
 
-        public ObservableCollection<Store> NavigationList { get; set; }
+        public ObservableCollection<Groceries> NavigationList { get; set; }
     }
 }

@@ -1,4 +1,7 @@
-﻿using PasaBuy.App.DataService;
+﻿using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.DataService;
+using PasaBuy.App.Models.Marketplace;
+using PasaBuy.App.ViewModels.Marketplace;
 using PasaBuy.App.Views.StoreDetail;
 using System;
 using System.Collections.Generic;
@@ -87,8 +90,16 @@ namespace PasaBuy.App.Views.Marketplace
             this.SearchEntry.Focus();
         }
 
-        private void FoodRestorantTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        private void GroceriesTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
+            var item = e.ItemData as Groceries;
+
+            new Alert("ok", "." + item.Id + ".HAHAHA", "ok");
+            StoreDetailsViewModel.store_id = item.Id;
+            StoreDetailsViewModel.loadcategory(item.Id);
+           // StoreDetailsViewModel.loadstoredetails(item.Id);
+             StoreDetailsViewModel.loaddata(item.Id);
+            //StoreDetailsViewModel.loadproduct();
             App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
         }
     }

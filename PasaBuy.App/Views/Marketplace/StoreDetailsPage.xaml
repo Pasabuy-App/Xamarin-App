@@ -194,11 +194,8 @@
                                                             </Grid>
                                                         </syncfusion:AccordionItem.Header>
                                                     <!--#FFFFFF-->
-                                                    <syncfusion:AccordionItem.Content>
-
-                                                     
-
-                                                                        <Grid Padding="10,10,10,10" BackgroundColor="#FFFFFF">
+                                                        <syncfusion:AccordionItem.Content>
+                                                                <Grid Padding="10,10,10,10" BackgroundColor="#FFFFFF" BindableLayout.ItemsSource="{Binding Producdetailstlist}">
                                                                             <Grid
                                                                                 Margin="0,0,0,8"
                                                                                 ColumnSpacing="0"
@@ -332,13 +329,8 @@
 
                                                                             </Grid>
                                                                         </Grid>
-                                                           
-                                                        
                                                         </syncfusion:AccordionItem.Content>
                                                     </syncfusion:AccordionItem>
-                                                  
-                                                    
-                                                  
                                                 </syncfusion:SfAccordion.Items>
                                             </syncfusion:SfAccordion>
                                     </DataTemplate>

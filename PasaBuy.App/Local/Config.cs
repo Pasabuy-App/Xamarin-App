@@ -13,7 +13,7 @@ namespace PasaBuy.App.Local
         /// Rest API base url using WP PLugins.
         /// </summary>
         /// 
-        public static bool onProduction { get; } = false;
+        public static bool onProduction { get; } = true;
 
         /// <summary>
         /// Development url.

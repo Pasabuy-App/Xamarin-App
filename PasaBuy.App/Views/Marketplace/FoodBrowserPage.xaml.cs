@@ -94,11 +94,13 @@ namespace PasaBuy.App.Views.Marketplace
         {
             var item = e.ItemData as FoodStore;
 
-            //new Alert("ok", "." + item.Id + ".HAHAHA", "ok");
+            new Alert("ok", "." + item.Id + ".HAHAHA", "ok");
+            return;
             StoreDetailsViewModel.store_id = item.Id;
             /* StoreDetailsViewModel.loadcategory(item.Id);
              StoreDetailsViewModel.loadstoredetails(item.Id);*/
             StoreDetailsViewModel.loaddata(item.Id);
+            StoreDetailsViewModel.loadproduct();
             App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
         }
     }

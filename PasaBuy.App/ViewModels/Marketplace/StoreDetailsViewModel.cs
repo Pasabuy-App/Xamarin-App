@@ -70,7 +70,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             //loadstoredetails(store_id);
             loadstoredetails();
-
+            
         }
 
         public static void loaddata(string stid)
@@ -100,7 +100,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                             storedetailslist.Add(new StoreDetails() { 
                                 StoreTitle = title,
                                 StoreDescription = short_info,
-                                Logo = PSAProc.GetUrl(banner),
+                                Logo = PSAProc.GetUrl(avatar),
                                 Banner = banner,
                                 LongInformation = longinfo,
                                 City = city
@@ -140,27 +140,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 Title = title,
                      
                             }) ;
-                            TindaPress.Category.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", stid, "", "1", (bool success2, string data2) =>
-                            {
-                                if (success2)
-                                {
-                                    CategoriesListData datas2 = JsonConvert.DeserializeObject<CategoriesListData>(data2);
-                                    for (int ii = 0; ii < datas2.data.Length; ii++)
-                                    {
-                                        //string id = datas.data[i].ID;
-                                        string titles = datas2.data[i].title;
-                                        categoriesdata.Add(new Categories()
-                                        {
-                                            Title = titles,
 
-                                        });
-                                    }
-                                }
-                                else
-                                {
-                                    new Alert("Something went wrong!", "Please contact your administratir for this issue. Error code 404", "");
-                                }
-                            });
                         }
                     }
                     else
@@ -177,7 +157,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-        public static void loadproduct(string stid, string catid)
+        public static void loadproduct()
         {
             try
             {
