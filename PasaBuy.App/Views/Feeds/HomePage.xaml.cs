@@ -23,7 +23,6 @@ namespace PasaBuy.App.Views.Feeds
         public HomePage()
         {
             InitializeComponent();
-     
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
@@ -48,7 +47,7 @@ namespace PasaBuy.App.Views.Feeds
                 if (HomepageViewModel.homePostList.IndexOf(item) >= LastIndex)
                 {
                     LastIndex += 6;
-                    HomepageViewModel.LoadMore(item.Last_ID);
+                    HomepageViewModel.LoadData(item.Last_ID);
                 }
             }
         }
@@ -59,14 +58,13 @@ namespace PasaBuy.App.Views.Feeds
             var classId = btn.ClassId;
             if (classId != PSACache.Instance.UserInfo.wpid)
             {
-                //new Alert("Title", "Message" + classId, "OK");
                 MyProfileViewModel.GetProfile(classId);
                 MyProfileViewModel.LoadTotal(classId);
                 MyProfileViewModel.user_id = classId;
 
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    //await Task.Delay(800);
+                    await Task.Delay(300);
                     await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
                 });
             }
@@ -78,14 +76,13 @@ namespace PasaBuy.App.Views.Feeds
             var classId = btn.ClassId;
             if (classId != PSACache.Instance.UserInfo.wpid)
             {
-                //new Alert("Title", "Message" + classId, "OK");
                 MyProfileViewModel.GetProfile(classId);
                 MyProfileViewModel.LoadTotal(classId);
                 MyProfileViewModel.user_id = classId;
 
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    //await Task.Delay(800);
+                    await Task.Delay(300);
                     await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
                 });
             }

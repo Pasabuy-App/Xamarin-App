@@ -1,7 +1,10 @@
 ﻿using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.ViewModels.Chat;
+using PasaBuy.App.ViewModels.Feeds;
 using PasaBuy.App.ViewModels.Marketplace;
+using PasaBuy.App.ViewModels.Menu;
 using PasaBuy.App.Views.Chat;
+using PasaBuy.App.Views.Feeds;
 using PasaBuy.App.Views.Marketplace;
 using System;
 using System.Collections.Generic;
@@ -25,15 +28,15 @@ namespace PasaBuy.App.Views
 
         private async void TabView_TabItemTapped(object sender, Syncfusion.XForms.TabView.TabItemTappedEventArgs e)
         {
-            //new Alert("TabViewItemTapped", e.TabItem.Title + " Item Tapped", "Ok");
             if (e.TabItem.Title == "HOME")
             {
                 if (i == 0)
                 {
                     i = 1;
-                    ViewModels.Feeds.HomepageViewModel.homePostList.Clear();
-                    ViewModels.Feeds.HomepageViewModel.LoadData();
-                    ViewModels.Menu.MasterMenuViewModel.postbutton = string.Empty;
+                    HomePage.LastIndex = 11;
+                    HomepageViewModel.homePostList.Clear();
+                    HomepageViewModel.LoadData("");
+                    MasterMenuViewModel.postbutton = string.Empty;
                     await Task.Delay(500);
                     i = 0;
                 }

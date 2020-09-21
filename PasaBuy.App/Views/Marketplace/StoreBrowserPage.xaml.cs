@@ -124,7 +124,6 @@ namespace PasaBuy.App.Views.Marketplace
                 {
                     LastIndex += 6;
                     StoreBrowserViewModel.LoadStore(item.Id);
-                    Console.WriteLine("LastID: " + item.Id + " LastIndex: " + LastIndex);
                 }
             }
         }

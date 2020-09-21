@@ -18,15 +18,12 @@ namespace PasaBuy.App.ViewModels.Feeds
     public class HomepageViewModel : BaseViewModel
     {
         #region Fields
-
         public static ObservableCollection<Post> homePostList;
-
         public ObservableCollection<Post> HomePosts
         {
             get { return homePostList; }
             set { homePostList = value; this.NotifyPropertyChanged(); }
         }
-
         #endregion
 
         #region Constructor
@@ -36,74 +33,16 @@ namespace PasaBuy.App.ViewModels.Feeds
             RefreshCommand = new Command<string>((key) =>
             {
                 homePostList.Clear();
-                LoadData();
+                LoadData("");
                 IsRefreshing = false;
             });
             homePostList = new ObservableCollection<Post>();
-            LoadData();
+            LoadData("");
         }
         /// <summary>
         /// Load post data in listview using observablecollection in HomePage
         /// </summary>
-        public static void LoadData()
-        {
-            try
-            {
-                HomePage.LastIndex = 11;
-                SocioPress.Feeds.Instance.Home(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", (bool success, string data) =>
-                {
-                    if (success)
-                    {
-                        PostListData post = JsonConvert.DeserializeObject<PostListData>(data);
-                        for (int i = 0; i < post.data.Length; i++)
-                        {
-                            string image_height = "-1";
-                            if (post.data[i].item_image != "")
-                            {
-                                image_height = "400";
-                            }
-                            string post_author = post.data[i].post_author;
-                            string id = post.data[i].id;
-                            string content = post.data[i].content;
-                            string category = post.data[i].item_category;
-                            string title = post.data[i].title;
-                            string date_post = post.data[i].date_post == string.Empty ? new DateTime().ToString() : post.data[i].date_post;
-                            string type = post.data[i].type;
-                            string item_image = post.data[i].item_image;
-                            string author = post.data[i].author;
-                            string name = post.data[i].name;
-                            string views = post.data[i].views;
-                            string post_link = post.data[i].post_link;
-                            string vehicle_type = post.data[i].vehicle_type;
-                            string pickup_location = post.data[i].pickup_location;
-                            string do_price = "Drop-off: " + post.data[i].drop_off_location;
-                            if (type == "Selling")
-                            {
-                                title = category + " : " + title;
-                                do_price = "Price: " + post.data[i].item_price;
-                            }
-
-                            homePostList.Add(new Post(PSAProc.GetUrl(author),
-                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link, post_author, pickup_location, vehicle_type, do_price));
-                        }
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-
-                    }
-                });
-            }
-            catch (Exception)
-            {
-                new Alert("Something went Wrong", "Please contact administrator.", "OK");
-            }
-        }
-
-        /// <summary>
-        /// Load more post data in listview using observablecollection in HomePage
-        /// </summary>
-        public static void LoadMore(string lastid)
+        public static void LoadData(string lastid)
         {
             try
             {
@@ -156,7 +95,6 @@ namespace PasaBuy.App.ViewModels.Feeds
                 new Alert("Something went Wrong", "Please contact administrator.", "OK");
             }
         }
-
         #endregion
 
         #region Property
@@ -169,14 +107,12 @@ namespace PasaBuy.App.ViewModels.Feeds
             {
                 return _isRefreshing;
             }
-
             set
             {
                 if (_isRefreshing != value)
                 {
                     _isRefreshing = value;
                     this.NotifyPropertyChanged();
-
                 }
             }
         }

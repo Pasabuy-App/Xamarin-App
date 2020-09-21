@@ -41,7 +41,7 @@ namespace PasaBuy.App.Views.Feeds.Templates
                             if (PasaBuy.App.ViewModels.Menu.MasterMenuViewModel.postbutton == string.Empty)
                             {
                                 HomepageViewModel.homePostList.Clear();
-                                HomepageViewModel.LoadData();
+                                HomepageViewModel.LoadData("");
                             }
                             else
                             {

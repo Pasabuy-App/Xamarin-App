@@ -147,7 +147,7 @@ namespace PasaBuy.App.Views.Posts
                                 if (PasaBuy.App.ViewModels.Menu.MasterMenuViewModel.postbutton == string.Empty)
                                 {
                                     HomepageViewModel.homePostList.Clear();
-                                    HomepageViewModel.LoadData();
+                                    HomepageViewModel.LoadData("");
                                 }
                                 else
                                 {
