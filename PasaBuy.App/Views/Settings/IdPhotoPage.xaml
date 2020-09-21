@@ -7,13 +7,16 @@
              xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-             xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+             xmlns:converter="clr-namespace:PasaBuy.App.Converters"
              x:Class="PasaBuy.App.Views.Settings.IdPhotoPage"
              NavigationPage.HasNavigationBar="False"
              NavigationPage.HasBackButton="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
             <ResourceDictionary Source="Styles.xaml" />
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -40,15 +43,29 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
+            <Label  Grid.ColumnSpan="2"
+                    Margin="16,10,0,10"
+                    FontFamily="{StaticResource Montserrat-Bold}"
+                    Grid.Row="0"
+                    FontSize="14"
+                    HeightRequest="35"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Take a photo of your id. Make sure that the image is not blurry and the contents are readable."
+                    TextColor="{DynamicResource Gray-700}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+
 
             <border:SfBorder Padding="0, 0, 0, 0"
-                             Grid.Row="0"
+                             Grid.Row="1"
                                  Margin="0, 0, 0, 0"
                                  HeightRequest="250"
                                  Grid.ColumnSpan="2"
@@ -63,24 +80,12 @@
                 </ffimageloading:CachedImage>
             </border:SfBorder>
 
-            <Label  Grid.ColumnSpan="2"
-                    Margin="16,10,0,10"
-                    FontFamily="{StaticResource Montserrat-Bold}"
-                    Grid.Row="1"
-                    FontSize="14"
-                    HeightRequest="35"
-                    HorizontalOptions="FillAndExpand"
-                    Text="Make sure that the image is not blurry and the contents are readable."
-                    TextColor="{DynamicResource Gray-700}"
-                    VerticalOptions="Center"
-                    VerticalTextAlignment="Center" />
-
 
             <buttons:SfButton
                             Grid.Row="2"
                             Grid.Column="0"
                             Grid.ColumnSpan="2"
-                             Margin="10, 40, 10, 20"
+                            Margin="10, 20, 10, 20"
                             CornerRadius="10"
                             Clicked="TakePhoto"
                             TextColor="White"
@@ -88,11 +93,31 @@
                             Style="{StaticResource SfButtonStyle}"
                             Text="Take Photo" />
 
- 
+            <Label  Grid.ColumnSpan="2"
+                    Margin="16,0,0,10"
+                    FontFamily="{StaticResource Montserrat-Bold}"
+                    Grid.Row="3"
+                    FontSize="14"
+                    HeightRequest="35"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Enter  your id number in the box provided."
+                    TextColor="{DynamicResource Gray-700}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
 
-            <buttons:SfButton Grid.ColumnSpan="2"
-                                Grid.Row="3"
-                                Margin="10, 40, 10, 20"
+            <border:SfBorder Grid.Row="4" Margin="10, 0, 10, 0" Grid.ColumnSpan="2" BorderColor="{Binding Source={x:Reference IDNumberEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+                                 Style="{StaticResource BusinessFormBorderStyle}">
+                <controls:BorderlessEntry
+                            x:Name="IDNumberEntry"
+                            Placeholder="Enter your id number here"
+                            Text="{Binding IDNumberEntry}"
+                            Style="{StaticResource EntryTextBoxStyle}" />
+            </border:SfBorder>
+
+
+            <buttons:SfButton  Grid.ColumnSpan="2"
+                                Grid.Row="5"
+                                Margin="10, 20, 10, 20"
                                 CornerRadius="10"
                                 Clicked="NextButtonClicked"
                                 TextColor="White"

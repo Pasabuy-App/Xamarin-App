@@ -34,8 +34,7 @@ namespace PasaBuy.App.Views.Settings
                 Directory = "ID-Image",
                 Name = "image-id.jpg",
                 CompressionQuality = 40,
-                AllowCropping = true,
-                DefaultCamera = Plugin.Media.Abstractions.CameraDevice.Front
+                AllowCropping = true
             });
 
             if (file == null)
