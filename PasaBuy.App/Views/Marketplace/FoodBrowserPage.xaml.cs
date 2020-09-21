@@ -95,7 +95,7 @@ namespace PasaBuy.App.Views.Marketplace
             var item = e.ItemData as FoodStore;
 
             new Alert("ok", "." + item.Id + ".HAHAHA", "ok");
-            return;
+          
             StoreDetailsViewModel.store_id = item.Id;
             /* StoreDetailsViewModel.loadcategory(item.Id);
              StoreDetailsViewModel.loadstoredetails(item.Id);*/
