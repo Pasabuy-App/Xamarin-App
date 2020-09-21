@@ -17,10 +17,11 @@ namespace PasaBuy.App.Views.Marketplace
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FoodBrowserPage : ContentView
     {
+        public static int LastIndex = 11;
         public FoodBrowserPage()
         {
             InitializeComponent();
-            this.BindingContext = FoodStoreDataService.Instance.RestaurantViewModel;
+            //this.BindingContext = FoodStoreDataService.Instance.RestaurantViewModel;
         }
 
         protected override void OnSizeAllocated(double width, double height)
@@ -94,7 +95,7 @@ namespace PasaBuy.App.Views.Marketplace
         {
             var item = e.ItemData as FoodStore;
 
-            new Alert("ok", "." + item.Id + ".HAHAHA", "ok");
+            //new Alert("ok", "." + item.Id + ".HAHAHA", "ok");
           
             StoreDetailsViewModel.store_id = item.Id;
             /* StoreDetailsViewModel.loadcategory(item.Id);
@@ -102,6 +103,19 @@ namespace PasaBuy.App.Views.Marketplace
             StoreDetailsViewModel.loaddata(item.Id);
             StoreDetailsViewModel.loadproduct();
             App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+        }
+
+        private void RestaurantList_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
+        {
+            var item = e.ItemData as FoodStore;
+            if (FoodBrowserViewModel.foodstorelist.Last() == item && FoodBrowserViewModel.foodstorelist.Count() != 1)
+            {
+                if (FoodBrowserViewModel.foodstorelist.IndexOf(item) >= LastIndex)
+                {
+                    LastIndex += 6;
+                    FoodBrowserViewModel.LoadFood(item.Id);
+                }
+            }
         }
     }
 }

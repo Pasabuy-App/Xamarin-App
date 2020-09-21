@@ -14,7 +14,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
     {
         private Command<object> itemTappedCommand;
 
-        private static ObservableCollection<FoodStore> foodstorelist;
+        public static ObservableCollection<FoodStore> foodstorelist;
 
         public ObservableCollection<FoodStore> FoodStorelist
         {
@@ -24,16 +24,15 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public FoodBrowserViewModel()
         {
-            loadstore();
+            foodstorelist = new ObservableCollection<FoodStore>();
+            LoadFood("");
         }
 
-        public static void loadstore()
+        public static void LoadFood(string lastid)
         {
-           
             try
             {
-                foodstorelist = new ObservableCollection<FoodStore>();
-                TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "1", "", "", "", (bool success, string data) =>
+                TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "1", "", "1", lastid, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -57,6 +56,10 @@ namespace PasaBuy.App.ViewModels.Marketplace
                             });
 
                         }
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                     }
                 });
             }
@@ -82,6 +85,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
            
         }
 
-        public ObservableCollection<FoodStore> NavigationList { get; set; }
+        //public ObservableCollection<FoodStore> NavigationList { get; set; }
     }
 }

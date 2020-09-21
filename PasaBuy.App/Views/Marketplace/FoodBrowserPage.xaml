@@ -106,7 +106,7 @@
 
             <StackLayout Grid.Row="2"  Spacing="0" >
                 <!--{Binding ItemTappedCommand}-->
-                <controls:SearchableStorePage  x:Name="RestaurantList"
+                <controls:SearchableStorePage  x:Name="RestaurantList" ItemAppearing="RestaurantList_ItemAppearing"
                     Padding="0"
                     AutoFitMode="Height"
                     IsScrollBarVisible="false"

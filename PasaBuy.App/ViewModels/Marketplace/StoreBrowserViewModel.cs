@@ -25,7 +25,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         private Command<object> itemTappedCommand;
 
-        private static ObservableCollection<Store> storelist;
+        public static ObservableCollection<Store> storelist;
 
         public ObservableCollection<Store> Storelist
         {
@@ -35,32 +35,34 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public StoreBrowserViewModel()
         {
-            loadstore();
+            storelist = new ObservableCollection<Store>();
+            LoadStore("");
         }
 
         #endregion
 
 
         #region Loadata
-        public static void loadstore()
+        public static void LoadStore(string lastid)
         {
             try
             {
-                storelist = new ObservableCollection<Store>();
-                TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", "", "", (bool success, string data) =>
+                TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "all", "", "1", lastid, (bool success, string data) =>
                 {
                     if (success)
                     {
                         StoreListData datas = JsonConvert.DeserializeObject<StoreListData>(data);
                         for (int i = 0; i < datas.data.Length; i++)
                         {
+                            string id = datas.data[i].ID;
                             string title = datas.data[i].title;
                             string short_info = datas.data[i].short_info;
                             string avatar = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : datas.data[i].avatar;
                             string banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png" : datas.data[i].banner;
-                            storelist.Add(new Store() 
-                            { 
-                                Title = title, 
+                            storelist.Add(new Store()
+                            {
+                                Id = id,
+                                Title = title,
                                 Description = short_info,
                                 Logo = PSAProc.GetUrl(avatar),
                                 Offer = "50% off",
@@ -68,6 +70,10 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 Banner = PSAProc.GetUrl(banner)
                             });
                         }
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                     }
                 });
             }
@@ -111,8 +117,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
         /// <summary>
         /// Gets or sets a collection of values to be displayed in the Restaurant page.
         /// </summary>
-        [DataMember(Name = "navigationList")]
-        public ObservableCollection<Store> NavigationList { get; set; }
+        //[DataMember(Name = "navigationList")]
+        //public ObservableCollection<Store> NavigationList { get; set; }
 
         #endregion
 

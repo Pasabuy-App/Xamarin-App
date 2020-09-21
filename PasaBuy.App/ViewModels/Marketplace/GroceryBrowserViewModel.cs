@@ -14,7 +14,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
     {
         private Command<object> itemTappedCommand;
 
-        private static ObservableCollection<Groceries> grocerystorelist;
+        public static ObservableCollection<Groceries> grocerystorelist;
 
         public ObservableCollection<Groceries> Grocerystorelist
         {
@@ -24,15 +24,15 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public GroceryBrowserViewModel()
         {
-            Groceryloadstore();
+            grocerystorelist = new ObservableCollection<Groceries>();
+            LoadGrocery("");
         }
 
-        public static void Groceryloadstore()
+        public static void LoadGrocery(string lastid)
         {
             try
             {
-                grocerystorelist = new ObservableCollection<Groceries>();
-                TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", "", "", (bool success, string data) =>
+                TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "2", "", "1", lastid, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -55,6 +55,10 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 Banner = PSAProc.GetUrl(banner)
                             });
                         }
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                     }
                 });
             }
@@ -80,9 +84,9 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             //var item = selectedItem.ItemData as FoodStore;
 
-            new Alert("ok", "." +".HAHAHA", "ok");
+            //new Alert("ok", "." +".HAHAHA", "ok");
         }
 
-        public ObservableCollection<Groceries> NavigationList { get; set; }
+        //public ObservableCollection<Groceries> NavigationList { get; set; }
     }
 }

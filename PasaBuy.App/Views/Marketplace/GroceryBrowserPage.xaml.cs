@@ -17,10 +17,11 @@ namespace PasaBuy.App.Views.Marketplace
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GroceryBrowserPage : ContentView
     {
+        public static int LastIndex = 11;
         public GroceryBrowserPage()
         {
             InitializeComponent();
-            this.BindingContext = StoreDataService.Instance.RestaurantViewModel;
+            //this.BindingContext = StoreDataService.Instance.RestaurantViewModel;
         }
 
         protected override void OnSizeAllocated(double width, double height)
@@ -94,13 +95,26 @@ namespace PasaBuy.App.Views.Marketplace
         {
             var item = e.ItemData as Groceries;
 
-            new Alert("ok", "." + item.Id + ".HAHAHA", "ok");
+            //new Alert("ok", "." + item.Id + ".HAHAHA", "ok");
             StoreDetailsViewModel.store_id = item.Id;
             StoreDetailsViewModel.loadcategory(item.Id);
            // StoreDetailsViewModel.loadstoredetails(item.Id);
              StoreDetailsViewModel.loaddata(item.Id);
             //StoreDetailsViewModel.loadproduct();
             App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+        }
+
+        private void RestaurantList_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
+        {
+            var item = e.ItemData as Groceries;
+            if (GroceryBrowserViewModel.grocerystorelist.Last() == item && GroceryBrowserViewModel.grocerystorelist.Count() != 1)
+            {
+                if (GroceryBrowserViewModel.grocerystorelist.IndexOf(item) >= LastIndex)
+                {
+                    LastIndex += 6;
+                    GroceryBrowserViewModel.LoadGrocery(item.Id);
+                }
+            }
         }
     }
 }

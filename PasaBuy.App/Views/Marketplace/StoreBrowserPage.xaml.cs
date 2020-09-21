@@ -1,5 +1,8 @@
 ﻿using PasaBuy.App.DataService;
+using PasaBuy.App.Models.Marketplace;
+using PasaBuy.App.ViewModels.Marketplace;
 using System;
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
@@ -13,10 +16,11 @@ namespace PasaBuy.App.Views.Marketplace
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class StoreBrowserPage : ContentView
     {
+        public static int LastIndex = 11;
         public StoreBrowserPage()
         {
             InitializeComponent();
-            this.BindingContext = StoreDataService.Instance.RestaurantViewModel;
+            //this.BindingContext = StoreDataService.Instance.RestaurantViewModel;
         }
         /// <summary>
         /// Invoked when view size is changed.
@@ -109,6 +113,20 @@ namespace PasaBuy.App.Views.Marketplace
         private void StoreTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
             App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+        }
+
+        private void RestaurantList_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
+        {
+            var item = e.ItemData as Store;
+            if (StoreBrowserViewModel.storelist.Last() == item && StoreBrowserViewModel.storelist.Count() != 1)
+            {
+                if (StoreBrowserViewModel.storelist.IndexOf(item) >= LastIndex)
+                {
+                    LastIndex += 6;
+                    StoreBrowserViewModel.LoadStore(item.Id);
+                    Console.WriteLine("LastID: " + item.Id + " LastIndex: " + LastIndex);
+                }
+            }
         }
     }
 }

@@ -66,7 +66,7 @@ namespace PasaBuy.App.Views.Feeds
 
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    await Task.Delay(800);
+                    //await Task.Delay(800);
                     await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
                 });
             }
@@ -85,7 +85,7 @@ namespace PasaBuy.App.Views.Feeds
 
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    await Task.Delay(800);
+                    //await Task.Delay(800);
                     await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
                 });
             }
