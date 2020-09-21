@@ -55,13 +55,7 @@
                                  CornerRadius="10"
                                  BackgroundColor="{DynamicResource Gray-200}"
                                  Style="{StaticResource SfBorderStyle}">
-                <!--<Image 
-                   Grid.ColumnSpan="2"
-                   Source="Idcard.png"
-                   WidthRequest="300"
-                   HeightRequest="300"
-                   HorizontalOptions="FillAndExpand"
-                   VerticalOptions="FillAndExpand"/>-->
+
                 <ffimageloading:CachedImage Aspect="AspectFill"
                                             Source="Idcard.png"
                                             x:Name="ImageId"
@@ -85,8 +79,8 @@
             <buttons:SfButton
                             Grid.Row="2"
                             Grid.Column="0"
-                            Grid.ColumnSpan="1"
-                            Margin="0, 20, 0, 20"
+                            Grid.ColumnSpan="2"
+                             Margin="10, 40, 10, 20"
                             CornerRadius="10"
                             Clicked="TakePhoto"
                             TextColor="White"
@@ -94,22 +88,12 @@
                             Style="{StaticResource SfButtonStyle}"
                             Text="Take Photo" />
 
-            <buttons:SfButton
-                            Grid.Row="2"
-                            Grid.Column="1"
-                            Grid.ColumnSpan="1"
-                            Margin="10, 20, 0, 20"
-                            CornerRadius="10"
-                            Clicked="SelectPhoto"
-                            TextColor="White"
-                            BackgroundColor="{DynamicResource PrimaryColor}"
-                            Style="{StaticResource SfButtonStyle}"
-                            Text="Upload Photo" />
+ 
 
             <buttons:SfButton Grid.ColumnSpan="2"
                                 Grid.Row="3"
                                 Margin="10, 40, 10, 20"
-                                CornerRadius="20"
+                                CornerRadius="10"
                                 Clicked="NextButtonClicked"
                                 TextColor="White"
                                 BackgroundColor="{DynamicResource PrimaryColor}"
