@@ -5,7 +5,6 @@
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
              xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
-              BackgroundColor="{DynamicResource Gray-White}"
              xmlns:template="clr-namespace:PasaBuy.App.Views.Templates"
              x:Class="PasaBuy.App.Views.Marketplace.GroceryBrowserPage">
 
@@ -111,7 +110,7 @@
                     AutoFitMode="Height"
                     IsScrollBarVisible="false"
                     ItemSpacing="0"
-                    ItemsSource="{Binding Grocerystorelist}"
+                    ItemsSource="{Binding Storelist}"
                     SelectionBackgroundColor="Transparent"
                     ItemTapped="GroceriesTapped"
                     VerticalOptions="FillAndExpand"
