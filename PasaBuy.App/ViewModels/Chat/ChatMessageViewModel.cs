@@ -149,7 +149,6 @@ namespace PasaBuy.App.ViewModels.Chat
                     if (success)
                     {
                         ChatData chat = JsonConvert.DeserializeObject<ChatData>(data);
-                        //Console.WriteLine("length: "+ chat.data.Length);
                         //if (offset != string.Empty) { len = 7; }
                         /*if (chat.data.Length < len)
                         {
@@ -187,12 +186,10 @@ namespace PasaBuy.App.ViewModels.Chat
                             if (lastid == "")
                             {
                                 ChatList.Insert(0, new ChatListItem(id, "", currentTime.AddMinutes(ts.TotalMinutes), content, isreceived));
-                                //Console.WriteLine("Insert ID: ");
                             }
                             else
                             {
                                 ChatList.Add(new ChatListItem(id, "", currentTime.AddMinutes(ts.TotalMinutes), content, isreceived));
-                                //Console.WriteLine("Add ID: ");
                             }
                         }
                     }
@@ -426,14 +423,12 @@ namespace PasaBuy.App.ViewModels.Chat
                 });*/
 
                 isFirstLoad = false;
-                //ChatList.Add(new ChatListItem("0", "", DateTime.Now, this.NewMessage, false));
                 try
                 {
                     SocioPress.Message.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, this.NewMessage, user_id, (bool success, string data) =>
                     {
                         if (success)
                         {
-                            //ChatList.Add(new ChatListItem("0", "", DateTime.Now, this.NewMessage, false));
                             PopupMessage();
                             this.NewMessage = null;
                         }
@@ -448,15 +443,10 @@ namespace PasaBuy.App.ViewModels.Chat
                     new Alert("Something went Wrong", "Please contact administrator.", "OK");
                 }
             }
-            /*else
-            {
-                PopupMessage();
-            }*/
             
         }
         public async void PopupMessage()
         {
-            //Console.WriteLine("last ID: " + ChatList.Last().ID);
             await Task.Delay(500);
             LoadMessage(user_id, "", ChatList.Last().ID);
         }
@@ -493,7 +483,6 @@ namespace PasaBuy.App.ViewModels.Chat
                 {
                     isFirstID = true;
                 }
-                //Console.WriteLine("my ids: " + ids + " and " + isFirstID);
                 LoadMessage(user_id, ids.ToString(), "");
 
                 /*Console.WriteLine("my ids: " + ChatList[11].ID + " another index" + ChatList[7].ID);
