@@ -1,16 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             x:Class="PasaBuy.App.Views.Navigation.StoreMasterView"
              xmlns:helper="clr-namespace:PasaBuy.App.Helpers"
-             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Menu" xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-             BackgroundColor="{DynamicResource Gray-100}"
-             Title="Master"
-             x:Class="PasaBuy.App.Views.Menu.StoreMenu"
-             NavigationPage.HasNavigationBar="False"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             Title=" "
              Icon="menu.png">
 
     <ContentPage.Resources>
@@ -18,7 +13,6 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
             <Style x:Key="MainMenuTitleStyle" TargetType="{x:Type Label}">
                 <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}" />
                 <Setter Property="FontSize" Value="{StaticResource LargeSize}" />
@@ -36,11 +30,6 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-
-    <ContentPage.BindingContext>
-        <viewModel:StoreMenuViewModel x:Name="viewModel"/>
-    </ContentPage.BindingContext>
-
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Spacing="0">
@@ -129,7 +118,7 @@
 
                     </StackLayout>
 
-                    <StackLayout Grid.Row="1">
+                    <!--<StackLayout Grid.Row="1">
 
                         <BoxView Style="{StaticResource SeparatorStyle}" />
 
@@ -364,7 +353,7 @@
                         </Grid>
 
                         <BoxView Style="{StaticResource SeparatorStyle}" />
-                        
+
                         <Grid x:Name="HomepageGrid"
                             BackgroundColor="{DynamicResource Transparent}">
 
@@ -394,8 +383,8 @@
 
                         <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                    </StackLayout>
-                    <!--<StackLayout Grid.Row="1" Spacing="15">
+                    </StackLayout>-->
+                    <StackLayout Grid.Row="1" Spacing="15">
                         <sync:SfListView
                             x:Name="navigationDrawerList"
                             BackgroundColor="{DynamicResource  Gray-100}"
@@ -433,9 +422,9 @@
                                 </DataTemplate>
                             </sync:SfListView.ItemTemplate>
                         </sync:SfListView>
-                    </StackLayout>-->
+                    </StackLayout>
                 </Grid>
-                
+
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PasaBuy.App.ViewModels.MobilePOS;
+using PasaBuy.App.Views.MobilePOS.MenuItems;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,31 +8,27 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using NavigationPage = Xamarin.Forms.NavigationPage;
+using Page = Xamarin.Forms.Page;
 
 namespace PasaBuy.App.Views.MobilePOS
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NavigationView : MasterDetailPage
     {
+        public List<MainMenuItem> menuList { get; set; }
+        private NavigationViewModel _context => (NavigationViewModel)BindingContext;
+
         public NavigationView()
         {
             InitializeComponent();
-            MasterPage.ListView.ItemSelected += ListView_ItemSelected;
+            Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(MainView)));
+
         }
-
-        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        protected override void OnAppearing()
         {
-            var item = e.SelectedItem as NavigationViewMasterMenuItem;
-            if (item == null)
-                return;
-
-            var page = (Page)Activator.CreateInstance(item.TargetType);
-            page.Title = item.Title;
-
-            Detail = new NavigationPage(page);
-            IsPresented = false;
-
-            MasterPage.ListView.SelectedItem = null;
+            base.OnAppearing();
+            //_context.CheckLogin();
         }
     }
 }

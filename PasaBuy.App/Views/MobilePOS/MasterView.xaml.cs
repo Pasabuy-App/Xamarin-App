@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace PasaBuy.App.Views.MobilePOS
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NavigationViewDetail : ContentPage
+    public partial class MasterView : ContentPage
     {
-        public NavigationViewDetail()
+        public MasterView()
         {
             InitializeComponent();
         }

@@ -6,12 +6,13 @@
              mc:Ignorable="d"
              x:Class="PasaBuy.App.Views.Backend.StoreMain"
              xmlns:menu="clr-namespace:PasaBuy.App.Views.Menu"
-             xmlns:pages="clr-namespace:PasaBuy.App.Views.Backend">
+             xmlns:pages="clr-namespace:PasaBuy.App.Views.Backend"
+             MasterBehavior="Popover">
   <MasterDetailPage.Master>
         <menu:StoreMenu x:Name="MasterPage" />
   </MasterDetailPage.Master>
   <MasterDetailPage.Detail>
-    <NavigationPage>
+    <NavigationPage x:Name="storeDashboard">
       <x:Arguments>
         <pages:MainDetail />
       </x:Arguments>

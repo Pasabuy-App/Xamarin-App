@@ -5,6 +5,8 @@ using PasaBuy.App.Views.Onboarding;
 using System;
 using PasaBuy.App.Views.Marketplace;
 using PasaBuy.App.Views.MobilePOS;
+using PasaBuy.App.Views.StoreViews;
+using PasaBuy.App.Views.Menu;
 
 namespace PasaBuy.App
 {
@@ -23,7 +25,7 @@ namespace PasaBuy.App
 
             PSACache.Instance.Initialize();
             //commit
-            MainPage = new NavigationPage(new MainView());
+            MainPage = new NavigationPage(new SplashPage());
         }
 
         protected override void OnStart()

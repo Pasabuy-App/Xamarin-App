@@ -16,6 +16,7 @@ using PasaBuy.App.Views;
 using PasaBuy.App.Views.Currency;
 using PasaBuy.App.Views.Backend;
 using PasaBuy.App.Local;
+using PasaBuy.App.Views.StoreViews;
 
 namespace PasaBuy.App.ViewModels.Menu
 {
@@ -226,7 +227,7 @@ namespace PasaBuy.App.ViewModels.Menu
         {
             this.UpdateSelectedItemColor(obj);
 
-            //Do something
+            App.Current.MainPage = new ProductsView();
         }
 
         /// <summary>
