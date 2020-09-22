@@ -43,7 +43,7 @@ namespace PasaBuy.App.Views.Notification
                 if (NotificationPageViewModel.taskNotificationList.IndexOf(item) >= LastIndex)
                 {
                     LastIndex += 6;
-                    NotificationPageViewModel.LoadMore(item.ID);
+                    NotificationPageViewModel.LoadData(item.ID);
                 }
             }
         }

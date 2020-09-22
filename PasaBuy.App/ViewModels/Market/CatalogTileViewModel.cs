@@ -64,9 +64,9 @@ namespace PasaBuy.App.ViewModels.Market
                     }
                 });
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                new Alert("Something went Wrong", "Please contact administrator." + ' ' + e, "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: 20455.", "OK");
             }
         }
     }

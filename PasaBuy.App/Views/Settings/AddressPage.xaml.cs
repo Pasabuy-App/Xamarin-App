@@ -63,7 +63,8 @@ namespace PasaBuy.App.Views.Settings
                     {
                         if (success)
                         {
-                            AddressViewModel.RefreshData();
+                            AddressViewModel.addressDetails.Clear();
+                            AddressViewModel.LoadData();
                         }
                         else
                         {
@@ -71,10 +72,9 @@ namespace PasaBuy.App.Views.Settings
                         }
                     });
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    new Alert("Something went Wrong", "Please contact administrator.", "OK");
-                    Console.WriteLine("Error: " + ex);
+                    new Alert("Something went Wrong", "Please contact administrator. Error Code: 20416.", "OK");
                 }
             }
 

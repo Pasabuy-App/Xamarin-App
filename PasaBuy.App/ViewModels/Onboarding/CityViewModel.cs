@@ -39,10 +39,9 @@ namespace PasaBuy.App.ViewModels.Onboarding
 					}
 				});
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				new Alert("Something went Wrong", "Please contact administrator.", "OK");
-				Console.WriteLine("Error: " + ex);
+				new Alert("Something went Wrong", "Please contact administrator. Error Code: 20411.", "OK");
 			}
 		}
 		public static void ClearList()

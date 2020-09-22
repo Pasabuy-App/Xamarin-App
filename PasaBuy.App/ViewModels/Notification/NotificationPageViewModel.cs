@@ -37,20 +37,20 @@ namespace PasaBuy.App.ViewModels.Notification
             RefreshCommand = new Command<string>((key) =>
             {
                 taskNotificationList.Clear();
-                LoadData();
+                NotificationPage.LastIndex = 11;
+                LoadData("");
                 IsRefreshing = false;
             });
 
             taskNotificationList = new ObservableCollection<TaskNotification>();
-            LoadData();
+            LoadData("");
         }
 
-        public static void LoadData()
+        public static void LoadData(string lastid)
         {
             try
             {
-                NotificationPage.LastIndex = 11;
-                SocioPress.Activity.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", "", "", (bool success, string data) =>
+                SocioPress.Activity.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", "", lastid, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -105,54 +105,7 @@ namespace PasaBuy.App.ViewModels.Notification
             }
             catch (Exception)
             {
-                new Alert("Something went Wrong", "Please contact administrator.", "OK");
-            }
-        }
-
-        public static void LoadMore(string lastid)
-        {
-            try
-            {
-                SocioPress.Activity.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", "", lastid, (bool success, string data) =>
-                {
-                    if (success)
-                    {
-                        string iconcolor = string.Empty;
-                        TaskNotificationData taskdata = JsonConvert.DeserializeObject<TaskNotificationData>(data);
-                        for (int i = 0; i < taskdata.data.Length; i++)
-                        {
-                            bool isread = false;
-                            string iconname = string.Empty;
-                            string id = taskdata.data[i].id;
-                            string wpid = taskdata.data[i].wpid;
-                            string icon = taskdata.data[i].icon;
-                            string activity_title = taskdata.data[i].activity_title;
-                            string activity_info = taskdata.data[i].activity_info;
-                            string open = taskdata.data[i].open;
-                            string date_created = taskdata.data[i].date_created == string.Empty ? new DateTime().ToString() : taskdata.data[i].date_created;
-                            if (open != "") { isread = true; }
-                            if (icon == "info") { iconname = "?"; iconcolor = "#90CAF9"; }
-                            if (icon == "warn") { iconname = "!"; iconcolor = "#FFB74D"; }
-                            if (icon == "error") { iconname = "X"; iconcolor = "#EF5350"; }
-
-                            taskNotificationList.Add(new TaskNotification()
-                            {
-                                ID = id,
-                                UserName = iconname,
-                                BackgroundColor = iconcolor,
-                                Description = activity_title,
-                                Detail = activity_info,
-                                TaskID = "",
-                                Time = date_created,
-                                IsRead = isread
-                            });
-                        }
-                    }
-                });
-            }
-            catch (Exception)
-            {
-                new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: 20445.", "OK");
             }
         }
 
@@ -213,13 +166,13 @@ namespace PasaBuy.App.ViewModels.Notification
                     SocioPress.Activity.Instance.Open(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, id, "", (bool success, string data) =>
                     {
                         taskNotificationList.Clear();
-                        LoadData();
+                        LoadData("");
                     });
                 }
             }
             catch (Exception)
             {
-                new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: 20446.", "OK");
             }
             //((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as TaskNotification).IsRead = true;
             //new Alert("Title", "example"+ ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as TaskNotification).ID, "OK");
@@ -236,12 +189,12 @@ namespace PasaBuy.App.ViewModels.Notification
                 SocioPress.Activity.Instance.MarkAll(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, (bool success, string data) =>
                 {
                     taskNotificationList.Clear();
-                    LoadData();
+                    LoadData("");
                 });
             }
             catch (Exception)
             {
-                new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: 20447.", "OK");
             }
         }
 

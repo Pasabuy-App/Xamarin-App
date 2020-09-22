@@ -37,7 +37,7 @@ namespace PasaBuy.App.ViewModels.Settings
             addressDetails = new ObservableCollection<Address>();
             LoadData();
         }
-        public void LoadData()
+        public static void LoadData()
         {
             try
             {
@@ -77,55 +77,9 @@ namespace PasaBuy.App.ViewModels.Settings
                     }
                 });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                new Alert("Something went Wrong", "Please contact administrator.", "OK");
-            }
-        }
-        public static void RefreshData()
-        {
-            try
-            {
-                addressDetails.Clear();
-                DataVice.Address.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, (bool success, string data) =>
-                {
-                    if (success)
-                    {
-                        AddressData address = JsonConvert.DeserializeObject<AddressData>(data);
-                        for (int i = 0; i < address.data.Length; i++)
-                        {
-                            string id = address.data[i].id;
-                            string types = address.data[i].types;
-                            string status = address.data[i].status;
-                            string street = address.data[i].street;
-                            string brgy = address.data[i].brgy;
-                            string city = address.data[i].city;
-                            string province = address.data[i].province;
-                            string country = address.data[i].country;
-                            string type = string.Empty;
-                            if (types == "home") { type = "Home"; }
-                            if (types == "office") { type = "Office"; }
-                            if (types == "business") { type = "Business"; }
-                            addressDetails.Add(new Address
-                            {
-                                SelectedAddress = id,
-                                Name = "Juan Dela Cruz",
-                                AddressType = type,
-                                Location = street + " " + brgy + ", " + city + " " + province + ", " + country,
-                                ContactNumber = "(123) 456-7890"
-                            });
-                        }
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-
-                    }
-                });
-            }
-            catch (Exception ex)
-            {
-                new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: 20440.", "OK");
             }
         }
 

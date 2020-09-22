@@ -201,7 +201,7 @@ namespace PasaBuy.App.ViewModels.Chat
             }
             catch (Exception)
             {
-                new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: 20475.", "OK");
             }
         }
 
@@ -440,7 +440,7 @@ namespace PasaBuy.App.ViewModels.Chat
                 }
                 catch (Exception)
                 {
-                    new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                    new Alert("Something went Wrong", "Please contact administrator. Error Code: 20476.", "OK");
                 }
             }
             

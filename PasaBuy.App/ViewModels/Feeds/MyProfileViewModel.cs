@@ -120,7 +120,7 @@ namespace PasaBuy.App.ViewModels.Feeds
             }
             catch (Exception)
             {
-                new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: 20460.", "OK");
             }
         }
 
@@ -182,7 +182,7 @@ namespace PasaBuy.App.ViewModels.Feeds
             }
             catch (Exception)
             {
-                new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: 20461.", "OK");
             }
         }
 
@@ -221,7 +221,7 @@ namespace PasaBuy.App.ViewModels.Feeds
             }
             catch (Exception)
             {
-                new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: 20462.", "OK");
             }
         }
 
@@ -326,7 +326,7 @@ namespace PasaBuy.App.ViewModels.Feeds
             }
             catch (Exception)
             {
-                new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: 20463.", "OK");
             }
         }
 

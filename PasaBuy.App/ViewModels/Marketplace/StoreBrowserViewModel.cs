@@ -77,9 +77,9 @@ namespace PasaBuy.App.ViewModels.Marketplace
                     }
                 });
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                new Alert("Something went Wrong", "Please contact administrator."+' '+e, "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: 20452.", "OK");
             }
             /*
                         storelist.Add(new Store() { Title = "1", Description = "4" });

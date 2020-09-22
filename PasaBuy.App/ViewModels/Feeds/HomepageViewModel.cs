@@ -92,7 +92,7 @@ namespace PasaBuy.App.ViewModels.Feeds
             }
             catch (Exception)
             {
-                new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: 20465.", "OK");
             }
         }
         #endregion

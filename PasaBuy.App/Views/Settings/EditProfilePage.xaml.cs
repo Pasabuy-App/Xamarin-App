@@ -55,25 +55,33 @@ namespace PasaBuy.App.Views.Settings
             if (!isEnable)
             {
                 isEnable = true;
-                Upload.Instance.Image(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, avatarUrl, "", "", "avatar", "", (bool success, string data) =>
+                try
                 {
-                    if (success)
+                    Upload.Instance.Image(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, avatarUrl, "", "", "avatar", "", (bool success, string data) =>
                     {
-                        new Alert("Success", "Avatar successfully updated", "Ok");
-                        EditProfile datas = JsonConvert.DeserializeObject<EditProfile>(data);
-                        PSACache.Instance.UserInfo.avatar = datas.data;
-                        PSACache.Instance.SaveUserData();
-                    }
-                    else
+                        if (success)
+                        {
+                            new Alert("Success", "Avatar successfully updated", "Ok");
+                            EditProfile datas = JsonConvert.DeserializeObject<EditProfile>(data);
+                            PSACache.Instance.UserInfo.avatar = datas.data;
+                            PSACache.Instance.SaveUserData();
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        }
+                    });
+                    Device.BeginInvokeOnMainThread(async () =>
                     {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                });
-                Device.BeginInvokeOnMainThread(async () =>
+                        await Task.Delay(1000);
+                        isEnable = false;
+                    });
+
+                }
+                catch (Exception)
                 {
-                    await Task.Delay(1000);
-                    isEnable = false;
-                });
+                    new Alert("Something went Wrong", "Please contact administrator. Error Code: 20420.", "OK");
+                }
             }
         }
 
@@ -88,25 +96,32 @@ namespace PasaBuy.App.Views.Settings
             if (!isEnable)
             {
                 isEnable = true;
-                Upload.Instance.Image(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, bannerUrl, "", "", "banner", "", (bool success, string data) =>
+                try
                 {
-                    if (success)
+                    Upload.Instance.Image(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, bannerUrl, "", "", "banner", "", (bool success, string data) =>
                     {
-                        new Alert("Success", "Banner successfully updated", "Ok");
-                        EditProfile datas = JsonConvert.DeserializeObject<EditProfile>(data);
-                        PSACache.Instance.UserInfo.banner = datas.data;
-                        PSACache.Instance.SaveUserData();
-                    }
-                    else
+                        if (success)
+                        {
+                            new Alert("Success", "Banner successfully updated", "Ok");
+                            EditProfile datas = JsonConvert.DeserializeObject<EditProfile>(data);
+                            PSACache.Instance.UserInfo.banner = datas.data;
+                            PSACache.Instance.SaveUserData();
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        }
+                    });
+                    Device.BeginInvokeOnMainThread(async () =>
                     {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                });
-                Device.BeginInvokeOnMainThread(async () =>
+                        await Task.Delay(1000);
+                        isEnable = false;
+                    });
+                }
+                catch (Exception)
                 {
-                    await Task.Delay(1000);
-                    isEnable = false;
-                });
+                    new Alert("Something went Wrong", "Please contact administrator. Error Code: 20421.", "OK");
+                }
             }
         }
 
@@ -115,26 +130,33 @@ namespace PasaBuy.App.Views.Settings
             if (!isEnable)
             {
                 isEnable = true;
-                Users.Instance.EditProfile(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, Fname.Text, Lname.Text, Nname.Text, (bool success, string data) =>
+                try
                 {
-                    if (success)
+                    Users.Instance.EditProfile(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, Fname.Text, Lname.Text, Nname.Text, (bool success, string data) =>
                     {
-                        new Alert("Success", "Data successfully updated", "Ok");
-                        PSACache.Instance.UserInfo.dname = Nname.Text;
-                        PSACache.Instance.UserInfo.lname = Lname.Text;
-                        PSACache.Instance.UserInfo.fname = Fname.Text;
-                        PSACache.Instance.SaveUserData();
-                    }
-                    else
+                        if (success)
+                        {
+                            new Alert("Success", "Data successfully updated", "Ok");
+                            PSACache.Instance.UserInfo.dname = Nname.Text;
+                            PSACache.Instance.UserInfo.lname = Lname.Text;
+                            PSACache.Instance.UserInfo.fname = Fname.Text;
+                            PSACache.Instance.SaveUserData();
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        }
+                    });
+                    Device.BeginInvokeOnMainThread(async () =>
                     {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                });
-                Device.BeginInvokeOnMainThread(async () =>
+                        await Task.Delay(1000);
+                        isEnable = false;
+                    });
+                }
+                catch (Exception)
                 {
-                    await Task.Delay(1000);
-                    isEnable = false;
-                });
+                    new Alert("Something went Wrong", "Please contact administrator. Error Code: 20422.", "OK");
+                }
             }
         }
 

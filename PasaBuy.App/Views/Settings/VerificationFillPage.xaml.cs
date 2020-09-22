@@ -63,9 +63,9 @@ namespace PasaBuy.App.Views.Settings
                             }
                         });
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-                        new Alert("Something went Wrong", "Please contact administrator. "+ ex, "OK");
+                        new Alert("Something went Wrong", "Please contact administrator. Error Code: 20425.", "OK");
                     }
                 }
             }

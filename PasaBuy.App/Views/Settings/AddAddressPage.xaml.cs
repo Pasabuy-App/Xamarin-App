@@ -50,7 +50,8 @@ namespace PasaBuy.App.Views.Settings
                         if (success)
                         {
                             Navigation.PopModalAsync();
-                            AddressViewModel.RefreshData();
+                            AddressViewModel.addressDetails.Clear();
+                            AddressViewModel.LoadData();
                         }
                         else
                         {
@@ -66,7 +67,7 @@ namespace PasaBuy.App.Views.Settings
             }
             catch (Exception)
             {
-                new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: 20415.", "OK");
             }
 
         }

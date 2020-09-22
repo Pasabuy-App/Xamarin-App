@@ -164,13 +164,13 @@ namespace PasaBuy.App.Views.Posts
                     }
                     catch (Exception)
                     {
-                        new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                        new Alert("Something went Wrong", "Please contact administrator. Error Code: 20432.", "OK");
                     }
                 }
             }
             else
             {
-                new Alert("Notice to user", "Please fill-up all fields.", "OK");
+                new Alert("Notice to user", "Required fields cannot be empty.", "OK");
             }
         }
     }

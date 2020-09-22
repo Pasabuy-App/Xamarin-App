@@ -1,4 +1,5 @@
-﻿using PasaBuy.App.Models.Chat;
+﻿using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Models.Chat;
 using PasaBuy.App.ViewModels.Chat;
 using System;
 using System.Linq;
@@ -140,7 +141,7 @@ namespace PasaBuy.App.Views.Chat
                     }
                     catch
                     {
-
+                        new Alert("Something went Wrong", "Please contact administrator. Error Code: 20435.", "OK");
                     }
                 }
             }
