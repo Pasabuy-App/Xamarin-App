@@ -7,6 +7,12 @@ using Xamarin.Forms.Internals;
 using PasaBuy.App.Views.Driver;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.Globalization;
+using System.Linq;
+using PasaBuy.App.Behaviors.Chat;
 
 namespace PasaBuy.App.ViewModels.Driver
 {
@@ -18,27 +24,63 @@ namespace PasaBuy.App.ViewModels.Driver
     {
         #region Fields
 
-        /// <summary>
-        /// Stores the message text in an array. 
-        /// </summary>
-        private readonly string[] descriptions = { "Hi, can you tell me the specifications of the Dell Inspiron 5370 laptop?",
-            " * Processor: Intel Core i5-8250U processor " +
-            "\n" + " * OS: Pre-loaded Windows 10 with lifetime validity" +
-            "\n" + " * Display: 13.3-inch FHD (1920 x 1080) LED display" +
-            "\n" + " * Memory: 8GB DDR RAM with Intel UHD 620 Graphics" +
-            "\n" + " * Battery: Lithium battery",
-            "How much battery life does it have with wifi and without?",
-            "Approximately 5 hours with wifi. About 7 hours without.",
-        };
-
-        private string profileName = "Alex Russell";
+        bool _isBusy = false;
+        public bool isBusy
+        {
+            get
+            {
+                return _isBusy;
+            }
+            set
+            {
+                if (_isBusy != value)
+                {
+                    _isBusy = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        bool _isLoad = false;
+        public bool isLoad
+        {
+            get
+            {
+                return _isLoad;
+            }
+            set
+            {
+                if (_isLoad != value)
+                {
+                    _isLoad = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
 
         private string newMessage;
 
-        private string profileImage = PSAConfig.sfRootUrl + "ProfileImage3.png";
+        public static string user_id = string.Empty;
+        public static string ProfileNames = string.Empty;
+        private string profileName = ProfileNames;
+        public static string ProfileImages = string.Empty;
+        private string profileImage = ProfileImages;
+        public Command<object> LoadMoreItemsCommand { get; set; }
 
-        private ObservableCollection<ChatMessage> chatMessageInfo = new ObservableCollection<ChatMessage>();
+        ChatList _chatHistoryList = null;
+        public ChatList ChatList
+        {
+            get => _chatHistoryList;
+            set
+            {
+                _chatHistoryList = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
+        public static bool isFirstID = false;
+        public int ids = 0;
+
+        //public static bool isFirstLoad = false;
         #endregion
 
         #region Constructor
@@ -55,8 +97,83 @@ namespace PasaBuy.App.ViewModels.Driver
             this.SendCommand = new Command(this.SendClicked);
             this.BackCommand = new Command(this.BackButtonClicked);
             this.ProfileCommand = new Command(this.ProfileClicked);
+            LoadMoreItemsCommand = new Command<object>(LoadMoreItems, CanLoadMoreItems);
 
-            this.GenerateMessageInfo();
+            List<ChatListDetails> list = new List<ChatListDetails>();
+            ChatList = new ChatList(list);
+            FirstLoad();
+            isFirstID = false;
+            ids = 0;
+            ChatMessageListViewBehavior.isFirstLoad = false;
+        }
+        public async void FirstLoad()
+        {
+            ChatMessageListViewBehavior.isFirstLoad = false;
+            await Task.Delay(100);
+            LoadMessage(user_id, "", "");
+
+            Device.StartTimer(TimeSpan.FromSeconds(5), doitt);
+            bool doitt()
+            {
+                PopupMessage();
+                return true;
+            }
+        }
+
+        private bool CanLoadMoreItems(object obj)
+        {
+            return isLoad;
+        }
+
+        public void LoadMessage(string sender, string offset, string lastid)
+        {
+            try
+            {
+                SocioPress.Message.Instance.GetByRecepient(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, sender, offset, lastid, (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        ChatData chat = JsonConvert.DeserializeObject<ChatData>(data);
+                        if (lastid == "")
+                        {
+                            int len = offset != string.Empty ? 7 : 12;
+                            isLoad = chat.data.Length < len ? false : true;
+                        }
+
+                        for (int i = 0; i < chat.data.Length; i++)
+                        {
+                            string id = chat.data[i].id;
+                            string senders = chat.data[i].sender;
+                            string content = chat.data[i].content;
+                            string date_created = chat.data[i].date_created;
+                            bool isreceived = senders != PSACache.Instance.UserInfo.wpid ? true : false;
+
+                            CultureInfo provider = new CultureInfo("fr-FR");
+                            DateTime datenow = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "yyyy-MM-dd HH:mm:ss", provider);
+                            DateTime datedb = DateTime.ParseExact(date_created, "yyyy-MM-dd HH:mm:ss", provider);
+                            TimeSpan ts = datedb - datenow;
+                            var currentTime = DateTime.Now;
+
+                            if (lastid == "")
+                            {
+                                ChatList.Insert(0, new ChatListItem(id, "", currentTime.AddMinutes(ts.TotalMinutes), content, isreceived));
+                            }
+                            else
+                            {
+                                ChatList.Add(new ChatListItem(id, "", currentTime.AddMinutes(ts.TotalMinutes), content, isreceived));
+                            }
+                        }
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+            }
+            catch (Exception)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: 20475.", "OK");
+            }
         }
 
         #endregion
@@ -93,23 +210,6 @@ namespace PasaBuy.App.ViewModels.Driver
             set
             {
                 this.profileImage = value;
-                this.NotifyPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a collection of chat messages.
-        /// </summary>
-        public ObservableCollection<ChatMessage> ChatMessageInfo
-        {
-            get
-            {
-                return this.chatMessageInfo;
-            }
-
-            set
-            {
-                this.chatMessageInfo = value;
                 this.NotifyPropertyChanged();
             }
         }
@@ -180,44 +280,6 @@ namespace PasaBuy.App.ViewModels.Driver
         #region Methods
 
         /// <summary>
-        /// Initializes a collection and add it to the message items.
-        /// </summary>
-        private void GenerateMessageInfo()
-        {
-            var currentTime = DateTime.Now;
-            this.ChatMessageInfo = new ObservableCollection<ChatMessage>
-            {
-                new ChatMessage
-                {
-                    Message = this.descriptions[0],
-                    Time = currentTime.AddMinutes(-2517),
-                    IsReceived = true,
-                },
-                new ChatMessage
-                {
-                    Message = this.descriptions[1],
-                    Time = currentTime.AddMinutes(-2408),
-                },
-                new ChatMessage
-                {
-                    ImagePath = PSAConfig.sfRootUrl + "Electronics.png",
-                    Time = currentTime.AddMinutes(-2405),
-                },
-                new ChatMessage
-                {
-                    Message = this.descriptions[2],
-                    Time = currentTime.AddMinutes(-1103),
-                    IsReceived = true,
-                },
-                new ChatMessage
-                {
-                    Message = this.descriptions[3],
-                    Time = currentTime.AddMinutes(-1006),
-                },
-            };
-        }
-
-        /// <summary>
         /// Invoked when the voice call button is clicked.
         /// </summary>
         /// <param name="obj">The object</param>
@@ -270,14 +332,39 @@ namespace PasaBuy.App.ViewModels.Driver
         {
             if (!string.IsNullOrWhiteSpace(this.NewMessage))
             {
-                this.ChatMessageInfo.Add(new ChatMessage
+                /*this.ChatMessageInfo.Add(new ChatMessage
                 {
                     Message = this.NewMessage,
                     Time = DateTime.Now
-                });
+                });*/
+
+                ChatMessageListViewBehavior.isFirstLoad = false;
+                try
+                {
+                    SocioPress.Message.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, this.NewMessage, user_id, (bool success, string data) =>
+                    {
+                        if (success)
+                        {
+                            PopupMessage();
+                            this.NewMessage = null;
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        }
+                    });
+                }
+                catch (Exception)
+                {
+                    new Alert("Something went Wrong", "Please contact administrator. Error Code: 20476.", "OK");
+                }
             }
 
-            this.NewMessage = null;
+        }
+        public async void PopupMessage()
+        {
+            await Task.Delay(500);
+            LoadMessage(user_id, "", ChatList.Last().ID);
         }
 
         /// <summary>
@@ -295,6 +382,34 @@ namespace PasaBuy.App.ViewModels.Driver
         private void ProfileClicked(object obj)
         {
             // Do something
+        }
+
+        private async void LoadMoreItems(object obj)
+        {
+            try
+            {
+                ChatMessageListViewBehavior.isFirstLoad = true;
+                isBusy = true;
+                await Task.Delay(1000);
+                if (isFirstID)
+                {
+                    ids += 7;
+                }
+                else
+                {
+                    isFirstID = true;
+                }
+                LoadMessage(user_id, ids.ToString(), "");
+                //Console.WriteLine("Behavior: Driver");
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                isBusy = false;
+            }
         }
 
         #endregion

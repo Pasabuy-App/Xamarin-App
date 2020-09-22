@@ -48,7 +48,7 @@
                     VerticalOptions="FillAndExpand">
 
                     <!--  Menu Button  -->
-                    <!--<buttons:SfButton
+                    <!--buttons:SfButton
                         x:Name="MenuBackButton"
                         Command="{Binding BackCommand}"
                         Style="{StaticResource NavigationBarButtonStyle}"

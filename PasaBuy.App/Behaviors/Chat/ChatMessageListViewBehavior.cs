@@ -1,5 +1,6 @@
 ﻿using PasaBuy.App.ViewModels.Chat;
 using Syncfusion.ListView.XForms;
+using System;
 using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -12,6 +13,7 @@ namespace PasaBuy.App.Behaviors.Chat
     [Preserve(AllMembers = true)]
     public class ChatMessageListViewBehavior : Behavior<SfListView>
     {
+        public static Boolean isFirstLoad = false;
         #region Fields
 
         /// <summary>
@@ -55,7 +57,7 @@ namespace PasaBuy.App.Behaviors.Chat
         /// <param name="e">Collection changed Event Args</param>
         private void DataSource_SourceCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            if (!ChatMessageViewModel.isFirstLoad)
+            if (!isFirstLoad)
             {
                 ((LinearLayout)this.listView.LayoutManager).ScrollToRowIndex(
                     this.listView.DataSource.DisplayItems.Count, Syncfusion.ListView.XForms.ScrollToPosition.End, true);
@@ -76,7 +78,7 @@ namespace PasaBuy.App.Behaviors.Chat
             ScrollView scrollView = this.listView.Parent as ScrollView;
             this.listView.HeightRequest = scrollView.Height;
 
-            if (!ChatMessageViewModel.isFirstLoad)
+            if (!isFirstLoad)
             {
                 ((LinearLayout)this.listView.LayoutManager).ScrollToRowIndex(
                     this.listView.DataSource.DisplayItems.Count, Syncfusion.ListView.XForms.ScrollToPosition.End, true);

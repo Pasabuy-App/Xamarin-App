@@ -13,6 +13,7 @@ using System.Globalization;
 using System.Linq;
 using System.Collections.Generic;
 using Syncfusion.ListView.XForms;
+using PasaBuy.App.Behaviors.Chat;
 
 namespace PasaBuy.App.ViewModels.Chat
 {
@@ -94,7 +95,7 @@ namespace PasaBuy.App.ViewModels.Chat
         public static bool isFirstID = false;
         public int ids = 0;
 
-        public static bool isFirstLoad = false;
+        //public static bool isFirstLoad = false;
         #endregion
 
         #region Constructor
@@ -118,12 +119,12 @@ namespace PasaBuy.App.ViewModels.Chat
             FirstLoad();
             isFirstID = false;
             ids = 0;
-            isFirstLoad = false;
+            ChatMessageListViewBehavior.isFirstLoad = false;
             //this.GenerateMessageInfo();
         }
         public async void FirstLoad()
         {
-            isFirstLoad = false;
+            ChatMessageListViewBehavior.isFirstLoad = false;
             await Task.Delay(100);
             LoadMessage(user_id, "", "");
 
@@ -422,7 +423,7 @@ namespace PasaBuy.App.ViewModels.Chat
                     Time = DateTime.Now
                 });*/
 
-                isFirstLoad = false;
+                ChatMessageListViewBehavior.isFirstLoad = false;
                 try
                 {
                     SocioPress.Message.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, this.NewMessage, user_id, (bool success, string data) =>
@@ -472,7 +473,7 @@ namespace PasaBuy.App.ViewModels.Chat
         {
             try
             {
-                isFirstLoad = true;
+                ChatMessageListViewBehavior.isFirstLoad = true;
                 isBusy = true;
                 await Task.Delay(1000);
                 if (isFirstID)
@@ -484,6 +485,7 @@ namespace PasaBuy.App.ViewModels.Chat
                     isFirstID = true;
                 }
                 LoadMessage(user_id, ids.ToString(), "");
+                //Console.WriteLine("Behavior: User");
 
                 /*Console.WriteLine("my ids: " + ChatList[11].ID + " another index" + ChatList[7].ID);
                 LoadMessage(user_id, ChatList[11].ID );*/

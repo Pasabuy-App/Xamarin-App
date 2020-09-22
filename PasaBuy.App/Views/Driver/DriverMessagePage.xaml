@@ -1,14 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Driver" 
-             xmlns:converter="clr-namespace:PasaBuy.App.Converters" 
-             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
-             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
-             xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
-             xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
-             xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
-             x:Class="PasaBuy.App.Views.Driver.DriverMessagePage">
+<ContentPage 
+    x:Class="PasaBuy.App.Views.Driver.DriverMessagePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+    xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
+    xmlns:converter="clr-namespace:PasaBuy.App.Converters" 
+    xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+    xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Driver" 
+    BackgroundColor="{DynamicResource Gray-White}"
+    NavigationPage.HasNavigationBar="True" >
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -21,9 +24,11 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+
     <ContentPage.BindingContext>
         <viewModel:DriverRecentChatViewModel />
     </ContentPage.BindingContext>
+    
     <ContentPage.Content>
         <StackLayout Spacing="0" >
             <StackLayout
@@ -44,11 +49,11 @@
                     VerticalOptions="FillAndExpand">
 
                     <!--  Menu Button  -->
-                    <buttons:SfButton
+                    <!--buttons:SfButton
                         x:Name="MenuBackButton"
                         Command="{Binding BackCommand}"
                         Style="{StaticResource NavigationBarButtonStyle}"
-                        Text="{StaticResource Back}" />
+                        Text="{StaticResource Back}" /-->
 
                     <!--  Rounded Profile Image  -->
                     <border:SfBorder BackgroundColor="{DynamicResource Gray-200}" Style="{StaticResource ProfileBorderStyle}">
@@ -67,7 +72,7 @@
                     </border:SfBorder>
 
                     <!--  Recent Chat page Title  -->
-                    <Label
+                    <!--Label
                         Margin="16,0" 
                         FontFamily="{StaticResource Montserrat-SemiBold}"
                         FontSize="18"
@@ -76,7 +81,7 @@
                         Text="Messages"
                         TextColor="{DynamicResource Gray-White}"
                         VerticalOptions="Center"
-                        VerticalTextAlignment="Center" />
+                        VerticalTextAlignment="Center" /-->
 
                 </StackLayout>
 
@@ -128,7 +133,7 @@
 
             <!--  Searchable List view  -->
             <controls:SearchableChatList
-                x:Name="ListView"
+                x:Name="ListView"  ItemAppearing="ListView_ItemAppearing"
                 AllowSwiping="True"
                 AutoFitMode="Height"
                 FocusBorderThickness="0"
