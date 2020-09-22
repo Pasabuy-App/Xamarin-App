@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage 
-    x:Class="PasaBuy.App.Views.Driver.DriverMessagePage"
+<ContentPage
+    x:Class="PasaBuy.App.Views.Chat.StoreMessagePage" 
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
-    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
-    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
-    xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
-    xmlns:converter="clr-namespace:PasaBuy.App.Converters" 
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:controls="clr-namespace:PasaBuy.App.Controls"
+    xmlns:converter="clr-namespace:PasaBuy.App.Converters"
     xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
-    xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Driver" 
+    xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Chat"
     BackgroundColor="{DynamicResource Gray-White}"
     NavigationPage.HasNavigationBar="True" >
 
@@ -17,7 +17,7 @@
         <ResourceDictionary>
             <converter:StringToBadgeIconConverter x:Key="BadgeConverter" />
             <converter:StringToGlyphConverter x:Key="GlyphConverter" />
-            <converter:DriverStringToMessageTypeConverter x:Key="TextConverter" />
+            <converter:StringToMessageTypeConverter x:Key="TextConverter" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -25,9 +25,9 @@
     </ContentPage.Resources>
 
     <ContentPage.BindingContext>
-        <viewModel:DriverRecentChatViewModel />
+        <viewModel:StoreMessageViewModel />
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Content>
         <StackLayout Spacing="0" >
             <StackLayout
@@ -52,7 +52,7 @@
                         x:Name="MenuBackButton"
                         Command="{Binding BackCommand}"
                         Style="{StaticResource NavigationBarButtonStyle}"
-                        Text="{StaticResource Back}" /-->
+                        Text="{StaticResource Back}" />-->
 
                     <!--  Rounded Profile Image  -->
                     <border:SfBorder BackgroundColor="{DynamicResource Gray-200}" Style="{StaticResource ProfileBorderStyle}">
@@ -71,7 +71,7 @@
                     </border:SfBorder>
 
                     <!--  Recent Chat page Title  -->
-                    <!--Label
+                    <!--<Label
                         Margin="16,0" 
                         FontFamily="{StaticResource Montserrat-SemiBold}"
                         FontSize="18"
@@ -80,7 +80,7 @@
                         Text="Messages"
                         TextColor="{DynamicResource Gray-White}"
                         VerticalOptions="Center"
-                        VerticalTextAlignment="Center" /-->
+                        VerticalTextAlignment="Center" />-->
 
                 </StackLayout>
 
@@ -122,11 +122,11 @@
                     Text="{StaticResource Search}" />
 
                 <!--  Menu Button  -->
-                <!--buttons:SfButton
+                <!--<buttons:SfButton
                     x:Name="MenuButton"
                     Command="{Binding MenuCommand}"
                     Style="{StaticResource NavigationBarButtonStyle}"
-                    Text="{StaticResource Menu}" /-->
+                    Text="{StaticResource Menu}" />-->
 
             </StackLayout>
 
@@ -134,11 +134,11 @@
 
             <!--  Searchable List view  -->
             <controls:SearchableChatList
-                x:Name="ListView"  ItemAppearing="ListView_ItemAppearing"
+                x:Name="ListView" ItemAppearing="ListView_ItemAppearing"
                 AllowSwiping="True"
                 AutoFitMode="Height"
                 FocusBorderThickness="0"
-                ItemsSource="{Binding ChatItems}"
+                ItemsSource="{Binding StoreChatList}"
                 SearchText="{Binding SearchText}"
                 TapCommand="{Binding ItemSelectedCommand}"
                 SelectionGesture="Tap"
@@ -324,4 +324,5 @@
 
         </StackLayout>
     </ContentPage.Content>
+
 </ContentPage>

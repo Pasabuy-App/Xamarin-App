@@ -258,6 +258,7 @@ namespace PasaBuy.App.ViewModels.Menu
         private void MessageButtonClicked(object obj)
         {
             this.UpdateSelectedItemColor(obj);
+            (App.Current.MainPage as MasterDetailPage).Detail = new NavigationPage(new StoreMessagePage());
 
             //Do something
         }

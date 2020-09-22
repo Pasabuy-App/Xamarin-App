@@ -7,7 +7,6 @@ using PasaBuy.App.Local;
 using PasaBuy.App.Models.Chat;
 using PasaBuy.App.Views;
 using PasaBuy.App.Views.Chat;
-using PasaBuy.App.Views.Master;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 

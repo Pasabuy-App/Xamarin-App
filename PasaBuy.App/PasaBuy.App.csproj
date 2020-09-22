@@ -195,6 +195,12 @@
     <EmbeddedResource Update="Views\Backend\MainDetail.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Chat\StoreConversationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Chat\StoreMessagePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Currency\WalletCredit.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
@@ -558,5 +564,9 @@
     <Reference Include="USocketNet">
       <HintPath>Dependencies\USocketNet.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\StoreChat\" />
   </ItemGroup>
 </Project>

@@ -1,7 +1,6 @@
-﻿using FFImageLoading;
-using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Models.Driver;
-using PasaBuy.App.ViewModels.Driver;
+﻿using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Models.Chat;
+using PasaBuy.App.ViewModels.Chat;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,22 +10,49 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PasaBuy.App.Views.Driver
+namespace PasaBuy.App.Views.Chat
 {
-    [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DriverMessagePage : ContentPage
+    public partial class StoreMessagePage : ContentPage
     {
         public static bool isFirstID = false;
         public static int ids = 0;
         public static int LastIndex = 11;
-        public DriverMessagePage()
+        public StoreMessagePage()
         {
             InitializeComponent();
             LastIndex = 11;
             isFirstID = false;
             ids = 0;
         }
+        private void ListView_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
+        {
+            var item = e.ItemData as ChatDetail;
+            if (StoreMessageViewModel.storeChatList.Last() == item && StoreMessageViewModel.storeChatList.Count() != 1)
+            {
+                if (StoreMessageViewModel.storeChatList.IndexOf(item) >= LastIndex)
+                {
+                    try
+                    {
+                        if (isFirstID)
+                        {
+                            ids += 7;
+                        }
+                        else
+                        {
+                            isFirstID = true;
+                        }
+                        LastIndex += 6;
+                        StoreMessageViewModel.LoadMesssage(ids.ToString());
+                    }
+                    catch
+                    {
+                        new Alert("Something went Wrong", "Please contact administrator. Error Code: 20435.", "OK");
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// Invoked when view size is changed.
         /// </summary>
@@ -111,33 +137,6 @@ namespace PasaBuy.App.Views.Driver
         private void SearchExpandAnimationCompleted()
         {
             this.SearchEntry.Focus();
-        }
-        private void ListView_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
-        {
-            var item = e.ItemData as ChatDetail;
-            if (DriverRecentChatViewModel.chatItems.Last() == item && DriverRecentChatViewModel.chatItems.Count() != 1)
-            {
-                if (DriverRecentChatViewModel.chatItems.IndexOf(item) >= LastIndex)
-                {
-                    try
-                    {
-                        if (isFirstID)
-                        {
-                            ids += 7;
-                        }
-                        else
-                        {
-                            isFirstID = true;
-                        }
-                        LastIndex += 6;
-                        DriverRecentChatViewModel.LoadMesssage(ids.ToString());
-                    }
-                    catch
-                    {
-                        new Alert("Something went Wrong", "Please contact administrator. Error Code: 20435.", "OK");
-                    }
-                }
-            }
         }
     }
 }

@@ -26,7 +26,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         public static string store_id = string.Empty;
 
 
-        private Command<object> itemTappedCommand;
+        //private Command<object> itemTappedCommand;
 
         /* store details observable collection */
         private static ObservableCollection<StoreDetails> storedetailslist;
