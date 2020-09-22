@@ -11,6 +11,7 @@
              xmlns:syncListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
              xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl"
              x:Class="PasaBuy.App.Views.StoreViews.ProductsView"
              BackgroundColor="{DynamicResource Transparent}"
              Icon="menu.png">
@@ -64,7 +65,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <Grid>
-            <!--<Grid>
+            <Grid>
                 <StackLayout Spacing="0" VerticalOptions="FillAndExpand">
                     <Grid Padding="15,0,15,25" BackgroundColor="{DynamicResource PrimaryColor}">
                         <Frame
@@ -86,7 +87,7 @@
                                     Aspect="AspectFit"
                                     Source="barcode">
                                     <Image.GestureRecognizers>
-                                        --><!--<TapGestureRecognizer Tapped="ScanBarcode" />--><!--
+                                        <!--<TapGestureRecognizer Tapped="ScanBarcode" />-->
                                     </Image.GestureRecognizers>
                                 </Image>
 
@@ -98,8 +99,9 @@
                                     HorizontalOptions="FillAndExpand"
                                     Placeholder="{texts:Translate ProductSearchPlaceHolder}"
                                     Text="{Binding ScannedText, Mode=TwoWay}"
-                                    TextChanged="SearchBar_OnTextChanged"
                                     VerticalOptions="CenterAndExpand">
+                                    <!--TextChanged="SearchBar_OnTextChanged"-->
+
                                     <SearchBar.PlaceholderColor>
                                         <OnPlatform x:TypeArguments="Color" Android="DarkGray" />
                                     </SearchBar.PlaceholderColor>
@@ -294,10 +296,9 @@
                                             IsStickyHeader="True"
                                             ItemSize="80"
                                             ItemsSource="{Binding Products}"
-                                            SelectionMode="None"
-                                            SwipeEnded="Handle_SwipeEnded"
-                                            SwipeStarted="Handle_SwipeStarted">
-
+                                            SelectionMode="None">
+                                            <!--SwipeEnded="Handle_SwipeEnded"
+                                            SwipeStarted="Handle_SwipeStarted"-->
                                             <syncListView:SfListView.ItemTemplate>
                                                 <DataTemplate>
                                                     <Grid ColumnSpacing="0" RowSpacing="0">
@@ -444,23 +445,21 @@
 
                 </StackLayout>
 
-                --><!--<floatingBtn:FloatingActionButton
-                    Margin="0,0,16,16"
-                    ButtonColor="{StaticResource colAcc}"
-                    Command="{Binding AddProductCommand}"
-                    HeightRequest="56"
-                    HorizontalOptions="EndAndExpand"
-                    Image="add_48"
+                <fab:FloatingActionButtonView
+				    ColorNormal="{StaticResource PrimaryColor}"
+				    ColorPressed="{StaticResource Orange}"
+				    ColorRipple="{StaticResource Yellow}"
+				    x:Name="FloatingActionButtonAdd"
+                    ImageName ="add_24.png"
+				    IsVisible="True"
                     VerticalOptions="EndAndExpand"
-                    WidthRequest="56">
-                    <floatingBtn:FloatingActionButton.Padding>
-                        <OnPlatform x:TypeArguments="Thickness">
-                            <On Platform="iOS">13</On>
-                            <On Platform="Android">0</On>
-                        </OnPlatform>
-                    </floatingBtn:FloatingActionButton.Padding>
-                </floatingBtn:FloatingActionButton>--><!--
-            </Grid>-->
+                    HorizontalOptions="EndAndExpand"
+				    AbsoluteLayout.LayoutFlags="PositionProportional"
+				    AbsoluteLayout.LayoutBounds="0.95,0.95,80,80">
+                 
+                </fab:FloatingActionButtonView>
+
+            </Grid>
             <local:LoadingIndicator
                 Grid.Row="0"
                 IsVisible="False"
