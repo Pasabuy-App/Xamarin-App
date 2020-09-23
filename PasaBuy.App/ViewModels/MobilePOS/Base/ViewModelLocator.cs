@@ -55,10 +55,10 @@ namespace PasaBuy.App.ViewModels.MobilePOS.Base
             //_container.Register<AddSupplierViewModel>();
             //_container.Register<CategoryViewModel>();
             //_container.Register<UnitViewModel>();
-            //_container.Register<ProductsViewModel>();
+            _container.Register<ProductsViewModel>();
             //_container.Register<PopupUpdateItemInSaleOrderViewModel>();
             //_container.Register<PopupUpdateItemInUnitConverterViewModel>();
-            //_container.Register<AddProductViewModel>();
+            _container.Register<AddProductViewModel>();
             //_container.Register<PopupDiscountViewModel>();
             //_container.Register<PopupScannerViewModel>();
             //_container.Register<PopupSelectDateRangeViewModel>();

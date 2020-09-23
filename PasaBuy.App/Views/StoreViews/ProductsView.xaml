@@ -5,6 +5,7 @@
              xmlns:converters="clr-namespace:PasaBuy.App.Converters"
              xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App"
              xmlns:local="clr-namespace:PasaBuy.App.UserControls"
+             xmlns:view="clr-namespace:PasaBuy.App.Views.StoreViews"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
              xmlns:pulltoRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms" 
@@ -13,8 +14,9 @@
              xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl"
              x:Class="PasaBuy.App.Views.StoreViews.ProductsView"
-             BackgroundColor="{DynamicResource Transparent}"
-             Icon="menu.png">
+             Title="{texts:Translate ProductsTitle}"
+             xmlns:viewModelBase="clr-namespace:PasaBuy.App.ViewModels.MobilePOS.Base;assembly=PasaBuy.App"
+             viewModelBase:ViewModelLocator.AutoWireViewModel="true">
     <ContentPage.Resources>
         <ResourceDictionary>
 
@@ -138,15 +140,7 @@
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="0.5*" />
-                                    <ColumnDefinition Width="0.5*" />
                                 </Grid.ColumnDefinitions>
-                                <Label
-                                    Margin="10,0"
-                                    FontSize="20"
-                                    HorizontalOptions="StartAndExpand"
-                                    Text="asdasd"
-                                    TextColor="{DynamicResource Gray-800}"
-                                    VerticalOptions="Center" />
                                 <Label
                                     Grid.Column="1"
                                     FontFamily="{StaticResource Montserrat-Medium}"
@@ -187,7 +181,7 @@
                                             FontSize="10"
                                             HorizontalOptions="Start"
                                             Text="{texts:Translate CategoryFilter}"
-                                            TextColor="{StaticResource PrimaryColor}"
+                                            TextColor="{StaticResource BlackColor}"
                                             VerticalTextAlignment="End" />
                                         <StackLayout Grid.Row="1" Orientation="Horizontal">
 
@@ -196,14 +190,14 @@
                                                 FontSize="12"
                                                 HorizontalOptions="StartAndExpand"
                                                 LineBreakMode="TailTruncation"
-                                                Text="{Binding SelectedCategory.Name}"
+                                                Text="All categories"
                                                 VerticalOptions="Start" />
                                             <Image
                                                 Margin="0,2,0,0"
                                                 HeightRequest="12"
                                                 HorizontalOptions="End"
                                                 Opacity="0.6"
-                                                Source="ic_drop_down"
+                                                Source="ic_drop_down.png"
                                                 VerticalOptions="Start"
                                                 WidthRequest="12" />
                                         </StackLayout>
@@ -240,16 +234,16 @@
                                             FontSize="10"
                                             HorizontalOptions="Start"
                                             Text="{texts:Translate UnitFilter}"
-                                            TextColor="{StaticResource PrimaryColor}"
+                                            TextColor="{StaticResource BlackColor}"
                                             VerticalTextAlignment="End" />
                                         <StackLayout Grid.Row="1" Orientation="Horizontal">
 
                                             <Label
-                                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                FontFamily="{StaticResource Montserrat-Regular}"
                                                 FontSize="12"
                                                 HorizontalOptions="StartAndExpand"
                                                 LineBreakMode="TailTruncation"
-                                                Text="{Binding SelectedUnit.Name}"
+                                                Text="All units"
                                                 VerticalOptions="Start" />
                                             <Image
                                                 Margin="0,2,0,0"
@@ -449,14 +443,16 @@
 				    ColorNormal="{StaticResource PrimaryColor}"
 				    ColorPressed="{StaticResource Orange}"
 				    ColorRipple="{StaticResource Yellow}"
-				    x:Name="FloatingActionButtonAdd"
+				    x:Name="AddProductButton"
+                    Command="{Binding AddProductCommand}"
+                    CommandParameter="{x:Type view:AddProductView }"
                     ImageName ="add_24.png"
 				    IsVisible="True"
                     VerticalOptions="EndAndExpand"
                     HorizontalOptions="EndAndExpand"
 				    AbsoluteLayout.LayoutFlags="PositionProportional"
 				    AbsoluteLayout.LayoutBounds="0.95,0.95,80,80">
-                 
+
                 </fab:FloatingActionButtonView>
 
             </Grid>

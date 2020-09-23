@@ -193,6 +193,9 @@
     <PackageReference Include="Syncfusion.Xamarin.SfListView">
       <Version>18.1.0.57</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox">
+      <Version>18.1.0.57</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout">
       <Version>18.1.0.57</Version>
     </PackageReference>

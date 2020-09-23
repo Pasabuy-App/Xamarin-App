@@ -384,7 +384,7 @@
                         <BoxView Style="{StaticResource SeparatorStyle}" />
 
                     </StackLayout>-->
-                    <StackLayout Grid.Row="1" Spacing="15">
+                    <StackLayout Grid.Row="1" Spacing="10">
                         <sync:SfListView
                             x:Name="navigationDrawerList"
                             BackgroundColor="{DynamicResource  Gray-100}"
@@ -395,8 +395,8 @@
                                 <OnIdiom
                                     x:TypeArguments="x:Double"
                                     Desktop="110"
-                                    Phone="56"
-                                    Tablet="100" />
+                                    Phone="50"
+                                    Tablet="90" />
                             </sync:SfListView.ItemSize>
                             <sync:SfListView.ItemTemplate>
                                 <DataTemplate>
@@ -404,9 +404,9 @@
                                         <ViewCell.View>
                                             <StackLayout>
                                                 <StackLayout
-                                                    Padding="20,10,0,10"
+                                                    Padding="20,5,0,5"
                                                     Orientation="Horizontal"
-                                                    Spacing="20"
+                                                    Spacing="15"
                                                     VerticalOptions="FillAndExpand">
                                                     <Image
                                                         HeightRequest="30"
