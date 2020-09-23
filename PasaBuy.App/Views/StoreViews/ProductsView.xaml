@@ -339,7 +339,7 @@
                                                             <Label
                                                                 LineBreakMode="TailTruncation"
                                                                 Style="{StaticResource ProductNameTitleStyle}"
-                                                                Text="{Binding Name}" />
+                                                                Text="Product 1" />
                                                             <StackLayout Orientation="Horizontal">
                                                                 <Label Style="{StaticResource ProductUnitStyle}" Text="{texts:Translate Unit}" />
                                                                 <Label Style="{StaticResource ProductUnitStyle}" Text="{Binding Unit.Name}" />

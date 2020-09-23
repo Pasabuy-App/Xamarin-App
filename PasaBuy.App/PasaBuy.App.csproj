@@ -59,6 +59,7 @@
     <PackageReference Include="Plugin.Multilingual" Version="1.0.2" />
     <PackageReference Include="Plugin.Permissions" Version="6.0.1" />
     <PackageReference Include="Refractored.FloatingActionButtonForms" Version="2.1.0" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.5" />
     <PackageReference Include="SkiaSharp.Extended" Version="1.60.0" />
     <PackageReference Include="SkiaSharp.Svg" Version="1.60.0" />
     <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.3" />
@@ -386,6 +387,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Onboarding\VerifyResetPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PopupModals\PopupAddCategory.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Posts\PostRequestPage.xaml">

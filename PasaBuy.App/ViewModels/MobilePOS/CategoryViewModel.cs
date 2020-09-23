@@ -6,5 +6,6 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 {
     public class CategoryViewModel : BaseViewModel
     {
+
     }
 }

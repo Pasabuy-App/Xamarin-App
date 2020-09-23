@@ -212,7 +212,7 @@
 				    ColorNormal="{StaticResource PrimaryColor}"
 				    ColorPressed="{StaticResource Orange}"
 				    ColorRipple="{StaticResource Yellow}"
-				    x:Name="AddProductButton"
+				    x:Name="AddCategoryButton"
                     Command="{Binding AddCategoryCommand}"
                     ImageName ="add_24.png"
 				    IsVisible="True"
