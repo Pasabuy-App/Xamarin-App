@@ -12,11 +12,15 @@
              xmlns:syncListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
              xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-             xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl"
+             xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl" 
+             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.MobilePOS"
              x:Class="PasaBuy.App.Views.StoreViews.ProductsView"
-             Title="{texts:Translate ProductsTitle}"
-             xmlns:viewModelBase="clr-namespace:PasaBuy.App.ViewModels.MobilePOS.Base;assembly=PasaBuy.App"
-             viewModelBase:ViewModelLocator.AutoWireViewModel="true">
+             Title="{texts:Translate ProductsTitle}">
+
+    <ContentPage.BindingContext>
+        <viewModel:ProductViewModel />
+    </ContentPage.BindingContext>
+
     <ContentPage.Resources>
         <ResourceDictionary>
 

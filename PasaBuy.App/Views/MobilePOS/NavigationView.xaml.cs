@@ -1,5 +1,4 @@
-﻿using PasaBuy.App.ViewModels.MobilePOS;
-using PasaBuy.App.Views.MobilePOS.MenuItems;
+﻿using PasaBuy.App.Views.MobilePOS.MenuItems;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +16,6 @@ namespace PasaBuy.App.Views.MobilePOS
     public partial class NavigationView : MasterDetailPage
     {
         public List<MainMenuItem> menuList { get; set; }
-        private NavigationViewModel _context => (NavigationViewModel)BindingContext;
 
         public NavigationView()
         {

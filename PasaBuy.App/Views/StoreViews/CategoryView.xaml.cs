@@ -16,5 +16,6 @@ namespace PasaBuy.App.Views.StoreViews
         {
             InitializeComponent();
         }
+
     }
 }

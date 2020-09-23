@@ -48,11 +48,14 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+    <ContentPage.BindingContext>
+        <viewModel:AddProductViewModel />
+    </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
         <ToolbarItem
-            Command="{Binding DiscardCommand}"
             Order="Primary"
+            Clicked="Discard"
             Priority="1"
             Text="asd">
             <ToolbarItem.Icon>
@@ -138,7 +141,7 @@
                                 VerticalOptions="Center"
                                 WidthRequest="32">
                                 <Image.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding OpenCameraCommand}" />
+                                    <TapGestureRecognizer Tapped="OpenCameraCommand" NumberOfTapsRequired="1"/>
                                 </Image.GestureRecognizers>
                             </Image>
 
@@ -150,7 +153,7 @@
                                 VerticalOptions="Center"
                                 WidthRequest="32">
                                 <Image.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding BrowseGalleryCommand}" />
+                                    <TapGestureRecognizer Tapped="BrowseGalleryCommand" NumberOfTapsRequired="1" />
                                 </Image.GestureRecognizers>
                             </Image>
 
@@ -162,7 +165,7 @@
                                 VerticalOptions="Center"
                                 WidthRequest="32">
                                 <Image.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding RemoveProductImageCommand}" />
+                                    <TapGestureRecognizer Tapped="RemoveProductImageCommand" NumberOfTapsRequired="1" />
                                 </Image.GestureRecognizers>
                             </Image>
 

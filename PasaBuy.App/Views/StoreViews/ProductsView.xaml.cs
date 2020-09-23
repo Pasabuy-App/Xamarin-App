@@ -1,5 +1,4 @@
-﻿using PasaBuy.App.ViewModels.MobilePOS;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +13,7 @@ namespace PasaBuy.App.Views.StoreViews
     public partial class ProductsView : ContentPage
     {
 
-        public ICommand NavigateCommand { get; set; }
+        public ICommand AddProductCommand { get; set; }
 
         public ProductsView()
         {
@@ -28,12 +27,12 @@ namespace PasaBuy.App.Views.StoreViews
             //Navigation.PushAsync(testPage);
 
 
-            //NavigateCommand = new Command<Type>(async (Type pageType) =>
-            //{
-            //    Page page = (Page)Activator.CreateInstance(pageType);
-            //    await Navigation.PushAsync(page);
-            //});
-            //BindingContext = this;
+            AddProductCommand = new Command<Type>(async (Type pageType) =>
+            {
+                Page page = (Page)Activator.CreateInstance(pageType);
+                await Navigation.PushAsync(page);
+            });
+            BindingContext = this;
         }
     }
 }
