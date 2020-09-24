@@ -100,23 +100,25 @@
                         </Grid.ColumnDefinitions>
 
                         <Entry
+                            x:Name="CatName"
                             Grid.Row="0"
                             Grid.Column="0"
                             Grid.ColumnSpan="2"
                             FontFamily="{StaticResource Montserrat-SemiBold}"
                             MaxLength="100"
-                            Placeholder="{texts:Translate CategoryNameLabel}"
+                            Placeholder="{texts:Translate Name}"
                             PlaceholderColor="LightGray"
-                            Text="{Binding CategoryName}"
+                            Text="{Binding Name}"
                             VerticalOptions="EndAndExpand" />
                         <Editor
+                            x:Name="Description"
                             Grid.Row="1"
                             Grid.Column="0"
                             Grid.ColumnSpan="2"
                             FontFamily="{StaticResource Montserrat-SemiBold}"
                             MaxLength="250"
-                            Placeholder="{texts:Translate Notes}"
-                            Text="{Binding Notes}"
+                            Placeholder="{texts:Translate Description}"
+                            Text="{Binding Description}"
                             PlaceholderColor="LightGray"
                             VerticalOptions="EndAndExpand" />
 
@@ -126,7 +128,7 @@
                             BackgroundColor="Green"
                             BorderColor="{DynamicResource BlackColor}"
                             BorderWidth="2"
-                            Command="{Binding Ok_Command}"
+                            Clicked="SfButton_Clicked"
                             CornerRadius="4"
                             FontFamily="{StaticResource Montserrat-Regular}"
                             HorizontalOptions="FillAndExpand"
