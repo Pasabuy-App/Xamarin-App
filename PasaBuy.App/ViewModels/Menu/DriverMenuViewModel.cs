@@ -16,6 +16,7 @@ using PasaBuy.App.Views;
 using PasaBuy.App.Views.Currency;
 using PasaBuy.App.Views.Backend;
 using PasaBuy.App.Views.Driver;
+using PasaBuy.App.Local;
 
 namespace PasaBuy.App.ViewModels.Menu
 {
@@ -48,6 +49,11 @@ namespace PasaBuy.App.ViewModels.Menu
             //this.profileImage = UserPrefs.Instance.UserInfo.avatarUrl;
             //this.userBanner = UserPrefs.Instance.UserInfo.bannerUrl;
             //this.email = UserPrefs.Instance.UserInfo.email;
+
+            this.profileName = PSACache.Instance.UserInfo.dname;
+            this.profileImage = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
+            this.userBanner = PSAProc.GetUrl(PSACache.Instance.UserInfo.bannerUrl);
+            this.email = PSACache.Instance.UserInfo.email;
 
             this.DashboardCommand = new Command(this.DashboardButtonClicked);
             this.NavigationCommand = new Command(this.NavigationButtonClicked);

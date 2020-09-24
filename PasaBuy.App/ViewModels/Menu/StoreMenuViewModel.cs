@@ -45,8 +45,8 @@ namespace PasaBuy.App.ViewModels.Menu
         public StoreMenuViewModel()
         {
             this.profileName = PSACache.Instance.UserInfo.dname;
-            this.profileImage = PSACache.Instance.UserInfo.avatarUrl;
-            this.userBanner = PSACache.Instance.UserInfo.bannerUrl;
+            this.profileImage = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
+            this.userBanner = PSAProc.GetUrl(PSACache.Instance.UserInfo.bannerUrl);
             this.email = PSACache.Instance.UserInfo.email;
 
             this.DashboardCommand = new Command(this.DashboardButtonClicked);

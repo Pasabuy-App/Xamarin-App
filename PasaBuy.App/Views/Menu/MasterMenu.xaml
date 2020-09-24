@@ -236,7 +236,7 @@
                         <BoxView Style="{StaticResource SeparatorStyle}" />
 
                         <!--  Grid for driver label and icon  -->
-                        <Grid x:Name="DriverGrid"
+                        <Grid x:Name="DriverGrid" IsVisible="{Binding isDriver}"
                             BackgroundColor="{DynamicResource Transparent}">
 
                             <Grid.ColumnDefinitions>
@@ -263,10 +263,10 @@
 
                         </Grid>
 
-                        <BoxView Style="{StaticResource SeparatorStyle}" />
+                        <BoxView Style="{StaticResource SeparatorStyle}" IsVisible="{Binding isDriver}"/>
 
                         <!--  Grid for driver label and icon  -->
-                        <Grid x:Name="StoreGrid"
+                        <Grid x:Name="StoreGrid"  IsVisible="{Binding isStore}"
                             BackgroundColor="{DynamicResource Transparent}">
 
                             <Grid.ColumnDefinitions>
@@ -293,7 +293,7 @@
 
                         </Grid>
 
-                        <BoxView Style="{StaticResource SeparatorStyle}" />
+                        <BoxView Style="{StaticResource SeparatorStyle}"  IsVisible="{Binding isStore}"/>
                         
                         <!--  Grid for setting label and icon  -->
                         <Grid x:Name="SettingGrid"

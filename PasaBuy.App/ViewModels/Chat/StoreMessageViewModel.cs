@@ -48,7 +48,7 @@ namespace PasaBuy.App.ViewModels.Chat
         {
             try
             {
-                SocioPress.Message.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, offset, (bool success, string data) =>
+                SocioPress.Message.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "2", PSACache.Instance.UserInfo.user_type, offset, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -57,6 +57,8 @@ namespace PasaBuy.App.ViewModels.Chat
                         {
                             string id = chat.data[i].ID;
                             string user_id = chat.data[i].user_id;
+                            string store_id = chat.data[i].store_id;
+                            string types = chat.data[i].types;
                             string name = chat.data[i].name;
                             string content = chat.data[i].content;
                             string date_created = chat.data[i].date_created == null ? "" : chat.data[i].date_created;
@@ -95,7 +97,7 @@ namespace PasaBuy.App.ViewModels.Chat
                                 }
                             }
 
-                            storeChatList.Add(new ChatDetail(user_id, PSAProc.GetUrl(avatar), name, showdate, content, "Text", notitype, ""));
+                            storeChatList.Add(new ChatDetail(user_id, PSAProc.GetUrl(avatar), name, showdate, content, "Text", notitype, "", store_id, types));
                         }
                     }
                     else
@@ -174,9 +176,12 @@ namespace PasaBuy.App.ViewModels.Chat
         /// </summary>
         private void ItemSelected(object selectedItem)
         {
+            StoreConversationViewModel.refresh = 0;
             StoreConversationViewModel.ProfileNames = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).SenderName;
             StoreConversationViewModel.ProfileImages = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).ImagePath;
             StoreConversationViewModel.user_id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).ID;
+            StoreConversationViewModel.storeid = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).Store_id;
+            StoreConversationViewModel.type = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).Types;
             ((App.Current.MainPage as MasterDetailPage).Detail as NavigationPage).Navigation.PushModalAsync(new StoreConversationPage());
         }
 

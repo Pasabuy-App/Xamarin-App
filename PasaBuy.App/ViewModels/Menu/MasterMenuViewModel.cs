@@ -41,6 +41,40 @@ namespace PasaBuy.App.ViewModels.Menu
 
         private bool isEnable = false;
 
+        bool _isDriver = false;
+        public bool isDriver
+        {
+            get
+            {
+                return _isDriver;
+            }
+            set
+            {
+                if (_isDriver != value)
+                {
+                    _isDriver = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+
+        bool _isStore = false;
+        public bool isStore
+        {
+            get
+            {
+                return _isStore;
+            }
+            set
+            {
+                if (_isStore != value)
+                {
+                    _isStore = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+
         #endregion
 
         #region Constructor
@@ -50,6 +84,16 @@ namespace PasaBuy.App.ViewModels.Menu
         /// </summary>
         public MasterMenuViewModel()
         {
+            if (PSACache.Instance.UserInfo.user_type == "Verified" && PSACache.Instance.UserInfo.user_type != "0")
+            {
+                isDriver = true;
+                isStore = false;
+            }
+            if (PSACache.Instance.UserInfo.user_type != "0" && PSACache.Instance.UserInfo.user_type != "Verified")
+            {
+                isStore = true;
+                isDriver = false;
+            }
             this.profileName = PSACache.Instance.UserInfo.dname;
             this.profileImage = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
             this.userBanner = PSAProc.GetUrl(PSACache.Instance.UserInfo.bannerUrl);

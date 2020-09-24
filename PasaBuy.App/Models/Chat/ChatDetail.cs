@@ -21,6 +21,8 @@ namespace PasaBuy.App.Models.Chat
 
         private string id = string.Empty;
         private string imagepath = string.Empty;
+        private string store_id = string.Empty;
+        private string types = string.Empty;
         private string sendername = string.Empty;
         private string time = string.Empty;
         private string message = string.Empty;
@@ -30,6 +32,24 @@ namespace PasaBuy.App.Models.Chat
         /// <summary>
         /// Gets or sets the profile id.
         /// </summary>
+        public string Store_id
+        {
+            get { return store_id; }
+            set
+            {
+                store_id = value;
+                OnPropertyChanged("Store_id");
+            }
+        }
+        public string Types
+        {
+            get { return types; }
+            set
+            {
+                types = value;
+                OnPropertyChanged("Types");
+            }
+        }
         public string ID
         {
             get { return id; }
@@ -131,7 +151,7 @@ namespace PasaBuy.App.Models.Chat
         }
 
         #endregion
-        public ChatDetail(string id, string imagepath, string sendername, string time, string message, string messagetype, string notificationtype, string availablestatus)
+        public ChatDetail(string id, string imagepath, string sendername, string time, string message, string messagetype, string notificationtype, string availablestatus, string store_id, string types)
         {
             this.id = id;
             this.imagepath = imagepath;
@@ -141,6 +161,8 @@ namespace PasaBuy.App.Models.Chat
             this.messagetype = messagetype;
             this.notificationtype = notificationtype;
             this.availablestatus = availablestatus;
+            this.store_id = store_id;
+            this.types = types;
         }
     }
 }

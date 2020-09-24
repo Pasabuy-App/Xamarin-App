@@ -7,6 +7,7 @@ using PasaBuy.App.Views.Onboarding;
 using PasaBuy.App.Views;
 using System;
 using System.Threading.Tasks;
+using PasaBuy.App.Local;
 
 namespace PasaBuy.App.ViewModels.Settings
 {
@@ -17,6 +18,22 @@ namespace PasaBuy.App.ViewModels.Settings
     public class SettingViewModel : BaseViewModel
     {
         private bool isEnable = false;
+        bool _isVisible = false;
+        public bool isVisible
+        {
+            get
+            {
+                return _isVisible;
+            }
+            set
+            {
+                if (_isVisible != value)
+                {
+                    _isVisible = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
 
         #region Constructor
 
@@ -25,6 +42,14 @@ namespace PasaBuy.App.ViewModels.Settings
         /// </summary>
         public SettingViewModel()
         {
+            if (PSACache.Instance.UserInfo.verify != "Verified")
+            {
+                isVisible = true;
+            }
+            else
+            {
+                isVisible = false;
+            }
             this.EditProfileCommand = new Command(this.EditProfileClicked);
             this.MyAddressCommand = new Command(this.MyAddressClicked);
             this.MyContactCommand = new Command(this.MyContactClicked);

@@ -213,7 +213,7 @@
                 <BoxView Style="{StaticResource SeparatorStyle}" />
 
                 <!--  Grid for verify account label and navigation bar icon  -->
-                <controls:TapAnimationGrid
+                <controls:TapAnimationGrid  IsVisible="{Binding isVisible}"
                     BackgroundColor="{DynamicResource Gray-White}"
                     ColumnSpacing="0"
                     Command="{Binding VerifyAccountCommand}"
@@ -241,7 +241,7 @@
                         Style="{StaticResource IconLabelStyle}"
                         Text="{StaticResource Next}" />
                 </controls:TapAnimationGrid>
-                <BoxView Style="{StaticResource SeparatorStyle}" />
+                <BoxView Style="{StaticResource SeparatorStyle}"  IsVisible="{Binding isVisible}" />
 
                 <!--  Grid for Account link label and navigation bar icon  -->
                 <controls:TapAnimationGrid

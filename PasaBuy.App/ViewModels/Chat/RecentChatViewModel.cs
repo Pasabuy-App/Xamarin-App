@@ -18,6 +18,7 @@ namespace PasaBuy.App.ViewModels.Chat
     [Preserve(AllMembers = true)]
     public class RecentChatViewModel : BaseViewModel
     {
+        public static string type = "0";
         #region Fields
 
         //private ObservableCollection<ChatDetail> chatItems;
@@ -54,7 +55,15 @@ namespace PasaBuy.App.ViewModels.Chat
         {
             try
             {
-                SocioPress.Message.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, offset, (bool success, string data) =>
+                if (PSACache.Instance.UserInfo.user_type == "Verified")// if not a store or mover, type = 0
+                {
+                    type = "4";
+                }
+                if (PSACache.Instance.UserInfo.user_type != "0")
+                {
+                    type = "1";
+                }
+                SocioPress.Message.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, type, "0", offset, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -63,12 +72,26 @@ namespace PasaBuy.App.ViewModels.Chat
                         {
                             string id = chat.data[i].ID;
                             string user_id = chat.data[i].user_id;
+                            string store_id = chat.data[i].store_id;
+                            string store_avatar = chat.data[i].store_avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : chat.data[i].store_avatar;
+                            string store_name = chat.data[i].store_name == null ? "" : chat.data[i].store_name;
+                            string types = chat.data[i].types;
                             string name = chat.data[i].name;
                             string content = chat.data[i].content;
                             string date_created = chat.data[i].date_created == null ? "" : chat.data[i].date_created;
                             string date_seen = chat.data[i].date_seen == null ? "" : chat.data[i].date_seen;
                             string avatar = chat.data[i].avatar;
                             string sender_id = chat.data[i].sender_id;
+
+                            if (types == "2")
+                            {
+                                name = "" + name.GetHashCode(); // hash the name of mover
+                            }
+                            if (types == "1")
+                            {
+                                name = store_name;
+                                avatar = store_avatar;
+                            }
 
                             string notitype = sender_id == PSACache.Instance.UserInfo.wpid ? notitype = date_seen == "" ? "Sent" : "Received" : date_seen == "" ? "New" : "Viewed";
 
@@ -101,7 +124,7 @@ namespace PasaBuy.App.ViewModels.Chat
                                 }
                             }
 
-                            chatItems.Add(new ChatDetail(user_id, PSAProc.GetUrl(avatar), name, showdate, content, "Text", notitype, ""));
+                            chatItems.Add(new ChatDetail(user_id, PSAProc.GetUrl(avatar), name, showdate, content, "Text", notitype, "", store_id, types));
                         }
                     }
                     else
@@ -357,13 +380,13 @@ namespace PasaBuy.App.ViewModels.Chat
         /// </summary>
         private void ItemSelected(object selectedItem)
         {
-            string user_id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).ID;
-            string displayNames = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).SenderName;
-            string profileImages = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).ImagePath;
+            ChatMessageViewModel.refresh = 0;
             //ChatMessageViewModel.LoadMessage(user_id, "");
-            ChatMessageViewModel.ProfileNames = displayNames;
-            ChatMessageViewModel.ProfileImages = profileImages;
-            ChatMessageViewModel.user_id = user_id;
+            ChatMessageViewModel.ProfileNames = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).SenderName;
+            ChatMessageViewModel.ProfileImages = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).ImagePath;
+            ChatMessageViewModel.user_id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).ID;
+            ChatMessageViewModel.storeid = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).Store_id;
+            ChatMessageViewModel.type = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).Types;
             ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ChatMessagePage()));
         }
 

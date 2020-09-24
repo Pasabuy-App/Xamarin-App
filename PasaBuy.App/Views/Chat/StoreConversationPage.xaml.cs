@@ -1,4 +1,5 @@
 ﻿using FFImageLoading;
+using PasaBuy.App.ViewModels.Chat;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,9 @@ namespace PasaBuy.App.Views.Chat
         }
         public void BackButtonClicked(object sender, EventArgs e)
         {
+            StoreConversationViewModel.refresh = 1;
+            StoreMessageViewModel.storeChatList.Clear();
+            StoreMessageViewModel.LoadMesssage("");
             Navigation.PopModalAsync();
         }
     }

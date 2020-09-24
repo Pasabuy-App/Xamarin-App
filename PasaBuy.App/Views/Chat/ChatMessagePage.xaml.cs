@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
@@ -41,6 +42,9 @@ namespace PasaBuy.App.Views.Chat
         /// </summary>
         public void BackButtonClicked(object sender, EventArgs e)
         {
+            ChatMessageViewModel.refresh = 1;
+            RecentChatViewModel.chatItems.Clear();
+            RecentChatViewModel.LoadMesssage("");
             Navigation.PopModalAsync();
         }
 

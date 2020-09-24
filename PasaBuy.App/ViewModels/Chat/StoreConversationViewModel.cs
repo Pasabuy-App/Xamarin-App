@@ -18,6 +18,11 @@ namespace PasaBuy.App.ViewModels.Chat
     public class StoreConversationViewModel : BaseViewModel
     {
         #region Fields
+        public int count = 0;
+        public static int refresh = 0;
+
+        public static string storeid = "0";
+        public static string type = "0";
         bool _isBusy = false;
         public bool isBusy
         {
@@ -100,11 +105,20 @@ namespace PasaBuy.App.ViewModels.Chat
             await Task.Delay(100);
             LoadMessage(user_id, "", "");
 
-            Device.StartTimer(TimeSpan.FromSeconds(5), doitt);
+            Device.StartTimer(TimeSpan.FromSeconds(1), doitt);
             bool doitt()
             {
-                PopupMessage();
-                return true;
+                if (refresh == 0)
+                {
+                    StoreMessageViewModel.storeChatList.Clear();
+                    StoreMessageViewModel.LoadMesssage("");
+                    PopupMessage();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
         private bool CanLoadMoreItems(object obj)
@@ -112,11 +126,11 @@ namespace PasaBuy.App.ViewModels.Chat
             return isLoad;
         }
 
-        public void LoadMessage(string sender, string offset, string lastid)
+        public void LoadMessage(string recipient, string offset, string lastid)
         {
             try
             {
-                SocioPress.Message.Instance.GetByRecepient(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, sender, offset, lastid, (bool success, string data) =>
+                SocioPress.Message.Instance.GetByRecepient(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, recipient, offset, type, storeid, lastid, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -313,31 +327,40 @@ namespace PasaBuy.App.ViewModels.Chat
         /// Invoked when the send button is clicked.
         /// </summary>
         /// <param name="obj">The object</param>
-        private void SendClicked(object obj)
+        private async void SendClicked(object obj)
         {
             if (!string.IsNullOrWhiteSpace(this.NewMessage))
             {
-                /*this.ChatMessageInfo.Add(new ChatMessage
-                {
-                    Message = this.NewMessage,
-                    Time = DateTime.Now
-                });*/
 
                 ChatMessageListViewBehavior.isFirstLoad = false;
                 try
                 {
-                    SocioPress.Message.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, this.NewMessage, user_id, (bool success, string data) =>
+                    string types = "0";
+                    if (type == "1")
                     {
-                        if (success)
+                        types = "2";
+                    }
+                    else
+                    {
+                        types = type;
+                    }
+                    if (count == 0)
+                    {
+                        count = 1;
+                        await Task.Delay(200);
+                        SocioPress.Message.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, this.NewMessage, user_id, "2", storeid, (bool success, string data) =>
                         {
-                            PopupMessage();
-                            this.NewMessage = null;
-                        }
-                        else
-                        {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                        }
-                    });
+                            if (success)
+                            {
+                                this.NewMessage = null;
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            }
+                        });
+                        count = 0;
+                    }
                 }
                 catch (Exception)
                 {
@@ -346,9 +369,9 @@ namespace PasaBuy.App.ViewModels.Chat
             }
 
         }
-        public async void PopupMessage()
+        public void PopupMessage()
         {
-            await Task.Delay(500);
+            //await Task.Delay(500);
             LoadMessage(user_id, "", ChatList.Last().ID);
         }
 

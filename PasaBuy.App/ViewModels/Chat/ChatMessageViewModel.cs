@@ -23,6 +23,8 @@ namespace PasaBuy.App.ViewModels.Chat
     [Preserve(AllMembers = true)]
     public class ChatMessageViewModel : BaseViewModel
     {
+        public static string storeid = "0";
+        public static string type = "0";
         #region Fields
         /// <summary>
         /// Stores the message text in an array. 
@@ -94,6 +96,8 @@ namespace PasaBuy.App.ViewModels.Chat
 
         public static bool isFirstID = false;
         public int ids = 0;
+        public int count = 0;
+        public static int refresh = 0;
 
         //public static bool isFirstLoad = false;
         #endregion
@@ -128,12 +132,22 @@ namespace PasaBuy.App.ViewModels.Chat
             await Task.Delay(100);
             LoadMessage(user_id, "", "");
 
-            Device.StartTimer(TimeSpan.FromSeconds(5), doitt);
+            Device.StartTimer(TimeSpan.FromSeconds(1), doitt);
             bool doitt()
             {
-                PopupMessage();
-                return true;
-            }        
+                if (refresh == 0)
+                {
+                    RecentChatViewModel.chatItems.Clear();
+                    RecentChatViewModel.LoadMesssage("");
+                    PopupMessage();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            
         }
 
         private bool CanLoadMoreItems(object obj)
@@ -141,11 +155,11 @@ namespace PasaBuy.App.ViewModels.Chat
             return isLoad; 
         }
 
-        public void LoadMessage(string sender, string offset, string lastid)
+        public void LoadMessage(string recipient, string offset, string lastid)
         {
             try
             {
-                SocioPress.Message.Instance.GetByRecepient(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, sender, offset, lastid, (bool success, string data) =>
+                SocioPress.Message.Instance.GetByRecepient(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, recipient, offset, type, storeid, lastid, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -413,7 +427,7 @@ namespace PasaBuy.App.ViewModels.Chat
         /// Invoked when the send button is clicked.
         /// </summary>
         /// <param name="obj">The object</param>
-        private void SendClicked(object obj)
+        private async void SendClicked(object obj)
         {
             if (!string.IsNullOrWhiteSpace(this.NewMessage))
             {
@@ -426,18 +440,32 @@ namespace PasaBuy.App.ViewModels.Chat
                 ChatMessageListViewBehavior.isFirstLoad = false;
                 try
                 {
-                    SocioPress.Message.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, this.NewMessage, user_id, (bool success, string data) =>
+                    string types = "0";
+                    if (type == "2")
                     {
-                        if (success)
+                        types = "3";
+                    }
+                    else
+                    {
+                        types = type;
+                    }
+                    if (count == 0)
+                    {
+                        count = 1;
+                        await Task.Delay(100);
+                        SocioPress.Message.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, this.NewMessage, user_id, types, storeid, (bool success, string data) =>
                         {
-                            PopupMessage();
-                            this.NewMessage = null;
-                        }
-                        else
-                        {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                        }
-                    });
+                            if (success)
+                            {
+                                this.NewMessage = null;
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            }
+                        });
+                        count = 0;
+                    }
                 }
                 catch (Exception)
                 {
@@ -446,9 +474,9 @@ namespace PasaBuy.App.ViewModels.Chat
             }
             
         }
-        public async void PopupMessage()
+        public void PopupMessage()
         {
-            await Task.Delay(500);
+            //await Task.Delay(500);
             LoadMessage(user_id, "", ChatList.Last().ID);
         }
 
@@ -485,10 +513,6 @@ namespace PasaBuy.App.ViewModels.Chat
                     isFirstID = true;
                 }
                 LoadMessage(user_id, ids.ToString(), "");
-                //Console.WriteLine("Behavior: User");
-
-                /*Console.WriteLine("my ids: " + ChatList[11].ID + " another index" + ChatList[7].ID);
-                LoadMessage(user_id, ChatList[11].ID );*/
             }
             catch
             {

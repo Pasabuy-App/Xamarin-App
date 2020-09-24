@@ -25,6 +25,7 @@ namespace PasaBuy.App.Models.Onboarding
         public string date_registered = string.Empty;
         public string wpid = string.Empty;
         public string snky = string.Empty;
+        public string user_type = string.Empty;
 
         public UserInfoData data = new UserInfoData();
 
@@ -42,6 +43,7 @@ namespace PasaBuy.App.Models.Onboarding
             public string wpid = string.Empty;
             public string snky = string.Empty;
             public string verify = "UNVERIFIED";
+            public string user_type = string.Empty;
         }
 
         public string avatarUrl
