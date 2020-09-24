@@ -19,7 +19,9 @@ namespace PasaBuy.App.Views.StoreViews
         {
             InitializeComponent();
             AddProductButton.Clicked += AddProductClicked;
+
         }
+
 
         private void AddProductClicked(object sender, EventArgs e)
         {

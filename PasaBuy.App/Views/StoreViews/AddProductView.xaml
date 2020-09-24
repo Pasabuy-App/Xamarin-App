@@ -191,91 +191,8 @@
                             </inputLayout:SfTextInputLayout.LeadingView>
                         </inputLayout:SfTextInputLayout>
 
-                        <Grid Grid.Row="2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="46" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-
-                            <!--<buttons:SfButton x:Name="createProductButton" Grid.Column="0" HeightRequest="46" WidthRequest="140"
-                                VerticalOptions="Center" HorizontalOptions="End"
-                                Text="{texts:Translate Scanner}" CornerRadius="4" FontFamily="{StaticResource NunitoRegular}"
-                                BorderColor="{DynamicResource colPrim}" BorderWidth="1"
-                                Clicked="Scan_Clicked" TextColor="{DynamicResource colPrim}" BackgroundColor="Transparent">
-                            </buttons:SfButton>-->
-                            <buttons:SfButton
-                                x:Name="createProductButton"
-                                Grid.Column="0"
-                                BackgroundColor="Transparent"
-                                BackgroundImage="barcode.png"
-                                BorderColor="Transparent"
-                                BorderWidth="1"
-                                Clicked="Scan_Clicked"
-                                HeightRequest="46"
-                                HorizontalOptions="StartAndExpand"
-                                VerticalOptions="Center"
-                                WidthRequest="140" />
-                            <!--<local:ImageButton WidthRequest="40"
-                                               HorizontalOptions="Center"
-                                               VerticalOptions="Center"
-                                               Source="barcode"
-                                               Clicked="Scan_Clicked" />-->
-                            <inputLayout:SfTextInputLayout
-                                Grid.Column="1"
-                                ContainerBackgroundColor="Transparent"
-                                ContainerType="Outlined"
-                                FocusedColor="{StaticResource BlackColor}"
-                                HasError="{Binding IsProductCodeInValid}"
-                                Hint="{texts:Translate ProductCodeHint}"
-                                HorizontalOptions="Fill"
-                                LeadingViewPosition="Inside">
-                                <Entry IsEnabled="{Binding AllowEdit}" Text="{Binding ProductCode}" />
-                                <inputLayout:SfTextInputLayout.LeadingView>
-                                    <Label
-                                        FontSize="18"
-                                        VerticalTextAlignment="Center"
-                                        Style="{StaticResource ProfileIconLabelStyle}"
-                                        TextColor="{DynamicResource BlackColor}"
-                                        Text="&#xf1c9;" />
-                                </inputLayout:SfTextInputLayout.LeadingView>
-                            </inputLayout:SfTextInputLayout>
-                        </Grid>
-
                         <inputLayout:SfTextInputLayout
-                            Grid.Row="3"
-                            ContainerBackgroundColor="Transparent"
-                            ContainerType="Outlined"
-                            FocusedColor="{DynamicResource BlackColor}"
-                            HasError="{Binding IsSupplierInValid}"
-                            Hint="{texts:Translate SupplierHint}"
-                            HorizontalOptions="Fill"
-                            LeadingViewPosition="Inside"
-                            TrailingViewPosition="Inside">
-                            <inputLayout:SfTextInputLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding OpenSupplierCommand}" />
-                            </inputLayout:SfTextInputLayout.GestureRecognizers>
-                            <Entry Focused="OnSupplier_Focused" Text="{Binding SelectedSupplier.Name}" />
-                            <inputLayout:SfTextInputLayout.LeadingView>
-                                <Label
-                                    FontSize="18"
-                                    VerticalTextAlignment="Center"
-                                    Style="{StaticResource ProfileIconLabelStyle}"
-                                    TextColor="{DynamicResource BlackColor}"
-                                    Text="&#xf0c0;" />
-                            </inputLayout:SfTextInputLayout.LeadingView>
-                            <inputLayout:SfTextInputLayout.TrailingView>
-                                <Label  
-                                        FontSize="18"
-                                        VerticalTextAlignment="Center"
-                                        Style="{StaticResource IconLabelStyle}"
-                                        TextColor="{DynamicResource BlackColor}"
-                                        Text="{StaticResource DropDownButtonIcon}">
-                                </Label>
-                            </inputLayout:SfTextInputLayout.TrailingView>
-                        </inputLayout:SfTextInputLayout>
-
-                        <inputLayout:SfTextInputLayout
-                            Grid.Row="4"
+                            Grid.Row="2"
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
                             FocusedColor="{DynamicResource BlackColor}"
@@ -308,7 +225,7 @@
                         </inputLayout:SfTextInputLayout>
 
                         <inputLayout:SfTextInputLayout
-                            Grid.Row="5"
+                            Grid.Row="3"
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
                             FocusedColor="{DynamicResource BlackColor}"
@@ -329,19 +246,10 @@
                                     TextColor="{DynamicResource BlackColor}"
                                     Text="&#xf24e;" />
                             </inputLayout:SfTextInputLayout.LeadingView>
-                            <inputLayout:SfTextInputLayout.TrailingView>
-                                <Label  
-                                        FontSize="18"
-                                        VerticalTextAlignment="Center"
-                                        Style="{StaticResource IconLabelStyle}"
-                                        TextColor="{DynamicResource BlackColor}"
-                                        Text="{StaticResource DropDownButtonIcon}">
-                                </Label>
-                            </inputLayout:SfTextInputLayout.TrailingView>
                         </inputLayout:SfTextInputLayout>
 
                         <inputLayout:SfTextInputLayout
-                            Grid.Row="6"
+                            Grid.Row="4"
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
                             FocusedColor="{DynamicResource BlackColor}"
@@ -364,7 +272,7 @@
                         </inputLayout:SfTextInputLayout>
 
                         <inputLayout:SfTextInputLayout
-                            Grid.Row="7"
+                            Grid.Row="5"
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
                             FocusedColor="{DynamicResource BlackColor}"
@@ -387,7 +295,7 @@
                         </inputLayout:SfTextInputLayout>
 
                         <inputLayout:SfTextInputLayout
-                            Grid.Row="8"
+                            Grid.Row="6"
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
                             FocusedColor="{DynamicResource BlackColor}"
@@ -416,7 +324,7 @@
                         </inputLayout:SfTextInputLayout>
 
                         <inputLayout:SfTextInputLayout
-                            Grid.Row="9"
+                            Grid.Row="7"
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
                             FocusedColor="{DynamicResource BlackColor}"

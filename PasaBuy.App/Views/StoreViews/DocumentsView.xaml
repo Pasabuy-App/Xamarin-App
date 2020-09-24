@@ -1,12 +1,124 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PasaBuy.App.Views.StoreViews.DocumentsView">
+             x:Class="PasaBuy.App.Views.StoreViews.DocumentsView"
+             xmlns:model="clr-namespace:PasaBuy.App.Models.MobilePOS" 
+             xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl"
+             Title="Documents">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Documents!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <StackLayout Spacing="0" VerticalOptions="FillAndExpand">
+                <sync:SfListView
+                        x:Name="ManagementItem"
+                        AutoFitMode="Height"
+                        FocusBorderThickness="0"
+                        ItemSpacing="0,1,0,0"
+                        ItemsSource="{x:Static model:Management.All}"
+                        SelectionMode="None">
+                <!--Item Source is for testing purposes only. Kindly bind into specific viewmodels-->
+
+                <sync:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid RowSpacing="0" ColumnSpacing="0" HeightRequest="72">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Image Icon -->
+                            <Label Grid.RowSpan="3" 
+                                                   Margin="17,0"
+                                                   TextColor="{DynamicResource Gray-600}"
+                                                   VerticalOptions="CenterAndExpand"
+                                                   Text="{StaticResource Photos}"
+                                                   FontSize="18"
+                                                   FontFamily="{StaticResource FontIcons}" />
+
+                            <!-- Document Name -->
+                            <Label Grid.Column="1"
+                                                   Grid.ColumnSpan="3"
+                                                   Margin="0,13,0,0"
+                                                   Text="business-permit.jpeg"
+                                                   TextColor="{DynamicResource Gray-900}"
+                                                   FontSize="16"
+                                                   FontFamily="{StaticResource Montserrat-Medium}"
+                                                   HeightRequest="24" />
+
+                            <!-- Document Type -->
+                            <Label Grid.Row="1"
+                                                   Grid.Column="1"
+                                                   Margin="0,0,0,14"
+                                                   Text="Clearance"
+                                                   TextColor="{DynamicResource Gray-700}"
+                                                   FontSize="14"
+                                                   FontFamily="{StaticResource Montserrat-Medium}"
+                                                   HeightRequest="21" />
+
+                            <!-- Document Size -->
+                            <Label Grid.Row="1"
+                                                   Grid.Column="2"
+                                                   Margin="24,0,0,14"
+                                                   Text="Sept. 20, 2020"
+                                                   TextColor="{DynamicResource Gray-700}"
+                                                   FontSize="14"
+                                                   FontFamily="{StaticResource Montserrat-Medium}"
+                                                   HeightRequest="21" />
+
+                            <!--NOTE FOR RUSSEL: Change text color to green if approved, otherwise red if pending.-->
+                            <!-- Status -->
+                            <buttons:SfButton Grid.Column="3" 
+                                                              Grid.RowSpan="3" 
+                                                              Margin="15,0,15,0"
+                                                              TextColor="{DynamicResource Green}"
+                                                              BackgroundColor="{DynamicResource Transparent}"
+                                                              HorizontalOptions="End"
+                                                              HorizontalTextAlignment="End"
+                                                              VerticalOptions="Center"
+                                                              Text="Approved"
+                                                              FontSize="16"
+                                                              HeightRequest="40"
+                                                              FontFamily="{StaticResource FontIcons}" />
+
+                            <!-- Seperator -->
+                            <BoxView Grid.Row="2" Grid.ColumnSpan="4" Style="{DynamicResource SeparatorStyle}" />
+
+                        </Grid>
+                    </DataTemplate>
+                </sync:SfListView.ItemTemplate>
+            </sync:SfListView>
+            </StackLayout>
+            <fab:FloatingActionButtonView
+				    ColorNormal="{StaticResource PrimaryColor}"
+				    ColorPressed="{StaticResource Orange}"
+				    ColorRipple="{StaticResource Yellow}"
+				    x:Name="AddDocumentButton"
+                    Command="{Binding AddDocumentCommand}"
+                    ImageName ="add_24.png"
+				    IsVisible="True"
+                    VerticalOptions="EndAndExpand"
+                    HorizontalOptions="EndAndExpand"
+				    AbsoluteLayout.LayoutFlags="PositionProportional"
+				    AbsoluteLayout.LayoutBounds="0.95,0.95,80,80">
+            </fab:FloatingActionButtonView>
+        </Grid>
+        
     </ContentPage.Content>
 </ContentPage>
