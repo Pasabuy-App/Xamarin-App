@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PasaBuy.App.Views.StoreViews;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace PasaBuy.App.Views.Backend
         public StoreMain()
         {
             InitializeComponent();
+            
         }
 
         public void HideSidebar()

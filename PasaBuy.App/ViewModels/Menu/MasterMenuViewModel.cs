@@ -18,6 +18,7 @@ using PasaBuy.App.Views.Backend;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Onboarding;
 using PasaBuy.App.ViewModels.Feeds;
+using PasaBuy.App.Views.Navigation;
 
 namespace PasaBuy.App.ViewModels.Menu
 {
@@ -320,7 +321,7 @@ namespace PasaBuy.App.ViewModels.Menu
                 isEnable = true;
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    await Task.Delay(1000);
+                    await Task.Delay(0);
                     App.Current.MainPage = new DriverMain();
                     isEnable = false;
                 });
@@ -338,8 +339,8 @@ namespace PasaBuy.App.ViewModels.Menu
                 isEnable = true;
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    await Task.Delay(1000);
-                    App.Current.MainPage = new StoreMain();
+                    await Task.Delay(0);
+                    App.Current.MainPage = new StoreNavigationView();
                     isEnable = false;
                 });
             }

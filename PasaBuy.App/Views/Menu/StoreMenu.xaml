@@ -6,17 +6,34 @@
              mc:Ignorable="d"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:helper="clr-namespace:PasaBuy.App.Helpers"
-             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Menu"
+             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Menu" xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              BackgroundColor="{DynamicResource Gray-100}"
              Title="Master"
              x:Class="PasaBuy.App.Views.Menu.StoreMenu"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             Icon="menu.png">
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="MainMenuTitleStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}" />
+                <Setter Property="FontSize" Value="{StaticResource LargeSize}" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="12, 0" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+            <Style x:Key="MainHeaderLabelStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}" />
+                <Setter Property="FontSize" Value="{StaticResource MediumSize}" />
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="Margin" Value="20,0" />
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -25,7 +42,7 @@
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <ScrollView>
+        <StackLayout>
             <StackLayout Spacing="0">
 
                 <!--  user view  -->
@@ -116,7 +133,6 @@
 
                         <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                        <!--  Grid for dashboard label and icon  -->
                         <Grid x:Name="DashboardGrid"
                             BackgroundColor="{DynamicResource Transparent}">
 
@@ -146,7 +162,6 @@
 
                         <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                        <!--  Grid for storefront label and icon  -->
                         <Grid x:Name="StorefrontGrid"
                             BackgroundColor="{DynamicResource Transparent}">
 
@@ -176,7 +191,6 @@
 
                         <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                        <!--  Grid for product label and icon  -->
                         <Grid x:Name="ProductGrid"
                             BackgroundColor="{DynamicResource Transparent}">
 
@@ -206,7 +220,6 @@
 
                         <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                        <!--  Grid for category label and icon  -->
                         <Grid x:Name="CategoryGrid"
                             BackgroundColor="{DynamicResource Transparent}">
 
@@ -236,7 +249,6 @@
 
                         <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                        <!--  Grid for transaction label and icon  -->
                         <Grid x:Name="TransactionGrid"
                             BackgroundColor="{DynamicResource Transparent}">
 
@@ -266,7 +278,6 @@
 
                         <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                        <!--  Grid for message label and icon  -->
                         <Grid x:Name="MessageGrid"
                             BackgroundColor="{DynamicResource Transparent}">
 
@@ -296,7 +307,6 @@
 
                         <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                        <!--  Grid for voucher label and icon  -->
                         <Grid x:Name="VoucherGrid"
                             BackgroundColor="{DynamicResource Transparent}">
 
@@ -326,7 +336,6 @@
 
                         <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                        <!--  Grid for driver label and icon  -->
                         <Grid x:Name="DocumentGrid"
                             BackgroundColor="{DynamicResource Transparent}">
 
@@ -356,7 +365,6 @@
 
                         <BoxView Style="{StaticResource SeparatorStyle}" />
                         
-                        <!--  Grid for setting label and icon  -->
                         <Grid x:Name="HomepageGrid"
                             BackgroundColor="{DynamicResource Transparent}">
 
@@ -387,9 +395,48 @@
                         <BoxView Style="{StaticResource SeparatorStyle}" />
 
                     </StackLayout>
+                    <!--<StackLayout Grid.Row="1" Spacing="15">
+                        <sync:SfListView
+                            x:Name="navigationDrawerList"
+                            BackgroundColor="{DynamicResource  Gray-100}"
+                            SelectionBackgroundColor="#FFFFFF"
+                            SelectionChanged="Handle_SelectionChanged"
+                            SelectionMode="Single">
+                            <sync:SfListView.ItemSize>
+                                <OnIdiom
+                                    x:TypeArguments="x:Double"
+                                    Desktop="110"
+                                    Phone="56"
+                                    Tablet="100" />
+                            </sync:SfListView.ItemSize>
+                            <sync:SfListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <ViewCell.View>
+                                            <StackLayout>
+                                                <StackLayout
+                                                    Padding="20,10,0,10"
+                                                    Orientation="Horizontal"
+                                                    Spacing="20"
+                                                    VerticalOptions="FillAndExpand">
+                                                    <Image
+                                                        HeightRequest="30"
+                                                        Source="{Binding Icon}"
+                                                        VerticalOptions="Center"
+                                                        WidthRequest="30" />
+                                                    <Label Style="{StaticResource MainMenuTitleStyle}" Text="{Binding Title}" />
+                                                </StackLayout>
+                                                <BoxView BackgroundColor="Gray" HeightRequest="1" />
+                                            </StackLayout>
+                                        </ViewCell.View>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </sync:SfListView.ItemTemplate>
+                        </sync:SfListView>
+                    </StackLayout>-->
                 </Grid>
-
+                
             </StackLayout>
-        </ScrollView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:PasaBuy.App.UserControls"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+             xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App"
+             Title="{texts:Translate MainViewPageTitle}"
+             x:Class="PasaBuy.App.Views.MobilePOS.MainView">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="ProductNameTitleStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="VerticalTextAlignment" Value="Start" />
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}" />
+            </Style>
+
+            <Style x:Key="ProductUnitStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="Margin" Value="0, 0" />
+                <Setter Property="TextColor" Value="{StaticResource Gray-Black}" />
+            </Style>
+
+            <Style x:Key="ProductPriceStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="Margin" Value="3, 0, 8, 0" />
+                <Setter Property="TextColor" Value="{DynamicResource Orange}" />
+            </Style>
+
+            <Style x:Key="NoProductInSaleOrdersButtonStyle" TargetType="{x:Type buttons:SfButton}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="Margin" Value="0, 0" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+
+            <Style x:Key="HasProductInSaleOrdersButtonStyle" TargetType="{x:Type buttons:SfButton}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="Margin" Value="0, 0" />
+                <Setter Property="TextColor" Value="white" />
+            </Style>
+
+            <!--<animations:StoryBoard x:Key="ProductsAnimation" Target="{x:Reference productList}">
+                <animations:FadeInAnimation
+                    Delay="250"
+                    Direction="Up"
+                    Duration="1500" />
+            </animations:StoryBoard>
+            <converters:ImageConverter x:Key="ByteArrayToImage" />-->
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout Spacing="0" VerticalOptions="FillAndExpand">
+                <Grid Padding="15,0,15,25" BackgroundColor="{DynamicResource PrimaryColor}">
+                    <Frame
+                        Margin="0"
+                        Padding="10,0"
+                        BackgroundColor="{StaticResource Gray-White}"
+                        CornerRadius="{OnPlatform Android='23',
+                                                  iOS='28'}"
+                        HeightRequest="{OnPlatform Android='46',
+                                                   iOS='56'}">
+                        <Grid ColumnSpacing="0" HeightRequest="{OnPlatform Android='46', iOS='56'}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image
+                                Margin="8,8,0,8"
+                                Aspect="AspectFit"
+                                Source="barcode">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ScanBarcode" />
+                                </Image.GestureRecognizers>
+                            </Image>
+
+                            <SearchBar
+                                Grid.Column="1"
+                                Margin="0,5,10,5"
+                                FontFamily="{StaticResource Montserrat-Regular}"
+                                FontSize="14"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="{texts:Translate ProductSearchPlaceHolder}"
+                                Text="{Binding ScannedText, Mode=TwoWay}"
+                                TextChanged="SearchBar_OnTextChanged"
+                                VerticalOptions="FillAndExpand">
+                                <SearchBar.PlaceholderColor>
+                                    <OnPlatform x:TypeArguments="Color" Android="DarkGray" />
+                                </SearchBar.PlaceholderColor>
+                                <SearchBar.BackgroundColor>
+                                    <OnPlatform
+                                        x:TypeArguments="Color"
+                                        Android="White"
+                                        iOS="Transparent" />
+                                </SearchBar.BackgroundColor>
+                                <SearchBar.TextColor>
+                                    <OnPlatform
+                                        x:TypeArguments="Color"
+                                        Android="{StaticResource Gray-Black}"
+                                        iOS="{StaticResource Gray-Black}" />
+                                </SearchBar.TextColor>
+                                <SearchBar.CancelButtonColor>
+                                    <OnPlatform
+                                        x:TypeArguments="Color"
+                                        Android="{StaticResource Gray-Black}"
+                                        iOS="{StaticResource Gray-Black}" />
+                                </SearchBar.CancelButtonColor>
+                            </SearchBar>
+                        </Grid>
+                    </Frame>
+                </Grid>
+                
+            </StackLayout>
+            <local:LoadingIndicator
+                Grid.Row="0"
+                HorizontalOptions="Fill"
+                IsVisible="False"
+                VerticalOptions="Fill" />
+        </Grid>
+
+        <!--IsRunning="{Binding IsBusy, Mode=TwoWay}"-->
+    </ContentPage.Content>
+</ContentPage>

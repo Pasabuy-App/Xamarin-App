@@ -12,7 +12,72 @@
             <ResourceDictionary.MergedDictionaries>
                 <themes:LightTheme />
             </ResourceDictionary.MergedDictionaries >
-        </ResourceDictionary>
 
+            <Color x:Key="BlackColor">#000000</Color>
+            <Color x:Key="WhiteColor">#ffffff</Color>
+            <Color x:Key="MainWrapperBackgroundColor">#E8EAF6</Color>
+            
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{DynamicResource PrimaryColor}"></Setter>
+                <Setter Property="BarTextColor" Value="White"></Setter>
+            </Style>
+            <Style TargetType="{x:Type ActivityIndicator}">
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="WidthRequest">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="Android, iOS" Value="100" />
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <OnPlatform x:Key="BaseFontSize" x:TypeArguments="x:Double">
+                <On Platform="iOS" Value="16" />
+                <On Platform="Android" Value="15" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="LittleSize" x:TypeArguments="x:Double">
+                <On Platform="iOS" Value="11" />
+                <On Platform="Android" Value="12" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="MidMediumSize" x:TypeArguments="x:Double">
+                <On Platform="iOS" Value="12" />
+                <On Platform="Android" Value="14" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="MediumSize" x:TypeArguments="x:Double">
+                <On Platform="iOS" Value="14" />
+                <On Platform="Android" Value="16" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="LargeSize" x:TypeArguments="x:Double">
+                <On Platform="iOS" Value="16" />
+                <On Platform="Android" Value="18" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="LargerSize" x:TypeArguments="x:Double">
+                <On Platform="iOS" Value="18" />
+                <On Platform="Android" Value="20" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="BigSize" x:TypeArguments="x:Double">
+                <On Platform="iOS" Value="20" />
+                <On Platform="Android" Value="24" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="ExtraBigSize" x:TypeArguments="x:Double">
+                <On Platform="iOS" Value="24" />
+                <On Platform="Android" Value="32" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="HugeSize" x:TypeArguments="x:Double">
+                <On Platform="iOS" Value="32" />
+                <On Platform="Android" Value="48" />
+            </OnPlatform>
+
+        </ResourceDictionary>
+    
     </Application.Resources>
 </Application>

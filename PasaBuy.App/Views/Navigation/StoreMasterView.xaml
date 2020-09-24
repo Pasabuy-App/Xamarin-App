@@ -1,0 +1,431 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PasaBuy.App.Views.Navigation.StoreMasterView"
+             xmlns:helper="clr-namespace:PasaBuy.App.Helpers"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             Title=" "
+             Icon="menu.png">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="MainMenuTitleStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}" />
+                <Setter Property="FontSize" Value="{StaticResource LargeSize}" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="12, 0" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+            <Style x:Key="MainHeaderLabelStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}" />
+                <Setter Property="FontSize" Value="{StaticResource MediumSize}" />
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="Margin" Value="20,0" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Spacing="0">
+
+                <!--  user view  -->
+                <Grid >
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackLayout Grid.Row="0" Margin="0, -20">
+
+                        <!--  UserBanner  -->
+                        <Image Grid.RowSpan="2" Aspect="AspectFill" HeightRequest="175"
+                           BackgroundColor="{DynamicResource Gray-300}">
+                            <Image.Source>
+                                <UriImageSource Uri="{Binding UserBanner}" 
+			                                CacheValidity="14" 
+			                                CachingEnabled="true"/>
+                            </Image.Source>
+                        </Image>
+
+                        <Grid Margin="25, 0, 0, 0" TranslationY="-40">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <!--  UserPhoto  -->
+                            <border:SfBorder Grid.Row="0" 
+                                             Grid.RowSpan="2" 
+                                             border:BorderColor="White" 
+                                             BorderWidth="2"
+                                             Margin="0, 0, 5, 0"
+                                             Style="{StaticResource ProfileBorderStyle}">
+                                <Image
+                                    BackgroundColor="{DynamicResource Gray-400}"
+                                    Aspect="AspectFill"
+                                    HeightRequest="60"
+                                    WidthRequest="60">
+                                    <Image.Source>
+                                        <UriImageSource
+                                            CacheValidity="14"
+                                            CachingEnabled="true"
+                                            Uri="{Binding UserPhoto}" />
+                                    </Image.Source>
+                                </Image>
+                            </border:SfBorder>
+
+                            <!--  UserFullname  -->
+                            <Label
+                                Grid.Column="1"
+                                Margin="0,10,0,0"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="16"
+                                HorizontalOptions="Start"
+                                LineBreakMode="TailTruncation"
+                                LineHeight="{OnPlatform Default=-1,
+                                                        Android=1.25}"
+                                MaxLines="2"
+                                Text="{Binding UserFullname}"
+                                TextColor="{DynamicResource Gray-White}" />
+
+                            <!--  UserEmail  -->
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                FontFamily="{StaticResource Montserrat-Medium}"
+                                FontSize="12"
+                                HorizontalOptions="Start"
+                                LineBreakMode="TailTruncation"
+                                LineHeight="{OnPlatform Default=-1,
+                                                        Android=1.25}"
+                                MaxLines="2"
+                                Text="{Binding UserEmail}"
+                                TextColor="{DynamicResource Gray-Black}" />
+                        </Grid>
+
+                    </StackLayout>
+
+                    <!--<StackLayout Grid.Row="1">
+
+                        <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                        <Grid x:Name="DashboardGrid"
+                            BackgroundColor="{DynamicResource Transparent}">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                Grid.Column="0"
+                                helper:RTLHelper.Margin="35, 0, 8, 0"
+                                Style="{StaticResource ProfileIconLabelStyle}"
+                                Text="&#xf200;" />
+
+                            <Label
+                                Grid.Column="1"
+                                Margin="0,14"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                Style="{StaticResource ProfileLabelStyle}"
+                                Text="Dashboard" />
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding DashboardCommand}" CommandParameter="{x:Reference DashboardGrid}" />
+                            </Grid.GestureRecognizers>
+
+                        </Grid>
+
+                        <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                        <Grid x:Name="StorefrontGrid"
+                            BackgroundColor="{DynamicResource Transparent}">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                Grid.Column="0"
+                                helper:RTLHelper.Margin="35, 0, 8, 0"
+                                Style="{StaticResource ProfileIconLabelStyle}"
+                                Text="&#xf14e;" />
+
+                            <Label
+                                Grid.Column="1"
+                                Margin="0,14"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                Style="{StaticResource ProfileLabelStyle}"
+                                Text="Storefront" />
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding StorefrontCommand}" CommandParameter="{x:Reference StorefrontGrid}" />
+                            </Grid.GestureRecognizers>
+
+                        </Grid>
+
+                        <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                        <Grid x:Name="ProductGrid"
+                            BackgroundColor="{DynamicResource Transparent}">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                Grid.Column="0"
+                                helper:RTLHelper.Margin="35, 0, 8, 0"
+                                Style="{StaticResource ProfileIconLabelStyle}"
+                                Text="&#xf49e;" />
+
+                            <Label
+                                Grid.Column="1"
+                                Margin="0,14"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                Style="{StaticResource ProfileLabelStyle}"
+                                Text="Products" />
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ProductCommand}" CommandParameter="{x:Reference ProductGrid}" />
+                            </Grid.GestureRecognizers>
+
+                        </Grid>
+
+                        <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                        <Grid x:Name="CategoryGrid"
+                            BackgroundColor="{DynamicResource Transparent}">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                Grid.Column="0"
+                                helper:RTLHelper.Margin="35, 0, 8, 0"
+                                Style="{StaticResource ProfileIconLabelStyle}"
+                                Text="&#xf0e8;" />
+
+                            <Label
+                                Grid.Column="1"
+                                Margin="0,14"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                Style="{StaticResource ProfileLabelStyle}"
+                                Text="Category" />
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CategoryCommand}" CommandParameter="{x:Reference CategoryGrid}" />
+                            </Grid.GestureRecognizers>
+
+                        </Grid>
+
+                        <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                        <Grid x:Name="TransactionGrid"
+                            BackgroundColor="{DynamicResource Transparent}">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                Grid.Column="0"
+                                helper:RTLHelper.Margin="35, 0, 8, 0"
+                                Style="{StaticResource ProfileIconLabelStyle}"
+                                Text="&#xf00b;" />
+
+                            <Label
+                                Grid.Column="1"
+                                Margin="0,14"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                Style="{StaticResource ProfileLabelStyle}"
+                                Text="Transactions" />
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding TransactionCommand}" CommandParameter="{x:Reference TransactionGrid}" />
+                            </Grid.GestureRecognizers>
+
+                        </Grid>
+
+                        <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                        <Grid x:Name="MessageGrid"
+                            BackgroundColor="{DynamicResource Transparent}">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                Grid.Column="0"
+                                helper:RTLHelper.Margin="35, 0, 8, 0"
+                                Style="{StaticResource ProfileIconLabelStyle}"
+                                Text="&#xf4ad;" />
+
+                            <Label
+                                Grid.Column="1"
+                                Margin="0,14"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                Style="{StaticResource ProfileLabelStyle}"
+                                Text="Messages" />
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding MessageCommand}" CommandParameter="{x:Reference  MessageGrid}" />
+                            </Grid.GestureRecognizers>
+
+                        </Grid>
+
+                        <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                        <Grid x:Name="VoucherGrid"
+                            BackgroundColor="{DynamicResource Transparent}">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                Grid.Column="0"
+                                helper:RTLHelper.Margin="35, 0, 8, 0"
+                                Style="{StaticResource ProfileIconLabelStyle}"
+                                Text="&#xf3ff;" />
+
+                            <Label
+                                Grid.Column="1"
+                                Margin="0,14"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                Style="{StaticResource ProfileLabelStyle}"
+                                Text="Voucher" />
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding VoucherCommand}" CommandParameter="{x:Reference  VoucherGrid}" />
+                            </Grid.GestureRecognizers>
+
+                        </Grid>
+
+                        <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                        <Grid x:Name="DocumentGrid"
+                            BackgroundColor="{DynamicResource Transparent}">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                Grid.Column="0"
+                                helper:RTLHelper.Margin="35, 0, 8, 0"
+                                Style="{StaticResource ProfileIconLabelStyle}"
+                                Text="&#xf0ea;" />
+
+                            <Label
+                                Grid.Column="1"
+                                Margin="0,14"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                Style="{StaticResource ProfileLabelStyle}"
+                                Text="Documents" />
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding DocumentCommand}" CommandParameter="{x:Reference DocumentGrid}" />
+                            </Grid.GestureRecognizers>
+
+                        </Grid>
+
+                        <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                        <Grid x:Name="HomepageGrid"
+                            BackgroundColor="{DynamicResource Transparent}">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                Grid.Column="0"
+                                helper:RTLHelper.Margin="35, 0, 8, 0"
+                                Style="{StaticResource ProfileIconLabelStyle}"
+                                Text="&#xf359;" />
+
+                            <Label
+                                Grid.Column="1"
+                                Margin="0,14"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                Style="{StaticResource ProfileLabelStyle}"
+                                Text="HOMEPAGE" />
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding HomepageCommand}" CommandParameter="{x:Reference HomepageGrid}" />
+                            </Grid.GestureRecognizers>
+
+                        </Grid>
+
+                        <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                    </StackLayout>-->
+                    <StackLayout Grid.Row="1" >
+                        <sync:SfListView
+                            x:Name="navigationDrawerList"
+                            BackgroundColor="{DynamicResource  Gray-100}"
+                            SelectionBackgroundColor="#FFFFFF"
+                            SelectionChanged="Handle_SelectionChanged"
+                            SelectionMode="Single">
+                            <sync:SfListView.ItemSize>
+                                <OnIdiom
+                                    x:TypeArguments="x:Double"
+                                    Desktop="110"
+                                    Phone="53"
+                                    Tablet="90" />
+                            </sync:SfListView.ItemSize>
+                            <sync:SfListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <ViewCell.View>
+                                            <StackLayout>
+                                                <StackLayout
+                                                    Padding="20,15,0,15"
+                                                    Orientation="Horizontal"
+                                                    Spacing="15"
+                                                    VerticalOptions="FillAndExpand">
+                                                    <Image
+                                                        HeightRequest="30"
+                                                        Source="{Binding Icon}"
+                                                        VerticalOptions="Center"
+                                                        WidthRequest="30" />
+                                                    <Label Style="{StaticResource MainMenuTitleStyle}" Text="{Binding Title}" />
+                                                </StackLayout>
+                                                <BoxView BackgroundColor="Gray" HeightRequest="1" />
+                                            </StackLayout>
+                                        </ViewCell.View>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </sync:SfListView.ItemTemplate>
+                        </sync:SfListView>
+                    </StackLayout>
+                </Grid>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,449 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             x:Class="PasaBuy.App.Views.StoreViews.AddProductView"
+             xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App" 
+             xmlns:customViews="clr-namespace:PasaBuy.App.UserControls" 
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.MobilePOS"
+             x:Name="addProductView"
+             Title="Add Product">
+ 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="AddProductLabelStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}" />
+                <Setter Property="FontSize" Value="{StaticResource LargeSize}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="End" />
+                <Setter Property="VerticalTextAlignment" Value="End" />
+                <Setter Property="Margin" Value="0,0,5,10" />
+            </Style>
+
+            <Style x:Key="ListedItemLabelStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}" />
+                <Setter Property="FontSize" Value="{StaticResource MediumSize}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" /> 
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="10,0,0,0" />
+            </Style>
+
+            <Style x:Key="ListedPriceLabelStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}" />
+                <Setter Property="FontSize" Value="{StaticResource MidMediumSize}" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="10,0,0,0" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewModel:AddProductViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Order="Primary"
+            Clicked="Discard"
+            Priority="1"
+            Text="asd">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android" Value="cross_512.png" />
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+
+        <ToolbarItem
+            Command="{Binding SaveProductCommand}"
+            Order="Primary"
+            Priority="2"
+            Text="asd">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android" Value="save.png" />
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <Grid>
+            <ScrollView>
+                <StackLayout Orientation="Vertical">
+                    <Grid Margin="10,15,10,10">
+                        <Grid.RowSpacing>
+                            <OnPlatform
+                                x:TypeArguments="x:Double"
+                                Android="-5"
+                                iOS="10" />
+                        </Grid.RowSpacing>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.4*" />
+                                <ColumnDefinition Width="0.2*" />
+                                <ColumnDefinition Width="0.2*" />
+                                <ColumnDefinition Width="0.2*" />
+                            </Grid.ColumnDefinitions>
+
+
+                            <ffimageloading:CachedImage
+                                x:Name="productImage"
+                                Grid.Column="0"
+                                Margin="0,8,0,10"
+                                Aspect="AspectFill"
+                                CacheType="None"
+                                DownsampleToViewSize="true"
+                                ErrorPlaceholder="picture_icon.png"
+                                HeightRequest="128"
+                                HorizontalOptions="Center"
+                                LoadingPlaceholder="picture_icon.png"
+                                Source="{Binding ProductImageSource}"
+                                TransformPlaceholders="True"
+                                WidthRequest="128">
+                                <ffimageloading:CachedImage.Transformations>
+                                    <transformations:RoundedTransformation
+                                        BorderHexColor="#000000"
+                                        BorderSize="2"
+                                        Radius="15" />
+                                </ffimageloading:CachedImage.Transformations>
+                            </ffimageloading:CachedImage>
+
+                            <Image
+                                Grid.Column="1"
+                                HeightRequest="32"
+                                HorizontalOptions="Center"
+                                Source="photo_camera.png"
+                                VerticalOptions="Center"
+                                WidthRequest="32">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OpenCameraCommand" NumberOfTapsRequired="1"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+
+                            <Image
+                                Grid.Column="2"
+                                HeightRequest="32"
+                                HorizontalOptions="Center"
+                                Source="picture_black.png"
+                                VerticalOptions="Center"
+                                WidthRequest="32">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="BrowseGalleryCommand" NumberOfTapsRequired="1" />
+                                </Image.GestureRecognizers>
+                            </Image>
+
+                            <Image
+                                Grid.Column="3"
+                                HeightRequest="32"
+                                HorizontalOptions="Center"
+                                Source="remove_512.png"
+                                VerticalOptions="Center"
+                                WidthRequest="32">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="RemoveProductImageCommand" NumberOfTapsRequired="1" />
+                                </Image.GestureRecognizers>
+                            </Image>
+
+                        </Grid>
+
+                        <inputLayout:SfTextInputLayout
+                            Grid.Row="1"
+                            ContainerBackgroundColor="Transparent"
+                            ContainerType="Outlined"
+                            FocusedColor="{StaticResource BlackColor}"
+                            HasError="{Binding IsProductNameInValid}"
+                            Hint="{texts:Translate ProductNameHint}"
+                            HorizontalOptions="Fill"
+                            LeadingViewPosition="Inside">
+                            <Entry MaxLength="50" Text="{Binding ProductName}" />
+                            <inputLayout:SfTextInputLayout.LeadingView>
+                                <Label
+                                    FontSize="18"
+                                    VerticalTextAlignment="Center"
+                                    Style="{StaticResource ProfileIconLabelStyle}"
+                                    TextColor="{DynamicResource BlackColor}"
+                                    Text="&#xf290;" />
+                            </inputLayout:SfTextInputLayout.LeadingView>
+                        </inputLayout:SfTextInputLayout>
+
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="46" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <!--<buttons:SfButton x:Name="createProductButton" Grid.Column="0" HeightRequest="46" WidthRequest="140"
+                                VerticalOptions="Center" HorizontalOptions="End"
+                                Text="{texts:Translate Scanner}" CornerRadius="4" FontFamily="{StaticResource NunitoRegular}"
+                                BorderColor="{DynamicResource colPrim}" BorderWidth="1"
+                                Clicked="Scan_Clicked" TextColor="{DynamicResource colPrim}" BackgroundColor="Transparent">
+                            </buttons:SfButton>-->
+                            <buttons:SfButton
+                                x:Name="createProductButton"
+                                Grid.Column="0"
+                                BackgroundColor="Transparent"
+                                BackgroundImage="barcode.png"
+                                BorderColor="Transparent"
+                                BorderWidth="1"
+                                Clicked="Scan_Clicked"
+                                HeightRequest="46"
+                                HorizontalOptions="StartAndExpand"
+                                VerticalOptions="Center"
+                                WidthRequest="140" />
+                            <!--<local:ImageButton WidthRequest="40"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center"
+                                               Source="barcode"
+                                               Clicked="Scan_Clicked" />-->
+                            <inputLayout:SfTextInputLayout
+                                Grid.Column="1"
+                                ContainerBackgroundColor="Transparent"
+                                ContainerType="Outlined"
+                                FocusedColor="{StaticResource BlackColor}"
+                                HasError="{Binding IsProductCodeInValid}"
+                                Hint="{texts:Translate ProductCodeHint}"
+                                HorizontalOptions="Fill"
+                                LeadingViewPosition="Inside">
+                                <Entry IsEnabled="{Binding AllowEdit}" Text="{Binding ProductCode}" />
+                                <inputLayout:SfTextInputLayout.LeadingView>
+                                    <Label
+                                        FontSize="18"
+                                        VerticalTextAlignment="Center"
+                                        Style="{StaticResource ProfileIconLabelStyle}"
+                                        TextColor="{DynamicResource BlackColor}"
+                                        Text="&#xf1c9;" />
+                                </inputLayout:SfTextInputLayout.LeadingView>
+                            </inputLayout:SfTextInputLayout>
+                        </Grid>
+
+                        <inputLayout:SfTextInputLayout
+                            Grid.Row="3"
+                            ContainerBackgroundColor="Transparent"
+                            ContainerType="Outlined"
+                            FocusedColor="{DynamicResource BlackColor}"
+                            HasError="{Binding IsSupplierInValid}"
+                            Hint="{texts:Translate SupplierHint}"
+                            HorizontalOptions="Fill"
+                            LeadingViewPosition="Inside"
+                            TrailingViewPosition="Inside">
+                            <inputLayout:SfTextInputLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenSupplierCommand}" />
+                            </inputLayout:SfTextInputLayout.GestureRecognizers>
+                            <Entry Focused="OnSupplier_Focused" Text="{Binding SelectedSupplier.Name}" />
+                            <inputLayout:SfTextInputLayout.LeadingView>
+                                <Label
+                                    FontSize="18"
+                                    VerticalTextAlignment="Center"
+                                    Style="{StaticResource ProfileIconLabelStyle}"
+                                    TextColor="{DynamicResource BlackColor}"
+                                    Text="&#xf0c0;" />
+                            </inputLayout:SfTextInputLayout.LeadingView>
+                            <inputLayout:SfTextInputLayout.TrailingView>
+                                <Label  
+                                        FontSize="18"
+                                        VerticalTextAlignment="Center"
+                                        Style="{StaticResource IconLabelStyle}"
+                                        TextColor="{DynamicResource BlackColor}"
+                                        Text="{StaticResource DropDownButtonIcon}">
+                                </Label>
+                            </inputLayout:SfTextInputLayout.TrailingView>
+                        </inputLayout:SfTextInputLayout>
+
+                        <inputLayout:SfTextInputLayout
+                            Grid.Row="4"
+                            ContainerBackgroundColor="Transparent"
+                            ContainerType="Outlined"
+                            FocusedColor="{DynamicResource BlackColor}"
+                            HasError="{Binding IsCategoryInValid}"
+                            Hint="{texts:Translate CategoryHint}"
+                            HorizontalOptions="Fill"
+                            LeadingViewPosition="Inside"
+                            TrailingViewPosition="Inside">
+                            <inputLayout:SfTextInputLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenCategoryCommand}" />
+                            </inputLayout:SfTextInputLayout.GestureRecognizers>
+                            <Entry Focused="OnCategory_Focused" Text="{Binding SelectedCategory.Name}" />
+                            <inputLayout:SfTextInputLayout.LeadingView>
+                                <Label
+                                    FontSize="18"
+                                    VerticalTextAlignment="Center"
+                                    Style="{StaticResource ProfileIconLabelStyle}"
+                                    TextColor="{DynamicResource BlackColor}"
+                                    Text="&#xf468;" />
+                            </inputLayout:SfTextInputLayout.LeadingView>
+                            <inputLayout:SfTextInputLayout.TrailingView>
+                                <Label  
+                                        FontSize="18"
+                                        VerticalTextAlignment="Center"
+                                        Style="{StaticResource IconLabelStyle}"
+                                        TextColor="{DynamicResource BlackColor}"
+                                        Text="{StaticResource DropDownButtonIcon}">
+                                </Label>
+                            </inputLayout:SfTextInputLayout.TrailingView>
+                        </inputLayout:SfTextInputLayout>
+
+                        <inputLayout:SfTextInputLayout
+                            Grid.Row="5"
+                            ContainerBackgroundColor="Transparent"
+                            ContainerType="Outlined"
+                            FocusedColor="{DynamicResource BlackColor}"
+                            HasError="{Binding IsUnitInValid}"
+                            Hint="{texts:Translate UnitHint}"
+                            HorizontalOptions="Fill"
+                            LeadingViewPosition="Inside"
+                            TrailingViewPosition="Inside">
+                            <inputLayout:SfTextInputLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenSourceUnitCommand}" />
+                            </inputLayout:SfTextInputLayout.GestureRecognizers>
+                            <Entry Focused="OnUnit_Focused" Text="{Binding SelectedSourceUnit.Name}" />
+                            <inputLayout:SfTextInputLayout.LeadingView>
+                                <Label
+                                    FontSize="18"
+                                    VerticalTextAlignment="Center"
+                                    Style="{StaticResource ProfileIconLabelStyle}"
+                                    TextColor="{DynamicResource BlackColor}"
+                                    Text="&#xf24e;" />
+                            </inputLayout:SfTextInputLayout.LeadingView>
+                            <inputLayout:SfTextInputLayout.TrailingView>
+                                <Label  
+                                        FontSize="18"
+                                        VerticalTextAlignment="Center"
+                                        Style="{StaticResource IconLabelStyle}"
+                                        TextColor="{DynamicResource BlackColor}"
+                                        Text="{StaticResource DropDownButtonIcon}">
+                                </Label>
+                            </inputLayout:SfTextInputLayout.TrailingView>
+                        </inputLayout:SfTextInputLayout>
+
+                        <inputLayout:SfTextInputLayout
+                            Grid.Row="6"
+                            ContainerBackgroundColor="Transparent"
+                            ContainerType="Outlined"
+                            FocusedColor="{DynamicResource BlackColor}"
+                            HasError="{Binding IsOriginalInValid}"
+                            Hint="{texts:Translate ProductCostHint}"
+                            HorizontalOptions="Fill"
+                            LeadingViewPosition="Inside">
+                            <Entry
+                                VerticalOptions="Center"
+                                HorizontalOptions="FillAndExpand"
+                                Keyboard="Numeric"/>
+                            <inputLayout:SfTextInputLayout.LeadingView>
+                                <Label
+                                    FontSize="18"
+                                    VerticalTextAlignment="Center"
+                                    Style="{StaticResource ProfileIconLabelStyle}"
+                                    TextColor="{DynamicResource BlackColor}"
+                                    Text="&#xf53d;" />
+                            </inputLayout:SfTextInputLayout.LeadingView>
+                        </inputLayout:SfTextInputLayout>
+
+                        <inputLayout:SfTextInputLayout
+                            Grid.Row="7"
+                            ContainerBackgroundColor="Transparent"
+                            ContainerType="Outlined"
+                            FocusedColor="{DynamicResource BlackColor}"
+                            HasError="{Binding IsPriceInValid}"
+                            Hint="{texts:Translate SalePriceHint}"
+                            HorizontalOptions="Fill"
+                            LeadingViewPosition="Inside">
+                            <Entry
+                                VerticalOptions="Center"
+                                HorizontalOptions="FillAndExpand"
+                                Keyboard="Numeric"/>
+                            <inputLayout:SfTextInputLayout.LeadingView>
+                                <Label
+                                    FontSize="18"
+                                    VerticalTextAlignment="Center"
+                                    Style="{StaticResource ProfileIconLabelStyle}"
+                                    TextColor="{DynamicResource BlackColor}"
+                                    Text="&#xf53a;" />
+                            </inputLayout:SfTextInputLayout.LeadingView>
+                        </inputLayout:SfTextInputLayout>
+
+                        <inputLayout:SfTextInputLayout
+                            Grid.Row="8"
+                            ContainerBackgroundColor="Transparent"
+                            ContainerType="Outlined"
+                            FocusedColor="{DynamicResource BlackColor}"
+                            Hint="{texts:Translate MinStockHint}"
+                            HorizontalOptions="Fill"
+                            LeadingViewPosition="Inside">
+                            <!--<numericTextEntry:SfNumericTextBox
+                                FormatString="n"
+                                HorizontalOptions="FillAndExpand"
+                                MaximumNumberDecimalDigits="0"
+                                VerticalOptions="Center"
+                                Value="{Binding MinQuantity, Mode=TwoWay}" />-->
+                            <Entry
+                                VerticalOptions="Center"
+                                HorizontalOptions="FillAndExpand"
+                                Keyboard="Numeric"/>
+
+                            <inputLayout:SfTextInputLayout.LeadingView>
+                                <Label
+                                    FontSize="18"
+                                    VerticalTextAlignment="Center"
+                                    Style="{StaticResource ProfileIconLabelStyle}"
+                                    TextColor="{DynamicResource BlackColor}"
+                                    Text="&#xf466;" />
+                            </inputLayout:SfTextInputLayout.LeadingView>
+                        </inputLayout:SfTextInputLayout>
+
+                        <inputLayout:SfTextInputLayout
+                            Grid.Row="9"
+                            ContainerBackgroundColor="Transparent"
+                            ContainerType="Outlined"
+                            FocusedColor="{DynamicResource BlackColor}"
+                            Hint="{texts:Translate DescriptionsHint}"
+                            HorizontalOptions="Fill"
+                            LeadingViewPosition="Inside">
+                            <Editor
+                                HeightRequest="80"
+                                MaxLength="250"
+                                Text="{Binding Description}" />
+                            <inputLayout:SfTextInputLayout.LeadingView>
+                                <Label
+                                    FontSize="18"
+                                    VerticalTextAlignment="Center"
+                                    Style="{StaticResource ProfileIconLabelStyle}"
+                                    TextColor="{DynamicResource BlackColor}"
+                                    Text="&#xf46d;" />
+                            </inputLayout:SfTextInputLayout.LeadingView>
+                        </inputLayout:SfTextInputLayout>
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+            <customViews:LoadingIndicator
+                Grid.Row="0"
+                HorizontalOptions="Fill"
+                IsVisible="False"
+                VerticalOptions="Fill" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
