@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PasaBuy.App.Views.PopupModals;
+using Rg.Plugins.Popup.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +17,12 @@ namespace PasaBuy.App.Views.StoreViews
         public DocumentsView()
         {
             InitializeComponent();
+            AddDocumentButton.Clicked += AddDocumentClicked;
+        }
+
+        private void AddDocumentClicked(object sender, EventArgs e)
+        {
+            PopupNavigation.Instance.PushAsync(new PopupAddDocument());
         }
     }
 }
