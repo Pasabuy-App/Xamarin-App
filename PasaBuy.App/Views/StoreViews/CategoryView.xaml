@@ -167,13 +167,13 @@
                                                 <ColumnDefinition Width="*" />
                                                 <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
-                                            <Grid
+                                            <Grid  ClassId="{Binding ID}"
                                                 Grid.Column="0"
                                                 BackgroundColor="#32CD32"
                                                 HorizontalOptions="Fill"
                                                 VerticalOptions="Fill">
-                                                <Grid.GestureRecognizers>
-                                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.UpdateCategoryCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}" />
+                                                <Grid.GestureRecognizers >
+                                                    <TapGestureRecognizer x:Name="Update" Tapped="Update_Tapped"/>
                                                 </Grid.GestureRecognizers>
                                                 <Grid HorizontalOptions="Center" VerticalOptions="Center">
                                                     <Image
@@ -185,15 +185,15 @@
                                                         WidthRequest="28" />
                                                 </Grid>
                                             </Grid>
-                                            <Grid
+                                            <Grid ClassId="{Binding ID}"
                                                 Grid.Column="1"
                                                 BackgroundColor="#FF0000"
                                                 
                                                 HorizontalOptions="Fill"
                                                 VerticalOptions="Fill">
-                                                <Grid.GestureRecognizers>
+                                                <Grid.GestureRecognizers >
 
-                                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.DeleteCategoryCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}" />
+                                                    <TapGestureRecognizer  x:Name="Delete" Tapped="Delete_Tapped" />
                                                 </Grid.GestureRecognizers>
                                                 <Grid HorizontalOptions="Center" VerticalOptions="Center">
                                                     <Image

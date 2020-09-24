@@ -21,10 +21,9 @@ namespace PasaBuy.App.Views.StoreViews
             //this.BindingContext = new AddProductViewModel();
             InitializeComponent();
             productImage.Source = "Idcard.png";
-
         }
 
-        async void RemoveProductImageCommand(object sender, EventArgs args)
+        void RemoveProductImageCommand(object sender, EventArgs args)
         {
             productImage.Source = "Idcard.png";
         }
@@ -84,9 +83,9 @@ namespace PasaBuy.App.Views.StoreViews
            
         }
 
-        public void BackButtonClicked(object sender, EventArgs e)
+        public async void BackButtonClicked(object sender, EventArgs e)
         {
-            Navigation.PopModalAsync();
+            await Navigation.PopModalAsync();
         }
 
         private void Scan_Clicked(object sender, EventArgs e)
@@ -94,16 +93,16 @@ namespace PasaBuy.App.Views.StoreViews
             //ScanAsync();
         }
 
-        async void OnSupplier_Focused(object sender, Xamarin.Forms.FocusEventArgs e)
+        void OnSupplier_Focused(object sender, Xamarin.Forms.FocusEventArgs e)
         {
             //await Context.OpenSupplierAsync();
         }
-        async void OnUnit_Focused(object sender, Xamarin.Forms.FocusEventArgs e)
+        void OnUnit_Focused(object sender, Xamarin.Forms.FocusEventArgs e)
         {
             //await Context.OpenSourceUnitAsync();
         }
 
-        async void OnCategory_Focused(object sender, Xamarin.Forms.FocusEventArgs e)
+        void OnCategory_Focused(object sender, Xamarin.Forms.FocusEventArgs e)
         {
             //await Context.OpenCategoryAsync();
         }

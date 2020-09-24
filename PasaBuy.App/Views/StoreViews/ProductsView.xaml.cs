@@ -25,15 +25,18 @@ namespace PasaBuy.App.Views.StoreViews
         {
             //var testPage = new NavigationPage(new AddProductView());
             //Navigation.PushAsync(testPage);
-            await Task.Delay(100);
-            AddProductButton.IsEnabled = false;
-            AddProductCommand = new Command<Type>(async (Type pageType) =>
+            if (AddProductButton.IsEnabled == true)
             {
-                Page page = (Page)Activator.CreateInstance(pageType);
-                await Navigation.PushAsync(page);
+                AddProductButton.IsEnabled = false;
+                AddProductCommand = new Command<Type>(async (Type pageType) =>
+                {
+                    Page page = (Page)Activator.CreateInstance(pageType);
+                    await Navigation.PushAsync(page);
+                });
+                BindingContext = this;
+                await Task.Delay(200);
                 AddProductButton.IsEnabled = true;
-            });
-            BindingContext = this;
+            }
         }
     }
 }

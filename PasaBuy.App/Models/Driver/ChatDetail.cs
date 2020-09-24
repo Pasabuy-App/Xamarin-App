@@ -13,6 +13,8 @@ namespace PasaBuy.App.Models.Driver
         /// <summary>
         /// Gets or sets the profile image path.
         /// </summary>
+        public string Store_id { get; set; }
+        public string Types { get; set; }
         public string ID { get; set; }
         public string ImagePath { get; set; }
 

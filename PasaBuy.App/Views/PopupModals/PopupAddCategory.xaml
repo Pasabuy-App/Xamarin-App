@@ -73,6 +73,7 @@
                             VerticalOptions="End"
                             WidthRequest="40" />
                         <Label
+                            x:Name="CatTitle"
                             Grid.Row="0"
                             Grid.Column="1"
                             HorizontalOptions="StartAndExpand"

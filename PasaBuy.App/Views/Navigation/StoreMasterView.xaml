@@ -45,10 +45,10 @@
                     <StackLayout Grid.Row="0" Margin="0, -20">
 
                         <!--  UserBanner  -->
-                        <Image Grid.RowSpan="2" Aspect="AspectFill" HeightRequest="175"
+                        <Image Grid.RowSpan="2" Aspect="AspectFill" HeightRequest="175" x:Name="Banner"
                            BackgroundColor="{DynamicResource Gray-300}">
-                            <Image.Source>
-                                <UriImageSource Uri="{Binding UserBanner}" 
+                            <Image.Source >
+                                <UriImageSource 
 			                                CacheValidity="14" 
 			                                CachingEnabled="true"/>
                             </Image.Source>
@@ -74,15 +74,14 @@
                                              Margin="0, 0, 5, 0"
                                              Style="{StaticResource ProfileBorderStyle}">
                                 <Image
-                                    BackgroundColor="{DynamicResource Gray-400}"
+                                    BackgroundColor="{DynamicResource Gray-400}" x:Name="Logo"
                                     Aspect="AspectFill"
                                     HeightRequest="60"
                                     WidthRequest="60">
                                     <Image.Source>
                                         <UriImageSource
                                             CacheValidity="14"
-                                            CachingEnabled="true"
-                                            Uri="{Binding UserPhoto}" />
+                                            CachingEnabled="true"/>
                                     </Image.Source>
                                 </Image>
                             </border:SfBorder>
@@ -98,7 +97,8 @@
                                 LineHeight="{OnPlatform Default=-1,
                                                         Android=1.25}"
                                 MaxLines="2"
-                                Text="{Binding UserFullname}"
+                                x:Name="UserName"
+                                Text="Store Name"
                                 TextColor="{DynamicResource Gray-White}" />
 
                             <!--  UserEmail  -->
@@ -112,7 +112,8 @@
                                 LineHeight="{OnPlatform Default=-1,
                                                         Android=1.25}"
                                 MaxLines="2"
-                                Text="{Binding UserEmail}"
+                                x:Name="Email"
+                                Text="Email@gmail.com"
                                 TextColor="{DynamicResource Gray-Black}" />
                         </Grid>
 

@@ -1,4 +1,5 @@
-﻿using PasaBuy.App.Resources.Texts;
+﻿using PasaBuy.App.Local;
+using PasaBuy.App.Resources.Texts;
 using PasaBuy.App.Views.StoreViews;
 using System;
 using System.Collections.Generic;
@@ -37,13 +38,16 @@ namespace PasaBuy.App.Views.Navigation
             menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Reports"), Icon = "Idcard.png", TargetType = typeof(ReportsView) });
             menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Settings"), Icon = "Idcard.png", TargetType = typeof(SettingsView) });
             menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Homepage"), Icon = "Idcard.png", TargetType = typeof(MainTabs) });
-
             navigationDrawerList.ItemsSource = menuList;
             navigationDrawerList.SelectedItem = menuList.FirstOrDefault();
 
+            Logo.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
+            Banner.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.bannerUrl);
+            UserName.Text = PSACache.Instance.UserInfo.dname;
+            Email.Text = PSACache.Instance.UserInfo.email;
         }
 
-        async void Handle_SelectionChanged(object sender, Syncfusion.ListView.XForms.ItemSelectionChangedEventArgs e)
+        void Handle_SelectionChanged(object sender, Syncfusion.ListView.XForms.ItemSelectionChangedEventArgs e)
         {
             if (!e.AddedItems.Any())
                 return;
