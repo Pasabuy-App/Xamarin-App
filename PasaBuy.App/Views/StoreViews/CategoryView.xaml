@@ -32,7 +32,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Grid
+                    <!--<Grid
                         Grid.Row="0"
                         Padding="15,0,15,25"
                         BackgroundColor="{StaticResource PrimaryColor}"
@@ -77,10 +77,10 @@
                                 </SearchBar.CancelButtonColor>
                             </SearchBar>
                         </Frame>
-                    </Grid>
+                    </Grid>-->
                     <yummy:PancakeView
                         Grid.Row="1"
-                        Margin="0,-15,0,0"
+                        Margin="0,5,0,0"
                         Padding="10,10"
                         BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
                         CornerRadius="20,20,0,0"
@@ -137,17 +137,20 @@
                                 </sync:SfListView.SwipeThreshold>
                                 <sync:SfListView.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid>
+                                        <Grid >
                                             <Frame
                                                 Margin="5"
                                                 Padding="5,15"
+                                                
                                                 BackgroundColor="{StaticResource Gray-White}"
                                                 BorderColor="{DynamicResource Gray-300}"
                                                 CornerRadius="6"
                                                 HasShadow="False">
                                                 <Label
                                                     Grid.Row="0"
-                                                    FontSize="15"
+                                                    FontSize="14"
+                                                    VerticalOptions="Center" 
+                                                    HorizontalOptions="FillAndExpand"
                                                     LineBreakMode="WordWrap"
                                                     MaxLines="2"
                                                     Style="{StaticResource CategoryNameStyle}"
