@@ -7,7 +7,8 @@
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
              xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App"
-             x:Class="PasaBuy.App.Views.StoreViews.ReportsView">
+             x:Class="PasaBuy.App.Views.StoreViews.ReportsView"
+             Title="Reports">
     <ContentPage.Resources>
         <ResourceDictionary>
 
@@ -102,7 +103,7 @@
                             FontSize="{StaticResource MediumSize}"
                             HorizontalOptions="StartAndExpand"
                             LineBreakMode="TailTruncation"
-                            Text="{Binding ReportTypeHeader}"
+                            Text="Today"
                             TextColor="{StaticResource BlackColor}"
                             VerticalOptions="Center" />
                         <Image
@@ -110,7 +111,7 @@
                             HeightRequest="16"
                             HorizontalOptions="End"
                             Opacity="0.6"
-                            Source="ic_drop_down"
+                            Source="ic_drop_down.png"
                             VerticalOptions="Center"
                             WidthRequest="16" />
                         <StackLayout.GestureRecognizers>
@@ -306,7 +307,7 @@
                             </Grid>
                         </Frame>
 
-                        <Grid
+                        <!--<Grid
                             Grid.Row="3"
                             Margin="0,10,0,10"
                             ColumnSpacing="0"
@@ -335,9 +336,9 @@
                                 SelectedLineColor="Orange"
                                 SelectedTextColor="Orange"
                                 TextColor="{DynamicResource Gray-800}" />
-                        </Grid>
+                        </Grid>-->
 
-                        <syncListView:SfListView
+                        <!--<syncListView:SfListView
                             x:Name="listView"
                             Grid.Row="4"
                             Margin="5,0,5,5"
@@ -410,7 +411,7 @@
                                     </Grid>
                                 </DataTemplate>
                             </syncListView:SfListView.ItemTemplate>
-                        </syncListView:SfListView>
+                        </syncListView:SfListView>-->
                     </Grid>
                 </ScrollView>
             </Grid>
