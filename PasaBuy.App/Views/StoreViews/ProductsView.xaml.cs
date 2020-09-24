@@ -1,4 +1,6 @@
-﻿using PasaBuy.App.Models.MobilePOS;
+﻿using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
+using PasaBuy.App.Models.MobilePOS;
 using PasaBuy.App.ViewModels.MobilePOS;
 using System;
 using System.Collections.Generic;
@@ -62,6 +64,42 @@ namespace PasaBuy.App.Views.StoreViews
                     ProductViewModel.LoadData(item.ID);
                 }
             }
+        }
+
+        private async void Delete_Tapped(object sender, EventArgs e)
+        {
+            bool answer = await DisplayAlert("Delete Product?", "Are you sure to delete this?", "Yes", "No");
+            if (answer)
+            {
+                try
+                {
+                    var btn = sender as Grid;
+                    TindaPress.Product.Instance.Delete(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, btn.ClassId, (bool success, string data) =>
+                    {
+                        if (success)
+                        {
+                            LastIndex = 11;
+                            ProductViewModel.productsList.Clear();
+                            ProductViewModel.LoadData("");
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        }
+                    });
+                }
+                catch (Exception)
+                {
+                    new Alert("Something went Wrong", "Please contact administrator. Error Code: 20416.", "OK");
+                }
+            }
+        }
+
+        private void Update_Tapped(object sender, EventArgs e)
+        {
+            LastIndex = 11;
+            var btn = sender as Grid;
+            new Alert("ID for Update", btn.ClassId, "OK");
         }
     }
 }
