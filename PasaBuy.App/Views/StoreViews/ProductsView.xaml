@@ -287,13 +287,13 @@
                                     </pulltoRefresh:SfPullToRefresh.ProgressStrokeWidth>
                                     <pulltoRefresh:SfPullToRefresh.PullableContent>
                                         <syncListView:SfListView
-                                            x:Name="listView"
+                                            x:Name="listView" ItemAppearing="listView_ItemAppearing"
                                             AllowSwiping="True"
                                             FocusBorderThickness="0"
                                             IsScrollBarVisible="False"
                                             IsStickyHeader="True"
                                             ItemSize="80"
-                                            ItemsSource="{Binding Products}"
+                                            ItemsSource="{Binding ProductsList}"
                                             SelectionMode="None">
                                             <!--SwipeEnded="Handle_SwipeEnded"
                                             SwipeStarted="Handle_SwipeStarted"-->
@@ -320,7 +320,7 @@
                                                             DownsampleToViewSize="True"
                                                             HeightRequest="50"
                                                             HorizontalOptions="Center"
-                                                            LoadingPlaceholder="picture_icon.png"
+                                                            LoadingPlaceholder="{Binding Preview}"
                                                             Source="Idcard.png"
                                                             TransformPlaceholders="True"
                                                             WidthRequest="50">
@@ -339,10 +339,10 @@
                                                             <Label
                                                                 LineBreakMode="TailTruncation"
                                                                 Style="{StaticResource ProductNameTitleStyle}"
-                                                                Text="Product 1" />
+                                                                Text="{Binding Product_name}" />
                                                             <StackLayout Orientation="Horizontal">
-                                                                <Label Style="{StaticResource ProductUnitStyle}" Text="{texts:Translate Unit}" />
-                                                                <Label Style="{StaticResource ProductUnitStyle}" Text="{Binding Unit.Name}" />
+                                                                <Label Style="{StaticResource ProductUnitStyle}" Text="Info: " />
+                                                                <Label Style="{StaticResource ProductUnitStyle}" Text="{Binding Short_info}" />
                                                             </StackLayout>
                                                         </StackLayout>
 
@@ -363,11 +363,11 @@
                                                                     Grid.Row="0"
                                                                     FontFamily="{StaticResource Montserrat-Regular}"
                                                                     FontSize="10"
-                                                                    Text="{texts:Translate ItemCost}" />
+                                                                    Text="" />
                                                                 <Label
                                                                     Grid.Row="1"
                                                                     Style="{StaticResource PurchasePriceStyle}"
-                                                                    Text="{Binding PurchasePriceStr}" />
+                                                                    Text="" />
                                                                 <Label
                                                                     Grid.Row="2"
                                                                     FontFamily="{StaticResource Montserrat-Regular}"
@@ -376,7 +376,7 @@
                                                                 <Label
                                                                     Grid.Row="3"
                                                                     Style="{StaticResource SalePriceStyle}"
-                                                                    Text="{Binding PriceStr}" />
+                                                                    Text="{Binding Price}" />
                                                             </Grid>
                                                         </StackLayout>
                                                         <BoxView
