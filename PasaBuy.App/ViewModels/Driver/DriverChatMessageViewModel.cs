@@ -129,46 +129,46 @@ namespace PasaBuy.App.ViewModels.Driver
         {
             try
             {
-                SocioPress.Message.Instance.GetByRecepient(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, sender, offset, lastid, (bool success, string data) =>
-                {
-                    if (success)
-                    {
-                        ChatData chat = JsonConvert.DeserializeObject<ChatData>(data);
-                        if (lastid == "")
-                        {
-                            int len = offset != string.Empty ? 7 : 12;
-                            isLoad = chat.data.Length < len ? false : true;
-                        }
+                //SocioPress.Message.Instance.GetByRecepient(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, sender, offset, lastid, (bool success, string data) =>
+                //{
+                //    if (success)
+                //    {
+                //        ChatData chat = JsonConvert.DeserializeObject<ChatData>(data);
+                //        if (lastid == "")
+                //        {
+                //            int len = offset != string.Empty ? 7 : 12;
+                //            isLoad = chat.data.Length < len ? false : true;
+                //        }
 
-                        for (int i = 0; i < chat.data.Length; i++)
-                        {
-                            string id = chat.data[i].id;
-                            string senders = chat.data[i].sender;
-                            string content = chat.data[i].content;
-                            string date_created = chat.data[i].date_created;
-                            bool isreceived = senders != PSACache.Instance.UserInfo.wpid ? true : false;
+                //        for (int i = 0; i < chat.data.Length; i++)
+                //        {
+                //            string id = chat.data[i].id;
+                //            string senders = chat.data[i].sender;
+                //            string content = chat.data[i].content;
+                //            string date_created = chat.data[i].date_created;
+                //            bool isreceived = senders != PSACache.Instance.UserInfo.wpid ? true : false;
 
-                            CultureInfo provider = new CultureInfo("fr-FR");
-                            DateTime datenow = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "yyyy-MM-dd HH:mm:ss", provider);
-                            DateTime datedb = DateTime.ParseExact(date_created, "yyyy-MM-dd HH:mm:ss", provider);
-                            TimeSpan ts = datedb - datenow;
-                            var currentTime = DateTime.Now;
+                //            CultureInfo provider = new CultureInfo("fr-FR");
+                //            DateTime datenow = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "yyyy-MM-dd HH:mm:ss", provider);
+                //            DateTime datedb = DateTime.ParseExact(date_created, "yyyy-MM-dd HH:mm:ss", provider);
+                //            TimeSpan ts = datedb - datenow;
+                //            var currentTime = DateTime.Now;
 
-                            if (lastid == "")
-                            {
-                                ChatList.Insert(0, new ChatListItem(id, "", currentTime.AddMinutes(ts.TotalMinutes), content, isreceived));
-                            }
-                            else
-                            {
-                                ChatList.Add(new ChatListItem(id, "", currentTime.AddMinutes(ts.TotalMinutes), content, isreceived));
-                            }
-                        }
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                });
+                //            if (lastid == "")
+                //            {
+                //                ChatList.Insert(0, new ChatListItem(id, "", currentTime.AddMinutes(ts.TotalMinutes), content, isreceived));
+                //            }
+                //            else
+                //            {
+                //                ChatList.Add(new ChatListItem(id, "", currentTime.AddMinutes(ts.TotalMinutes), content, isreceived));
+                //            }
+                //        }
+                //    }
+                //    else
+                //    {
+                //        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                //    }
+                //});
             }
             catch (Exception)
             {
@@ -341,18 +341,18 @@ namespace PasaBuy.App.ViewModels.Driver
                 ChatMessageListViewBehavior.isFirstLoad = false;
                 try
                 {
-                    SocioPress.Message.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, this.NewMessage, user_id, (bool success, string data) =>
-                    {
-                        if (success)
-                        {
-                            PopupMessage();
-                            this.NewMessage = null;
-                        }
-                        else
-                        {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                        }
-                    });
+                    //SocioPress.Message.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, this.NewMessage, user_id, (bool success, string data) =>
+                    //{
+                    //    if (success)
+                    //    {
+                    //        PopupMessage();
+                    //        this.NewMessage = null;
+                    //    }
+                    //    else
+                    //    {
+                    //        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    //    }
+                    //});
                 }
                 catch (Exception)
                 {

@@ -147,6 +147,7 @@
                                                 HasShadow="False">
                                                 <Label
                                                     Grid.Row="0"
+                                                    FontSize="15"
                                                     LineBreakMode="WordWrap"
                                                     MaxLines="2"
                                                     Style="{StaticResource CategoryNameStyle}"
@@ -158,7 +159,7 @@
                                 </sync:SfListView.ItemTemplate>
                                 <sync:SfListView.RightSwipeTemplate>
                                     <DataTemplate x:Name="RightSwipeTemplate">
-                                        <Grid>
+                                        <Grid Padding="0, 7, 0, 7">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*" />
                                                 <ColumnDefinition Width="*" />
@@ -184,6 +185,7 @@
                                             <Grid
                                                 Grid.Column="1"
                                                 BackgroundColor="#FF0000"
+                                                
                                                 HorizontalOptions="Fill"
                                                 VerticalOptions="Fill">
                                                 <Grid.GestureRecognizers>
