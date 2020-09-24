@@ -66,7 +66,7 @@
                     HorizontalTextAlignment="Center"
                     HorizontalOptions="Center"
                     Style="{StaticResource LabelStyle}"
-                    Text="You're done with verification steps."
+                    Text="You're done with verifying your account."
                     VerticalTextAlignment="Center" />
 
                 <!--  Label to display content  -->
@@ -76,7 +76,8 @@
                     FontSize="16"
                     HorizontalOptions="Center"
                     Style="{StaticResource LabelStyle}"
-                    Text="Please give us 1-2 days to process your verification request. Thank you!"
+                    MaxLines="3"
+                    Text="Please give time to process your verification request. Expect a call from one of our staffs within 1-2 days. Thank you!"
                     VerticalTextAlignment="Center" />
             </StackLayout>
 
