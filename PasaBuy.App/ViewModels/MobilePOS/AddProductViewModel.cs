@@ -18,8 +18,8 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
         public AddProductViewModel()
         {
-
         }
+
 
 
     }
