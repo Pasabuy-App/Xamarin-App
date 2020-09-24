@@ -21,16 +21,17 @@ namespace PasaBuy.App.Views.StoreViews
             AddProductButton.Clicked += AddProductClicked;
         }
 
-        private void AddProductClicked(object sender, EventArgs e)
+        private async void AddProductClicked(object sender, EventArgs e)
         {
             //var testPage = new NavigationPage(new AddProductView());
             //Navigation.PushAsync(testPage);
-
-
+            await Task.Delay(100);
+            AddProductButton.IsEnabled = false;
             AddProductCommand = new Command<Type>(async (Type pageType) =>
             {
                 Page page = (Page)Activator.CreateInstance(pageType);
                 await Navigation.PushAsync(page);
+                AddProductButton.IsEnabled = true;
             });
             BindingContext = this;
         }

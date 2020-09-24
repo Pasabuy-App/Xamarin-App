@@ -96,7 +96,7 @@
                                 AllowSwiping="True"
                                 AutoFitMode="Height"
                                 IsStickyHeader="True"
-                                ItemsSource="{Binding Categories}"
+                                ItemsSource="{Binding CategoriesList}"
                                 SelectedItem="{Binding SelectedCategory, Mode=OneWay}"
                                 SelectionBackgroundColor="Khaki"
                                 SelectionGesture="Tap"
@@ -150,7 +150,7 @@
                                                     LineBreakMode="WordWrap"
                                                     MaxLines="2"
                                                     Style="{StaticResource CategoryNameStyle}"
-                                                    Text="{Binding Name}" />
+                                                    Text="{Binding Title}" />
                                             </Frame>
                                         </Grid>
 

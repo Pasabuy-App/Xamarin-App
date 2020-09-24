@@ -12,6 +12,7 @@ namespace PasaBuy.App.Views.StoreViews
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ManagementView : ContentPage
     {
+        public int count = 0;
         public ManagementView()
         {
             InitializeComponent();
@@ -19,11 +20,17 @@ namespace PasaBuy.App.Views.StoreViews
 
         async void Management_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
-            if (e.ItemData != null)
+            if (count == 0)
             {
-                PasaBuy.App.Models.MobilePOS.Management pageData = (e.ItemData as PasaBuy.App.Models.MobilePOS.Management);
-                Page page = (Page)Activator.CreateInstance(pageData.Type);
-                await Navigation.PushAsync(page);
+                count = 1;
+                if (e.ItemData != null)
+                {
+                    PasaBuy.App.Models.MobilePOS.Management pageData = (e.ItemData as PasaBuy.App.Models.MobilePOS.Management);
+                    Page page = (Page)Activator.CreateInstance(pageData.Type);
+                    await Navigation.PushAsync(page);
+                    await Task.Delay(200);
+                    count = 0;
+                }
             }
         }
     }
