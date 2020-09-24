@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:behaviors="clr-namespace:PasaBuy.App.Behaviors" 
              xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-              xmlns:model="clr-namespace:PasaBuy.App.Models.MobilePOS"
+             xmlns:model="clr-namespace:PasaBuy.App.Models.MobilePOS"
              x:Class="PasaBuy.App.Views.StoreViews.ManagementView"
              Title="Management">
     <ContentPage.Resources>
