@@ -1035,4 +1035,22 @@ to success</value>
   <data name="UsernamePld" xml:space="preserve">
     <value>Username</value>
   </data>
+  <data name="DocumentsManagementDescriptions" xml:space="preserve">
+    <value>Store Documents</value>
+  </data>
+  <data name="DocumentsTitle" xml:space="preserve">
+    <value>Documents</value>
+  </data>
+  <data name="VariantsManagementDescriptions" xml:space="preserve">
+    <value>Options and Variations for products</value>
+  </data>
+  <data name="VariantsTitle" xml:space="preserve">
+    <value>Variants</value>
+  </data>
+  <data name="VouchersManagementDescriptions" xml:space="preserve">
+    <value>Coupons and Discount Vouchers</value>
+  </data>
+  <data name="VouchersTitle" xml:space="preserve">
+    <value>Vouchers</value>
+  </data>
 </root>

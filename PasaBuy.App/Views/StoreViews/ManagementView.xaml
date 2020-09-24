@@ -1,12 +1,108 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PasaBuy.App.Views.StoreViews.ManagementView">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:behaviors="clr-namespace:PasaBuy.App.Behaviors" 
+             xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+              xmlns:model="clr-namespace:PasaBuy.App.Models.MobilePOS"
+             x:Class="PasaBuy.App.Views.StoreViews.ManagementView"
+             Title="Management">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="ManagementTitleStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+                <Setter Property="FontSize" Value="{StaticResource LargeSize}" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="End" />
+                <Setter Property="Margin" Value="12, 0" />
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}" />
+            </Style>
+            <Style x:Key="ManagementDescriptionStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}" />
+                <Setter Property="FontSize" Value="{StaticResource MediumSize}" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="Margin" Value="12, 0" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+            </Style>
+            <behaviors:CustomConverter x:Key="EventArgs" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to management view"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid
+            BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
+            ColumnSpacing="0"
+            RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Margin="0">
+                <sync:SfListView
+                    x:Name="ManagementItem"
+                    AutoFitMode="Height"
+                    FocusBorderThickness="0"
+                    ItemSpacing="0,1,0,0"
+                    ItemTapped="Management_ItemTapped"
+                    ItemsSource="{x:Static model:Management.All}"
+                    SelectionMode="None">
+                    <sync:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid
+                                Margin="0"
+                                Padding="8,12,8,0"
+                                BackgroundColor="{DynamicResource Gray-White}"
+                                ColumnSpacing="0"
+                                RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid Padding="0,0,8,10" RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        HeightRequest="30"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Source="{Binding Icon}"
+                                        VerticalOptions="Center"
+                                        WidthRequest="30" />
+                                    <StackLayout
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Orientation="Vertical"
+                                        VerticalOptions="Start">
+                                        <StackLayout.Padding>
+                                            <OnPlatform x:TypeArguments="Thickness">
+                                                <On Platform="Android,UWP">
+                                                    <OnIdiom
+                                                        x:TypeArguments="Thickness"
+                                                        Desktop="5,-5,0,0"
+                                                        Phone="5,-5,0,0"
+                                                        Tablet="5,-5,0,0" />
+                                                </On>
+                                                <On Platform="iOS">
+                                                    <OnIdiom
+                                                        x:TypeArguments="Thickness"
+                                                        Phone="5,-5,0,0"
+                                                        Tablet="5,-5,0,0" />
+                                                </On>
+                                            </OnPlatform>
+                                        </StackLayout.Padding>
+                                        <Label Style="{StaticResource ManagementTitleStyle}" Text="{Binding Title}" />
+                                        <Label Style="{StaticResource ManagementDescriptionStyle}" Text="{Binding Description}" />
+                                    </StackLayout>
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </sync:SfListView.ItemTemplate>
+                </sync:SfListView>
+            </Grid>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

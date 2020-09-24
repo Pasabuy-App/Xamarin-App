@@ -16,5 +16,15 @@ namespace PasaBuy.App.Views.StoreViews
         {
             InitializeComponent();
         }
+
+        async void Management_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        {
+            if (e.ItemData != null)
+            {
+                PasaBuy.App.Models.MobilePOS.Management pageData = (e.ItemData as PasaBuy.App.Models.MobilePOS.Management);
+                Page page = (Page)Activator.CreateInstance(pageData.Type);
+                await Navigation.PushAsync(page);
+            }
+        }
     }
 }
