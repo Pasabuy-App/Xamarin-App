@@ -9,7 +9,9 @@
              xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" 
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
              xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.MobilePOS"
+             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.MobilePOS" 
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+              xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
              x:Name="addProductView"
              Title="Add Product">
  
@@ -266,10 +268,34 @@
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside"
                             TrailingViewPosition="Inside">
-                            <inputLayout:SfTextInputLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding OpenCategoryCommand}" />
-                            </inputLayout:SfTextInputLayout.GestureRecognizers>
-                            <Entry Focused="OnCategory_Focused" Text="{Binding SelectedCategory.Name}" />
+                            <combobox:SfComboBox
+                                x:Name="ProductCategory"
+                                SelectedValue="{Binding ProductCategory, Mode=TwoWay}"
+                                Style="{StaticResource ComboBoxStyle}"
+                                TextColor="Black"
+                                HeightRequest="50"
+                                Watermark="Select category"
+                                VerticalOptions="StartAndExpand">
+                                <combobox:SfComboBox.ComboBoxSource>
+                                    <ListCollection:List x:TypeArguments="x:String">
+                                        <x:String>Burgers</x:String>
+                                        <x:String>Milk Tea</x:String>
+                                    </ListCollection:List>
+                                </combobox:SfComboBox.ComboBoxSource>
+                                <combobox:SfComboBox.DropDownButtonSettings>
+                                    <combobox:DropDownButtonSettings>
+                                        <combobox:DropDownButtonSettings.View>
+                                            <Label
+                                                    FontFamily="{StaticResource FontIcons}"
+                                                    FontSize="25"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="{StaticResource DropDownButtonIcon}"
+                                                    TextColor="{DynamicResource Gray-600}"
+                                                    VerticalTextAlignment="Center" />
+                                        </combobox:DropDownButtonSettings.View>
+                                    </combobox:DropDownButtonSettings>
+                                </combobox:SfComboBox.DropDownButtonSettings>
+                            </combobox:SfComboBox>
                             <inputLayout:SfTextInputLayout.LeadingView>
                                 <Label
                                     FontSize="18"
@@ -278,15 +304,7 @@
                                     TextColor="{DynamicResource BlackColor}"
                                     Text="&#xf468;" />
                             </inputLayout:SfTextInputLayout.LeadingView>
-                            <inputLayout:SfTextInputLayout.TrailingView>
-                                <Label  
-                                        FontSize="18"
-                                        VerticalTextAlignment="Center"
-                                        Style="{StaticResource IconLabelStyle}"
-                                        TextColor="{DynamicResource BlackColor}"
-                                        Text="{StaticResource DropDownButtonIcon}">
-                                </Label>
-                            </inputLayout:SfTextInputLayout.TrailingView>
+
                         </inputLayout:SfTextInputLayout>
 
                         <inputLayout:SfTextInputLayout

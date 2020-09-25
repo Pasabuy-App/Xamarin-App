@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PasaBuy.App.ViewModels.MobilePOS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,9 @@ namespace PasaBuy.App.Views.StoreViews
         {
             InitializeComponent();
         }
+
+        public ReportsViewModel Context => (ReportsViewModel)this.BindingContext;
+
         async void Handle_SelectedItemChanged(object sender, SelectedItemChangedEventArgs e)
         {
             //if (e.SelectedItem.ToString() == TextsTranslateManager.Translate("BySale"))

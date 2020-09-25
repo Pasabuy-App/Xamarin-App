@@ -8,6 +8,8 @@
              xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App"
              x:Class="PasaBuy.App.Views.StoreViews.ReportsView"
+             xmlns:viewModelBase="clr-namespace:PasaBuy.App.ViewModels.MobilePOS.Base;assembly=PasaBuy.App" 
+             viewModelBase:ViewModelLocator.AutoWireViewModel="true"
              Title="Reports">
     <ContentPage.Resources>
         <ResourceDictionary>

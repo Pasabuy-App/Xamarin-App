@@ -5,6 +5,7 @@ using System.Text;
 using Xamarin.Forms;
 using System.Globalization;
 using System.Reflection;
+using PasaBuy.App.ViewModels.Chat;
 
 namespace PasaBuy.App.ViewModels.MobilePOS.Base
 {
@@ -30,6 +31,8 @@ namespace PasaBuy.App.ViewModels.MobilePOS.Base
             // View models - by default, TinyIoC will register concrete classes as multi-instance.
             _container.Register<CategoryViewModel>();
             _container.Register<AddProductViewModel>();
+            _container.Register<StoreMessageViewModel>();
+
         }
 
         public static void RegisterSingleton<TInterface, T>() where TInterface : class where T : class, TInterface

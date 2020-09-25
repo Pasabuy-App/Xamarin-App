@@ -4,7 +4,6 @@ using PasaBuy.App.Views.Settings;
 using PasaBuy.App.Views.Onboarding;
 using System;
 using PasaBuy.App.Views.Marketplace;
-using PasaBuy.App.Views.MobilePOS;
 using PasaBuy.App.Views.StoreViews;
 using PasaBuy.App.Views.Menu;
 

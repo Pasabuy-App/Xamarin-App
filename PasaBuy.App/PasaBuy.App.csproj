@@ -338,25 +338,10 @@
     <EmbeddedResource Update="Views\Market\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MobilePOS\MainView.xaml">
+    <EmbeddedResource Update="Views\Navigation\MasterView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MobilePOS\MasterView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\MobilePOS\NavigationView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Navigation\DriverMasterView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Navigation\DriverNavigationView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Navigation\StoreMasterView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Navigation\StoreNavigationView.xaml">
+    <EmbeddedResource Update="Views\Navigation\NavigationView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Notice\EmptyCartPage.xaml">
@@ -674,6 +659,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Services\Impl\" />
     <Folder Include="Views\StoreChat\" />
   </ItemGroup>
 </Project>

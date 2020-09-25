@@ -1,14 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PasaBuy.App.Views.MobilePOS.NavigationView"
-             xmlns:pages="clr-namespace:PasaBuy.App.Views.MobilePOS" 
+             x:Class="PasaBuy.App.Views.Navigation.NavigationView"
              xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
-             xmlns:converters="clr-namespace:PasaBuy.App.Converters"
-             NavigationPage.HasNavigationBar="False"
-                  BackgroundColor="Red"
+             xmlns:converters="clr-namespace:PasaBuy.App.Converters" 
+             xmlns:pages="clr-namespace:PasaBuy.App.Views.Navigation"
+             xmlns:viewModelBase="clr-namespace:PasaBuy.App.ViewModels.MobilePOS.Base;assembly=PasaBuy.App"
+             viewModelBase:ViewModelLocator.AutoWireViewModel="true"
              MasterBehavior="Popover">
-
     <MasterDetailPage.Resources>
         <ResourceDictionary>
             <Style x:Key="MainMenuTitleStyle" TargetType="{x:Type Label}">

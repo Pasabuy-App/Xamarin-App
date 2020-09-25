@@ -351,7 +351,6 @@
                     HorizontalOptions="EndAndExpand"
 				    AbsoluteLayout.LayoutFlags="PositionProportional"
 				    AbsoluteLayout.LayoutBounds="0.95,0.95,80,80">
-
                 </fab:FloatingActionButtonView>
 
             </Grid>

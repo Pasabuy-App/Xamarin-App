@@ -340,7 +340,7 @@ namespace PasaBuy.App.ViewModels.Menu
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     await Task.Delay(0);
-                    App.Current.MainPage = new StoreNavigationView();
+                    App.Current.MainPage = new NavigationView();
                     isEnable = false;
                 });
             }
