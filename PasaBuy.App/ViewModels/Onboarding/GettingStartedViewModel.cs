@@ -44,30 +44,30 @@ namespace PasaBuy.App.ViewModels.Onboarding
             {
                 new Boarding()
                 {
-                    ImagePath = "OnBoarding.png",
+                    ImagePath = "OnBoardingA.png",
                     Header = "PASABUY.APP",
-                    Content = "Short description of the company and what the company is wanting to achieve towards the community.",
+                    Content = "The first social media delivery app for sellers, buyers, movers and merchants in the Philippines.",
                     RotatorItem = new WalkthroughItem()
                 },
                 new Boarding()
                 {
-                    ImagePath = "OnBoarding.png",
-                    Header = "ALIQUAM",
-                    Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                    ImagePath = "OnBoardingB.png",
+                    Header = "On-demand Delivery",
+                    Content = "PasaBuy movers deliver packages at the time you need it by upholding honesty & integrity.",
                     RotatorItem = new WalkthroughItem()
                 },
                 new Boarding()
                 {
-                    ImagePath = "OnBoarding.png",
-                    Header = "VIVAMUS",
-                    Content = "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                    ImagePath = "OnBoardingC.png",
+                    Header = "Food Delivery",
+                    Content = "PasaBuy movers deliver food and drinks by maintaining quality at the most secure way. Relish restaurant meals at home!",
                     RotatorItem = new WalkthroughItem()
                 },
                 new Boarding()
                 {
-                    ImagePath = "OnBoarding.png",
-                    Header = "INTERDUM",
-                    Content = "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                    ImagePath = "OnBoardingD.png",
+                    Header = "Online Shop",
+                    Content = "Non-food and online stores can have their products delivered by demand through PasaBuy movers. No need to ship it! Just wait and accept!",
                     RotatorItem = new WalkthroughItem()
                 }
             };
