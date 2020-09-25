@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:pulltoRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
+             xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App"
+             xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+              xmlns:model="clr-namespace:PasaBuy.App.Models.MobilePOS"
+             x:Class="PasaBuy.App.Views.StoreViews.TransactionDetailsView"
+             Title="Transaction Details">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout Spacing="0" VerticalOptions="FillAndExpand">
+
+                <Grid
+                                Margin="0"
+                                Padding="8,12,8,0"
+                                BackgroundColor="{DynamicResource Gray-White}"
+                                ColumnSpacing="0"
+                                RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid Padding="0,0,8,10" RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <ffimageloading:CachedImage Aspect="AspectFit"
+                                                Grid.Row="0"
+                                                Grid.RowSpan="3"
+                                                Margin="5,0,30,0"
+                                                Grid.Column="0"
+                                                Source="Avatar.png"
+                                                HeightRequest="50"
+                                                x:Name="ImageId"
+			                                    DownsampleToViewSize="true" FadeAnimationEnabled="True" >
+                            <ffimageloading:CachedImage.Transformations>
+                                <fftransformations:CircleTransformation />
+                            </ffimageloading:CachedImage.Transformations>
+                        </ffimageloading:CachedImage>
+
+                        <Label Text="Test Name"
+                                           Grid.Row="0"
+                                           Grid.Column="1"
+                                           HorizontalOptions="StartAndExpand"
+                                           TextColor="{DynamicResource BlackColor}">
+                        </Label>
+                        <Label Text="Order #4232"
+                                           Grid.Row="1"
+                                           Grid.Column="1"
+                                           HorizontalOptions="StartAndExpand"
+                                           TextColor="{DynamicResource Gray-800}">
+                        </Label>
+                        <Label Text="Sept 5, 2020 10:23 AM"
+                                           Grid.Row="2"
+                                           Grid.Column="1"
+                                           HorizontalOptions="StartAndExpand"
+                                           TextColor="{DynamicResource Gray-800}">
+                        </Label>
+                        <Label Text="PHP 250"
+                                           Grid.Row="0"
+                                           Grid.Column="2"
+                                           HorizontalOptions="StartAndExpand"
+                                           TextColor="{DynamicResource BlackColor}">
+                        </Label>
+                        <Label Text="Cash"
+                                           Grid.Row="2"
+                                           Grid.Column="2"
+                                           HorizontalOptions="StartAndExpand"
+                                           TextColor="{DynamicResource Gray-800}">
+                        </Label>
+                    </Grid>
+                </Grid>
+                
+
+                <yummy:PancakeView
+                    Margin="0,5,0,25"
+                    Padding="5,10,5,0"
+                    BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
+                    CornerRadius="20,20,20,20"
+                    VerticalOptions="FillAndExpand">
+                    <Grid Padding="15,20,15,20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                         <Label Text="Order Details"
+                                FontAttributes="Bold"
+                                TextColor="Red"
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                HorizontalOptions="Start"/>
+                        <Label Text="Amount"
+                                FontAttributes="Bold"
+                                TextColor="Red"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalOptions="End"/>
+                        <Grid Grid.Row="1"
+                              Grid.ColumnSpan="2"
+                              Padding="-5,10,-15,10"
+                              Margin="0">
+                            <sync:SfListView
+                                x:Name="ManagementItem"
+                                AutoFitMode="Height"
+                                FocusBorderThickness="0"
+                                ItemSpacing="0,1,0,0"
+                                ItemsSource="{x:Static model:Management.All}"
+                                SelectionMode="None">
+                                <sync:SfListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid
+                                            Margin="0"
+                                            Padding="8,12,8,0"
+                                            BackgroundColor="{DynamicResource Transparent}"
+                                            ColumnSpacing="0"
+                                            RowSpacing="0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid Padding="0,0,8,10" RowSpacing="0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label Text="Burger"
+                                                   Grid.Row="0"
+                                                   Grid.Column="0"
+                                                   HorizontalOptions="StartAndExpand"
+                                                   TextColor="{DynamicResource BlackColor}">
+                                                </Label>
+
+                                                <Label Text="1 x Burger"
+                                                   Grid.Row="1"
+                                                   Grid.Column="0"
+                                                   Margin="0,5,0,0"
+                                                   HorizontalOptions="StartAndExpand"
+                                                   TextColor="{DynamicResource Gray-900}">
+                                                </Label>
+
+                                                <Label Text="PHP 250"
+                                                   Grid.Row="0"
+                                                   Grid.Column="2"
+                                                   HorizontalOptions="EndAndExpand"
+                                                   TextColor="{DynamicResource BlackColor}">
+                                                </Label>
+                                            </Grid>
+                                        </Grid>
+                                    </DataTemplate>
+                                </sync:SfListView.ItemTemplate>
+                            </sync:SfListView>
+                        </Grid>
+
+
+                    </Grid>
+                    
+                </yummy:PancakeView>
+                <Grid Margin="0, 5, 0, 15" Padding="15, 0, 15, 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <buttons:SfButton
+                            Grid.Column="0"
+                            BackgroundColor="#fa7069"
+                            BorderColor="{DynamicResource BlackColor}"
+                            BorderWidth="2"
+                            CornerRadius="4"
+                            FontFamily="{StaticResource Montserrat-Regular}"
+                            HorizontalOptions="FillAndExpand"
+                            Text="Decline"
+                            TextColor="White"
+                            VerticalOptions="Center" />
+                    <buttons:SfButton
+                            Grid.Column="1"
+                            BackgroundColor="#34e048"
+                            BorderColor="{StaticResource BlackColor}"
+                            BorderWidth="2"
+                            CornerRadius="4"
+                            FontFamily="{StaticResource Montserrat-Regular}"
+                            HorizontalOptions="FillAndExpand"
+                            Text="Accept"
+                            TextColor="White"
+                            VerticalOptions="Center" />
+                </Grid>
+            </StackLayout>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
