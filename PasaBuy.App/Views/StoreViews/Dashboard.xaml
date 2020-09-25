@@ -57,14 +57,6 @@
                 <Setter Property="Margin" Value="0, 0" />
                 <Setter Property="TextColor" Value="white" />
             </Style>
-
-            <!--<animations:StoryBoard x:Key="ProductsAnimation" Target="{x:Reference productList}">
-                <animations:FadeInAnimation
-                    Delay="250"
-                    Direction="Up"
-                    Duration="1500" />
-            </animations:StoryBoard>
-            <converters:ImageConverter x:Key="ByteArrayToImage" />-->
         </ResourceDictionary>
     </ContentPage.Resources>
     <!--ContentPage.Content>
