@@ -61,7 +61,7 @@
                             FontFamily="{StaticResource Montserrat-SemiBold}"
                             FontSize="25"
                             HorizontalOptions="Center"
-                            Style="{StaticResource LabelStyle}"
+                            Style="{StaticResource TitleStyle}"
                             Text="REGISTRATION" />
 
                         <!--  Label to display the description of this page  -->
@@ -69,7 +69,8 @@
                             Margin="0,-16,0,8"
                             FontFamily="{StaticResource Montserrat-Medium}"
                             HorizontalTextAlignment="Center"
-                            Style="{StaticResource LabelStyle}"
+                            Style="{StaticResource TitleStyle}"
+                            TextColor="{StaticResource Gray-900}"
                             Text="Join the Community!" />
 
                         <!--  Entry to get username from user  -->

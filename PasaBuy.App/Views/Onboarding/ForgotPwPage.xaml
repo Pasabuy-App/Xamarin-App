@@ -62,7 +62,7 @@
                             FontFamily="{StaticResource Montserrat-SemiBold}"
                             FontSize="25"
                             HorizontalOptions="Center"
-                            Style="{StaticResource LabelStyle}"
+                            Style="{StaticResource TitleStyle}"
                             Text="Forgot Your Password?"
                             VerticalTextAlignment="End" />
 
@@ -72,7 +72,7 @@
                             Margin="0,-16,0,8"
                             FontFamily="{StaticResource Montserrat-Medium}"
                             HorizontalTextAlignment="Center"
-                            Style="{StaticResource LabelStyle}"
+                            Style="{StaticResource TitleStyle}"
                             Text="We'll send instructions on how to reset your password to the email address you have registered with us"
                             VerticalTextAlignment="Start" />
 
@@ -104,13 +104,14 @@
                             FontFamily="{StaticResource Montserrat-Medium}"
                             HorizontalOptions="CenterAndExpand"
                             HorizontalTextAlignment="Center"
-                            Style="{StaticResource LabelStyle}"
+                            Style="{StaticResource TitleStyle}"
                             Text="Already have an account?"
                             VerticalTextAlignment="Center" />
 
                         <buttons:SfButton
                             Command="{Binding SignUpCommand}"
                             Style="{StaticResource SfFlatButtonStyle}"
+                            TextColor="{StaticResource Gray-900}"
                             Text="LOGIN" />
 
                     </StackLayout>

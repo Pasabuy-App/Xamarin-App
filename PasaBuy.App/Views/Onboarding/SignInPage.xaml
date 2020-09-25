@@ -55,7 +55,7 @@
                 Spacing="0"
                 VerticalOptions="FillAndExpand"
                 WidthRequest="{OnPlatform Default='-1',
-                                          UWP='350'}">
+                                          UWP='400'}">
 
                     <Grid RowSpacing="0" VerticalOptions="CenterAndExpand">
 
@@ -73,14 +73,15 @@
 
                         <!--  Logo to display the title of this page  -->
                         <Image Source="LogoHeader.png" 
-                               HeightRequest="75"/>
+                               WidthRequest="340"/>
                         
                         <!--  Label to display the description of this page  -->
                         <Label
                             Grid.Row="1"
-                            Margin="0,0,0,40"
+                            Margin="0,-20,0,70"
                             HorizontalTextAlignment="Center"
                             Style="{StaticResource LabelStyle}"
+                            FontSize="17"
                             Text="v1.0.0 - Beta Release" />
                         
                         <!--  Entry to get email ID from user  -->
