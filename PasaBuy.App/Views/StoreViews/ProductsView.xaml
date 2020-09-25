@@ -30,7 +30,7 @@
                 <Setter Property="HorizontalOptions" Value="Start" />
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="Margin" Value="0, 0" />
-                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
             </Style>
 
             <Style x:Key="ProductUnitStyle" TargetType="{x:Type Label}">
@@ -57,7 +57,7 @@
                 <Setter Property="HorizontalOptions" Value="End" />
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="Margin" Value="0, 0, 8, 0" />
-                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
             </Style>
 
             <!--<animations:StoryBoard x:Key="ProductsAnimation" Target="{x:Reference listView}">
@@ -73,69 +73,9 @@
         <Grid>
             <Grid>
                 <StackLayout Spacing="0" VerticalOptions="FillAndExpand">
-                    <Grid Padding="15,0,15,25" BackgroundColor="{DynamicResource PrimaryColor}">
-                        <Frame
-                            Margin="0"
-                            Padding="10,0"
-                            BackgroundColor="{StaticResource Gray-White}"
-                            CornerRadius="{OnPlatform Android='23',
-                                                      iOS='28'}"
-                            HeightRequest="{OnPlatform Android='46',
-                                                       iOS='56'}">
-                            <Grid ColumnSpacing="0" HeightRequest="{OnPlatform Android='46', iOS='56'}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-
-                                <Image
-                                    Margin="8,8,0,8"
-                                    Aspect="AspectFit"
-                                    Source="barcode">
-                                    <Image.GestureRecognizers>
-                                        <!--<TapGestureRecognizer Tapped="ScanBarcode" />-->
-                                    </Image.GestureRecognizers>
-                                </Image>
-
-                                <SearchBar
-                                    Grid.Column="1"
-                                    Margin="5,5,10,5"
-                                    FontFamily="{StaticResource Montserrat-Medium}"
-                                    FontSize="14"
-                                    HorizontalOptions="FillAndExpand"
-                                    Placeholder="{texts:Translate ProductSearchPlaceHolder}"
-                                    Text="{Binding ScannedText, Mode=TwoWay}"
-                                    VerticalOptions="CenterAndExpand">
-                                    <!--TextChanged="SearchBar_OnTextChanged"-->
-
-                                    <SearchBar.PlaceholderColor>
-                                        <OnPlatform x:TypeArguments="Color" Android="DarkGray" />
-                                    </SearchBar.PlaceholderColor>
-                                    <SearchBar.BackgroundColor>
-                                        <OnPlatform
-                                            x:TypeArguments="Color"
-                                            Android="{StaticResource WhiteColor}"
-                                            iOS="Transparent" />
-                                    </SearchBar.BackgroundColor>
-                                    <SearchBar.TextColor>
-                                        <OnPlatform
-                                            x:TypeArguments="Color"
-                                            Android="{StaticResource BlackColor}"
-                                            iOS="{StaticResource BlackColor}" />
-                                    </SearchBar.TextColor>
-                                    <SearchBar.CancelButtonColor>
-                                        <OnPlatform
-                                            x:TypeArguments="Color"
-                                            Android="{StaticResource BlackColor}"
-                                            iOS="{StaticResource BlackColor}" />
-                                    </SearchBar.CancelButtonColor>
-                                </SearchBar>
-                            </Grid>
-                        </Frame>
-                    </Grid>
 
                     <yummy:PancakeView
-                        Margin="0,-15,0,0"
+                        Margin="0,15,0,0"
                         Padding="10,10,10,0"
                         BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
                         CornerRadius="20,20,0,0"
@@ -150,12 +90,12 @@
                                     FontFamily="{StaticResource Montserrat-Medium}"
                                     FontSize="13"
                                     HorizontalOptions="EndAndExpand"
-                                    Text="Swipe left to edit"
+                                    Text="Swipe left to edit or delete product"
                                     TextColor="{DynamicResource Gray-800}"
                                     VerticalOptions="Center" />
                             </Grid>
 
-                            <Grid Padding="5,0,5,0" ColumnSpacing="0">
+                            <!--<Grid Padding="5,0,5,0" ColumnSpacing="0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="0.5*" />
                                     <ColumnDefinition Width="10" />
@@ -165,6 +105,7 @@
                                 <Frame
                                     Grid.Column="0"
                                     Padding="0"
+                                    Grid.ColumnSpan="3"
                                     BorderColor="{DynamicResource Gray-400}"
                                     CornerRadius="5"
                                     HasShadow="{OnPlatform Android='True',
@@ -215,53 +156,7 @@
                                     VerticalOptions="Center"
                                     WidthRequest="1" />
 
-                                <Frame
-                                    Grid.Column="2"
-                                    Padding="0"
-                                    BorderColor="{DynamicResource Gray-400}"
-                                    CornerRadius="5"
-                                    HasShadow="{OnPlatform Android='True',
-                                                           iOS='False'}"
-                                    IsClippedToBounds="True">
-                                    <Grid Padding="10,3" BackgroundColor="{StaticResource Gray-200}">
-                                        <Grid.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding OpenUnitCommand}" />
-                                        </Grid.GestureRecognizers>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="0.5*" />
-                                            <RowDefinition Height="0.5*" />
-                                        </Grid.RowDefinitions>
-
-                                        <Label
-                                            Grid.Row="0"
-                                            FontFamily="{StaticResource Montserrat-SemiBold}"
-                                            FontSize="10"
-                                            HorizontalOptions="Start"
-                                            Text="{texts:Translate UnitFilter}"
-                                            TextColor="{StaticResource BlackColor}"
-                                            VerticalTextAlignment="End" />
-                                        <StackLayout Grid.Row="1" Orientation="Horizontal">
-
-                                            <Label
-                                                FontFamily="{StaticResource Montserrat-Regular}"
-                                                FontSize="12"
-                                                HorizontalOptions="StartAndExpand"
-                                                LineBreakMode="TailTruncation"
-                                                Text="All units"
-                                                VerticalOptions="Start" />
-                                            <Image
-                                                Margin="0,2,0,0"
-                                                HeightRequest="12"
-                                                HorizontalOptions="End"
-                                                Opacity="0.6"
-                                                Source="ic_drop_down"
-                                                VerticalOptions="Start"
-                                                WidthRequest="12" />
-                                        </StackLayout>
-                                    </Grid>
-                                </Frame>
-
-                            </Grid>
+                            </Grid>-->
 
                             <BoxView BackgroundColor="{DynamicResource Gray-300}" HeightRequest="0.5" />
 

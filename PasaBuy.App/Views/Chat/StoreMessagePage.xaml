@@ -47,13 +47,6 @@
                     Spacing="0" 
                     VerticalOptions="FillAndExpand">
 
-                    <!--  Menu Button  -->
-                    <!--buttons:SfButton
-                        x:Name="MenuBackButton"
-                        Command="{Binding BackCommand}"
-                        Style="{StaticResource NavigationBarButtonStyle}"
-                        Text="{StaticResource Back}" />-->
-
                     <!--  Rounded Profile Image  -->
                     <border:SfBorder BackgroundColor="{DynamicResource Gray-200}" Style="{StaticResource ProfileBorderStyle}">
                         <Image
@@ -69,18 +62,6 @@
                             </Image.Source>
                         </Image>
                     </border:SfBorder>
-
-                    <!--  Recent Chat page Title  -->
-                    <!--<Label
-                        Margin="16,0" 
-                        FontFamily="{StaticResource Montserrat-SemiBold}"
-                        FontSize="18"
-                        HorizontalOptions="Start"
-                        LineHeight="1.25"
-                        Text="Messages"
-                        TextColor="{DynamicResource Gray-White}"
-                        VerticalOptions="Center"
-                        VerticalTextAlignment="Center" />-->
 
                 </StackLayout>
 
@@ -120,13 +101,6 @@
                     IsVisible="{Binding Path=IsVisible}"
                     Style="{StaticResource NavigationBarButtonStyle}"
                     Text="{StaticResource Search}" />
-
-                <!--  Menu Button  -->
-                <!--<buttons:SfButton
-                    x:Name="MenuButton"
-                    Command="{Binding MenuCommand}"
-                    Style="{StaticResource NavigationBarButtonStyle}"
-                    Text="{StaticResource Menu}" />-->
 
             </StackLayout>
 

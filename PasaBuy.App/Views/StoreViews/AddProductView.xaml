@@ -118,10 +118,8 @@
                                 Aspect="AspectFill"
                                 CacheType="None"
                                 DownsampleToViewSize="true"
-                                ErrorPlaceholder="picture_icon.png"
                                 HeightRequest="128"
                                 HorizontalOptions="Center"
-                                LoadingPlaceholder="picture_icon.png"
                                 Source="{Binding ProductImageSource}"
                                 TransformPlaceholders="True"
                                 WidthRequest="128">
@@ -196,6 +194,73 @@
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
                             FocusedColor="{DynamicResource BlackColor}"
+                            HasError="{Binding IsOriginalInValid}"
+                            Hint="Short Description"
+                            HorizontalOptions="Fill"
+                            LeadingViewPosition="Inside">
+                            <Entry
+                                VerticalOptions="Center"
+                                HorizontalOptions="FillAndExpand"/>
+                            <inputLayout:SfTextInputLayout.LeadingView>
+                                <Label
+                                    FontSize="18"
+                                    VerticalTextAlignment="Center"
+                                    Style="{StaticResource ProfileIconLabelStyle}"
+                                    TextColor="{DynamicResource BlackColor}"
+                                    Text="&#xf1ea;" />
+                            </inputLayout:SfTextInputLayout.LeadingView>
+                        </inputLayout:SfTextInputLayout>
+
+                        <inputLayout:SfTextInputLayout
+                            Grid.Row="3"
+                            ContainerBackgroundColor="Transparent"
+                            ContainerType="Outlined"
+                            FocusedColor="{DynamicResource BlackColor}"
+                            Hint="(Optional) Long Description"
+                            HorizontalOptions="Fill"
+                            LeadingViewPosition="Inside">
+                            <Editor
+                                HeightRequest="80"
+                                MaxLength="250"
+                                Text="{Binding Description}" />
+                            <inputLayout:SfTextInputLayout.LeadingView>
+                                <Label
+                                    FontSize="18"
+                                    VerticalTextAlignment="Center"
+                                    Style="{StaticResource ProfileIconLabelStyle}"
+                                    TextColor="{DynamicResource BlackColor}"
+                                    Text="&#xf46d;" />
+                            </inputLayout:SfTextInputLayout.LeadingView>
+                        </inputLayout:SfTextInputLayout>
+
+                        <inputLayout:SfTextInputLayout
+                            Grid.Row="4"
+                            ContainerBackgroundColor="Transparent"
+                            ContainerType="Outlined"
+                            FocusedColor="{DynamicResource BlackColor}"
+                            HasError="{Binding IsPriceInValid}"
+                            Hint="Selling Price"
+                            HorizontalOptions="Fill"
+                            LeadingViewPosition="Inside">
+                            <Entry
+                                VerticalOptions="Center"
+                                HorizontalOptions="FillAndExpand"
+                                Keyboard="Numeric"/>
+                            <inputLayout:SfTextInputLayout.LeadingView>
+                                <Label
+                                    FontSize="18"
+                                    VerticalTextAlignment="Center"
+                                    Style="{StaticResource ProfileIconLabelStyle}"
+                                    TextColor="{DynamicResource BlackColor}"
+                                    Text="&#xf53a;" />
+                            </inputLayout:SfTextInputLayout.LeadingView>
+                        </inputLayout:SfTextInputLayout>
+
+                        <inputLayout:SfTextInputLayout
+                            Grid.Row="5"
+                            ContainerBackgroundColor="Transparent"
+                            ContainerType="Outlined"
+                            FocusedColor="{DynamicResource BlackColor}"
                             HasError="{Binding IsCategoryInValid}"
                             Hint="{texts:Translate CategoryHint}"
                             HorizontalOptions="Fill"
@@ -225,12 +290,35 @@
                         </inputLayout:SfTextInputLayout>
 
                         <inputLayout:SfTextInputLayout
-                            Grid.Row="3"
+                            Grid.Row="6"
+                            ContainerBackgroundColor="Transparent"
+                            ContainerType="Outlined"
+                            FocusedColor="{DynamicResource BlackColor}"
+                            HasError="{Binding IsOriginalInValid}"
+                            Hint="(Optional) Stock Keeping Unit"
+                            HorizontalOptions="Fill"
+                            LeadingViewPosition="Inside">
+                            <Entry
+                                VerticalOptions="Center"
+                                HorizontalOptions="FillAndExpand"
+                                Keyboard="Numeric"/>
+                            <inputLayout:SfTextInputLayout.LeadingView>
+                                <Label
+                                    FontSize="18"
+                                    VerticalTextAlignment="Center"
+                                    Style="{StaticResource ProfileIconLabelStyle}"
+                                    TextColor="{DynamicResource BlackColor}"
+                                    Text="&#xf02a;" />
+                            </inputLayout:SfTextInputLayout.LeadingView>
+                        </inputLayout:SfTextInputLayout>
+
+                        <inputLayout:SfTextInputLayout
+                            Grid.Row="7"
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
                             FocusedColor="{DynamicResource BlackColor}"
                             HasError="{Binding IsUnitInValid}"
-                            Hint="{texts:Translate UnitHint}"
+                            Hint="(Optional) Weight"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside"
                             TrailingViewPosition="Inside">
@@ -247,103 +335,30 @@
                                     Text="&#xf24e;" />
                             </inputLayout:SfTextInputLayout.LeadingView>
                         </inputLayout:SfTextInputLayout>
-
+                       
                         <inputLayout:SfTextInputLayout
-                            Grid.Row="4"
+                            Grid.Row="8"
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
+                            Margin="0, 0, 0, 30"
                             FocusedColor="{DynamicResource BlackColor}"
                             HasError="{Binding IsOriginalInValid}"
-                            Hint="{texts:Translate ProductCostHint}"
+                            Hint="(Optional) Dimension"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
                             <Entry
                                 VerticalOptions="Center"
-                                HorizontalOptions="FillAndExpand"
-                                Keyboard="Numeric"/>
+                                HorizontalOptions="FillAndExpand"/>
                             <inputLayout:SfTextInputLayout.LeadingView>
                                 <Label
                                     FontSize="18"
                                     VerticalTextAlignment="Center"
                                     Style="{StaticResource ProfileIconLabelStyle}"
                                     TextColor="{DynamicResource BlackColor}"
-                                    Text="&#xf53d;" />
+                                    Text="&#xf546;" />
                             </inputLayout:SfTextInputLayout.LeadingView>
                         </inputLayout:SfTextInputLayout>
-
-                        <inputLayout:SfTextInputLayout
-                            Grid.Row="5"
-                            ContainerBackgroundColor="Transparent"
-                            ContainerType="Outlined"
-                            FocusedColor="{DynamicResource BlackColor}"
-                            HasError="{Binding IsPriceInValid}"
-                            Hint="{texts:Translate SalePriceHint}"
-                            HorizontalOptions="Fill"
-                            LeadingViewPosition="Inside">
-                            <Entry
-                                VerticalOptions="Center"
-                                HorizontalOptions="FillAndExpand"
-                                Keyboard="Numeric"/>
-                            <inputLayout:SfTextInputLayout.LeadingView>
-                                <Label
-                                    FontSize="18"
-                                    VerticalTextAlignment="Center"
-                                    Style="{StaticResource ProfileIconLabelStyle}"
-                                    TextColor="{DynamicResource BlackColor}"
-                                    Text="&#xf53a;" />
-                            </inputLayout:SfTextInputLayout.LeadingView>
-                        </inputLayout:SfTextInputLayout>
-
-                        <inputLayout:SfTextInputLayout
-                            Grid.Row="6"
-                            ContainerBackgroundColor="Transparent"
-                            ContainerType="Outlined"
-                            FocusedColor="{DynamicResource BlackColor}"
-                            Hint="{texts:Translate MinStockHint}"
-                            HorizontalOptions="Fill"
-                            LeadingViewPosition="Inside">
-                            <!--<numericTextEntry:SfNumericTextBox
-                                FormatString="n"
-                                HorizontalOptions="FillAndExpand"
-                                MaximumNumberDecimalDigits="0"
-                                VerticalOptions="Center"
-                                Value="{Binding MinQuantity, Mode=TwoWay}" />-->
-                            <Entry
-                                VerticalOptions="Center"
-                                HorizontalOptions="FillAndExpand"
-                                Keyboard="Numeric"/>
-
-                            <inputLayout:SfTextInputLayout.LeadingView>
-                                <Label
-                                    FontSize="18"
-                                    VerticalTextAlignment="Center"
-                                    Style="{StaticResource ProfileIconLabelStyle}"
-                                    TextColor="{DynamicResource BlackColor}"
-                                    Text="&#xf466;" />
-                            </inputLayout:SfTextInputLayout.LeadingView>
-                        </inputLayout:SfTextInputLayout>
-
-                        <inputLayout:SfTextInputLayout
-                            Grid.Row="7"
-                            ContainerBackgroundColor="Transparent"
-                            ContainerType="Outlined"
-                            FocusedColor="{DynamicResource BlackColor}"
-                            Hint="{texts:Translate DescriptionsHint}"
-                            HorizontalOptions="Fill"
-                            LeadingViewPosition="Inside">
-                            <Editor
-                                HeightRequest="80"
-                                MaxLength="250"
-                                Text="{Binding Description}" />
-                            <inputLayout:SfTextInputLayout.LeadingView>
-                                <Label
-                                    FontSize="18"
-                                    VerticalTextAlignment="Center"
-                                    Style="{StaticResource ProfileIconLabelStyle}"
-                                    TextColor="{DynamicResource BlackColor}"
-                                    Text="&#xf46d;" />
-                            </inputLayout:SfTextInputLayout.LeadingView>
-                        </inputLayout:SfTextInputLayout>
+                        
                     </Grid>
                 </StackLayout>
             </ScrollView>
