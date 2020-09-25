@@ -155,7 +155,7 @@
                                 Watermark="Select documment type"
                                 VerticalOptions="CenterAndExpand">
                             <combobox:SfComboBox.ComboBoxSource>
-                                <ListCollection:List x:TypeArguments="x:String">
+                                <ListCollection:List x:TypeArguments="x:String" >
                                     <x:String>DTI Registration</x:String>
                                     <x:String>Barangay Clearance</x:String>
                                     <x:String>Lease Contract</x:String>
@@ -192,7 +192,8 @@
                             BackgroundColor="Green"
                             BorderColor="{DynamicResource BlackColor}"
                             BorderWidth="2"
-                            Command="{Binding Ok_Command}"
+                            x:Name="OKModal"
+                            Clicked="OKModal_Clicked"
                             CornerRadius="4"
                             FontFamily="{StaticResource Montserrat-Regular}"
                             HorizontalOptions="FillAndExpand"

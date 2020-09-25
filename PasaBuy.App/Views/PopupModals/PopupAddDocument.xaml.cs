@@ -1,4 +1,6 @@
 ﻿using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
+using PasaBuy.App.ViewModels.MobilePOS;
 using Plugin.Media;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
@@ -16,12 +18,13 @@ namespace PasaBuy.App.Views.PopupModals
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PopupAddDocument : PopupPage
     {
+        public string filepath = string.Empty;
         public PopupAddDocument()
         {
             InitializeComponent();
         }
 
-        async void RemoveDocumentImage(object sender, EventArgs args)
+        void RemoveDocumentImage(object sender, EventArgs args)
         {
             DocumentImage.Source = "Idcard.png";
         }
@@ -50,6 +53,7 @@ namespace PasaBuy.App.Views.PopupModals
             });
 
             DocumentImage.Source = imageSource;
+            filepath = file.Path;
         }
 
         async void BrowseGalleryCommand(object sender, EventArgs args)
@@ -78,12 +82,75 @@ namespace PasaBuy.App.Views.PopupModals
             });
 
             DocumentImage.Source = imageSource;
+            filepath = file.Path;
 
         }
 
         private void CancelModal(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PopAsync();
+        }
+
+        private void OKModal_Clicked(object sender, EventArgs e)
+        {
+            string doctype = string.Empty;
+            if (DocumentTypePicker.Text == "DTI Registration")
+            {
+                doctype = "dti_registration";
+            }
+            if (DocumentTypePicker.Text == "Barangay Clearance")
+            {
+                doctype = "barangay_clearance";
+            }
+            if (DocumentTypePicker.Text == "Lease Contract")
+            {
+                doctype = "lease_contract";
+            }
+            if (DocumentTypePicker.Text == "Community Tax")
+            {
+                doctype = "community_tax";
+            }
+            if (DocumentTypePicker.Text == "Occupancy Permit")
+            {
+                doctype = "occupancy_permit";
+            }
+            if (DocumentTypePicker.Text == "Sanitary Permit")
+            {
+                doctype = "sanitary_permit";
+            }
+            if (DocumentTypePicker.Text == "Fire Permit")
+            {
+                doctype = "fire_permit";
+            }
+            if (DocumentTypePicker.Text == "Mayor's Permit")
+            {
+                doctype = "mayors_permit";
+            }
+            if (filepath != string.Empty && DocumentTypePicker.Text != string.Empty)
+            {
+                //new Alert(DocumentTypePicker.Text, "Path: " + filepath, "OK");
+                try
+                {
+                    TindaPress.Document.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.user_type, doctype, filepath,(bool success, string data) =>
+                    {
+                        if (success)
+                        {
+                            DocumentViewModel.documentList.Clear();
+                            DocumentViewModel.LoadData();
+                            PopupNavigation.Instance.PopAsync();
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+
+                        }
+                    });
+                }
+                catch (Exception)
+                {
+                    new Alert("Something went Wrong", "Please contact administrator. Error Code: 20465.", "OK");
+                }
+            }
         }
     }
 }

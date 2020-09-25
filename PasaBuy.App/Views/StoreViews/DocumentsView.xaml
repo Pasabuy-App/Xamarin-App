@@ -4,7 +4,9 @@
              x:Class="PasaBuy.App.Views.StoreViews.DocumentsView"
              xmlns:model="clr-namespace:PasaBuy.App.Models.MobilePOS" 
              xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
-             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+             xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl" 
+             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.MobilePOS"
              Title="Documents">
     
     <ContentPage.Resources>
@@ -14,15 +16,20 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewModel:DocumentViewModel />
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
         <Grid>
             <StackLayout Spacing="0" VerticalOptions="FillAndExpand">
                 <sync:SfListView
-                        x:Name="ManagementItem"
+                        x:Name="ManagementItem" ItemTapped="ManagementItem_ItemTapped"
                         AutoFitMode="Height"
                         FocusBorderThickness="0"
                         ItemSpacing="0,1,0,0"
-                        ItemsSource="{x:Static model:Management.All}"
+                        ItemsSource="{Binding DocumentList}"
                         SelectionMode="None">
                 <!--Item Source is for testing purposes only. Kindly bind into specific viewmodels-->
 
@@ -56,7 +63,7 @@
                             <Label Grid.Column="1"
                                                    Grid.ColumnSpan="3"
                                                    Margin="0,13,0,0"
-                                                   Text="business-permit.jpeg"
+                                                   Text="{Binding Name}"
                                                    TextColor="{DynamicResource Gray-900}"
                                                    FontSize="16"
                                                    FontFamily="{StaticResource Montserrat-Medium}"
@@ -66,7 +73,7 @@
                             <Label Grid.Row="1"
                                                    Grid.Column="1"
                                                    Margin="0,0,0,14"
-                                                   Text="Clearance"
+                                                   Text="{Binding Type}"
                                                    TextColor="{DynamicResource Gray-700}"
                                                    FontSize="14"
                                                    FontFamily="{StaticResource Montserrat-Medium}"
@@ -76,7 +83,7 @@
                             <Label Grid.Row="1"
                                                    Grid.Column="2"
                                                    Margin="24,0,0,14"
-                                                   Text="Sept. 20, 2020"
+                                                   Text="{Binding Date}"
                                                    TextColor="{DynamicResource Gray-700}"
                                                    FontSize="14"
                                                    FontFamily="{StaticResource Montserrat-Medium}"
@@ -84,7 +91,7 @@
 
                             <!--NOTE FOR RUSSEL: Change text color to green if approved, otherwise red if pending.-->
                             <!-- Status -->
-                            <buttons:SfButton Grid.Column="3" 
+                                <buttons:SfButton Grid.Column="3" IsVisible="{Binding isGreen}"
                                                               Grid.RowSpan="3" 
                                                               Margin="15,0,15,0"
                                                               TextColor="{DynamicResource Green}"
@@ -92,12 +99,25 @@
                                                               HorizontalOptions="End"
                                                               HorizontalTextAlignment="End"
                                                               VerticalOptions="Center"
-                                                              Text="Approved"
+                                                              Text="{Binding Status}"
                                                               FontSize="16"
                                                               HeightRequest="40"
                                                               FontFamily="{StaticResource FontIcons}" />
 
-                            <!-- Seperator -->
+                                <buttons:SfButton Grid.Column="3" IsVisible="{Binding isRed}"
+                                                              Grid.RowSpan="3" 
+                                                              Margin="15,0,15,0"
+                                                              TextColor="{DynamicResource Red}"
+                                                              BackgroundColor="{DynamicResource Transparent}"
+                                                              HorizontalOptions="End"
+                                                              HorizontalTextAlignment="End"
+                                                              VerticalOptions="Center"
+                                                              Text="{Binding Status}"
+                                                              FontSize="16"
+                                                              HeightRequest="40"
+                                                              FontFamily="{StaticResource FontIcons}" />
+
+                                <!-- Seperator -->
                             <BoxView Grid.Row="2" Grid.ColumnSpan="4" Style="{DynamicResource SeparatorStyle}" />
 
                         </Grid>
