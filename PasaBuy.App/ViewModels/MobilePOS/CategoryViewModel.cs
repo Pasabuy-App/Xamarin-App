@@ -22,6 +22,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         public CategoryViewModel()
         {
             categoriesList = new ObservableCollection<CategoryData>();
+            categoriesList.Clear();
             LoadData();
         }
         public static void LoadData()

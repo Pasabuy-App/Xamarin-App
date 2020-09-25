@@ -17,6 +17,9 @@ namespace PasaBuy.App.Views.StoreViews
     public partial class ProductsView : ContentPage
     {
         public static int LastIndex = 11;
+        public static int Offset = 0;
+        public static bool isFirstLoad = false;
+        public int count = 0;
         public ICommand AddProductCommand { get; set; }
 
         public ProductsView()
@@ -28,9 +31,12 @@ namespace PasaBuy.App.Views.StoreViews
 
         private async void AddProductClicked(object sender, EventArgs e)
         {
+            //await Task.Delay(200);
+            AddProductView.pdid = "0";
+            await Navigation.PushAsync(new AddProductView());
             //var testPage = new NavigationPage(new AddProductView());
             //Navigation.PushAsync(testPage);
-            if (AddProductButton.IsEnabled == true)
+            /*if (AddProductButton.IsEnabled == true)
             {
                 AddProductButton.IsEnabled = false;
                 AddProductCommand = new Command<Type>(async (Type pageType) =>
@@ -41,13 +47,16 @@ namespace PasaBuy.App.Views.StoreViews
                 BindingContext = this;
                 await Task.Delay(200);
                 AddProductButton.IsEnabled = true;
-            }
+            }*/
         }
 
         private async void PullToRefresh_Refreshing(object sender, EventArgs args)
         {
             pullToRefresh.IsRefreshing = true;
             await Task.Delay(500);
+            LastIndex = 11;
+            isFirstLoad = false;
+            Offset = 0;
             ProductViewModel.productsList.Clear();
             ProductViewModel.LoadData("");
             pullToRefresh.IsRefreshing = false;
@@ -60,46 +69,72 @@ namespace PasaBuy.App.Views.StoreViews
             {
                 if (ProductViewModel.productsList.IndexOf(item) >= LastIndex)
                 {
+                    if (isFirstLoad)
+                    {
+                        Offset += 7;
+                    }
+                    else
+                    {
+                        isFirstLoad = true;
+                    }
                     LastIndex += 6;
-                    ProductViewModel.LoadData(item.ID);
+                    ProductViewModel.LoadData(Offset.ToString());
                 }
             }
         }
 
         private async void Delete_Tapped(object sender, EventArgs e)
         {
-            bool answer = await DisplayAlert("Delete Product?", "Are you sure to delete this?", "Yes", "No");
-            if (answer)
+            if (count == 0)
             {
-                try
+                count = 1;
+                bool answer = await DisplayAlert("Delete Product?", "Are you sure to delete this?", "Yes", "No");
+                if (answer)
                 {
-                    var btn = sender as Grid;
-                    TindaPress.Product.Instance.Delete(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, btn.ClassId, (bool success, string data) =>
+                    try
                     {
-                        if (success)
+                        var btn = sender as Grid;
+                        TindaPress.Product.Instance.Delete(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, btn.ClassId, (bool success, string data) =>
                         {
-                            LastIndex = 11;
-                            ProductViewModel.productsList.Clear();
-                            ProductViewModel.LoadData("");
-                        }
-                        else
-                        {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                        }
-                    });
+                            if (success)
+                            {
+                                LastIndex = 11;
+                                isFirstLoad = false;
+                                Offset = 0;
+                                ProductViewModel.productsList.Clear();
+                                ProductViewModel.LoadData("");
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            }
+                        });
+                    }
+                    catch (Exception)
+                    {
+                        new Alert("Something went Wrong", "Please contact administrator. Error Code: 20416.", "OK");
+                    }
                 }
-                catch (Exception)
-                {
-                    new Alert("Something went Wrong", "Please contact administrator. Error Code: 20416.", "OK");
-                }
+                await Task.Delay(200);
+                count = 0;
             }
         }
 
-        private void Update_Tapped(object sender, EventArgs e)
+        private async void Update_Tapped(object sender, EventArgs e)
         {
-            LastIndex = 11;
-            var btn = sender as Grid;
-            new Alert("ID for Update", btn.ClassId, "OK");
+            if (count == 0)
+            {
+                count = 1;
+                /*LastIndex = 11;
+                isFirstLoad = false;
+                Offset = 0;*/
+                var btn = sender as Grid;
+                //new Alert("ID for Update", btn.ClassId, "OK");
+                AddProductView.pdid = btn.ClassId;
+                await Navigation.PushAsync(new AddProductView());
+                await Task.Delay(200);
+                count = 0;
+            }
         }
     }
 }

@@ -23,7 +23,16 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         public ProductViewModel()
         {
             productsList = new ObservableCollection<ProductData>();
+            productsList.Clear();
             LoadData("");
+            /*productsList.Add(new ProductData()
+            {
+                ID = "0",
+                Product_name = "Name",
+                Short_info = "Info",
+                Price = "100.00",
+                Preview = ""
+            });*/
         }
         public static void LoadData(string lastid)
         {

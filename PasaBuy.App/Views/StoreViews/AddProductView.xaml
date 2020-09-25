@@ -68,7 +68,7 @@
         </ToolbarItem>
 
         <ToolbarItem
-            Command="{Binding SaveProductCommand}"
+            Clicked="AddProduct"
             Order="Primary"
             Priority="2"
             Text="asd">
@@ -171,16 +171,17 @@
 
                         </Grid>
 
-                        <inputLayout:SfTextInputLayout
+                        <inputLayout:SfTextInputLayout 
+                            x:Name="ProductName"
                             Grid.Row="1"
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
                             FocusedColor="{StaticResource BlackColor}"
-                            HasError="{Binding IsProductNameInValid}"
                             Hint="{texts:Translate ProductNameHint}"
+                            HasError="False"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
-                            <Entry MaxLength="50" Text="{Binding ProductName}" />
+                            <Entry MaxLength="50"  x:Name="ProductNames" />
                             <inputLayout:SfTextInputLayout.LeadingView>
                                 <Label
                                     FontSize="18"
@@ -192,17 +193,17 @@
                         </inputLayout:SfTextInputLayout>
 
                         <inputLayout:SfTextInputLayout
+                            x:Name="Short"
                             Grid.Row="2"
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
                             FocusedColor="{DynamicResource BlackColor}"
-                            HasError="{Binding IsOriginalInValid}"
                             Hint="Short Description"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
                             <Entry
                                 VerticalOptions="Center"
-                                HorizontalOptions="FillAndExpand"/>
+                                HorizontalOptions="FillAndExpand" x:Name="Shorts"/>
                             <inputLayout:SfTextInputLayout.LeadingView>
                                 <Label
                                     FontSize="18"
@@ -214,6 +215,7 @@
                         </inputLayout:SfTextInputLayout>
 
                         <inputLayout:SfTextInputLayout
+                            x:Name="Long"
                             Grid.Row="3"
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
@@ -224,7 +226,7 @@
                             <Editor
                                 HeightRequest="80"
                                 MaxLength="250"
-                                Text="{Binding Description}" />
+                                x:Name="Longs" />
                             <inputLayout:SfTextInputLayout.LeadingView>
                                 <Label
                                     FontSize="18"
@@ -236,18 +238,18 @@
                         </inputLayout:SfTextInputLayout>
 
                         <inputLayout:SfTextInputLayout
+                            x:Name="Price"
                             Grid.Row="4"
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
                             FocusedColor="{DynamicResource BlackColor}"
-                            HasError="{Binding IsPriceInValid}"
                             Hint="Selling Price"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
                             <Entry
                                 VerticalOptions="Center"
                                 HorizontalOptions="FillAndExpand"
-                                Keyboard="Numeric"/>
+                                Keyboard="Numeric" x:Name="Prices"/>
                             <inputLayout:SfTextInputLayout.LeadingView>
                                 <Label
                                     FontSize="18"
@@ -259,27 +261,29 @@
                         </inputLayout:SfTextInputLayout>
 
                         <inputLayout:SfTextInputLayout
+                            x:Name="Category" 
                             Grid.Row="5"
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
                             FocusedColor="{DynamicResource BlackColor}"
-                            HasError="{Binding IsCategoryInValid}"
                             Hint="{texts:Translate CategoryHint}"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside"
                             TrailingViewPosition="Inside">
                             <combobox:SfComboBox
-                                x:Name="ProductCategory"
-                                SelectedValue="{Binding ProductCategory, Mode=TwoWay}"
+                                x:Name="ProductCategory" 
+                                DataSource="{Binding CategoryList}"
+                                SelectionChanged="ProductCategory_SelectionChanged"
                                 Style="{StaticResource ComboBoxStyle}"
                                 TextColor="Black"
                                 HeightRequest="50"
                                 Watermark="Select category"
+                                SelectedValuePath="ID"
+                                DisplayMemberPath="Title"
                                 VerticalOptions="StartAndExpand">
                                 <combobox:SfComboBox.ComboBoxSource>
                                     <ListCollection:List x:TypeArguments="x:String">
-                                        <x:String>Burgers</x:String>
-                                        <x:String>Milk Tea</x:String>
+                                        <x:String></x:String>
                                     </ListCollection:List>
                                 </combobox:SfComboBox.ComboBoxSource>
                                 <combobox:SfComboBox.DropDownButtonSettings>
@@ -308,18 +312,18 @@
                         </inputLayout:SfTextInputLayout>
 
                         <inputLayout:SfTextInputLayout
+                            x:Name="SKU"
                             Grid.Row="6"
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
                             FocusedColor="{DynamicResource BlackColor}"
-                            HasError="{Binding IsOriginalInValid}"
                             Hint="(Optional) Stock Keeping Unit"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
                             <Entry
                                 VerticalOptions="Center"
                                 HorizontalOptions="FillAndExpand"
-                                Keyboard="Numeric"/>
+                                Keyboard="Numeric" x:Name="SKUs"/>
                             <inputLayout:SfTextInputLayout.LeadingView>
                                 <Label
                                     FontSize="18"
@@ -331,11 +335,11 @@
                         </inputLayout:SfTextInputLayout>
 
                         <inputLayout:SfTextInputLayout
+                            x:Name="Weight"
                             Grid.Row="7"
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
                             FocusedColor="{DynamicResource BlackColor}"
-                            HasError="{Binding IsUnitInValid}"
                             Hint="(Optional) Weight"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside"
@@ -343,7 +347,7 @@
                             <inputLayout:SfTextInputLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OpenSourceUnitCommand}" />
                             </inputLayout:SfTextInputLayout.GestureRecognizers>
-                            <Entry Focused="OnUnit_Focused" Text="{Binding SelectedSourceUnit.Name}" />
+                            <Entry Focused="OnUnit_Focused" x:Name="Weights" />
                             <inputLayout:SfTextInputLayout.LeadingView>
                                 <Label
                                     FontSize="18"
@@ -353,20 +357,20 @@
                                     Text="&#xf24e;" />
                             </inputLayout:SfTextInputLayout.LeadingView>
                         </inputLayout:SfTextInputLayout>
-                       
+
                         <inputLayout:SfTextInputLayout
+                            x:Name="Dimension"
                             Grid.Row="8"
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
                             Margin="0, 0, 0, 30"
                             FocusedColor="{DynamicResource BlackColor}"
-                            HasError="{Binding IsOriginalInValid}"
                             Hint="(Optional) Dimension"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
                             <Entry
                                 VerticalOptions="Center"
-                                HorizontalOptions="FillAndExpand"/>
+                                HorizontalOptions="FillAndExpand" x:Name="Dimensions"/>
                             <inputLayout:SfTextInputLayout.LeadingView>
                                 <Label
                                     FontSize="18"
@@ -383,7 +387,7 @@
             <customViews:LoadingIndicator
                 Grid.Row="0"
                 HorizontalOptions="Fill"
-                IsVisible="False"
+                IsVisible="false"
                 VerticalOptions="Fill" />
         </Grid>
     </ContentPage.Content>

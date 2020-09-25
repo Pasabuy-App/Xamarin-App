@@ -22,6 +22,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         public DocumentViewModel()
         {
             documentList = new ObservableCollection<DocumentData>();
+            documentList.Clear();
             LoadData();
         }
         public static void LoadData()

@@ -196,7 +196,7 @@
                                                 <DataTemplate>
                                                     <Grid ColumnSpacing="0" RowSpacing="0">
                                                         <Grid.GestureRecognizers>
-                                                            <TapGestureRecognizer Command="{Binding Path=BindingContext.ViewProductCommand, Source={x:Reference Name=listView}}" CommandParameter="{Binding .}" />
+                                                            <TapGestureRecognizer />
                                                         </Grid.GestureRecognizers>
                                                         <Grid.RowDefinitions>
                                                             <RowDefinition Height="*" />
@@ -216,7 +216,7 @@
                                                             HeightRequest="50"
                                                             HorizontalOptions="Center"
                                                             LoadingPlaceholder="{Binding Preview}"
-                                                            Source="Idcard.png"
+                                                            Source="{Binding Preview}"
                                                             TransformPlaceholders="True"
                                                             WidthRequest="50">
                                                             <ffimageloading:CachedImage.Transformations>
@@ -236,7 +236,7 @@
                                                                 Style="{StaticResource ProductNameTitleStyle}"
                                                                 Text="{Binding Product_name}" />
                                                             <StackLayout Orientation="Horizontal">
-                                                                <Label Style="{StaticResource ProductUnitStyle}" Text="Info: " />
+                                                                <Label Style="{StaticResource ProductUnitStyle}" />
                                                                 <Label Style="{StaticResource ProductUnitStyle}" Text="{Binding Short_info}" />
                                                             </StackLayout>
                                                         </StackLayout>

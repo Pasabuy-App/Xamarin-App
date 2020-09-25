@@ -111,6 +111,7 @@ namespace PasaBuy.App.Models.MobilePOS
         {
             public string ID = string.Empty;
             public string product_name = string.Empty;
+            public string cat_name = string.Empty;
             public string short_info = string.Empty;
             public string long_info = string.Empty;
             public string sku = string.Empty;
