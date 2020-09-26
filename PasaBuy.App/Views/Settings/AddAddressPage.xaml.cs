@@ -60,7 +60,7 @@ namespace PasaBuy.App.Views.Settings
                     });
                     Device.BeginInvokeOnMainThread(async () =>
                     {
-                        await Task.Delay(1000);
+                        await Task.Delay(200);
                         isEnable = false;
                     });
                 }

@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+             xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.MobilePOS"
+             x:Class="PasaBuy.App.Views.StoreViews.SettingsAddressView"
+             Title="My Address">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewModel:SettingsAddressViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <Grid>
+
+            <Grid>
+                <StackLayout Spacing="0" VerticalOptions="FillAndExpand">
+                    <sync:SfListView
+                        x:Name="ManagementItem"
+                        AllowSwiping="True"
+                        AutoFitMode="Height"
+                        FocusBorderThickness="0"
+                        ItemSpacing="0,1,0,0"
+                        IsScrollBarVisible="False"
+                        IsStickyHeader="True"
+                        ItemsSource="{Binding AddressList}"
+                        SelectionMode="None">
+
+                        <sync:SfListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid RowSpacing="0" ColumnSpacing="0" >
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.RowSpan="3" 
+                                                   Margin="17,0"
+                                                   TextColor="{DynamicResource Gray-600}"
+                                                   VerticalOptions="CenterAndExpand"
+                                                   Text="{StaticResource Pin}"
+                                                   FontSize="18"
+                                                   FontFamily="{StaticResource FontIcons}" />
+
+                                    <Label Grid.Column="1"
+                                                   Grid.ColumnSpan="3"
+                                                   Margin="0,13,0,0"
+                                                   MaxLines="2"
+                                                   Text="{Binding Street}"
+                                                   TextColor="{DynamicResource Gray-900}"
+                                                   FontSize="14"
+                                                   FontFamily="{StaticResource Montserrat-Medium}" 
+                                                    />
+
+                                    <Label Grid.Row="1"
+                                                   Grid.Column="1"
+                                                   Margin="0,0,0,14"
+                                                   Text="{Binding Type}"
+                                                   TextColor="{DynamicResource Gray-700}"
+                                                   FontSize="14"
+                                                   FontFamily="{StaticResource Montserrat-Medium}"/>
+
+                                    <BoxView Grid.Row="2" Grid.ColumnSpan="4" Style="{DynamicResource SeparatorStyle}" />
+
+                                </Grid>
+                            </DataTemplate>
+                        </sync:SfListView.ItemTemplate>
+
+                        <sync:SfListView.RightSwipeTemplate>
+                            <DataTemplate x:Name="RightSwipeTemplate">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <!--Grid ClassId="{Binding ID}"
+                                                            Grid.Column="0"
+                                                            BackgroundColor="{DynamicResource PrimaryColor}"
+                                                            HorizontalOptions="Fill"
+                                                            VerticalOptions="Fill">
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer x:Name="Update" Tapped="Update_Tapped"/>
+                                        </Grid.GestureRecognizers>
+                                        <Grid HorizontalOptions="Center" VerticalOptions="Center">
+                                            <Image
+                                                                    Grid.Row="0"
+                                                                    Grid.Column="0"
+                                                                    BackgroundColor="Transparent"
+                                                                    HeightRequest="28"
+                                                                    Source="edit_white.png"
+                                                                    WidthRequest="28" />
+                                        </Grid>
+                                    </-->
+                                    <Grid ClassId="{Binding ID}"
+                                                            Grid.Column="1"
+                                                            BackgroundColor="Red"
+                                                            HorizontalOptions="Fill"
+                                                            VerticalOptions="Fill">
+                                        <Grid.GestureRecognizers>
+
+                                            <TapGestureRecognizer  x:Name="Delete" Tapped="Delete_Tapped"/>
+                                        </Grid.GestureRecognizers>
+                                        <Grid HorizontalOptions="Center" VerticalOptions="Center">
+                                            <Image
+                                                                    Grid.Row="0"
+                                                                    Grid.Column="0"
+                                                                    BackgroundColor="Transparent"
+                                                                    HeightRequest="28"
+                                                                    Source="Delete.png"
+                                                                    WidthRequest="28" />
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                            </DataTemplate>
+                        </sync:SfListView.RightSwipeTemplate>
+                    </sync:SfListView>
+                </StackLayout>
+
+                <fab:FloatingActionButtonView
+				    ColorNormal="{StaticResource PrimaryColor}"
+				    ColorPressed="{StaticResource Orange}"
+				    ColorRipple="{StaticResource Yellow}"
+				    x:Name="AddAddressButton"
+                    ImageName ="add_24.png"
+                    VerticalOptions="EndAndExpand"
+                    HorizontalOptions="EndAndExpand"
+				    AbsoluteLayout.LayoutFlags="PositionProportional"
+				    AbsoluteLayout.LayoutBounds="0.95,0.95,80,80">
+                </fab:FloatingActionButtonView>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

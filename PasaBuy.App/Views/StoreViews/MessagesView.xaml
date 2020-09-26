@@ -35,13 +35,12 @@
 
             <!--  Searchable List view  -->
             <controls:SearchableChatList
-                x:Name="ListView" ItemAppearing="ListView_ItemAppearing"
+                x:Name="ListView"
                 AllowSwiping="True"
                 AutoFitMode="Height"
                 FocusBorderThickness="0"
                 ItemsSource="{Binding StoreChatList}"
                 SearchText="{Binding SearchText}"
-                TapCommand="{Binding ItemSelectedCommand}"
                 SelectionGesture="Tap"
                 SelectionMode="Single"
                 SwipeOffset="156"
@@ -114,9 +113,7 @@
                                         Orientation="Horizontal">
 
                                         <Label
-                                            x:Name="MessageIcon"
-                                            Style="{StaticResource MessageIconStyle}"
-                                            Text="{Binding MessageType, Converter={StaticResource GlyphConverter}, ConverterParameter={x:Reference MessageIcon}}">
+                                            x:Name="MessageIcon" Text="{Binding MessageType}" >
 
                                             <Label.Resources>
                                                 <ResourceDictionary>
@@ -128,23 +125,18 @@
                                         </Label>
 
                                         <Label
-                                            x:Name="MessageLabel"
-                                            Style="{StaticResource MessageTextStyle}"
-                                            Text="{Binding MessageType, Converter={StaticResource TextConverter}, ConverterParameter={x:Reference MessageLabel}}" />
+                                            x:Name="MessageLabel"  Text="{Binding Message}"/>
 
                                     </StackLayout>
 
                                     <Label
                                         Grid.Column="2"
-                                        Style="{StaticResource TimeTextStyle}"
                                         Text="{Binding Time}" />
 
                                     <Label
                                         x:Name="NotificationLabel"
                                         Grid.Row="1"
-                                        Grid.Column="2"
-                                        Style="{StaticResource NotificationIconStyle}"
-                                        Text="{Binding NotificationType, Converter={StaticResource GlyphConverter}, ConverterParameter={x:Reference NotificationLabel}}">
+                                        Grid.Column="2" Text="{Binding NotificationType}">
 
                                         <Label.Resources>
                                             <ResourceDictionary>

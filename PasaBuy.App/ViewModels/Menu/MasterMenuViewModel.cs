@@ -85,7 +85,9 @@ namespace PasaBuy.App.ViewModels.Menu
         /// </summary>
         public MasterMenuViewModel()
         {
-            if (PSACache.Instance.UserInfo.user_type == "Verified" && PSACache.Instance.UserInfo.user_type != "0")
+            isDriver = true;
+            isStore = true;
+            /*if (PSACache.Instance.UserInfo.user_type == "Verified" && PSACache.Instance.UserInfo.user_type != "0")
             {
                 isDriver = true;
                 isStore = false;
@@ -94,7 +96,7 @@ namespace PasaBuy.App.ViewModels.Menu
             {
                 isStore = true;
                 isDriver = false;
-            }
+            }*/
             this.profileName = PSACache.Instance.UserInfo.dname;
             this.profileImage = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
             this.userBanner = PSAProc.GetUrl(PSACache.Instance.UserInfo.bannerUrl);
@@ -249,7 +251,6 @@ namespace PasaBuy.App.ViewModels.Menu
                 isEnable = true;
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    await Task.Delay(1000);
                     await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
                     isEnable = false;
                 });
@@ -267,7 +268,6 @@ namespace PasaBuy.App.ViewModels.Menu
                 isEnable = true;
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    await Task.Delay(1000);
                     await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new WalletPage()));
                     isEnable = false;
                 });
@@ -285,7 +285,6 @@ namespace PasaBuy.App.ViewModels.Menu
                 isEnable = true;
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    await Task.Delay(1000);
                     await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new NotificationPage()));
                     isEnable = false;
                 });
@@ -303,7 +302,6 @@ namespace PasaBuy.App.ViewModels.Menu
                 isEnable = true;
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    await Task.Delay(1000);
                     await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ArticleList()));
                     isEnable = false;
                 });
@@ -321,7 +319,6 @@ namespace PasaBuy.App.ViewModels.Menu
                 isEnable = true;
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    await Task.Delay(0);
                     App.Current.MainPage = new DriverMain();
                     isEnable = false;
                 });
@@ -339,7 +336,6 @@ namespace PasaBuy.App.ViewModels.Menu
                 isEnable = true;
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    await Task.Delay(0);
                     App.Current.MainPage = new NavigationView();
                     isEnable = false;
                 });
@@ -357,7 +353,6 @@ namespace PasaBuy.App.ViewModels.Menu
                 isEnable = true;
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    await Task.Delay(1000);
                     await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new SettingPage()));
                     isEnable = false;
                 });

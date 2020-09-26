@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PasaBuy.App.Controllers.Notice;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,11 @@ namespace PasaBuy.App.Views.StoreViews
         public SettingsView()
         {
             InitializeComponent();
+        }
+
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SettingsAddressView());
         }
     }
 }

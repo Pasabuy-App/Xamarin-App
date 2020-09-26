@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" 
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+              xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
+             x:Class="PasaBuy.App.Views.StoreViews.AddAddressView"
+             Title="Add Addresss">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="AddProductLabelStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}" />
+                <Setter Property="FontSize" Value="{StaticResource LargeSize}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="End" />
+                <Setter Property="VerticalTextAlignment" Value="End" />
+                <Setter Property="Margin" Value="0,0,5,10" />
+            </Style>
+
+            <Style x:Key="ListedItemLabelStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}" />
+                <Setter Property="FontSize" Value="{StaticResource MediumSize}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="10,0,0,0" />
+            </Style>
+
+            <Style x:Key="ListedPriceLabelStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}" />
+                <Setter Property="FontSize" Value="{StaticResource MidMediumSize}" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="10,0,0,0" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Clicked="Discard"
+            Order="Primary"
+            Priority="1"
+            Text="asd">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android" Value="cross_512.png" />
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+
+        <ToolbarItem
+            Clicked="Add"
+            Order="Primary"
+            Priority="2"
+            Text="asd">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android" Value="save.png" />
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <Grid>
+            <ScrollView>
+                <StackLayout Orientation="Vertical">
+                    <Grid Margin="10,15,10,10">
+                        <Grid.RowSpacing>
+                            <OnPlatform
+                                x:TypeArguments="x:Double"
+                                Android="-5"
+                                iOS="10" />
+                        </Grid.RowSpacing>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!--Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.4*" />
+                                <ColumnDefinition Width="0.2*" />
+                                <ColumnDefinition Width="0.2*" />
+                                <ColumnDefinition Width="0.2*" />
+                            </Grid.ColumnDefinitions>
+                            <ffimageloading:CachedImage
+                                x:Name="productImage"
+                                Grid.Column="0"
+                                Margin="0,8,0,10"
+                                Aspect="AspectFill"
+                                CacheType="None"
+                                DownsampleToViewSize="true"
+                                HeightRequest="128"
+                                HorizontalOptions="Center"
+                                Source="Idcard.png"
+                                TransformPlaceholders="True"
+                                WidthRequest="128">
+                                <ffimageloading:CachedImage.Transformations>
+                                    <transformations:RoundedTransformation
+                                        BorderHexColor="#000000"
+                                        BorderSize="2"
+                                        Radius="15" />
+                                </ffimageloading:CachedImage.Transformations>
+                            </ffimageloading:CachedImage>
+
+                            <Image
+                                Grid.Column="1"
+                                HeightRequest="32"
+                                HorizontalOptions="Center"
+                                Source="photo_camera.png"
+                                VerticalOptions="Center"
+                                WidthRequest="32">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer  NumberOfTapsRequired="1"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+
+                            <Image
+                                Grid.Column="2"
+                                HeightRequest="32"
+                                HorizontalOptions="Center"
+                                Source="picture_black.png"
+                                VerticalOptions="Center"
+                                WidthRequest="32">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer  NumberOfTapsRequired="1" />
+                                </Image.GestureRecognizers>
+                            </Image>
+
+                            <Image
+                                Grid.Column="3"
+                                HeightRequest="32"
+                                HorizontalOptions="Center"
+                                Source="remove_512.png"
+                                VerticalOptions="Center"
+                                WidthRequest="32">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer  NumberOfTapsRequired="1" />
+                                </Image.GestureRecognizers>
+                            </Image>
+
+                        </Grid-->
+                        <inputLayout:SfTextInputLayout
+                            x:Name="AddressType" 
+                            Grid.Row="1"
+                            ContainerBackgroundColor="Transparent"
+                            ContainerType="Outlined"
+                            FocusedColor="{DynamicResource BlackColor}"
+                            HorizontalOptions="Fill"
+                            LeadingViewPosition="Inside"
+                            TrailingViewPosition="Inside">
+                            <combobox:SfComboBox
+                                x:Name="AddressTypes" 
+                                Style="{StaticResource ComboBoxStyle}"
+                                TextColor="Black"
+                                HeightRequest="50"
+                                Watermark="Select Type"
+                                SelectedValuePath="ID"
+                                DisplayMemberPath="Title"
+                                VerticalOptions="StartAndExpand">
+                                <combobox:SfComboBox.ComboBoxSource>
+                                    <ListCollection:List x:TypeArguments="x:String">
+                                        <x:String>Business</x:String>
+                                        <x:String>Office</x:String>
+                                    </ListCollection:List>
+                                </combobox:SfComboBox.ComboBoxSource>
+                                <combobox:SfComboBox.DropDownButtonSettings>
+                                    <combobox:DropDownButtonSettings>
+                                        <combobox:DropDownButtonSettings.View>
+                                            <Label
+                                                    FontFamily="{StaticResource FontIcons}"
+                                                    FontSize="25"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="{StaticResource DropDownButtonIcon}"
+                                                    TextColor="{DynamicResource Gray-600}"
+                                                    VerticalTextAlignment="Center" />
+                                        </combobox:DropDownButtonSettings.View>
+                                    </combobox:DropDownButtonSettings>
+                                </combobox:SfComboBox.DropDownButtonSettings>
+                            </combobox:SfComboBox>
+                            <inputLayout:SfTextInputLayout.LeadingView>
+                                <Label
+                                    FontSize="18"
+                                    VerticalTextAlignment="Center"
+                                    Style="{StaticResource ProfileIconLabelStyle}"
+                                    TextColor="{DynamicResource BlackColor}"
+                                    Text="&#xf468;" />
+                            </inputLayout:SfTextInputLayout.LeadingView>
+
+                        </inputLayout:SfTextInputLayout>
+                        <inputLayout:SfTextInputLayout
+                            x:Name="AddressCountry" 
+                            Grid.Row="2"
+                            ContainerBackgroundColor="Transparent"
+                            ContainerType="Outlined"
+                            FocusedColor="{DynamicResource BlackColor}"
+                            HorizontalOptions="Fill"
+                            LeadingViewPosition="Inside"
+                            TrailingViewPosition="Inside">
+                            <combobox:SfComboBox
+                                x:Name="AddressCountrys" 
+                                SelectionChanged="AddressCountrys_SelectionChanged"
+                                Style="{StaticResource ComboBoxStyle}"
+                                TextColor="Black"
+                                HeightRequest="50"
+                                Watermark="Select Country"
+                                SelectedValuePath="CountryCode"
+                                VerticalOptions="StartAndExpand">
+                                <combobox:SfComboBox.DropDownButtonSettings>
+                                    <combobox:DropDownButtonSettings>
+                                        <combobox:DropDownButtonSettings.View>
+                                            <Label
+                                                    FontFamily="{StaticResource FontIcons}"
+                                                    FontSize="25"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="{StaticResource DropDownButtonIcon}"
+                                                    TextColor="{DynamicResource Gray-600}"
+                                                    VerticalTextAlignment="Center" />
+                                        </combobox:DropDownButtonSettings.View>
+                                    </combobox:DropDownButtonSettings>
+                                </combobox:SfComboBox.DropDownButtonSettings>
+                            </combobox:SfComboBox>
+                            <inputLayout:SfTextInputLayout.LeadingView>
+                                <Label
+                                    FontSize="18"
+                                    VerticalTextAlignment="Center"
+                                    Style="{StaticResource ProfileIconLabelStyle}"
+                                    TextColor="{DynamicResource BlackColor}"
+                                    Text="&#xf468;" />
+                            </inputLayout:SfTextInputLayout.LeadingView>
+
+                        </inputLayout:SfTextInputLayout>
+                        <inputLayout:SfTextInputLayout
+                            x:Name="AddressProvince" 
+                            Grid.Row="3"
+                            ContainerBackgroundColor="Transparent"
+                            ContainerType="Outlined"
+                            FocusedColor="{DynamicResource BlackColor}"
+                            HorizontalOptions="Fill"
+                            LeadingViewPosition="Inside"
+                            TrailingViewPosition="Inside">
+                            <combobox:SfComboBox
+                                x:Name="AddressProvinces" 
+                                SelectionChanged="AddressProvinces_SelectionChanged"
+                                Style="{StaticResource ComboBoxStyle}"
+                                TextColor="Black"
+                                HeightRequest="50"
+                                Watermark="Select Province"
+                                SelectedValuePath="ProvinceCode"
+                                VerticalOptions="StartAndExpand">
+                                <combobox:SfComboBox.DropDownButtonSettings>
+                                    <combobox:DropDownButtonSettings>
+                                        <combobox:DropDownButtonSettings.View>
+                                            <Label
+                                                    FontFamily="{StaticResource FontIcons}"
+                                                    FontSize="25"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="{StaticResource DropDownButtonIcon}"
+                                                    TextColor="{DynamicResource Gray-600}"
+                                                    VerticalTextAlignment="Center" />
+                                        </combobox:DropDownButtonSettings.View>
+                                    </combobox:DropDownButtonSettings>
+                                </combobox:SfComboBox.DropDownButtonSettings>
+                            </combobox:SfComboBox>
+                            <inputLayout:SfTextInputLayout.LeadingView>
+                                <Label
+                                    FontSize="18"
+                                    VerticalTextAlignment="Center"
+                                    Style="{StaticResource ProfileIconLabelStyle}"
+                                    TextColor="{DynamicResource BlackColor}"
+                                    Text="&#xf468;" />
+                            </inputLayout:SfTextInputLayout.LeadingView>
+
+                        </inputLayout:SfTextInputLayout>
+                        <inputLayout:SfTextInputLayout
+                            x:Name="AddressCity" 
+                            Grid.Row="4"
+                            ContainerBackgroundColor="Transparent"
+                            ContainerType="Outlined"
+                            FocusedColor="{DynamicResource BlackColor}"
+                            HorizontalOptions="Fill"
+                            LeadingViewPosition="Inside"
+                            TrailingViewPosition="Inside">
+                            <combobox:SfComboBox
+                                x:Name="AddressCitys" 
+                                Style="{StaticResource ComboBoxStyle}"
+                                TextColor="Black"
+                                HeightRequest="50"
+                                Watermark="Select City"
+                                SelectionChanged="AddressCitys_SelectionChanged"
+                                SelectedValuePath="CityCode"
+                                VerticalOptions="StartAndExpand">
+                                <combobox:SfComboBox.DropDownButtonSettings>
+                                    <combobox:DropDownButtonSettings>
+                                        <combobox:DropDownButtonSettings.View>
+                                            <Label
+                                                    FontFamily="{StaticResource FontIcons}"
+                                                    FontSize="25"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="{StaticResource DropDownButtonIcon}"
+                                                    TextColor="{DynamicResource Gray-600}"
+                                                    VerticalTextAlignment="Center" />
+                                        </combobox:DropDownButtonSettings.View>
+                                    </combobox:DropDownButtonSettings>
+                                </combobox:SfComboBox.DropDownButtonSettings>
+                            </combobox:SfComboBox>
+                            <inputLayout:SfTextInputLayout.LeadingView>
+                                <Label
+                                    FontSize="18"
+                                    VerticalTextAlignment="Center"
+                                    Style="{StaticResource ProfileIconLabelStyle}"
+                                    TextColor="{DynamicResource BlackColor}"
+                                    Text="&#xf468;" />
+                            </inputLayout:SfTextInputLayout.LeadingView>
+
+                        </inputLayout:SfTextInputLayout>
+                        <inputLayout:SfTextInputLayout
+                            x:Name="AddressBarangay" 
+                            Grid.Row="5"
+                            ContainerBackgroundColor="Transparent"
+                            ContainerType="Outlined"
+                            FocusedColor="{DynamicResource BlackColor}"
+                            HorizontalOptions="Fill"
+                            LeadingViewPosition="Inside"
+                            TrailingViewPosition="Inside">
+                            <combobox:SfComboBox
+                                x:Name="AddressBarangays" 
+                                SelectionChanged="AddressBarangays_SelectionChanged"
+                                Style="{StaticResource ComboBoxStyle}"
+                                TextColor="Black"
+                                HeightRequest="50"
+                                Watermark="Select Barangay"
+                                SelectedValuePath="BrgyCode"
+                                VerticalOptions="StartAndExpand">
+                                <combobox:SfComboBox.DropDownButtonSettings>
+                                    <combobox:DropDownButtonSettings>
+                                        <combobox:DropDownButtonSettings.View>
+                                            <Label
+                                                    FontFamily="{StaticResource FontIcons}"
+                                                    FontSize="25"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="{StaticResource DropDownButtonIcon}"
+                                                    TextColor="{DynamicResource Gray-600}"
+                                                    VerticalTextAlignment="Center" />
+                                        </combobox:DropDownButtonSettings.View>
+                                    </combobox:DropDownButtonSettings>
+                                </combobox:SfComboBox.DropDownButtonSettings>
+                            </combobox:SfComboBox>
+                            <inputLayout:SfTextInputLayout.LeadingView>
+                                <Label
+                                    FontSize="18"
+                                    VerticalTextAlignment="Center"
+                                    Style="{StaticResource ProfileIconLabelStyle}"
+                                    TextColor="{DynamicResource BlackColor}"
+                                    Text="&#xf468;" />
+                            </inputLayout:SfTextInputLayout.LeadingView>
+
+                        </inputLayout:SfTextInputLayout>
+
+                        <inputLayout:SfTextInputLayout
+                            x:Name="AddressStreet"
+                            Grid.Row="6"
+                            ContainerBackgroundColor="Transparent"
+                            ContainerType="Outlined"
+                            FocusedColor="{DynamicResource BlackColor}"
+                            Hint="Unit/Bldg/Street"
+                            HorizontalOptions="Fill"
+                            LeadingViewPosition="Inside">
+                            <Entry
+                                VerticalOptions="Center"
+                                HorizontalOptions="FillAndExpand"  x:Name="AddressStreets"/>
+                            <inputLayout:SfTextInputLayout.LeadingView>
+                                <Label
+                                    FontSize="18"
+                                    VerticalTextAlignment="Center"
+                                    Style="{StaticResource ProfileIconLabelStyle}"
+                                    TextColor="{DynamicResource BlackColor}"
+                                    Text="&#xf02a;" />
+                            </inputLayout:SfTextInputLayout.LeadingView>
+                        </inputLayout:SfTextInputLayout>
+
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
