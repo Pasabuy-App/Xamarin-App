@@ -23,13 +23,14 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         public MessagesViewModel()
         {
             storeChatList = new ObservableCollection<ChatDetail>();
+            storeChatList.Clear();
             LoadMesssage("");
         }
         public static void LoadMesssage(string offset)
         {
             try
             {
-                SocioPress.Message.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "2", PSACache.Instance.UserInfo.user_type, offset, (bool success, string data) =>
+                SocioPress.Message.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "2", PSACache.Instance.UserInfo.stid, offset, (bool success, string data) =>
                 {
                     if (success)
                     {

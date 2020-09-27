@@ -30,7 +30,7 @@ namespace PasaBuy.App.Views.StoreViews
             {
                 try
                 {
-                    TindaPress.Product.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.user_type, "", pdid, "1", "", (bool success, string data) =>
+                    TindaPress.Product.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, "", pdid, "1", "", (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -195,7 +195,7 @@ namespace PasaBuy.App.Views.StoreViews
                 {
                     if (pdid == "0")
                     {
-                        TindaPress.Product.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, PSACache.Instance.UserInfo.user_type, ProductNames.Text, filepath, Shorts.Text, lon, sku, Prices.Text, weight, dimension, (bool success, string data) =>
+                        TindaPress.Product.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, PSACache.Instance.UserInfo.stid, ProductNames.Text, filepath, Shorts.Text, lon, sku, Prices.Text, weight, dimension, (bool success, string data) =>
                         {
                             if (success)
                             {
@@ -215,7 +215,7 @@ namespace PasaBuy.App.Views.StoreViews
                     }
                     else
                     {
-                        TindaPress.Product.Instance.Update(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, pdid, PSACache.Instance.UserInfo.user_type, ProductNames.Text, filepath, Shorts.Text, lon, sku, Prices.Text, weight, dimension, (bool success, string data) =>
+                        TindaPress.Product.Instance.Update(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, pdid, PSACache.Instance.UserInfo.stid, ProductNames.Text, filepath, Shorts.Text, lon, sku, Prices.Text, weight, dimension, (bool success, string data) =>
                         {
                             if (success)
                             {

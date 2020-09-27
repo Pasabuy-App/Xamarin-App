@@ -36,6 +36,7 @@ namespace PasaBuy.App.ViewModels.Chat
         public StoreMessageViewModel()
         {
             storeChatList = new ObservableCollection<ChatDetail>();
+            storeChatList.Clear();
             LoadMesssage("");
             //storeChatList.Add(new ChatDetail("0", PSAConfig.sfRootUrl + "ProfileImage2.png", "Alice Russell", "15 min", "https://app.syncfusion", "Text", "New", ""));
             this.MakeVoiceCallCommand = new Command(this.VoiceCallClicked);
@@ -48,7 +49,7 @@ namespace PasaBuy.App.ViewModels.Chat
         {
             try
             {
-                SocioPress.Message.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "2", PSACache.Instance.UserInfo.user_type, offset, (bool success, string data) =>
+                SocioPress.Message.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "2", PSACache.Instance.UserInfo.stid, offset, (bool success, string data) =>
                 {
                     if (success)
                     {

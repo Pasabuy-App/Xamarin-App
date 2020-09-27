@@ -180,6 +180,11 @@ namespace PasaBuy.App.ViewModels.Onboarding
                                     PSACache.Instance.UserInfo.banner = uinfo.data.banner;
                                     PSACache.Instance.UserInfo.verify = uinfo.data.verify;
                                     PSACache.Instance.UserInfo.user_type = uinfo.data.user_type;
+                                    PSACache.Instance.UserInfo.stid = uinfo.data.stid;
+                                    PSACache.Instance.UserInfo.store_name = uinfo.data.store_name;
+                                    PSACache.Instance.UserInfo.roid = uinfo.data.roid;
+                                    PSACache.Instance.UserInfo.store_logo = uinfo.data.store_logo;
+                                    PSACache.Instance.UserInfo.store_banner = uinfo.data.store_banner;
 
                                     State = false;
                                     Application.Current.MainPage = new Views.MainTabs();

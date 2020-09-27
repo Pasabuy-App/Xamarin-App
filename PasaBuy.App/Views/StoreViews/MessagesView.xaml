@@ -1,21 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
-             xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
-             xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl" 
-             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
-             xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms" 
              xmlns:controls="clr-namespace:PasaBuy.App.Controls"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
              x:Class="PasaBuy.App.Views.StoreViews.MessagesView"
              xmlns:viewModelBase="clr-namespace:PasaBuy.App.ViewModels.MobilePOS.Base;assembly=PasaBuy.App"
              xmlns:converter="clr-namespace:PasaBuy.App.Converters" 
-             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Chat"
+             xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              viewModelBase:ViewModelLocator.AutoWireViewModel="true"
              Title="Messages">
-    
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -23,7 +18,7 @@
             <converter:StringToGlyphConverter x:Key="GlyphConverter" />
             <converter:StringToMessageTypeConverter x:Key="TextConverter" />
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
+                <ResourceDictionary Source="Styles2.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -35,12 +30,13 @@
 
             <!--  Searchable List view  -->
             <controls:SearchableChatList
-                x:Name="ListView"
+                x:Name="ListView" ItemAppearing="ListView_ItemAppearing"
                 AllowSwiping="True"
                 AutoFitMode="Height"
                 FocusBorderThickness="0"
                 ItemsSource="{Binding StoreChatList}"
                 SearchText="{Binding SearchText}"
+                TapCommand="{Binding ItemSelectedCommand}"
                 SelectionGesture="Tap"
                 SelectionMode="Single"
                 SwipeOffset="156"
@@ -66,6 +62,7 @@
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
 
+                                    <!--  Recent Sender Profile image  -->
                                     <badge:SfBadgeView x:Name="BadgeView" Grid.RowSpan="2">
                                         <badge:SfBadgeView.Content>
                                             <border:SfBorder
@@ -96,6 +93,7 @@
                                         </badge:SfBadgeView.BadgeSettings>
                                     </badge:SfBadgeView>
 
+                                    <!--  Recent Sender Profile Name  -->
                                     <Label
                                         Grid.Column="1"
                                         FontFamily="{StaticResource Montserrat-SemiBold}"
@@ -112,8 +110,11 @@
                                         Grid.Column="1"
                                         Orientation="Horizontal">
 
+                                        <!--  Recent Message Type  -->
                                         <Label
-                                            x:Name="MessageIcon" Text="{Binding MessageType}" >
+                                            x:Name="MessageIcon"
+                                            Style="{StaticResource MessageIconStyle}"
+                                            Text="{Binding MessageType, Converter={StaticResource GlyphConverter}, ConverterParameter={x:Reference MessageIcon}}">
 
                                             <Label.Resources>
                                                 <ResourceDictionary>
@@ -124,19 +125,27 @@
                                             </Label.Resources>
                                         </Label>
 
+                                        <!--  Recent Message  -->
                                         <Label
-                                            x:Name="MessageLabel"  Text="{Binding Message}"/>
+                                            x:Name="MessageLabel"
+                                            Style="{StaticResource MessageTextStyle}"
+                                            Text="{Binding MessageType, Converter={StaticResource TextConverter}, ConverterParameter={x:Reference MessageLabel}}" />
 
                                     </StackLayout>
 
+                                    <!--  Recent Message Time  -->
                                     <Label
                                         Grid.Column="2"
+                                        Style="{StaticResource TimeTextStyle}"
                                         Text="{Binding Time}" />
 
+                                    <!--  Recent Message Notification  -->
                                     <Label
                                         x:Name="NotificationLabel"
                                         Grid.Row="1"
-                                        Grid.Column="2" Text="{Binding NotificationType}">
+                                        Grid.Column="2"
+                                        Style="{StaticResource NotificationIconStyle}"
+                                        Text="{Binding NotificationType, Converter={StaticResource GlyphConverter}, ConverterParameter={x:Reference NotificationLabel}}">
 
                                         <Label.Resources>
                                             <ResourceDictionary>

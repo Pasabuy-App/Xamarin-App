@@ -85,18 +85,16 @@ namespace PasaBuy.App.ViewModels.Menu
         /// </summary>
         public MasterMenuViewModel()
         {
-            isDriver = true;
-            isStore = true;
-            /*if (PSACache.Instance.UserInfo.user_type == "Verified" && PSACache.Instance.UserInfo.user_type != "0")
+            /*isDriver = true;
+            isStore = true;*/
+            if (PSACache.Instance.UserInfo.user_type != "User")
             {
                 isDriver = true;
-                isStore = false;
             }
-            if (PSACache.Instance.UserInfo.user_type != "0" && PSACache.Instance.UserInfo.user_type != "Verified")
+            if (PSACache.Instance.UserInfo.stid != "0")
             {
                 isStore = true;
-                isDriver = false;
-            }*/
+            }
             this.profileName = PSACache.Instance.UserInfo.dname;
             this.profileImage = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
             this.userBanner = PSAProc.GetUrl(PSACache.Instance.UserInfo.bannerUrl);

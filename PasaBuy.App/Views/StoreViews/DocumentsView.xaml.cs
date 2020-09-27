@@ -37,7 +37,7 @@ namespace PasaBuy.App.Views.StoreViews
                 try
                 {
                     var item = e.ItemData as DocumentData; //item.ID;
-                    TindaPress.Document.Instance.Delete(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.user_type, item.ID, (bool success, string data) =>
+                    TindaPress.Document.Instance.Delete(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, item.ID, (bool success, string data) =>
                     {
                         if (success)
                         {

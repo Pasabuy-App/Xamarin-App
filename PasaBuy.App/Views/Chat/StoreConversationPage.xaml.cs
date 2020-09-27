@@ -22,9 +22,16 @@ namespace PasaBuy.App.Views.Chat
         public void BackButtonClicked(object sender, EventArgs e)
         {
             StoreConversationViewModel.refresh = 1;
-            StoreMessageViewModel.storeChatList.Clear();
-            StoreMessageViewModel.LoadMesssage("");
+            /*StoreMessageViewModel.storeChatList.Clear();
+            StoreMessageViewModel.LoadMesssage("");*/
             Navigation.PopModalAsync();
+        }
+        protected override bool OnBackButtonPressed()
+        {
+            StoreConversationViewModel.refresh = 1;
+            /*StoreMessageViewModel.storeChatList.Clear();
+            StoreMessageViewModel.LoadMesssage("");*/
+            return base.OnBackButtonPressed();
         }
     }
 }

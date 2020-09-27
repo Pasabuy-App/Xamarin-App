@@ -26,6 +26,11 @@ namespace PasaBuy.App.Models.Onboarding
         public string wpid = string.Empty;
         public string snky = string.Empty;
         public string user_type = string.Empty;
+        public string stid = string.Empty;
+        public string store_name = string.Empty;
+        public string roid = string.Empty;
+        public string store_logo = string.Empty;
+        public string store_banner = string.Empty;
 
         public UserInfoData data = new UserInfoData();
 
@@ -44,6 +49,11 @@ namespace PasaBuy.App.Models.Onboarding
             public string snky = string.Empty;
             public string verify = "UNVERIFIED";
             public string user_type = string.Empty;
+            public string stid = string.Empty;
+            public string store_name = string.Empty;
+            public string roid = string.Empty;
+            public string store_logo = string.Empty;
+            public string store_banner = string.Empty;
         }
 
         public string avatarUrl

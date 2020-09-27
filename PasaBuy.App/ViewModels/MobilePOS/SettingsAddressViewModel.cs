@@ -30,7 +30,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         {
             try
             {
-                TindaPress.Address.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.user_type, "", "", "1", (bool success, string data) =>
+                TindaPress.Address.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, "", "", "1", (bool success, string data) =>
                 {
                     if (success)
                     {

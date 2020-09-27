@@ -28,7 +28,7 @@ namespace PasaBuy.App.Views.PopupModals
                 CatTitle.Text = "Edit Category";
                 try
                 {
-                    TindaPress.Category.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, PSACache.Instance.UserInfo.user_type, "2", "1", (bool success, string data) =>
+                    TindaPress.Category.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, PSACache.Instance.UserInfo.stid, "2", "1", (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -69,7 +69,7 @@ namespace PasaBuy.App.Views.PopupModals
                 {
                     if (catid == "0")
                     {
-                        TindaPress.Category.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.user_type, "product", CatName.Text, Description.Text, (bool success, string data) =>
+                        TindaPress.Category.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, "product", CatName.Text, Description.Text, (bool success, string data) =>
                         {
                             if (success)
                             {

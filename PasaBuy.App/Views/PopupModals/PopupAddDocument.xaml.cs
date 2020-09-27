@@ -131,7 +131,7 @@ namespace PasaBuy.App.Views.PopupModals
                 //new Alert(DocumentTypePicker.Text, "Path: " + filepath, "OK");
                 try
                 {
-                    TindaPress.Document.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.user_type, doctype, filepath,(bool success, string data) =>
+                    TindaPress.Document.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, doctype, filepath,(bool success, string data) =>
                     {
                         if (success)
                         {

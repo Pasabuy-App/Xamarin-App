@@ -45,6 +45,7 @@ namespace PasaBuy.App.ViewModels.Chat
         public RecentChatViewModel()
         {
             chatItems = new ObservableCollection<ChatDetail>();
+            chatItems.Clear();
             this.MakeVoiceCallCommand = new Command(this.VoiceCallClicked);
             this.MakeVideoCallCommand = new Command(this.VideoCallClicked);
             this.ShowSettingsCommand = new Command(this.SettingsClicked);
