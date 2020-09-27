@@ -15,6 +15,7 @@ namespace PasaBuy.App.Views.Settings
     public partial class VerificationFillPage : ContentPage
     {
         public static string idType = string.Empty;
+        public static string idnumber = string.Empty;
         public static string idDocType = string.Empty;
         public static string idPath = string.Empty;
         public static string selfiePath = string.Empty;
@@ -23,6 +24,7 @@ namespace PasaBuy.App.Views.Settings
         {
             InitializeComponent();
             IdTypeEntry.Text = idType;
+            IDNumberEntry.Text = idnumber;
             LastNameEntry.Text = PSACache.Instance.UserInfo.lname;
             FirstNameEntry.Text = PSACache.Instance.UserInfo.fname;
         }
@@ -30,7 +32,7 @@ namespace PasaBuy.App.Views.Settings
         {   
             //TO DO :: Add validations
             if (String.IsNullOrEmpty(IdTypeEntry.Text) || String.IsNullOrEmpty(IDNumberEntry.Text) || String.IsNullOrEmpty(LastNameEntry.Text) 
-                || String.IsNullOrEmpty(FirstNameEntry.Text) || String.IsNullOrEmpty(NationalityEntry.Text) )
+                || String.IsNullOrEmpty(FirstNameEntry.Text) || String.IsNullOrEmpty(NationalityEntry.Text) || String.IsNullOrEmpty(ContactEntry.Text))
             {   
                 new Alert("Failed", "Please complete all fields.", "Ok");
             }
@@ -41,11 +43,11 @@ namespace PasaBuy.App.Views.Settings
                     isEnable = true;
                     try
                     {
-                        DataVice.Documents.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "id", idDocType, idPath, (bool success, string data) =>
+                        DataVice.Documents.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "id", idDocType, idPath, idnumber, "", (bool success, string data) =>
                         {
                             if (success)
                             {
-                                DataVice.Documents.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "face", "", selfiePath, (bool success2, string data2) =>
+                                DataVice.Documents.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "face", "", selfiePath, ContactEntry.Text, NationalityEntry.Text, (bool success2, string data2) =>
                                 {
                                     if (success)
                                     {
