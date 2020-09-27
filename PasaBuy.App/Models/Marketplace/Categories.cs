@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 using Syncfusion.XForms.Buttons;
+using System.Collections.ObjectModel;
 
 namespace PasaBuy.App.Models.Marketplace
 {
@@ -17,6 +18,8 @@ namespace PasaBuy.App.Models.Marketplace
         private string title = string.Empty;
         private string info = string.Empty;
         private string status = string.Empty;
+
+        public ObservableCollection<ProductList> Prods { get; set; }
 
         #endregion
 

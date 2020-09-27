@@ -317,7 +317,7 @@ namespace PasaBuy.App.ViewModels.Menu
                 isEnable = true;
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    App.Current.MainPage = new DriverMain();
+                    App.Current.MainPage = new NavigationView();
                     isEnable = false;
                 });
             }

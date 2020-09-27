@@ -8,7 +8,8 @@
               xmlns:helper="clr-namespace:PasaBuy.App.Helpers"
              xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
              xmlns:template="clr-namespace:PasaBuy.App.Views.Templates"
-             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Marketplace" xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Accordion;assembly=Syncfusion.Expander.XForms"
+             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Marketplace"
+             xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Accordion;assembly=Syncfusion.Expander.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="PasaBuy.App.Views.Marketplace.StoreDetailsPage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
@@ -18,9 +19,10 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
         <converter:BooleanToStringConverter x:Key="boolToStringConverter" />
+        <converter:HeightConverter x:Key="HeightConverter"/>
     </ContentPage.Resources>
-    
-    
+
+
     <ContentPage.Behaviors>
         <behavior:CartBehavior />
     </ContentPage.Behaviors>
@@ -85,14 +87,14 @@
                                                 HeightRequest="265"
                                                 HorizontalOptions="FillAndExpand"
                                                 Source="{Binding Logo}"
-                                                VerticalOptions="Start">        
+                                                VerticalOptions="Start">
                                             </Image>
                                         </StackLayout>
                                     </DataTemplate>
                                 </BindableLayout.ItemTemplate>
-                                
+
                             </StackLayout>
-                            
+
                         </Grid>
                     </ContentView>
                 </ScrollView>
@@ -117,7 +119,7 @@
                             Margin="16,-65,0,0"
                             BindableLayout.ItemsSource="{Binding StoreDetailList}"
                             Spacing="0">
-                          
+
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
                                     <StackLayout>
@@ -140,12 +142,12 @@
                                                     <Span
                                                         FontFamily="{StaticResource Montserrat-Medium}"
                                                         Text="{Binding StoreDescription}"
-                                                        TextColor="{DynamicResource Gray-Black}" /> 
+                                                        TextColor="{DynamicResource Gray-Black}" />
                                                     <Span Text="    " />
                                                     <Span
                                                         FontFamily="{StaticResource Montserrat-Regular}"
                                                         Text="{Binding ArticleDate}"
-                                                        TextColor="{DynamicResource Gray-Black}" /> 
+                                                        TextColor="{DynamicResource Gray-Black}" />
                                                     <Span Text=" | " TextColor="{DynamicResource Gray-Black}" />
                                                     <Span
                                                         FontFamily="{StaticResource Montserrat-Regular}"
@@ -159,8 +161,8 @@
                             </BindableLayout.ItemTemplate>
 
                             <!--  Article author, title & average reading time  -->
-                           
-                            
+
+
 
                         </StackLayout>
 
@@ -177,71 +179,54 @@
                                 Text="{Binding SubTitle1}"
                                 TextColor="{DynamicResource Gray-900}" />
 
-                            <StackLayout
-                                Margin="16,0,16,24"
-                                
-                                BindableLayout.ItemsSource="{Binding Categoriesdata}"
-                                
-                                Spacing="16">
+                            <syncfusion:SfAccordion x:Name="OuterAccordion" ExpandMode="SingleOrNone" Margin="5" BindableLayout.ItemsSource="{Binding Categoriesdata}">
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate>
-                                            <syncfusion:SfAccordion Grid.Row="1" ExpandMode="SingleOrNone" >
-                                                <syncfusion:SfAccordion.Items>
-                                                    <syncfusion:AccordionItem>
-                                                        <syncfusion:AccordionItem.Header>
-                                                            <Grid>
-                                                                <Label TextColor="#495F6E" Text="{Binding Title}" HeightRequest="50" VerticalTextAlignment="Center" />
-                                                            </Grid>
-                                                        </syncfusion:AccordionItem.Header>
-                                                    <!--#FFFFFF-->
-                                                        <syncfusion:AccordionItem.Content>
-                                                                <Grid Padding="10,10,10,10" BackgroundColor="#FFFFFF" BindableLayout.ItemsSource="{Binding Producdetailstlist}">
-                                                                            <Grid
-                                                                                Margin="0,0,0,8"
-                                                                                ColumnSpacing="0"
-                                                                                HorizontalOptions="FillAndExpand"
-                                                                                RowSpacing="0"
-                                                                                VerticalOptions="FillAndExpand">
+                                        <syncfusion:AccordionItem x:Name="AccordionItem">
+                                            <syncfusion:AccordionItem.Header>
+                                                <Grid HeightRequest="50" RowSpacing="0">
+                                                    <Label Text="{Binding Title}" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>
+                                                </Grid>
+                                            </syncfusion:AccordionItem.Header>
+                                            <syncfusion:AccordionItem.Content>
+                                                <listView:SfListView x:Name="listView" HeightRequest="{Binding Prods, Converter={StaticResource HeightConverter}, ConverterParameter={x:Reference listView}}"  ItemSize="90" ItemsSource="{Binding Prods}" ItemSpacing="1">
+                                                    <listView:SfListView.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Grid Padding="10,10,10,10" BackgroundColor="#FFFFFF">
+                                                                <Grid Margin="0,0,0,8"
+                                                                      ColumnSpacing="0"
+                                                                      HorizontalOptions="FillAndExpand"
+                                                                      RowSpacing="0"
+                                                                      VerticalOptions="FillAndExpand">
+                                                                    <Grid.RowDefinitions>
+                                                                        <RowDefinition Height="Auto" />
+                                                                        <RowDefinition Height="Auto" />
+                                                                        <RowDefinition Height="Auto" />
+                                                                        <RowDefinition Height="Auto" />
+                                                                    </Grid.RowDefinitions>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="70" />
+                                                                        <ColumnDefinition Width="*" />
+                                                                        <ColumnDefinition Width="50" />
+                                                                    </Grid.ColumnDefinitions>
 
+                                                                    <ffimageloading:CachedImage Aspect="Fill"
+                                                                                                            Grid.Column="0"
+                                                                                                            Grid.RowSpan="3"
+                                                                                                            Margin="8,5,16,0"
+                                                                                                            HeightRequest="70"
+                                                                                                            WidthRequest="80"
+                                                                                                            Source="Idcard.png"
+                                                                                                            x:Name="ProductImage"
+			                                                                                                DownsampleToViewSize="True" 
+                                                                                                            FadeAnimationEnabled="True">
+                                                                    </ffimageloading:CachedImage>
 
-                                                                                <Grid.RowDefinitions>
-                                                                                    <RowDefinition Height="Auto" />
-                                                                                    <RowDefinition Height="Auto" />
-                                                                                    <RowDefinition Height="Auto" />
-                                                                                    <RowDefinition Height="Auto" />
-                                                                                </Grid.RowDefinitions>
-
-                                                                                <Grid.ColumnDefinitions>
-                                                                                    <ColumnDefinition Width="Auto" />
-                                                                                    <ColumnDefinition  Width="*" />
-                                                                                    <ColumnDefinition Width="32" />
-                                                                                </Grid.ColumnDefinitions>
-                                                                                <!--BackgroundColor="{DynamicResource Gray-F0}"-->
-
-                                                                                <Image
-                                                                                    Grid.Column="0"
-                                                                                    Grid.RowSpan="3"
-                                                                                    Margin="8,0,16,0"
-                                                                                    Aspect="Fill"
-                                                                                    BackgroundColor="{DynamicResource Gray-F0}"
-                                                                                    HeightRequest="70"
-                                                                                    WidthRequest="90">
-                                                                                    <Image.Source>
-                                                                                        <UriImageSource
-                                                                                            CacheValidity="14"
-                                                                                            CachingEnabled="true"
-                                                                                            Uri="https://s3-ap-southeast-1.amazonaws.com/prod-gadc-corp-2019/public/web/2020-07-07/5f037882478d8/NutritionalFacts-QuarterPounder-min-500.jpeg" />
-                                                                                    </Image.Source>
-
-
-                                                                                </Image>
-
-
-                                                                                <!--  Product Name  -->
-                                                                                <Label
+                                                                    <!--Product Name-->
+                                                                    <Label
                                                                                     Grid.Column="1"
                                                                                     Grid.Row="0"
-                                                                                    Margin="0,0,0,8"
+                                                                                    Margin="0,8,0,8"
                                                                                     FontFamily="{StaticResource Montserrat-SemiBold}"
                                                                                     LineBreakMode="TailTruncation"
                                                                                     MaxLines="1"
@@ -249,37 +234,8 @@
                                                                                     Text="{Binding Name}"
                                                                                     TextColor="{DynamicResource Gray-900}" />
 
-                                                                                <!--  Favourite Icon 
-                                                                     Command="{Binding ParentBindingContext.AddFavouriteCommand, Source={x:Reference productListTemplate}}"
-                                                                    TextColor="{Binding IsFavourite, Converter={x:StaticResource boolToColorConverter}, ConverterParameter=4}" />
-                                                                    
-                                                                    -->
-                                                                                <Button
-                                                                                    Grid.Column="2"
-                                                                                    Margin="0,0,0,8"
-                                                                                    Padding="0"
-                                                                                    helper:RTLHelper.Margin="{OnIdiom Phone='0,0,0,0',
-                                                                                                                      Tablet='0,0,4,0',
-                                                                                                                      Desktop='0,0,8,0'}"
-                                                                                    CommandParameter="{Binding}"
-                                                                                    Style="{StaticResource FavouriteButtonStyle}"
-                                                                                    Text="{Binding IsFavourite, Converter={StaticResource boolToStringConverter}, ConverterParameter=1}"/>  
-
-
-                                                                                <!--  Favourite Icon   -->
-                                                                                <buttons:SfButton
-                                                                                     Grid.Column="2"
-                                                                                    Grid.RowSpan="4"
-                                                                                    x:Name="backButton"
-                                                                                    Clicked="BackButtonClicked"
-                                                                                    CornerRadius="4"
-                                                                                    TextColor="Black"
-                                                                                    Style="{StaticResource IconButtonStyle}"
-                                                                                    Text="{StaticResource Next}" /> 
-
-
-                                                                                <!--  Product Description {Binding Summary} -->
-                                                                                <Label
+                                                                    <!--  Product Description {Binding Summary} -->
+                                                                    <Label
                                                                                     Grid.Row="1"
                                                                                     Grid.Column="1"
                                                                                     Margin="0,0,0,8"
@@ -290,52 +246,65 @@
                                                                                                             Default=-1}"
                                                                                     MaxLines="2"
                                                                                     Style="{StaticResource LabelStyle}"
-                                                                                    Text="{Binding Description}" />
+                                                                                    Text="{Binding description}" />
 
-
-                                                                                <!--  Product Price     Text="{Binding DiscountPrice, StringFormat='${0:0 }'}"   Total price = {Binding DiscountPrice, StringFormat='${0:0 }'} -->
-                                                                                <StackLayout
-                                                                                     Grid.Column="1"
-                                                                                    Grid.Row="2"
-                                                                                    Margin="0,0,0,10"
-                                                                                    Orientation="Horizontal"
-                                                                                    Spacing="2">
-
-                                                                                    <!--  Product Price  -->
-                                                                                    <Label
-                                                                                        FontFamily="{StaticResource Montserrat-SemiBold}"
-                                                                                        FontSize="20"
+                                                                    <!--Product Price-->
+                                                                    <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                                                        FontSize="16"
+                                                                                        Grid.Column="2"
                                                                                         HorizontalOptions="Start"
+                                                                                        HorizontalTextAlignment="Start"
+                                                                                        helper:RTLHelper.Margin="{OnIdiom Phone='0,0,0,0',
+                                                                                                                      Tablet='0,0,4,0',
+                                                                                                                      Desktop='0,0,8,0'}"
                                                                                         LineHeight="{OnPlatform Android=1.25,
                                                                                                                 Default=-1}"
                                                                                         Style="{StaticResource LabelStyle}"
-                                                                                        Text="$100"
+                                                                                        Text="$9578"
                                                                                         TextColor="{DynamicResource PrimaryColor}"
                                                                                         VerticalOptions="CenterAndExpand"
                                                                                         VerticalTextAlignment="Center" />
 
-                                                                                    <Label
-                                                                                        Margin="0,6,0,6"
-                                                                                        FontFamily="{StaticResource Montserrat-Medium}"
-                                                                                        FontSize="12"
-                                                                                        HorizontalOptions="Start"
-                                                                                        Style="{StaticResource LabelStyle}"
-                                                                                        Text="$50"
-                                                                                        TextDecorations="Strikethrough"
-                                                                                        VerticalOptions="Center"
-                                                                                        VerticalTextAlignment="Center" />
+                                                                    <!--  Add Icon   -->
+                                                                    <buttons:SfButton Grid.Column="2"
+                                                                                                  Grid.Row="2"
+                                                                                                  x:Name="AddButton"
+                                                                                                  CornerRadius="25"
+                                                                                                  IsVisible="True"
+                                                                                                  Padding="3"
+                                                                                                  Margin="0,-20,-5,-5"
+                                                                                                  BackgroundColor="YellowGreen"
+                                                                                                  HeightRequest="25"
+                                                                                                  WidthRequest="25"
+                                                                                                  TextColor="White"
+                                                                                                  Style="{StaticResource IconButtonStyle}"
+                                                                                                  Text="{StaticResource Add}" />
 
-                                                                                </StackLayout>
+                                                                    <!--  Ok Icon, If product is added to card   -->
+                                                                    <buttons:SfButton Grid.Column="2"
+                                                                                                  Grid.Row="2"
+                                                                                                  x:Name="OkButton"
+                                                                                                  IsVisible="False"
+                                                                                                  CornerRadius="25"
+                                                                                                  Padding="5"
+                                                                                                  Margin="0,-20,-5,-5"
+                                                                                                  BackgroundColor="Transparent"
+                                                                                                  HeightRequest="40"
+                                                                                                  WidthRequest="40"
+                                                                                                  TextColor="Green"
+                                                                                                  Style="{StaticResource IconButtonStyle}"
+                                                                                                  Text="{StaticResource Ok}" />
 
-                                                                            </Grid>
-                                                                        </Grid>
-                                                        </syncfusion:AccordionItem.Content>
-                                                    </syncfusion:AccordionItem>
-                                                </syncfusion:SfAccordion.Items>
-                                            </syncfusion:SfAccordion>
+                                                                </Grid>
+                                                            </Grid>
+                                                        </DataTemplate>
+                                                    </listView:SfListView.ItemTemplate>
+                                                </listView:SfListView>
+                                            </syncfusion:AccordionItem.Content>
+                                        </syncfusion:AccordionItem>
                                     </DataTemplate>
                                 </BindableLayout.ItemTemplate>
-                            </StackLayout>
+                            </syncfusion:SfAccordion>
 
 
 

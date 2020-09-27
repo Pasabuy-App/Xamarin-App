@@ -5,7 +5,7 @@
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Marketplace" 
-             xmlns:template="clr-namespace:PasaBuy.App.Views.Templates"
+             xmlns:template="clr-namespace:PasaBuy.App.Views.Templates" xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="True"
              x:Class="PasaBuy.App.Views.Marketplace.StoreBrowserPage">
@@ -46,14 +46,32 @@
                     Spacing="0"
                     VerticalOptions="FillAndExpand">
 
-                    <!--  Back button command  -->
-                    <buttons:SfButton x:Name="backButton"
-                                      HeightRequest="40"
-                                      WidthRequest="40"
-                                      CornerRadius="4"
-                                      BackgroundColor="{DynamicResource Transparent}"
-                                      TextColor="{DynamicResource Transparent}"
-                                      Text="{StaticResource Back}" />
+                    <badge:SfBadgeView
+                            Padding="0"
+                            HeightRequest="42"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"
+                            WidthRequest="40">
+                        <badge:SfBadgeView.Content>
+                            <!-- Command="{TemplateBinding BindingContext.CardItemCommand}" -->
+                            <buttons:SfButton
+                                    CornerRadius="4"
+                                    HorizontalOptions="End"
+                                    Style="{StaticResource IconButtonStyle}"
+                                    TextColor="{DynamicResource Gray-800}"
+                                    Text="{StaticResource Cart}" />
+                        </badge:SfBadgeView.Content>
+                        <badge:SfBadgeView.BadgeSettings>
+                            <badge:BadgeSetting
+                                    BackgroundColor="{DynamicResource PrimaryColor}"
+                                    BadgeAnimation="None"
+                                    BadgeType="None"
+                                    FontSize="10"
+                                    Stroke="{DynamicResource Gray-White}"
+                                    StrokeWidth="1"
+                                    Offset="-10,10" />
+                        </badge:SfBadgeView.BadgeSettings>
+                    </badge:SfBadgeView>
 
                     <!-- Restaurant page Title  -->
                     <Label Margin="16,0"

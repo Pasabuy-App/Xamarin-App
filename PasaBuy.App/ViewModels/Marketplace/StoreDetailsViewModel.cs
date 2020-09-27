@@ -137,9 +137,23 @@ namespace PasaBuy.App.ViewModels.Marketplace
                             string title = datas.data[i].title;
                             categoriesdata.Add(new Categories()
                             {
-                                Title = title,
-                     
-                            }) ;
+                                Title = title, 
+                                Prods = new ObservableCollection<ProductList>() 
+                                { 
+                                    new ProductList() 
+                                    {
+                                        Name = "Cheese Burst", actualprice = 300, description = "Burger topped with cheese and patty"
+                                    }, 
+                                    new ProductList() 
+                                    {
+                                        Name = "Fresh Pan Pizza", actualprice = 310, description = "Thick pizza baked in a deep dish pan"
+                                    }, 
+                                    new ProductList() 
+                                    { 
+                                        Name = "All Meat Pizza", actualprice = 480 , description = "Homemade thin crust pizza, topped off with two types of cheese, bacon, ham, pepperoni and hot sausage"
+                                    } 
+                                } 
+                            });
 
                         }
                     }

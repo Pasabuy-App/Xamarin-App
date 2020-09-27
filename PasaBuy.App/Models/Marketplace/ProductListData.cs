@@ -25,5 +25,6 @@ namespace PasaBuy.App.Models.Marketplace
             public string dimension = string.Empty;
             public string status = string.Empty;
         }
+
     }
 }
