@@ -254,9 +254,6 @@
     <AndroidResource Include="Resources\drawable\ChatMessageBackground.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\OnBoarding.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\Card.png" />
   </ItemGroup>
   <ItemGroup>
