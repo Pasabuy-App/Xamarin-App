@@ -138,6 +138,7 @@
 				    ColorPressed="{StaticResource Orange}"
 				    ColorRipple="{StaticResource Yellow}"
 				    x:Name="AddAddressButton"
+                    IsVisible="true"
                     ImageName ="add_24.png"
                     VerticalOptions="EndAndExpand"
                     HorizontalOptions="EndAndExpand"

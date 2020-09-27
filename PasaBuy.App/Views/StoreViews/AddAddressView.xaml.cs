@@ -30,7 +30,7 @@ namespace PasaBuy.App.Views.StoreViews
             if (adid == "0")
             {
                 Title = "Add Address";
-                AddressTypes.Text = string.Empty;
+                //AddressTypes.Text = string.Empty;
                 AddressBarangays.Text = string.Empty;
                 AddressProvinces.Text = string.Empty;
                 AddressCountrys.Text = string.Empty;
@@ -49,7 +49,7 @@ namespace PasaBuy.App.Views.StoreViews
                             SettingsAddressData add = JsonConvert.DeserializeObject<SettingsAddressData>(data);
                             for (int i = 0; i < add.data.Length; i++)
                             {
-                                AddressTypes.Text = add.data[i].type;
+                                //AddressTypes.Text = add.data[i].type;
                                 AddressBarangays.Text = add.data[i].brgy;
                                 AddressProvinces.Text = add.data[i].province;
                                 AddressCountrys.Text = add.data[i].country;
@@ -76,23 +76,23 @@ namespace PasaBuy.App.Views.StoreViews
         }
         private void Add(object sender, EventArgs e)
         {
-            AddressType.HasError = AddressTypes.Text == null || string.IsNullOrWhiteSpace(AddressTypes.Text) ? true : false;
+//AddressType.HasError = AddressTypes.Text == null || string.IsNullOrWhiteSpace(AddressTypes.Text) ? true : false;
             AddressBarangay.HasError = AddressBarangays.Text == null || string.IsNullOrWhiteSpace(AddressBarangays.Text) ? true : false;
             AddressCity.HasError = AddressCitys.Text == null || string.IsNullOrWhiteSpace(AddressCitys.Text) ? true : false;
             AddressProvince.HasError = AddressProvinces.Text == null || string.IsNullOrWhiteSpace(AddressProvinces.Text) ? true : false;
             AddressCountry.HasError = AddressCountrys.Text == null || string.IsNullOrWhiteSpace(AddressCountrys.Text) ? true : false;
             AddressStreet.HasError = AddressStreets.Text == null || string.IsNullOrWhiteSpace(AddressStreets.Text) ? true : false;
-            if (AddressStreet.HasError == false && AddressCountry.HasError == false && AddressProvince.HasError == false && AddressCity.HasError == false && AddressBarangay.HasError == false && AddressType.HasError == false)
+            if (AddressStreet.HasError == false && AddressCountry.HasError == false && AddressProvince.HasError == false && AddressCity.HasError == false && AddressBarangay.HasError == false)
             {
                 //new Alert("Address", "Country: " + AddressVar.co + " " + AddressVar.pr + " " + AddressVar.ct + " " + AddressVar.br, "OK");
                 string type = string.Empty;
-                if (AddressTypes.Text == "Business") { type = "business"; }
-                if (AddressTypes.Text == "Office") { type = "office"; }
+                /*if (AddressTypes.Text == "Business") { type = "business"; }
+                if (AddressTypes.Text == "Office") { type = "office"; }*/
                 try
                 {
                     if (adid == "0")
                     {
-                        TindaPress.Address.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, type, AddressStreets.Text, AddressVar.br, AddressVar.ct, AddressVar.pr, AddressVar.co, "", "", (bool success, string data) =>
+                        TindaPress.Address.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, "business", AddressStreets.Text, AddressVar.br, AddressVar.ct, AddressVar.pr, AddressVar.co, "", "", (bool success, string data) =>
                         {
                             if (success)
                             {
