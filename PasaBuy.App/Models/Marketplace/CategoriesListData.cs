@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace PasaBuy.App.Models.Marketplace
@@ -11,6 +12,7 @@ namespace PasaBuy.App.Models.Marketplace
 
         public class CategoriesData
         {
+            public ObservableCollection<ProductList> Prods { get; set; }
             public string ID = string.Empty;
             public string types = string.Empty;
             public string total = string.Empty;

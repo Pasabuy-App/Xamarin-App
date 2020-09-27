@@ -379,7 +379,7 @@ namespace PasaBuy.App.ViewModels.Chat
         /// <summary>
         /// Invoked when an item is selected.
         /// </summary>
-        private void ItemSelected(object selectedItem)
+        private async void ItemSelected(object selectedItem)
         {
             ChatMessageViewModel.refresh = 0;
             //ChatMessageViewModel.LoadMessage(user_id, "");
@@ -388,7 +388,8 @@ namespace PasaBuy.App.ViewModels.Chat
             ChatMessageViewModel.user_id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).ID;
             ChatMessageViewModel.storeid = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).Store_id;
             ChatMessageViewModel.type = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).Types;
-            ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ChatMessagePage()));
+            //await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ChatMessagePage()));
+            await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ChatMessagePage()));
         }
 
         /// <summary>

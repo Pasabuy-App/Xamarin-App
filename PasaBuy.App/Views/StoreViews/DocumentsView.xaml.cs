@@ -21,6 +21,7 @@ namespace PasaBuy.App.Views.StoreViews
         public DocumentsView()
         {
             InitializeComponent();
+            this.BindingContext = new DocumentViewModel();
             AddDocumentButton.Clicked += AddDocumentClicked;
         }
 
