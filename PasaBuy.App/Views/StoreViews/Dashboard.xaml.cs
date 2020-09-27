@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PasaBuy.App.Views.Navigation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,9 +16,17 @@ namespace PasaBuy.App.Views.StoreViews
         public Dashboard()
         {
             InitializeComponent();
+            if (MasterView.MyType == "store")
+            {
+                Title = "POS Terminal";
+            }
+            if (MasterView.MyType == "mover")
+            {
+                Title = "Dashboard";
+            }
         }
 
-        private async void SearchBar_OnTextChanged(object sender, TextChangedEventArgs e)
+        private void SearchBar_OnTextChanged(object sender, TextChangedEventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(e.NewTextValue))
             {

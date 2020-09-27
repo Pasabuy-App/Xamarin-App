@@ -8,7 +8,7 @@
              xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl" 
              xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.MobilePOS"
              Title="Documents">
-    
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -17,10 +17,6 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ContentPage.BindingContext>
-        <viewModel:DocumentViewModel />
-    </ContentPage.BindingContext>
-    
     <ContentPage.Content>
         <Grid>
             <StackLayout Spacing="0" VerticalOptions="FillAndExpand">

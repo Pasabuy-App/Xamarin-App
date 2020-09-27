@@ -19,6 +19,7 @@ using PasaBuy.App.Local;
 using PasaBuy.App.Models.Onboarding;
 using PasaBuy.App.ViewModels.Feeds;
 using PasaBuy.App.Views.Navigation;
+using System;
 
 namespace PasaBuy.App.ViewModels.Menu
 {
@@ -249,7 +250,8 @@ namespace PasaBuy.App.ViewModels.Menu
                 isEnable = true;
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
+                    //await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
+                    await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
                     isEnable = false;
                 });
             }
@@ -266,7 +268,8 @@ namespace PasaBuy.App.ViewModels.Menu
                 isEnable = true;
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new WalletPage()));
+                    //await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new WalletPage()));
+                    await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new WalletPage()));
                     isEnable = false;
                 });
             }
@@ -283,7 +286,8 @@ namespace PasaBuy.App.ViewModels.Menu
                 isEnable = true;
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new NotificationPage()));
+                    //await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new NotificationPage()));
+                    await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new NotificationPage()));
                     isEnable = false;
                 });
             }
@@ -300,7 +304,8 @@ namespace PasaBuy.App.ViewModels.Menu
                 isEnable = true;
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ArticleList()));
+                    //await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ArticleList()));
+                    await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ArticleList()));
                     isEnable = false;
                 });
             }
@@ -315,8 +320,10 @@ namespace PasaBuy.App.ViewModels.Menu
             if (!isEnable)
             {
                 isEnable = true;
-                Device.BeginInvokeOnMainThread(async () =>
+                Device.BeginInvokeOnMainThread( () =>
                 {
+                    MasterView.MyType = "mover";
+                    //App.Current.MainPage = new DriverMain();
                     App.Current.MainPage = new NavigationView();
                     isEnable = false;
                 });
@@ -332,8 +339,9 @@ namespace PasaBuy.App.ViewModels.Menu
             if (!isEnable)
             {
                 isEnable = true;
-                Device.BeginInvokeOnMainThread(async () =>
+                Device.BeginInvokeOnMainThread( () =>
                 {
+                    MasterView.MyType = "store";
                     App.Current.MainPage = new NavigationView();
                     isEnable = false;
                 });
@@ -351,7 +359,8 @@ namespace PasaBuy.App.ViewModels.Menu
                 isEnable = true;
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new SettingPage()));
+                    //await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new SettingPage()));
+                    await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new SettingPage()));
                     isEnable = false;
                 });
             }

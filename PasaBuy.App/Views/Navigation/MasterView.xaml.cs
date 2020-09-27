@@ -17,6 +17,7 @@ namespace PasaBuy.App.Views.Navigation
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MasterView : ContentPage
     {
+        public static string MyType = string.Empty;
         public List<MenuItem> menuList { get; set; }
         protected Xamarin.Forms.Page CurrentDetail
         {
@@ -25,18 +26,19 @@ namespace PasaBuy.App.Views.Navigation
         public MasterView()
         {
             InitializeComponent();
-            Store_name.Text = PSACache.Instance.UserInfo.store_name;
-            Logo.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.store_logo);
-            Banner.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.store_banner);
             //UserName.Text = PSACache.Instance.UserInfo.dname;
             //Email.Text = PSACache.Instance.UserInfo.email;
 
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
             menuList = new List<MenuItem>();
 
-            if (PSACache.Instance.UserInfo.stid != "0")
+            menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Dashboard"), Icon = "Idcard.png", TargetType = typeof(Dashboard) });
+            if (MyType == "store")
             {
-                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Dashboard"), Icon = "Idcard.png", TargetType = typeof(Dashboard) });
+                Store_name.Text = PSACache.Instance.UserInfo.store_name;
+                Logo.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.store_logo);
+                Banner.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.store_banner);
+                Email.Text = "";
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Management"), Icon = "Idcard.png", TargetType = typeof(ManagementView) });
                 //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Products"), Icon = "Idcard.png", TargetType = typeof(ProductsView) });
                 //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Categories"), Icon = "Idcard.png", TargetType = typeof(CategoryView) });
@@ -46,10 +48,22 @@ namespace PasaBuy.App.Views.Navigation
                 //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Documents"), Icon = "Idcard.png", TargetType = typeof(DocumentsView) });
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Reports"), Icon = "Idcard.png", TargetType = typeof(ReportsView) });
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Settings"), Icon = "Idcard.png", TargetType = typeof(SettingsView) });
-                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Homepage"), Icon = "Idcard.png", TargetType = typeof(MainTabs) });
-                navigationDrawerList.ItemsSource = menuList;
-                navigationDrawerList.SelectedItem = menuList.FirstOrDefault();
             }
+            if (MyType == "mover")
+            {
+                Store_name.Text = PSACache.Instance.UserInfo.dname;
+                Logo.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatar);
+                Banner.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.banner);
+                Email.Text = PSACache.Instance.UserInfo.email;
+                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Navigation"), Icon = "Idcard.png", TargetType = typeof(TransactionsView) });
+                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Transactions"), Icon = "Idcard.png", TargetType = typeof(TransactionsView) });
+                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Messages"), Icon = "Idcard.png", TargetType = typeof(MessagesView) });
+                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Documents"), Icon = "Idcard.png", TargetType = typeof(DocumentsView) });
+
+            }
+            menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Homepage"), Icon = "Idcard.png", TargetType = typeof(MainTabs) });
+            navigationDrawerList.ItemsSource = menuList;
+            navigationDrawerList.SelectedItem = menuList.FirstOrDefault();
 
 
         }
