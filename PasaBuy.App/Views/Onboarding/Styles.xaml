@@ -58,8 +58,15 @@
     </Style>
 
     <!--  Common style for labels  -->
+    <Style x:Key="TitleStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="LineHeight" Value="1.25" />
+    </Style>
+
+    <!--  Common style for labels  -->
     <Style x:Key="LabelStyle" TargetType="Label">
-        <Setter Property="TextColor" Value="{DynamicResource Gray-Black}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="LineHeight" Value="1.25" />
     </Style>
@@ -99,9 +106,10 @@
     <!--  Common style for flat buttons  -->
     <Style x:Key="SfFlatButtonStyle" TargetType="buttons:SfButton">
         <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="TextColor" Value="{DynamicResource Gray-Black}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
         <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
         <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="VerticalTextAlignment" Value="Center" />
     </Style>
 
@@ -122,7 +130,7 @@
             <Setter.Value>
                 <graphics:SfLinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                     <graphics:SfLinearGradientBrush.GradientStops>
-                        <graphics:SfGradientStop Offset="0.0" Color="{DynamicResource GradientEnd}" />
+                        <graphics:SfGradientStop Offset="0.0" Color="{DynamicResource Yellow}" />
                         <graphics:SfGradientStop Offset="1.0" Color="{DynamicResource GradientStart}" />
                     </graphics:SfLinearGradientBrush.GradientStops>
                 </graphics:SfLinearGradientBrush>
@@ -131,7 +139,6 @@
     </Style>
 
     <Style x:Key="SfGradientStyle" TargetType="graphics:SfGradientView">
-        <Setter Property="Opacity" Value="0.75" />
         <Setter Property="VerticalOptions" Value="FillAndExpand" />
         <Setter Property="HorizontalOptions" Value="FillAndExpand" />
         <Setter Property="BackgroundBrush">

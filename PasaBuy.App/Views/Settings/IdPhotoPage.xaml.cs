@@ -85,7 +85,7 @@ namespace PasaBuy.App.Views.Settings
 
         private void NextButtonClicked(object sender, EventArgs e)
         {
-            if(String.IsNullOrEmpty(filePath))
+            if(String.IsNullOrEmpty(filePath) || String.IsNullOrEmpty(IDNumberEntry.Text))
             {
                 new Alert("Failed", "You haven't completed this step yet", "Ok");
             } 
@@ -94,6 +94,7 @@ namespace PasaBuy.App.Views.Settings
                 if (!isEnable)
                 {
                     VerificationFillPage.idPath = filePath;
+                    VerificationFillPage.idnumber = IDNumberEntry.Text;
                     Navigation.PushModalAsync(new VerificationSelfieStepPage());
                     isEnable = true;
                     Device.BeginInvokeOnMainThread(async () =>
