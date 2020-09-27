@@ -9,7 +9,9 @@
              xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
              xmlns:template="clr-namespace:PasaBuy.App.Views.Templates"
              xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Marketplace"
-             xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Accordion;assembly=Syncfusion.Expander.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Accordion;assembly=Syncfusion.Expander.XForms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
              x:Class="PasaBuy.App.Views.Marketplace.StoreDetailsPage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
@@ -20,6 +22,9 @@
         </ResourceDictionary>
         <converter:BooleanToStringConverter x:Key="boolToStringConverter" />
         <converter:HeightConverter x:Key="HeightConverter"/>
+        <converter:BooleanToColorConverter x:Key="BoolToColorConverter" />
+        <converter:VisibilityConverter x:Key="VisibilityConverter" />
+        <converter:IntToThicknessConverter x:Key="intToThicknessConverter" />
     </ContentPage.Resources>
 
 
@@ -47,6 +52,36 @@
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
                     </controls:TitleView.LeadingView>
+                    <controls:TitleView.TrailingView>
+                        <badge:SfBadgeView
+                            Margin="{Binding Path=BindingContext.CartItemCount, Converter={x:StaticResource intToThicknessConverter}}"
+                            Padding="0"
+                            BadgeText="{Binding CartItemCount, Mode=TwoWay}"
+                            HeightRequest="42"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"
+                            WidthRequest="40">
+                            <badge:SfBadgeView.Content>
+                                <buttons:SfButton
+                                    CornerRadius="4"
+                                    Clicked="GoToCart"
+                                    HorizontalOptions="End"
+                                    Style="{StaticResource IconButtonStyle}"
+                                    TextColor="{DynamicResource WhiteColor}"
+                                    Text="{StaticResource Cart}" />
+                            </badge:SfBadgeView.Content>
+                            <badge:SfBadgeView.BadgeSettings>
+                                <badge:BadgeSetting
+                                    BackgroundColor="{DynamicResource Green}"
+                                    BadgeAnimation="None"
+                                    BadgeType="None"
+                                    FontSize="10"
+                                    Stroke="{DynamicResource Gray-White}"
+                                    StrokeWidth="1"
+                                    Offset="-10,10" />
+                            </badge:SfBadgeView.BadgeSettings>
+                        </badge:SfBadgeView>
+                    </controls:TitleView.TrailingView>
                 </controls:TitleView>
                 <ContentPresenter />
             </StackLayout>
@@ -237,6 +272,7 @@
                                                                     <!--  Product Description {Binding Summary} -->
                                                                     <Label
                                                                                     Grid.Row="1"
+                                                                                    Grid.RowSpan="2"
                                                                                     Grid.Column="1"
                                                                                     Margin="0,0,0,8"
                                                                                     FontFamily="{StaticResource Montserrat-Medium}"
@@ -246,7 +282,7 @@
                                                                                                             Default=-1}"
                                                                                     MaxLines="2"
                                                                                     Style="{StaticResource LabelStyle}"
-                                                                                    Text="{Binding description}" />
+                                                                                    Text="{Binding Description}" />
 
                                                                     <!--Product Price-->
                                                                     <Label FontFamily="{StaticResource Montserrat-SemiBold}"
@@ -277,6 +313,7 @@
                                                                                                   HeightRequest="25"
                                                                                                   WidthRequest="25"
                                                                                                   TextColor="White"
+                                                                                                  Command="{Binding AddToCartCommand}"
                                                                                                   Style="{StaticResource IconButtonStyle}"
                                                                                                   Text="{StaticResource Add}" />
 
@@ -291,6 +328,7 @@
                                                                                                   BackgroundColor="Transparent"
                                                                                                   HeightRequest="40"
                                                                                                   WidthRequest="40"
+
                                                                                                   TextColor="Green"
                                                                                                   Style="{StaticResource IconButtonStyle}"
                                                                                                   Text="{StaticResource Ok}" />

@@ -12,6 +12,7 @@ using System.Runtime.Serialization;
 using System;
 using PasaBuy.App.Local;
 using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Commands;
 
 namespace PasaBuy.App.ViewModels.Marketplace
 {
@@ -25,22 +26,23 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public static string store_id = string.Empty;
 
-
-        //private Command<object> itemTappedCommand;
-
-        /* store details observable collection */
         private static ObservableCollection<StoreDetails> storedetailslist;
 
-        public  ObservableCollection<StoreDetails> StoreDetailList
+        private static ObservableCollection<Product> producdetailstlist;
+
+        private static ObservableCollection<Categories> categoriesdata;
+
+        private int? cartItemCount;
+
+
+        #endregion
+
+        public ObservableCollection<StoreDetails> StoreDetailList
         {
             get { return storedetailslist; }
             set { storedetailslist = value; this.NotifyPropertyChanged(); }
         }
-        /* end store details observable collection */
 
-
-        /* product details observable collection */
-         private static ObservableCollection<Product> producdetailstlist;
 
         public  ObservableCollection<Product> Producdetailstlist
         {
@@ -48,11 +50,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
             set { producdetailstlist = value; this.NotifyPropertyChanged(); }
         }
 
-        /* end product details observable collection */
-
-
-        /* product details observable collection */
-        private static ObservableCollection<Categories> categoriesdata;
 
         public ObservableCollection<Categories> Categoriesdata
         {
@@ -60,17 +57,51 @@ namespace PasaBuy.App.ViewModels.Marketplace
             set { categoriesdata = value; this.NotifyPropertyChanged(); }
         }
 
-        /* end product details observable collection */
+        public int? CartItemCount
+        {
+            get
+            {
+                return this.cartItemCount;
+            }
+            set
+            {
+                this.cartItemCount = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
-
-
-
+        
 
         public StoreDetailsViewModel()
         {
             //loadstoredetails(store_id);
             loadstoredetails();
+            AddToCartCommand = new DelegateCommand(AddToCartClicked);
+            this.GoToCartCommand = new Command(this.GoToCart);
+
+        }
+
+        public DelegateCommand AddToCartCommand { get; set; }
+
+        public Command GoToCartCommand { get; set; }
+
+        private void GoToCart(object obj)
+        {
+            new Alert("Ok", "ok", "ok");
+        }
+
+        private async void AddToCartClicked(object obj)
+        {
+            new Alert("ok", "ok", "ok");
+        }
+
+        private void AddToCart(object obj)
+        {
+            new Alert("oky", "ok", "ok");
+            //this.cartItemCount = this.cartItemCount ?? 0;
+            //this.CartItemCount += 1;
             
+            // Do something
         }
 
         public static void loaddata(string stid)
@@ -206,8 +237,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
+       
 
 
-        #endregion
     }
 }

@@ -7,7 +7,8 @@
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
-    xmlns:helper="clr-namespace:PasaBuy.App.Helpers"
+    xmlns:helper="clr-namespace:PasaBuy.App.Helpers" 
+    xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
     x:Name="cartItemTemplate">
 
     <Grid.Resources>
@@ -132,56 +133,20 @@
             <border:SfBorder
                 Margin="0"
                 Padding="0"
-                BorderColor="{DynamicResource Gray-300}"
+                BorderColor="{DynamicResource Transparent}"
                 CornerRadius="3"
                 HasShadow="False"
                 HeightRequest="32"
                 HorizontalOptions="Start">
 
                 <!--  Product quantity dropdown  -->
-                <combobox:SfComboBox
-                    x:Name="QuantityComboBox"
-                    BorderColor="{DynamicResource Gray-300}"
-                    DataSource="{Binding Quantities}"
-                    HorizontalOptions="StartAndExpand"
-                    MaximumDropDownHeight="200"
-                    SelectedItem="{Binding TotalQuantity, Mode=TwoWay}"
-                    ShowBorder="False"
-                    Style="{StaticResource CartComboBoxStyle}"
-                    TextColor="Transparent"
-                    WidthRequest="90">
-
-                    <combobox:SfComboBox.CustomView>
-                        <Label
-                            Margin="10,0,24,0"
-                            BackgroundColor="Transparent"
-                            FontFamily="{DynamicResource Montserrat-Regular}"
-                            FontSize="14"
-                            HorizontalTextAlignment="Center"
-                            Style="{StaticResource CommonLabelStyle}"
-                            Text="{Binding Source={x:Reference QuantityComboBox}, Path=SelectedItem, StringFormat='QTY: {0}'}" />
-                    </combobox:SfComboBox.CustomView>
-
-                    <combobox:SfComboBox.DropDownButtonSettings>
-                        <combobox:DropDownButtonSettings Width="30" Height="30">
-                            <combobox:DropDownButtonSettings.View>
-                                <Label
-                                    Margin="0"
-                                    FontFamily="{StaticResource FontIcons}"
-                                    FontSize="25"
-                                    HorizontalTextAlignment="Center"
-                                    Text="{StaticResource DropDownButtonIcon}"
-                                    TextColor="{DynamicResource Gray-600}"
-                                    VerticalTextAlignment="Center" />
-                            </combobox:DropDownButtonSettings.View>
-                        </combobox:DropDownButtonSettings>
-                    </combobox:SfComboBox.DropDownButtonSettings>
-
-                    <combobox:SfComboBox.Behaviors>
-                        <behaviors:SfComboBoxDropDownBehavior Command="{Binding Source={x:Reference cartItemTemplate}, Path=ParentBindingContext.QuantitySelectedCommand}" />
-                    </combobox:SfComboBox.Behaviors>
-                </combobox:SfComboBox>
-
+                    <numeric:SfNumericUpDown x:Name="numericUpDown" 
+                                             Maximum="5" 
+                                             Minimum="1" 
+                                             MaximumDecimalDigits="0"
+                                             Value="1"
+                                             SpinButtonAlignment="Both"
+                                             FormatString="n"/>
             </border:SfBorder>
 
             <!--  Remove button  -->
@@ -193,6 +158,7 @@
                 HeightRequest="32"
                 HorizontalOptions="Start"
                 Style="{StaticResource SfButtonStyle}"
+                TextColor="Black"
                 VerticalOptions="Center"
                 WidthRequest="92">
                 <buttons:SfButton.Behaviors>
@@ -209,7 +175,7 @@
                         HorizontalTextAlignment="Center"
                         Style="{StaticResource CommonLabelStyle}"
                         Text="Remove"
-                        TextColor="{DynamicResource HyperLink}" />
+                        TextColor="{DynamicResource BlackColor}" />
                 </buttons:SfButton.Content>
             </buttons:SfButton>
         </StackLayout>

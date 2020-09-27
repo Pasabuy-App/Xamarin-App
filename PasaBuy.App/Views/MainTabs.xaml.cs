@@ -59,7 +59,7 @@ namespace PasaBuy.App.Views
                 {
                     i = 1;
                     GroceryBrowserPage.LastIndex = 11;
-                    GroceryBrowserViewModel.grocerystorelist.Clear(); 
+                    GroceryBrowserViewModel.grocerystorelist.Clear();
                     GroceryBrowserViewModel.LoadGrocery("");
                     await Task.Delay(500);
                     i = 0;

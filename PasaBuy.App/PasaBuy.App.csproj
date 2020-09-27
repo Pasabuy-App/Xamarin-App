@@ -73,6 +73,7 @@
     <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="18.1.0.57" />
     <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="18.1.0.57" />
     <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="18.1.0.57" />
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="18.1.0.57" />
     <PackageReference Include="Syncfusion.Xamarin.SfParallaxView" Version="18.1.0.57" />
     <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="18.1.0.57" />
     <PackageReference Include="Syncfusion.Xamarin.SfProgressBar" Version="18.1.0.57" />
@@ -138,9 +139,6 @@
     </Compile>
     <Compile Update="Views\Advisory\Styles.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Marketplace\StoreBrowserPage.xaml.cs">
-      <DependentUpon>StoreBrowserPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Marketplace\StoreFrontPage.xaml.cs">
       <DependentUpon>StoreFrontPage.xaml</DependentUpon>
@@ -303,7 +301,7 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Marketplace\StoreBrowserPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Marketplace\StoreDetailsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

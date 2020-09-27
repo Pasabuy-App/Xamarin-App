@@ -11,7 +11,7 @@
              x:Class="PasaBuy.App.Views.MainTabs"
              NavigationPage.HasNavigationBar="False"
              NavigationPage.HasBackButton="False">
-    
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -27,7 +27,7 @@
                            VisibleHeaderCount="6" 
                            EnableSwiping="true" 
                            DisplayMode="Image">
-            
+
             <!--TAB SETTINGS-->
             <tabView:SfTabView.SelectionIndicatorSettings>
                 <tabView:SelectionIndicatorSettings
@@ -36,7 +36,7 @@
                     Position="Bottom" 
                     StrokeThickness="3"/>
             </tabView:SfTabView.SelectionIndicatorSettings>
-            
+
             <!--HOME TAB-->
             <tabView:SfTabItem Title="HOME" 
                                IconFont="{StaticResource Home}"
@@ -49,10 +49,10 @@
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
 
-            
-            
-            
-                <!--<tabView:SfTabItem.Content>
+
+
+
+            <!--<tabView:SfTabItem.Content>
                     <tabView:SfTabView BackgroundColor="{DynamicResource Gray-100}" 
                            TabItemTapped="TabView_TabItemTapped"
                            TabHeaderPosition="Bottom"
@@ -147,7 +147,7 @@
                     <chat:MessagePage/>
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
-            
+
             <!--BURGER TAB-->
             <tabView:SfTabItem Title="MENU"
                                IconFont="{StaticResource Menu}"
@@ -159,7 +159,7 @@
                     <menu:MasterMenu/>
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
-            
+
         </tabView:SfTabView>
     </ContentPage.Content>
 </ContentPage>

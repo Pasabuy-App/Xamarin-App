@@ -4,6 +4,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using System.Runtime.Serialization;
 using PasaBuy.App.Controls;
+using PasaBuy.App.Views.eCommerce;
 
 namespace PasaBuy.App.ViewModels.eCommerce
 {
@@ -217,9 +218,9 @@ namespace PasaBuy.App.ViewModels.eCommerce
         /// Invoked when an item is selected.
         /// </summary>
         /// <param name="obj">The Object</param>
-        private void PlaceOrderClicked(object obj)
+        private async void PlaceOrderClicked(object obj)
         {
-            // Do something
+            await Application.Current.MainPage.Navigation.PushModalAsync(new CheckoutPage());
         }
 
         /// <summary>

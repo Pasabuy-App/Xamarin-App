@@ -11,6 +11,7 @@ using System.Runtime.Serialization;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using Xamarin.Essentials;
 
 namespace PasaBuy.App.ViewModels.Marketplace
 {
@@ -24,6 +25,9 @@ namespace PasaBuy.App.ViewModels.Marketplace
         #region Fields
 
         private Command<object> itemTappedCommand;
+
+        private int? cartItemCount;
+
 
         public static ObservableCollection<Store> storelist;
 
@@ -94,7 +98,19 @@ namespace PasaBuy.App.ViewModels.Marketplace
         /// <summary>
         /// Initializes a new instance for the <see cref=StoreBrowserViewModel"/> class.
         /// </summary>
-        
+
+        public int? CartItemCount
+        {
+            get
+            {
+                return this.cartItemCount;
+            }
+            set
+            {
+                this.cartItemCount = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
         #endregion
 
@@ -114,6 +130,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         }
 
+     
+
         /// <summary>
         /// Gets or sets a collection of values to be displayed in the Restaurant page.
         /// </summary>
@@ -132,6 +150,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
         }
 
+      
         #endregion
     }
 }

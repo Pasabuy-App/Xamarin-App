@@ -8,11 +8,11 @@ namespace PasaBuy.App.Behaviors.Marketplace
     /// This class extends the behavior of the catalog page and detail page
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class CartBehavior : Behavior<ContentPage>
+    public class CartBehavior : Behavior<ContentView>
     {
         #region Fields
 
-        private ContentPage bindablePage;
+        private ContentView bindablePage;
 
         #endregion
 
@@ -21,26 +21,24 @@ namespace PasaBuy.App.Behaviors.Marketplace
         /// <summary>
         /// Invoked when adding catalog page and detail page.
         /// </summary>
-        /// <param name="bindableContentPage">Bindable ContentPage</param>
-        protected override void OnAttachedTo(ContentPage bindableContentPage)
+        /// <param name="bindableContentView">Bindable ContentPage</param>
+        protected override void OnAttachedTo(ContentView bindableContentView)
         {
-            if (bindableContentPage != null)
+            if (bindableContentView != null)
             {
-                base.OnAttachedTo(bindableContentPage);
-                this.bindablePage = bindableContentPage;
-                bindableContentPage.Appearing += this.Bindable_Appearing;
+                base.OnAttachedTo(bindableContentView);
+                this.bindablePage = bindableContentView;
             }
         }
         /// <summary>
         /// Invoked when exit from the page.
         /// </summary>
         /// <param name="bindableContentPage">Content Page</param>
-        protected override void OnDetachingFrom(ContentPage bindableContentPage)
+        protected override void OnDetachingFrom(ContentView bindableContentView)
         {
-            if (bindableContentPage != null)
+            if (bindableContentView != null)
             {
-                base.OnDetachingFrom(bindableContentPage);
-                bindableContentPage.Appearing -= this.Bindable_Appearing;
+                base.OnDetachingFrom(bindableContentView);
             }
         }
 

@@ -5,14 +5,22 @@
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Marketplace" 
-             xmlns:template="clr-namespace:PasaBuy.App.Views.Templates" xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
+             xmlns:template="clr-namespace:PasaBuy.App.Views.Templates" 
+             xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
+             xmlns:behavior="clr-namespace:PasaBuy.App.Behaviors.Marketplace" 
+             xmlns:converter="clr-namespace:PasaBuy.App.Converters"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="True"
+             x:Name="storeBrowserPage"
              x:Class="PasaBuy.App.Views.Marketplace.StoreBrowserPage">
 
     <ContentView.BindingContext>
         <viewModel:StoreBrowserViewModel />
     </ContentView.BindingContext>
+
+    <ContentView.Behaviors>
+        <behavior:CartBehavior />
+    </ContentView.Behaviors>
 
     <ContentView.Resources>
         <ResourceDictionary>
@@ -20,6 +28,10 @@
                 <ResourceDictionary Source="Stylex.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
+        <converter:BooleanToColorConverter x:Key="BoolToColorConverter" />
+        <converter:BooleanToStringConverter x:Key="BoolToStringConverter" />
+        <converter:VisibilityConverter x:Key="VisibilityConverter" />
+        <converter:IntToThicknessConverter x:Key="intToThicknessConverter" />
     </ContentView.Resources>
 
     <ContentView.Content>
@@ -47,16 +59,18 @@
                     VerticalOptions="FillAndExpand">
 
                     <badge:SfBadgeView
+                            Margin="{Binding Path=BindingContext.CartItemCount, Converter={x:StaticResource intToThicknessConverter}}"
                             Padding="0"
+                            BadgeText="{Binding CartItemCount, Mode=TwoWay}"
                             HeightRequest="42"
                             HorizontalOptions="End"
                             VerticalOptions="Center"
                             WidthRequest="40">
                         <badge:SfBadgeView.Content>
-                            <!-- Command="{TemplateBinding BindingContext.CardItemCommand}" -->
                             <buttons:SfButton
                                     CornerRadius="4"
                                     HorizontalOptions="End"
+                                    Command="{Binding GoToCartCommand}"
                                     Style="{StaticResource IconButtonStyle}"
                                     TextColor="{DynamicResource Gray-800}"
                                     Text="{StaticResource Cart}" />

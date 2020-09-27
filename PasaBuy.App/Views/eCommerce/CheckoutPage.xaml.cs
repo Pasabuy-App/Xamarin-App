@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms.Internals;
+﻿using System;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace PasaBuy.App.Views.eCommerce
@@ -16,6 +17,11 @@ namespace PasaBuy.App.Views.eCommerce
         public CheckoutPage()
         {
             InitializeComponent();
+        }
+
+        public void BackButtonClicked(object sender, EventArgs e)
+        {
+            Navigation.PopModalAsync();
         }
     }
 }

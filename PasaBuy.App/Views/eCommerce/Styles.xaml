@@ -20,7 +20,8 @@
     <Style TargetType="control:TitleView">
         <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
     </Style>
-
+    <!--  Group key for Payment radio buttons  -->
+    <buttons:SfRadioGroupKey x:Key="PaymentOptionGroup" />
     <!--  Common style for labels  -->
     <Style x:Key="CommonLabelStyle" TargetType="Label">
         <Setter Property="TextColor" Value="{DynamicResource Gray-700}" />
@@ -67,7 +68,7 @@
                 <graphics:SfLinearGradientBrush>
                     <graphics:SfLinearGradientBrush.GradientStops>
                         <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
-                        <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                        <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryColor}" />
                     </graphics:SfLinearGradientBrush.GradientStops>
                 </graphics:SfLinearGradientBrush>
             </Setter.Value>
@@ -131,5 +132,32 @@
         <Setter Property="BorderWidth" Value="0" />
         <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
     </Style>
+
+    <combobox:DropDownButtonSettings
+        x:Key="DropDownButtonSettings"
+        Width="25"
+        Height="25"
+        FontColor="Red" />
+
+    <!--  Common style for SfRadioButton  -->
+    <Style x:Key="SfRadioButtonStyle" TargetType="buttons:SfRadioButton">
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="CheckedColor" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="UncheckedColor" Value="{DynamicResource Gray-300}" />
+        <Setter Property="Margin" Value="16,0" />
+    </Style>
+
+    <!--  Common style for checkout page RadioButton  -->
+    <Style
+        x:Key="RadioButtonStyle"
+        BasedOn="{StaticResource SfRadioButtonStyle}"
+        TargetType="buttons:SfRadioButton">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+    </Style>
+
 
 </ResourceDictionary>

@@ -72,6 +72,7 @@
     <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
     <Compile Include="Renderers\BorderlessPickerRendererIos.cs" />
     <Compile Include="Renderers\CalendarDatePickerRenderer.cs" />
+    <Compile Include="Renderers\CustomNumericUpDownRenderer.cs" />
     <Compile Include="Renderers\FrameShadowRenderer.cs" />
     <Compile Include="Renderers\RoundedEntryRendererIos.cs" />
     <Compile Include="Renderers\RoundedPickerRendererIos.cs" />
@@ -200,6 +201,9 @@
       <Version>18.1.0.57</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox">
+      <Version>18.1.0.57</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown">
       <Version>18.1.0.57</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout">

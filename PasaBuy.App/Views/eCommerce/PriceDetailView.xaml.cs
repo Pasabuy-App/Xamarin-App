@@ -40,6 +40,12 @@ namespace PasaBuy.App.Views.eCommerce
             set { this.SetValue(ActionTextProperty, value); }
         }
 
+
         #endregion
+
+        private void GoToCheckout(object sender)
+        {
+            Navigation.PushModalAsync(new CheckoutPage());
+        }
     }
 }

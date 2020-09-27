@@ -25,13 +25,14 @@
             <StackLayout Spacing="0">
 
                 <!--  Title View    Command="{TemplateBinding BindingContext.BackButtonCommand}" -->
-                <controls:TitleView Title="Cart" BackgroundColor="{DynamicResource Gray-White}">
+                <controls:TitleView Title="Cart" BackgroundColor="{DynamicResource PrimaryColor}">
                     <controls:TitleView.LeadingView>
                         <buttons:SfButton
                             x:Name="backButton"
                             Clicked="backButton_Clicked"
                             CommandParameter="{x:Reference backButton}"
                             CornerRadius="4"
+                            TextColor="White"
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
                     </controls:TitleView.LeadingView>
@@ -145,6 +146,7 @@
                     Margin="{OnIdiom Default='0,16,0,0',
                                      Desktop=0}"
                     ActionText="PLACE ORDER"
+                    
                     BackgroundColor="{DynamicResource Gray-100}"
                     HorizontalOptions="{OnIdiom Default=Fill,
                                                 Desktop=End}" />

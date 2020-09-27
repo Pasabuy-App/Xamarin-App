@@ -72,7 +72,7 @@
             <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}"/>
 
             <!--  ListView for catalog list  -->
-            <listView:SfListView
+            <!--<listView:SfListView
                 x:Name="ListViewList"
                 Grid.Row="2"
                 Margin="{OnIdiom Default='0,8,8,0',
@@ -96,7 +96,7 @@
                     </DataTemplate>
                 </listView:SfListView.ItemTemplate>
 
-            </listView:SfListView>
+            </listView:SfListView>-->
 
         </Grid>
 
