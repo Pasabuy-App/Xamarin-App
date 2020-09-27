@@ -204,7 +204,9 @@ namespace PasaBuy.App.ViewModels.Menu
         private void NavigationButtonClicked(object obj)
         {
             this.UpdateSelectedItemColor(obj);
-
+            Views.Driver.Navigation.StoreValue = string.Empty;
+           
+            (App.Current.MainPage as MasterDetailPage).Detail = new NavigationPage(new Navigation());
             //Do something
         }
 

@@ -39,6 +39,7 @@ namespace PasaBuy.App.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            Xamarin.FormsMaps.Init();
             SfSegmentedControlRenderer.Init();
             SfLinearProgressBarRenderer.Init();
             SfPopupLayoutRenderer.Init();

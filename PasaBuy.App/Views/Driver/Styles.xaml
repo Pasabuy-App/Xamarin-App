@@ -37,6 +37,14 @@
     <x:String x:Key="Help">&#xe72c;</x:String>
     <x:String x:Key="Edit">&#xe727;</x:String>
     <x:String x:Key="PhoneFill">&#xe72a;</x:String>
+    <x:String x:Key="Offer">&#xe736;</x:String>
+    <x:String x:Key="FlashSale">&#xe743;</x:String>
+    <x:String x:Key="Arrived">&#xe740;</x:String>
+    <x:String x:Key="Delivered">&#xe741;</x:String>
+    <x:String x:Key="New Message">&#xe720;</x:String>
+    <Color x:Key="TappedBackgroundColor">#eaeaea</Color>
+    <Color x:Key="Link">#567cd7</Color>
+
 
     <!--  Common style for Navigation bar SfButton  -->
     <Style x:Key="NavigationBarButtonStyle" TargetType="buttons:SfButton">

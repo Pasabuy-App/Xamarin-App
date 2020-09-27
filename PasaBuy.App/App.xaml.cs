@@ -6,6 +6,7 @@ using System;
 using PasaBuy.App.Views.Marketplace;
 using PasaBuy.App.Views.StoreViews;
 using PasaBuy.App.Views.Menu;
+using PasaBuy.App.Views.Driver;
 
 namespace PasaBuy.App
 {
