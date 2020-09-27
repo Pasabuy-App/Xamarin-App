@@ -1,5 +1,6 @@
 ﻿using PasaBuy.App.Local;
 using PasaBuy.App.Resources.Texts;
+using PasaBuy.App.Views.Driver;
 using PasaBuy.App.Views.StoreViews;
 using System;
 using System.Collections.Generic;
@@ -57,7 +58,7 @@ namespace PasaBuy.App.Views.Navigation
                 Banner.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.banner);
                 Email.Text = PSACache.Instance.UserInfo.email;
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Navigation"), Icon = "Idcard.png", TargetType = typeof(Views.Driver.Navigation) });
-                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Transactions"), Icon = "Idcard.png", TargetType = typeof(TransactionsView) });
+                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Transactions"), Icon = "Idcard.png", TargetType = typeof(TransactionDriverView) });
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Messages"), Icon = "Idcard.png", TargetType = typeof(MessagesView) });
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Available Deliveries"), Icon = "Idcard.png", TargetType = typeof(Views.Driver.DashboardPage) });
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Documents"), Icon = "Idcard.png", TargetType = typeof(DocumentsView) });

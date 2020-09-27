@@ -175,11 +175,8 @@
     <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
     <Compile Include="Renderers\BorderlessPickerRendererAndroid.cs" />
     <Compile Include="Renderers\CalendarDatePickerRenderer.cs" />
-<<<<<<< Updated upstream
     <Compile Include="Renderers\CustomMapRenderer.cs" />
-=======
     <Compile Include="Renderers\CustomNumericUpDownRenderer.cs" />
->>>>>>> Stashed changes
     <Compile Include="Renderers\RoundedEntryRendererAndroid.cs" />
     <Compile Include="Renderers\RoundedPickerRendererAndroid.cs" />
     <Compile Include="Resources\Resource.designer.cs" />

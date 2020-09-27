@@ -252,6 +252,9 @@
     <EmbeddedResource Update="Views\Driver\Styles.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Driver\TransactionDriverView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\eCommerce\CartPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
