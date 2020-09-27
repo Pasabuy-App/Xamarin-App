@@ -22,6 +22,7 @@ namespace PasaBuy.App
             DataVice.DVHost.Instance.Initialized(PSAConfig.baseRestUrl);
             SocioPress.SPHost.Instance.Initialized(PSAConfig.baseRestUrl);
             TindaPress.TPHost.Instance.Initialized(PSAConfig.baseRestUrl);
+            HatidPress.HPHost.Instance.Initialized(PSAConfig.baseRestUrl);
 
             PSACache.Instance.Initialize();
             //commit

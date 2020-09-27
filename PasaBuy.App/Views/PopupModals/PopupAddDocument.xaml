@@ -156,14 +156,6 @@
                                 VerticalOptions="CenterAndExpand">
                             <combobox:SfComboBox.ComboBoxSource>
                                 <ListCollection:List x:TypeArguments="x:String" >
-                                    <x:String>DTI Registration</x:String>
-                                    <x:String>Barangay Clearance</x:String>
-                                    <x:String>Lease Contract</x:String>
-                                    <x:String>Community Tax</x:String>
-                                    <x:String>Occupancy Permit</x:String>
-                                    <x:String>Sanitary Permit</x:String>
-                                    <x:String>Fire Permit</x:String>
-                                    <x:String>Mayor's Permit</x:String>
                                 </ListCollection:List>
                             </combobox:SfComboBox.ComboBoxSource>
                             <combobox:SfComboBox.DropDownButtonSettings>

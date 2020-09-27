@@ -671,6 +671,9 @@
     <Reference Include="DataVice-PCL">
       <HintPath>Resources\DataVice-PCL.dll</HintPath>
     </Reference>
+    <Reference Include="HatidPress-PCL">
+      <HintPath>Resources\HatidPress-PCL.dll</HintPath>
+    </Reference>
     <Reference Include="SocioPress-PCL">
       <HintPath>Resources\SocioPress-PCL.dll</HintPath>
     </Reference>

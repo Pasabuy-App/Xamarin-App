@@ -2,6 +2,7 @@
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.MobilePOS;
+using PasaBuy.App.Views.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -29,65 +30,131 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         {
             try
             {
-                TindaPress.Document.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, "", "", "1", (bool success, string data) =>
+                if (MasterView.MyType == "store")
                 {
-                    if (success)
+                    TindaPress.Document.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, "", "", "1", (bool success, string data) =>
                     {
-                        DocumentData post = JsonConvert.DeserializeObject<DocumentData>(data);
-                        for (int i = 0; i < post.data.Length; i++)
+                        if (success)
                         {
-                            string id = post.data[i].ID;
-                            string doctype = post.data[i].doctype;
-                            string approved = post.data[i].approved;
-                            string date_created = post.data[i].date_created;
+                            DocumentData post = JsonConvert.DeserializeObject<DocumentData>(data);
+                            for (int i = 0; i < post.data.Length; i++)
+                            {
+                                string id = post.data[i].ID;
+                                string doctype = post.data[i].doctype;
+                                string approved = post.data[i].approved;
+                                string date_created = post.data[i].date_created;
 
-                            if (doctype == "dti_registration")
-                            {
-                                doctype = "DTI Registration";
+                                if (doctype == "dti_registration")
+                                {
+                                    doctype = "DTI Registration";
+                                }
+                                if (doctype == "barangay_clearance")
+                                {
+                                    doctype = "Barangay Clearance";
+                                }
+                                if (doctype == "lease_contract")
+                                {
+                                    doctype = "Lease Contract";
+                                }
+                                if (doctype == "community_tax")
+                                {
+                                    doctype = "Community Tax";
+                                }
+                                if (doctype == "occupancy_permit")
+                                {
+                                    doctype = "Occupancy Permit";
+                                }
+                                if (doctype == "sanitary_permit")
+                                {
+                                    doctype = "Sanitary Permit";
+                                }
+                                if (doctype == "fire_permit")
+                                {
+                                    doctype = "Fire Permit";
+                                }
+                                if (doctype == "mayors_permit")
+                                {
+                                    doctype = "Mayor's Permit";
+                                }
+                                documentList.Add(new DocumentData()
+                                {
+                                    ID = id,
+                                    Name = doctype,
+                                    Type = date_created,
+                                    Status = approved
+                                });
                             }
-                            if (doctype == "barangay_clearance") 
-                            {
-                                doctype = "Barangay Clearance";
-                            }
-                            if (doctype == "lease_contract") 
-                            {
-                                doctype = "Lease Contract";
-                            }
-                            if (doctype == "community_tax") 
-                            {
-                                doctype = "Community Tax";
-                            }
-                            if (doctype == "occupancy_permit")
-                            {
-                                doctype = "Occupancy Permit";
-                            }
-                            if (doctype == "sanitary_permit") 
-                            {
-                                doctype = "Sanitary Permit";
-                            }
-                            if (doctype == "fire_permit")
-                            {
-                                doctype = "Fire Permit"; 
-                            }
-                            if (doctype == "mayors_permit")
-                            {
-                                doctype = "Mayor's Permit"; 
-                            }
-                            documentList.Add(new DocumentData()
-                            {
-                                ID = id,
-                                Name = doctype,
-                                Type = date_created,
-                                Status = approved
-                            });
                         }
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
 
-                    }
-                });
+                        }
+                    });
+                }
+                if (MasterView.MyType == "mover")
+                {
+                    HatidPress.Documents.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "1", "", "", "", PSACache.Instance.UserInfo.wpid, (bool success, string data) =>
+                    {
+                        if (success)
+                        {
+                            DocumentData post = JsonConvert.DeserializeObject<DocumentData>(data);
+                            for (int i = 0; i < post.data.Length; i++)
+                            {
+                                string id = post.data[i].ID;
+                                string doctype = post.data[i].doctype;
+                                string approved = post.data[i].approved;
+                                string date_created = post.data[i].date_created;
+
+                                if (doctype == "license_card")
+                                {
+                                    doctype = "License Card";
+                                }
+                                if (doctype == "license_or")
+                                {
+                                    doctype = "License OR";
+                                }
+                                if (doctype == "vehicle_or")
+                                {
+                                    doctype = "Vehicle OR";
+                                }
+                                if (doctype == "vehicle_cr")
+                                {
+                                    doctype = "Vehicle CR";
+                                }
+                                if (doctype == "vehicle_front")
+                                {
+                                    doctype = "Vehicle's Front";
+                                }
+                                if (doctype == "vehicle_right")
+                                {
+                                    doctype = "Vehicle's Right";
+                                }
+                                if (doctype == "vehicle_left")
+                                {
+                                    doctype = "Vehicle's Left";
+                                }
+                                if (doctype == "vehicle_back")
+                                {
+                                    doctype = "Vehicle's Back";
+                                }
+                                documentList.Add(new DocumentData()
+                                {
+                                    ID = id,
+                                    Name = doctype,
+                                    Type = date_created,
+                                    Status = approved
+                                });
+                            }
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+
+                        }
+                    });
+                }
+                
             }
             catch (Exception)
             {

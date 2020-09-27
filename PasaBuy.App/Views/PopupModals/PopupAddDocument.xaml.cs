@@ -1,6 +1,7 @@
 ﻿using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.ViewModels.MobilePOS;
+using PasaBuy.App.Views.Navigation;
 using Plugin.Media;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
@@ -22,6 +23,30 @@ namespace PasaBuy.App.Views.PopupModals
         public PopupAddDocument()
         {
             InitializeComponent();
+            List<string> list = new List<string>();
+            if (MasterView.MyType == "store")
+            {
+                list.Add("DTI Registration");
+                list.Add("Barangay Clearance");
+                list.Add("Lease Contract");
+                list.Add("Community Tax");
+                list.Add("Occupancy Permit");
+                list.Add("Sanitary Permit");
+                list.Add("Fire Permit");
+                list.Add("Mayor's Permit");
+            }
+            if (MasterView.MyType == "mover")
+            {
+                list.Add("License Card");
+                list.Add("License OR");
+                list.Add("Vehicle CR");
+                list.Add("Vehicle OR");
+                list.Add("Vehicle's Front");
+                list.Add("Vehicle's Right");
+                list.Add("Vehicle's Left");
+                list.Add("Vehicle's Back");
+            }
+            DocumentTypePicker.DataSource = list;
         }
 
         void RemoveDocumentImage(object sender, EventArgs args)
@@ -93,58 +118,110 @@ namespace PasaBuy.App.Views.PopupModals
 
         private void OKModal_Clicked(object sender, EventArgs e)
         {
-            string doctype = string.Empty;
-            if (DocumentTypePicker.Text == "DTI Registration")
-            {
-                doctype = "dti_registration";
-            }
-            if (DocumentTypePicker.Text == "Barangay Clearance")
-            {
-                doctype = "barangay_clearance";
-            }
-            if (DocumentTypePicker.Text == "Lease Contract")
-            {
-                doctype = "lease_contract";
-            }
-            if (DocumentTypePicker.Text == "Community Tax")
-            {
-                doctype = "community_tax";
-            }
-            if (DocumentTypePicker.Text == "Occupancy Permit")
-            {
-                doctype = "occupancy_permit";
-            }
-            if (DocumentTypePicker.Text == "Sanitary Permit")
-            {
-                doctype = "sanitary_permit";
-            }
-            if (DocumentTypePicker.Text == "Fire Permit")
-            {
-                doctype = "fire_permit";
-            }
-            if (DocumentTypePicker.Text == "Mayor's Permit")
-            {
-                doctype = "mayors_permit";
-            }
             if (filepath != string.Empty && DocumentTypePicker.Text != string.Empty)
             {
                 //new Alert(DocumentTypePicker.Text, "Path: " + filepath, "OK");
                 try
                 {
-                    TindaPress.Document.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, doctype, filepath,(bool success, string data) =>
+                    string doctype = string.Empty;
+                    if (MasterView.MyType == "store")
                     {
-                        if (success)
+                        if (DocumentTypePicker.Text == "DTI Registration")
                         {
-                            DocumentViewModel.documentList.Clear();
-                            DocumentViewModel.LoadData();
-                            PopupNavigation.Instance.PopAsync();
+                            doctype = "dti_registration";
                         }
-                        else
+                        if (DocumentTypePicker.Text == "Barangay Clearance")
                         {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            doctype = "barangay_clearance";
+                        }
+                        if (DocumentTypePicker.Text == "Lease Contract")
+                        {
+                            doctype = "lease_contract";
+                        }
+                        if (DocumentTypePicker.Text == "Community Tax")
+                        {
+                            doctype = "community_tax";
+                        }
+                        if (DocumentTypePicker.Text == "Occupancy Permit")
+                        {
+                            doctype = "occupancy_permit";
+                        }
+                        if (DocumentTypePicker.Text == "Sanitary Permit")
+                        {
+                            doctype = "sanitary_permit";
+                        }
+                        if (DocumentTypePicker.Text == "Fire Permit")
+                        {
+                            doctype = "fire_permit";
+                        }
+                        if (DocumentTypePicker.Text == "Mayor's Permit")
+                        {
+                            doctype = "mayors_permit";
+                        }
+                        TindaPress.Document.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, doctype, filepath, (bool success, string data) =>
+                        {
+                            if (success)
+                            {
+                                DocumentViewModel.documentList.Clear();
+                                DocumentViewModel.LoadData();
+                                PopupNavigation.Instance.PopAsync();
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
 
+                            }
+                        });
+                    }
+                    if (MasterView.MyType == "mover")
+                    {
+                        if (DocumentTypePicker.Text == "Vehicle's Back")
+                        {
+                            doctype = "vehicle_back";
                         }
-                    });
+                        if (DocumentTypePicker.Text == "Vehicle's Left")
+                        {
+                            doctype = "vehicle_left";
+                        }
+                        if (DocumentTypePicker.Text == "Vehicle's Right")
+                        {
+                            doctype = "vehicle_right";
+                        }
+                        if (DocumentTypePicker.Text == "Vehicle's Front")
+                        {
+                            doctype = "vehicle_front";
+                        }
+                        if (DocumentTypePicker.Text == "Vehicle CR")
+                        {
+                            doctype = "vehicle_cr";
+                        }
+                        if (DocumentTypePicker.Text == "Vehicle OR")
+                        {
+                            doctype = "vehicle_or";
+                        }
+                        if (DocumentTypePicker.Text == "License OR")
+                        {
+                            doctype = "license_or";
+                        }
+                        if (DocumentTypePicker.Text == "License Card")
+                        {
+                            doctype = "license_card";
+                        }
+                        HatidPress.Documents.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, filepath, doctype, PSACache.Instance.UserInfo.stid, "", (bool success, string data) =>
+                        {
+                            if (success)
+                            {
+                                DocumentViewModel.documentList.Clear();
+                                DocumentViewModel.LoadData();
+                                PopupNavigation.Instance.PopAsync();
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+
+                            }
+                        });
+                    }
                 }
                 catch (Exception)
                 {
