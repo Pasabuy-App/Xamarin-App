@@ -13,6 +13,7 @@ using System;
 using PasaBuy.App.Local;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Commands;
+using PasaBuy.App.Views.eCommerce;
 
 namespace PasaBuy.App.ViewModels.Marketplace
 {
@@ -74,34 +75,27 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public StoreDetailsViewModel()
         {
+            this.AddToCartCommand = new Command(this.AddToCartClicked);
+            this.GoToCartCommand = new Command(this.GoToCartClicked);
+
             //loadstoredetails(store_id);
             loadstoredetails();
-            AddToCartCommand = new DelegateCommand(AddToCartClicked);
-            this.GoToCartCommand = new Command(this.GoToCart);
 
         }
 
-        public DelegateCommand AddToCartCommand { get; set; }
+        public Command AddToCartCommand { get; set; }
 
         public Command GoToCartCommand { get; set; }
 
-        private void GoToCart(object obj)
+        private void AddToCartClicked(object obj)
         {
-            new Alert("Ok", "ok", "ok");
+            this.cartItemCount = this.cartItemCount ?? 0;
+            this.CartItemCount += 1;
         }
-
-        private async void AddToCartClicked(object obj)
+      
+        private async void GoToCartClicked(object obj)
         {
-            new Alert("ok", "ok", "ok");
-        }
-
-        private void AddToCart(object obj)
-        {
-            new Alert("oky", "ok", "ok");
-            //this.cartItemCount = this.cartItemCount ?? 0;
-            //this.CartItemCount += 1;
-            
-            // Do something
+            await Application.Current.MainPage.Navigation.PushModalAsync(new CartPage());
         }
 
         public static void loaddata(string stid)

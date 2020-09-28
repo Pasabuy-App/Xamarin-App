@@ -1,6 +1,7 @@
 ﻿using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Models.Marketplace;
 using PasaBuy.App.Views.eCommerce;
+using Syncfusion.XForms.BadgeView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,6 @@ namespace PasaBuy.App.Views.Marketplace
         public StoreDetailsPage()
         {
             InitializeComponent();
-           
 
         }
         public void BackButtonClicked(object sender, EventArgs e)
@@ -32,8 +32,11 @@ namespace PasaBuy.App.Views.Marketplace
             Navigation.PushModalAsync(new CartPage());
         }
 
+        private void AddToCart(object sender, EventArgs e)
+        {
+            new Alert("Ok", "ok", "ok");
+        }
 
-        
 
         /*private void CategoryTapped(object sender, EventArgs e)
         {*/
