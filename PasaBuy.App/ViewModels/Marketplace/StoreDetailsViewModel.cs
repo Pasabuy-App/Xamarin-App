@@ -15,6 +15,7 @@ using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Commands;
 using PasaBuy.App.Views.eCommerce;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace PasaBuy.App.ViewModels.Marketplace
 {
@@ -152,68 +153,38 @@ namespace PasaBuy.App.ViewModels.Marketplace
             try
             {
                 categoriesdata = new ObservableCollection<Categories>();
-
-                TindaPress.Category.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", stid, "", "1", (bool success, string data) => 
-                {
-                    if (success)
+                TindaPress.Category.Instance.ProductList(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", stid, "", "1", (bool success, string data) => { 
+                    if(success)
                     {
-                        productsList = new ObservableCollection<ProductList>();
-                        TindaPress.Product.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, stid, "", "", "1", "", (bool success1, string data1) => {
-                            try
-                            {
-                                if (success1)
-                                {
-                                    ProductListData productData = JsonConvert.DeserializeObject<ProductListData>(data1);
-                                    
-                                    for (int y = 0; y < productData.data.Length; y++ )
-                                    {
-                                        string product_name = productData.data[y].product_name;
-                                        string short_info = productData.data[y].short_info;
-                                        double price = productData.data[y].price;
-                                        productsList.Add(new ProductList()
-                                        {
-                                            Name = product_name,
-                                            description = short_info,
-                                            actualprice = price
-                                        });
-                                        
-                                    }
-                                    
-                                }
-                                
-                            }
-                            catch (Exception e)
-                            {
-                                new Alert("Something went wrong!", "Please contact your administrator for this issue. Error code 404", "");
-                            }
-                        });
-
                         CategoriesListData datas = JsonConvert.DeserializeObject<CategoriesListData>(data);
-                        for(int i = 0; i < datas.data.Length; i++)
+                        string title = string.Empty;
+                        string product_name = string.Empty;
+                        double actual_price = 0;
+
+                        for (int i = 0; i < datas.data.Length; i++)
                         {
-                            
-                            //string id = datas.data[i].ID;
-                            string title = datas.data[i].title;
+                            title = datas.data[i].title;
+                            productsList = new ObservableCollection<ProductList>();
+                           
+                                productsList.Add(new ProductList()
+                                {
+                                    Name = "Burger",
+                                    ActualPrice = 123,
+                                    Description = "Just another description"
+                                });
+
                             categoriesdata.Add(new Categories()
                             {
-                                Title = title, 
+                                Title = title,
                                 Prods = productsList
-
                             });
 
                         }
 
-                       
-                    }
-                    else
-                    {
-                        new Alert("Something went wrong!", "Please contact your administratir for this issue. Error code 404", "");
                     }
                 });
-                
-
             }
-            catch (Exception e)
+            catch(Exception e)
             {
 
             }

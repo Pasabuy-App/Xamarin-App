@@ -4,6 +4,7 @@ using System.Text;
 using Xamarin.Forms;
 using Syncfusion.XForms.Buttons;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace PasaBuy.App.Models.Marketplace
 {
@@ -18,12 +19,28 @@ namespace PasaBuy.App.Models.Marketplace
         private string title = string.Empty;
         private string info = string.Empty;
         private string status = string.Empty;
-
-        public ObservableCollection<ProductList> Prods { get; set; }
+        private ObservableCollection<ProductList> prods = new ObservableCollection<ProductList>();
 
         #endregion
 
         #region properties
+
+        public ObservableCollection<ProductList> Prods
+        {
+ 
+            get
+            {
+
+                return this.prods;
+            }
+
+            set
+            {
+                this.prods = value;
+            }
+        }
+
+
 
         public string Id
         {
