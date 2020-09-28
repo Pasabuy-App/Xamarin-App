@@ -29,6 +29,7 @@ namespace PasaBuy.App.Models.Feeds
         private int colspan = 1;
         private int procolumn = 1;
         private int procolspan = 1;
+        private string accept_text = "Accept";
         private string vehicle = string.Empty;
         private string pickup = string.Empty;
         private string do_price = string.Empty;
@@ -78,6 +79,10 @@ namespace PasaBuy.App.Models.Feeds
             }
             else
             {
+                if (types == "Selling")
+                {
+                    AcceptText = "Inquire";
+                }
                 isAccept = true;
                 if (post_author == PSACache.Instance.UserInfo.wpid)
                 {
@@ -100,6 +105,7 @@ namespace PasaBuy.App.Models.Feeds
                     ProfileCol = 1;
                 }
             }
+
         }
 
         public string Vehicle
@@ -238,6 +244,17 @@ namespace PasaBuy.App.Models.Feeds
                 OnPropertyChanged("Images");
             }
         }
+
+        public string AcceptText
+        {
+            get { return accept_text; }
+            set
+            {
+                accept_text = value;
+                OnPropertyChanged("AcceptText");
+            }
+        }
+
         public Boolean isAccept
         {
             get
@@ -339,6 +356,8 @@ namespace PasaBuy.App.Models.Feeds
                 OnPropertyChanged("ProfileCol");
             }
         }
+
+
 
 
 
