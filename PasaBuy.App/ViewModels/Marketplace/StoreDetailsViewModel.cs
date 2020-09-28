@@ -14,6 +14,7 @@ using PasaBuy.App.Local;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Commands;
 using PasaBuy.App.Views.eCommerce;
+using System.Diagnostics;
 
 namespace PasaBuy.App.ViewModels.Marketplace
 {
@@ -29,7 +30,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         private static ObservableCollection<StoreDetails> storedetailslist;
 
-        private static ObservableCollection<Product> producdetailstlist;
+        private static ObservableCollection<ProductList> productsList;
 
         private static ObservableCollection<Categories> categoriesdata;
 
@@ -45,10 +46,10 @@ namespace PasaBuy.App.ViewModels.Marketplace
         }
 
 
-        public  ObservableCollection<Product> Producdetailstlist
+        public  ObservableCollection<ProductList> ProductsList
         {
-            get { return producdetailstlist; }
-            set { producdetailstlist = value; this.NotifyPropertyChanged(); }
+            get { return productsList; }
+            set { productsList = value; this.NotifyPropertyChanged(); }
         }
 
 
@@ -151,36 +152,58 @@ namespace PasaBuy.App.ViewModels.Marketplace
             try
             {
                 categoriesdata = new ObservableCollection<Categories>();
+
                 TindaPress.Category.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", stid, "", "1", (bool success, string data) => 
                 {
                     if (success)
-                    { 
+                    {
+                        productsList = new ObservableCollection<ProductList>();
+                        TindaPress.Product.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, stid, "", "", "1", "", (bool success1, string data1) => {
+                            try
+                            {
+                                if (success1)
+                                {
+                                    ProductListData productData = JsonConvert.DeserializeObject<ProductListData>(data1);
+                                    
+                                    for (int y = 0; y < productData.data.Length; y++ )
+                                    {
+                                        string product_name = productData.data[y].product_name;
+                                        string short_info = productData.data[y].short_info;
+                                        double price = productData.data[y].price;
+                                        productsList.Add(new ProductList()
+                                        {
+                                            Name = product_name,
+                                            description = short_info,
+                                            actualprice = price
+                                        });
+                                        
+                                    }
+                                    
+                                }
+                                
+                            }
+                            catch (Exception e)
+                            {
+                                new Alert("Something went wrong!", "Please contact your administrator for this issue. Error code 404", "");
+                            }
+                        });
+
                         CategoriesListData datas = JsonConvert.DeserializeObject<CategoriesListData>(data);
                         for(int i = 0; i < datas.data.Length; i++)
                         {
+                            
                             //string id = datas.data[i].ID;
                             string title = datas.data[i].title;
                             categoriesdata.Add(new Categories()
                             {
                                 Title = title, 
-                                Prods = new ObservableCollection<ProductList>() 
-                                { 
-                                    new ProductList() 
-                                    {
-                                        Name = "Cheese Burst", actualprice = 300, description = "Burger topped with cheese and patty"
-                                    }, 
-                                    new ProductList() 
-                                    {
-                                        Name = "Fresh Pan Pizza", actualprice = 310, description = "Thick pizza baked in a deep dish pan"
-                                    }, 
-                                    new ProductList() 
-                                    { 
-                                        Name = "All Meat Pizza", actualprice = 480 , description = "Homemade thin crust pizza, topped off with two types of cheese, bacon, ham, pepperoni and hot sausage"
-                                    } 
-                                } 
+                                Prods = productsList
+
                             });
 
                         }
+
+                       
                     }
                     else
                     {
@@ -196,40 +219,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-        public static void loadproduct()
-        {
-            try
-            {
-                producdetailstlist = new ObservableCollection<Product>();
 
-                producdetailstlist.Add(new Product()
-                {
-                    Name = "catid",
-                    Description = store_id
-                });
-
-                producdetailstlist.Add(new Product()
-                {
-                    Name = "catid",
-                    Description = "The desciption 2."
-                });
-                producdetailstlist.Add(new Product()
-                {
-                    Name = "catid",
-                    Description = "The desciption 2."
-                });
-                producdetailstlist.Add(new Product()
-                {
-                    Name = "catid",
-                    Description = "The desciption 2."
-                });
-
-            }
-            catch (Exception e)
-            {
-
-            }
-        }
 
        
 

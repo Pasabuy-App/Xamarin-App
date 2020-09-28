@@ -101,7 +101,6 @@ namespace PasaBuy.App.Views.Marketplace
             /* StoreDetailsViewModel.loadcategory(item.Id);
              StoreDetailsViewModel.loadstoredetails(item.Id);*/
             StoreDetailsViewModel.loaddata(item.Id);
-            StoreDetailsViewModel.loadproduct();
             App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
         }
 

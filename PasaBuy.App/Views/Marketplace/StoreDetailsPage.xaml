@@ -182,7 +182,6 @@
                                                     <Span Text="    " />
                                                     <Span
                                                         FontFamily="{StaticResource Montserrat-Regular}"
-                                                        Text="{Binding ArticleDate}"
                                                         TextColor="{DynamicResource Gray-Black}" />
                                                     <Span Text=" | " TextColor="{DynamicResource Gray-Black}" />
                                                     <Span
@@ -219,13 +218,20 @@
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate>
                                         <syncfusion:AccordionItem x:Name="AccordionItem">
-                                            <syncfusion:AccordionItem.Header>
+                                            <syncfusion:AccordionItem.Header >
                                                 <Grid HeightRequest="50" RowSpacing="0">
                                                     <Label Text="{Binding Title}" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>
                                                 </Grid>
                                             </syncfusion:AccordionItem.Header>
                                             <syncfusion:AccordionItem.Content>
-                                                <listView:SfListView x:Name="listView" HeightRequest="{Binding Prods, Converter={StaticResource HeightConverter}, ConverterParameter={x:Reference listView}}"  ItemSize="90" ItemsSource="{Binding Prods}" ItemSpacing="1">
+                                                <listView:SfListView x:Name="listView" 
+                                                                     HeightRequest="{Binding Prods, Converter={StaticResource HeightConverter}, ConverterParameter={x:Reference listView}}"  
+                                                                     ItemSize="90" 
+                                                                     ItemsSource="{Binding Prods}" 
+                                                                     ItemSpacing="1"
+                                                                     AllowGroupExpandCollapse="True"
+                                                                     IsScrollingEnabled="True"
+                                                                     IsScrollBarVisible="False">
                                                     <listView:SfListView.ItemTemplate>
                                                         <DataTemplate>
                                                             <Grid Padding="10,10,10,10" BackgroundColor="#FFFFFF">
@@ -246,7 +252,7 @@
                                                                         <ColumnDefinition Width="50" />
                                                                     </Grid.ColumnDefinitions>
 
-                                                                    <ffimageloading:CachedImage Aspect="Fill"
+                                                                    <!--<ffimageloading:CachedImage Aspect="Fill"
                                                                                                             Grid.Column="0"
                                                                                                             Grid.RowSpan="3"
                                                                                                             Margin="8,5,16,0"
@@ -256,7 +262,7 @@
                                                                                                             x:Name="ProductImage"
 			                                                                                                DownsampleToViewSize="True" 
                                                                                                             FadeAnimationEnabled="True">
-                                                                    </ffimageloading:CachedImage>
+                                                                    </ffimageloading:CachedImage>-->
 
                                                                     <!--Product Name-->
                                                                     <Label
@@ -298,7 +304,7 @@
                                                                                         LineHeight="{OnPlatform Android=1.25,
                                                                                                                 Default=-1}"
                                                                                         Style="{StaticResource LabelStyle}"
-                                                                                        Text="$9578"
+                                                                                        Text="{Binding ActualPrice}"
                                                                                         TextColor="{DynamicResource PrimaryColor}"
                                                                                         VerticalOptions="CenterAndExpand"
                                                                                         VerticalTextAlignment="Center" />
