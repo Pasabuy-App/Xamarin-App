@@ -214,9 +214,9 @@ namespace PasaBuy.App.ViewModels.Chat
                     }
                 });
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error Code: 20475.", "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
         }
 
@@ -467,9 +467,9 @@ namespace PasaBuy.App.ViewModels.Chat
                         count = 0;
                     }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    new Alert("Something went Wrong", "Please contact administrator. Error Code: 20476.", "OK");
+                    new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
                 }
             }
             
@@ -514,9 +514,9 @@ namespace PasaBuy.App.ViewModels.Chat
                 }
                 LoadMessage(user_id, ids.ToString(), "");
             }
-            catch
+            catch (Exception e)
             {
-
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
             finally
             {

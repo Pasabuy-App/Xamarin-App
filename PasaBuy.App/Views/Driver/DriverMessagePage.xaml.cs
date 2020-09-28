@@ -114,12 +114,12 @@ namespace PasaBuy.App.Views.Driver
         }
         private void ListView_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
         {
-            var item = e.ItemData as ChatDetail;
-            if (DriverRecentChatViewModel.chatItems.Last() == item && DriverRecentChatViewModel.chatItems.Count() != 1)
+            try
             {
-                if (DriverRecentChatViewModel.chatItems.IndexOf(item) >= LastIndex)
+                var item = e.ItemData as ChatDetail;
+                if (DriverRecentChatViewModel.chatItems.Last() == item && DriverRecentChatViewModel.chatItems.Count() != 1)
                 {
-                    try
+                    if (DriverRecentChatViewModel.chatItems.IndexOf(item) >= LastIndex)
                     {
                         if (isFirstID)
                         {
@@ -132,11 +132,11 @@ namespace PasaBuy.App.Views.Driver
                         LastIndex += 6;
                         DriverRecentChatViewModel.LoadMesssage(ids.ToString());
                     }
-                    catch
-                    {
-                        new Alert("Something went Wrong", "Please contact administrator. Error Code: 20435.", "OK");
-                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
             }
         }
     }

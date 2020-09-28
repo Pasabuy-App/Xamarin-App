@@ -133,13 +133,13 @@ namespace PasaBuy.App.Views.Posts
 
         private void SfButton_Clicked(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(StatusEditor.Text))
+            try
             {
-                if (btn == false)
+                if (!string.IsNullOrWhiteSpace(StatusEditor.Text))
                 {
-                    btn = true;
-                    try
+                    if (btn == false)
                     {
+                        btn = true;
                         SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, StatusEditor.Text, "", "status", filePath, "", "", "", "", "", (bool success, string data) =>
                         {
                             if (success)
@@ -162,15 +162,15 @@ namespace PasaBuy.App.Views.Posts
                             }
                         });
                     }
-                    catch (Exception)
-                    {
-                        new Alert("Something went Wrong", "Please contact administrator. Error Code: 20432.", "OK");
-                    }
+                }
+                else
+                {
+                    new Alert("Notice to user", "Required fields cannot be empty.", "OK");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                new Alert("Notice to user", "Required fields cannot be empty.", "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
             }
         }
     }

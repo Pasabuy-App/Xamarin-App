@@ -49,9 +49,9 @@ namespace PasaBuy.App.Views.PopupModals
                         }
                     });
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    new Alert("Something went Wrong", "Please contact administrator. Error Code: 20465.", "OK");
+                    new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
                 }
             }
         }
@@ -63,9 +63,9 @@ namespace PasaBuy.App.Views.PopupModals
 
         private void SfButton_Clicked(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(Description.Text) || !string.IsNullOrWhiteSpace(CatName.Text))
+            try
             {
-                try
+                if (!string.IsNullOrWhiteSpace(Description.Text) || !string.IsNullOrWhiteSpace(CatName.Text))
                 {
                     if (catid == "0")
                     {
@@ -101,10 +101,10 @@ namespace PasaBuy.App.Views.PopupModals
                         });
                     }
                 }
-                catch (Exception)
-                {
-                    new Alert("Something went Wrong", "Please contact administrator. Error Code: 20430.", "OK");
-                }
+            }
+            catch (Exception ex)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
             }
         }
     }

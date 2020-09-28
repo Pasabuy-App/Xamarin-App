@@ -29,47 +29,47 @@ namespace PasaBuy.App.Views.Settings
             FirstNameEntry.Text = PSACache.Instance.UserInfo.fname;
         }
         private void NextButtonClicked(object sender, EventArgs e)
-        {   
-            //TO DO :: Add validations
-            if (String.IsNullOrEmpty(IdTypeEntry.Text) || String.IsNullOrEmpty(IDNumberEntry.Text) || String.IsNullOrEmpty(LastNameEntry.Text) 
-                || String.IsNullOrEmpty(FirstNameEntry.Text) || String.IsNullOrEmpty(NationalityEntry.Text) || String.IsNullOrEmpty(ContactEntry.Text))
-            {   
-                new Alert("Failed", "Please complete all fields.", "Ok");
-            }
-            else
+        {
+            try
             {
-                if (!isEnable)
+                //TO DO :: Add validations
+                if (String.IsNullOrEmpty(IdTypeEntry.Text) || String.IsNullOrEmpty(IDNumberEntry.Text) || String.IsNullOrEmpty(LastNameEntry.Text)
+                    || String.IsNullOrEmpty(FirstNameEntry.Text) || String.IsNullOrEmpty(NationalityEntry.Text) || String.IsNullOrEmpty(ContactEntry.Text))
                 {
-                    isEnable = true;
-                    try
+                    new Alert("Failed", "Please complete all fields.", "Ok");
+                }
+                else
+                {
+                    if (!isEnable)
                     {
-                        DataVice.Documents.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "id", idDocType, idPath, idnumber, "", (bool success, string data) =>
-                        {
-                            if (success)
+                        isEnable = true;
+                            DataVice.Documents.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "id", idDocType, idPath, idnumber, "", (bool success, string data) =>
                             {
-                                DataVice.Documents.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "face", "", selfiePath, ContactEntry.Text, NationalityEntry.Text, (bool success2, string data2) =>
+                                if (success)
                                 {
-                                    if (success)
+                                    DataVice.Documents.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "face", "", selfiePath, ContactEntry.Text, NationalityEntry.Text, (bool success2, string data2) =>
                                     {
-                                        Navigation.PushModalAsync(new VerificationFinal());
-                                    }
-                                    else
-                                    {
-                                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data2), "Try Again");
-                                    }
-                                });
-                            }
-                            else
-                            {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                            }
-                        });
-                    }
-                    catch (Exception)
-                    {
-                        new Alert("Something went Wrong", "Please contact administrator. Error Code: 20425.", "OK");
+                                        if (success)
+                                        {
+                                            Navigation.PushModalAsync(new VerificationFinal());
+                                        }
+                                        else
+                                        {
+                                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data2), "Try Again");
+                                        }
+                                    });
+                                }
+                                else
+                                {
+                                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                }
+                            });
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
             }
         }
     }
