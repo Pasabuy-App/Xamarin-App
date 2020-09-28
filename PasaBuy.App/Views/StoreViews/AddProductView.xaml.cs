@@ -28,6 +28,7 @@ namespace PasaBuy.App.Views.StoreViews
             InitializeComponent();
             if (pdid != "0")
             {
+                Title = "Edit Product";
                 try
                 {
                     TindaPress.Product.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, "", pdid, "1", "", (bool success, string data) =>
@@ -62,6 +63,7 @@ namespace PasaBuy.App.Views.StoreViews
             }
             else
             {
+                Title = "Add Product";
                 productImage.Source = "Idcard.png";
                 ProductNames.Text = "";
                 Shorts.Text = "";

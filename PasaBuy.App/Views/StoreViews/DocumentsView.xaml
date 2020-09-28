@@ -21,10 +21,13 @@
         <Grid>
             <StackLayout Spacing="0" VerticalOptions="FillAndExpand">
                 <sync:SfListView
-                        x:Name="ManagementItem" ItemTapped="ManagementItem_ItemTapped"
+                        x:Name="ManagementItem"
+                        AllowSwiping="True"
                         AutoFitMode="Height"
                         FocusBorderThickness="0"
                         ItemSpacing="0,1,0,0"
+                        IsScrollBarVisible="False"
+                        IsStickyHeader="True"
                         ItemsSource="{Binding DocumentList}"
                         SelectionMode="None">
                 <!--Item Source is for testing purposes only. Kindly bind into specific viewmodels-->
@@ -119,7 +122,36 @@
                         </Grid>
                     </DataTemplate>
                 </sync:SfListView.ItemTemplate>
-            </sync:SfListView>
+                    <sync:SfListView.RightSwipeTemplate>
+                        <DataTemplate x:Name="RightSwipeTemplate">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid ClassId="{Binding ID}"
+                                                            Grid.Column="1"
+                                                            BackgroundColor="Red"
+                                                            HorizontalOptions="Fill"
+                                                            VerticalOptions="Fill">
+                                    <Grid.GestureRecognizers>
+
+                                        <TapGestureRecognizer  x:Name="Delete" Tapped="Delete_Tapped"/>
+                                    </Grid.GestureRecognizers>
+                                    <Grid HorizontalOptions="Center" VerticalOptions="Center">
+                                        <Image
+                                                                    Grid.Row="0"
+                                                                    Grid.Column="0"
+                                                                    BackgroundColor="Transparent"
+                                                                    HeightRequest="28"
+                                                                    Source="Delete.png"
+                                                                    WidthRequest="28" />
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </sync:SfListView.RightSwipeTemplate>
+                </sync:SfListView>
             </StackLayout>
             <fab:FloatingActionButtonView
 				    ColorNormal="{StaticResource PrimaryColor}"
