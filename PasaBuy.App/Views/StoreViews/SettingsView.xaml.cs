@@ -22,5 +22,10 @@ namespace PasaBuy.App.Views.StoreViews
         {
             await Navigation.PushAsync(new SettingsAddressView());
         }
+
+        private async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SettingsProfileView());
+        }
     }
 }
