@@ -120,13 +120,12 @@ namespace PasaBuy.App.Views.Chat
 
         private void ListView_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
         {
-
-            var item = e.ItemData as ChatDetail;
-            if (RecentChatViewModel.chatItems.Last() == item && RecentChatViewModel.chatItems.Count() != 1)
+            try
             {
-                if (RecentChatViewModel.chatItems.IndexOf(item) >= LastIndex)
+                var item = e.ItemData as ChatDetail;
+                if (RecentChatViewModel.chatItems.Last() == item && RecentChatViewModel.chatItems.Count() != 1)
                 {
-                    try
+                    if (RecentChatViewModel.chatItems.IndexOf(item) >= LastIndex)
                     {
                         if (isFirstID)
                         {
@@ -139,11 +138,11 @@ namespace PasaBuy.App.Views.Chat
                         LastIndex += 6;
                         RecentChatViewModel.LoadMesssage(ids.ToString());
                     }
-                    catch
-                    {
-                        new Alert("Something went Wrong", "Please contact administrator. Error Code: 20435.", "OK");
-                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
             }
         }
     }

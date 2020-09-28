@@ -120,9 +120,9 @@ namespace PasaBuy.App.ViewModels.Driver
                 //    }
                 //});
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error Code: 20470.", "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
         }
         public void LoadData()
