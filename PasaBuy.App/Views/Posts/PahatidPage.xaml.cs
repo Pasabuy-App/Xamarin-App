@@ -16,5 +16,10 @@ namespace PasaBuy.App.Views.Posts
         {
             InitializeComponent();
         }
+
+        private void backButton_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PopModalAsync();
+        }
     }
 }
