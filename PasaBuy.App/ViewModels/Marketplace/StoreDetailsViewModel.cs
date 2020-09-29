@@ -80,8 +80,13 @@ namespace PasaBuy.App.ViewModels.Marketplace
             this.AddToCartCommand = new Command(this.AddToCartClicked);
             this.GoToCartCommand = new Command(this.GoToCartClicked);
 
+            storedetailslist = new ObservableCollection<StoreDetails>();
+            storedetailslist.Clear();
+            categoriesdata = new ObservableCollection<Categories>();
+            categoriesdata.Clear();
+
             //loadstoredetails(store_id);
-            loadstoredetails();
+            //loadstoredetails("");
 
         }
 
@@ -102,16 +107,15 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public static void loaddata(string stid)
         {
-            loadcategory(stid);
+            //loadcategory(stid);
             //loadproduct(stid, Id);
         }
 
-        public static void loadstoredetails()
+        public static void loadstoredetails(string stid)
         {
             try
             {
-                storedetailslist = new ObservableCollection<StoreDetails>();
-                TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", store_id, "1", "", (bool success, string data) =>
+                TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", stid, "1", "", (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -152,12 +156,100 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             try
             {
-                categoriesdata = new ObservableCollection<Categories>();
                 TindaPress.Category.Instance.ProductList(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", stid, "", "1", (bool success, string data) => { 
                     if(success)
                     {
-                        CategoriesListData datas = JsonConvert.DeserializeObject<CategoriesListData>(data);
-                        string title = string.Empty;
+                        //Console.WriteLine("data: " + data);
+                        //CategoryProductList myDeserializedClass = JsonConvert.DeserializeObject<CategoryProductList>(data);
+                        Root catRoot = JsonConvert.DeserializeObject<Root>(data);
+                        for (int i = 0; i < catRoot.data.Length; i++)
+                        {
+                            /*for (int ii = 0; ii < catRoot.data[i].products.Count; ii++ )
+                            {
+                                productsList.Add(new ProductList()
+                                {
+                                    Name = catRoot.data[i].products[ii].product_name,
+                                    ActualPrice = 123, // Convert.ToDouble(catRoot.data[i].products[ii].price)
+                                    Description = catRoot.data[i].products[ii].short_info
+                                });
+                            }*/
+                            //Console.WriteLine(catRoot.data[i].title + " Product Count: " + catRoot.data[i].products.Count);
+                            if (catRoot.data[i].products.Count != 0)
+                            {
+                                productsList = new ObservableCollection<ProductList>();
+                                productsList.Clear();
+                                for (int j = 0; j < catRoot.data[i].products.Count; j++)
+                                {
+                                    //Console.WriteLine("Product Price: " + catRoot.data[i].products[j].price);
+                                    productsList.Add(new ProductList()
+                                    {
+                                        /*Name = catRoot.data[i].products[j].product_name,
+                                        ActualPrice = Convert.ToDouble(catRoot.data[i].products[j].price),
+                                        Description = catRoot.data[i].products[j].short_info*/
+                                        Name = catRoot.data[i].products[j].product_name, // "Name: " + i + " " + j,
+                                        ActualPrice = Convert.ToDouble(catRoot.data[i].products[j].price),
+                                        Description = catRoot.data[i].products[j].short_info //"Info: " + i + " " + j
+                                    });
+                                }
+                                /*productsList.Add(new ProductList()
+                                {
+                                    *//*Name = catRoot.data[i].products[1].product_name,
+                                    ActualPrice = Convert.ToDouble(catRoot.data[i].products[1].price),
+                                    Description = catRoot.data[i].products[1].product_name*/
+                                    /*Name = "Burger",
+                                    ActualPrice = 123,
+                                    Description = "Just another description"*//*
+                                    Name = catRoot.data[i].products[0].product_name,
+                                    ActualPrice = Convert.ToDouble(catRoot.data[i].products[0].price),
+                                    Description = catRoot.data[i].products[0].short_info
+                                });*/
+                                categoriesdata.Add(new Categories()
+                                {
+                                    Id = catRoot.data[i].ID,
+                                    Title = catRoot.data[i].title,
+                                    Prods = productsList
+                                });
+                            }
+                            /*productsList.Add(new ProductList()
+                            {
+                                *//*Name = catRoot.data[i].products[1].product_name,
+                                ActualPrice = Convert.ToDouble(catRoot.data[i].products[1].price),
+                                Description = catRoot.data[i].products[1].product_name*/
+                                /*Name = "Burger",
+                                ActualPrice = 123,
+                                Description = "Just another description"*//*
+                                Name = catRoot.data[0].products[1].product_name,
+                                ActualPrice = Convert.ToDouble(catRoot.data[0].products[1].price),
+                                Description = catRoot.data[0].products[1].product_name
+                            });*/
+                            /*productsList.Add(new ProductList()
+                            {
+                                Name = catRoot.data[i].products[1].product_name,
+                                ActualPrice = Convert.ToDouble(catRoot.data[i].products[1].price),
+                                Description = catRoot.data[i].products[1].product_name
+                            });*/
+                            //Console.WriteLine("ID: " + catRoot.data[i].ID + " Product ID:" + catRoot.data[i].products[i].ID);
+                        } 
+                        /*foreach (var obj in catRoot.products)
+                        {
+                            Console.WriteLine("ID: " + obj.ID);
+                        }*/
+                        /*var jsonObj = new Nancy.Json.JavaScriptSerializer().Deserialize<CatRoot>(data);
+                        foreach (var obj in jsonObj.products)
+                        {
+                            Console.WriteLine("ID: " + obj.ID);
+                        }*/
+
+                        /*dynamic jsonObj = JsonConvert.DeserializeObject(data);
+
+                        foreach (var obj in jsonObj.objectList)
+                        {
+                            Console.WriteLine(obj.ID);
+                        }*/
+
+
+                        //CategoriesListData datas = JsonConvert.DeserializeObject<CategoriesListData>(data);
+                        /*string title = string.Empty;
                         string product_name = string.Empty;
                         double actual_price = 0;
 
@@ -165,7 +257,13 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         {
                             title = datas.data[i].title;
                             productsList = new ObservableCollection<ProductList>();
-                           
+
+                                productsList.Add(new ProductList()
+                                {
+                                    Name = "Burger",
+                                    ActualPrice = 123,
+                                    Description = "Just another description"
+                                });
                                 productsList.Add(new ProductList()
                                 {
                                     Name = "Burger",
@@ -179,7 +277,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 Prods = productsList
                             });
 
-                        }
+                        }*/
 
                     }
                 });
