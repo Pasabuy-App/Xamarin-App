@@ -1,12 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
-             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
-             xmlns:model="clr-namespace:PasaBuy.App.Models.Driver"
-             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-             x:Class="PasaBuy.App.Views.Driver.TransactionDriverView">
-
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             x:Class="PasaBuy.App.Views.Driver.TransactOrderList"
+             Title="Order List">
+    
+<ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ContentPage.Content>
         <Grid 
@@ -24,7 +28,7 @@
                     AutoFitMode="Height"
                     FocusBorderThickness="0"
                     ItemSpacing="0,1,0,0"
-                    ItemsSource="{x:Static model:DriverTransactions.All}"
+                    ItemsSource="{Binding OrderList}"
                     SelectionMode="None">
                     <!--Item Source is for testing purposes only. Kindly bind into specific viewmodels-->
                     <sync:SfListView.ItemTemplate>
@@ -64,35 +68,43 @@
                                         </ffimageloading:CachedImage.Transformations>
                                     </ffimageloading:CachedImage>
 
-                                    <Label Text="hahaha"
+                                    <Label Text="{Binding Store}"
                                            Grid.Row="0"
                                            Grid.Column="1"
                                            HorizontalOptions="StartAndExpand"
                                            TextColor="{DynamicResource BlackColor}">
                                     </Label>
-                                    <Label Text="Order #4232"
+                                    <Label Text="{Binding Product}"
                                            Grid.Row="1"
                                            Grid.Column="1"
                                            HorizontalOptions="StartAndExpand"
                                            TextColor="{DynamicResource Gray-800}">
                                     </Label>
-                                    <Label Text="Sept 5, 2020 10:23 AM"
+                                    <Label Text="{Binding Date_created}"
                                            Grid.Row="2"
                                            Grid.Column="1"
                                            HorizontalOptions="StartAndExpand"
                                            TextColor="{DynamicResource Gray-800}">
                                     </Label>
-                                    <Label Text="PHP 250"
+                                    <Label Text="{Binding Price}"
                                            Grid.Row="0"
                                            Grid.Column="2"
                                            HorizontalOptions="StartAndExpand"
                                            TextColor="{DynamicResource BlackColor}">
                                     </Label>
-                                    <Label Text="Cash"
+                                    
+                                    <Label Text="Accept Order"
                                            Grid.Row="2"
                                            Grid.Column="2"
+                                           BackgroundColor="Yellow"
+                                           Padding="5,5,5,5"
+                                      
+                                           ClassId="{Binding ItemID}"
                                            HorizontalOptions="StartAndExpand"
-                                           TextColor="{DynamicResource Gray-800}">
+                                           TextColor="{DynamicResource PrimaryDarkColor}">
+                                        <Label.GestureRecognizers >
+                                            <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped"/>
+                                        </Label.GestureRecognizers>
                                     </Label>
                                 </Grid>
                             </Grid>

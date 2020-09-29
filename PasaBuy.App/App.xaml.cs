@@ -23,7 +23,7 @@ namespace PasaBuy.App
             SocioPress.SPHost.Instance.Initialized(PSAConfig.baseRestUrl);
             TindaPress.TPHost.Instance.Initialized(PSAConfig.baseRestUrl);
             HatidPress.HPHost.Instance.Initialized(PSAConfig.baseRestUrl);
-
+            MobilePOS.MPHost.Instance.Initialized(PSAConfig.baseRestUrl);
             PSACache.Instance.Initialize();
             //commit
             MainPage = new NavigationPage(new SplashPage());

@@ -23,7 +23,7 @@ namespace PasaBuy.App.Views.Driver
 
         private void AcceptOrderButton_Clicked(object sender, EventArgs e)
         {
-            Position pos1 = new Xamarin.Forms.Maps.Position(14.3313, 121.0505);
+          /*  Position pos1 = new Xamarin.Forms.Maps.Position(14.3313, 121.0505);
             Position pos2 = new Xamarin.Forms.Maps.Position(14.3369, 121.0557);
             
             var add1 = "San Pedro Metro Manila Philippines";
@@ -36,7 +36,7 @@ namespace PasaBuy.App.Views.Driver
             Views.Driver.Navigation.StorePosition = pos1;
             Views.Driver.Navigation.UserPosition = pos2;
             Navigation.PushModalAsync(new Navigation() );
-            //Views.Driver.Navigation.FetchPin(pos1, pos2, add1, add2, "user", "store");
+            //Views.Driver.Navigation.FetchPin(pos1, pos2, add1, add2, "user", "store");*/
 
         }
     }
