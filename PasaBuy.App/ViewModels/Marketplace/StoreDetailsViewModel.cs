@@ -16,6 +16,8 @@ using PasaBuy.App.Commands;
 using PasaBuy.App.Views.eCommerce;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace PasaBuy.App.ViewModels.Marketplace
 {
@@ -36,6 +38,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
         private static ObservableCollection<Categories> categoriesdata;
 
         private int? cartItemCount;
+
+        private Boolean isCartBusy;
 
 
         #endregion
@@ -73,13 +77,23 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-        
+        public Boolean IsCartBusy
+        {
+            get
+            {
+                return this.isCartBusy;
+            }
+            set
+            {
+                this.isCartBusy = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
 
         public StoreDetailsViewModel()
         {
             this.AddToCartCommand = new Command(this.AddToCartClicked);
-            this.GoToCartCommand = new Command(this.GoToCartClicked);
-
             storedetailslist = new ObservableCollection<StoreDetails>();
             storedetailslist.Clear();
             categoriesdata = new ObservableCollection<Categories>();
@@ -92,7 +106,19 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public Command AddToCartCommand { get; set; }
 
-        public Command GoToCartCommand { get; set; }
+        //public Command GoToCartCommand { get; set; }
+
+        ICommand goToCartCommand;
+        public ICommand GoToCartCommand
+        {
+            get
+            {
+                if (goToCartCommand == null)
+                    goToCartCommand = new Command(GoToCartClicked, (x) => CanNavigate);
+
+                return goToCartCommand;
+            }
+        }
 
         private void AddToCartClicked(object obj)
         {
@@ -100,9 +126,20 @@ namespace PasaBuy.App.ViewModels.Marketplace
             this.CartItemCount += 1;
         }
       
-        private async void GoToCartClicked(object obj)
+        async void GoToCartClicked(object obj)
         {
-            await Application.Current.MainPage.Navigation.PushModalAsync(new CartPage());
+            //await Application.Current.MainPage.Navigation.PushModalAsync(new CartPage());
+            CanNavigate = false;
+            IsCartBusy = true;
+            await RunTask(NavigateToPage(new CartPage()));
+            CanNavigate = true;
+            IsCartBusy = false;
+
+        }
+
+        async Task NavigateToPage(Page page)
+        {
+            await Application.Current.MainPage.Navigation.PushModalAsync(page);
         }
 
         public static void loaddata(string stid)

@@ -28,8 +28,15 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         private int? cartItemCount;
 
-
         public static ObservableCollection<Store> storelist;
+
+        public static ObservableCollection<Categories> itemCategories;
+
+        public ObservableCollection<Categories> ItemCategories
+        {
+            get { return itemCategories; }
+            set { itemCategories = value; this.NotifyPropertyChanged(); }
+        }
 
         public ObservableCollection<Store> Storelist
         {
@@ -40,11 +47,20 @@ namespace PasaBuy.App.ViewModels.Marketplace
         public StoreBrowserViewModel()
         {
             storelist = new ObservableCollection<Store>();
+            itemCategories = new ObservableCollection<Categories>();
             LoadStore("");
+
+            for (int i = 0; i < 5; i++)
+            {
+                itemCategories.Add(new Categories()
+                {
+                    Title = "Gadgets",
+                    Info = "Idcard.png"
+                });
+            }
         }
 
         #endregion
-
 
         #region Loadata
         public static void LoadStore(string lastid)
@@ -125,13 +141,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         }
 
-     
-
-        /// <summary>
-        /// Gets or sets a collection of values to be displayed in the Restaurant page.
-        /// </summary>
-        //[DataMember(Name = "navigationList")]
-        //public ObservableCollection<Store> NavigationList { get; set; }
 
         #endregion
 

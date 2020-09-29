@@ -27264,13 +27264,16 @@ namespace PasaBuy.App.Droid
 			public const int shadow_effect = 2131165399;
 			
 			// aapt resource value: 0x7F0700D8
-			public const int tooltip_frame_dark = 2131165400;
+			public const int storebanner = 2131165400;
 			
 			// aapt resource value: 0x7F0700D9
-			public const int tooltip_frame_light = 2131165401;
+			public const int tooltip_frame_dark = 2131165401;
 			
 			// aapt resource value: 0x7F0700DA
-			public const int UpButton = 2131165402;
+			public const int tooltip_frame_light = 2131165402;
+			
+			// aapt resource value: 0x7F0700DB
+			public const int UpButton = 2131165403;
 			
 			static Drawable()
 			{

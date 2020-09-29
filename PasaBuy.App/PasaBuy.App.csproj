@@ -315,6 +315,9 @@
     <EmbeddedResource Update="Views\Marketplace\StoreFrontPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Marketplace\StoreListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Marketplace\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

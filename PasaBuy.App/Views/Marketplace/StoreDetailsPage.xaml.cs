@@ -27,11 +27,6 @@ namespace PasaBuy.App.Views.Marketplace
             Navigation.PopModalAsync();
         }
 
-        public void GoToCart(object sender, EventArgs e)
-        {
-            Navigation.PushModalAsync(new CartPage());
-        }
-
         private void AddToCart(object sender, EventArgs e)
         {
             new Alert("Ok", "ok", "ok");

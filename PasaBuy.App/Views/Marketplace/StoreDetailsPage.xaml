@@ -16,7 +16,8 @@
              xmlns:expandable="clr-namespace:Expandable;assembly=ExpandableView"
              xmlns:expander="clr-namespace:Syncfusion.XForms.Expander;assembly=Syncfusion.Expander.XForms"
              x:Name="storeDetails"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             IsBusy="{Binding Source={x:Reference Name=storeDetails}, Path=BindingContext.IsBusy}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -68,6 +69,7 @@
                                 <buttons:SfButton
                                     CornerRadius="4"
                                     HorizontalOptions="End"
+                                    IsEnabled="{Binding Source={x:Reference Name=storeDetails}, Path=BindingContext.IsBusy}"
                                     Command="{Binding Source={x:Reference Name=storeDetails}, Path=BindingContext.GoToCartCommand}"
                                     Style="{StaticResource IconButtonStyle}"
                                     TextColor="{DynamicResource WhiteColor}"
