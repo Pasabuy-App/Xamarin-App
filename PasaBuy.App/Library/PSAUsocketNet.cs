@@ -4,6 +4,7 @@ using System.Text;
 using USocketNet;
 using Newtonsoft.Json;
 using PasaBuy.App.Local;
+using PasaBuy.App.Controllers.Notice;
 
 namespace PasaBuy.App.Library
 {
@@ -11,55 +12,64 @@ namespace PasaBuy.App.Library
     {
         public async void Connect()
         {
-            Console.WriteLine(Environment.OSVersion);
-            Console.OutputEncoding = Encoding.UTF8;
+           try
+           {
+                Console.WriteLine(Environment.OSVersion);
+                Console.OutputEncoding = Encoding.UTF8;
 
-            var uri = new Uri("http://usn.pasabuy.app:6060");
+                var uri = new Uri("http://usn.pasabuy.app:6060");
 
-            var socket = new SocketIO(uri, new SocketIOOptions
-            {
-                Query = new Dictionary<string, string>
+                var socket = new SocketIO(uri, new SocketIOOptions
+                {
+                    Query = new Dictionary<string, string>
                 {
                     {"wpid", PSACache.Instance.UserInfo.wpid },
                     {"snid", PSACache.Instance.UserInfo.snky }
                 },
-                ConnectionTimeout = TimeSpan.FromSeconds(10)
-            });
+                    ConnectionTimeout = TimeSpan.FromSeconds(10)
+                });
 
-            socket.OnConnected += Socket_OnConnected;
-            socket.OnPing += Socket_OnPing;
-            socket.OnPong += Socket_OnPong;
-            socket.OnDisconnected += Socket_OnDisconnected;
-            socket.OnReconnecting += Socket_OnReconnecting;
-            await socket.ConnectAsync();
+                socket.OnConnected += Socket_OnConnected;
+                socket.OnPing += Socket_OnPing;
+                socket.OnPong += Socket_OnPong;
+                socket.OnDisconnected += Socket_OnDisconnected;
+                socket.OnReconnecting += Socket_OnReconnecting;
+                await socket.ConnectAsync();
 
-            socket.On("hi", response =>
-            {
-                Console.WriteLine($"server: {response.GetValue<string>()}");
-            });
-
-            socket.On("bytes", response =>
-            {
-                var bytes = response.GetValue<ByteResponse>();
-                Console.WriteLine($"bytes.Source = {bytes.Source}");
-                Console.WriteLine($"bytes.ClientSource = {bytes.ClientSource}");
-                Console.WriteLine($"bytes.Buffer.Length = {bytes.Buffer.Length}");
-                Console.WriteLine($"bytes.Buffer.ToString() = {Encoding.UTF8.GetString(bytes.Buffer)}");
-            });
-
-            socket.OnReceivedEvent += (sender, e) =>
-            {
-                if (e.Event == "bytes")
+                socket.On("hi", response =>
                 {
-                    var bytes = e.Response.GetValue<ByteResponse>();
-                    Console.WriteLine($"OnReceivedEvent.Source = {bytes.Source}");
-                    Console.WriteLine($"OnReceivedEvent.ClientSource = {bytes.ClientSource}");
-                    Console.WriteLine($"OnReceivedEvent.Buffer.Length = {bytes.Buffer.Length}");
-                    Console.WriteLine($"OnReceivedEvent.Buffer.ToString() = {Encoding.UTF8.GetString(bytes.Buffer)}");
-                }
-            };
+                    Console.WriteLine($"server: {response.GetValue<string>()}");
+                });
 
-            Console.ReadLine();
+                socket.On("bytes", response =>
+                {
+                    var bytes = response.GetValue<ByteResponse>();
+                    Console.WriteLine($"bytes.Source = {bytes.Source}");
+                    Console.WriteLine($"bytes.ClientSource = {bytes.ClientSource}");
+                    Console.WriteLine($"bytes.Buffer.Length = {bytes.Buffer.Length}");
+                    Console.WriteLine($"bytes.Buffer.ToString() = {Encoding.UTF8.GetString(bytes.Buffer)}");
+                });
+
+                socket.OnReceivedEvent += (sender, e) =>
+                {
+                    if (e.Event == "bytes")
+                    {
+                        var bytes = e.Response.GetValue<ByteResponse>();
+                        Console.WriteLine($"OnReceivedEvent.Source = {bytes.Source}");
+                        Console.WriteLine($"OnReceivedEvent.ClientSource = {bytes.ClientSource}");
+                        Console.WriteLine($"OnReceivedEvent.Buffer.Length = {bytes.Buffer.Length}");
+                        Console.WriteLine($"OnReceivedEvent.Buffer.ToString() = {Encoding.UTF8.GetString(bytes.Buffer)}");
+                    }
+                };
+
+                Console.ReadLine();
+            }
+
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Disconnected from WebSocket server.", "Continue");
+            }
+
         }
 
         private static void Socket_OnReconnecting(object sender, int e)
