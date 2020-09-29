@@ -53,10 +53,10 @@ namespace PasaBuy.App.Views.Settings
 
         private async void myAddress_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
-            bool answer = await DisplayAlert("Delete Address?", "Are you sure to delete this?", "Yes", "No");
-            if (answer)
+            try
             {
-                try
+                bool answer = await DisplayAlert("Delete Address?", "Are you sure to delete this?", "Yes", "No");
+                if (answer)
                 {
                     var item = e.ItemData as Address;
                     DataVice.Address.Instance.Delete(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, item.SelectedAddress, (bool success, string data) =>
@@ -72,10 +72,10 @@ namespace PasaBuy.App.Views.Settings
                         }
                     });
                 }
-                catch (Exception)
-                {
-                    new Alert("Something went Wrong", "Please contact administrator. Error Code: 20416.", "OK");
-                }
+            }
+            catch (Exception ex)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
             }
 
         }

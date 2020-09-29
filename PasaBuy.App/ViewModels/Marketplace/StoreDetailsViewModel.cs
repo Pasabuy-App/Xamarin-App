@@ -141,9 +141,9 @@ namespace PasaBuy.App.ViewModels.Marketplace
                     }
                 });
             }
-            catch(Exception ex)
+            catch (Exception e)
             {
-                new Alert("Something went wrong!", "Please contact your administratir for this issue. Error code 404"+ ex, "");
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
         }
         
@@ -184,9 +184,9 @@ namespace PasaBuy.App.ViewModels.Marketplace
                     }
                 });
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
         }
 

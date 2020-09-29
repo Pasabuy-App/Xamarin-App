@@ -44,19 +44,19 @@ namespace PasaBuy.App.Views.Settings
             Navigation.PopModalAsync();
         }
 
-        public void SaveAvatar(object sender, EventArgs e)
+        public async void SaveAvatar(object sender, EventArgs e)
         {
-            if (avatarUrl == null)
+            try
             {
-                new Alert("Failed", "Please select an image for avatar first", "Ok");
-                return;
-            }
-
-            if (!isEnable)
-            {
-                isEnable = true;
-                try
+                if (avatarUrl == null)
                 {
+                    new Alert("Failed", "Please select an image for avatar first", "Ok");
+                    return;
+                }
+
+                if (!isEnable)
+                {
+                    isEnable = true;
                     Upload.Instance.Image(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, avatarUrl, "", "", "avatar", "", (bool success, string data) =>
                     {
                         if (success)
@@ -71,92 +71,83 @@ namespace PasaBuy.App.Views.Settings
                             new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                         }
                     });
-                    Device.BeginInvokeOnMainThread(async () =>
-                    {
-                        await Task.Delay(1000);
-                        isEnable = false;
-                    });
+                    await Task.Delay(200);
+                    isEnable = false;
+                }
 
-                }
-                catch (Exception)
-                {
-                    new Alert("Something went Wrong", "Please contact administrator. Error Code: 20420.", "OK");
-                }
+            }
+            catch (Exception ex)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
             }
         }
 
-        public void SaveBanner(object sender, EventArgs e)
+        public async void SaveBanner(object sender, EventArgs e)
         {
             if(bannerUrl == null)
             {
                 new Alert("Failed", "Please select an image for banner first", "Ok");
                 return;
             }
-
-            if (!isEnable)
+            try
             {
-                isEnable = true;
-                try
+
+                if (!isEnable)
                 {
-                    Upload.Instance.Image(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, bannerUrl, "", "", "banner", "", (bool success, string data) =>
-                    {
-                        if (success)
+                    isEnable = true;
+                        Upload.Instance.Image(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, bannerUrl, "", "", "banner", "", (bool success, string data) =>
                         {
-                            new Alert("Success", "Banner successfully updated", "Ok");
-                            EditProfile datas = JsonConvert.DeserializeObject<EditProfile>(data);
-                            PSACache.Instance.UserInfo.banner = datas.data;
-                            PSACache.Instance.SaveUserData();
-                        }
-                        else
-                        {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                        }
-                    });
-                    Device.BeginInvokeOnMainThread(async () =>
-                    {
-                        await Task.Delay(1000);
-                        isEnable = false;
-                    });
+                            if (success)
+                            {
+                                new Alert("Success", "Banner successfully updated", "Ok");
+                                EditProfile datas = JsonConvert.DeserializeObject<EditProfile>(data);
+                                PSACache.Instance.UserInfo.banner = datas.data;
+                                PSACache.Instance.SaveUserData();
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            }
+                        });
+                    await Task.Delay(200);
+                    isEnable = false;
                 }
-                catch (Exception)
-                {
-                    new Alert("Something went Wrong", "Please contact administrator. Error Code: 20421.", "OK");
-                }
+            }
+            catch (Exception ex)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
             }
         }
 
-        public void SaveProfileData(object sender, EventArgs e)
+        public async void SaveProfileData(object sender, EventArgs e)
         {
-            if (!isEnable)
+            try
             {
-                isEnable = true;
-                try
+                if (!isEnable)
                 {
-                    Users.Instance.EditProfile(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, Fname.Text, Lname.Text, Nname.Text, (bool success, string data) =>
-                    {
-                        if (success)
+                    isEnable = true;
+                        Users.Instance.EditProfile(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, Fname.Text, Lname.Text, Nname.Text, (bool success, string data) =>
                         {
-                            new Alert("Success", "Data successfully updated", "Ok");
-                            PSACache.Instance.UserInfo.dname = Nname.Text;
-                            PSACache.Instance.UserInfo.lname = Lname.Text;
-                            PSACache.Instance.UserInfo.fname = Fname.Text;
-                            PSACache.Instance.SaveUserData();
-                        }
-                        else
-                        {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                        }
-                    });
-                    Device.BeginInvokeOnMainThread(async () =>
-                    {
-                        await Task.Delay(1000);
-                        isEnable = false;
-                    });
+                            if (success)
+                            {
+                                new Alert("Success", "Data successfully updated", "Ok");
+                                PSACache.Instance.UserInfo.dname = Nname.Text;
+                                PSACache.Instance.UserInfo.lname = Lname.Text;
+                                PSACache.Instance.UserInfo.fname = Fname.Text;
+                                PSACache.Instance.SaveUserData();
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            }
+                        });
+                    await Task.Delay(200);
+                    isEnable = false;
                 }
-                catch (Exception)
-                {
-                    new Alert("Something went Wrong", "Please contact administrator. Error Code: 20422.", "OK");
-                }
+            }
+            catch (Exception ex)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
             }
         }
 

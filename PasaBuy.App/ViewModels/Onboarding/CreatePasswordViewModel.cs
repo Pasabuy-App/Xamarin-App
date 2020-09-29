@@ -204,9 +204,9 @@ namespace PasaBuy.App.ViewModels.Onboarding
                     }
                 });
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error Code: 20406.", "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
         }
         #endregion

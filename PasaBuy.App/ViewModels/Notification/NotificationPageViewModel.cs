@@ -103,9 +103,9 @@ namespace PasaBuy.App.ViewModels.Notification
                     });
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error Code: 20445.", "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
         }
 
@@ -170,9 +170,9 @@ namespace PasaBuy.App.ViewModels.Notification
                     });
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error Code: 20446.", "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
             //((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as TaskNotification).IsRead = true;
             //new Alert("Title", "example"+ ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as TaskNotification).ID, "OK");
@@ -192,9 +192,9 @@ namespace PasaBuy.App.ViewModels.Notification
                     LoadData("");
                 });
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error Code: 20447.", "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
         }
 

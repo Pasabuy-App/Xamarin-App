@@ -33,6 +33,7 @@ namespace PasaBuy.App.Views.StoreViews
         }
         private async void Delete_Tapped(object sender, EventArgs e)
         {
+            try
             {
                 if (count == 0)
                 {
@@ -40,8 +41,6 @@ namespace PasaBuy.App.Views.StoreViews
                     bool answer = await DisplayAlert("Delete Address?", "Are you sure to delete this?", "Yes", "No");
                     if (answer)
                     {
-                        try
-                        {
                             var btn = sender as Grid;
                             if (MasterView.MyType == "store")
                             {
@@ -73,15 +72,14 @@ namespace PasaBuy.App.Views.StoreViews
                                     }
                                 });
                             }
-                        }
-                        catch (Exception)
-                        {
-                            new Alert("Something went Wrong", "Please contact administrator. Error Code: 20416.", "OK");
-                        }
                     }
                     await Task.Delay(200);
                     count = 0;
                 }
+            }
+            catch (Exception ex)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
             }
         }
             /*private async void ManagementItem_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)

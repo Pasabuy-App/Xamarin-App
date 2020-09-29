@@ -3,7 +3,9 @@ using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Onboarding;
 using PasaBuy.App.ViewModels.Feeds;
+using PasaBuy.App.Views.PopupModals;
 using PasaBuy.App.Views.Posts;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -74,10 +76,13 @@ namespace PasaBuy.App.Views.Feeds.Templates
             Navigation.PushModalAsync(new PostStatusPage());
         }
 
-        public void PostRequest(object sender, EventArgs args)
+        public  void PostRequest(object sender, EventArgs args)
         {
-            Navigation.PushModalAsync(new PostRequestPage());
+            //Navigation.PushModalAsync(new PostRequestPage());
+            PopupNavigation.Instance.PushAsync(new PopupPasabuy());
         }
+
+     
         public void PostSell(object sender, EventArgs args)
         {
             Navigation.PushModalAsync(new PostSellPage());

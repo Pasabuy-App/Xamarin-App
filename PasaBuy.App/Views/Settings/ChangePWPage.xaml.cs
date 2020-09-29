@@ -37,13 +37,13 @@ namespace PasaBuy.App.Views.Settings
         /// <param name="e">Event Args</param>
         private void SaveButton_Clicked(object sender, EventArgs e)
         {
-            if ( String.IsNullOrEmpty(OldPassword.Text) || String.IsNullOrEmpty(NewPassword.Text) || String.IsNullOrEmpty(ConfirmNewPassword.Text) )
+            try
             {
-                new Alert("Failed", "Please complete all fields.", "Ok");
-            }
-            else
-            {
-                try
+                if (String.IsNullOrEmpty(OldPassword.Text) || String.IsNullOrEmpty(NewPassword.Text) || String.IsNullOrEmpty(ConfirmNewPassword.Text))
+                {
+                    new Alert("Failed", "Please complete all fields.", "Ok");
+                }
+                else
                 {
                     if (!isEnable)
                     {
@@ -66,10 +66,10 @@ namespace PasaBuy.App.Views.Settings
                         });
                     }
                 }
-                catch (Exception)
-                {
-                    new Alert("Something went Wrong", "Please contact administrator. Error Code: 20407.", "OK");
-                }
+            }
+            catch (Exception ex)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
             }
         }
     }

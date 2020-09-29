@@ -77,9 +77,9 @@ namespace PasaBuy.App.ViewModels.Settings
                     }
                 });
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error Code: 20440.", "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
         }
 

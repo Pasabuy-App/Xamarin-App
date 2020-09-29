@@ -56,15 +56,15 @@ namespace PasaBuy.App.ViewModels.Chat
         {
             try
             {
-                if (PSACache.Instance.UserInfo.user_type == "Verified")// if not a store or mover, type = 0
+                /*if (PSACache.Instance.UserInfo.user_type == "Verified")// if not a store or mover, type = 0
                 {
                     type = "4";
                 }
                 if (PSACache.Instance.UserInfo.user_type != "0")
                 {
                     type = "1";
-                }
-                SocioPress.Message.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, type, "0", offset, (bool success, string data) =>
+                }*/
+                SocioPress.Message.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "0", PSACache.Instance.UserInfo.stid, offset, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -134,9 +134,9 @@ namespace PasaBuy.App.ViewModels.Chat
                     }
                 });
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error Code: 20470.", "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
         }
         private void SampleData()

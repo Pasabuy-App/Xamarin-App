@@ -64,9 +64,9 @@ namespace PasaBuy.App.Views.StoreViews
                         }
                     });
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    new Alert("Something went Wrong", "Please contact administrator. Error Code: 20465.", "OK");
+                    new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
                 }
             }
         }
@@ -76,58 +76,58 @@ namespace PasaBuy.App.Views.StoreViews
         }
         private void Add(object sender, EventArgs e)
         {
-//AddressType.HasError = AddressTypes.Text == null || string.IsNullOrWhiteSpace(AddressTypes.Text) ? true : false;
-            AddressBarangay.HasError = AddressBarangays.Text == null || string.IsNullOrWhiteSpace(AddressBarangays.Text) ? true : false;
-            AddressCity.HasError = AddressCitys.Text == null || string.IsNullOrWhiteSpace(AddressCitys.Text) ? true : false;
-            AddressProvince.HasError = AddressProvinces.Text == null || string.IsNullOrWhiteSpace(AddressProvinces.Text) ? true : false;
-            AddressCountry.HasError = AddressCountrys.Text == null || string.IsNullOrWhiteSpace(AddressCountrys.Text) ? true : false;
-            AddressStreet.HasError = AddressStreets.Text == null || string.IsNullOrWhiteSpace(AddressStreets.Text) ? true : false;
-            if (AddressStreet.HasError == false && AddressCountry.HasError == false && AddressProvince.HasError == false && AddressCity.HasError == false && AddressBarangay.HasError == false)
+            try
             {
-                //new Alert("Address", "Country: " + AddressVar.co + " " + AddressVar.pr + " " + AddressVar.ct + " " + AddressVar.br, "OK");
-                string type = string.Empty;
-                /*if (AddressTypes.Text == "Business") { type = "business"; }
-                if (AddressTypes.Text == "Office") { type = "office"; }*/
-                try
+                //AddressType.HasError = AddressTypes.Text == null || string.IsNullOrWhiteSpace(AddressTypes.Text) ? true : false;
+                AddressBarangay.HasError = AddressBarangays.Text == null || string.IsNullOrWhiteSpace(AddressBarangays.Text) ? true : false;
+                AddressCity.HasError = AddressCitys.Text == null || string.IsNullOrWhiteSpace(AddressCitys.Text) ? true : false;
+                AddressProvince.HasError = AddressProvinces.Text == null || string.IsNullOrWhiteSpace(AddressProvinces.Text) ? true : false;
+                AddressCountry.HasError = AddressCountrys.Text == null || string.IsNullOrWhiteSpace(AddressCountrys.Text) ? true : false;
+                AddressStreet.HasError = AddressStreets.Text == null || string.IsNullOrWhiteSpace(AddressStreets.Text) ? true : false;
+                if (AddressStreet.HasError == false && AddressCountry.HasError == false && AddressProvince.HasError == false && AddressCity.HasError == false && AddressBarangay.HasError == false)
                 {
-                    if (adid == "0")
-                    {
-                        TindaPress.Address.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, "business", AddressStreets.Text, AddressVar.br, AddressVar.ct, AddressVar.pr, AddressVar.co, "", "", (bool success, string data) =>
+                    //new Alert("Address", "Country: " + AddressVar.co + " " + AddressVar.pr + " " + AddressVar.ct + " " + AddressVar.br, "OK");
+                    string type = string.Empty;
+                    /*if (AddressTypes.Text == "Business") { type = "business"; }
+                    if (AddressTypes.Text == "Office") { type = "office"; }*/
+                        if (adid == "0")
                         {
-                            if (success)
+                            TindaPress.Address.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, "business", AddressStreets.Text, AddressVar.br, AddressVar.ct, AddressVar.pr, AddressVar.co, "", "", (bool success, string data) =>
                             {
-                                SettingsAddressViewModel.addressList.Clear();
-                                SettingsAddressViewModel.LoadData();
-                                Navigation.PopAsync();
-                            }
-                            else
-                            {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                            }
-                        });
-                    }
-                    else
-                    {
-                        TindaPress.Address.Instance.Update(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, adid, AddressStreets.Text, AddressVar.br, AddressVar.ct, AddressVar.pr, AddressVar.co, (bool success, string data) =>
+                                if (success)
+                                {
+                                    SettingsAddressViewModel.addressList.Clear();
+                                    SettingsAddressViewModel.LoadData();
+                                    Navigation.PopAsync();
+                                }
+                                else
+                                {
+                                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                }
+                            });
+                        }
+                        else
                         {
-                            if (success)
+                            TindaPress.Address.Instance.Update(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, adid, AddressStreets.Text, AddressVar.br, AddressVar.ct, AddressVar.pr, AddressVar.co, (bool success, string data) =>
                             {
-                                SettingsAddressViewModel.addressList.Clear();
-                                SettingsAddressViewModel.LoadData();
-                                Navigation.PopAsync();
-                                adid = "0";
-                            }
-                            else
-                            {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                            }
-                        });
-                    }
+                                if (success)
+                                {
+                                    SettingsAddressViewModel.addressList.Clear();
+                                    SettingsAddressViewModel.LoadData();
+                                    Navigation.PopAsync();
+                                    adid = "0";
+                                }
+                                else
+                                {
+                                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                }
+                            });
+                        }
                 }
-                catch (Exception)
-                {
-                    new Alert("Something went Wrong", "Please contact administrator. Error Code: 20415.", "OK");
-                }
+            }
+            catch (Exception ex)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
             }
         }
 
