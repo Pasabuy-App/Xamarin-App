@@ -22,6 +22,7 @@ namespace PasaBuy.App.Models.Feeds
         private string images;
         private Boolean isaccept = false;
         private Boolean iscontent = false;
+        private Boolean iscontent2 = false;
         private Boolean isimage = false;
         private string linkpost = string.Empty;
         private string post_author = string.Empty;
@@ -49,8 +50,8 @@ namespace PasaBuy.App.Models.Feeds
             this.images = images;
             this.linkpost = post_link;
             this.post_author = post_author;
-            this.pickup = "<b>Pick-up: " + pickup + "</b>";
-            this.vehicle = "<b>Vehicle: " + vehicle + "</b>";
+            this.pickup = "<b>" + pickup + "</b>";
+            this.vehicle = "<b>" + vehicle + "</b>";
             this.do_price = "<b>" + do_price + "</b>";
 
             if (images == "")
@@ -61,16 +62,18 @@ namespace PasaBuy.App.Models.Feeds
             {
                 isImage = true;
             }
-            if (description == "")
+            /*if (description == "")
             {
                 isContent = false;
             }
             else
             {
                 isContent = true;
-            }
+            }*/
+            isContent = false;
             if (types == "Status")
             {
+                isContent2 = false;
                 isAccept = false;
                 HomeColSpan = 2;
                 HomeCol = 0;
@@ -79,9 +82,19 @@ namespace PasaBuy.App.Models.Feeds
             }
             else
             {
+                isContent2 = true;
                 if (types == "Selling")
                 {
+                    isContent = true;
                     AcceptText = "Inquire";
+                }
+                if (types == "Pasabay")
+                {
+                    AcceptText = "Pasabay";
+                }
+                if (types == "Pabili")
+                {
+                    isContent = true;
                 }
                 isAccept = true;
                 if (post_author == PSACache.Instance.UserInfo.wpid)
@@ -279,6 +292,18 @@ namespace PasaBuy.App.Models.Feeds
                 OnPropertyChanged("isContent");
             }
         }
+        public Boolean isContent2
+        {
+            get
+            {
+                return iscontent2;
+            }
+            set
+            {
+                iscontent2 = value;
+                OnPropertyChanged("isContent2");
+            }
+        }
         public Boolean isImage
         {
             get
@@ -356,11 +381,6 @@ namespace PasaBuy.App.Models.Feeds
                 OnPropertyChanged("ProfileCol");
             }
         }
-
-
-
-
-
 
         public event PropertyChangedEventHandler PropertyChanged;
 

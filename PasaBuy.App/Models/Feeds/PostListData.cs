@@ -21,12 +21,12 @@ namespace PasaBuy.App.Models.Feeds
             public string type = string.Empty;
             public string item_category = string.Empty;
             public string pickup_location = string.Empty;
-            public string vehicle_type = string.Empty;
+            public string vehicle_date = string.Empty;
             public string drop_off_location = string.Empty;
             public string item_image = string.Empty;
             public string author = string.Empty;
             public string views = string.Empty;
-            public string item_price = string.Empty;
+            public string time_price = string.Empty;
         }
     }
 }

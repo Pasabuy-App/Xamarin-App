@@ -19,6 +19,7 @@ namespace PasaBuy.App.Views.Feeds
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : ContentView
     {
+        public bool isBtn = false;
         public static int LastIndex = 11;
         public HomePage()
         {
@@ -54,37 +55,47 @@ namespace PasaBuy.App.Views.Feeds
 
         private void SfButton_Clicked(object sender, EventArgs e)
         {
-            var btn = (SfButton)sender;
-            var classId = btn.ClassId;
-            if (classId != PSACache.Instance.UserInfo.wpid)
+            if (!isBtn)
             {
-                MyProfileViewModel.GetProfile(classId);
-                MyProfileViewModel.LoadTotal(classId);
-                MyProfileViewModel.user_id = classId;
-
-                Device.BeginInvokeOnMainThread(async () =>
+                isBtn = true;
+                var btn = (SfButton)sender;
+                var classId = btn.ClassId;
+                if (classId != PSACache.Instance.UserInfo.wpid)
                 {
-                    await Task.Delay(300);
-                    await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
-                });
+                    MyProfileViewModel.GetProfile(classId);
+                    MyProfileViewModel.LoadTotal(classId);
+                    MyProfileViewModel.user_id = classId;
+
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        await Task.Delay(200);
+                        await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
+                        isBtn = false;
+                    });
+                }
             }
         }
 
         private void ImageButton_Clicked(object sender, EventArgs e)
         {
-            var btn = (ImageButton)sender;
-            var classId = btn.ClassId;
-            if (classId != PSACache.Instance.UserInfo.wpid)
+            if (!isBtn)
             {
-                MyProfileViewModel.GetProfile(classId);
-                MyProfileViewModel.LoadTotal(classId);
-                MyProfileViewModel.user_id = classId;
-
-                Device.BeginInvokeOnMainThread(async () =>
+                isBtn = true;
+                var btn = (ImageButton)sender;
+                var classId = btn.ClassId;
+                if (classId != PSACache.Instance.UserInfo.wpid)
                 {
-                    await Task.Delay(300);
-                    await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
-                });
+                    MyProfileViewModel.GetProfile(classId);
+                    MyProfileViewModel.LoadTotal(classId);
+                    MyProfileViewModel.user_id = classId;
+
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        await Task.Delay(200);
+                        await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
+                        isBtn = false;
+                    });
+                }
             }
         }
     }

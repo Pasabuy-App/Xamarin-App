@@ -59,10 +59,10 @@
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
                             FocusedColor="{StaticResource BlackColor}"
-                            Hint="Item Name"
+                            Hint="Item Name" x:Name="ItemNames"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
-                    <Entry MaxLength="50" ReturnType="Next" />
+                    <Entry MaxLength="50" ReturnType="Next" x:Name="ItemName" />
                     <inputLayout:SfTextInputLayout.LeadingView>
                         <Label
                                             Margin="0"
@@ -82,10 +82,10 @@
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
                             FocusedColor="{StaticResource BlackColor}"
-                            Hint="Item Description"
+                            Hint="Item Description"  x:Name="Descriptions"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
-                    <Entry MaxLength="150"  HeightRequest="80" ReturnType="Next" />
+                    <Entry MaxLength="150"  HeightRequest="80" ReturnType="Next" x:Name="Description"/>
                     <inputLayout:SfTextInputLayout.LeadingView>
                         <Label
                                             Margin="0"
@@ -105,10 +105,10 @@
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
                             FocusedColor="{StaticResource BlackColor}"
-                            Hint="Location"
+                            Hint="Location"  x:Name="Locations"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
-                    <Entry MaxLength="50" ReturnType="Next" />
+                    <Entry MaxLength="50" ReturnType="Next" x:Name="Location"/>
                     <inputLayout:SfTextInputLayout.LeadingView>
                         <Label
                                             Margin="0"
@@ -134,7 +134,7 @@
                             LeadingViewPosition="Inside">
                     <DatePicker MinimumDate="{Binding MinDate}"
                                 MaximumDate="{Binding MaxDate}"
-                                Date="{Binding SelectedDate}" />
+                                Date="{Binding SelectedDate}" x:Name="DatePicker"/>
                     <inputLayout:SfTextInputLayout.LeadingView>
                         <Label
                                             Margin="0"
@@ -157,7 +157,7 @@
                             Hint="Time"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
-                    <TimePicker Time="12:00" />
+                    <TimePicker Time="12:00" x:Name="TimePicker"/>
                     <inputLayout:SfTextInputLayout.LeadingView>
                         <Label
                                             Margin="0"
@@ -230,6 +230,7 @@
                             Margin="0, 30, 0, 20"
                             CornerRadius="10"
                             TextColor="White"
+                            Clicked="SfButton_Clicked"
                             BackgroundColor="{DynamicResource PrimaryColor}"
                             Style="{StaticResource SfButtonStyle}"
                             Text="POST" />
