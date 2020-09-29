@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using System.Globalization;
 using System.Linq;
 using PasaBuy.App.Behaviors.Chat;
+using PasaBuy.App.ViewModels.Chat;
 
 namespace PasaBuy.App.ViewModels.Driver
 {
@@ -23,6 +24,9 @@ namespace PasaBuy.App.ViewModels.Driver
     public class DriverChatMessageViewModel : BaseViewModel
     {
         #region Fields
+        public int count = 0;
+        public static int refresh = 0;
+        public static string type = "0";
 
         bool _isBusy = false;
         public bool isBusy
@@ -79,6 +83,7 @@ namespace PasaBuy.App.ViewModels.Driver
 
         public static bool isFirstID = false;
         public int ids = 0;
+        public static string myPage = string.Empty;
 
         //public static bool isFirstLoad = false;
         #endregion
@@ -112,11 +117,24 @@ namespace PasaBuy.App.ViewModels.Driver
             await Task.Delay(100);
             LoadMessage(user_id, "", "");
 
-            Device.StartTimer(TimeSpan.FromSeconds(5), doitt);
+            Device.StartTimer(TimeSpan.FromSeconds(1), doitt);
             bool doitt()
             {
-                PopupMessage();
-                return true;
+                if (refresh == 0)
+                {
+                    if (myPage != "home")
+                    {
+                        StoreMessageViewModel.storeChatList.Clear();
+                        StoreMessageViewModel.LoadMesssage("");
+                    }
+                    PopupMessage();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+;
             }
         }
 
@@ -125,54 +143,55 @@ namespace PasaBuy.App.ViewModels.Driver
             return isLoad;
         }
 
-        public void LoadMessage(string sender, string offset, string lastid)
+        public void LoadMessage(string recipient, string offset, string lastid)
         {
             try
             {
-                //SocioPress.Message.Instance.GetByRecepient(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, sender, offset, lastid, (bool success, string data) =>
-                //{
-                //    if (success)
-                //    {
-                //        ChatData chat = JsonConvert.DeserializeObject<ChatData>(data);
-                //        if (lastid == "")
-                //        {
-                //            int len = offset != string.Empty ? 7 : 12;
-                //            isLoad = chat.data.Length < len ? false : true;
-                //        }
+                //string user_types = type == "2" ? "3" : type;
+                SocioPress.Message.Instance.GetByRecepient(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, recipient, offset, "3", "", lastid, (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        ChatData chat = JsonConvert.DeserializeObject<ChatData>(data);
+                        if (lastid == "")
+                        {
+                            int len = offset != string.Empty ? 7 : 12;
+                            isLoad = chat.data.Length < len ? false : true;
+                        }
 
-                //        for (int i = 0; i < chat.data.Length; i++)
-                //        {
-                //            string id = chat.data[i].id;
-                //            string senders = chat.data[i].sender;
-                //            string content = chat.data[i].content;
-                //            string date_created = chat.data[i].date_created;
-                //            bool isreceived = senders != PSACache.Instance.UserInfo.wpid ? true : false;
+                        for (int i = 0; i < chat.data.Length; i++)
+                        {
+                            string id = chat.data[i].id;
+                            string senders = chat.data[i].sender;
+                            string content = chat.data[i].content;
+                            string date_created = chat.data[i].date_created;
+                            bool isreceived = senders != PSACache.Instance.UserInfo.wpid ? true : false;
 
-                //            CultureInfo provider = new CultureInfo("fr-FR");
-                //            DateTime datenow = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "yyyy-MM-dd HH:mm:ss", provider);
-                //            DateTime datedb = DateTime.ParseExact(date_created, "yyyy-MM-dd HH:mm:ss", provider);
-                //            TimeSpan ts = datedb - datenow;
-                //            var currentTime = DateTime.Now;
+                            CultureInfo provider = new CultureInfo("fr-FR");
+                            DateTime datenow = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "yyyy-MM-dd HH:mm:ss", provider);
+                            DateTime datedb = DateTime.ParseExact(date_created, "yyyy-MM-dd HH:mm:ss", provider);
+                            TimeSpan ts = datedb - datenow;
+                            var currentTime = DateTime.Now;
 
-                //            if (lastid == "")
-                //            {
-                //                ChatList.Insert(0, new ChatListItem(id, "", currentTime.AddMinutes(ts.TotalMinutes), content, isreceived));
-                //            }
-                //            else
-                //            {
-                //                ChatList.Add(new ChatListItem(id, "", currentTime.AddMinutes(ts.TotalMinutes), content, isreceived));
-                //            }
-                //        }
-                //    }
-                //    else
-                //    {
-                //        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                //    }
-                //});
+                            if (lastid == "")
+                            {
+                                ChatList.Insert(0, new ChatListItem(id, "", currentTime.AddMinutes(ts.TotalMinutes), content, isreceived));
+                            }
+                            else
+                            {
+                                ChatList.Add(new ChatListItem(id, "", currentTime.AddMinutes(ts.TotalMinutes), content, isreceived));
+                            }
+                        }
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error Code: 20475.", "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
         }
 
@@ -328,7 +347,7 @@ namespace PasaBuy.App.ViewModels.Driver
         /// Invoked when the send button is clicked.
         /// </summary>
         /// <param name="obj">The object</param>
-        private void SendClicked(object obj)
+        private async void SendClicked(object obj)
         {
             if (!string.IsNullOrWhiteSpace(this.NewMessage))
             {
@@ -341,30 +360,38 @@ namespace PasaBuy.App.ViewModels.Driver
                 ChatMessageListViewBehavior.isFirstLoad = false;
                 try
                 {
-                    //SocioPress.Message.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, this.NewMessage, user_id, (bool success, string data) =>
-                    //{
-                    //    if (success)
-                    //    {
-                    //        PopupMessage();
-                    //        this.NewMessage = null;
-                    //    }
-                    //    else
-                    //    {
-                    //        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    //    }
-                    //});
+                    if (count == 0)
+                    {
+                        count = 1;
+                        await Task.Delay(200);
+                        SocioPress.Message.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, this.NewMessage, user_id, "3", "0", (bool success, string data) =>
+                        {
+                            if (success)
+                            {
+                                this.NewMessage = null;
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            }
+                        });
+                        count = 0;
+                    }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    new Alert("Something went Wrong", "Please contact administrator. Error Code: 20476.", "OK");
+                    new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
                 }
             }
 
         }
-        public async void PopupMessage()
+        public void PopupMessage()
         {
-            await Task.Delay(500);
-            LoadMessage(user_id, "", ChatList.Last().ID);
+            //await Task.Delay(500);
+            if (ChatList.Count != 0)
+            {
+                LoadMessage(user_id, "", ChatList.Last().ID);
+            }
         }
 
         /// <summary>
@@ -390,7 +417,7 @@ namespace PasaBuy.App.ViewModels.Driver
             {
                 ChatMessageListViewBehavior.isFirstLoad = true;
                 isBusy = true;
-                await Task.Delay(1000);
+                await Task.Delay(200);
                 if (isFirstID)
                 {
                     ids += 7;
@@ -402,9 +429,9 @@ namespace PasaBuy.App.ViewModels.Driver
                 LoadMessage(user_id, ids.ToString(), "");
                 //Console.WriteLine("Behavior: Driver");
             }
-            catch
+            catch (Exception e)
             {
-
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
             finally
             {

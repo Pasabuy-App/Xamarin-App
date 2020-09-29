@@ -64,7 +64,8 @@ namespace PasaBuy.App.ViewModels.Chat
                 {
                     type = "1";
                 }*/
-                SocioPress.Message.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "0", PSACache.Instance.UserInfo.stid, offset, (bool success, string data) =>
+                string user_mess = PSACache.Instance.UserInfo.user_type != "User" && ( PSACache.Instance.UserInfo.stid == "0" || string.IsNullOrEmpty(PSACache.Instance.UserInfo.stid)) ? "3" : "4";
+                SocioPress.Message.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, user_mess, PSACache.Instance.UserInfo.stid, offset, (bool success, string data) =>
                 {
                     if (success)
                     {

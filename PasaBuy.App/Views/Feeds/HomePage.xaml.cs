@@ -4,8 +4,10 @@ using PasaBuy.App.Local;
 using PasaBuy.App.Models.Feeds;
 using PasaBuy.App.Models.Onboarding;
 using PasaBuy.App.ViewModels.Chat;
+using PasaBuy.App.ViewModels.Driver;
 using PasaBuy.App.ViewModels.Feeds;
 using PasaBuy.App.Views.Chat;
+using PasaBuy.App.Views.Driver;
 using Syncfusion.XForms.Buttons;
 using System;
 using System.Collections.Generic;
@@ -117,13 +119,14 @@ namespace PasaBuy.App.Views.Feeds
                         if (success)
                         {
                             UserInfo uinfo = JsonConvert.DeserializeObject<UserInfo>(data);
-                            ChatMessageViewModel.ProfileNames = uinfo.data.dname;
-                            ChatMessageViewModel.ProfileImages = PSAProc.GetUrl(uinfo.data.avatar);
-                            ChatMessageViewModel.user_id = btn.ClassId;
+                            DriverChatMessageViewModel.ProfileNames = uinfo.data.dname;
+                            DriverChatMessageViewModel.ProfileImages = PSAProc.GetUrl(uinfo.data.avatar);
+                            DriverChatMessageViewModel.user_id = btn.ClassId;
+                            DriverChatMessageViewModel.myPage = "home";
                             Device.BeginInvokeOnMainThread(async () =>
                             {
                                 await Task.Delay(200);
-                                await App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new ChatMessagePage()));
+                                await App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new DriverChatMessagePage()));
                                 isBtn = false;
                             });
                         }

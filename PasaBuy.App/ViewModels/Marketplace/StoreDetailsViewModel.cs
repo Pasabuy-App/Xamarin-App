@@ -131,7 +131,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
             //await Application.Current.MainPage.Navigation.PushModalAsync(new CartPage());
             CanNavigate = false;
             IsCartBusy = true;
-            await RunTask(NavigateToPage(new CartPage()));
+            //await RunTask(NavigateToPage(new CartPage()));
             CanNavigate = true;
             IsCartBusy = false;
 

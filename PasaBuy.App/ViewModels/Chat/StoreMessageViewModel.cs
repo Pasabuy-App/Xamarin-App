@@ -3,8 +3,11 @@ using Newtonsoft.Json;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Chat;
+using PasaBuy.App.ViewModels.Driver;
 using PasaBuy.App.Views;
 using PasaBuy.App.Views.Chat;
+using PasaBuy.App.Views.Driver;
+using PasaBuy.App.Views.Navigation;
 using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -25,7 +28,7 @@ namespace PasaBuy.App.ViewModels.Chat
 
         public static ObservableCollection<ChatDetail> storeChatList;
 
-        public ObservableCollection<ChatDetail> StoreChatList
+        public ObservableCollection<ChatDetail> ChatList
         {
             get { return storeChatList; }
             set { storeChatList = value; this.NotifyPropertyChanged(); }
@@ -38,7 +41,6 @@ namespace PasaBuy.App.ViewModels.Chat
             storeChatList = new ObservableCollection<ChatDetail>();
             storeChatList.Clear();
             LoadMesssage("");
-            //storeChatList.Add(new ChatDetail("0", PSAConfig.sfRootUrl + "ProfileImage2.png", "Alice Russell", "15 min", "https://app.syncfusion", "Text", "New", ""));
             this.MakeVoiceCallCommand = new Command(this.VoiceCallClicked);
             this.MakeVideoCallCommand = new Command(this.VideoCallClicked);
             this.ShowSettingsCommand = new Command(this.SettingsClicked);
@@ -49,67 +51,130 @@ namespace PasaBuy.App.ViewModels.Chat
         {
             try
             {
-                SocioPress.Message.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "2", PSACache.Instance.UserInfo.stid, offset, (bool success, string data) =>
+                if (MasterView.MyType == "store")
                 {
-                    if (success)
+                    SocioPress.Message.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "2", PSACache.Instance.UserInfo.stid, offset, (bool success, string data) =>
                     {
-                        ChatDataList chat = JsonConvert.DeserializeObject<ChatDataList>(data);
-                        for (int i = 0; i < chat.data.Length; i++)
+                        if (success)
                         {
-                            string id = chat.data[i].ID;
-                            string user_id = chat.data[i].user_id;
-                            string store_id = chat.data[i].store_id;
-                            string types = chat.data[i].types;
-                            string name = chat.data[i].name;
-                            string content = chat.data[i].content;
-                            string date_created = chat.data[i].date_created == null ? "" : chat.data[i].date_created;
-                            string date_seen = chat.data[i].date_seen == null ? "" : chat.data[i].date_seen;
-                            string avatar = chat.data[i].avatar;
-                            string sender_id = chat.data[i].sender_id;
-
-                            string notitype = sender_id == PSACache.Instance.UserInfo.wpid ? notitype = date_seen == "" ? "Sent" : "Received" : date_seen == "" ? "New" : "Viewed";
-
-                            string showdate = string.Empty;
-                            CultureInfo provider = new CultureInfo("fr-FR");
-                            DateTime datetoday = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "yyyy-MM-dd HH:mm:ss", provider);
-                            DateTime mydate = DateTime.ParseExact(date_created, "yyyy-MM-dd HH:mm:ss", provider);
-                            TimeSpan ts = datetoday - mydate;
-                            if (datetoday.Day == mydate.Day)
+                            ChatDataList chat = JsonConvert.DeserializeObject<ChatDataList>(data);
+                            for (int i = 0; i < chat.data.Length; i++)
                             {
-                                if (ts.TotalMinutes < 60)
+                                string id = chat.data[i].ID;
+                                string user_id = chat.data[i].user_id;
+                                string store_id = chat.data[i].store_id;
+                                string types = chat.data[i].types;
+                                string name = chat.data[i].name;
+                                string content = chat.data[i].content;
+                                string date_created = chat.data[i].date_created == null ? "" : chat.data[i].date_created;
+                                string date_seen = chat.data[i].date_seen == null ? "" : chat.data[i].date_seen;
+                                string avatar = chat.data[i].avatar;
+                                string sender_id = chat.data[i].sender_id;
+
+                                string notitype = sender_id == PSACache.Instance.UserInfo.wpid ? notitype = date_seen == "" ? "Sent" : "Received" : date_seen == "" ? "New" : "Viewed";
+
+                                string showdate = string.Empty;
+                                CultureInfo provider = new CultureInfo("fr-FR");
+                                DateTime datetoday = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "yyyy-MM-dd HH:mm:ss", provider);
+                                DateTime mydate = DateTime.ParseExact(date_created, "yyyy-MM-dd HH:mm:ss", provider);
+                                TimeSpan ts = datetoday - mydate;
+                                if (datetoday.Day == mydate.Day)
                                 {
-                                    showdate = ts.TotalMinutes < 2 ? ts.Minutes == 0 ? "Now" : "1 min ago" : ts.Minutes + " mins ago";
+                                    if (ts.TotalMinutes < 60)
+                                    {
+                                        showdate = ts.TotalMinutes < 2 ? ts.Minutes == 0 ? "Now" : "1 min ago" : ts.Minutes + " mins ago";
+                                    }
+                                    else
+                                    {
+                                        showdate = ts.Hours > 1 ? ts.Hours + " hrs ago" : ts.Hours + " hr ago";
+                                    }
                                 }
                                 else
                                 {
-                                    showdate = ts.Hours > 1 ? ts.Hours + " hrs ago" : ts.Hours + " hr ago";
+                                    if (ts.Days == 1)
+                                    {
+                                        showdate = "Yesterday";
+                                    }
+                                    else
+                                    {
+                                        int mos = datetoday.Month - mydate.Month;
+                                        showdate = mos < 2 ? mydate.ToString("MMM dd") : mydate.ToString("MM/dd/yyyy");
+                                    }
                                 }
-                            }
-                            else
-                            {
-                                if (ts.Days == 1)
-                                {
-                                    showdate = "Yesterday";
-                                }
-                                else
-                                {
-                                    int mos = datetoday.Month - mydate.Month;
-                                    showdate = mos < 2 ? mydate.ToString("MMM dd") : mydate.ToString("MM/dd/yyyy");
-                                }
-                            }
 
-                            storeChatList.Add(new ChatDetail(user_id, PSAProc.GetUrl(avatar), name, showdate, content, "Text", notitype, "", store_id, types));
+                                storeChatList.Add(new ChatDetail(user_id, PSAProc.GetUrl(avatar), name, showdate, content, "Text", notitype, "", store_id, types));
+                            }
                         }
-                    }
-                    else
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        }
+                    });
+                }
+                if (MasterView.MyType == "mover")
+                {
+                    SocioPress.Message.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "1", "0", offset, (bool success, string data) =>
                     {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                });
+                        if (success)
+                        {
+                            ChatDataList chat = JsonConvert.DeserializeObject<ChatDataList>(data);
+                            for (int i = 0; i < chat.data.Length; i++)
+                            {
+                                string id = chat.data[i].ID;
+                                string user_id = chat.data[i].user_id;
+                                string store_id = chat.data[i].store_id;
+                                string types = chat.data[i].types;
+                                string name = chat.data[i].name;
+                                string content = chat.data[i].content;
+                                string date_created = chat.data[i].date_created == null ? "" : chat.data[i].date_created;
+                                string date_seen = chat.data[i].date_seen == null ? "" : chat.data[i].date_seen;
+                                string avatar = chat.data[i].avatar;
+                                string sender_id = chat.data[i].sender_id;
+
+                                string notitype = sender_id == PSACache.Instance.UserInfo.wpid ? notitype = date_seen == "" ? "Sent" : "Received" : date_seen == "" ? "New" : "Viewed";
+
+                                string showdate = string.Empty;
+                                CultureInfo provider = new CultureInfo("fr-FR");
+                                DateTime datetoday = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "yyyy-MM-dd HH:mm:ss", provider);
+                                DateTime mydate = DateTime.ParseExact(date_created, "yyyy-MM-dd HH:mm:ss", provider);
+                                TimeSpan ts = datetoday - mydate;
+                                if (datetoday.Day == mydate.Day)
+                                {
+                                    if (ts.TotalMinutes < 60)
+                                    {
+                                        showdate = ts.TotalMinutes < 2 ? ts.Minutes == 0 ? "Now" : "1 min ago" : ts.Minutes + " mins ago";
+                                    }
+                                    else
+                                    {
+                                        showdate = ts.Hours > 1 ? ts.Hours + " hrs ago" : ts.Hours + " hr ago";
+                                    }
+                                }
+                                else
+                                {
+                                    if (ts.Days == 1)
+                                    {
+                                        showdate = "Yesterday";
+                                    }
+                                    else
+                                    {
+                                        int mos = datetoday.Month - mydate.Month;
+                                        showdate = mos < 2 ? mydate.ToString("MMM dd") : mydate.ToString("MM/dd/yyyy");
+                                    }
+                                }
+
+                                storeChatList.Add(new ChatDetail(user_id, PSAProc.GetUrl(avatar), name, showdate, content, "Text", notitype, "", store_id, types));
+                            }
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        }
+                    });
+                }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error Code: 20470.", "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
         }
         #endregion
@@ -177,13 +242,25 @@ namespace PasaBuy.App.ViewModels.Chat
         /// </summary>
         private void ItemSelected(object selectedItem)
         {
-            StoreConversationViewModel.refresh = 0;
-            StoreConversationViewModel.ProfileNames = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).SenderName;
-            StoreConversationViewModel.ProfileImages = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).ImagePath;
-            StoreConversationViewModel.user_id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).ID;
-            StoreConversationViewModel.storeid = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).Store_id;
-            StoreConversationViewModel.type = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).Types;
-            ((App.Current.MainPage as MasterDetailPage).Detail as NavigationPage).Navigation.PushModalAsync(new StoreConversationPage());
+            if (MasterView.MyType == "store")
+            {
+                StoreConversationViewModel.refresh = 0;
+                StoreConversationViewModel.ProfileNames = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).SenderName;
+                StoreConversationViewModel.ProfileImages = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).ImagePath;
+                StoreConversationViewModel.user_id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).ID;
+                StoreConversationViewModel.storeid = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).Store_id;
+                StoreConversationViewModel.type = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).Types;
+                ((App.Current.MainPage as MasterDetailPage).Detail as NavigationPage).Navigation.PushModalAsync(new StoreConversationPage());
+            }
+            if (MasterView.MyType == "mover")
+            {
+                DriverChatMessageViewModel.refresh = 0;
+                DriverChatMessageViewModel.ProfileNames = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).SenderName;
+                DriverChatMessageViewModel.ProfileImages = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).ImagePath;
+                DriverChatMessageViewModel.user_id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).ID;
+                DriverChatMessageViewModel.type = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).Types;
+                ((App.Current.MainPage as MasterDetailPage).Detail as NavigationPage).Navigation.PushModalAsync(new DriverChatMessagePage());
+            }
         }
 
         /// <summary>

@@ -1,5 +1,6 @@
 ﻿using PasaBuy.App.Local;
 using PasaBuy.App.Resources.Texts;
+using PasaBuy.App.ViewModels.Driver;
 using PasaBuy.App.Views.Driver;
 using PasaBuy.App.Views.StoreViews;
 using System;
@@ -58,6 +59,7 @@ namespace PasaBuy.App.Views.Navigation
                 Logo.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatar);
                 Banner.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.banner);
                 Email.Text = PSACache.Instance.UserInfo.email;
+                DriverChatMessageViewModel.myPage = "driver";
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Navigation"), Icon = "Idcard.png", TargetType = typeof(Views.Driver.Navigation) });
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Transactions"), Icon = "Idcard.png", TargetType = typeof(TransactionDriverView) });
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Messages"), Icon = "Idcard.png", TargetType = typeof(MessagesView) });

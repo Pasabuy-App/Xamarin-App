@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PasaBuy.App.ViewModels.Driver;
+using PasaBuy.App.ViewModels.MobilePOS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +17,21 @@ namespace PasaBuy.App.Views.Driver
         public DriverChatMessagePage()
         {
             InitializeComponent();
+        }
+        protected override bool OnBackButtonPressed()
+        {
+            MessagesViewModel.storeChatList.Clear();
+            MessagesViewModel.LoadMesssage("");
+            DriverChatMessageViewModel.refresh = 1;
+            return base.OnBackButtonPressed();
+        }
+
+        private void backButton_Clicked(object sender, EventArgs e)
+        {
+            MessagesViewModel.storeChatList.Clear();
+            MessagesViewModel.LoadMesssage("");
+            DriverChatMessageViewModel.refresh = 1;
+            Navigation.PopModalAsync();
         }
     }
 }

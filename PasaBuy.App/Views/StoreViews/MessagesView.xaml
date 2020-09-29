@@ -34,7 +34,7 @@
                 AllowSwiping="True"
                 AutoFitMode="Height"
                 FocusBorderThickness="0"
-                ItemsSource="{Binding StoreChatList}"
+                ItemsSource="{Binding ChatList}"
                 SearchText="{Binding SearchText}"
                 TapCommand="{Binding ItemSelectedCommand}"
                 SelectionGesture="Tap"

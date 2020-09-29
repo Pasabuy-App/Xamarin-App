@@ -137,10 +137,6 @@ namespace PasaBuy.App.ViewModels.Feeds
 
         private void InquireClicked(object obj)
         {
-            /*var btn = (Button)obj;
-            var cid = btn.ClassId;
-
-            new Alert("Title", "ClassID:" + cid, "OK");*/
             //Get display name, user avatar(already fetched), and user id
             /*ChatMessageViewModel.ProfileNames = "test";
             ChatMessageViewModel.ProfileImages = this.Photo;

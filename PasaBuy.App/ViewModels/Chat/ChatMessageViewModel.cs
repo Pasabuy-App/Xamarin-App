@@ -159,6 +159,7 @@ namespace PasaBuy.App.ViewModels.Chat
         {
             try
             {
+                //string user_types = type == "2" ? "3" : type;
                 SocioPress.Message.Instance.GetByRecepient(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, recipient, offset, type, storeid, lastid, (bool success, string data) =>
                 {
                     if (success)
@@ -440,15 +441,8 @@ namespace PasaBuy.App.ViewModels.Chat
                 ChatMessageListViewBehavior.isFirstLoad = false;
                 try
                 {
-                    string types = "0";
-                    if (type == "2")
-                    {
-                        types = "3";
-                    }
-                    else
-                    {
-                        types = type;
-                    }
+                    /*string types = "0"; if (type == "2") { types = "3"; } else {  types = type; }*/
+                    string types = type == "2" ? "4" : type;
                     if (count == 0)
                     {
                         count = 1;
