@@ -105,7 +105,7 @@
                 
             </Grid>
             <Grid Grid.Row="1">
-                <Button Text="Asd" Clicked="ShowAcceptOrder"/>
+                <Button Text="Test show order modal" Clicked="ShowAcceptOrder"/>
             </Grid>
         </Grid>
     </ContentPage.Content>

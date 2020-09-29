@@ -197,6 +197,7 @@
                             <progressBar:SfCircularProgressBar x:Name="CustomContentCircularProgressBar" 
                                                                Progress="30"
                                                                Maximum="30"
+                                                               AnimationDuration="30000"
                                                                TrackColor="{DynamicResource Gray-900}"
                                                                ProgressColor="{DynamicResource PrimaryColor}"
                                                                HorizontalOptions="Center" 
@@ -208,7 +209,7 @@
                                                FontSize="60"
                                                VerticalTextAlignment="Center"
                                                HorizontalTextAlignment="Center"
-                                               Text="30"
+                                               x:Name="OrderTime"
                                                TextColor="{DynamicResource Gray-900}" />
 
                                 </progressBar:SfCircularProgressBar.Content>
