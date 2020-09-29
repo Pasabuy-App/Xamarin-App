@@ -366,11 +366,11 @@
                                           Padding="30, 5, 30, 25"
                                           Grid.ColumnSpan="2">
                                             <StackLayout>
-                                                <Label Text="{Binding Title}" Style="{StaticResource PostTitle}"/>
+                                                <Label Text="{Binding Title}" Style="{StaticResource PostTitle}"  TextType="Html"/>
                                                 <Label Text="{Binding Description}" Style="{StaticResource PostDescription}" IsVisible="{Binding isContent}"/>
-                                                <Label Margin="0,-2,0,0" Text="{Binding Vehicle}" Style="{StaticResource PostDescription}" TextType="Html" IsVisible="{Binding isContent}"/>
-                                                <Label Margin="0,-5,0,0" Text="{Binding PickUp}" Style="{StaticResource PostDescription}" TextType="Html" IsVisible="{Binding isContent}"/>
-                                                <Label Margin="0,-5,0,0" Text="{Binding DO_Price}" Style="{StaticResource PostDescription}" TextType="Html" IsVisible="{Binding isContent}"/>
+                                                <Label Margin="0,-2,0,0" Text="{Binding Vehicle}" Style="{StaticResource PostDescription}" TextType="Html" IsVisible="{Binding isContent2}"/>
+                                                <Label Margin="0,-5,0,0" Text="{Binding PickUp}" Style="{StaticResource PostDescription}" TextType="Html" IsVisible="{Binding isContent2}"/>
+                                                <Label Margin="0,-5,0,0" Text="{Binding DO_Price}" Style="{StaticResource PostDescription}" TextType="Html" IsVisible="{Binding isContent2}"/>
                                             </StackLayout>
                                         </Grid>
 
@@ -400,7 +400,7 @@
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
                                             <Grid Grid.Row="1" Grid.Column="0">
-                                                <Button Text="Accept" 
+                                                <Button Text="{Binding AcceptText}" 
                                                 IsEnabled="{Binding isAccept}"
                                                 BorderColor="{DynamicResource Gray-300}"
                                                 BorderWidth="1"
