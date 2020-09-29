@@ -16,6 +16,12 @@
     <x:String x:Key="Back">&#xe709;</x:String>
     <x:String x:Key="Submit">Submit</x:String>
     <x:String x:Key="DropDownButtonIcon">&#xe70b;</x:String>
+    <x:String x:Key="MapPin">&#xe729;</x:String>
+    <x:String x:Key="Calendar">&#xe742;</x:String>
+    <x:String x:Key="Bell">&#xe700;</x:String>
+
+
+
 
 
 
@@ -223,6 +229,14 @@
         <Setter Property="HeightRequest" Value="40"/>
     </Style>
 
+    <Style x:Key="FormBorderStyle" TargetType="border:SfBorder">
+        <Setter Property="BorderColor" Value="{DynamicResource Gray-700}"/>
+        <Setter Property="CornerRadius" Value="4"/>
+        <Setter Property="Padding" Value="12,8"/>
+        <Setter Property="Margin" Value="0,8"/>
+        <Setter Property="BackgroundColor" Value="White"/>
+    </Style>
+
     <Style x:Key="EntryTextBoxStyle" TargetType="control:BorderlessEntry">
         <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}"/>
         <Setter Property="FontSize" Value="18"/>
@@ -230,6 +244,13 @@
         <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-700}"/>
         <Setter Property="Margin" Value="12,0"/>
         <Setter Property="HeightRequest" Value="40"/>
+    </Style>
+
+    <Style x:Key="EntryTextStyle" TargetType="control:BorderlessEntry">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}"/>
+        <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-700}"/>
     </Style>
 
     <!--Common button style-->
