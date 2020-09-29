@@ -212,9 +212,9 @@
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
                                             <Grid Grid.Row="1" Grid.Column="0">
-                                                <Button Text="{Binding AcceptText}" 
+                                                <Button Text="{Binding AcceptText}" ClassId="{Binding Post_author}"
                                                         IsEnabled="{Binding isAccept}"
-                                                        Command="{Binding BindingContext.InquireCommand, Source={x:Reference homePage}}"
+                                                        Clicked="AcceptButton"
                                                         BorderColor="{DynamicResource Gray-300}"
                                                         BorderWidth="1"
                                                         BackgroundColor="{DynamicResource Gray-100}"/>

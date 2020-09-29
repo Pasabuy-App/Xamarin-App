@@ -135,15 +135,18 @@ namespace PasaBuy.App.ViewModels.Feeds
 
         public ICommand InquireCommand { protected set; get; }
 
-        private async void InquireClicked(object obj)
+        private void InquireClicked(object obj)
         {
+            /*var btn = (Button)obj;
+            var cid = btn.ClassId;
+
+            new Alert("Title", "ClassID:" + cid, "OK");*/
             //Get display name, user avatar(already fetched), and user id
-            ChatMessageViewModel.ProfileNames = "test";
+            /*ChatMessageViewModel.ProfileNames = "test";
             ChatMessageViewModel.ProfileImages = this.Photo;
             ChatMessageViewModel.user_id = "3";
-            await App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new ChatMessagePage()));
+            await App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new ChatMessagePage()));*/
         }
-
 
         bool _isRefreshing = false;
         public bool IsRefreshing

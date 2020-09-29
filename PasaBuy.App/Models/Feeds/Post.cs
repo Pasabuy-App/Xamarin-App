@@ -73,8 +73,8 @@ namespace PasaBuy.App.Models.Feeds
             isContent = false;
             if (types == "Status")
             {
-                isContent2 = false;
-                isAccept = false;
+                isContent2 = false; 
+                isAccept = false; // If post is status, accept button is visible
                 HomeColSpan = 2;
                 HomeCol = 0;
                 ProfileColSpan = 2;
@@ -85,27 +85,35 @@ namespace PasaBuy.App.Models.Feeds
                 isContent2 = true;
                 if (types == "Selling")
                 {
-                    isContent = true;
-                    AcceptText = "Inquire";
+                    isContent = true; // set Content visible to true if post type is selling
+                    AcceptText = "Inquire"; // renamed accept button if post type is selling
                 }
                 if (types == "Pasabay")
                 {
-                    AcceptText = "Pasabay";
+                    AcceptText = "Pasabay";// renamed accept button if post type is pasabay
                 }
                 if (types == "Pabili")
                 {
                     isContent = true;
                 }
                 isAccept = true;
-                if (post_author == PSACache.Instance.UserInfo.wpid)
+                if (post_author == PSACache.Instance.UserInfo.wpid) //PSACache.Instance.UserInfo.user_type == "User"
                 {
-                    HomeColSpan = 2;
+                    HomeColSpan = 2; // only share button if the post author is me
                     HomeCol = 0;
                 }
                 else
                 {
-                    HomeColSpan = 1;
-                    HomeCol = 1;
+                    if(PSACache.Instance.UserInfo.user_type == "User")
+                    {
+                        HomeColSpan = 2;
+                        HomeCol = 0;
+                    }
+                    else
+                    {
+                        HomeColSpan = 1;
+                        HomeCol = 1;
+                    }
                 }
                 if (MyProfileViewModel.user_id == string.Empty)
                 {
@@ -114,8 +122,16 @@ namespace PasaBuy.App.Models.Feeds
                 }
                 else
                 {
-                    ProfileColSpan = 1;
-                    ProfileCol = 1;
+                    if (PSACache.Instance.UserInfo.user_type == "User")
+                    {
+                        ProfileColSpan = 2;
+                        ProfileCol = 0;
+                    }
+                    else
+                    {
+                        ProfileColSpan = 1;
+                        ProfileCol = 1;
+                    }
                 }
             }
 
