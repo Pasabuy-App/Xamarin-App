@@ -255,6 +255,9 @@
     <EmbeddedResource Update="Views\Driver\TransactionDriverView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Driver\TransactOrderList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\eCommerce\CartPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
@@ -393,10 +396,25 @@
     <EmbeddedResource Update="Views\Onboarding\VerifyResetPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\PopupModals\PopupAcceptOrder.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\PopupModals\PopupAddCategory.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\PopupModals\PopupAddDocument.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Posts\PabiliPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Posts\PahatidPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Posts\PasabayPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Posts\PasakayPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Posts\PostRequestPage.xaml">
@@ -674,6 +692,9 @@
     </Reference>
     <Reference Include="HatidPress-PCL">
       <HintPath>Resources\HatidPress-PCL.dll</HintPath>
+    </Reference>
+    <Reference Include="MobilePOS-PCL">
+      <HintPath>Resources\MobilePOS-PCL.dll</HintPath>
     </Reference>
     <Reference Include="SocioPress-PCL">
       <HintPath>Resources\SocioPress-PCL.dll</HintPath>

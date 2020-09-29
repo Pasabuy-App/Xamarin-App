@@ -118,10 +118,10 @@ namespace PasaBuy.App.Views.PopupModals
 
         private void OKModal_Clicked(object sender, EventArgs e)
         {
-            if (filepath != string.Empty && DocumentTypePicker.Text != string.Empty)
+            //new Alert(DocumentTypePicker.Text, "Path: " + filepath, "OK");
+            try
             {
-                //new Alert(DocumentTypePicker.Text, "Path: " + filepath, "OK");
-                try
+                if (filepath != string.Empty && DocumentTypePicker.Text != string.Empty)
                 {
                     string doctype = string.Empty;
                     if (MasterView.MyType == "store")
@@ -223,10 +223,10 @@ namespace PasaBuy.App.Views.PopupModals
                         });
                     }
                 }
-                catch (Exception)
-                {
-                    new Alert("Something went Wrong", "Please contact administrator. Error Code: 20465.", "OK");
-                }
+            }
+            catch (Exception ex)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
             }
         }
     }

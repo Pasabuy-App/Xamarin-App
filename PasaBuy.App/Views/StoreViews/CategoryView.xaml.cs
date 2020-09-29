@@ -40,29 +40,29 @@ namespace PasaBuy.App.Views.StoreViews
 
         private async void Delete_Tapped(object sender, EventArgs e)
         {
-            bool answer = await DisplayAlert("Delete Category?", "Are you sure to delete this?", "Yes", "No");
-            if (answer)
+            try
             {
-                try
+                bool answer = await DisplayAlert("Delete Category?", "Are you sure to delete this?", "Yes", "No");
+                if (answer)
                 {
-                    var btn = sender as Grid;
-                    TindaPress.Category.Instance.Delete(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, btn.ClassId, (bool success, string data) =>
-                    {
-                        if (success)
+                        var btn = sender as Grid;
+                        TindaPress.Category.Instance.Delete(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, btn.ClassId, (bool success, string data) =>
                         {
-                            CategoryViewModel.categoriesList.Clear();
-                            CategoryViewModel.LoadData();
-                        }
-                        else
-                        {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                        }
-                    });
+                            if (success)
+                            {
+                                CategoryViewModel.categoriesList.Clear();
+                                CategoryViewModel.LoadData();
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            }
+                        });
                 }
-                catch (Exception)
-                {
-                    new Alert("Something went Wrong", "Please contact administrator. Error Code: 20416.", "OK");
-                }
+            }
+            catch (Exception ex)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
             }
         }
 

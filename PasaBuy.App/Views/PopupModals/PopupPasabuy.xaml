@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="PasaBuy.App.Views.PopupModals.PopupPasabuy"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App" 
+    xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Accordion;assembly=Syncfusion.Expander.XForms" 
+    xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms">
+    <pages:PopupPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="PopupItemHeaderStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0,0,0,0" />
+            </Style>
+
+            <Style x:Key="PopupLabelStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="End" />
+                <Setter Property="Margin" Value="10,0,0,12" />
+            </Style>
+            
+            
+
+            <Style x:Key="IconButtonStyle" TargetType="buttons:SfButton">
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="WidthRequest" Value="40" />
+            </Style>
+            <x:String x:Key="ArrowRight">&#xe728;</x:String>
+            
+        </ResourceDictionary>
+    </pages:PopupPage.Resources>
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            DurationIn="500"
+            EasingIn="SpringOut"
+            PositionIn="Bottom"
+            PositionOut="Center"
+            ScaleIn="1"
+            ScaleOut="0.7" />
+    </pages:PopupPage.Animation>
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <Frame
+            x:Name="FrameContainer"
+            Margin="15"
+            Padding="0"
+            BackgroundColor="White"
+            CornerRadius="6"
+            HorizontalOptions="Center">
+            <StackLayout
+                Padding="0"
+                IsClippedToBounds="True"
+                Spacing="0">
+                <Grid RowSpacing="0">
+                    <syncfusion:SfAccordion>
+                        <syncfusion:SfAccordion.Items>
+                            <syncfusion:AccordionItem>
+                                <syncfusion:AccordionItem.Header>
+                                    <Grid>
+                                        <Label
+                                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                                            Padding="10,0,0,0"
+                                            HeightRequest="60" 
+                                            FontSize="18"
+                                            VerticalTextAlignment="Center"
+                                            Text="Pasabuy"
+                                            TextColor="{DynamicResource Gray-900}" />
+                                    </Grid>
+                                </syncfusion:AccordionItem.Header>
+                                <syncfusion:AccordionItem.Content>
+                                    <StackLayout HorizontalOptions="FillAndExpand" Padding="0, 5, 0, 5" Spacing="0">
+                                        <Label
+                                            FontFamily="{StaticResource Montserrat-Medium}"
+                                            Padding="10,0,0,0"
+                                            HeightRequest="100" 
+                                            FontSize="14"
+                                            VerticalTextAlignment="Center"
+                                            HorizontalTextAlignment="Start"
+                                            Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, laboris nisi ut aliquip ex ea commodo consequat"
+                                            TextColor="{DynamicResource Gray-900}" />
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="60*" />
+                                                <ColumnDefinition Width="30*" />
+                                                <ColumnDefinition Width="10*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label HorizontalTextAlignment="End"  Grid.Row="0" Grid.Column="1" Text="Proceed"/>
+                                            <buttons:SfButton Clicked="GoToPasabuy"
+                                                              HorizontalTextAlignment="Center"  
+                                                              Margin="0,-10,0,0"
+                                                              Grid.Row="0" 
+                                                              Grid.Column="2"
+                                                              CornerRadius="4"
+                                                              Style="{StaticResource IconButtonStyle}" Text="{StaticResource ArrowRight}"/>
+                                        </Grid>
+                                    </StackLayout>
+                                </syncfusion:AccordionItem.Content>
+                            </syncfusion:AccordionItem>
+                            <syncfusion:AccordionItem>
+                                <syncfusion:AccordionItem.Header>
+                                    <Grid>
+                                        <Label
+                                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                                            Padding="10,0,0,0"
+                                            HeightRequest="60" 
+                                            FontSize="18"
+                                            VerticalTextAlignment="Center"
+                                            Text="Pabili"
+                                            TextColor="{DynamicResource Gray-900}" />
+                                    </Grid>
+                                </syncfusion:AccordionItem.Header>
+                                <syncfusion:AccordionItem.Content>
+                                    <StackLayout HorizontalOptions="FillAndExpand" Padding="0, 5, 0, 5" Spacing="0">
+                                        <Label
+                                            FontFamily="{StaticResource Montserrat-Medium}"
+                                            Padding="10,0,0,0"
+                                            HeightRequest="100" 
+                                            FontSize="14"
+                                            VerticalTextAlignment="Center"
+                                            HorizontalTextAlignment="Start"
+                                            Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, laboris nisi ut aliquip ex ea commodo consequat"
+                                            TextColor="{DynamicResource Gray-900}" />
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="60*" />
+                                                <ColumnDefinition Width="30*" />
+                                                <ColumnDefinition Width="10*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label HorizontalTextAlignment="End"  Grid.Row="0" Grid.Column="1" Text="Proceed"/>
+                                            <buttons:SfButton Clicked="GoToPabili"
+                                                              HorizontalTextAlignment="Center"  
+                                                              Margin="0,-10,0,0"
+                                                              Grid.Row="0" 
+                                                              Grid.Column="2"
+                                                              CornerRadius="4"
+                                                              Style="{StaticResource IconButtonStyle}" Text="{StaticResource ArrowRight}"/>
+                                        </Grid>
+                                    </StackLayout>
+                                </syncfusion:AccordionItem.Content>
+                            </syncfusion:AccordionItem>
+                            <syncfusion:AccordionItem>
+                                <syncfusion:AccordionItem.Header>
+                                    <Grid>
+                                        <Label
+                                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                                            Padding="10,0,0,0"
+                                            HeightRequest="60" 
+                                            FontSize="18"
+                                            VerticalTextAlignment="Center"
+                                            Text="Pahatid"
+                                            TextColor="{DynamicResource Gray-900}" />
+                                    </Grid>
+                                </syncfusion:AccordionItem.Header>
+                                <syncfusion:AccordionItem.Content>
+                                    <StackLayout HorizontalOptions="FillAndExpand" Padding="0, 5, 0, 5" Spacing="0">
+                                        <Label
+                                            FontFamily="{StaticResource Montserrat-Medium}"
+                                            Padding="10,0,0,0"
+                                            HeightRequest="100" 
+                                            FontSize="14"
+                                            VerticalTextAlignment="Center"
+                                            HorizontalTextAlignment="Start"
+                                            Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, laboris nisi ut aliquip ex ea commodo consequat"
+                                            TextColor="{DynamicResource Gray-900}" />
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="60*" />
+                                                <ColumnDefinition Width="30*" />
+                                                <ColumnDefinition Width="10*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label HorizontalTextAlignment="End"  Grid.Row="0" Grid.Column="1" Text="Proceed"/>
+                                            <buttons:SfButton Clicked="GoToPahatid"
+                                                              HorizontalTextAlignment="Center"  
+                                                              Margin="0,-10,0,0"
+                                                              Grid.Row="0" 
+                                                              Grid.Column="2"
+                                                              CornerRadius="4"
+                                                              Style="{StaticResource IconButtonStyle}" Text="{StaticResource ArrowRight}"/>
+                                        </Grid>
+                                    </StackLayout>
+                                </syncfusion:AccordionItem.Content>
+                            </syncfusion:AccordionItem>
+                            <syncfusion:AccordionItem>
+                                <syncfusion:AccordionItem.Header>
+                                    <badge:SfBadgeView BadgeText="Coming Soon"  HorizontalOptions="Center" VerticalOptions="Center">
+                                        <badge:SfBadgeView.Content>
+                                            <Label
+                                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                Padding="10,0,0,0"
+                                                HeightRequest="60" 
+                                                FontSize="18"
+                                                VerticalTextAlignment="Center"
+                                                Text="Pasakay"
+                                                TextColor="{DynamicResource Gray-900}" />
+                                        </badge:SfBadgeView.Content>
+                                        <badge:SfBadgeView.BadgeSettings>
+                                            <badge:BadgeSetting Offset="-5,10"  BadgePosition="TopRight"/>
+                                        </badge:SfBadgeView.BadgeSettings>
+                                    </badge:SfBadgeView>
+                                </syncfusion:AccordionItem.Header>
+                                <syncfusion:AccordionItem.Content>
+                                    <StackLayout HorizontalOptions="FillAndExpand" Padding="0, 5, 0, 5" Spacing="0">
+                                        <Label
+                                            FontFamily="{StaticResource Montserrat-Medium}"
+                                            Padding="10,0,0,0"
+                                            HeightRequest="100" 
+                                            FontSize="14"
+                                            VerticalTextAlignment="Center"
+                                            HorizontalTextAlignment="Start"
+                                            Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, laboris nisi ut aliquip ex ea commodo consequat"
+                                            TextColor="{DynamicResource Gray-900}" />
+                                        <!--<Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="60*" />
+                                                <ColumnDefinition Width="30*" />
+                                                <ColumnDefinition Width="10*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label HorizontalTextAlignment="End"  Grid.Row="0" Grid.Column="1" Text="Proceed"/>
+                                            <buttons:SfButton Clicked="GoToPasakay"
+                                                              HorizontalTextAlignment="Center"  
+                                                              Margin="0,-10,0,0"
+                                                              Grid.Row="0" 
+                                                              Grid.Column="2"
+                                                              CornerRadius="4"
+                                                              Style="{StaticResource IconButtonStyle}" Text="{StaticResource ArrowRight}"/>
+                                        </Grid>-->
+                                    </StackLayout>
+                                </syncfusion:AccordionItem.Content>
+                            </syncfusion:AccordionItem>
+                        </syncfusion:SfAccordion.Items>
+                    </syncfusion:SfAccordion>
+                </Grid>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</pages:PopupPage>

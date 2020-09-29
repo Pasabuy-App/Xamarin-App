@@ -56,9 +56,9 @@ namespace PasaBuy.App.Views.StoreViews
                         }
                     });
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    new Alert("Something went Wrong", "Please contact administrator. Error Code: 20430.", "OK");
+                    new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
                 }
             }
             else
@@ -181,66 +181,66 @@ namespace PasaBuy.App.Views.StoreViews
         }
         private void AddProduct(object sender, EventArgs e)
         {
-            ProductName.HasError = ProductNames.Text == null || string.IsNullOrWhiteSpace(ProductNames.Text) ? true : false;
-            Short.HasError = Shorts.Text == null || string.IsNullOrWhiteSpace(Shorts.Text) ? true : false;
-            Price.HasError = Prices.Text == null || string.IsNullOrWhiteSpace(Prices.Text) ? true : false;
-            Category.HasError = ProductCategory.Text == null || string.IsNullOrWhiteSpace(ProductCategory.Text) ? true : false;
-            string lon = Longs.Text == null || string.IsNullOrWhiteSpace(Longs.Text) ? "N/A" : Longs.Text;
-            string sku = SKUs.Text == null || string.IsNullOrWhiteSpace(SKUs.Text) ? "N/A" : SKUs.Text;
-            string weight = Weights.Text == null || string.IsNullOrWhiteSpace(Weights.Text) ? "N/A" : Weights.Text;
-            string dimension = Dimensions.Text == null || string.IsNullOrWhiteSpace(Dimensions.Text) ? "N/A" : Dimensions.Text;
-            string filepath = filePath == null || filePath == "" || filePath == string.Empty ? "" : filePath;
-
-            if (ProductName.HasError == false && Short.HasError == false && Price.HasError == false && Category.HasError == false)
+            try
             {
-                try
-                {
-                    if (pdid == "0")
-                    {
-                        TindaPress.Product.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, PSACache.Instance.UserInfo.stid, ProductNames.Text, filepath, Shorts.Text, lon, sku, Prices.Text, weight, dimension, (bool success, string data) =>
-                        {
-                            if (success)
-                            {
-                                ProductsView.LastIndex = 11;
-                                ProductsView.isFirstLoad = false;
-                                ProductsView.Offset = 0;
-                                ProductViewModel.productsList.Clear();
-                                ProductViewModel.LoadData("");
-                                Navigation.PopAsync();
-                            }
-                            else
-                            {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                ProductName.HasError = ProductNames.Text == null || string.IsNullOrWhiteSpace(ProductNames.Text) ? true : false;
+                Short.HasError = Shorts.Text == null || string.IsNullOrWhiteSpace(Shorts.Text) ? true : false;
+                Price.HasError = Prices.Text == null || string.IsNullOrWhiteSpace(Prices.Text) ? true : false;
+                Category.HasError = ProductCategory.Text == null || string.IsNullOrWhiteSpace(ProductCategory.Text) ? true : false;
+                string lon = Longs.Text == null || string.IsNullOrWhiteSpace(Longs.Text) ? "N/A" : Longs.Text;
+                string sku = SKUs.Text == null || string.IsNullOrWhiteSpace(SKUs.Text) ? "N/A" : SKUs.Text;
+                string weight = Weights.Text == null || string.IsNullOrWhiteSpace(Weights.Text) ? "N/A" : Weights.Text;
+                string dimension = Dimensions.Text == null || string.IsNullOrWhiteSpace(Dimensions.Text) ? "N/A" : Dimensions.Text;
+                string filepath = filePath == null || filePath == "" || filePath == string.Empty ? "" : filePath;
 
-                            }
-                        });
-                    }
-                    else
-                    {
-                        TindaPress.Product.Instance.Update(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, pdid, PSACache.Instance.UserInfo.stid, ProductNames.Text, filepath, Shorts.Text, lon, sku, Prices.Text, weight, dimension, (bool success, string data) =>
-                        {
-                            if (success)
-                            {
-                                ProductsView.LastIndex = 11;
-                                ProductsView.isFirstLoad = false;
-                                ProductsView.Offset = 0;
-                                pdid = "0";
-                                ProductViewModel.productsList.Clear();
-                                ProductViewModel.LoadData("");
-                                Navigation.PopAsync();
-                            }
-                            else
-                            {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-
-                            }
-                        });
-                    }
-                }
-                catch (Exception)
+                if (ProductName.HasError == false && Short.HasError == false && Price.HasError == false && Category.HasError == false)
                 {
-                    new Alert("Something went Wrong", "Please contact administrator. Error Code: 20430.", "OK");
+                        if (pdid == "0")
+                        {
+                            TindaPress.Product.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, PSACache.Instance.UserInfo.stid, ProductNames.Text, filepath, Shorts.Text, lon, sku, Prices.Text, weight, dimension, (bool success, string data) =>
+                            {
+                                if (success)
+                                {
+                                    ProductsView.LastIndex = 11;
+                                    ProductsView.isFirstLoad = false;
+                                    ProductsView.Offset = 0;
+                                    ProductViewModel.productsList.Clear();
+                                    ProductViewModel.LoadData("");
+                                    Navigation.PopAsync();
+                                }
+                                else
+                                {
+                                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+
+                                }
+                            });
+                        }
+                        else
+                        {
+                            TindaPress.Product.Instance.Update(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, pdid, PSACache.Instance.UserInfo.stid, ProductNames.Text, filepath, Shorts.Text, lon, sku, Prices.Text, weight, dimension, (bool success, string data) =>
+                            {
+                                if (success)
+                                {
+                                    ProductsView.LastIndex = 11;
+                                    ProductsView.isFirstLoad = false;
+                                    ProductsView.Offset = 0;
+                                    pdid = "0";
+                                    ProductViewModel.productsList.Clear();
+                                    ProductViewModel.LoadData("");
+                                    Navigation.PopAsync();
+                                }
+                                else
+                                {
+                                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+
+                                }
+                            });
+                        }
                 }
+            }
+            catch (Exception ex)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
             }
         }
 

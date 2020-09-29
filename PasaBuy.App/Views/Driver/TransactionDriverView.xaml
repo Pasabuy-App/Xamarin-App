@@ -1,19 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
              xmlns:model="clr-namespace:PasaBuy.App.Models.Driver"
-             
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-             x:Class="PasaBuy.App.Views.Driver.TransactionDriverView">
+             x:Class="PasaBuy.App.Views.Driver.TransactionDriverView"
+             Title="Transactions">
+
+
     <ContentPage.Content>
-        <Grid
+        <Grid 
             BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
             ColumnSpacing="0"
             RowSpacing="0">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
+            <!--ItemsSource="{x:Static model:DriverTransactions.All}"-->
             <Grid Grid.Row="0" Margin="0">
                 <sync:SfListView
                     x:Name="ManagementItem"
@@ -23,7 +29,6 @@
                     ItemsSource="{x:Static model:DriverTransactions.All}"
                     SelectionMode="None">
                     <!--Item Source is for testing purposes only. Kindly bind into specific viewmodels-->
-
                     <sync:SfListView.ItemTemplate>
                         <DataTemplate>
                             <Grid
@@ -61,7 +66,7 @@
                                         </ffimageloading:CachedImage.Transformations>
                                     </ffimageloading:CachedImage>
 
-                                    <Label Text="Test Name"
+                                    <Label Text="hahaha"
                                            Grid.Row="0"
                                            Grid.Column="1"
                                            HorizontalOptions="StartAndExpand"
@@ -95,7 +100,12 @@
                             </Grid>
                         </DataTemplate>
                     </sync:SfListView.ItemTemplate>
+
                 </sync:SfListView>
+                
+            </Grid>
+            <Grid Grid.Row="1">
+                <Button Text="Asd" Clicked="ShowAcceptOrder"/>
             </Grid>
         </Grid>
     </ContentPage.Content>

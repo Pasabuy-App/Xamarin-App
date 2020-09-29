@@ -12,6 +12,10 @@ using Xamarin.Forms;
 using PasaBuy.App.Models.Onboarding;
 using System.Diagnostics;
 using PasaBuy.App.Views.Feeds;
+using PasaBuy.App.Views.Driver;
+using PasaBuy.App.Views;
+using PasaBuy.App.Views.Chat;
+using PasaBuy.App.ViewModels.Chat;
 
 namespace PasaBuy.App.ViewModels.Feeds
 {
@@ -38,7 +42,12 @@ namespace PasaBuy.App.ViewModels.Feeds
             });
             homePostList = new ObservableCollection<Post>();
             LoadData("");
+            this.InquireCommand = new Command(this.InquireClicked);
+
         }
+
+        
+
         /// <summary>
         /// Load post data in listview using observablecollection in HomePage
         /// </summary>
@@ -58,7 +67,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                             {
                                 image_height = "400";
                             }
-                            string post_author = post.data[i].post_author;
+                            string post_author = post.data[i].post_author; //user id
                             string id = post.data[i].id;
                             string content = post.data[i].content;
                             string category = post.data[i].item_category;
@@ -66,8 +75,8 @@ namespace PasaBuy.App.ViewModels.Feeds
                             string date_post = post.data[i].date_post == string.Empty ? new DateTime().ToString() : post.data[i].date_post;
                             string type = post.data[i].type;
                             string item_image = post.data[i].item_image;
-                            string author = post.data[i].author;
-                            string name = post.data[i].name;
+                            string author = post.data[i].author; // user avatar
+                            string name = post.data[i].name; //dname
                             string views = post.data[i].views;
                             string post_link = post.data[i].post_link;
                             string vehicle_type = post.data[i].vehicle_type;
@@ -77,6 +86,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                             {
                                 title = category + " : " + title;
                                 do_price = "Price: " + post.data[i].item_price;
+
                             }
 
                             homePostList.Add(new Post(PSAProc.GetUrl(author),
@@ -99,6 +109,18 @@ namespace PasaBuy.App.ViewModels.Feeds
 
         #region Property
         public ICommand RefreshCommand { protected set; get; }
+
+        public ICommand InquireCommand { protected set; get; }
+
+        private async void InquireClicked(object obj)
+        {
+            //Get display name, user avatar(already fetched), and user id
+            ChatMessageViewModel.ProfileNames = "test";
+            ChatMessageViewModel.ProfileImages = this.Photo;
+            ChatMessageViewModel.user_id = "3";
+            await App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new ChatMessagePage()));
+        }
+
 
         bool _isRefreshing = false;
         public bool IsRefreshing

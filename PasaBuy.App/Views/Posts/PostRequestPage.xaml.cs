@@ -37,13 +37,13 @@ namespace PasaBuy.App.Views.Posts
 
         public void SubmitPostButton(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(ItemName.Text) || !string.IsNullOrWhiteSpace(ItemDescription.Text) || !string.IsNullOrWhiteSpace(PickUpLocation.Text) || !string.IsNullOrWhiteSpace(DropOffLocation.Text) || !string.IsNullOrWhiteSpace(VehicleType.Text))
+            try
             {
-                if (btn == false)
+                if (!string.IsNullOrWhiteSpace(ItemName.Text) || !string.IsNullOrWhiteSpace(ItemDescription.Text) || !string.IsNullOrWhiteSpace(PickUpLocation.Text) || !string.IsNullOrWhiteSpace(DropOffLocation.Text) || !string.IsNullOrWhiteSpace(VehicleType.Text))
                 {
-                    btn = true;
-                    try
+                    if (btn == false)
                     {
+                        btn = true;
                         SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, ItemName.Text, ItemDescription.Text, "move", filePath, "", "", PickUpLocation.Text, DropOffLocation.Text, VehicleType.Text, (bool success, string data) =>
                         {
                             if (success)
@@ -66,15 +66,15 @@ namespace PasaBuy.App.Views.Posts
                             }
                         });
                     }
-                    catch (Exception)
-                    {
-                        new Alert("Something went Wrong", "Please contact administrator. Error Code: 20430.", "OK");
-                    }
+                }
+                else
+                {
+                    new Alert("Notice to user", "Required fields cannot be empty.", "OK");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                new Alert("Notice to user", "Required fields cannot be empty.", "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
             }
         }
 

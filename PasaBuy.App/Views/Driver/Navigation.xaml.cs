@@ -18,20 +18,20 @@ namespace PasaBuy.App.Views.Driver
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Navigation : ContentPage
     {
-        public static string StoreValue = string.Empty;
-        public static string UserValue = string.Empty;
+        public static string StoreAddress = string.Empty;
+        public static string UserAddress = string.Empty;
         public static Position StorePosition;
         public static Position UserPosition;
+        
+
         ILocationUpdateService loc;
         public Navigation()
         {
             InitializeComponent();
-            DisplayCurloc();
-
-            /*customMap = new Map ();
-
-            customMap.IsShowingUser = true;
-            
+                DisplayCurloc();
+           
+          
+            /*customMap.IsShowingUser = true;
             NavigationViewModel.DisplayCurloc(customMap);*/
         }
 
@@ -58,19 +58,27 @@ namespace PasaBuy.App.Views.Driver
 
                     Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
 
-                    if (StoreValue != string.Empty)
+                    new Alert("",StoreAddress,"ok");
+                    if (StoreAddress == string.Empty)
                     {
+                        customMap.Pins.Clear();
+                    }
+
+
+                    if (StoreAddress != string.Empty)
+                    {
+                        Console.WriteLine("", "user pos " + UserAddress + " User position" + UserPosition + ", \n Store Position" + StoreAddress + " position" + StorePosition, "ok");
+                        //new Alert("","user pos "+UserAddress+" User position"+UserPosition+ ", \n Store Position"+StoreAddress+" position"+StorePosition,"ok");
                         CustomPin pin1 = new CustomPin
                         {
                             Type = PinType.Place,
                             Position = UserPosition,
-                            Label = "User",
-                            Address = UserValue,
-                            Name = "Rider",
-                            Url = "http://xamarin.com/about/"
+                            Label = "Client",
+                            Address = UserAddress,
+                            Name = "",
+                            Url = ""
                         };
                         customMap.CustomPins = new List<CustomPin> { pin1 };
-
                         customMap.Pins.Add(pin1);
 
                         CustomPin pin2 = new CustomPin
@@ -78,17 +86,14 @@ namespace PasaBuy.App.Views.Driver
                             Type = PinType.Place,
                             Position = StorePosition,
                             Label = "Store",
-                            Address = StoreValue,
-                            Name = "Rider",
-                            Url = "http://xamarin.com/about/"
+                            Address = StoreAddress,
+                            Name = "",
+                            Url = ""
                         };
                         customMap.CustomPins = new List<CustomPin> { pin2 };
-
                         customMap.Pins.Add(pin2);
 
                         customMap.MoveToRegion(MapSpan.FromCenterAndRadius(p, Distance.FromMiles(2)));
-
-
                     }
 
 
@@ -104,7 +109,7 @@ namespace PasaBuy.App.Views.Driver
                      customMap.CustomPins = new List<CustomPin> { pin };*/
 
                     //customMap.Pins.Add(pin);
-                    if (StoreValue == string.Empty)
+                    if (StoreAddress == string.Empty)
                     { 
                         customMap.MoveToRegion(MapSpan.FromCenterAndRadius(p, Distance.FromKilometers(0.111)));
 

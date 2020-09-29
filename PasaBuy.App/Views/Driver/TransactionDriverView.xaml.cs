@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PasaBuy.App.Views.PopupModals;
+using Rg.Plugins.Popup.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +17,11 @@ namespace PasaBuy.App.Views.Driver
         public TransactionDriverView()
         {
             InitializeComponent();
+        }
+
+        private void ShowAcceptOrder(object sender, EventArgs e)
+        {
+            PopupNavigation.Instance.PushAsync(new PopupAcceptOrder());
         }
     }
 }
