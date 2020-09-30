@@ -25,21 +25,21 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <maps:Map x:Name="map" MyLocationEnabled="True" Grid.Row="0" />
-                <yummy:PancakeView
+            <yummy:PancakeView
                     Grid.Row="1"
                     Margin="0,0,0,0"
                     BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
                     CornerRadius="20,20,0,0"
                     VerticalOptions="FillAndExpand">
-                    <Grid Padding="15,20,15,20">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="70*" />
-                            <ColumnDefinition Width="15*" />
-                            <ColumnDefinition Width="15*" />
+                <Grid Padding="15,20,15,20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70*" />
+                        <ColumnDefinition Width="15*" />
+                        <ColumnDefinition Width="15*" />
                     </Grid.ColumnDefinitions>
                     <Label FontFamily="{StaticResource Montserrat-Medium}"
                            Padding="10,0,0,0"
@@ -72,12 +72,8 @@
                     <Grid.GestureRecognizers>
                         <TapGestureRecognizer Tapped="ShowAvailableDeliveries" NumberOfTapsRequired="1"/>
                     </Grid.GestureRecognizers>
-     
-
                 </Grid>
-
-                </yummy:PancakeView>
-           
+            </yummy:PancakeView>
         </Grid>
     </ContentPage.Content>
 

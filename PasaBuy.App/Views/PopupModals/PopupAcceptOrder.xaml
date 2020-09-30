@@ -218,14 +218,11 @@
 
                                 </progressBar:SfCircularProgressBar.Content>
                                 <progressBar:SfCircularProgressBar.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="AcceptOrder" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                                    <TapGestureRecognizer Tapped="AcceptOrder" NumberOfTapsRequired="1" ></TapGestureRecognizer>
                                 </progressBar:SfCircularProgressBar.GestureRecognizers>
                             </progressBar:SfCircularProgressBar>
                         </Grid>
                     </yummy:PancakeView>
-
-
-
                 </Grid>
             </StackLayout>
         </Frame>
