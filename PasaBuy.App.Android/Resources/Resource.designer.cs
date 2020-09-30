@@ -24530,55 +24530,67 @@ namespace PasaBuy.App.Droid
 			public const int notify_panel_notification_icon_bg = 2131165385;
 			
 			// aapt resource value: 0x7F0700CA
-			public const int photo_camera = 2131165386;
+			public const int OnBoardingA = 2131165386;
 			
 			// aapt resource value: 0x7F0700CB
-			public const int picture_black = 2131165387;
+			public const int OnBoardingB = 2131165387;
 			
 			// aapt resource value: 0x7F0700CC
-			public const int pin = 2131165388;
+			public const int OnBoardingC = 2131165388;
 			
 			// aapt resource value: 0x7F0700CD
-			public const int popup_forms_android_close_icon = 2131165389;
+			public const int OnBoardingD = 2131165389;
 			
 			// aapt resource value: 0x7F0700CE
-			public const int popup_forms_android_shadow = 2131165390;
+			public const int photo_camera = 2131165390;
 			
 			// aapt resource value: 0x7F0700CF
-			public const int popup_forms_dark_theme_close_icon = 2131165391;
+			public const int picture_black = 2131165391;
 			
 			// aapt resource value: 0x7F0700D0
-			public const int popup_forms_light_theme_close_icon = 2131165392;
+			public const int pin = 2131165392;
 			
 			// aapt resource value: 0x7F0700D1
-			public const int remove_512 = 2131165393;
+			public const int popup_forms_android_close_icon = 2131165393;
 			
 			// aapt resource value: 0x7F0700D2
-			public const int right_arrow = 2131165394;
+			public const int popup_forms_android_shadow = 2131165394;
 			
 			// aapt resource value: 0x7F0700D3
-			public const int save = 2131165395;
+			public const int popup_forms_dark_theme_close_icon = 2131165395;
 			
 			// aapt resource value: 0x7F0700D4
-			public const int sfprogressbar_determinate_linear = 2131165396;
+			public const int popup_forms_light_theme_close_icon = 2131165396;
 			
 			// aapt resource value: 0x7F0700D5
-			public const int sfprogressbar_indeterminate_circular = 2131165397;
+			public const int remove_512 = 2131165397;
 			
 			// aapt resource value: 0x7F0700D6
-			public const int sfprogressbar_indeterminate_linear = 2131165398;
+			public const int right_arrow = 2131165398;
 			
 			// aapt resource value: 0x7F0700D7
-			public const int shadow_effect = 2131165399;
+			public const int save = 2131165399;
 			
 			// aapt resource value: 0x7F0700D8
-			public const int tooltip_frame_dark = 2131165400;
+			public const int sfprogressbar_determinate_linear = 2131165400;
 			
 			// aapt resource value: 0x7F0700D9
-			public const int tooltip_frame_light = 2131165401;
+			public const int sfprogressbar_indeterminate_circular = 2131165401;
 			
 			// aapt resource value: 0x7F0700DA
-			public const int UpButton = 2131165402;
+			public const int sfprogressbar_indeterminate_linear = 2131165402;
+			
+			// aapt resource value: 0x7F0700DB
+			public const int shadow_effect = 2131165403;
+			
+			// aapt resource value: 0x7F0700DC
+			public const int tooltip_frame_dark = 2131165404;
+			
+			// aapt resource value: 0x7F0700DD
+			public const int tooltip_frame_light = 2131165405;
+			
+			// aapt resource value: 0x7F0700DE
+			public const int UpButton = 2131165406;
 			
 			static Drawable()
 			{

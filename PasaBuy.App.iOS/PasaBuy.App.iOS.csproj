@@ -315,4 +315,16 @@
   <ItemGroup>
     <BundleResource Include="Resources\PickupPin.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\OnBoardingD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\OnBoardingC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\OnBoardingB.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\OnBoardingA.png" />
+  </ItemGroup>
 </Project>

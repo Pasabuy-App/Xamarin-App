@@ -224,7 +224,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void SignUpClicked(object obj)
         {
-            App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new SignUpPage()));
+            App.Current.MainPage.Navigation.PushModalAsync(new SignUpPage());
         }
 
         /// <summary>
