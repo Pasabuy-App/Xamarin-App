@@ -9,6 +9,7 @@
     xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Onboarding" 
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
     xmlns:control="clr-namespace:PasaBuy.App.Controls"
+    BackgroundColor="{DynamicResource Gray-White}"
     NavigationPage.HasNavigationBar="False"
     x:Class="PasaBuy.App.Views.Onboarding.ForgotPwPage">
 
