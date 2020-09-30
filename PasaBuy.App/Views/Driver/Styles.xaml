@@ -42,6 +42,7 @@
     <x:String x:Key="Arrived">&#xe740;</x:String>
     <x:String x:Key="Delivered">&#xe741;</x:String>
     <x:String x:Key="New Message">&#xe720;</x:String>
+    <x:String x:Key="ArrowRight">&#xe728;</x:String>
     <Color x:Key="TappedBackgroundColor">#eaeaea</Color>
     <Color x:Key="Link">#567cd7</Color>
 
@@ -61,6 +62,7 @@
         <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
     </Style>
 
+    
     <!--  Common style for swipe template content border control  -->
     <Style x:Key="SwipeTemplateBorderStyle" TargetType="buttons:SfButton">
         <Setter Property="HeightRequest" Value="32" />
@@ -206,5 +208,6 @@
         <Setter Property="HeightRequest" Value="40" />
         <Setter Property="WidthRequest" Value="40" />
     </Style>
+
 
 </ResourceDictionary>

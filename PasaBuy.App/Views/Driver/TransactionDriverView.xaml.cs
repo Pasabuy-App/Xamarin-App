@@ -24,5 +24,15 @@ namespace PasaBuy.App.Views.Driver
 
             PopupNavigation.Instance.PushAsync(new PopupAcceptOrder());
         }
+
+        public void BackButtonClicked(object sender, EventArgs e)
+        {
+            Navigation.PopModalAsync();
+        }
+
+        private void NewOrders_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        {
+            PopupNavigation.Instance.PushAsync(new PopupAcceptOrder());
+        }
     }
 }

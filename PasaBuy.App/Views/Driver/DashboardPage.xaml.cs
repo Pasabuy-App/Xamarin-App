@@ -20,7 +20,7 @@ namespace PasaBuy.App.Views.Driver
         {
             InitializeComponent();
             DisplayCurloc();
-            map.IsTrafficEnabled = true;
+            //map.IsTrafficEnabled = true; lorz comment
         }
 
         public async void DisplayCurloc()
@@ -34,7 +34,7 @@ namespace PasaBuy.App.Views.Driver
                 {
                     Xamarin.Forms.GoogleMaps.Position p = new Xamarin.Forms.GoogleMaps.Position(location.Latitude, location.Longitude);
                     MapSpan mapSpan = MapSpan.FromCenterAndRadius(p, Distance.FromKilometers(.444));
-                    map.MoveToRegion(mapSpan);
+                    //map.MoveToRegion(mapSpan); lorz comment
                     //await GetLocationName(p);
                     Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
                 }
@@ -61,5 +61,9 @@ namespace PasaBuy.App.Views.Driver
             }
         }
 
+        private void ShowAvailableDeliveries(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new TransactionDriverView());
+        }
     }
 }

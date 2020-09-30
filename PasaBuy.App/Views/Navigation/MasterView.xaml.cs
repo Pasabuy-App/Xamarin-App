@@ -52,18 +52,15 @@ namespace PasaBuy.App.Views.Navigation
             }
             if (MyType == "mover")
             {
-                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Dashboard"), Icon = "Idcard.png", TargetType = typeof(Views.Driver.DashboardPage) });
-
                 //Views.Driver.Navigation.StoreAddress = string.Empty;
                 //Views.Driver.Navigation.UserAddress = string.Empty;
                 Store_name.Text = PSACache.Instance.UserInfo.dname;
                 Logo.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatar);
                 Banner.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.banner);
                 Email.Text = PSACache.Instance.UserInfo.email;
-                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Navigation"), Icon = "Idcard.png", TargetType = typeof(TransactionDriverView) });
-                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Transactions"), Icon = "Idcard.png", TargetType = typeof(TransactionDriverView) });
+                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Dashboard"), Icon = "Idcard.png", TargetType = typeof(Views.Driver.DashboardPage) });
+                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Transactions"), Icon = "Idcard.png", TargetType = typeof(TransactionsHistoryPage) });
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Messages"), Icon = "Idcard.png", TargetType = typeof(MessagesView) });
-                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Available Deliveries"), Icon = "Idcard.png", TargetType = typeof(TransactOrderList) });
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Documents"), Icon = "Idcard.png", TargetType = typeof(DocumentsView) });
             }
 
