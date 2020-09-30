@@ -21,6 +21,7 @@ namespace PasaBuy.App.Views.Driver
 
         private void ShowAcceptOrder(object sender, EventArgs e)
         {
+
             PopupNavigation.Instance.PushAsync(new PopupAcceptOrder());
         }
     }

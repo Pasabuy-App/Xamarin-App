@@ -4,13 +4,16 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:local="clr-namespace:PasaBuy.App.Models.Driver" 
+             xmlns:local="clr-namespace:PasaBuy.App.Models.Driver"
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
              x:Class="PasaBuy.App.Views.Driver.DashboardPage">
 
-    <StackLayout>
-        <Button Text="Accept Order" x:Name="AcceptOrderButton"  Clicked="AcceptOrderButton_Clicked" BackgroundColor="Brown"/>
+    <ContentPage.Content>
+        <Grid>
+            <maps:Map x:Name="map" MyLocationEnabled="True"  />
 
-    </StackLayout>
+        </Grid>
+    </ContentPage.Content>
 
 
 </ContentPage>

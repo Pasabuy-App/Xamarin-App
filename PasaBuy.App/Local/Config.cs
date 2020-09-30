@@ -24,7 +24,7 @@ namespace PasaBuy.App.Local
         /// RestAPI Root url c/o WordPress.
         /// </summary>
         public static string baseRestUrl { get; } = "https://pasabuy.app";
-
+        //public static string baseRestUrl { get; } = "http://10.0.2.2/wordpress";
         /// <summary>
         /// Syncfusion Demo image root URL.
         /// </summary>
@@ -34,5 +34,8 @@ namespace PasaBuy.App.Local
         /// Syncfusion Application API Key Secret
         /// </summary>
         public static string sfApiKey { get; } = "MjYwNjY0QDMxMzgyZTMxMmUzMGlJTnpSZVBDTG4raGhBaU5DOVRFbFBKWmxRYVVHd1hxNUx2cXcrZFliMmc9"; //Test Key
+        public const string googleApiKey = "AIzaSyDNDC5kv3pGvM-1zhPXU8yFewflraQaGDs"; //Test Key
+        public const string GeoMatrixGoogleApiKey = "AIzaSyDeR29pTg1D5Exga3rQd8a3XKL3XtukQQg"; //Test Key
+
     }
 }

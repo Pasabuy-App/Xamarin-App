@@ -63,9 +63,6 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CustomMapRenderer.cs" />
-    <Compile Include="CustomMKAnnotationView.cs" />
-    <Compile Include="LocationUpdateServices.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Renderers\BorderlessDatePickerRenderer.cs" />
@@ -308,5 +305,14 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\pin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\CarPins.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\CircleImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\PickupPin.png" />
   </ItemGroup>
 </Project>
