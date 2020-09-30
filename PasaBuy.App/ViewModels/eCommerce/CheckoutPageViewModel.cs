@@ -5,6 +5,9 @@ using PasaBuy.App.Models.eCommerce;
 using PasaBuy.App.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using PasaBuy.App.Local;
+using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Views.eCommerce;
 
 namespace PasaBuy.App.ViewModels.eCommerce
 {
@@ -15,6 +18,10 @@ namespace PasaBuy.App.ViewModels.eCommerce
     public class CheckoutPageViewModel : BaseViewModel
     {
         #region Fields
+        public static string charges = string.Empty;
+        public static double totalprice;
+        public static double discount;
+        public static double coupon;
 
         private ObservableCollection<Customer> deliveryAddress;
 
@@ -28,6 +35,8 @@ namespace PasaBuy.App.ViewModels.eCommerce
 
         private double discountPercent;
 
+        public string deliveryFee = "Free";
+
         #endregion
 
         #region Constructor
@@ -37,35 +46,38 @@ namespace PasaBuy.App.ViewModels.eCommerce
         /// </summary>
         public CheckoutPageViewModel()
         {
-            this.DeliveryAddress = new ObservableCollection<Customer>
+            this.DeliveryAddress = new ObservableCollection<Customer> // Get the name, address and contact number
             {
                 new Customer
                 {
-                    CustomerId = 1, CustomerName = "John Doe", AddressType = "Home", Address = "410 Terry Ave N, USA",
+                    CustomerId = 1, 
+                    CustomerName = PSACache.Instance.UserInfo.dname, 
+                    AddressType = "Home", 
+                    Address = "410 Terry Ave N, USA",
                     MobileNumber = "+1-202-555-0101"
                 },
-                new Customer
+                /*new Customer
                 {
                     CustomerId = 1, CustomerName = "John Doe", AddressType = "Office",
                     Address = "388 Fort Worth, Texas, United States", MobileNumber = "+1-356-636-8572"
-                },
+                },*/
             };
 
             this.PaymentModes = new ObservableCollection<Payment>
             {
-                new Payment
+                /*new Payment
                 {
                     PaymentMode = "Goldman Sachs Bank Credit Card", CardNumber = "48** **** **** 9876",
                     CardTypeIcon = "Card.png"
                 },
                 new Payment {PaymentMode = "Wells Fargo Bank Credit Card"},
                 new Payment {PaymentMode = "Debit / Credit Card"},
-                new Payment {PaymentMode = "NetBanking"},
+                new Payment {PaymentMode = "NetBanking"},*/
                 new Payment {PaymentMode = "Cash on Delivery"},
                 new Payment {PaymentMode = "Wallet"},
             };
 
-            this.CartDetails = new ObservableCollection<Product>
+            /*this.CartDetails = new ObservableCollection<Product>
             {
                 new Product
                 {
@@ -81,9 +93,9 @@ namespace PasaBuy.App.ViewModels.eCommerce
                         "Look your best this fall in this V-neck, pleated peasant blouse with full sleeves. Comes in white, chocolate, forest green, and more.",
                     SellerName = "New Fashion Company", ActualPrice = 245, DiscountPercent = 30, TotalQuantity = 1
                 }
-            };
-
-            double percent = 0;
+            };*/
+            // Send here the Total SRP, Discount, Coupon and Delivery Charges
+            /*double percent = 0;
             foreach (var item in this.CartDetails)
             {
                 this.TotalPrice += (item.ActualPrice * item.TotalQuantity);
@@ -91,7 +103,11 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 percent += item.DiscountPercent;
             }
 
-            this.DiscountPercent = percent > 0 ? percent / this.CartDetails.Count : 0;
+            this.DiscountPercent = percent > 0 ? percent / this.CartDetails.Count : 0;*/
+            this.TotalPrice = totalprice;
+            this.DiscountPrice = discount;
+            this.DiscountPercent = coupon;
+            this.DeliveryFee = charges;
 
             this.EditCommand = new Command(this.EditClicked);
             this.AddAddressCommand = new Command(this.AddAddressClicked);
@@ -176,6 +192,21 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 }
 
                 this.totalPrice = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+        public string DeliveryFee
+        {
+            get { return this.deliveryFee; }
+
+            set
+            {
+                if (this.deliveryFee == value)
+                {
+                    return;
+                }
+
+                this.deliveryFee = value;
                 this.NotifyPropertyChanged();
             }
         }
@@ -276,6 +307,8 @@ namespace PasaBuy.App.ViewModels.eCommerce
         private void PlaceOrderClicked(object obj)
         {
             // Do something
+            //new Alert("Pay", "Pay Now", "OK");
+            //await Application.Current.MainPage.Navigation.PushModalAsync(new PaymentSuccessPage());
         }
 
         /// <summary>

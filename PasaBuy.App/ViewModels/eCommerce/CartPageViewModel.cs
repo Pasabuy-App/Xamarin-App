@@ -5,6 +5,14 @@ using Xamarin.Forms.Internals;
 using System.Runtime.Serialization;
 using PasaBuy.App.Controls;
 using PasaBuy.App.Views.eCommerce;
+using PasaBuy.App.Models.Marketplace;
+using Syncfusion.ListView.XForms;
+using PasaBuy.App.Local;
+using System.Threading.Tasks;
+using PasaBuy.App.Views.ErrorAndEmpty;
+using System;
+using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Views.StoreDetail;
 
 namespace PasaBuy.App.ViewModels.eCommerce
 {
@@ -12,12 +20,12 @@ namespace PasaBuy.App.ViewModels.eCommerce
     /// ViewModel for cart page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    [DataContract]
+    //[DataContract]
     public class CartPageViewModel : BaseViewModel
     {
         #region Fields
 
-        private ObservableCollection<Product> cartDetails;
+        public static ObservableCollection<ProductList> cartDetails;
 
         private double totalPrice;
 
@@ -27,7 +35,9 @@ namespace PasaBuy.App.ViewModels.eCommerce
 
         private double percent;
 
-        private ObservableCollection<Product> produts;
+        private int valueQty;
+
+        private ObservableCollection<ProductList> produts;
 
         private Command placeOrderCommand;
 
@@ -41,28 +51,58 @@ namespace PasaBuy.App.ViewModels.eCommerce
 
         private Command backButtonCommand;
 
+        public bool isCartClicked = false;
+
         #endregion
+        public CartPageViewModel()
+        {
+            this.UpdatePrice();
+            //cartDetails = new ObservableCollection<ProductList>();
+            //cartDetails.Clear();
+        }
+        public static void InsertCart(string id, string name, string summary, string image, double price)
+        {
+            cartDetails.Insert(0, new ProductList()
+            {
+                ID = id,
+                Name = name,
+                Summary = summary,
+                PreviewImage = PSAProc.GetUrl(image),
+                ActualPrice = price
+            });
+        }
+        /*public static void LoadMoreItem()
+        {
+            cartDetails.Add(new ProductList()
+            {
+                Name = "Example Name",
+                Description = "Product Description",
+                Summary = "Product Summary",
+                PreviewImage = "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-product.png",
+                ActualPrice = 150.00
+            });
+        }*/
 
         #region Public properties
 
         /// <summary>
         /// Gets or sets the property that has been bound with a list view, which displays the cart details.
         /// </summary>
-        public ObservableCollection<Product> CartDetails
+        public ObservableCollection<ProductList> CartDetails
         {
             get
             {
-                return this.cartDetails;
+                return cartDetails;
             }
 
             set
             {
-                if (this.cartDetails == value)
+                if (cartDetails == value)
                 {
                     return;
                 }
 
-                this.cartDetails = value;
+                cartDetails = value;
                 this.NotifyPropertyChanged();
             }
         }
@@ -132,13 +172,32 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 this.NotifyPropertyChanged();
             }
         }
+        public int ValueQty
+        {
+            get
+            {
+                Console.WriteLine("Quantity: " + this.valueQty);
+                return this.valueQty;
+            }
+
+            set
+            {
+                if (this.valueQty == value)
+                {
+                    return;
+                }
+
+                this.valueQty = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
         /// <summary>
         /// Gets or sets the property that has been bound with list view, which displays the collection of products from json.
         /// </summary>
 
-        [DataMember(Name = "products")]
-        public ObservableCollection<Product> Products
+        //[DataMember(Name = "products")]
+        public ObservableCollection<ProductList> Products
         {
             get
             {
@@ -220,26 +279,42 @@ namespace PasaBuy.App.ViewModels.eCommerce
         /// <param name="obj">The Object</param>
         private async void PlaceOrderClicked(object obj)
         {
-            await Application.Current.MainPage.Navigation.PushModalAsync(new CheckoutPage());
+            if (!isCartClicked)
+            { 
+                isCartClicked = true;
+                CheckoutPageViewModel.coupon = this.DiscountPercent;
+                CheckoutPageViewModel.discount = this.DiscountPrice;
+                CheckoutPageViewModel.totalprice = this.TotalPrice;
+                CheckoutPageViewModel.charges = "Free";
+                await Application.Current.MainPage.Navigation.PushModalAsync(new CheckoutPage());
+                await Task.Delay(100);
+                isCartClicked = false;
+            }
         }
 
         /// <summary>
         /// Invoked when an item is selected.
         /// </summary>
         /// <param name="obj">The Object</param>
-        private void RemoveClicked(object obj)
+        private async void RemoveClicked(object obj)
         {
-            if (obj is Product product)
+            if (obj is ProductList product)
             {
                 this.CartDetails.Remove(product);
                 this.UpdatePrice();
 
                 if (this.CartDetails.Count == 0)
                 {
-                    SfPopupView sfPopupView = new SfPopupView();
-                    sfPopupView.ShowPopUp(content: "Your cart is empty!", buttonText: "CONTINUE SHOPPING");
+                    //SfPopupView sfPopupView = new SfPopupView();
+                    //sfPopupView.ShowPopUp(content: "Your cart is empty!", buttonText: "CONTINUE SHOPPING");
+                    // Back to StoreDetails or Show EmptyCartPage then the cartitemCount is 0;
+                    await NavigateToPage(new EmptyCartPage());
                 }
             }
+        }
+        async Task NavigateToPage(Page page)
+        {
+            await Application.Current.MainPage.Navigation.PushModalAsync(page);
         }
 
         /// <summary>
@@ -250,11 +325,11 @@ namespace PasaBuy.App.ViewModels.eCommerce
         {
             //Incident - 249030 - Issue in ComboBox Slection changed event.
 
-            //var item = selectedItem as CartProduct;
+            /*var item = selectedItem as ProductList;
 
-            //this.UpdatePrice();
-            //item.ActualPrice = item.ActualPrice * item.TotalQuantity;
-            //item.DiscountPrice = item.DiscountPrice * item.TotalQuantity;
+            this.UpdatePrice();
+            item.ActualPrice = item.ActualPrice * item.TotalQuantity;
+            item.DiscountPrice = item.DiscountPrice * item.TotalQuantity;*/
         }
 
         /// <summary>
@@ -288,9 +363,9 @@ namespace PasaBuy.App.ViewModels.eCommerce
         /// This method is used to get the products from json.
         /// </summary>
         /// <param name="Products">The Products</param>
-        private void GetProducts(ObservableCollection<Product> Products)
+        private void GetProducts(ObservableCollection<ProductList> Products)
         {
-            this.CartDetails = new ObservableCollection<Product>();
+            this.CartDetails = new ObservableCollection<ProductList>();
             if (Products != null && Products.Count > 0)
                 this.CartDetails = Products;
         }
@@ -298,7 +373,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
         /// <summary>
         /// This method is used to update the price amount.
         /// </summary>
-        private void UpdatePrice()
+        public void UpdatePrice()
         {
             this.ResetPriceValue();
 
@@ -327,6 +402,10 @@ namespace PasaBuy.App.ViewModels.eCommerce
             this.DiscountPrice = 0;
             this.percent = 0;
         }
+        /*public static void ChangeValue(int qty)
+        {
+            Console.WriteLine("ValueChanges: " + qty);
+        }*/
 
         #endregion
     }

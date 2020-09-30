@@ -7,6 +7,7 @@ namespace PasaBuy.App.Models.Marketplace
 {
     public class ProductList
     {
+        public string id = string.Empty;
         public string previewImage = string.Empty;
         public string name = string.Empty;
         public string summary = string.Empty;
@@ -14,6 +15,7 @@ namespace PasaBuy.App.Models.Marketplace
         public double actualprice = 0;
         public double discountPrice = 0;
         public double discountPercent = 0;
+        private int totalQuantity;
 
         public double DiscountPercent
         {
@@ -86,6 +88,30 @@ namespace PasaBuy.App.Models.Marketplace
                 OnPropertyChanged("Name");
             }
         }
+        public string ID
+        {
+            get { return id; }
+            set
+            {
+                id = value;
+                OnPropertyChanged("ID");
+            }
+        }
+        public int TotalQuantity
+        {
+            get
+            {
+                return this.totalQuantity;
+            }
+
+            set
+            {
+                this.totalQuantity = value;
+                OnPropertyChanged("TotalQuantity");
+            }
+        }
+
+        
 
         public event PropertyChangedEventHandler PropertyChanged;
 
