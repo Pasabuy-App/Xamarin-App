@@ -26,7 +26,6 @@
     <ContentView.Content>
             <StackLayout Margin="0,20,0,20">
                 <listView:SfListView
-                    x:Name="ListView"
                     Padding="15,0,15,15"
                     AutoFitMode="Height"
                     IsScrollBarVisible="False"
@@ -35,6 +34,9 @@
                                                                   PhoneLandscape='0,0,16,16',
                                                                   Desktop='0,0,24,24'}"
                     ItemsSource="{Binding Grocerystorelist}"
+                    ItemTapped="GroceriesTapped"
+                    ItemAppearing="RestaurantList_ItemAppearing"
+                    x:Name="RestaurantList"
                     SelectionBackgroundColor="Transparent"
                     VerticalOptions="FillAndExpand">
 
@@ -89,15 +91,17 @@
                                        Text="#4 Rainbow Ave, Pacita 2, San Pedro City, Laguna"
                                        TextColor="{DynamicResource Gray-900}" />
 
-                                <buttons:SfButton 
-                                                              HorizontalTextAlignment="Start"  
-                                                              Margin="130,0,0,0"
-                                                              Grid.Row="2" 
-                                                              Grid.Column="1"
-                                                              CornerRadius="4"
-                                                              FontSize ="26"
-                                                              TextColor="{DynamicResource PrimaryColor}"
-                                                              Style="{StaticResource IconButtonStyle}" Text="{StaticResource ArrowRight}"/>
+                        
+
+                                <Label Margin="130,0,0,0"
+                                       Grid.Row="2" 
+                                       Grid.Column="1"
+                                       FontFamily="{StaticResource FontIcons}"
+                                       FontSize="27"
+                                       HorizontalTextAlignment="Center"
+                                       Text="{StaticResource ArrowRight}"
+                                       TextColor="{DynamicResource PrimaryColor}"
+                                       VerticalTextAlignment="Center" />
 
                                 <ffimageloading:CachedImage Aspect="Fill"
                                                             Grid.Column="0"

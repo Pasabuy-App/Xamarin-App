@@ -49,14 +49,44 @@ namespace PasaBuy.App.ViewModels.Marketplace
             storelist = new ObservableCollection<Store>();
             itemCategories = new ObservableCollection<Categories>();
             LoadStore("");
+            LoadCategory();
 
-            for (int i = 0; i < 5; i++)
+
+        }
+
+
+        public static void LoadCategory()
+        {
+            try
             {
-                itemCategories.Add(new Categories()
+                TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "all", "", "1", "", (bool success, string data) =>
                 {
-                    Title = "Gadgets",
-                    Info = "Idcard.png"
+                    if (success)
+                    {
+                        StoreListData datas = JsonConvert.DeserializeObject<StoreListData>(data);
+                        Console.WriteLine(data);
+                        for (int i = 0; i < datas.data.Length; i++)
+                        {
+
+                            string category = datas.data[i].cat_name;
+
+                            itemCategories.Add(new Categories()
+                            {
+                                Title = category,
+                                Info = "https://pasabuy.app/wp-content/uploads/2020/09/a4f9c4b509d35d0697d09450fc2f20ba4893f630-tricycle-02.jpg?fbclid=IwAR2Sl_-CoFNEXiS6sZW_RWMBqzcu6QhcsBlan7wV7mWxwFRVUTnEqU-hdKg"
+                            });
+                        }
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
                 });
+
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
         }
 

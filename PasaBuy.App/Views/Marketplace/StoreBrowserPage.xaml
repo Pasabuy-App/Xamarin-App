@@ -11,7 +11,8 @@
              xmlns:converter="clr-namespace:PasaBuy.App.Converters" 
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:behavior1="clr-namespace:PasaBuy.App.Behaviors" 
-             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="True"
              x:Name="storeBrowserPage"
@@ -117,7 +118,7 @@
                                         BackgroundColor="{DynamicResource Gray-200}"
                                         HeightRequest="150"
                                         HorizontalOptions="Center"
-                                        Source="{Binding Info}"
+                                        Source=""
                                         VerticalOptions="Center"
                                         WidthRequest="165" />
                                     <!--  Product name  -->
@@ -127,7 +128,7 @@
                                         FontSize="16"
                                         HorizontalOptions="Center"
                                         LineHeight="1.25"
-                                        Text="Category Name"
+                                        Text="{Binding Title}"
                                         TextColor="{DynamicResource Gray-900}" />
                                 </StackLayout>
                             </controls:CustomShadowFrame>

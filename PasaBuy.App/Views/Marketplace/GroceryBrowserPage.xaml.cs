@@ -24,12 +24,27 @@ namespace PasaBuy.App.Views.Marketplace
             //this.BindingContext = StoreDataService.Instance.RestaurantViewModel;
         }
 
+        private void GroceriesTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        {
+            var item = e.ItemData as Groceries;
 
-    
+            StoreDetailsViewModel.loadcategory(item.Id);
+            StoreDetailsViewModel.loadstoredetails(item.Id);
+            App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+        }
 
-   
+        private void RestaurantList_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
+        {
+            var item = e.ItemData as Groceries;
+            if (GroceryBrowserViewModel.grocerystorelist.Last() == item && GroceryBrowserViewModel.grocerystorelist.Count() != 1)
+            {
+                if (GroceryBrowserViewModel.grocerystorelist.IndexOf(item) >= LastIndex)
+                {
+                    LastIndex += 6;
+                    GroceryBrowserViewModel.LoadGrocery(item.Id);
+                }
+            }
+        }
 
-
-     
     }
 }
