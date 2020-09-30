@@ -19,6 +19,7 @@ namespace PasaBuy.App.Views.Driver
         public DashboardPage()
         {
             InitializeComponent();
+            Title = "Dashboard";
         }
 
         private void AcceptOrderButton_Clicked(object sender, EventArgs e)

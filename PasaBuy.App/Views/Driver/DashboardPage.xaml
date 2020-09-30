@@ -8,7 +8,7 @@
              x:Class="PasaBuy.App.Views.Driver.DashboardPage">
 
     <StackLayout>
-        <Button Text="Accept Order" x:Name="AcceptOrderButton"  Clicked="AcceptOrderButton_Clicked" BackgroundColor="Brown"/>
+        <Button Text="Accept Order" x:Name="AcceptOrderButton"   BackgroundColor="Brown"/>
 
     </StackLayout>
 

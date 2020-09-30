@@ -34,13 +34,13 @@ namespace PasaBuy.App.Views.Navigation
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
             menuList = new List<MenuItem>();
 
-            menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Dashboard"), Icon = "Idcard.png", TargetType = typeof(Dashboard) });
             if (MyType == "store")
             {
                 Store_name.Text = PSACache.Instance.UserInfo.store_name;
                 Logo.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.store_logo);
                 Banner.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.store_banner);
                 Email.Text = "";
+                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Dashboard"), Icon = "Idcard.png", TargetType = typeof(Views.StoreViews.Dashboard) });
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Management"), Icon = "Idcard.png", TargetType = typeof(ManagementView) });
                 //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Products"), Icon = "Idcard.png", TargetType = typeof(ProductsView) });
                 //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Categories"), Icon = "Idcard.png", TargetType = typeof(CategoryView) });
@@ -60,6 +60,7 @@ namespace PasaBuy.App.Views.Navigation
                 Banner.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.banner);
                 Email.Text = PSACache.Instance.UserInfo.email;
                 DriverChatMessageViewModel.myPage = "driver";
+                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Dashboard"), Icon = "Idcard.png", TargetType = typeof(Views.Driver.DashboardPage) });
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Navigation"), Icon = "Idcard.png", TargetType = typeof(Views.Driver.Navigation) });
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Transactions"), Icon = "Idcard.png", TargetType = typeof(TransactionDriverView) });
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Messages"), Icon = "Idcard.png", TargetType = typeof(MessagesView) });
