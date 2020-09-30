@@ -144,7 +144,7 @@
                                              Maximum="5" 
                                              Minimum="1" 
                                              MaximumDecimalDigits="0"
-                                             Value="1"
+                                             Value="{Binding Path=ParentBindingContext.ValueQty, Source={x:Reference cartItemTemplate}}"
                                              SpinButtonAlignment="Both"
                                              FormatString="n"/>
             </border:SfBorder>

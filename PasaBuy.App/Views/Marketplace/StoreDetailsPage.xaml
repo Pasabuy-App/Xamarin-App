@@ -299,7 +299,10 @@
                                                                                                   HeightRequest="25"
                                                                                                   WidthRequest="25"
                                                                                                   TextColor="White"
+                                                                                                  x:Name="Add2Card"
+                                                                                                  ClassId="{Binding ID}"
                                                                                                   Command="{Binding Source={x:Reference Name=storeDetails}, Path=BindingContext.AddToCartCommand}"
+                                                                                                  CommandParameter="{x:Reference Add2Card}"
                                                                                                   Style="{StaticResource IconButtonStyle}"
                                                                                                   Text="{StaticResource Add}" />
 

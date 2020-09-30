@@ -17,6 +17,7 @@ namespace PasaBuy.App.Views.Marketplace
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FoodBrowserPage : ContentView
     {
+        public bool isTapped = false;
         public static int LastIndex = 11;
         public FoodBrowserPage()
         {
@@ -91,18 +92,24 @@ namespace PasaBuy.App.Views.Marketplace
             this.SearchEntry.Focus();
         }
 
-        private void FoodRestorantTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        private async void FoodRestorantTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
-            var item = e.ItemData as FoodStore;
+            if (!isTapped)
+            {
+                isTapped = true;
+                   var item = e.ItemData as FoodStore;
 
-            //new Alert("ok", "." + item.Id + ".HAHAHA", "ok");
-          
-            //StoreDetailsViewModel.store_id = item.Id;
-            /* StoreDetailsViewModel.loadcategory(item.Id);
-             StoreDetailsViewModel.loadstoredetails(item.Id);*/
-            StoreDetailsViewModel.loadcategory(item.Id);
-            StoreDetailsViewModel.loadstoredetails(item.Id);
-            App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+                //new Alert("ok", "." + item.Id + ".HAHAHA", "ok");
+
+                /* StoreDetailsViewModel.loadcategory(item.Id);
+                 StoreDetailsViewModel.loadstoredetails(item.Id);*/
+                StoreDetailsViewModel.store_id = item.Id;
+                StoreDetailsViewModel.loadcategory(item.Id);
+                StoreDetailsViewModel.loadstoredetails(item.Id);
+                await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+                await Task.Delay(200);
+                isTapped = false;
+            }
         }
 
         private void RestaurantList_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)

@@ -40,5 +40,11 @@ namespace PasaBuy.App.Views.ErrorAndEmpty
                 ErrorImage.IsVisible = true;
             }
         }
+
+        private void SfButton_Clicked(object sender, System.EventArgs e)
+        {
+            Navigation.PopModalAsync();
+
+        }
     }
 }
