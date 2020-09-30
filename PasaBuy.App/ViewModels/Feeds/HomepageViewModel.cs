@@ -119,7 +119,6 @@ namespace PasaBuy.App.ViewModels.Feeds
                     else
                     {
                         new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-
                     }
                 });
             }

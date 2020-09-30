@@ -80,6 +80,7 @@
             <button:SfButton
                 Grid.Row="1"
                 Command="{Binding GoBackCommand}"
+                Clicked="SfButton_Clicked"
                 Style="{StaticResource SfGradientButtonStyle}"
                 Text="GO BACK" />
 
