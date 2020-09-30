@@ -3,8 +3,10 @@
     "",
     "\\PasaBuy.App",
     "\\PasaBuy.App.Android",
+    "\\PasaBuy.App.Android\\Resources",
+    "\\PasaBuy.App.Android\\Resources\\drawable",
     "\\PasaBuy.App.iOS"
   ],
-  "SelectedNode": "\\PasaBuy.App.Android\\PasaBuy.App.Android.csproj",
+  "SelectedNode": "\\PasaBuy.App.Android\\Resources\\drawable\\storebanner.jpg",
   "PreviewInSolutionExplorer": false
 }
