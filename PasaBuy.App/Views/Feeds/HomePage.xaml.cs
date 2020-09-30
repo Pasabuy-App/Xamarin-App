@@ -76,7 +76,7 @@ namespace PasaBuy.App.Views.Feeds
                     Device.BeginInvokeOnMainThread(async () =>
                     {
                         await Task.Delay(500);
-                        await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
+                        await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
                         isBtn = false;
                     });
                 }
@@ -99,7 +99,7 @@ namespace PasaBuy.App.Views.Feeds
                     Device.BeginInvokeOnMainThread(async () =>
                     {
                         await Task.Delay(500);
-                        await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
+                        await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
                         isBtn = false;
                     });
                 }
@@ -123,6 +123,7 @@ namespace PasaBuy.App.Views.Feeds
                             DriverChatMessageViewModel.ProfileImages = PSAProc.GetUrl(uinfo.data.avatar);
                             DriverChatMessageViewModel.user_id = btn.ClassId;
                             DriverChatMessageViewModel.myPage = "home";
+                            DriverChatMessageViewModel.refresh = 0;
                             Device.BeginInvokeOnMainThread(async () =>
                             {
                                 await Task.Delay(200);

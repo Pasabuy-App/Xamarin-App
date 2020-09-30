@@ -383,6 +383,7 @@ namespace PasaBuy.App.ViewModels.Chat
         private async void ItemSelected(object selectedItem)
         {
             ChatMessageViewModel.refresh = 0;
+            ChatMessageViewModel.myPage = "user";
             //ChatMessageViewModel.LoadMessage(user_id, "");
             ChatMessageViewModel.ProfileNames = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).SenderName;
             ChatMessageViewModel.ProfileImages = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).ImagePath;

@@ -25,6 +25,7 @@ namespace PasaBuy.App.ViewModels.Chat
     {
         public static string storeid = "0";
         public static string type = "0";
+        public static string myPage = string.Empty;
         #region Fields
         /// <summary>
         /// Stores the message text in an array. 
@@ -137,8 +138,12 @@ namespace PasaBuy.App.ViewModels.Chat
             {
                 if (refresh == 0)
                 {
-                    RecentChatViewModel.chatItems.Clear();
-                    RecentChatViewModel.LoadMesssage("");
+                    if (myPage != "profile")
+                    {
+
+                        RecentChatViewModel.chatItems.Clear();
+                        RecentChatViewModel.LoadMesssage("");
+                    }
                     PopupMessage();
                     return true;
                 }
@@ -471,7 +476,15 @@ namespace PasaBuy.App.ViewModels.Chat
         public void PopupMessage()
         {
             //await Task.Delay(500);
-            LoadMessage(user_id, "", ChatList.Last().ID);
+            if (ChatList.Count != 0)
+            {
+                LoadMessage(user_id, "", ChatList.Last().ID);
+            }
+            else
+            {
+                LoadMessage(user_id, "", "");
+            }
+
         }
 
         /// <summary>
