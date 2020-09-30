@@ -73,6 +73,21 @@
         <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
     </Style>
 
+    <Style x:Key="SfButtonStyle" TargetType="buttons:SfButton">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-700}" />
+        <Setter Property="FontFamily" Value="Montserrat-Regular" />
+        <Setter Property="FontSize" Value="16" />
+    </Style>
+
+    <Style x:Key="FormBorderStyle" TargetType="border:SfBorder">
+        <Setter Property="BorderColor" Value="{DynamicResource Gray-700}"/>
+        <Setter Property="CornerRadius" Value="4"/>
+        <Setter Property="Padding" Value="12,8"/>
+        <Setter Property="Margin" Value="0,0"/>
+        <Setter Property="BackgroundColor" Value="White"/>
+    </Style>
+
     <!--  Common style for swipe template content button control  -->
     <Style x:Key="SwipeTemplateButtonStyle" TargetType="Label">
         <Setter Property="BackgroundColor" Value="Transparent" />
@@ -168,13 +183,16 @@
         <Setter Property="LineHeight" Value="{OnPlatform Default=1.5, iOS=-1}" />
     </Style>
 
+    <OnPlatform x:Key="ProfileIconPlatform" x:TypeArguments="x:String" iOS="Font Awesome 5 Free" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free" />
+    <!--  Common style for profile page icon Label  -->
     <Style x:Key="ProfileIconLabelStyle" TargetType="Label">
-        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
+        <Setter Property="Margin" Value="16,8" />
+        <Setter Property="TextColor" Value="Black" />
         <Setter Property="FontSize" Value="18" />
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="HorizontalTextAlignment" Value="Center" />
-        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+        <Setter Property="FontFamily" Value="{DynamicResource ProfileIconPlatform}" />
     </Style>
 
     <Style x:Key="SeparatorStyle" TargetType="BoxView">

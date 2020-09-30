@@ -21,7 +21,7 @@ namespace PasaBuy.App.Views.Driver
 
         private void PendingOrders_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
-            
+            Navigation.PushModalAsync(new StartDeliveryPage());
         }
     }
 }

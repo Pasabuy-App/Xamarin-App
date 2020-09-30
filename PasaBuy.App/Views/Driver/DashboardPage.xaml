@@ -24,8 +24,7 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <!--<maps:Map x:Name="map" MyLocationEnabled="True" Grid.Row="0" />-->
-          
+            <maps:Map x:Name="map" MyLocationEnabled="True" Grid.Row="0" />
                 <yummy:PancakeView
                     Grid.Row="1"
                     Margin="0,0,0,0"
