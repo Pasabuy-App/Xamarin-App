@@ -10,6 +10,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
+using Rg.Plugins.Popup.Services;
 
 namespace PasaBuy.App.Views.Driver
 {
@@ -20,9 +21,9 @@ namespace PasaBuy.App.Views.Driver
         {
             InitializeComponent();
             DisplayCurloc();
-            //map.IsTrafficEnabled = true; lorz comment
+            map.IsTrafficEnabled = true; 
         }
-
+        // Display Current Location of User
         public async void DisplayCurloc()
         {
             try
@@ -34,7 +35,7 @@ namespace PasaBuy.App.Views.Driver
                 {
                     Xamarin.Forms.GoogleMaps.Position p = new Xamarin.Forms.GoogleMaps.Position(location.Latitude, location.Longitude);
                     MapSpan mapSpan = MapSpan.FromCenterAndRadius(p, Distance.FromKilometers(.444));
-                    //map.MoveToRegion(mapSpan); lorz comment
+                    map.MoveToRegion(mapSpan); 
                     //await GetLocationName(p);
                     Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
                 }
@@ -63,6 +64,8 @@ namespace PasaBuy.App.Views.Driver
 
         private void ShowAvailableDeliveries(object sender, EventArgs e)
         {
+       
+
             Navigation.PushModalAsync(new TransactionDriverView());
         }
     }

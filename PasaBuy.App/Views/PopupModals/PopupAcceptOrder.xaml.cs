@@ -1,4 +1,5 @@
 ﻿using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -7,7 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,6 +17,7 @@ namespace PasaBuy.App.Views.PopupModals
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PopupAcceptOrder : PopupPage
     {
+        public static string carItem = "car / sedan";
         public static string item_id = string.Empty;
         public static string storeName = "Pasabuy Store";
         public static string orderName = "Pasabuy Burger";
@@ -29,7 +31,7 @@ namespace PasaBuy.App.Views.PopupModals
         {
             InitializeComponent();
 
-            Order.Text = orderName+" | "+orderTime;
+            Order.Text = item_id + " | "+orderTime;
             WaypointAddress.Text = waypointAddress;
             OriginAddress.Text = destinationAddress;
             OrderTime.Text = "30";
@@ -70,10 +72,34 @@ namespace PasaBuy.App.Views.PopupModals
 
         private void AcceptOrder(object sender, EventArgs e)
         {
+            HatidPress.Deliveries.Instance.Accept(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "","","","","","", "",(bool success, string data) => 
+            {
+                try
+                {
 
-            new Alert("Ok", "Add command and bind this to viewmodel", "ok");
-
-
+                }
+                catch (FeatureNotSupportedException fnsEx)
+                {
+                    // Handle not supported on device exception
+                    Console.WriteLine("Handle not supported on device exception" + " " + fnsEx);
+                }
+                catch (FeatureNotEnabledException fneEx)
+                {
+                    // Handle not enabled on device exception
+                    Console.WriteLine("Handle not enabled on device exception" + " " + fneEx);
+                }
+                catch (PermissionException pEx)
+                {
+                    // Handle permission exception
+                    Console.WriteLine("Handle permission exception" + " " + pEx);
+                }
+                catch (Exception ex)
+                {
+                    // Unable to get location
+                    Console.WriteLine("Unable to get location" + " " + ex);
+                }
+            });
+           new Alert("Ok", "Add command and bind this to viewmodel", "ok");
         }
     }
 }
