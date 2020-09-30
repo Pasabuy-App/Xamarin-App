@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PasaBuy.App.Views.StoreViews
+namespace PasaBuy.App.Views.StoreViews.Orders
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TransactionsView : ContentPage
+    public partial class PendingOrdersView : ContentView
     {
-        public TransactionsView()
+        public PendingOrdersView()
         {
             InitializeComponent();
         }
 
-        private void Transactions_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        private void PendingOrders_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
             Navigation.PushModalAsync(new TransactionDetailsView());
         }

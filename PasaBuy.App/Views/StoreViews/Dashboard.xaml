@@ -4,7 +4,14 @@
              xmlns:local="clr-namespace:PasaBuy.App.UserControls"
              xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+             xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms" 
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              BackgroundColor="{DynamicResource Transparent}"
+              xmlns:model="clr-namespace:PasaBuy.App.Models.MobilePOS"
+             xmlns:view="clr-namespace:PasaBuy.App.Views.StoreViews.Orders" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              x:Class="PasaBuy.App.Views.StoreViews.Dashboard">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -56,82 +63,149 @@
                 <Setter Property="Margin" Value="0, 0" />
                 <Setter Property="TextColor" Value="white" />
             </Style>
+            <Style x:Key="SeparatorStyle" TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="1" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource Gray-300}" />
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <!--ContentPage.Content>
+    <ContentPage.Content>
         <Grid>
             <StackLayout Spacing="0" VerticalOptions="FillAndExpand">
-                <Grid Padding="15,15,15,15" BackgroundColor="{DynamicResource PrimaryColor}">
-                    <Frame
-                        Margin="0"
-                        Padding="10,0"
-                        BackgroundColor="{StaticResource Gray-White}"
-                        CornerRadius="{OnPlatform Android='23',
-                                                  iOS='28'}"
-                        HeightRequest="{OnPlatform Android='46',
-                                                   iOS='56'}">
-                        <Grid ColumnSpacing="0" HeightRequest="{OnPlatform Android='46', iOS='56'}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions-->
+                <tabView:SfTabView BackgroundColor="{DynamicResource Gray-White}" VisibleHeaderCount="4">
+                    <tabView:SfTabView.SelectionIndicatorSettings>
+                        <tabView:SelectionIndicatorSettings StrokeThickness="3" Color="{DynamicResource PrimaryColor}" />
+                    </tabView:SfTabView.SelectionIndicatorSettings>
 
-                            <!--Image
-                                Margin="8,8,0,8"
-                                Aspect="AspectFit"
-                                Source="barcode">
-                                <Image.GestureRecognizers-->
-                                    <!--<TapGestureRecognizer Tapped="ScanBarcode" />-->
-                                <!--/Image.GestureRecognizers-->
-                            <!--/>
+                    <tabView:SfTabItem
+                        Title="New Orders"
+                        SelectionColor="{DynamicResource PrimaryColor}"
+                        TitleFontColor="{DynamicResource Gray-700}"
+                        TitleFontFamily="{StaticResource Montserrat-Medium}"
+                        TitleFontSize="14">
+                        <tabView:SfTabItem.Content>
+                            <listView:SfListView x:Name="NewOrders"
+                                                 AutoFitMode="Height"
+                                                 FocusBorderThickness="0"
+                                                 ItemSpacing="0,1,0,0"
+                                                 ItemTapped="NewOrders_ItemTapped"
+                                                 VerticalOptions="StartAndExpand"
+                                                 ItemsSource="{x:Static model:Management.All}"
+                                                 SelectionMode="None">
+                                <!--Item Source is for testing purposes only. Kindly bind into specific viewmodels-->
 
-                            <SearchBar
-                                Grid.Column="1"
-                                Margin="0,5,10,5"
-                                FontFamily="{StaticResource Montserrat-Regular}"
-                                FontSize="14"
-                                HorizontalOptions="FillAndExpand"
-                                Placeholder="{texts:Translate ProductSearchPlaceHolder}"
-                                Text="{Binding ScannedText, Mode=TwoWay}"
-                                TextChanged="SearchBar_OnTextChanged"
-                                VerticalOptions="FillAndExpand">
-                                <SearchBar.PlaceholderColor>
-                                    <OnPlatform x:TypeArguments="Color" Android="DarkGray" />
-                                </SearchBar.PlaceholderColor>
-                                <SearchBar.BackgroundColor>
-                                    <OnPlatform
-                                        x:TypeArguments="Color"
-                                        Android="White"
-                                        iOS="Transparent" />
-                                </SearchBar.BackgroundColor>
-                                <SearchBar.TextColor>
-                                    <OnPlatform
-                                        x:TypeArguments="Color"
-                                        Android="{StaticResource Gray-Black}"
-                                        iOS="{StaticResource Gray-Black}" />
-                                </SearchBar.TextColor>
-                                <SearchBar.CancelButtonColor>
-                                    <OnPlatform
-                                        x:TypeArguments="Color"
-                                        Android="{StaticResource Gray-Black}"
-                                        iOS="{StaticResource Gray-Black}" />
-                                </SearchBar.CancelButtonColor>
-                            </SearchBar>
-                        </Grid>
-                    </Frame>
-                </Grid>
+                                <listView:SfListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="0"
+                                              Padding="8,12,8,0"
+                                              BackgroundColor="{DynamicResource Gray-White}"
+                                              ColumnSpacing="0"
+                                              RowSpacing="0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid Padding="0,0,8,10" RowSpacing="0" Grid.Row="0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <ffimageloading:CachedImage Aspect="AspectFit"
+                                                Grid.Row="0"
+                                                Grid.RowSpan="3"
+                                                Margin="5,0,30,0"
+                                                Grid.Column="0"
+                                                Source="Avatar.png"
+                                                HeightRequest="50"
+                                                x:Name="ImageId"
+			                                    DownsampleToViewSize="true" FadeAnimationEnabled="True" >
+                                                    <ffimageloading:CachedImage.Transformations>
+                                                        <fftransformations:CircleTransformation />
+                                                    </ffimageloading:CachedImage.Transformations>
+                                                </ffimageloading:CachedImage>
+
+                                                <Label Text="Test Name"
+                                                       Grid.Row="0"
+                                                       Grid.Column="1"
+                                                       HorizontalOptions="StartAndExpand"
+                                                       TextColor="{DynamicResource BlackColor}">
+                                                </Label>
+                                                <Label Text="Order #4232"
+                                                       Grid.Row="1"
+                                                       Grid.Column="1"
+                                                       HorizontalOptions="StartAndExpand"
+                                                       TextColor="{DynamicResource Gray-800}">
+                                                </Label>
+                                                <Label Text="Sept 5, 2020 10:23 AM"
+                                                       Grid.Row="2"
+                                                       Grid.Column="1"
+                                                       HorizontalOptions="StartAndExpand"
+                                                       TextColor="{DynamicResource Gray-800}">
+                                                </Label>
+                                                <Label Text="PHP 250"
+                                                       Grid.Row="0"
+                                                       Grid.Column="2"
+                                                       HorizontalOptions="StartAndExpand"
+                                                       TextColor="{DynamicResource BlackColor}">
+                                                </Label>
+                                                <Label Text="Cash"
+                                                       Grid.Row="2"
+                                                       Grid.Column="2"
+                                                       HorizontalOptions="StartAndExpand"
+                                                       TextColor="{DynamicResource Gray-800}">
+                                                </Label>
+                                            </Grid>
+                                            <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="1"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </listView:SfListView.ItemTemplate>
+                            </listView:SfListView>
+                        </tabView:SfTabItem.Content>
+                    </tabView:SfTabItem>
+
+                    <tabView:SfTabItem
+                        Title="Pending"
+                        SelectionColor="{DynamicResource PrimaryColor}"
+                        TitleFontColor="{DynamicResource Gray-700}"
+                        TitleFontFamily="{StaticResource Montserrat-Medium}"
+                        TitleFontSize="14">
+                        <tabView:SfTabItem.Content>
+                            <view:PendingOrdersView />
+                        </tabView:SfTabItem.Content>
+                    </tabView:SfTabItem>
+
+                    <tabView:SfTabItem
+                        Title="Declined"
+                        SelectionColor="{DynamicResource PrimaryColor}"
+                        TitleFontColor="{DynamicResource Gray-700}"
+                        TitleFontFamily="{StaticResource Montserrat-Medium}"
+                        TitleFontSize="14">
+                        <tabView:SfTabItem.Content>
+                            <view:DeclinedOrdersView />
+                        </tabView:SfTabItem.Content>
+                    </tabView:SfTabItem>
+
+                    <tabView:SfTabItem
+                        Title="Completed"
+                        SelectionColor="{DynamicResource PrimaryColor}"
+                        TitleFontColor="{DynamicResource Gray-700}"
+                        TitleFontFamily="{StaticResource Montserrat-Medium}"
+                        TitleFontSize="14">
+                        <tabView:SfTabItem.Content>
+                            <view:CompletedOrdersView />
+                        </tabView:SfTabItem.Content>
+                    </tabView:SfTabItem>
+                    
+                </tabView:SfTabView>
 
             </StackLayout>
-            <local:LoadingIndicator
-                Grid.Row="0"
-                HorizontalOptions="Fill"
-                IsVisible="False"
-                VerticalOptions="Fill" /-->
-
-            <!--IsRunning="{Binding IsBusy, Mode=TwoWay}"-->
-
-        <!--/Grid>
-
-       
-    </ContentPage.Content-->
+        </Grid>
+    </ContentPage.Content>
 </ContentPage>

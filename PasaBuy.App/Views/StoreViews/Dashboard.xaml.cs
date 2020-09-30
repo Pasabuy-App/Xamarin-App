@@ -34,5 +34,10 @@ namespace PasaBuy.App.Views.StoreViews
                 //await Context.SearchProductWhenScan();
             }
         }
+
+        private void NewOrders_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        {
+            Navigation.PushModalAsync(new TransactionDetailsView());
+        }
     }
 }

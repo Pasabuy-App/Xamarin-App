@@ -8,7 +8,8 @@
              xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App"
              xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-              xmlns:model="clr-namespace:PasaBuy.App.Models.MobilePOS"
+              xmlns:model="clr-namespace:PasaBuy.App.Models.MobilePOS" 
+             xmlns:controls="clr-namespace:PasaBuy.App.Controls"
              x:Class="PasaBuy.App.Views.StoreViews.TransactionDetailsView"
              Title="Transaction Details">
     
@@ -19,17 +20,34 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Spacing="0" >
+                <controls:TitleView Title="Order Details" 
+                                    BackgroundColor="{DynamicResource PrimaryColor}" >
+                    <controls:TitleView.LeadingView>
+                        <buttons:SfButton
+                            x:Name="backButton"
+                            Clicked="BackButtonClicked"
+                            CornerRadius="4"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                    </controls:TitleView.LeadingView>
+                </controls:TitleView>
+                <ContentPresenter />
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
 
     <ContentPage.Content>
         <Grid>
             <StackLayout Spacing="0" VerticalOptions="FillAndExpand">
 
-                <Grid
-                                Margin="0"
-                                Padding="8,12,8,0"
-                                BackgroundColor="{DynamicResource Gray-White}"
-                                ColumnSpacing="0"
-                                RowSpacing="0">
+                <Grid Margin="0"
+                      Padding="8,12,8,0"
+                      BackgroundColor="{DynamicResource Gray-White}"
+                      ColumnSpacing="0"
+                      RowSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
