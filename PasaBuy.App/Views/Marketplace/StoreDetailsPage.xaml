@@ -16,6 +16,7 @@
              xmlns:expandable="clr-namespace:Expandable;assembly=ExpandableView"
              xmlns:expander="clr-namespace:Syncfusion.XForms.Expander;assembly=Syncfusion.Expander.XForms"
              x:Name="storeDetails"
+             BackgroundColor="{DynamicResource Gray-White}}"
              NavigationPage.HasNavigationBar="False"
              IsBusy="{Binding Source={x:Reference Name=storeDetails}, Path=BindingContext.IsBusy}">
     <ContentPage.Resources>
