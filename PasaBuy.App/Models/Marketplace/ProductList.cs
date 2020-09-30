@@ -7,6 +7,7 @@ namespace PasaBuy.App.Models.Marketplace
 {
     public class ProductList
     {
+        public string stid = string.Empty;
         public string id = string.Empty;
         public string previewImage = string.Empty;
         public string name = string.Empty;
@@ -17,6 +18,15 @@ namespace PasaBuy.App.Models.Marketplace
         public double discountPercent = 0;
         private int totalQuantity;
 
+        public string Stid
+        {
+            get { return stid; }
+            set
+            {
+                stid = value;
+                OnPropertyChanged("Stid");
+            }
+        }
         public double DiscountPercent
         {
             get

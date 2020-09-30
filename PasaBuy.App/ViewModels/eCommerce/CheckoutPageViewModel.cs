@@ -8,6 +8,12 @@ using Xamarin.Forms.Internals;
 using PasaBuy.App.Local;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Views.eCommerce;
+using System;
+using MobilePOS;
+using PasaBuy.App.ViewModels.Marketplace;
+using Newtonsoft.Json;
+using PasaBuy.App.Models.Marketplace;
+using System.Threading.Tasks;
 
 namespace PasaBuy.App.ViewModels.eCommerce
 {
@@ -36,6 +42,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
         private double discountPercent;
 
         public string deliveryFee = "Free";
+        public static bool isClicked = false;
 
         #endregion
 
@@ -304,11 +311,40 @@ namespace PasaBuy.App.ViewModels.eCommerce
         /// Invoked when the Place order button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
-        private void PlaceOrderClicked(object obj)
+        private async void PlaceOrderClicked(object obj)
         {
             // Do something
             //new Alert("Pay", "Pay Now", "OK");
             //await Application.Current.MainPage.Navigation.PushModalAsync(new PaymentSuccessPage());
+            try
+            {
+                if (!isClicked)
+                {
+                    isClicked = true;
+                    //Console.WriteLine("Store ID: " + StoreDetailsViewModel.store_id + " Total Count: " + CartPageViewModel.cartDetails.Count);
+                    foreach (var car in CartPageViewModel.cartDetails)
+                    {
+                        Customers.Instance.Create(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, car.Stid.ToString(), car.ID.ToString(), "1", "1", "", (bool success, string data) =>
+                        {
+                            if (success)
+                            {
+                                new Alert("Your Name", "Ruben", "Try Again");
+                                Console.WriteLine("Data: " + car.ID.ToString() + " STID: " + car.Stid.ToString()); // Success Page
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            }
+                        });
+                    }
+                    await Task.Delay(200);
+                    isClicked = false;
+                }
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+            }
         }
 
         /// <summary>
