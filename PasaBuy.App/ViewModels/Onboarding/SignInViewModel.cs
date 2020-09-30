@@ -132,6 +132,11 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void LoginClicked(object obj)
         {
+            if( string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password) )
+            {
+                return; //Disrupt process, required field is required!
+            }
+
             try
             {
                 State = true;
