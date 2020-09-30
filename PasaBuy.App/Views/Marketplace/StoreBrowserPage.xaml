@@ -11,7 +11,7 @@
              xmlns:converter="clr-namespace:PasaBuy.App.Converters" 
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:behavior1="clr-namespace:PasaBuy.App.Behaviors" 
-             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="True"
              x:Name="storeBrowserPage"
@@ -40,10 +40,12 @@
     <ContentView.Content>
         <ScrollView>
             <StackLayout Spacing="0">
-                <Image
-                    BackgroundColor="{DynamicResource Gray-200}"
-                    HeightRequest="230"
-                    Source="storebanner.jpg" />
+                <ffimageloading:CachedImage Aspect="Fill"
+                                            Source="https://pasabuy.app/wp-content/uploads/2020/09/a4f9c4b509d35d0697d09450fc2f20ba4893f630-tricycle-02.jpg?fbclid=IwAR2Sl_-CoFNEXiS6sZW_RWMBqzcu6QhcsBlan7wV7mWxwFRVUTnEqU-hdKg"
+			                                DownsampleToViewSize="True" 
+                                            FadeAnimationEnabled="True">
+                </ffimageloading:CachedImage>
+
 
                 <StackLayout
                     Margin="16,25,16,0"
