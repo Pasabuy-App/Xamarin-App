@@ -18,7 +18,7 @@ namespace PasaBuy.App.Views.StoreViews
             InitializeComponent();
             if (MasterView.MyType == "store")
             {
-                Title = "POS Terminal";
+                Title = "Orders";
             }
             if (MasterView.MyType == "mover")
             {

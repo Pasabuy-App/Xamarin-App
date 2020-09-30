@@ -17,7 +17,15 @@ namespace PasaBuy.App.Views.Navigation
         public NavigationView()
         {
             InitializeComponent();
-            Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(PasaBuy.App.Views.StoreViews.Dashboard)));
+            if (MasterView.MyType == "store")
+            {
+                Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(PasaBuy.App.Views.StoreViews.Dashboard)));
+            }
+            if (MasterView.MyType == "mover")
+            {
+                Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(PasaBuy.App.Views.Driver.DashboardPage)));
+            }
+           
 
         }
         protected override void OnAppearing()
