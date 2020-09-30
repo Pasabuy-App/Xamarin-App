@@ -22,6 +22,7 @@ namespace PasaBuy.App.Models.Feeds
         private string images;
         private Boolean isaccept = false;
         private Boolean iscontent = false;
+        private Boolean iscontent2 = false;
         private Boolean isimage = false;
         private string linkpost = string.Empty;
         private string post_author = string.Empty;
@@ -49,8 +50,8 @@ namespace PasaBuy.App.Models.Feeds
             this.images = images;
             this.linkpost = post_link;
             this.post_author = post_author;
-            this.pickup = "<b>Pick-up: " + pickup + "</b>";
-            this.vehicle = "<b>Vehicle: " + vehicle + "</b>";
+            this.pickup = "<b>" + pickup + "</b>";
+            this.vehicle = "<b>" + vehicle + "</b>";
             this.do_price = "<b>" + do_price + "</b>";
 
             if (images == "")
@@ -61,17 +62,19 @@ namespace PasaBuy.App.Models.Feeds
             {
                 isImage = true;
             }
-            if (description == "")
+            /*if (description == "")
             {
                 isContent = false;
             }
             else
             {
                 isContent = true;
-            }
+            }*/
+            isContent = false;
             if (types == "Status")
             {
-                isAccept = false;
+                isContent2 = false; 
+                isAccept = false; // If post is status, accept button is visible
                 HomeColSpan = 2;
                 HomeCol = 0;
                 ProfileColSpan = 2;
@@ -79,20 +82,38 @@ namespace PasaBuy.App.Models.Feeds
             }
             else
             {
+                isContent2 = true;
                 if (types == "Selling")
                 {
-                    AcceptText = "Inquire";
+                    isContent = true; // set Content visible to true if post type is selling
+                    AcceptText = "Inquire"; // renamed accept button if post type is selling
+                }
+                if (types == "Pasabay")
+                {
+                    AcceptText = "Pasabay";// renamed accept button if post type is pasabay
+                }
+                if (types == "Pabili")
+                {
+                    isContent = true;
                 }
                 isAccept = true;
-                if (post_author == PSACache.Instance.UserInfo.wpid)
+                if (post_author == PSACache.Instance.UserInfo.wpid) //PSACache.Instance.UserInfo.user_type == "User"
                 {
-                    HomeColSpan = 2;
+                    HomeColSpan = 2; // only share button if the post author is me
                     HomeCol = 0;
                 }
                 else
                 {
-                    HomeColSpan = 1;
-                    HomeCol = 1;
+                    if(PSACache.Instance.UserInfo.user_type == "User")
+                    {
+                        HomeColSpan = 2;
+                        HomeCol = 0;
+                    }
+                    else
+                    {
+                        HomeColSpan = 1;
+                        HomeCol = 1;
+                    }
                 }
                 if (MyProfileViewModel.user_id == string.Empty)
                 {
@@ -101,8 +122,16 @@ namespace PasaBuy.App.Models.Feeds
                 }
                 else
                 {
-                    ProfileColSpan = 1;
-                    ProfileCol = 1;
+                    if (PSACache.Instance.UserInfo.user_type == "User")
+                    {
+                        ProfileColSpan = 2;
+                        ProfileCol = 0;
+                    }
+                    else
+                    {
+                        ProfileColSpan = 1;
+                        ProfileCol = 1;
+                    }
                 }
             }
 
@@ -279,6 +308,18 @@ namespace PasaBuy.App.Models.Feeds
                 OnPropertyChanged("isContent");
             }
         }
+        public Boolean isContent2
+        {
+            get
+            {
+                return iscontent2;
+            }
+            set
+            {
+                iscontent2 = value;
+                OnPropertyChanged("isContent2");
+            }
+        }
         public Boolean isImage
         {
             get
@@ -356,11 +397,6 @@ namespace PasaBuy.App.Models.Feeds
                 OnPropertyChanged("ProfileCol");
             }
         }
-
-
-
-
-
 
         public event PropertyChangedEventHandler PropertyChanged;
 

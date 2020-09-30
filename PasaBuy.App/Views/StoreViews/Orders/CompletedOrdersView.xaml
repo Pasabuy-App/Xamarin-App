@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:PasaBuy.App.Models.MobilePOS"
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             x:Class="PasaBuy.App.Views.StoreViews.Orders.CompletedOrdersView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="ProductNameTitleStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="VerticalTextAlignment" Value="Start" />
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}" />
+            </Style>
+
+            <Style x:Key="ProductUnitStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="Margin" Value="0, 0" />
+                <Setter Property="TextColor" Value="{StaticResource Gray-Black}" />
+            </Style>
+
+            <Style x:Key="ProductPriceStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="Margin" Value="3, 0, 8, 0" />
+                <Setter Property="TextColor" Value="{DynamicResource Orange}" />
+            </Style>
+
+
+            <Style x:Key="SeparatorStyle" TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="1" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource Gray-300}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <StackLayout>
+            <listView:SfListView x:Name="CompletedOrders"
+                                 AutoFitMode="Height"
+                                 FocusBorderThickness="0"
+                                 ItemSpacing="0,1,0,0"
+                                 VerticalOptions="StartAndExpand"
+                                 ItemTapped="CompletedOrders_ItemTapped"
+                                 ItemsSource="{x:Static model:Management.All}"
+                                 SelectionMode="None">
+                <!--Item Source is for testing purposes only. Kindly bind into specific viewmodels-->
+
+                <listView:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0"
+                              Padding="8,12,8,0"
+                              BackgroundColor="{DynamicResource Gray-White}"
+                              ColumnSpacing="0"
+                              RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid Padding="0,0,8,10" RowSpacing="0" Grid.Row="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <ffimageloading:CachedImage Aspect="AspectFit"
+                                                Grid.Row="0"
+                                                Grid.RowSpan="3"
+                                                Margin="5,0,30,0"
+                                                Grid.Column="0"
+                                                Source="Avatar.png"
+                                                HeightRequest="50"
+                                                x:Name="ImageId"
+			                                    DownsampleToViewSize="true" FadeAnimationEnabled="True" >
+                                    <ffimageloading:CachedImage.Transformations>
+                                        <fftransformations:CircleTransformation />
+                                    </ffimageloading:CachedImage.Transformations>
+                                </ffimageloading:CachedImage>
+
+                                <Label Text="Test Name"
+                                                       Grid.Row="0"
+                                                       Grid.Column="1"
+                                                       HorizontalOptions="StartAndExpand"
+                                                       TextColor="{DynamicResource BlackColor}">
+                                </Label>
+                                <Label Text="Order #4232"
+                                                       Grid.Row="1"
+                                                       Grid.Column="1"
+                                                       HorizontalOptions="StartAndExpand"
+                                                       TextColor="{DynamicResource Gray-800}">
+                                </Label>
+                                <Label Text="Sept 5, 2020 10:23 AM"
+                                                       Grid.Row="2"
+                                                       Grid.Column="1"
+                                                       HorizontalOptions="StartAndExpand"
+                                                       TextColor="{DynamicResource Gray-800}">
+                                </Label>
+                                <Label Text="PHP 250"
+                                                       Grid.Row="0"
+                                                       Grid.Column="2"
+                                                       HorizontalOptions="StartAndExpand"
+                                                       TextColor="{DynamicResource BlackColor}">
+                                </Label>
+                                <Label Text="Cash"
+                                                       Grid.Row="2"
+                                                       Grid.Column="2"
+                                                       HorizontalOptions="StartAndExpand"
+                                                       TextColor="{DynamicResource Gray-800}">
+                                </Label>
+                            </Grid>
+                            <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="1"/>
+                        </Grid>
+                    </DataTemplate>
+                </listView:SfListView.ItemTemplate>
+            </listView:SfListView>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

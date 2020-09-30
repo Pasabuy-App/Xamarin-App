@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 using Android.Content;
 using Android;
+using Plugin.CurrentActivity;
 
 namespace PasaBuy.App.Droid
 {
@@ -29,13 +30,17 @@ namespace PasaBuy.App.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
+
             base.OnCreate(savedInstanceState);
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
+            
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            Xamarin.FormsMaps.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
             SfPopupLayoutRenderer.Init();
+            Xamarin.FormsGoogleMaps.Init(this, savedInstanceState);
+
             LoadApplication(new App());
 
         }

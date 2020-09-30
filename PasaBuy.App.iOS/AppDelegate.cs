@@ -17,7 +17,7 @@ using Syncfusion.XForms.iOS.Buttons;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using PasaBuy.App.Local;
 using Foundation;
 using UIKit;
 
@@ -39,7 +39,7 @@ namespace PasaBuy.App.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            Xamarin.FormsMaps.Init();
+            Xamarin.FormsGoogleMaps.Init(PSAConfig.googleApiKey);
             SfSegmentedControlRenderer.Init();
             SfLinearProgressBarRenderer.Init();
             SfPopupLayoutRenderer.Init();

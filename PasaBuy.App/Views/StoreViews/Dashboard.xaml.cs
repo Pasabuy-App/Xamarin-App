@@ -18,7 +18,7 @@ namespace PasaBuy.App.Views.StoreViews
             InitializeComponent();
             if (MasterView.MyType == "store")
             {
-                Title = "POS Terminal";
+                Title = "Orders";
             }
             if (MasterView.MyType == "mover")
             {
@@ -33,6 +33,11 @@ namespace PasaBuy.App.Views.StoreViews
                 //Context.ScannedText = e.NewTextValue;
                 //await Context.SearchProductWhenScan();
             }
+        }
+
+        private void NewOrders_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        {
+            Navigation.PushModalAsync(new TransactionDetailsView());
         }
     }
 }

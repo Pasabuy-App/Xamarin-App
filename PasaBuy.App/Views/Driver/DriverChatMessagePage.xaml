@@ -1,16 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage 
+    x:Class="PasaBuy.App.Views.Driver.DriverChatMessagePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:converter="clr-namespace:PasaBuy.App.Converters"
-             xmlns:local="clr-namespace:PasaBuy.App.Views.Driver" 
-             xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
+             xmlns:behavior="clr-namespace:PasaBuy.App.Behaviors.Chat" 
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
+             xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
+             xmlns:converter="clr-namespace:PasaBuy.App.Converters"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-             xmlns:behavior="clr-namespace:PasaBuy.App.Behaviors.Chat" 
+             xmlns:local="clr-namespace:PasaBuy.App.Views.Driver" 
              xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Driver" 
-             x:Class="PasaBuy.App.Views.Driver.DriverChatMessagePage"
-             IconImageSource="Logo.png">
+             NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -22,6 +23,25 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Spacing="0" >
+                <controls:TitleView Title="Conversation" 
+                                    BackgroundColor="{DynamicResource PrimaryColor}" >
+                    <controls:TitleView.LeadingView>
+                        <buttons:SfButton
+                            x:Name="backButton"
+                            Clicked="backButton_Clicked"
+                            CornerRadius="4"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                    </controls:TitleView.LeadingView>
+                </controls:TitleView>
+                <ContentPresenter />
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+    
     <ContentPage.BindingContext>
         <viewModel:DriverChatMessageViewModel />
     </ContentPage.BindingContext>
@@ -201,4 +221,5 @@
             </ScrollView>
         </Grid>
     </ContentPage.Content>
+    
 </ContentPage>

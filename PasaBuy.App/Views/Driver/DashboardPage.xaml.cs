@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Position = Xamarin.Forms.Maps.Position;
 using Xamarin.Forms;
+using Xamarin.Forms.GoogleMaps;
 using Xamarin.Forms.Xaml;
-using Xamarin.Forms.Maps;
+using Xamarin.Essentials;
 
 namespace PasaBuy.App.Views.Driver
 {
@@ -19,25 +19,51 @@ namespace PasaBuy.App.Views.Driver
         public DashboardPage()
         {
             InitializeComponent();
+            DisplayCurloc();
+            //map.IsTrafficEnabled = true; lorz comment
         }
 
-        private void AcceptOrderButton_Clicked(object sender, EventArgs e)
+        public async void DisplayCurloc()
         {
-            Position pos1 = new Xamarin.Forms.Maps.Position(14.3313, 121.0505);
-            Position pos2 = new Xamarin.Forms.Maps.Position(14.3369, 121.0557);
-            
-            var add1 = "San Pedro Metro Manila Philippines";
-            var add2 = "Southwoods Ave Biñan Laguna Philippines";
+            try
+            {
+                var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+                var location = await Geolocation.GetLocationAsync(request);
 
+                if (location != null)
+                {
+                    Xamarin.Forms.GoogleMaps.Position p = new Xamarin.Forms.GoogleMaps.Position(location.Latitude, location.Longitude);
+                    MapSpan mapSpan = MapSpan.FromCenterAndRadius(p, Distance.FromKilometers(.444));
+                    //map.MoveToRegion(mapSpan); lorz comment
+                    //await GetLocationName(p);
+                    Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
+                }
+            }
+            catch (FeatureNotSupportedException fnsEx)
+            {
+                // Handle not supported on device exception
+                Console.WriteLine("Handle not supported on device exception" + " " + fnsEx);
+            }
+            catch (FeatureNotEnabledException fneEx)
+            {
+                // Handle not enabled on device exception
+                Console.WriteLine("Handle not enabled on device exception" + " " + fneEx);
+            }
+            catch (PermissionException pEx)
+            {
+                // Handle permission exception
+                Console.WriteLine("Handle permission exception" + " " + pEx);
+            }
+            catch (Exception ex)
+            {
+                // Unable to get location
+                Console.WriteLine("Unable to get location" + " " + ex);
+            }
+        }
 
-            // NavigationViewModel.FetchPin(pos1, pos2, add1, add2, "Store", "Client", );
-            Views.Driver.Navigation.StoreValue = add2;
-            Views.Driver.Navigation.UserValue = add1;
-            Views.Driver.Navigation.StorePosition = pos1;
-            Views.Driver.Navigation.UserPosition = pos2;
-            Navigation.PushModalAsync(new Navigation() );
-            //Views.Driver.Navigation.FetchPin(pos1, pos2, add1, add2, "user", "store");
-
+        private void ShowAvailableDeliveries(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new TransactionDriverView());
         }
     }
 }

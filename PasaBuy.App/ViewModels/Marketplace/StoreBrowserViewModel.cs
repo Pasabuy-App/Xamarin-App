@@ -28,8 +28,15 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         private int? cartItemCount;
 
-
         public static ObservableCollection<Store> storelist;
+
+        public static ObservableCollection<Categories> itemCategories;
+
+        public ObservableCollection<Categories> ItemCategories
+        {
+            get { return itemCategories; }
+            set { itemCategories = value; this.NotifyPropertyChanged(); }
+        }
 
         public ObservableCollection<Store> Storelist
         {
@@ -40,11 +47,50 @@ namespace PasaBuy.App.ViewModels.Marketplace
         public StoreBrowserViewModel()
         {
             storelist = new ObservableCollection<Store>();
+            itemCategories = new ObservableCollection<Categories>();
             LoadStore("");
+            LoadCategory();
+
+
+        }
+
+
+        public static void LoadCategory()
+        {
+            try
+            {
+                TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "all", "", "1", "", (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        StoreListData datas = JsonConvert.DeserializeObject<StoreListData>(data);
+                        Console.WriteLine(data);
+                        for (int i = 0; i < datas.data.Length; i++)
+                        {
+
+                            string category = datas.data[i].cat_name;
+
+                            itemCategories.Add(new Categories()
+                            {
+                                Title = category,
+                                Info = "https://pasabuy.app/wp-content/uploads/2020/09/a4f9c4b509d35d0697d09450fc2f20ba4893f630-tricycle-02.jpg?fbclid=IwAR2Sl_-CoFNEXiS6sZW_RWMBqzcu6QhcsBlan7wV7mWxwFRVUTnEqU-hdKg"
+                            });
+                        }
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+            }
         }
 
         #endregion
-
 
         #region Loadata
         public static void LoadStore(string lastid)
@@ -125,13 +171,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         }
 
-     
-
-        /// <summary>
-        /// Gets or sets a collection of values to be displayed in the Restaurant page.
-        /// </summary>
-        //[DataMember(Name = "navigationList")]
-        //public ObservableCollection<Store> NavigationList { get; set; }
 
         #endregion
 

@@ -53,10 +53,10 @@
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
                             FocusedColor="{StaticResource BlackColor}"
-                            Hint="Pick up Location"
+                            Hint="Pick up Location" x:Name="PickUps"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
-                    <Entry MaxLength="50" ReturnType="Next" />
+                    <Entry MaxLength="50" ReturnType="Next" x:Name="PickUp"/>
                     <inputLayout:SfTextInputLayout.LeadingView>
                         <Label
                                             Margin="0"
@@ -76,10 +76,10 @@
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
                             FocusedColor="{StaticResource BlackColor}"
-                            Hint="Drop off Location"
+                            Hint="Drop off Location"  x:Name="DropOffs"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
-                    <Entry MaxLength="50" ReturnType="Next" />
+                    <Entry MaxLength="50" ReturnType="Next"  x:Name="DropOff"/>
                     <inputLayout:SfTextInputLayout.LeadingView>
                         <Label
                                             Margin="0"
@@ -105,7 +105,7 @@
                             LeadingViewPosition="Inside">
                     <DatePicker MinimumDate="{Binding MinDate}"
                                 MaximumDate="{Binding MaxDate}"
-                                Date="{Binding SelectedDate}" />
+                                Date="{Binding SelectedDate}"  x:Name="DatePicker"/>
                     <inputLayout:SfTextInputLayout.LeadingView>
                         <Label
                                             Margin="0"
@@ -128,7 +128,7 @@
                             Hint="Time"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
-                    <TimePicker Time="12:00" />
+                    <TimePicker Time="12:00"  x:Name="TimePicker"/>
                     <inputLayout:SfTextInputLayout.LeadingView>
                         <Label
                                             Margin="0"
@@ -201,6 +201,7 @@
                             Margin="0, 30, 0, 20"
                             CornerRadius="10"
                             TextColor="White"
+                            Clicked="SfButton_Clicked"
                             BackgroundColor="{DynamicResource PrimaryColor}"
                             Style="{StaticResource SfButtonStyle}"
                             Text="POST" />

@@ -4,13 +4,82 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:local="clr-namespace:PasaBuy.App.Models.Driver" 
-             x:Class="PasaBuy.App.Views.Driver.DashboardPage">
+             xmlns:local="clr-namespace:PasaBuy.App.Models.Driver"
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             x:Class="PasaBuy.App.Views.Driver.DashboardPage"
+             Title="Dashboard">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
-    <StackLayout>
-        <Button Text="Accept Order" x:Name="AcceptOrderButton"  Clicked="AcceptOrderButton_Clicked" BackgroundColor="Brown"/>
+    <ContentPage.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <maps:Map x:Name="map" MyLocationEnabled="True" Grid.Row="0" />
+                <yummy:PancakeView
+                    Grid.Row="1"
+                    Margin="0,0,0,0"
+                    BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
+                    CornerRadius="20,20,0,0"
+                    VerticalOptions="FillAndExpand">
+                    <Grid Padding="15,20,15,20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70*" />
+                            <ColumnDefinition Width="15*" />
+                            <ColumnDefinition Width="15*" />
+                    </Grid.ColumnDefinitions>
+                    <Label FontFamily="{StaticResource Montserrat-Medium}"
+                           Padding="10,0,0,0"
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           FontSize="18"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Start"
+                           Text="Available deliveries"
+                           TextColor="{DynamicResource BlackColor}" />
+                    <Label FontFamily="{StaticResource Montserrat-Medium}"
+                           Padding="10,0,0,0"
+                           Grid.Row="0"
+                           Grid.Column="1"
+                           FontSize="16"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="End"
+                           Text="12"
+                           TextColor="{DynamicResource BlackColor}" />
 
-    </StackLayout>
+                    <Label Margin="0,0,0,0"
+                           Grid.Row="0" 
+                           Grid.Column="2"
+                           FontFamily="{StaticResource FontIcons}"
+                           FontSize="27"
+                           HorizontalTextAlignment="Center"
+                           Text="{StaticResource ArrowRight}"
+                           TextColor="{DynamicResource BlackColor}"
+                           VerticalTextAlignment="Center" />
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ShowAvailableDeliveries" NumberOfTapsRequired="1"/>
+                    </Grid.GestureRecognizers>
+     
+
+                </Grid>
+
+                </yummy:PancakeView>
+           
+        </Grid>
+    </ContentPage.Content>
 
 
 </ContentPage>

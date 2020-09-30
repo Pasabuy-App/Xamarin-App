@@ -19,7 +19,7 @@
     <ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0" >
-                <controls:TitleView Title="Pasabuy" 
+                <controls:TitleView Title="Pasabay" 
                                     FontSize="16"
                                     BackgroundColor="{DynamicResource PrimaryColor}" >
                     <controls:TitleView.LeadingView >
@@ -58,10 +58,10 @@
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
                             FocusedColor="{StaticResource BlackColor}"
-                            Hint="Destination"
+                            Hint="Destination" x:Name="Destinations"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
-                    <Entry MaxLength="50" ReturnType="Next" />
+                    <Entry MaxLength="50" ReturnType="Next" x:Name="Destination"/>
                     <inputLayout:SfTextInputLayout.LeadingView>
                         <Label
                                             Margin="0"
@@ -81,10 +81,10 @@
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
                             FocusedColor="{StaticResource BlackColor}"
-                            Hint="Return Place"
+                            Hint="Return Place"   x:Name="ReturnPlaces"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
-                    <Entry MaxLength="50" ReturnType="Next" />
+                    <Entry MaxLength="50" ReturnType="Next"  x:Name="ReturnPlace"/>
                     <inputLayout:SfTextInputLayout.LeadingView>
                         <Label
                                             Margin="0"
@@ -110,7 +110,7 @@
                             LeadingViewPosition="Inside">
                     <DatePicker MinimumDate="{Binding MinDate}"
                                 MaximumDate="{Binding MaxDate}"
-                                Date="{Binding SelectedDate}" />
+                                Date="{Binding SelectedDate}"  x:Name="DatePicker"/>
                     <inputLayout:SfTextInputLayout.LeadingView>
                         <Label
                                             Margin="0"
@@ -133,7 +133,7 @@
                             Hint="Time"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
-                    <TimePicker Time="12:00" />
+                    <TimePicker Time="12:00"  x:Name="TimePicker"/>
                     <inputLayout:SfTextInputLayout.LeadingView>
                         <Label
                                             Margin="0"
@@ -206,6 +206,7 @@
                             Margin="0, 30, 0, 20"
                             CornerRadius="10"
                             TextColor="White"
+                            Clicked="SfButton_Clicked"
                             BackgroundColor="{DynamicResource PrimaryColor}"
                             Style="{StaticResource SfButtonStyle}"
                             Text="POST" />

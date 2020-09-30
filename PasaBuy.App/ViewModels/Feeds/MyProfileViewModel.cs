@@ -98,13 +98,40 @@ namespace PasaBuy.App.ViewModels.Feeds
                                 string views = post.data[i].views;
                                 string post_link = post.data[i].post_link;
                                 string category = post.data[i].item_category;
-                                string vehicle_type = post.data[i].vehicle_type;
+                                string vehicle_type = post.data[i].vehicle_date;
                                 string pickup_location = post.data[i].pickup_location;
                                 string do_price = "Drop-off: " + post.data[i].drop_off_location;
                                 if (type == "Selling")
                                 {
                                     title = category + " : " + title;
-                                    do_price = "Price: " + post.data[i].item_price;
+                                    content = post.data[i].content;
+                                    vehicle_type = "Vehicle: " + post.data[i].vehicle_date;
+                                    pickup_location = "Pick-up: " + post.data[i].pickup_location;
+                                    do_price = "Price: " + post.data[i].time_price;
+                                }
+                                if (type == "Pasabay")
+                                {
+                                    //title = "Pasabuy - Hide";
+                                    title = "<b> Destination: " + post.data[i].pickup_location + " </b>";
+                                    pickup_location = "Date: " + post.data[i].vehicle_date;
+                                    vehicle_type = "Return Place: " + post.data[i].drop_off_location;
+                                    do_price = "Time: " + post.data[i].time_price;
+                                }
+                                if (type == "Pahatid")
+                                {
+                                    //title = "Pasabuy - Hide";
+                                    title = "<b> Pick-up: " + post.data[i].pickup_location + " </b>";
+                                    pickup_location = "Date: " + post.data[i].vehicle_date;
+                                    vehicle_type = "Drop-off: " + post.data[i].drop_off_location;
+                                    do_price = "Time: " + post.data[i].time_price;
+                                }
+                                if (type == "Pabili")
+                                {
+                                    title = "Item Name: " + post.data[i].title;
+                                    content = "Description: " + post.data[i].content;
+                                    pickup_location = "Date: " + post.data[i].vehicle_date;
+                                    vehicle_type = "Location: " + post.data[i].pickup_location;
+                                    do_price = "Time: " + post.data[i].time_price;
                                 }
 
                                 profilePostList.Add(new Post(PSAProc.GetUrl(author),
@@ -160,13 +187,40 @@ namespace PasaBuy.App.ViewModels.Feeds
                             string views = post.data[i].views;
                             string post_link = post.data[i].post_link;
                             string category = post.data[i].item_category;
-                            string vehicle_type = post.data[i].vehicle_type;
+                            string vehicle_type = post.data[i].vehicle_date;
                             string pickup_location = post.data[i].pickup_location;
                             string do_price = "Drop-off: " + post.data[i].drop_off_location;
                             if (type == "Selling")
                             {
                                 title = category + " : " + title;
-                                do_price = "Price: " + post.data[i].item_price;
+                                content = post.data[i].content;
+                                vehicle_type = "Vehicle: " + post.data[i].vehicle_date;
+                                pickup_location = "Pick-up: " + post.data[i].pickup_location;
+                                do_price = "Price: " + post.data[i].time_price;
+                            }
+                            if (type == "Pasabay")
+                            {
+                                //title = "Pasabuy - Hide";
+                                title = "<b> Destination: " + post.data[i].pickup_location + " </b>";
+                                pickup_location = "Date: " + post.data[i].vehicle_date;
+                                vehicle_type = "Return Place: " + post.data[i].drop_off_location;
+                                do_price = "Time: " + post.data[i].time_price;
+                            }
+                            if (type == "Pahatid")
+                            {
+                                //title = "Pasabuy - Hide";
+                                title = "<b> Pick-up: " + post.data[i].pickup_location + " </b>";
+                                pickup_location = "Date: " + post.data[i].vehicle_date;
+                                vehicle_type = "Drop-off: " + post.data[i].drop_off_location;
+                                do_price = "Time: " + post.data[i].time_price;
+                            }
+                            if (type == "Pabili")
+                            {
+                                title = "Item Name: " + post.data[i].title;
+                                content = "Description: " + post.data[i].content;
+                                pickup_location = "Date: " + post.data[i].vehicle_date;
+                                vehicle_type = "Location: " + post.data[i].pickup_location;
+                                do_price = "Time: " + post.data[i].time_price;
                             }
 
                             profilePostList.Add(new Post(PSAProc.GetUrl(author),
@@ -201,7 +255,6 @@ namespace PasaBuy.App.ViewModels.Feeds
                         postcount = getdata.data.count;
                     }
                 });
-
                 SocioPress.Reviews.Instance.Get(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, userid, (bool success, string data) =>
                 {
                     if (success)
@@ -526,13 +579,15 @@ namespace PasaBuy.App.ViewModels.Feeds
             {
                 isEnable = true;
                 //ChatMessageViewModel.LoadMessage(user_id, "");
+                ChatMessageViewModel.myPage = "profile";
+                ChatMessageViewModel.refresh = 0;
                 ChatMessageViewModel.ProfileNames = displayNames;
                 ChatMessageViewModel.ProfileImages = profileImages;
                 ChatMessageViewModel.user_id = user_id;
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    await Task.Delay(700);
-                    await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ChatMessagePage()));
+                    await Task.Delay(300);
+                    await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ChatMessagePage()));
                     //new Alert("Title", "Example", "OK");
                     isEnable = false;
                 });

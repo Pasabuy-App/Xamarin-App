@@ -1,53 +1,93 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
-             xmlns:model="clr-namespace:PasaBuy.App.Models.Driver"
-             
-             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-             x:Class="PasaBuy.App.Views.Driver.TransactionDriverView">
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
+             xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+             xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+             xmlns:view="clr-namespace:PasaBuy.App.Views.Driver"
+             x:Class="PasaBuy.App.Views.Driver.TransactionDriverView"
+             xmlns:model="clr-namespace:PasaBuy.App.Models.MobilePOS"
+             NavigationPage.HasNavigationBar="False">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Spacing="0" >
+                <controls:TitleView Title="Available Deliveries" 
+                                    FontSize="13"
+                                    BackgroundColor="{DynamicResource PrimaryColor}" >
+                    <controls:TitleView.LeadingView>
+                        <buttons:SfButton
+                            x:Name="backButton"
+                            Clicked="BackButtonClicked"
+                            CornerRadius="4"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                    </controls:TitleView.LeadingView>
+                </controls:TitleView>
+                <ContentPresenter />
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
     <ContentPage.Content>
-        <Grid
-            BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
-            ColumnSpacing="0"
-            RowSpacing="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Margin="0">
-                <sync:SfListView
-                    x:Name="ManagementItem"
-                    AutoFitMode="Height"
-                    FocusBorderThickness="0"
-                    ItemSpacing="0,1,0,0"
-                    ItemsSource="{x:Static model:DriverTransactions.All}"
-                    SelectionMode="None">
-                    <!--Item Source is for testing purposes only. Kindly bind into specific viewmodels-->
+        <Grid>
+            <StackLayout Spacing="0" VerticalOptions="FillAndExpand">
+                <tabView:SfTabView BackgroundColor="{DynamicResource Gray-White}" VisibleHeaderCount="2">
+                <tabView:SfTabView.SelectionIndicatorSettings>
+                    <tabView:SelectionIndicatorSettings StrokeThickness="3" Color="{DynamicResource PrimaryColor}" />
+                </tabView:SfTabView.SelectionIndicatorSettings>
 
-                    <sync:SfListView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid
-                                Margin="0"
-                                Padding="8,12,8,0"
-                                BackgroundColor="{DynamicResource Gray-White}"
-                                ColumnSpacing="0"
-                                RowSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid Padding="0,0,8,10" RowSpacing="0">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
+                <tabView:SfTabItem
+                        Title="New"
+                        SelectionColor="{DynamicResource PrimaryColor}"
+                        TitleFontColor="{DynamicResource Gray-700}"
+                        TitleFontFamily="{StaticResource Montserrat-Medium}"
+                        TitleFontSize="14">
+                    <tabView:SfTabItem.Content>
+                        <sync:SfListView x:Name="NewOrders"
+                                                 AutoFitMode="Height"
+                                                 FocusBorderThickness="0"
+                                                 ItemSpacing="0,1,0,0"
+                                                 VerticalOptions="StartAndExpand"
+                                                 ItemTapped="NewOrders_ItemTapped"
+                                                 ItemsSource="{x:Static model:Management.All}"
+                                                 SelectionMode="None">
+                            <!--Item Source is for testing purposes only. Kindly bind into specific viewmodels-->
 
-                                    <ffimageloading:CachedImage Aspect="AspectFit"
+                            <sync:SfListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0"
+                                              Padding="8,12,8,0"
+                                              BackgroundColor="{DynamicResource Gray-White}"
+                                              ColumnSpacing="0"
+                                              RowSpacing="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid Padding="0,0,8,10" RowSpacing="0" Grid.Row="0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <ffimageloading:CachedImage Aspect="AspectFit"
                                                 Grid.Row="0"
                                                 Grid.RowSpan="3"
                                                 Margin="5,0,30,0"
@@ -56,47 +96,65 @@
                                                 HeightRequest="50"
                                                 x:Name="ImageId"
 			                                    DownsampleToViewSize="true" FadeAnimationEnabled="True" >
-                                        <ffimageloading:CachedImage.Transformations>
-                                            <fftransformations:CircleTransformation />
-                                        </ffimageloading:CachedImage.Transformations>
-                                    </ffimageloading:CachedImage>
+                                                <ffimageloading:CachedImage.Transformations>
+                                                    <fftransformations:CircleTransformation />
+                                                </ffimageloading:CachedImage.Transformations>
+                                            </ffimageloading:CachedImage>
 
-                                    <Label Text="Test Name"
-                                           Grid.Row="0"
-                                           Grid.Column="1"
-                                           HorizontalOptions="StartAndExpand"
-                                           TextColor="{DynamicResource BlackColor}">
-                                    </Label>
-                                    <Label Text="Order #4232"
-                                           Grid.Row="1"
-                                           Grid.Column="1"
-                                           HorizontalOptions="StartAndExpand"
-                                           TextColor="{DynamicResource Gray-800}">
-                                    </Label>
-                                    <Label Text="Sept 5, 2020 10:23 AM"
-                                           Grid.Row="2"
-                                           Grid.Column="1"
-                                           HorizontalOptions="StartAndExpand"
-                                           TextColor="{DynamicResource Gray-800}">
-                                    </Label>
-                                    <Label Text="PHP 250"
-                                           Grid.Row="0"
-                                           Grid.Column="2"
-                                           HorizontalOptions="StartAndExpand"
-                                           TextColor="{DynamicResource BlackColor}">
-                                    </Label>
-                                    <Label Text="Cash"
-                                           Grid.Row="2"
-                                           Grid.Column="2"
-                                           HorizontalOptions="StartAndExpand"
-                                           TextColor="{DynamicResource Gray-800}">
-                                    </Label>
-                                </Grid>
-                            </Grid>
-                        </DataTemplate>
-                    </sync:SfListView.ItemTemplate>
-                </sync:SfListView>
-            </Grid>
+                                            <Label Text="Test Name"
+                                                       Grid.Row="0"
+                                                       Grid.Column="1"
+                                                       HorizontalOptions="StartAndExpand"
+                                                       TextColor="{DynamicResource BlackColor}">
+                                            </Label>
+                                            <Label Text="Order #4232"
+                                                       Grid.Row="1"
+                                                       Grid.Column="1"
+                                                       HorizontalOptions="StartAndExpand"
+                                                       TextColor="{DynamicResource Gray-800}">
+                                            </Label>
+                                            <Label Text="Sept 5, 2020 10:23 AM"
+                                                       Grid.Row="2"
+                                                       Grid.Column="1"
+                                                       HorizontalOptions="StartAndExpand"
+                                                       TextColor="{DynamicResource Gray-800}">
+                                            </Label>
+                                            <Label Text="PHP 250"
+                                                       Grid.Row="0"
+                                                       Grid.Column="2"
+                                                       HorizontalOptions="StartAndExpand"
+                                                       TextColor="{DynamicResource BlackColor}">
+                                            </Label>
+                                            <Label Text="Cash"
+                                                       Grid.Row="2"
+                                                       Grid.Column="2"
+                                                       HorizontalOptions="StartAndExpand"
+                                                       TextColor="{DynamicResource Gray-800}">
+                                            </Label>
+                                        </Grid>
+                                        <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="1"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </sync:SfListView.ItemTemplate>
+                        </sync:SfListView>
+                    </tabView:SfTabItem.Content>
+                </tabView:SfTabItem>
+
+                <tabView:SfTabItem
+                        Title="Active"
+                        SelectionColor="{DynamicResource PrimaryColor}"
+                        TitleFontColor="{DynamicResource Gray-700}"
+                        TitleFontFamily="{StaticResource Montserrat-Medium}"
+                        TitleFontSize="14">
+                    <tabView:SfTabItem.Content>
+                            <view:PendingOrdersView />
+                    </tabView:SfTabItem.Content>
+                </tabView:SfTabItem>
+
+
+            </tabView:SfTabView>
+
+        </StackLayout>
         </Grid>
     </ContentPage.Content>
 

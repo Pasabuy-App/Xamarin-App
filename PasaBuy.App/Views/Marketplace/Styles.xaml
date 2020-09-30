@@ -57,6 +57,14 @@
         <Setter Property="WidthRequest" Value="40" />
     </Style>
 
+    <Style x:Key="ProfileBorderStyle" TargetType="border:SfBorder">
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="BorderWidth" Value="1" />
+        <Setter Property="BorderColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="CornerRadius" Value="4" />
+    </Style>
+
     <Style x:Key="TitleLabelStyle" TargetType="Label">
         <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
         <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
@@ -233,7 +241,7 @@
     <!-- Common style for seperators -->
     <Style x:Key="SeparatorStyle" TargetType="BoxView">
         <Setter Property="HeightRequest" Value="1" />
-        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-200}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-300}" />
     </Style>
 
     <!-- Common style for navigation bar buttons -->

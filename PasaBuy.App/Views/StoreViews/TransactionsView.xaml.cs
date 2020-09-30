@@ -16,5 +16,10 @@ namespace PasaBuy.App.Views.StoreViews
         {
             InitializeComponent();
         }
+
+        private void Transactions_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        {
+            Navigation.PushModalAsync(new TransactionDetailsView());
+        }
     }
 }

@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Marketplace" 
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
+             xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:model="clr-namespace:PasaBuy.App.Models.MobilePOS"
+             x:Class="PasaBuy.App.Views.Marketplace.StoreListPage"
+             NavigationPage.HasNavigationBar="False">
+     <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewModel:StoreBrowserViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Spacing="0" >
+                <controls:TitleView Title="Bind category" FontSize="14"
+                                    BackgroundColor="{DynamicResource PrimaryColor}" >
+                    <controls:TitleView.LeadingView >
+                        <buttons:SfButton
+                            x:Name="backButton"
+                            Clicked="BackButtonClicked"
+                            CornerRadius="4"
+                            TextColor="White"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                    </controls:TitleView.LeadingView>
+                </controls:TitleView>
+                <ContentPresenter />
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+    <ContentPage.Content>
+        <Grid
+            BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
+            ColumnSpacing="0"
+            RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Margin="0">
+                <sync:SfListView
+                    x:Name="ManagementItem"
+                    AutoFitMode="Height"
+                    FocusBorderThickness="0"
+                    ItemSpacing="0,1,0,0"
+                    ItemTapped="StoreTapped"
+                    ItemsSource="{x:Static model:Management.All}"
+                    SelectionMode="None">
+                    <sync:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Grid Margin="16,8,8,8"  ColumnSpacing="0" RowSpacing="0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <border:SfBorder  BackgroundColor="{DynamicResource Gray-200}"
+                                            Style="{StaticResource ProfileBorderStyle}" HorizontalOptions="Start">
+                                    <Image HeightRequest="80" WidthRequest="80" BackgroundColor="{DynamicResource Gray-200}" 
+                                                   Aspect="AspectFill" Source="Idcard.png" >
+                                        
+                                    </Image>
+                                </border:SfBorder>
+
+                                <StackLayout Grid.Column="1"
+                                            Margin="16,5"
+                                            HorizontalOptions="Start"
+                                            Spacing="2"
+                                            VerticalOptions="FillAndExpand">
+
+                                    <!--  Name of the Restaurant  -->
+                                    <Label 
+                                                    FontFamily="{StaticResource Montserrat-Medium}"
+                                                    FontSize="16" 
+                                                    LineHeight="{OnPlatform Android=1.5,
+                                                                             Default=-1}"
+                                                    Text="Store Name"
+                                                    TextColor="{DynamicResource Gray-900}" />
+
+                                    <!--  Description about the item  -->
+                                    <Label 
+                                                    FontFamily="{StaticResource Montserrat-Medium}"
+                                                    FontSize="14"
+                                                    LineHeight="{OnPlatform Android=1.25,
+                                                                        Default=-1}"
+                                                    Text="Store Description"
+                                                    TextColor="{DynamicResource Gray-800}" />
+
+                                    <!--  Label for Offer  -->
+                                    <Label 
+                                                     FontFamily="{StaticResource Montserrat-Medium}"
+                                                     FontSize="14"
+                                                     LineHeight="{OnPlatform Android=1.25,
+                                                     Default=-1}"
+                                                     Text="Store Address"
+                                                      TextColor="{DynamicResource Gray-800}" />
+                                </StackLayout>
+
+                                <border:SfBorder BackgroundColor="{DynamicResource Green}" WidthRequest="24" HeightRequest="20"
+                                                      HorizontalOptions="End" Margin="0,8,0,0" VerticalOptions="Start"
+                                                      Grid.Column="2" CornerRadius="4" BorderColor="Transparent">
+                                    <Label  FontFamily="{StaticResource Montserrat-Medium}" 
+                                                        Text="4.5" HorizontalOptions="Center"
+                                                        FontSize="12" LineHeight="{OnPlatform Android=1.5,
+                                                        Default=-1}" TextColor="{DynamicResource Gray-White}" VerticalTextAlignment="Center" />
+                                </border:SfBorder>
+                            </Grid>
+                                <BoxView Style="{StaticResource SeparatorStyle}" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </sync:SfListView.ItemTemplate>
+                </sync:SfListView>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

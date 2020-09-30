@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Text;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
 namespace PasaBuy.App.ViewModels
@@ -16,7 +17,6 @@ namespace PasaBuy.App.ViewModels
     public class BaseViewModel : INotifyPropertyChanged
     {
         #region Event handler
-
         /// <summary>
         /// Occurs when the property is changed.
         /// </summary>
@@ -25,6 +25,54 @@ namespace PasaBuy.App.ViewModels
         #endregion
 
         #region Methods
+
+        #region Properties
+        string _title;
+        public string Title
+        {
+            get { return _title; }
+            set
+            {
+                _title = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        bool _isBusy;
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set
+            {
+                _isBusy = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        bool _canNavigate = true;
+        public bool CanNavigate
+        {
+            get { return _canNavigate; }
+            set
+            {
+                _canNavigate = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        Page _currentPage;
+        public Page CurrentPage
+        {
+            get { return _currentPage; }
+            set
+            {
+                _currentPage = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+
+        #endregion
 
         /// <summary>
         /// The PropertyChanged event occurs when changing the value of property.
