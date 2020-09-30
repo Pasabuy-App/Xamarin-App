@@ -392,6 +392,10 @@ namespace PasaBuy.App.ViewModels.Driver
             {
                 LoadMessage(user_id, "", ChatList.Last().ID);
             }
+            else
+            {
+                LoadMessage(user_id, "", "");
+            }
         }
 
         /// <summary>

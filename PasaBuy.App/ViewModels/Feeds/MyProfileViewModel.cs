@@ -579,13 +579,15 @@ namespace PasaBuy.App.ViewModels.Feeds
             {
                 isEnable = true;
                 //ChatMessageViewModel.LoadMessage(user_id, "");
+                ChatMessageViewModel.myPage = "profile";
+                ChatMessageViewModel.refresh = 0;
                 ChatMessageViewModel.ProfileNames = displayNames;
                 ChatMessageViewModel.ProfileImages = profileImages;
                 ChatMessageViewModel.user_id = user_id;
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    await Task.Delay(700);
-                    await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ChatMessagePage()));
+                    await Task.Delay(300);
+                    await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ChatMessagePage()));
                     //new Alert("Title", "Example", "OK");
                     isEnable = false;
                 });
