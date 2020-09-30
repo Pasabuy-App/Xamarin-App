@@ -17,29 +17,44 @@ namespace PasaBuy.App.Views.PopupModals
     public partial class PopupAcceptOrder : PopupPage
     {
         Stopwatch stopwatch = new Stopwatch();
+        
         public PopupAcceptOrder()
         {
             InitializeComponent();
             OrderTime.Text = "30";
+            OrderTimer(true);
+        }
+
+        public void OrderTimer(Boolean flag)
+        {
             int TimeLimit = 30;
             stopwatch.Start();
-            Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+            if (flag == true)
             {
-                
-                OrderTime.Text = (TimeLimit - stopwatch.Elapsed.Seconds).ToString();
-                if (30 - stopwatch.Elapsed.Seconds == 1)
+                Device.StartTimer(TimeSpan.FromSeconds(1), () =>
                 {
-                    PopupNavigation.Instance.PopAsync();
-                    return false;
-                }
-                return true;
-            });
 
+                    OrderTime.Text = (TimeLimit - stopwatch.Elapsed.Seconds).ToString();
+                    if (30 - stopwatch.Elapsed.Seconds == 1)
+                    {
+                        PopupNavigation.Instance.PopAsync();
+                        return false;
+                    }
+                    return true;
+                });
+
+            }
+            else
+            {
+                stopwatch.Stop();
+            }
+           
         }
 
         private void CloseModal(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PopAsync();
+            OrderTimer(false);
         }
 
         private void AcceptOrder(object sender, EventArgs e)
