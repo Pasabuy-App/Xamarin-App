@@ -44,7 +44,38 @@ namespace PasaBuy.App.ViewModels.Marketplace
         private Boolean isCartBusy;
         public bool isCartClicked = false;
 
+        private bool _isAdded = true;
+
+        private bool _notAdded = false;
+
+
         #endregion
+
+        public bool IsAdded
+        {
+            get
+            {
+                return this._isAdded;
+            }
+            set
+            {
+                this._isAdded = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        public bool NotAdded
+        {
+            get
+            {
+                return this._notAdded;
+            }
+            set
+            {
+                this._notAdded = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
         public ObservableCollection<StoreDetails> StoreDetailList
         {
@@ -97,9 +128,14 @@ namespace PasaBuy.App.ViewModels.Marketplace
             storedetailslist = new ObservableCollection<StoreDetails>();
             storedetailslist.Clear();
             categoriesdata = new ObservableCollection<Categories>();
+            CartPageViewModel.cartDetails.CollectionChanged += CollectionChanges;
             categoriesdata.Clear();
             //loadstoredetails(store_id);
             //loadstoredetails("");
+        }
+        private void CollectionChanges(object sender, EventArgs e)
+        {
+            this.CartItemCount = CartPageViewModel.cartDetails.Count;
         }
 
         public Command AddToCartCommand { get; set; }
@@ -130,16 +166,15 @@ namespace PasaBuy.App.ViewModels.Marketplace
                     var btn = obj as SfButton;
                     //var btn = (SfButton)obj;
                     //new Alert("Ok", "ok" + btn.ClassId + ".", "ok");
-                    TindaPress.Product.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", btn.ClassId, "1", "", (bool success, string data) =>
+                    TindaPress.Product.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, store_id, "", btn.ClassId, "1", "", (bool success, string data) =>
                     {
                         if (success)
                         {
                             ProductListData datas = JsonConvert.DeserializeObject<ProductListData>(data);
                             for (int i = 0; i < datas.data.Length; i++)
                             {
-                                CartPageViewModel.InsertCart(datas.data[i].ID, datas.data[i].product_name, datas.data[i].short_info, datas.data[i].preview, Convert.ToDouble(datas.data[i].price));
+                                CartPageViewModel.InsertCart(store_id, datas.data[i].ID, datas.data[i].product_name, datas.data[i].short_info, datas.data[i].preview, Convert.ToDouble(datas.data[i].price));
                                 //Console.WriteLine("Datas: ID: " + datas.data[i].ID + " Name: " + datas.data[i].product_name + datas.data[i].short_info + datas.data[i].preview + Convert.ToDouble(datas.data[i].price));
-                                this.CartItemCount = CartPageViewModel.cartDetails.Count;
                                 ///*if (CartPageViewModel.cartDetails.Count != 0)
                                 //{
                                 //    *//*string json = JsonConvert.SerializeObject(CartPageViewModel.cartDetails);
@@ -277,6 +312,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                     productsList.Add(new ProductList()
                                     {
                                         ID = catRoot.data[i].products[j].ID,
+                                        PreviewImage = PSAProc.GetUrl(catRoot.data[i].products[j].preview) == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-product.png" : PSAProc.GetUrl(catRoot.data[i].products[j].preview),
                                         /*Name = catRoot.data[i].products[j].product_name,
                                         ActualPrice = Convert.ToDouble(catRoot.data[i].products[j].price),
                                         Description = catRoot.data[i].products[j].short_info*/

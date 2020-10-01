@@ -25,7 +25,7 @@ namespace PasaBuy.App.Views.Marketplace
             //this.BindingContext = FoodStoreDataService.Instance.RestaurantViewModel;
         }
 
-        protected override void OnSizeAllocated(double width, double height)
+        /*protected override void OnSizeAllocated(double width, double height)
         {
             base.OnSizeAllocated(width, height);
 
@@ -90,7 +90,7 @@ namespace PasaBuy.App.Views.Marketplace
         private void SearchExpandAnimationCompleted()
         {
             this.SearchEntry.Focus();
-        }
+        }*/
 
         private async void FoodRestorantTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {

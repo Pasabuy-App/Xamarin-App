@@ -13,6 +13,7 @@ using PasaBuy.App.Views.ErrorAndEmpty;
 using System;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Views.StoreDetail;
+using System.Linq;
 
 namespace PasaBuy.App.ViewModels.eCommerce
 {
@@ -60,10 +61,11 @@ namespace PasaBuy.App.ViewModels.eCommerce
             //cartDetails = new ObservableCollection<ProductList>();
             //cartDetails.Clear();
         }
-        public static void InsertCart(string id, string name, string summary, string image, double price)
+        public static void InsertCart(string storeid, string id, string name, string summary, string image, double price)
         {
             cartDetails.Insert(0, new ProductList()
             {
+                Stid = storeid,
                 ID = id,
                 Name = name,
                 Summary = summary,
@@ -103,6 +105,29 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 }
 
                 cartDetails = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+        public int ValueQty
+        {
+            get
+            {
+                /*var item = cartDetails.FirstOrDefault(i => i.ID == "John");
+                if (item != null)
+                {
+                }*/
+                Console.WriteLine("Quantity: " + this.valueQty);
+                return this.valueQty;
+            }
+
+            set
+            {
+                if (this.valueQty == value)
+                {
+                    return;
+                }
+
+                this.valueQty = value;
                 this.NotifyPropertyChanged();
             }
         }
@@ -169,25 +194,6 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 }
 
                 this.discountPercent = value;
-                this.NotifyPropertyChanged();
-            }
-        }
-        public int ValueQty
-        {
-            get
-            {
-                Console.WriteLine("Quantity: " + this.valueQty);
-                return this.valueQty;
-            }
-
-            set
-            {
-                if (this.valueQty == value)
-                {
-                    return;
-                }
-
-                this.valueQty = value;
                 this.NotifyPropertyChanged();
             }
         }
@@ -279,16 +285,19 @@ namespace PasaBuy.App.ViewModels.eCommerce
         /// <param name="obj">The Object</param>
         private async void PlaceOrderClicked(object obj)
         {
-            if (!isCartClicked)
-            { 
-                isCartClicked = true;
-                CheckoutPageViewModel.coupon = this.DiscountPercent;
-                CheckoutPageViewModel.discount = this.DiscountPrice;
-                CheckoutPageViewModel.totalprice = this.TotalPrice;
-                CheckoutPageViewModel.charges = "Free";
-                await Application.Current.MainPage.Navigation.PushModalAsync(new CheckoutPage());
-                await Task.Delay(100);
-                isCartClicked = false;
+            if (CartDetails.Count != 0)
+            {
+                if (!isCartClicked)
+                {
+                    isCartClicked = true;
+                    CheckoutPageViewModel.coupon = this.DiscountPercent;
+                    CheckoutPageViewModel.discount = this.DiscountPrice;
+                    CheckoutPageViewModel.totalprice = this.TotalPrice;
+                    CheckoutPageViewModel.charges = "Free";
+                    await Application.Current.MainPage.Navigation.PushModalAsync(new CheckoutPage());
+                    await Task.Delay(100);
+                    isCartClicked = false;
+                }
             }
         }
 
@@ -309,6 +318,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     //sfPopupView.ShowPopUp(content: "Your cart is empty!", buttonText: "CONTINUE SHOPPING");
                     // Back to StoreDetails or Show EmptyCartPage then the cartitemCount is 0;
                     await NavigateToPage(new EmptyCartPage());
+
                 }
             }
         }

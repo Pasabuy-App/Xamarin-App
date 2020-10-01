@@ -41,9 +41,13 @@ namespace PasaBuy.App.Views.ErrorAndEmpty
             }
         }
 
-        private void SfButton_Clicked(object sender, System.EventArgs e)
+        private async void SfButton_Clicked(object sender, System.EventArgs e)
         {
-            Navigation.PopModalAsync();
+            int numModals = Application.Current.MainPage.Navigation.ModalStack.Count;
+            for (int currModal = 0; currModal < numModals; currModal++)
+            {
+                await Application.Current.MainPage.Navigation.PopModalAsync(false);
+            }
 
         }
     }

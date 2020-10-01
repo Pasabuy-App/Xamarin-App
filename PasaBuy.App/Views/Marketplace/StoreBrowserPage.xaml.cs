@@ -71,16 +71,21 @@ namespace PasaBuy.App.Views.Marketplace
 
         private void StoreTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
-            var item = e.ItemData as Store;
+            var item = e.ItemData as Categories;
             //App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
             //StoreDetailsViewModel.loadcategory(item.Id);
             //StoreDetailsViewModel.loadstoredetails(item.Id);
+            //StoreListPage.myTitle = item.Title;
+            StoreListPage.catid = item.Id;
+            //Console.WriteLine("Title " + item.Title);
+            StoreBrowserViewModel.storelist.Clear();
+            StoreBrowserViewModel.LoadStore(item.Id, "");
             App.Current.MainPage.Navigation.PushModalAsync(new StoreListPage());
         }
 
         private void RestaurantList_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
         {
-            var item = e.ItemData as Store;
+           /* var item = e.ItemData as Store;
             if (StoreBrowserViewModel.storelist.Last() == item && StoreBrowserViewModel.storelist.Count() != 1)
             {
                 if (StoreBrowserViewModel.storelist.IndexOf(item) >= LastIndex)
@@ -88,7 +93,7 @@ namespace PasaBuy.App.Views.Marketplace
                     LastIndex += 6;
                     StoreBrowserViewModel.LoadStore(item.Id);
                 }
-            }
+            }*/
         }
     }
 }

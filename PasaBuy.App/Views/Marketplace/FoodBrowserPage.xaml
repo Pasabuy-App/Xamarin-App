@@ -30,7 +30,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <StackLayout x:Name="TitleView"
+            <!--StackLayout x:Name="TitleView"
                 Padding="16,8"
                 Grid.Row="0" HeightRequest="50"
                 BackgroundColor="{DynamicResource Gray-White}"
@@ -51,9 +51,9 @@
                             HorizontalOptions="End"
                             VerticalOptions="Center"
                             WidthRequest="40">
-                        <badge:SfBadgeView.Content>
+                        <badge:SfBadgeView.Content-->
                             <!-- Command="{TemplateBinding BindingContext.CardItemCommand}" -->
-                            <buttons:SfButton
+                            <!--buttons:SfButton
                                     CornerRadius="4"
                                     HorizontalOptions="End"
                                     Style="{StaticResource IconButtonStyle}"
@@ -70,10 +70,10 @@
                                     StrokeWidth="1"
                                     Offset="-10,10" />
                         </badge:SfBadgeView.BadgeSettings>
-                    </badge:SfBadgeView>
+                    </badge:SfBadgeView-->
 
                     <!-- Restaurant page Title  -->
-                    <Label Margin="16,0"
+                    <!--Label Margin="16,0"
                         HeightRequest="24"
                         FontFamily="{StaticResource Montserrat-Medium}"
                         FontSize="16"
@@ -90,16 +90,16 @@
                              HorizontalOptions="EndAndExpand"
                              IsVisible="False"
                              Orientation="Horizontal"
-                             Spacing="0">
+                             Spacing="0"-->
 
                     <!--  Back to title layout  -->
-                    <buttons:SfButton x:Name="BackToTitle"
+                    <!--buttons:SfButton x:Name="BackToTitle"
                         Clicked="BackToTitle_Clicked"
                         Style="{StaticResource NavigationBarButtonStyle}"
-                        Text="{StaticResource Back}" />
+                        Text="{StaticResource Back}" /-->
 
                     <!--  Rounded Search Entry  -->
-                    <border:SfBorder Style="{DynamicResource SfBorderStyle}">
+                    <!--border:SfBorder Style="{DynamicResource SfBorderStyle}">
 
                         <controls:BorderlessEntry x:Name="SearchEntry"
                             BindingContext="{x:Reference RestaurantList}"
@@ -107,18 +107,18 @@
                             Placeholder="Search here"
                             Text="{Binding SearchText, Mode=TwoWay}"
                             Style="{StaticResource SearchEntryStyle}"/>
-                    </border:SfBorder>
+                    </>
 
-                </StackLayout>
+                </StackLayout-->
 
                 <!--  Search Button  -->
-                <buttons:SfButton x:Name="SearchButton"
+                <!--buttons:SfButton x:Name="SearchButton"
                     IsVisible="True"
                     Clicked="SearchButton_Clicked"
                     Style="{StaticResource NavigationBarButtonStyle }"
                     Text="{StaticResource Search}" />
 
-            </StackLayout>
+            </-->
 
             <!--  Separator  -->
             <BoxView   Grid.Row="1" Style="{StaticResource SeparatorStyle}" />

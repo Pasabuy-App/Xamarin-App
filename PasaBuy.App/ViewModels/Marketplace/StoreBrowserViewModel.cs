@@ -43,15 +43,28 @@ namespace PasaBuy.App.ViewModels.Marketplace
             get { return storelist; }
             set { storelist = value; this.NotifyPropertyChanged(); }
         }
+        /*public string myTitle = string.Empty;
+        public string MyTitle
+        {
+            get
+            {
+                return this.myTitle;
+            }
+            set
+            {
+                this.myTitle = value;
+                this.NotifyPropertyChanged();
+            }
+        }*/
 
         public StoreBrowserViewModel()
         {
             storelist = new ObservableCollection<Store>();
             itemCategories = new ObservableCollection<Categories>();
-            LoadStore("");
-            LoadCategory();
-
-
+            storelist.Clear();
+            itemCategories.Clear();
+            //LoadStore("");
+            //LoadCategory();
         }
 
 
@@ -59,21 +72,23 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             try
             {
-                TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "all", "", "1", "", (bool success, string data) =>
+                TindaPress.Category.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "all", "", "1", "1", (bool success, string data) =>
                 {
                     if (success)
                     {
                         StoreListData datas = JsonConvert.DeserializeObject<StoreListData>(data);
-                        Console.WriteLine(data);
+                        //Console.WriteLine(data);
                         for (int i = 0; i < datas.data.Length; i++)
                         {
 
-                            string category = datas.data[i].cat_name;
+                            string catid = datas.data[i].ID;
+                            string category = datas.data[i].title;
 
                             itemCategories.Add(new Categories()
                             {
+                                Id = catid,
                                 Title = category,
-                                Info = "https://pasabuy.app/wp-content/uploads/2020/09/a4f9c4b509d35d0697d09450fc2f20ba4893f630-tricycle-02.jpg?fbclid=IwAR2Sl_-CoFNEXiS6sZW_RWMBqzcu6QhcsBlan7wV7mWxwFRVUTnEqU-hdKg"
+                                Info = "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-product.png"
                             });
                         }
                     }
@@ -93,11 +108,11 @@ namespace PasaBuy.App.ViewModels.Marketplace
         #endregion
 
         #region Loadata
-        public static void LoadStore(string lastid)
+        public static void LoadStore(string catid, string lastid)
         {
             try
             {
-                TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "all", "", "1", lastid, (bool success, string data) =>
+                TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, "", "1", lastid, (bool success, string data) =>
                 {
                     if (success)
                     {

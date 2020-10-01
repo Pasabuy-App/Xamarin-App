@@ -20,76 +20,54 @@ namespace PasaBuy.App.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainTabs : ContentPage
     {
+        public bool isButton = false;
         public int i = 0;
         public MainTabs()
         {
             InitializeComponent();
+            isButton = false;
         }
 
         private async void TabView_TabItemTapped(object sender, Syncfusion.XForms.TabView.TabItemTappedEventArgs e)
         {
-            if (e.TabItem.Title == "HOME")
+            if (!isButton)
             {
-                if (i == 0)
+                isButton = true;
+                if (e.TabItem.Title == "HOME")
                 {
-                    i = 1;
-                    HomePage.LastIndex = 11;
-                    HomepageViewModel.homePostList.Clear();
-                    HomepageViewModel.LoadData("");
-                    MasterMenuViewModel.postbutton = string.Empty;
-                    await Task.Delay(500);
-                    i = 0;
+                        HomePage.LastIndex = 11;
+                        HomepageViewModel.homePostList.Clear();
+                        HomepageViewModel.LoadData("");
+                        MasterMenuViewModel.postbutton = string.Empty;
                 }
-            }
-            if (e.TabItem.Title == "STORE")
-            {
-                if (i == 0)
+                if (e.TabItem.Title == "STORE")
                 {
-                    i = 1;
-                    StoreBrowserPage.LastIndex = 11;
-                    StoreBrowserViewModel.storelist.Clear();
-                    StoreBrowserViewModel.LoadStore("");
-                    await Task.Delay(500);
-                    i = 0;
+                        //StoreBrowserPage.LastIndex = 11;
+                        StoreBrowserViewModel.itemCategories.Clear();
+                        StoreBrowserViewModel.LoadCategory();
                 }
-            }
-            if (e.TabItem.Title == "GROCERY")
-            {
-                if (i == 0)
+                if (e.TabItem.Title == "GROCERY")
                 {
-                    i = 1;
-                    GroceryBrowserPage.LastIndex = 11;
-                    GroceryBrowserViewModel.grocerystorelist.Clear();
-                    GroceryBrowserViewModel.LoadGrocery("");
-                    await Task.Delay(500);
-                    i = 0;
+                        GroceryBrowserPage.LastIndex = 11;
+                        GroceryBrowserViewModel.grocerystorelist.Clear();
+                        GroceryBrowserViewModel.LoadGrocery("");
                 }
-            }
-            if (e.TabItem.Title == "FOOD")
-            {
-                if (i == 0)
+                if (e.TabItem.Title == "FOOD")
                 {
-                    i = 1;
-                    FoodBrowserPage.LastIndex = 11;
-                    FoodBrowserViewModel.foodstorelist.Clear();
-                    FoodBrowserViewModel.LoadFood("");
-                    await Task.Delay(500);
-                    i = 0;
+                        FoodBrowserPage.LastIndex = 11;
+                        FoodBrowserViewModel.foodstorelist.Clear();
+                        FoodBrowserViewModel.LoadFood("");
                 }
-            }
-            if (e.TabItem.Title == "MESSAGE")
-            {
-                if (i == 0)
+                if (e.TabItem.Title == "MESSAGE")
                 {
-                    i = 1;
-                    MessagePage.LastIndex = 11;
-                    MessagePage.isFirstID = false;
-                    MessagePage.ids = 0;
-                    RecentChatViewModel.chatItems.Clear();
-                    RecentChatViewModel.LoadMesssage("");
-                    await Task.Delay(500);
-                    i = 0;
+                        MessagePage.LastIndex = 11;
+                        MessagePage.isFirstID = false;
+                        MessagePage.ids = 0;
+                        RecentChatViewModel.chatItems.Clear();
+                        RecentChatViewModel.LoadMesssage("");
                 }
+                await Task.Delay(500);
+                isButton = false;
             }
         }
     }

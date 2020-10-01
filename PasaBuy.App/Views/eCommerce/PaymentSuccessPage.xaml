@@ -40,19 +40,20 @@
                 <!--  Payment status label  -->
                 <Label
                     Margin="0,40,0,0"
-                    Style="{StaticResource LabelStyle}"
+                    FontSize="23"
+                    Style="{StaticResource PaymentDescriptionLabelStyle}"
                     Text="PAYMENT SUCCESS" />
 
                 <!--  Payment description label  -->
                 <Label
                     Margin="17,8"
-                    Style="{StaticResource DescriptionLabelStyle}"
+                    Style="{StaticResource PaymentDescriptionLabelStyle}"
                     Text="Thank you for your payment. An automated payment receipt will be sent to your registered email." />
 
                 <button:SfButton
-                    Command="{Binding TrackOrderCommand}"
                     Style="{StaticResource SfGradientButtonStyle}"
-                    Text="TRACK YOUR ORDER" />
+                    Clicked="SfButton_Clicked"
+                    Text="GO BACK" />
 
             </StackLayout>
         </ScrollView>
