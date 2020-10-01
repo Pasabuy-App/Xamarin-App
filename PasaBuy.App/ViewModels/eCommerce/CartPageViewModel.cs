@@ -285,16 +285,19 @@ namespace PasaBuy.App.ViewModels.eCommerce
         /// <param name="obj">The Object</param>
         private async void PlaceOrderClicked(object obj)
         {
-            if (!isCartClicked)
-            { 
-                isCartClicked = true;
-                CheckoutPageViewModel.coupon = this.DiscountPercent;
-                CheckoutPageViewModel.discount = this.DiscountPrice;
-                CheckoutPageViewModel.totalprice = this.TotalPrice;
-                CheckoutPageViewModel.charges = "Free";
-                await Application.Current.MainPage.Navigation.PushModalAsync(new CheckoutPage());
-                await Task.Delay(100);
-                isCartClicked = false;
+            if (CartDetails.Count != 0)
+            {
+                if (!isCartClicked)
+                {
+                    isCartClicked = true;
+                    CheckoutPageViewModel.coupon = this.DiscountPercent;
+                    CheckoutPageViewModel.discount = this.DiscountPrice;
+                    CheckoutPageViewModel.totalprice = this.TotalPrice;
+                    CheckoutPageViewModel.charges = "Free";
+                    await Application.Current.MainPage.Navigation.PushModalAsync(new CheckoutPage());
+                    await Task.Delay(100);
+                    isCartClicked = false;
+                }
             }
         }
 

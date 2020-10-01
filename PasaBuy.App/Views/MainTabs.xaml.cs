@@ -42,9 +42,9 @@ namespace PasaBuy.App.Views
                 }
                 if (e.TabItem.Title == "STORE")
                 {
-                        StoreBrowserPage.LastIndex = 11;
-                        StoreBrowserViewModel.storelist.Clear();
-                        StoreBrowserViewModel.LoadStore("");
+                        //StoreBrowserPage.LastIndex = 11;
+                        StoreBrowserViewModel.itemCategories.Clear();
+                        StoreBrowserViewModel.LoadCategory();
                 }
                 if (e.TabItem.Title == "GROCERY")
                 {

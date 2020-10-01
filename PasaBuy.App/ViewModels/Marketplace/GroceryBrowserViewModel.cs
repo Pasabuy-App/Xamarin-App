@@ -25,6 +25,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         public GroceryBrowserViewModel()
         {
             grocerystorelist = new ObservableCollection<Groceries>();
+            grocerystorelist.Clear();
             LoadGrocery("");
         }
 
