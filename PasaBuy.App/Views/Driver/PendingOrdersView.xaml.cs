@@ -1,4 +1,6 @@
-﻿using PasaBuy.App.Views.PopupModals;
+﻿using PasaBuy.App.Models.Driver;
+using PasaBuy.App.ViewModels.Driver;
+using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -17,10 +19,21 @@ namespace PasaBuy.App.Views.Driver
         public PendingOrdersView()
         {
             InitializeComponent();
+            this.BindingContext = new AcceptedOrderViewModel();
+            
+
+
         }
 
         private void PendingOrders_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
+            var smp = e.ItemData as AcceptedListOrder;
+
+            StartDeliveryPage.StoreLatittude = smp.WaypointLat;
+            StartDeliveryPage.StoreLongitude = smp.WaypointLong;
+            StartDeliveryPage.userLongitude = smp.DestinationLong;
+            StartDeliveryPage.UserLatitude = smp.DestinationLat;
+           
             Navigation.PushModalAsync(new StartDeliveryPage());
         }
     }

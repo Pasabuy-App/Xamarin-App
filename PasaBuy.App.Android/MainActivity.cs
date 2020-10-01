@@ -30,6 +30,7 @@ namespace PasaBuy.App.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
+            Context = this.ApplicationContext;
 
             base.OnCreate(savedInstanceState);
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
@@ -61,6 +62,24 @@ namespace PasaBuy.App.Droid
                 // Do something if there are not any pages in the `PopupStack`
             }
         }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+
+            if ((int)Build.VERSION.SdkInt >= 23)
+            {
+                if (CheckSelfPermission(Manifest.Permission.AccessFineLocation) != Permission.Granted)
+                {
+                    RequestPermissions(LocationPermissions, RequestLocationId);
+                }
+                else
+                {
+                    // Permissions already granted - display a message.
+                }
+            }
+        }
+
 
     }
 }

@@ -27,7 +27,7 @@
                     <controls:TitleView.LeadingView>
                         <buttons:SfButton
                             x:Name="backButton"
-                            Clicked="BackButtonClicked"
+                            Clicked="backButton_Clicked"
                             CornerRadius="4"
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
@@ -43,7 +43,7 @@
                 <RowDefinition Height="75*" />
                 <RowDefinition Height="25*" />
             </Grid.RowDefinitions>
-            <maps:Map x:Name="map" MyLocationEnabled="True" Grid.Row="0" />
+            <maps:Map x:Name="map" MyLocationEnabled="True" HasZoomEnabled="True" Grid.Row="0" />
 
             <yummy:PancakeView
                     Grid.Row="1"
@@ -84,6 +84,7 @@
                                VerticalTextAlignment="Center"
                                HorizontalTextAlignment="Center"
                                Text="15 mins "
+                               x:Name="Minutes"
                                TextColor="{DynamicResource BlackColor}" />
                         <Label FontSize="18"
                                Margin="25,0,0,0"
@@ -100,10 +101,13 @@
                                VerticalTextAlignment="Center"
                                HorizontalTextAlignment="Start"
                                Text="12 km"
+                               x:Name="Distance"
                                TextColor="{DynamicResource BlackColor}" />
                         <buttons:SfButton
                             Grid.Column="4"
                             TextColor="White"
+                            x:Name="StartDelivery"
+                            Clicked="StartDelivery_Clicked"
                             BackgroundColor="{DynamicResource PrimaryColor}"
                             Style="{StaticResource SfButtonStyle}"
                             Text="Start Delivery" />
@@ -144,7 +148,7 @@
                                VerticalTextAlignment="Center"
                                HorizontalTextAlignment="Start"
                                Text="Store Name"
-                               x:Name="Store"
+                               x:Name="StoreName"
                                TextColor="{DynamicResource Gray-900}" />
 
                         <Label Grid.Row="1"
@@ -155,7 +159,7 @@
                                VerticalTextAlignment="Center"
                                HorizontalTextAlignment="Start"
                                Text="Order #143 | 5 mins ago"
-                               x:Name="Order"
+                               x:Name="OrderIDandOrderTime"
                                TextColor="{DynamicResource Gray-900}" />
           
                         <Label FontSize="18"
@@ -175,6 +179,7 @@
                                FontFamily="{StaticResource Montserrat-Medium}"
                                Padding="10,5,0,0"
                                FontSize="12"
+                               x:Name="StoreAddress"
                                VerticalTextAlignment="Center"
                                HorizontalTextAlignment="Start"
                                Text="Alabang, Muntinlupa City (Store address)"
@@ -198,6 +203,7 @@
                                FontSize="12"
                                VerticalTextAlignment="Center"
                                HorizontalTextAlignment="Start"
+                               x:Name="ClientAddress"
                                Text="#4 Rainbow Ave, San Pedro, Laguna (Delivery Address)"
                                TextColor="{DynamicResource Gray-900}" />
 
