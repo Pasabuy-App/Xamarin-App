@@ -53,6 +53,7 @@
                         TitleFontColor="{DynamicResource Gray-700}"
                         TitleFontFamily="{StaticResource Montserrat-Medium}"
                         TitleFontSize="14">
+                    
                     <tabView:SfTabItem.Content>
                         <sync:SfListView x:Name="NewOrders"
                                                  AutoFitMode="Height"

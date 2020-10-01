@@ -175,6 +175,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LocationUpdateService.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="Renderers\BorderlessDatePickerRenderer.cs" />
