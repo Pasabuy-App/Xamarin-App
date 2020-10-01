@@ -6,6 +6,7 @@
              x:Class="PasaBuy.App.Views.Settings.FAQPage" 
              xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Expander;assembly=Syncfusion.Expander.XForms"
              x:Name="FAQ"   
+             BackgroundColor="{StaticResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>

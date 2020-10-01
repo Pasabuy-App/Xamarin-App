@@ -5,6 +5,7 @@
              xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              x:Class="PasaBuy.App.Views.Settings.VerifyAccountFront"
+             BackgroundColor="{StaticResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <ResourceDictionary>

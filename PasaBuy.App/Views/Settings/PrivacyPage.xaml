@@ -7,6 +7,7 @@
              NavigationPage.HasNavigationBar="False"
              xmlns:controls="clr-namespace:PasaBuy.App.Controls"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+             BackgroundColor="{StaticResource Gray-White}"
              x:Class="PasaBuy.App.Views.Settings.PrivacyPage">
     <ContentPage.Resources>
         <ResourceDictionary>

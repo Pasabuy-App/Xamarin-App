@@ -8,7 +8,8 @@
              NavigationPage.HasNavigationBar="False"
              xmlns:helper="clr-namespace:PasaBuy.App.Helpers" 
              xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.eCommerce"
-             x:Class="PasaBuy.App.Views.Settings.MyTransactionsPage">
+             x:Class="PasaBuy.App.Views.Settings.MyTransactionsPage"
+             BackgroundColor="{DynamicResource Gray-White}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

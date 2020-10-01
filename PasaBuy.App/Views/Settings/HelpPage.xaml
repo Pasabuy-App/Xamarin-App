@@ -10,6 +10,7 @@
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              mc:Ignorable="d"
              x:Name="helpPage"
+             BackgroundColor="{StaticResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>

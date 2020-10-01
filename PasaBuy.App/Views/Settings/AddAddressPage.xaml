@@ -6,10 +6,9 @@
              xmlns:controls="clr-namespace:PasaBuy.App.Controls"
              xmlns:converter="clr-namespace:PasaBuy.App.Converters"
              xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
-             xmlns:local="clr-namespace:PasaBuy.App.CustomRenderers"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             BackgroundColor="White">
+             BackgroundColor="{DynamicResource Gray-White}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:BooleanToColorConverter x:Key="ColorConverter" />
@@ -22,7 +21,7 @@
     <ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0" >
-                <controls:TitleView Title="New Contact Information" 
+                <controls:TitleView Title="New Address" 
                                     FontSize="14"
                                     BackgroundColor="{DynamicResource PrimaryColor}" >
                     <controls:TitleView.LeadingView >
