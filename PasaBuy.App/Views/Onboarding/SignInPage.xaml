@@ -47,15 +47,9 @@
                 </ScrollView.VerticalOptions>
 
                 <StackLayout
-                Margin="{core:OnPlatformOrientationThickness PhonePortrait='24,62',
-                                                             PhoneLandscape='150,32',
-                                                             TabletPortrait='200,50',
-                                                             TabletLandscape='350,50',
-                                                             Desktop='30'}"
                 Spacing="0"
-                VerticalOptions="FillAndExpand"
-                WidthRequest="{OnPlatform Default='-1',
-                                          UWP='400'}">
+                Padding="20,0,20,0"
+                VerticalOptions="FillAndExpand">
 
                     <Grid RowSpacing="0" VerticalOptions="CenterAndExpand">
 
