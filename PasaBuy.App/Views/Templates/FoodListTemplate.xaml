@@ -24,7 +24,7 @@
         <Image Grid.Row="0"
             Aspect="AspectFill"
             BackgroundColor="{DynamicResource Gray-200}"
-            HeightRequest="180" >
+            HeightRequest="240" >
             <Image.Source>
                 <UriImageSource
                     CacheValidity="14"
