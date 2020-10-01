@@ -11,6 +11,7 @@
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:local="clr-namespace:PasaBuy.App.Views.Chat"
     xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Chat"
+    BackgroundColor="{DynamicResource Gray-White}"
     NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
