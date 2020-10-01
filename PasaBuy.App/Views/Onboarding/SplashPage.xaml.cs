@@ -19,8 +19,8 @@ namespace PasaBuy.App.Views.Onboarding
         {
             base.OnAppearing();
 
-            await SplashLogo.ScaleTo(1.0, 1000);
-            await SplashLogo.ScaleTo(1.5, 1500, Easing.Linear);
+            /*await SplashLogo.ScaleTo(1.0, 1000);
+            await SplashLogo.ScaleTo(1.5, 1500, Easing.Linear);*/
 
             CheckConnectivityAndToken();
         }

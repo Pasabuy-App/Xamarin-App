@@ -214,7 +214,10 @@ namespace PasaBuy.App.ViewModels.Onboarding
 
         private void EndGettingStarted()
         {
-            App.Current.MainPage = new SignInPage();
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                App.Current.MainPage = new SignInPage();
+            });
         }
 
         #endregion

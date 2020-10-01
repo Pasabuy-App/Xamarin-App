@@ -99,6 +99,12 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                         if (success)
                         {
                             DocumentData post = JsonConvert.DeserializeObject<DocumentData>(data);
+
+                            if(post.data == null)
+                            {
+                                return;
+                            }
+
                             for (int i = 0; i < post.data.Length; i++)
                             {
                                 string id = post.data[i].ID;

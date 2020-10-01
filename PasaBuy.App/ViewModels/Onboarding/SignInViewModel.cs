@@ -1,13 +1,9 @@
 ﻿using PasaBuy.App.Views.Onboarding;
-using PasaBuy.App.Views.Master;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using System.Diagnostics;
 using System;
 using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Controllers;
 using Newtonsoft.Json;
 using PasaBuy.App.Models.Onboarding;
 using DataVice;
@@ -132,6 +128,11 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void LoginClicked(object obj)
         {
+            if( string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password) )
+            {
+                return; //Disrupt process, required field is required!
+            }
+
             try
             {
                 State = true;
@@ -186,9 +187,13 @@ namespace PasaBuy.App.ViewModels.Onboarding
                                     PSACache.Instance.UserInfo.store_logo = uinfo.data.store_logo;
                                     PSACache.Instance.UserInfo.store_banner = uinfo.data.store_banner;
 
-                                    State = false;
-                                    Application.Current.MainPage = new Views.MainTabs();
                                     PSACache.Instance.SaveUserData();
+
+                                    Device.BeginInvokeOnMainThread(() =>
+                                    {
+                                        Application.Current.MainPage = new Views.MainTabs();
+                                        State = false;
+                                    });
                                 }
 
                                 else
@@ -224,7 +229,12 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void SignUpClicked(object obj)
         {
-            App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new SignUpPage()));
+            State = true;
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                App.Current.MainPage.Navigation.PushModalAsync(new SignUpPage());
+                State = false;
+            });
         }
 
         /// <summary>
@@ -233,7 +243,12 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void ForgotPasswordClicked(object obj)
         {
-            App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new ForgotPwPage()));
+            State = true;
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                App.Current.MainPage.Navigation.PushModalAsync(new ForgotPwPage());
+                State = false;
+            });
         }
 
         /// <summary>
