@@ -29,7 +29,7 @@
                 <UriImageSource
                     CacheValidity="14"
                     CachingEnabled="true"
-                    Uri="{Binding Banner}"/>
+                    Uri="https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg"/>
             </Image.Source>
         </Image>
 
