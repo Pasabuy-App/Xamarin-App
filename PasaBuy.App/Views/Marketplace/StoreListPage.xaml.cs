@@ -1,4 +1,5 @@
 ﻿using PasaBuy.App.Models.Marketplace;
+using PasaBuy.App.ViewModels.Marketplace;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,10 @@ namespace PasaBuy.App.Views.Marketplace
         {
             var item = e.ItemData as Store;
             //App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+            //StoreDetailsViewModel.loadcategory(item.Id);
+            //StoreDetailsViewModel.loadstoredetails(item.Id);
+
+            //StoreDetailsViewModel.store_id = item.Id;
             //StoreDetailsViewModel.loadcategory(item.Id);
             //StoreDetailsViewModel.loadstoredetails(item.Id);
             App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());

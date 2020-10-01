@@ -241,7 +241,7 @@
                                                                                                             Margin="8,5,16,0"
                                                                                                             HeightRequest="70"
                                                                                                             WidthRequest="80"
-                                                                                                            Source="Idcard.png"
+                                                                                                            Source="{Binding PreviewImage}"
                                                                                                             x:Name="ProductImage"
 			                                                                                                DownsampleToViewSize="True" 
                                                                                                             FadeAnimationEnabled="True">

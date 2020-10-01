@@ -27,7 +27,7 @@ namespace PasaBuy.App.Views.Marketplace
         private void GroceriesTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
             var item = e.ItemData as Groceries;
-
+            StoreDetailsViewModel.store_id = item.Id;
             StoreDetailsViewModel.loadcategory(item.Id);
             StoreDetailsViewModel.loadstoredetails(item.Id);
             App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());

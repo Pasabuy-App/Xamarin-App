@@ -324,12 +324,12 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     //Console.WriteLine("Store ID: " + StoreDetailsViewModel.store_id + " Total Count: " + CartPageViewModel.cartDetails.Count);
                     foreach (var car in CartPageViewModel.cartDetails)
                     {
+                        //Console.WriteLine("Data: " + car.ID.ToString() + " STID: " + car.Stid.ToString()); // Success Page
                         Customers.Instance.Create(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, car.Stid.ToString(), car.ID.ToString(), "1", "1", "", (bool success, string data) =>
                         {
                             if (success)
                             {
-                                new Alert("Your Name", "Ruben", "Try Again");
-                                Console.WriteLine("Data: " + car.ID.ToString() + " STID: " + car.Stid.ToString()); // Success Page
+                                new Alert("Your Name", "Ruben", "Success");
                             }
                             else
                             {

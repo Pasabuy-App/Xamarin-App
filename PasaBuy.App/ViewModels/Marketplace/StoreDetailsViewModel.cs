@@ -281,6 +281,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                     productsList.Add(new ProductList()
                                     {
                                         ID = catRoot.data[i].products[j].ID,
+                                        PreviewImage = PSAProc.GetUrl(catRoot.data[i].products[j].preview) == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-product.png" : PSAProc.GetUrl(catRoot.data[i].products[j].preview),
                                         /*Name = catRoot.data[i].products[j].product_name,
                                         ActualPrice = Convert.ToDouble(catRoot.data[i].products[j].price),
                                         Description = catRoot.data[i].products[j].short_info*/

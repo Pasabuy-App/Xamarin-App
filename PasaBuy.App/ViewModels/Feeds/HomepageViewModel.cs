@@ -91,7 +91,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                             {
                                 //title = "Pasabuy - Hide";
                                 title = "<b> Destination: " + post.data[i].pickup_location + " </b>";
-                                pickup_location = "Date: " + post.data[i].vehicle_date.Substring(0, 10);
+                                pickup_location = string.IsNullOrEmpty(post.data[i].vehicle_date) ? "Date: " : "Date: " + post.data[i].vehicle_date.Substring(0, 10);
                                 vehicle_type = "Return Place: " + post.data[i].drop_off_location; 
                                 do_price = "Time: " + post.data[i].time_price;
                             }
@@ -99,7 +99,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                             {
                                 //title = "Pasabuy - Hide";
                                 title = "<b> Pick-up: " + post.data[i].pickup_location + " </b>";
-                                pickup_location = "Date: " + post.data[i].vehicle_date.Substring(0,10);
+                                pickup_location = string.IsNullOrEmpty(post.data[i].vehicle_date) ? "Date: " : "Date: " + post.data[i].vehicle_date.Substring(0, 10);
                                 vehicle_type = "Drop-off: " + post.data[i].drop_off_location;
                                 do_price = "Time: " + post.data[i].time_price;
                             }
@@ -107,7 +107,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                             {
                                 title = "Item Name: " + post.data[i].title;
                                 content = "Description: " + post.data[i].content;
-                                pickup_location = "Date: " + post.data[i].vehicle_date.Substring(0, 10);
+                                pickup_location = string.IsNullOrEmpty(post.data[i].vehicle_date) ? "Date: " : "Date: " + post.data[i].vehicle_date.Substring(0, 10);
                                 vehicle_type = "Location: " + post.data[i].pickup_location; 
                                 do_price = "Time: " + post.data[i].time_price;
                             }
