@@ -40,9 +40,10 @@
 
     <ContentView.Content>
         <ScrollView>
-            <StackLayout Spacing="0">
-                <ffimageloading:CachedImage Aspect="Fill"
-                                            Source="https://pasabuy.app/wp-content/uploads/2020/09/a4f9c4b509d35d0697d09450fc2f20ba4893f630-tricycle-02.jpg?fbclid=IwAR2Sl_-CoFNEXiS6sZW_RWMBqzcu6QhcsBlan7wV7mWxwFRVUTnEqU-hdKg"
+            <StackLayout Spacing="0" Padding="0,0,0,20">
+                <ffimageloading:CachedImage Aspect="AspectFill"
+                                            HeightRequest="325"
+                                            Source="https://pasabuy.app/wp-content/uploads/2020/10/Motorcycle.png"
 			                                DownsampleToViewSize="True" 
                                             FadeAnimationEnabled="True">
                 </ffimageloading:CachedImage>
