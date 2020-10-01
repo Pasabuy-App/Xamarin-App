@@ -84,17 +84,8 @@
 
     <!--  Common style for buttons  -->
     <Style x:Key="SfButtonStyle" TargetType="buttons:SfButton">
-        <Setter Property="BackgroundGradient">
-            <Setter.Value>
-                <graphics:SfLinearGradientBrush>
-                    <graphics:SfLinearGradientBrush.GradientStops>
-                        <graphics:SfGradientStop Offset="0" Color="{DynamicResource Yellow}" />
-                        <graphics:SfGradientStop Offset="1" Color="{DynamicResource Yellow}" />
-                    </graphics:SfLinearGradientBrush.GradientStops>
-                </graphics:SfLinearGradientBrush>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-200}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-800}" />
         <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
         <Setter Property="BorderWidth" Value="0" />
         <Setter Property="FontSize" Value="16" />
