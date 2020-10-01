@@ -26,7 +26,7 @@
                             TabItemTapped="TabView_TabItemTapped"
                             TabHeaderPosition="Top"
                             VisibleHeaderCount="6" 
-                            EnableSwiping="true" 
+                            EnableSwiping="false" 
                             DisplayMode="Image">
 
             <!--TABS CONFIGS-->
