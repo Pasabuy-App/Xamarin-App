@@ -167,15 +167,15 @@
                     IsVisible="{Binding State}"
                     AbsoluteLayout.LayoutBounds="0,0,1,1"
                     AbsoluteLayout.LayoutFlags="All"
-                    BackgroundColor="Gray" Opacity="0.5" ClassId="123">
+                    BackgroundColor="White" Opacity="0.35" ClassId="123">
                     <ActivityIndicator
                         x:Name="isBusy"
                         IsRunning="true"
                         HorizontalOptions="CenterAndExpand"
                         VerticalOptions="CenterAndExpand"
-                        HeightRequest="80"
-                        WidthRequest="80"
-                        Color="Black"/>
+                        HeightRequest="50"
+                        WidthRequest="50"
+                        Color="{DynamicResource PrimaryColor}"/>
                 </StackLayout>
 
             </AbsoluteLayout>
