@@ -40,27 +40,30 @@ namespace PasaBuy.App.Views.Driver
                     if (success)
                     {
                         OrderListData datas = JsonConvert.DeserializeObject<OrderListData>(data);
-
-                        for (int i = 0; i < datas.data.Length; i++)
+                        if (datas.data.Length != 0 )
                         {
-                            string store = datas.data[i].store;
-                            string costumer_address = datas.data[i].customer_address;
-                            string store_address = datas.data[i].store_address;
-                            double user_lat = datas.data[i].customer_lat;
-                            double user_long = datas.data[i].customer_long;
-                            double store_lat = datas.data[i].store_lat;
-                            double store_long = datas.data[i].store_long;
-                            string order_time = datas.data[i].date_ordered;
-                            string product = datas.data[i].product;
+                            for (int i = 0; i < datas.data.Length; i++)
+                            {
+                                string store = datas.data[i].store;
+                                string costumer_address = datas.data[i].customer_address;
+                                string store_address = datas.data[i].store_address;
+                                double user_lat = datas.data[i].customer_lat;
+                                double user_long = datas.data[i].customer_long;
+                                double store_lat = datas.data[i].store_lat;
+                                double store_long = datas.data[i].store_long;
+                                string order_time = datas.data[i].date_ordered;
+                                string product = datas.data[i].product;
 
-                            Views.PopupModals.PopupAcceptOrder.item_id = id.ToString();
-                            Views.PopupModals.PopupAcceptOrder.storeName = store;
-                            Views.PopupModals.PopupAcceptOrder.waypointAddress = store_address;
-                            Views.PopupModals.PopupAcceptOrder.destinationAddress = costumer_address;
-                            Views.PopupModals.PopupAcceptOrder.orderTime = order_time;
-                            Views.PopupModals.PopupAcceptOrder.orderName = product;
+                                Views.PopupModals.PopupAcceptOrder.item_id = id.ToString();
+                                Views.PopupModals.PopupAcceptOrder.storeName = store;
+                                Views.PopupModals.PopupAcceptOrder.waypointAddress = store_address;
+                                Views.PopupModals.PopupAcceptOrder.destinationAddress = costumer_address;
+                                Views.PopupModals.PopupAcceptOrder.orderTime = order_time;
+                                Views.PopupModals.PopupAcceptOrder.orderName = product;
+                            }
+                            PopupNavigation.Instance.PushAsync(new PopupAcceptOrder());
                         }
-                        PopupNavigation.Instance.PushAsync(new PopupAcceptOrder());
+                        
                     }
                     else
                     {

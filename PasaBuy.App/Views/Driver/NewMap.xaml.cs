@@ -1,22 +1,46 @@
-﻿using System;
+﻿using PasaBuy.App.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using PasaBuy.App.ViewModels;
+using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
+using PasaBuy.App.DataService;
 
 namespace PasaBuy.App.Views.Driver
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewMap : ContentPage
     {
+        ILocationUpdateService loc;
         MapPageViewModel mapPageViewModel;
-        public bool start = false;
+
+        public double curlocLatitude = 0;
+        public double curlocLongitude = 0;
+
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            loc = DependencyService.Get<ILocationUpdateService>();
+            loc.LocationChanged += (object sender, ILocationEventArgs args) =>
+            {
+                curlocLatitude = args.Latitude;
+                curlocLongitude = args.Longitude;
+            };
+            loc.GetUserLocation();
+        }
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            loc = null;
+        }
+
         public NewMap()
         {
             InitializeComponent();
@@ -35,7 +59,7 @@ namespace PasaBuy.App.Views.Driver
             map.MoveToRegion(MapSpan.FromCenterAndRadius(pins.Position, Distance.FromKilometers(5000)));
         }
 
-        public async void DisplayCurloc()
+       /* public async void DisplayCurloc()
         {
             try
             {
@@ -73,7 +97,20 @@ namespace PasaBuy.App.Views.Driver
             }
         }
 
-        // Load Vechicle
+
+        private void ApplyMapTheme()
+        {
+            var assembly = typeof(NewMap).GetTypeInfo().Assembly;
+            var stream = assembly.GetManifestResourceStream($"polyline.Theme.json");
+            Console.WriteLine(stream + "theme");
+            string themeFile;
+            using (var reader = new System.IO.StreamReader(stream))
+            {
+
+                themeFile = reader.ReadToEnd();
+            }
+            map.MapStyle = MapStyle.FromJson(themeFile);
+        }
         async void Button_Clicked(System.Object sender, System.EventArgs e)
         {
             var contents = await mapPageViewModel.LoadVehicles();
@@ -99,8 +136,7 @@ namespace PasaBuy.App.Views.Driver
             map.MoveToRegion(MapSpan.FromCenterAndRadius(positions, Distance.FromMeters(500)));
 
         }
-       
-        // Update vechicle
+        // Update Vehicle
         void Button_Clicked_1(System.Object sender, System.EventArgs e)
         {
             var positions = new Position(28.126825, 82.297106);//Latitude, Longitude
@@ -109,8 +145,7 @@ namespace PasaBuy.App.Views.Driver
             Device.StartTimer(TimeSpan.FromSeconds(5), () => TimerStarted());
 
         }
-       
-        // Strart  timer
+
         private bool TimerStarted()
         {
             Device.BeginInvokeOnMainThread(async () =>
@@ -118,22 +153,41 @@ namespace PasaBuy.App.Views.Driver
                 Compass.Start(SensorSpeed.UI, applyLowPassFilter: true);
                 Compass.ReadingChanged += Compass_ReadingChanged;
                 map.Pins.Clear();
-                map.Polylines.Clear();
+                //map.Polylines.Clear();
                 //Get the cars nearrby from api but here we are hardcoding the contents
                 var contents = await mapPageViewModel.LoadVehicles();
+                var positionIndex = 1;
+
                 if (contents != null)
                 {
                     foreach (var item in contents)
                     {
+                        var smp = positionIndex + 1;
                         Pin VehiclePins = new Pin()
                         {
                             Label = "Cars",
                             Type = PinType.Place,
-                            Icon = (Device.RuntimePlatform == Device.Android) ? BitmapDescriptorFactory.FromBundle("CarPins.png") : BitmapDescriptorFactory.FromView(new Image() { Source = "CarPins.png", WidthRequest = 30, HeightRequest = 30 }),
+                            Icon = (Device.RuntimePlatform == Device.Android) ? BitmapDescriptorFactory.FromBundle("CarPins.png") : BitmapDescriptorFactory.FromView(new Image() { Source = "CarPins.png", WidthRequest = 10, HeightRequest = 10 }),
                             Position = new Position(Convert.ToDouble(item.Latitude), Convert.ToDouble(item.Longitude)),
                             Rotation = ToRotationPoints(headernothvalue)
                         };
                         map.Pins.Add(VehiclePins);
+                        map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(Convert.ToDouble(item.Latitude), Convert.ToDouble(item.Longitude)), Distance.FromMiles(0.1)));
+                        //Position ps = new Position(item.Latitude, item.Longitude);
+                        //UpdatePostions(ps);
+                         var cPin = map.Pins.FirstOrDefault();
+
+                         if (cPin != null)
+                         {
+                             cPin.Position = new Position(Convert.ToDouble(item.Latitude), Convert.ToDouble(item.Longitude));
+                             //cPin.Icon = (Device.RuntimePlatform == Device.Android) ? BitmapDescriptorFactory.FromBundle("CarPins.png") : BitmapDescriptorFactory.FromView(new Image() { Source = "CarPins.png", WidthRequest = 13, HeightRequest = 13 });
+                             map.MoveToRegion(MapSpan.FromCenterAndRadius(cPin.Position, Distance.FromMiles(0.1)));
+                             var previousPosition = map.Polylines?.FirstOrDefault()?.Positions?.FirstOrDefault();
+                             map.Polylines?.FirstOrDefault()?.Positions?.Remove(previousPosition.Value);
+                         }
+ 
+
+
                     }
                 }
             }
@@ -142,8 +196,7 @@ namespace PasaBuy.App.Views.Driver
             Compass.Stop();
             return true;
         }
-        
-        // Rotation Points
+
         private float ToRotationPoints(double headernothvalue)
         {
             return (float)headernothvalue;
@@ -151,14 +204,13 @@ namespace PasaBuy.App.Views.Driver
         }
 
         double headernothvalue;
-        
-        // Compas
         private void Compass_ReadingChanged(object sender, CompassChangedEventArgs e)
         {
             var data = e.Reading;
             headernothvalue = data.HeadingMagneticNorth;
         }
 
+        #region for pin drag
         void map_PinDragStart(System.Object sender, Xamarin.Forms.GoogleMaps.PinDragEventArgs e)
         {
 
@@ -190,16 +242,33 @@ namespace PasaBuy.App.Views.Driver
             map.MoveToRegion(MapSpan.FromCenterAndRadius(positions, Distance.FromMeters(500)));
         }
 
-        // Trach path
-        public async void TrackPath_Clicked(System.Object sender, System.EventArgs e)
+        #endregion
+
+        async void TrackPath_Clicked(System.Object sender, System.EventArgs e)
         {
+            map.Polylines.Clear();
+            Device.StartTimer(TimeSpan.FromSeconds(1), () => TimerStarted());
+
+
             var request = new GeolocationRequest(GeolocationAccuracy.Medium);
             var location = await Geolocation.GetLocationAsync(request);
-            Position riderPosition = new Position(location.Latitude, location.Longitude);
+            Position pos = new Position(curlocLatitude, curlocLongitude);
 
-            var pathcontent = await mapPageViewModel.LoadRoute(riderPosition, "14.3335787", "121.0525191", "Driving", "14.330481", "121.0471225");
+            var pathcontent = await mapPageViewModel.LoadRoute(pos);
 
-            map.Polylines.Clear();
+
+            //var assembly = typeof(MainPage).GetTypeInfo().Assembly;
+            //var stream = assembly.GetManifestResourceStream($"XamGMaps.MapResources.TrackPath.json");
+            //string trackPathFile;
+
+            //using (var reader = new System.IO.StreamReader(stream))
+            //{
+            //    trackPathFile = reader.ReadToEnd();
+            //}
+
+            //var myJson = JsonConvert.DeserializeObject<List<Xamarin.Forms.GoogleMaps.Position>>(trackPathFile);
+
+
 
             var polyline = new Xamarin.Forms.GoogleMaps.Polyline();
             polyline.StrokeColor = Color.DarkOrange;
@@ -211,9 +280,9 @@ namespace PasaBuy.App.Views.Driver
 
             }
             map.Polylines.Add(polyline);
-            //0.50f
-            map.MoveToRegion(MapSpan.FromCenterAndRadius(new Xamarin.Forms.GoogleMaps.Position(polyline.Positions[0].Latitude, polyline.Positions[0].Longitude), Xamarin.Forms.GoogleMaps.Distance.FromMiles(0.50f)));
 
+            map.MoveToRegion(MapSpan.FromCenterAndRadius(new Xamarin.Forms.GoogleMaps.Position(polyline.Positions[0].Latitude, polyline.Positions[0].Longitude), Xamarin.Forms.GoogleMaps.Distance.FromKilometers(3)));
+            string cars = "CircleImg.png";
             var pin = new Xamarin.Forms.GoogleMaps.Pin
             {
                 Type = PinType.SearchResult,
@@ -221,59 +290,45 @@ namespace PasaBuy.App.Views.Driver
                 Label = "Pin",
                 Address = "Pin",
                 Tag = "CirclePoint",
-                Icon = (Device.RuntimePlatform == Device.Android) ? BitmapDescriptorFactory.FromBundle("CircleImg.png") : BitmapDescriptorFactory.FromView(new Image() { Source = "CircleImg.png", WidthRequest = 25, HeightRequest = 25 })
+                Icon = (Device.RuntimePlatform == Device.Android) ? BitmapDescriptorFactory.FromBundle(cars) : BitmapDescriptorFactory.FromView(new Image() { Source = cars, WidthRequest = 5, HeightRequest = 5 })
 
             };
             map.Pins.Add(pin);
 
             var positionIndex = 1;
 
-            Device.StartTimer(TimeSpan.FromSeconds(1), () =>
-            {
-                if (pathcontent.Count > positionIndex)
-                {
-                    UpdatePostions(pathcontent[positionIndex], "driving");
-                    positionIndex++;
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            });
-        }
-        // Update Position of Rider to map
-        async void UpdatePostions(Xamarin.Forms.GoogleMaps.Position position, string mode)
+*/
+
+
+
+
+            /*  Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+              {
+                  if (pathcontent.Count > positionIndex)
+                  {
+                      UpdatePostions(pos);
+                       //positionIndex++;
+                       return true;
+                  }
+                  else
+                  {
+                      return false;
+                  }
+              });*/
+        //}
+
+       /* async void UpdatePostions(Xamarin.Forms.GoogleMaps.Position position)
         {
             if (map.Pins.Count == 1 && map.Polylines != null && map.Polylines?.Count > 1)
                 return;
 
-                var cPin = map.Pins.FirstOrDefault();
-                string modess = string.Empty;
-
-                // This condition change the image of user if rider, cyclists, car deliverer
-                switch (mode)
-                {
-                    case "Driving":
-                        modess = "CarPins.png";
-                        break;
-                    case "Bicycle":
-                        modess = "CarPins.png";
-                        break;
-                    case "MotorBike":
-                        modess = "CarPins.png";
-                        break;
-                    default:
-                        modess = "CarPins.png";
-                        break;
-            }
+            var cPin = map.Pins.FirstOrDefault();
 
             if (cPin != null)
             {
                 cPin.Position = new Xamarin.Forms.GoogleMaps.Position(position.Latitude, position.Longitude);
-                cPin.Icon = (Device.RuntimePlatform == Device.Android) ? BitmapDescriptorFactory.FromBundle(modess) : BitmapDescriptorFactory.FromView(new Image() { Source = modess, WidthRequest = 25, HeightRequest = 25 });
-                //map.MoveToRegion(MapSpan.FromCenterAndRadius(cPin.Position, Distance.FromMeters(200)));
-                map.MoveToRegion(MapSpan.FromCenterAndRadius(cPin.Position, Distance.FromMiles(2)));
+                //cPin.Icon = (Device.RuntimePlatform == Device.Android) ? BitmapDescriptorFactory.FromBundle("CarPins.png") : BitmapDescriptorFactory.FromView(new Image() { Source = "CarPins.png", WidthRequest = 13, HeightRequest = 13 });
+                map.MoveToRegion(MapSpan.FromCenterAndRadius(cPin.Position, Distance.FromMiles(0.1)));
                 var previousPosition = map.Polylines?.FirstOrDefault()?.Positions?.FirstOrDefault();
                 map.Polylines?.FirstOrDefault()?.Positions?.Remove(previousPosition.Value);
             }
@@ -281,67 +336,6 @@ namespace PasaBuy.App.Views.Driver
             {
                 map.Polylines?.FirstOrDefault()?.Positions?.Clear();
             }
-        }
-
-      /*  public async void LoadPath(string mode, string originAddress, string originLabel, string originLatitude, string originLongitude ,string waypointAddress, string waypointLabel, string waypointLatitude, string waypointLongitude, Position pos)
-        {
-            if (start == true)
-            {
-                // Load route in viewmodel
-                var pathcontent = await mapPageViewModel.LoadRoute();
-                
-                // Clear polyine first before create a new one 
-                map.Polylines.Clear();
-                var polyline = new Xamarin.Forms.GoogleMaps.Polyline();
-                polyline.StrokeColor = Color.DarkOrange;
-                polyline.StrokeWidth = 4;
-
-                foreach (var p in pathcontent)
-                {
-                    polyline.Positions.Add(p);
-
-                }
-                map.Polylines.Add(polyline);
-                map.MoveToRegion(MapSpan.FromCenterAndRadius(new Xamarin.Forms.GoogleMaps.Position(polyline.Positions[0].Latitude, polyline.Positions[0].Longitude), Xamarin.Forms.GoogleMaps.Distance.FromMiles(3)));
-                
-           
-
-                var pin = new Xamarin.Forms.GoogleMaps.Pin
-                {
-                    Type = PinType.SearchResult,
-                    Position = new Xamarin.Forms.GoogleMaps.Position(polyline.Positions.First().Latitude, polyline.Positions.First().Longitude),
-                    Label = "Pin",
-                    Address = "Pin",
-                    Tag = "CirclePoint",
-                    Icon = (Device.RuntimePlatform == Device.Android) ? BitmapDescriptorFactory.FromBundle("CircleImg.png") : BitmapDescriptorFactory.FromView(new Image() { Source = "CircleImg.png", WidthRequest = 25, HeightRequest = 25 })
-
-                };
-                map.Pins.Add(pin);
-                map.Pins.Add(pin);
-
-                var positionIndex = 1;
-
-                Device.StartTimer(TimeSpan.FromSeconds(1), () =>
-                {
-                    if (pathcontent.Count > positionIndex)
-                    {
-                        UpdatePostions(pathcontent[positionIndex], "driving");
-                        positionIndex++;
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                });
-
-            }
-            else
-            {
-                map.Polylines.Clear();
-            }
-
-
         }*/
     }
 }

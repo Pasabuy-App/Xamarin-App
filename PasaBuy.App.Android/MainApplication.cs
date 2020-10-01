@@ -1,11 +1,13 @@
 ﻿using Plugin.CurrentActivity;
 using PasaBuy.App.Local;
+
 #if DEBUG
 using System;
 using Android.App;
 using Android.Runtime;
+
 [Application(Debuggable = true)]
-//[Application(UsesCleartextTraffic = true)]
+//[Application(UsesCleartextTraffic =true)]
 #else
 	[Application(Debuggable = false)]
 #endif

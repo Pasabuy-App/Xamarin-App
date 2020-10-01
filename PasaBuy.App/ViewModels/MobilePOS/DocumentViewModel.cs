@@ -94,7 +94,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 }
                 if (MasterView.MyType == "mover")
                 {
-                    HatidPress.Documents.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "1", "", "", "", PSACache.Instance.UserInfo.wpid, (bool success, string data) =>
+                    HatidPress.Deliveries.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "1", "", "", "", PSACache.Instance.UserInfo.wpid, (bool success, string data) =>
                     {
                         if (success)
                         {
