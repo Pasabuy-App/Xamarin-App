@@ -21,14 +21,15 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <tabView:SfTabView BackgroundColor="{DynamicResource PrimaryColor}" 
-                           TabItemTapped="TabView_TabItemTapped"
-                           TabHeaderPosition="Top"
-                           VisibleHeaderCount="6" 
-                           EnableSwiping="true" 
-                           DisplayMode="Image">
 
-            <!--TAB SETTINGS-->
+        <tabView:SfTabView BackgroundColor="{DynamicResource PrimaryColor}" 
+                            TabItemTapped="TabView_TabItemTapped"
+                            TabHeaderPosition="Top"
+                            VisibleHeaderCount="6" 
+                            EnableSwiping="true" 
+                            DisplayMode="Image">
+
+            <!--TABS CONFIGS-->
             <tabView:SfTabView.SelectionIndicatorSettings>
                 <tabView:SelectionIndicatorSettings
                     AnimationDuration="250"
@@ -39,74 +40,23 @@
 
             <!--HOME TAB-->
             <tabView:SfTabItem Title="HOME" 
-                               IconFont="{StaticResource Home}"
-                               FontIconFontColor="{DynamicResource Gray-200}"
-                               FontIconFontFamily="{StaticResource FontFamily}"
-                               TitleFontColor="{DynamicResource Gray-200}"
-                               SelectionColor="{DynamicResource Gray-White}">
+                                IconFont="{StaticResource Home}"
+                                FontIconFontColor="{DynamicResource Gray-200}"
+                                FontIconFontFamily="{StaticResource FontFamily}"
+                                TitleFontColor="{DynamicResource Gray-200}"
+                                SelectionColor="{DynamicResource Gray-White}">
                 <tabView:SfTabItem.Content>
                     <home:HomePage/>
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
 
-
-
-
-            <!--<tabView:SfTabItem.Content>
-                    <tabView:SfTabView BackgroundColor="{DynamicResource Gray-100}" 
-                           TabItemTapped="TabView_TabItemTapped"
-                           TabHeaderPosition="Bottom"
-                           VisibleHeaderCount="3" 
-                           EnableSwiping="False" 
-                           DisplayMode="Text">
-                        <tabView:SfTabView.SelectionIndicatorSettings>
-                            <tabView:SelectionIndicatorSettings
-                                AnimationDuration="250"
-                                Color="{DynamicResource Gray-White}" 
-                                Position="Bottom" 
-                                StrokeThickness="3"/>
-                        </tabView:SfTabView.SelectionIndicatorSettings>
-                        <tabView:SfTabItem Title="ALL"
-                               IconFont="{StaticResource Home}"
-                               FontIconFontColor="{DynamicResource Gray-200}"
-                               FontIconFontFamily="{StaticResource FontFamily}"
-                               TitleFontColor="{DynamicResource Gray-Black}"
-                               SelectionColor="{DynamicResource Gray-900}">
-                            <tabView:SfTabItem.Content>
-                                <market:CatalogTilePage/>
-                            </tabView:SfTabItem.Content>
-                        </tabView:SfTabItem>
-                        <tabView:SfTabItem Title="NEWEST"
-                               IconFont="{StaticResource Market}"
-                               FontIconFontColor="{DynamicResource Gray-200}"
-                               FontIconFontFamily="{StaticResource FontFamily}"
-                               TitleFontColor="{DynamicResource Gray-Black}"
-                               SelectionColor="{DynamicResource Gray-900}">
-                            <tabView:SfTabItem.Content>
-                                <market:CatalogTilePage/>
-                            </tabView:SfTabItem.Content>
-                        </tabView:SfTabItem>
-                        <tabView:SfTabItem Title="POPULAR"
-                               IconFont="{StaticResource Stores}"
-                               FontIconFontColor="{DynamicResource Gray-200}"
-                               FontIconFontFamily="{StaticResource FontFamily}"
-                               TitleFontColor="{DynamicResource Gray-Black}"
-                               SelectionColor="{DynamicResource Gray-900}">
-                            <tabView:SfTabItem.Content>
-                                <market:CatalogTilePage/>
-                            </tabView:SfTabItem.Content>
-                        </tabView:SfTabItem>
-                    </tabView:SfTabView>
-                 
-                </tabView:SfTabItem.Content>-->
-
             <!--STORE TAB-->
             <tabView:SfTabItem Title="STORE"
-                               IconFont="{StaticResource Stores}"
-                               FontIconFontColor="{DynamicResource Gray-200}"
-                               FontIconFontFamily="{StaticResource FontFamily}"
-                               TitleFontColor="{DynamicResource Gray-200}"
-                               SelectionColor="{DynamicResource Gray-White}">
+                                IconFont="{StaticResource Stores}"
+                                FontIconFontColor="{DynamicResource Gray-200}"
+                                FontIconFontFamily="{StaticResource FontFamily}"
+                                TitleFontColor="{DynamicResource Gray-200}"
+                                SelectionColor="{DynamicResource Gray-White}">
                 <tabView:SfTabItem.Content>
                     <store:StoreBrowserPage/>
                 </tabView:SfTabItem.Content>
@@ -114,11 +64,11 @@
 
             <!--GROCERY TAB-->
             <tabView:SfTabItem Title="GROCERY"
-                               IconFont="{StaticResource Market}"
-                               FontIconFontColor="{DynamicResource Gray-200}"
-                               FontIconFontFamily="{StaticResource FontFamily}"
-                               TitleFontColor="{DynamicResource Gray-200}"
-                               SelectionColor="{DynamicResource Gray-White}">
+                                IconFont="{StaticResource Market}"
+                                FontIconFontColor="{DynamicResource Gray-200}"
+                                FontIconFontFamily="{StaticResource FontFamily}"
+                                TitleFontColor="{DynamicResource Gray-200}"
+                                SelectionColor="{DynamicResource Gray-White}">
                 <tabView:SfTabItem.Content>
                     <grocery:GroceryBrowserPage/>
                 </tabView:SfTabItem.Content>
@@ -126,11 +76,11 @@
 
             <!--FOOD TAB-->
             <tabView:SfTabItem Title="FOOD"
-                               IconFont="{StaticResource Food}"
-                               FontIconFontColor="{DynamicResource Gray-200}"
-                               FontIconFontFamily="{StaticResource FontFamily}"
-                               TitleFontColor="{DynamicResource Gray-200}"
-                               SelectionColor="{DynamicResource Gray-White}">
+                                IconFont="{StaticResource Food}"
+                                FontIconFontColor="{DynamicResource Gray-200}"
+                                FontIconFontFamily="{StaticResource FontFamily}"
+                                TitleFontColor="{DynamicResource Gray-200}"
+                                SelectionColor="{DynamicResource Gray-White}">
                 <tabView:SfTabItem.Content>
                     <food:FoodBrowserPage/>
                 </tabView:SfTabItem.Content>
@@ -138,11 +88,11 @@
 
             <!--MESSAGE TAB-->
             <tabView:SfTabItem Title="MESSAGE"
-                               IconFont="{StaticResource Message}"
-                               FontIconFontColor="{DynamicResource Gray-200}"
-                               FontIconFontFamily="{StaticResource FontFamily}"
-                               TitleFontColor="{DynamicResource Gray-200}"
-                               SelectionColor="{DynamicResource Gray-White}">
+                                IconFont="{StaticResource Message}"
+                                FontIconFontColor="{DynamicResource Gray-200}"
+                                FontIconFontFamily="{StaticResource FontFamily}"
+                                TitleFontColor="{DynamicResource Gray-200}"
+                                SelectionColor="{DynamicResource Gray-White}">
                 <tabView:SfTabItem.Content>
                     <chat:MessagePage/>
                 </tabView:SfTabItem.Content>
@@ -150,16 +100,17 @@
 
             <!--BURGER TAB-->
             <tabView:SfTabItem Title="MENU"
-                               IconFont="{StaticResource Menu}"
-                               FontIconFontColor="{DynamicResource Gray-200}"
-                               FontIconFontFamily="{StaticResource FontFamily}"
-                               TitleFontColor="{DynamicResource Gray-200}"
-                               SelectionColor="{DynamicResource Gray-White}">
+                                IconFont="{StaticResource Menu}"
+                                FontIconFontColor="{DynamicResource Gray-200}"
+                                FontIconFontFamily="{StaticResource FontFamily}"
+                                TitleFontColor="{DynamicResource Gray-200}"
+                                SelectionColor="{DynamicResource Gray-White}">
                 <tabView:SfTabItem.Content>
                     <menu:MasterMenu/>
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
 
         </tabView:SfTabView>
+        
     </ContentPage.Content>
 </ContentPage>
