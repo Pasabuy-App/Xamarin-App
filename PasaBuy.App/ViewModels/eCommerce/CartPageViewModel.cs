@@ -318,6 +318,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     //sfPopupView.ShowPopUp(content: "Your cart is empty!", buttonText: "CONTINUE SHOPPING");
                     // Back to StoreDetails or Show EmptyCartPage then the cartitemCount is 0;
                     await NavigateToPage(new EmptyCartPage());
+
                 }
             }
         }

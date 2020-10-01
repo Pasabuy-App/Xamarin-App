@@ -329,7 +329,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                         {
                             if (success)
                             {
-                                new Alert("Your Name", "Ruben", "Success");
+                                (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new PaymentSuccessPage()));
                             }
                             else
                             {

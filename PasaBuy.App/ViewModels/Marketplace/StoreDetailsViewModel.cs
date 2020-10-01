@@ -44,7 +44,38 @@ namespace PasaBuy.App.ViewModels.Marketplace
         private Boolean isCartBusy;
         public bool isCartClicked = false;
 
+        private bool _isAdded = true;
+
+        private bool _notAdded = false;
+
+
         #endregion
+
+        public bool IsAdded
+        {
+            get
+            {
+                return this._isAdded;
+            }
+            set
+            {
+                this._isAdded = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        public bool NotAdded
+        {
+            get
+            {
+                return this._notAdded;
+            }
+            set
+            {
+                this._notAdded = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
         public ObservableCollection<StoreDetails> StoreDetailList
         {

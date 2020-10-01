@@ -20,6 +20,8 @@ namespace PasaBuy.App.Views.eCommerce
             InitializeComponent();
             //this.BindingContext = CartDataService.Instance.CartPageViewModel;
             this.BindingContext =  new CartPageViewModel();
+ 
+            
         }
 
         private void backButton_Clicked(object sender, System.EventArgs e)
