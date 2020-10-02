@@ -115,7 +115,7 @@
                         <RowDefinition Height="16" />
                     </Grid.RowDefinitions>
 
-                    <buttons:SfRadioButton
+                    <buttons:SfRadioButton 
                         Grid.Row="0"
                         Margin="8,12,8,0"
                         GroupKey="{StaticResource PaymentOptionGroup}"

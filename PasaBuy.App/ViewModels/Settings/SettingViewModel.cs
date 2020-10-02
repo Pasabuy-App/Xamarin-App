@@ -54,7 +54,7 @@ namespace PasaBuy.App.ViewModels.Settings
             this.EditProfileCommand = new Command(this.EditProfileClicked);
             this.MyAddressCommand = new Command(this.MyAddressClicked);
             this.MyContactCommand = new Command(this.MyContactClicked);
-            this.MyTransactionsCommand = new Command(this.MyTransactionsClicked);
+            //this.MyTransactionsCommand = new Command(this.MyTransactionsClicked);
             this.ChangePasswordCommand = new Command(this.ChangePasswordClicked);
             this.VerifyAccountCommand = new Command(this.VerifyAccountClicked);
 
@@ -179,7 +179,7 @@ namespace PasaBuy.App.ViewModels.Settings
             }
         }
 
-        private void MyTransactionsClicked(object obj)
+        /*private void MyTransactionsClicked(object obj)
         {
             if (!isEnable)
             {
@@ -191,7 +191,7 @@ namespace PasaBuy.App.ViewModels.Settings
                     isEnable = false;
                 });
             }
-        }
+        }*/
 
         /// <summary>
         /// Invoked when the change password clicked

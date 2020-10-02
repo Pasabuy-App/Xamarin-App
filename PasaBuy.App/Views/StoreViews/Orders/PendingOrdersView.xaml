@@ -43,6 +43,7 @@
             </Style>
         </ResourceDictionary>
     </ContentView.Resources>
+    
   <ContentView.Content>
       <StackLayout>
             <listView:SfListView x:Name="PendingOrders"
@@ -51,7 +52,7 @@
                                  ItemSpacing="0,1,0,0"
                                  VerticalOptions="StartAndExpand"
                                  ItemTapped="PendingOrders_ItemTapped"
-                                 ItemsSource="{x:Static model:Management.All}"
+                                                 ItemsSource="{Binding OrderList}"
                                  SelectionMode="None">
                 <!--Item Source is for testing purposes only. Kindly bind into specific viewmodels-->
 
@@ -92,31 +93,31 @@
                                     </ffimageloading:CachedImage.Transformations>
                                 </ffimageloading:CachedImage>
 
-                                <Label Text="Test Name"
+                                <Label Text="{Binding Customer}"
                                                        Grid.Row="0"
                                                        Grid.Column="1"
                                                        HorizontalOptions="StartAndExpand"
                                                        TextColor="{DynamicResource BlackColor}">
                                 </Label>
-                                <Label Text="Order #4232"
+                                <Label Text="{Binding OrderID}"
                                                        Grid.Row="1"
                                                        Grid.Column="1"
                                                        HorizontalOptions="StartAndExpand"
                                                        TextColor="{DynamicResource Gray-800}">
                                 </Label>
-                                <Label Text="Sept 5, 2020 10:23 AM"
+                                <Label Text="{Binding Date_Time}"
                                                        Grid.Row="2"
                                                        Grid.Column="1"
                                                        HorizontalOptions="StartAndExpand"
                                                        TextColor="{DynamicResource Gray-800}">
                                 </Label>
-                                <Label Text="PHP 250"
+                                <Label Text="{Binding TotalPrice}"
                                                        Grid.Row="0"
                                                        Grid.Column="2"
                                                        HorizontalOptions="StartAndExpand"
                                                        TextColor="{DynamicResource BlackColor}">
                                 </Label>
-                                <Label Text="Cash"
+                                <Label Text="{Binding Method}"
                                                        Grid.Row="2"
                                                        Grid.Column="2"
                                                        HorizontalOptions="StartAndExpand"

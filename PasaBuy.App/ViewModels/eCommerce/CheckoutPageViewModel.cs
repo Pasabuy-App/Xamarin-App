@@ -325,7 +325,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     foreach (var car in CartPageViewModel.cartDetails)
                     {
                         //Console.WriteLine("Data: " + car.ID.ToString() + " STID: " + car.Stid.ToString()); // Success Page
-                        Customers.Instance.Create(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, car.Stid.ToString(), car.ID.ToString(), "1", "1", "", (bool success, string data) =>
+                        Customers.Instance.Create(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, car.Stid.ToString(), car.ID.ToString(), "1", "1", "", "Cash", (bool success, string data) =>
                         {
                             if (success)
                             {
@@ -356,6 +356,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
             if (obj is RowDefinition rowDefinition && rowDefinition.Height.Value == 0)
             {
                 rowDefinition.Height = GridLength.Auto;
+                Console.WriteLine("Payment Option: ");
             }
         }
 

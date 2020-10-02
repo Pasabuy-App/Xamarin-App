@@ -140,11 +140,12 @@
                 HorizontalOptions="Start">
 
                 <!--  Product quantity dropdown  -->
-                    <numeric:SfNumericUpDown x:Name="numericUpDown" 
+                    <numeric:SfNumericUpDown x:Name="numericUpDown"
                                              Maximum="5" 
                                              Minimum="1" 
                                              MaximumDecimalDigits="0"
-                                             Value="{Binding Path=ParentBindingContext.ValueQty, Source={x:Reference cartItemTemplate}}"
+                                             Value="1"
+                                             ValueChanged="numericUpDown_ValueChanged"
                                              SpinButtonAlignment="Both"
                                              FormatString="n"/>
             </border:SfBorder>

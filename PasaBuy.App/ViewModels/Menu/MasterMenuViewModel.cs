@@ -10,6 +10,7 @@ using PasaBuy.App.Local;
 using PasaBuy.App.ViewModels.Feeds;
 using PasaBuy.App.Views.Navigation;
 using System;
+using PasaBuy.App.ViewModels.MobilePOS;
 
 namespace PasaBuy.App.ViewModels.Menu
 {
@@ -105,6 +106,7 @@ namespace PasaBuy.App.ViewModels.Menu
 
             this.ProfileCommand = new Command(this.ProfileButtonClicked);
             this.WalletCommand = new Command(this.WalletButtonClicked);
+            this.TransactionCommand = new Command(this.TransactionButtonClicked);
             this.AdvisoryCommand = new Command(this.AdvisoryButtonClicked);
             this.NotificationCommand = new Command(this.NotificationButtonClicked);
             this.DriverCommand = new Command(this.DriverButtonClicked);
@@ -201,6 +203,10 @@ namespace PasaBuy.App.ViewModels.Menu
         #region Command
 
         /// <summary>
+        /// Gets or sets the command that is executed when the transaction view is clicked.
+        /// </summary>
+        public Command TransactionCommand { get; set; }
+        /// <summary>
         /// Gets or sets the command that is executed when the profile view is clicked.
         /// </summary>
         public Command ProfileCommand { get; set; }
@@ -237,6 +243,27 @@ namespace PasaBuy.App.ViewModels.Menu
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Invoked when the profile button is clicked.
+        /// </summary>
+        /// <param name="obj">The object</param>
+        private void TransactionButtonClicked(object obj)
+        {
+            if (!Status)
+            {
+                //postbutton = "Profile";
+                /*MyProfileViewModel.LoadTotal(PSACache.Instance.UserInfo.wpid);
+                MyProfileViewModel.user_id = string.Empty;*/
+
+                Status = true;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyTransactionsPage()));
+                    Status = false;
+                });
+            }
+        }
 
         /// <summary>
         /// Invoked when the profile button is clicked.
@@ -340,6 +367,7 @@ namespace PasaBuy.App.ViewModels.Menu
                 Device.BeginInvokeOnMainThread( () =>
                 {
                     MasterView.MyType = "store";
+                    //DashboardOrdersViewModel.LoadOrder("pending", "");
                     App.Current.MainPage = new NavigationView();
                     Status = false;
                 });
