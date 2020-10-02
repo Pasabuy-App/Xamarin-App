@@ -125,6 +125,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             CartPageViewModel.cartDetails = new ObservableCollection<ProductList>();
             this.AddToCartCommand = new Command(this.AddToCartClicked);
+            //this.AddToCartCommand = new Command(this.AddToCartClicked);
             storedetailslist = new ObservableCollection<StoreDetails>();
             storedetailslist.Clear();
             categoriesdata = new ObservableCollection<Categories>();
@@ -164,12 +165,15 @@ namespace PasaBuy.App.ViewModels.Marketplace
                     //this.cartItemCount = this.cartItemCount;
                     //this.CartItemCount += 1;
                     var btn = obj as SfButton;
+                    
                     //var btn = (SfButton)obj;
                     //new Alert("Ok", "ok" + btn.ClassId + ".", "ok");
                     TindaPress.Product.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, store_id, "", btn.ClassId, "1", "", (bool success, string data) =>
                     {
                         if (success)
                         {
+                            btn.IsVisible = false;
+                            Console.WriteLine("ClassID: " + btn.ClassId);
                             ProductListData datas = JsonConvert.DeserializeObject<ProductListData>(data);
                             for (int i = 0; i < datas.data.Length; i++)
                             {

@@ -12,13 +12,14 @@ namespace PasaBuy.App.Models.eCommerce
     {
         #region Fields
 
+        private string id;
         private string customerName;
 
         private string transactionDescription;
 
         private string image;
 
-        private DateTime date;
+        private string date;
 
         private string transactionAmount;
 
@@ -36,6 +37,20 @@ namespace PasaBuy.App.Models.eCommerce
         #endregion
 
         #region Properties
+
+        public string ID
+        {
+            get
+            {
+                return this.id;
+            }
+
+            set
+            {
+                this.id = value;
+                this.OnPropertyChanged(nameof(ID));
+            }
+        }
 
         /// <summary>
         /// Gets or sets the name of an customer.
@@ -125,7 +140,7 @@ namespace PasaBuy.App.Models.eCommerce
         /// <summary>
         /// Gets or sets the transaction amount.
         /// </summary>
-        public DateTime Date
+        public string Date
         {
             get
             {
@@ -153,5 +168,22 @@ namespace PasaBuy.App.Models.eCommerce
         }
 
         #endregion
+
+
+        public OrderData[] data;
+        public class OrderData
+        {
+            public string ID = string.Empty;
+            public string product_name = string.Empty;
+            public string store_name = string.Empty;
+            public string odid = string.Empty;
+            public string qty = string.Empty;
+            public string price = string.Empty;
+            public string totalprice = string.Empty;
+            public string stage = string.Empty;
+            public string store_logo = string.Empty;
+            public string date_created = string.Empty;
+            public string method = string.Empty;
+        }
     }
 }

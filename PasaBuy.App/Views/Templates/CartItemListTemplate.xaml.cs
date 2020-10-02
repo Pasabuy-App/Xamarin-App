@@ -71,6 +71,13 @@ namespace PasaBuy.App.Views.Templates
             InitializeComponent();
         }
 
+        private void numericUpDown_ValueChanged(object sender, Syncfusion.SfNumericUpDown.XForms.ValueEventArgs e)
+        {
+
+            Console.WriteLine("ValueChanges: " + e.Value.ToString());
+            //PasaBuy.App.ViewModels.eCommerce.CartPageViewModel.ChangeValue(Convert.ToInt32(e.Value.ToString()));
+        }
+
         /*private void numericUpDown_ValueChanged(object sender, Syncfusion.SfNumericUpDown.XForms.ValueEventArgs e)
         {
             //Console.WriteLine("ValueChanges: " + e.Value.ToString());

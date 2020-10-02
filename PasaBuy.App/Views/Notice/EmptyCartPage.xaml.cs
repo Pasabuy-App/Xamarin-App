@@ -46,7 +46,7 @@ namespace PasaBuy.App.Views.ErrorAndEmpty
             int numModals = Application.Current.MainPage.Navigation.ModalStack.Count;
             for (int currModal = 0; currModal < numModals; currModal++)
             {
-                await Application.Current.MainPage.Navigation.PopModalAsync(false);
+                await Application.Current.MainPage.Navigation.PopModalAsync(); // add false for no animation
             }
 
         }

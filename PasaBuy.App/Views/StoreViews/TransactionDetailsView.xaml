@@ -77,31 +77,31 @@
                             </ffimageloading:CachedImage.Transformations>
                         </ffimageloading:CachedImage>
 
-                        <Label Text="Test Name"
+                        <Label  x:Name="Customer"
                                            Grid.Row="0"
                                            Grid.Column="1"
                                            HorizontalOptions="StartAndExpand"
                                            TextColor="{DynamicResource BlackColor}">
                         </Label>
-                        <Label Text="Order #4232"
+                        <Label  x:Name="OrderID"
                                            Grid.Row="1"
                                            Grid.Column="1"
                                            HorizontalOptions="StartAndExpand"
                                            TextColor="{DynamicResource Gray-800}">
                         </Label>
-                        <Label Text="Sept 5, 2020 10:23 AM"
+                        <Label  x:Name="DateCreated"
                                            Grid.Row="2"
                                            Grid.Column="1"
                                            HorizontalOptions="StartAndExpand"
                                            TextColor="{DynamicResource Gray-800}">
                         </Label>
-                        <Label Text="PHP 250"
+                        <Label  x:Name="TotalPrice"
                                            Grid.Row="0"
                                            Grid.Column="2"
                                            HorizontalOptions="StartAndExpand"
                                            TextColor="{DynamicResource BlackColor}">
                         </Label>
-                        <Label Text="Cash"
+                        <Label  x:Name="Method"
                                            Grid.Row="2"
                                            Grid.Column="2"
                                            HorizontalOptions="StartAndExpand"
@@ -147,7 +147,7 @@
                                 AutoFitMode="Height"
                                 FocusBorderThickness="0"
                                 ItemSpacing="0,1,0,0"
-                                ItemsSource="{x:Static model:Management.All}"
+                                                 ItemsSource="{Binding OrderList}"
                                 SelectionMode="None">
                                 <sync:SfListView.ItemTemplate>
                                     <DataTemplate>
@@ -170,14 +170,14 @@
                                                     <ColumnDefinition Width="*" />
                                                 </Grid.ColumnDefinitions>
 
-                                                <Label Text="Burger"
+                                                <Label Text="{Binding Product}"
                                                    Grid.Row="0"
                                                    Grid.Column="0"
                                                    HorizontalOptions="StartAndExpand"
                                                    TextColor="{DynamicResource BlackColor}">
                                                 </Label>
 
-                                                <Label Text="1 x Burger"
+                                                <Label Text="{Binding Quantity}"
                                                    Grid.Row="1"
                                                    Grid.Column="0"
                                                    Margin="0,5,0,0"
@@ -185,7 +185,7 @@
                                                    TextColor="{DynamicResource Gray-900}">
                                                 </Label>
 
-                                                <Label Text="PHP 250"
+                                                <Label Text="{Binding TotalPrice}"
                                                    Grid.Row="0"
                                                    Grid.Column="2"
                                                    HorizontalOptions="EndAndExpand"
@@ -202,7 +202,7 @@
                     </Grid>
                     
                 </yummy:PancakeView>
-                <Grid Margin="0, 5, 0, 15" Padding="15, 0, 15, 0">
+                <Grid Margin="0, 5, 0, 15" Padding="15, 0, 15, 0" x:Name="Decline_Accept">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
@@ -212,6 +212,8 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <buttons:SfButton
+                            x:Name="Declined"
+                            Clicked="Declined_Clicked"
                             Grid.Column="0"
                             BackgroundColor="#fa7069"
                             BorderColor="{DynamicResource BlackColor}"
@@ -223,6 +225,8 @@
                             TextColor="White"
                             VerticalOptions="Center" />
                     <buttons:SfButton
+                            Clicked="Accepted_Clicked"
+                            x:Name="Accepted"
                             Grid.Column="1"
                             BackgroundColor="#34e048"
                             BorderColor="{StaticResource BlackColor}"
