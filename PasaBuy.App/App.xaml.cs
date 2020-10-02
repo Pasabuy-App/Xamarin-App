@@ -1,12 +1,9 @@
 using Xamarin.Forms;
 using PasaBuy.App.Local;
-using PasaBuy.App.Views.Settings;
 using PasaBuy.App.Views.Onboarding;
-using System;
-using PasaBuy.App.Views.Marketplace;
-using PasaBuy.App.Views.StoreViews;
-using PasaBuy.App.Views.Menu;
-using PasaBuy.App.Views.Driver;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 namespace PasaBuy.App
 {
@@ -25,23 +22,29 @@ namespace PasaBuy.App
             HatidPress.HPHost.Instance.Initialized(PSAConfig.baseRestUrl);
             MobilePOS.MPHost.Instance.Initialized(PSAConfig.baseRestUrl);
             PSACache.Instance.Initialize();
+
             //commit
             MainPage = new NavigationPage(new SplashPage());
         }
 
         protected override void OnStart()
         {
-            //called when the application starts.
+            AppCenter.Start("android=64cc939e-3ec6-4a16-955c-7ebab790b4e7;" +
+                  "uwp={Your UWP App secret here};" +
+                  "ios=9802b0e1-3a25-41a7-827b-cb7fd29b548b;",
+                  typeof(Analytics), typeof(Crashes));
+
+            Analytics.TrackEvent("AppStart");
         }
 
         protected override void OnSleep()
         {
-            //called each time the application goes to the background.
+            Analytics.TrackEvent("AppSleep");
         }
 
         protected override void OnResume()
         {
-            //called when the application is resumed, after being sent to the background.
+            Analytics.TrackEvent("AppResume");
         }
     }
 }
