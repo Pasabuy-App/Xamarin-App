@@ -76,6 +76,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 {
                     if (success)
                     {
+                        Console.WriteLine("Demoguy: " + data);
                         StoreListData datas = JsonConvert.DeserializeObject<StoreListData>(data);
                         //Console.WriteLine(data);
                         for (int i = 0; i < datas.data.Length; i++)
@@ -83,11 +84,13 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
                             string catid = datas.data[i].ID;
                             string category = datas.data[i].title;
+                            string avatar = datas.data[i].avatar;
 
                             itemCategories.Add(new Categories()
                             {
                                 Id = catid,
                                 Title = category,
+                                Avatar = avatar,
                                 Info = "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-product.png"
                             });
                         }

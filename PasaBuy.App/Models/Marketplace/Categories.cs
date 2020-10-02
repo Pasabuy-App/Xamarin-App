@@ -16,6 +16,7 @@ namespace PasaBuy.App.Models.Marketplace
         private string ID = string.Empty;
         private string types = string.Empty;
         private string total = string.Empty;
+        private string avatar = string.Empty;
         private string title = string.Empty;
         private string info = string.Empty;
         private string status = string.Empty;
@@ -80,6 +81,17 @@ namespace PasaBuy.App.Models.Marketplace
             }
         }
 
+        public string Avatar
+        {
+            get
+            {
+                return avatar;
+            }
+            set
+            {
+                this.avatar = value;
+            }
+        }
 
         public string Title
         {
