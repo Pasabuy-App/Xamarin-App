@@ -36,14 +36,47 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <template:ExpenseChartTemplate Grid.Row="0" />
+                <!-- <template:ExpenseChartTemplate Grid.Row="0" /> -->
 
-                <Grid Grid.Row="1">
+                <Grid Grid.Row="1" 
+                      HeightRequest="50"
+                      Margin="20, 30, 20, 25">
+                    <!-- Name -->
+                    <Label Grid.Column="0"
+                                       HorizontalOptions="Center"
+                                       Text="Current Balance"
+                                       Style="{StaticResource LabelStyle}"
+                                       LineHeight="{OnPlatform Android=1.5, Default=-1}" />
+                    <!-- Amount -->
+                    <Label Grid.Column="1"
+                                       HorizontalOptions="Center"
+                                       TextColor="{Binding IsCredited, Converter={x:StaticResource BooleanToColorConverter}, ConverterParameter=5}"
+                                       Style="{StaticResource LabelStyle}"
+                                       FontSize="25"
+                                       LineHeight="{OnPlatform Android=1.5, Default=-1}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text=" ₱" />
+                                <Span Text="100.00" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
 
-                    <Label Margin="16,26,16,16"
+                    <!-- Sending - Open Modal with Search for user, then select that user to Open another PopAsync with Amount and Currency -->
+                    <buttons:SfButton Grid.Column="3"  
+                                      BackgroundColor="Gray"
+                                      CornerRadius="20"
+                                      x:Name="SfButton" 
+                                      Command="{Binding SendMoney}"
+                                      Text="SEND"/>
+                </Grid>
+                <Grid Grid.Row="2">
+
+                    <Label Margin="16,0,16,16"
                            Text="TRANSACTIONS"
                            TextColor="{DynamicResource Gray-800}"
                            FontSize="12"
@@ -70,7 +103,7 @@
 
                 </Grid>
 
-                <listView:SfListView Grid.Row="2" 
+                <listView:SfListView Grid.Row="3" 
                                      IsScrollBarVisible="False"
                                      ItemSpacing="0"
                                      ItemsSource="{Binding ListItems}"
