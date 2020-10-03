@@ -162,9 +162,10 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 if (!isCartClicked)
                 {
                     isCartClicked = true;
+                    var btn = obj as SfButton;
+                    btn.IsVisible = false;
                     //this.cartItemCount = this.cartItemCount;
                     //this.CartItemCount += 1;
-                    var btn = obj as SfButton;
                     
                     //var btn = (SfButton)obj;
                     //new Alert("Ok", "ok" + btn.ClassId + ".", "ok");
@@ -172,8 +173,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                     {
                         if (success)
                         {
-                            btn.IsVisible = false;
-                            Console.WriteLine("ClassID: " + btn.ClassId);
+                            //Console.WriteLine("ClassID: " + btn.ClassId);
                             ProductListData datas = JsonConvert.DeserializeObject<ProductListData>(data);
                             for (int i = 0; i < datas.data.Length; i++)
                             {
@@ -191,7 +191,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                             new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                         }
                     });
-                    await Task.Delay(100);
+                    await Task.Delay(200);
                     isCartClicked = false;
                 }
             }

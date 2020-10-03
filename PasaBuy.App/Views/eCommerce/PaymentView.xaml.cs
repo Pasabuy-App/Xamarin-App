@@ -10,12 +10,31 @@ namespace PasaBuy.App.Views.eCommerce
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PaymentView
     {
+        public static string method = string.Empty;
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentView" /> class.
         /// </summary>
         public PaymentView()
         {
             InitializeComponent();
+        }
+
+        private void Method_StateChanged(object sender, Syncfusion.XForms.Buttons.StateChangedEventArgs e)
+        {
+            if (e.IsChecked.HasValue && e.IsChecked.Value)
+            {
+                method = (sender as Syncfusion.XForms.Buttons.SfRadioButton).Text;
+                if (method == "Cash on Delivery")
+                {
+                    method = "Cash";
+                }
+                System.Console.WriteLine("Payment Option: " + method);
+            }
+            /*else if (e.IsChecked.HasValue && !e.IsChecked.Value)
+            {
+                (sender as Syncfusion.XForms.Buttons.SfRadioButton).Text = "Unchecked State";
+            }*/
+
         }
     }
 }
