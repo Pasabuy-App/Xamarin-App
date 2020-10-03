@@ -318,27 +318,34 @@ namespace PasaBuy.App.ViewModels.eCommerce
             //await Application.Current.MainPage.Navigation.PushModalAsync(new PaymentSuccessPage());
             try
             {
-                if (!isClicked)
+                if (PaymentView.method != string.Empty)
                 {
-                    isClicked = true;
-                    //Console.WriteLine("Store ID: " + StoreDetailsViewModel.store_id + " Total Count: " + CartPageViewModel.cartDetails.Count);
-                    foreach (var car in CartPageViewModel.cartDetails)
+                    if (!isClicked)
                     {
-                        //Console.WriteLine("Data: " + car.ID.ToString() + " STID: " + car.Stid.ToString()); // Success Page
-                        Customers.Instance.Create(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, car.Stid.ToString(), car.ID.ToString(), "1", "1", "", "Cash", (bool success, string data) =>
+                        isClicked = true;
+                        //Console.WriteLine("Store ID: " + StoreDetailsViewModel.store_id + " Total Count: " + CartPageViewModel.cartDetails.Count);
+                        foreach (var car in CartPageViewModel.cartDetails)
                         {
-                            if (success)
+                            //Console.WriteLine("Data: " + car.ID.ToString() + " STID: " + car.Stid.ToString()); // Success Page
+                            Customers.Instance.Create(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, car.Stid.ToString(), car.ID.ToString(), "1", "1", "", PaymentView.method, (bool success, string data) =>
                             {
-                                (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new PaymentSuccessPage()));
-                            }
-                            else
-                            {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                            }
-                        });
+                                if (success)
+                                {
+                                    (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new PaymentSuccessPage()));
+                                }
+                                else
+                                {
+                                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                }
+                            });
+                        }
+                        await Task.Delay(200);
+                        isClicked = false;
                     }
-                    await Task.Delay(200);
-                    isClicked = false;
+                }
+                else
+                {
+                    new Alert("Notice to User", "Please select payment method.", "Try Again");
                 }
             }
             catch (Exception e)
@@ -356,7 +363,6 @@ namespace PasaBuy.App.ViewModels.eCommerce
             if (obj is RowDefinition rowDefinition && rowDefinition.Height.Value == 0)
             {
                 rowDefinition.Height = GridLength.Auto;
-                Console.WriteLine("Payment Option: ");
             }
         }
 
