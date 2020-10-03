@@ -4,7 +4,9 @@
              xmlns:converter="clr-namespace:PasaBuy.App.Converters" 
              xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
-             xmlns:local="clr-namespace:PasaBuy.App.UserControls" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:local="clr-namespace:PasaBuy.App.UserControls" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
              x:Class="PasaBuy.App.Views.Marketplace.ProductDetail"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="{DynamicResource Gray-White}">
@@ -42,10 +44,11 @@
                 <StackLayout Spacing="0" VerticalOptions="FillAndExpand">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
                             <RowDefinition Height="*" />
-                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
                         </Grid.RowDefinitions>
 
                         <ffimageloading:CachedImage Aspect="AspectFill"
@@ -124,34 +127,44 @@
                             
                         </border:SfBorder>
 
-                        <StackLayout Grid.Row="2"
-                                     BindableLayout.ItemsSource="{Binding VariantsList}"
-                                     VerticalOptions="FillAndExpand">
-                            <BindableLayout.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid HorizontalOptions="FillAndExpand"
-                                          VerticalOptions="FillAndExpand">
-                                        <Grid>
-                                            <Label Text="{Binding Name}" />
-                                        </Grid>
-                                    </Grid>
-                                </DataTemplate>
-                            </BindableLayout.ItemTemplate>
-                        </StackLayout>
+                        <!--<ScrollView Grid.Row="2" VerticalOptions="FillAndExpand">
+                                    <StackLayout BindableLayout.ItemsSource="{Binding VariantsList}"
+                                                 VerticalOptions="FillAndExpand">
+                                                <BindableLayout.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid HorizontalOptions="FillAndExpand"
+                                                              VerticalOptions="FillAndExpand">
+                                                            <Grid>
+                                                                <Label Text="{Binding Name}" />
+                                                            </Grid>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+                         </ScrollView>-->
                         <StackLayout Grid.Row="3"
-                                     HorizontalOptions="FillAndExpand">
-                            <Label  HorizontalOptions="Start"
-                                                VerticalOptions="Center" 
-                                                Grid.Row="0"
-                                                Grid.Column="0"
-                                                Text="Super Burger" 
-                                                FontSize="20" 
-                                                FontFamily="{StaticResource Montserrat-Bold}" 
-                                                TextColor="{DynamicResource BlackColor}"
-                                                LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
+                                     Padding="130,0,130,0">
+                            <numeric:SfNumericUpDown x:Name="numericUpDown"
+                                             Maximum="5" 
+                                             Minimum="1" 
+                                             MaximumDecimalDigits="0"
+                                             Value="1"
+                                             TextAlignment="Center"
+                                             SpinButtonAlignment="Both"
+                                             FormatString="n"/>
                         </StackLayout>
                         
-                        
+
+                        <StackLayout Grid.Row="4">
+                            <buttons:SfButton
+                            Margin="20, 20, 20, 20"
+                            CornerRadius="20"
+                            TextColor="White"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            Style="{StaticResource SfButtonStyle}"
+                            Text="Add to Cart" />
+                        </StackLayout>
+  
 
                     </Grid>
                 </StackLayout>
