@@ -42,10 +42,12 @@ namespace PasaBuy.App.Views.StoreViews
                 Decline_Accept.IsVisible = true;
                 if (order_type == "Received")
                 {
+                    Accepted.Text = "Complete";
                     Declined.IsVisible = false;
                 }
                 else
                 {
+                    Accepted.Text = "Accept";
                     Declined.IsVisible = true;
                 }
             }
