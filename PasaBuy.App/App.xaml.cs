@@ -4,6 +4,7 @@ using PasaBuy.App.Views.Onboarding;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using PasaBuy.App.Views.Marketplace;
 
 namespace PasaBuy.App
 {

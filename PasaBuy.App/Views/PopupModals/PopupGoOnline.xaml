@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="PasaBuy.App.Views.PopupModals.PopupGoOnline"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App" 
+    xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Accordion;assembly=Syncfusion.Expander.XForms" 
+    xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms">
+    <pages:PopupPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="PopupItemHeaderStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0,0,0,0" />
+            </Style>
+            <Style x:Key="PopupLabelStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="End" />
+                <Setter Property="Margin" Value="10,0,0,12" />
+            </Style>
+            <Style x:Key="IconButtonStyle" TargetType="buttons:SfButton">
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="WidthRequest" Value="40" />
+            </Style>
+            <!--  Common style for SfButtons  -->
+            <Style x:Key="SfButtonStyle" TargetType="buttons:SfButton">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="{DynamicResource Gray-700}" />
+                <Setter Property="FontFamily" Value="Montserrat-Regular" />
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+            <x:String x:Key="ArrowRight">&#xe728;</x:String>
+        </ResourceDictionary>
+    </pages:PopupPage.Resources>
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            DurationIn="500"
+            EasingIn="SpringOut"
+            PositionIn="Bottom"
+            PositionOut="Center"
+            ScaleIn="1"
+            ScaleOut="0.7" />
+    </pages:PopupPage.Animation>
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <Frame
+            x:Name="FrameContainer"
+            Margin="15"
+            Padding="0"
+            BackgroundColor="White"
+            CornerRadius="6"
+            HorizontalOptions="Center">
+            <StackLayout
+                Padding="0"
+                IsClippedToBounds="True"
+                Spacing="0">
+                <Grid RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label FontFamily="{StaticResource Montserrat-Medium}"
+                           Padding="15"
+                           Grid.Row="0"
+                           Grid.ColumnSpan="2"
+                           FontSize="14"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Start"
+                           Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et laboris nisi ut aliquip ex ea commodo consequat?"
+                           TextColor="{DynamicResource Gray-900}" />
+                    <buttons:SfButton
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Margin="20"
+                            CornerRadius="5"
+                            TextColor="White"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            Style="{StaticResource SfButtonStyle}"
+                            Text="Cancel" />
+                    <buttons:SfButton
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="20"
+                            CornerRadius="5"
+                            TextColor="White"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            Style="{StaticResource SfButtonStyle}"
+                            Text="Confirm" />
+                </Grid>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</pages:PopupPage>
