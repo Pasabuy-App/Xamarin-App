@@ -6,7 +6,7 @@
              xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
              xmlns:converters="clr-namespace:PasaBuy.App.Converters" 
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
-             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              Title=" "
              x:Class="PasaBuy.App.Views.Navigation.MasterView"
              Icon="menu.png">
@@ -39,6 +39,7 @@
                 <Grid >
 
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
@@ -118,7 +119,36 @@
 
                     </StackLayout>
 
-                    <StackLayout Grid.Row="1" >
+                    <StackLayout Grid.Row="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70*" />
+                                <ColumnDefinition Width="30*" />
+                            </Grid.ColumnDefinitions>
+                            <Label FontFamily="{StaticResource Montserrat-Bold}"
+                                   Padding="80,0,0,0"
+                                   Grid.Column="0"
+                                   Grid.Row="0"
+                                   FontSize="16"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalTextAlignment="Start"
+                                   Text="Go online"
+                                   TextColor="{DynamicResource Gray-900}" />
+                            <Grid Grid.Column="1"
+                                  Grid.Row="0"
+                                  HorizontalOptions="CenterAndExpand"
+                                  VerticalOptions="CenterAndExpand">
+                                <syncfusion:SfSwitch VisualType="Material" StateChanged="isActive" x:Name="isActiveSwitch">
+                                </syncfusion:SfSwitch>
+                            </Grid>
+                            
+                        </Grid>
+                    </StackLayout>
+
+                    <StackLayout Grid.Row="2" >
                         <sync:SfListView
                             x:Name="navigationDrawerList"
                             BackgroundColor="{DynamicResource  Gray-100}"

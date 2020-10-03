@@ -1,7 +1,10 @@
-﻿using PasaBuy.App.Local;
+﻿using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
 using PasaBuy.App.Resources.Texts;
 using PasaBuy.App.Views.Driver;
+using PasaBuy.App.Views.PopupModals;
 using PasaBuy.App.Views.StoreViews;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +30,7 @@ namespace PasaBuy.App.Views.Navigation
         public MasterView()
         {
             InitializeComponent();
+            
             //UserName.Text = PSACache.Instance.UserInfo.dname;
             //Email.Text = PSACache.Instance.UserInfo.email;
 
@@ -91,5 +95,9 @@ namespace PasaBuy.App.Views.Navigation
             //}
         }
 
+        private void isActive(object sender, Syncfusion.XForms.Buttons.SwitchStateChangedEventArgs e)
+        {
+            PopupNavigation.Instance.PushAsync(new PopupGoOnline());
+        }
     }
 }
