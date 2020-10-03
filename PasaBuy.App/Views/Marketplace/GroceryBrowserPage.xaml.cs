@@ -17,10 +17,12 @@ namespace PasaBuy.App.Views.Marketplace
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GroceryBrowserPage : ContentView
     {
+        public static bool isTapped = false;
         public static int LastIndex = 11;
         public GroceryBrowserPage()
         {
             InitializeComponent();
+            isTapped = false;
             //this.BindingContext = StoreDataService.Instance.RestaurantViewModel;
         }
 
@@ -92,13 +94,19 @@ namespace PasaBuy.App.Views.Marketplace
         }
 
 
-        private void GroceriesTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        private async void GroceriesTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
-            var item = e.ItemData as Groceries;
-            StoreDetailsViewModel.store_id = item.Id;
-            StoreDetailsViewModel.loadcategory(item.Id);
-            StoreDetailsViewModel.loadstoredetails(item.Id);
-            App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+            if (!isTapped)
+            {
+                isTapped = true;
+                var item = e.ItemData as Groceries;
+                StoreDetailsViewModel.store_id = item.Id;
+                StoreDetailsViewModel.loadcategory(item.Id);
+                StoreDetailsViewModel.loadstoredetails(item.Id);
+                App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+                await System.Threading.Tasks.Task.Delay(200);
+                isTapped = false;
+            }
         }
 
         private void RestaurantList_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)

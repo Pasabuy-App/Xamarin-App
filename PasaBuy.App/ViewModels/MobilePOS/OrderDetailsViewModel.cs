@@ -52,7 +52,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         {
             try
             {
-                Customers.Instance.OrderList(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, stage, PSACache.Instance.UserInfo.stid, odid, (bool success, string data) =>
+                Customers.Instance.OrderList(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, stage, "", odid, (bool success, string data) =>
                 {
                     if (success)
                     {

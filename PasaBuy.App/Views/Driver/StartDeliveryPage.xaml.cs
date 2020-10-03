@@ -10,6 +10,8 @@ using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
 using PasaBuy.App.DataService;
 using System.Reflection;
+using Rg.Plugins.Popup.Services;
+using PasaBuy.App.Views.PopupModals;
 
 namespace PasaBuy.App.Views.Driver
 {
@@ -17,24 +19,27 @@ namespace PasaBuy.App.Views.Driver
     public partial class StartDeliveryPage : ContentPage
     {
         #region Fields
+     
+
         public string deliveryStatus; 
-        public static string carItem = "car / sedan";
+        public static string carItem = string.Empty;
         public static string item_id = string.Empty;
-        public static string storeName = "Pasabuy Store";
-        public static string orderName = "Pasabuy Burger";
-        public static string waypointAddress = "B10 L18 Narra St, Silcas Village, Brgy. San Francisco, Biñan, 4024 Laguna";
-        public static string destinationAddress = "Southwoods Ave, Biñan, Laguna";
-        public static string orderTime = "5mins ago";
+        public static string storeName = string.Empty;
+        public static string orderName = string.Empty;
+        public static string waypointAddress = string.Empty;
+        public static string destinationAddress = string.Empty;
+        public static string orderTime = string.Empty;
 
         public static double StoreLatittude = 0;
         public static double StoreLongitude = 0;
         public static double UserLatitude = 0;
         public static double userLongitude = 0;
-
-        public double curlocLatitude = 0;
-        public double curlocLongitude = 0;
+        public static bool drawpath = false;
+        public static double curlocLatitude = 0;
+        public static double curlocLongitude = 0;
 
         #endregion
+
 
         ILocationUpdateService loc;
         MapPageViewModel mapPageViewModel;
@@ -57,9 +62,9 @@ namespace PasaBuy.App.Views.Driver
         }
 
 
-        public StartDeliveryPage()
+        public  StartDeliveryPage()
         {
-
+            map =  new Xamarin.Forms.GoogleMaps.Map();
             InitializeComponent();
             BindingContext = mapPageViewModel = new MapPageViewModel();
 
@@ -69,7 +74,7 @@ namespace PasaBuy.App.Views.Driver
             StoreName.Text = storeName;
             StoreAddress.Text = waypointAddress;
             ClientAddress.Text = destinationAddress;
-            OrderIDandOrderTime.Text = item_id;
+            //OrderIDandOrderTime.Text = item_id;
 
             switch (deliveryStatus)
             {
@@ -84,6 +89,7 @@ namespace PasaBuy.App.Views.Driver
                     break;
             }
 
+
         }
 
 
@@ -97,7 +103,7 @@ namespace PasaBuy.App.Views.Driver
                 if (location != null)
                 {
                     Position p = new Position(location.Latitude, location.Longitude);
-                    MapSpan mapSpan = MapSpan.FromCenterAndRadius(p, Xamarin.Forms.GoogleMaps.Distance.FromKilometers(.444));
+                    MapSpan mapSpan = MapSpan.FromCenterAndRadius(p, Xamarin.Forms.GoogleMaps.Distance.FromKilometers(.944));
                     map.MoveToRegion(mapSpan);
                     //await GetLocationName(p);
                     Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
@@ -178,8 +184,11 @@ namespace PasaBuy.App.Views.Driver
         {
             Device.BeginInvokeOnMainThread(async () =>
             {
-                Compass.Start(SensorSpeed.UI, applyLowPassFilter: true);
-                Compass.ReadingChanged += Compass_ReadingChanged;
+                var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+                var location = await Geolocation.GetLocationAsync(request);
+                Position pos = new Position(curlocLatitude, curlocLongitude);
+
+   
                 map.Pins.Clear();
                 //map.Polylines.Clear();
                 //Get the cars nearrby from api but here we are hardcoding the contents
@@ -200,7 +209,8 @@ namespace PasaBuy.App.Views.Driver
                             Rotation = ToRotationPoints(headernothvalue)
                         };
                         map.Pins.Add(VehiclePins);
-                        map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(Convert.ToDouble(item.Latitude), Convert.ToDouble(item.Longitude)), Xamarin.Forms.GoogleMaps.Distance.FromMiles(0.1)));
+                        map.MoveToRegion(MapSpan.FromCenterAndRadius(pos, Xamarin.Forms.GoogleMaps.Distance.FromMiles(0.1)));
+                        
                         //Position ps = new Position(item.Latitude, item.Longitude);
                         //UpdatePostions(ps);*/
                         /* var cPin = map.Pins.FirstOrDefault();
@@ -221,7 +231,7 @@ namespace PasaBuy.App.Views.Driver
             }
 
             );
-            Compass.Stop();
+            //Compass.Stop();
             return true;
         }
 
@@ -272,8 +282,20 @@ namespace PasaBuy.App.Views.Driver
 
         #endregion
 
-        async void StartDelivery_Clicked(System.Object sender, System.EventArgs e)
+       /* void StartDelivery_Clicked(System.Object sender, System.EventArgs e)
         {
+            PopupNavigation.Instance.PushAsync(new PopupOpenExternalMap());
+        }*/
+
+
+        public  async void StartDelivery_Clicked(System.Object sender, System.EventArgs e)
+        {
+            Compass.Start(SensorSpeed.UI, applyLowPassFilter: true);
+            Compass.ReadingChanged += Compass_ReadingChanged;
+
+            StartDelivery.Text = "Ongoing";
+            PopupNavigation.Instance.PushAsync(new PopupOpenExternalMap());
+
             map.Polylines.Clear();
             Device.StartTimer(TimeSpan.FromSeconds(1), () => TimerStarted());
 
@@ -309,7 +331,7 @@ namespace PasaBuy.App.Views.Driver
             }
             map.Polylines.Add(polyline);
 
-            map.MoveToRegion(MapSpan.FromCenterAndRadius(new Xamarin.Forms.GoogleMaps.Position(polyline.Positions[0].Latitude, polyline.Positions[0].Longitude), Xamarin.Forms.GoogleMaps.Distance.FromKilometers(3)));
+            //map.MoveToRegion(MapSpan.FromCenterAndRadius(new Xamarin.Forms.GoogleMaps.Position(polyline.Positions[0].Latitude, polyline.Positions[0].Longitude), Xamarin.Forms.GoogleMaps.Distance.FromKilometers(3)));
             string cars = "CircleImg.png";
             var pin = new Xamarin.Forms.GoogleMaps.Pin
             {
@@ -323,7 +345,6 @@ namespace PasaBuy.App.Views.Driver
             };
             map.Pins.Add(pin);
 
-            var positionIndex = 1;
 
 
             /*  Device.StartTimer(TimeSpan.FromSeconds(1), () =>
@@ -340,7 +361,7 @@ namespace PasaBuy.App.Views.Driver
                   }
               });*/
         }
-
+/*
         async void UpdatePostions(Xamarin.Forms.GoogleMaps.Position position)
         {
             if (map.Pins.Count == 1 && map.Polylines != null && map.Polylines?.Count > 1)
@@ -362,7 +383,7 @@ namespace PasaBuy.App.Views.Driver
             }
         }
 
-
+*/
 
         #region page Method
         /* async void StartDelivery_Clicked(object sender, EventArgs e)
@@ -402,7 +423,30 @@ namespace PasaBuy.App.Views.Driver
 
         private void backButton_Clicked(object sender, EventArgs e)
         {
+            Compass.Stop();
             Navigation.PopModalAsync();
+        }
+
+        public static async void OpenMapApp()
+        {
+            String s = waypointAddress;
+            s = s.Replace(" ", "+");
+
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                
+                // https://developer.apple.com/library/ios/featuredarticles/iPhoneURLScheme_Reference/MapLinks/MapLinks.html
+                await Launcher.OpenAsync("http://maps.apple.com/?daddr=San+Francisco,+CA&saddr=cupertino");
+            }
+            else if (Device.RuntimePlatform == Device.Android)
+            {
+                // opens the 'task chooser' so the user can pick Maps, Chrome or other mapping app
+                //await Launcher.OpenAsync("http://www.google.com/maps/dir/Bytes+Crafter,+B10+L18+Narra+St,+Silcas+Village,+Brgy.+San+Francisco,+Bi%C3%B1an,+4024+Laguna/14.3312268,121.0653564/Metro+San+Jose+Public+Market/@14.3249305,121.0479903,15z/data=!4m15!4m14!1m5!1m1!1s0x3397d7accf8e5839:0xbfdc9ef48149ab86!2m2!1d121.0413718!2d14.3291764!1m0!1m5!1m1!1s0x3397d71e2367fd5b:0xc40629c1d70faf69!2m2!1d121.0341372!2d14.3305162!3e0");
+                var main_url = "http://www.google.com/maps/dir/";
+          
+                await Launcher.OpenAsync(main_url+$"{curlocLatitude},{curlocLongitude}/{UserLatitude},{userLongitude}/{s}@{StoreLatittude},{StoreLongitude},15z");
+                //await Launcher.OpenAsync("https://www.google.com/maps/dir/,121.0434482/14.3205938,121.0481447/Metro+San+Jose+Public+Market,+General+Mariano+Alvarez,+4117+Cavite/@14.3278519,121.0464376,15.25z/data=!4m10!4m9!1m0!1m0!1m5!1m1!1s0x3397d71e2367fd5b:0xc40629c1d70faf69!2m2!1d121.0341372!2d14.3305162!3e0");
+            }
         }
     }
 }

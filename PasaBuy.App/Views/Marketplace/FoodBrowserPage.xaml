@@ -21,11 +21,33 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Stylex.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <DataTemplate x:Key="BestSellersTemplate">
+                <StackLayout Spacing="8">
+                    <border:SfBorder CornerRadius="8" BorderWidth="0">
+   
+                        <ffimageloading:CachedImage Aspect="AspectFill"
+                                                    WidthRequest="180"
+                                                    HeightRequest="120"
+                                                    BackgroundColor="{DynamicResource Gray-200}"
+                                                    Source="{Binding Logo}"
+			                                        DownsampleToViewSize="True" 
+                                                    FadeAnimationEnabled="True">
+                        </ffimageloading:CachedImage>
+                    </border:SfBorder>
+                    <Label Text="{Binding Title}" 
+                           FontFamily="{StaticResource Montserrat-SemiBold}"
+                           FontSize="14" 
+                           TextColor="{DynamicResource Gray-900}" 
+                           LineHeight="{OnPlatform Android=1.5, Default=-1}" 
+                           LineBreakMode="TailTruncation">
+                    </Label>
+                </StackLayout>
+            </DataTemplate>
         </ResourceDictionary>
     </ContentView.Resources>
 
     <ContentView.Content>
-        <Grid RowSpacing="0">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -34,28 +56,24 @@
 
             <StackLayout x:Name="TitleView"
                 Padding="16,8"
-                Grid.Row="0" HeightRequest="64"
+                Grid.Row="0" 
+                HeightRequest="64"
                 BackgroundColor="{DynamicResource Gray-White}"
                 HorizontalOptions="FillAndExpand"
                 Orientation="Horizontal"
                 Spacing="0">
-
                 <StackLayout  x:Name="Title"
                     HorizontalOptions="FillAndExpand"
                     IsVisible="True"
                     Orientation="Horizontal"
                     Spacing="0"
                     VerticalOptions="FillAndExpand">
-
-                    <!--  Back button command  -->
                     <buttons:SfButton x:Name="backButton"
                         Command="{Binding BackButtonCommand}"
                         CommandParameter="{x:Reference backButton}"
                         CornerRadius="4"
                         Style="{StaticResource IconButtonStyle}"
                         Text="{StaticResource Back}" />
-
-                    <!--  Restaurant page Title  -->
                     <Label Margin="16,0"
                         HeightRequest="24"
                         FontFamily="{StaticResource Montserrat-Medium}"
@@ -66,88 +84,97 @@
                         TextColor="{DynamicResource Gray-900}"
                         VerticalOptions="Center"
                         VerticalTextAlignment="Center" />
-
                 </StackLayout>
-
                 <StackLayout x:Name="Search"
                     HorizontalOptions="EndAndExpand"
                     IsVisible="False"
                     Orientation="Horizontal"
                     Spacing="0">
-
-                    <!--  Back to title layout  -->
                     <buttons:SfButton x:Name="BackToTitle"
                         Clicked="BackToTitle_Clicked"
                         Style="{StaticResource NavigationBarButtonStyle}"
                         Text="{StaticResource Back}" />
-
-                    <!--  Rounded Search Entry  -->
                     <border:SfBorder Style="{DynamicResource SfBorderStyle}">
-
                         <controls:BorderlessEntry x:Name="SearchEntry"
                             HorizontalOptions="FillAndExpand"
                             Placeholder="Search here"
                             Text="{Binding SearchText, Mode=TwoWay}"
                             Style="{StaticResource SearchEntryStyle}"/>
                     </border:SfBorder>
-
                 </StackLayout>
-
                 <!--  Search Button  -->
                 <buttons:SfButton x:Name="SearchButton"
                     IsVisible="True"
                     Clicked="SearchButton_Clicked"
                     Style="{StaticResource NavigationBarButtonStyle }"
                     Text="{StaticResource Search}" />
-
             </StackLayout>
 
             <!--  Separator  -->
             <BoxView   Grid.Row="1" Style="{StaticResource SeparatorStyle}" />
+            <ScrollView Grid.Row="2">
+                <Grid RowSpacing="0" ColumnSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Row="0" 
+                                 Orientation="Horizontal" 
+                                 Margin="16, 26, 16, 8">
+                        <Label Text="Best Sellers" 
+                               VerticalTextAlignment="Center" 
+                               FontFamily="{StaticResource Montserrat-SemiBold}" 
+                               FontSize="12" 
+                               TextColor="{DynamicResource Gray-800}" 
+                               LineHeight="{OnPlatform Android=1.25, Default=-1}"/>
+                        
+                    </StackLayout>
 
-            <StackLayout Margin="0,20,0,20"
-                         Grid.Row="2">
-                <listView:SfListView
-                    Padding="15,0,15,15"
-                    AutoFitMode="Height"
-                    IsScrollBarVisible="False"
-                    ItemSpacing="{core:OnPlatformOrientationThickness Default='0,0,32,32',
-                                                                  PhonePortrait='0,0,0,16',
-                                                                  PhoneLandscape='0,0,16,16',
-                                                                  Desktop='0,0,24,24'}"
-                    ItemsSource="{Binding FoodStorelist}"
-                    ItemTapped="FoodRestorantTapped"
-                    ItemAppearing="RestaurantList_ItemAppearing"
-                    x:Name="RestaurantList"
-                    SelectionBackgroundColor="Transparent"
-                    VerticalOptions="FillAndExpand">
+                    <listView:SfListView Grid.Row="1"
+                                         SelectionMode="None" 
+                                         HeightRequest="180" 
+                                         ItemSize="180" 
+                                         Orientation="Horizontal" 
+                                         ItemsSource="{Binding BestSellers}" 
+                                         ItemSpacing="8, 0, 8, 0" 
+                                         ItemTemplate="{StaticResource BestSellersTemplate}"
+                                         IsScrollBarVisible="False"/>
 
-                    <listView:SfListView.ItemTemplate>
-                        <DataTemplate>
-                            <Frame
-                                Padding="0"
-                                BackgroundColor="{DynamicResource Gray-White}"
-                                BorderColor="{DynamicResource Gray-White}"
-                                CornerRadius="8"
-                                HasShadow="True"
-                                HeightRequest="250"
-                                HorizontalOptions="FillAndExpand"
-                                VerticalOptions="FillAndExpand">
-                                <Grid RowSpacing="0">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
+                    <BoxView  Grid.Row="2" Style="{StaticResource SeparatorStyle}" />
 
-                                    <ffimageloading:CachedImage Aspect="Fill"
+                    <StackLayout
+                            Grid.Row="2"
+                            BackgroundColor="{DynamicResource Gray-White}"
+                            BindableLayout.ItemsSource="{Binding FoodStorelist}"
+                            Spacing="0">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Frame
+                                    Padding="0"
+                                    BackgroundColor="{DynamicResource Gray-White}"
+                                    BorderColor="{DynamicResource Gray-White}"
+                                    CornerRadius="8"
+                                    HasShadow="True"
+                                    HeightRequest="270"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand">
+                                    <Grid RowSpacing="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <ffimageloading:CachedImage Aspect="Fill"
                                                             Grid.Column="0"
                                                             Grid.Row="0"
                                                             Source="https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg"
 			                                                DownsampleToViewSize="True" 
                                                             FadeAnimationEnabled="True">
-                                    </ffimageloading:CachedImage>
+                                        </ffimageloading:CachedImage>
 
-                                    <buttons:SfButton                
+                                        <buttons:SfButton                
                                          x:Name="favouriteIcon"   
                                          Text="{StaticResource Favourite}"  FontSize="18"  
                                          Command="{Binding Path=BindingContext.FavouriteCommand, Source={x:Reference favouriteIcon}}"                                                     
@@ -158,58 +185,59 @@
                                          WidthRequest="40"
                                          HeightRequest="40"
                                          HorizontalOptions="End" VerticalOptions="Start">
-                                    </buttons:SfButton>
+                                        </buttons:SfButton>
 
-                                    <Grid Grid.Row="1"  Padding="8,5,0,5" ColumnSpacing="0">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Row="1"  Padding="8,10,0,10" ColumnSpacing="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
 
-                                        <!--  Card view for displaying items  -->
-                                        <border:SfBorder BackgroundColor="{DynamicResource LightGreen}" WidthRequest="50" HeightRequest="50"
+                                            <!--  Card view for displaying items  -->
+                                            <border:SfBorder BackgroundColor="{DynamicResource LightGreen}" WidthRequest="50" HeightRequest="50"
                                                       HorizontalOptions="Start" Margin="0,4,0,0" VerticalOptions="Start"
                                                       Grid.Column="0" CornerRadius="6" BorderColor="Transparent">
-                                            <Label  FontFamily="{StaticResource Montserrat-Medium}" 
+                                                <Label  FontFamily="{StaticResource Montserrat-Medium}" 
                                                         Text="{Binding ItemRating}" HorizontalOptions="Center"
                                                         FontSize="16" LineHeight="{OnPlatform Android=1.5,
                                                         Default=-1}" TextColor="{DynamicResource Gray-White}" VerticalTextAlignment="Center" />
-                                        </border:SfBorder>
+                                            </border:SfBorder>
 
-                                        <StackLayout Margin="8,0,0,0" Grid.Column="1" Spacing="1" >
+                                            <StackLayout Margin="8,0,0,0" Grid.Column="1" Spacing="1" >
 
-                                            <!--  Store Name label  -->
-                                            <Label Text="{Binding Title}"  
+                                                <!--  Store Name label  -->
+                                                <Label Text="{Binding Title}"  
                                                    FontSize="16" 
                                                    FontFamily="{StaticResource Montserrat-SemiBold}" 
                                                    HorizontalOptions="Start" 
                                                    TextColor="{DynamicResource Gray-900}" 
                                                    LineBreakMode="NoWrap"/>
 
-                                            <!--  Store operational hours label  -->
-                                            <Label  Text="10:00am - 6:00pm" 
+                                                <!--  Store operational hours label  -->
+                                                <Label  Text="10:00am - 6:00pm" 
                                                     FontSize="12" 
                                                     FontFamily="{StaticResource Montserrat-Medium}" 
                                                     HorizontalOptions="Start" 
                                                     TextColor="{DynamicResource Gray-700}"/>
 
-                                            <!--  Distance label  -->
-                                            <Label  Text="34km"  
+                                                <!--  Distance label  -->
+                                                <Label  Text="34km"  
                                                     FontSize="12" 
                                                     FontFamily="{StaticResource Montserrat-Medium}" 
                                                     HorizontalOptions="Start" 
                                                     TextColor="{DynamicResource Gray-700}"/>
 
-                                        </StackLayout>
+                                            </StackLayout>
+                                        </Grid>
                                     </Grid>
-                                </Grid>
-                            </Frame>
-                        </DataTemplate>
-                    </listView:SfListView.ItemTemplate>
+                                </Frame>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
 
-                </listView:SfListView>
-            </StackLayout>
+                </Grid>
+            </ScrollView>
         </Grid>
     </ContentView.Content>
 </ContentView>

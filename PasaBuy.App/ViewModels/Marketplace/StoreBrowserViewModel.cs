@@ -28,7 +28,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         private int? cartItemCount;
 
-        public static ObservableCollection<Store> storelist;
+        public static ObservableCollection<Store> storeList;
 
         public static ObservableCollection<Categories> itemCategories;
 
@@ -38,10 +38,10 @@ namespace PasaBuy.App.ViewModels.Marketplace
             set { itemCategories = value; this.NotifyPropertyChanged(); }
         }
 
-        public ObservableCollection<Store> Storelist
+        public ObservableCollection<Store> StoreList
         {
-            get { return storelist; }
-            set { storelist = value; this.NotifyPropertyChanged(); }
+            get { return storeList; }
+            set { storeList = value; this.NotifyPropertyChanged(); }
         }
         /*public string myTitle = string.Empty;
         public string MyTitle
@@ -59,9 +59,10 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public StoreBrowserViewModel()
         {
-            storelist = new ObservableCollection<Store>();
+
+            storeList = new ObservableCollection<Store>();
             itemCategories = new ObservableCollection<Categories>();
-            storelist.Clear();
+            storeList.Clear();
             itemCategories.Clear();
             //LoadStore("");
             //LoadCategory();
@@ -76,9 +77,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 {
                     if (success)
                     {
-                        Console.WriteLine("Demoguy: " + data);
                         StoreListData datas = JsonConvert.DeserializeObject<StoreListData>(data);
-                        //Console.WriteLine(data);
+                      
                         for (int i = 0; i < datas.data.Length; i++)
                         {
 
@@ -120,22 +120,24 @@ namespace PasaBuy.App.ViewModels.Marketplace
                     if (success)
                     {
                         StoreListData datas = JsonConvert.DeserializeObject<StoreListData>(data);
+                       
                         for (int i = 0; i < datas.data.Length; i++)
                         {
                             string id = datas.data[i].ID;
                             string title = datas.data[i].title;
+                            Console.WriteLine("test:" + title);
                             string short_info = datas.data[i].short_info;
                             string avatar = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : datas.data[i].avatar;
                             string banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png" : datas.data[i].banner;
-                            storelist.Add(new Store()
+                            storeList.Add(new Store()
                             {
                                 Id = id,
                                 Title = title,
                                 Description = short_info,
-                                Logo = PSAProc.GetUrl(avatar),
+                                Logo = avatar,
                                 Offer = "50% off",
                                 ItemRating = "4.5",
-                                Banner = PSAProc.GetUrl(banner)
+                                Banner = banner
                             });
                         }
                     }

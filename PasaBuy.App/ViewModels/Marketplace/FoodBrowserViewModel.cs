@@ -16,6 +16,20 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public static ObservableCollection<FoodStore> foodstorelist;
 
+        public static ObservableCollection<FoodStore> _bestSellers;
+
+        public ObservableCollection<FoodStore> BestSellers
+        {
+            get
+            {
+                return _bestSellers;
+            }
+            set
+            {
+                _bestSellers = value;
+                this.NotifyPropertyChanged();
+            }
+        }
         public ObservableCollection<FoodStore> FoodStorelist
         {
             get { return foodstorelist; }
@@ -27,9 +41,21 @@ namespace PasaBuy.App.ViewModels.Marketplace
             foodstorelist = new ObservableCollection<FoodStore>();
             foodstorelist.Clear();
             LoadFood("");
-        }
 
-        public static void LoadFood(string lastid)
+            _bestSellers = new ObservableCollection<FoodStore>();
+
+            for (int i = 0; i < 4; i++)
+            {
+                _bestSellers.Add(new FoodStore()
+                {
+                    Title = "Test Store",
+                    Logo = "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg"
+                });
+            }
+
+    }
+
+    public static void LoadFood(string lastid)
         {
             try
             {

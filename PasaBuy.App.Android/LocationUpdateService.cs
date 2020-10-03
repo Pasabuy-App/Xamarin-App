@@ -78,6 +78,7 @@ namespace PasaBuy.App.Droid
         public void OnStatusChanged(string provider, [GeneratedEnum] Availability status, Bundle extras)
         {
             throw new NotImplementedException();
+
         }
     }
 
