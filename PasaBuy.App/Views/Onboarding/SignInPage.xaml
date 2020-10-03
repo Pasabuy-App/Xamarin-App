@@ -33,10 +33,9 @@
 
     <ContentPage.Content>
         <Grid>
-
-            <gradient:SfGradientView Style="{StaticResource SfGradientStyle}" />
-
             <AbsoluteLayout>
+
+                <gradient:SfGradientView Style="{StaticResource SfGradientStyle}" />
                 
                 <ScrollView HorizontalOptions="Center">
 
@@ -47,133 +46,127 @@
                     Phone="FillAndExpand" />
                 </ScrollView.VerticalOptions>
 
-                    <StackLayout>
+                <StackLayout
+                Spacing="0"
+                Padding="20,0,20,0"
+                VerticalOptions="FillAndExpand">
 
-                        <Grid RowSpacing="0" 
-                              VerticalOptions="CenterAndExpand" 
-                              Padding="20,0,20,0">
+                    <Grid RowSpacing="0" VerticalOptions="CenterAndExpand">
 
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-
-                            </Grid.RowDefinitions>
-
-                            <!--  Logo to display the title of this page  -->
-                            <StackLayout Padding="0,45,0,0">
-                                <Image Source="LogoHeader.png" 
-                                   WidthRequest="320"/>
-                            </StackLayout>
-                            
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <!--  Logo to display the title of this page  -->
+                        <Image Source="LogoHeader.png" 
+                               WidthRequest="340"/>
                         
-                            <!--  Label to display the description of this page  -->
-                            <Label
-                                Grid.Row="1"
-                                Margin="0,-20,0,30"
-                                HorizontalTextAlignment="Center"
-                                Style="{StaticResource LabelStyle}"
-                                FontSize="17"
-                                Text="v1.0.0 - Beta Release" />
-                        
-                            <!--  Entry to get email ID from user  -->
-                            <local:LoginEmailEntry Grid.Row="2" Padding="0,22" />
-
-                            <!--  Entry to get password from user  -->
-                            <border:SfBorder
-                                Grid.Row="3"
-                                BorderColor="{Binding Source={x:Reference PasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
-                                Style="{StaticResource SfBorderStyle}" CornerRadius="7">
-                                    <control:BorderlessEntry
-                                    x:Name="PasswordEntry"
-                                    IsPassword="True"
-                                    Placeholder="Password"
-                                    PlaceholderColor="{DynamicResource Gray-700}"
-                                    Style="{StaticResource EntryStyle}"
-                                    Text="{Binding Password}" />
-                            </border:SfBorder>
-
-                            <!--  Forgot password link  -->
-                            <buttons:SfButton
-                                x:Name="ForgotPasswordLabel"
-                                Grid.Row="4" CornerRadius="7"
-                                Margin="0,15"
-                                FontFamily="{StaticResource Montserrat-SemiBold}"
-                                FontSize="12" 
-                                HorizontalOptions="End" 
-                                Command="{Binding ForgotPasswordCommand}"
-                                Style="{StaticResource SfFlatButtonStyle}"
-                                Text="FORGOT PASSWORD?" />
-                        
-                            <buttons:SfButton
-                                Grid.Row="5"
-                                Margin="0,16"
-                                CornerRadius="7"
-                                Command="{Binding LoginCommand}"
-                                Style="{StaticResource SfButtonStyle}"
-                                Text="LOG IN" />
-                        
-
-                            <Label
-                            Grid.Row="6"
-                            FontFamily="{StaticResource Montserrat-Medium}"
+                        <!--  Label to display the description of this page  -->
+                        <Label
+                            Grid.Row="1"
+                            Margin="0,-20,0,70"
                             HorizontalTextAlignment="Center"
                             Style="{StaticResource LabelStyle}"
-                            Text="Or create an account using social media" />
+                            FontSize="17"
+                            Text="v1.0.0 - Beta Release" />
+                        <!--  Entry to get email ID from user  -->
+                        <local:LoginEmailEntry Grid.Row="2" Padding="0,24" />
 
-                            <!--  Login button with social icons -->
-                            <Grid Grid.Row="7">
-                                <template:SocialIconTemplate /> 
-                            </Grid>
+                        <!--  Entry to get password from user  -->
+                        <border:SfBorder
+                        Grid.Row="3"
+                        BorderColor="{Binding Source={x:Reference PasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                        Style="{StaticResource SfBorderStyle}" CornerRadius="7">
+                            <control:BorderlessEntry
+                            x:Name="PasswordEntry"
+                            IsPassword="True"
+                            Placeholder="Password"
+                            PlaceholderColor="{DynamicResource Gray-700}"
+                            Style="{StaticResource EntryStyle}"
+                            Text="{Binding Password}" />
+                        </border:SfBorder>
 
+                        <!--  Forgot password link  -->
+                        <buttons:SfButton
+                            x:Name="ForgotPasswordLabel"
+                            Grid.Row="4" CornerRadius="7"
+                            Margin="0,16"
+                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                            FontSize="12" 
+                            HorizontalOptions="End" 
+                            Command="{Binding ForgotPasswordCommand}"
+                            Style="{StaticResource SfFlatButtonStyle}"
+                            Text="FORGOT PASSWORD?" />
+                        
+                        <buttons:SfButton
+                            Grid.Row="5"
+                            Margin="0,16"
+                            CornerRadius="7"
+                            Command="{Binding LoginCommand}"
+                            Style="{StaticResource SfButtonStyle}"
+                            Text="LOG IN" />
+                        
+
+                        <Label
+                        Grid.Row="6"
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        HorizontalTextAlignment="Center"
+                        Style="{StaticResource LabelStyle}"
+                        Text="Or create an account using social media" />
+
+                        <!--  Login button with social icons -->
+                        <Grid Grid.Row="7">
+                            <template:SocialIconTemplate /> 
                         </Grid>
 
-                        <StackLayout
-                            HorizontalOptions="Center"
-                            Orientation="Vertical"
-                            VerticalOptions="CenterAndExpand"
-                            Spacing="1">
+                    </Grid>
 
-                            <Label
-                            FontFamily="{StaticResource Montserrat-Medium}"
-                            HorizontalOptions="CenterAndExpand"
-                            HorizontalTextAlignment="Center"
-                            Style="{StaticResource LabelStyle}"
-                            Text="Don't have an account?"
-                            VerticalTextAlignment="Center" />
+                    <StackLayout
+                    HorizontalOptions="Center"
+                    Orientation="Horizontal"
+                    Spacing="1"
+                    VerticalOptions="End">
 
-                            <!--  Sign-up button  -->
-                            <buttons:SfButton
-                            Command="{Binding SignUpCommand}"
-                            CornerRadius="4"
-                            Style="{StaticResource SfFlatButtonStyle}"
-                            Text="REGISTER" />
+                        <Label
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        HorizontalOptions="CenterAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Style="{StaticResource LabelStyle}"
+                        Text="Don't have an account?"
+                        VerticalTextAlignment="Center" />
 
-                        </StackLayout>
+                        <!--  Sign-up button  -->
+                        <buttons:SfButton
+                        Command="{Binding SignUpCommand}"
+                        CornerRadius="4"
+                        Style="{StaticResource SfFlatButtonStyle}"
+                        Text="REGISTER" />
 
                     </StackLayout>
 
-                    
+                </StackLayout>
+            </ScrollView>
 
-                </ScrollView>
-
-                <StackLayout x:Name="aiLayout"
-                             IsVisible="{Binding State}"
-                             AbsoluteLayout.LayoutBounds="0,0,1,1"
-                             AbsoluteLayout.LayoutFlags="All"
-                             BackgroundColor="White" Opacity="0.35" ClassId="123">
-                    <ActivityIndicator x:Name="isBusy"
-                                       IsRunning="true"
-                                       HorizontalOptions="CenterAndExpand"
-                                       VerticalOptions="CenterAndExpand"
-                                       HeightRequest="50"
-                                       WidthRequest="50"
-                                       Color="{DynamicResource PrimaryColor}"/>
+                <StackLayout
+                    x:Name="aiLayout"
+                    IsVisible="{Binding State}"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    BackgroundColor="White" Opacity="0.35" ClassId="123">
+                    <ActivityIndicator
+                        x:Name="isBusy"
+                        IsRunning="true"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand"
+                        HeightRequest="50"
+                        WidthRequest="50"
+                        Color="{DynamicResource PrimaryColor}"/>
                 </StackLayout>
 
             </AbsoluteLayout>

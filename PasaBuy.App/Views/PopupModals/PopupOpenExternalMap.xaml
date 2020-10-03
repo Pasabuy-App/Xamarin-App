@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+   x:Class="PasaBuy.App.Views.PopupModals.PopupOpenExternalMap"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App" 
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" 
+    xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
+    xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms">
+    <pages:PopupPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="PopupItemHeaderStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0,0,0,0" />
+            </Style>
+
+            <Style x:Key="PopupLabelStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="End" />
+                <Setter Property="Margin" Value="10,0,0,12" />
+            </Style>
+            <!--  Common style for SfborderStyle  -->
+            <Style x:Key="SfBorderStyle" TargetType="border:SfBorder">
+                <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
+                <Setter Property="BorderColor" Value="Gray" />
+                <Setter Property="CornerRadius" Value="25" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            </Style>
+            <Style x:Key="ComboBoxStyle" TargetType="combobox:SfComboBox">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}"/>
+                <Setter Property="TextSize" Value="16"/>
+                <Setter Property="TextColor" Value="{DynamicResource Gray-900}"/>
+                <Setter Property="ShowBorder" Value="False"/>
+                <Setter Property="WatermarkColor" Value="{DynamicResource Gray-700}"/>
+                <Setter Property="Margin" Value="8,3,0,-3"/>
+                <Setter Property="HeightRequest" Value="40"/>
+            </Style>
+            <x:String x:Key="DropDownButtonIcon">&#xe70b;</x:String>
+        </ResourceDictionary>
+    </pages:PopupPage.Resources>
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            DurationIn="500"
+            EasingIn="SpringOut"
+            PositionIn="Bottom"
+            PositionOut="Center"
+            ScaleIn="1"
+            ScaleOut="0.7" />
+    </pages:PopupPage.Animation>
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <Frame
+            x:Name="FrameContainer"
+            Margin="15"
+            Padding="15,15,15,15"
+            BackgroundColor="White"
+            CornerRadius="6"
+            HorizontalOptions="Center">
+            <StackLayout
+                Padding="10,5"
+                IsClippedToBounds="True"
+                Spacing="3">
+                <Grid RowSpacing="0" Padding="15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+
+                    </Grid.ColumnDefinitions>
+                        <Label Text="Do you want to use Google Map application for Navigation?" FontSize="20" Grid.ColumnSpan="3">
+                    </Label>
+
+                  
+                </Grid>
+                <Grid Margin="0, 15, 0, 0" Padding="15, 0, 15, 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <!--Clicked="OKModal_Clicked"     Clicked="CancelModal"-->
+                    <button:SfButton
+                            Grid.Column="0"
+                            BackgroundColor="Green"
+                            BorderColor="{DynamicResource BlackColor}"
+                            BorderWidth="2"
+                            x:Name="OKModal"
+                            CornerRadius="4"
+                            FontFamily="{StaticResource Montserrat-Regular}"
+                            HorizontalOptions="FillAndExpand"
+                            Text="Yes"
+                            Clicked="OKModal_Clicked"
+                            TextColor="White"
+                            VerticalOptions="Center" />
+                    <button:SfButton
+                            Grid.Column="1"
+                            BackgroundColor="Red"
+                            BorderColor="{StaticResource BlackColor}"
+                            BorderWidth="2"
+                            CornerRadius="4"
+                            Clicked="SfButton_Clicked"
+                            FontFamily="{StaticResource Montserrat-Regular}"
+                            HorizontalOptions="FillAndExpand"
+                            Text="{texts:Translate Cancel}"
+                            TextColor="White"
+                            VerticalOptions="Center" />
+                </Grid>
+
+
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</pages:PopupPage>

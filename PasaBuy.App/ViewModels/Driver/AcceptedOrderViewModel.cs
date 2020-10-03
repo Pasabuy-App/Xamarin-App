@@ -65,7 +65,6 @@ namespace PasaBuy.App.ViewModels.Driver
                                 int fee = datas.data[i].fee;
                                 string date_accepted = datas.data[i].date_accepted;
                                 string date_created = datas.data[i].date_created;
-
                                 acceptedorderlist.Add(new AcceptedListOrder()
                                 {
                                     ID = id,

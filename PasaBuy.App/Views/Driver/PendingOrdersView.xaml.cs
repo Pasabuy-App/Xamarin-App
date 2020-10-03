@@ -33,6 +33,8 @@ namespace PasaBuy.App.Views.Driver
             StartDeliveryPage.StoreLongitude = smp.WaypointLong;
             StartDeliveryPage.userLongitude = smp.DestinationLong;
             StartDeliveryPage.UserLatitude = smp.DestinationLat;
+            StartDeliveryPage.waypointAddress = smp.WaypointAddress;
+            StartDeliveryPage.destinationAddress = smp.DestinationAddress;
            
             Navigation.PushModalAsync(new StartDeliveryPage());
         }
