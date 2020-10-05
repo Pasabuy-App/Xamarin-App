@@ -24,8 +24,7 @@
     </ContentView.BindingContext>
 
     <ContentView.Content>
-       
-            
+        
             <ScrollView>
                 <StackLayout Spacing="0">
 
@@ -362,21 +361,6 @@
 
                 </StackLayout>
             </ScrollView>
-
-            <!--<StackLayout
-                    x:Name="aiLayout"
-                    IsVisible="{Binding Status}"
-                    AbsoluteLayout.LayoutBounds="0,0,1,1"
-                    AbsoluteLayout.LayoutFlags="All"
-                    BackgroundColor="White" Opacity="0.35" ClassId="123">
-                <ActivityIndicator
-                        x:Name="isBusy"
-                        IsRunning="true"
-                        HorizontalOptions="CenterAndExpand"
-                        VerticalOptions="CenterAndExpand"
-                        HeightRequest="50"
-                        WidthRequest="50"
-                        Color="{DynamicResource PrimaryColor}"/>
-            </StackLayout>-->
+        
     </ContentView.Content>
 </ContentView>

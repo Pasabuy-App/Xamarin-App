@@ -25,12 +25,12 @@ namespace PasaBuy.App.Models.Onboarding
         public string date_registered = string.Empty;
         public string wpid = string.Empty;
         public string snky = string.Empty;
-        public string user_type = string.Empty;
         public string stid = string.Empty;
         public string store_name = string.Empty;
         public string roid = string.Empty;
         public string store_logo = string.Empty;
         public string store_banner = string.Empty;
+        public string user_type = "UNVERIFIED";
 
         public UserInfoData data = new UserInfoData();
 

@@ -11,6 +11,7 @@ using PasaBuy.App.ViewModels.Feeds;
 using PasaBuy.App.Views.Navigation;
 using System;
 using PasaBuy.App.ViewModels.MobilePOS;
+using PasaBuy.App.Http;
 
 namespace PasaBuy.App.ViewModels.Menu
 {
@@ -91,14 +92,12 @@ namespace PasaBuy.App.ViewModels.Menu
         {
             /*isDriver = true;
             isStore = true;*/
-            if (PSACache.Instance.UserInfo.user_type != "User")
-            {
-                isDriver = true;
-            }
-            if (PSACache.Instance.UserInfo.stid != "0")
-            {
-                isStore = true;
-            }
+
+            isDriver = true;
+            isStore = true;
+            //isDriver = UserEnabledFeature.Instance.isMover;
+            //isStore = UserEnabledFeature.Instance.isStore;
+
             this.profileName = PSACache.Instance.UserInfo.dname;
             this.profileImage = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
             this.userBanner = PSAProc.GetUrl(PSACache.Instance.UserInfo.bannerUrl);

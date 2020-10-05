@@ -21,7 +21,7 @@ namespace PasaBuy.App.Models
         [DataMember(Name = "icon")]
         public string Icon
         {
-            get { return PSAConfig.baseRestUrl + this.icon; }
+            get { return PSAConfig.CurrentRestUrl + this.icon; }
             set { this.icon = value; }
         }
 

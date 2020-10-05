@@ -13,12 +13,7 @@ namespace PasaBuy.App.Local
                 return current;
             }
 
-            if(current.Contains("https://"))
-            {
-                return current.Replace("https://" + PSAConfig.devBaseUrl, PSAConfig.baseRestUrl);
-            }
-
-            return current.Replace("http://" + PSAConfig.devBaseUrl, PSAConfig.baseRestUrl);
+            return current.Replace(PSAConfig.devMediaUrl, PSAConfig.devBaseUrl);
         }
     }
 }
