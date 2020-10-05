@@ -26,8 +26,8 @@
                     <border:SfBorder CornerRadius="8" BorderWidth="0">
 
                         <ffimageloading:CachedImage Aspect="AspectFill"
-                                                    WidthRequest="180"
-                                                    HeightRequest="120"
+                                                    HeightRequest="220"
+                                                    WidthRequest="150"
                                                     BackgroundColor="{DynamicResource Gray-200}"
                                                     Source="{Binding Logo}"
 			                                        DownsampleToViewSize="True" 
@@ -126,7 +126,7 @@
                         <Label Text="Best Sellers" 
                                VerticalTextAlignment="Center" 
                                FontFamily="{StaticResource Montserrat-SemiBold}" 
-                               FontSize="12" 
+                               FontSize="15" 
                                TextColor="{DynamicResource Gray-800}" 
                                LineHeight="{OnPlatform Android=1.25, Default=-1}"/>
 
@@ -134,8 +134,8 @@
 
                     <listView:SfListView Grid.Row="1"
                                          SelectionMode="None" 
-                                         HeightRequest="180" 
-                                         ItemSize="180" 
+                                         HeightRequest="280" 
+                                         ItemSize="150"
                                          Orientation="Horizontal" 
                                          ItemsSource="{Binding BestSellers}" 
                                          ItemSpacing="8, 0, 8, 0" 
@@ -188,7 +188,7 @@
                                          HorizontalOptions="End" VerticalOptions="Start">
                                         </buttons:SfButton>
 
-                                        <Grid Grid.Row="1"  Padding="8,10,0,10" ColumnSpacing="0">
+                                        <Grid Grid.Row="1"  Padding="8,16,0,16" ColumnSpacing="0">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition Width="*"/>

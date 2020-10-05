@@ -40,36 +40,34 @@
 
     <ContentPage.Content>
 
-        <tabView:SfTabView BackgroundColor="{DynamicResource Gray-100}" 
-                           TabItemTapped="TabView_TabItemTapped"
-                           TabHeaderPosition="Top"
-                           VisibleHeaderCount="2" 
-                           EnableSwiping="False" 
-                           DisplayMode="Text">
+        <tabView:SfTabView BackgroundColor="{DynamicResource Gray-White}" VisibleHeaderCount="2">
             <tabView:SfTabView.SelectionIndicatorSettings>
-                <tabView:SelectionIndicatorSettings
-                                AnimationDuration="250"
-                                Color="{DynamicResource Gray-White}" 
-                                Position="Top" 
-                                StrokeThickness="3"/>
+                <tabView:SelectionIndicatorSettings StrokeThickness="3" Color="{DynamicResource PrimaryColor}" />
             </tabView:SfTabView.SelectionIndicatorSettings>
-            <tabView:SfTabItem Title="SAVINGS"
-                               FontIconFontColor="{DynamicResource Gray-200}"
-                               TitleFontColor="{DynamicResource Gray-Black}"
-                               SelectionColor="{DynamicResource Gray-900}">
+            <tabView:SfTabItem
+                Title="Savings"
+                SelectionColor="{DynamicResource PrimaryColor}"
+                TitleFontColor="{DynamicResource Gray-700}"
+                TitleFontFamily="{StaticResource Montserrat-Medium}"
+                TitleFontSize="14">
                 <tabView:SfTabItem.Content>
                     <wallet:WalletSaving/>
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
-            <tabView:SfTabItem Title="CREDITS"
-                               FontIconFontColor="{DynamicResource Gray-200}"
-                               TitleFontColor="{DynamicResource Gray-Black}"
-                               SelectionColor="{DynamicResource Gray-900}">
+
+            <tabView:SfTabItem
+                Title="Credits"
+                SelectionColor="{DynamicResource PrimaryColor}"
+                TitleFontColor="{DynamicResource Gray-700}"
+                TitleFontFamily="{StaticResource Montserrat-Medium}"
+                TitleFontSize="14">
                 <tabView:SfTabItem.Content>
                     <wallet:WalletCredit/>
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
+
         </tabView:SfTabView>
+
 
     </ContentPage.Content>
 </ContentPage>

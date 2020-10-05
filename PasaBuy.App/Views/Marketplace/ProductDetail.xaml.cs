@@ -20,7 +20,7 @@ namespace PasaBuy.App.Views.Marketplace
         public static string price;
         public static string totalprice;
         public bool isCartClicked = false;
-        public int qty;
+        public int qty = 1;
         public ProductDetail()
         {
             InitializeComponent();

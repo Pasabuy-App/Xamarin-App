@@ -69,7 +69,7 @@
                 HorizontalOptions="EndAndExpand"
                 HorizontalTextAlignment="End"
                 Style="{StaticResource PriceLabelStyle}"
-                Text="{Binding TotalPrice, StringFormat='Php {0}'}" />
+                Text="{Binding TotalPrice, StringFormat='P {0}'}" />
             <!--  Discount Percent  -->
             <Label
                 Grid.Row="3"
@@ -161,7 +161,7 @@
                 LineHeight="{OnPlatform Android=1.25,
                                         Default=-1}"
                 Style="{StaticResource PriceLabelStyle}"
-                Text="{Binding DiscountPrice, StringFormat='Php {0}'}"
+                Text="{Binding DiscountPrice, StringFormat='P {0}'}"
                 TextColor="{DynamicResource Gray-900}" />
 
         </Grid>

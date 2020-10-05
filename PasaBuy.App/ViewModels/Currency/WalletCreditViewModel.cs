@@ -5,7 +5,10 @@ using Xamarin.Forms.Internals;
 using PasaBuy.App.Models.Currency;
 using Model = PasaBuy.App.Models.Currency.Transaction;
 using System.Linq;
-using PasaBuy.App.Http;
+using Rg.Plugins.Popup.Services;
+using PasaBuy.App.Views.PopupModals;
+using PasaBuy.App.Commands;
+using PasaBuy.App.Controllers.Notice;
 
 namespace PasaBuy.App.ViewModels.Currency
 {
@@ -36,6 +39,10 @@ namespace PasaBuy.App.ViewModels.Currency
         public ObservableCollection<Model> DataSource { get; set; }
 
         private Command<object> itemTappedCommand;
+
+        private DelegateCommand _sendMoney;
+
+        private DelegateCommand _confirmSendCommand;
 
         #endregion
 
@@ -69,6 +76,14 @@ namespace PasaBuy.App.ViewModels.Currency
         /// <summary>
         /// Gets or sets the my wallet items collection in a week.
         /// </summary>
+        /// 
+        public DelegateCommand SendMoney =>
+          _sendMoney ?? (_sendMoney = new DelegateCommand(SendMoneyClicked));
+
+        public DelegateCommand ConfirmSendCommand =>
+           _confirmSendCommand ?? (_confirmSendCommand = new DelegateCommand(ConfirmSendClicked));
+
+
         public ObservableCollection<Model> WeekListItems
         {
             get
@@ -183,6 +198,17 @@ namespace PasaBuy.App.ViewModels.Currency
         /// <summary>
         /// Week data collection.
         /// </summary>
+        /// 
+        private async void SendMoneyClicked(object obj)
+        {
+            await PopupNavigation.Instance.PushAsync(new PopupSendWalletCredit());
+        }
+
+        private async void ConfirmSendClicked(object obj)
+        {
+            new Alert("Ok", "Do something", "Ok");
+        }
+
         private void WeekData()
         {
             weekListItems = new ObservableCollection<Model>()

@@ -8,15 +8,131 @@ namespace PasaBuy.App.Models.Marketplace
     public class ProductList
     {
         public string stid = string.Empty;
+        public string Stid
+        {
+            get 
+            { 
+                return stid; 
+            }
+            set
+            {
+                stid = value;
+                OnPropertyChanged("Stid");
+            }
+        }
+
         public string id = string.Empty;
+        public string ID
+        {
+            get 
+            { 
+                return id; 
+            }
+            set
+            {
+                id = value;
+                OnPropertyChanged("ID");
+            }
+        }
+
         public string previewImage = string.Empty;
+        public string PreviewImage
+        {
+            get 
+            { 
+                return previewImage; 
+            }
+            set
+            {
+                previewImage = value;
+                OnPropertyChanged("PreviewImage");
+            }
+        }
+
         public string name = string.Empty;
+        public string Name
+        {
+            get 
+            { 
+                return name; 
+            }
+            set
+            {
+                name = value;
+                OnPropertyChanged("Name");
+            }
+        }
+
         public string summary = string.Empty;
+        public string Summary
+        {
+            get 
+            { 
+                return summary; 
+            }
+            set
+            {
+                summary = value;
+                OnPropertyChanged("Summary");
+            }
+        }
+
         public string description = string.Empty;
+        public string Description
+        {
+            get 
+            { 
+                return description; 
+            }
+            set
+            {
+                description = value;
+                OnPropertyChanged("Description");
+            }
+        }
+
         public double actualprice = 0;
+        public double ActualPrice
+        {
+            get 
+            { 
+                return actualprice;
+            }
+            set
+            {
+                actualprice = value;
+                OnPropertyChanged("ActualPrice");
+            }
+        }
+
         public double discountPrice = 0;
+        public double DiscountPrice
+        {
+            get
+            {
+                return this.ActualPrice - (this.ActualPrice * (this.DiscountPercent / 100));
+            }
+            set
+            {
+                this.discountPrice = value;
+                OnPropertyChanged("DiscountPrice");
+            }
+        }
+
         public double discountPercent = 0;
-        private int totalQuantity;
+        public double DiscountPercent
+        {
+            get
+            {
+                return this.discountPercent;
+            }
+            set
+            {
+                this.discountPercent = value;
+                OnPropertyChanged("DiscountPercent");
+            }
+        }
+
         private double quantity;
         public double Quantity
         {
@@ -30,95 +146,8 @@ namespace PasaBuy.App.Models.Marketplace
                 OnPropertyChanged("Quantity");
             }
         }
-        public string Stid
-        {
-            get { return stid; }
-            set
-            {
-                stid = value;
-                OnPropertyChanged("Stid");
-            }
-        }
-        public double DiscountPercent
-        {
-            get
-            {
-                return this.discountPercent;
-            }
 
-            set
-            {
-                this.discountPercent = value;
-                OnPropertyChanged("DiscountPercent");
-            }
-        }
-        public double DiscountPrice
-        {
-            get
-            {
-                return this.ActualPrice - (this.ActualPrice * (this.DiscountPercent / 100));
-            }
-
-            set
-            {
-                this.discountPrice = value;
-                OnPropertyChanged("DiscountPrice");
-            }
-        }
-        public string PreviewImage
-        {
-            get { return previewImage; }
-            set
-            {
-                previewImage = value;
-                OnPropertyChanged("PreviewImage");
-            }
-        }
-        public double ActualPrice
-        {
-            get { return actualprice; }
-            set
-            {
-                actualprice = value;
-                OnPropertyChanged("ActualPrice");
-            }
-        }
-        public string Description
-        {
-            get { return description; }
-            set
-            {
-                description = value;
-                OnPropertyChanged("Description");
-            }
-        }
-        public string Summary
-        {
-            get { return summary; }
-            set
-            {
-                summary = value;
-                OnPropertyChanged("Summary");
-            }
-        }
-        public string Name
-        {
-            get { return name; }
-            set
-            {
-                name = value;
-                OnPropertyChanged("Name");
-            }
-        }
-        public string ID
-        {
-            get { return id; }
-            set
-            {
-                id = value;
-                OnPropertyChanged("ID");
-            }
-        }
+        private int totalQuantity;
         public int TotalQuantity
         {
             get
