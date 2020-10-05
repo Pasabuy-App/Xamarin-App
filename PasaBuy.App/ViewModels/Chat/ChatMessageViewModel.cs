@@ -23,92 +23,44 @@ namespace PasaBuy.App.ViewModels.Chat
     [Preserve(AllMembers = true)]
     public class ChatMessageViewModel : BaseViewModel
     {
+        /// <summary>
+        /// Declared all variables needed. 
+        /// </summary>
+        #region Fields
+
+        public int ids = 0;
+        public int count = 0;
+        public static int refresh = 0;
         public static string storeid = "0";
         public static string type = "0";
-        public static string myPage = string.Empty;
-        #region Fields
-        /// <summary>
-        /// Stores the message text in an array. 
-        /// </summary>
-        private readonly string[] descriptions = { "Hi, can you tell me the specifications of the Dell Inspiron 5370 laptop?",
-            " * Processor: Intel Core i5-8250U processor " +
-            "\n" + " * OS: Pre-loaded Windows 10 with lifetime validity" +
-            "\n" + " * Display: 13.3-inch FHD (1920 x 1080) LED display" +
-            "\n" + " * Memory: 8GB DDR RAM with Intel UHD 620 Graphics" +
-            "\n" + " * Battery: Lithium battery",
-            "How much battery life does it have with wifi and without?",
-            "Approximately 5 hours with wifi. About 7 hours without.",
-        };
-
         bool _isBusy = false;
-        public bool isBusy
-        {
-            get
-            {
-                return _isBusy;
-            }
-            set
-            {
-                if (_isBusy != value)
-                {
-                    _isBusy = value;
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
         bool _isLoad = false;
-        public bool isLoad
-        {
-            get
-            {
-                return _isLoad;
-            }
-            set
-            {
-                if (_isLoad != value)
-                {
-                    _isLoad = value;
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-
+        public static bool isFirstID = false;
         private string newMessage;
-
-        //private string profileImage = PSAConfig.sfRootUrl + "ProfileImage3.png";
-
+        public static string myPage = string.Empty;
         public static string user_id = string.Empty;
         public static string ProfileNames = string.Empty;
         private string profileName = ProfileNames;
         public static string ProfileImages = string.Empty;
         private string profileImage = ProfileImages;
-        public Command<object> LoadMoreItemsCommand { get; set; }
-
         ChatList _chatHistoryList = null;
-        public ChatList ChatList
-        {
-            get => _chatHistoryList;
-            set
-            {
-                _chatHistoryList = value;
-                this.NotifyPropertyChanged();
-            }
-        }
 
-        public static bool isFirstID = false;
-        public int ids = 0;
-        public int count = 0;
-        public static int refresh = 0;
-
-        //public static bool isFirstLoad = false;
         #endregion
 
         #region Constructor
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ChatMessageViewModel" /> class.
         /// </summary>
         public ChatMessageViewModel()
         {
+            List<ChatListDetails> list = new List<ChatListDetails>();
+            ChatList = new ChatList(list);
+            FirstLoad();
+            ChatMessageListViewBehavior.isFirstLoad = false;
+            isFirstID = false;
+            ids = 0;
+
             this.MakeVoiceCall = new Command(this.VoiceCallClicked);
             this.MakeVideoCall = new Command(this.VideoCallClicked);
             this.MenuCommand = new Command(this.MenuClicked);
@@ -119,13 +71,6 @@ namespace PasaBuy.App.ViewModels.Chat
             this.ProfileCommand = new Command(this.ProfileClicked);
             LoadMoreItemsCommand = new Command<object>(LoadMoreItems, CanLoadMoreItems);
 
-            List<ChatListDetails> list = new List<ChatListDetails>();
-            ChatList = new ChatList(list);
-            FirstLoad();
-            isFirstID = false;
-            ids = 0;
-            ChatMessageListViewBehavior.isFirstLoad = false;
-            //this.GenerateMessageInfo();
         }
         public async void FirstLoad()
         {
@@ -140,7 +85,6 @@ namespace PasaBuy.App.ViewModels.Chat
                 {
                     if (myPage != "profile")
                     {
-
                         RecentChatViewModel.chatItems.Clear();
                         RecentChatViewModel.LoadMesssage("");
                     }
@@ -164,27 +108,16 @@ namespace PasaBuy.App.ViewModels.Chat
         {
             try
             {
-                //string user_types = type == "2" ? "3" : type;
                 SocioPress.Message.Instance.GetByRecepient(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, recipient, offset, type, storeid, lastid, (bool success, string data) =>
                 {
                     if (success)
                     {
                         ChatData chat = JsonConvert.DeserializeObject<ChatData>(data);
-                        //if (offset != string.Empty) { len = 7; }
-                        /*if (chat.data.Length < len)
-                        {
-                            isLoad = false;
-                        }
-                        else
-                        {
-                            isLoad = true;
-                        }*/
                         if (lastid == "")
                         {
                             int len = offset != string.Empty ? 7 : 12;
                             isLoad = chat.data.Length < len ? false : true;
                         }
-
                         for (int i = 0; i < chat.data.Length; i++)
                         {
                             string id = chat.data[i].id;
@@ -192,12 +125,6 @@ namespace PasaBuy.App.ViewModels.Chat
                             string content = chat.data[i].content;
                             string date_created = chat.data[i].date_created;
                             bool isreceived = senders != PSACache.Instance.UserInfo.wpid ? true : false;
-
-                            /*if (senders != PSACache.Instance.UserInfo.wpid)
-                            {
-                                isreceived = true;
-                            }*/
-
                             CultureInfo provider = new CultureInfo("fr-FR");
                             DateTime datenow = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "yyyy-MM-dd HH:mm:ss", provider);
                             DateTime datedb = DateTime.ParseExact(date_created, "yyyy-MM-dd HH:mm:ss", provider);
@@ -229,6 +156,57 @@ namespace PasaBuy.App.ViewModels.Chat
         #endregion
 
         #region Public Properties
+
+        /// <summary>
+        /// Gets or sets the ChatList Observable Collection.
+        /// </summary>
+        public ChatList ChatList
+        {
+            get => _chatHistoryList;
+            set
+            {
+                _chatHistoryList = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the isLoad.
+        /// </summary>
+        public bool isLoad
+        {
+            get
+            {
+                return _isLoad;
+            }
+            set
+            {
+                if (_isLoad != value)
+                {
+                    _isLoad = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the isBusy.
+        /// </summary>
+        public bool isBusy
+        {
+            get
+            {
+                return _isBusy;
+            }
+            set
+            {
+                if (_isBusy != value)
+                {
+                    _isBusy = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
         /// Gets or sets the profile name.
@@ -265,23 +243,6 @@ namespace PasaBuy.App.ViewModels.Chat
         }
 
         /// <summary>
-        /// Gets or sets a collection of chat messages.
-        /// </summary>
-        /*public ObservableCollection<ChatMessage> ChatMessageInfo
-        {
-            get
-            {
-                return this.chatMessageInfo;
-            }
-
-            set
-            {
-                this.chatMessageInfo = value;
-                this.NotifyPropertyChanged();
-            }
-        }*/
-
-        /// <summary>
         /// Gets or sets a new message.
         /// </summary>
         public string NewMessage
@@ -301,6 +262,11 @@ namespace PasaBuy.App.ViewModels.Chat
         #endregion
 
         #region Commands
+
+        /// <summary>
+        /// Gets or sets the command that is executed when the LoadMoreItemsCommand is clicked.
+        /// </summary>
+        public Command<object> LoadMoreItemsCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the command that is executed when the profile name is clicked.
@@ -345,44 +311,6 @@ namespace PasaBuy.App.ViewModels.Chat
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// Initializes a collection and add it to the message items.
-        /// </summary>
-        private void GenerateMessageInfo()
-        {
-            /*var currentTime = DateTime.Now;
-            chatMessageInfo.Add(new ChatMessage()
-            {
-                Message = this.descriptions[0],
-                Time = currentTime.AddMinutes(-2517),
-                IsReceived = true
-            });
-            chatMessageInfo.Add(new ChatMessage()
-            {
-                Message = this.descriptions[1],
-                Time = currentTime.AddMinutes(-2408),
-                IsReceived = false
-            });
-            chatMessageInfo.Add(new ChatMessage()
-            {
-                ImagePath = PSAConfig.sfRootUrl + "Electronics.png",
-                Time = currentTime.AddMinutes(-2405),
-                IsReceived = false
-            });
-            chatMessageInfo.Add(new ChatMessage()
-            {
-                Message = this.descriptions[2],
-                Time = currentTime.AddMinutes(-1103),
-                IsReceived = true
-            });
-            chatMessageInfo.Add(new ChatMessage()
-            {
-                Message = this.descriptions[3],
-                Time = currentTime.AddMinutes(-1006),
-                IsReceived = false
-            });*/
-        }
 
         /// <summary>
         /// Invoked when the voice call button is clicked.
@@ -437,16 +365,9 @@ namespace PasaBuy.App.ViewModels.Chat
         {
             if (!string.IsNullOrWhiteSpace(this.NewMessage))
             {
-                /*this.ChatMessageInfo.Add(new ChatMessage
-                {
-                    Message = this.NewMessage,
-                    Time = DateTime.Now
-                });*/
-
                 ChatMessageListViewBehavior.isFirstLoad = false;
                 try
                 {
-                    /*string types = "0"; if (type == "2") { types = "3"; } else {  types = type; }*/
                     string types = type == "2" ? "4" : type;
                     if (count == 0)
                     {
@@ -471,11 +392,9 @@ namespace PasaBuy.App.ViewModels.Chat
                     new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
                 }
             }
-            
         }
         public void PopupMessage()
         {
-            //await Task.Delay(500);
             if (ChatList.Count != 0)
             {
                 LoadMessage(user_id, "", ChatList.Last().ID);
@@ -484,7 +403,6 @@ namespace PasaBuy.App.ViewModels.Chat
             {
                 LoadMessage(user_id, "", "");
             }
-
         }
 
         /// <summary>
