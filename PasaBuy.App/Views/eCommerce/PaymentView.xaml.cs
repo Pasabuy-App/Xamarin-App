@@ -28,7 +28,7 @@ namespace PasaBuy.App.Views.eCommerce
                 {
                     method = "Cash";
                 }
-                System.Console.WriteLine("Payment Option: " + method);
+                //System.Console.WriteLine("Payment Option: " + method);
             }
             /*else if (e.IsChecked.HasValue && !e.IsChecked.Value)
             {

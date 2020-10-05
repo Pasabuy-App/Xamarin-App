@@ -29,8 +29,8 @@ namespace PasaBuy.App.Views.Marketplace
             //StoreDetailsViewModel.loadstoredetails(item.Id);
 
             StoreDetailsViewModel.store_id = item.Id;
-            StoreDetailsViewModel.loadcategory(item.Id);
-            StoreDetailsViewModel.loadstoredetails(item.Id);
+            StoreDetailsViewModel.Loadcategory(item.Id);
+            StoreDetailsViewModel.Loadstoredetails(item.Id);
             App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
         }
 

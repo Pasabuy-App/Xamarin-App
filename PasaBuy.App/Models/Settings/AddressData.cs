@@ -21,6 +21,14 @@ namespace PasaBuy.App.Models.Settings
             public string contact = string.Empty;
             public string contact_type = string.Empty;
             public string contact_person = string.Empty;
+            public string full_address = string.Empty;
+        }
+
+        private string full_address;
+        public string FullAddress
+        {
+            get { return full_address; }
+            set { full_address = value; }
         }
         private string contact;
         public string ContactNumber

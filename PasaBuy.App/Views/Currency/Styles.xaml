@@ -20,7 +20,6 @@
     <Color x:Key="GradientStart">#373668</Color>
     <Color x:Key="GradientEnd">#24243b</Color>
     <Color x:Key="primary-lighter">#edcacd</Color>
-    <Color x:Key="PrimaryColor">#f54e5e</Color>
     <Color x:Key="Liliac">#d483fc</Color>
     <Color x:Key="Purpleish-Blue">#5d4cf7</Color>
     <Color x:Key="Link">#567cd7</Color>

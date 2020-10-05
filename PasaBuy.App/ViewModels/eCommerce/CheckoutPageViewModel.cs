@@ -14,6 +14,7 @@ using PasaBuy.App.ViewModels.Marketplace;
 using Newtonsoft.Json;
 using PasaBuy.App.Models.Marketplace;
 using System.Threading.Tasks;
+using PasaBuy.App.Commands;
 
 namespace PasaBuy.App.ViewModels.eCommerce
 {
@@ -285,6 +286,10 @@ namespace PasaBuy.App.ViewModels.eCommerce
         /// </summary>
         public Command ApplyCouponCommand { get; set; }
 
+        private DelegateCommand changeAddressCommand;
+
+        public DelegateCommand ChangeAddressCommand =>
+           changeAddressCommand ?? (changeAddressCommand = new DelegateCommand(ChangeAddressClicked));
         #endregion
 
         #region Methods
@@ -296,6 +301,11 @@ namespace PasaBuy.App.ViewModels.eCommerce
         private void EditClicked(object obj)
         {
             // Do something
+        }
+
+        private async void ChangeAddressClicked(object obj)
+        {
+            await Application.Current.MainPage.Navigation.PushModalAsync(new ChangeAddressPage());
         }
 
         /// <summary>

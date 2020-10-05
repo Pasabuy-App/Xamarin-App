@@ -23,6 +23,7 @@
         <ControlTemplate>
             <StackLayout Spacing="0" >
                 <controls:TitleView Title="Product Details" 
+                                    FontSize="14"
                                     BackgroundColor="{DynamicResource PrimaryColor}" >
                     <controls:TitleView.LeadingView >
                         <buttons:SfButton
