@@ -5,6 +5,7 @@ using Xamarin.Forms.Internals;
 using PasaBuy.App.Models.Currency;
 using Model = PasaBuy.App.Models.Currency.Transaction;
 using System.Linq;
+using PasaBuy.App.Http;
 
 namespace PasaBuy.App.ViewModels.Currency
 {
