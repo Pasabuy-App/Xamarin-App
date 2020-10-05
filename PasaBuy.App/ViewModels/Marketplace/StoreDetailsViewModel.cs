@@ -139,12 +139,12 @@ namespace PasaBuy.App.ViewModels.Marketplace
         #endregion
         public StoreDetailsViewModel()
         {
-            CartPageViewModel.cartDetails = new ObservableCollection<ProductList>();
             this.AddToCartCommand = new Command(this.AddToCartClicked);
             //this.AddToCartCommand = new Command(this.AddToCartClicked);
             storedetailslist = new ObservableCollection<StoreDetails>();
             storedetailslist.Clear();
             categoriesdata = new ObservableCollection<Categories>();
+            CartPageViewModel.cartDetails = new ObservableCollection<ProductList>();
             CartPageViewModel.cartDetails.CollectionChanged += CollectionChanges;
             categoriesdata.Clear();
             //loadstoredetails(store_id);

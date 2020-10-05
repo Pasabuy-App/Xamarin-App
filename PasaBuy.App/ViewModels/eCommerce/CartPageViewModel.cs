@@ -56,12 +56,11 @@ namespace PasaBuy.App.ViewModels.eCommerce
 
         public bool isCartClicked = false;
 
+        public static int refresh = 0;
         #endregion
         public CartPageViewModel()
         {
             this.UpdatePrice();
-            //cartDetails = new ObservableCollection<ProductList>();
-            //cartDetails.Clear();
         }
         public static void InsertCart(string storeid, string id, string name, string summary, string image, double price, double totalprice, int quantity)
         {
@@ -94,9 +93,6 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     }
                 }
             }
-            CartPageViewModel c = new CartPageViewModel();
-            c.UpdatePrice();
-            Console.WriteLine("OK Ok OK" + c.TotalPrice);
 
         }
         public string GetTotalSRP
@@ -122,7 +118,22 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 ActualPrice = 150.00
             });
         }*/
-
+        /*public void Refresh()
+        {
+            Device.StartTimer(TimeSpan.FromSeconds(1), doitt);
+            bool doitt()
+            {
+                if (refresh == 0)
+                {
+                    this.UpdatePrice();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }*/
         #region Public properties
 
         /// <summary>
@@ -430,7 +441,6 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     this.DiscountPrice += (cartDetail.DiscountPrice * cartDetail.TotalQuantity);
                     this.percent += cartDetail.DiscountPercent;
                 }
-
                 this.DiscountPercent = this.percent > 0 ? this.percent / this.CartDetails.Count : 0;
             }
         }

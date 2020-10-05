@@ -318,9 +318,6 @@
                                                                                                   WidthRequest="25"
                                                                                                   TextColor="White"
                                                                                                   x:Name="Remove2Card"
-                                                                                                  ClassId="{Binding ID}"
-                                                                                                  Command="{Binding Source={x:Reference Name=storeDetails}, Path=BindingContext.RemoveToCartCommand}"
-                                                                                                  CommandParameter="{x:Reference Remove2Card}"
                                                                                                   Style="{StaticResource IconButtonStyle}"
                                                                                                   Text="{StaticResource Close}" />
 
