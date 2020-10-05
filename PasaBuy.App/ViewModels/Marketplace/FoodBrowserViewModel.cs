@@ -2,10 +2,12 @@
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Marketplace;
+using PasaBuy.App.Views.Marketplace;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.Marketplace
@@ -17,6 +19,26 @@ namespace PasaBuy.App.ViewModels.Marketplace
         public static ObservableCollection<FoodStore> foodstorelist;
 
         public static ObservableCollection<FoodStore> _bestSellers;
+
+
+        public ICommand SelectStoreCommand
+        {
+            get
+            {
+                return new Command<string>((x) => LoadDetails(x));
+            }
+        }
+        public async void LoadDetails(string storeId)
+        {
+            IsBusy = true;
+            StoreDetailsViewModel.store_id = storeId;
+            StoreDetailsViewModel.loadcategory(storeId);
+            StoreDetailsViewModel.loadstoredetails(storeId);
+            await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+            IsBusy = false;
+
+        }
+
 
         public ObservableCollection<FoodStore> BestSellers
         {

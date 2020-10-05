@@ -393,6 +393,9 @@
     <EmbeddedResource Update="Views\Notice\NoItemPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Notice\NoStoresPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Notice\NotEnoughCreditPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

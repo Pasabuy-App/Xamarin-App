@@ -11,7 +11,7 @@
              xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              BackgroundColor="{DynamicResource Gray-White}"
              x:Class="PasaBuy.App.Views.Marketplace.FoodBrowserPage">
-    
+
     <ContentView.BindingContext>
         <viewModel:FoodBrowserViewModel />
     </ContentView.BindingContext>
@@ -24,7 +24,7 @@
             <DataTemplate x:Key="BestSellersTemplate">
                 <StackLayout Spacing="8">
                     <border:SfBorder CornerRadius="8" BorderWidth="0">
-   
+
                         <ffimageloading:CachedImage Aspect="AspectFill"
                                                     WidthRequest="180"
                                                     HeightRequest="120"
@@ -129,7 +129,7 @@
                                FontSize="12" 
                                TextColor="{DynamicResource Gray-800}" 
                                LineHeight="{OnPlatform Android=1.25, Default=-1}"/>
-                        
+
                     </StackLayout>
 
                     <listView:SfListView Grid.Row="1"
@@ -148,6 +148,7 @@
                             Grid.Row="2"
                             BackgroundColor="{DynamicResource Gray-White}"
                             BindableLayout.ItemsSource="{Binding FoodStorelist}"
+                            x:Name="StoreListStack"
                             Spacing="0">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
@@ -229,7 +230,11 @@
                                                     TextColor="{DynamicResource Gray-700}"/>
 
                                             </StackLayout>
+
                                         </Grid>
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding BindingContext.SelectStoreCommand,Source={x:Reference StoreListStack}}" CommandParameter="{Binding Id}"/>
+                                        </Grid.GestureRecognizers>
                                     </Grid>
                                 </Frame>
                             </DataTemplate>

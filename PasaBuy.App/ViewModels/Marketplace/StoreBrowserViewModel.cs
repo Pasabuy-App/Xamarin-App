@@ -12,6 +12,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Essentials;
+using PasaBuy.App.Views.Notice;
 
 namespace PasaBuy.App.ViewModels.Marketplace
 {
@@ -120,25 +121,31 @@ namespace PasaBuy.App.ViewModels.Marketplace
                     if (success)
                     {
                         StoreListData datas = JsonConvert.DeserializeObject<StoreListData>(data);
-                       
-                        for (int i = 0; i < datas.data.Length; i++)
+
+                        if (datas.data.Length == 0)
                         {
-                            string id = datas.data[i].ID;
-                            string title = datas.data[i].title;
-                            Console.WriteLine("test:" + title);
-                            string short_info = datas.data[i].short_info;
-                            string avatar = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : datas.data[i].avatar;
-                            string banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png" : datas.data[i].banner;
-                            storeList.Add(new Store()
+                            (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new NoStoresPage()));
+                            
+                        } else
+                        {
+                            for (int i = 0; i < datas.data.Length; i++)
                             {
-                                Id = id,
-                                Title = title,
-                                Description = short_info,
-                                Logo = avatar,
-                                Offer = "50% off",
-                                ItemRating = "4.5",
-                                Banner = banner
-                            });
+                                string id = datas.data[i].ID;
+                                string title = datas.data[i].title;
+                                string short_info = datas.data[i].short_info;
+                                string avatar = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : datas.data[i].avatar;
+                                string banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png" : datas.data[i].banner;
+                                storeList.Add(new Store()
+                                {
+                                    Id = id,
+                                    Title = title,
+                                    Description = short_info,
+                                    Logo = avatar,
+                                    Offer = "50% off",
+                                    ItemRating = "4.5",
+                                    Banner = banner
+                                });
+                            }
                         }
                     }
                     else
@@ -172,6 +179,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 this.NotifyPropertyChanged();
             }
         }
+
+
 
         #endregion
 
