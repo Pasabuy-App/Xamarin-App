@@ -29,7 +29,13 @@ namespace PasaBuy.App.Models.Settings
         /// Gets or sets the contact number.
         /// </summary>
         public string ContactNumber { get; set; }
-
+        public string ContactPerson { get; set; }
+        public string AddressPhoto { get; set; }
+        public bool isPerson { get; set; }
+        public bool isPhone { get; set; }
+        public bool isPhoto { get; set; }
+        public bool isType { get; set; }
+        public bool isLocation { get; set; }
         #endregion
     }
 }
