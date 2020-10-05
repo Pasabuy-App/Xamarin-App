@@ -87,9 +87,26 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     }
                 }
             }
-
+            Convert2String(storeid);
         }
+        public static void Convert2String(string stid)
+        {
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(cartDetails);
+            Xamarin.Essentials.Preferences.Set(stid, json);
+            //System.Diagnostics.Debug.WriteLine(json);
+        }
+        public static void Convert2List(string stid)
+        {
+            if (Xamarin.Essentials.Preferences.ContainsKey(stid))
+            {
+                string data = Xamarin.Essentials.Preferences.Get(stid, "{}");
+                //System.Diagnostics.Debug.WriteLine(data);
+                var result = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.Generic.List<ProductList>>(data);
+                //System.Diagnostics.Debug.WriteLine("Count" + result.Count);
 
+                CartPageViewModel.cartDetails = new ObservableCollection<ProductList>(result);
+            }
+        }
         #endregion
 
         #region Public properties
@@ -339,6 +356,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
             {
                 this.CartDetails.Remove(product);
                 this.UpdatePrice();
+                Convert2String(product.stid);
 
                 if (this.CartDetails.Count == 0)
                 {

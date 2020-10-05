@@ -33,8 +33,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
             IsBusy = true;
             CanNavigate = false;
             StoreDetailsViewModel.store_id = storeId;
-            StoreDetailsViewModel.loadcategory(storeId);
-            StoreDetailsViewModel.loadstoredetails(storeId);
+            StoreDetailsViewModel.Loadcategory(storeId);
+            StoreDetailsViewModel.Loadstoredetails(storeId);
             await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
             IsBusy = false;
             CanNavigate = true;

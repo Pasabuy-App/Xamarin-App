@@ -48,7 +48,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                                     CustomerName = order.data[i].store_name,
                                     TransactionDescription = "Order ID " + order.data[i].odid.GetHashCode().ToString(),
                                     Image = PSAProc.GetUrl(order.data[i].store_logo),
-                                    TransactionAmount = "PHP " + order.data[i].totalprice,
+                                    TransactionAmount = "P " + order.data[i].totalprice,
                                     Date = order.data[i].date_created,
                                     IsCredited = false
                                 });

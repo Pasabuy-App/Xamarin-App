@@ -145,8 +145,10 @@ namespace PasaBuy.App.ViewModels.Marketplace
             storedetailslist.Clear();
             categoriesdata = new ObservableCollection<Categories>();
             CartPageViewModel.cartDetails = new ObservableCollection<ProductList>();
-            CartPageViewModel.cartDetails.CollectionChanged += CollectionChanges;
+            CartPageViewModel.Convert2List(store_id);
+            this.CartItemCount = CartPageViewModel.cartDetails.Count;
             categoriesdata.Clear();
+            CartPageViewModel.cartDetails.CollectionChanged += CollectionChanges;
             //loadstoredetails(store_id);
             //loadstoredetails("");
         }
@@ -208,7 +210,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                             new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                         }
                     });
-                    await Task.Delay(500);
+                    await Task.Delay(1000);
                     isCartClicked = false;
                  }
              }
@@ -255,13 +257,13 @@ namespace PasaBuy.App.ViewModels.Marketplace
             await Application.Current.MainPage.Navigation.PushModalAsync(page);
         }
 
-        public static void loaddata(string stid)
+        /*public static void loaddata(string stid)
         {
             //loadcategory(stid);
             //loadproduct(stid, Id);
-        }
+        }*/
 
-        public static void loadstoredetails(string stid)
+        public static void Loadstoredetails(string stid)
         {
             try
             {
@@ -301,7 +303,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
         
-        public static void loadcategory(string stid)
+        public static void Loadcategory(string stid)
         {
             try
             {

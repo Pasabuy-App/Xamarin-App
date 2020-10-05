@@ -6,8 +6,10 @@
              xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Marketplace" 
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
              xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-             xmlns:model="clr-namespace:PasaBuy.App.Models.MobilePOS" xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+             xmlns:model="clr-namespace:PasaBuy.App.Models.MobilePOS" 
+             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
              x:Class="PasaBuy.App.Views.Marketplace.StoreListPage"
+             BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
      <ContentPage.Resources>
         <ResourceDictionary>

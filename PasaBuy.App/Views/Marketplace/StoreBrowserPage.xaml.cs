@@ -84,7 +84,7 @@ namespace PasaBuy.App.Views.Marketplace
                 //Console.WriteLine("Title " + item.Title);
                 StoreListPage.catid = item.Id;
                 StoreBrowserViewModel.LoadStore(item.Id, "");
-                App.Current.MainPage.Navigation.PushModalAsync(new StoreListPage());
+                await App.Current.MainPage.Navigation.PushModalAsync(new StoreListPage());
                 await System.Threading.Tasks.Task.Delay(200);
                 isTapped = false;
             }
