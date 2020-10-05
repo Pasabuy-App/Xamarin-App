@@ -43,21 +43,35 @@
                 <!-- <template:ExpenseChartTemplate Grid.Row="0" /> -->
 
                 <Grid Grid.Row="1" 
-                      HeightRequest="50"
-                      Margin="20, 30, 20, 25">
+                      HeightRequest="90"
+                      Padding="15,20,15,20"
+                      Margin="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
                     <!-- Name -->
                     <Label Grid.Column="0"
-                                       HorizontalOptions="Center"
-                                       Text="Current Balance"
-                                       Style="{StaticResource LabelStyle}"
-                                       LineHeight="{OnPlatform Android=1.5, Default=-1}" />
+                           Grid.Row="0"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Text="Current Balance"
+                           Style="{StaticResource LabelStyle}"
+                           LineHeight="{OnPlatform Android=1.5, Default=-1}" />
                     <!-- Amount -->
-                    <Label Grid.Column="1"
-                                       HorizontalOptions="Center"
-                                       TextColor="{Binding IsCredited, Converter={x:StaticResource BooleanToColorConverter}, ConverterParameter=5}"
-                                       Style="{StaticResource LabelStyle}"
-                                       FontSize="25"
-                                       LineHeight="{OnPlatform Android=1.5, Default=-1}">
+                    <Label Grid.Column="2"
+                           Grid.Row="0"
+                           HorizontalOptions="End"
+                           VerticalOptions="Center"
+                           TextColor="{Binding IsCredited, Converter={x:StaticResource BooleanToColorConverter}, ConverterParameter=5}"
+                           Style="{StaticResource LabelStyle}"
+                           FontSize="25"
+                           LineHeight="{OnPlatform Android=1.5, Default=-1}">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text=" ₱" />
@@ -67,8 +81,10 @@
                     </Label>
 
                     <!-- Sending - Open Modal with Search for user, then select that user to Open another PopAsync with Amount and Currency -->
-                    <buttons:SfButton Grid.Column="3"  
+                    <buttons:SfButton Grid.Column="2"  
+                                      Grid.Row="1"
                                       BackgroundColor="Gray"
+                                      Padding="10"
                                       CornerRadius="20"
                                       x:Name="SfButton" 
                                       Command="{Binding SendMoney}"
