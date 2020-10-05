@@ -305,7 +305,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
 
         private async void ChangeAddressClicked(object obj)
         {
-            await Application.Current.MainPage.Navigation.PushAsync(new ChangeAddressPage());
+            await Application.Current.MainPage.Navigation.PushModalAsync(new ChangeAddressPage());
         }
 
         /// <summary>

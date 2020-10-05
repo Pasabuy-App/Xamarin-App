@@ -1,8 +1,11 @@
-﻿using PasaBuy.App.Models.Settings;
+﻿using PasaBuy.App.Commands;
+using PasaBuy.App.Models.Settings;
+using PasaBuy.App.Views.eCommerce;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.eCommerce
 {
@@ -10,6 +13,8 @@ namespace PasaBuy.App.ViewModels.eCommerce
     {
         private ObservableCollection<AddressData> _addressList;
 
+        private DelegateCommand _selectAddressCommand;
+        
         public ChangeAddressViewModel()
         {
             _addressList = new ObservableCollection<AddressData>();
@@ -43,5 +48,14 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 this.NotifyPropertyChanged();
             }
         }
+
+        public DelegateCommand SelectAddressCommand =>
+            _selectAddressCommand ?? (_selectAddressCommand = new DelegateCommand(SelectAddressClicked));
+
+        private async void SelectAddressClicked(object obj)
+        {
+            await Application.Current.MainPage.Navigation.PushModalAsync(new AddressInMapPage());
+        }
+
     }
 }

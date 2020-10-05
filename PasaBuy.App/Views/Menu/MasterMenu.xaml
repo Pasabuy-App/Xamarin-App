@@ -24,7 +24,7 @@
     </ContentView.BindingContext>
 
     <ContentView.Content>
-        <AbsoluteLayout>
+       
             
             <ScrollView>
                 <StackLayout Spacing="0">
@@ -363,7 +363,7 @@
                 </StackLayout>
             </ScrollView>
 
-            <StackLayout
+            <!--<StackLayout
                     x:Name="aiLayout"
                     IsVisible="{Binding Status}"
                     AbsoluteLayout.LayoutBounds="0,0,1,1"
@@ -377,7 +377,6 @@
                         HeightRequest="50"
                         WidthRequest="50"
                         Color="{DynamicResource PrimaryColor}"/>
-            </StackLayout>
-        </AbsoluteLayout>
+            </StackLayout>-->
     </ContentView.Content>
 </ContentView>

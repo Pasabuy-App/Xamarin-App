@@ -270,6 +270,9 @@
     <EmbeddedResource Update="Views\Driver\TransactOrderList.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\eCommerce\AddressInMapPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\eCommerce\CartPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
