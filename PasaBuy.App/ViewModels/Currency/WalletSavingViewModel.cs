@@ -5,6 +5,10 @@ using Xamarin.Forms.Internals;
 using PasaBuy.App.Models.Currency;
 using Model = PasaBuy.App.Models.Currency.Transaction;
 using System.Linq;
+using PasaBuy.App.Commands;
+using PasaBuy.App.Views.PopupModals;
+using Rg.Plugins.Popup.Services;
+using PasaBuy.App.Controllers.Notice;
 
 namespace PasaBuy.App.ViewModels.Currency
 {
@@ -36,6 +40,11 @@ namespace PasaBuy.App.ViewModels.Currency
 
         private Command<object> itemTappedCommand;
 
+        private DelegateCommand _sendMoney;
+
+        private DelegateCommand _confirmSendCommand;
+
+
         #endregion
 
         #region Constructor
@@ -64,6 +73,16 @@ namespace PasaBuy.App.ViewModels.Currency
         #endregion
 
         #region Properties
+
+        public DelegateCommand SendMoney =>
+           _sendMoney ?? (_sendMoney = new DelegateCommand(SendMoneyClicked));
+
+        public DelegateCommand ConfirmSendCommand =>
+           _confirmSendCommand ?? (_confirmSendCommand = new DelegateCommand(ConfirmSendClicked));
+
+
+
+
 
         /// <summary>
         /// Gets or sets the my wallet items collection in a week.
@@ -568,6 +587,15 @@ namespace PasaBuy.App.ViewModels.Currency
             // Do something
         }
 
+        private  void SendMoneyClicked(object obj)
+        {
+            PopupNavigation.Instance.PushAsync(new PopupSendWalletSavings());
+        }
+
+        private async void ConfirmSendClicked(object obj)
+        {
+            new Alert("Ok", "Do something", "Ok");
+        }
         #endregion
     }
 }

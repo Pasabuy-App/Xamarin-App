@@ -26,7 +26,7 @@
     
     <!--  Binding context for my wallet page  -->
     <ContentView.BindingContext>
-        <viewModel:WalletSavingViewModel />
+        <viewModel:WalletCreditViewModel />
     </ContentView.BindingContext>
 
     <ContentView.Content>
