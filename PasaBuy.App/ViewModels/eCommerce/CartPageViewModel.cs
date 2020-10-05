@@ -28,6 +28,8 @@ namespace PasaBuy.App.ViewModels.eCommerce
 
         public static ObservableCollection<ProductList> cartDetails;
 
+        private ObservableCollection<ProductList> produts;
+
         private double totalPrice;
 
         private double discountPrice;
@@ -38,30 +40,20 @@ namespace PasaBuy.App.ViewModels.eCommerce
 
         private double percent;
 
-        private int valueQty;
-
-        private ObservableCollection<ProductList> produts;
-
-        private Command placeOrderCommand;
-
-        private Command removeCommand;
-
-        private Command quantitySelectedCommand;
-
-        private Command variantSelectedCommand;
-
-        private Command applyCouponCommand;
-
-        private Command backButtonCommand;
-
         public bool isCartClicked = false;
 
         public static int refresh = 0;
+
         #endregion
+
+        #region Constructor
+
         public CartPageViewModel()
         {
+            this.DeliveryFee = "Free";
             this.UpdatePrice();
         }
+
         public static void InsertCart(string storeid, string id, string name, string summary, string image, double price, double totalprice, int quantity)
         {
             bool itemExists = cartDetails.Any(item =>
@@ -95,45 +87,9 @@ namespace PasaBuy.App.ViewModels.eCommerce
             }
 
         }
-        public string GetTotalSRP
-        {
-            get
-            {
-                double totalbill = 0 ;
-                foreach (ProductList item in cartDetails)
-                {
-                    totalbill += item.ActualPrice;
-                }
-                return "PHP " + totalbill.ToString();
-            }
-        }
-        /*public static void LoadMoreItem()
-        {
-            cartDetails.Add(new ProductList()
-            {
-                Name = "Example Name",
-                Description = "Product Description",
-                Summary = "Product Summary",
-                PreviewImage = "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-product.png",
-                ActualPrice = 150.00
-            });
-        }*/
-        /*public void Refresh()
-        {
-            Device.StartTimer(TimeSpan.FromSeconds(1), doitt);
-            bool doitt()
-            {
-                if (refresh == 0)
-                {
-                    this.UpdatePrice();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }*/
+
+        #endregion
+
         #region Public properties
 
         /// <summary>
@@ -201,6 +157,10 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 this.NotifyPropertyChanged();
             }
         }
+
+        /// <summary>
+        /// Gets or sets the property that has been bound with label, which displays delivery fee.
+        /// </summary>
         public string DeliveryFee
         {
             get
@@ -245,8 +205,6 @@ namespace PasaBuy.App.ViewModels.eCommerce
         /// <summary>
         /// Gets or sets the property that has been bound with list view, which displays the collection of products from json.
         /// </summary>
-
-        //[DataMember(Name = "products")]
         public ObservableCollection<ProductList> Products
         {
             get
@@ -268,8 +226,20 @@ namespace PasaBuy.App.ViewModels.eCommerce
         }
 
         #endregion
-        
+
         #region Command
+
+        private Command placeOrderCommand;
+
+        private Command removeCommand;
+
+        private Command quantitySelectedCommand;
+
+        private Command variantSelectedCommand;
+
+        private Command applyCouponCommand;
+
+        private Command backButtonCommand;
 
         /// <summary>
         /// Gets or sets the command that will be executed when the Edit button is clicked.
@@ -328,7 +298,6 @@ namespace PasaBuy.App.ViewModels.eCommerce
         /// <param name="obj">The Object</param>
         private async void PlaceOrderClicked(object obj)
         {
-            //this.UpdatePrice();
             if (CartDetails.Count != 0)
             {
                 if (!isCartClicked)
@@ -358,11 +327,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
 
                 if (this.CartDetails.Count == 0)
                 {
-                    //SfPopupView sfPopupView = new SfPopupView();
-                    //sfPopupView.ShowPopUp(content: "Your cart is empty!", buttonText: "CONTINUE SHOPPING");
-                    // Back to StoreDetails or Show EmptyCartPage then the cartitemCount is 0;
                     await NavigateToPage(new EmptyCartPage());
-
                 }
             }
         }
