@@ -46,29 +46,47 @@ namespace PasaBuy.App.ViewModels.Settings
                     if (success)
                     {
                         AddressData address = JsonConvert.DeserializeObject<AddressData>(data);
+
                         for (int i = 0; i < address.data.Length; i++)
                         {
-                            string id = address.data[i].id;
                             string types = address.data[i].types;
                             string status = address.data[i].status;
-                            string street = address.data[i].street;
-                            string brgy = address.data[i].brgy;
-                            string city = address.data[i].city;
-                            string province = address.data[i].province;
-                            string country = address.data[i].country;
                             string type = string.Empty;
                             if (types == "home") { type = "Home"; }
                             if (types == "office") { type = "Office"; }
                             if (types == "business") { type = "Business"; }
                             addressDetails.Add(new Address()
                             {
-                                SelectedAddress = id,
-                                Name = "Juan Dela Cruz",
+                                isPhone = true,
+                                isType = true,
+                                isLocation = true,
+                                SelectedAddress = address.data[i].id,
                                 AddressType = type,
-                                Location = street + " " + brgy + " " + city + " " + province + ", " + country,
-                                ContactNumber = "(123) 456-7890"
+                                Location = address.data[i].street + " " + address.data[i].brgy + " " + address.data[i].city + " " + address.data[i].province + ", " + address.data[i].country,
+                                ContactNumber = address.data[i].contact + " - " + address.data[i].contact_type,
+
+                                isPerson = string.IsNullOrEmpty(address.data[i].contact_person) ? false : true,
+                                ContactPerson = string.IsNullOrEmpty(address.data[i].contact_person) ? "No contact person." : address.data[i].contact_person,
+                                isPhoto = string.IsNullOrEmpty(address.data[i].preview) ? false : true,
+                                AddressPhoto = string.IsNullOrEmpty(address.data[i].preview) ? PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl) : PSAProc.GetUrl(address.data[i].preview)
                             });
                         }
+                        /* if (address.data.Length == 0)
+                         {
+                             addressDetails.Add(new Address()
+                             {
+                                 isPerson = false,
+                                 isPhone = false,
+                                 isPhoto = false,
+                                 isType = true,
+                                 isLocation = false,
+                                 SelectedAddress = "0",
+                                 AddressType = "No address found."
+                             });
+                         }
+                         else
+                         {
+                         }*/
                     }
                     else
                     {

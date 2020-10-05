@@ -24,6 +24,7 @@ namespace PasaBuy.App.Views.Marketplace
         }
         public void BackButtonClicked(object sender, EventArgs e)
         {
+            ViewModels.eCommerce.CartPageViewModel.refresh = 1;
             Navigation.PopModalAsync();
         }
 

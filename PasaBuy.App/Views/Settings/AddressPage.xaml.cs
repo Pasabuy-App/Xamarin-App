@@ -55,22 +55,25 @@ namespace PasaBuy.App.Views.Settings
         {
             try
             {
-                bool answer = await DisplayAlert("Delete Address?", "Are you sure to delete this?", "Yes", "No");
-                if (answer)
+                var item = e.ItemData as Address;
+                if (item.SelectedAddress != "0")
                 {
-                    var item = e.ItemData as Address;
-                    DataVice.Address.Instance.Delete(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, item.SelectedAddress, (bool success, string data) =>
+                    bool answer = await DisplayAlert("Delete Address?", "Are you sure to delete this?", "Yes", "No");
+                    if (answer)
                     {
-                        if (success)
+                        DataVice.Address.Instance.Delete(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, item.SelectedAddress, (bool success, string data) =>
                         {
-                            AddressViewModel.addressDetails.Clear();
-                            AddressViewModel.LoadData();
-                        }
-                        else
-                        {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                        }
-                    });
+                            if (success)
+                            {
+                                AddressViewModel.addressDetails.Clear();
+                                AddressViewModel.LoadData();
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            }
+                        });
+                    }
                 }
             }
             catch (Exception ex)

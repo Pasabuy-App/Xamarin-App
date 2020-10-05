@@ -62,7 +62,7 @@
                 Style="{StaticResource PriceLabelStyle}"
                 Text="Total SRP" />
             <Label
-                Grid.Row="2"
+                Grid.Row="2" x:Name="TotalPrice"
                 Grid.Column="1"
                 Margin="16,4,16,0"
                 FontFamily="{StaticResource Montserrat-Medium}"
@@ -131,7 +131,7 @@
                 HorizontalOptions="EndAndExpand"
                 HorizontalTextAlignment="End"
                 Style="{StaticResource PriceLabelStyle}"
-                Text="{Binding DeliveryFee, StringFormat='{0}'}"
+                Text="{Binding DeliveryFee}"
                 TextColor="{DynamicResource Green}" />
             <!--  Separator  -->
             <BoxView
@@ -151,7 +151,7 @@
                 Text="Total"
                 TextColor="{DynamicResource Gray-900}" />
             <Label
-                Grid.Row="7"
+                Grid.Row="7"  x:Name="Total"
                 Grid.Column="1"
                 Margin="16,12,16,16"
                 FontFamily="{StaticResource Montserrat-SemiBold}"

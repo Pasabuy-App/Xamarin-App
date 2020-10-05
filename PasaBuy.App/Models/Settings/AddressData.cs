@@ -17,6 +17,28 @@ namespace PasaBuy.App.Models.Settings
             public string city = string.Empty;
             public string province = string.Empty;
             public string country = string.Empty;
+            public string preview = string.Empty;
+            public string contact = string.Empty;
+            public string contact_type = string.Empty;
+            public string contact_person = string.Empty;
+        }
+        private string contact;
+        public string ContactNumber
+        {
+            get { return contact; }
+            set { contact = value; }
+        }
+        private string contact_person;
+        public string ContactPerson
+        {
+            get { return contact_person; }
+            set { contact_person = value; }
+        }
+        private string preview;
+        public string AddressPhoto
+        {
+            get { return preview; }
+            set { preview = value; }
         }
         private string country;
         public string Country
