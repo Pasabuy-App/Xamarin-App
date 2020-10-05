@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:converter="clr-namespace:PasaBuy.App.Converters" 
+             xmlns:controls="clr-namespace:PasaBuy.App.Controls"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.eCommerce"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" 
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms" 
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
+             x:Class="PasaBuy.App.Views.eCommerce.ChangeAddressPage"
+             BackgroundColor="{DynamicResource Gray-White}"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Spacing="0" >
+                <controls:TitleView Title="My Address" 
+                                    BackgroundColor="{DynamicResource PrimaryColor}" >
+                    <controls:TitleView.LeadingView >
+                        <buttons:SfButton
+                            x:Name="backButton"
+                            Clicked="BackButtonClicked"
+                            CornerRadius="4"
+                            TextColor="{DynamicResource Gray-White}"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                    </controls:TitleView.LeadingView>
+                </controls:TitleView>
+                <ContentPresenter />
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+    <ContentPage.BindingContext>
+        <viewModel:ChangeAddressViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackLayout BackgroundColor="{DynamicResource Gray-White}"
+                         Margin="15"
+                         Grid.Row="0"
+                         x:Name="AddressListStack"
+                         Spacing="0">
+                    <border:SfBorder Grid.Row="5"
+                                 Grid.ColumnSpan="2"
+                                 Padding="6,0,0,0"
+                                 Style="{StaticResource FormBorderStyle}">
+                        <combobox:SfComboBox
+                            x:Name="CountryPicker"
+                            SelectedValuePath="CountryCode"
+                            Style="{StaticResource ComboBoxStyle}"
+                            Watermark="Select Country">
+                            <combobox:SfComboBox.ComboBoxSource>
+                                <ListCollection:List x:TypeArguments="x:String">
+                                    <x:String>asdasdasd</x:String>
+                                </ListCollection:List>
+                            </combobox:SfComboBox.ComboBoxSource>
+                            <combobox:SfComboBox.DropDownButtonSettings>
+                                <combobox:DropDownButtonSettings Width="30" Height="30">
+                                    <combobox:DropDownButtonSettings.View>
+                                        <Label
+                                            Margin="0"
+                                            FontFamily="{StaticResource FontIcons}"
+                                            FontSize="25"
+                                            HorizontalTextAlignment="Center"
+                                            Text="{StaticResource DropDownButtonIcon}"
+                                            TextColor="{DynamicResource Gray-600}"
+                                            VerticalTextAlignment="Center" />
+                                    </combobox:DropDownButtonSettings.View>
+                                </combobox:DropDownButtonSettings>
+                            </combobox:SfComboBox.DropDownButtonSettings>
+                        </combobox:SfComboBox>
+                    </border:SfBorder>
+                </StackLayout>
+                <StackLayout Grid.Row="1" Padding="10" x:Name="PinStack">
+                    <inputLayout:SfTextInputLayout
+                            x:Name="Short"
+                            Grid.Row="3"
+                            ContainerBackgroundColor="Transparent"
+                            ContainerType="Outlined"
+                            FocusedColor="{DynamicResource BlackColor}"
+                            Hint="or Another Pin Location"
+                            HorizontalOptions="Fill"
+                            LeadingViewPosition="Inside">
+                        <Entry
+                                VerticalOptions="Center"
+                                IsEnabled="False"
+                                HorizontalOptions="FillAndExpand" x:Name="Shorts"/>
+                        <inputLayout:SfTextInputLayout.LeadingView>
+                            <Label
+                                    FontSize="18"
+                                    VerticalTextAlignment="Center"
+                                    Style="{StaticResource ProfileIconLabelStyle}"
+                                    TextColor="{DynamicResource BlackColor}"
+                                     Text="&#xf124;" />
+                        </inputLayout:SfTextInputLayout.LeadingView>
+                    </inputLayout:SfTextInputLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BindingContext.PinLocationCommand,Source={x:Reference PinStack}}" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

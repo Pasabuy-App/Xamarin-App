@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using PasaBuy.App.Commands;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Marketplace;
@@ -20,7 +21,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public static ObservableCollection<FoodStore> _bestSellers;
 
-
         public ICommand SelectStoreCommand
         {
             get
@@ -31,12 +31,13 @@ namespace PasaBuy.App.ViewModels.Marketplace
         public async void LoadDetails(string storeId)
         {
             IsBusy = true;
+            CanNavigate = false;
             StoreDetailsViewModel.store_id = storeId;
             StoreDetailsViewModel.loadcategory(storeId);
             StoreDetailsViewModel.loadstoredetails(storeId);
             await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
             IsBusy = false;
-
+            CanNavigate = true;
         }
 
 

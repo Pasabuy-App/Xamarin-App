@@ -48,6 +48,24 @@
                                Phone='Deliver To'}"
                 TextColor="{DynamicResource Gray-900}" />
 
+            <Label
+                Grid.Column="1"
+                Grid.Row="0"
+                FontFamily="{StaticResource Montserrat-SemiBold}"
+                FontSize="13"
+                x:Name="ChangeAddress"
+                LineHeight="{OnPlatform Android=1.25,
+                                        Default=-1}"
+                Style="{StaticResource PriceLabelStyle}"
+                Text="{OnIdiom Default='(Tap to change delivery address)',
+                               Phone='(Tap to change address)'}"
+                TextColor="{DynamicResource Blue}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Path=BindingContext.ChangeAddressCommand, Source={x:Reference ChangeAddress}}" NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+                
+            </Label>
+
             <!--  Total Price Label  -->
             <Label
                 Grid.Column="1"

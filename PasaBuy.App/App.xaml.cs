@@ -5,6 +5,7 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using PasaBuy.App.Views.Marketplace;
+using PasaBuy.App.Views.eCommerce;
 
 namespace PasaBuy.App
 {

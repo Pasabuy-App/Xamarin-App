@@ -273,6 +273,9 @@
     <EmbeddedResource Update="Views\eCommerce\CartPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\eCommerce\ChangeAddressPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\eCommerce\CheckoutPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

@@ -14,6 +14,7 @@ using System;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Views.StoreDetail;
 using System.Linq;
+using PasaBuy.App.Commands;
 
 namespace PasaBuy.App.ViewModels.eCommerce
 {
@@ -43,6 +44,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
         public bool isCartClicked = false;
 
         public static int refresh = 0;
+
 
         #endregion
 
@@ -241,6 +243,9 @@ namespace PasaBuy.App.ViewModels.eCommerce
 
         private Command backButtonCommand;
 
+        private DelegateCommand changeAddressCommand;
+
+
         /// <summary>
         /// Gets or sets the command that will be executed when the Edit button is clicked.
         /// </summary>
@@ -288,9 +293,19 @@ namespace PasaBuy.App.ViewModels.eCommerce
             get { return this.backButtonCommand ?? (this.backButtonCommand = new Command(this.BackButtonClicked)); }
         }
 
+
+        public DelegateCommand ChangeAddressCommand =>
+            changeAddressCommand ?? (changeAddressCommand = new DelegateCommand(ChangeAddressClicked));
         #endregion
 
         #region Methods
+
+        private async void ChangeAddressClicked(object obj)
+        {
+            //await Application.Current.MainPage.Navigation.PushAsync(new ChangeAddressPage());
+            new Alert("Ok", "ok", "ok");
+        }
+
 
         /// <summary>
         /// Invoked when an item is selected.
