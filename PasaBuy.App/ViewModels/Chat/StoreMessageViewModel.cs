@@ -21,18 +21,13 @@ namespace PasaBuy.App.ViewModels.Chat
     [Preserve(AllMembers = true)]
     public class StoreMessageViewModel : BaseViewModel
     {
-        #region Fields
-        private string profileImage = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatar);
 
-        private Command itemSelectedCommand;
+        #region Fields
+
+        private string profileImage = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatar);
 
         public static ObservableCollection<ChatDetail> storeChatList;
 
-        public ObservableCollection<ChatDetail> ChatList
-        {
-            get { return storeChatList; }
-            set { storeChatList = value; this.NotifyPropertyChanged(); }
-        }
         #endregion
 
         #region Constuctor
@@ -41,6 +36,7 @@ namespace PasaBuy.App.ViewModels.Chat
             storeChatList = new ObservableCollection<ChatDetail>();
             storeChatList.Clear();
             LoadMesssage("");
+
             this.MakeVoiceCallCommand = new Command(this.VoiceCallClicked);
             this.MakeVideoCallCommand = new Command(this.VideoCallClicked);
             this.ShowSettingsCommand = new Command(this.SettingsClicked);
@@ -70,9 +66,7 @@ namespace PasaBuy.App.ViewModels.Chat
                                 string date_seen = chat.data[i].date_seen == null ? "" : chat.data[i].date_seen;
                                 string avatar = chat.data[i].avatar;
                                 string sender_id = chat.data[i].sender_id;
-
                                 string notitype = sender_id == PSACache.Instance.UserInfo.wpid ? notitype = date_seen == "" ? "Sent" : "Received" : date_seen == "" ? "New" : "Viewed";
-
                                 string showdate = string.Empty;
                                 CultureInfo provider = new CultureInfo("fr-FR");
                                 DateTime datetoday = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "yyyy-MM-dd HH:mm:ss", provider);
@@ -130,9 +124,7 @@ namespace PasaBuy.App.ViewModels.Chat
                                 string date_seen = chat.data[i].date_seen == null ? "" : chat.data[i].date_seen;
                                 string avatar = chat.data[i].avatar;
                                 string sender_id = chat.data[i].sender_id;
-
                                 string notitype = sender_id == PSACache.Instance.UserInfo.wpid ? notitype = date_seen == "" ? "Sent" : "Received" : date_seen == "" ? "New" : "Viewed";
-
                                 string showdate = string.Empty;
                                 CultureInfo provider = new CultureInfo("fr-FR");
                                 DateTime datetoday = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "yyyy-MM-dd HH:mm:ss", provider);
@@ -177,9 +169,26 @@ namespace PasaBuy.App.ViewModels.Chat
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
         }
+
         #endregion
 
         #region Public Properties
+
+        /// <summary>
+        /// Gets or sets the ChatList ObservableCollection.
+        /// </summary>
+        public ObservableCollection<ChatDetail> ChatList
+        {
+            get
+            {
+                return storeChatList;
+            }
+            set
+            {
+                storeChatList = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
         /// <summary>
         /// Gets or sets the profile image.
@@ -200,6 +209,12 @@ namespace PasaBuy.App.ViewModels.Chat
         #endregion
 
         #region Commands
+
+        /// <summary>
+        /// Declration of itemSelectedCommand.
+        /// </summary>
+        private Command itemSelectedCommand;
+
         /// <summary>
         /// Gets or sets the command that is executed when the voice call button is clicked.
         /// </summary>
@@ -308,5 +323,6 @@ namespace PasaBuy.App.ViewModels.Chat
         }
 
         #endregion
+
     }
 }

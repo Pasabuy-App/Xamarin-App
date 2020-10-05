@@ -191,7 +191,7 @@
                                                     <Span Text=" | " TextColor="{DynamicResource Gray-Black}" />
                                                     <Span
                                                         FontFamily="{StaticResource Montserrat-Regular}"
-                                                        Text="{Binding LongInformation}"
+                                                        Text="{Binding Province}"
                                                         TextColor="{DynamicResource Gray-Black}" />
                                                 </FormattedString>
                                             </Label.FormattedText>
@@ -293,7 +293,7 @@
                                                                     <buttons:SfButton Grid.Column="2"
                                                                                                   Grid.Row="2"
                                                                                                   CornerRadius="25"
-                                                                                                  IsVisible="True"
+                                                                                                  IsVisible= "True"
                                                                                                   Padding="3"
                                                                                                   Margin="0,-20,-5,-5"
                                                                                                   BackgroundColor="YellowGreen"
@@ -309,19 +309,18 @@
 
                                                                     <buttons:SfButton Grid.Column="2"
                                                                                                   Grid.Row="2"
-                                                                                                  x:Name="OkButton"
-                                                                                                  IsVisible="False"
                                                                                                   CornerRadius="25"
-                                                                                                  IsEnabled="False"
-                                                                                                  Padding="5"
+                                                                                                  IsVisible="False"
+                                                                                                  Padding="3"
                                                                                                   Margin="0,-20,-5,-5"
-                                                                                                  BackgroundColor="Transparent"
-                                                                                                  HeightRequest="40"
-                                                                                                  WidthRequest="40"
-                                                                                                  TextColor="Green"
+                                                                                                  BackgroundColor="Red"
+                                                                                                  HeightRequest="25"
+                                                                                                  WidthRequest="25"
+                                                                                                  TextColor="White"
+                                                                                                  x:Name="Remove2Card"
                                                                                                   Style="{StaticResource IconButtonStyle}"
-                                                                                                  Text="{StaticResource Ok}" />
-                                                            
+                                                                                                  Text="{StaticResource Close}" />
+
                                                         </Grid>
                                                     </DataTemplate>
                                                 </BindableLayout.ItemTemplate>

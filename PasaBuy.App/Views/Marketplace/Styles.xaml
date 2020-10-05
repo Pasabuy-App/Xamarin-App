@@ -29,6 +29,7 @@
     <x:String x:Key="Pluss">&#xf146;</x:String>
     <x:String x:Key="Add">&#xe730;</x:String>
     <x:String x:Key="Ok">&#xe72d;</x:String>
+    <x:String x:Key="Close">&#xe724;</x:String>
 
 
 

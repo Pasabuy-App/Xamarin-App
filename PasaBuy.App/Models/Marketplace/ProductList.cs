@@ -17,7 +17,19 @@ namespace PasaBuy.App.Models.Marketplace
         public double discountPrice = 0;
         public double discountPercent = 0;
         private int totalQuantity;
-
+        private double quantity;
+        public double Quantity
+        {
+            get 
+            {
+                return quantity;
+            }
+            set
+            {
+                quantity = value;
+                OnPropertyChanged("Quantity");
+            }
+        }
         public string Stid
         {
             get { return stid; }
@@ -120,8 +132,6 @@ namespace PasaBuy.App.Models.Marketplace
                 OnPropertyChanged("TotalQuantity");
             }
         }
-
-        
 
         public event PropertyChangedEventHandler PropertyChanged;
 

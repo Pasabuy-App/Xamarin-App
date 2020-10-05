@@ -41,28 +41,34 @@ namespace PasaBuy.App.Views.Settings
                 if (!isEnable)
                 {
                     isEnable = true;
-                    string type = string.Empty;
-                    if (AddressTypePicker.Text == "Business") { type = "business"; }
-                    if (AddressTypePicker.Text == "Home") { type = "home"; }
-
-                    DataVice.Address.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, type, AddressVar.co, AddressVar.pr, AddressVar.ct, AddressVar.br, StreetEntry.Text, (bool success, string data) =>
+                    if (string.IsNullOrWhiteSpace(StreetEntry.Text) || string.IsNullOrWhiteSpace(ContactEntry.Text) || string.IsNullOrEmpty(ContactTypePicker.Text))
                     {
-                        if (success)
+                        string type = string.Empty;
+                        if (AddressTypePicker.Text == "Business") { type = "business"; }
+                        if (AddressTypePicker.Text == "Home") { type = "home"; }
+                        if (AddressTypePicker.Text == "Office") { type = "office"; }
+                        filePath = !string.IsNullOrEmpty(filePath) ? filePath : "";
+                        ContactPersonEntry.Text = !string.IsNullOrWhiteSpace(ContactPersonEntry.Text) ? ContactPersonEntry.Text : "";
+                        //Console.WriteLine("." + filePath+ ". ."+ type + ". ." + AddressVar.co + ". ." + AddressVar.pr + ". ." + AddressVar.ct + ". ." + AddressVar.br + ". ." + StreetEntry.Text + ". ." + ContactEntry.Text + ". ." + ContactTypePicker.Text + ". ." + ContactPersonEntry.Text + ".");
+                        DataVice.Address.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, filePath, type, AddressVar.co, AddressVar.pr, AddressVar.ct, AddressVar.br, StreetEntry.Text, ContactEntry.Text, ContactTypePicker.Text, ContactPersonEntry.Text, (bool success, string data) =>
                         {
-                            Navigation.PopModalAsync();
-                            AddressViewModel.addressDetails.Clear();
-                            AddressViewModel.LoadData();
-                        }
-                        else
-                        {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                        }
-                    });
-                    Device.BeginInvokeOnMainThread(async () =>
-                    {
-                        await Task.Delay(200);
-                        isEnable = false;
-                    });
+                            if (success)
+                            {
+                                Navigation.PopModalAsync();
+                                AddressViewModel.addressDetails.Clear();
+                                AddressViewModel.LoadData();
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            }
+                        });
+                        Device.BeginInvokeOnMainThread(async () =>
+                            {
+                                await Task.Delay(200);
+                                isEnable = false;
+                            });
+                    }
                 }
             }
             catch (Exception ex)

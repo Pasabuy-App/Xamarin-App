@@ -18,27 +18,16 @@ namespace PasaBuy.App.ViewModels.Chat
     [Preserve(AllMembers = true)]
     public class RecentChatViewModel : BaseViewModel
     {
-        public static string type = "0";
         #region Fields
 
-        //private ObservableCollection<ChatDetail> chatItems;
-
-        //private string profileImage = PSAConfig.sfRootUrl + "ProfileImage1.png";
+        public static string type = "0";
         private string profileImage = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatar) ;
-
-        private Command itemSelectedCommand;
-
         public static ObservableCollection<ChatDetail> chatItems;
-
-        public ObservableCollection<ChatDetail> ChatItems
-        {
-            get { return chatItems; }
-            set { chatItems = value; this.NotifyPropertyChanged(); }
-        }
 
         #endregion
 
         #region Constructor
+
         /// <summary>
         /// Initializes a new instance of the <see cref="RecentChatViewModel" /> class.
         /// </summary>
@@ -46,24 +35,18 @@ namespace PasaBuy.App.ViewModels.Chat
         {
             chatItems = new ObservableCollection<ChatDetail>();
             chatItems.Clear();
+
             this.MakeVoiceCallCommand = new Command(this.VoiceCallClicked);
             this.MakeVideoCallCommand = new Command(this.VideoCallClicked);
             this.ShowSettingsCommand = new Command(this.SettingsClicked);
             this.MenuCommand = new Command(this.MenuClicked);
             this.ProfileImageCommand = new Command(this.ProfileImageClicked);
         }
+
         public static void LoadMesssage(string offset)
         {
             try
             {
-                /*if (PSACache.Instance.UserInfo.user_type == "Verified")// if not a store or mover, type = 0
-                {
-                    type = "4";
-                }
-                if (PSACache.Instance.UserInfo.user_type != "0")
-                {
-                    type = "1";
-                }*/
                 string user_mess = PSACache.Instance.UserInfo.user_type != "User" && ( PSACache.Instance.UserInfo.stid == "0" || string.IsNullOrEmpty(PSACache.Instance.UserInfo.stid)) ? "3" : "4";
                 SocioPress.Message.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, user_mess, PSACache.Instance.UserInfo.stid, offset, (bool success, string data) =>
                 {
@@ -96,7 +79,6 @@ namespace PasaBuy.App.ViewModels.Chat
                             }
 
                             string notitype = sender_id == PSACache.Instance.UserInfo.wpid ? notitype = date_seen == "" ? "Sent" : "Received" : date_seen == "" ? "New" : "Viewed";
-
                             string showdate = string.Empty;
                             CultureInfo provider = new CultureInfo("fr-FR");
                             DateTime datetoday = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "yyyy-MM-dd HH:mm:ss", provider);
@@ -140,163 +122,26 @@ namespace PasaBuy.App.ViewModels.Chat
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
         }
-        private void SampleData()
-        {
-           /* this.ChatItems = new ObservableCollection<ChatDetail>
-            {
-                new ChatDetail
-                {
-                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage2.png",
-                    SenderName = "Alice Russell",
-                    MessageType = "Text",
-                    Message = "https://app.syncfusion",
-                    Time = "15 min",
-                    NotificationType = "New"
-                },
-                new ChatDetail
-                {
-                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage3.png",
-                    SenderName = "Danielle Schneider",
-                    MessageType = "Audio",
-                    Time = "23 min",
-                    AvailableStatus = "Available",
-                    NotificationType = "Viewed"
-                },
-                new ChatDetail
-                {
-                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage4.png",
-                    SenderName = "Jessica Park",
-                    MessageType = "Text",
-                    Message = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                    Time = "1 hr",
-                    NotificationType = "New"
-                },
-                new ChatDetail
-                {
-                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage5.png",
-                    SenderName = "Julia Grant",
-                    MessageType = "Video",
-                    Time = "3 hr",
-                    AvailableStatus = "Available",
-                    NotificationType = "Received"
-                },
-                new ChatDetail
-                {
-                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage6.png",
-                    SenderName = "kyle Greene",
-                    MessageType = "Contact",
-                    Message = "Jhone Deo Sync",
-                    Time = "Yesterday",
-                    NotificationType = "Viewed"
-                },
-                new ChatDetail
-                {
-                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage7.png",
-                    SenderName = "Danielle Booker",
-                    MessageType = "Text",
-                    Message = "Val Geisier is a writer who",
-                    Time = "Jan 30",
-                    AvailableStatus = "Available",
-                    NotificationType = "Sent"
-                },
-                new ChatDetail
-                {
-                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage8.png",
-                    SenderName = "Jazmine Simmons",
-                    MessageType = "Text",
-                    Message = "Contrary to popular belief, Lorem Ipsum is not simply random text." +
-                              "It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.",
-                    Time = "12/8/2018",
-                    NotificationType = "Sent"
-                },
-                new ChatDetail
-                {
-                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage9.png",
-                    SenderName = "Ira Membrit",
-                    MessageType = "Photo",
-                    Time = "8/8/2018",
-                    AvailableStatus = "Available",
-                    NotificationType = "Viewed"
-                },
-                new ChatDetail
-                {
-                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage10.png",
-                    MessageType = "Text",
-                    Message = "A customer who bought your",
-                    SenderName = "Serina Willams",
-                    Time = "10/6/2018",
-                    NotificationType = "Sent"
-                },
-                 new ChatDetail
-                 {
-                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage11.png",
-                    SenderName = "Alise Valasquez",
-                    MessageType = "Text",
-                    Message = "Syncfusion components help you deliver applications with great user experiences across iOS, Android, and Universal Windows Platform from a single code base.",
-                    Time = "2/5/2018",
-                    NotificationType = "New"
-                },
-                new ChatDetail
-                {
-                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage12.png",
-                    SenderName = "Allie Bellew",
-                    MessageType = "Audio",
-                    Time = "24/4/2018",
-                    AvailableStatus = "Available",
-                    NotificationType = "Viewed"
-                },
-                new ChatDetail
-                {
-                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage13.png",
-                    SenderName = "Navya Sharma",
-                    MessageType = "Text",
-                    Message = "https://www.syncfusion.com",
-                    Time = "10/4/2018",
-                    NotificationType = "New"
-                },
-                new ChatDetail
-                {
-                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage14.png",
-                    SenderName = "Carly Ling",
-                    MessageType = "Video",
-                    Time = "22/3/2018",
-                    AvailableStatus = "Available",
-                    NotificationType = "Received"
-                },
-                new ChatDetail
-                {
-                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage15.png",
-                    SenderName = "Diayana Sebastine",
-                    MessageType = "Contact",
-                    Message = "Kishore Nisanth",
-                    Time = "15/3/2018",
-                    NotificationType = "Viewed"
-                },
-                new ChatDetail
-                {
-                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage16.png",
-                    SenderName = "Marc Sherry",
-                    MessageType = "Text",
-                    Message = "Val Geisier is a writer who",
-                    Time = "12/3/2018",
-                    AvailableStatus = "Available",
-                    NotificationType = "Sent"
-                },
-                new ChatDetail
-                {
-                    ImagePath = PSAConfig.sfRootUrl + "ProfileImage17.png",
-                    SenderName = "Dona Merina",
-                    MessageType = "Text",
-                    Message = "Contrary to popular belief, Lorem Ipsum is not simply random text." +
-                              "It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.",
-                    Time = "3/2/2018",
-                    NotificationType = "Sent"
-                },
-            };*/
-        }
+
         #endregion
 
         #region Public Properties
+
+        /// <summary>
+        /// Gets or sets the ChatItems ObservableCollection.
+        /// </summary>
+        public ObservableCollection<ChatDetail> ChatItems
+        {
+            get
+            {
+                return chatItems;
+            }
+            set
+            {
+                chatItems = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
         /// <summary>
         /// Gets or sets the profile image.
@@ -315,31 +160,15 @@ namespace PasaBuy.App.ViewModels.Chat
             }
         }
 
-        /// <summary>
-        /// Gets or sets the property that has been bound with a list view, which displays the profile items.
-        /// </summary>
-        /*public ObservableCollection<ChatDetail> ChatItems
-        {
-            get
-            {
-                return this.chatItems;
-            }
-
-            set
-            {
-                if (this.chatItems == value)
-                {
-                    return;
-                }
-
-                this.chatItems = value;
-                this.NotifyPropertyChanged();
-            }
-        }*/
-
         #endregion
 
         #region Commands
+
+        /// <summary>
+        /// Gets or sets the command that is executed when item is selected.
+        /// </summary>
+        private Command itemSelectedCommand;
+
         /// <summary>
         /// Gets or sets the command that is executed when the voice call button is clicked.
         /// </summary>
@@ -384,13 +213,11 @@ namespace PasaBuy.App.ViewModels.Chat
         {
             ChatMessageViewModel.refresh = 0;
             ChatMessageViewModel.myPage = "user";
-            //ChatMessageViewModel.LoadMessage(user_id, "");
             ChatMessageViewModel.ProfileNames = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).SenderName;
             ChatMessageViewModel.ProfileImages = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).ImagePath;
             ChatMessageViewModel.user_id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).ID;
             ChatMessageViewModel.storeid = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).Store_id;
             ChatMessageViewModel.type = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).Types;
-            //await ((MainTabs)App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ChatMessagePage()));
             await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ChatMessagePage()));
         }
 
