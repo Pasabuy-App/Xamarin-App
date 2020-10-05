@@ -16,14 +16,24 @@ namespace PasaBuy.App.Local
         public static bool onProduction { get; } = true;
 
         /// <summary>
+        /// Does the current RestURL used SSL.
+        /// </summary>
+        public static bool onSSL { get; } = true;
+
+        /// <summary>
         /// Development url.
         /// </summary>
-        public static string devBaseUrl { get; } = "10.0.2.2/wordpress";
+        public static string devBaseUrl { get; } = "10.0.2.2";
+
+        /// <summary>
+        /// WordPress media host url.
+        /// </summary>
+        public static string devMediaUrl { get; } = "wordpress.dev";
 
         /// <summary>
         /// RestAPI Root url c/o WordPress.
         /// </summary>
-        public static string baseRestUrl { get; } = "https://pasabuy.app";
+        public static string baseRestUrl { get; } = "pasabuy.app";
 
         /// <summary>
         /// Get the current active Rest URL dev or prod.
@@ -32,12 +42,17 @@ namespace PasaBuy.App.Local
         {
             get
             {
-                if(PSAConfig.onProduction)
+                string returning = PSAConfig.onSSL ? "https://" : "http://";
+
+                if (PSAConfig.onProduction)
                 {
-                    return baseRestUrl;
+                    Console.WriteLine(returning + baseRestUrl);
+                    return returning + baseRestUrl;
                 }
 
-                return devBaseUrl;
+                Console.WriteLine(returning + devBaseUrl);
+
+                return returning + devBaseUrl;
             }
         } 
 
