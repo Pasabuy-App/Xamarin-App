@@ -32,6 +32,8 @@ namespace PasaBuy.App.ViewModels.eCommerce
 
         private double discountPrice;
 
+        private string deliveryfee;
+
         private double discountPercent;
 
         private double percent;
@@ -61,17 +63,53 @@ namespace PasaBuy.App.ViewModels.eCommerce
             //cartDetails = new ObservableCollection<ProductList>();
             //cartDetails.Clear();
         }
-        public static void InsertCart(string storeid, string id, string name, string summary, string image, double price)
+        public static void InsertCart(string storeid, string id, string name, string summary, string image, double price, double totalprice, int quantity)
         {
-            cartDetails.Insert(0, new ProductList()
+            bool itemExists = cartDetails.Any(item =>
             {
-                Stid = storeid,
-                ID = id,
-                Name = name,
-                Summary = summary,
-                PreviewImage = PSAProc.GetUrl(image),
-                ActualPrice = price
+                return (item.ID == id);
             });
+            if (!itemExists)
+            {
+                cartDetails.Insert(0, new ProductList()
+                {
+                    Stid = storeid,
+                    ID = id,
+                    Name = name,
+                    Summary = summary,
+                    PreviewImage = PSAProc.GetUrl(image),
+                    ActualPrice = price,
+                    TotalQuantity = quantity,
+                    Quantity = quantity
+                });
+            }
+            else
+            {
+                foreach (ProductList item in cartDetails)
+                {
+                    if (item.ID == id)
+                    {
+                        item.TotalQuantity = quantity;
+                        item.Quantity = quantity;
+                    }
+                }
+            }
+            CartPageViewModel c = new CartPageViewModel();
+            c.UpdatePrice();
+            Console.WriteLine("OK Ok OK" + c.TotalPrice);
+
+        }
+        public string GetTotalSRP
+        {
+            get
+            {
+                double totalbill = 0 ;
+                foreach (ProductList item in cartDetails)
+                {
+                    totalbill += item.ActualPrice;
+                }
+                return "PHP " + totalbill.ToString();
+            }
         }
         /*public static void LoadMoreItem()
         {
@@ -105,29 +143,6 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 }
 
                 cartDetails = value;
-                this.NotifyPropertyChanged();
-            }
-        }
-        public int ValueQty
-        {
-            get
-            {
-                /*var item = cartDetails.FirstOrDefault(i => i.ID == "John");
-                if (item != null)
-                {
-                }*/
-                Console.WriteLine("Quantity: " + this.valueQty);
-                return this.valueQty;
-            }
-
-            set
-            {
-                if (this.valueQty == value)
-                {
-                    return;
-                }
-
-                this.valueQty = value;
                 this.NotifyPropertyChanged();
             }
         }
@@ -172,6 +187,24 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 }
 
                 this.discountPrice = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+        public string DeliveryFee
+        {
+            get
+            {
+                return this.deliveryfee;
+            }
+
+            set
+            {
+                if (this.deliveryfee == value)
+                {
+                    return;
+                }
+
+                this.deliveryfee = value;
                 this.NotifyPropertyChanged();
             }
         }
@@ -224,7 +257,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
         }
 
         #endregion
-
+        
         #region Command
 
         /// <summary>
@@ -242,7 +275,6 @@ namespace PasaBuy.App.ViewModels.eCommerce
         {
             get { return this.removeCommand ?? (this.removeCommand = new Command(this.RemoveClicked)); }
         }
-
         /// <summary>
         /// Gets or sets the command that will be executed when the quantity is selected.
         /// </summary>
@@ -285,6 +317,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
         /// <param name="obj">The Object</param>
         private async void PlaceOrderClicked(object obj)
         {
+            //this.UpdatePrice();
             if (CartDetails.Count != 0)
             {
                 if (!isCartClicked)
@@ -412,10 +445,6 @@ namespace PasaBuy.App.ViewModels.eCommerce
             this.DiscountPrice = 0;
             this.percent = 0;
         }
-        /*public static void ChangeValue(int qty)
-        {
-            Console.WriteLine("ValueChanges: " + qty);
-        }*/
 
         #endregion
     }

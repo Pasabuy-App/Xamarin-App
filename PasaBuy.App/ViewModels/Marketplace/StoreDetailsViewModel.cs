@@ -47,10 +47,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
         private bool _isAdded = true;
 
         private bool _notAdded = false;
-
-
-        #endregion
-
         public bool IsAdded
         {
             get
@@ -79,20 +75,40 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public ObservableCollection<StoreDetails> StoreDetailList
         {
-            get { return storedetailslist; }
-            set { storedetailslist = value; this.NotifyPropertyChanged(); }
+            get 
+            { 
+                return storedetailslist; 
+            }
+            set 
+            { 
+                storedetailslist = value; 
+                this.NotifyPropertyChanged(); 
+            }
         }
 
         public  ObservableCollection<ProductList> ProductsList
         {
-            get { return productsList; }
-            set { productsList = value; this.NotifyPropertyChanged(); }
+            get 
+            { 
+                return productsList; }
+            set 
+            { 
+                productsList = value; 
+                this.NotifyPropertyChanged(); 
+            }
         }
 
         public ObservableCollection<Categories> Categoriesdata
         {
-            get { return categoriesdata; }
-            set { categoriesdata = value; this.NotifyPropertyChanged(); }
+            get 
+            { 
+                return categoriesdata; 
+            }
+            set 
+            { 
+                categoriesdata = value; 
+                this.NotifyPropertyChanged(); 
+            }
         }
 
         public int CartItemCount
@@ -120,7 +136,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 this.NotifyPropertyChanged();
             }
         }
-
+        #endregion
         public StoreDetailsViewModel()
         {
             CartPageViewModel.cartDetails = new ObservableCollection<ProductList>();
@@ -138,7 +154,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             this.CartItemCount = CartPageViewModel.cartDetails.Count;
         }
-
         public Command AddToCartCommand { get; set; }
 
         //public Command GoToCartCommand { get; set; }
@@ -154,51 +169,53 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 return goToCartCommand;
             }
         }
-
         private async void AddToCartClicked(object obj)
         {
-            try
-            {
-                if (!isCartClicked)
+            //await Application.Current.MainPage.Navigation.PushModalAsync(new Views.Marketplace.ProductDetail());
+             try
+             {
+                 if (!isCartClicked)
                 {
+                    //await Application.Current.MainPage.Navigation.PushModalAsync(new Views.Marketplace.ProductDetail());
                     isCartClicked = true;
                     var btn = obj as SfButton;
-                    btn.IsVisible = false;
+                    //btn.IsVisible = false;
+                    //btn.BackgroundImage = "Idcard.png";
+                    //btn.BackgroundColor = Color.Red;
+                    //btn.Text = "&#xe724;";
                     //this.cartItemCount = this.cartItemCount;
                     //this.CartItemCount += 1;
-                    
-                    //var btn = (SfButton)obj;
-                    //new Alert("Ok", "ok" + btn.ClassId + ".", "ok");
                     TindaPress.Product.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, store_id, "", btn.ClassId, "1", "", (bool success, string data) =>
                     {
                         if (success)
                         {
-                            //Console.WriteLine("ClassID: " + btn.ClassId);
                             ProductListData datas = JsonConvert.DeserializeObject<ProductListData>(data);
                             for (int i = 0; i < datas.data.Length; i++)
                             {
-                                CartPageViewModel.InsertCart(store_id, datas.data[i].ID, datas.data[i].product_name, datas.data[i].short_info, datas.data[i].preview, Convert.ToDouble(datas.data[i].price));
-                                //Console.WriteLine("Datas: ID: " + datas.data[i].ID + " Name: " + datas.data[i].product_name + datas.data[i].short_info + datas.data[i].preview + Convert.ToDouble(datas.data[i].price));
-                                ///*if (CartPageViewModel.cartDetails.Count != 0)
-                                //{
-                                //    *//*string json = JsonConvert.SerializeObject(CartPageViewModel.cartDetails);
-                                //    //Console.WriteLine("StoreID: " + store_id + " " + json);*//*
-                                //}*/
+                                Views.Marketplace.ProductDetail.productid = datas.data[i].ID.ToString();
+                                Views.Marketplace.ProductDetail.productname = datas.data[i].product_name.ToString();
+                                Views.Marketplace.ProductDetail.shortinfo = datas.data[i].short_info.ToString();
+
+                                Views.Marketplace.ProductDetail.productimage = PSAProc.GetUrl(datas.data[i].preview.ToString());
+                                Views.Marketplace.ProductDetail.price = datas.data[i].price.ToString();
+                                Views.Marketplace.ProductDetail.totalprice = datas.data[i].price.ToString();
+                                //CartPageViewModel.InsertCart(store_id, datas.data[i].ID, datas.data[i].product_name, datas.data[i].short_info, datas.data[i].preview, Convert.ToDouble(datas.data[i].price), Convert.ToDouble(datas.data[i].price), 1);
                             }
+                            Application.Current.MainPage.Navigation.PushModalAsync(new Views.Marketplace.ProductDetail());
                         }
                         else
                         {
                             new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                         }
                     });
-                    await Task.Delay(200);
+                    await Task.Delay(500);
                     isCartClicked = false;
-                }
-            }
-            catch (Exception e)
-            {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
-            }
+                 }
+             }
+             catch (Exception e)
+             {
+                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+             }
         }
       
         async void GoToCartClicked(object obj)
@@ -259,14 +276,14 @@ namespace PasaBuy.App.ViewModels.Marketplace
                             string short_info = datas.data[i].short_info;
                             string avatar = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : datas.data[i].avatar;
                             string banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png" : datas.data[i].banner;
-                            string longinfo = datas.data[i].long_info;
+                            string province = datas.data[i].province;
                             string city = datas.data[i].city;
                             storedetailslist.Add(new StoreDetails() { 
                                 StoreTitle = title,
                                 StoreDescription = short_info,
                                 Logo = PSAProc.GetUrl(avatar),
                                 Banner = banner,
-                                LongInformation = longinfo,
+                                Province = city + ", " + province,
                                 City = city
 
                             });;

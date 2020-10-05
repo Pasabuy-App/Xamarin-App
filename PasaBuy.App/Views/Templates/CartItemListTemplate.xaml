@@ -97,7 +97,7 @@
                 FontSize="20"
                 HorizontalOptions="Start"
                 Style="{StaticResource CommonLabelStyle}"
-                Text="{Binding DiscountPrice, StringFormat='${0:0 }'}"
+                Text="{Binding DiscountPrice, StringFormat='P{0:0 }'}"
                 TextColor="{DynamicResource PrimaryColor}" />
 
             <Label
@@ -105,7 +105,7 @@
                 FontSize="12"
                 HorizontalOptions="Start"
                 Style="{StaticResource CommonLabelStyle}"
-                Text="{Binding ActualPrice, StringFormat='${0:0.00}'}"
+                Text="{Binding ActualPrice, StringFormat='P{0:0.00}'}"
                 TextDecorations="Strikethrough"
                 VerticalTextAlignment="Center" />
 
@@ -140,19 +140,19 @@
                 HorizontalOptions="Start">
 
                 <!--  Product quantity dropdown  -->
-                    <numeric:SfNumericUpDown x:Name="numericUpDown"
-                                             Maximum="5" 
+                <numeric:SfNumericUpDown x:Name="numericUpDown" ClassId="{Binding ID}"
                                              Minimum="1" 
-                                             MaximumDecimalDigits="0"
-                                             Value="1"
+                                             Maximum="9"
                                              ValueChanged="numericUpDown_ValueChanged"
+                                             MaximumDecimalDigits="0"
+                                             Value="{Binding Quantity}"
                                              SpinButtonAlignment="Both"
                                              FormatString="n"/>
             </border:SfBorder>
 
             <!--  Remove button  -->
             <buttons:SfButton
-                helper:RTLHelper.Margin="{OnIdiom Default='44,0,16,0',
+                helper:RTLHelper.Margin="{OnIdiom Default='44,0,16,0',      
                                                   Phone='24,0,0,0'}"
                 CommandParameter="{Binding}"
                 CornerRadius="4"

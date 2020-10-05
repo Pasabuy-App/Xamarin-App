@@ -327,7 +327,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                         foreach (var car in CartPageViewModel.cartDetails)
                         {
                             //Console.WriteLine("Data: " + car.ID.ToString() + " STID: " + car.Stid.ToString()); // Success Page
-                            Customers.Instance.Create(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, car.Stid.ToString(), car.ID.ToString(), "1", "1", "", PaymentView.method, (bool success, string data) =>
+                            Customers.Instance.Create(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, car.Stid.ToString(), car.ID.ToString(), "1", car.TotalQuantity.ToString(), "", PaymentView.method, (bool success, string data) =>
                             {
                                 if (success)
                                 {
