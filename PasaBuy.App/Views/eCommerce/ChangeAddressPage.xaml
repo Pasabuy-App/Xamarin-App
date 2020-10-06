@@ -137,7 +137,7 @@
                                         VerticalOptions="Start"/>
 
                                     <Grid.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding BindingContext.SelectAddressCommand,Source={x:Reference AddressListStack}}" CommandParameter="{Binding ID}"/>
+                                        <TapGestureRecognizer x:Name="TappedG"  ClassId="{Binding ID}" Command="{Binding BindingContext.SelectAddressCommand,Source={x:Reference AddressListStack}}" CommandParameter="{x:Reference TappedG}"/>
                                     </Grid.GestureRecognizers>
                                 </Grid>
                             </yummy:PancakeView>
