@@ -30,7 +30,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
         public static double discount;
         public static double coupon;
 
-        private ObservableCollection<Customer> deliveryAddress;
+        public static ObservableCollection<Customer> deliveryAddress;
 
         private ObservableCollection<Payment> paymentModes;
 
@@ -44,6 +44,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
 
         public string deliveryFee = "Free";
         public static bool isClicked = false;
+        public static int address_id = 0;
 
         #endregion
 
@@ -54,64 +55,6 @@ namespace PasaBuy.App.ViewModels.eCommerce
         /// </summary>
         public CheckoutPageViewModel()
         {
-            /*this.DeliveryAddress = new ObservableCollection<Customer> // Get the name, address and contact number
-            {
-                new Customer
-                {
-                    CustomerId = 1, 
-                    CustomerName = PSACache.Instance.UserInfo.dname, 
-                    AddressType = "Home", 
-                    Address = "410 Terry Ave N, USA",
-                    MobileNumber = "+1-202-555-0101"
-                },
-                *//*new Customer
-                {
-                    CustomerId = 1, CustomerName = "John Doe", AddressType = "Office",
-                    Address = "388 Fort Worth, Texas, United States", MobileNumber = "+1-356-636-8572"
-                },*//*
-            };*/
-
-            this.PaymentModes = new ObservableCollection<Payment>
-            {
-                /*new Payment
-                {
-                    PaymentMode = "Goldman Sachs Bank Credit Card", CardNumber = "48** **** **** 9876",
-                    CardTypeIcon = "Card.png"
-                },
-                new Payment {PaymentMode = "Wells Fargo Bank Credit Card"},
-                new Payment {PaymentMode = "Debit / Credit Card"},
-                new Payment {PaymentMode = "NetBanking"},*/
-                new Payment {PaymentMode = "Cash on Delivery"},
-                new Payment {PaymentMode = "Wallet"},
-            };
-
-            /*this.CartDetails = new ObservableCollection<Product>
-            {
-                new Product
-                {
-                    PreviewImage = "Image1.png", Name = "Full-Length Skirt",
-                    Summary =
-                        "This plaid, cotton skirt will keep you warm in the air-conditioned office or outside on cooler days.",
-                    SellerName = "New Fashion Company", ActualPrice = 245, DiscountPercent = 30, TotalQuantity = 1
-                },
-                new Product
-                {
-                    PreviewImage = "Image2.png", Name = "Peasant Blouse",
-                    Summary =
-                        "Look your best this fall in this V-neck, pleated peasant blouse with full sleeves. Comes in white, chocolate, forest green, and more.",
-                    SellerName = "New Fashion Company", ActualPrice = 245, DiscountPercent = 30, TotalQuantity = 1
-                }
-            };*/
-            // Send here the Total SRP, Discount, Coupon and Delivery Charges
-            /*double percent = 0;
-            foreach (var item in this.CartDetails)
-            {
-                this.TotalPrice += (item.ActualPrice * item.TotalQuantity);
-                this.DiscountPrice += (item.DiscountPrice * item.TotalQuantity);
-                percent += item.DiscountPercent;
-            }
-
-            this.DiscountPercent = percent > 0 ? percent / this.CartDetails.Count : 0;*/
             this.TotalPrice = totalprice;
             this.DiscountPrice = discount;
             this.DiscountPercent = coupon;
@@ -123,8 +66,59 @@ namespace PasaBuy.App.ViewModels.eCommerce
             this.PaymentOptionCommand = new Command(PaymentOptionClicked);
             this.ApplyCouponCommand = new Command(this.ApplyCouponClicked);
             this.IsBusy = true;
+            PaymentMethod();
+            MyAddress();
         }
+        public static void MyAddress()
+        {
+            try
+            {
+                deliveryAddress = new ObservableCollection<Customer>();
+                deliveryAddress.Clear();
+                DataVice.Address.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        Customer address = JsonConvert.DeserializeObject<Customer>(data);
 
+                        for (int i = 0; i < 1; i++)
+                        {
+                            address_id = Convert.ToInt32(address.data[i].id);
+                            string types = address.data[i].types;
+                            string type = string.Empty;
+                            if (types == "home") { type = "Home"; }
+                            if (types == "office") { type = "Office"; }
+                            if (types == "business") { type = "Business"; }
+                            deliveryAddress.Add(new Customer
+                            {
+                                CustomerId = Convert.ToInt32(address.data[i].id),
+                                CustomerName = string.IsNullOrEmpty(address.data[i].contact_person) ? PSACache.Instance.UserInfo.dname : address.data[i].contact_person,
+                                AddressType = types,
+                                Address = address.data[i].street + " " + address.data[i].brgy + " " + address.data[i].city + " " + address.data[i].province + ", " + address.data[i].country,
+                                MobileNumber = address.data[i].contact
+                            });
+                        }
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+            }
+        }
+        public void PaymentMethod()
+        {
+            this.PaymentModes = new ObservableCollection<Payment>
+            {
+                new Payment {PaymentMode = "Cash on Delivery"},
+                new Payment {PaymentMode = "Wallet"},
+            };
+        }
         #endregion
 
         #region Public properties
@@ -134,16 +128,18 @@ namespace PasaBuy.App.ViewModels.eCommerce
         /// </summary>
         public ObservableCollection<Customer> DeliveryAddress
         {
-            get { return this.deliveryAddress; }
-
+            get 
+            { 
+                return deliveryAddress; 
+            }
             set
             {
-                if (this.deliveryAddress == value)
+                if (deliveryAddress == value)
                 {
                     return;
                 }
 
-                this.deliveryAddress = value;
+                deliveryAddress = value;
                 this.NotifyPropertyChanged();
             }
         }
@@ -153,8 +149,10 @@ namespace PasaBuy.App.ViewModels.eCommerce
         /// </summary>
         public ObservableCollection<Payment> PaymentModes
         {
-            get { return this.paymentModes; }
-
+            get 
+            { 
+                return this.paymentModes; 
+            }
             set
             {
                 if (this.paymentModes == value)
@@ -172,8 +170,10 @@ namespace PasaBuy.App.ViewModels.eCommerce
         /// </summary>
         public ObservableCollection<Product> CartDetails
         {
-            get { return this.cartDetails; }
-
+            get 
+            { 
+                return this.cartDetails; 
+            }
             set
             {
                 if (this.cartDetails == value)
@@ -309,7 +309,6 @@ namespace PasaBuy.App.ViewModels.eCommerce
             IsBusy = false;
             await Application.Current.MainPage.Navigation.PushModalAsync(new ChangeAddressPage());
             IsBusy = true;
-
         }
 
         /// <summary>
@@ -327,21 +326,19 @@ namespace PasaBuy.App.ViewModels.eCommerce
         /// <param name="obj">The Object</param>
         private async void PlaceOrderClicked(object obj)
         {
-            // Do something
-            //new Alert("Pay", "Pay Now", "OK");
-            //await Application.Current.MainPage.Navigation.PushModalAsync(new PaymentSuccessPage());
             try
             {
                 if (PaymentView.method != string.Empty)
                 {
-                    if (!isClicked)
+                    var btn = obj as Syncfusion.XForms.Buttons.SfButton;
+                    if (btn.IsEnabled)
                     {
-                        isClicked = true;
-                        //Console.WriteLine("Store ID: " + StoreDetailsViewModel.store_id + " Total Count: " + CartPageViewModel.cartDetails.Count);
+                        btn.IsEnabled = false;
+                        //Console.WriteLine("Method: " + PaymentView.method + " Address ID: " + address_id); //address id in first selection in 
                         foreach (var car in CartPageViewModel.cartDetails)
                         {
-                            //Console.WriteLine("Data: " + car.ID.ToString() + " STID: " + car.Stid.ToString()); // Success Page
-                            Customers.Instance.Create(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, car.Stid.ToString(), car.ID.ToString(), "1", car.TotalQuantity.ToString(), "", PaymentView.method, (bool success, string data) =>
+                            //Console.WriteLine("Method: " + PaymentView.method + " Address ID: " + address_id + " ." + car.Stid.ToString() + ". ." + car.ID.ToString() + ". ." + car.TotalQuantity.ToString() + ".");
+                            Customers.Instance.Create(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, car.Stid.ToString(), car.ID.ToString(), "1", car.TotalQuantity.ToString(), "", PaymentView.method, address_id.ToString(), (bool success, string data) =>
                             {
                                 if (success)
                                 {
@@ -353,9 +350,9 @@ namespace PasaBuy.App.ViewModels.eCommerce
                                 }
                             });
                         }
-                        await Task.Delay(200);
-                        isClicked = false;
-                    }
+                        await Task.Delay(500);
+                        btn.IsEnabled = true;
+                    }   
                 }
                 else
                 {

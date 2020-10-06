@@ -60,7 +60,7 @@ namespace PasaBuy.App.ViewModels.Settings
                                 isPhone = true,
                                 isType = true,
                                 isLocation = true,
-                                SelectedAddress = address.data[i].id,
+                                SelectedAddress = address.data[i].ID,
                                 AddressType = type,
                                 Location = address.data[i].street + " " + address.data[i].brgy + " " + address.data[i].city + " " + address.data[i].province + ", " + address.data[i].country,
                                 ContactNumber = address.data[i].contact + " - " + address.data[i].contact_type,

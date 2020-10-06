@@ -24,21 +24,6 @@ namespace PasaBuy.App.ViewModels.eCommerce
             _addressList = new ObservableCollection<AddressData>();
             _addressList.Clear();
             LoadData();
-           /* for (int i = 0; i < 4; i++)
-            {
-                _addressList.Add(new AddressData
-                {
-                    ID = "1",
-                    Types = "Home",
-                    Country = "Philippines",
-                    City = "San Pedro City",
-                    Province = "Laguna",
-                    FullAddress = "#4 Rainbow Ave, Pacita 2, San Pedro City, Laguna, Philippines",
-                    ContactNumber = "09385956099",
-                    ContactPerson = "Lorz Becislao"
-                });
-            }*/
-           
         }
         public static void LoadData()
         {
@@ -60,7 +45,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                             if (types == "business") { type = "Business"; }
                             _addressList.Add(new AddressData
                             {
-                                ID = address.data[i].id,
+                                ID = address.data[i].ID,
                                 Types = types,
                                 Country = address.data[i].country,
                                 City = address.data[i].city,
@@ -96,6 +81,22 @@ namespace PasaBuy.App.ViewModels.eCommerce
             }
         }
 
+        public string streetEntry;
+        public string StreetEntry
+        {
+            get { return this.streetEntry; }
+
+            set
+            {
+                if (this.streetEntry == value)
+                {
+                    return;
+                }
+
+                this.streetEntry = value;
+                this.NotifyPropertyChanged();
+            }
+        }
         public DelegateCommand SelectAddressCommand =>
             _selectAddressCommand ?? (_selectAddressCommand = new DelegateCommand(SelectAddressClicked));
 
@@ -105,12 +106,43 @@ namespace PasaBuy.App.ViewModels.eCommerce
         public DelegateCommand ConfirmAddress =>
             _confirmAddress ?? (_confirmAddress = new DelegateCommand(ConfirmAddressClicked));
 
-        private async void ConfirmAddressClicked(object obj)
+        private void ConfirmAddressClicked(object obj)
         {
-            int numModals = Application.Current.MainPage.Navigation.ModalStack.Count;
-            for (int currModal = 0; currModal < numModals - 3; currModal++)
+            try
             {
-                await Application.Current.MainPage.Navigation.PopModalAsync(false);
+
+                DataVice.Address.Instance.Update(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, AddressInMapPage.address_id, "", "", "", "", StreetEntry, AddressInMapPage.lat.ToString(), AddressInMapPage.lon.ToString(), (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        Device.BeginInvokeOnMainThread(async () =>
+                        {
+                            CheckoutPageViewModel.deliveryAddress.Clear();
+                            CheckoutPageViewModel.deliveryAddress.Add(new Models.eCommerce.Customer
+                            {
+                                CustomerId = Convert.ToInt32(AddressInMapPage.address_id),
+                                CustomerName = AddressInMapPage.person,
+                                AddressType = AddressInMapPage.type,
+                                Address = AddressInMapPage.full_address,
+                                MobileNumber = AddressInMapPage.contact
+                            });
+                            int numModals = Application.Current.MainPage.Navigation.ModalStack.Count;
+                            for (int currModal = 0; currModal < numModals - 3; currModal++)
+                            {
+                                await Application.Current.MainPage.Navigation.PopModalAsync(false);
+                            }
+                        });
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
         }
         private async void PinAnotherClicked(object obj)
@@ -123,16 +155,21 @@ namespace PasaBuy.App.ViewModels.eCommerce
             try
             {
                 var btn = obj as TapGestureRecognizer;
-                //Console.WriteLine("ClassID: " + btn.ClassId);
                 DataVice.Address.Instance.SelectByID(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, btn.ClassId, (bool success, string data) =>
                 {
                     if (success)
                     {
                         AddressData address = JsonConvert.DeserializeObject<AddressData>(data);
+                        CheckoutPageViewModel.address_id = Convert.ToInt32(btn.ClassId);
+                        AddressInMapPage.address_id = btn.ClassId;
                         AddressInMapPage.street = btn.ClassId;
                         for (int i = 0; i < address.data.Length; i++)
                         {
                             AddressInMapPage.street = address.data[i].street;
+                            AddressInMapPage.type = address.data[i].types;
+                            AddressInMapPage.contact = address.data[i].contact;
+                            AddressInMapPage.person = string.IsNullOrEmpty(address.data[i].contact_person) ? PSACache.Instance.UserInfo.dname : address.data[i].contact_person;
+                            AddressInMapPage.full_address = address.data[i].street + " " + address.data[i].brgy + " " + address.data[i].city + " " + address.data[i].province + ", " + address.data[i].country;
                             AddressInMapPage.lat = Convert.ToDouble(address.data[i].latitude);
                             AddressInMapPage.lon = Convert.ToDouble(address.data[i].longitude);
                         }
@@ -147,7 +184,6 @@ namespace PasaBuy.App.ViewModels.eCommerce
 
                     }
                 });
-                //await Application.Current.MainPage.Navigation.PushModalAsync(new AddressInMapPage());
             }
             catch (Exception e)
             {

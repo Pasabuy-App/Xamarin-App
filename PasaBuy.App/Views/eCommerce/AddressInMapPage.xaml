@@ -57,18 +57,16 @@
                             Style="{StaticResource EntryTextBoxStyle}" />
                     </border:SfBorder>
 
-     
+
                     <button:SfButton Grid.Row="2"
                                      Margin="0,15,0,0"
                                      HorizontalOptions="FillAndExpand"
                                      Command="{Binding ConfirmAddress}"
                                      Style="{StaticResource SfGradientButtonStyle}"
                                      Text="Confirm" />
-                  
-                    
+
+
                 </Grid>
-                <Label x:Name="latitude" Text="lat"/>
-                <Label x:Name="longitude" Text="long"/>
             </StackLayout>
             
         </Grid>

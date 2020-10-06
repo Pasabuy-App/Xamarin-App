@@ -9,7 +9,7 @@ namespace PasaBuy.App.Models.Settings
         public addressData[] data;
         public class addressData
         {
-            public string id = string.Empty;
+            public string ID = string.Empty;
             public string types = string.Empty;
             public string status = string.Empty;
             public string street = string.Empty;
