@@ -15,8 +15,10 @@
 
             <Color x:Key="BlackColor">#000000</Color>
             <Color x:Key="WhiteColor">#ffffff</Color>
+            <Color x:Key="DarkGreen">#349e00</Color>
             <Color x:Key="MainWrapperBackgroundColor">#E8EAF6</Color>
-            
+
+
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{DynamicResource PrimaryColor}"></Setter>
                 <Setter Property="BarTextColor" Value="White"></Setter>

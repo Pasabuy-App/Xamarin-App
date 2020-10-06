@@ -16,5 +16,9 @@ namespace PasaBuy.App.Views
         {
             InitializeComponent();
         }
+
+        void Handle_SlideCompleted(object sender, System.EventArgs e)
+        {
+        }
     }
 }
