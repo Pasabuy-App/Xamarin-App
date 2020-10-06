@@ -4,7 +4,7 @@
              xmlns:map="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps" 
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
-             xmlns:converter="clr-namespace:PasaBuy.App.Converters" xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:converter="clr-namespace:PasaBuy.App.Converters" xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.eCommerce"
              x:Class="PasaBuy.App.Views.eCommerce.AddressInMapPage"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
@@ -16,6 +16,9 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <viewModel:ChangeAddressViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -58,6 +61,7 @@
                     <button:SfButton Grid.Row="2"
                                      Margin="0,15,0,0"
                                      HorizontalOptions="FillAndExpand"
+                                     Command="{Binding ConfirmAddress}"
                                      Style="{StaticResource SfGradientButtonStyle}"
                                      Text="Confirm" />
                   

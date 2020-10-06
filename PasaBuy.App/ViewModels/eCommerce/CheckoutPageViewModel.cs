@@ -122,6 +122,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
             this.PlaceOrderCommand = new Command(this.PlaceOrderClicked);
             this.PaymentOptionCommand = new Command(PaymentOptionClicked);
             this.ApplyCouponCommand = new Command(this.ApplyCouponClicked);
+            this.IsBusy = true;
         }
 
         #endregion
@@ -305,7 +306,10 @@ namespace PasaBuy.App.ViewModels.eCommerce
 
         private async void ChangeAddressClicked(object obj)
         {
+            IsBusy = false;
             await Application.Current.MainPage.Navigation.PushModalAsync(new ChangeAddressPage());
+            IsBusy = true;
+
         }
 
         /// <summary>
