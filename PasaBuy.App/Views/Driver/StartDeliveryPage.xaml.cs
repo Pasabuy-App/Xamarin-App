@@ -69,6 +69,7 @@ namespace PasaBuy.App.Views.Driver
             map =  new Xamarin.Forms.GoogleMaps.Map();
             InitializeComponent();
             BindingContext = mapPageViewModel = new MapPageViewModel();
+            status.Text = "Slide to right to start delivery";
 
             pinLocation();
             DisplayCurloc();
@@ -77,7 +78,7 @@ namespace PasaBuy.App.Views.Driver
             ClientAddress.Text = destinationAddress;
             //OrderIDandOrderTime.Text = item_id;
 
-            switch (deliveryStatus)
+            /*switch (deliveryStatus)
             {
                 case "true":
                     StartDelivery.Text = "Ongoing";
@@ -88,7 +89,7 @@ namespace PasaBuy.App.Views.Driver
                 default:
                     StartDelivery.Text = "Start Delivery";
                     break;
-            }
+            }*/
 
 
         }
@@ -294,7 +295,7 @@ namespace PasaBuy.App.Views.Driver
             Compass.Start(SensorSpeed.UI, applyLowPassFilter: true);
             Compass.ReadingChanged += Compass_ReadingChanged;
 
-            StartDelivery.Text = "Ongoing";
+            //StartDelivery.Text = "Ongoing";
             PopupNavigation.Instance.PushAsync(new PopupOpenExternalMap());
 
             map.Polylines.Clear();
@@ -362,36 +363,55 @@ namespace PasaBuy.App.Views.Driver
                   }
               });*/
         }
-/*
-        async void UpdatePostions(Xamarin.Forms.GoogleMaps.Position position)
-        {
-            if (map.Pins.Count == 1 && map.Polylines != null && map.Polylines?.Count > 1)
-                return;
+        /*
+                async void UpdatePostions(Xamarin.Forms.GoogleMaps.Position position)
+                {
+                    if (map.Pins.Count == 1 && map.Polylines != null && map.Polylines?.Count > 1)
+                        return;
 
-            var cPin = map.Pins.FirstOrDefault();
+                    var cPin = map.Pins.FirstOrDefault();
 
-            if (cPin != null)
-            {
-                cPin.Position = new Xamarin.Forms.GoogleMaps.Position(position.Latitude, position.Longitude);
-                //cPin.Icon = (Device.RuntimePlatform == Device.Android) ? BitmapDescriptorFactory.FromBundle("CarPins.png") : BitmapDescriptorFactory.FromView(new Image() { Source = "CarPins.png", WidthRequest = 13, HeightRequest = 13 });
-                map.MoveToRegion(MapSpan.FromCenterAndRadius(cPin.Position, Xamarin.Forms.GoogleMaps.Distance.FromMiles(0.1)));
-                var previousPosition = map.Polylines?.FirstOrDefault()?.Positions?.FirstOrDefault();
-                map.Polylines?.FirstOrDefault()?.Positions?.Remove(previousPosition.Value);
-            }
-            else
-            {
-                map.Polylines?.FirstOrDefault()?.Positions?.Clear();
-            }
-        }
+                    if (cPin != null)
+                    {
+                        cPin.Position = new Xamarin.Forms.GoogleMaps.Position(position.Latitude, position.Longitude);
+                        //cPin.Icon = (Device.RuntimePlatform == Device.Android) ? BitmapDescriptorFactory.FromBundle("CarPins.png") : BitmapDescriptorFactory.FromView(new Image() { Source = "CarPins.png", WidthRequest = 13, HeightRequest = 13 });
+                        map.MoveToRegion(MapSpan.FromCenterAndRadius(cPin.Position, Xamarin.Forms.GoogleMaps.Distance.FromMiles(0.1)));
+                        var previousPosition = map.Polylines?.FirstOrDefault()?.Positions?.FirstOrDefault();
+                        map.Polylines?.FirstOrDefault()?.Positions?.Remove(previousPosition.Value);
+                    }
+                    else
+                    {
+                        map.Polylines?.FirstOrDefault()?.Positions?.Clear();
+                    }
+                }
 
-*/
+        */
 
         #region page Method
-        /* async void StartDelivery_Clicked(object sender, EventArgs e)
-         {
+        async void Handle_SlideCompleted(object sender, System.EventArgs e)
+        {
+            String s = waypointAddress;
+            s = s.Replace(" ", "+");
 
+            if (Device.RuntimePlatform == Device.iOS)
+            {
 
-         }*/
+                // https://developer.apple.com/library/ios/featuredarticles/iPhoneURLScheme_Reference/MapLinks/MapLinks.html
+                await Launcher.OpenAsync("http://maps.apple.com/?daddr=San+Francisco,+CA&saddr=cupertino");
+            }
+            else if (Device.RuntimePlatform == Device.Android)
+            {
+                // opens the 'task chooser' so the user can pick Maps, Chrome or other mapping app
+                //await Launcher.OpenAsync("http://www.google.com/maps/dir/Bytes+Crafter,+B10+L18+Narra+St,+Silcas+Village,+Brgy.+San+Francisco,+Bi%C3%B1an,+4024+Laguna/14.3312268,121.0653564/Metro+San+Jose+Public+Market/@14.3249305,121.0479903,15z/data=!4m15!4m14!1m5!1m1!1s0x3397d7accf8e5839:0xbfdc9ef48149ab86!2m2!1d121.0413718!2d14.3291764!1m0!1m5!1m1!1s0x3397d71e2367fd5b:0xc40629c1d70faf69!2m2!1d121.0341372!2d14.3305162!3e0");
+                var main_url = "http://www.google.com/maps/dir/";
+
+                await Launcher.OpenAsync(main_url + $"{StoreLatittude},{StoreLongitude},15z");
+                //await Launcher.OpenAsync(main_url + $"{curlocLatitude},{curlocLongitude}/{UserLatitude},{userLongitude}/{s}@{StoreLatittude},{StoreLongitude},15z");
+
+                //await Launcher.OpenAsync("https://www.google.com/maps/dir/,121.0434482/14.3205938,121.0481447/Metro+San+Jose+Public+Market,+General+Mariano+Alvarez,+4117+Cavite/@14.3278519,121.0464376,15.25z/data=!4m10!4m9!1m0!1m0!1m5!1m1!1s0x3397d71e2367fd5b:0xc40629c1d70faf69!2m2!1d121.0341372!2d14.3305162!3e0");
+            }
+            status.Text = "Continue";
+        }
 
         public  void pinLocation()
         {
@@ -430,24 +450,7 @@ namespace PasaBuy.App.Views.Driver
 
         public static async void OpenMapApp()
         {
-            String s = waypointAddress;
-            s = s.Replace(" ", "+");
-
-            if (Device.RuntimePlatform == Device.iOS)
-            {
-                
-                // https://developer.apple.com/library/ios/featuredarticles/iPhoneURLScheme_Reference/MapLinks/MapLinks.html
-                await Launcher.OpenAsync("http://maps.apple.com/?daddr=San+Francisco,+CA&saddr=cupertino");
-            }
-            else if (Device.RuntimePlatform == Device.Android)
-            {
-                // opens the 'task chooser' so the user can pick Maps, Chrome or other mapping app
-                //await Launcher.OpenAsync("http://www.google.com/maps/dir/Bytes+Crafter,+B10+L18+Narra+St,+Silcas+Village,+Brgy.+San+Francisco,+Bi%C3%B1an,+4024+Laguna/14.3312268,121.0653564/Metro+San+Jose+Public+Market/@14.3249305,121.0479903,15z/data=!4m15!4m14!1m5!1m1!1s0x3397d7accf8e5839:0xbfdc9ef48149ab86!2m2!1d121.0413718!2d14.3291764!1m0!1m5!1m1!1s0x3397d71e2367fd5b:0xc40629c1d70faf69!2m2!1d121.0341372!2d14.3305162!3e0");
-                var main_url = "http://www.google.com/maps/dir/";
-          
-                await Launcher.OpenAsync(main_url+$"{curlocLatitude},{curlocLongitude}/{UserLatitude},{userLongitude}/{s}@{StoreLatittude},{StoreLongitude},15z");
-                //await Launcher.OpenAsync("https://www.google.com/maps/dir/,121.0434482/14.3205938,121.0481447/Metro+San+Jose+Public+Market,+General+Mariano+Alvarez,+4117+Cavite/@14.3278519,121.0464376,15.25z/data=!4m10!4m9!1m0!1m0!1m5!1m1!1s0x3397d71e2367fd5b:0xc40629c1d70faf69!2m2!1d121.0341372!2d14.3305162!3e0");
-            }
+            
         }
     }
 }

@@ -71,7 +71,7 @@
 
                             <local1:SlideToActView.TrackBar>
                                 <Frame CornerRadius="10" HasShadow="false" BackgroundColor="{DynamicResource Gray-200}" Padding="0">
-                                    <Label Text="Slide to right to start delivery" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                                    <Label x:Name="status" Text="" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
                                 </Frame>
                             </local1:SlideToActView.TrackBar>
 
@@ -129,6 +129,7 @@
                             <Label FontFamily="{StaticResource Montserrat-Medium}"
                                Grid.Column="4"
                                FontSize="13"
+                               x:Name="stats"
                                VerticalTextAlignment="Center"
                                HorizontalTextAlignment="Center"
                                Text="For Pickup"
