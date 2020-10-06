@@ -64,7 +64,7 @@ namespace PasaBuy.App.ViewModels.Driver
                                     string customer_long = datas.data[i].customer_long;
                                     string customer_address = datas.data[i].customer_address;
 
-                                    // TindaPress.Product.Instance.List((PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, );
+                         
                                     orderlist.Add(new TransactListData()
                                     {
                                         ItemID = ItemID,

@@ -77,21 +77,19 @@ namespace PasaBuy.App.Views.PopupModals
 
         async private void AcceptOrder(object sender, EventArgs e)
         {
-
             var request = new GeolocationRequest(GeolocationAccuracy.Medium);
             var location = await Geolocation.GetLocationAsync(request);
+
             StartDeliveryPage.item_id = item_id;
             StartDeliveryPage.storeName = storeName;
             StartDeliveryPage.waypointAddress = waypointAddress;
             StartDeliveryPage.destinationAddress = destinationAddress;
-            new Alert("", destinationAddress, "ok");
             
-            StartDeliveryPage.StoreLatittude = Convert.ToDouble(store_lat);
-            StartDeliveryPage.StoreLongitude = Convert.ToDouble(store_long);
+            StartDeliveryPage.StoreLatittude = store_lat;
+            StartDeliveryPage.StoreLongitude = store_long;
 
-            StartDeliveryPage.UserLatitude = Convert.ToDouble(user_lat);
-            StartDeliveryPage.userLongitude = Convert.ToDouble(user_long);
-
+            StartDeliveryPage.UserLatitude = user_lat;
+            StartDeliveryPage.userLongitude = user_long;
 
             await Navigation.PushModalAsync(new StartDeliveryPage());
             await PopupNavigation.Instance.PopAsync();

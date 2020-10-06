@@ -8,6 +8,7 @@ using PasaBuy.App.Views.Marketplace;
 using PasaBuy.App.Views.eCommerce;
 using PasaBuy.App.Views.Driver;
 using PasaBuy.App.Views;
+using System.Collections.Generic;
 
 namespace PasaBuy.App
 {
@@ -45,8 +46,16 @@ namespace PasaBuy.App
             Analytics.TrackEvent("AppSleep");
         }
 
-        protected override void OnResume()
+        protected aysnc override void OnResume()
         {
+            var nav = MainPage.Navigation;
+
+            // you may want to clear the stack (history)
+            await nav.PopToRootAsync(true);
+
+            // then open the needed page (I'm guessing a login page)
+            await nav.PushAsync(new LoginPage());
+
             Analytics.TrackEvent("AppResume");
         }
     }
