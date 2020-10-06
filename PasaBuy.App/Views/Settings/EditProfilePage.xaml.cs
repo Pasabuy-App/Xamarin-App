@@ -28,9 +28,9 @@ namespace PasaBuy.App.Views.Settings
         {
             InitializeComponent();
 
-            Fname.Text = PSACache.Instance.UserInfo.fname;
-            Lname.Text = PSACache.Instance.UserInfo.lname;
-            Nname.Text = PSACache.Instance.UserInfo.dname;
+            //Fname.Text = PSACache.Instance.UserInfo.fname;
+            //Lname.Text = PSACache.Instance.UserInfo.lname;
+            //Nname.Text = PSACache.Instance.UserInfo.dname;
             Avatar.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatar);
             Banner.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.banner);
 
@@ -126,7 +126,7 @@ namespace PasaBuy.App.Views.Settings
                 if (!isEnable)
                 {
                     isEnable = true;
-                        Users.Instance.EditProfile(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, Fname.Text, Lname.Text, Nname.Text, (bool success, string data) =>
+                        /*Users.Instance.EditProfile(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, Fname.Text, Lname.Text, Nname.Text, (bool success, string data) =>
                         {
                             if (success)
                             {
@@ -140,7 +140,7 @@ namespace PasaBuy.App.Views.Settings
                             {
                                 new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                             }
-                        });
+                        });*/
                     await Task.Delay(200);
                     isEnable = false;
                 }
