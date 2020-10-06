@@ -166,7 +166,7 @@
                                     Margin="0,14"
                                     FontFamily="{StaticResource Montserrat-SemiBold}"
                                     Style="{StaticResource ProfileLabelStyle}"
-                                    Text="Wallet" />
+                                    Text="Wallets" />
 
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding WalletCommand}" CommandParameter="{x:Reference WalletGrid}" />
@@ -189,47 +189,17 @@
                                     Grid.Column="0"
                                     helper:RTLHelper.Margin="35, 0, 8, 0"
                                     Style="{StaticResource ProfileIconLabelStyle}"
-                                    Text="&#xf555;" />
+                                    Text="&#xf022;" />
 
                                 <Label
                                     Grid.Column="1"
                                     Margin="0,14"
                                     FontFamily="{StaticResource Montserrat-SemiBold}"
                                     Style="{StaticResource ProfileLabelStyle}"
-                                    Text="My Transaction" />
+                                    Text="Transactions" />
 
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding TransactionCommand}" CommandParameter="{x:Reference TransactionGrid}" />
-                                </Grid.GestureRecognizers>
-
-                            </Grid>
-
-                            <BoxView Style="{StaticResource SeparatorStyle}" />
-
-                            <!--  Grid for notification label and icon  -->
-                            <Grid x:Name="NotificationGrid"
-                                BackgroundColor="{DynamicResource Transparent}">
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-
-                                <Label
-                                    Grid.Column="0"
-                                    helper:RTLHelper.Margin="35, 0, 8, 0"
-                                    Style="{StaticResource ProfileIconLabelStyle}"
-                                    Text="&#xf0f3;" />
-
-                                <Label
-                                    Grid.Column="1"
-                                    Margin="0,14"
-                                    FontFamily="{StaticResource Montserrat-SemiBold}"
-                                    Style="{StaticResource ProfileLabelStyle}"
-                                    Text="Notification" />
-
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding NotificationCommand}" CommandParameter="{x:Reference NotificationGrid}" />
                                 </Grid.GestureRecognizers>
 
                             </Grid>

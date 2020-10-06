@@ -59,7 +59,7 @@
                 <border:SfBorder Grid.Row="0"
                                          border:BorderColor="White" 
                                          BorderWidth="2"
-                                         CornerRadius="15"
+                                         CornerRadius="1"
                                          Grid.ColumnSpan="3">
                     <Image
                                 BackgroundColor="{DynamicResource Gray-400}"
@@ -87,7 +87,7 @@
                             Grid.Row="1"
                             Grid.Column="1"
                             Grid.ColumnSpan="1"
-                            Margin="0, 20, 0, 20"
+                            Margin="0, 0, 0, 20"
                             Clicked="TakePhoto"
                             CornerRadius="10"
                             TextColor="White"
@@ -100,7 +100,7 @@
                             Grid.Row="1"
                             Grid.Column="2"
                             Grid.ColumnSpan="1"
-                            Margin="10, 20, 0, 20"
+                            Margin="10, 0, 0, 20"
                             Clicked="SelectPhoto"
                             CornerRadius="10"
                             TextColor="White"
@@ -120,8 +120,14 @@
                                 VerticalOptions="CenterAndExpand">
                         <combobox:SfComboBox.ComboBoxSource>
                             <ListCollection:List x:TypeArguments="x:String">
+                                <x:String>Appliances</x:String>
+                                <x:String>Clothings</x:String>
                                 <x:String>Gadgets</x:String>
-                                <x:String>Apparels</x:String>
+                                <x:String>Hobbies</x:String>
+                                <x:String>Housings</x:String>
+                                <x:String>Medicines</x:String>
+                                <x:String>Convenience</x:String>
+                                <x:String>Pet / Poultry</x:String>
                             </ListCollection:List>
                         </combobox:SfComboBox.ComboBoxSource>
                         <combobox:SfComboBox.DropDownButtonSettings>
@@ -231,17 +237,11 @@
                             Grid.ColumnSpan="3"
                             Margin="0, 20, 0, 20"
                             Clicked="SubmitPostButton"
-                            CornerRadius="10"
+                            CornerRadius="5"
                             TextColor="White"
                             BackgroundColor="{DynamicResource PrimaryColor}"
                             Style="{StaticResource SfButtonStyle}"
                             Text="SUBMIT" />
-              
-
-
-
-
-
 
             </Grid>
         </ScrollView>

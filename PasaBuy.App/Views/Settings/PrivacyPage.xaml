@@ -59,6 +59,10 @@
                                             Android=1.25}"
                     Text="READ OUR PRIMACY POLICY"
                     TextColor="{DynamicResource Gray-800}" />
+            <WebView x:Name="privacy" 
+                     WidthRequest="1000" HeightRequest="1000" 
+                     Source="https://pasabuy.app/privacy-policy/?amp=true" 
+                     Margin="0,0,0,10"/>
 
             <!-- Seperator -->
             <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}"/>

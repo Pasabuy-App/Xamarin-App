@@ -61,11 +61,13 @@
                     TextColor="{DynamicResource Gray-800}" />
 
             <!-- Seperator -->
-            <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}"/>
+            <BoxView Grid.Row="0" Style="{StaticResource SeparatorStyle}"/>
 
-            <StackLayout Grid.Row="2">
-                
-            </StackLayout>
+            <WebView x:Name="privacy" 
+                     WidthRequest="1000" HeightRequest="1000" 
+                     Source="https://pasabuy.app/terms-of-services/?amp=true" 
+                     Margin="0,0,0,10"/>
+            
         </Grid>
 
     </ContentPage.Content>
