@@ -22,7 +22,7 @@
                 <RowDefinition Height="60*" />
                 <RowDefinition Height="40*" />
             </Grid.RowDefinitions>
-            <map:Map Grid.Row="0"/>
+            <map:Map x:Name="map" PinDragEnd="map_PinDragEnd" Grid.Row="0"/>
             <StackLayout Grid.Row="1"
                          Padding="20">
                 <Grid>
@@ -63,6 +63,8 @@
                   
                     
                 </Grid>
+                <Label x:Name="latitude" Text="lat"/>
+                <Label x:Name="longitude" Text="long"/>
             </StackLayout>
             
         </Grid>
