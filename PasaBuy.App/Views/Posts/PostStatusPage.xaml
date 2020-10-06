@@ -50,8 +50,10 @@
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Row="0"  Grid.ColumnSpan="3" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="350">
-                    <ffimageloading:CachedImage Aspect="Fill"
+                <Grid Grid.Row="0"  Grid.ColumnSpan="3" 
+                      BackgroundColor="{DynamicResource Gray-300}"
+                      VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="220">
+                    <ffimageloading:CachedImage Aspect="AspectFit"
                                                 x:Name="StatusImage"
 			                                    DownsampleToViewSize="true" FadeAnimationEnabled="True" LoadingPriority="Highest">
                     </ffimageloading:CachedImage>
@@ -69,7 +71,7 @@
                             Grid.Row="1"
                             Grid.Column="1"
                             Grid.ColumnSpan="1"
-                            Margin="0, 20, 0, 20"
+                            Margin="0, 0, 0, 20"
                             CornerRadius="10"
                             Clicked="TakePhoto"
                             TextColor="White"
@@ -82,7 +84,7 @@
                             Grid.Row="1"
                             Grid.Column="2"
                             Grid.ColumnSpan="1"
-                            Margin="10, 20, 0, 20"
+                            Margin="10, 0, 0, 20"
                             Clicked="SelectPhoto"
                             CornerRadius="10"
                             TextColor="White"
@@ -118,7 +120,7 @@
                             Grid.ColumnSpan="3"
                             Margin="0, 20, 0, 20"
                             Clicked="SfButton_Clicked"
-                            CornerRadius="20"
+                            CornerRadius="5"
                             TextColor="White"
                             BackgroundColor="{DynamicResource PrimaryColor}"
                             Style="{StaticResource SfButtonStyle}"
