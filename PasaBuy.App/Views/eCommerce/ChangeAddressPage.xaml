@@ -51,6 +51,13 @@
                          BindableLayout.ItemsSource="{Binding AddressList}"
                          x:Name="AddressListStack"
                          Spacing="0">
+                    <BindableLayout.EmptyView>
+                        <StackLayout HorizontalOptions="Center" 
+                                     VerticalOptions="Center"
+                                     Margin="0,50,0,0">
+                            <Label Text="No address saved."/>
+                        </StackLayout>
+                    </BindableLayout.EmptyView>
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
                             <yummy:PancakeView 
