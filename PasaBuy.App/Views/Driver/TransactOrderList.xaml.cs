@@ -34,25 +34,25 @@ namespace PasaBuy.App.Views.Driver
 
              try
              {
-                MobilePOS.Order.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", "", "", "", (bool success, string data) =>
+                HatidPress.Deliveries.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", id, "", "", "pending", (bool success, string data) =>
                 {
                     //new Alert("", data, "ok");
                     if (success)
                     {
-                        OrderListData datas = JsonConvert.DeserializeObject<OrderListData>(data);
+                        TransactListData datas = JsonConvert.DeserializeObject<TransactListData>(data);
                         if (datas.data.Length != 0 )
                         {
                             for (int i = 0; i < datas.data.Length; i++)
                             {
-                                string store = datas.data[i].store;
+                                string store = datas.data[i].store_name;
                                 string costumer_address = datas.data[i].customer_address;
                                 string store_address = datas.data[i].store_address;
-                                double user_lat = datas.data[i].customer_lat;
-                                double user_long = datas.data[i].customer_long;
-                                double store_lat = datas.data[i].store_lat;
-                                double store_long = datas.data[i].store_long;
+                                string user_lat = datas.data[i].customer_lat;
+                                string user_long = datas.data[i].customer_long;
+                                string store_lat = datas.data[i].store_lat;
+                                string store_long = datas.data[i].store_long;
                                 string order_time = datas.data[i].date_ordered;
-                                string product = datas.data[i].product;
+                                string product = datas.data[i].product_name;
 
                                 Views.PopupModals.PopupAcceptOrder.item_id = id.ToString();
                                 Views.PopupModals.PopupAcceptOrder.storeName = store;

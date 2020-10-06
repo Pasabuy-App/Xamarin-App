@@ -12,6 +12,7 @@ using PasaBuy.App.DataService;
 using System.Reflection;
 using Rg.Plugins.Popup.Services;
 using PasaBuy.App.Views.PopupModals;
+using PasaBuy.App.Controllers.Notice;
 
 namespace PasaBuy.App.Views.Driver
 {
@@ -38,6 +39,7 @@ namespace PasaBuy.App.Views.Driver
         public static double curlocLatitude = 0;
         public static double curlocLongitude = 0;
 
+        
         #endregion
 
 
@@ -70,7 +72,6 @@ namespace PasaBuy.App.Views.Driver
 
             pinLocation();
             DisplayCurloc();
-          
             StoreName.Text = storeName;
             StoreAddress.Text = waypointAddress;
             ClientAddress.Text = destinationAddress;

@@ -60,8 +60,9 @@
                                                  FocusBorderThickness="0"
                                                  ItemSpacing="0,1,0,0"
                                                  VerticalOptions="StartAndExpand"
-                                                 ItemTapped="NewOrders_ItemTapped"
+                                                 ItemTapped="TapGestureRecognizer_Tapped"
                                                  ItemsSource="{Binding OrderList}"
+                                            
                                                  SelectionMode="None">
                             <!--Item Source is for testing purposes only. Kindly bind into specific viewmodels-->
 
@@ -136,9 +137,7 @@
                                                        ClassId="{Binding ItemID}"
                                                        HorizontalOptions="StartAndExpand"
                                                        TextColor="{DynamicResource PrimaryDarkColor}">      
-                                                    <Label.GestureRecognizers >
-                                                        <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped"/>
-                                                    </Label.GestureRecognizers>
+                                                   
                                                 </Label>
                                             </Grid>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="1"/>
