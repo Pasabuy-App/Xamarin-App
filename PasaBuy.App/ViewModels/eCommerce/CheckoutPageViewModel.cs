@@ -54,7 +54,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
         /// </summary>
         public CheckoutPageViewModel()
         {
-            this.DeliveryAddress = new ObservableCollection<Customer> // Get the name, address and contact number
+            /*this.DeliveryAddress = new ObservableCollection<Customer> // Get the name, address and contact number
             {
                 new Customer
                 {
@@ -64,12 +64,12 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     Address = "410 Terry Ave N, USA",
                     MobileNumber = "+1-202-555-0101"
                 },
-                /*new Customer
+                *//*new Customer
                 {
                     CustomerId = 1, CustomerName = "John Doe", AddressType = "Office",
                     Address = "388 Fort Worth, Texas, United States", MobileNumber = "+1-356-636-8572"
-                },*/
-            };
+                },*//*
+            };*/
 
             this.PaymentModes = new ObservableCollection<Payment>
             {

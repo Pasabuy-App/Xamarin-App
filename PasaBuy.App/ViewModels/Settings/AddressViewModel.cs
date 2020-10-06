@@ -49,8 +49,8 @@ namespace PasaBuy.App.ViewModels.Settings
 
                         for (int i = 0; i < address.data.Length; i++)
                         {
-                            string types = address.data[i].types;
                             string status = address.data[i].status;
+                            string types = address.data[i].types;
                             string type = string.Empty;
                             if (types == "home") { type = "Home"; }
                             if (types == "office") { type = "Office"; }

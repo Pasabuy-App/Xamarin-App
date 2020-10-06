@@ -41,7 +41,7 @@ namespace PasaBuy.App.Views.Settings
                 if (!isEnable)
                 {
                     isEnable = true;
-                    if (string.IsNullOrWhiteSpace(StreetEntry.Text) || string.IsNullOrWhiteSpace(ContactEntry.Text) || string.IsNullOrEmpty(ContactTypePicker.Text))
+                    if (!string.IsNullOrWhiteSpace(StreetEntry.Text) && !string.IsNullOrWhiteSpace(ContactEntry.Text) && !string.IsNullOrEmpty(ContactTypePicker.Text))
                     {
                         string type = string.Empty;
                         if (AddressTypePicker.Text == "Business") { type = "business"; }
