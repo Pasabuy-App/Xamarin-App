@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:converter="clr-namespace:PasaBuy.App.Converters" 
+             xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             x:Class="PasaBuy.App.Views.Currency.SendWalletSavings"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{DynamicResource Gray-White}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <converter:BooleanToColorConverter x:Key="BooleanToColorConverter" />
+            <converter:BooleanToStringConverter x:Key="BoolToStringConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Spacing="0" >
+                <controls:TitleView Title="Send Wallet"
+                                    FontSize="15"
+                                    BackgroundColor="{DynamicResource PrimaryColor}" >
+                    <controls:TitleView.LeadingView>
+                        <buttons:SfButton
+                            x:Name="backButton"
+                            Clicked="BackButtonClicked"
+                            CornerRadius="4"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                    </controls:TitleView.LeadingView>
+                </controls:TitleView>
+                <ContentPresenter />
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+    <ContentPage.Content>
+        <StackLayout Padding="20" Margin="0,30,0,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <inputLayout:SfTextInputLayout 
+                            Grid.Row="0"
+                            ContainerBackgroundColor="Transparent"
+                            ContainerType="Outlined"
+                            FocusedColor="{StaticResource BlackColor}"
+                            Hint="Recipient Wallet ID"
+                            HasError="False"
+                            HorizontalOptions="Fill"
+                            LeadingViewPosition="Inside">
+                    <Entry MaxLength="50"  
+                           x:Name="WalletId" />
+                    <inputLayout:SfTextInputLayout.LeadingView>
+                        <Label
+                                    FontSize="18"
+                                    VerticalTextAlignment="Center"
+                                    Style="{StaticResource ProfileIconLabelStyle}"
+                                    TextColor="{DynamicResource BlackColor}"
+                                    Text="&#xf555;" />
+                    </inputLayout:SfTextInputLayout.LeadingView>
+                </inputLayout:SfTextInputLayout>
+
+                <inputLayout:SfTextInputLayout 
+                            Grid.Row="1"
+                            ContainerBackgroundColor="Transparent"
+                            ContainerType="Outlined"
+                            FocusedColor="{StaticResource BlackColor}"
+                            Hint="Amount"
+                            HasError="False"
+                            HorizontalOptions="Fill"
+                            LeadingViewPosition="Inside">
+                    <Entry MaxLength="50" 
+                           Keyboard="Numeric"
+                           x:Name="Amount" />
+                    <inputLayout:SfTextInputLayout.LeadingView>
+                        <Label
+                                    FontSize="18"
+                                    VerticalTextAlignment="Center"
+                                    Style="{StaticResource ProfileIconLabelStyle}"
+                                    TextColor="{DynamicResource BlackColor}"
+                                    Text="&#xf53c;" />
+                    </inputLayout:SfTextInputLayout.LeadingView>
+                </inputLayout:SfTextInputLayout>
+
+                <inputLayout:SfTextInputLayout 
+                            Grid.Row="2"
+                            ContainerBackgroundColor="Transparent"
+                            ContainerType="Outlined"
+                            FocusedColor="{StaticResource BlackColor}"
+                            Hint="Note/Remarks"
+                            HasError="False"
+                            HorizontalOptions="Fill"
+                            LeadingViewPosition="Inside">
+                    <Entry MaxLength="50" 
+                           VerticalTextAlignment="Start"
+                           HeightRequest="100"
+                           x:Name="Note" />
+                    <inputLayout:SfTextInputLayout.LeadingView>
+                        <Label
+                                    FontSize="18"
+                                    VerticalTextAlignment="Center"
+                                    Style="{StaticResource ProfileIconLabelStyle}"
+                                    TextColor="{DynamicResource BlackColor}"
+                                    Text="&#xf249;" />
+                    </inputLayout:SfTextInputLayout.LeadingView>
+                </inputLayout:SfTextInputLayout>
+
+                <buttons:SfButton
+                            Grid.Row="3"
+                            Margin="0, 30, 0, 20"
+                            CornerRadius="10"
+                            TextColor="White"
+                            Clicked="ShowModal"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            Style="{StaticResource SfButtonStyle}"
+                            Text="Send" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+    
+</ContentPage>

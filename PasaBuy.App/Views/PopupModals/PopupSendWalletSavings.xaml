@@ -6,7 +6,7 @@
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
     xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-    xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App">
+    xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
     <pages:PopupPage.Resources>
         <ResourceDictionary>
             <Style x:Key="PopupItemHeaderStyle" TargetType="{x:Type Label}">
@@ -61,52 +61,44 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Entry x:Name="RecipientName"
-                           Grid.Row="0"
-                           Grid.Column="0"
-                           Grid.ColumnSpan="2"
-                           Margin="0,0,0,10"
-                           FontFamily="{StaticResource Montserrat-SemiBold}"
-                            MaxLength="100"
-                            Placeholder="Savings Recipient Name"
-                            PlaceholderColor="{DynamicResource Gray-700}"
-                            Text="{Binding RecipientName}"
-                            VerticalOptions="EndAndExpand" />
-                    <Entry x:Name="RecipientId"
-                           Grid.Row="1"
-                           Grid.Column="0"
-                           Grid.ColumnSpan="2"
-                           Margin="0,0,0,10"
-                           FontFamily="{StaticResource Montserrat-SemiBold}"
-                           MaxLength="100"
-                           Keyboard="Numeric"
-                           Placeholder="Recipient Wallet Id"
-                           PlaceholderColor="{DynamicResource Gray-700}"
-                           Text="{Binding RecipientId}"
-                           VerticalOptions="EndAndExpand" />
-                    <Entry x:Name="Amount"
+
+                    <StackLayout  Grid.Row="0"
+                                  Grid.ColumnSpan="2">
+                        <ffimageloading:CachedImage Aspect="AspectFit"
+                                                    HeightRequest="100"
+                                                    WidthRequest="100"
+                                                    Source="Avatar.png"
+                                                    x:Name="ImageId"
+			                                        DownsampleToViewSize="true"
+                                                    FadeAnimationEnabled="True" >
+                            <ffimageloading:CachedImage.Transformations>
+                                <fftransformations:CircleTransformation />
+                            </ffimageloading:CachedImage.Transformations>
+                        </ffimageloading:CachedImage>
+                    </StackLayout>
+
+                    <StackLayout Grid.Row="1"
+                                 Grid.ColumnSpan="2">
+                        <Label FontFamily="{StaticResource Montserrat-Medium}"
+                           Padding="0,5,0,0"
+                           FontSize="14"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"
+                           Text="Lorz Becislao"
+                           TextColor="{DynamicResource Gray-900}" />
+                    </StackLayout>
+
+                    <Label FontFamily="{StaticResource Montserrat-Medium}"
+                           Padding="10,0,0,0"
+                           Margin="0,10,0,10"
                            Grid.Row="2"
-                           Grid.Column="0"
-                           Margin="0,0,0,10"
                            Grid.ColumnSpan="2"
-                           FontFamily="{StaticResource Montserrat-SemiBold}"
-                           Placeholder="Amount"
-                           Keyboard="Numeric"
-                           PlaceholderColor="{DynamicResource Gray-700}"
-                           Text="{Binding Amount}"
-                           VerticalOptions="EndAndExpand" />
-                    <Editor
-                            x:Name="SendingNote"
-                            Grid.Row="3"
-                            Grid.Column="0"
-                            Margin="0,0,0,10"
-                            Grid.ColumnSpan="2"
-                            FontFamily="{StaticResource Montserrat-SemiBold}"
-                            MaxLength="250"
-                            Placeholder="Note"
-                            Text="{Binding SendingNote}"
-                            PlaceholderColor="{DynamicResource Gray-700}"
-                            VerticalOptions="EndAndExpand" />
+                           FontSize="14"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"
+                           HorizontalOptions="StartAndExpand"
+                           Text="Do you really want to send 500 to Lorz Becislao with wallet ID of AL0215?"
+                           TextColor="{DynamicResource Gray-900}" />
                     <button:SfButton
                             Grid.Row="4"
                             Grid.Column="0"

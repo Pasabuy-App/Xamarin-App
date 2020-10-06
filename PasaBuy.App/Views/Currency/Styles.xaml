@@ -69,6 +69,18 @@
         <Setter Property="CornerRadius" Value="20" />
     </Style>
 
+    <OnPlatform x:Key="ProfileIconPlatform" x:TypeArguments="x:String" iOS="Font Awesome 5 Free" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free" />
+    <!--  Common style for profile page icon Label  -->
+    <Style x:Key="ProfileIconLabelStyle" TargetType="Label">
+        <Setter Property="Margin" Value="16,8" />
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="FontFamily" Value="{DynamicResource ProfileIconPlatform}" />
+    </Style>
+
     <!--  Common style for icon buttons  -->
     <Style x:Key="IconButtonStyle" TargetType="buttons:SfButton">
         <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
@@ -104,6 +116,14 @@
                 </graphics:SfLinearGradientBrush>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <!--  Common style for SfButtons  -->
+    <Style x:Key="SfButtonStyle" TargetType="buttons:SfButton">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-700}" />
+        <Setter Property="FontFamily" Value="Montserrat-Regular" />
+        <Setter Property="FontSize" Value="16" />
     </Style>
 
     <Style x:Key="IconButton" TargetType="buttons:SfButton">

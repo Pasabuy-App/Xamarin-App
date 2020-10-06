@@ -9,6 +9,7 @@ using PasaBuy.App.Commands;
 using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
 using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Views.Currency;
 
 namespace PasaBuy.App.ViewModels.Currency
 {
@@ -587,9 +588,10 @@ namespace PasaBuy.App.ViewModels.Currency
             // Do something
         }
 
-        private  void SendMoneyClicked(object obj)
+        private async void SendMoneyClicked(object obj)
         {
-            PopupNavigation.Instance.PushAsync(new PopupSendWalletSavings());
+            //PopupNavigation.Instance.PushAsync(new PopupSendWalletSavings());
+            await App.Current.MainPage.Navigation.PushModalAsync(new SendWalletSavings());
         }
 
         private async void ConfirmSendClicked(object obj)

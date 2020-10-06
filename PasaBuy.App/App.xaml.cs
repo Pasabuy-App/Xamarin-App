@@ -9,6 +9,7 @@ using PasaBuy.App.Views.eCommerce;
 using PasaBuy.App.Views.Driver;
 using PasaBuy.App.Views;
 using System.Collections.Generic;
+using PasaBuy.App.Views.Currency;
 
 namespace PasaBuy.App
 {
@@ -28,7 +29,7 @@ namespace PasaBuy.App
             PSACache.Instance.Initialize();
 
             //commit
-            MainPage = new NavigationPage(new SplashPage());
+            MainPage = new NavigationPage(new WalletPage());
         }
 
         protected override void OnStart()
@@ -46,17 +47,5 @@ namespace PasaBuy.App
             Analytics.TrackEvent("AppSleep");
         }
 
-        protected aysnc override void OnResume()
-        {
-            var nav = MainPage.Navigation;
-
-            // you may want to clear the stack (history)
-            await nav.PopToRootAsync(true);
-
-            // then open the needed page (I'm guessing a login page)
-            await nav.PushAsync(new LoginPage());
-
-            Analytics.TrackEvent("AppResume");
-        }
     }
 }
