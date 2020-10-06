@@ -46,15 +46,15 @@ namespace PasaBuy.App
             Analytics.TrackEvent("AppSleep");
         }
 
-        protected aysnc override void OnResume()
+        protected override void OnResume()
         {
             var nav = MainPage.Navigation;
 
             // you may want to clear the stack (history)
-            await nav.PopToRootAsync(true);
+            //await nav.PopToRootAsync(true);
 
             // then open the needed page (I'm guessing a login page)
-            await nav.PushAsync(new LoginPage());
+            //await nav.PushAsync(new LoginPage());
 
             Analytics.TrackEvent("AppResume");
         }
