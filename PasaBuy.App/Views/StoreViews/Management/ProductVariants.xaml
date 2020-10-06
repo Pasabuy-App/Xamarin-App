@@ -1,29 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:animations="clr-namespace:PasaBuy.App.Animations" 
-             xmlns:converters="clr-namespace:PasaBuy.App.Converters"
-             xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App"
-             xmlns:local="clr-namespace:PasaBuy.App.UserControls"
-             xmlns:view="clr-namespace:PasaBuy.App.Views.StoreViews"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:controls="clr-namespace:PasaBuy.App.Controls"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
-             xmlns:pulltoRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms" 
-             xmlns:syncListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
-             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-             xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl" 
+             xmlns:converter="clr-namespace:PasaBuy.App.Converters" 
              xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.MobilePOS"
-             x:Class="PasaBuy.App.Views.StoreViews.ProductsView"
-             Title="{texts:Translate ProductsTitle}">
-
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:pulltoRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
+             xmlns:syncListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
+             xmlns:local="clr-namespace:PasaBuy.App.UserControls"
+             xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl"
+             x:Class="PasaBuy.App.Views.StoreViews.Management.ProductVariants"
+             BackgroundColor="{DynamicResource Gray-White}"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.BindingContext>
-        <viewModel:ProductViewModel />
+        <viewModel:VariantsViewModel />
     </ContentPage.BindingContext>
 
     <ContentPage.Resources>
         <ResourceDictionary>
 
+            <Color x:Key="Transparent">Transparent</Color>
+            <x:String x:Key="Back">&#xe709;</x:String>
             <Style x:Key="ProductNameTitleStyle" TargetType="{x:Type Label}">
                 <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}" />
                 <Setter Property="FontSize" Value="{StaticResource MidMediumSize}" />
@@ -59,9 +59,22 @@
                 <Setter Property="Margin" Value="0, 0, 8, 0" />
                 <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
             </Style>
-            <converters:ImageConverter x:Key="ByteArrayToImage" />
+            <!--  Common style for icon buttons  -->
+            <Style x:Key="IconButtonStyle" TargetType="buttons:SfButton">
+                <Setter Property="TextColor" Value="{DynamicResource Gray-100}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource Transparent}" />
+                <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="WidthRequest" Value="40" />
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
+    
     <ContentPage.Content>
         <Grid>
             <Grid>
@@ -72,53 +85,30 @@
                     </Grid.RowDefinitions>
                     <Grid
                         Grid.Row="0"
-                        Padding="15,0,15,25"
+                        Padding="15,15,15,25"
                         BackgroundColor="{StaticResource PrimaryColor}"
                         HeightRequest="{OnPlatform Android='46',
                                                    iOS='56'}">
-                        <Frame
-                            Margin="0"
-                            Padding="10,0"
-                            BackgroundColor="{StaticResource Gray-White}"
-                            CornerRadius="{OnPlatform Android='23',
-                                                      iOS='28'}"
-                            HeightRequest="{OnPlatform Android='46',
-                                                       iOS='56'}">
-                            <SearchBar
-                                Margin="5,5,10,5"
-                                FontFamily="{StaticResource Montserrat-Regular}"
-                                FontSize="14"
-                                HorizontalOptions="FillAndExpand"
-                                Text="{Binding ScannedText, Mode=TwoWay}"
-                                Placeholder="Search product"
-                                VerticalOptions="CenterAndExpand">
-                                <SearchBar.PlaceholderColor>
-                                    <OnPlatform x:TypeArguments="Color" Android="DarkGray" />
-                                </SearchBar.PlaceholderColor>
-                                <SearchBar.BackgroundColor>
-                                    <OnPlatform
-                                        x:TypeArguments="Color"
-                                        Android="{StaticResource WhiteColor}"
-                                        iOS="Transparent" />
-                                </SearchBar.BackgroundColor>
-                                <SearchBar.TextColor>
-                                    <OnPlatform
-                                        x:TypeArguments="Color"
-                                        Android="{StaticResource BlackColor}"
-                                        iOS="{StaticResource BlackColor}" />
-                                </SearchBar.TextColor>
-                                <SearchBar.CancelButtonColor>
-                                    <OnPlatform
-                                        x:TypeArguments="Color"
-                                        Android="{StaticResource BlackColor}"
-                                        iOS="{StaticResource BlackColor}" />
-                                </SearchBar.CancelButtonColor>
-                            </SearchBar>
-                        </Frame>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <buttons:SfButton
+                            x:Name="backButton"
+                            Clicked="backButton_Clicked"
+                            Grid.Column="0"
+                            CornerRadius="4"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                        <Label Grid.Column="1"
+                                    FontFamily="{StaticResource Montserrat-Medium}"
+                                    FontSize="17"
+                                    HorizontalOptions="Start"
+                                    Text="Bind Product name"
+                                    TextColor="{DynamicResource Gray-White}"
+                                    VerticalOptions="Center" />
 
                     </Grid>
-
-
                     <yummy:PancakeView
                         Grid.Row="1"
                         Margin="0,-10,0,0"
@@ -140,7 +130,7 @@
                                     FontFamily="{StaticResource Montserrat-Medium}"
                                     FontSize="13"
                                     HorizontalOptions="EndAndExpand"
-                                    Text="Swipe left to edit or delete product"
+                                    Text="Swipe left to edit or delete variants"
                                     TextColor="{DynamicResource Gray-800}"
                                     VerticalOptions="Center" />
                             </Grid>
@@ -169,13 +159,13 @@
                                     </pulltoRefresh:SfPullToRefresh.ProgressStrokeWidth>
                                     <pulltoRefresh:SfPullToRefresh.PullableContent>
                                         <syncListView:SfListView
-                                            x:Name="listView" ItemAppearing="listView_ItemAppearing"
+                                            x:Name="listView"
                                             AllowSwiping="True"
                                             FocusBorderThickness="0"
                                             IsScrollBarVisible="False"
                                             IsStickyHeader="True"
                                             ItemSize="80"
-                                            ItemsSource="{Binding ProductsList}"
+                                            ItemsSource="{Binding VariantsList}"
                                             SelectionMode="None">
                                             <!--SwipeEnded="Handle_SwipeEnded"
                                             SwipeStarted="Handle_SwipeStarted"-->
@@ -221,7 +211,7 @@
                                                             <Label
                                                                 LineBreakMode="TailTruncation"
                                                                 Style="{StaticResource ProductNameTitleStyle}"
-                                                                Text="{Binding Product_name}" />
+                                                                Text="{Binding Name}" />
                                                             <StackLayout Orientation="Horizontal">
                                                                 <Label Style="{StaticResource ProductUnitStyle}" />
                                                                 <Label Style="{StaticResource ProductUnitStyle}" Text="{Binding Short_info}" />
@@ -253,8 +243,7 @@
                                                                 <Label
                                                                     Grid.Row="2"
                                                                     FontFamily="{StaticResource Montserrat-Regular}"
-                                                                    FontSize="10"
-                                                                    Text="{texts:Translate ItemPrice}" />
+                                                                    FontSize="10" />
                                                                 <Label
                                                                     Grid.Row="3"
                                                                     Style="{StaticResource SalePriceStyle}"
@@ -282,7 +271,7 @@
                                                             HorizontalOptions="Fill"
                                                             VerticalOptions="Fill">
                                                             <Grid.GestureRecognizers>
-                                                                <TapGestureRecognizer x:Name="Update" Tapped="Update_Tapped"/>
+                                                                <TapGestureRecognizer x:Name="Update"/>
                                                             </Grid.GestureRecognizers>
                                                             <Grid HorizontalOptions="Center" VerticalOptions="Center">
                                                                 <Image
@@ -301,7 +290,7 @@
                                                             VerticalOptions="Fill">
                                                             <Grid.GestureRecognizers>
 
-                                                                <TapGestureRecognizer  x:Name="Delete" Tapped="Delete_Tapped" />
+                                                                <TapGestureRecognizer  x:Name="Delete"  />
                                                             </Grid.GestureRecognizers>
                                                             <Grid HorizontalOptions="Center" VerticalOptions="Center">
                                                                 <Image
@@ -323,15 +312,13 @@
                         </Grid>
                     </yummy:PancakeView>
                 </Grid>
-          
+
 
                 <fab:FloatingActionButtonView
 				    ColorNormal="{StaticResource PrimaryColor}"
 				    ColorPressed="{StaticResource Orange}"
 				    ColorRipple="{StaticResource Yellow}"
 				    x:Name="AddProductButton"
-                    Command="{Binding AddProductCommand}"
-                    CommandParameter="{x:Type view:AddProductView }"
                     ImageName ="add_24.png"
 				    IsVisible="True"
                     VerticalOptions="EndAndExpand"
@@ -348,4 +335,5 @@
                 VerticalOptions="Fill" />
         </Grid>
     </ContentPage.Content>
+
 </ContentPage>

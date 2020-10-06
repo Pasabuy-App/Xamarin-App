@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
+using PasaBuy.App.Commands;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.MobilePOS;
+using PasaBuy.App.Views.StoreViews.Management;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,6 +16,19 @@ namespace PasaBuy.App.ViewModels.MobilePOS
     {
         #region Fields
         public static ObservableCollection<ProductData> productsList;
+        
+        private DelegateCommand _showVariantsCommand;
+
+        public DelegateCommand ShowVariantsCommand =>
+          _showVariantsCommand ?? (_showVariantsCommand = new DelegateCommand(ShowVariantsClicked));
+
+        private async void ShowVariantsClicked(object obj)
+        {
+            IsBusy = false;
+            await Application.Current.MainPage.Navigation.PushModalAsync(new ProductVariants());
+            IsBusy = true;
+        }
+
         public ObservableCollection<ProductData> ProductsList
         {
             get { return productsList; }
@@ -22,6 +37,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         #endregion
         public ProductViewModel()
         {
+            IsBusy = true;
             productsList = new ObservableCollection<ProductData>();
             productsList.Clear();
             LoadData("");
