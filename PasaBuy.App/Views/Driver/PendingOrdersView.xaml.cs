@@ -1,4 +1,5 @@
-﻿using PasaBuy.App.Models.Driver;
+﻿using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Models.Driver;
 using PasaBuy.App.ViewModels.Driver;
 using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
@@ -28,11 +29,10 @@ namespace PasaBuy.App.Views.Driver
         private void PendingOrders_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
             var smp = e.ItemData as AcceptedListOrder;
-
-            StartDeliveryPage.StoreLatittude = smp.WaypointLat;
-            StartDeliveryPage.StoreLongitude = smp.WaypointLong;
-            StartDeliveryPage.userLongitude = smp.DestinationLong;
-            StartDeliveryPage.UserLatitude = smp.DestinationLat;
+            StartDeliveryPage.StoreLatittude = smp.WaypointLat.ToString();
+            StartDeliveryPage.StoreLongitude = smp.WaypointLong.ToString();
+            StartDeliveryPage.userLongitude = smp.DestinationLong.ToString();
+            StartDeliveryPage.UserLatitude = smp.DestinationLat.ToString();
             StartDeliveryPage.waypointAddress = smp.WaypointAddress;
             StartDeliveryPage.destinationAddress = smp.DestinationAddress;
            

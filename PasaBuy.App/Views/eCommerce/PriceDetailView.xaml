@@ -171,7 +171,9 @@
             Margin="{OnIdiom Default=24,
                              Tablet='24,24,16,24'}"
             BorderWidth="0"
+            x:Name="PlaceOrder"
             Command="{Binding PlaceOrderCommand}"
+            CommandParameter="{x:Reference PlaceOrder}"
             CornerRadius="20"
             FontFamily="{StaticResource Montserrat-SemiBold}"
             HeightRequest="40"

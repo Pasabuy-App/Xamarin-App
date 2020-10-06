@@ -15,6 +15,10 @@ namespace PasaBuy.App.Views.eCommerce
     {
         public static string street;
         public static string address_id;
+        public static string full_address;
+        public static string type;
+        public static string contact;
+        public static string person;
         public static double lat;
         public static double lon;
 
@@ -22,20 +26,20 @@ namespace PasaBuy.App.Views.eCommerce
         public AddressInMapPage()
         {
             InitializeComponent();
-            StreetEntry.Text = street + " lan: " + lat.ToString() + " lon: " + lon.ToString() + " id: " + address_id;
+            StreetEntry.Text = street;// + " lat: " + lat.ToString() + " lon: " + lon.ToString() + " id: " + address_id;
 
             Pin pin1 = new Pin()
             {
                 Type = PinType.Place,
-                Label = street,
-                Address = address_id,
+                Label = "Your Address",
+                Address = full_address,
                 Position = new Position(lat, lon),
                 Rotation = 0,
                 IsDraggable = true,
                 Tag = "id -toawd",
             };
             map.Pins.Add(pin1);
-            map.MoveToRegion(MapSpan.FromCenterAndRadius(pin1.Position, Xamarin.Forms.GoogleMaps.Distance.FromKilometers(23)));
+            map.MoveToRegion(MapSpan.FromCenterAndRadius(pin1.Position, Xamarin.Forms.GoogleMaps.Distance.FromKilometers(10)));
         }
 
         async void map_PinDragEnd(System.Object sender, Xamarin.Forms.GoogleMaps.PinDragEventArgs e)
@@ -46,8 +50,6 @@ namespace PasaBuy.App.Views.eCommerce
             lat = e.Pin.Position.Latitude;
             lon = e.Pin.Position.Longitude;
 
-            latitude.Text = lat.ToString();
-            longitude.Text = lon.ToString();
 
             //await App.Current.MainPage.DisplayAlert("Alert", "Pick up location : Latitude :" + e.Pin.Position.Latitude + " Longitude :" + e.Pin.Position.Longitude, "Ok");
         }
