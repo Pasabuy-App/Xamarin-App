@@ -22,6 +22,8 @@ namespace PasaBuy.App.Models.Settings
             public string contact_type = string.Empty;
             public string contact_person = string.Empty;
             public string full_address = string.Empty;
+            public string latitude = string.Empty;
+            public string longitude = string.Empty;
         }
 
         private string full_address;

@@ -37,27 +37,33 @@ namespace PasaBuy.App.ViewModels.Driver
         {
             try
             {
-                Order.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "received", "", "", "", "", (bool success, string data) => 
+                HatidPress.Deliveries.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", "car / sedan", "", "pending", (bool success, string data) => 
                 {
                     if (success)
                     {
-                        if (HtmlUtils.ConvertToPlainText(data) == "No order found")
+                        if (HtmlUtils.ConvertToPlainText(data) != "No order found")
                         {
                             TransactListData datas = JsonConvert.DeserializeObject<TransactListData>(data);
 
-                            if(datas.data.Length != 0)
+                            if (datas.data.Length != 0)
                             {
                                 for (int i = 0; i < datas.data.Length; i++)
                                 {
                                     string ItemID = datas.data[i].item_id;
                                     string Price = datas.data[i].price;
-                                    string Product = datas.data[i].product;
+                                    string Product = datas.data[i].product_name;
                                     string Quantity = datas.data[i].quantity;
                                     string Status = datas.data[i].status;
-                                    string Store = datas.data[i].store;
+                                    string Store = datas.data[i].store_name;
                                     string Date_created = datas.data[i].date_created;
                                     string Date_ordered = datas.data[i].date_ordered;
-                                    string product_name = string.Empty;
+                                    string store_lat = datas.data[i].store_lat;
+                                    string store_long = datas.data[i].store_long;
+                                    string store_address = datas.data[i].store_address;
+                                    string customer_lat = datas.data[i].customer_lat;
+                                    string customer_long = datas.data[i].customer_long;
+                                    string customer_address = datas.data[i].customer_address;
+
                                     // TindaPress.Product.Instance.List((PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, );
                                     orderlist.Add(new TransactListData()
                                     {
@@ -67,15 +73,32 @@ namespace PasaBuy.App.ViewModels.Driver
                                         Quantity = Quantity,
                                         Status = Status,
                                         Store = Store,
+
+                                        Store_lat = store_lat,
+                                        Store_long = store_long,
+                                        Store_address = store_address,
+
+                                        Customer_lat = customer_lat,
+                                        Customer_long = customer_long,
+                                        Customer_address = customer_address,
+
                                         Date_created = Date_created,
-                                        Date_ordered = Date_ordered
+                                        Date_ordered = Date_ordered,
 
                                     });
                                 }
                             }
-                            
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            }
+
                         }
-                        
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        }
+
                     }
                     else
                     {

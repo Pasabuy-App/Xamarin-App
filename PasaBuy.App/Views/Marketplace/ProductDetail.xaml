@@ -52,7 +52,7 @@
                             <RowDefinition Height="auto" />
                         </Grid.RowDefinitions>
 
-                        <ffimageloading:CachedImage Aspect="AspectFill" x:Name="ProductLogo"
+                        <ffimageloading:CachedImage Aspect="Fill" x:Name="ProductLogo"
                                                         HeightRequest="250"
                                                         Grid.Row="0"
                                                         Source="https://pasabuy.app/wp-content/uploads/2020/10/Motorcycle.png"

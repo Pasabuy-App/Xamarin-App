@@ -44,12 +44,20 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <StackLayout BackgroundColor="{DynamicResource Gray-White}"
                          Grid.Row="0"
                          BindableLayout.ItemsSource="{Binding AddressList}"
                          x:Name="AddressListStack"
                          Spacing="0">
+                    <BindableLayout.EmptyView>
+                        <StackLayout HorizontalOptions="Center" 
+                                     VerticalOptions="Center"
+                                     Margin="0,50,0,0">
+                            <Label Text="No address saved."/>
+                        </StackLayout>
+                    </BindableLayout.EmptyView>
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
                             <yummy:PancakeView 
@@ -137,7 +145,7 @@
                                         VerticalOptions="Start"/>
 
                                     <Grid.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding BindingContext.SelectAddressCommand,Source={x:Reference AddressListStack}}" CommandParameter="{Binding ID}"/>
+                                        <TapGestureRecognizer x:Name="TappedG"  ClassId="{Binding ID}" Command="{Binding BindingContext.SelectAddressCommand,Source={x:Reference AddressListStack}}" CommandParameter="{x:Reference TappedG}"/>
                                     </Grid.GestureRecognizers>
                                 </Grid>
                             </yummy:PancakeView>
@@ -145,7 +153,16 @@
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
                 </StackLayout>
-           
+                <StackLayout Grid.Row="1" 
+                             Padding="15"
+                             BackgroundColor="{DynamicResource Gray-White}">
+                    <buttons:SfButton Grid.Row="2"
+                                     Margin="0,15,0,0"
+                                     HorizontalOptions="FillAndExpand"
+                                     Command="{Binding PinAnotherCommand}"
+                                     Style="{StaticResource SfGradientButtonStyle}"
+                                     Text="Use Another Address" />
+                </StackLayout>
             </Grid>
         </ScrollView>
     </ContentPage.Content>

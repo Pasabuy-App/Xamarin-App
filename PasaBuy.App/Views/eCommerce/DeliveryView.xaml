@@ -53,6 +53,7 @@
                 Grid.Row="0"
                 FontFamily="{StaticResource Montserrat-SemiBold}"
                 FontSize="13"
+                IsEnabled="{Binding IsBusy}"
                 x:Name="ChangeAddress"
                 LineHeight="{OnPlatform Android=1.25,
                                         Default=-1}"

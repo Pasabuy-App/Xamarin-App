@@ -44,72 +44,84 @@ namespace PasaBuy.App.Views.Driver
 
 
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private void TapGestureRecognizer_Tapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
-            var btn = (Label)sender;
-            var id = btn.ClassId;
+            /*  var btn = (Label)sender;
+              var id = btn.ClassId;*/
+            var smp = e.ItemData as TransactListData;
 
-            try
-            {
-                MobilePOS.Order.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", id.ToString(), "", "", (bool success, string data) =>
-                {
-                    //new Alert("", data, "ok");
-                    if (success)
-                    {
-                        OrderListData datas = JsonConvert.DeserializeObject<OrderListData>(data);
-                        if (datas.data.Length != 0)
-                        {
-                            for (int i = 0; i < datas.data.Length; i++)
-                            {
-                                string store = datas.data[i].store;
-                                string costumer_address = datas.data[i].customer_address;
-                                string store_address = datas.data[i].store_address;
-                                double user_lat = datas.data[i].customer_lat;
-                                double user_long = datas.data[i].customer_long;
-                                double store_lat = datas.data[i].store_lat;
-                                double store_long = datas.data[i].store_long;
-                                string order_time = datas.data[i].date_ordered;
-                                string product = datas.data[i].product;
+            Views.PopupModals.PopupAcceptOrder.item_id = smp.ItemID;
+            Views.PopupModals.PopupAcceptOrder.storeName = smp.Store;
+            Views.PopupModals.PopupAcceptOrder.waypointAddress = smp.Store_address;
+            Views.PopupModals.PopupAcceptOrder.destinationAddress = smp.Customer_address;
 
-                                Views.PopupModals.PopupAcceptOrder.item_id = id.ToString();
-                                Views.PopupModals.PopupAcceptOrder.storeName = store;
-                                Views.PopupModals.PopupAcceptOrder.waypointAddress = store_address;
-                                Views.PopupModals.PopupAcceptOrder.destinationAddress = costumer_address;
-                                Views.PopupModals.PopupAcceptOrder.orderTime = order_time;
-                                Views.PopupModals.PopupAcceptOrder.orderName = product;
-                            }
-                            PopupNavigation.Instance.PushAsync(new PopupAcceptOrder());
-                        }
-                        
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
+            Views.PopupModals.PopupAcceptOrder.orderTime = smp.Date_created;
+            Views.PopupModals.PopupAcceptOrder.orderName = smp.Product;
+            Views.PopupModals.PopupAcceptOrder.store_lat = smp.Store_lat;
+            Views.PopupModals.PopupAcceptOrder.store_long = smp.Store_long;
+            Views.PopupModals.PopupAcceptOrder.user_lat = smp.Customer_lat;
+            Views.PopupModals.PopupAcceptOrder.user_long = smp.Customer_long;
+            PopupNavigation.Instance.PushAsync(new PopupAcceptOrder());
 
-                });
+            /*   try
+               {
+                   HatidPress.Deliveries.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", "car / sedan", "", "pending", (bool success, string data) =>
+                   {
+                       //new Alert("", data, "ok");
+                       if (success)
+                       {
+                           TransactListData datas = JsonConvert.DeserializeObject<TransactListData>(data);
+                           if (datas.data.Length != 0)
+                           {
+                               for (int i = 0; i < datas.data.Length; i++)
+                               {
+                                   string store = datas.data[i].store_name;
+                                   string costumer_address = datas.data[i].customer_address;
+                                   string store_address = datas.data[i].store_address;
 
-            }
-            catch (FeatureNotSupportedException fnsEx)
-            {
-                // Handle not supported on device exception
-                Console.WriteLine("Handle not supported on device exception" + " " + fnsEx);
-            }
-            catch (FeatureNotEnabledException fneEx)
-            {
-                // Handle not enabled on device exception
-                Console.WriteLine("Handle not enabled on device exception" + " " + fneEx);
-            }
-            catch (PermissionException pEx)
-            {
-                // Handle permission exception
-                Console.WriteLine("Handle permission exception" + " " + pEx);
-            }
-            catch (Exception ex)
-            {
-                // Unable to get location
-                Console.WriteLine("Unable to get location" + " " + ex);
-            }
+                                   string user_lat = datas.data[i].customer_lat.ToString();
+                                   string user_long = datas.data[i].customer_long.ToString();
+                                   string store_lat = datas.data[i].store_lat.ToString();
+                                   string store_long = datas.data[i].store_long.ToString();
+
+                                   string order_time = datas.data[i].date_ordered;
+                                   string product = datas.data[i].product_name;
+                                   new Alert("",store_address,"ok");
+
+
+                               }
+                               PopupNavigation.Instance.PushAsync(new PopupAcceptOrder());
+                           }
+
+                       }
+                       else
+                       {
+                           new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                       }
+
+                   });
+
+               }
+               catch (FeatureNotSupportedException fnsEx)
+               {
+                   // Handle not supported on device exception
+                   Console.WriteLine("Handle not supported on device exception" + " " + fnsEx);
+               }
+               catch (FeatureNotEnabledException fneEx)
+               {
+                   // Handle not enabled on device exception
+                   Console.WriteLine("Handle not enabled on device exception" + " " + fneEx);
+               }
+               catch (PermissionException pEx)
+               {
+                   // Handle permission exception
+                   Console.WriteLine("Handle permission exception" + " " + pEx);
+               }
+               catch (Exception ex)
+               {
+                   // Unable to get location
+                   Console.WriteLine("Unable to get location" + " " + ex);
+               }*/
         }
     }
 }

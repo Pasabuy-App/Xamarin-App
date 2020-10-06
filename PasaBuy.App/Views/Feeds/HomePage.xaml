@@ -187,7 +187,7 @@
                                                 </Image.Source>
                                             </Image>-->
                                             <ffimageloading:CachedImage 
-                                                Aspect="AspectFill"
+                                                Aspect="Fill"
 			                                    DownsampleToViewSize="true"
                                                 HeightRequest="{Binding ImageHeight}"
                                                 HorizontalOptions="FillAndExpand"

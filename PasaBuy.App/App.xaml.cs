@@ -6,6 +6,8 @@ using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using PasaBuy.App.Views.Marketplace;
 using PasaBuy.App.Views.eCommerce;
+using PasaBuy.App.Views.Driver;
+using PasaBuy.App.Views;
 
 namespace PasaBuy.App
 {
@@ -16,7 +18,6 @@ namespace PasaBuy.App
             InitializeComponent();
 
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(PSAConfig.sfApiKey);
-
             //Initialized all PCL required by PasaBuy.App
             DataVice.DVHost.Instance.Initialized(PSAConfig.CurrentRestUrl);
             SocioPress.SPHost.Instance.Initialized(PSAConfig.CurrentRestUrl);
