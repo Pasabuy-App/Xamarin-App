@@ -2,10 +2,12 @@
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Marketplace;
+using PasaBuy.App.Views.Marketplace;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.Marketplace
@@ -28,9 +30,9 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 this.NotifyPropertyChanged(); 
             }
         }
-
         public GroceryBrowserViewModel()
         {
+
             grocerystorelist = new ObservableCollection<Groceries>();
             grocerystorelist.Clear();
             //LoadGrocery("");
@@ -72,6 +74,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         }
 
+
+        public Command RefreshCommand { protected set; get; }
         public Command<object> ItemTappedCommand
         {
             get

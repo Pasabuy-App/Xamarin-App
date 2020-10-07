@@ -23,9 +23,18 @@ namespace PasaBuy.App.Views.Marketplace
         {
             InitializeComponent();
             isTapped = false;
+            pullToRefresh.Refreshing += PullToRefresh_Refreshing;
             //this.BindingContext = StoreDataService.Instance.RestaurantViewModel;
         }
-
+        private async void PullToRefresh_Refreshing(object sender, EventArgs args)
+        {
+            pullToRefresh.IsRefreshing = true;
+            await Task.Delay(500);
+            LastIndex = 11;
+            GroceryBrowserViewModel.grocerystorelist.Clear();
+            GroceryBrowserViewModel.LoadGrocery("");
+            pullToRefresh.IsRefreshing = false;
+        }
         protected override void OnSizeAllocated(double width, double height)
         {
             base.OnSizeAllocated(width, height);

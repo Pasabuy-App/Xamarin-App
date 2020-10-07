@@ -65,15 +65,45 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 this.NotifyPropertyChanged(); 
             }
         }
+        bool _isRefreshing = false;
+        public bool IsRefreshing
+        {
+            get
+            {
+                return _isRefreshing;
+            }
+            set
+            {
+                if (_isRefreshing != value)
+                {
+                    _isRefreshing = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+
+        public ICommand RefreshCommand { protected set; get; }
 
         public FoodBrowserViewModel()
         {
+            RefreshCommand = new Command<string>((key) =>
+            {
+                FoodBrowserPage.LastIndex = 11;
+                foodstorelist.Clear();
+                LoadFood("");
+                LoadBestSeller();
+                IsRefreshing = false;
+            });
             foodstorelist = new ObservableCollection<FoodStore>();
             foodstorelist.Clear();
             //LoadFood("");
 
             _bestSellers = new ObservableCollection<FoodStore>();
-
+            _bestSellers.Clear();
+            LoadBestSeller();
+        }
+        public static void LoadBestSeller()
+        {
             for (int i = 0; i < 4; i++)
             {
                 _bestSellers.Add(new FoodStore()
@@ -84,7 +114,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-    public static void LoadFood(string lastid)
+        public static void LoadFood(string lastid)
         {
             try
             {
@@ -105,7 +135,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 ItemRating = "4.5",
                                 Banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png" : PSAProc.GetUrl(datas.data[i].banner)
                             });
-
                         }
                     }
                     else

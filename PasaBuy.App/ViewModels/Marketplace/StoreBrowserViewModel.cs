@@ -61,7 +61,12 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public StoreBrowserViewModel()
         {
-
+            RefreshCommand = new Command<string>((key) =>
+            {
+                itemCategories.Clear();
+                LoadCategory();
+                IsRefreshing = false;
+            });
             storeList = new ObservableCollection<Store>();
             itemCategories = new ObservableCollection<Categories>();
             storeList.Clear();
@@ -69,7 +74,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
             //LoadStore("");
             //LoadCategory();
         }
-
 
         public static void LoadCategory()
         {
@@ -177,6 +181,24 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         #region Properties
 
+        bool _isRefreshing = false;
+        public bool IsRefreshing
+        {
+            get
+            {
+                return _isRefreshing;
+            }
+            set
+            {
+                if (_isRefreshing != value)
+                {
+                    _isRefreshing = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+
+        public ICommand RefreshCommand { protected set; get; }
         /// <summary>
         /// Gets the command that will be executed when an item is selected.
         /// </summary>
@@ -186,7 +208,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
             get
             {
                 return this.itemTappedCommand ?? (this.itemTappedCommand = new Command<object>(this.NavigateToNextPage));
-               
             }
 
         }

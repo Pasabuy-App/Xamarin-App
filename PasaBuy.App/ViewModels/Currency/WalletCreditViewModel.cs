@@ -11,6 +11,7 @@ using PasaBuy.App.Commands;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace PasaBuy.App.ViewModels.Currency
 {
@@ -140,7 +141,7 @@ namespace PasaBuy.App.ViewModels.Currency
         {
             try
             {
-                CoinPress.Wallet.Instance.Create(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "CDT", (bool success, string data) =>
+                CoinPress.Wallet.Instance.Create(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "CDT", async (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -151,6 +152,7 @@ namespace PasaBuy.App.ViewModels.Currency
                             currency_id = wallet.data[i].currency_id;
                             wallet_id = wallet.data[i].public_key;
                             LoadBalance();
+                            await Task.Delay(500);
                             LoadData(wallet.data[i].currency_id, "");
                         }
                     }
