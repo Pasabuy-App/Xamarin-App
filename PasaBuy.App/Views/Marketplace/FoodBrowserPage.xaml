@@ -157,6 +157,7 @@
                                                     FocusBorderColor="Transparent"
                                                     x:Name="StoreListStack"
                                                     ItemsSource="{Binding FoodStorelist}"
+                                                    ItemAppearing="SfListView_ItemAppearing"
                                                     RowSpacing="0"
                                                     SelectionBackgroundColor="Transparent">
 
