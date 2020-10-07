@@ -110,7 +110,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
         {
             try
             {
-
+                //Console.WriteLine("Ayup: ." + StreetEntry + ". ." + AddressInMapPage.address_id + ". ." +AddressInMapPage.lat.ToString() + ". ." + AddressInMapPage.lon.ToString());
                 DataVice.Address.Instance.Update(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, AddressInMapPage.address_id, "", "", "", "", StreetEntry, AddressInMapPage.lat.ToString(), AddressInMapPage.lon.ToString(), (bool success, string data) =>
                 {
                     if (success)

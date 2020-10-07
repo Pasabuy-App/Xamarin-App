@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -31,14 +32,18 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public async void LoadDetails(string storeId)
         {
-            IsBusy = true;
-            CanNavigate = false;
-            StoreDetailsViewModel.store_id = storeId;
-            StoreDetailsViewModel.Loadcategory(storeId);
-            StoreDetailsViewModel.Loadstoredetails(storeId);
-            await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
-            IsBusy = false;
-            CanNavigate = true;
+            if (!IsBusy)
+            {
+                IsBusy = true;
+                CanNavigate = false;
+                StoreDetailsViewModel.store_id = storeId;
+                StoreDetailsViewModel.Loadcategory(storeId);
+                StoreDetailsViewModel.Loadstoredetails(storeId);
+                await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+                await Task.Delay(200);
+                IsBusy = false;
+                CanNavigate = true;
+            }
         }
 
         public ObservableCollection<FoodStore> BestSellers
