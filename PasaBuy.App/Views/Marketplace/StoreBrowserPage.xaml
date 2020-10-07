@@ -39,6 +39,9 @@
     </ContentView.Resources>
 
     <ContentView.Content>
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"   
+                     x:Name="rv"
+                     Command="{Binding RefreshCommand}">
         <ScrollView>
             <StackLayout Spacing="0" Padding="0,0,0,20">
                 <ffimageloading:CachedImage Aspect="AspectFill"
@@ -149,5 +152,6 @@
             </StackLayout>
         </ScrollView>
 
+        </RefreshView>
     </ContentView.Content>
 </ContentView>

@@ -8,7 +8,8 @@
              xmlns:template="clr-namespace:PasaBuy.App.Views.Templates" 
              xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms" 
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
-             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              BackgroundColor="{DynamicResource Gray-White}"
              x:Class="PasaBuy.App.Views.Marketplace.FoodBrowserPage">
 
@@ -47,6 +48,9 @@
     </ContentView.Resources>
 
     <ContentView.Content>
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"   
+                     x:Name="rv"
+                     Command="{Binding RefreshCommand}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -244,5 +248,7 @@
                 </Grid>
             </ScrollView>
         </Grid>
+
+        </RefreshView>
     </ContentView.Content>
 </ContentView>
