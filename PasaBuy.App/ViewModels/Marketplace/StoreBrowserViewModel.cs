@@ -35,28 +35,29 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public ObservableCollection<Categories> ItemCategories
         {
-            get { return itemCategories; }
-            set { itemCategories = value; this.NotifyPropertyChanged(); }
+            get 
+            { 
+                return itemCategories; 
+            }
+            set 
+            { 
+                itemCategories = value; 
+                this.NotifyPropertyChanged(); 
+            }
         }
 
         public ObservableCollection<Store> StoreList
         {
-            get { return storeList; }
-            set { storeList = value; this.NotifyPropertyChanged(); }
+            get 
+            { 
+                return storeList; 
+            }
+            set 
+            { 
+                storeList = value; 
+                this.NotifyPropertyChanged(); 
+            }
         }
-        /*public string myTitle = string.Empty;
-        public string MyTitle
-        {
-            get
-            {
-                return this.myTitle;
-            }
-            set
-            {
-                this.myTitle = value;
-                this.NotifyPropertyChanged();
-            }
-        }*/
 
         public StoreBrowserViewModel()
         {
@@ -82,16 +83,11 @@ namespace PasaBuy.App.ViewModels.Marketplace
                       
                         for (int i = 0; i < datas.data.Length; i++)
                         {
-
-                            string catid = datas.data[i].ID;
-                            string category = datas.data[i].title;
-                            string avatar = datas.data[i].avatar;
-
                             itemCategories.Add(new Categories()
                             {
-                                Id = catid,
-                                Title = category,
-                                Avatar = avatar,
+                                Id = datas.data[i].ID,
+                                Title = datas.data[i].title,
+                                Avatar = datas.data[i].avatar, //PSAProc.GetUrl(datas.data[i].avatar),
                                 Info = "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-product.png"
                             });
                         }
@@ -130,20 +126,15 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         {
                             for (int i = 0; i < datas.data.Length; i++)
                             {
-                                string id = datas.data[i].ID;
-                                string title = datas.data[i].title;
-                                string short_info = datas.data[i].short_info;
-                                string avatar = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : datas.data[i].avatar;
-                                string banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png" : datas.data[i].banner;
                                 storeList.Add(new Store()
                                 {
-                                    Id = id,
-                                    Title = title,
-                                    Description = short_info,
-                                    Logo = avatar,
+                                    Id = datas.data[i].ID,
+                                    Title = datas.data[i].title,
+                                    Description = datas.data[i].short_info,
+                                    Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(datas.data[i].avatar),
                                     Offer = "50% off",
                                     ItemRating = "4.5",
-                                    Banner = banner
+                                    Banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png" : PSAProc.GetUrl(datas.data[i].banner)
                                 });
                             }
                         }
