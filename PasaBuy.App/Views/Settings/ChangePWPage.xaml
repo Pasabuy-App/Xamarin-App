@@ -95,6 +95,7 @@
                             Style="{StaticResource FormBorderStyle}">
                         <controls:BorderlessEntry 
                             x:Name="OldPassword"
+                            IsPassword="True"
                             PlaceholderColor="{DynamicResource Gray-800}" 
                             Placeholder="Old Password" 
                             HeightRequest="40"  
@@ -109,6 +110,7 @@
                             Style="{StaticResource FormBorderStyle}">
                         <controls:BorderlessEntry 
                             x:Name="NewPassword"
+                            IsPassword="True"
                             PlaceholderColor="{DynamicResource Gray-800}" 
                             Placeholder="New Password" 
                             HeightRequest="40"  
@@ -123,6 +125,7 @@
                             Style="{StaticResource FormBorderStyle}">
                         <controls:BorderlessEntry 
                             x:Name="ConfirmNewPassword"
+                            IsPassword="True"
                             PlaceholderColor="{DynamicResource Gray-800}" 
                             Placeholder="Confirm New Password" 
                             HeightRequest="40"  
