@@ -310,7 +310,7 @@
                                                                                         VerticalOptions="CenterAndExpand"
                                                                                         VerticalTextAlignment="Center" />
 
-                                                                <buttons:SfButton Grid.Column="2"
+                                                                <!--<buttons:SfButton Grid.Column="2"
                                                                                                   Grid.Row="2"
                                                                                                   CornerRadius="25"
                                                                                                   IsVisible= "True"
@@ -325,7 +325,20 @@
                                                                                                   Command="{Binding Source={x:Reference Name=storeDetails}, Path=BindingContext.AddToCartCommand}"
                                                                                                   CommandParameter="{x:Reference Add2Card}"
                                                                                                   Style="{StaticResource IconButtonStyle}"
-                                                                                                  Text="{StaticResource Add}" />
+                                                                                                  Text="{StaticResource Add}" />-->
+                                                                <ImageButton Source="https://pasabuy.app/wp-content/uploads/2020/10/add_to_cart.jpg"
+                                                                             Grid.Column="2"
+                                                                             Grid.Row="2"
+                                                                             HeightRequest="35"
+                                                                             WidthRequest="35"
+                                                                             BackgroundColor="Transparent"
+                                                                             x:Name="Add2Card"
+                                                                             ClassId="{Binding ID}"
+                                                                             Command="{Binding Source={x:Reference Name=storeDetails}, Path=BindingContext.AddToCartCommand}">
+                                                                    
+                                                                </ImageButton>
+                          
+                                                               
 
                                                                 <buttons:SfButton Grid.Column="2"
                                                                                                   Grid.Row="2"
