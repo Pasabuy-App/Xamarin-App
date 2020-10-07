@@ -104,6 +104,7 @@ namespace PasaBuy.App.ViewModels.Menu
             this.email = PSACache.Instance.UserInfo.email;
 
             this.ProfileCommand = new Command(this.ProfileButtonClicked);
+            this.MessageCommand = new Command(this.MessageButtonClicked);
             this.WalletCommand = new Command(this.WalletButtonClicked);
             this.TransactionCommand = new Command(this.TransactionButtonClicked);
             this.AdvisoryCommand = new Command(this.AdvisoryButtonClicked);
@@ -211,6 +212,11 @@ namespace PasaBuy.App.ViewModels.Menu
         public Command ProfileCommand { get; set; }
 
         /// <summary>
+        /// Gets or sets the command that is executed when the message view is clicked.
+        /// </summary>
+        public Command MessageCommand { get; set; }
+
+        /// <summary>
         /// Gets or sets the command that is executed when the wallet view is clicked.
         /// </summary>
         public Command WalletCommand { get; set; }
@@ -280,6 +286,23 @@ namespace PasaBuy.App.ViewModels.Menu
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
+                    Status = false;
+                });
+            }
+        }
+
+        /// <summary>
+        /// Invoked when the message button is clicked.
+        /// </summary>
+        /// <param name="obj">The object</param>
+        private void MessageButtonClicked(object obj)
+        {
+            if (!Status)
+            {
+                Status = true;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new PasaBuy.App.Views.Chat.MessagePage()));
                     Status = false;
                 });
             }

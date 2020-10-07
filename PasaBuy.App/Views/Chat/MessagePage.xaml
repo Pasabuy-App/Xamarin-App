@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentView
+<ContentPage
     x:Class="PasaBuy.App.Views.Chat.MessagePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -13,7 +13,7 @@
     BackgroundColor="{DynamicResource Gray-White}"
     NavigationPage.HasNavigationBar="True" >
 
-    <ContentView.Resources>
+    <ContentPage.Resources>
         <ResourceDictionary>
             <converter:StringToBadgeIconConverter x:Key="BadgeConverter" />
             <converter:StringToGlyphConverter x:Key="GlyphConverter" />
@@ -22,13 +22,13 @@
                 <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-    </ContentView.Resources>
+    </ContentPage.Resources>
 
-    <ContentView.BindingContext>
+    <ContentPage.BindingContext>
         <viewModel:RecentChatViewModel />
-    </ContentView.BindingContext>
+    </ContentPage.BindingContext>
 
-    <ContentView.Content>
+    <ContentPage.Content>
         <StackLayout Spacing="0" >
             <StackLayout
                 x:Name="TitleBar"
@@ -323,6 +323,6 @@
             </controls:SearchableChatList>
 
         </StackLayout>
-    </ContentView.Content>
+    </ContentPage.Content>
 
-</ContentView>
+</ContentPage>
