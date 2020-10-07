@@ -51,6 +51,7 @@
                             FocusedColor="{StaticResource BlackColor}"
                             Hint="Recipient Wallet ID"
                             HasError="False"
+                            x:Name="WalletIds"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
                     <Entry MaxLength="50"  
@@ -72,6 +73,7 @@
                             FocusedColor="{StaticResource BlackColor}"
                             Hint="Amount"
                             HasError="False"
+                            x:Name="Amounts"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
                     <Entry MaxLength="50" 

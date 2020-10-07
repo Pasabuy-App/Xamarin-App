@@ -25,6 +25,7 @@ namespace PasaBuy.App
             TindaPress.TPHost.Instance.Initialized(PSAConfig.CurrentRestUrl);
             HatidPress.HPHost.Instance.Initialized(PSAConfig.CurrentRestUrl);
             MobilePOS.MPHost.Instance.Initialized(PSAConfig.CurrentRestUrl);
+            CoinPress.CPHost.Instance.Initialized(PSAConfig.CurrentRestUrl);
             PSACache.Instance.Initialize();
 
             //commit

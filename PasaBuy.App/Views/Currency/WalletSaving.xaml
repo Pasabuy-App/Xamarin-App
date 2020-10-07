@@ -82,7 +82,7 @@
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text=" ₱" />
-                                <Span Text="1500.00" />
+                                <Span Text="{Binding Amount}" />
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
@@ -91,7 +91,7 @@
                            Grid.Row="0"
                            HorizontalOptions="End"
                            VerticalOptions="Center"
-                           Text="AL323"
+                           Text="{Binding WalletID}"
                            TextColor="{Binding IsCredited, Converter={x:StaticResource BooleanToColorConverter}, ConverterParameter=5}"
                            Style="{StaticResource LabelStyle}"
                            FontSize="20"
@@ -141,7 +141,7 @@
                 <listView:SfListView Grid.Row="3" 
                                      IsScrollBarVisible="False"
                                      ItemSpacing="0"
-                                     ItemsSource="{Binding ListItems}"
+                                     ItemsSource="{Binding SavingsList}" ItemAppearing="SfListView_ItemAppearing"
                                      SelectionBackgroundColor="{DynamicResource TappedBackgroundColor}"
                                      TapCommand="{Binding ItemTappedCommand}"
                                      AutoFitMode="Height">
@@ -190,7 +190,7 @@
                                        Grid.Column="1"
                                        Margin="0,0,0,16"
                                        HorizontalOptions="Start"
-                                       Text="{Binding Title}"
+                                       Text="{Binding Note}"
                                        TextColor="{DynamicResource Gray-700}"
                                        FontSize="12"
                                        FontFamily="{DynamicResource Montserrat-Medium}"
@@ -206,7 +206,7 @@
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text="{Binding IsCredited, Converter={StaticResource BoolToStringConverter}, ConverterParameter=2}" />
-                                            <Span Text=" $" />
+                                            <Span Text=" ₱" />
                                             <Span Text="{Binding Amount}" />
                                         </FormattedString>
                                     </Label.FormattedText>

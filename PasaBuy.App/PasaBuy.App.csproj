@@ -753,6 +753,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="CoinPress-PCL">
+      <HintPath>Resources\CoinPress-PCL.dll</HintPath>
+    </Reference>
     <Reference Include="DataVice-PCL">
       <HintPath>Resources\DataVice-PCL.dll</HintPath>
     </Reference>
