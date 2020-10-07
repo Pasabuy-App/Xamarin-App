@@ -40,6 +40,7 @@
 
     <ContentPage.Content>
 
+        
         <tabView:SfTabView BackgroundColor="{DynamicResource Gray-White}" VisibleHeaderCount="2">
             <tabView:SfTabView.SelectionIndicatorSettings>
                 <tabView:SelectionIndicatorSettings StrokeThickness="3" Color="{DynamicResource PrimaryColor}" />
