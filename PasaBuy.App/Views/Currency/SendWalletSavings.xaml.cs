@@ -20,6 +20,7 @@ namespace PasaBuy.App.Views.Currency
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SendWalletSavings : ContentPage
     {
+        public static string currency_id;
         public SendWalletSavings()
         {
             InitializeComponent();
@@ -39,6 +40,7 @@ namespace PasaBuy.App.Views.Currency
                 btn.IsEnabled = false;
                 if (!WalletIds.HasError && !Amounts.HasError)
                 {
+                    PopupSendWalletSavings.currency_id = currency_id;
                     PopupSendWalletSavings.amount = Amount.Text;
                     PopupSendWalletSavings.walletid = WalletId.Text;
                     PopupSendWalletSavings.notes = Note.Text;

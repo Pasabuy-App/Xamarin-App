@@ -19,6 +19,7 @@ namespace PasaBuy.App.Views.PopupModals
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PopupSendWalletSavings : PopupPage
     {
+        public static string currency_id;
         public static string walletid;
         public static string amount;
         public static string notes;
@@ -37,7 +38,7 @@ namespace PasaBuy.App.Views.PopupModals
                 {
                     if (success)
                     {
-                        WalletModel wallet = JsonConvert.DeserializeObject<WalletModel>(data);
+                        WalletSavingsModel wallet = JsonConvert.DeserializeObject<WalletSavingsModel>(data);
                         for (int i = 0; i < wallet.data.Length; i++)
                         {
                             Message.Text = "Do you really want to send ₱" + amount + " to " + wallet.data[i].name + " with wallet ID of " + walletid + "?";

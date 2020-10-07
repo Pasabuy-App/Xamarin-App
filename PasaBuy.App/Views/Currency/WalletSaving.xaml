@@ -59,7 +59,7 @@
                            Grid.Row="0"
                            HorizontalOptions="Center"
                            VerticalOptions="Center"
-                           Text="Wallet ID"
+                           Text="Savings Wallet ID"
                            Style="{StaticResource LabelStyle}"
                            LineHeight="{OnPlatform Android=1.5, Default=-1}" />
                     <!-- Name -->

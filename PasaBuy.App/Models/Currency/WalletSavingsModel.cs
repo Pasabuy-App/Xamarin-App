@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PasaBuy.App.Models.Currency
 {
-    public class WalletModel : INotifyPropertyChanged
+    public class WalletSavingsModel : INotifyPropertyChanged
     {
         public string balance;
 
@@ -100,8 +100,8 @@ namespace PasaBuy.App.Models.Currency
             }
         }
 
-        private string date;
-        public string Date
+        private DateTime date;
+        public DateTime Date
         {
             get
             {

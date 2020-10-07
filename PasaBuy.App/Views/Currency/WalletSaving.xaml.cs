@@ -27,12 +27,12 @@ namespace PasaBuy.App.Views.Currency
 
         private void SfListView_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
         {
-            var item = e.ItemData as WalletModel;
+            var item = e.ItemData as WalletSavingsModel;
             if (WalletSavingViewModel._SavingsList.Last() == item && WalletSavingViewModel._SavingsList.Count() != 1)
             {
                 if (WalletSavingViewModel._SavingsList.IndexOf(item) >= LastIndex)
                 {
-                    WalletSavingViewModel.LoadData((LastIndex += 1).ToString());
+                    WalletSavingViewModel.LoadData(WalletSavingViewModel.currency_id, (LastIndex += 1).ToString());
                     LastIndex += 6;
                 }
             }

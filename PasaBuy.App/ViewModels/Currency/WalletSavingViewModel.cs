@@ -50,11 +50,11 @@ namespace PasaBuy.App.ViewModels.Currency
 
         private DelegateCommand _confirmSendCommand;
 
-        public static string curreny_id;
+        public static string currency_id;
         public static string wallet_id;
 
-        public static ObservableCollection<WalletModel> _SavingsList;
-        public ObservableCollection<WalletModel> SavingsList
+        public static ObservableCollection<WalletSavingsModel> _SavingsList;
+        public ObservableCollection<WalletSavingsModel> SavingsList
         {
             get 
             { 
@@ -89,7 +89,7 @@ namespace PasaBuy.App.ViewModels.Currency
                 new Model(){ Duration = "Year" },
             };
             ListItems = WeekListItems;*/
-            _SavingsList = new ObservableCollection<WalletModel>();
+            _SavingsList = new ObservableCollection<WalletSavingsModel>();
             _SavingsList.Clear();
             /*_SavingsList.Add(new WalletModel()
             {
@@ -112,30 +112,29 @@ namespace PasaBuy.App.ViewModels.Currency
                 IsCredited = false
             });*/
             CreateWallet();
-            LoadBalance();
-            LoadData("");
+            //LoadData("");
         }
-        public static void LoadData(string offset)
+        public static void LoadData(string currency, string offset)
         {
             try
             {
-                CoinPress.Wallet.Instance.Transactions(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", curreny_id, offset, (bool success, string data) =>
+                CoinPress.Wallet.Instance.Transactions(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", currency, offset, (bool success, string data) =>
                 {
                     if (success)
                     {
-                        WalletModel wallet = JsonConvert.DeserializeObject<WalletModel>(data);
+                        WalletSavingsModel wallet = JsonConvert.DeserializeObject<WalletSavingsModel>(data);
                         for (int i = 0; i < wallet.data.Length; i++)
                         {
                             //this.WalletID = wallet.data[i].public_key;
                             //curreny_id = wallet.data[i].currency_id;
 
-                            _SavingsList.Add(new WalletModel()
+                            _SavingsList.Add(new WalletSavingsModel()
                             {
                                 ProfileImage = PSAProc.GetUrl(wallet.data[i].avatar),
                                 Name = wallet.data[i].name,
                                 Note = string.IsNullOrEmpty(wallet.data[i].remarks) || wallet.data[i].remarks == "None" ? "" : wallet.data[i].remarks,
                                 Amount = Convert.ToDouble(wallet.data[i].amount),
-                                Date = wallet.data[i].date_created, //new DateTime(2019, 1, 28),
+                                Date = new DateTime(Convert.ToInt32(wallet.data[i].date_created.Substring(0, 4)), Convert.ToInt32(wallet.data[i].date_created.Substring(5, 2)), Convert.ToInt32(wallet.data[i].date_created.Substring(8, 2))),
                                 IsCredited = wallet.data[i].type == "sender" ? false : true
                             });
                         }
@@ -159,12 +158,14 @@ namespace PasaBuy.App.ViewModels.Currency
                 {
                     if (success)
                     {
-                        WalletModel wallet = JsonConvert.DeserializeObject<WalletModel>(data);
+                        WalletSavingsModel wallet = JsonConvert.DeserializeObject<WalletSavingsModel>(data);
                         for (int i = 0; i < wallet.data.Length; i++)
                         {
                             this.WalletID = wallet.data[i].public_key;
-                            curreny_id = wallet.data[i].currency_id;
+                            currency_id = wallet.data[i].currency_id;
                             wallet_id = wallet.data[i].public_key;
+                            LoadBalance();
+                            LoadData(wallet.data[i].currency_id, "");
                         }
                     }
                     else
@@ -186,7 +187,7 @@ namespace PasaBuy.App.ViewModels.Currency
                 {
                     if (success)
                     {
-                        WalletModel wallet = JsonConvert.DeserializeObject<WalletModel>(data);
+                        WalletSavingsModel wallet = JsonConvert.DeserializeObject<WalletSavingsModel>(data);
                         this.Amount = wallet.balance;
                     }
                     else
@@ -790,6 +791,7 @@ namespace PasaBuy.App.ViewModels.Currency
         private async void SendMoneyClicked(object obj)
         {
             //PopupNavigation.Instance.PushAsync(new PopupSendWalletSavings());
+            Views.Currency.SendWalletSavings.currency_id = currency_id;
             await App.Current.MainPage.Navigation.PushModalAsync(new SendWalletSavings());
         }
 
@@ -797,7 +799,7 @@ namespace PasaBuy.App.ViewModels.Currency
         {
             try
             {
-                CoinPress.Wallet.Instance.Send(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PopupSendWalletSavings.walletid, PopupSendWalletSavings.amount, curreny_id, PopupSendWalletSavings.notes, (bool success, string data) =>
+                CoinPress.Wallet.Instance.Send(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PopupSendWalletSavings.walletid, PopupSendWalletSavings.amount, PopupSendWalletSavings.currency_id, PopupSendWalletSavings.notes, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -805,8 +807,8 @@ namespace PasaBuy.App.ViewModels.Currency
                         //double amount = (Convert.ToDouble(this.Amount) - Convert.ToDouble(PopupSendWalletSavings.amount));
                         //this.Amount = "0";// amount.ToString();
                         //new Alert("Send Money", "Send money successfully.", "OK"); // back to wallet page
-                        LoadBalance();
-                        LoadData("");
+                        //LoadBalance();
+                        //LoadData(currency_id, "");
                         WalletSaving.LastIndex = 11;
                         new Alert("Send Money", "Send money successfully.", "OK");
                         PopupNavigation.Instance.PopAsync();
