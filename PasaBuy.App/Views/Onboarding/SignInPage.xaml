@@ -9,7 +9,7 @@
              xmlns:control="clr-namespace:PasaBuy.App.Controls"
              xmlns:local="clr-namespace:PasaBuy.App.Views.Onboarding"
              xmlns:template="clr-namespace:PasaBuy.App.Views.Templates"
-             xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms" 
+             xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms" xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
              BackgroundImageSource="{core:OnPlatformOrientationStringValue Default=LoginBackground.png,
                                                                            iOSPhoneLandscape=LoginBackground-Landscape.png,
                                                                            iOSTabletLandscape=LoginBackground-Landscape.png}"
@@ -33,23 +33,11 @@
 
     <ContentPage.Content>
         <Grid>
-            <AbsoluteLayout>
+            <gradient:SfGradientView Style="{StaticResource SfGradientStyle}" />
 
-                <gradient:SfGradientView Style="{StaticResource SfGradientStyle}" />
-                
-                <ScrollView HorizontalOptions="Center">
-
-                <ScrollView.VerticalOptions>
-                    <OnIdiom
-                    x:TypeArguments="LayoutOptions"
-                    Default="CenterAndExpand"
-                    Phone="FillAndExpand" />
-                </ScrollView.VerticalOptions>
-
-                <StackLayout
-                Spacing="0"
-                Padding="20,0,20,0"
-                VerticalOptions="FillAndExpand">
+            <StackLayout  Spacing="0"
+                              Padding="20,0,20,0"
+                              VerticalOptions="FillAndExpand">
 
                     <Grid RowSpacing="0" VerticalOptions="CenterAndExpand">
 
@@ -111,7 +99,6 @@
                             Command="{Binding LoginCommand}"
                             Style="{StaticResource SfButtonStyle}"
                             Text="LOG IN" />
-                        
 
                         <Label
                         Grid.Row="6"
@@ -127,11 +114,11 @@
 
                     </Grid>
 
-                    <StackLayout
-                    HorizontalOptions="Center"
-                    Orientation="Horizontal"
-                    Spacing="1"
-                    VerticalOptions="End">
+                    <StackLayout HorizontalOptions="Center"
+                                 Orientation="Horizontal"
+                                 Spacing="1"
+                                 Margin="0,0,0,15"
+                                 VerticalOptions="End">
 
                         <Label
                         FontFamily="{StaticResource Montserrat-Medium}"
@@ -151,25 +138,11 @@
                     </StackLayout>
 
                 </StackLayout>
-            </ScrollView>
-
-                <StackLayout
-                    x:Name="aiLayout"
-                    IsVisible="{Binding State}"
-                    AbsoluteLayout.LayoutBounds="0,0,1,1"
-                    AbsoluteLayout.LayoutFlags="All"
-                    BackgroundColor="White" Opacity="0.35" ClassId="123">
-                    <ActivityIndicator
-                        x:Name="isBusy"
-                        IsRunning="true"
-                        HorizontalOptions="CenterAndExpand"
-                        VerticalOptions="CenterAndExpand"
-                        HeightRequest="50"
-                        WidthRequest="50"
-                        Color="{DynamicResource PrimaryColor}"/>
-                </StackLayout>
-
-            </AbsoluteLayout>
+            <loading:LoadingIndicator
+                Grid.Row="0"
+                HorizontalOptions="Fill"
+                IsRunning="{Binding State, Mode=TwoWay}"
+                VerticalOptions="Fill" />
 
         </Grid>
         
