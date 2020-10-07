@@ -116,7 +116,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
             this.PaymentModes = new ObservableCollection<Payment>
             {
                 new Payment {PaymentMode = "Cash on Delivery"},
-                new Payment {PaymentMode = "Wallet"},
+                //new Payment {PaymentMode = "Wallet"},
             };
         }
         #endregion
