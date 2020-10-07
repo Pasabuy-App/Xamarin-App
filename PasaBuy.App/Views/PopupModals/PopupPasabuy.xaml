@@ -83,6 +83,8 @@
                 <Grid RowSpacing="0">
                     <syncfusion:SfAccordion>
                         <syncfusion:SfAccordion.Items>
+                            
+                            <!-- PASABAY -->
                             <syncfusion:AccordionItem>
                                 <syncfusion:AccordionItem.Header>
                                     <Grid>
@@ -99,13 +101,13 @@
                                 <syncfusion:AccordionItem.Content>
                                     <StackLayout HorizontalOptions="FillAndExpand" Padding="0, 5, 0, 5" Spacing="0">
                                         <Label
+                                            x:Name="pasabayInfo"
                                             FontFamily="{StaticResource Montserrat-Medium}"
                                             Padding="10,0,0,0"
                                             HeightRequest="100" 
                                             FontSize="14"
                                             VerticalTextAlignment="Center"
                                             HorizontalTextAlignment="Start"
-                                            Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, laboris nisi ut aliquip ex ea commodo consequat"
                                             TextColor="{DynamicResource Gray-900}" />
                                         <Grid>
                                             <Grid.RowDefinitions>
@@ -135,6 +137,8 @@
                                     </StackLayout>
                                 </syncfusion:AccordionItem.Content>
                             </syncfusion:AccordionItem>
+                            
+                            <!-- PABILI -->
                             <syncfusion:AccordionItem>
                                 <syncfusion:AccordionItem.Header>
                                     <Grid>
@@ -151,13 +155,13 @@
                                 <syncfusion:AccordionItem.Content>
                                     <StackLayout HorizontalOptions="FillAndExpand" Padding="0, 5, 0, 5" Spacing="0">
                                         <Label
+                                            x:Name="pabiliInfo"
                                             FontFamily="{StaticResource Montserrat-Medium}"
                                             Padding="10,0,0,0"
                                             HeightRequest="100" 
                                             FontSize="14"
                                             VerticalTextAlignment="Center"
                                             HorizontalTextAlignment="Start"
-                                            Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, laboris nisi ut aliquip ex ea commodo consequat"
                                             TextColor="{DynamicResource Gray-900}" />
                                         <Grid>
                                             <Grid.RowDefinitions>
@@ -187,6 +191,8 @@
                                     </StackLayout>
                                 </syncfusion:AccordionItem.Content>
                             </syncfusion:AccordionItem>
+                            
+                            <!-- PAHATID -->
                             <syncfusion:AccordionItem>
                                 <syncfusion:AccordionItem.Header>
                                     <Grid>
@@ -203,13 +209,13 @@
                                 <syncfusion:AccordionItem.Content>
                                     <StackLayout HorizontalOptions="FillAndExpand" Padding="0, 5, 0, 5" Spacing="0">
                                         <Label
+                                            x:Name="pahatidInfo"
                                             FontFamily="{StaticResource Montserrat-Medium}"
                                             Padding="10,0,0,0"
                                             HeightRequest="100" 
                                             FontSize="14"
                                             VerticalTextAlignment="Center"
                                             HorizontalTextAlignment="Start"
-                                            Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, laboris nisi ut aliquip ex ea commodo consequat"
                                             TextColor="{DynamicResource Gray-900}" />
                                         <Grid>
                                             <Grid.RowDefinitions>
@@ -239,6 +245,8 @@
                                     </StackLayout>
                                 </syncfusion:AccordionItem.Content>
                             </syncfusion:AccordionItem>
+                            
+                            <!-- PASAKAY -->
                             <syncfusion:AccordionItem>
                                 <syncfusion:AccordionItem.Header>
                                     <badge:SfBadgeView BadgeText="Coming Soon"  HorizontalOptions="Center" VerticalOptions="Center">
@@ -260,35 +268,18 @@
                                 <syncfusion:AccordionItem.Content>
                                     <StackLayout HorizontalOptions="FillAndExpand" Padding="0, 5, 0, 5" Spacing="0">
                                         <Label
+                                            x:Name="pasakayInfo"
                                             FontFamily="{StaticResource Montserrat-Medium}"
                                             Padding="10,0,0,0"
                                             HeightRequest="100" 
                                             FontSize="14"
                                             VerticalTextAlignment="Center"
                                             HorizontalTextAlignment="Start"
-                                            Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, laboris nisi ut aliquip ex ea commodo consequat"
                                             TextColor="{DynamicResource Gray-900}" />
-                                        <!--<Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto" />
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="60*" />
-                                                <ColumnDefinition Width="30*" />
-                                                <ColumnDefinition Width="10*" />
-                                            </Grid.ColumnDefinitions>
-                                            <Label HorizontalTextAlignment="End"  Grid.Row="0" Grid.Column="1" Text="Proceed"/>
-                                            <buttons:SfButton Clicked="GoToPasakay"
-                                                              HorizontalTextAlignment="Center"  
-                                                              Margin="0,-10,0,0"
-                                                              Grid.Row="0" 
-                                                              Grid.Column="2"
-                                                              CornerRadius="4"
-                                                              Style="{StaticResource IconButtonStyle}" Text="{StaticResource ArrowRight}"/>
-                                        </Grid>-->
                                     </StackLayout>
                                 </syncfusion:AccordionItem.Content>
                             </syncfusion:AccordionItem>
+                        
                         </syncfusion:SfAccordion.Items>
                     </syncfusion:SfAccordion>
                 </Grid>
