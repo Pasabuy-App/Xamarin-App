@@ -28,7 +28,7 @@ namespace PasaBuy.App.Views.StoreViews
                     PasaBuy.App.Models.MobilePOS.Management pageData = (e.ItemData as PasaBuy.App.Models.MobilePOS.Management);
                     Page page = (Page)Activator.CreateInstance(pageData.Type);
                     await Navigation.PushAsync(page);
-                    await Task.Delay(200);
+                    await Task.Delay(100);
                     count = 0;
                 }
             }

@@ -341,4 +341,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\OnBoardingA.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\up.png" />
+  </ItemGroup>
 </Project>

@@ -5,6 +5,7 @@
              xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
              xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             BackgroundColor="{DynamicResource Gray-White}"
              x:Class="PasaBuy.App.Views.Posts.PabiliPage">
     <ContentPage.Resources>
         <ResourceDictionary>

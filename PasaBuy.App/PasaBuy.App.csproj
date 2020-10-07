@@ -234,6 +234,9 @@
     <EmbeddedResource Update="Views\Chat\StoreMessagePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Currency\SendWalletSavings.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Currency\WalletCredit.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
@@ -317,6 +320,9 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Views\eCommerce\TransactionHistoryPage.xaml">
       <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Main.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\MainTabs.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -630,6 +636,12 @@
     <EmbeddedResource Update="Views\StoreViews\ManagementView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\StoreViews\Management\ProductVariants.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\StoreViews\Management\Styles.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\StoreViews\Management\VariantsView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -741,6 +753,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="CoinPress-PCL">
+      <HintPath>Resources\CoinPress-PCL.dll</HintPath>
+    </Reference>
     <Reference Include="DataVice-PCL">
       <HintPath>Resources\DataVice-PCL.dll</HintPath>
     </Reference>

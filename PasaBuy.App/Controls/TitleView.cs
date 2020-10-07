@@ -63,7 +63,7 @@ namespace PasaBuy.App.Controls
         {
             this.ColumnSpacing = 2;
             this.RowSpacing = 8;
-            this.Padding = new Thickness(0, 8, 0, 0);
+            this.Padding = new Thickness(0, 3, 0, 0);
 
             this.ColumnDefinitions = new ColumnDefinitionCollection
             {

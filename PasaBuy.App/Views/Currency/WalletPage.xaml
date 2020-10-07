@@ -22,7 +22,7 @@
     <ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0" >
-                <controls:TitleView Title="WALLET" 
+                <controls:TitleView Title="Wallet" 
                                     BackgroundColor="{DynamicResource PrimaryColor}" >
                     <controls:TitleView.LeadingView>
                         <buttons:SfButton

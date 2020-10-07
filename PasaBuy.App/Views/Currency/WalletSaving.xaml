@@ -37,15 +37,16 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-               
-
+      
                 <Grid Grid.Row="1" 
-                      HeightRequest="90"
+                      HeightRequest="130"
                       Padding="15,20,15,20"
                       Margin="0">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
@@ -54,9 +55,16 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <!-- Name -->
                     <Label Grid.Column="0"
                            Grid.Row="0"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Text="Wallet ID"
+                           Style="{StaticResource LabelStyle}"
+                           LineHeight="{OnPlatform Android=1.5, Default=-1}" />
+                    <!-- Name -->
+                    <Label Grid.Column="0"
+                           Grid.Row="1"
                            HorizontalOptions="Center"
                            VerticalOptions="Center"
                            Text="Current Balance"
@@ -64,7 +72,7 @@
                            LineHeight="{OnPlatform Android=1.5, Default=-1}" />
                     <!-- Amount -->
                     <Label Grid.Column="2"
-                           Grid.Row="0"
+                           Grid.Row="1"
                            HorizontalOptions="End"
                            VerticalOptions="Center"
                            TextColor="{Binding IsCredited, Converter={x:StaticResource BooleanToColorConverter}, ConverterParameter=5}"
@@ -74,14 +82,25 @@
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text=" ₱" />
-                                <Span Text="1500.00" />
+                                <Span Text="{Binding Amount}" />
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
 
+                    <Label Grid.Column="2"
+                           Grid.Row="0"
+                           HorizontalOptions="End"
+                           VerticalOptions="Center"
+                           Text="{Binding WalletID}"
+                           TextColor="{Binding IsCredited, Converter={x:StaticResource BooleanToColorConverter}, ConverterParameter=5}"
+                           Style="{StaticResource LabelStyle}"
+                           FontSize="20"
+                           LineHeight="{OnPlatform Android=1.5, Default=-1}">
+                    </Label>
+
                     <!-- Sending - Open Modal with Search for user, then select that user to Open another PopAsync with Amount and Currency -->
                     <buttons:SfButton Grid.Column="2"  
-                                      Grid.Row="1"
+                                      Grid.Row="2"
                                       BackgroundColor="Gray"
                                       Padding="10"
                                       CornerRadius="20"
@@ -122,7 +141,7 @@
                 <listView:SfListView Grid.Row="3" 
                                      IsScrollBarVisible="False"
                                      ItemSpacing="0"
-                                     ItemsSource="{Binding ListItems}"
+                                     ItemsSource="{Binding SavingsList}" ItemAppearing="SfListView_ItemAppearing"
                                      SelectionBackgroundColor="{DynamicResource TappedBackgroundColor}"
                                      TapCommand="{Binding ItemTappedCommand}"
                                      AutoFitMode="Height">
@@ -171,7 +190,7 @@
                                        Grid.Column="1"
                                        Margin="0,0,0,16"
                                        HorizontalOptions="Start"
-                                       Text="{Binding Title}"
+                                       Text="{Binding Note}"
                                        TextColor="{DynamicResource Gray-700}"
                                        FontSize="12"
                                        FontFamily="{DynamicResource Montserrat-Medium}"
@@ -187,7 +206,7 @@
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text="{Binding IsCredited, Converter={StaticResource BoolToStringConverter}, ConverterParameter=2}" />
-                                            <Span Text=" $" />
+                                            <Span Text=" ₱" />
                                             <Span Text="{Binding Amount}" />
                                         </FormattedString>
                                     </Label.FormattedText>
