@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -28,18 +29,22 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 return new Command<string>((x) => LoadDetails(x));
             }
         }
+
         public async void LoadDetails(string storeId)
         {
-            IsBusy = true;
-            CanNavigate = false;
-            StoreDetailsViewModel.store_id = storeId;
-            StoreDetailsViewModel.Loadcategory(storeId);
-            StoreDetailsViewModel.Loadstoredetails(storeId);
-            await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
-            IsBusy = false;
-            CanNavigate = true;
+            if (!IsBusy)
+            {
+                IsBusy = true;
+                CanNavigate = false;
+                StoreDetailsViewModel.store_id = storeId;
+                StoreDetailsViewModel.Loadcategory(storeId);
+                StoreDetailsViewModel.Loadstoredetails(storeId);
+                await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+                await Task.Delay(200);
+                IsBusy = false;
+                CanNavigate = true;
+            }
         }
-
 
         public ObservableCollection<FoodStore> BestSellers
         {
@@ -55,18 +60,55 @@ namespace PasaBuy.App.ViewModels.Marketplace
         }
         public ObservableCollection<FoodStore> FoodStorelist
         {
-            get { return foodstorelist; }
-            set { foodstorelist = value; this.NotifyPropertyChanged(); }
+            get 
+            { 
+                return foodstorelist; 
+            }
+            set 
+            { 
+                foodstorelist = value; 
+                this.NotifyPropertyChanged(); 
+            }
         }
+        bool _isRefreshing = false;
+        public bool IsRefreshing
+        {
+            get
+            {
+                return _isRefreshing;
+            }
+            set
+            {
+                if (_isRefreshing != value)
+                {
+                    _isRefreshing = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+
+        public ICommand RefreshCommand { protected set; get; }
 
         public FoodBrowserViewModel()
         {
+            RefreshCommand = new Command<string>((key) =>
+            {
+                FoodBrowserPage.LastIndex = 11;
+                foodstorelist.Clear();
+                LoadFood("");
+                LoadBestSeller();
+                IsRefreshing = false;
+            });
             foodstorelist = new ObservableCollection<FoodStore>();
             foodstorelist.Clear();
-            LoadFood("");
+            //LoadFood("");
 
             _bestSellers = new ObservableCollection<FoodStore>();
-
+            _bestSellers.Clear();
+            LoadBestSeller();
+        }
+        public static void LoadBestSeller()
+        {
             for (int i = 0; i < 4; i++)
             {
                 _bestSellers.Add(new FoodStore()
@@ -75,10 +117,9 @@ namespace PasaBuy.App.ViewModels.Marketplace
                     Logo = "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg"
                 });
             }
+        }
 
-    }
-
-    public static void LoadFood(string lastid)
+        public static void LoadFood(string lastid)
         {
             try
             {
@@ -89,22 +130,16 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         FoodStoreListData datas = JsonConvert.DeserializeObject<FoodStoreListData>(data);
                         for (int i = 0; i < datas.data.Length; i++)
                         {
-                            string ID = datas.data[i].ID;
-                            string title = datas.data[i].title;
-                            string short_info = datas.data[i].short_info;
-                            string avatar = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : datas.data[i].avatar;
-                            string banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png" : datas.data[i].banner;
                             foodstorelist.Add(new FoodStore()
                             {
-                                Id = ID,
-                                Title = title,
-                                Description = short_info,
-                                Logo = PSAProc.GetUrl(avatar),
+                                Id = datas.data[i].ID,
+                                Title = datas.data[i].title,
+                                Description = datas.data[i].short_info,
+                                Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(datas.data[i].avatar),
                                 Offer = "50% off",
                                 ItemRating = "4.5",
-                                Banner = PSAProc.GetUrl(banner)
+                                Banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png" : PSAProc.GetUrl(datas.data[i].banner)
                             });
-
                         }
                     }
                     else

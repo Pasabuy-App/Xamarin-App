@@ -80,23 +80,25 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     if (success)
                     {
                         Customer address = JsonConvert.DeserializeObject<Customer>(data);
-
-                        for (int i = 0; i < 1; i++)
+                        if (address.data.Length > 0)
                         {
-                            address_id = Convert.ToInt32(address.data[i].id);
-                            string types = address.data[i].types;
-                            string type = string.Empty;
-                            if (types == "home") { type = "Home"; }
-                            if (types == "office") { type = "Office"; }
-                            if (types == "business") { type = "Business"; }
-                            deliveryAddress.Add(new Customer
+                            for (int i = 0; i < 1; i++)
                             {
-                                CustomerId = Convert.ToInt32(address.data[i].id),
-                                CustomerName = string.IsNullOrEmpty(address.data[i].contact_person) ? PSACache.Instance.UserInfo.dname : address.data[i].contact_person,
-                                AddressType = types,
-                                Address = address.data[i].street + " " + address.data[i].brgy + " " + address.data[i].city + " " + address.data[i].province + ", " + address.data[i].country,
-                                MobileNumber = address.data[i].contact
-                            });
+                                address_id = Convert.ToInt32(address.data[i].id);
+                                string types = address.data[i].types;
+                                string type = string.Empty;
+                                if (types == "home") { type = "Home"; }
+                                if (types == "office") { type = "Office"; }
+                                if (types == "business") { type = "Business"; }
+                                deliveryAddress.Add(new Customer
+                                {
+                                    CustomerId = Convert.ToInt32(address.data[i].id),
+                                    CustomerName = string.IsNullOrEmpty(address.data[i].contact_person) ? PSACache.Instance.UserInfo.dname : address.data[i].contact_person,
+                                    AddressType = types,
+                                    Address = address.data[i].street + " " + address.data[i].brgy + " " + address.data[i].city + " " + address.data[i].province + ", " + address.data[i].country,
+                                    MobileNumber = address.data[i].contact
+                                });
+                            }
                         }
                     }
                     else
@@ -116,7 +118,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
             this.PaymentModes = new ObservableCollection<Payment>
             {
                 new Payment {PaymentMode = "Cash on Delivery"},
-                new Payment {PaymentMode = "Wallet"},
+                //new Payment {PaymentMode = "Wallet"},
             };
         }
         #endregion

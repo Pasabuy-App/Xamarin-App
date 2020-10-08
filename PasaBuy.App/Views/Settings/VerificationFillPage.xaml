@@ -61,6 +61,7 @@
                     <controls:BorderlessEntry
                             x:Name="IdTypeEntry"
                             Placeholder="UMID/Driver's License/PRC ID"
+                            TextColor="Black"
                             Text="{Binding IdType}"
                             Style="{StaticResource EntryTextBoxStyle}" />
                 </border:SfBorder>
@@ -77,6 +78,7 @@
                     <controls:BorderlessEntry
                             x:Name="IDNumberEntry"
                             Placeholder="25-3320232-2"
+                            TextColor="Black"
                             Text="{Binding IDNumberEntry}"
                             Style="{StaticResource EntryTextBoxStyle}" />
                 </border:SfBorder>
@@ -93,6 +95,7 @@
                     <controls:BorderlessEntry
                             x:Name="LastNameEntry"
                             Placeholder="Dela Cruz"
+                            TextColor="Black"
                             Text="{Binding LastNameEntry}"
                             Style="{StaticResource EntryTextBoxStyle}" />
                 </border:SfBorder>
@@ -109,6 +112,7 @@
                     <controls:BorderlessEntry
                             x:Name="FirstNameEntry"
                             Placeholder="Juan"
+                            TextColor="Black"
                             Text="{Binding FirstNameEntry}"
                             Style="{StaticResource EntryTextBoxStyle}" />
                 </border:SfBorder>
@@ -125,6 +129,7 @@
                     <controls:BorderlessEntry
                             x:Name="NationalityEntry"
                             Placeholder="Filipino"
+                            TextColor="Black"
                             Text="{Binding NationalityEntry}"
                             Style="{StaticResource EntryTextBoxStyle}" />
                 </border:SfBorder>
@@ -156,6 +161,7 @@
                                  Style="{StaticResource BusinessFormBorderStyle}">
                     <controls:BorderlessEntry
                             x:Name="ContactEntry"
+                            TextColor="Black"
                             Placeholder="Facebook account or phone number"
                             Text="{Binding ContactEntry}"
                             Style="{StaticResource EntryTextBoxStyle}" />

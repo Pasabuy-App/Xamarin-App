@@ -10,6 +10,9 @@ using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Views.Currency;
+using PasaBuy.App.Local;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace PasaBuy.App.ViewModels.Currency
 {
@@ -20,6 +23,9 @@ namespace PasaBuy.App.ViewModels.Currency
     public class WalletSavingViewModel : BaseViewModel
     {
         #region Fields
+        public static string name;
+
+        public static string avatar;
 
         private int selectedIndex;
 
@@ -45,7 +51,22 @@ namespace PasaBuy.App.ViewModels.Currency
 
         private DelegateCommand _confirmSendCommand;
 
+        public static string currency_id;
+        public static string wallet_id;
 
+        public static ObservableCollection<WalletSavingsModel> _SavingsList;
+        public ObservableCollection<WalletSavingsModel> SavingsList
+        {
+            get 
+            { 
+                return _SavingsList; 
+            }
+            set 
+            { 
+                _SavingsList = value; 
+                this.NotifyPropertyChanged(); 
+            }
+        }
         #endregion
 
         #region Constructor
@@ -55,7 +76,7 @@ namespace PasaBuy.App.ViewModels.Currency
         /// </summary>
         public WalletSavingViewModel()
         {
-            WeekData();
+            /*WeekData();
             MonthData();
             YearData();
             days = new string[] { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" };
@@ -68,9 +89,120 @@ namespace PasaBuy.App.ViewModels.Currency
                 new Model(){ Duration = "Month" },
                 new Model(){ Duration = "Year" },
             };
-            ListItems = WeekListItems;
+            ListItems = WeekListItems;*/
+            _SavingsList = new ObservableCollection<WalletSavingsModel>();
+            _SavingsList.Clear();
+            /*_SavingsList.Add(new WalletModel()
+            {
+                ID = "0",
+                ProfileImage = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl),
+                Name = "Amelia Coleman",
+                Note = "Refund",
+                Amount = 85,
+                Date = new DateTime(2019, 1, 28),
+                IsCredited = true
+            });
+            _SavingsList.Add(new WalletModel()
+            {
+                ID = "1",
+                ProfileImage = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl),
+                Name = "Nell Sanchez",
+                Note = "Food Order Bill",
+                Amount = 15.75,
+                Date = new DateTime(2019, 1, 26),
+                IsCredited = false
+            });*/
+            CreateWallet();
+            //LoadData("");
         }
+        public static void LoadData(string currency, string offset)
+        {
+            try
+            {
+                CoinPress.Wallet.Instance.Transactions(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", currency, offset, (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        WalletSavingsModel wallet = JsonConvert.DeserializeObject<WalletSavingsModel>(data);
+                        for (int i = 0; i < wallet.data.Length; i++)
+                        {
+                            //this.WalletID = wallet.data[i].public_key;
+                            //curreny_id = wallet.data[i].currency_id;
 
+                            _SavingsList.Add(new WalletSavingsModel()
+                            {
+                                ProfileImage = PSAProc.GetUrl(wallet.data[i].avatar),
+                                Name = wallet.data[i].name,
+                                Note = string.IsNullOrEmpty(wallet.data[i].remarks) || wallet.data[i].remarks == "None" ? "" : wallet.data[i].remarks,
+                                Amount = Convert.ToDouble(wallet.data[i].amount),
+                                Date = new DateTime(Convert.ToInt32(wallet.data[i].date_created.Substring(0, 4)), Convert.ToInt32(wallet.data[i].date_created.Substring(5, 2)), Convert.ToInt32(wallet.data[i].date_created.Substring(8, 2))),
+                                IsCredited = wallet.data[i].type == "sender" ? false : true
+                            });
+                        }
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+            }
+        }
+        public void CreateWallet()
+        {
+            try
+            {
+                CoinPress.Wallet.Instance.Create(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "SVS", async (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        WalletSavingsModel wallet = JsonConvert.DeserializeObject<WalletSavingsModel>(data);
+                        for (int i = 0; i < wallet.data.Length; i++)
+                        {
+                            this.WalletID = wallet.data[i].public_key;
+                            currency_id = wallet.data[i].currency_id;
+                            wallet_id = wallet.data[i].public_key;
+                            LoadBalance();
+                            await Task.Delay(500);
+                            LoadData(wallet.data[i].currency_id, "");
+                        }
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+            }
+        }
+        public void LoadBalance()
+        {
+            try
+            {
+                CoinPress.Wallet.Instance.Balance(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "SVS", (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        WalletSavingsModel wallet = JsonConvert.DeserializeObject<WalletSavingsModel>(data);
+                        this.Amount = wallet.balance;
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+            }
+        }
         #endregion
 
         #region Properties
@@ -81,9 +213,79 @@ namespace PasaBuy.App.ViewModels.Currency
         public DelegateCommand ConfirmSendCommand =>
            _confirmSendCommand ?? (_confirmSendCommand = new DelegateCommand(ConfirmSendClicked));
 
+        public string _Avatar;
+        public string Avatar
+        {
+            get
+            {
+                return this._Avatar;
+            }
 
+            set
+            {
+                this._Avatar = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+        public string _Message;
+        public string Message
+        {
+            get
+            {
+                return this._Message;
+            }
 
+            set
+            {
+                this._Message = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
+        public string _Recipient;
+        public string Recipient
+        {
+            get
+            {
+                return this._Recipient;
+            }
+
+            set
+            {
+                this._Recipient = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        public string _Amount;
+        public string Amount
+        {
+            get
+            {
+                return this._Amount;
+            }
+
+            set
+            {
+                this._Amount = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        public string _WalletID;
+        public string WalletID
+        {
+            get
+            {
+                return this._WalletID;
+            }
+
+            set
+            {
+                this._WalletID = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
         /// <summary>
         /// Gets or sets the my wallet items collection in a week.
@@ -591,12 +793,38 @@ namespace PasaBuy.App.ViewModels.Currency
         private async void SendMoneyClicked(object obj)
         {
             //PopupNavigation.Instance.PushAsync(new PopupSendWalletSavings());
+            Views.Currency.SendWalletSavings.currency_id = currency_id;
             await App.Current.MainPage.Navigation.PushModalAsync(new SendWalletSavings());
         }
 
-        private async void ConfirmSendClicked(object obj)
+        private void ConfirmSendClicked(object obj)
         {
-            new Alert("Ok", "Do something", "Ok");
+            try
+            {
+                CoinPress.Wallet.Instance.Send(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PopupSendWalletSavings.walletid, PopupSendWalletSavings.amount, PopupSendWalletSavings.currency_id, PopupSendWalletSavings.notes, (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        //Console.WriteLine("." +this.Amount + ". ." + PopupSendWalletSavings.amount + ".");
+                        //double amount = (Convert.ToDouble(this.Amount) - Convert.ToDouble(PopupSendWalletSavings.amount));
+                        //this.Amount = "0";// amount.ToString();
+                        //new Alert("Send Money", "Send money successfully.", "OK"); // back to wallet page
+                        //LoadBalance();
+                        //LoadData(currency_id, "");
+                        WalletSaving.LastIndex = 11;
+                        new Alert("Send Money", "Send money successfully.", "OK");
+                        PopupNavigation.Instance.PopAsync();
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+            }
         }
         #endregion
     }

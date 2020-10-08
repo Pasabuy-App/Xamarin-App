@@ -333,6 +333,9 @@
     <EmbeddedResource Update="Views\Marketplace\GroceryBrowserPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Marketplace\PartnerBrowserPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Marketplace\ProductDetail.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -753,6 +756,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="CoinPress-PCL">
+      <HintPath>Resources\CoinPress-PCL.dll</HintPath>
+    </Reference>
     <Reference Include="DataVice-PCL">
       <HintPath>Resources\DataVice-PCL.dll</HintPath>
     </Reference>

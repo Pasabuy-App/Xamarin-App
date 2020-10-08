@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
              xmlns:home="clr-namespace:PasaBuy.App.Views.Feeds"
-             xmlns:chat="clr-namespace:PasaBuy.App.Views.Chat"
+             xmlns:partner="clr-namespace:PasaBuy.App.Views.Marketplace"
              xmlns:store="clr-namespace:PasaBuy.App.Views.Marketplace"
              xmlns:food="clr-namespace:PasaBuy.App.Views.Marketplace"
              xmlns:grocery="clr-namespace:PasaBuy.App.Views.Marketplace"
@@ -32,7 +32,7 @@
             <!--TABS CONFIGS-->
             <tabView:SfTabView.SelectionIndicatorSettings>
                 <tabView:SelectionIndicatorSettings
-                    AnimationDuration="250"
+                    AnimationDuration="200"
                     Color="{DynamicResource Gray-White}" 
                     Position="Bottom" 
                     StrokeThickness="3"/>
@@ -50,6 +50,18 @@
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
 
+            <!--FOOD TAB-->
+            <tabView:SfTabItem Title="FOOD"
+                                IconFont="{StaticResource Food}"
+                                FontIconFontColor="{DynamicResource Gray-200}"
+                                FontIconFontFamily="{StaticResource FontFamily}"
+                                TitleFontColor="{DynamicResource Gray-200}"
+                                SelectionColor="{DynamicResource Gray-White}">
+                <tabView:SfTabItem.Content>
+                    <food:FoodBrowserPage/>
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+            
             <!--STORE TAB-->
             <tabView:SfTabItem Title="STORE"
                                 IconFont="{StaticResource Stores}"
@@ -74,27 +86,13 @@
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
 
-            <!--FOOD TAB-->
-            <tabView:SfTabItem Title="FOOD"
-                                IconFont="{StaticResource Food}"
-                                FontIconFontColor="{DynamicResource Gray-200}"
-                                FontIconFontFamily="{StaticResource FontFamily}"
-                                TitleFontColor="{DynamicResource Gray-200}"
+            <!--PARTNER TAB-->
+            <tabView:SfTabItem Title="PARTNER"
+                               FontIconFontSize="100"
+                                ImageSource="Partner.png"
                                 SelectionColor="{DynamicResource Gray-White}">
                 <tabView:SfTabItem.Content>
-                    <food:FoodBrowserPage/>
-                </tabView:SfTabItem.Content>
-            </tabView:SfTabItem>
-
-            <!--MESSAGE TAB-->
-            <tabView:SfTabItem Title="MESSAGE"
-                                IconFont="{StaticResource Message}"
-                                FontIconFontColor="{DynamicResource Gray-200}"
-                                FontIconFontFamily="{StaticResource FontFamily}"
-                                TitleFontColor="{DynamicResource Gray-200}"
-                                SelectionColor="{DynamicResource Gray-White}">
-                <tabView:SfTabItem.Content>
-                    <chat:MessagePage/>
+                    <partner:PartnerBrowserPage/>
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
 

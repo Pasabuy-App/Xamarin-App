@@ -146,6 +146,66 @@
 
                             <BoxView Style="{StaticResource SeparatorStyle}" />
 
+                            <!--  Grid for message label and icon  -->
+                            <Grid x:Name="MessageGrid"
+                                    BackgroundColor="{DynamicResource Transparent}">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label
+                                        Grid.Column="0"
+                                        helper:RTLHelper.Margin="35, 0, 8, 0"
+                                        Style="{StaticResource ProfileIconLabelStyle}"
+                                        Text="&#xf4ad;" />
+
+                                <Label
+                                        Grid.Column="1"
+                                        Margin="0,14"
+                                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                                        Style="{StaticResource ProfileLabelStyle}"
+                                        Text="Messages" />
+
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding MessageCommand}" CommandParameter="{x:Reference MessageGrid}" />
+                                </Grid.GestureRecognizers>
+
+                            </Grid>
+
+                            <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                            <!--  Grid for wallet label and icon  -->
+                            <Grid x:Name="TransactionGrid"
+                                    BackgroundColor="{DynamicResource Transparent}">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label
+                                        Grid.Column="0"
+                                        helper:RTLHelper.Margin="35, 0, 8, 0"
+                                        Style="{StaticResource ProfileIconLabelStyle}"
+                                        Text="&#xf022;" />
+
+                                <Label
+                                        Grid.Column="1"
+                                        Margin="0,14"
+                                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                                        Style="{StaticResource ProfileLabelStyle}"
+                                        Text="Transactions" />
+
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding TransactionCommand}" CommandParameter="{x:Reference TransactionGrid}" />
+                                </Grid.GestureRecognizers>
+
+                            </Grid>
+
+                            <BoxView Style="{StaticResource SeparatorStyle}" />
+
                             <!--  Grid for wallet label and icon  -->
                             <Grid x:Name="WalletGrid"
                                 BackgroundColor="{DynamicResource Transparent}">
@@ -166,70 +226,10 @@
                                     Margin="0,14"
                                     FontFamily="{StaticResource Montserrat-SemiBold}"
                                     Style="{StaticResource ProfileLabelStyle}"
-                                    Text="Wallets" />
+                                    Text="My Wallets" />
 
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding WalletCommand}" CommandParameter="{x:Reference WalletGrid}" />
-                                </Grid.GestureRecognizers>
-
-                            </Grid>
-
-                            <BoxView Style="{StaticResource SeparatorStyle}" />
-
-                            <!--  Grid for wallet label and icon  -->
-                            <Grid x:Name="TransactionGrid"
-                                BackgroundColor="{DynamicResource Transparent}">
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-
-                                <Label
-                                    Grid.Column="0"
-                                    helper:RTLHelper.Margin="35, 0, 8, 0"
-                                    Style="{StaticResource ProfileIconLabelStyle}"
-                                    Text="&#xf022;" />
-
-                                <Label
-                                    Grid.Column="1"
-                                    Margin="0,14"
-                                    FontFamily="{StaticResource Montserrat-SemiBold}"
-                                    Style="{StaticResource ProfileLabelStyle}"
-                                    Text="Transactions" />
-
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding TransactionCommand}" CommandParameter="{x:Reference TransactionGrid}" />
-                                </Grid.GestureRecognizers>
-
-                            </Grid>
-
-                            <BoxView Style="{StaticResource SeparatorStyle}" />
-
-                            <!--  Grid for advisory label and icon  -->
-                            <Grid x:Name="AdvisoryGrid"
-                                BackgroundColor="{DynamicResource Transparent}">
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-
-                                <Label
-                                    Grid.Column="0"
-                                    helper:RTLHelper.Margin="35, 0, 8, 0"
-                                    Style="{StaticResource ProfileIconLabelStyle}"
-                                    Text="&#xf0a1;" />
-
-                                <Label
-                                    Grid.Column="1"
-                                    Margin="0,14"
-                                    FontFamily="{StaticResource Montserrat-SemiBold}"
-                                    Style="{StaticResource ProfileLabelStyle}"
-                                    Text="Advisory" />
-
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding AdvisoryCommand}" CommandParameter="{x:Reference  AdvisoryGrid}" />
                                 </Grid.GestureRecognizers>
 
                             </Grid>
@@ -256,7 +256,7 @@
                                     Margin="0,14"
                                     FontFamily="{StaticResource Montserrat-SemiBold}"
                                     Style="{StaticResource ProfileLabelStyle}"
-                                    Text="My Drive" />
+                                    Text="My Drives" />
 
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding DriverCommand}" CommandParameter="{x:Reference DriverGrid}" />
@@ -286,7 +286,7 @@
                                     Margin="0,14"
                                     FontFamily="{StaticResource Montserrat-SemiBold}"
                                     Style="{StaticResource ProfileLabelStyle}"
-                                    Text="My Store" />
+                                    Text="My Stores" />
 
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding StoreCommand}" CommandParameter="{x:Reference StoreGrid}" />
@@ -295,7 +295,37 @@
                             </Grid>
 
                             <BoxView Style="{StaticResource SeparatorStyle}"  IsVisible="{Binding isStore}"/>
-                        
+
+                            <!--  Grid for advisory label and icon  -->
+                            <Grid x:Name="AdvisoryGrid"
+                                    BackgroundColor="{DynamicResource Transparent}">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label
+                                        Grid.Column="0"
+                                        helper:RTLHelper.Margin="35, 0, 8, 0"
+                                        Style="{StaticResource ProfileIconLabelStyle}"
+                                        Text="&#xf0a1;" />
+
+                                <Label
+                                        Grid.Column="1"
+                                        Margin="0,14"
+                                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                                        Style="{StaticResource ProfileLabelStyle}"
+                                        Text="Advisory" />
+
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding AdvisoryCommand}" CommandParameter="{x:Reference  AdvisoryGrid}" />
+                                </Grid.GestureRecognizers>
+
+                            </Grid>
+
+                            <BoxView Style="{StaticResource SeparatorStyle}" />
+
                             <!--  Grid for setting label and icon  -->
                             <Grid x:Name="SettingGrid"
                                 BackgroundColor="{DynamicResource Transparent}">

@@ -330,7 +330,8 @@ namespace PasaBuy.App.ViewModels.eCommerce
         /// <param name="obj">The Object</param>
         private async void PlaceOrderClicked(object obj)
         {
-            if (CartDetails.Count != 0)
+            //Console.WriteLine("Bato: " + CartDetails.Count);
+            if (CartDetails.Count > 0)
             {
                 if (!isCartClicked)
                 {
@@ -338,9 +339,9 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     CheckoutPageViewModel.coupon = this.DiscountPercent;
                     CheckoutPageViewModel.discount = this.DiscountPrice;
                     CheckoutPageViewModel.totalprice = this.TotalPrice;
-                    CheckoutPageViewModel.charges = "Free";
+                    CheckoutPageViewModel.charges = this.DeliveryFee;
                     await Application.Current.MainPage.Navigation.PushModalAsync(new CheckoutPage());
-                    await Task.Delay(100);
+                    await Task.Delay(200);
                     isCartClicked = false;
                 }
             }

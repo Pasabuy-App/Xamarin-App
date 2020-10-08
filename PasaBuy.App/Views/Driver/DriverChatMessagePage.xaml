@@ -11,6 +11,7 @@
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:local="clr-namespace:PasaBuy.App.Views.Driver" 
              xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Driver" 
+             BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>

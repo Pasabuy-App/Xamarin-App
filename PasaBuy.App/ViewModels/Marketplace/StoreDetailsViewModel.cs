@@ -139,7 +139,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         #endregion
         public StoreDetailsViewModel()
         {
-            this.AddToCartCommand = new Command(this.AddToCartClicked);
+         
             //this.AddToCartCommand = new Command(this.AddToCartClicked);
             storedetailslist = new ObservableCollection<StoreDetails>();
             storedetailslist.Clear();
@@ -156,7 +156,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             this.CartItemCount = CartPageViewModel.cartDetails.Count;
         }
-        public Command AddToCartCommand { get; set; }
+        //public Command AddToCartCommand { get; set; }
 
         //public Command GoToCartCommand { get; set; }
 
@@ -171,7 +171,17 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 return goToCartCommand;
             }
         }
-        private async void AddToCartClicked(object obj)
+
+        public ICommand AddToCartCommand
+        {
+            get
+            {
+                return new Command<string>((x) => AddToCartClicked(x));
+            }
+        }
+
+
+        private async void AddToCartClicked(string id)
         {
             //await Application.Current.MainPage.Navigation.PushModalAsync(new Views.Marketplace.ProductDetail());
              try
@@ -180,14 +190,14 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 {
                     //await Application.Current.MainPage.Navigation.PushModalAsync(new Views.Marketplace.ProductDetail());
                     isCartClicked = true;
-                    var btn = obj as SfButton;
+                
                     //btn.IsVisible = false;
                     //btn.BackgroundImage = "Idcard.png";
                     //btn.BackgroundColor = Color.Red;
                     //btn.Text = "&#xe724;";
                     //this.cartItemCount = this.cartItemCount;
                     //this.CartItemCount += 1;
-                    TindaPress.Product.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, store_id, "", btn.ClassId, "1", "", (bool success, string data) =>
+                    TindaPress.Product.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, store_id, "", id, "1", "", (bool success, string data) =>
                     {
                         if (success)
                         {

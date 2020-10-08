@@ -112,9 +112,10 @@ namespace PasaBuy.App.Views.Marketplace
             }
         }
 
-        private void RestaurantList_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
+        private void SfListView_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
         {
             var item = e.ItemData as FoodStore;
+            //Console.WriteLine("Lastindex: " + LastIndex + " item.Id: ." + item.Id + ".");
             if (FoodBrowserViewModel.foodstorelist.Last() == item && FoodBrowserViewModel.foodstorelist.Count() != 1)
             {
                 if (FoodBrowserViewModel.foodstorelist.IndexOf(item) >= LastIndex)

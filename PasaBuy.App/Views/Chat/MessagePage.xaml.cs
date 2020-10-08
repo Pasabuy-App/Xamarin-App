@@ -15,7 +15,7 @@ namespace PasaBuy.App.Views.Chat
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MessagePage : ContentView
+    public partial class MessagePage : ContentPage
     {
         public static bool isFirstID = false;
         public static int ids = 0;

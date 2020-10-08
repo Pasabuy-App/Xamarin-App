@@ -6,7 +6,10 @@
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
     xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-    xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
+    xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App" 
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
     <pages:PopupPage.Resources>
         <ResourceDictionary>
             <Style x:Key="PopupItemHeaderStyle" TargetType="{x:Type Label}">
@@ -67,7 +70,7 @@
                         <ffimageloading:CachedImage Aspect="AspectFit"
                                                     HeightRequest="100"
                                                     WidthRequest="100"
-                                                    Source="Avatar.png"
+                                                    Source="{Binding Avatar}"
                                                     x:Name="ImageId"
 			                                        DownsampleToViewSize="true"
                                                     FadeAnimationEnabled="True" >
@@ -84,7 +87,8 @@
                            FontSize="14"
                            VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Center"
-                           Text="Lorz Becislao"
+                           Text="{Binding Recipient}"
+                           x:Name="Recipient"
                            TextColor="{DynamicResource Gray-900}" />
                     </StackLayout>
 
@@ -97,7 +101,8 @@
                            VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Center"
                            HorizontalOptions="StartAndExpand"
-                           Text="Do you really want to send 500 to Lorz Becislao with wallet ID of AL0215?"
+                           Text="{Binding Message}"
+                           x:Name="Message"
                            TextColor="{DynamicResource Gray-900}" />
                     <button:SfButton
                             Grid.Row="4"

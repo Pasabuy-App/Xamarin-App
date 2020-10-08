@@ -15,7 +15,7 @@
                 Title="Loading..."
                 AbsoluteLayout.LayoutBounds="0.5,0.5,50,50"
                 AbsoluteLayout.LayoutFlags="XProportional,YProportional"
-                AnimationType="DoubleCircle"
+                AnimationType="Cupertino"
                 BindingContext="{x:Reference ContentView}"
                 IsBusy="{Binding IsRunning, Mode=TwoWay}"
                 TextColor="{DynamicResource Orange}"
