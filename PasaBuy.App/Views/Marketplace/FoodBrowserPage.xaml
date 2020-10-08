@@ -122,7 +122,7 @@
                     <StackLayout Grid.Row="0" 
                                  Orientation="Horizontal" 
                                  Margin="16, 26, 16, 8">
-                        <Label Text="Best Sellers" 
+                        <Label Text="Featured Stores" 
                                VerticalTextAlignment="Center" 
                                FontFamily="{StaticResource Montserrat-SemiBold}" 
                                FontSize="15" 

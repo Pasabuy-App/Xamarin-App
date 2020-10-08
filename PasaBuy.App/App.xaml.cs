@@ -9,6 +9,7 @@ using PasaBuy.App.Views.eCommerce;
 using PasaBuy.App.Views.Driver;
 using PasaBuy.App.Views;
 using System.Collections.Generic;
+using PasaBuy.App.Views.StoreViews;
 
 namespace PasaBuy.App
 {
@@ -29,7 +30,7 @@ namespace PasaBuy.App
             PSACache.Instance.Initialize();
 
             //commit
-            MainPage = new NavigationPage(new SplashPage());
+            MainPage = new NavigationPage(new MainTabs());
         }
 
         protected override void OnStart()
