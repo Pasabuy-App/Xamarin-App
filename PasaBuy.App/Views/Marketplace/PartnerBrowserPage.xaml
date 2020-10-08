@@ -39,7 +39,7 @@
                                    UnselectedDotColor="{DynamicResource Gray-200}"
                                    VerticalOptions="Start"
                                    EnableAutoPlay="True" 
-                                   NavigationDelay="2000">
+                                   NavigationDelay="2700">
                         <rotator:SfRotator.ItemTemplate>
                             <DataTemplate>
                                 <Image

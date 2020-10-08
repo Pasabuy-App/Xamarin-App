@@ -25,6 +25,8 @@ namespace PasaBuy.App.Views.Marketplace
             isTapped = false;
             pullToRefresh.Refreshing += PullToRefresh_Refreshing;
             //this.BindingContext = StoreDataService.Instance.RestaurantViewModel;
+
+          
         }
         private async void PullToRefresh_Refreshing(object sender, EventArgs args)
         {

@@ -25,10 +25,12 @@ namespace PasaBuy.App.Views.PopupModals
             this.pahatidInfo.Text = "A mover drops off a passenger at a destination.";
             this.pasakayInfo.Text = "A mover invites a passenger to share a ride towards a destination.";
             isTapped = false;
+    
         }
 
         private async void GoToPasabuy(object sender, EventArgs e)
         {
+          
             if (!isTapped)
             {
                 isTapped = true;

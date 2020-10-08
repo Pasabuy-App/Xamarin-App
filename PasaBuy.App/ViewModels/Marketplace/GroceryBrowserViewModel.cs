@@ -6,6 +6,7 @@ using PasaBuy.App.Views.Marketplace;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -18,6 +19,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public static ObservableCollection<Groceries> grocerystorelist;
 
+       
         public ObservableCollection<Groceries> Grocerystorelist
         {
             get 
@@ -40,6 +42,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public static void LoadGrocery(string lastid)
         {
+          
             try
             {
                 TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "2", "", "1", lastid, (bool success, string data) =>
