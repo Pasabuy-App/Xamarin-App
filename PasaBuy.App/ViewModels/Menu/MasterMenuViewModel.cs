@@ -361,12 +361,12 @@ namespace PasaBuy.App.ViewModels.Menu
             if (!Status)
             {
                 Status = true;
-                IsBusy = true;
+                //IsBusy = true;
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ArticleList()));
                     Status = false;
-                    IsBusy = false;
+                    //IsBusy = false;
                 });
             }
         }
@@ -395,19 +395,19 @@ namespace PasaBuy.App.ViewModels.Menu
         /// <param name="obj">The object</param>
         private void StoreButtonClicked(object obj)
         {
-            IsBusy = true;
             if (!Status)
             {
+                //IsBusy = true;
                 Status = true;
-                IsBusy = true;
+                //IsBusy = true;
                 Device.BeginInvokeOnMainThread( async () =>
                 {
                     MasterView.MyType = "store";
                     //DashboardOrdersViewModel.LoadOrder("pending", "");
                     //App.Current.MainPage = new NavigationView();
-                    await(App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyStoresList()));
+                    await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyStoresList()));
                     Status = false;
-                    IsBusy = false;
+                    //IsBusy = false;
                 });
             }
         }
