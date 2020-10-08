@@ -1,6 +1,7 @@
 ﻿using Plugin.CurrentActivity;
 using PasaBuy.App.Local;
 
+
 #if DEBUG
 using System;
 using Android.App;
@@ -9,7 +10,7 @@ using Android.Runtime;
 [Application(Debuggable = true)]
 //[Application(UsesCleartextTraffic =true)]
 #else
-	[Application(Debuggable = false)]
+[Application(Debuggable = false)]
 #endif
 [MetaData("com.google.android.maps.v2.API_KEY",
 			  Value = PSAConfig.googleApiKey)]

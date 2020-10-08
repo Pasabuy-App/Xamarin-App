@@ -18,6 +18,9 @@ namespace PasaBuy.App.Views.PopupModals
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PopupAcceptOrder : PopupPage
     {
+
+
+        public static string store_logo ;
         public static string carItem = "car / sedan";
         public static string item_id = string.Empty;
         public static string storeName = string.Empty;
@@ -35,7 +38,8 @@ namespace PasaBuy.App.Views.PopupModals
         public PopupAcceptOrder()
         {
             InitializeComponent();
-
+           
+            Store.Text = storeName;
             Order.Text = item_id + " | "+orderTime;
             WaypointAddress.Text = waypointAddress;
             OriginAddress.Text = destinationAddress;
@@ -80,26 +84,33 @@ namespace PasaBuy.App.Views.PopupModals
             var request = new GeolocationRequest(GeolocationAccuracy.Medium);
             var location = await Geolocation.GetLocationAsync(request);
 
-            StartDeliveryPage.item_id = item_id;
-            StartDeliveryPage.storeName = storeName;
-            StartDeliveryPage.waypointAddress = waypointAddress;
-            StartDeliveryPage.destinationAddress = destinationAddress;
-            
-            StartDeliveryPage.StoreLatittude = store_lat;
-            StartDeliveryPage.StoreLongitude = store_long;
-
-            StartDeliveryPage.UserLatitude = user_lat;
-            StartDeliveryPage.userLongitude = user_long;
-
-            await Navigation.PushModalAsync(new StartDeliveryPage());
-            await PopupNavigation.Instance.PopAsync();
-            OrderTimer(false);
-            return;
-            HatidPress.Deliveries.Instance.Accept(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "100", "item_id", "car / sedan", location.Latitude.ToString(), location.Longitude.ToString(), (bool success, string data) => 
+        
+            HatidPress.Deliveries.Instance.Accept(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "100", item_id, "car / sedan", location.Latitude.ToString(), location.Longitude.ToString(), (bool success, string data) => 
             {
                 try
                 {
+                    if (success)
+                    {
 
+                        StartDeliveryPage.item_id = item_id;
+                        StartDeliveryPage.storeName = storeName;
+                        StartDeliveryPage.waypointAddress = waypointAddress;
+                        StartDeliveryPage.destinationAddress = destinationAddress;
+
+                        StartDeliveryPage.StoreLatittude = store_lat;
+                        StartDeliveryPage.StoreLongitude = store_long;
+
+                        StartDeliveryPage.UserLatitude = user_lat;
+                        StartDeliveryPage.userLongitude = user_long;
+
+                        Navigation.PushModalAsync(new StartDeliveryPage());
+                        PopupNavigation.Instance.PopAsync();
+                        OrderTimer(false);
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
                 }
                 catch (FeatureNotSupportedException fnsEx)
                 {
@@ -122,7 +133,7 @@ namespace PasaBuy.App.Views.PopupModals
                     Console.WriteLine("Unable to get location" + " " + ex);
                 }
             });
-           new Alert("Ok", "Add command and bind this to viewmodel", "ok");
+       
         }
     }
 }

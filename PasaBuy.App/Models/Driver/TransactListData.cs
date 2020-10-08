@@ -14,8 +14,10 @@ namespace PasaBuy.App.Models.Driver
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
-
-        private string item_id = string.Empty;
+        
+        private string store_logo = string.Empty;
+        private string id = string.Empty;
+        private string hash_id = string.Empty;
 
         private string store_name = string.Empty;
         private string store_address = string.Empty;
@@ -34,6 +36,25 @@ namespace PasaBuy.App.Models.Driver
         private string date_created = string.Empty;
         private string date_ordered = string.Empty;
 
+        public string Store_logo
+        {
+            get { return store_logo; }
+            set
+            {
+                store_logo = value;
+                OnPropertyChanged("Store_logo");
+            }
+        }
+
+        public string ID
+        {
+            get { return id; }
+            set
+            {
+                id = value;
+                OnPropertyChanged("ID");
+            }
+        }
 
         public string Customer_address
         {
@@ -95,12 +116,12 @@ namespace PasaBuy.App.Models.Driver
             }
         }
 
-        public string ItemID
+        public string Hash_id
         {
-            get { return item_id; }
+            get { return hash_id; }
             set
             {
-                item_id = value;
+                hash_id = value;
                 OnPropertyChanged("ItemID");
             }
         }
@@ -190,7 +211,10 @@ namespace PasaBuy.App.Models.Driver
         public OrderData[] data;
         public class OrderData
         {
-            public string item_id = string.Empty;
+            public string store_logo = string.Empty;
+
+            public string id = string.Empty;
+            public string hash_id = string.Empty;
 
             public string store_name = string.Empty;
             public string store_address = string.Empty;

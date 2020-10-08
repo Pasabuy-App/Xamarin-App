@@ -37,7 +37,7 @@ namespace PasaBuy.App.ViewModels.Driver
         {
             try
             {
-                HatidPress.Deliveries.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", "car / sedan", "", "pending", (bool success, string data) => 
+                HatidPress.Deliveries.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", "car / sedan", "", "received", (bool success, string data) => 
                 {
                     if (success)
                     {
@@ -49,7 +49,9 @@ namespace PasaBuy.App.ViewModels.Driver
                             {
                                 for (int i = 0; i < datas.data.Length; i++)
                                 {
-                                    string ItemID = datas.data[i].item_id;
+                                    string Store_logo = datas.data[i].store_logo;
+                                    string ID = datas.data[i].id;
+                                    string ItemID = datas.data[i].hash_id;
                                     string Price = datas.data[i].price;
                                     string Product = datas.data[i].product_name;
                                     string Quantity = datas.data[i].quantity;
@@ -67,7 +69,9 @@ namespace PasaBuy.App.ViewModels.Driver
                          
                                     orderlist.Add(new TransactListData()
                                     {
-                                        ItemID = ItemID,
+                                        Store_logo = Store_logo,
+                                        ID = ID,
+                                        Hash_id = ItemID,
                                         Price = Price,
                                         Product = Product,
                                         Quantity = Quantity,
@@ -87,10 +91,6 @@ namespace PasaBuy.App.ViewModels.Driver
 
                                     });
                                 }
-                            }
-                            else
-                            {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                             }
 
                         }
