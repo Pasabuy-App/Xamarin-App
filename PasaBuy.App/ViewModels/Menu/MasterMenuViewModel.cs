@@ -12,6 +12,8 @@ using PasaBuy.App.Views.Navigation;
 using System;
 using PasaBuy.App.ViewModels.MobilePOS;
 using PasaBuy.App.Http;
+using PasaBuy.App.ViewModels.Chat;
+using PasaBuy.App.Views.Chat;
 
 namespace PasaBuy.App.ViewModels.Menu
 {
@@ -300,6 +302,11 @@ namespace PasaBuy.App.ViewModels.Menu
             if (!Status)
             {
                 Status = true;
+                MessagePage.LastIndex = 11;
+                MessagePage.isFirstID = false;
+                MessagePage.ids = 0;
+                //RecentChatViewModel.chatItems.Clear();
+                RecentChatViewModel.LoadMesssage("");
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new PasaBuy.App.Views.Chat.MessagePage()));

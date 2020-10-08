@@ -32,7 +32,7 @@
                     <controls:TitleView.LeadingView>
                         <buttons:SfButton
                             x:Name="backButton"
-                            Clicked="backButton_Clicked"
+                            Clicked="BackButton_Clicked"
                             CornerRadius="4"
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />

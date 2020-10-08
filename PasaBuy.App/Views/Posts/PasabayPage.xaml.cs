@@ -52,16 +52,13 @@ namespace PasaBuy.App.Views.Posts
                                     MyProfileViewModel.LoadData(PSACache.Instance.UserInfo.wpid);
                                 }
                                 Navigation.PopModalAsync();
+                                isBtn = false;
                             }
                             else
                             {
                                 new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                isBtn = false;
                             }
-                        });
-                        Device.BeginInvokeOnMainThread(async () =>
-                        {
-                            await Task.Delay(100);
-                            isBtn = false;
                         });
                     }
                 }
@@ -69,6 +66,7 @@ namespace PasaBuy.App.Views.Posts
             catch (Exception ex)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
+                isBtn = false;
             }
         }
     }

@@ -15,6 +15,7 @@ namespace PasaBuy.App.Views.PopupModals
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PopupPasabuy : PopupPage
     {
+        public bool isTapped;
         public PopupPasabuy()
         {
             InitializeComponent();
@@ -23,24 +24,39 @@ namespace PasaBuy.App.Views.PopupModals
             this.pabiliInfo.Text = "A buyer requests a mover to buy items for him in a restaurant or store. The mover delivers the item right after the purchase.";
             this.pahatidInfo.Text = "A mover drops off a passenger at a destination.";
             this.pasakayInfo.Text = "A mover invites a passenger to share a ride towards a destination.";
+            isTapped = false;
         }
 
-        private void GoToPasabuy(object sender, EventArgs e)
+        private async void GoToPasabuy(object sender, EventArgs e)
         {
-            PopupNavigation.Instance.PopAsync();
-            Navigation.PushModalAsync(new PasabayPage());
-
+            if (!isTapped)
+            {
+                isTapped = true;
+                PopupNavigation.Instance.PopAsync();
+                await Navigation.PushModalAsync(new PasabayPage());
+                isTapped = false;
+            }
         }
-        private void GoToPabili(object sender, EventArgs e)
+        private async void GoToPabili(object sender, EventArgs e)
         {
-            PopupNavigation.Instance.PopAsync();
-            Navigation.PushModalAsync(new PabiliPage());
+            if (!isTapped)
+            {
+                isTapped = true;
+                PopupNavigation.Instance.PopAsync();
+                await Navigation.PushModalAsync(new PabiliPage());
+                isTapped = false;
+            }
         }
 
-        private void GoToPahatid(object sender, EventArgs e)
+        private async  void GoToPahatid(object sender, EventArgs e)
         {
-            PopupNavigation.Instance.PopAsync();
-            Navigation.PushModalAsync(new PahatidPage());
+            if (!isTapped)
+            {
+                isTapped = true;
+                PopupNavigation.Instance.PopAsync();
+                await Navigation.PushModalAsync(new PahatidPage());
+                isTapped = false;
+            }
         }
     }
 }
