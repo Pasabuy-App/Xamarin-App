@@ -64,7 +64,7 @@
                                 HeightRequest="60" 
                                 FontSize="18"
                                  VerticalTextAlignment="Center"
-                                            Text="Product Categories"
+                                            Text="Store Categories"
                                             TextColor="{DynamicResource Gray-900}" />
                     </StackLayout>
 
