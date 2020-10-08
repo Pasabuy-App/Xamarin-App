@@ -80,16 +80,25 @@ namespace PasaBuy.App.Views.Settings
 
         private void CountryPicker_SelectionChanged(object sender, Syncfusion.XForms.ComboBox.SelectionChangedEventArgs e)
         {
+            if (!string.IsNullOrWhiteSpace(ProvincePicker.Text))
+            {
+                ProvincePicker.Clear();
+            }
+            if (!string.IsNullOrWhiteSpace(CityPicker.Text))
+            {
+                CityPicker.Clear();
+                CityViewModel.ClearList();
+            }
+            if (!string.IsNullOrWhiteSpace(BarangayPicker.Text))
+            {
+                BarangayPicker.Clear();
+                BrgyViewModel.ClearList();
+            }
             AddressVar.co = CountryPicker.SelectedValue.ToString();
-            ProvincePicker.Clear();
-            CityPicker.Clear();
-            BarangayPicker.Clear();
             ProvinceViewModel province = new ProvinceViewModel(CountryPicker.SelectedValue.ToString());
             ProvincePicker.BindingContext = province;
             ProvincePicker.DataSource = province.ProvinceCollection;
             ProvincePicker.DisplayMemberPath = "Name";
-            BrgyViewModel.ClearList();
-            CityViewModel.ClearList();
         }
 
         private void BarangayPicker_SelectionChanged(object sender, Syncfusion.XForms.ComboBox.SelectionChangedEventArgs e)
@@ -99,7 +108,10 @@ namespace PasaBuy.App.Views.Settings
 
         private void CityPicker_SelectionChanged(object sender, Syncfusion.XForms.ComboBox.SelectionChangedEventArgs e)
         {
-            BarangayPicker.Clear();
+            if (!string.IsNullOrWhiteSpace(BarangayPicker.Text))
+            {
+                BarangayPicker.Clear();
+            }
             AddressVar.ct = CityPicker.SelectedValue.ToString();
             BrgyViewModel brgy = new BrgyViewModel(CityPicker.SelectedValue.ToString());
             BarangayPicker.BindingContext = brgy;
@@ -109,14 +121,20 @@ namespace PasaBuy.App.Views.Settings
 
         private void ProvincePicker_SelectionChanged(object sender, Syncfusion.XForms.ComboBox.SelectionChangedEventArgs e)
         {
-            CityPicker.Clear();
-            BarangayPicker.Clear();
+            if (!string.IsNullOrWhiteSpace(CityPicker.Text))
+            {
+                CityPicker.Clear();
+            }
             AddressVar.pr = ProvincePicker.SelectedValue.ToString();
             CityViewModel city = new CityViewModel(ProvincePicker.SelectedValue.ToString());
             CityPicker.BindingContext = city;
             CityPicker.DataSource = city.CityCollection;
             CityPicker.DisplayMemberPath = "Name";
-            BrgyViewModel.ClearList();
+            if (!string.IsNullOrWhiteSpace(BarangayPicker.Text))
+            {
+                BarangayPicker.Clear();
+                BrgyViewModel.ClearList();
+            }
         }
 
         async void TakePhoto(object sender, EventArgs args)
