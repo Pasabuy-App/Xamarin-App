@@ -58,14 +58,14 @@ namespace PasaBuy.App.Views
                         FoodBrowserViewModel.foodstorelist.Clear();
                         FoodBrowserViewModel.LoadFood("");
                 }
-                if (e.TabItem.Title == "MESSAGE")
+                /*if (e.TabItem.Title == "MESSAGE")
                 {
                         MessagePage.LastIndex = 11;
                         MessagePage.isFirstID = false;
                         MessagePage.ids = 0;
                         RecentChatViewModel.chatItems.Clear();
                         RecentChatViewModel.LoadMesssage("");
-                }
+                }*/
                 await Task.Delay(500);
                 isButton = false;
             }

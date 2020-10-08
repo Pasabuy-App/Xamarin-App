@@ -95,9 +95,9 @@ namespace PasaBuy.App.Views.Navigation
             //}
         }
 
-        private void isActive(object sender, Syncfusion.XForms.Buttons.SwitchStateChangedEventArgs e)
+        private async void isActive(object sender, Syncfusion.XForms.Buttons.SwitchStateChangedEventArgs e)
         {
-            PopupNavigation.Instance.PushAsync(new PopupGoOnline());
+            await PopupNavigation.Instance.PushAsync(new PopupGoOnline());
         }
     }
 }

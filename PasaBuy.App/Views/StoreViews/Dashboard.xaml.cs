@@ -40,19 +40,25 @@ namespace PasaBuy.App.Views.StoreViews
             }
         }
 
-        private void NewOrders_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        private async void NewOrders_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
-            var item = e.ItemData as OrdersDataModel;
-            TransactionDetailsView.id = item.ID;
-            TransactionDetailsView.customer = item.Customer;
-            TransactionDetailsView.orderid = item.OrderID;
-            TransactionDetailsView.totalprice = item.TotalPrice;
-            TransactionDetailsView.datecreated = item.Date_Time;
-            TransactionDetailsView.method = item.Method;
-            TransactionDetailsView.order_type = "Pending";
-            TransactionDetailsView.stage_type = "pending";
-            OrderDetailsViewModel.LoadOrder(item.Stage, item.ID);
-            Navigation.PushModalAsync(new TransactionDetailsView());
+            if (!isClicked)
+            {
+                isClicked = true;
+                var item = e.ItemData as OrdersDataModel;
+                TransactionDetailsView.id = item.ID;
+                TransactionDetailsView.customer = item.Customer;
+                TransactionDetailsView.orderid = item.OrderID;
+                TransactionDetailsView.totalprice = item.TotalPrice;
+                TransactionDetailsView.datecreated = item.Date_Time;
+                TransactionDetailsView.method = item.Method;
+                TransactionDetailsView.order_type = "Pending";
+                TransactionDetailsView.stage_type = "pending";
+                OrderDetailsViewModel.LoadOrder(item.Stage, item.ID);
+                await Navigation.PushModalAsync(new TransactionDetailsView());
+                await Task.Delay(500);
+                isClicked = false;
+            }
         }
         /*void Handle_SelectionChanged(object sender, Syncfusion.XForms.TabView.SelectionChangedEventArgs e)
         {

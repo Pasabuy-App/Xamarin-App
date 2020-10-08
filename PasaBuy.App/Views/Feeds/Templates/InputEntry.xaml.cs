@@ -20,14 +20,13 @@ namespace PasaBuy.App.Views.Feeds.Templates
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class InputEntry : ContentView
     {
-
-        
+        public bool isTapped;
         public InputEntry()
         {
             InitializeComponent();
 
             PostEntry.Completed += (sender, args) => SubmitPostButton(sender, args);
-
+            isTapped = false;
         }
 
         public void SubmitPostButton(object sender, EventArgs e)
@@ -70,27 +69,46 @@ namespace PasaBuy.App.Views.Feeds.Templates
         }
 
 
-        public void PostStatus(object sender, EventArgs args)
+        public async void PostStatus(object sender, EventArgs args)
         {
-
-            Navigation.PushModalAsync(new PostStatusPage());
+            if (!isTapped)
+            {
+                isTapped = true;
+                await Navigation.PushModalAsync(new PostStatusPage());
+                isTapped = false;
+            }
         }
 
-        public  void PostRequest(object sender, EventArgs args)
+        public  async void PostRequest(object sender, EventArgs args)
         {
-            //Navigation.PushModalAsync(new PostRequestPage());
-            PopupNavigation.Instance.PushAsync(new PopupPasabuy());
+            if (!isTapped)
+            {
+                isTapped = true;
+                //Navigation.PushModalAsync(new PostRequestPage());
+                await PopupNavigation.Instance.PushAsync(new PopupPasabuy());
+                isTapped = false;
+            }
         }
 
      
-        public void PostSell(object sender, EventArgs args)
+        public async void PostSell(object sender, EventArgs args)
         {
-            Navigation.PushModalAsync(new PostSellPage());
+            if (!isTapped)
+            {
+                isTapped = true;
+                await Navigation.PushModalAsync(new PostSellPage());
+                isTapped = false;
+            }
         }
 
-        public  void AddStatusPost(object sender, EventArgs args)
+        public async void AddStatusPost(object sender, EventArgs args)
         {
-            Navigation.PushModalAsync(new PostStatusPage());
+            if (!isTapped)
+            {
+                isTapped = true;
+                await Navigation.PushModalAsync(new PostStatusPage());
+                isTapped = false;
+            }
         }
 
 

@@ -105,7 +105,10 @@ namespace PasaBuy.App.ViewModels.Chat
 
         public void PopupMessage()
         {
-            LoadMessage(user_id, "", ChatList.Last().ID);
+            if (ChatList.Count != 0)
+            {
+                LoadMessage(user_id, "", ChatList.Last().ID);
+            }
         }
 
         public void LoadMessage(string recipient, string offset, string lastid)

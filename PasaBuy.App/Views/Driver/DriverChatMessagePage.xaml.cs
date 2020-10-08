@@ -20,22 +20,22 @@ namespace PasaBuy.App.Views.Driver
         }
         protected override bool OnBackButtonPressed()
         {
-            if (DriverChatMessageViewModel.myPage != "home")
+            /*if (DriverChatMessageViewModel.myPage != "home")
             {
-                MessagesViewModel.storeChatList.Clear();
+                //MessagesViewModel.storeChatList.Clear();
                 MessagesViewModel.LoadMesssage("");
-            }
+            }*/
             DriverChatMessageViewModel.refresh = 1;
             return base.OnBackButtonPressed();
         }
 
-        private void backButton_Clicked(object sender, EventArgs e)
+        private void BackButton_Clicked(object sender, EventArgs e)
         {
-            if (DriverChatMessageViewModel.myPage != "home")
+            /*if (DriverChatMessageViewModel.myPage != "home")
             {
                 MessagesViewModel.storeChatList.Clear();
                 MessagesViewModel.LoadMesssage("");
-            }
+            }*/
             DriverChatMessageViewModel.refresh = 1;
             Navigation.PopModalAsync();
         }
