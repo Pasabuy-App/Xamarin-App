@@ -75,7 +75,7 @@
                         Text="{StaticResource Back}" />-->
 
                     <!--  Restaurant page Title  -->
-                    <Label Margin="16,0"
+                    <Label Margin="16,0"  x:Name="PageTitle"
                         HeightRequest="24"
                         FontFamily="{StaticResource Montserrat-Medium}"
                         FontSize="16"

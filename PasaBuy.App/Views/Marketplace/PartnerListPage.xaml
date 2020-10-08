@@ -30,6 +30,7 @@
                     <controls:TitleView.LeadingView >
                         <buttons:SfButton
                             x:Name="backButton"
+                            Clicked="backButton_Clicked"
                             CornerRadius="4"
                             TextColor="White"
                             Style="{StaticResource IconButtonStyle}"
@@ -65,7 +66,7 @@
                     VerticalOptions="FillAndExpand">
 
                     <!--  Restaurant page Title  -->
-                    <Label Margin="16,0"
+                    <Label Margin="16,0" x:Name="PageTitle"
                         HeightRequest="24"
                         FontFamily="{StaticResource Montserrat-Medium}"
                         FontSize="16"
@@ -117,8 +118,10 @@
                          Grid.Row="2">
                 <sync:SfListView
                     Padding="15,0,15,15"
-                    AutoFitMode="Height"
-                    IsScrollBarVisible="False"
+                    AutoFitMode="Height" 
+                    ItemTapped="StoreList_ItemTapped"
+                    IsScrollBarVisible="False" 
+                    ItemAppearing="StoreList_ItemAppearing"
                     ItemSpacing="{core:OnPlatformOrientationThickness Default='0,0,32,32',
                                                                   PhonePortrait='0,0,0,16',
                                                                   PhoneLandscape='0,0,16,16',

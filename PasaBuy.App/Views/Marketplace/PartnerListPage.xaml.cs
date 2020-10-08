@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PasaBuy.App.Models.Marketplace;
+using PasaBuy.App.ViewModels.Marketplace;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +14,51 @@ namespace PasaBuy.App.Views.Marketplace
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PartnerListPage : ContentPage
     {
+        public static int LastIndex = 11;
+        public static string catid = string.Empty;
+        public static string pageTitle;
+        public bool isTapped;
         public PartnerListPage()
         {
             InitializeComponent();
+            PageTitle.Text = pageTitle;
+            isTapped = false;
+        }
+
+        private async void backButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopModalAsync();
+        }
+
+        private void StoreList_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
+        {
+            var item = e.ItemData as Store;
+            if (PartnerBrowserViewModel.storeList.Last() == item && PartnerBrowserViewModel.storeList.Count() != 1)
+            {
+                if (PartnerBrowserViewModel.storeList.IndexOf(item) >= LastIndex)
+                {
+                    LastIndex += 6;
+                    PartnerBrowserViewModel.LoadStore(catid, item.Id);
+                }
+            }
+        }
+
+        private async void StoreList_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        {
+            if (!isTapped)
+            {
+                isTapped = true;
+                var item = e.ItemData as Store;
+                //App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+                //StoreDetailsViewModel.loadcategory(item.Id);
+                //StoreDetailsViewModel.loadstoredetails(item.Id);
+
+                StoreDetailsViewModel.store_id = item.Id;
+                StoreDetailsViewModel.Loadcategory(item.Id);
+                StoreDetailsViewModel.Loadstoredetails(item.Id);
+                await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+                isTapped = false;
+            }
         }
     }
 }

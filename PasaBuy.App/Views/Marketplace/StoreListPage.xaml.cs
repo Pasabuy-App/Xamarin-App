@@ -14,24 +14,33 @@ namespace PasaBuy.App.Views.Marketplace
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class StoreListPage : ContentPage
     {
+        public static string pageTitle;
         public static int LastIndex = 11;
         public static string catid = string.Empty;
+        public bool isTapped;
         public StoreListPage()
         {
             InitializeComponent();
+            PageTitle.Text = pageTitle;
+            isTapped = false;
         }
 
-        private void StoreTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        private async void StoreTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
-            var item = e.ItemData as Store;
-            //App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
-            //StoreDetailsViewModel.loadcategory(item.Id);
-            //StoreDetailsViewModel.loadstoredetails(item.Id);
+            if (!isTapped)
+            {
+                isTapped = true;
+                var item = e.ItemData as Store;
+                //App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+                //StoreDetailsViewModel.loadcategory(item.Id);
+                //StoreDetailsViewModel.loadstoredetails(item.Id);
 
-            StoreDetailsViewModel.store_id = item.Id;
-            StoreDetailsViewModel.Loadcategory(item.Id);
-            StoreDetailsViewModel.Loadstoredetails(item.Id);
-            App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+                StoreDetailsViewModel.store_id = item.Id;
+                StoreDetailsViewModel.Loadcategory(item.Id);
+                StoreDetailsViewModel.Loadstoredetails(item.Id);
+                await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+                isTapped = false;
+            }
         }
 
         protected override void OnSizeAllocated(double width, double height)

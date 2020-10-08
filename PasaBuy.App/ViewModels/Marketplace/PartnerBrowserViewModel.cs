@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.Marketplace
@@ -57,8 +58,35 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
+
+        bool _isRefreshing = false;
+        public bool IsRefreshing
+        {
+            get
+            {
+                return _isRefreshing;
+            }
+            set
+            {
+                if (_isRefreshing != value)
+                {
+                    _isRefreshing = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+
+        public ICommand RefreshCommand { protected set; get; }
+
         public PartnerBrowserViewModel()
         {
+            RefreshCommand = new Command<string>((key) =>
+            {
+                itemCategories.Clear();
+                LoadCategory();
+                IsRefreshing = false;
+            });
+
             storeList = new ObservableCollection<Store>();
             itemCategories = new ObservableCollection<Categories>();
             storeList.Clear();
