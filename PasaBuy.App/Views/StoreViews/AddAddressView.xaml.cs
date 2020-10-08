@@ -133,33 +133,51 @@ namespace PasaBuy.App.Views.StoreViews
 
         private void AddressCountrys_SelectionChanged(object sender, Syncfusion.XForms.ComboBox.SelectionChangedEventArgs e)
         {
+            if (!string.IsNullOrWhiteSpace(AddressProvinces.Text))
+            {
+                AddressProvinces.Clear();
+            }
+            if (!string.IsNullOrWhiteSpace(AddressCitys.Text))
+            {
+                AddressCitys.Clear();
+                CityViewModel.ClearList();
+            }
+            if (!string.IsNullOrWhiteSpace(AddressBarangays.Text))
+            {
+                AddressBarangays.Clear();
+                BrgyViewModel.ClearList();
+            }
             AddressVar.co = AddressCountrys.SelectedValue.ToString();
-            AddressProvinces.Clear();
-            AddressCitys.Clear();
-            AddressBarangays.Clear();
             ProvinceViewModel province = new ProvinceViewModel(AddressCountrys.SelectedValue.ToString());
             AddressProvinces.BindingContext = province;
             AddressProvinces.DataSource = province.ProvinceCollection;
             AddressProvinces.DisplayMemberPath = "Name";
-            BrgyViewModel.ClearList();
-            CityViewModel.ClearList();
         }
 
         private void AddressProvinces_SelectionChanged(object sender, Syncfusion.XForms.ComboBox.SelectionChangedEventArgs e)
         {
-            AddressCitys.Clear();
-            AddressBarangays.Clear();
+            if (!string.IsNullOrWhiteSpace(AddressCitys.Text))
+            {
+                AddressCitys.Clear();
+            }
             AddressVar.pr = AddressProvinces.SelectedValue.ToString();
             CityViewModel city = new CityViewModel(AddressProvinces.SelectedValue.ToString());
             AddressCitys.BindingContext = city;
             AddressCitys.DataSource = city.CityCollection;
             AddressCitys.DisplayMemberPath = "Name";
-            BrgyViewModel.ClearList();
+            if (!string.IsNullOrWhiteSpace(AddressBarangays.Text))
+            {
+                AddressBarangays.Clear();
+                BrgyViewModel.ClearList();
+            }
         }
 
         private void AddressCitys_SelectionChanged(object sender, Syncfusion.XForms.ComboBox.SelectionChangedEventArgs e)
         {
-            AddressBarangays.Clear();
+            if (!string.IsNullOrWhiteSpace(AddressBarangays.Text))
+            {
+                AddressBarangays.Clear();
+            }
             AddressVar.ct = AddressCitys.SelectedValue.ToString();
             BrgyViewModel brgy = new BrgyViewModel(AddressCitys.SelectedValue.ToString());
             AddressBarangays.BindingContext = brgy;

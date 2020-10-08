@@ -44,6 +44,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
         {
             this.SignUpCommand = new Command(this.SignUpClicked);
             this.SendCommand = new Command(this.SendClicked);
+            State = false;
         }
 
         #endregion
@@ -72,21 +73,24 @@ namespace PasaBuy.App.ViewModels.Onboarding
         {
             try
             {
-                State = true;
-                Users.Instance.Forgot(Email, (bool success, string data) =>
+                if (!State)
                 {
-                    if (success)
+                    State = true;
+                    Users.Instance.Forgot(Email, (bool success, string data) =>
                     {
-                        State = false;
-                        Application.Current.MainPage = new VerifyResetPage();
-                        VerifyAccountVar.un = Email;
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                        State = false;
-                    }
-                });
+                        if (success)
+                        {
+                            State = false;
+                            Application.Current.MainPage = new VerifyResetPage();
+                            VerifyAccountVar.un = Email;
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            State = false;
+                        }
+                    });
+                }
             }
             catch (Exception e)
             {
@@ -98,9 +102,9 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// Invoked when the Sign Up button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
-        private void SignUpClicked(object obj)
+        private async void SignUpClicked(object obj)
         {
-            App.Current.MainPage.Navigation.PopModalAsync();
+            await App.Current.MainPage.Navigation.PopModalAsync();
         }
 
         #endregion

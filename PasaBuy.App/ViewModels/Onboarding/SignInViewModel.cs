@@ -39,7 +39,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
             this.FaceBookLoginCommand = new Command(this.FaceBookClicked);
             this.TwitterLoginCommand = new Command(this.TwitterClicked);
             this.GmailLoginCommand = new Command(this.GmailClicked);
-       
+            State = false;
         }
 
         #endregion
@@ -229,12 +229,22 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void SignUpClicked(object obj)
         {
-            State = true;
-            Device.BeginInvokeOnMainThread(() =>
+            try
             {
-                App.Current.MainPage.Navigation.PushModalAsync(new SignUpPage());
-                State = false;
-            });
+                if (!State)
+                {
+                    State = true;
+                    Device.BeginInvokeOnMainThread( async () =>
+                    {
+                        await App.Current.MainPage.Navigation.PushModalAsync(new SignUpPage());
+                        State = false;
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+            }
         }
 
         /// <summary>
@@ -243,12 +253,22 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void ForgotPasswordClicked(object obj)
         {
-            State = true;
-            Device.BeginInvokeOnMainThread(() =>
+            try
             {
-                App.Current.MainPage.Navigation.PushModalAsync(new ForgotPwPage());
-                State = false;
-            });
+                if (!State)
+                {
+                    State = true;
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        App.Current.MainPage.Navigation.PushModalAsync(new ForgotPwPage());
+                        State = false;
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+            }
         }
 
         /// <summary>

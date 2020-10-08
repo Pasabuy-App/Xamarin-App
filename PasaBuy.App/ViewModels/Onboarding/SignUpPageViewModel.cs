@@ -49,6 +49,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
         {
             this.LoginCommand = new Command(this.LoginClicked);
             this.SignUpCommand = new Command(this.SignUpClicked);
+            State = false;
         }
 
         #endregion
@@ -220,9 +221,9 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// Invoked when the Log in button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
-        private void LoginClicked(object obj)
+        private async void LoginClicked(object obj)
         {
-            App.Current.MainPage.Navigation.PopModalAsync();
+            await App.Current.MainPage.Navigation.PopModalAsync();
         }
 
         /// <summary>
@@ -233,20 +234,23 @@ namespace PasaBuy.App.ViewModels.Onboarding
         {
             try
             {
-                State = true;
-                Users.Instance.SignUp(Username, Email, Fname, Lname, Gender, BornDate, AddressVar.co, AddressVar.pr, AddressVar.ct, AddressVar.br, StreetEntry, (bool success, string data) =>
+                if (!State)
                 {
-                    if (success)
+                    State = true;
+                    Users.Instance.SignUp(Username, Email, Fname, Lname, Gender, BornDate, AddressVar.co, AddressVar.pr, AddressVar.ct, AddressVar.br, StreetEntry, (bool success, string data) =>
                     {
-                        State = false;
-                        Application.Current.MainPage = new VerifyAccountPage();
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                        State = false;
-                    }
-                });
+                        if (success)
+                        {
+                            State = false;
+                            Application.Current.MainPage = new VerifyAccountPage();
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            State = false;
+                        }
+                    });
+                }
             }
             catch (Exception e)
             {

@@ -34,6 +34,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
         public CreatePasswordViewModel()
         {
             this.SubmitCommand = new Command(this.SfButton_Clicked);
+            State = false;
         }
 
         #endregion
@@ -123,86 +124,89 @@ namespace PasaBuy.App.ViewModels.Onboarding
         {
             try
             {
-                State = true;
-                Users.Instance.NewPassword(VerifyAccountVar.ak, VerifyAccountVar.un, Password, ConfirmPassowrd, (bool success1, string data1) =>
+                if (!State)
                 {
-                    if (success1)
+                    State = true;
+                    Users.Instance.NewPassword(VerifyAccountVar.ak, VerifyAccountVar.un, Password, ConfirmPassowrd, (bool success1, string data1) =>
                     {
-                        Console.WriteLine(VerifyAccountVar.ak + " " + VerifyAccountVar.un + " " + Password + " " + ConfirmPassowrd);
-                        Users.Instance.Auth(VerifyAccountVar.un, Password, (bool success, string data) =>
+                        if (success1)
                         {
-                            if (success)
+                            Console.WriteLine(VerifyAccountVar.ak + " " + VerifyAccountVar.un + " " + Password + " " + ConfirmPassowrd);
+                            Users.Instance.Auth(VerifyAccountVar.un, Password, (bool success, string data) =>
                             {
-                                Token token = JsonConvert.DeserializeObject<Token>(data);
-
-                                if (!token.isSuccess)
+                                if (success)
                                 {
-                                    new Alert("Something went Wrong", HtmlUtils.ConvertToPlainText(token.message), "OK");
-                                    return;
-                                }
+                                    Token token = JsonConvert.DeserializeObject<Token>(data);
 
-                                //Initialized the class first.
-                                PSACache.Instance.UserInfo = new UserInfo();
-
-                                //Store User token on Cache
-                                PSACache.Instance.UserInfo.wpid = token.data.wpid;
-                                PSACache.Instance.UserInfo.snky = token.data.snky;
-
-                                PSACache.Instance.SaveUserData();
-
-                                //Reuqest user token after device received token.
-                                SocioPress.Profile.Instance.GetData(token.data.wpid, token.data.snky, token.data.wpid, (bool success2, string data2) =>
-                                {
-                                    if (success2)
+                                    if (!token.isSuccess)
                                     {
-                                        UserInfo uinfo = JsonConvert.DeserializeObject<UserInfo>(data2);
+                                        new Alert("Something went Wrong", HtmlUtils.ConvertToPlainText(token.message), "OK");
+                                        return;
+                                    }
 
-                                        if (uinfo.Succeed)
+                                    //Initialized the class first.
+                                    PSACache.Instance.UserInfo = new UserInfo();
+
+                                    //Store User token on Cache
+                                    PSACache.Instance.UserInfo.wpid = token.data.wpid;
+                                    PSACache.Instance.UserInfo.snky = token.data.snky;
+
+                                    PSACache.Instance.SaveUserData();
+
+                                    //Reuqest user token after device received token.
+                                    SocioPress.Profile.Instance.GetData(token.data.wpid, token.data.snky, token.data.wpid, (bool success2, string data2) =>
+                                    {
+                                        if (success2)
                                         {
+                                            UserInfo uinfo = JsonConvert.DeserializeObject<UserInfo>(data2);
 
-                                            PSACache.Instance.UserInfo.dname = uinfo.data.dname;
-                                            PSACache.Instance.UserInfo.uname = uinfo.data.uname;
-                                            PSACache.Instance.UserInfo.email = uinfo.data.email;
-                                            PSACache.Instance.UserInfo.lname = uinfo.data.lname;
-                                            PSACache.Instance.UserInfo.fname = uinfo.data.fname;
-                                            PSACache.Instance.UserInfo.city = uinfo.data.city;
-                                            PSACache.Instance.UserInfo.date_registered = uinfo.data.date_registered;
-                                            PSACache.Instance.UserInfo.avatar = uinfo.data.avatar;
-                                            PSACache.Instance.UserInfo.banner = uinfo.data.banner;
-                                            PSACache.Instance.UserInfo.verify = uinfo.data.verify;
+                                            if (uinfo.Succeed)
+                                            {
 
-                                            State = false;
-                                            Application.Current.MainPage = new Views.MainTabs();
-                                            PSACache.Instance.SaveUserData();
+                                                PSACache.Instance.UserInfo.dname = uinfo.data.dname;
+                                                PSACache.Instance.UserInfo.uname = uinfo.data.uname;
+                                                PSACache.Instance.UserInfo.email = uinfo.data.email;
+                                                PSACache.Instance.UserInfo.lname = uinfo.data.lname;
+                                                PSACache.Instance.UserInfo.fname = uinfo.data.fname;
+                                                PSACache.Instance.UserInfo.city = uinfo.data.city;
+                                                PSACache.Instance.UserInfo.date_registered = uinfo.data.date_registered;
+                                                PSACache.Instance.UserInfo.avatar = uinfo.data.avatar;
+                                                PSACache.Instance.UserInfo.banner = uinfo.data.banner;
+                                                PSACache.Instance.UserInfo.verify = uinfo.data.verify;
+
+                                                State = false;
+                                                Application.Current.MainPage = new Views.MainTabs();
+                                                PSACache.Instance.SaveUserData();
+                                            }
+
+                                            else
+                                            {
+                                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data2), "Try Again");
+                                                State = false;
+                                            }
                                         }
 
                                         else
                                         {
-                                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data2), "Try Again");
+                                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                                             State = false;
                                         }
-                                    }
-
-                                    else
-                                    {
-                                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                                        State = false;
-                                    }
-                                });
-                            }
-                            else
-                            {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                                State = false;
-                            }
-                        });
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data1), "Try Again");
-                        State = false;
-                    }
-                });
+                                    });
+                                }
+                                else
+                                {
+                                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                    State = false;
+                                }
+                            });
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data1), "Try Again");
+                            State = false;
+                        }
+                    });
+                }
             }
             catch (Exception e)
             {

@@ -34,6 +34,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
         public VerifyAccountViewModel()
         {
             this.SubmitCommand = new Command(this.SfButton_Clicked);
+            State = false;
         }
 
         #endregion
@@ -123,23 +124,26 @@ namespace PasaBuy.App.ViewModels.Onboarding
         {
             try
             {
-                State = true;
-                Users.Instance.Activate(ActivationKey, Username, (bool success, string data) =>
+                if (!State)
                 {
-                    if (success)
+                    State = true;
+                    Users.Instance.Activate(ActivationKey, Username, (bool success, string data) =>
                     {
-                        VerifyAccountData akey = JsonConvert.DeserializeObject<VerifyAccountData>(data);
-                        State = false;
-                        VerifyAccountVar.un = Username;
-                        VerifyAccountVar.ak = akey.key;
-                        Application.Current.MainPage = new CreatePassword();
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                        State = false;
-                    }
-                });
+                        if (success)
+                        {
+                            VerifyAccountData akey = JsonConvert.DeserializeObject<VerifyAccountData>(data);
+                            State = false;
+                            VerifyAccountVar.un = Username;
+                            VerifyAccountVar.ak = akey.key;
+                            Application.Current.MainPage = new CreatePassword();
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            State = false;
+                        }
+                    });
+                }
             }
             catch (Exception e)
             {

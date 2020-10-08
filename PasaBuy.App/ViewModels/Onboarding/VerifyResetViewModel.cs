@@ -32,6 +32,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
         public VerifyResetViewModel()
         {
             this.SubmitCommand = new Command(this.SfButton_Clicked);
+            State = false;
         }
 
         #endregion
@@ -99,22 +100,25 @@ namespace PasaBuy.App.ViewModels.Onboarding
         {
             try
             {
-                State = true;
-                Users.Instance.Activate(ActivationKey, VerifyAccountVar.un, (bool success, string data) =>
+                if (!State)
                 {
-                    if (success)
+                    State = true;
+                    Users.Instance.Activate(ActivationKey, VerifyAccountVar.un, (bool success, string data) =>
                     {
-                        State = false;
-                        VerifyAccountData akey = JsonConvert.DeserializeObject<VerifyAccountData>(data);
-                        VerifyAccountVar.ak = akey.key;
-                        Application.Current.MainPage = new CreatePassword();
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                        State = false;
-                    }
-                });
+                        if (success)
+                        {
+                            State = false;
+                            VerifyAccountData akey = JsonConvert.DeserializeObject<VerifyAccountData>(data);
+                            VerifyAccountVar.ak = akey.key;
+                            Application.Current.MainPage = new CreatePassword();
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            State = false;
+                        }
+                    });
+                }
             }
             catch (Exception e)
             {
