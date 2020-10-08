@@ -58,6 +58,12 @@ namespace PasaBuy.App.Views
                         FoodBrowserViewModel.foodstorelist.Clear();
                         FoodBrowserViewModel.LoadFood("");
                 }
+                if (e.TabItem.Title == "PARTNER")
+                {
+                    //StoreBrowserPage.LastIndex = 11;
+                    PartnerBrowserViewModel.itemCategories.Clear();
+                    PartnerBrowserViewModel.LoadCategory();
+                }
                 /*if (e.TabItem.Title == "MESSAGE")
                 {
                         MessagePage.LastIndex = 11;
