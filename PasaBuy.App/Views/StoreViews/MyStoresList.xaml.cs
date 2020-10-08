@@ -28,7 +28,7 @@ namespace PasaBuy.App.Views.StoreViews
         private void SfListView_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
             MasterView.MyType = "store";
-            Navigation.PushModalAsync(new PasaBuy.App.Views.Navigation.NavigationView());
+            App.Current.MainPage = new NavigationView();
         }
     }
 }
