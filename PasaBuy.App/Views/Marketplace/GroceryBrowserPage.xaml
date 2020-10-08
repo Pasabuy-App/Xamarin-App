@@ -45,18 +45,11 @@
                     IsVisible="True"
                     Orientation="Horizontal"
                     Spacing="0"
+                    Margin="20,0,0,0"
                     VerticalOptions="FillAndExpand">
 
-                    <!--  Back button command  -->
-                    <buttons:SfButton x:Name="backButton"
-                        Command="{Binding BackButtonCommand}"
-                        CommandParameter="{x:Reference backButton}"
-                        CornerRadius="4"
-                        Style="{StaticResource IconButtonStyle}"
-                        Text="{StaticResource Back}" />
-
                     <!--  Restaurant page Title  -->
-                    <Label Margin="16,0"
+                    <Label Margin="0,0"
                         HeightRequest="24"
                         FontFamily="{StaticResource Montserrat-Medium}"
                         FontSize="16"

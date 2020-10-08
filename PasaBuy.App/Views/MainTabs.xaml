@@ -88,9 +88,9 @@
 
             <!--PARTNER TAB-->
             <tabView:SfTabItem Title="PARTNER"
-                               FontIconFontSize="100"
-                                ImageSource="Partner.png"
-                                SelectionColor="{DynamicResource Gray-White}">
+                               FontIconFontSize="150"
+                               ImageSource="Partner.png"
+                               SelectionColor="{DynamicResource Gray-White}">
                 <tabView:SfTabItem.Content>
                     <partner:PartnerBrowserPage/>
                 </tabView:SfTabItem.Content>

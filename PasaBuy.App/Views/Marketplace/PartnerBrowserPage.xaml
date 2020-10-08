@@ -1,12 +1,137 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:rotator="clr-namespace:Syncfusion.SfRotator.XForms;assembly=Syncfusion.SfRotator.XForms" xmlns:pulltoRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms" xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:controls="clr-namespace:PasaBuy.App.Controls" xmlns:behavior1="clr-namespace:PasaBuy.App.Behaviors" xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+             BackgroundColor="{DynamicResource Gray-White}"
              x:Class="PasaBuy.App.Views.Marketplace.PartnerBrowserPage">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Stylex.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
     <ContentView.Content>
-        <StackLayout>
-            <Label Text="Robinson Branch Browser as well as Category!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <Grid RowSpacing="0" ColumnSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <!--Image Carousel Above-->
+                <rotator:SfRotator Grid.Row="0"
+                                   BackgroundColor="{StaticResource Transparent}"
+                                   DotsBorderColor="Transparent"
+                                   HeightRequest="240"
+                                   HorizontalOptions="StartAndExpand"
+                                   ItemsSource="{Binding PartnerStoresRotator}"
+                                   NavigationDirection="Horizontal"
+                                   NavigationStripMode="Dots"
+                                   SelectedDotColor="{DynamicResource PrimaryColor}"
+                                   UnselectedDotColor="{DynamicResource Gray-200}"
+                                   VerticalOptions="Start"
+                                   EnableAutoPlay="True" 
+                                   NavigationDelay="2000">
+                    <rotator:SfRotator.ItemTemplate>
+                        <DataTemplate>
+                            <Image
+                                    Aspect="AspectFill"
+                                    BackgroundColor="{DynamicResource Gray-200}"
+                                    HeightRequest="140">
+                                <Image.Source>
+                                    <UriImageSource CacheValidity="14"
+                                                    CachingEnabled="true"
+                                                    Uri="{Binding Image}" />
+                                </Image.Source>
+                            </Image>
+                        </DataTemplate>
+                    </rotator:SfRotator.ItemTemplate>
+                </rotator:SfRotator>
+
+                <StackLayout Grid.Row="1"
+                             Margin="0,8,0,0"
+                             HorizontalOptions="CenterAndExpand">
+                    <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+                             Padding="10,0,0,0"
+                                HeightRequest="60" 
+                                FontSize="18"
+                                 VerticalTextAlignment="Center"
+                                            Text="Product Categories"
+                                            TextColor="{DynamicResource Gray-900}" />
+                </StackLayout>
+                
+                <!--Categories Listview-->
+                <listView:SfListView
+                    Margin="8,0,8,20"
+                    Grid.Row="2"
+                    Padding="0"
+                    AutoFitMode="Height"
+                    ColumnSpacing="0"
+                    FocusBorderColor="Transparent"
+                    HorizontalOptions="FillAndExpand"
+                    IsStickyHeader="True"
+                    ItemsSource="{Binding ItemCategories}"
+                    RowSpacing="0"
+                    SelectionBackgroundColor="Transparent"
+                    TapCommand="{Binding ItemSelectedCommand}">
+
+                    <listView:SfListView.ItemTemplate>
+
+                        <DataTemplate>
+
+                            <!--  Frame to have rounded corners  -->
+                            <controls:CustomShadowFrame
+                                Margin="8"
+                                Padding="0"
+                                BackgroundColor="White"
+                                BorderColor="White"
+                                CornerRadius="4"
+                                HasShadow="true"
+                                HeightRequest="189"
+                                WidthRequest="165">
+                                <StackLayout
+                                    Margin="0"
+                                    Padding="0"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Spacing="0"
+                                    VerticalOptions="CenterAndExpand">
+                                    <!--  Product image  -->
+                                    <Image
+                                        Margin="0,0,0,8"
+                                        Aspect="AspectFill"
+                                        BackgroundColor="{DynamicResource Gray-200}"
+                                        HeightRequest="150"
+                                        HorizontalOptions="Center"
+                                        Source="{Binding Avatar}"
+                                        VerticalOptions="Center"
+                                        WidthRequest="165" />
+                                    <!--  Product name  -->
+                                    <Label
+                                        Margin="0,0,0,8"
+                                        FontFamily="{StaticResource Montserrat-Medium}"
+                                        FontSize="16"
+                                        HorizontalOptions="Center"
+                                        LineHeight="1.25"
+                                        Text="{Binding Title}"
+                                        TextColor="{DynamicResource Gray-900}" />
+                                </StackLayout>
+                            </controls:CustomShadowFrame>
+                        </DataTemplate>
+                    </listView:SfListView.ItemTemplate>
+
+                    <listView:SfListView.Behaviors>
+                        <behavior1:SfListViewExtendHeightBehavior />
+                    </listView:SfListView.Behaviors>
+
+                    <!--  Layout to customize number of columns in SfListView  -->
+                    <listView:SfListView.LayoutManager>
+                        <listView:GridLayout SpanCount="{core:OnPlatformOrientationIntValue Desktop=4, PhonePortrait=2, PhoneLandscape=4, TabletPortrait=4, TabletLandscape=5}" />
+                    </listView:SfListView.LayoutManager>
+                </listView:SfListView>
+
+            </Grid>
+        </ScrollView>
     </ContentView.Content>
 </ContentView>

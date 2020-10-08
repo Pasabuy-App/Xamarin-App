@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PasaBuy.App.ViewModels.Marketplace;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,8 @@ namespace PasaBuy.App.Views.Marketplace
         public PartnerBrowserPage()
         {
             InitializeComponent();
+            this.BindingContext = new PartnerBrowserViewModel();
+            PartnerBrowserViewModel.LoadCategory();
         }
     }
 }
