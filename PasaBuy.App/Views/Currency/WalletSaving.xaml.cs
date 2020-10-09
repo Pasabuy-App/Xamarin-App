@@ -1,4 +1,5 @@
-﻿using PasaBuy.App.Models.Currency;
+﻿using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Models.Currency;
 using PasaBuy.App.ViewModels.Currency;
 using System;
 using System.Linq;
@@ -23,6 +24,9 @@ namespace PasaBuy.App.Views.Currency
         {
             InitializeComponent();
             LastIndex = 11;
+
+        
+            
         }
 
         private void SfListView_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
@@ -36,6 +40,18 @@ namespace PasaBuy.App.Views.Currency
                     LastIndex += 6;
                 }
             }
+        }
+
+        private async void SendMoney_Tapped(object sender, EventArgs e)
+        {
+                await SendImage.FadeTo(0.3, 200);
+                await SendImage.FadeTo(1, 200);
+        }
+
+        private async void ReceiveMoney_Tapped(object sender, EventArgs e)
+        {
+            await ReceiveImage.FadeTo(0.3, 200);
+            await ReceiveImage.FadeTo(1, 200);
         }
     }
 }

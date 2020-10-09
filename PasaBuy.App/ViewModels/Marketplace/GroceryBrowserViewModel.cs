@@ -19,7 +19,21 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public static ObservableCollection<Groceries> grocerystorelist;
 
-       
+        private static GroceryBrowserViewModel instance;
+        public static GroceryBrowserViewModel Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new GroceryBrowserViewModel();
+                }
+                return instance;
+            }
+
+        }
+
+
         public ObservableCollection<Groceries> Grocerystorelist
         {
             get 
@@ -42,7 +56,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public static void LoadGrocery(string lastid)
         {
-          
             try
             {
                 TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "2", "", "1", lastid, (bool success, string data) =>
