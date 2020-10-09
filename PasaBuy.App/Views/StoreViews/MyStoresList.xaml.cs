@@ -35,6 +35,8 @@ namespace PasaBuy.App.Views.StoreViews
             //PSACache.Instance.UserInfo.roid = uinfo.data.roid;
             PSACache.Instance.UserInfo.store_logo = item.Logo;
             PSACache.Instance.UserInfo.store_banner = item.Banner;
+
+            //PSACache.Instance.SaveUserData();
             App.Current.MainPage = new NavigationView();
         }
     }
