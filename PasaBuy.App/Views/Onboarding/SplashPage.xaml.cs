@@ -3,7 +3,10 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using PasaBuy.App.Views.ErrorAndEmpty;
 using PasaBuy.App.Local;
-using PasaBuy.App.Library;
+using USocketNet;
+using USocketNet.Model;
+using System;
+using Microsoft.AppCenter.Crashes;
 
 namespace PasaBuy.App.Views.Onboarding
 {
@@ -33,8 +36,20 @@ namespace PasaBuy.App.Views.Onboarding
                 {
                     App.Current.MainPage = new MainTabs();
 
-                    PSAUsocketNet usn = new PSAUsocketNet();
-                    usn.Connect();
+                    try
+                    {
+                        USNMessage.Instance.Initialize(
+                            new USNOptions(false, "usn.pasabuy.app", 10),
+                            new USNCreds(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky)
+                        );
+                        USNMessage.Instance.Connect();
+                    }
+
+                    catch(Exception e)
+                    {
+                        Crashes.TrackError(e);
+                    }
+                    
 
                     return; //Cancel all after this line.
                 }

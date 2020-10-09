@@ -1,15 +1,13 @@
 using Xamarin.Forms;
 using PasaBuy.App.Local;
-using PasaBuy.App.Views.Onboarding;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
-using PasaBuy.App.Views.Marketplace;
-using PasaBuy.App.Views.eCommerce;
-using PasaBuy.App.Views.Driver;
 using PasaBuy.App.Views;
-using System.Collections.Generic;
-using PasaBuy.App.Views.StoreViews;
+using System;
+using USocketNet;
+using USocketNet.Model;
+using PasaBuy.App.Views.Onboarding;
 
 namespace PasaBuy.App
 {
@@ -20,6 +18,7 @@ namespace PasaBuy.App
             InitializeComponent();
 
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(PSAConfig.sfApiKey);
+
             //Initialized all PCL required by PasaBuy.App
             DataVice.DVHost.Instance.Initialized(PSAConfig.CurrentRestUrl);
             SocioPress.SPHost.Instance.Initialized(PSAConfig.CurrentRestUrl);
@@ -28,6 +27,20 @@ namespace PasaBuy.App
             MobilePOS.MPHost.Instance.Initialized(PSAConfig.CurrentRestUrl);
             CoinPress.CPHost.Instance.Initialized(PSAConfig.CurrentRestUrl);
             PSACache.Instance.Initialize();
+
+            try
+            {
+                USNMessage.Instance.Initialize(
+                    new USNOptions(false, "usn.pasabuy.app", 10),
+                    new USNCreds(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky)
+                );
+                USNMessage.Instance.Connect();               
+            }
+
+            catch (Exception e)
+            {
+                Crashes.TrackError(e);
+            }
 
             //commit
             MainPage = new NavigationPage(new SplashPage());
