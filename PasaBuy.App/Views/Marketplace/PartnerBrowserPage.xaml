@@ -17,7 +17,11 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
-        <Grid>
+
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"   
+                     x:Name="rv"
+                     Command="{Binding RefreshCommand}">
+            <Grid>
             <ScrollView>
                 <Grid RowSpacing="0" ColumnSpacing="0">
                     <Grid.RowDefinitions>
@@ -150,5 +154,6 @@
                     VerticalOptions="Fill" />
         </Grid>
 
+        </RefreshView>
     </ContentView.Content>
 </ContentView>

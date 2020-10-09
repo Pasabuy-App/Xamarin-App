@@ -26,13 +26,17 @@ namespace PasaBuy.App.Views.Marketplace
 
         private async void Partner_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
-            Loading.IsRunning = true;
-            Loading.IsVisible = true;
-            var item = e.ItemData as Categories;
-            StoreBrowserViewModel.LoadStore(item.Id, "");
-            await App.Current.MainPage.Navigation.PushModalAsync(new PartnerListPage());
-            Loading.IsRunning = false;
-            Loading.IsVisible = false;
+            if (!Loading.IsRunning && !Loading.IsVisible)
+            {
+                Loading.IsRunning = true;
+                Loading.IsVisible = true;
+                var item = e.ItemData as Categories;
+                PartnerBrowserViewModel.LoadStore(item.Id, "");
+                PartnerListPage.pageTitle = item.Title;
+                await App.Current.MainPage.Navigation.PushModalAsync(new PartnerListPage());
+                Loading.IsRunning = false;
+                Loading.IsVisible = false;
+            }
 
         }
     }

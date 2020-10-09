@@ -14,6 +14,7 @@ using PasaBuy.App.ViewModels.MobilePOS;
 using PasaBuy.App.Http;
 using PasaBuy.App.ViewModels.Chat;
 using PasaBuy.App.Views.Chat;
+using PasaBuy.App.Views.StoreViews;
 
 namespace PasaBuy.App.ViewModels.Menu
 {
@@ -97,6 +98,7 @@ namespace PasaBuy.App.ViewModels.Menu
 
             isDriver = true;
             isStore = true;
+            IsBusy = false;
             //isDriver = UserEnabledFeature.Instance.isMover;
             //isStore = UserEnabledFeature.Instance.isStore;
 
@@ -114,6 +116,7 @@ namespace PasaBuy.App.ViewModels.Menu
             this.DriverCommand = new Command(this.DriverButtonClicked);
             this.StoreCommand = new Command(this.StoreButtonClicked);
             this.SettingCommand = new Command(this.SettingButtonClicked);
+
         }
 
         #endregion
@@ -358,10 +361,12 @@ namespace PasaBuy.App.ViewModels.Menu
             if (!Status)
             {
                 Status = true;
+                //IsBusy = true;
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ArticleList()));
                     Status = false;
+                    //IsBusy = false;
                 });
             }
         }
@@ -392,13 +397,17 @@ namespace PasaBuy.App.ViewModels.Menu
         {
             if (!Status)
             {
+                //IsBusy = true;
                 Status = true;
-                Device.BeginInvokeOnMainThread( () =>
+                //IsBusy = true;
+                Device.BeginInvokeOnMainThread( async () =>
                 {
                     MasterView.MyType = "store";
                     //DashboardOrdersViewModel.LoadOrder("pending", "");
-                    App.Current.MainPage = new NavigationView();
+                    //App.Current.MainPage = new NavigationView();
+                    await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyStoresList()));
                     Status = false;
+                    //IsBusy = false;
                 });
             }
         }

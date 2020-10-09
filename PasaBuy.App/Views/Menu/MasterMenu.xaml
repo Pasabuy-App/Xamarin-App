@@ -7,7 +7,7 @@
              x:Class="PasaBuy.App.Views.Menu.MasterMenu"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:helper="clr-namespace:PasaBuy.App.Helpers"
-             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Menu"
+             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Menu" xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
 
@@ -24,7 +24,7 @@
     </ContentView.BindingContext>
 
     <ContentView.Content>
-        
+        <Grid>
             <ScrollView>
                 <StackLayout Spacing="0">
 
@@ -360,7 +360,16 @@
                     </Grid>
 
                 </StackLayout>
+
             </ScrollView>
+            <loading:LoadingIndicator
+                    Grid.Row="0"
+                    x:Name="Loading"
+                    IsRunning="{Binding IsBusy}"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Fill" />
+        </Grid>
+            
         
     </ContentView.Content>
 </ContentView>

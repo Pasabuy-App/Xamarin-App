@@ -78,17 +78,17 @@
                                                               HeightRequest="25"
                                                               Grid.Column="1">
 
-                                                    <buttons:SfButton
-                                                                          BorderWidth="0" 
-                                                                          WidthRequest="210" 
-                                                                          HeightRequest="40"
-                                                                          BackgroundColor="Transparent"
-                                                                          FontSize="15"
-                                                                          CornerRadius="4" Clicked="SfButton_Clicked" ClassId="{Binding Post_author}"
-                                                                          HorizontalOptions="End">
+                                                    <buttons:SfButton BorderWidth="0" 
+                                                                      WidthRequest="210" 
+                                                                      HeightRequest="40"
+                                                                      BackgroundColor="Transparent"
+                                                                      FontSize="15"
+                                                                      CornerRadius="4" Clicked="SfButton_Clicked" ClassId="{Binding Post_author}"
+                                                                      HorizontalOptions="End">
 
-                                                        <Label Text="{Binding Author}" Style="{StaticResource PostAuthor}"/>
-
+                                                        <Label Text="{Binding Author}" 
+                                                               Style="{StaticResource PostAuthor}"
+                                                               x:Name="LabelAuthor"/>
                                                     </buttons:SfButton>
 
                                                 </Grid>
@@ -96,20 +96,26 @@
                                                 <Grid Grid.Row="1" 
                                                               HeightRequest="20"
                                                               Grid.Column="1">
-                                                    <Label Text="{Binding Date}" Style="{StaticResource PostDate}"/>
+                                                    <Label Text="{Binding Date}" 
+                                                           Style="{StaticResource PostDate}"
+                                                           x:Name="LabelPostDate"/>
                                                 </Grid>
 
                                                 <Grid Grid.Row="0" 
                                                               HeightRequest="20"
                                                               Grid.Column="2" 
                                                               HorizontalOptions="End">
-                                                    <Label Text="{Binding Types}" Style="{StaticResource PostType}"/>
+                                                    <Label Text="{Binding Types}" 
+                                                           Style="{StaticResource PostType}"
+                                                           x:Name="LabelTypes"/>
                                                 </Grid>
                                                 <Grid Grid.Row="1" 
                                                               HeightRequest="20"
                                                               Grid.Column="2"
                                                               HorizontalOptions="End">
-                                                    <Label Text="{Binding Seen}" Style="{StaticResource PostSeen}"/>
+                                                    <Label Text="{Binding Seen}" 
+                                                           Style="{StaticResource PostSeen}"
+                                                           x:Name="LabelSeen"/>
                                                 </Grid>
 
                                                 <Grid Grid.Row="0" 
@@ -118,7 +124,9 @@
                                                             Grid.Column="3" 
                                                             Margin="5, 0, 0, 0"
                                                             HorizontalOptions="End">
-                                                    <Label Text=":" Style="{StaticResource HeaderLabelStyle}"/>
+                                                    <Label Text=":" 
+                                                           Style="{StaticResource HeaderLabelStyle}"
+                                                           x:Name="LabelColon"/>
                                                 </Grid>
 
                                             </Grid>
@@ -128,11 +136,11 @@
                                                       Padding="30, 5, 30, 25"
                                                       Grid.ColumnSpan="2">
                                             <StackLayout>
-                                                <Label Text="{Binding Title}" Style="{StaticResource PostTitle}" TextType="Html"/>
-                                                <Label Text="{Binding Description}" Style="{StaticResource PostDescription}" IsVisible="{Binding isContent}"/>
-                                                <Label Margin="0,-2,0,0" Text="{Binding Vehicle}" Style="{StaticResource PostDescription}" TextType="Html" IsVisible="{Binding isContent2}"/>
-                                                <Label Margin="0,-5,0,0" Text="{Binding PickUp}" Style="{StaticResource PostDescription}" TextType="Html" IsVisible="{Binding isContent2}"/>
-                                                <Label Margin="0,-5,0,0" Text="{Binding DO_Price}" Style="{StaticResource PostDescription}" TextType="Html" IsVisible="{Binding isContent2}"/>
+                                                <Label Text="{Binding Title}" Style="{StaticResource PostTitle}" TextType="Html" x:Name="LabelTitle"/>
+                                                <Label Text="{Binding Description}" Style="{StaticResource PostDescription}" IsVisible="{Binding isContent}" x:Name="LabelDescription"/>
+                                                <Label Margin="0,-2,0,0" Text="{Binding Vehicle}" Style="{StaticResource PostDescription}" TextType="Html" IsVisible="{Binding isContent2}" x:Name="LabelVehicle"/>
+                                                <Label Margin="0,-5,0,0" Text="{Binding PickUp}" Style="{StaticResource PostDescription}" TextType="Html" IsVisible="{Binding isContent2}" x:Name="LabelPickup"/>
+                                                <Label Margin="0,-5,0,0" Text="{Binding DO_Price}" Style="{StaticResource PostDescription}" TextType="Html" IsVisible="{Binding isContent2}" x:Name="LabelPrice"/>
                                             </StackLayout>
                                         </Grid>
 
