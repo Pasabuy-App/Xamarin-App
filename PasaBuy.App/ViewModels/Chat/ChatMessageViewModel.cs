@@ -14,6 +14,8 @@ using System.Linq;
 using System.Collections.Generic;
 using Syncfusion.ListView.XForms;
 using PasaBuy.App.Behaviors.Chat;
+using USocketNet;
+using SocioPress;
 
 namespace PasaBuy.App.ViewModels.Chat
 {
@@ -71,14 +73,24 @@ namespace PasaBuy.App.ViewModels.Chat
             this.ProfileCommand = new Command(this.ProfileClicked);
             LoadMoreItemsCommand = new Command<object>(LoadMoreItems, CanLoadMoreItems);
 
+            USNMessage.Instance.OnMessage = OnMessage;
         }
+
+        private void OnMessage(USocketNet.Model.Message msg)
+        {
+            if(msg.s == user_id)
+            {
+                ChatList.Add(new ChatListItem("0", "", DateTime.Now.AddMinutes(0), msg.m, true));
+            }
+        }
+
         public async void FirstLoad()
         {
             ChatMessageListViewBehavior.isFirstLoad = false;
             await Task.Delay(100);
             LoadMessage(user_id, "", "");
 
-            Device.StartTimer(TimeSpan.FromSeconds(1), doitt);
+            /*Device.StartTimer(TimeSpan.FromSeconds(1), doitt);
             bool doitt()
             {
                 if (refresh == 0)
@@ -88,14 +100,14 @@ namespace PasaBuy.App.ViewModels.Chat
                         RecentChatViewModel.chatItems.Clear();
                         RecentChatViewModel.LoadMesssage("");
                     }
-                    PopupMessage();
+                    PopupMessagePopupMessage();
                     return true;
                 }
                 else
                 {
                     return false;
                 }
-            }
+            }*/
             
         }
 
@@ -372,11 +384,12 @@ namespace PasaBuy.App.ViewModels.Chat
                     if (count == 0)
                     {
                         count = 1;
-                        await Task.Delay(100);
                         SocioPress.Message.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, this.NewMessage, user_id, types, storeid, (bool success, string data) =>
                         {
                             if (success)
                             {
+                                USNMessage.Instance.SendMessage(user_id, this.NewMessage, null);
+                                ChatList.Add(new ChatListItem("0", "", DateTime.Now.AddMinutes(0), this.NewMessage, false));
                                 this.NewMessage = null;
                             }
                             else
@@ -393,7 +406,8 @@ namespace PasaBuy.App.ViewModels.Chat
                 }
             }
         }
-        public void PopupMessage()
+
+       /* public void PopupMessage()
         {
             if (ChatList.Count != 0)
             {
@@ -403,7 +417,7 @@ namespace PasaBuy.App.ViewModels.Chat
             {
                 LoadMessage(user_id, "", "");
             }
-        }
+        }*/
 
         /// <summary>
         /// Invoked when the back button is clicked.
