@@ -9,7 +9,7 @@
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-             xmlns:template="clr-namespace:PasaBuy.App.Views.Templates"
+             xmlns:template="clr-namespace:PasaBuy.App.Views.Templates" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="PasaBuy.App.Views.Currency.WalletSaving"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
@@ -37,17 +37,13 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
       
-                <Grid Grid.Row="1" 
-                      HeightRequest="130"
-                      Padding="15,20,15,20"
+                <Grid Grid.Row="0" 
+                      Padding="15,10,15,20"
                       Margin="0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -55,16 +51,9 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0"
-                           Grid.Row="0"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"
-                           Text="Savings Wallet ID"
-                           Style="{StaticResource LabelStyle}"
-                           LineHeight="{OnPlatform Android=1.5, Default=-1}" />
                     <!-- Name -->
                     <Label Grid.Column="0"
-                           Grid.Row="1"
+                           Grid.Row="0"
                            HorizontalOptions="Center"
                            VerticalOptions="Center"
                            Text="Current Balance"
@@ -72,7 +61,7 @@
                            LineHeight="{OnPlatform Android=1.5, Default=-1}" />
                     <!-- Amount -->
                     <Label Grid.Column="2"
-                           Grid.Row="1"
+                           Grid.Row="0"
                            HorizontalOptions="End"
                            VerticalOptions="Center"
                            TextColor="{Binding IsCredited, Converter={x:StaticResource BooleanToColorConverter}, ConverterParameter=5}"
@@ -86,31 +75,67 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-
-                    <Label Grid.Column="2"
-                           Grid.Row="0"
-                           HorizontalOptions="End"
-                           VerticalOptions="Center"
-                           Text="{Binding WalletID}"
-                           TextColor="{Binding IsCredited, Converter={x:StaticResource BooleanToColorConverter}, ConverterParameter=5}"
-                           Style="{StaticResource LabelStyle}"
-                           FontSize="20"
-                           LineHeight="{OnPlatform Android=1.5, Default=-1}">
-                    </Label>
-
-                    <!-- Sending - Open Modal with Search for user, then select that user to Open another PopAsync with Amount and Currency -->
-                    <buttons:SfButton Grid.Column="2"  
-                                      Grid.Row="2"
-                                      BackgroundColor="Gray"
-                                      Padding="10"
-                                      CornerRadius="20"
-                                      x:Name="SfButton" 
-                                      Command="{Binding SendMoney}"
-                                      Text="SEND"/>
                 </Grid>
 
-                <Grid Grid.Row="2">
+                <Grid Grid.Row="1"
+                      HorizontalOptions="FillAndExpand"
+                      Padding="0,15,0,15"
+                      BackgroundColor="Wheat">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0"
+                                 Grid.Row="0">
+    
+                        <Image Source="Avatar.png" 
+                                       HeightRequest="100"
+                                       x:Name="SendImage"
+                                       WidthRequest="100">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="SendMoney_Tapped" NumberOfTapsRequired="1" />
+                            </Image.GestureRecognizers>
+                        </Image>
+    
+                    </StackLayout>
+                    <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           FontSize="18"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"
+                           Text="Send Money"
+                           TextColor="{DynamicResource Gray-900}" />
+                    <StackLayout Grid.Column="1"
+                                 Grid.Row="0">
+                        <Image Source="Avatar.png" 
+                                       x:Name="ReceiveImage"
+                                       HeightRequest="100"
+                                       WidthRequest="100">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ReceiveMoney_Tapped" NumberOfTapsRequired="1" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+                    <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+                           Grid.Row="1"
+                           Grid.Column="1"
+                           FontSize="18"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"
+                           Text="Receive Money"
+                           TextColor="{DynamicResource Gray-900}" />
+                </Grid>
+                    
 
+                
+                <!--Transactions-->
+                <Grid Grid.Row="2"
+                      Padding="0,15,0,10">
                     <Label Margin="16,0,16,0"
                            Text="TRANSACTIONS"
                            TextColor="{DynamicResource Gray-800}"

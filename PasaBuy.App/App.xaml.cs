@@ -42,7 +42,7 @@ namespace PasaBuy.App
             }
 
             //commit
-            MainPage = new NavigationPage(new MainTabs());
+            MainPage = new NavigationPage(new SplashPage());
         }
 
         protected override void OnStart()

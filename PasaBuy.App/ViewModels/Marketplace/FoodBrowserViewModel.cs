@@ -21,6 +21,19 @@ namespace PasaBuy.App.ViewModels.Marketplace
         public static ObservableCollection<FoodStore> foodstorelist;
 
         public static ObservableCollection<FoodStore> _bestSellers;
+        private static FoodBrowserViewModel instance;
+        public static FoodBrowserViewModel Instance
+        {
+            get
+            {
+                if(instance == null)
+                {
+                    instance = new FoodBrowserViewModel();
+                }
+                return instance;
+            }
+            
+        }
 
         public ICommand SelectStoreCommand
         {
@@ -106,6 +119,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
             _bestSellers = new ObservableCollection<FoodStore>();
             _bestSellers.Clear();
             LoadBestSeller();
+         
         }
         public static void LoadBestSeller()
         {
@@ -156,13 +170,10 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public Command<object> ItemTappedCommand
         {
-
             get
             {
                 return this.itemTappedCommand ?? (this.itemTappedCommand = new Command<object>(this.NavigateToNextPage));
-
             }
-
         }
 
         private void NavigateToNextPage(object selectedItem)

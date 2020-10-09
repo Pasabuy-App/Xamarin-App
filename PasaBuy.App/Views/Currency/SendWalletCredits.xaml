@@ -1,11 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:converter="clr-namespace:PasaBuy.App.Converters" 
-             xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
-             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
-             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
-             x:Class="PasaBuy.App.Views.Currency.SendWalletSavings"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:controls="clr-namespace:PasaBuy.App.Controls" xmlns:converter="clr-namespace:PasaBuy.App.Converters"
+             x:Class="PasaBuy.App.Views.Currency.SendWalletCredits"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="{DynamicResource Gray-White}">
     <ContentPage.Resources>
@@ -118,12 +114,10 @@
                             Margin="0, 30, 0, 20"
                             CornerRadius="10"
                             TextColor="White"
-                            Clicked="ShowModal"
                             BackgroundColor="{DynamicResource PrimaryColor}"
                             Style="{StaticResource SfButtonStyle}"
                             Text="Send" />
             </Grid>
         </StackLayout>
     </ContentPage.Content>
-    
 </ContentPage>

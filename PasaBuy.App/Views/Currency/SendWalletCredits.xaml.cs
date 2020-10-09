@@ -10,22 +10,14 @@ using Xamarin.Forms.Xaml;
 namespace PasaBuy.App.Views.Currency
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class WalletPage : ContentPage
+    public partial class SendWalletCredits : ContentPage
     {
-        public WalletPage()
+        public static string currency_id;
+        public SendWalletCredits()
         {
             InitializeComponent();
-            
         }
 
-        private void TabView_TabItemTapped(object sender, Syncfusion.XForms.TabView.TabItemTappedEventArgs e)
-        {
-            //new Alert("TabViewItemTapped", e.TabItem.Title + " Item Tapped", "Ok");
-        }
-
-        /// <summary>
-        /// Invokes when back button is clicked.
-        /// </summary>
         public void BackButtonClicked(object sender, EventArgs e)
         {
             Navigation.PopModalAsync();
