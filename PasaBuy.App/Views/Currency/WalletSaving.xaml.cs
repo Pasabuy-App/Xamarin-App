@@ -1,6 +1,8 @@
 ﻿using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Models.Currency;
 using PasaBuy.App.ViewModels.Currency;
+using PasaBuy.App.Views.PopupModals;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Linq;
 using Xamarin.Forms;
@@ -17,6 +19,8 @@ namespace PasaBuy.App.Views.Currency
     public partial class WalletSaving : ContentView
     {
         public static int LastIndex = 11;
+
+        public static string currency_id;
         /// <summary>
         /// Initializes a new instance of the <see cref="WalletSaving"/> class.
         /// </summary>
@@ -46,12 +50,15 @@ namespace PasaBuy.App.Views.Currency
         {
                 await SendImage.FadeTo(0.3, 200);
                 await SendImage.FadeTo(1, 200);
+                Views.Currency.SendWalletSavings.currency_id = currency_id;
+                await App.Current.MainPage.Navigation.PushModalAsync(new SendWalletSavings());
         }
 
         private async void ReceiveMoney_Tapped(object sender, EventArgs e)
         {
             await ReceiveImage.FadeTo(0.3, 200);
             await ReceiveImage.FadeTo(1, 200);
+            await PopupNavigation.Instance.PushAsync(new PopupShowWalletSavings());
         }
     }
 }

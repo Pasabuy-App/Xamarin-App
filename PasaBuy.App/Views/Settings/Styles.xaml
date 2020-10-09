@@ -37,7 +37,7 @@
     <Color x:Key="LightGreen">#35c659</Color>
     <Color x:Key="OrangeyYellow">#fcbc0f</Color>
 
-    <x:String x:Key="Rating">&#xe70c;</x:String>
+    <x:String x:Key="Rating">&#xe70c;</x:String>s
     <x:String x:Key="ArrowRight">&#xe728;</x:String>
     <x:String x:Key="Add">&#xe730;</x:String>
     <x:String x:Key="PhotosIcon">&#xe731;</x:String>

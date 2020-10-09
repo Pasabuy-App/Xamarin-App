@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="PasaBuy.App.Views.PopupModals.PopupShowWalletSavings"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App" 
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
+    <pages:PopupPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="PopupItemHeaderStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0,0,0,0" />
+            </Style>
+
+            <Style x:Key="PopupLabelStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="End" />
+                <Setter Property="Margin" Value="10,0,0,12" />
+            </Style>
+            <Style x:Key="SeparatorStyle" TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="1" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}" />
+            </Style>
+        </ResourceDictionary>
+    </pages:PopupPage.Resources>
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            DurationIn="500"
+            EasingIn="SpringOut"
+            PositionIn="Bottom"
+            PositionOut="Center"
+            ScaleIn="1"
+            ScaleOut="0.7" />
+    </pages:PopupPage.Animation>
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <Frame
+            x:Name="FrameContainer"
+            Margin="15"
+            Padding="15,15,15,15"
+            BackgroundColor="White"
+            CornerRadius="6"
+            HorizontalOptions="Center">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="50*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0"
+                          HorizontalOptions="End" 
+                          VerticalOptions="Start">
+                    <Image Grid.Row="0"
+                              Grid.Column="0"
+                              HeightRequest="30"
+                              Source="cross_512.png"
+                              WidthRequest="30">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="CloseModal" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+                <StackLayout Grid.Row="1"
+                             Padding="70,5,70,5"
+                             IsClippedToBounds="True"
+                             Spacing="3">
+                    <Grid RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <StackLayout Grid.Row="1"
+                                 HorizontalOptions="CenterAndExpand"
+                                 VerticalOptions="CenterAndExpand">
+                            <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+                               Padding="10,0,0,0"
+                               FontSize="18"
+                               VerticalTextAlignment="Center"
+                               
+                               Text="Abc3D2"
+                               TextColor="{DynamicResource Gray-900}" />
+                        </StackLayout>
+
+                        <BoxView Grid.Row="2" 
+                             Margin="0,5,0,3"
+                             Style="{DynamicResource SeparatorStyle}" />
+                        <StackLayout Grid.Row="3"
+                                 HorizontalOptions="CenterAndExpand">
+                            <Label FontFamily="{StaticResource Montserrat-Regular}"
+                               Padding="10,0,0,0"
+                               FontSize="18"
+                               VerticalTextAlignment="Center"
+                               Text="Wallet ID"
+                               TextColor="{DynamicResource Gray-900}" />
+                        </StackLayout>
+
+                        <button:SfButton
+                            Grid.Row="4"
+                            Margin="35, 30, 35, 10"
+                            Command="{Binding SubmitCommand}"
+                            CornerRadius="5"
+                            TextColor="White"
+                            VerticalOptions="End"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            Text="Copy ID" />
+                    </Grid>
+                </StackLayout>
+            </Grid>
+            
+        </Frame>
+    </StackLayout>
+</pages:PopupPage>
