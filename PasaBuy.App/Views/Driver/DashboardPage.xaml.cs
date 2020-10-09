@@ -121,7 +121,7 @@ namespace PasaBuy.App.Views.Driver
 
                                     StartDeliveryPage.UserLatitude = customer_lat;
                                     StartDeliveryPage.userLongitude = customer_long;
-
+                                    StartDeliveryPage.status_deli = "I've recieve the package";
                                     Navigation.PushModalAsync(new StartDeliveryPage());
 
                                 }
