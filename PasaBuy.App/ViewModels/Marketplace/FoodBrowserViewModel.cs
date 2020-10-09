@@ -170,13 +170,10 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public Command<object> ItemTappedCommand
         {
-
             get
             {
                 return this.itemTappedCommand ?? (this.itemTappedCommand = new Command<object>(this.NavigateToNextPage));
-
             }
-
         }
 
         private void NavigateToNextPage(object selectedItem)
