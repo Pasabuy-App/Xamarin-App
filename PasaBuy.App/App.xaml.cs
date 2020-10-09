@@ -7,6 +7,7 @@ using PasaBuy.App.Views;
 using System;
 using USocketNet;
 using USocketNet.Model;
+using PasaBuy.App.Views.Onboarding;
 
 namespace PasaBuy.App
 {
