@@ -78,7 +78,12 @@ namespace PasaBuy.App.ViewModels.Chat
 
         private void OnMessage(USocketNet.Model.Message msg)
         {
-            if(msg.s == user_id)
+            if (msg.s == PSACache.Instance.UserInfo.wpid)
+            {
+                ChatList.Add(new ChatListItem("0", "", DateTime.Now.AddMinutes(0), msg.m, false));
+            }
+
+            if (msg.s == user_id)
             {
                 ChatList.Add(new ChatListItem("0", "", DateTime.Now.AddMinutes(0), msg.m, true));
             }

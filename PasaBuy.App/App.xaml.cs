@@ -31,8 +31,8 @@ namespace PasaBuy.App
             try
             {
                 USNMessage.Instance.Initialize(
-                    new USNOptions(false, "usn.pasabuy.app", 10),
-                    new USNCreds(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky)
+                    new USNOptions(false, "10.0.2.2", 10),
+                    new USNCreds("15", "jKZjWMaKDrqINmEbnsoSmu8uxt79pFlaUoh7SnxrHyv")
                 );
                 USNMessage.Instance.Connect();               
             }
