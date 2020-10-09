@@ -13,6 +13,7 @@ using System.Reflection;
 using Rg.Plugins.Popup.Services;
 using PasaBuy.App.Views.PopupModals;
 using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
 
 namespace PasaBuy.App.Views.Driver
 {
@@ -20,8 +21,8 @@ namespace PasaBuy.App.Views.Driver
     public partial class StartDeliveryPage : ContentPage
     {
         #region Fields
-     
 
+        public static string status_deli = "Slide to right to Update Status";
         public string deliveryStatus; 
         public static string carItem = string.Empty;
         public static string item_id = string.Empty;
@@ -69,13 +70,14 @@ namespace PasaBuy.App.Views.Driver
             map =  new Xamarin.Forms.GoogleMaps.Map();
             InitializeComponent();
             BindingContext = mapPageViewModel = new MapPageViewModel();
-            status.Text = "Slide to right to Update Status";
+            status.Text = status_deli;
 
             pinLocation();
             DisplayCurloc();
             StoreName.Text = storeName;
             StoreAddress.Text = waypointAddress;
             ClientAddress.Text = destinationAddress;
+              
             //OrderIDandOrderTime.Text = item_id;
 
             /*switch (deliveryStatus)
@@ -213,19 +215,7 @@ namespace PasaBuy.App.Views.Driver
                         map.Pins.Add(VehiclePins);
                         map.MoveToRegion(MapSpan.FromCenterAndRadius(pos, Xamarin.Forms.GoogleMaps.Distance.FromMiles(0.1)));
                         
-                        //Position ps = new Position(item.Latitude, item.Longitude);
-                        //UpdatePostions(ps);*/
-                        /* var cPin = map.Pins.FirstOrDefault();
-
-                         if (cPin != null)
-                         {
-                             cPin.Position = new Position(Convert.ToDouble(item.Latitude), Convert.ToDouble(item.Longitude));
-                             //cPin.Icon = (Device.RuntimePlatform == Device.Android) ? BitmapDescriptorFactory.FromBundle("CarPins.png") : BitmapDescriptorFactory.FromView(new Image() { Source = "CarPins.png", WidthRequest = 13, HeightRequest = 13 });
-                             map.MoveToRegion(MapSpan.FromCenterAndRadius(cPin.Position, Distance.FromMiles(0.1)));
-                             var previousPosition = map.Polylines?.FirstOrDefault()?.Positions?.FirstOrDefault();
-                             map.Polylines?.FirstOrDefault()?.Positions?.Remove(previousPosition.Value);
-                         }
- */
+                       
 
 
                     }
@@ -308,20 +298,6 @@ namespace PasaBuy.App.Views.Driver
 
             var pathcontent = await mapPageViewModel.LoadRoute(pos, UserLatitude.ToString(), userLongitude.ToString(), "driving", StoreLatittude.ToString(), StoreLongitude.ToString());
 
-
-            //var assembly = typeof(MainPage).GetTypeInfo().Assembly;
-            //var stream = assembly.GetManifestResourceStream($"XamGMaps.MapResources.TrackPath.json");
-            //string trackPathFile;
-
-            //using (var reader = new System.IO.StreamReader(stream))
-            //{
-            //    trackPathFile = reader.ReadToEnd();
-            //}
-
-            //var myJson = JsonConvert.DeserializeObject<List<Xamarin.Forms.GoogleMaps.Position>>(trackPathFile);
-
-
-
             var polyline = new Xamarin.Forms.GoogleMaps.Polyline();
             polyline.StrokeColor = Color.DarkOrange;
             polyline.StrokeWidth = 3;
@@ -347,45 +323,8 @@ namespace PasaBuy.App.Views.Driver
             };
             map.Pins.Add(pin);
 
-
-
-            /*  Device.StartTimer(TimeSpan.FromSeconds(1), () =>
-              {
-                  if (pathcontent.Count > positionIndex)
-                  {
-                      UpdatePostions(pos);
-                       //positionIndex++;
-                       return true;
-                  }
-                  else
-                  {
-                      return false;
-                  }
-              });*/
         }
-        /*
-                async void UpdatePostions(Xamarin.Forms.GoogleMaps.Position position)
-                {
-                    if (map.Pins.Count == 1 && map.Polylines != null && map.Polylines?.Count > 1)
-                        return;
-
-                    var cPin = map.Pins.FirstOrDefault();
-
-                    if (cPin != null)
-                    {
-                        cPin.Position = new Xamarin.Forms.GoogleMaps.Position(position.Latitude, position.Longitude);
-                        //cPin.Icon = (Device.RuntimePlatform == Device.Android) ? BitmapDescriptorFactory.FromBundle("CarPins.png") : BitmapDescriptorFactory.FromView(new Image() { Source = "CarPins.png", WidthRequest = 13, HeightRequest = 13 });
-                        map.MoveToRegion(MapSpan.FromCenterAndRadius(cPin.Position, Xamarin.Forms.GoogleMaps.Distance.FromMiles(0.1)));
-                        var previousPosition = map.Polylines?.FirstOrDefault()?.Positions?.FirstOrDefault();
-                        map.Polylines?.FirstOrDefault()?.Positions?.Remove(previousPosition.Value);
-                    }
-                    else
-                    {
-                        map.Polylines?.FirstOrDefault()?.Positions?.Clear();
-                    }
-                }
-
-        */
+        
 
         #region page Method
         async void Handle_SlideCompleted(object sender, System.EventArgs e)
@@ -399,6 +338,8 @@ namespace PasaBuy.App.Views.Driver
                     break;
 
                 case "Deliver Package":
+
+                    stats.Text = "I've Delivered the package";
 
                     if (Device.RuntimePlatform == Device.iOS)
                     {
@@ -415,6 +356,47 @@ namespace PasaBuy.App.Views.Driver
                         await Xamarin.Essentials.Map.OpenAsync(location2);
 
                     }
+
+                    break;
+                case "I've Delivered the package":
+                    new Alert("", item_id, "ok");
+                    HatidPress.Deliveries.Instance.Complete_Cancel(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, item_id, "completed", (bool success, string data) =>
+                    {
+                        try
+                        {
+                            if (success)
+                            {
+                                stats.Text = "For Pickup";
+
+                                Navigation.PushModalAsync(new DashboardPage());
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            }
+                        }
+                        catch (FeatureNotSupportedException fnsEx)
+                        {
+                            // Handle not supported on device exception
+                            Console.WriteLine("Handle not supported on device exception" + " " + fnsEx);
+                        }
+                        catch (FeatureNotEnabledException fneEx)
+                        {
+                            // Handle not enabled on device exception
+                            Console.WriteLine("Handle not enabled on device exception" + " " + fneEx);
+                        }
+                        catch (PermissionException pEx)
+                        {
+                            // Handle permission exception
+                            Console.WriteLine("Handle permission exception" + " " + pEx);
+                        }
+                        catch (Exception ex)
+                        {
+                            // Unable to get location
+                            Console.WriteLine("Unable to get location" + " " + ex);
+                        }
+                    });
+
 
                     break;
 
@@ -459,7 +441,8 @@ namespace PasaBuy.App.Views.Driver
                 Tag = "id -toawd",
             };  
             map.Pins.Add(pin1);
-            map.MoveToRegion(MapSpan.FromCenterAndRadius(pin1.Position, Xamarin.Forms.GoogleMaps.Distance.FromKilometers(0.01)));
+
+            map.MoveToRegion(MapSpan.FromCenterAndRadius(pin1.Position, Xamarin.Forms.GoogleMaps.Distance.FromKilometers(2)));
 
             Pin pin2 = new Pin()
             {
