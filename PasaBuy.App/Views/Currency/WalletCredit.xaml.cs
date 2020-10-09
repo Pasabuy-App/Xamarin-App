@@ -37,5 +37,17 @@ namespace PasaBuy.App.Views.Currency
                 }
             }
         }
+
+        private async void SendMoney_Tapped(object sender, EventArgs e)
+        {
+            await SendImage.FadeTo(0.3, 200);
+            await SendImage.FadeTo(1, 200);
+        }
+
+        private async void ReceiveMoney_Tapped(object sender, EventArgs e)
+        {
+            await ReceiveImage.FadeTo(0.3, 200);
+            await ReceiveImage.FadeTo(1, 200);
+        }
     }
 }
