@@ -61,7 +61,7 @@
             <StackLayout x:Name="TitleView"
                 Padding="16,8"
                 Grid.Row="0" 
-                HeightRequest="64"
+                HeightRequest="40"
                 BackgroundColor="{DynamicResource Gray-White}"
                 HorizontalOptions="FillAndExpand"
                 Orientation="Horizontal"

@@ -11,7 +11,7 @@
         <cards:SfCardView
             helper:RTLHelper.CornerRadius="10, 0, 10, 10"
             helper:RTLHelper.Margin="38, 12, 22, 0"
-            BackgroundColor="{DynamicResource PrimaryLight}"
+            BackgroundColor="Wheat"
             BorderWidth="0"
             HasShadow="False"
             HorizontalOptions="End">
