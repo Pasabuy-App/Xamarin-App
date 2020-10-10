@@ -141,6 +141,11 @@ namespace PasaBuy.App.ViewModels.Chat
         /// </summary>
         private void OnMessage(USocketNet.Model.Message msg)
         {
+            if (myPage != "profile")
+            {
+                RecentChatViewModel.chatItems.Clear();
+                RecentChatViewModel.LoadMesssage("");
+            }
             if (msg.s == PSACache.Instance.UserInfo.wpid)
             {
                 ChatList.Add(new ChatListItem("0", "", DateTime.Now.AddMinutes(0), msg.m, false));
