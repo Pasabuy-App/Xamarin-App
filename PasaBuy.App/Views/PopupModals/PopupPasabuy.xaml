@@ -261,7 +261,7 @@
                                                 TextColor="{DynamicResource Gray-900}" />
                                         </badge:SfBadgeView.Content>
                                         <badge:SfBadgeView.BadgeSettings>
-                                            <badge:BadgeSetting Offset="-100,10" BadgeType="None" BackgroundColor="{DynamicResource PrimaryColor}" BadgePosition="TopRight"/>
+                                            <badge:BadgeSetting Offset="-15,25" BadgeType="None" BackgroundColor="{DynamicResource PrimaryColor}" BadgePosition="TopRight"/>
                                         </badge:SfBadgeView.BadgeSettings>
                                     </badge:SfBadgeView>
                                 </syncfusion:AccordionItem.Header>

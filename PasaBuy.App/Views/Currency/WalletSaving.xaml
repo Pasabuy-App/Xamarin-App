@@ -45,24 +45,13 @@
                       Margin="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <!-- Name -->
-                    <Label Grid.Column="0"
+                    
+                    <!-- Amount -->
+                    <Label 
                            Grid.Row="0"
                            HorizontalOptions="Center"
-                           VerticalOptions="Center"
-                           Text="Current Balance"
-                           Style="{StaticResource LabelStyle}"
-                           LineHeight="{OnPlatform Android=1.5, Default=-1}" />
-                    <!-- Amount -->
-                    <Label Grid.Column="2"
-                           Grid.Row="0"
-                           HorizontalOptions="End"
                            VerticalOptions="Center"
                            TextColor="{Binding IsCredited, Converter={x:StaticResource BooleanToColorConverter}, ConverterParameter=5}"
                            Style="{StaticResource LabelStyle}"
@@ -75,12 +64,21 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
+
+                    <!-- Name -->
+                    <Label 
+                           Grid.Row="1"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Text="Current Balance"
+                           Style="{StaticResource LabelStyle}"
+                           LineHeight="{OnPlatform Android=1.5, Default=-1}" />
                 </Grid>
 
                 <Grid Grid.Row="1"
                       HorizontalOptions="FillAndExpand"
                       Padding="0,15,0,15"
-                      BackgroundColor="Wheat">
+                      BackgroundColor="{DynamicResource Transparent}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
@@ -89,46 +87,26 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <StackLayout Grid.Column="0"
-                                 Grid.Row="0">
-    
-                        <Image Source="Avatar.png" 
-                                       HeightRequest="100"
-                                       x:Name="SendImage"
-                                       WidthRequest="100">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="SendMoney_Tapped" NumberOfTapsRequired="1" />
-                            </Image.GestureRecognizers>
-                        </Image>
-    
-                    </StackLayout>
-                    <Label FontFamily="{StaticResource Montserrat-SemiBold}"
-                           Grid.Row="1"
-                           Grid.Column="0"
-                           FontSize="18"
-                           VerticalTextAlignment="Center"
-                           HorizontalTextAlignment="Center"
-                           Text="Send Money"
-                           TextColor="{DynamicResource Gray-900}" />
-                    <StackLayout Grid.Column="1"
-                                 Grid.Row="0">
-                        <Image Source="Avatar.png" 
-                                       x:Name="ReceiveImage"
-                                       HeightRequest="100"
-                                       WidthRequest="100">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="ReceiveMoney_Tapped" NumberOfTapsRequired="1" />
-                            </Image.GestureRecognizers>
-                        </Image>
-                    </StackLayout>
-                    <Label FontFamily="{StaticResource Montserrat-SemiBold}"
-                           Grid.Row="1"
-                           Grid.Column="1"
-                           FontSize="18"
-                           VerticalTextAlignment="Center"
-                           HorizontalTextAlignment="Center"
-                           Text="Receive Money"
-                           TextColor="{DynamicResource Gray-900}" />
+                     <buttons:SfButton
+                            Command="{Binding SubmitCommand}"
+                            CornerRadius="5"
+                            Grid.Column="0"
+                            Margin="10,0,10,0"
+                            Clicked="SendMoney_Tapped"
+                            Grid.Row="0"
+                            TextColor="White"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            Text="Send Money" />
+                    <buttons:SfButton
+                            Command="{Binding SubmitCommand}"
+                            CornerRadius="5"
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            Clicked="ReceiveMoney_Tapped"
+                            Margin="10,0,10,0"
+                            TextColor="White"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            Text="Receive Money" />
                 </Grid>
                     
 
