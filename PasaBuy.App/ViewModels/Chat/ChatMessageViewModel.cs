@@ -40,7 +40,7 @@ namespace PasaBuy.App.ViewModels.Chat
         /// </summary>
         public int count = 0;
 
-        //public static int refresh = 0;
+        public static int refresh = 0;
 
         /// <summary>
         /// Stored the store id. 
