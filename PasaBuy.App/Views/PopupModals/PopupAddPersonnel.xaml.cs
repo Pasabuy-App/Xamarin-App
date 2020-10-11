@@ -19,6 +19,7 @@ namespace PasaBuy.App.Views.PopupModals
         {
             InitializeComponent();
             this.BindingContext = new PersonnelsViewModel();
+            PersonnelsViewModel.LoadUser();
         }
 
         private void CancelModal(object sender, EventArgs e)
