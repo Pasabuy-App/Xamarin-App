@@ -78,10 +78,6 @@
                                TextSize="18"
                                DisplayMemberPath="FullName"
                                DataSource="{Binding UsersList}"
-                               MultiSelectMode="Delimiter"
-                               Delimiter=","
-                               LoadMoreText="LOAD MORE"
-                               MaximumSuggestion="5"
                                MaximumDropDownHeight="100">
                             <autocomplete:SfAutoComplete.AutoCompleteSource>
                                 <ListCollection:List x:TypeArguments="x:String">

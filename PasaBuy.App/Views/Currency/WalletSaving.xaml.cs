@@ -58,6 +58,7 @@ namespace PasaBuy.App.Views.Currency
         {
             //await ReceiveImage.FadeTo(0.3, 200);
             //await ReceiveImage.FadeTo(1, 200);
+
             await PopupNavigation.Instance.PushAsync(new PopupShowWalletSavings());
         }
     }
