@@ -8,6 +8,10 @@ namespace PasaBuy.App.Models.MobilePOS
     public class Operations
     {
         private string day = string.Empty;
+        private string opening = string.Empty;
+        private string closing = string.Empty;
+        private string full_schedule = string.Empty;
+
 
 
         public string Day
@@ -20,6 +24,43 @@ namespace PasaBuy.App.Models.MobilePOS
             {
                 day = value;
                 OnPropertyChanged("Day");
+            }
+        }
+
+        public string FullSchedule
+        {
+            get
+            {
+                return full_schedule;
+            }
+            set
+            {
+                full_schedule = value;
+                OnPropertyChanged("FullSchedule");
+            }
+        }
+        public string Opening
+        {
+            get
+            {
+                return opening;
+            }
+            set
+            {
+                opening = value;
+                OnPropertyChanged("Opening");
+            }
+        }
+        public string Closing
+        {
+            get
+            {
+                return closing;
+            }
+            set
+            {
+                closing = value;
+                OnPropertyChanged("Closing");
             }
         }
 

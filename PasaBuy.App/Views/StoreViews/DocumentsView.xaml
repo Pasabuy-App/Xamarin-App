@@ -7,7 +7,8 @@
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
              xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl" 
              xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.MobilePOS"
-             Title="Documents">
+             Title="Documents"
+             BackgroundColor="{DynamicResource Gray-White}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -16,6 +17,19 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Order="Primary"
+            Clicked="AddDocumentClicked"
+            Priority="1"
+            Text="asd">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android" Value="add_24.png" />
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
         <Grid>
@@ -153,19 +167,7 @@
                     </sync:SfListView.RightSwipeTemplate>
                 </sync:SfListView>
             </StackLayout>
-            <fab:FloatingActionButtonView
-				    ColorNormal="{StaticResource PrimaryColor}"
-				    ColorPressed="{StaticResource Orange}"
-				    ColorRipple="{StaticResource Yellow}"
-				    x:Name="AddDocumentButton"
-                    Command="{Binding AddDocumentCommand}"
-                    ImageName ="add_24.png"
-				    IsVisible="True"
-                    VerticalOptions="EndAndExpand"
-                    HorizontalOptions="EndAndExpand"
-				    AbsoluteLayout.LayoutFlags="PositionProportional"
-				    AbsoluteLayout.LayoutBounds="0.95,0.95,80,80">
-            </fab:FloatingActionButtonView>
+
         </Grid>
         
     </ContentPage.Content>

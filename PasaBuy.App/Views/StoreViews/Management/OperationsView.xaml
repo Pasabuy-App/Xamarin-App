@@ -9,6 +9,7 @@
              xmlns:converter="clr-namespace:PasaBuy.App.Converters" 
              xmlns:custom="clr-namespace:PasaBuy.App.Controls"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+             xmlns:syncListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              Title="Operations"
              BackgroundColor="{DynamicResource Gray-White}">
     <ContentPage.Resources>
@@ -108,8 +109,60 @@
             </yummy:PancakeView>
             <Grid Grid.Row="1" 
                   HorizontalOptions="CenterAndExpand"
-                  VerticalOptions="CenterAndExpand"
-                  BackgroundColor="Blue">
+                  VerticalOptions="CenterAndExpand">
+                <syncListView:SfListView x:Name="listView"
+                                         AllowSwiping="True"
+                                         FocusBorderThickness="0"
+                                         IsScrollBarVisible="False"
+                                         IsStickyHeader="True"
+                                         ItemSize="80"
+                                         ListViewCachingStrategy="RecycleTemplate"
+                                         ItemsSource="{Binding ScheduleList}"
+                                         SelectionMode="None">
+
+                    <syncListView:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0"
+                                  Padding="8,12,8,12"
+                                  BackgroundColor="{DynamicResource Gray-White}"
+                                  ColumnSpacing="0"
+                                  RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" Padding="0,10,8,10" RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+             
+                                    <Label Text="{Binding Day}"
+                                           Grid.Row="0"
+                                           Grid.Column="1"
+                                           HorizontalOptions="StartAndExpand"
+                                           VerticalOptions="CenterAndExpand"
+                                           TextColor="{DynamicResource BlackColor}">
+                                    </Label>
+                                    <Label Text="{Binding FullSchedule}"
+                                           Grid.Row="1"
+                                           Grid.Column="1"
+                                           HorizontalOptions="StartAndExpand"
+                                           VerticalOptions="CenterAndExpand"
+                                           TextColor="{DynamicResource Gray-800}">
+                                    </Label>
+               
+                                </Grid>
+                                <BoxView Grid.Row="1" Margin="0,-2,0,0" Style="{DynamicResource SeparatorStyle}" />
+                            </Grid>
+                        </DataTemplate>
+                    </syncListView:SfListView.ItemTemplate>
+                </syncListView:SfListView>
             </Grid>
             
         </Grid>

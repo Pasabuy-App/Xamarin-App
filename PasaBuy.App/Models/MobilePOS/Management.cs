@@ -46,8 +46,8 @@ namespace PasaBuy.App.Models.MobilePOS
                                       TextsTranslateManager.Translate("Adding and changing of schedules & viewing operations")),
 
 
-                 //new Management(typeof(DocumentsView), "Idcard.png", TextsTranslateManager.Translate("DocumentsTitle"),
-                 //                     TextsTranslateManager.Translate("DocumentsManagementDescriptions")),
+                 new Management(typeof(DocumentsView), "Idcard.png", TextsTranslateManager.Translate("DocumentsTitle"),
+                                      TextsTranslateManager.Translate("DocumentsManagementDescriptions")),
 
                 //new Management(typeof(VouchersView), "Idcard.png", TextsTranslateManager.Translate("VouchersTitle"),
                 //                      TextsTranslateManager.Translate("VouchersManagementDescriptions")),
