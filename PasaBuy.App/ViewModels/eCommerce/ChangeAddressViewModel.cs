@@ -117,15 +117,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     {
                         Device.BeginInvokeOnMainThread(async () =>
                         {
-                            CheckoutPageViewModel.deliveryAddress.Clear();
-                            CheckoutPageViewModel.deliveryAddress.Add(new Models.eCommerce.Customer
-                            {
-                                CustomerId = Convert.ToInt32(AddressInMapPage.address_id),
-                                CustomerName = AddressInMapPage.person,
-                                AddressType = AddressInMapPage.type,
-                                Address = AddressInMapPage.full_address,
-                                MobileNumber = AddressInMapPage.contact
-                            });
+                            CheckoutPageViewModel.InsertAddress(AddressInMapPage.address_id, AddressInMapPage.person, AddressInMapPage.type, AddressInMapPage.full_address, AddressInMapPage.contact);
                             int numModals = Application.Current.MainPage.Navigation.ModalStack.Count;
                             for (int currModal = 0; currModal < numModals - 3; currModal++)
                             {

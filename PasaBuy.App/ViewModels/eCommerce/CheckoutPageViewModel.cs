@@ -66,15 +66,26 @@ namespace PasaBuy.App.ViewModels.eCommerce
             this.PaymentOptionCommand = new Command(PaymentOptionClicked);
             this.ApplyCouponCommand = new Command(this.ApplyCouponClicked);
             this.IsBusy = true;
+            //deliveryAddress.Clear();
             PaymentMethod();
-            MyAddress();
+            //MyAddress();
+        }
+        public static void InsertAddress(string id, string person, string type, string fulladdress, string contact)
+        {
+            deliveryAddress.Clear();
+            deliveryAddress.Add(new Customer
+            {
+                CustomerId = Convert.ToInt32(id),
+                CustomerName = person,
+                AddressType = type,
+                Address = fulladdress,
+                MobileNumber = contact
+            });
         }
         public static void MyAddress()
         {
             try
             {
-                deliveryAddress = new ObservableCollection<Customer>();
-                deliveryAddress.Clear();
                 DataVice.Address.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, (bool success, string data) =>
                 {
                     if (success)
@@ -330,12 +341,17 @@ namespace PasaBuy.App.ViewModels.eCommerce
         {
             try
             {
-                if (PaymentView.method != string.Empty)
+                if (address_id == 0)
+                {
+                    new Alert("Notice to User", "Please select address.", "Try Again");
+                }
+                else if (PaymentView.method != string.Empty)
                 {
                     var btn = obj as Syncfusion.XForms.Buttons.SfButton;
                     if (btn.IsEnabled)
                     {
                         btn.IsEnabled = false;
+                        //new Alert("Success", "Payment Success! method: " + PaymentView.method + " addid: " + address_id.ToString(), "OK");
                         //Console.WriteLine("Method: " + PaymentView.method + " Address ID: " + address_id); //address id in first selection in 
                         foreach (var car in CartPageViewModel.cartDetails)
                         {

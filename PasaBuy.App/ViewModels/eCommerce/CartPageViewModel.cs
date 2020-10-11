@@ -54,6 +54,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
         {
             this.DeliveryFee = "Free";
             this.UpdatePrice();
+            CheckoutPageViewModel.deliveryAddress = new ObservableCollection<Models.eCommerce.Customer>();
         }
 
         public static void InsertCart(string storeid, string id, string name, string summary, string image, double price, double totalprice, int quantity)
@@ -340,6 +341,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     CheckoutPageViewModel.discount = this.DiscountPrice;
                     CheckoutPageViewModel.totalprice = this.TotalPrice;
                     CheckoutPageViewModel.charges = this.DeliveryFee;
+                    PaymentView.method = string.Empty;
                     await Application.Current.MainPage.Navigation.PushModalAsync(new CheckoutPage());
                     await Task.Delay(200);
                     isCartClicked = false;
