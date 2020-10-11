@@ -36,7 +36,7 @@ namespace PasaBuy.App.Views.PopupModals
             {
                 await PopupNavigation.Instance.PopAsync();
                 var text = await Clipboard.GetTextAsync();
-                await DisplayAlert("Success", string.Format("Your copied your WalletID : {0}", text), "OK");
+                await DisplayAlert("Success", string.Format("Copied to clipboard {0}.", text), "OK");
             }
         }
     }

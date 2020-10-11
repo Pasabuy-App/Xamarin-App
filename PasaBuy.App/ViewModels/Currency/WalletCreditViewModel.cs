@@ -12,6 +12,7 @@ using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using PasaBuy.App.Views.Currency;
 
 namespace PasaBuy.App.ViewModels.Currency
 {
@@ -91,7 +92,8 @@ namespace PasaBuy.App.ViewModels.Currency
             _CreditsList = new ObservableCollection<WalletCreditsModel>();
             _CreditsList.Clear();
             CreateWallet();
-            
+            _CreditsList.CollectionChanged += CollectionChanges;
+
             /*_CreditsList.Add(new WalletCreditsModel()
             {
                 ID = "1",
@@ -103,6 +105,11 @@ namespace PasaBuy.App.ViewModels.Currency
                 IsCredited = false
             });*/
         }
+        private void CollectionChanges(object sender, EventArgs e)
+        {
+            LoadBalance();
+        }
+
         public static void LoadData(string currency, string offset)
         {
             try
@@ -151,9 +158,11 @@ namespace PasaBuy.App.ViewModels.Currency
                             this.WalletID = wallet.data[i].public_key;
                             currency_id = wallet.data[i].currency_id;
                             wallet_id = wallet.data[i].public_key;
+                            SendWalletCredits.currency_id = currency_id;
                             LoadBalance();
                             await Task.Delay(500);
                             LoadData(wallet.data[i].currency_id, "");
+                            Console.WriteLine("Currency Credit: " + currency_id);
                         }
                     }
                     else
