@@ -110,6 +110,11 @@ namespace PasaBuy.App.Views.Chat
             }
         }
 
+        public void BackButtonClicked(object sender, EventArgs e)
+        {
+            Navigation.PopModalAsync();
+        }
+
         /// <summary>
         /// Invokes when search expand Animation completed.
         /// </summary>

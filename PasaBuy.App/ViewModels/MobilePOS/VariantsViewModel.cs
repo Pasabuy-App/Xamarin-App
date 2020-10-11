@@ -1,4 +1,7 @@
-﻿using PasaBuy.App.Models.Marketplace;
+﻿using PasaBuy.App.Commands;
+using PasaBuy.App.Models.Marketplace;
+using PasaBuy.App.Views.PopupModals;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,6 +12,16 @@ namespace PasaBuy.App.ViewModels.MobilePOS
     public class VariantsViewModel : BaseViewModel
     {
         public static ObservableCollection<Variants> variantsList;
+
+        private DelegateCommand _addVariantsCommand;
+
+        public DelegateCommand AddVariantsCommand =>
+          _addVariantsCommand ?? (_addVariantsCommand = new DelegateCommand(AddVariantsClicked));
+
+        private async void AddVariantsClicked(object obj)
+        {
+            await PopupNavigation.Instance.PushAsync(new PopupAddVariants());
+        }
 
         public ObservableCollection<Variants> VariantsList
         {

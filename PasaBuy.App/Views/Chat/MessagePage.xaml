@@ -11,7 +11,7 @@
     xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
     xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Chat"
     BackgroundColor="{DynamicResource Gray-White}"
-    NavigationPage.HasNavigationBar="True" >
+    NavigationPage.HasNavigationBar="False" >
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -28,6 +28,24 @@
         <viewModel:RecentChatViewModel />
     </ContentPage.BindingContext>
 
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Spacing="0" >
+                <controls:TitleView Title="Conversation" 
+                                    BackgroundColor="{DynamicResource PrimaryColor}" >
+                    <controls:TitleView.LeadingView>
+                        <buttons:SfButton
+                            x:Name="backButton"
+                            Clicked="BackButtonClicked"
+                            CornerRadius="4"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                    </controls:TitleView.LeadingView>
+                </controls:TitleView>
+                <ContentPresenter />
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
     <ContentPage.Content>
         <StackLayout Spacing="0" >
             <StackLayout
@@ -130,7 +148,7 @@
                 
             </StackLayout>
 
-            <BoxView BackgroundColor="{DynamicResource Gray-200}" HeightRequest="1" />
+            <BoxView BackgroundColor="{DynamicResource Gray-100}" HeightRequest="1" />
 
             <!--  Searchable List view  -->
             <controls:SearchableChatList

@@ -54,9 +54,7 @@ namespace PasaBuy.App.Views
                 }
                 if (e.TabItem.Title == "FOOD")
                 {
-                        FoodBrowserPage.LastIndex = 11;
-                        FoodBrowserViewModel.foodstorelist.Clear();
-                        FoodBrowserViewModel.LoadFood("");
+                    FoodBrowserViewModel.RefreshData();
                 }
                 if (e.TabItem.Title == "PARTNER")
                 {

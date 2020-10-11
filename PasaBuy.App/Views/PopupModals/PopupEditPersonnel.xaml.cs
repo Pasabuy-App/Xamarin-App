@@ -1,4 +1,4 @@
-﻿using PasaBuy.App.Views.PopupModals;
+﻿using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -9,21 +9,19 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PasaBuy.App.Views.StoreViews.Management
+namespace PasaBuy.App.Views.PopupModals
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProductVariants : ContentPage
+    public partial class PopupEditPersonnel : PopupPage
     {
-        public ProductVariants()
+        public PopupEditPersonnel()
         {
             InitializeComponent();
         }
 
-        private void backButton_Clicked(object sender, EventArgs e)
+        private void CancelModal(object sender, EventArgs e)
         {
-            Navigation.PopModalAsync();
+            PopupNavigation.Instance.PopAsync();
         }
-
- 
     }
 }

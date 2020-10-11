@@ -21,7 +21,6 @@ namespace PasaBuy.App.Views.StoreViews
         public CategoryView()
         {
             InitializeComponent();
-            AddCategoryButton.Clicked += AddCategoryClicked;
         }
 
         private async void AddCategoryClicked(object sender, EventArgs e)
@@ -29,11 +28,9 @@ namespace PasaBuy.App.Views.StoreViews
             if (count == 0)
             {
                 count = 1;
-                AddCategoryButton.IsEnabled = false;
                 await Task.Delay(200);
                 PopupAddCategory.catid = "0";
                 await PopupNavigation.Instance.PushAsync(new PopupAddCategory());
-                AddCategoryButton.IsEnabled = true;
                 count = 0;
             }
         }

@@ -28,7 +28,7 @@
                             <ViewCell.View>
                                     <Grid RowSpacing="0"  
                                                   Margin="0,0,0,10"
-                                                  BackgroundColor="{DynamicResource Gray-100}">
+                                                  BackgroundColor="{DynamicResource Gray-White}">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="Auto"/>
@@ -224,7 +224,8 @@
                                          HeaderSize="150"
                                          Padding="0"
                                          ItemSize="150"
-                                         SelectionBackgroundColor="{DynamicResource Gray-White}"
+                                         SelectionBackgroundColor="{DynamicResource Gray-300}"
+                                         BackgroundColor="{DynamicResource Gray-300}"
                                          ItemTemplate="{StaticResource postTemplate}"
                                          ItemsSourceChangeCachingStrategy="RecycleItems"
                                          ItemsSource="{Binding HomePosts}"

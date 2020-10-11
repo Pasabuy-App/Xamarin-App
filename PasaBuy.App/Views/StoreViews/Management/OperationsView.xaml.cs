@@ -1,5 +1,4 @@
-﻿using PasaBuy.App.Views.PopupModals;
-using Rg.Plugins.Popup.Services;
+﻿using PasaBuy.App.ViewModels.MobilePOS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,18 +11,13 @@ using Xamarin.Forms.Xaml;
 namespace PasaBuy.App.Views.StoreViews.Management
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProductVariants : ContentPage
+    public partial class OperationsView : ContentPage
     {
-        public ProductVariants()
+        public OperationsView()
         {
             InitializeComponent();
-        }
+            this.BindingContext = new OperationsViewModel();
 
-        private void backButton_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PopModalAsync();
         }
-
- 
     }
 }
