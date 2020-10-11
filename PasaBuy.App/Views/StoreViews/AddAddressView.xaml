@@ -7,7 +7,8 @@
              xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
               xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
              x:Class="PasaBuy.App.Views.StoreViews.AddAddressView"
-             Title="Add Addresss">
+             Title="Add Addresss"
+             BackgroundColor="{DynamicResource Gray-White}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
