@@ -199,6 +199,7 @@
     <Compile Include="Renderers\BorderlessEditorRenderer.cs" />
     <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
     <Compile Include="Renderers\BorderlessPickerRendererAndroid.cs" />
+    <Compile Include="Renderers\BorderlessTimePickerRenderer.cs" />
     <Compile Include="Renderers\CalendarDatePickerRenderer.cs" />
     <Compile Include="Renderers\CustomNumericUpDownRenderer.cs" />
     <Compile Include="Renderers\RoundedEntryRendererAndroid.cs" />
