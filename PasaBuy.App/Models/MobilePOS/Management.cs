@@ -42,8 +42,8 @@ namespace PasaBuy.App.Models.MobilePOS
                  new Management(typeof(PersonnelsView), "Idcard.png", TextsTranslateManager.Translate("PersonnelTitle"),
                                       TextsTranslateManager.Translate("PersonnelManagementDescriptions")),
 
-                 new Management(typeof(DocumentsView), "Idcard.png", TextsTranslateManager.Translate("DocumentsTitle"),
-                                      TextsTranslateManager.Translate("DocumentsManagementDescriptions")),
+                 //new Management(typeof(DocumentsView), "Idcard.png", TextsTranslateManager.Translate("DocumentsTitle"),
+                 //                     TextsTranslateManager.Translate("DocumentsManagementDescriptions")),
 
                 //new Management(typeof(VouchersView), "Idcard.png", TextsTranslateManager.Translate("VouchersTitle"),
                 //                      TextsTranslateManager.Translate("VouchersManagementDescriptions")),

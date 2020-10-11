@@ -164,9 +164,10 @@
                                                             HorizontalOptions="Fill"
                                                             VerticalOptions="Fill">
                                                     <Grid.GestureRecognizers>
-                                                        <TapGestureRecognizer x:Name="Update"/>
+                                                        <TapGestureRecognizer x:Name="Update" NumberOfTapsRequired="1" Tapped="Update_Tapped"/>
                                                     </Grid.GestureRecognizers>
-                                                    <Grid HorizontalOptions="Center" VerticalOptions="Center">
+                                                    <Grid HorizontalOptions="Center" 
+                                                          VerticalOptions="Center">
                                                         <Image
                                                                     Grid.Row="0"
                                                                     Grid.Column="0"
@@ -185,7 +186,8 @@
 
                                                         <TapGestureRecognizer  x:Name="Delete"  />
                                                     </Grid.GestureRecognizers>
-                                                    <Grid HorizontalOptions="Center" VerticalOptions="Center">
+                                                    <Grid HorizontalOptions="Center" 
+                                                          VerticalOptions="Center">
                                                         <Image
                                                                     Grid.Row="0"
                                                                     Grid.Column="0"

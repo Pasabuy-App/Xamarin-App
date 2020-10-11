@@ -31,5 +31,10 @@ namespace PasaBuy.App.Views.StoreViews.Management
             await PopupNavigation.Instance.PushAsync(new PopupAddPersonnel());
             
         }
+
+        private async void Update_Tapped(object sender, EventArgs e)
+        {
+            await PopupNavigation.Instance.PushAsync(new PopupEditPersonnel());
+        }
     }
 }
