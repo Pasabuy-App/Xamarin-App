@@ -30,7 +30,19 @@ namespace PasaBuy.App.Views.Chat
             LastIndex = 11;
             isFirstID = false;
             ids = 0;
+
+            //pullToRefresh.Refreshing += PullToRefresh_Refreshing;
         }
+
+        /*private async void PullToRefresh_Refreshing(object sender, EventArgs args)
+        {
+            pullToRefresh.IsRefreshing = true;
+            await Task.Delay(500);
+            LastIndex = 11;
+            RecentChatViewModel.chatItems.Clear();
+            RecentChatViewModel.LoadMesssage("");
+            pullToRefresh.IsRefreshing = false;
+        }*/
 
         /// <summary>
         /// Invoked when view size is changed.

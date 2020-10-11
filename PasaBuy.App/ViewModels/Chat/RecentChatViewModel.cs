@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Windows.Input;
 using Newtonsoft.Json;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
@@ -41,6 +42,15 @@ namespace PasaBuy.App.ViewModels.Chat
             this.ShowSettingsCommand = new Command(this.SettingsClicked);
             this.MenuCommand = new Command(this.MenuClicked);
             this.ProfileImageCommand = new Command(this.ProfileImageClicked);
+
+            RefreshCommand = new Command<string>((key) =>
+            {
+                chatItems.Clear();
+                LoadMesssage("");
+                IsRefreshing = false;
+            });
+            chatItems = new ObservableCollection<ChatDetail>();
+            chatItems.Clear();
         }
 
         public static void LoadMesssage(string offset)
@@ -48,7 +58,7 @@ namespace PasaBuy.App.ViewModels.Chat
             try
             {
                 string user_mess = PSACache.Instance.UserInfo.user_type != "User" && ( PSACache.Instance.UserInfo.stid == "0" || string.IsNullOrEmpty(PSACache.Instance.UserInfo.stid)) ? "3" : "4";
-                SocioPress.Message.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, user_mess, PSACache.Instance.UserInfo.stid, offset, (bool success, string data) =>
+                SocioPress.Message.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "0", "", offset, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -127,6 +137,24 @@ namespace PasaBuy.App.ViewModels.Chat
 
         #region Public Properties
 
+        bool _isRefreshing = false;
+        public bool IsRefreshing
+        {
+            get
+            {
+                return _isRefreshing;
+            }
+            set
+            {
+                if (_isRefreshing != value)
+                {
+                    _isRefreshing = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+
+        public ICommand RefreshCommand { protected set; get; }
         /// <summary>
         /// Gets or sets the ChatItems ObservableCollection.
         /// </summary>
