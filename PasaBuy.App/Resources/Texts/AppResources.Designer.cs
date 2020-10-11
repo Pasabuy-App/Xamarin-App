@@ -1520,6 +1520,24 @@ namespace PasaBuy.App.Resources.Texts {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View list, edit, create new or delete store personnel.
+        /// </summary>
+        internal static string PersonnelManagementDescriptions {
+            get {
+                return ResourceManager.GetString("PersonnelManagementDescriptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Store Personnel.
+        /// </summary>
+        internal static string PersonnelTitle {
+            get {
+                return ResourceManager.GetString("PersonnelTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mobile: {0}.
         /// </summary>
         internal static string Phone {

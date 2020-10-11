@@ -62,6 +62,19 @@
             <converters:ImageConverter x:Key="ByteArrayToImage" />
         </ResourceDictionary>
     </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Order="Primary"
+            Clicked="AddTapped"
+            Priority="1"
+            Text="asd">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android" Value="add_24.png" />
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Grid>
             <Grid>
@@ -70,6 +83,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
+
                     <Grid
                         Grid.Row="0"
                         Padding="15,0,15,25"
@@ -169,7 +183,9 @@
                                     </pulltoRefresh:SfPullToRefresh.ProgressStrokeWidth>
                                     <pulltoRefresh:SfPullToRefresh.PullableContent>
                                         <syncListView:SfListView
-                                            x:Name="listView" ItemAppearing="listView_ItemAppearing"
+                                            x:Name="listView" 
+                                            ItemAppearing="listView_ItemAppearing"
+                                            ListViewCachingStrategy="RecycleTemplate"
                                             AllowSwiping="True"
                                             FocusBorderThickness="0"
                                             IsScrollBarVisible="False"
@@ -325,7 +341,7 @@
                 </Grid>
           
 
-                <fab:FloatingActionButtonView
+                <!--<fab:FloatingActionButtonView
 				    ColorNormal="{StaticResource PrimaryColor}"
 				    ColorPressed="{StaticResource Orange}"
 				    ColorRipple="{StaticResource Yellow}"
@@ -338,7 +354,7 @@
                     HorizontalOptions="EndAndExpand"
 				    AbsoluteLayout.LayoutFlags="PositionProportional"
 				    AbsoluteLayout.LayoutBounds="0.95,0.95,80,80">
-                </fab:FloatingActionButtonView>
+                </fab:FloatingActionButtonView>-->
 
             </Grid>
             <local:LoadingIndicator

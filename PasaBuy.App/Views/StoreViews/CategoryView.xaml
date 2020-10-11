@@ -6,7 +6,8 @@
              xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl" 
              xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.MobilePOS"
              x:Class="PasaBuy.App.Views.StoreViews.CategoryView"
-             Title="Product Category">
+             xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App"
+             Title="{texts:Translate CategoriesTitle}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="CategoryNameStyle" TargetType="{x:Type Label}">
@@ -24,9 +25,21 @@
     <ContentPage.BindingContext>
         <viewModel:CategoryViewModel />
     </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Order="Primary"
+            Clicked="AddCategoryClicked"
+            Priority="1"
+            Text="asd">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android" Value="add_24.png" />
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Grid>
-            <Grid>
                 <Grid RowSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -113,6 +126,7 @@
                                 AllowSwiping="True"
                                 AutoFitMode="Height"
                                 IsStickyHeader="True"
+                                ListViewCachingStrategy="RecycleTemplate"
                                 ItemsSource="{Binding CategoriesList}"
                                 SelectedItem="{Binding SelectedCategory, Mode=OneWay}"
                                 SelectionBackgroundColor="Khaki"
@@ -230,20 +244,7 @@
                         </Grid>
                     </yummy:PancakeView>
                 </Grid>
-                <fab:FloatingActionButtonView
-				    ColorNormal="{StaticResource PrimaryColor}"
-				    ColorPressed="{StaticResource Orange}"
-				    ColorRipple="{StaticResource Yellow}"
-				    x:Name="AddCategoryButton"
-                    Command="{Binding AddCategoryCommand}"
-                    ImageName ="add_24.png"
-				    IsVisible="True"
-                    VerticalOptions="EndAndExpand"
-                    HorizontalOptions="EndAndExpand"
-				    AbsoluteLayout.LayoutFlags="PositionProportional"
-				    AbsoluteLayout.LayoutBounds="0.95,0.95,80,80">
-                </fab:FloatingActionButtonView>
-            </Grid>
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>
