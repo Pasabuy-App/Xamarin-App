@@ -48,7 +48,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
         }
         public GroceryBrowserViewModel()
         {
-
             grocerystorelist = new ObservableCollection<Groceries>();
             grocerystorelist.Clear();
             //LoadGrocery("");
@@ -70,10 +69,11 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 Id = datas.data[i].ID,
                                 Title = datas.data[i].title,
                                 Description = datas.data[i].short_info,
-                                Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(datas.data[i].avatar),
+                                Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(datas.data[i].avatar), // "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png"
                                 Offer = "50% off",
                                 ItemRating = "4.5",
-                                Banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png" : PSAProc.GetUrl(datas.data[i].banner)
+                                Banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(datas.data[i].banner), //https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png
+                                Street = datas.data[i].street + " " +  datas.data[i].brgy + " " + datas.data[i].city + " " + datas.data[i].province + ", " + datas.data[i].country //"#4 Rainbow Ave Pacita 2 San Pedro City, Laguna"
                             });
                         }
                     }

@@ -182,12 +182,12 @@
                                        Grid.Row="1"
                                        Grid.Column="1"
                                        Grid.ColumnSpan="1"
-                                       MaxLines="2"
+                                       MaxLines="3"
                                        HeightRequest="50"
                                        LineBreakMode="TailTruncation"
                                        VerticalTextAlignment="Center"
                                        HorizontalTextAlignment="Start"
-                                       Text="#4 Rainbow Ave, Pacita 2, San Pedro City, Laguna"
+                                       Text="{Binding Street}"
                                        TextColor="{DynamicResource Gray-900}" />
 
 
@@ -205,7 +205,7 @@
                                             <ffimageloading:CachedImage Aspect="Fill"
                                                             Grid.Column="0"
                                                             Grid.RowSpan="3"
-                                                            Source="https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg"
+                                                            Source="{Binding Banner}"
 			                                                DownsampleToViewSize="True" 
                                                             FadeAnimationEnabled="True">
                                             </ffimageloading:CachedImage>
