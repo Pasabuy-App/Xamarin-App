@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.MobilePOS
 {
@@ -14,6 +16,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
     public class PersonnelsViewModel : BaseViewModel
     {
         public static ObservableCollection<Personnels> _personnelsList;
+        public static ObservableCollection<Personnels> _usersList;
 
         public ObservableCollection<Personnels> PersonnelsList
         {
@@ -27,15 +30,101 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 this.NotifyPropertyChanged(); 
             }
         }
+        public ObservableCollection<Personnels> UsersList
+        {
+            get
+            {
+                return _usersList;
+            }
+            set
+            {
+                _usersList = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
         public PersonnelsViewModel()
         {
             _personnelsList = new ObservableCollection<Personnels>();
+            _usersList = new ObservableCollection<Personnels>();
             _personnelsList.Clear();
+            _usersList.Clear();
             LoadData();
         }
-
-        public void LoadData()
+        public static void LoadUser()
+        {
+            _usersList.Add(new Personnels
+            {
+                User_id = "1",
+                FullName = "Albania"
+            });
+            _usersList.Add(new Personnels
+            {
+                User_id = "2",
+                FullName = "Algeria"
+            });
+            _usersList.Add(new Personnels
+            {
+                User_id = "3",
+                FullName = "American Samoa"
+            });
+            _usersList.Add(new Personnels
+            {
+                User_id = "4",
+                FullName = "Andorra"
+            });
+            _usersList.Add(new Personnels
+            {
+                User_id = "5",
+                FullName = "Aruba"
+            });
+            _usersList.Add(new Personnels
+            {
+                User_id = "6",
+                FullName = "Angola"
+            });
+            _usersList.Add(new Personnels
+            {
+                User_id = "7",
+                FullName = "Argentina"
+            });
+            _usersList.Add(new Personnels
+            {
+                User_id = "8",
+                FullName = "Armenia"
+            });
+            _usersList.Add(new Personnels
+            {
+                User_id = "9",
+                FullName = "America"
+            });
+            _usersList.Add(new Personnels
+            {
+                User_id = "10",
+                FullName = "Lorz Becislao"
+            });
+            _usersList.Add(new Personnels
+            {
+                User_id = "11",
+                FullName = "Caezar De Castro"
+            });
+            _usersList.Add(new Personnels
+            {
+                User_id = "12",
+                FullName = "Miguel Radaza"
+            });
+            _usersList.Add(new Personnels
+            {
+                User_id = "13",
+                FullName = "Russel Ponferrada"
+            });
+            _usersList.Add(new Personnels
+            {
+                User_id = "14",
+                FullName = "Lando Ernesto"
+            });
+        }
+        public static void LoadData()
         {
             try
             {
@@ -54,6 +143,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                 _personnelsList.Add(new Personnels
                                 {
                                     Id = personnel.data[i].ID,
+                                    User_id = personnel.data[i].wpid,
                                     Avatar = PSAProc.GetUrl(personnel.data[i].avatar),
                                     FullName = personnel.data[i].dname,
                                     Position = "",

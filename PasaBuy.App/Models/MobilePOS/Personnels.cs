@@ -11,6 +11,7 @@ namespace PasaBuy.App.Models.MobilePOS
         public class PersonnelsData
         {
             public string ID = string.Empty;
+            public string wpid = string.Empty;
             public string avatar = string.Empty;
             public string dname = string.Empty;
             public string position = string.Empty;
@@ -24,7 +25,20 @@ namespace PasaBuy.App.Models.MobilePOS
         private string avatar = string.Empty;
         private string position = string.Empty;
         private string date_created = string.Empty;
+        private string user_id = string.Empty;
 
+        public string User_id
+        {
+            get
+            {
+                return user_id;
+            }
+            set
+            {
+                user_id = value;
+                OnPropertyChanged("User_id");
+            }
+        }
         public string DateCreated
         {
             get

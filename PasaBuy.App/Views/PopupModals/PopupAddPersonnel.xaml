@@ -76,20 +76,15 @@
                                NoResultsFoundText="No user found"
                                Watermark="Search user"
                                TextSize="18"
+                               DisplayMemberPath="FullName"
+                               DataSource="{Binding UsersList}"
+                               MultiSelectMode="Delimiter"
+                               Delimiter=","
+                               LoadMoreText="LOAD MORE"
+                               MaximumSuggestion="5"
                                MaximumDropDownHeight="100">
                             <autocomplete:SfAutoComplete.AutoCompleteSource>
                                 <ListCollection:List x:TypeArguments="x:String">
-                                    <x:String>Lorz Becislao</x:String>
-                                    <x:String>Caezar De Castor</x:String>
-                                    <x:String>Miguel Radaza</x:String>
-                                    <x:String>Russel Ponferrada</x:String>
-                                    <x:String>John Smith</x:String>
-                                    <x:String>Juan Dela Cruz</x:String>
-                                    <x:String>JC Delos Santos</x:String>
-                                    <x:String>Magdalena Gloc</x:String>
-                                    <x:String>Lando Ernesto</x:String>
-                                    <x:String>Carding Edmundo</x:String>
-                                    <x:String>Angela Trese</x:String>
                                 </ListCollection:List>
                             </autocomplete:SfAutoComplete.AutoCompleteSource>
                         </autocomplete:SfAutoComplete>
