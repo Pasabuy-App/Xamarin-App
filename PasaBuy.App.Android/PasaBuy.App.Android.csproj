@@ -125,6 +125,9 @@
     <PackageReference Include="Syncfusion.Xamarin.Expander">
       <Version>18.1.0.57</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfAutoComplete">
+      <Version>18.1.0.57</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfBadgeView">
       <Version>18.1.0.57</Version>
     </PackageReference>
@@ -144,6 +147,9 @@
       <Version>18.1.0.57</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown">
+      <Version>18.1.0.57</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfPicker">
       <Version>18.1.0.57</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout">

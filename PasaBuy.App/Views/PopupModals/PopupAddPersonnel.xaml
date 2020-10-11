@@ -6,7 +6,10 @@
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
     xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-    xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App">
+    xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App" 
+    xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
+    xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms" xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Pickers;assembly=Syncfusion.SfPicker.XForms" xmlns:control="clr-namespace:PasaBuy.App.Controls">
+    
     <pages:PopupPage.Resources>
         <ResourceDictionary>
             <Style x:Key="PopupItemHeaderStyle" TargetType="{x:Type Label}">
@@ -65,67 +68,40 @@
                           Grid.ColumnSpan="2"
                           HeightRequest="{OnPlatform Android='46',
                                                    iOS='56'}">
-  
-                            <SearchBar
-                                FontFamily="{StaticResource Montserrat-Regular}"
-                                FontSize="14"
-                                HorizontalOptions="FillAndExpand"
-                                Placeholder="Search"
-                                VerticalOptions="CenterAndExpand">
-                                <SearchBar.PlaceholderColor>
-                                    <OnPlatform x:TypeArguments="Color" Android="DarkGray" />
-                                </SearchBar.PlaceholderColor>
-                                <SearchBar.BackgroundColor>
-                                    <OnPlatform
-                                        x:TypeArguments="Color"
-                                        Android="{StaticResource WhiteColor}"
-                                        iOS="Transparent" />
-                                </SearchBar.BackgroundColor>
-                                <SearchBar.TextColor>
-                                    <OnPlatform
-                                        x:TypeArguments="Color"
-                                        Android="{StaticResource BlackColor}"
-                                        iOS="{StaticResource BlackColor}" />
-                                </SearchBar.TextColor>
-                                <SearchBar.CancelButtonColor>
-                                    <OnPlatform
-                                        x:TypeArguments="Color"
-                                        Android="{StaticResource BlackColor}"
-                                        iOS="{StaticResource BlackColor}" />
-                                </SearchBar.CancelButtonColor>
-                            </SearchBar>
+
+                        <autocomplete:SfAutoComplete
+	                           x:Name="autoComplete"
+	                           HeightRequest="50"
+                               SuggestionMode="Contains"
+                               NoResultsFoundText="No user found"
+                               Watermark="Search user"
+                               TextSize="18"
+                               MaximumDropDownHeight="100">
+                            <autocomplete:SfAutoComplete.AutoCompleteSource>
+                                <ListCollection:List x:TypeArguments="x:String">
+                                    <x:String>Lorz Becislao</x:String>
+                                    <x:String>Caezar De Castor</x:String>
+                                    <x:String>Miguel Radaza</x:String>
+                                    <x:String>Russel Ponferrada</x:String>
+                                    <x:String>John Smith</x:String>
+                                    <x:String>Juan Dela Cruz</x:String>
+                                    <x:String>JC Delos Santos</x:String>
+                                    <x:String>Magdalena Gloc</x:String>
+                                    <x:String>Lando Ernesto</x:String>
+                                    <x:String>Carding Edmundo</x:String>
+                                    <x:String>Angela Trese</x:String>
+                                </ListCollection:List>
+                            </autocomplete:SfAutoComplete.AutoCompleteSource>
+                        </autocomplete:SfAutoComplete>
 
                     </Grid>
+
 
                     <Grid Grid.Row="1"
-                          Margin="0,20,0,15"
-                          Grid.ColumnSpan="2"
-                          HeightRequest="130"
-                          HorizontalOptions="FillAndExpand"
-                          VerticalOptions="FillAndExpand">
-                        <ListView x:Name="searchResults"
-                                  ItemsSource="{Binding PersonnelsList}">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <Grid Padding="10,0">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto" />
-                                            </Grid.RowDefinitions>
-                                            <Label Text="{Binding FullName}"
-                                                   Grid.Row="0"
-                                                   HorizontalTextAlignment="Start"
-                                                   TextColor="{DynamicResource BlackColor}" />
-                                        </Grid>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </Grid>
-
-                    <Grid Grid.Row="2"
                           Grid.ColumnSpan="2">
-                        <Picker x:Name="PositionPicker"  HorizontalOptions="FillAndExpand">
+                        <Picker x:Name="PositionPicker" 
+                                HorizontalOptions="FillAndExpand"
+                                Title="Select position">
                             <Picker.Items>
                                 <x:String>Manager</x:String>
                                 <x:String>Store Staff</x:String>
@@ -133,6 +109,18 @@
                             </Picker.Items>
                         </Picker>
                     </Grid>
+
+                    <!--<Grid Grid.Row="2"
+                          Margin="0,8,0,8"
+                          Grid.ColumnSpan="2">
+                        <control:CalenderDatePicker Date="{Binding DateHired}" 
+                                x:Name="DateHired"
+                                FontFamily="{StaticResource Montserrat-Regular}"
+                                FontSize="18"
+                                Format="yyyy-MM-dd"
+                                TextColor="{DynamicResource BlackColor}"
+                                PlaceHolderText="Date Hired"/>  
+                    </Grid>-->
 
 
                     <button:SfButton
