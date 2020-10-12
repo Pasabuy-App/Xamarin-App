@@ -16,6 +16,10 @@
             <Color x:Key="BlackColor">#000000</Color>
             <Color x:Key="WhiteColor">#ffffff</Color>
             <Color x:Key="DarkGreen">#349e00</Color>
+            <Color x:Key="Primary-100">#e6d600</Color>
+            <Color x:Key="Primary-200">#ffee00</Color>
+            <Color x:Key="Primary-300">#fff01a</Color>
+            <Color x:Key="Primary-400">#fff133</Color>
             <Color x:Key="MainWrapperBackgroundColor">#E8EAF6</Color>
 
 

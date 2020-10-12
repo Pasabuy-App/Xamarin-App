@@ -13,7 +13,7 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
-        <Grid BackgroundColor="{DynamicResource PrimaryColor}"
+        <Grid BackgroundColor="{DynamicResource Primary-100}"
               Padding="10,0,0,10"
               RowSpacing="00">
             <Grid.RowDefinitions>
@@ -21,7 +21,8 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
+            <Grid Grid.Row="0"
+                  Padding="0,10,0,0">
                 <Label FontFamily="{StaticResource Montserrat-SemiBold}"
                        FontSize="18"
                        VerticalTextAlignment="Center"
@@ -29,7 +30,7 @@
                        TextColor="{DynamicResource WhiteColor}" />
             </Grid>
             <Grid Grid.Row="1" 
-                  Margin="0,15,0,0">
+                  Margin="0,15,10,0">
                 <Label FontFamily="{StaticResource Montserrat-SemiBold}"
                        FontSize="16"
                        VerticalTextAlignment="Center"
@@ -44,7 +45,7 @@
                                    CornerRadius="5"
                                    Grid.Column="1"
                                     TextColor="White"
-                                    BackgroundColor="{DynamicResource Green}"
+                                    BackgroundColor="{DynamicResource PrimaryColor}"
                                     Style="{StaticResource SfButtonStyle}"
                                     Text="Hide" />
             </Grid>
