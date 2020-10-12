@@ -1,24 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:controls="clr-namespace:PasaBuy.App.Controls"
-             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
-             xmlns:converter="clr-namespace:PasaBuy.App.Converters" 
-             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.MobilePOS"
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
-             xmlns:pulltoRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
-             xmlns:syncListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
-             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
-             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
              xmlns:local="clr-namespace:PasaBuy.App.UserControls"
-             xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl"
-             x:Class="PasaBuy.App.Views.StoreViews.Management.ProductVariants"
-             BackgroundColor="{DynamicResource Gray-White}"
-             NavigationPage.HasNavigationBar="False">
-    <ContentPage.BindingContext>
-        <viewModel:VariantsViewModel />
-    </ContentPage.BindingContext>
-
+             xmlns:syncListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:pulltoRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             x:Class="PasaBuy.App.Views.StoreViews.Management.OptionsView">
     <ContentPage.Resources>
         <ResourceDictionary>
 
@@ -74,7 +63,7 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
     <ContentPage.Content>
         <Grid>
             <Grid>
@@ -96,7 +85,7 @@
                         </Grid.ColumnDefinitions>
                         <buttons:SfButton
                             x:Name="backButton"
-                            Clicked="backButton_Clicked"
+                            Clicked="BackButtonClicked"
                             Grid.Column="0"
                             CornerRadius="4"
                             Style="{StaticResource IconButtonStyle}"
@@ -121,7 +110,7 @@
                         Grid.Row="1"
                         Margin="0,-10,0,0"
                         Padding="10,10"
-                        BackgroundColor="{DynamicResource Gray-White}"
+                        BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
                         CornerRadius="20,20,0,0"
                         VerticalOptions="FillAndExpand">
                         <Grid RowSpacing="10">
@@ -138,7 +127,7 @@
                                     FontFamily="{StaticResource Montserrat-Medium}"
                                     FontSize="13"
                                     HorizontalOptions="EndAndExpand"
-                                    Text="Swipe left to edit or delete variants"
+                                    Text="Swipe left to edit or delete options"
                                     TextColor="{DynamicResource Gray-800}"
                                     VerticalOptions="Center" />
                             </Grid>
@@ -173,7 +162,7 @@
                                             IsScrollBarVisible="False"
                                             IsStickyHeader="True"
                                             ItemSize="80"
-                                            ItemsSource="{Binding VariantsList}"
+                                            ItemsSource="{Binding OptionsList}"
                                             SelectionMode="None">
                                             <!--SwipeEnded="Handle_SwipeEnded"
                                             SwipeStarted="Handle_SwipeStarted"-->
@@ -182,7 +171,7 @@
                                                     <Frame x:Name="frame" HasShadow="True" Padding="2" Margin="2">
                                                         <Grid ColumnSpacing="0" RowSpacing="0">
                                                             <Grid.GestureRecognizers>
-                                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.ShowOptionsCommand, Source={x:Reference listView}}" CommandParameter="{Binding Id}}"/>
+                                                                <TapGestureRecognizer />
                                                             </Grid.GestureRecognizers>
                                                             <Grid.RowDefinitions>
                                                                 <RowDefinition Height="*" />
@@ -193,25 +182,6 @@
                                                                 <ColumnDefinition Width="*" />
                                                                 <ColumnDefinition Width="100" />
                                                             </Grid.ColumnDefinitions>
-                                                            <ffimageloading:CachedImage
-                                                            Grid.Row="0"
-                                                            Grid.Column="0"
-                                                            Margin="0"
-                                                            CacheType="Memory"
-                                                            DownsampleToViewSize="True"
-                                                            HeightRequest="50"
-                                                            HorizontalOptions="Center"
-                                                            LoadingPlaceholder="{Binding Preview}"
-                                                            Source="{Binding Preview}"
-                                                            TransformPlaceholders="True"
-                                                            WidthRequest="50">
-                                                                <ffimageloading:CachedImage.Transformations>
-                                                                    <transformations:RoundedTransformation
-                                                                    BorderHexColor="#000000"
-                                                                    BorderSize="2"
-                                                                    Radius="30" />
-                                                                </ffimageloading:CachedImage.Transformations>
-                                                            </ffimageloading:CachedImage>
 
                                                             <StackLayout
                                                             Grid.Row="0"
@@ -259,20 +229,18 @@
                                                                     Text="{Binding Price}" />
                                                                 </Grid>
                                                             </StackLayout>
-
                                                             <BoxView
                                                             Grid.Row="1"
                                                             Grid.ColumnSpan="3"
                                                             BackgroundColor="{DynamicResource Gray-400}"
                                                             HeightRequest="0.5" />
-
                                                         </Grid>
                                                     </Frame>
                                                 </DataTemplate>
                                             </syncListView:SfListView.ItemTemplate>
                                             <syncListView:SfListView.RightSwipeTemplate>
                                                 <DataTemplate x:Name="RightSwipeTemplate">
-                                                    <Grid Padding="10,15,10,15">
+                                                    <Grid>
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition Width="*" />
                                                             <ColumnDefinition Width="*" />
@@ -301,6 +269,7 @@
                                                             HorizontalOptions="Fill"
                                                             VerticalOptions="Fill">
                                                             <Grid.GestureRecognizers>
+
                                                                 <TapGestureRecognizer  x:Name="Delete"  />
                                                             </Grid.GestureRecognizers>
                                                             <Grid HorizontalOptions="Center" VerticalOptions="Center">
@@ -325,18 +294,6 @@
                 </Grid>
 
 
-                <!--<fab:FloatingActionButtonView
-				    ColorNormal="{StaticResource PrimaryColor}"
-				    ColorPressed="{StaticResource Orange}"
-				    ColorRipple="{StaticResource Yellow}"
-                    ImageName ="add_24.png"
-				    IsVisible="True"
-                    Command="{Binding AddVariantsCommand}"
-                    VerticalOptions="EndAndExpand"
-                    HorizontalOptions="EndAndExpand"
-				    AbsoluteLayout.LayoutFlags="PositionProportional"
-				    AbsoluteLayout.LayoutBounds="0.95,0.95,80,80">
-                </fab:FloatingActionButtonView>-->
 
             </Grid>
             <local:LoadingIndicator

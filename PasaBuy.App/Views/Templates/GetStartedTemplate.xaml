@@ -44,10 +44,11 @@
                                    Command="{Binding SubmitCommand}"
                                    CornerRadius="5"
                                    Grid.Column="1"
-                                    TextColor="White"
-                                    BackgroundColor="{DynamicResource PrimaryColor}"
-                                    Style="{StaticResource SfButtonStyle}"
-                                    Text="Hide" />
+                                   TextColor="{DynamicResource PrimaryColor}"
+                                   FontFamily="{StaticResource Montserrat-Medium}"
+                                   BackgroundColor="{DynamicResource WhiteColor}"
+                                   Style="{StaticResource SfButtonStyle}"
+                                   Text="Hide" />
             </Grid>
           
         </Grid>
