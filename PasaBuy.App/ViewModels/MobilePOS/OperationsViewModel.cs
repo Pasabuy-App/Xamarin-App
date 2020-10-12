@@ -1,9 +1,14 @@
 ﻿using MobilePOS;
+using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Models.MobilePOS;
+using PasaBuy.App.Views.PopupModals;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.MobilePOS
 {
@@ -13,6 +18,34 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
         public static ObservableCollection<Operations> _scheduleList;
 
+        public bool is_online;
+
+        public ICommand EditScheduleCommand
+        {
+            get
+            {
+                return new Command<string>((x) => EditSchedule(x));
+            }
+        }
+
+        private async void EditSchedule(string id)
+        {
+            new Alert("ok", id, "ok");
+            await PopupNavigation.Instance.PushAsync(new PopupEditSchedule());
+        }
+
+        public bool IsOnline
+        {
+            get
+            {
+                return is_online;
+            }
+            set
+            {
+                is_online = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
         public ObservableCollection<Operations> DaysOfTheWeek
         {
@@ -42,6 +75,8 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
         public OperationsViewModel()
         {
+            this.IsOnline = true;
+
             this.DaysOfTheWeek = new ObservableCollection<Operations>()
             {
                 new Operations
@@ -110,6 +145,20 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                     Opening = "11:00 AM",
                     Closing = "09:00 PM",
                     FullSchedule = "11:00 AM - 9:00 PM"
+                },
+                new Operations
+                {
+                    Day = "Saturday",
+                    Opening = "11:30 AM",
+                    Closing = "11:00 PM",
+                    FullSchedule = "11:30 AM - 11:00 PM"
+                },
+                new Operations
+                {
+                    Day = "Saturday",
+                    Opening = "11:30 AM",
+                    Closing = "11:00 PM",
+                    FullSchedule = "11:30 AM - 11:00 PM"
                 },
                 new Operations
                 {

@@ -1,4 +1,4 @@
-﻿using PasaBuy.App.Views.Navigation;
+﻿using PasaBuy.App.ViewModels.MobilePOS;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -13,9 +13,9 @@ using Xamarin.Forms.Xaml;
 namespace PasaBuy.App.Views.PopupModals
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PopupGoOnline : PopupPage
+    public partial class PopupEditSchedule : PopupPage
     {
-        public PopupGoOnline()
+        public PopupEditSchedule()
         {
             InitializeComponent();
         }
@@ -23,7 +23,7 @@ namespace PasaBuy.App.Views.PopupModals
         private void CancelModal(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PopAsync();
-  
         }
+        
     }
 }
