@@ -38,14 +38,19 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
         public VariantsViewModel()
         {
-            variantsList = new ObservableCollection<Variants>();
-            for (int i = 0; i < 2; i++)
+            this.VariantsList = new ObservableCollection<Variants>()
             {
-                variantsList.Add(new Variants()
+                new Variants
                 {
-                    Name = "Size",
-                });
-            }
+                   Name = "Size"
+
+                },
+                new Variants
+                {
+                   Name = "Flavor"
+                },
+
+            };
         }
     }
 }

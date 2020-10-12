@@ -3,7 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:local="clr-namespace:PasaBuy.App.UserControls"
              xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl" 
-             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:controls="clr-namespace:PasaBuy.App.Controls"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
+             xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="PasaBuy.App.Views.StoreViews.MyStoresList"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
@@ -82,18 +85,17 @@
                                                     </Grid.ColumnDefinitions>
 
                                                     <!--  Image to display the Item  -->
-                                                    <Image
-                                                        Aspect="AspectFill"
-                                                        BackgroundColor="{DynamicResource Gray-200}"
-                                                        HeightRequest="120"
-                                                        WidthRequest="120">
-                                                        <Image.Source>
-                                                            <UriImageSource
-                                                                    CacheValidity="14"
-                                                                    CachingEnabled="true"
-                                                                    Uri="{Binding Logo}" />
-                                                        </Image.Source>
-                                                    </Image>
+                                                    <ffimageloading:CachedImage
+                                                            Grid.Row="0"
+                                                            Grid.Column="0"
+                                                            CacheType="Memory"
+                                                            DownsampleToViewSize="True"
+                                                            HeightRequest="120"
+                                                            HorizontalOptions="Center"
+                                                            Source="{Binding Logo}"
+                                                            TransformPlaceholders="True"
+                                                            WidthRequest="120">
+                                                    </ffimageloading:CachedImage>
                                                     <StackLayout
                                                             Grid.Column="1"
                                                             Padding="16"

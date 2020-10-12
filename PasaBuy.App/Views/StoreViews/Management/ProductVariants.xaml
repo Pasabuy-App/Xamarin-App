@@ -92,6 +92,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
                         </Grid.ColumnDefinitions>
                         <buttons:SfButton
                             x:Name="backButton"
@@ -107,6 +108,13 @@
                                     Text="Bind Product name"
                                     TextColor="{DynamicResource Gray-White}"
                                     VerticalOptions="Center" />
+                        <Image Source="add_24.png"
+                               Grid.Column="2"
+                               HorizontalOptions="End">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding AddVariantsCommand}" NumberOfTapsRequired="1" />
+                            </Image.GestureRecognizers>
+                        </Image>
 
                     </Grid>
                     <yummy:PancakeView
@@ -314,7 +322,7 @@
                 </Grid>
 
 
-                <fab:FloatingActionButtonView
+                <!--<fab:FloatingActionButtonView
 				    ColorNormal="{StaticResource PrimaryColor}"
 				    ColorPressed="{StaticResource Orange}"
 				    ColorRipple="{StaticResource Yellow}"
@@ -325,7 +333,7 @@
                     HorizontalOptions="EndAndExpand"
 				    AbsoluteLayout.LayoutFlags="PositionProportional"
 				    AbsoluteLayout.LayoutBounds="0.95,0.95,80,80">
-                </fab:FloatingActionButtonView>
+                </fab:FloatingActionButtonView>-->
 
             </Grid>
             <local:LoadingIndicator

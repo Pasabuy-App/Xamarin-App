@@ -9,7 +9,8 @@
              xmlns:converter="clr-namespace:PasaBuy.App.Converters" 
              xmlns:custom="clr-namespace:PasaBuy.App.Controls"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
-             xmlns:syncListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:syncListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
+             xmlns:view="clr-namespace:PasaBuy.App.Views.Templates"
              Title="Operations"
              BackgroundColor="{DynamicResource Gray-White}">
     <ContentPage.Resources>
@@ -21,109 +22,30 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="35*" />
-                <RowDefinition Height="65*" />
-            </Grid.RowDefinitions>
-            <yummy:PancakeView
-                        Grid.Row="0"
-                        Padding="10,5"
-                        BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
-                        CornerRadius="5,5,5,5"
-                        VerticalOptions="FillAndExpand">
-                <Grid Padding="10,0,10,10" RowSpacing="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <border:SfBorder
-                        Grid.Row="0"
-                        Grid.ColumnSpan="2"
-                        Padding="6,0,0,0"
-                        Style="{StaticResource FormBorderStyle}">
-                        <combobox:SfComboBox HeightRequest="40" 
-                                             x:Name="comboBox" 
-                                             DropDownItemHeight="50" 
-                                             DisplayMemberPath="Day" 
-                                             ImageMemberPath="Image" 
-                                             MultiSelectMode="Token" 
-                                             DataSource="{Binding DaysOfTheWeek}">
-                            <combobox:SfComboBox.TokenSettings>
-                                <combobox:TokenSettings FontSize="16" BackgroundColor="{DynamicResource PrimaryColor}" 
-                                        TextColor="White" SelectedBackgroundColor="{DynamicResource PrimaryColor}" 
-                                        DeleteButtonColor="Color.Red" IsCloseButtonVisible="true" 
-                                        CornerRadius="5" DeleteButtonPlacement="Right">
-                                </combobox:TokenSettings>
-                            </combobox:SfComboBox.TokenSettings>
-                        </combobox:SfComboBox>
-                    </border:SfBorder>
-                    <border:SfBorder
-                        Grid.Row="1"
-                        Grid.ColumnSpan="1"
-                        Grid.Column="0"
-                        HeightRequest="40"
-                        Padding="6,0,0,0"
-                        Style="{StaticResource FormBorderStyle}">
-                        <custom:CustomTimePicker PlaceHolderText="Opening Time"/>
-                    </border:SfBorder>
-
-                    <border:SfBorder
-                        Grid.Row="1"
-                        Grid.ColumnSpan="1"
-                        Grid.Column="1"
-                        HeightRequest="40"
-                        Padding="6,0,0,0"
-                        Style="{StaticResource FormBorderStyle}">
-                        <custom:CustomTimePicker PlaceHolderText="Closing Time"/>
-                    </border:SfBorder>
-
-                    <buttons:SfButton
-                            Grid.Row="2"
-                            Grid.ColumnSpan="2"
-                            Margin="0,10,0,0"
-                            Command="{Binding SubmitCommand}"
-                            CornerRadius="5"
-                            TextColor="White"
-                            BackgroundColor="{DynamicResource PrimaryColor}"
-                            Style="{StaticResource SfButtonStyle}"
-                            Text="SUBMIT" />
-                    <StackLayout Grid.Row="3"
-                                 Margin="0,10,0,0"
-                                 Grid.ColumnSpan="2">
-                        <Label FontFamily="{StaticResource Montserrat-Regular}"
-                               FontSize="12" 
-                               HorizontalOptions="FillAndExpand"
-                               TextColor="Red"
-                               Text="Note: Schedule cannot be altered once submitted"/>
-                            
-                    </StackLayout>
-
-                </Grid>
-            </yummy:PancakeView>
-            <Grid Grid.Row="1" 
-                  HorizontalOptions="CenterAndExpand"
-                  VerticalOptions="CenterAndExpand">
+        <StackLayout>
+            <StackLayout Padding="10"
+                         Margin="0,0,0,5"
+                         VerticalOptions="CenterAndExpand"
+                         HorizontalOptions="CenterAndExpand"
+                         IsVisible="{Binding GetStarted}">
+                <view:GetStartedTemplate/>
+            </StackLayout>
+            <BoxView  Margin="0,8,0,0" Style="{DynamicResource SeparatorStyle}" />
+            <StackLayout VerticalOptions="FillAndExpand"
+                         Margin="0,10,0,0"
+                         HorizontalOptions="FillAndExpand">
                 <syncListView:SfListView x:Name="listView"
-                                         AllowSwiping="True"
                                          FocusBorderThickness="0"
                                          IsScrollBarVisible="False"
                                          IsStickyHeader="True"
-                                         ItemSize="80"
+                                         ItemSize="70"
                                          ListViewCachingStrategy="RecycleTemplate"
-                                         ItemsSource="{Binding ScheduleList}"
+                                         ItemsSource="{Binding OperationsList}"
                                          SelectionMode="None">
-
                     <syncListView:SfListView.ItemTemplate>
                         <DataTemplate>
                             <Grid Margin="0"
-                                  Padding="8,12,8,12"
+                                  Padding="8,12,8,0"
                                   BackgroundColor="{DynamicResource Gray-White}"
                                   ColumnSpacing="0"
                                   RowSpacing="0">
@@ -131,7 +53,7 @@
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <Grid Grid.Row="0" Padding="0,10,8,10" RowSpacing="0">
+                                <Grid Grid.Row="0" Padding="0,0,8,10" RowSpacing="0">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
@@ -141,30 +63,41 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-             
-                                    <Label Text="{Binding Day}"
-                                           Grid.Row="0"
-                                           Grid.Column="1"
-                                           HorizontalOptions="StartAndExpand"
-                                           VerticalOptions="CenterAndExpand"
-                                           TextColor="{DynamicResource BlackColor}">
-                                    </Label>
-                                    <Label Text="{Binding FullSchedule}"
-                                           Grid.Row="1"
-                                           Grid.Column="1"
-                                           HorizontalOptions="StartAndExpand"
-                                           VerticalOptions="CenterAndExpand"
-                                           TextColor="{DynamicResource Gray-800}">
-                                    </Label>
-               
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        FontFamily="{StaticResource Montserrat-Medium}"
+                                        HorizontalOptions="StartAndExpand"
+                                        Text="{Binding Date}"
+                                        TextColor="{DynamicResource Gray-900}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        FontFamily="{StaticResource Montserrat-Medium}"
+                                        HorizontalOptions="StartAndExpand"
+                                        Text="{Binding TotalSales}"
+                                        TextColor="{DynamicResource Gray-900}"
+                                        VerticalOptions="Center" />
+
+                                    <buttons:SfButton
+                                        Grid.Row="0"
+                                        Grid.RowSpan="2"
+                                        Grid.Column="2"
+                                        CornerRadius="4"
+                                        TextColor="Black"
+                                        Command="{Binding BindingContext.ViewOperationCommand,Source={x:Reference listView}}"
+                                        CommandParameter="{Binding Id}"
+                                        Style="{StaticResource IconButtonStyle}"
+                                        Text="{StaticResource Show}" /> 
+
                                 </Grid>
                                 <BoxView Grid.Row="1" Margin="0,-2,0,0" Style="{DynamicResource SeparatorStyle}" />
                             </Grid>
                         </DataTemplate>
                     </syncListView:SfListView.ItemTemplate>
                 </syncListView:SfListView>
-            </Grid>
-            
-        </Grid>
+            </StackLayout>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

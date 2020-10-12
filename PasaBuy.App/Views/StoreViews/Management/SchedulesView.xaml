@@ -42,16 +42,18 @@
                         <Label Text="{Binding Day}"
                                            Grid.Row="0"
                                            Grid.Column="1"
+                                           FontFamily="{StaticResource Montserrat-Medium}"
                                            HorizontalOptions="StartAndExpand"
                                            VerticalOptions="Start"
-                                           TextColor="{DynamicResource BlackColor}">
+                                           TextColor="{DynamicResource Gray-900}">
                         </Label>
                         <Label Text="{Binding FullSchedule}"
                                            Grid.Row="1"
                                            Grid.Column="1"
+                                           FontFamily="{StaticResource Montserrat-Medium}"
                                            HorizontalOptions="StartAndExpand"
                                            VerticalOptions="CenterAndExpand"
-                                           TextColor="{DynamicResource Gray-800}">
+                                           TextColor="{DynamicResource Gray-900}">
                         </Label>
                         <buttons:SfButton
                             x:Name="backButton"
@@ -61,8 +63,8 @@
                             CornerRadius="4"
                             TextColor="Black"
                             ClassId="{Binding Day}"
-                             Command="{Binding BindingContext.EditScheduleCommand,Source={x:Reference listView}}"
-                             CommandParameter="{Binding Day}"
+                            Command="{Binding BindingContext.EditScheduleCommand,Source={x:Reference listView}}"
+                            CommandParameter="{Binding Day}"
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource EditIcon}" />
                     </Grid>
@@ -81,7 +83,7 @@
             </StackLayout>
             <BoxView  Margin="0,8,0,0" Style="{DynamicResource SeparatorStyle}" />
             <StackLayout VerticalOptions="FillAndExpand"
-                         Margin="0,10,0,0"
+                         Margin="0,10,0,15"
                          HorizontalOptions="FillAndExpand">
                 <syncListView:SfListView x:Name="listView"
                                          FocusBorderThickness="0"
@@ -93,20 +95,7 @@
                                          ItemsSource="{Binding ScheduleList}"
                                          ItemTemplate="{StaticResource ScheduleTemplate}"
                                          SelectionMode="None">
-                    <syncListView:SfListView.FooterTemplate>
-                        <DataTemplate>
-                                <buttons:SfButton
-                                    Grid.Row="2"
-                                    Grid.ColumnSpan="2"
-                                    Margin="10,0,10,10"
-                                    Command="{Binding SubmitCommand}"
-                                    CornerRadius="5"
-                                    TextColor="White"
-                                    BackgroundColor="{DynamicResource PrimaryColor}"
-                                    Style="{StaticResource SfButtonStyle}"
-                                    Text="Update" />
-                        </DataTemplate>
-                    </syncListView:SfListView.FooterTemplate>
+                  
                 </syncListView:SfListView>
    
             </StackLayout>
