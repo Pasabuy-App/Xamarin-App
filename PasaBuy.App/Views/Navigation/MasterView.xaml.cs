@@ -58,7 +58,7 @@ namespace PasaBuy.App.Views.Navigation
 
             if (MyType == "store")
             {
-            menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Dashboard"), Icon = "Idcard.png", TargetType = typeof(Dashboard) });
+            menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Dashboard"), Icon = "Idcard.png", TargetType = typeof(MainView) });
                 Store_name.Text = PSACache.Instance.UserInfo.store_name;
                 Logo.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.store_logo);
                 Banner.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.store_banner);

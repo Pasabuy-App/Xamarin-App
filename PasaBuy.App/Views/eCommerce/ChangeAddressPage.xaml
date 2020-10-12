@@ -157,12 +157,12 @@
                 <StackLayout Grid.Row="1" 
                              Padding="15"
                              BackgroundColor="{DynamicResource Gray-White}">
-                    <!--buttons:SfButton Grid.Row="2"
+                    <buttons:SfButton Grid.Row="2"
                                      Margin="0,15,0,0"
                                      HorizontalOptions="FillAndExpand"
                                      Command="{Binding PinAnotherCommand}"
                                      Style="{StaticResource SfGradientButtonStyle}"
-                                     Text="Use Another Address" /-->
+                                     Text="Add Another Address" />
                 </StackLayout>
             </Grid>
         </ScrollView>

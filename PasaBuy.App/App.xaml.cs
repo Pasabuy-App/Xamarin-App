@@ -11,6 +11,7 @@ using PasaBuy.App.Views.Onboarding;
 using PasaBuy.App.Views.StoreViews.Management;
 using PasaBuy.App.Views.StoreViews;
 using PasaBuy.App.Views.Navigation;
+using PasaBuy.App.Views.eCommerce;
 
 namespace PasaBuy.App
 {
