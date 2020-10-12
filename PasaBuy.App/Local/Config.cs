@@ -36,6 +36,11 @@ namespace PasaBuy.App.Local
         public static string baseRestUrl { get; } = "pasabuy.app";
 
         /// <summary>
+        /// Realtime USN hostname
+        /// </summary>
+        public static string USocketNetHostname { get; } = "usn.pasabuy.app";
+
+        /// <summary>
         /// Get the current active Rest URL dev or prod.
         /// </summary>
         public static string CurrentRestUrl

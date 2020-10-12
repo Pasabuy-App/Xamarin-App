@@ -189,6 +189,8 @@ namespace PasaBuy.App.ViewModels.Onboarding
                                         Application.Current.MainPage = new Views.MainTabs();
                                         State = false;
                                     });
+
+                                    SplashPage.ConnectRealtimeChat();
                                 }
 
                                 else

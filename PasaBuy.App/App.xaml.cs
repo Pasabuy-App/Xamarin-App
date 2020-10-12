@@ -29,21 +29,8 @@ namespace PasaBuy.App
             HatidPress.HPHost.Instance.Initialized(PSAConfig.CurrentRestUrl);
             MobilePOS.MPHost.Instance.Initialized(PSAConfig.CurrentRestUrl);
             CoinPress.CPHost.Instance.Initialized(PSAConfig.CurrentRestUrl);
+
             PSACache.Instance.Initialize();
-
-            //try
-            //{
-            //    USNMessage.Instance.Initialize(
-            //        new USNOptions(false, "10.0.2.2", 10),
-            //        new USNCreds("15", "jKZjWMaKDrqINmEbnsoSmu8uxt79pFlaUoh7SnxrHyv")
-            //    );
-            //    USNMessage.Instance.Connect();               
-            //}
-
-            //catch (Exception e)
-            //{
-            //    Crashes.TrackError(e);
-            //}
 
             //commit
             MainPage = new NavigationPage(new SplashPage());

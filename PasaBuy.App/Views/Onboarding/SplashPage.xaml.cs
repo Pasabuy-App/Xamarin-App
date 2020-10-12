@@ -28,6 +28,26 @@ namespace PasaBuy.App.Views.Onboarding
             CheckConnectivityAndToken();
         }
 
+        public static void ConnectRealtimeChat()
+        {
+            try
+            {
+                if (PSACache.Instance.hasUserinfo)
+                {
+                    USNMessage.Instance.Initialize(
+                                    new USNOptions(false, PSAConfig.USocketNetHostname, 10),
+                                    new USNCreds(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky)
+                                );
+                    USNMessage.Instance.Connect();
+                }
+            }
+
+            catch (Exception e)
+            {
+                Crashes.TrackError(e);
+            }
+        }
+
         public static void CheckConnectivityAndToken()
         {
             if (PSADevice.HasInternet )
@@ -36,20 +56,7 @@ namespace PasaBuy.App.Views.Onboarding
                 {
                     App.Current.MainPage = new MainTabs();
 
-                    try
-                    {
-                        USNMessage.Instance.Initialize(
-                            new USNOptions(false, "usn.pasabuy.app", 10),
-                            new USNCreds(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky)
-                        );
-                        USNMessage.Instance.Connect();
-                    }
-
-                    catch(Exception e)
-                    {
-                        Crashes.TrackError(e);
-                    }
-                    
+                    ConnectRealtimeChat();
 
                     return; //Cancel all after this line.
                 }
