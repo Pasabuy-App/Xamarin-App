@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+             xmlns:converter="clr-namespace:PasaBuy.App.Converters"
+             x:Class="PasaBuy.App.Views.Templates.GetStartedTemplate">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid BackgroundColor="{DynamicResource PrimaryColor}"
+              Padding="10,0,0,10"
+              RowSpacing="00">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+                       FontSize="18"
+                       VerticalTextAlignment="Center"
+                       Text="GETTING STARTED"
+                       TextColor="{DynamicResource WhiteColor}" />
+            </Grid>
+            <Grid Grid.Row="1" 
+                  Margin="0,15,0,0">
+                <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+                       FontSize="16"
+                       VerticalTextAlignment="Center"
+                       Text="Lorem ipsum dolor sit amet, consectetur adipng elit. Donec velit odio, porta id molestie ut, pretium vel enim. Cras consequat quam vel placerat aliquam."
+                       TextColor="{DynamicResource WhiteColor}" />
+            </Grid>
+            <Grid Grid.Row="2" 
+                  Margin="0,15,0,0">
+                 <buttons:SfButton Margin="10,0,10,10"
+                                   HorizontalTextAlignment="Center"
+                                   Command="{Binding SubmitCommand}"
+                                   CornerRadius="5"
+                                   Grid.Column="1"
+                                    TextColor="White"
+                                    BackgroundColor="{DynamicResource Green}"
+                                    Style="{StaticResource SfButtonStyle}"
+                                    Text="Hide" />
+            </Grid>
+          
+        </Grid>
+  </ContentView.Content>
+</ContentView>

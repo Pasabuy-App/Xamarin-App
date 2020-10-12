@@ -1,5 +1,6 @@
 ﻿using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
+using PasaBuy.App.Models.MobilePOS;
 using PasaBuy.App.Resources.Texts;
 using PasaBuy.App.Views.Driver;
 using PasaBuy.App.Views.PopupModals;
@@ -7,6 +8,8 @@ using PasaBuy.App.Views.StoreViews;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -19,7 +22,7 @@ using Xamarin.Forms.Xaml;
 namespace PasaBuy.App.Views.Navigation
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MasterView : ContentPage
+    public partial class MasterView : INotifyPropertyChanged
     {
         public static string MyType = string.Empty;
         public List<MenuItem> menuList { get; set; }
@@ -27,6 +30,22 @@ namespace PasaBuy.App.Views.Navigation
         {
             get { return (Xamarin.Forms.Application.Current.MainPage as NavigationView).Detail; }
         }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged(string name)
+        {
+            if (this.PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(name));
+        }
+
+        public static ObservableCollection<Personnels> storeinfoList;
+
+        public ObservableCollection<Personnels> StoreinfoList
+        {
+            get { return storeinfoList; }
+            set { storeinfoList = value; OnPropertyChanged("StoreinfoList"); }
+        }
+
         public MasterView()
         {
             InitializeComponent();
@@ -47,11 +66,11 @@ namespace PasaBuy.App.Views.Navigation
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Management"), Icon = "Idcard.png", TargetType = typeof(ManagementView) });
                 //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Products"), Icon = "Idcard.png", TargetType = typeof(ProductsView) });
                 //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Categories"), Icon = "Idcard.png", TargetType = typeof(CategoryView) });
-                //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Transactions"), Icon = "Idcard.png", TargetType = typeof(TransactionsView) });
+                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Transactions"), Icon = "Idcard.png", TargetType = typeof(TransactionsView) });
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Messages"), Icon = "Idcard.png", TargetType = typeof(MessagesView) });
                 //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Vouchers"), Icon = "Idcard.png", TargetType = typeof(VouchersView) });
                 //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Documents"), Icon = "Idcard.png", TargetType = typeof(DocumentsView) });
-                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Reports"), Icon = "Idcard.png", TargetType = typeof(ReportsView) });
+                //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Reports"), Icon = "Idcard.png", TargetType = typeof(ReportsView) });
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Settings"), Icon = "Idcard.png", TargetType = typeof(SettingsView) });
             }
             if (MyType == "mover")
@@ -72,7 +91,30 @@ namespace PasaBuy.App.Views.Navigation
             navigationDrawerList.ItemsSource = menuList;
             navigationDrawerList.SelectedItem = menuList.FirstOrDefault();
 
+            storeinfoList = new ObservableCollection<Personnels>();
+            storeinfoList.CollectionChanged += CollectionChanges;
 
+        }
+        private async void CollectionChanges(object sender, EventArgs e)
+        {
+            await Task.Delay(100);
+            if (MyType == "mover")
+            {
+                Logo.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatar);
+                Banner.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.banner);
+            }
+            if (MyType == "store")
+            {
+                Logo.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.store_logo);
+                Banner.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.store_banner);
+            }
+        }
+        public static void Insertimage(string url)
+        {
+            storeinfoList.Add(new Personnels()
+            {
+                Avatar = url
+            });
         }
 
         void Handle_SelectionChanged(object sender, Syncfusion.ListView.XForms.ItemSelectionChangedEventArgs e)

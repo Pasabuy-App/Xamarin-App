@@ -7,12 +7,50 @@ namespace PasaBuy.App.Models.MobilePOS
 {
     public class Personnels
     {
+        public PersonnelsData[] data;
+        public class PersonnelsData
+        {
+            public string ID = string.Empty;
+            public string wpid = string.Empty;
+            public string avatar = string.Empty;
+            public string dname = string.Empty;
+            public string position = string.Empty;
+            public string date_created = string.Empty;
+        }
+
         private string id = string.Empty;
         private string firstname = string.Empty;
         private string lastname = string.Empty;
         private string fullname = string.Empty;
         private string avatar = string.Empty;
         private string position = string.Empty;
+        private string date_created = string.Empty;
+        private string user_id = string.Empty;
+
+        public string User_id
+        {
+            get
+            {
+                return user_id;
+            }
+            set
+            {
+                user_id = value;
+                OnPropertyChanged("User_id");
+            }
+        }
+        public string DateCreated
+        {
+            get
+            {
+                return date_created;
+            }
+            set
+            {
+                date_created = value;
+                OnPropertyChanged("DateCreated");
+            }
+        }
 
         public string Id
         {

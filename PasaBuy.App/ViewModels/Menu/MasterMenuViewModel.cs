@@ -15,6 +15,9 @@ using PasaBuy.App.Http;
 using PasaBuy.App.ViewModels.Chat;
 using PasaBuy.App.Views.Chat;
 using PasaBuy.App.Views.StoreViews;
+using PasaBuy.App.Models.MobilePOS;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace PasaBuy.App.ViewModels.Menu
 {
@@ -84,6 +87,14 @@ namespace PasaBuy.App.ViewModels.Menu
             }
         }
 
+        public static ObservableCollection<Personnels> userinfoList;
+
+        public ObservableCollection<Personnels> UserinfoList
+        {
+            get { return userinfoList; }
+            set { userinfoList = value; this.NotifyPropertyChanged(); }
+        }
+
         #endregion
 
         #region Constructor
@@ -103,8 +114,8 @@ namespace PasaBuy.App.ViewModels.Menu
             //isStore = UserEnabledFeature.Instance.isStore;
 
             this.profileName = PSACache.Instance.UserInfo.dname;
-            this.profileImage = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
-            this.userBanner = PSAProc.GetUrl(PSACache.Instance.UserInfo.bannerUrl);
+            this.UserPhoto = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
+            this.UserBanner = PSAProc.GetUrl(PSACache.Instance.UserInfo.bannerUrl);
             this.email = PSACache.Instance.UserInfo.email;
 
             this.ProfileCommand = new Command(this.ProfileButtonClicked);
@@ -117,6 +128,23 @@ namespace PasaBuy.App.ViewModels.Menu
             this.StoreCommand = new Command(this.StoreButtonClicked);
             this.SettingCommand = new Command(this.SettingButtonClicked);
 
+            userinfoList = new ObservableCollection<Personnels>();
+            userinfoList.CollectionChanged += CollectionChanges;
+        }
+
+        public static void Insertimage(string url)
+        {
+            userinfoList.Add(new Personnels()
+            {
+                Avatar = url
+            });
+        }
+
+        private async void CollectionChanges(object sender, EventArgs e)
+        {
+            await Task.Delay(100);
+            this.UserPhoto = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
+            this.UserBanner = PSAProc.GetUrl(PSACache.Instance.UserInfo.bannerUrl);
         }
 
         #endregion

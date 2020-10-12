@@ -1053,4 +1053,10 @@ to success</value>
   <data name="VouchersTitle" xml:space="preserve">
     <value>Vouchers</value>
   </data>
+  <data name="PersonnelManagementDescriptions" xml:space="preserve">
+    <value>View list, edit, create new or delete store personnel</value>
+  </data>
+  <data name="PersonnelTitle" xml:space="preserve">
+    <value>Store Personnel</value>
+  </data>
 </root>

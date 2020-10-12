@@ -97,6 +97,7 @@ namespace PasaBuy.App.Views.StoreViews
                         {
                             PSACache.Instance.UserInfo.store_logo = datas.data;
                         }
+                        Views.Navigation.MasterView.Insertimage(datas.data);
                         PSACache.Instance.SaveUserData();
                     }
                     else

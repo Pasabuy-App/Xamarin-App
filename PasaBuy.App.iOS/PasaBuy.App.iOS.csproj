@@ -73,6 +73,7 @@
     <Compile Include="Renderers\BorderlessDatePickerRenderer.cs" />
     <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
     <Compile Include="Renderers\BorderlessPickerRendererIos.cs" />
+    <Compile Include="Renderers\BorderlessTimePickerRenderer.cs" />
     <Compile Include="Renderers\CalendarDatePickerRenderer.cs" />
     <Compile Include="Renderers\CustomNumericUpDownRenderer.cs" />
     <Compile Include="Renderers\FrameShadowRenderer.cs" />
@@ -196,6 +197,9 @@
     <PackageReference Include="Syncfusion.Xamarin.Expander">
       <Version>18.1.0.57</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfAutoComplete">
+      <Version>18.1.0.57</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfBadgeView">
       <Version>18.1.0.57</Version>
     </PackageReference>
@@ -215,6 +219,9 @@
       <Version>18.1.0.57</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown">
+      <Version>18.1.0.57</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfPicker">
       <Version>18.1.0.57</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout">

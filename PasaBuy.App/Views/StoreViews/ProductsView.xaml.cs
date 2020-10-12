@@ -25,15 +25,21 @@ namespace PasaBuy.App.Views.StoreViews
         public ProductsView()
         {
             InitializeComponent();
-            AddProductButton.Clicked += AddProductClicked;
             pullToRefresh.Refreshing += PullToRefresh_Refreshing;
         }
 
-        private async void AddProductClicked(object sender, EventArgs e)
+        private void backButton_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PopAsync();
+        }
+
+        private async void AddTapped(object sender, EventArgs e)
         {
             //await Task.Delay(200);
             AddProductView.pdid = "0";
+            //await AddIcon.FadeTo(0.3, 200);
             await Navigation.PushAsync(new AddProductView());
+            //await AddIcon.FadeTo(1, 200);
             //var testPage = new NavigationPage(new AddProductView());
             //Navigation.PushAsync(testPage);
             /*if (AddProductButton.IsEnabled == true)

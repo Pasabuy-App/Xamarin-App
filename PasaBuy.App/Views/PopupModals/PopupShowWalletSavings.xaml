@@ -90,8 +90,7 @@
                                Padding="10,0,0,0"
                                FontSize="18"
                                VerticalTextAlignment="Center"
-                               
-                               Text="Abc3D2"
+                               x:Name="WalletID"
                                TextColor="{DynamicResource Gray-900}" />
                         </StackLayout>
 
@@ -111,7 +110,7 @@
                         <button:SfButton
                             Grid.Row="4"
                             Margin="35, 30, 35, 10"
-                            Command="{Binding SubmitCommand}"
+                            Clicked="SfButton_Clicked"
                             CornerRadius="5"
                             TextColor="White"
                             VerticalOptions="End"

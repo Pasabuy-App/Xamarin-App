@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -17,6 +17,7 @@ namespace PasaBuy.App.Views.PopupModals
         public PopupShowWalletCredit()
         {
             InitializeComponent();
+            WalletID.Text = ViewModels.Currency.WalletCreditViewModel.wallet_id;
         }
 
         private void CancelModal(object sender, EventArgs e)
@@ -27,6 +28,17 @@ namespace PasaBuy.App.Views.PopupModals
         private void CloseModal(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PopAsync();
+        }
+
+        private async void SfButton_Clicked(object sender, EventArgs e)
+        {
+            await Clipboard.SetTextAsync(WalletID.Text);
+            if (Clipboard.HasText)
+            {
+                await PopupNavigation.Instance.PopAsync();
+                var text = await Clipboard.GetTextAsync();
+                await DisplayAlert("Success", string.Format("Copied to clipboard {0}.", text), "OK");
+            }
         }
     }
 }

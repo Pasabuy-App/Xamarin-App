@@ -90,6 +90,7 @@
                             Margin="20"
                             CornerRadius="5"
                             TextColor="White"
+                            Clicked="CancelModal"
                             BackgroundColor="{DynamicResource PrimaryColor}"
                             Style="{StaticResource SfButtonStyle}"
                             Text="Cancel" />

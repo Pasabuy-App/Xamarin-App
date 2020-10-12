@@ -23,11 +23,13 @@ namespace PasaBuy.App.Views.PopupModals
         public static string walletid;
         public static string amount;
         public static string notes;
+        public static string type;
+
         public PopupSendWalletSavings()
         {
             InitializeComponent();
             Verify(walletid, amount);
-            this.BindingContext = new WalletSavingViewModel();
+            //this.BindingContext = new WalletSavingViewModel();
         }
 
         public void Verify(string walletid, string amount)
@@ -62,5 +64,40 @@ namespace PasaBuy.App.Views.PopupModals
             PopupNavigation.Instance.PopAsync();
         }
 
+        private void SfButton_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                //Console.WriteLine("wallet id: " + walletid + " amount: " + amount + " currency: " + currency_id);
+                CoinPress.Wallet.Instance.Send(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, walletid, amount, currency_id, notes, (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        if (type == "savings")
+                        {
+                            WalletSavingViewModel._SavingsList.Clear();
+                            WalletSavingViewModel.LoadData(WalletSavingViewModel.currency_id, "");
+                            Currency.WalletSaving.LastIndex = 11;
+                        }
+                        if (type == "credits")
+                        {
+                            WalletCreditViewModel._CreditsList.Clear();
+                            WalletCreditViewModel.LoadData(WalletCreditViewModel.currency_id, "");
+                            Currency.WalletCredit.LastIndex = 11;
+                        }
+                        new Alert("Send Money", "Send money successfully.", "OK");
+                        PopupNavigation.Instance.PopAsync();
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
+            }
+        }
     }
 }

@@ -113,7 +113,12 @@ namespace PasaBuy.App.ViewModels.Currency
                 IsCredited = false
             });*/
             CreateWallet();
+            _SavingsList.CollectionChanged += CollectionChanges;
             //LoadData("");
+        }
+        private void CollectionChanges(object sender, EventArgs e)
+        {
+            LoadBalance();
         }
         public static void LoadData(string currency, string offset)
         {
@@ -165,9 +170,11 @@ namespace PasaBuy.App.ViewModels.Currency
                             this.WalletID = wallet.data[i].public_key;
                             currency_id = wallet.data[i].currency_id;
                             wallet_id = wallet.data[i].public_key;
+                            SendWalletSavings.currency_id = currency_id;
                             LoadBalance();
                             await Task.Delay(500);
                             LoadData(wallet.data[i].currency_id, "");
+                            Console.WriteLine("Currency Savings: " + currency_id);
                         }
                     }
                     else
@@ -793,15 +800,16 @@ namespace PasaBuy.App.ViewModels.Currency
         private async void SendMoneyClicked(object obj)
         {
             //PopupNavigation.Instance.PushAsync(new PopupSendWalletSavings());
-            Views.Currency.SendWalletSavings.currency_id = currency_id;
+            //PopupSendWalletSavings.currency_id = currency_id;
             await App.Current.MainPage.Navigation.PushModalAsync(new SendWalletSavings());
         }
 
         private void ConfirmSendClicked(object obj)
         {
-            try
+           /* try
             {
-                CoinPress.Wallet.Instance.Send(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PopupSendWalletSavings.walletid, PopupSendWalletSavings.amount, PopupSendWalletSavings.currency_id, PopupSendWalletSavings.notes, (bool success, string data) =>
+                //Console.WriteLine("wallet id: " + PopupSendWalletSavings.walletid + " amount: " + PopupSendWalletSavings.amount + " currency: " + PopupSendWalletSavings.currency_id);
+                CoinPress.Wallet.Instance.Send(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PopupSendWalletSavings.walletid, PopupSendWalletSavings.amount, currency_id, PopupSendWalletSavings.notes, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -810,10 +818,12 @@ namespace PasaBuy.App.ViewModels.Currency
                         //this.Amount = "0";// amount.ToString();
                         //new Alert("Send Money", "Send money successfully.", "OK"); // back to wallet page
                         //LoadBalance();
-                        //LoadData(currency_id, "");
+                        _SavingsList.Clear();
+                        LoadData(currency_id, "");
                         WalletSaving.LastIndex = 11;
                         new Alert("Send Money", "Send money successfully.", "OK");
                         PopupNavigation.Instance.PopAsync();
+                        Console.WriteLine("Count:" + _SavingsList.Count);
                     }
                     else
                     {
@@ -824,7 +834,7 @@ namespace PasaBuy.App.ViewModels.Currency
             catch (Exception e)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
-            }
+            }*/
         }
         #endregion
     }

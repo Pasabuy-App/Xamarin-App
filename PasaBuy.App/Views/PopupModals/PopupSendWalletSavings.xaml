@@ -112,7 +112,7 @@
                             BorderWidth="2"
                             CornerRadius="4"
                             Margin="0,0,0,10"
-                            Command="{Binding ConfirmSendCommand}"
+                            Clicked="SfButton_Clicked"
                             FontFamily="{StaticResource Montserrat-Regular}"
                             HorizontalOptions="FillAndExpand"
                             Text="OK"

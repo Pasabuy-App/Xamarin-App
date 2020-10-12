@@ -70,6 +70,7 @@
     <PackageReference Include="Syncfusion.Xamarin.Cards" Version="18.1.0.57" />
     <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.1.0.57" />
     <PackageReference Include="Syncfusion.Xamarin.Expander" Version="18.1.0.57" />
+    <PackageReference Include="Syncfusion.Xamarin.SfAutoComplete" Version="18.1.0.57" />
     <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="18.1.0.57" />
     <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="18.1.0.57" />
     <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="18.1.0.57" />
@@ -78,6 +79,7 @@
     <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="18.1.0.57" />
     <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="18.1.0.57" />
     <PackageReference Include="Syncfusion.Xamarin.SfParallaxView" Version="18.1.0.57" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="18.1.0.57" />
     <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="18.1.0.57" />
     <PackageReference Include="Syncfusion.Xamarin.SfProgressBar" Version="18.1.0.57" />
     <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh" Version="18.1.0.57" />
@@ -450,6 +452,18 @@
     <EmbeddedResource Update="Views\PopupModals\PopupAddDocument.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\PopupModals\PopupAddPersonnel.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PopupModals\PopupAddVariants.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PopupModals\PopupEditPersonnel.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PopupModals\PopupEditSchedule.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\PopupModals\PopupGoOnline.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -651,10 +665,16 @@
     <EmbeddedResource Update="Views\StoreViews\ManagementView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\StoreViews\Management\OperationsView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\StoreViews\Management\PersonnelsView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\StoreViews\Management\ProductVariants.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\StoreViews\Management\SchedulesView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\StoreViews\Management\Styles.xaml">
@@ -745,6 +765,9 @@
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\FoodListTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\GetStartedTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\OrderHistoryTemplate.xaml">

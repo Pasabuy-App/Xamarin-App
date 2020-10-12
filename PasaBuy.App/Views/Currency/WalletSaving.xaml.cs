@@ -48,16 +48,17 @@ namespace PasaBuy.App.Views.Currency
 
         private async void SendMoney_Tapped(object sender, EventArgs e)
         {
-                await SendImage.FadeTo(0.3, 200);
-                await SendImage.FadeTo(1, 200);
-                Views.Currency.SendWalletSavings.currency_id = currency_id;
+                //await SendImage.FadeTo(0.3, 200);
+                //await SendImage.FadeTo(1, 200);
+                //Views.Currency.SendWalletSavings.currency_id = currency_id;
                 await App.Current.MainPage.Navigation.PushModalAsync(new SendWalletSavings());
         }
 
         private async void ReceiveMoney_Tapped(object sender, EventArgs e)
         {
-            await ReceiveImage.FadeTo(0.3, 200);
-            await ReceiveImage.FadeTo(1, 200);
+            //await ReceiveImage.FadeTo(0.3, 200);
+            //await ReceiveImage.FadeTo(1, 200);
+
             await PopupNavigation.Instance.PushAsync(new PopupShowWalletSavings());
         }
     }
