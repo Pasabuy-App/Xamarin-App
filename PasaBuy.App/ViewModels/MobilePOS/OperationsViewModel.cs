@@ -20,8 +20,21 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
         public static ObservableCollection<Operations> _operationsList;
 
-
         public bool is_online;
+
+        public ICommand ViewOperationCommand
+        {
+            get
+            {
+                return new Command<string>((x) => ViewOperation(x));
+            }
+        }
+
+        private async void ViewOperation(string id)
+        {
+            new Alert("ok", id, "ok");
+            await PopupNavigation.Instance.PushAsync(new PopupViewOperations());
+        }
 
         public ICommand EditScheduleCommand
         {
@@ -190,24 +203,28 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             {
                 new Operations
                 {
+                    Id = "1",
                     Date = "Date: Oct. 5, 2020",
                     TotalSales = "Total Sales: 23,000.50"
 
                 },
                 new Operations
                 {
+                    Id = "23",
                     Date = "Date: Oct. 5, 2020",
                     TotalSales = "Total Sales: 23,000.50"
 
                 },
                 new Operations
                 {
+                    Id = "49",
                     Date = "Date: Oct. 5, 2020",
                     TotalSales = "Total Sales: 23,000.50"
 
                 },
                 new Operations
                 {
+                    Id = "83",
                     Date = "Date: Oct. 5, 2020",
                     TotalSales = "Total Sales: 23,000.50"
 

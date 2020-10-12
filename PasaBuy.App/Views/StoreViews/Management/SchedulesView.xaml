@@ -42,16 +42,18 @@
                         <Label Text="{Binding Day}"
                                            Grid.Row="0"
                                            Grid.Column="1"
+                                           FontFamily="{StaticResource Montserrat-Medium}"
                                            HorizontalOptions="StartAndExpand"
                                            VerticalOptions="Start"
-                                           TextColor="{DynamicResource BlackColor}">
+                                           TextColor="{DynamicResource Gray-900}">
                         </Label>
                         <Label Text="{Binding FullSchedule}"
                                            Grid.Row="1"
                                            Grid.Column="1"
+                                           FontFamily="{StaticResource Montserrat-Medium}"
                                            HorizontalOptions="StartAndExpand"
                                            VerticalOptions="CenterAndExpand"
-                                           TextColor="{DynamicResource Gray-800}">
+                                           TextColor="{DynamicResource Gray-900}">
                         </Label>
                         <buttons:SfButton
                             x:Name="backButton"
