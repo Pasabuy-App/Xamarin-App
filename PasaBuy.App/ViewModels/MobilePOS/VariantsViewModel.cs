@@ -1,5 +1,7 @@
-﻿using PasaBuy.App.Commands;
+﻿using Newtonsoft.Json;
+using PasaBuy.App.Commands;
 using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
 using PasaBuy.App.Models.Marketplace;
 using PasaBuy.App.Views.PopupModals;
 using PasaBuy.App.Views.StoreViews.Management;
@@ -34,6 +36,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
         private async void ShowOptions(string id)
         {
+            new Alert("Variants to Options", id, "OK");
             await Application.Current.MainPage.Navigation.PushModalAsync(new OptionsView());
         }
 
@@ -70,45 +73,72 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
         public VariantsViewModel()
         {
-            this.VariantsList = new ObservableCollection<Variants>()
+            _variantsList = new ObservableCollection<Variants>();
+            _optionsList = new ObservableCollection<Options>();
+
+            LoadOptions();
+        }
+        public static void LoadVariants(string product_id)
+        {
+            try
             {
-                new Variants
+                TindaPress.Variant.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, product_id, "", "1", "", "", (bool success, string data) =>
                 {
-                   Name = "Size",
-                   Id = "23"
+                    if (success)
+                    {
+                        Variants variants = JsonConvert.DeserializeObject<Variants>(data);
+                        if (variants.data.Length > 0)
+                        {
+                            for (int i = 0; i < variants.data.Length; i++)
+                            {
+                                _variantsList.Add(new Variants()
+                                {
+                                    Id = variants.data[i].ID,
+                                    Name = variants.data[i].name
+                                });
+                            }
+                        }
+                    } 
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
 
-                },
-                new Variants
-                {
-                   Name = "Flavor",
-                   Id = "42"
-
-                },
-
-            };
-
-            this.OptionsList = new ObservableCollection<Options>()
+                    }
+                });
+            }
+            catch (Exception e)
             {
-                new Options
-                {
-                   Name = "Option 1",
-                   Id = "123"
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+            }
+            /* _variantsList.Add(new Variants()
+             {
+                 Name = "Size",
+                 Id = "23"
+             });
+             _variantsList.Add(new Variants()
+             {
+                 Name = "Flavor",
+                 Id = "42"
+             });*/
+        }
 
-                },
-                new Options
-                {
-                   Name = "Option 2",
-                   Id = "2"
-
-                },
-                new Options
-                {
-                   Name = "Option 3",
-                   Id = "15"
-
-                },
-
-            };
+        public static void LoadOptions()
+        {
+            _optionsList.Add(new Options()
+            {
+                Name = "Option 1",
+                Id = "123"
+            });
+            _optionsList.Add(new Options()
+            {
+                Name = "Option 2",
+                Id = "2"
+            });
+            _optionsList.Add(new Options()
+            {
+                Name = "Option 3",
+                Id = "15"
+            });
         }
     }
 }
