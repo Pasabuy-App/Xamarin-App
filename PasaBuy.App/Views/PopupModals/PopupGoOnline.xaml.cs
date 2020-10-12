@@ -1,4 +1,6 @@
-﻿using Rg.Plugins.Popup.Pages;
+﻿using PasaBuy.App.Views.Navigation;
+using Rg.Plugins.Popup.Pages;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +18,12 @@ namespace PasaBuy.App.Views.PopupModals
         public PopupGoOnline()
         {
             InitializeComponent();
+        }
+
+        private void CancelModal(object sender, EventArgs e)
+        {
+            PopupNavigation.Instance.PopAsync();
+  
         }
     }
 }

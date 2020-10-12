@@ -238,7 +238,7 @@
     <!--  Common style for separator BoxView  -->
     <Style x:Key="SeparatorStyle" TargetType="BoxView">
         <Setter Property="HeightRequest" Value="1" />
-        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-200}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-500}" />
     </Style>
 
     <!--  Common style for SfButtons  -->

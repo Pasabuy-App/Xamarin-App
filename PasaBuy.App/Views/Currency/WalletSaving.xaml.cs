@@ -50,7 +50,7 @@ namespace PasaBuy.App.Views.Currency
         {
                 //await SendImage.FadeTo(0.3, 200);
                 //await SendImage.FadeTo(1, 200);
-                Views.Currency.SendWalletSavings.currency_id = currency_id;
+                //Views.Currency.SendWalletSavings.currency_id = currency_id;
                 await App.Current.MainPage.Navigation.PushModalAsync(new SendWalletSavings());
         }
 
@@ -58,6 +58,7 @@ namespace PasaBuy.App.Views.Currency
         {
             //await ReceiveImage.FadeTo(0.3, 200);
             //await ReceiveImage.FadeTo(1, 200);
+
             await PopupNavigation.Instance.PushAsync(new PopupShowWalletSavings());
         }
     }

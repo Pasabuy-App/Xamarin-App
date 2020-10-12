@@ -65,6 +65,7 @@ namespace PasaBuy.App.Views.Settings
                             EditProfile datas = JsonConvert.DeserializeObject<EditProfile>(data);
                             PSACache.Instance.UserInfo.avatar = datas.data;
                             PSACache.Instance.SaveUserData();
+                            ViewModels.Menu.MasterMenuViewModel.Insertimage(PSACache.Instance.UserInfo.avatar);
                         }
                         else
                         {
@@ -103,6 +104,7 @@ namespace PasaBuy.App.Views.Settings
                                 EditProfile datas = JsonConvert.DeserializeObject<EditProfile>(data);
                                 PSACache.Instance.UserInfo.banner = datas.data;
                                 PSACache.Instance.SaveUserData();
+                                ViewModels.Menu.MasterMenuViewModel.Insertimage(PSACache.Instance.UserInfo.banner);
                             }
                             else
                             {

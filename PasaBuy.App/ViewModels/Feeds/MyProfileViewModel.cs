@@ -54,6 +54,7 @@ namespace PasaBuy.App.ViewModels.Feeds
         private static string joined = string.Empty;
         private bool isEnable = false;
         bool _isRefreshing = false;
+        public int countpost;
 
         #endregion
 
@@ -338,8 +339,16 @@ namespace PasaBuy.App.ViewModels.Feeds
             });
             profilePostList = new ObservableCollection<Post>();
             LoadData(userid);
+            profilePostList.CollectionChanged += CollectionChanges;
         }
 
+        private async void CollectionChanges(object sender, EventArgs e)
+        {
+            LoadTotal(PSACache.Instance.UserInfo.wpid);
+            await Task.Delay(50);
+            //Console.WriteLine("profilePostList.Count: " + profilePostList.Count + " postcount: " + postcount);
+            this.PostsCount = postcount;
+        }
         public static void GetProfile(string uid)
         {
             try
@@ -485,7 +494,18 @@ namespace PasaBuy.App.ViewModels.Feeds
         /// <summary>
         /// Gets or sets the posts count
         /// </summary>
-        public int PostsCount { get; set; }
+        public int PostsCount 
+        {
+            get 
+            {
+                return countpost;
+            }
+            set 
+            {
+                countpost = value; 
+                this.NotifyPropertyChanged();
+            } 
+        }
 
         /// <summary>
         /// Gets or sets the transaction number

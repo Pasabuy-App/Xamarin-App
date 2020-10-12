@@ -114,6 +114,7 @@
                             Margin="0, 30, 0, 20"
                             CornerRadius="10"
                             TextColor="White"
+                            Clicked="ShowModal"
                             BackgroundColor="{DynamicResource PrimaryColor}"
                             Style="{StaticResource SfButtonStyle}"
                             Text="Send" />

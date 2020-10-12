@@ -21,6 +21,19 @@ namespace PasaBuy.App.Views.StoreViews.Management
         {
             InitializeComponent();
             this.BindingContext = new PersonnelsViewModel();
+            pullToRefresh.Refreshing += PullToRefresh_Refreshing;
+        }
+
+        private async void PullToRefresh_Refreshing(object sender, EventArgs args)
+        {
+            pullToRefresh.IsRefreshing = true;
+            await Task.Delay(500);
+            /*LastIndex = 11;
+            isFirstLoad = false;
+            Offset = 0;*/
+            PersonnelsViewModel._personnelsList.Clear();
+            PersonnelsViewModel.LoadData();
+            pullToRefresh.IsRefreshing = false;
         }
 
         private void backButton_Clicked(object sender, EventArgs e)
@@ -31,7 +44,6 @@ namespace PasaBuy.App.Views.StoreViews.Management
         private async void AddTapped(object sender, EventArgs e)
         {
             await PopupNavigation.Instance.PushAsync(new PopupAddPersonnel());
-            
         }
 
         private async void Update_Tapped(object sender, EventArgs e)

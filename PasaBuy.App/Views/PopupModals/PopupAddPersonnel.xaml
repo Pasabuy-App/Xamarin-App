@@ -8,7 +8,8 @@
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App" 
     xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
-    xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms" xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Pickers;assembly=Syncfusion.SfPicker.XForms" xmlns:control="clr-namespace:PasaBuy.App.Controls">
+    xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms" 
+    xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Pickers;assembly=Syncfusion.SfPicker.XForms" xmlns:control="clr-namespace:PasaBuy.App.Controls">
     
     <pages:PopupPage.Resources>
         <ResourceDictionary>
@@ -78,10 +79,6 @@
                                TextSize="18"
                                DisplayMemberPath="FullName"
                                DataSource="{Binding UsersList}"
-                               MultiSelectMode="Delimiter"
-                               Delimiter=","
-                               LoadMoreText="LOAD MORE"
-                               MaximumSuggestion="5"
                                MaximumDropDownHeight="100">
                             <autocomplete:SfAutoComplete.AutoCompleteSource>
                                 <ListCollection:List x:TypeArguments="x:String">

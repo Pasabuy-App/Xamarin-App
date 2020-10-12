@@ -44,6 +44,7 @@ namespace PasaBuy.App.Views.Currency
                     PopupSendWalletSavings.amount = Amount.Text;
                     PopupSendWalletSavings.walletid = WalletId.Text;
                     PopupSendWalletSavings.notes = Note.Text;
+                    PopupSendWalletSavings.type = "savings";
                     //Console.WriteLine("Example: " + Note.Text + Amount.Text + WalletId.Text);
                     await PopupNavigation.Instance.PushAsync(new PopupSendWalletSavings());
                 }

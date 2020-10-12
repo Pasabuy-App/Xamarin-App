@@ -13,19 +13,17 @@ using Xamarin.Forms.Xaml;
 namespace PasaBuy.App.Views.PopupModals
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PopupAddPersonnel : PopupPage
+    public partial class PopupEditSchedule : PopupPage
     {
-        public PopupAddPersonnel()
+        public PopupEditSchedule()
         {
             InitializeComponent();
-            this.BindingContext = new PersonnelsViewModel();
-            PersonnelsViewModel.LoadUser();
         }
 
         private void CancelModal(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PopAsync();
-            //Console.WriteLine("AutoComplete Value: " + autoComplete.SelectedValue.ToString());
         }
+        
     }
 }
