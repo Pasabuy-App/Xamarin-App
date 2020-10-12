@@ -18,6 +18,9 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
         public static ObservableCollection<Operations> _scheduleList;
 
+        public static ObservableCollection<Operations> _operationsList;
+
+
         public bool is_online;
 
         public ICommand EditScheduleCommand
@@ -59,6 +62,20 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 this.NotifyPropertyChanged();
             }
         }
+
+        public ObservableCollection<Operations> OperationsList
+        {
+            get
+            {
+                return _operationsList;
+            }
+            set
+            {
+                _operationsList = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
 
         public ObservableCollection<Operations> ScheduleList
         {
@@ -168,6 +185,36 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                     FullSchedule = "11:30 AM - 11:00 PM"
                 },
             };
+
+            this.OperationsList = new ObservableCollection<Operations>()
+            {
+                new Operations
+                {
+                    Date = "Date: Oct. 5, 2020",
+                    TotalSales = "Total Sales: 23,000.50"
+
+                },
+                new Operations
+                {
+                    Date = "Date: Oct. 5, 2020",
+                    TotalSales = "Total Sales: 23,000.50"
+
+                },
+                new Operations
+                {
+                    Date = "Date: Oct. 5, 2020",
+                    TotalSales = "Total Sales: 23,000.50"
+
+                },
+                new Operations
+                {
+                    Date = "Date: Oct. 5, 2020",
+                    TotalSales = "Total Sales: 23,000.50"
+
+                }
+
+            };
+
         }
 
     }

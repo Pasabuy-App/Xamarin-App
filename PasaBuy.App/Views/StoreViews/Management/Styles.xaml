@@ -54,6 +54,7 @@
     <x:String x:Key="Submit">Submit</x:String>
     <x:String x:Key="DropDownButtonIcon">&#xe70b;</x:String>
     <x:String x:Key="Packed">&#xe738;</x:String>
+    <x:String x:Key="Show">&#xe711;</x:String>
 
 
 

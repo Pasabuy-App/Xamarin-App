@@ -11,10 +11,38 @@ namespace PasaBuy.App.Models.MobilePOS
         private string opening = string.Empty;
         private string closing = string.Empty;
         private string full_schedule = string.Empty;
+        private string date = string.Empty;
+        private string total_sales;
+
         private bool is_online;
 
 
 
+        public string TotalSales
+        {
+            get
+            {
+                return total_sales;
+            }
+            set
+            {
+                total_sales = value;
+                OnPropertyChanged("TotalSales");
+            }
+        }
+
+        public string Date
+        {
+            get
+            {
+                return date;
+            }
+            set
+            {
+                date = value;
+                OnPropertyChanged("Date");
+            }
+        }
 
         public string Day
         {
