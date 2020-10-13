@@ -16191,6 +16191,7 @@ namespace PasaBuy.App.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.scrimAnimationDuration = global::PasaBuy.App.Droid.Resource.Attribute.scrimAnimationDuration;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.scrimBackground = global::PasaBuy.App.Droid.Resource.Attribute.scrimBackground;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.scrimVisibleHeightTrigger = global::PasaBuy.App.Droid.Resource.Attribute.scrimVisibleHeightTrigger;
+			global::Xamarin.Forms.Platform.Android.Resource.Attribute.scrollViewStyle = global::PasaBuy.App.Droid.Resource.Attribute.scrollViewStyle;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.searchHintIcon = global::PasaBuy.App.Droid.Resource.Attribute.searchHintIcon;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.searchIcon = global::PasaBuy.App.Droid.Resource.Attribute.searchIcon;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.searchViewStyle = global::PasaBuy.App.Droid.Resource.Attribute.searchViewStyle;
@@ -17127,6 +17128,7 @@ namespace PasaBuy.App.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.String.fab_transformation_sheet_behavior = global::PasaBuy.App.Droid.Resource.String.fab_transformation_sheet_behavior;
 			global::Xamarin.Forms.Platform.Android.Resource.String.hide_bottom_view_on_scroll_behavior = global::PasaBuy.App.Droid.Resource.String.hide_bottom_view_on_scroll_behavior;
 			global::Xamarin.Forms.Platform.Android.Resource.String.mtrl_chip_close_icon_content_description = global::PasaBuy.App.Droid.Resource.String.mtrl_chip_close_icon_content_description;
+			global::Xamarin.Forms.Platform.Android.Resource.String.overflow_tab_title = global::PasaBuy.App.Droid.Resource.String.overflow_tab_title;
 			global::Xamarin.Forms.Platform.Android.Resource.String.password_toggle_content_description = global::PasaBuy.App.Droid.Resource.String.password_toggle_content_description;
 			global::Xamarin.Forms.Platform.Android.Resource.String.path_password_eye = global::PasaBuy.App.Droid.Resource.String.path_password_eye;
 			global::Xamarin.Forms.Platform.Android.Resource.String.path_password_eye_mask_strike_through = global::PasaBuy.App.Droid.Resource.String.path_password_eye_mask_strike_through;
@@ -17332,7 +17334,6 @@ namespace PasaBuy.App.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Style.CardView = global::PasaBuy.App.Droid.Resource.Style.CardView;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.CardView_Dark = global::PasaBuy.App.Droid.Resource.Style.CardView_Dark;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.CardView_Light = global::PasaBuy.App.Droid.Resource.Style.CardView_Light;
-			global::Xamarin.Forms.Platform.Android.Resource.Style.collectionViewScrollBars = global::PasaBuy.App.Droid.Resource.Style.collectionViewScrollBars;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.collectionViewTheme = global::PasaBuy.App.Droid.Resource.Style.collectionViewTheme;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.MainTheme = global::PasaBuy.App.Droid.Resource.Style.MainTheme;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.MainTheme_Base = global::PasaBuy.App.Droid.Resource.Style.MainTheme_Base;
@@ -17367,6 +17368,8 @@ namespace PasaBuy.App.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text = global::PasaBuy.App.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton = global::PasaBuy.App.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = global::PasaBuy.App.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow;
+			global::Xamarin.Forms.Platform.Android.Resource.Style.scrollViewScrollBars = global::PasaBuy.App.Droid.Resource.Style.scrollViewScrollBars;
+			global::Xamarin.Forms.Platform.Android.Resource.Style.scrollViewTheme = global::PasaBuy.App.Droid.Resource.Style.scrollViewTheme;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.TextAppearance_AppCompat = global::PasaBuy.App.Droid.Resource.Style.TextAppearance_AppCompat;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.TextAppearance_AppCompat_Body1 = global::PasaBuy.App.Droid.Resource.Style.TextAppearance_AppCompat_Body1;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.TextAppearance_AppCompat_Body2 = global::PasaBuy.App.Droid.Resource.Style.TextAppearance_AppCompat_Body2;
@@ -18216,6 +18219,8 @@ namespace PasaBuy.App.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground = global::PasaBuy.App.Droid.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ScrollingViewBehavior_Layout = global::PasaBuy.App.Droid.Resource.Styleable.ScrollingViewBehavior_Layout;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ScrollingViewBehavior_Layout_behavior_overlapTop = global::PasaBuy.App.Droid.Resource.Styleable.ScrollingViewBehavior_Layout_behavior_overlapTop;
+			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ScrollViewRendererTheme = global::PasaBuy.App.Droid.Resource.Styleable.ScrollViewRendererTheme;
+			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ScrollViewRendererTheme_scrollViewStyle = global::PasaBuy.App.Droid.Resource.Styleable.ScrollViewRendererTheme_scrollViewStyle;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.SearchView = global::PasaBuy.App.Droid.Resource.Styleable.SearchView;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.SearchView_android_focusable = global::PasaBuy.App.Droid.Resource.Styleable.SearchView_android_focusable;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.SearchView_android_imeOptions = global::PasaBuy.App.Droid.Resource.Styleable.SearchView_android_imeOptions;
@@ -18760,6 +18765,7 @@ namespace PasaBuy.App.Droid
 			global::Xamarin.Forms.Platform.Resource.Attribute.scrimAnimationDuration = global::PasaBuy.App.Droid.Resource.Attribute.scrimAnimationDuration;
 			global::Xamarin.Forms.Platform.Resource.Attribute.scrimBackground = global::PasaBuy.App.Droid.Resource.Attribute.scrimBackground;
 			global::Xamarin.Forms.Platform.Resource.Attribute.scrimVisibleHeightTrigger = global::PasaBuy.App.Droid.Resource.Attribute.scrimVisibleHeightTrigger;
+			global::Xamarin.Forms.Platform.Resource.Attribute.scrollViewStyle = global::PasaBuy.App.Droid.Resource.Attribute.scrollViewStyle;
 			global::Xamarin.Forms.Platform.Resource.Attribute.searchHintIcon = global::PasaBuy.App.Droid.Resource.Attribute.searchHintIcon;
 			global::Xamarin.Forms.Platform.Resource.Attribute.searchIcon = global::PasaBuy.App.Droid.Resource.Attribute.searchIcon;
 			global::Xamarin.Forms.Platform.Resource.Attribute.searchViewStyle = global::PasaBuy.App.Droid.Resource.Attribute.searchViewStyle;
@@ -19696,6 +19702,7 @@ namespace PasaBuy.App.Droid
 			global::Xamarin.Forms.Platform.Resource.String.fab_transformation_sheet_behavior = global::PasaBuy.App.Droid.Resource.String.fab_transformation_sheet_behavior;
 			global::Xamarin.Forms.Platform.Resource.String.hide_bottom_view_on_scroll_behavior = global::PasaBuy.App.Droid.Resource.String.hide_bottom_view_on_scroll_behavior;
 			global::Xamarin.Forms.Platform.Resource.String.mtrl_chip_close_icon_content_description = global::PasaBuy.App.Droid.Resource.String.mtrl_chip_close_icon_content_description;
+			global::Xamarin.Forms.Platform.Resource.String.overflow_tab_title = global::PasaBuy.App.Droid.Resource.String.overflow_tab_title;
 			global::Xamarin.Forms.Platform.Resource.String.password_toggle_content_description = global::PasaBuy.App.Droid.Resource.String.password_toggle_content_description;
 			global::Xamarin.Forms.Platform.Resource.String.path_password_eye = global::PasaBuy.App.Droid.Resource.String.path_password_eye;
 			global::Xamarin.Forms.Platform.Resource.String.path_password_eye_mask_strike_through = global::PasaBuy.App.Droid.Resource.String.path_password_eye_mask_strike_through;
@@ -19901,7 +19908,6 @@ namespace PasaBuy.App.Droid
 			global::Xamarin.Forms.Platform.Resource.Style.CardView = global::PasaBuy.App.Droid.Resource.Style.CardView;
 			global::Xamarin.Forms.Platform.Resource.Style.CardView_Dark = global::PasaBuy.App.Droid.Resource.Style.CardView_Dark;
 			global::Xamarin.Forms.Platform.Resource.Style.CardView_Light = global::PasaBuy.App.Droid.Resource.Style.CardView_Light;
-			global::Xamarin.Forms.Platform.Resource.Style.collectionViewScrollBars = global::PasaBuy.App.Droid.Resource.Style.collectionViewScrollBars;
 			global::Xamarin.Forms.Platform.Resource.Style.collectionViewTheme = global::PasaBuy.App.Droid.Resource.Style.collectionViewTheme;
 			global::Xamarin.Forms.Platform.Resource.Style.MainTheme = global::PasaBuy.App.Droid.Resource.Style.MainTheme;
 			global::Xamarin.Forms.Platform.Resource.Style.MainTheme_Base = global::PasaBuy.App.Droid.Resource.Style.MainTheme_Base;
@@ -19936,6 +19942,8 @@ namespace PasaBuy.App.Droid
 			global::Xamarin.Forms.Platform.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text = global::PasaBuy.App.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text;
 			global::Xamarin.Forms.Platform.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton = global::PasaBuy.App.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton;
 			global::Xamarin.Forms.Platform.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = global::PasaBuy.App.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow;
+			global::Xamarin.Forms.Platform.Resource.Style.scrollViewScrollBars = global::PasaBuy.App.Droid.Resource.Style.scrollViewScrollBars;
+			global::Xamarin.Forms.Platform.Resource.Style.scrollViewTheme = global::PasaBuy.App.Droid.Resource.Style.scrollViewTheme;
 			global::Xamarin.Forms.Platform.Resource.Style.TextAppearance_AppCompat = global::PasaBuy.App.Droid.Resource.Style.TextAppearance_AppCompat;
 			global::Xamarin.Forms.Platform.Resource.Style.TextAppearance_AppCompat_Body1 = global::PasaBuy.App.Droid.Resource.Style.TextAppearance_AppCompat_Body1;
 			global::Xamarin.Forms.Platform.Resource.Style.TextAppearance_AppCompat_Body2 = global::PasaBuy.App.Droid.Resource.Style.TextAppearance_AppCompat_Body2;
@@ -20785,6 +20793,8 @@ namespace PasaBuy.App.Droid
 			global::Xamarin.Forms.Platform.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground = global::PasaBuy.App.Droid.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground;
 			global::Xamarin.Forms.Platform.Resource.Styleable.ScrollingViewBehavior_Layout = global::PasaBuy.App.Droid.Resource.Styleable.ScrollingViewBehavior_Layout;
 			global::Xamarin.Forms.Platform.Resource.Styleable.ScrollingViewBehavior_Layout_behavior_overlapTop = global::PasaBuy.App.Droid.Resource.Styleable.ScrollingViewBehavior_Layout_behavior_overlapTop;
+			global::Xamarin.Forms.Platform.Resource.Styleable.ScrollViewRendererTheme = global::PasaBuy.App.Droid.Resource.Styleable.ScrollViewRendererTheme;
+			global::Xamarin.Forms.Platform.Resource.Styleable.ScrollViewRendererTheme_scrollViewStyle = global::PasaBuy.App.Droid.Resource.Styleable.ScrollViewRendererTheme_scrollViewStyle;
 			global::Xamarin.Forms.Platform.Resource.Styleable.SearchView = global::PasaBuy.App.Droid.Resource.Styleable.SearchView;
 			global::Xamarin.Forms.Platform.Resource.Styleable.SearchView_android_focusable = global::PasaBuy.App.Droid.Resource.Styleable.SearchView_android_focusable;
 			global::Xamarin.Forms.Platform.Resource.Styleable.SearchView_android_imeOptions = global::PasaBuy.App.Droid.Resource.Styleable.SearchView_android_imeOptions;
@@ -22592,505 +22602,508 @@ namespace PasaBuy.App.Droid
 			public const int scrimVisibleHeightTrigger = 2130903519;
 			
 			// aapt resource value: 0x7F0301E0
-			public const int searchHintIcon = 2130903520;
+			public const int scrollViewStyle = 2130903520;
 			
 			// aapt resource value: 0x7F0301E1
-			public const int searchIcon = 2130903521;
+			public const int searchHintIcon = 2130903521;
 			
 			// aapt resource value: 0x7F0301E2
-			public const int searchViewStyle = 2130903522;
+			public const int searchIcon = 2130903522;
 			
 			// aapt resource value: 0x7F0301E3
-			public const int seekBarStyle = 2130903523;
+			public const int searchViewStyle = 2130903523;
 			
 			// aapt resource value: 0x7F0301E4
-			public const int segmentBackColor = 2130903524;
+			public const int seekBarStyle = 2130903524;
 			
 			// aapt resource value: 0x7F0301E5
-			public const int segmentBorderColor = 2130903525;
+			public const int segmentBackColor = 2130903525;
 			
 			// aapt resource value: 0x7F0301E6
-			public const int segmentBorderThickness = 2130903526;
+			public const int segmentBorderColor = 2130903526;
 			
 			// aapt resource value: 0x7F0301E7
-			public const int segmentColor = 2130903527;
+			public const int segmentBorderThickness = 2130903527;
 			
 			// aapt resource value: 0x7F0301E8
-			public const int segmentCornerRadius = 2130903528;
+			public const int segmentColor = 2130903528;
 			
 			// aapt resource value: 0x7F0301E9
-			public const int segmentDisplayMode = 2130903529;
-			
-			// aapt resource value: 0x7F0301ED
-			public const int segmentedHeight = 2130903533;
-			
-			// aapt resource value: 0x7F0301EE
-			public const int segmentedPadding = 2130903534;
-			
-			// aapt resource value: 0x7F0301EF
-			public const int segmentedWidth = 2130903535;
+			public const int segmentCornerRadius = 2130903529;
 			
 			// aapt resource value: 0x7F0301EA
-			public const int segmentPosition = 2130903530;
+			public const int segmentDisplayMode = 2130903530;
 			
-			// aapt resource value: 0x7F0301EB
-			public const int segmentSelectedIndex = 2130903531;
+			// aapt resource value: 0x7F0301EE
+			public const int segmentedHeight = 2130903534;
 			
-			// aapt resource value: 0x7F0301EC
-			public const int segmentStrokeThickness = 2130903532;
-			
-			// aapt resource value: 0x7F0301F1
-			public const int selectableItemBackground = 2130903537;
-			
-			// aapt resource value: 0x7F0301F2
-			public const int selectableItemBackgroundBorderless = 2130903538;
+			// aapt resource value: 0x7F0301EF
+			public const int segmentedPadding = 2130903535;
 			
 			// aapt resource value: 0x7F0301F0
-			public const int selectAllOnFocus = 2130903536;
+			public const int segmentedWidth = 2130903536;
+			
+			// aapt resource value: 0x7F0301EB
+			public const int segmentPosition = 2130903531;
+			
+			// aapt resource value: 0x7F0301EC
+			public const int segmentSelectedIndex = 2130903532;
+			
+			// aapt resource value: 0x7F0301ED
+			public const int segmentStrokeThickness = 2130903533;
+			
+			// aapt resource value: 0x7F0301F2
+			public const int selectableItemBackground = 2130903538;
 			
 			// aapt resource value: 0x7F0301F3
-			public const int showAsAction = 2130903539;
+			public const int selectableItemBackgroundBorderless = 2130903539;
+			
+			// aapt resource value: 0x7F0301F1
+			public const int selectAllOnFocus = 2130903537;
 			
 			// aapt resource value: 0x7F0301F4
-			public const int showDividers = 2130903540;
+			public const int showAsAction = 2130903540;
 			
 			// aapt resource value: 0x7F0301F5
-			public const int showMotionSpec = 2130903541;
+			public const int showDividers = 2130903541;
 			
 			// aapt resource value: 0x7F0301F6
-			public const int showText = 2130903542;
+			public const int showMotionSpec = 2130903542;
 			
 			// aapt resource value: 0x7F0301F7
-			public const int showTitle = 2130903543;
+			public const int showText = 2130903543;
 			
 			// aapt resource value: 0x7F0301F8
-			public const int singleChoiceItemLayout = 2130903544;
+			public const int showTitle = 2130903544;
 			
 			// aapt resource value: 0x7F0301F9
-			public const int singleLine = 2130903545;
+			public const int singleChoiceItemLayout = 2130903545;
 			
 			// aapt resource value: 0x7F0301FA
-			public const int singleSelection = 2130903546;
+			public const int singleLine = 2130903546;
 			
 			// aapt resource value: 0x7F0301FB
-			public const int snackbarButtonStyle = 2130903547;
+			public const int singleSelection = 2130903547;
 			
 			// aapt resource value: 0x7F0301FC
-			public const int snackbarStyle = 2130903548;
+			public const int snackbarButtonStyle = 2130903548;
 			
 			// aapt resource value: 0x7F0301FD
-			public const int spanCount = 2130903549;
+			public const int snackbarStyle = 2130903549;
 			
 			// aapt resource value: 0x7F0301FE
-			public const int spinBars = 2130903550;
+			public const int spanCount = 2130903550;
 			
 			// aapt resource value: 0x7F0301FF
-			public const int spinnerDropDownItemStyle = 2130903551;
+			public const int spinBars = 2130903551;
 			
 			// aapt resource value: 0x7F030200
-			public const int spinnerStyle = 2130903552;
+			public const int spinnerDropDownItemStyle = 2130903552;
 			
 			// aapt resource value: 0x7F030201
-			public const int splitTrack = 2130903553;
+			public const int spinnerStyle = 2130903553;
 			
 			// aapt resource value: 0x7F030202
-			public const int srcCompat = 2130903554;
+			public const int splitTrack = 2130903554;
 			
 			// aapt resource value: 0x7F030203
-			public const int stackFromEnd = 2130903555;
+			public const int srcCompat = 2130903555;
 			
 			// aapt resource value: 0x7F030204
-			public const int state_above_anchor = 2130903556;
+			public const int stackFromEnd = 2130903556;
 			
 			// aapt resource value: 0x7F030205
-			public const int state_collapsed = 2130903557;
+			public const int state_above_anchor = 2130903557;
 			
 			// aapt resource value: 0x7F030206
-			public const int state_collapsible = 2130903558;
+			public const int state_collapsed = 2130903558;
 			
 			// aapt resource value: 0x7F030207
-			public const int state_indeterminate = 2130903559;
+			public const int state_collapsible = 2130903559;
 			
 			// aapt resource value: 0x7F030208
-			public const int state_liftable = 2130903560;
+			public const int state_indeterminate = 2130903560;
 			
 			// aapt resource value: 0x7F030209
-			public const int state_lifted = 2130903561;
+			public const int state_liftable = 2130903561;
 			
 			// aapt resource value: 0x7F03020A
-			public const int statusBarBackground = 2130903562;
+			public const int state_lifted = 2130903562;
 			
 			// aapt resource value: 0x7F03020B
-			public const int statusBarScrim = 2130903563;
+			public const int statusBarBackground = 2130903563;
 			
 			// aapt resource value: 0x7F03020C
-			public const int strokeColor = 2130903564;
+			public const int statusBarScrim = 2130903564;
 			
 			// aapt resource value: 0x7F03020D
-			public const int strokeWidth = 2130903565;
+			public const int strokeColor = 2130903565;
 			
 			// aapt resource value: 0x7F03020E
-			public const int subMenuArrow = 2130903566;
+			public const int strokeWidth = 2130903566;
 			
 			// aapt resource value: 0x7F03020F
-			public const int submitBackground = 2130903567;
+			public const int subMenuArrow = 2130903567;
 			
 			// aapt resource value: 0x7F030210
-			public const int subtitle = 2130903568;
+			public const int submitBackground = 2130903568;
 			
 			// aapt resource value: 0x7F030211
-			public const int subtitleTextAppearance = 2130903569;
+			public const int subtitle = 2130903569;
 			
 			// aapt resource value: 0x7F030212
-			public const int subtitleTextColor = 2130903570;
+			public const int subtitleTextAppearance = 2130903570;
 			
 			// aapt resource value: 0x7F030213
-			public const int subtitleTextStyle = 2130903571;
+			public const int subtitleTextColor = 2130903571;
 			
 			// aapt resource value: 0x7F030214
-			public const int suggestionRowLayout = 2130903572;
+			public const int subtitleTextStyle = 2130903572;
 			
 			// aapt resource value: 0x7F030215
-			public const int switchMinWidth = 2130903573;
+			public const int suggestionRowLayout = 2130903573;
 			
 			// aapt resource value: 0x7F030216
-			public const int switchPadding = 2130903574;
+			public const int switchMinWidth = 2130903574;
 			
 			// aapt resource value: 0x7F030217
-			public const int switchStyle = 2130903575;
+			public const int switchPadding = 2130903575;
 			
 			// aapt resource value: 0x7F030218
-			public const int switchTextAppearance = 2130903576;
+			public const int switchStyle = 2130903576;
 			
 			// aapt resource value: 0x7F030219
-			public const int tabBackground = 2130903577;
+			public const int switchTextAppearance = 2130903577;
 			
 			// aapt resource value: 0x7F03021A
-			public const int tabContentStart = 2130903578;
+			public const int tabBackground = 2130903578;
 			
 			// aapt resource value: 0x7F03021B
-			public const int tabGravity = 2130903579;
+			public const int tabContentStart = 2130903579;
 			
 			// aapt resource value: 0x7F03021C
-			public const int tabIconTint = 2130903580;
+			public const int tabGravity = 2130903580;
 			
 			// aapt resource value: 0x7F03021D
-			public const int tabIconTintMode = 2130903581;
+			public const int tabIconTint = 2130903581;
 			
 			// aapt resource value: 0x7F03021E
-			public const int tabIndicator = 2130903582;
+			public const int tabIconTintMode = 2130903582;
 			
 			// aapt resource value: 0x7F03021F
-			public const int tabIndicatorAnimationDuration = 2130903583;
+			public const int tabIndicator = 2130903583;
 			
 			// aapt resource value: 0x7F030220
-			public const int tabIndicatorColor = 2130903584;
+			public const int tabIndicatorAnimationDuration = 2130903584;
 			
 			// aapt resource value: 0x7F030221
-			public const int tabIndicatorFullWidth = 2130903585;
+			public const int tabIndicatorColor = 2130903585;
 			
 			// aapt resource value: 0x7F030222
-			public const int tabIndicatorGravity = 2130903586;
+			public const int tabIndicatorFullWidth = 2130903586;
 			
 			// aapt resource value: 0x7F030223
-			public const int tabIndicatorHeight = 2130903587;
+			public const int tabIndicatorGravity = 2130903587;
 			
 			// aapt resource value: 0x7F030224
-			public const int tabInlineLabel = 2130903588;
+			public const int tabIndicatorHeight = 2130903588;
 			
 			// aapt resource value: 0x7F030225
-			public const int tabMaxWidth = 2130903589;
+			public const int tabInlineLabel = 2130903589;
 			
 			// aapt resource value: 0x7F030226
-			public const int tabMinWidth = 2130903590;
+			public const int tabMaxWidth = 2130903590;
 			
 			// aapt resource value: 0x7F030227
-			public const int tabMode = 2130903591;
+			public const int tabMinWidth = 2130903591;
 			
 			// aapt resource value: 0x7F030228
-			public const int tabPadding = 2130903592;
+			public const int tabMode = 2130903592;
 			
 			// aapt resource value: 0x7F030229
-			public const int tabPaddingBottom = 2130903593;
+			public const int tabPadding = 2130903593;
 			
 			// aapt resource value: 0x7F03022A
-			public const int tabPaddingEnd = 2130903594;
+			public const int tabPaddingBottom = 2130903594;
 			
 			// aapt resource value: 0x7F03022B
-			public const int tabPaddingStart = 2130903595;
+			public const int tabPaddingEnd = 2130903595;
 			
 			// aapt resource value: 0x7F03022C
-			public const int tabPaddingTop = 2130903596;
+			public const int tabPaddingStart = 2130903596;
 			
 			// aapt resource value: 0x7F03022D
-			public const int tabRippleColor = 2130903597;
+			public const int tabPaddingTop = 2130903597;
 			
 			// aapt resource value: 0x7F03022E
-			public const int tabSelectedTextColor = 2130903598;
+			public const int tabRippleColor = 2130903598;
 			
 			// aapt resource value: 0x7F03022F
-			public const int tabStyle = 2130903599;
+			public const int tabSelectedTextColor = 2130903599;
 			
 			// aapt resource value: 0x7F030230
-			public const int tabTextAppearance = 2130903600;
+			public const int tabStyle = 2130903600;
 			
 			// aapt resource value: 0x7F030231
-			public const int tabTextColor = 2130903601;
+			public const int tabTextAppearance = 2130903601;
 			
 			// aapt resource value: 0x7F030232
-			public const int tabUnboundedRipple = 2130903602;
+			public const int tabTextColor = 2130903602;
 			
 			// aapt resource value: 0x7F030233
-			public const int textAllCaps = 2130903603;
+			public const int tabUnboundedRipple = 2130903603;
 			
 			// aapt resource value: 0x7F030234
-			public const int textAppearanceBody1 = 2130903604;
+			public const int textAllCaps = 2130903604;
 			
 			// aapt resource value: 0x7F030235
-			public const int textAppearanceBody2 = 2130903605;
+			public const int textAppearanceBody1 = 2130903605;
 			
 			// aapt resource value: 0x7F030236
-			public const int textAppearanceButton = 2130903606;
+			public const int textAppearanceBody2 = 2130903606;
 			
 			// aapt resource value: 0x7F030237
-			public const int textAppearanceCaption = 2130903607;
+			public const int textAppearanceButton = 2130903607;
 			
 			// aapt resource value: 0x7F030238
-			public const int textAppearanceHeadline1 = 2130903608;
+			public const int textAppearanceCaption = 2130903608;
 			
 			// aapt resource value: 0x7F030239
-			public const int textAppearanceHeadline2 = 2130903609;
+			public const int textAppearanceHeadline1 = 2130903609;
 			
 			// aapt resource value: 0x7F03023A
-			public const int textAppearanceHeadline3 = 2130903610;
+			public const int textAppearanceHeadline2 = 2130903610;
 			
 			// aapt resource value: 0x7F03023B
-			public const int textAppearanceHeadline4 = 2130903611;
+			public const int textAppearanceHeadline3 = 2130903611;
 			
 			// aapt resource value: 0x7F03023C
-			public const int textAppearanceHeadline5 = 2130903612;
+			public const int textAppearanceHeadline4 = 2130903612;
 			
 			// aapt resource value: 0x7F03023D
-			public const int textAppearanceHeadline6 = 2130903613;
+			public const int textAppearanceHeadline5 = 2130903613;
 			
 			// aapt resource value: 0x7F03023E
-			public const int textAppearanceLargePopupMenu = 2130903614;
+			public const int textAppearanceHeadline6 = 2130903614;
 			
 			// aapt resource value: 0x7F03023F
-			public const int textAppearanceListItem = 2130903615;
+			public const int textAppearanceLargePopupMenu = 2130903615;
 			
 			// aapt resource value: 0x7F030240
-			public const int textAppearanceListItemSecondary = 2130903616;
+			public const int textAppearanceListItem = 2130903616;
 			
 			// aapt resource value: 0x7F030241
-			public const int textAppearanceListItemSmall = 2130903617;
+			public const int textAppearanceListItemSecondary = 2130903617;
 			
 			// aapt resource value: 0x7F030242
-			public const int textAppearanceOverline = 2130903618;
+			public const int textAppearanceListItemSmall = 2130903618;
 			
 			// aapt resource value: 0x7F030243
-			public const int textAppearancePopupMenuHeader = 2130903619;
+			public const int textAppearanceOverline = 2130903619;
 			
 			// aapt resource value: 0x7F030244
-			public const int textAppearanceSearchResultSubtitle = 2130903620;
+			public const int textAppearancePopupMenuHeader = 2130903620;
 			
 			// aapt resource value: 0x7F030245
-			public const int textAppearanceSearchResultTitle = 2130903621;
+			public const int textAppearanceSearchResultSubtitle = 2130903621;
 			
 			// aapt resource value: 0x7F030246
-			public const int textAppearanceSmallPopupMenu = 2130903622;
+			public const int textAppearanceSearchResultTitle = 2130903622;
 			
 			// aapt resource value: 0x7F030247
-			public const int textAppearanceSubtitle1 = 2130903623;
+			public const int textAppearanceSmallPopupMenu = 2130903623;
 			
 			// aapt resource value: 0x7F030248
-			public const int textAppearanceSubtitle2 = 2130903624;
+			public const int textAppearanceSubtitle1 = 2130903624;
 			
 			// aapt resource value: 0x7F030249
-			public const int textColorAlertDialogListItem = 2130903625;
+			public const int textAppearanceSubtitle2 = 2130903625;
 			
 			// aapt resource value: 0x7F03024A
-			public const int textColorSearchUrl = 2130903626;
+			public const int textColorAlertDialogListItem = 2130903626;
 			
 			// aapt resource value: 0x7F03024B
-			public const int textEndPadding = 2130903627;
+			public const int textColorSearchUrl = 2130903627;
 			
 			// aapt resource value: 0x7F03024C
-			public const int textInputStyle = 2130903628;
+			public const int textEndPadding = 2130903628;
 			
 			// aapt resource value: 0x7F03024D
-			public const int textStartPadding = 2130903629;
+			public const int textInputStyle = 2130903629;
 			
 			// aapt resource value: 0x7F03024E
-			public const int theme = 2130903630;
+			public const int textStartPadding = 2130903630;
 			
 			// aapt resource value: 0x7F03024F
-			public const int thickness = 2130903631;
+			public const int theme = 2130903631;
 			
 			// aapt resource value: 0x7F030250
-			public const int thumbTextPadding = 2130903632;
+			public const int thickness = 2130903632;
 			
 			// aapt resource value: 0x7F030251
-			public const int thumbTint = 2130903633;
+			public const int thumbTextPadding = 2130903633;
 			
 			// aapt resource value: 0x7F030252
-			public const int thumbTintMode = 2130903634;
+			public const int thumbTint = 2130903634;
 			
 			// aapt resource value: 0x7F030253
-			public const int tickMark = 2130903635;
+			public const int thumbTintMode = 2130903635;
 			
 			// aapt resource value: 0x7F030254
-			public const int tickMarkTint = 2130903636;
+			public const int tickMark = 2130903636;
 			
 			// aapt resource value: 0x7F030255
-			public const int tickMarkTintMode = 2130903637;
+			public const int tickMarkTint = 2130903637;
 			
 			// aapt resource value: 0x7F030256
-			public const int tint = 2130903638;
+			public const int tickMarkTintMode = 2130903638;
 			
 			// aapt resource value: 0x7F030257
-			public const int tintMode = 2130903639;
+			public const int tint = 2130903639;
 			
 			// aapt resource value: 0x7F030258
-			public const int title = 2130903640;
+			public const int tintMode = 2130903640;
 			
 			// aapt resource value: 0x7F030259
-			public const int titleEnabled = 2130903641;
+			public const int title = 2130903641;
 			
 			// aapt resource value: 0x7F03025A
-			public const int titleMargin = 2130903642;
+			public const int titleEnabled = 2130903642;
 			
 			// aapt resource value: 0x7F03025B
-			public const int titleMarginBottom = 2130903643;
+			public const int titleMargin = 2130903643;
 			
 			// aapt resource value: 0x7F03025C
-			public const int titleMarginEnd = 2130903644;
-			
-			// aapt resource value: 0x7F03025F
-			public const int titleMargins = 2130903647;
+			public const int titleMarginBottom = 2130903644;
 			
 			// aapt resource value: 0x7F03025D
-			public const int titleMarginStart = 2130903645;
-			
-			// aapt resource value: 0x7F03025E
-			public const int titleMarginTop = 2130903646;
+			public const int titleMarginEnd = 2130903645;
 			
 			// aapt resource value: 0x7F030260
-			public const int titleTextAppearance = 2130903648;
+			public const int titleMargins = 2130903648;
+			
+			// aapt resource value: 0x7F03025E
+			public const int titleMarginStart = 2130903646;
+			
+			// aapt resource value: 0x7F03025F
+			public const int titleMarginTop = 2130903647;
 			
 			// aapt resource value: 0x7F030261
-			public const int titleTextColor = 2130903649;
+			public const int titleTextAppearance = 2130903649;
 			
 			// aapt resource value: 0x7F030262
-			public const int titleTextStyle = 2130903650;
+			public const int titleTextColor = 2130903650;
 			
 			// aapt resource value: 0x7F030263
-			public const int toolbarId = 2130903651;
+			public const int titleTextStyle = 2130903651;
 			
 			// aapt resource value: 0x7F030264
-			public const int toolbarNavigationButtonStyle = 2130903652;
+			public const int toolbarId = 2130903652;
 			
 			// aapt resource value: 0x7F030265
-			public const int toolbarStyle = 2130903653;
+			public const int toolbarNavigationButtonStyle = 2130903653;
 			
 			// aapt resource value: 0x7F030266
-			public const int tooltipForegroundColor = 2130903654;
+			public const int toolbarStyle = 2130903654;
 			
 			// aapt resource value: 0x7F030267
-			public const int tooltipFrameBackground = 2130903655;
+			public const int tooltipForegroundColor = 2130903655;
 			
 			// aapt resource value: 0x7F030268
-			public const int tooltipText = 2130903656;
+			public const int tooltipFrameBackground = 2130903656;
 			
 			// aapt resource value: 0x7F030269
-			public const int track = 2130903657;
+			public const int tooltipText = 2130903657;
 			
 			// aapt resource value: 0x7F03026A
-			public const int trackTint = 2130903658;
+			public const int track = 2130903658;
 			
 			// aapt resource value: 0x7F03026B
-			public const int trackTintMode = 2130903659;
+			public const int trackTint = 2130903659;
 			
 			// aapt resource value: 0x7F03026C
-			public const int ttcIndex = 2130903660;
+			public const int trackTintMode = 2130903660;
 			
 			// aapt resource value: 0x7F03026D
-			public const int uiCompass = 2130903661;
+			public const int ttcIndex = 2130903661;
 			
 			// aapt resource value: 0x7F03026E
-			public const int uiMapToolbar = 2130903662;
+			public const int uiCompass = 2130903662;
 			
 			// aapt resource value: 0x7F03026F
-			public const int uiRotateGestures = 2130903663;
+			public const int uiMapToolbar = 2130903663;
 			
 			// aapt resource value: 0x7F030270
-			public const int uiScrollGestures = 2130903664;
+			public const int uiRotateGestures = 2130903664;
 			
 			// aapt resource value: 0x7F030271
-			public const int uiScrollGesturesDuringRotateOrZoom = 2130903665;
+			public const int uiScrollGestures = 2130903665;
 			
 			// aapt resource value: 0x7F030272
-			public const int uiTiltGestures = 2130903666;
+			public const int uiScrollGesturesDuringRotateOrZoom = 2130903666;
 			
 			// aapt resource value: 0x7F030273
-			public const int uiZoomControls = 2130903667;
+			public const int uiTiltGestures = 2130903667;
 			
 			// aapt resource value: 0x7F030274
-			public const int uiZoomGestures = 2130903668;
+			public const int uiZoomControls = 2130903668;
 			
 			// aapt resource value: 0x7F030275
-			public const int useCompatPadding = 2130903669;
+			public const int uiZoomGestures = 2130903669;
 			
 			// aapt resource value: 0x7F030276
-			public const int useViewLifecycle = 2130903670;
+			public const int useCompatPadding = 2130903670;
 			
 			// aapt resource value: 0x7F030277
-			public const int valueChangeMode = 2130903671;
+			public const int useViewLifecycle = 2130903671;
 			
 			// aapt resource value: 0x7F030278
-			public const int viewInflaterClass = 2130903672;
+			public const int valueChangeMode = 2130903672;
 			
 			// aapt resource value: 0x7F030279
-			public const int voiceIcon = 2130903673;
+			public const int viewInflaterClass = 2130903673;
 			
 			// aapt resource value: 0x7F03027A
-			public const int watermark = 2130903674;
+			public const int voiceIcon = 2130903674;
 			
 			// aapt resource value: 0x7F03027B
-			public const int watermarkColor = 2130903675;
+			public const int watermark = 2130903675;
 			
 			// aapt resource value: 0x7F03027C
-			public const int windowActionBar = 2130903676;
+			public const int watermarkColor = 2130903676;
 			
 			// aapt resource value: 0x7F03027D
-			public const int windowActionBarOverlay = 2130903677;
+			public const int windowActionBar = 2130903677;
 			
 			// aapt resource value: 0x7F03027E
-			public const int windowActionModeOverlay = 2130903678;
+			public const int windowActionBarOverlay = 2130903678;
 			
 			// aapt resource value: 0x7F03027F
-			public const int windowFixedHeightMajor = 2130903679;
+			public const int windowActionModeOverlay = 2130903679;
 			
 			// aapt resource value: 0x7F030280
-			public const int windowFixedHeightMinor = 2130903680;
+			public const int windowFixedHeightMajor = 2130903680;
 			
 			// aapt resource value: 0x7F030281
-			public const int windowFixedWidthMajor = 2130903681;
+			public const int windowFixedHeightMinor = 2130903681;
 			
 			// aapt resource value: 0x7F030282
-			public const int windowFixedWidthMinor = 2130903682;
+			public const int windowFixedWidthMajor = 2130903682;
 			
 			// aapt resource value: 0x7F030283
-			public const int windowMinWidthMajor = 2130903683;
+			public const int windowFixedWidthMinor = 2130903683;
 			
 			// aapt resource value: 0x7F030284
-			public const int windowMinWidthMinor = 2130903684;
+			public const int windowMinWidthMajor = 2130903684;
 			
 			// aapt resource value: 0x7F030285
-			public const int windowNoTitle = 2130903685;
+			public const int windowMinWidthMinor = 2130903685;
 			
 			// aapt resource value: 0x7F030286
-			public const int zOrderOnTop = 2130903686;
+			public const int windowNoTitle = 2130903686;
+			
+			// aapt resource value: 0x7F030287
+			public const int zOrderOnTop = 2130903687;
 			
 			static Attribute()
 			{
@@ -26526,79 +26539,82 @@ namespace PasaBuy.App.Droid
 			public const int mtrl_chip_close_icon_content_description = 2131558470;
 			
 			// aapt resource value: 0x7F0D0047
-			public const int password_toggle_content_description = 2131558471;
+			public const int overflow_tab_title = 2131558471;
 			
 			// aapt resource value: 0x7F0D0048
-			public const int path_password_eye = 2131558472;
+			public const int password_toggle_content_description = 2131558472;
 			
 			// aapt resource value: 0x7F0D0049
-			public const int path_password_eye_mask_strike_through = 2131558473;
+			public const int path_password_eye = 2131558473;
 			
 			// aapt resource value: 0x7F0D004A
-			public const int path_password_eye_mask_visible = 2131558474;
+			public const int path_password_eye_mask_strike_through = 2131558474;
 			
 			// aapt resource value: 0x7F0D004B
-			public const int path_password_strike_through = 2131558475;
+			public const int path_password_eye_mask_visible = 2131558475;
 			
 			// aapt resource value: 0x7F0D004C
-			public const int popup_message = 2131558476;
+			public const int path_password_strike_through = 2131558476;
 			
 			// aapt resource value: 0x7F0D004D
-			public const int q = 2131558477;
+			public const int popup_message = 2131558477;
 			
 			// aapt resource value: 0x7F0D004E
-			public const int quarter = 2131558478;
+			public const int q = 2131558478;
 			
 			// aapt resource value: 0x7F0D004F
-			public const int search_menu_title = 2131558479;
+			public const int quarter = 2131558479;
 			
 			// aapt resource value: 0x7F0D0050
-			public const int sfcalendar_inlineviewalldaytext = 2131558480;
+			public const int search_menu_title = 2131558480;
 			
 			// aapt resource value: 0x7F0D0051
-			public const int sfcalendar_inlineviewnoappointmenttext = 2131558481;
+			public const int sfcalendar_inlineviewalldaytext = 2131558481;
 			
 			// aapt resource value: 0x7F0D0052
-			public const int sfchart_close_label = 2131558482;
+			public const int sfcalendar_inlineviewnoappointmenttext = 2131558482;
 			
 			// aapt resource value: 0x7F0D0053
-			public const int sfchart_decrease_label = 2131558483;
+			public const int sfchart_close_label = 2131558483;
 			
 			// aapt resource value: 0x7F0D0054
-			public const int sfchart_high_label = 2131558484;
+			public const int sfchart_decrease_label = 2131558484;
 			
 			// aapt resource value: 0x7F0D0055
-			public const int sfchart_increase_label = 2131558485;
+			public const int sfchart_high_label = 2131558485;
 			
 			// aapt resource value: 0x7F0D0056
-			public const int sfchart_low_label = 2131558486;
+			public const int sfchart_increase_label = 2131558486;
 			
 			// aapt resource value: 0x7F0D0057
-			public const int sfchart_open_label = 2131558487;
+			public const int sfchart_low_label = 2131558487;
 			
 			// aapt resource value: 0x7F0D0058
-			public const int sfchart_others_label = 2131558488;
+			public const int sfchart_open_label = 2131558488;
 			
 			// aapt resource value: 0x7F0D0059
-			public const int sfchart_total_label = 2131558489;
+			public const int sfchart_others_label = 2131558489;
 			
 			// aapt resource value: 0x7F0D005A
-			public const int sfnumericupdown_decrement_button_accessibility_label = 2131558490;
+			public const int sfchart_total_label = 2131558490;
 			
 			// aapt resource value: 0x7F0D005B
-			public const int sfnumericupdown_increment_button_accessibility_label = 2131558491;
+			public const int sfnumericupdown_decrement_button_accessibility_label = 2131558491;
 			
 			// aapt resource value: 0x7F0D005C
-			public const int status_bar_notification_info_overflow = 2131558492;
+			public const int sfnumericupdown_increment_button_accessibility_label = 2131558492;
 			
 			// aapt resource value: 0x7F0D005D
-			public const int title = 2131558493;
+			public const int status_bar_notification_info_overflow = 2131558493;
 			
 			// aapt resource value: 0x7F0D005E
-			public const int w = 2131558494;
+			public const int title = 2131558494;
 			
 			// aapt resource value: 0x7F0D005F
-			public const int week = 2131558495;
+			public const int w = 2131558495;
+			
+			// aapt resource value: 0x7F0D0060
+			public const int week = 2131558496;
 			
 			static String()
 			{
@@ -27208,10 +27224,7 @@ namespace PasaBuy.App.Droid
 			public const int CardView_Light = 2131624133;
 			
 			// aapt resource value: 0x7F0E01F7
-			public const int collectionViewScrollBars = 2131624439;
-			
-			// aapt resource value: 0x7F0E01F8
-			public const int collectionViewTheme = 2131624440;
+			public const int collectionViewTheme = 2131624439;
 			
 			// aapt resource value: 0x7F0E00C6
 			public const int MainTheme = 2131624134;
@@ -27311,6 +27324,12 @@ namespace PasaBuy.App.Droid
 			
 			// aapt resource value: 0x7F0E00E6
 			public const int RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = 2131624166;
+			
+			// aapt resource value: 0x7F0E01F8
+			public const int scrollViewScrollBars = 2131624440;
+			
+			// aapt resource value: 0x7F0E01F9
+			public const int scrollViewTheme = 2131624441;
 			
 			// aapt resource value: 0x7F0E00E7
 			public const int TextAppearance_AppCompat = 2131624167;
@@ -28141,7 +28160,7 @@ namespace PasaBuy.App.Droid
 		public partial class Styleable
 		{
 			
-			// aapt resource value: { 0x7F03005D,0x7F03005E,0x7F03005F,0x7F0300D3,0x7F0300D4,0x7F0300D5,0x7F0300D6,0x7F0300D7,0x7F0300D8,0x7F0300E8,0x7F0300ED,0x7F0300EE,0x7F0300F9,0x7F03012B,0x7F030130,0x7F030135,0x7F030136,0x7F030138,0x7F030144,0x7F03014F,0x7F030177,0x7F030185,0x7F0301B4,0x7F0301B8,0x7F0301B9,0x7F030210,0x7F030213,0x7F030258,0x7F030262 }
+			// aapt resource value: { 0x7F03005D,0x7F03005E,0x7F03005F,0x7F0300D3,0x7F0300D4,0x7F0300D5,0x7F0300D6,0x7F0300D7,0x7F0300D8,0x7F0300E8,0x7F0300ED,0x7F0300EE,0x7F0300F9,0x7F03012B,0x7F030130,0x7F030135,0x7F030136,0x7F030138,0x7F030144,0x7F03014F,0x7F030177,0x7F030185,0x7F0301B4,0x7F0301B8,0x7F0301B9,0x7F030211,0x7F030214,0x7F030259,0x7F030263 }
 			public static int[] ActionBar = new int[] {
 					2130903133,
 					2130903134,
@@ -28168,10 +28187,10 @@ namespace PasaBuy.App.Droid
 					2130903476,
 					2130903480,
 					2130903481,
-					2130903568,
-					2130903571,
-					2130903640,
-					2130903650};
+					2130903569,
+					2130903572,
+					2130903641,
+					2130903651};
 			
 			// aapt resource value: { 0x10100B3 }
 			public static int[] ActionBarLayout = new int[] {
@@ -28278,14 +28297,14 @@ namespace PasaBuy.App.Droid
 			public static int[] ActionMenuView = new int[] {
 					-1};
 			
-			// aapt resource value: { 0x7F03005D,0x7F03005E,0x7F0300BE,0x7F03012B,0x7F030213,0x7F030262 }
+			// aapt resource value: { 0x7F03005D,0x7F03005E,0x7F0300BE,0x7F03012B,0x7F030214,0x7F030263 }
 			public static int[] ActionMode = new int[] {
 					2130903133,
 					2130903134,
 					2130903230,
 					2130903339,
-					2130903571,
-					2130903650};
+					2130903572,
+					2130903651};
 			
 			// aapt resource value: 0
 			public const int ActionMode_background = 0;
@@ -28316,7 +28335,7 @@ namespace PasaBuy.App.Droid
 			// aapt resource value: 1
 			public const int ActivityChooserView_initialActivityCount = 1;
 			
-			// aapt resource value: { 0x10100F2,0x7F030088,0x7F030089,0x7F03016D,0x7F03016E,0x7F030182,0x7F0301F7,0x7F0301F8 }
+			// aapt resource value: { 0x10100F2,0x7F030088,0x7F030089,0x7F03016D,0x7F03016E,0x7F030182,0x7F0301F8,0x7F0301F9 }
 			public static int[] AlertDialog = new int[] {
 					16842994,
 					2130903176,
@@ -28324,8 +28343,8 @@ namespace PasaBuy.App.Droid
 					2130903405,
 					2130903406,
 					2130903426,
-					2130903543,
-					2130903544};
+					2130903544,
+					2130903545};
 			
 			// aapt resource value: 0
 			public const int AlertDialog_android_layout = 0;
@@ -28417,12 +28436,12 @@ namespace PasaBuy.App.Droid
 					2130903296,
 					2130903400};
 			
-			// aapt resource value: { 0x7F030205,0x7F030206,0x7F030208,0x7F030209 }
+			// aapt resource value: { 0x7F030206,0x7F030207,0x7F030209,0x7F03020A }
 			public static int[] AppBarLayoutStates = new int[] {
-					2130903557,
 					2130903558,
-					2130903560,
-					2130903561};
+					2130903559,
+					2130903561,
+					2130903562};
 			
 			// aapt resource value: 0
 			public const int AppBarLayoutStates_state_collapsed = 0;
@@ -28465,12 +28484,12 @@ namespace PasaBuy.App.Droid
 			// aapt resource value: 5
 			public const int AppBarLayout_liftOnScroll = 5;
 			
-			// aapt resource value: { 0x1010119,0x7F030202,0x7F030256,0x7F030257 }
+			// aapt resource value: { 0x1010119,0x7F030203,0x7F030257,0x7F030258 }
 			public static int[] AppCompatImageView = new int[] {
 					16843033,
-					2130903554,
-					2130903638,
-					2130903639};
+					2130903555,
+					2130903639,
+					2130903640};
 			
 			// aapt resource value: 0
 			public const int AppCompatImageView_android_src = 0;
@@ -28484,12 +28503,12 @@ namespace PasaBuy.App.Droid
 			// aapt resource value: 3
 			public const int AppCompatImageView_tintMode = 3;
 			
-			// aapt resource value: { 0x1010142,0x7F030253,0x7F030254,0x7F030255 }
+			// aapt resource value: { 0x1010142,0x7F030254,0x7F030255,0x7F030256 }
 			public static int[] AppCompatSeekBar = new int[] {
 					16843074,
-					2130903635,
 					2130903636,
-					2130903637};
+					2130903637,
+					2130903638};
 			
 			// aapt resource value: 0
 			public const int AppCompatSeekBar_android_thumb = 0;
@@ -28534,7 +28553,7 @@ namespace PasaBuy.App.Droid
 			// aapt resource value: 0
 			public const int AppCompatTextHelper_android_textAppearance = 0;
 			
-			// aapt resource value: { 0x1010034,0x7F03002E,0x7F03002F,0x7F030030,0x7F030031,0x7F030032,0x7F030119,0x7F03011C,0x7F030157,0x7F030169,0x7F030233 }
+			// aapt resource value: { 0x1010034,0x7F03002E,0x7F03002F,0x7F030030,0x7F030031,0x7F030032,0x7F030119,0x7F03011C,0x7F030157,0x7F030169,0x7F030234 }
 			public static int[] AppCompatTextView = new int[] {
 					16842804,
 					2130903086,
@@ -28546,7 +28565,7 @@ namespace PasaBuy.App.Droid
 					2130903324,
 					2130903383,
 					2130903401,
-					2130903603};
+					2130903604};
 			
 			// aapt resource value: 0
 			public const int AppCompatTextView_android_textAppearance = 0;
@@ -28581,7 +28600,7 @@ namespace PasaBuy.App.Droid
 			// aapt resource value: 10
 			public const int AppCompatTextView_textAllCaps = 10;
 			
-			// aapt resource value: { 0x1010057,0x10100AE,0x7F030000,0x7F030001,0x7F030002,0x7F030003,0x7F030004,0x7F030005,0x7F030006,0x7F030007,0x7F030008,0x7F030009,0x7F03000A,0x7F03000B,0x7F03000C,0x7F03000E,0x7F03000F,0x7F030010,0x7F030011,0x7F030012,0x7F030013,0x7F030014,0x7F030015,0x7F030016,0x7F030017,0x7F030018,0x7F030019,0x7F03001A,0x7F03001B,0x7F03001C,0x7F03001D,0x7F03001E,0x7F030021,0x7F030022,0x7F030023,0x7F030024,0x7F030025,0x7F03002D,0x7F03006B,0x7F030082,0x7F030083,0x7F030084,0x7F030085,0x7F030086,0x7F03008B,0x7F03008C,0x7F03009D,0x7F0300A3,0x7F0300C5,0x7F0300C6,0x7F0300C7,0x7F0300C8,0x7F0300C9,0x7F0300CA,0x7F0300CB,0x7F0300CC,0x7F0300CD,0x7F0300D0,0x7F0300DF,0x7F0300EA,0x7F0300EB,0x7F0300EC,0x7F0300EF,0x7F0300F1,0x7F0300F4,0x7F0300F5,0x7F0300F6,0x7F0300F7,0x7F0300F8,0x7F030135,0x7F030143,0x7F03016B,0x7F03016C,0x7F03016F,0x7F030170,0x7F030171,0x7F030172,0x7F030173,0x7F030174,0x7F030175,0x7F03018F,0x7F030190,0x7F030191,0x7F0301B3,0x7F0301B5,0x7F0301BC,0x7F0301BD,0x7F0301BE,0x7F0301BF,0x7F0301E2,0x7F0301E3,0x7F0301F1,0x7F0301F2,0x7F0301FF,0x7F030200,0x7F030217,0x7F03023E,0x7F03023F,0x7F030240,0x7F030241,0x7F030243,0x7F030244,0x7F030245,0x7F030246,0x7F030249,0x7F03024A,0x7F030264,0x7F030265,0x7F030266,0x7F030267,0x7F030278,0x7F03027C,0x7F03027D,0x7F03027E,0x7F03027F,0x7F030280,0x7F030281,0x7F030282,0x7F030283,0x7F030284,0x7F030285 }
+			// aapt resource value: { 0x1010057,0x10100AE,0x7F030000,0x7F030001,0x7F030002,0x7F030003,0x7F030004,0x7F030005,0x7F030006,0x7F030007,0x7F030008,0x7F030009,0x7F03000A,0x7F03000B,0x7F03000C,0x7F03000E,0x7F03000F,0x7F030010,0x7F030011,0x7F030012,0x7F030013,0x7F030014,0x7F030015,0x7F030016,0x7F030017,0x7F030018,0x7F030019,0x7F03001A,0x7F03001B,0x7F03001C,0x7F03001D,0x7F03001E,0x7F030021,0x7F030022,0x7F030023,0x7F030024,0x7F030025,0x7F03002D,0x7F03006B,0x7F030082,0x7F030083,0x7F030084,0x7F030085,0x7F030086,0x7F03008B,0x7F03008C,0x7F03009D,0x7F0300A3,0x7F0300C5,0x7F0300C6,0x7F0300C7,0x7F0300C8,0x7F0300C9,0x7F0300CA,0x7F0300CB,0x7F0300CC,0x7F0300CD,0x7F0300D0,0x7F0300DF,0x7F0300EA,0x7F0300EB,0x7F0300EC,0x7F0300EF,0x7F0300F1,0x7F0300F4,0x7F0300F5,0x7F0300F6,0x7F0300F7,0x7F0300F8,0x7F030135,0x7F030143,0x7F03016B,0x7F03016C,0x7F03016F,0x7F030170,0x7F030171,0x7F030172,0x7F030173,0x7F030174,0x7F030175,0x7F03018F,0x7F030190,0x7F030191,0x7F0301B3,0x7F0301B5,0x7F0301BC,0x7F0301BD,0x7F0301BE,0x7F0301BF,0x7F0301E3,0x7F0301E4,0x7F0301F2,0x7F0301F3,0x7F030200,0x7F030201,0x7F030218,0x7F03023F,0x7F030240,0x7F030241,0x7F030242,0x7F030244,0x7F030245,0x7F030246,0x7F030247,0x7F03024A,0x7F03024B,0x7F030265,0x7F030266,0x7F030267,0x7F030268,0x7F030279,0x7F03027D,0x7F03027E,0x7F03027F,0x7F030280,0x7F030281,0x7F030282,0x7F030283,0x7F030284,0x7F030285,0x7F030286 }
 			public static int[] AppCompatTheme = new int[] {
 					16842839,
 					16842926,
@@ -28672,29 +28691,28 @@ namespace PasaBuy.App.Droid
 					2130903485,
 					2130903486,
 					2130903487,
-					2130903522,
 					2130903523,
-					2130903537,
+					2130903524,
 					2130903538,
-					2130903551,
+					2130903539,
 					2130903552,
-					2130903575,
-					2130903614,
+					2130903553,
+					2130903576,
 					2130903615,
 					2130903616,
 					2130903617,
-					2130903619,
+					2130903618,
 					2130903620,
 					2130903621,
 					2130903622,
-					2130903625,
+					2130903623,
 					2130903626,
-					2130903652,
+					2130903627,
 					2130903653,
 					2130903654,
 					2130903655,
-					2130903672,
-					2130903676,
+					2130903656,
+					2130903673,
 					2130903677,
 					2130903678,
 					2130903679,
@@ -28703,7 +28721,8 @@ namespace PasaBuy.App.Droid
 					2130903682,
 					2130903683,
 					2130903684,
-					2130903685};
+					2130903685,
+					2130903686};
 			
 			// aapt resource value: 2
 			public const int AppCompatTheme_actionBarDivider = 2;
@@ -29219,7 +29238,7 @@ namespace PasaBuy.App.Droid
 			// aapt resource value: 12
 			public const int CardView_contentPaddingTop = 12;
 			
-			// aapt resource value: { 0x1010034,0x10100AB,0x101011F,0x101014F,0x10101E5,0x7F0300A0,0x7F0300A1,0x7F0300A2,0x7F0300A4,0x7F0300A5,0x7F0300A6,0x7F0300A8,0x7F0300A9,0x7F0300AA,0x7F0300AB,0x7F0300AC,0x7F0300AD,0x7F0300B2,0x7F0300B3,0x7F0300B4,0x7F0300B7,0x7F0300B8,0x7F0300B9,0x7F0300BA,0x7F0300BB,0x7F0300BC,0x7F0300BD,0x7F03012F,0x7F030139,0x7F03013D,0x7F0301CD,0x7F0301F5,0x7F03024B,0x7F03024D }
+			// aapt resource value: { 0x1010034,0x10100AB,0x101011F,0x101014F,0x10101E5,0x7F0300A0,0x7F0300A1,0x7F0300A2,0x7F0300A4,0x7F0300A5,0x7F0300A6,0x7F0300A8,0x7F0300A9,0x7F0300AA,0x7F0300AB,0x7F0300AC,0x7F0300AD,0x7F0300B2,0x7F0300B3,0x7F0300B4,0x7F0300B7,0x7F0300B8,0x7F0300B9,0x7F0300BA,0x7F0300BB,0x7F0300BC,0x7F0300BD,0x7F03012F,0x7F030139,0x7F03013D,0x7F0301CD,0x7F0301F6,0x7F03024C,0x7F03024E }
 			public static int[] Chip = new int[] {
 					16842804,
 					16842923,
@@ -29252,18 +29271,18 @@ namespace PasaBuy.App.Droid
 					2130903353,
 					2130903357,
 					2130903501,
-					2130903541,
-					2130903627,
-					2130903629};
+					2130903542,
+					2130903628,
+					2130903630};
 			
-			// aapt resource value: { 0x7F03009F,0x7F0300AE,0x7F0300AF,0x7F0300B0,0x7F0301F9,0x7F0301FA }
+			// aapt resource value: { 0x7F03009F,0x7F0300AE,0x7F0300AF,0x7F0300B0,0x7F0301FA,0x7F0301FB }
 			public static int[] ChipGroup = new int[] {
 					2130903199,
 					2130903214,
 					2130903215,
 					2130903216,
-					2130903545,
-					2130903546};
+					2130903546,
+					2130903547};
 			
 			// aapt resource value: 0
 			public const int ChipGroup_checkedChip = 0;
@@ -29385,7 +29404,7 @@ namespace PasaBuy.App.Droid
 			// aapt resource value: 33
 			public const int Chip_textStartPadding = 33;
 			
-			// aapt resource value: { 0x7F0300C1,0x7F0300C2,0x7F0300DE,0x7F030101,0x7F030102,0x7F030103,0x7F030104,0x7F030105,0x7F030106,0x7F030107,0x7F0301DD,0x7F0301DF,0x7F03020B,0x7F030258,0x7F030259,0x7F030263 }
+			// aapt resource value: { 0x7F0300C1,0x7F0300C2,0x7F0300DE,0x7F030101,0x7F030102,0x7F030103,0x7F030104,0x7F030105,0x7F030106,0x7F030107,0x7F0301DD,0x7F0301DF,0x7F03020C,0x7F030259,0x7F03025A,0x7F030264 }
 			public static int[] CollapsingToolbarLayout = new int[] {
 					2130903233,
 					2130903234,
@@ -29399,10 +29418,10 @@ namespace PasaBuy.App.Droid
 					2130903303,
 					2130903517,
 					2130903519,
-					2130903563,
-					2130903640,
+					2130903564,
 					2130903641,
-					2130903651};
+					2130903642,
+					2130903652};
 			
 			// aapt resource value: 0
 			public const int CollapsingToolbarLayout_collapsedTitleGravity = 0;
@@ -29493,10 +29512,10 @@ namespace PasaBuy.App.Droid
 			// aapt resource value: 2
 			public const int CompoundButton_buttonTintMode = 2;
 			
-			// aapt resource value: { 0x7F030155,0x7F03020A }
+			// aapt resource value: { 0x7F030155,0x7F03020B }
 			public static int[] CoordinatorLayout = new int[] {
 					2130903381,
-					2130903562};
+					2130903563};
 			
 			// aapt resource value: 0
 			public const int CoordinatorLayout_keylines = 0;
@@ -29546,14 +29565,14 @@ namespace PasaBuy.App.Droid
 			// aapt resource value: 1
 			public const int DesignTheme_bottomSheetStyle = 1;
 			
-			// aapt resource value: { 0x7F030207 }
+			// aapt resource value: { 0x7F030208 }
 			public static int[] DrawableStates = new int[] {
-					2130903559};
+					2130903560};
 			
 			// aapt resource value: 0
 			public const int DrawableStates_state_indeterminate = 0;
 			
-			// aapt resource value: { 0x7F03002B,0x7F03002C,0x7F030062,0x7F0300C4,0x7F0300F2,0x7F030128,0x7F0301FE,0x7F03024F }
+			// aapt resource value: { 0x7F03002B,0x7F03002C,0x7F030062,0x7F0300C4,0x7F0300F2,0x7F030128,0x7F0301FF,0x7F030250 }
 			public static int[] DrawerArrowToggle = new int[] {
 					2130903083,
 					2130903084,
@@ -29561,8 +29580,8 @@ namespace PasaBuy.App.Droid
 					2130903236,
 					2130903282,
 					2130903336,
-					2130903550,
-					2130903631};
+					2130903551,
+					2130903632};
 			
 			// aapt resource value: 0
 			public const int DrawerArrowToggle_arrowHeadLength = 0;
@@ -29588,7 +29607,7 @@ namespace PasaBuy.App.Droid
 			// aapt resource value: 7
 			public const int DrawerArrowToggle_thickness = 7;
 			
-			// aapt resource value: { 0x7F030060,0x7F030061,0x7F03006A,0x7F0300F9,0x7F03010C,0x7F03010D,0x7F03010E,0x7F03010F,0x7F030110,0x7F030111,0x7F030112,0x7F030113,0x7F03012F,0x7F030137,0x7F03017E,0x7F0301B7,0x7F0301CD,0x7F0301F5,0x7F030275 }
+			// aapt resource value: { 0x7F030060,0x7F030061,0x7F03006A,0x7F0300F9,0x7F03010C,0x7F03010D,0x7F03010E,0x7F03010F,0x7F030110,0x7F030111,0x7F030112,0x7F030113,0x7F03012F,0x7F030137,0x7F03017E,0x7F0301B7,0x7F0301CD,0x7F0301F6,0x7F030276 }
 			public static int[] FloatingActionButton = new int[] {
 					2130903136,
 					2130903137,
@@ -29607,8 +29626,8 @@ namespace PasaBuy.App.Droid
 					2130903422,
 					2130903479,
 					2130903501,
-					2130903541,
-					2130903669};
+					2130903542,
+					2130903670};
 			
 			// aapt resource value: 0
 			public const int FloatingActionButton_backgroundTint = 0;
@@ -29694,7 +29713,7 @@ namespace PasaBuy.App.Droid
 					2130903329,
 					2130903330};
 			
-			// aapt resource value: { 0x1010532,0x1010533,0x101053F,0x101056F,0x1010570,0x7F03011B,0x7F030124,0x7F030125,0x7F030126,0x7F03026C }
+			// aapt resource value: { 0x1010532,0x1010533,0x101053F,0x101056F,0x1010570,0x7F03011B,0x7F030124,0x7F030125,0x7F030126,0x7F03026D }
 			public static int[] FontFamilyFont = new int[] {
 					16844082,
 					16844083,
@@ -29705,7 +29724,7 @@ namespace PasaBuy.App.Droid
 					2130903332,
 					2130903333,
 					2130903334,
-					2130903660};
+					2130903661};
 			
 			// aapt resource value: 0
 			public const int FontFamilyFont_android_font = 0;
@@ -29839,7 +29858,7 @@ namespace PasaBuy.App.Droid
 			// aapt resource value: 0
 			public const int ItemsViewRendererTheme_collectionViewStyle = 0;
 			
-			// aapt resource value: { 0x10100AF,0x10100C4,0x1010126,0x1010127,0x1010128,0x7F0300EE,0x7F0300F0,0x7F030180,0x7F0301F4 }
+			// aapt resource value: { 0x10100AF,0x10100C4,0x1010126,0x1010127,0x1010128,0x7F0300EE,0x7F0300F0,0x7F030180,0x7F0301F5 }
 			public static int[] LinearLayoutCompat = new int[] {
 					16842927,
 					16842948,
@@ -29849,7 +29868,7 @@ namespace PasaBuy.App.Droid
 					2130903278,
 					2130903280,
 					2130903424,
-					2130903540};
+					2130903541};
 			
 			// aapt resource value: 2
 			public const int LinearLayoutCompat_android_baselineAligned = 2;
@@ -29923,7 +29942,7 @@ namespace PasaBuy.App.Droid
 			// aapt resource value: 2
 			public const int LoadingImageView_imageAspectRatioAdjust = 2;
 			
-			// aapt resource value: { 0x7F03002A,0x7F03008F,0x7F030090,0x7F030091,0x7F030092,0x7F030093,0x7F030094,0x7F030095,0x7F030158,0x7F030159,0x7F03015A,0x7F03015B,0x7F030176,0x7F030179,0x7F03026D,0x7F03026E,0x7F03026F,0x7F030270,0x7F030271,0x7F030272,0x7F030273,0x7F030274,0x7F030276,0x7F030286 }
+			// aapt resource value: { 0x7F03002A,0x7F03008F,0x7F030090,0x7F030091,0x7F030092,0x7F030093,0x7F030094,0x7F030095,0x7F030158,0x7F030159,0x7F03015A,0x7F03015B,0x7F030176,0x7F030179,0x7F03026E,0x7F03026F,0x7F030270,0x7F030271,0x7F030272,0x7F030273,0x7F030274,0x7F030275,0x7F030277,0x7F030287 }
 			public static int[] MapAttrs = new int[] {
 					2130903082,
 					2130903183,
@@ -29939,7 +29958,6 @@ namespace PasaBuy.App.Droid
 					2130903387,
 					2130903414,
 					2130903417,
-					2130903661,
 					2130903662,
 					2130903663,
 					2130903664,
@@ -29947,8 +29965,9 @@ namespace PasaBuy.App.Droid
 					2130903666,
 					2130903667,
 					2130903668,
-					2130903670,
-					2130903686};
+					2130903669,
+					2130903671,
+					2130903687};
 			
 			// aapt resource value: 0
 			public const int MapAttrs_ambientEnabled = 0;
@@ -30022,7 +30041,7 @@ namespace PasaBuy.App.Droid
 			// aapt resource value: 23
 			public const int MapAttrs_zOrderOnTop = 23;
 			
-			// aapt resource value: { 0x10101B7,0x10101B8,0x10101B9,0x10101BA,0x7F030060,0x7F030061,0x7F0300E1,0x7F030138,0x7F03013A,0x7F03013B,0x7F03013C,0x7F03013E,0x7F03013F,0x7F0301CD,0x7F03020C,0x7F03020D }
+			// aapt resource value: { 0x10101B7,0x10101B8,0x10101B9,0x10101BA,0x7F030060,0x7F030061,0x7F0300E1,0x7F030138,0x7F03013A,0x7F03013B,0x7F03013C,0x7F03013E,0x7F03013F,0x7F0301CD,0x7F03020D,0x7F03020E }
 			public static int[] MaterialButton = new int[] {
 					16843191,
 					16843192,
@@ -30038,8 +30057,8 @@ namespace PasaBuy.App.Droid
 					2130903358,
 					2130903359,
 					2130903501,
-					2130903564,
-					2130903565};
+					2130903565,
+					2130903566};
 			
 			// aapt resource value: 3
 			public const int MaterialButton_android_insetBottom = 3;
@@ -30089,10 +30108,10 @@ namespace PasaBuy.App.Droid
 			// aapt resource value: 15
 			public const int MaterialButton_strokeWidth = 15;
 			
-			// aapt resource value: { 0x7F03020C,0x7F03020D }
+			// aapt resource value: { 0x7F03020D,0x7F03020E }
 			public static int[] MaterialCardView = new int[] {
-					2130903564,
-					2130903565};
+					2130903565,
+					2130903566};
 			
 			// aapt resource value: 0
 			public const int MaterialCardView_strokeColor = 0;
@@ -30100,7 +30119,7 @@ namespace PasaBuy.App.Droid
 			// aapt resource value: 1
 			public const int MaterialCardView_strokeWidth = 1;
 			
-			// aapt resource value: { 0x7F03006E,0x7F03006F,0x7F0300A7,0x7F0300B1,0x7F0300B5,0x7F0300C5,0x7F0300C6,0x7F0300CC,0x7F0300CD,0x7F0300CF,0x7F0300F8,0x7F03011A,0x7F03017A,0x7F03017B,0x7F030186,0x7F0301DE,0x7F0301FB,0x7F03022F,0x7F030234,0x7F030235,0x7F030236,0x7F030237,0x7F030238,0x7F030239,0x7F03023A,0x7F03023B,0x7F03023C,0x7F03023D,0x7F030242,0x7F030247,0x7F030248,0x7F03024C }
+			// aapt resource value: { 0x7F03006E,0x7F03006F,0x7F0300A7,0x7F0300B1,0x7F0300B5,0x7F0300C5,0x7F0300C6,0x7F0300CC,0x7F0300CD,0x7F0300CF,0x7F0300F8,0x7F03011A,0x7F03017A,0x7F03017B,0x7F030186,0x7F0301DE,0x7F0301FC,0x7F030230,0x7F030235,0x7F030236,0x7F030237,0x7F030238,0x7F030239,0x7F03023A,0x7F03023B,0x7F03023C,0x7F03023D,0x7F03023E,0x7F030243,0x7F030248,0x7F030249,0x7F03024D }
 			public static int[] MaterialComponentsTheme = new int[] {
 					2130903150,
 					2130903151,
@@ -30118,9 +30137,8 @@ namespace PasaBuy.App.Droid
 					2130903419,
 					2130903430,
 					2130903518,
-					2130903547,
-					2130903599,
-					2130903604,
+					2130903548,
+					2130903600,
 					2130903605,
 					2130903606,
 					2130903607,
@@ -30130,10 +30148,11 @@ namespace PasaBuy.App.Droid
 					2130903611,
 					2130903612,
 					2130903613,
-					2130903618,
-					2130903623,
+					2130903614,
+					2130903619,
 					2130903624,
-					2130903628};
+					2130903625,
+					2130903629};
 			
 			// aapt resource value: 0
 			public const int MaterialComponentsTheme_bottomSheetDialogTheme = 0;
@@ -30258,7 +30277,7 @@ namespace PasaBuy.App.Droid
 			// aapt resource value: 2
 			public const int MenuGroup_android_visible = 2;
 			
-			// aapt resource value: { 0x1010002,0x101000E,0x10100D0,0x1010106,0x1010194,0x10101DE,0x10101DF,0x10101E1,0x10101E2,0x10101E3,0x10101E4,0x10101E5,0x101026F,0x7F03000D,0x7F03001F,0x7F030020,0x7F030029,0x7F0300D2,0x7F03013E,0x7F03013F,0x7F030188,0x7F0301F3,0x7F030268 }
+			// aapt resource value: { 0x1010002,0x101000E,0x10100D0,0x1010106,0x1010194,0x10101DE,0x10101DF,0x10101E1,0x10101E2,0x10101E3,0x10101E4,0x10101E5,0x101026F,0x7F03000D,0x7F03001F,0x7F030020,0x7F030029,0x7F0300D2,0x7F03013E,0x7F03013F,0x7F030188,0x7F0301F4,0x7F030269 }
 			public static int[] MenuItem = new int[] {
 					16842754,
 					16842766,
@@ -30281,8 +30300,8 @@ namespace PasaBuy.App.Droid
 					2130903358,
 					2130903359,
 					2130903432,
-					2130903539,
-					2130903656};
+					2130903540,
+					2130903657};
 			
 			// aapt resource value: 13
 			public const int MenuItem_actionLayout = 13;
@@ -30353,7 +30372,7 @@ namespace PasaBuy.App.Droid
 			// aapt resource value: 22
 			public const int MenuItem_tooltipText = 22;
 			
-			// aapt resource value: { 0x10100AE,0x101012C,0x101012D,0x101012E,0x101012F,0x1010130,0x1010131,0x7F0301B6,0x7F03020E }
+			// aapt resource value: { 0x10100AE,0x101012C,0x101012D,0x101012E,0x101012F,0x1010130,0x1010131,0x7F0301B6,0x7F03020F }
 			public static int[] MenuView = new int[] {
 					16842926,
 					16843052,
@@ -30363,7 +30382,7 @@ namespace PasaBuy.App.Droid
 					16843056,
 					16843057,
 					2130903478,
-					2130903566};
+					2130903567};
 			
 			// aapt resource value: 4
 			public const int MenuView_android_headerBackground = 4;
@@ -30449,9 +30468,9 @@ namespace PasaBuy.App.Droid
 					16843465,
 					2130903434};
 			
-			// aapt resource value: { 0x7F030204 }
+			// aapt resource value: { 0x7F030205 }
 			public static int[] PopupWindowBackgroundState = new int[] {
-					2130903556};
+					2130903557};
 			
 			// aapt resource value: 0
 			public const int PopupWindowBackgroundState_state_above_anchor = 0;
@@ -30476,7 +30495,7 @@ namespace PasaBuy.App.Droid
 			// aapt resource value: 1
 			public const int RecycleListView_paddingTopNoTitle = 1;
 			
-			// aapt resource value: { 0x10100C4,0x10100F1,0x7F030114,0x7F030115,0x7F030116,0x7F030117,0x7F030118,0x7F03015D,0x7F0301CC,0x7F0301FD,0x7F030203 }
+			// aapt resource value: { 0x10100C4,0x10100F1,0x7F030114,0x7F030115,0x7F030116,0x7F030117,0x7F030118,0x7F03015D,0x7F0301CC,0x7F0301FE,0x7F030204 }
 			public static int[] RecyclerView = new int[] {
 					16842948,
 					16842993,
@@ -30487,8 +30506,8 @@ namespace PasaBuy.App.Droid
 					2130903320,
 					2130903389,
 					2130903500,
-					2130903549,
-					2130903555};
+					2130903550,
+					2130903556};
 			
 			// aapt resource value: 1
 			public const int RecyclerView_android_descendantFocusability = 1;
@@ -30537,7 +30556,14 @@ namespace PasaBuy.App.Droid
 			// aapt resource value: 0
 			public const int ScrollingViewBehavior_Layout_behavior_overlapTop = 0;
 			
-			// aapt resource value: { 0x10100DA,0x101011F,0x1010220,0x1010264,0x7F0300B7,0x7F0300D1,0x7F0300E9,0x7F030129,0x7F030140,0x7F03015C,0x7F0301BA,0x7F0301BB,0x7F0301E0,0x7F0301E1,0x7F03020F,0x7F030214,0x7F030279 }
+			// aapt resource value: { 0x7F0301E0 }
+			public static int[] ScrollViewRendererTheme = new int[] {
+					2130903520};
+			
+			// aapt resource value: 0
+			public const int ScrollViewRendererTheme_scrollViewStyle = 0;
+			
+			// aapt resource value: { 0x10100DA,0x101011F,0x1010220,0x1010264,0x7F0300B7,0x7F0300D1,0x7F0300E9,0x7F030129,0x7F030140,0x7F03015C,0x7F0301BA,0x7F0301BB,0x7F0301E1,0x7F0301E2,0x7F030210,0x7F030215,0x7F03027A }
 			public static int[] SearchView = new int[] {
 					16842970,
 					16843039,
@@ -30551,11 +30577,11 @@ namespace PasaBuy.App.Droid
 					2130903388,
 					2130903482,
 					2130903483,
-					2130903520,
 					2130903521,
-					2130903567,
-					2130903572,
-					2130903673};
+					2130903522,
+					2130903568,
+					2130903573,
+					2130903674};
 			
 			// aapt resource value: 0
 			public const int SearchView_android_focusable = 0;
@@ -30833,7 +30859,7 @@ namespace PasaBuy.App.Droid
 			// aapt resource value: 2
 			public const int SfCheckBox_isthreestate = 2;
 			
-			// aapt resource value: { 0x7F030026,0x7F030069,0x7F0300E7,0x7F0300FA,0x7F030123,0x7F03017F,0x7F030187,0x7F030189,0x7F030192,0x7F030198,0x7F0301F0,0x7F030277,0x7F03027A,0x7F03027B }
+			// aapt resource value: { 0x7F030026,0x7F030069,0x7F0300E7,0x7F0300FA,0x7F030123,0x7F03017F,0x7F030187,0x7F030189,0x7F030192,0x7F030198,0x7F0301F1,0x7F030278,0x7F03027B,0x7F03027C }
 			public static int[] SfNumericTextBox = new int[] {
 					2130903078,
 					2130903145,
@@ -30845,10 +30871,10 @@ namespace PasaBuy.App.Droid
 					2130903433,
 					2130903442,
 					2130903448,
-					2130903536,
-					2130903671,
-					2130903674,
-					2130903675};
+					2130903537,
+					2130903672,
+					2130903675,
+					2130903676};
 			
 			// aapt resource value: 0
 			public const int SfNumericTextBox_allowNull = 0;
@@ -31109,9 +31135,8 @@ namespace PasaBuy.App.Droid
 			// aapt resource value: 13
 			public const int SfRotator_rotatorUnselectedDotsColor = 13;
 			
-			// aapt resource value: { 0x7F0301E4,0x7F0301E5,0x7F0301E6,0x7F0301E7,0x7F0301E8,0x7F0301E9,0x7F0301EA,0x7F0301EB,0x7F0301EC,0x7F0301ED,0x7F0301EE,0x7F0301EF }
+			// aapt resource value: { 0x7F0301E5,0x7F0301E6,0x7F0301E7,0x7F0301E8,0x7F0301E9,0x7F0301EA,0x7F0301EB,0x7F0301EC,0x7F0301ED,0x7F0301EE,0x7F0301EF,0x7F0301F0 }
 			public static int[] SfSegmentedControl = new int[] {
-					2130903524,
 					2130903525,
 					2130903526,
 					2130903527,
@@ -31122,7 +31147,8 @@ namespace PasaBuy.App.Droid
 					2130903532,
 					2130903533,
 					2130903534,
-					2130903535};
+					2130903535,
+					2130903536};
 			
 			// aapt resource value: 0
 			public const int SfSegmentedControl_segmentBackColor = 0;
@@ -31175,10 +31201,10 @@ namespace PasaBuy.App.Droid
 			// aapt resource value: 2
 			public const int SignInButton_scopeUris = 2;
 			
-			// aapt resource value: { 0x7F0301FB,0x7F0301FC }
+			// aapt resource value: { 0x7F0301FC,0x7F0301FD }
 			public static int[] Snackbar = new int[] {
-					2130903547,
-					2130903548};
+					2130903548,
+					2130903549};
 			
 			// aapt resource value: { 0x101011F,0x7F0300F9,0x7F03017C }
 			public static int[] SnackbarLayout = new int[] {
@@ -31258,22 +31284,22 @@ namespace PasaBuy.App.Droid
 			// aapt resource value: 1
 			public const int StateListDrawable_android_visible = 1;
 			
-			// aapt resource value: { 0x1010124,0x1010125,0x1010142,0x7F0301F6,0x7F030201,0x7F030215,0x7F030216,0x7F030218,0x7F030250,0x7F030251,0x7F030252,0x7F030269,0x7F03026A,0x7F03026B }
+			// aapt resource value: { 0x1010124,0x1010125,0x1010142,0x7F0301F7,0x7F030202,0x7F030216,0x7F030217,0x7F030219,0x7F030251,0x7F030252,0x7F030253,0x7F03026A,0x7F03026B,0x7F03026C }
 			public static int[] SwitchCompat = new int[] {
 					16843044,
 					16843045,
 					16843074,
-					2130903542,
-					2130903553,
-					2130903573,
+					2130903543,
+					2130903554,
 					2130903574,
-					2130903576,
-					2130903632,
+					2130903575,
+					2130903577,
 					2130903633,
 					2130903634,
-					2130903657,
+					2130903635,
 					2130903658,
-					2130903659};
+					2130903659,
+					2130903660};
 			
 			// aapt resource value: 1
 			public const int SwitchCompat_android_textOff = 1;
@@ -31332,9 +31358,8 @@ namespace PasaBuy.App.Droid
 			// aapt resource value: 2
 			public const int TabItem_android_text = 2;
 			
-			// aapt resource value: { 0x7F030219,0x7F03021A,0x7F03021B,0x7F03021C,0x7F03021D,0x7F03021E,0x7F03021F,0x7F030220,0x7F030221,0x7F030222,0x7F030223,0x7F030224,0x7F030225,0x7F030226,0x7F030227,0x7F030228,0x7F030229,0x7F03022A,0x7F03022B,0x7F03022C,0x7F03022D,0x7F03022E,0x7F030230,0x7F030231,0x7F030232 }
+			// aapt resource value: { 0x7F03021A,0x7F03021B,0x7F03021C,0x7F03021D,0x7F03021E,0x7F03021F,0x7F030220,0x7F030221,0x7F030222,0x7F030223,0x7F030224,0x7F030225,0x7F030226,0x7F030227,0x7F030228,0x7F030229,0x7F03022A,0x7F03022B,0x7F03022C,0x7F03022D,0x7F03022E,0x7F03022F,0x7F030231,0x7F030232,0x7F030233 }
 			public static int[] TabLayout = new int[] {
-					2130903577,
 					2130903578,
 					2130903579,
 					2130903580,
@@ -31356,9 +31381,10 @@ namespace PasaBuy.App.Droid
 					2130903596,
 					2130903597,
 					2130903598,
-					2130903600,
+					2130903599,
 					2130903601,
-					2130903602};
+					2130903602,
+					2130903603};
 			
 			// aapt resource value: 0
 			public const int TabLayout_tabBackground = 0;
@@ -31435,7 +31461,7 @@ namespace PasaBuy.App.Droid
 			// aapt resource value: 24
 			public const int TabLayout_tabUnboundedRipple = 24;
 			
-			// aapt resource value: { 0x1010095,0x1010096,0x1010097,0x1010098,0x101009A,0x101009B,0x1010161,0x1010162,0x1010163,0x1010164,0x10103AC,0x7F03011C,0x7F030233 }
+			// aapt resource value: { 0x1010095,0x1010096,0x1010097,0x1010098,0x101009A,0x101009B,0x1010161,0x1010162,0x1010163,0x1010164,0x10103AC,0x7F03011C,0x7F030234 }
 			public static int[] TextAppearance = new int[] {
 					16842901,
 					16842902,
@@ -31449,7 +31475,7 @@ namespace PasaBuy.App.Droid
 					16843108,
 					16843692,
 					2130903324,
-					2130903603};
+					2130903604};
 			
 			// aapt resource value: 10
 			public const int TextAppearance_android_fontFamily = 10;
@@ -31620,7 +31646,7 @@ namespace PasaBuy.App.Droid
 			// aapt resource value: 2
 			public const int ThemeEnforcement_enforceTextAppearance = 2;
 			
-			// aapt resource value: { 0x10100AF,0x1010140,0x7F030087,0x7F0300BF,0x7F0300C0,0x7F0300D3,0x7F0300D4,0x7F0300D5,0x7F0300D6,0x7F0300D7,0x7F0300D8,0x7F030177,0x7F030178,0x7F03017D,0x7F030183,0x7F030184,0x7F0301B4,0x7F030210,0x7F030211,0x7F030212,0x7F030258,0x7F03025A,0x7F03025B,0x7F03025C,0x7F03025D,0x7F03025E,0x7F03025F,0x7F030260,0x7F030261 }
+			// aapt resource value: { 0x10100AF,0x1010140,0x7F030087,0x7F0300BF,0x7F0300C0,0x7F0300D3,0x7F0300D4,0x7F0300D5,0x7F0300D6,0x7F0300D7,0x7F0300D8,0x7F030177,0x7F030178,0x7F03017D,0x7F030183,0x7F030184,0x7F0301B4,0x7F030211,0x7F030212,0x7F030213,0x7F030259,0x7F03025B,0x7F03025C,0x7F03025D,0x7F03025E,0x7F03025F,0x7F030260,0x7F030261,0x7F030262 }
 			public static int[] Toolbar = new int[] {
 					16842927,
 					16843072,
@@ -31639,18 +31665,18 @@ namespace PasaBuy.App.Droid
 					2130903427,
 					2130903428,
 					2130903476,
-					2130903568,
 					2130903569,
 					2130903570,
-					2130903640,
-					2130903642,
+					2130903571,
+					2130903641,
 					2130903643,
 					2130903644,
 					2130903645,
 					2130903646,
 					2130903647,
 					2130903648,
-					2130903649};
+					2130903649,
+					2130903650};
 			
 			// aapt resource value: 0
 			public const int Toolbar_android_gravity = 0;
@@ -31739,13 +31765,13 @@ namespace PasaBuy.App.Droid
 			// aapt resource value: 28
 			public const int Toolbar_titleTextColor = 28;
 			
-			// aapt resource value: { 0x1010000,0x10100DA,0x7F03018C,0x7F03018D,0x7F03024E }
+			// aapt resource value: { 0x1010000,0x10100DA,0x7F03018C,0x7F03018D,0x7F03024F }
 			public static int[] View = new int[] {
 					16842752,
 					16842970,
 					2130903436,
 					2130903437,
-					2130903630};
+					2130903631};
 			
 			// aapt resource value: { 0x10100D4,0x7F030060,0x7F030061 }
 			public static int[] ViewBackgroundHelper = new int[] {

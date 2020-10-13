@@ -430,12 +430,8 @@ namespace PasaBuy.App.ViewModels.Menu
                 //IsBusy = true;
                 Device.BeginInvokeOnMainThread( async () =>
                 {
-                    MasterView.MyType = "store";
-                    //DashboardOrdersViewModel.LoadOrder("pending", "");
-                    //App.Current.MainPage = new NavigationView();
                     await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyStoresList()));
                     Status = false;
-                    //IsBusy = false;
                 });
             }
         }
