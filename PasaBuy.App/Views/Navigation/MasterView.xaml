@@ -36,7 +36,6 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout Spacing="0">
                 <!--  user view  -->
                 <Grid >
 
@@ -123,9 +122,6 @@
 
                     <StackLayout Grid.Row="1">
                         <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="70*" />
                                 <ColumnDefinition Width="30*" />
@@ -133,14 +129,12 @@
                             <Label FontFamily="{StaticResource Montserrat-Bold}"
                                    Padding="80,0,0,0"
                                    Grid.Column="0"
-                                   Grid.Row="0"
                                    FontSize="16"
                                    VerticalTextAlignment="Center"
                                    HorizontalTextAlignment="Start"
                                    Text="Go online"
                                    TextColor="{DynamicResource Gray-900}" />
                             <Grid Grid.Column="1"
-                                  Grid.Row="0"
                                   HorizontalOptions="CenterAndExpand"
                                   VerticalOptions="CenterAndExpand">
                                 <syncfusion:SfSwitch VisualType="Material" 
@@ -153,7 +147,7 @@
                         </Grid>
                     </StackLayout>
 
-                    <StackLayout Grid.Row="2" >
+                    <StackLayout Grid.Row="2">
                         <sync:SfListView
                             x:Name="navigationDrawerList"
                             BackgroundColor="{DynamicResource  Gray-100}"
@@ -194,7 +188,6 @@
                     </StackLayout>
                 </Grid>
 
-            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
