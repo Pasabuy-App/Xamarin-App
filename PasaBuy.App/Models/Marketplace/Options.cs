@@ -10,6 +10,15 @@ namespace PasaBuy.App.Models.Marketplace
         private string name = string.Empty;
         private string id = string.Empty;
 
+        public OptionsData[] data;
+        public class OptionsData
+        {
+            public string ID = string.Empty;
+            public string pdid = string.Empty;
+            public string name = string.Empty;
+            public string info = string.Empty;
+            public string status = string.Empty;
+        }
 
 
         public string Name

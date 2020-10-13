@@ -3,6 +3,7 @@ using PasaBuy.App.Commands;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.MobilePOS;
+using PasaBuy.App.Views.PopupModals;
 using PasaBuy.App.Views.StoreViews.Management;
 using System;
 using System.Collections.Generic;
@@ -45,6 +46,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             VariantsViewModel._variantsList.Clear();
             VariantsViewModel.LoadVariants(id);
             ProductVariants.product_id = id;
+            PopupAddVariants.type = "variants";
         }
 
         public ObservableCollection<ProductData> ProductsList
