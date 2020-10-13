@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using PasaBuy.App.Local;
-using PasaBuy.App.Models.eCommerce;
-using Xamarin.Forms;
-using Xamarin.Forms.Internals;
-using MobilePOS;
+﻿using MobilePOS;
 using Newtonsoft.Json;
 using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
+using PasaBuy.App.Models.eCommerce;
+using System;
+using System.Collections.ObjectModel;
+using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace PasaBuy.App.ViewModels.eCommerce
 {

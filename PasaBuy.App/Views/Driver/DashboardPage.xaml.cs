@@ -1,18 +1,11 @@
-﻿using PasaBuy.App.Models.Driver;
-using PasaBuy.App.ViewModels.Driver;
-using Plugin.Geolocator.Abstractions;
+﻿using Newtonsoft.Json;
+using PasaBuy.App.Local;
+using PasaBuy.App.Models.Driver;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 using Xamarin.Forms.Xaml;
-using Xamarin.Essentials;
-using Rg.Plugins.Popup.Services;
-using PasaBuy.App.Local;
-using Newtonsoft.Json;
 
 namespace PasaBuy.App.Views.Driver
 {
@@ -41,7 +34,7 @@ namespace PasaBuy.App.Views.Driver
                 {
                     Xamarin.Forms.GoogleMaps.Position p = new Xamarin.Forms.GoogleMaps.Position(location.Latitude, location.Longitude);
                     MapSpan mapSpan = MapSpan.FromCenterAndRadius(p, Distance.FromKilometers(.444));
-                    map.MoveToRegion(mapSpan); 
+                    map.MoveToRegion(mapSpan);
                     //await GetLocationName(p);
                     Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
                 }

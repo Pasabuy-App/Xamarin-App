@@ -1,5 +1,5 @@
-﻿using System.Runtime.Serialization;
-using Syncfusion.XForms.ProgressBar;
+﻿using Syncfusion.XForms.ProgressBar;
+using System.Runtime.Serialization;
 using Xamarin.Forms.Internals;
 
 namespace PasaBuy.App.Models.eCommerce

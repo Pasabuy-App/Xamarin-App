@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Syncfusion.XForms.Buttons;
+using System;
 using System.Windows.Input;
-using Syncfusion.XForms.Buttons;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 

@@ -1,8 +1,6 @@
 ﻿using Syncfusion.ListView.XForms;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 using Xamarin.Forms;
 
 namespace PasaBuy.App.Behaviors

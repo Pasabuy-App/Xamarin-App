@@ -1,5 +1,5 @@
-﻿using System.Windows.Input;
-using Syncfusion.ListView.XForms;
+﻿using Syncfusion.ListView.XForms;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace PasaBuy.App.Behaviors

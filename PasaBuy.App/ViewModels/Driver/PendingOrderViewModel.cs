@@ -3,11 +3,8 @@ using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Driver;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using Xamarin.Forms;
-using MobilePOS;
 
 namespace PasaBuy.App.ViewModels.Driver
 {
@@ -17,7 +14,7 @@ namespace PasaBuy.App.ViewModels.Driver
 
         public static ObservableCollection<TransactListData> orderlist;
 
-        public  ObservableCollection<TransactListData> OrderList
+        public ObservableCollection<TransactListData> OrderList
         {
             get { return orderlist; }
             set { orderlist = value; this.NotifyPropertyChanged(); }
@@ -28,7 +25,7 @@ namespace PasaBuy.App.ViewModels.Driver
 
             orderlist = new ObservableCollection<TransactListData>();
             orderlist.Clear();
-           
+
             LoadOrder();
 
         }
@@ -37,7 +34,7 @@ namespace PasaBuy.App.ViewModels.Driver
         {
             try
             {
-                HatidPress.Deliveries.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", "car / sedan", "", "received", (bool success, string data) => 
+                HatidPress.Deliveries.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", "car / sedan", "", "received", (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -66,7 +63,7 @@ namespace PasaBuy.App.ViewModels.Driver
                                     string customer_long = datas.data[i].customer_long;
                                     string customer_address = datas.data[i].customer_address;
 
-                         
+
                                     orderlist.Add(new TransactListData()
                                     {
                                         Store_logo = Store_logo,
@@ -123,7 +120,7 @@ namespace PasaBuy.App.ViewModels.Driver
 
         private void OpenMap(object selectedItem)
         {
-            new Alert("sample","sam","ok");
+            new Alert("sample", "sam", "ok");
         }
 
     }

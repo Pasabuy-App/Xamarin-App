@@ -1,19 +1,14 @@
 ﻿using Newtonsoft.Json;
-using PasaBuy.App.Controllers;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Feeds;
 using PasaBuy.App.Models.Onboarding;
 using PasaBuy.App.ViewModels.Chat;
-using PasaBuy.App.ViewModels.Menu;
-using PasaBuy.App.Views;
 using PasaBuy.App.Views.Chat;
 using PasaBuy.App.Views.Feeds;
-using PasaBuy.App.Views.Menu;
 using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -68,83 +63,83 @@ namespace PasaBuy.App.ViewModels.Feeds
             try
             {
                 MyProfile.LastIndex = 11;
-                SocioPress.Feeds.Instance.Profile(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky,"", uid, (bool success, string data) =>
-                {
-                    if (success)
-                    {
-                        PostListData post = JsonConvert.DeserializeObject<PostListData>(data);
-                        if (post.data.Length == 0)
-                        {
-                            profilePostList.Add(new Post(PSAProc.GetUrl("http://localhost/wordpress/wp-content/plugins/SocioPress-WP-Plugin/assets/default-avatar.png"), // PasaBuy.App avatar
-                                "Pasabuy.App", "Status", new DateTime().ToString(), "0", "Welcome to Pasabuy.App!", "", "", "-1", "", "", "", "", "", ""));
-                        }
-                        else
-                        {
-                            for (int i = 0; i < post.data.Length; i++)
-                            {
-                                string image_height = "-1";
-                                if (post.data[i].item_image != "")
-                                {
-                                    image_height = "400";
-                                }
-                                string post_author = post.data[i].post_author;
-                                string id = post.data[i].id;
-                                string content = post.data[i].content;
-                                string title = post.data[i].title;
-                                string date_post = post.data[i].date_post == string.Empty ? new DateTime().ToString() : post.data[i].date_post;
-                                string type = post.data[i].type;
-                                string item_image = post.data[i].item_image;
-                                string author = post.data[i].author;
-                                string name = post.data[i].name;
-                                string views = post.data[i].views;
-                                string post_link = post.data[i].post_link;
-                                string category = post.data[i].item_category;
-                                string vehicle_type = post.data[i].vehicle_date;
-                                string pickup_location = post.data[i].pickup_location;
-                                string do_price = "Drop-off: " + post.data[i].drop_off_location;
-                                if (type == "Selling")
-                                {
-                                    title = category + " : " + title;
-                                    content = post.data[i].content;
-                                    vehicle_type = "Vehicle: " + post.data[i].vehicle_date;
-                                    pickup_location = "Pick-up: " + post.data[i].pickup_location;
-                                    do_price = "Price: " + post.data[i].time_price;
-                                }
-                                if (type == "Pasabay")
-                                {
+                SocioPress.Feeds.Instance.Profile(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", uid, (bool success, string data) =>
+                 {
+                     if (success)
+                     {
+                         PostListData post = JsonConvert.DeserializeObject<PostListData>(data);
+                         if (post.data.Length == 0)
+                         {
+                             profilePostList.Add(new Post(PSAProc.GetUrl("http://localhost/wordpress/wp-content/plugins/SocioPress-WP-Plugin/assets/default-avatar.png"), // PasaBuy.App avatar
+                                 "Pasabuy.App", "Status", new DateTime().ToString(), "0", "Welcome to Pasabuy.App!", "", "", "-1", "", "", "", "", "", ""));
+                         }
+                         else
+                         {
+                             for (int i = 0; i < post.data.Length; i++)
+                             {
+                                 string image_height = "-1";
+                                 if (post.data[i].item_image != "")
+                                 {
+                                     image_height = "400";
+                                 }
+                                 string post_author = post.data[i].post_author;
+                                 string id = post.data[i].id;
+                                 string content = post.data[i].content;
+                                 string title = post.data[i].title;
+                                 string date_post = post.data[i].date_post == string.Empty ? new DateTime().ToString() : post.data[i].date_post;
+                                 string type = post.data[i].type;
+                                 string item_image = post.data[i].item_image;
+                                 string author = post.data[i].author;
+                                 string name = post.data[i].name;
+                                 string views = post.data[i].views;
+                                 string post_link = post.data[i].post_link;
+                                 string category = post.data[i].item_category;
+                                 string vehicle_type = post.data[i].vehicle_date;
+                                 string pickup_location = post.data[i].pickup_location;
+                                 string do_price = "Drop-off: " + post.data[i].drop_off_location;
+                                 if (type == "Selling")
+                                 {
+                                     title = category + " : " + title;
+                                     content = post.data[i].content;
+                                     vehicle_type = "Vehicle: " + post.data[i].vehicle_date;
+                                     pickup_location = "Pick-up: " + post.data[i].pickup_location;
+                                     do_price = "Price: " + post.data[i].time_price;
+                                 }
+                                 if (type == "Pasabay")
+                                 {
                                     //title = "Pasabuy - Hide";
                                     title = "<b> Destination: " + post.data[i].pickup_location + " </b>";
-                                    pickup_location = "Date: " + post.data[i].vehicle_date;
-                                    vehicle_type = "Return Place: " + post.data[i].drop_off_location;
-                                    do_price = "Time: " + post.data[i].time_price;
-                                }
-                                if (type == "Pahatid")
-                                {
+                                     pickup_location = "Date: " + post.data[i].vehicle_date;
+                                     vehicle_type = "Return Place: " + post.data[i].drop_off_location;
+                                     do_price = "Time: " + post.data[i].time_price;
+                                 }
+                                 if (type == "Pahatid")
+                                 {
                                     //title = "Pasabuy - Hide";
                                     title = "<b> Pick-up: " + post.data[i].pickup_location + " </b>";
-                                    pickup_location = "Date: " + post.data[i].vehicle_date;
-                                    vehicle_type = "Drop-off: " + post.data[i].drop_off_location;
-                                    do_price = "Time: " + post.data[i].time_price;
-                                }
-                                if (type == "Pabili")
-                                {
-                                    title = "Item Name: " + post.data[i].title;
-                                    content = "Description: " + post.data[i].content;
-                                    pickup_location = "Date: " + post.data[i].vehicle_date;
-                                    vehicle_type = "Location: " + post.data[i].pickup_location;
-                                    do_price = "Time: " + post.data[i].time_price;
-                                }
+                                     pickup_location = "Date: " + post.data[i].vehicle_date;
+                                     vehicle_type = "Drop-off: " + post.data[i].drop_off_location;
+                                     do_price = "Time: " + post.data[i].time_price;
+                                 }
+                                 if (type == "Pabili")
+                                 {
+                                     title = "Item Name: " + post.data[i].title;
+                                     content = "Description: " + post.data[i].content;
+                                     pickup_location = "Date: " + post.data[i].vehicle_date;
+                                     vehicle_type = "Location: " + post.data[i].pickup_location;
+                                     do_price = "Time: " + post.data[i].time_price;
+                                 }
 
-                                profilePostList.Add(new Post(PSAProc.GetUrl(author),
-                                    name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link, "", pickup_location, vehicle_type, do_price));
-                            }
-                        }
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                });
+                                 profilePostList.Add(new Post(PSAProc.GetUrl(author),
+                                     name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link, "", pickup_location, vehicle_type, do_price));
+                             }
+                         }
+                     }
+                     else
+                     {
+                         new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                     }
+                 });
             }
             catch (Exception e)
             {
@@ -494,17 +489,17 @@ namespace PasaBuy.App.ViewModels.Feeds
         /// <summary>
         /// Gets or sets the posts count
         /// </summary>
-        public int PostsCount 
+        public int PostsCount
         {
-            get 
+            get
             {
                 return countpost;
             }
-            set 
+            set
             {
-                countpost = value; 
+                countpost = value;
                 this.NotifyPropertyChanged();
-            } 
+            }
         }
 
         /// <summary>

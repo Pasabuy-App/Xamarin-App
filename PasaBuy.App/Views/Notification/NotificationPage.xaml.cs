@@ -1,11 +1,9 @@
-﻿using Xamarin.Forms.Internals;
-using Xamarin.Forms.Xaml;
-using PasaBuy.App.DataService;
-using System;
-using PasaBuy.App.Controllers.Notice;
+﻿using PasaBuy.App.Models.Notification;
 using PasaBuy.App.ViewModels.Notification;
-using PasaBuy.App.Models.Notification;
+using System;
 using System.Linq;
+using Xamarin.Forms.Internals;
+using Xamarin.Forms.Xaml;
 
 namespace PasaBuy.App.Views.Notification
 {

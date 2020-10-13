@@ -1,10 +1,6 @@
 ﻿using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -43,27 +39,27 @@ namespace PasaBuy.App.Views.Settings
                     if (!isEnable)
                     {
                         isEnable = true;
-                            DataVice.Documents.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "id", idDocType, idPath, idnumber, "", (bool success, string data) =>
+                        DataVice.Documents.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "id", idDocType, idPath, idnumber, "", (bool success, string data) =>
+                        {
+                            if (success)
                             {
-                                if (success)
+                                DataVice.Documents.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "face", "", selfiePath, ContactEntry.Text, NationalityEntry.Text, (bool success2, string data2) =>
                                 {
-                                    DataVice.Documents.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "face", "", selfiePath, ContactEntry.Text, NationalityEntry.Text, (bool success2, string data2) =>
+                                    if (success)
                                     {
-                                        if (success)
-                                        {
-                                            Navigation.PushModalAsync(new VerificationFinal());
-                                        }
-                                        else
-                                        {
-                                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data2), "Try Again");
-                                        }
-                                    });
-                                }
-                                else
-                                {
-                                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                                }
-                            });
+                                        Navigation.PushModalAsync(new VerificationFinal());
+                                    }
+                                    else
+                                    {
+                                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data2), "Try Again");
+                                    }
+                                });
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            }
+                        });
                     }
                 }
             }

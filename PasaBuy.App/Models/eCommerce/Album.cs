@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using Xamarin.Forms.Internals;
 
 namespace PasaBuy.App.Models.eCommerce

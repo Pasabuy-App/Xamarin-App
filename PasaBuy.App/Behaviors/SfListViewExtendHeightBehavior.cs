@@ -1,8 +1,8 @@
-﻿using System.Linq;
+﻿using Syncfusion.ListView.XForms;
+using Syncfusion.ListView.XForms.Control.Helpers;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using Syncfusion.ListView.XForms;
-using Syncfusion.ListView.XForms.Control.Helpers;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 

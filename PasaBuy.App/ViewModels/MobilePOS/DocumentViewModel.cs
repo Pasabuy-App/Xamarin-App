@@ -4,9 +4,7 @@ using PasaBuy.App.Local;
 using PasaBuy.App.Models.MobilePOS;
 using PasaBuy.App.Views.Navigation;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 
 namespace PasaBuy.App.ViewModels.MobilePOS
 {
@@ -100,7 +98,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                         {
                             DocumentData post = JsonConvert.DeserializeObject<DocumentData>(data);
 
-                            if(post.data == null)
+                            if (post.data == null)
                             {
                                 return;
                             }
@@ -160,7 +158,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                         }
                     });
                 }
-                
+
             }
             catch (Exception e)
             {

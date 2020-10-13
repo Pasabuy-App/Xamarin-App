@@ -1,13 +1,9 @@
 ﻿using PasaBuy.App.Commands;
-using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Models.Marketplace;
 using PasaBuy.App.Views.PopupModals;
 using PasaBuy.App.Views.StoreViews.Management;
 using Rg.Plugins.Popup.Services;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -44,11 +40,11 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
         public ObservableCollection<Variants> VariantsList
         {
-            get 
-            { 
-                return _variantsList; 
+            get
+            {
+                return _variantsList;
             }
-            set 
+            set
             {
                 _variantsList = value;
                 this.NotifyPropertyChanged();

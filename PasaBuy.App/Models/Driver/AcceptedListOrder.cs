@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
+﻿using System.ComponentModel;
 
 namespace PasaBuy.App.Models.Driver
 {
@@ -27,12 +24,12 @@ namespace PasaBuy.App.Models.Driver
         private double waypoint_long = 0;
         private double destination_lat = 0;
         private double destination_long = 0;
-        private double package_distance = 0; 
+        private double package_distance = 0;
         private double delivery_distance = 0;
 
         private string destination_address = string.Empty;
         private string waypoint_address = string.Empty;
-        
+
         private int fee = 0;
         private string origin = string.Empty;
         private string date_accepted = string.Empty;
@@ -124,7 +121,7 @@ namespace PasaBuy.App.Models.Driver
 
         public double DestinationLong
         {
-            get     { return destination_long; }
+            get { return destination_long; }
             set
             {
                 destination_long = value;
@@ -195,7 +192,7 @@ namespace PasaBuy.App.Models.Driver
             public string order_id = string.Empty;
             public string vehicle_type = string.Empty;
             public string store_name = string.Empty;
-            
+
             public double waypoint_lat = 0;
             public double waypoint_long = 0;
             public double destination_lat = 0;

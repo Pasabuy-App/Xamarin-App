@@ -1,13 +1,9 @@
-﻿using PasaBuy.App.Views.Master;
+﻿using PasaBuy.App.Views.Onboarding;
 using PasaBuy.App.Views.Settings;
+using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using Xamarin.Essentials;
-using PasaBuy.App.Views.Onboarding;
-using PasaBuy.App.Views;
-using System;
-using System.Threading.Tasks;
-using PasaBuy.App.Local;
 
 namespace PasaBuy.App.ViewModels.Settings
 {

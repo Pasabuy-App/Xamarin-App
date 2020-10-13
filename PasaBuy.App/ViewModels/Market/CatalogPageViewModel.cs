@@ -1,7 +1,7 @@
+using PasaBuy.App.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
-using PasaBuy.App.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 

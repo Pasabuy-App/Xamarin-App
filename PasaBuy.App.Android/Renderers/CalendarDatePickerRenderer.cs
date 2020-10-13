@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+﻿using Android.Content;
 using PasaBuy.App.Controls;
 using PasaBuy.App.Droid.Renderers;
 using Xamarin.Forms;
@@ -35,7 +25,7 @@ namespace PasaBuy.App.Droid.Renderers
                 Control.Gravity = Android.Views.GravityFlags.CenterVertical;
                 Control.SetPadding(20, 0, 0, 0);
                 Control.SetHintTextColor(Android.Graphics.Color.ParseColor(customPicker.PlaceHolderColor));
-               
+
 
             }
         }

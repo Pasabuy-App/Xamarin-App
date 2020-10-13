@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Syncfusion.XForms.Buttons;
+﻿using Syncfusion.XForms.Buttons;
 using Xamarin.Forms;
 namespace PasaBuy.App.Models.Marketplace
 {

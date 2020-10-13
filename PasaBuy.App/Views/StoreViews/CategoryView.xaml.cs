@@ -4,9 +4,6 @@ using PasaBuy.App.ViewModels.MobilePOS;
 using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -42,19 +39,19 @@ namespace PasaBuy.App.Views.StoreViews
                 bool answer = await DisplayAlert("Delete Category?", "Are you sure to delete this?", "Yes", "No");
                 if (answer)
                 {
-                        var btn = sender as Grid;
-                        TindaPress.Category.Instance.Delete(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, btn.ClassId, (bool success, string data) =>
+                    var btn = sender as Grid;
+                    TindaPress.Category.Instance.Delete(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, btn.ClassId, (bool success, string data) =>
+                    {
+                        if (success)
                         {
-                            if (success)
-                            {
-                                CategoryViewModel.categoriesList.Clear();
-                                CategoryViewModel.LoadData();
-                            }
-                            else
-                            {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                            }
-                        });
+                            CategoryViewModel.categoriesList.Clear();
+                            CategoryViewModel.LoadData();
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        }
+                    });
                 }
             }
             catch (Exception ex)

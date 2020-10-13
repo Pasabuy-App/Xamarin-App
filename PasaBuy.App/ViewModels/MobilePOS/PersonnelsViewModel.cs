@@ -2,11 +2,7 @@
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.MobilePOS;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
-using System.Windows.Input;
-using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.MobilePOS
 {
@@ -20,14 +16,14 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
         public ObservableCollection<Personnels> PersonnelsList
         {
-            get 
+            get
             {
                 return _personnelsList;
             }
-            set 
+            set
             {
                 _personnelsList = value;
-                this.NotifyPropertyChanged(); 
+                this.NotifyPropertyChanged();
             }
         }
         public ObservableCollection<Personnels> UsersList

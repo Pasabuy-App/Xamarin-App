@@ -1,10 +1,4 @@
-﻿using PasaBuy.App.Local;
-using System.Runtime.Serialization;
-using Xamarin.Forms.Internals;
-using System.ComponentModel;
-using PasaBuy.App.Controllers;
-using System;
-using Syncfusion.XForms.Buttons;
+﻿using Syncfusion.XForms.Buttons;
 using Xamarin.Forms;
 
 namespace PasaBuy.App.Models.Marketplace
@@ -195,7 +189,7 @@ namespace PasaBuy.App.Models.Marketplace
                 this.itemRating = value;
             }
         }
-        
+
 
         public string LongInformation
         {

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PasaBuy.App.Local
+﻿namespace PasaBuy.App.Local
 {
     public class PSAProc
     {
         public static string GetUrl(string current)
         {
-            if(PSAConfig.onProduction)
+            if (PSAConfig.onProduction)
             {
                 return current;
             }

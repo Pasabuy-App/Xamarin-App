@@ -1,9 +1,6 @@
 ﻿using PasaBuy.App.Controllers.Notice;
 using Plugin.Media;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -49,7 +46,7 @@ namespace PasaBuy.App.Views.Settings
             ImageId.Source = imageSource;
             //var filePath = file.Path;
             filePath = file.Path;
-            
+
 
         }
 
@@ -85,10 +82,10 @@ namespace PasaBuy.App.Views.Settings
 
         private void NextButtonClicked(object sender, EventArgs e)
         {
-            if(String.IsNullOrEmpty(filePath) || String.IsNullOrEmpty(IDNumberEntry.Text))
+            if (String.IsNullOrEmpty(filePath) || String.IsNullOrEmpty(IDNumberEntry.Text))
             {
                 new Alert("Failed", "You haven't completed this step yet", "Ok");
-            } 
+            }
             else
             {
                 if (!isEnable)

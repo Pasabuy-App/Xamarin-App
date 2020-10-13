@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PasaBuy.App.Animations.Base
+﻿namespace PasaBuy.App.Animations.Base
 {
     public enum EasingType
     {

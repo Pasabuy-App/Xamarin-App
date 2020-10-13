@@ -1,25 +1,15 @@
 ﻿using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.CustomRenderers;
 using PasaBuy.App.Local;
-using PasaBuy.App.Models.Onboarding;
 using PasaBuy.App.ViewModels.Feeds;
 using Plugin.Media;
-using Plugin.Media.Abstractions;
-using Syncfusion.XForms.ComboBox;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Markup;
 using Xamarin.Forms.Xaml;
 
 namespace PasaBuy.App.Views.Posts
-{   
-    
+{
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PostRequestPage : ContentPage
     {
@@ -28,7 +18,7 @@ namespace PasaBuy.App.Views.Posts
         public PostRequestPage()
         {
             InitializeComponent();
-           
+
         }
         public void BackButtonClicked(object sender, EventArgs e)
         {
@@ -100,7 +90,7 @@ namespace PasaBuy.App.Views.Posts
                 var stream = file.GetStream();
                 return stream;
             });
-           
+
             ItemImage.Source = imageSource;
             //var filePath = file.Path;
             filePath = file.Path;

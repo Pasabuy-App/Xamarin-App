@@ -2,9 +2,7 @@
 using PasaBuy.App.Local;
 using PasaBuy.App.ViewModels.MobilePOS;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -20,11 +18,11 @@ namespace PasaBuy.App.Views.StoreViews
         {
             InitializeComponent();
             AddAddressButton.Clicked += AddAddressClicked;
-            SettingsAddressViewModel.addressList.CollectionChanged += CollectionChanges; 
+            SettingsAddressViewModel.addressList.CollectionChanged += CollectionChanges;
         }
         private void CollectionChanges(object sender, EventArgs e)
         {
-            Console.WriteLine("Count: " + SettingsAddressViewModel.addressList.Count() );
+            Console.WriteLine("Count: " + SettingsAddressViewModel.addressList.Count());
             if (SettingsAddressViewModel.addressList.Count() >= 0)
             {
                 AddAddressButton.IsVisible = false;
@@ -64,20 +62,20 @@ namespace PasaBuy.App.Views.StoreViews
                     bool answer = await DisplayAlert("Delete Address?", "Are you sure to delete this?", "Yes", "No");
                     if (answer)
                     {
-                            var btn = sender as Grid;
-                            TindaPress.Address.Instance.Delete(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, btn.ClassId, (bool success, string data) =>
+                        var btn = sender as Grid;
+                        TindaPress.Address.Instance.Delete(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, btn.ClassId, (bool success, string data) =>
+                        {
+                            if (success)
                             {
-                                if (success)
-                                {
-                                    SettingsAddressViewModel.addressList.Clear();
-                                    SettingsAddressViewModel.LoadData();
-                                    AddAddressButton.IsVisible = true;
-                                }
-                                else
-                                {
-                                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                                }
-                            });
+                                SettingsAddressViewModel.addressList.Clear();
+                                SettingsAddressViewModel.LoadData();
+                                AddAddressButton.IsVisible = true;
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            }
+                        });
                     }
                     await Task.Delay(200);
                     count = 0;

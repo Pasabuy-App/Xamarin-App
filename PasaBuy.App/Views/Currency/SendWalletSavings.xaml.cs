@@ -1,15 +1,7 @@
-﻿using Newtonsoft.Json;
-using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Local;
-using PasaBuy.App.Models.Currency;
-using PasaBuy.App.ViewModels.Currency;
-using PasaBuy.App.Views.PopupModals;
+﻿using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
 using Syncfusion.XForms.Buttons;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;

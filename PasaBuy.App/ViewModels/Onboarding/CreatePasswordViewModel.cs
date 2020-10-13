@@ -1,14 +1,9 @@
 ﻿using DataVice;
 using Newtonsoft.Json;
-using PasaBuy.App.Controllers;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Onboarding;
-using PasaBuy.App.Views;
-using PasaBuy.App.Views.Onboarding;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.Onboarding

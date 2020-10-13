@@ -1,6 +1,6 @@
-﻿using System.ComponentModel;
-using Syncfusion.XForms.Border;
+﻿using Syncfusion.XForms.Border;
 using Syncfusion.XForms.Cards;
+using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 

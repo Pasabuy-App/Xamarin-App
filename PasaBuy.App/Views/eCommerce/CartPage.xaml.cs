@@ -1,5 +1,4 @@
-﻿using PasaBuy.App.DataService;
-using PasaBuy.App.ViewModels.eCommerce;
+﻿using PasaBuy.App.ViewModels.eCommerce;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
@@ -19,9 +18,9 @@ namespace PasaBuy.App.Views.eCommerce
         {
             InitializeComponent();
             //this.BindingContext = CartDataService.Instance.CartPageViewModel;
-            this.BindingContext =  new CartPageViewModel();
- 
-            
+            this.BindingContext = new CartPageViewModel();
+
+
         }
 
         private void backButton_Clicked(object sender, System.EventArgs e)

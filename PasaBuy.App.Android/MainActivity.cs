@@ -1,14 +1,11 @@
-using Syncfusion.XForms.Android.PopupLayout;
-using System;
-using Android.App;
-using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Android.OS;
-using Android.Content;
 using Android;
+using Android.App;
+using Android.Content;
+using Android.Content.PM;
+using Android.OS;
+using Android.Runtime;
 using Plugin.CurrentActivity;
+using Syncfusion.XForms.Android.PopupLayout;
 
 namespace PasaBuy.App.Droid
 {
@@ -34,7 +31,7 @@ namespace PasaBuy.App.Droid
 
             base.OnCreate(savedInstanceState);
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
-            
+
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);

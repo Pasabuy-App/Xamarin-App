@@ -1,12 +1,9 @@
 ﻿using Syncfusion.XForms.Buttons;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
 namespace PasaBuy.App.Models.Marketplace
 {
-  
+
     public class Groceries
     {
 

@@ -1,7 +1,7 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
-using System;
 
 namespace PasaBuy.App.Views.Settings
 {
@@ -28,6 +28,6 @@ namespace PasaBuy.App.Views.Settings
             Navigation.PopModalAsync();
         }
 
-       
+
     }
 }

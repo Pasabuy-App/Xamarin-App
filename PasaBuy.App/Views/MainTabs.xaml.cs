@@ -1,15 +1,8 @@
-﻿using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.ViewModels.Chat;
-using PasaBuy.App.ViewModels.Feeds;
+﻿using PasaBuy.App.ViewModels.Feeds;
 using PasaBuy.App.ViewModels.Marketplace;
 using PasaBuy.App.ViewModels.Menu;
-using PasaBuy.App.Views.Chat;
 using PasaBuy.App.Views.Feeds;
 using PasaBuy.App.Views.Marketplace;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -35,22 +28,22 @@ namespace PasaBuy.App.Views
                 isButton = true;
                 if (e.TabItem.Title == "HOME")
                 {
-                        HomePage.LastIndex = 11;
-                        HomepageViewModel.homePostList.Clear();
-                        HomepageViewModel.LoadData("");
-                        MasterMenuViewModel.postbutton = string.Empty;
+                    HomePage.LastIndex = 11;
+                    HomepageViewModel.homePostList.Clear();
+                    HomepageViewModel.LoadData("");
+                    MasterMenuViewModel.postbutton = string.Empty;
                 }
                 if (e.TabItem.Title == "STORE")
                 {
-                        //StoreBrowserPage.LastIndex = 11;
-                        StoreBrowserViewModel.itemCategories.Clear();
-                        StoreBrowserViewModel.LoadCategory();
+                    //StoreBrowserPage.LastIndex = 11;
+                    StoreBrowserViewModel.itemCategories.Clear();
+                    StoreBrowserViewModel.LoadCategory();
                 }
                 if (e.TabItem.Title == "GROCERY")
                 {
-                        GroceryBrowserPage.LastIndex = 11;
-                        GroceryBrowserViewModel.grocerystorelist.Clear();
-                        GroceryBrowserViewModel.LoadGrocery("");
+                    GroceryBrowserPage.LastIndex = 11;
+                    GroceryBrowserViewModel.grocerystorelist.Clear();
+                    GroceryBrowserViewModel.LoadGrocery("");
                 }
                 if (e.TabItem.Title == "FOOD")
                 {

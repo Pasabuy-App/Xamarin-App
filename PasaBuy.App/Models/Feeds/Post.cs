@@ -1,10 +1,7 @@
-﻿using PasaBuy.App.Controllers;
-using PasaBuy.App.Local;
+﻿using PasaBuy.App.Local;
 using PasaBuy.App.ViewModels.Feeds;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 
 namespace PasaBuy.App.Models.Feeds
 {
@@ -35,7 +32,7 @@ namespace PasaBuy.App.Models.Feeds
         private string pickup = string.Empty;
         private string do_price = string.Empty;
 
-        public Post(string photo, string author, string types, string date, string seen, string title, string description, string images, string image_height, 
+        public Post(string photo, string author, string types, string date, string seen, string title, string description, string images, string image_height,
             string last_id, string post_link, string post_author, string pickup, string vehicle, string do_price)
         {
             this.last_id = last_id;
@@ -73,7 +70,7 @@ namespace PasaBuy.App.Models.Feeds
             isContent = false;
             if (types == "Status")
             {
-                isContent2 = false; 
+                isContent2 = false;
                 isAccept = false; // If post is status, accept button is visible
                 HomeColSpan = 2;
                 HomeCol = 0;
@@ -104,7 +101,7 @@ namespace PasaBuy.App.Models.Feeds
                 }
                 else
                 {
-                    if(PSACache.Instance.UserInfo.user_type == "User")
+                    if (PSACache.Instance.UserInfo.user_type == "User")
                     {
                         HomeColSpan = 2;
                         HomeCol = 0;

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Globalization;
-using Newtonsoft.Json;
-using PasaBuy.App.Controllers.Notice;
+﻿using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Driver;
-using PasaBuy.App.Views;
 using PasaBuy.App.Views.Driver;
-using PasaBuy.App.Views.Master;
+using System;
+using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 

@@ -1,16 +1,10 @@
-﻿using PasaBuy.App.Controllers;
-using PasaBuy.App.Controllers.Notice;
+﻿using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
-using PasaBuy.App.Models.Onboarding;
 using PasaBuy.App.ViewModels.Feeds;
 using PasaBuy.App.Views.PopupModals;
 using PasaBuy.App.Views.Posts;
 using Rg.Plugins.Popup.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -79,7 +73,7 @@ namespace PasaBuy.App.Views.Feeds.Templates
             }
         }
 
-        public  async void PostRequest(object sender, EventArgs args)
+        public async void PostRequest(object sender, EventArgs args)
         {
             if (!isTapped)
             {
@@ -90,7 +84,7 @@ namespace PasaBuy.App.Views.Feeds.Templates
             }
         }
 
-     
+
         public async void PostSell(object sender, EventArgs args)
         {
             if (!isTapped)
@@ -118,5 +112,5 @@ namespace PasaBuy.App.Views.Feeds.Templates
 
 
 
-        }
     }
+}

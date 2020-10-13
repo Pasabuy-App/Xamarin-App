@@ -1,13 +1,5 @@
-﻿using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Models.Driver;
+﻿using PasaBuy.App.Models.Driver;
 using PasaBuy.App.ViewModels.Driver;
-using PasaBuy.App.Views.PopupModals;
-using Rg.Plugins.Popup.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -21,7 +13,7 @@ namespace PasaBuy.App.Views.Driver
         {
             InitializeComponent();
             this.BindingContext = new AcceptedOrderViewModel();
-            
+
 
 
         }
@@ -35,7 +27,7 @@ namespace PasaBuy.App.Views.Driver
             StartDeliveryPage.UserLatitude = smp.DestinationLat.ToString();
             StartDeliveryPage.waypointAddress = smp.WaypointAddress;
             StartDeliveryPage.destinationAddress = smp.DestinationAddress;
-           
+
             Navigation.PushModalAsync(new StartDeliveryPage());
         }
     }

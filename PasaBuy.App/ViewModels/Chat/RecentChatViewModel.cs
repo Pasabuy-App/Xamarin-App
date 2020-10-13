@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Windows.Input;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Chat;
-using PasaBuy.App.Views;
 using PasaBuy.App.Views.Chat;
+using System;
+using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -22,7 +21,7 @@ namespace PasaBuy.App.ViewModels.Chat
         #region Fields
 
         public static string type = "0";
-        private string profileImage = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatar) ;
+        private string profileImage = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatar);
         public static ObservableCollection<ChatDetail> chatItems;
 
         #endregion
@@ -57,7 +56,7 @@ namespace PasaBuy.App.ViewModels.Chat
         {
             try
             {
-                string user_mess = PSACache.Instance.UserInfo.user_type != "User" && ( PSACache.Instance.UserInfo.stid == "0" || string.IsNullOrEmpty(PSACache.Instance.UserInfo.stid)) ? "3" : "4";
+                string user_mess = PSACache.Instance.UserInfo.user_type != "User" && (PSACache.Instance.UserInfo.stid == "0" || string.IsNullOrEmpty(PSACache.Instance.UserInfo.stid)) ? "3" : "4";
                 SocioPress.Message.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "0", "", offset, (bool success, string data) =>
                 {
                     if (success)
@@ -93,7 +92,7 @@ namespace PasaBuy.App.ViewModels.Chat
                             CultureInfo provider = new CultureInfo("fr-FR");
                             DateTime datetoday = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "yyyy-MM-dd HH:mm:ss", provider);
                             DateTime mydate = DateTime.ParseExact(date_created, "yyyy-MM-dd HH:mm:ss", provider);
-                            TimeSpan ts = datetoday - mydate; 
+                            TimeSpan ts = datetoday - mydate;
                             if (datetoday.Day == mydate.Day)
                             {
                                 if (ts.TotalMinutes < 60)

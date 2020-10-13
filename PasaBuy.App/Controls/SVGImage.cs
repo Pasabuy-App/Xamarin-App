@@ -1,8 +1,8 @@
-﻿using System;
+﻿using SkiaSharp;
+using SkiaSharp.Views.Forms;
+using System;
 using System.IO;
 using System.Reflection;
-using SkiaSharp;
-using SkiaSharp.Views.Forms;
 using Xamarin.Forms;
 
 namespace PasaBuy.App.Controls

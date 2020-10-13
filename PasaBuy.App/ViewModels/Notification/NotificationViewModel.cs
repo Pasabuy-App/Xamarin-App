@@ -1,10 +1,7 @@
-﻿using System.Collections.ObjectModel;
-using System.Runtime.Serialization;
+﻿using PasaBuy.App.Models.Notification;
+using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using PasaBuy.App.Models.Notification;
-using PasaBuy.App.Views.Master;
-using PasaBuy.App.Controllers.Notice;
 
 namespace PasaBuy.App.ViewModels.Notification
 {

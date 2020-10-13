@@ -1,22 +1,12 @@
-﻿using PasaBuy.App.Views.Master;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using PasaBuy.App.Local;
+using PasaBuy.App.Views;
+using PasaBuy.App.Views.Backend;
+using PasaBuy.App.Views.Chat;
+using PasaBuy.App.Views.StoreViews;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using PasaBuy.App.Views.Notification;
-using PasaBuy.App.Views.Settings;
-using PasaBuy.App.Views.Chat;
-using PasaBuy.App.Views.Marketplace;
-using System.Linq;
-using PasaBuy.App.Views.Feeds;
-using PasaBuy.App.Views.Advisory;
-using PasaBuy.App.Controllers;
-using PasaBuy.App.Views;
-using PasaBuy.App.Views.Currency;
-using PasaBuy.App.Views.Backend;
-using PasaBuy.App.Local;
-using PasaBuy.App.Views.StoreViews;
 
 namespace PasaBuy.App.ViewModels.Menu
 {

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
+﻿using System.ComponentModel;
 
 namespace PasaBuy.App.Models.Marketplace
 {
@@ -10,9 +7,9 @@ namespace PasaBuy.App.Models.Marketplace
         public string stid = string.Empty;
         public string Stid
         {
-            get 
-            { 
-                return stid; 
+            get
+            {
+                return stid;
             }
             set
             {
@@ -24,9 +21,9 @@ namespace PasaBuy.App.Models.Marketplace
         public string id = string.Empty;
         public string ID
         {
-            get 
-            { 
-                return id; 
+            get
+            {
+                return id;
             }
             set
             {
@@ -38,9 +35,9 @@ namespace PasaBuy.App.Models.Marketplace
         public string previewImage = string.Empty;
         public string PreviewImage
         {
-            get 
-            { 
-                return previewImage; 
+            get
+            {
+                return previewImage;
             }
             set
             {
@@ -52,9 +49,9 @@ namespace PasaBuy.App.Models.Marketplace
         public string name = string.Empty;
         public string Name
         {
-            get 
-            { 
-                return name; 
+            get
+            {
+                return name;
             }
             set
             {
@@ -66,9 +63,9 @@ namespace PasaBuy.App.Models.Marketplace
         public string summary = string.Empty;
         public string Summary
         {
-            get 
-            { 
-                return summary; 
+            get
+            {
+                return summary;
             }
             set
             {
@@ -80,9 +77,9 @@ namespace PasaBuy.App.Models.Marketplace
         public string description = string.Empty;
         public string Description
         {
-            get 
-            { 
-                return description; 
+            get
+            {
+                return description;
             }
             set
             {
@@ -94,8 +91,8 @@ namespace PasaBuy.App.Models.Marketplace
         public double actualprice = 0;
         public double ActualPrice
         {
-            get 
-            { 
+            get
+            {
                 return actualprice;
             }
             set
@@ -136,7 +133,7 @@ namespace PasaBuy.App.Models.Marketplace
         private double quantity;
         public double Quantity
         {
-            get 
+            get
             {
                 return quantity;
             }

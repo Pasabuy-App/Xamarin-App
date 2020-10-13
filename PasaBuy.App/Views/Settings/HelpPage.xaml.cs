@@ -1,6 +1,6 @@
 ﻿using System;
-using Xamarin.Forms.Internals;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace PasaBuy.App.Views.Settings

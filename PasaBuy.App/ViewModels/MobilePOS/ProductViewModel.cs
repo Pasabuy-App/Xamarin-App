@@ -5,9 +5,7 @@ using PasaBuy.App.Local;
 using PasaBuy.App.Models.MobilePOS;
 using PasaBuy.App.Views.StoreViews.Management;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.MobilePOS
@@ -16,7 +14,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
     {
         #region Fields
         public static ObservableCollection<ProductData> productsList;
-        
+
         private DelegateCommand _showVariantsCommand;
 
         public DelegateCommand ShowVariantsCommand =>

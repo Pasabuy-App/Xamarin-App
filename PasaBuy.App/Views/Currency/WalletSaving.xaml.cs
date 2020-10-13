@@ -1,5 +1,4 @@
-﻿using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Models.Currency;
+﻿using PasaBuy.App.Models.Currency;
 using PasaBuy.App.ViewModels.Currency;
 using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
@@ -29,8 +28,8 @@ namespace PasaBuy.App.Views.Currency
             InitializeComponent();
             LastIndex = 11;
 
-        
-            
+
+
         }
 
         private void SfListView_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
@@ -48,10 +47,10 @@ namespace PasaBuy.App.Views.Currency
 
         private async void SendMoney_Tapped(object sender, EventArgs e)
         {
-                //await SendImage.FadeTo(0.3, 200);
-                //await SendImage.FadeTo(1, 200);
-                //Views.Currency.SendWalletSavings.currency_id = currency_id;
-                await App.Current.MainPage.Navigation.PushModalAsync(new SendWalletSavings());
+            //await SendImage.FadeTo(0.3, 200);
+            //await SendImage.FadeTo(1, 200);
+            //Views.Currency.SendWalletSavings.currency_id = currency_id;
+            await App.Current.MainPage.Navigation.PushModalAsync(new SendWalletSavings());
         }
 
         private async void ReceiveMoney_Tapped(object sender, EventArgs e)

@@ -1,9 +1,7 @@
 ﻿using PasaBuy.App.Models.Locations;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Text;
 
 namespace PasaBuy.App.ViewModels.Location
 {

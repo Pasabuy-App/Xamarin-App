@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+﻿using Android.Content;
 using PasaBuy.App.Controls;
 using PasaBuy.App.Droid.Renderers;
 using Xamarin.Forms;
@@ -33,9 +23,9 @@ namespace PasaBuy.App.Droid.Renderers
                 {
                     Control.Text = element.Placeholder;
                     //Control.SetTextColor(Color.FromHex("#a2a3a4").ToAndroid());
-                } 
+                }
 
-                if(Control != null)
+                if (Control != null)
                 {
                     Control.SetTextColor(Android.Graphics.Color.Rgb(0, 0, 0));
                     Control.SetHintTextColor(Android.Graphics.Color.Rgb(182, 182, 182));
@@ -48,15 +38,15 @@ namespace PasaBuy.App.Droid.Renderers
                 LayoutParameters = layoutParams;
                 Control.LayoutParameters = layoutParams;
                 Control.SetPadding(50, 0, 0, 0);
-                
-               
-  
-            } 
-
-          
 
 
-           
+
+            }
+
+
+
+
+
 
 
         }

@@ -1,20 +1,12 @@
-﻿using System;
+﻿using PasaBuy.App.DataService;
+using PasaBuy.App.Models.Navigation;
+using PasaBuy.App.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using PasaBuy.App.Models.Navigation;
-using PasaBuy.App.Local;
 using Xamarin.Essentials;
-using MobilePOS;
-using PasaBuy.App.Models.Driver;
-using Newtonsoft.Json;
-using Rg.Plugins.Popup.Services;
-using PasaBuy.App.Views.PopupModals;
-using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Services;
-using Xamarin.Forms.GoogleMaps;
-using PasaBuy.App.DataService;
 using Xamarin.Forms;
+using Xamarin.Forms.GoogleMaps;
 
 namespace PasaBuy.App.ViewModels
 {

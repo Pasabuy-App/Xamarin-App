@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
+﻿using System.ComponentModel;
 
 namespace PasaBuy.App.Models.MobilePOS
 {
@@ -54,9 +51,9 @@ namespace PasaBuy.App.Models.MobilePOS
 
         public string Id
         {
-            get 
-            { 
-                return id; 
+            get
+            {
+                return id;
             }
             set
             {
@@ -130,7 +127,7 @@ namespace PasaBuy.App.Models.MobilePOS
             }
         }
 
-   
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged(string name)

@@ -1,6 +1,6 @@
-﻿using System;
+﻿using PasaBuy.App.Models.Chat;
+using System;
 using System.Globalization;
-using PasaBuy.App.Models.Chat;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 

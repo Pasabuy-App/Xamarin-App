@@ -1,18 +1,11 @@
-﻿using PasaBuy.App.Views.PopupModals;
+﻿using PasaBuy.App.Models.Driver;
+using PasaBuy.App.ViewModels.Driver;
+using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using PasaBuy.App.Local;
-using Newtonsoft.Json;
-using PasaBuy.App.Models.Driver;
-using Xamarin.Essentials;
-using PasaBuy.App.ViewModels.Driver;
-using PasaBuy.App.Controllers.Notice;
 
 namespace PasaBuy.App.Views.Driver
 {
@@ -66,7 +59,7 @@ namespace PasaBuy.App.Views.Driver
             Views.PopupModals.PopupAcceptOrder.user_long = smp.Customer_long;
 
             await PopupNavigation.Instance.PushAsync(new PopupAcceptOrder());
-         
+
         }
     }
 }

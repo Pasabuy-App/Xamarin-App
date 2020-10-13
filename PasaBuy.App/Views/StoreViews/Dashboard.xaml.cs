@@ -1,11 +1,6 @@
-﻿using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Models.MobilePOS;
+﻿using PasaBuy.App.Models.MobilePOS;
 using PasaBuy.App.ViewModels.MobilePOS;
 using PasaBuy.App.Views.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -88,7 +83,7 @@ namespace PasaBuy.App.Views.StoreViews
                 DashboardOrdersViewModel.LoadOrder("shipping", "");
             }
         }*/
-        private  async void SfTabView_TabItemTapped(object sender, Syncfusion.XForms.TabView.TabItemTappedEventArgs e)
+        private async void SfTabView_TabItemTapped(object sender, Syncfusion.XForms.TabView.TabItemTappedEventArgs e)
         {
             if (!isClicked)
             {

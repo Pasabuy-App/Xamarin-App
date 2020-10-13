@@ -1,7 +1,5 @@
-﻿using PasaBuy.App.ViewModels.Chat;
-using Syncfusion.ListView.XForms;
+﻿using Syncfusion.ListView.XForms;
 using System;
-using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using PasaBuy.App.Local;
+using PasaBuy.App.Models.eCommerce;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using PasaBuy.App.Local;
-using PasaBuy.App.Models.eCommerce;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 

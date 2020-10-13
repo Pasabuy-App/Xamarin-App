@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CoreLocation;
-using Foundation;
-using UIKit;
-using Xamarin.Forms;
-using PasaBuy.App.iOS;
+﻿using CoreLocation;
 using PasaBuy.App.DataService;
+using System;
+using Xamarin.Forms;
 
 [assembly: Dependency(typeof(ILocationUpdateService))]
 namespace PasaBuy.App.iOS

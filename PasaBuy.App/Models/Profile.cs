@@ -1,5 +1,4 @@
 ﻿using PasaBuy.App.Local;
-using System.Runtime.Serialization;
 using Xamarin.Forms.Internals;
 
 namespace PasaBuy.App.Models

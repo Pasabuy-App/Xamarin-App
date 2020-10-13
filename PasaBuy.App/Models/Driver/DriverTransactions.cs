@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using PasaBuy.App.Resources.Texts;
 using PasaBuy.App.Views.StoreViews;
-using PasaBuy.App.Resources.Texts;
-using PasaBuy.App.Local;
+using System;
+using System.Collections.Generic;
 
 namespace PasaBuy.App.Models.Driver
 {
@@ -23,19 +21,19 @@ namespace PasaBuy.App.Models.Driver
 
 
         #endregion
-     
-                public DriverTransactions(Type type, string icon, string title, string description)
-                {
-                    Type = type;
-                    Icon = icon;
-                    Title = title;
-                    Description = description;
-                }
+
+        public DriverTransactions(Type type, string icon, string title, string description)
+        {
+            Type = type;
+            Icon = icon;
+            Title = title;
+            Description = description;
+        }
 
 
-                static DriverTransactions()
-                {
-                    All = new List<DriverTransactions>
+        static DriverTransactions()
+        {
+            All = new List<DriverTransactions>
                     {
 
                         new DriverTransactions(typeof(ProductsView), "Idcard.png", TextsTranslateManager.Translate("ProductsTitle"),
@@ -54,8 +52,8 @@ namespace PasaBuy.App.Models.Driver
                         //                      TextsTranslateManager.Translate("VouchersManagementDescriptions")),
 
                     };
-                }
+        }
 
-                public static IList<DriverTransactions> All { private set; get; }
+        public static IList<DriverTransactions> All { private set; get; }
     }
 }

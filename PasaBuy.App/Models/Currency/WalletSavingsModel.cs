@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 
 namespace PasaBuy.App.Models.Currency
 {
@@ -33,9 +31,9 @@ namespace PasaBuy.App.Models.Currency
         private string id = string.Empty;
         public string ID
         {
-            get 
-            { 
-                return id; 
+            get
+            {
+                return id;
             }
             set
             {

@@ -1,17 +1,13 @@
-﻿using PasaBuy.App.Models.Onboarding;
-using PasaBuy.App.ViewModels.Onboarding;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
-using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Models.Onboarding;
+using PasaBuy.App.ViewModels.Onboarding;
 using PasaBuy.App.ViewModels.Settings;
 using Plugin.Media;
+using System;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace PasaBuy.App.Views.Settings
 {

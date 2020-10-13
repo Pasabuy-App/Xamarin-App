@@ -1,13 +1,10 @@
-﻿using PasaBuy.App.ViewModels;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel;
-using System.Text;
 
 namespace PasaBuy.App.Models.Driver
 {
     [Xamarin.Forms.Internals.Preserve(AllMembers = true)]
-	public class ChatListItem : INotifyPropertyChanged
+    public class ChatListItem : INotifyPropertyChanged
     {
         #region Fields
 
@@ -114,14 +111,14 @@ namespace PasaBuy.App.Models.Driver
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
         public ChatListItem(string id, string imagepath, DateTime time, string message, Boolean isreceived)
-		{
-			ID = id;
-			ImagePath = imagepath;
-			Time = time;
-			Message = message;
-			IsReceived = isreceived;
-		}
-        
+        {
+            ID = id;
+            ImagePath = imagepath;
+            Time = time;
+            Message = message;
+            IsReceived = isreceived;
+        }
+
         #endregion
     }
 }

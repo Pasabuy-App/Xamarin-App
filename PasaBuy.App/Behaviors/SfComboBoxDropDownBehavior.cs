@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Syncfusion.XForms.ComboBox;
+using System;
 using System.Reflection;
 using System.Windows.Input;
-using Syncfusion.XForms.ComboBox;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 

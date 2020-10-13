@@ -3,7 +3,6 @@ using PasaBuy.App.Models.Chat;
 using PasaBuy.App.ViewModels.Chat;
 using System;
 using System.Linq;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;

@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using DataVice;
+using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
+using System;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using PasaBuy.App.Views.Master;
-using PasaBuy.App.Controllers.Notice;
-using DataVice;
-using PasaBuy.App.Local;
 
 namespace PasaBuy.App.Views.Settings
 {

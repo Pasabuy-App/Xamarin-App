@@ -1,12 +1,11 @@
-﻿using PasaBuy.App.Controllers.Notice;
+﻿using DataVice;
+using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
+using PasaBuy.App.Models.Onboarding;
 using PasaBuy.App.Views.Onboarding;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using DataVice;
-using PasaBuy.App.Controllers;
-using System;
-using PasaBuy.App.Models.Onboarding;
-using PasaBuy.App.Local;
 
 namespace PasaBuy.App.ViewModels.Onboarding
 {

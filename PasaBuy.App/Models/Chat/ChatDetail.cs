@@ -96,7 +96,8 @@ namespace PasaBuy.App.Models.Chat
             {
                 time = value;
                 OnPropertyChanged("Time");
-            } }
+            }
+        }
 
         /// <summary>
         /// Gets or sets the message.

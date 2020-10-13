@@ -1,20 +1,16 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using PasaBuy.App.Models.eCommerce;
-using PasaBuy.App.Models;
-using Xamarin.Forms;
-using Xamarin.Forms.Internals;
-using PasaBuy.App.Local;
+﻿using MobilePOS;
+using Newtonsoft.Json;
+using PasaBuy.App.Commands;
 using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
+using PasaBuy.App.Models;
+using PasaBuy.App.Models.eCommerce;
 using PasaBuy.App.Views.eCommerce;
 using System;
-using MobilePOS;
-using PasaBuy.App.ViewModels.Marketplace;
-using Newtonsoft.Json;
-using PasaBuy.App.Models.Marketplace;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using PasaBuy.App.Commands;
+using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace PasaBuy.App.ViewModels.eCommerce
 {
@@ -141,9 +137,9 @@ namespace PasaBuy.App.ViewModels.eCommerce
         /// </summary>
         public ObservableCollection<Customer> DeliveryAddress
         {
-            get 
-            { 
-                return deliveryAddress; 
+            get
+            {
+                return deliveryAddress;
             }
             set
             {
@@ -162,9 +158,9 @@ namespace PasaBuy.App.ViewModels.eCommerce
         /// </summary>
         public ObservableCollection<Payment> PaymentModes
         {
-            get 
-            { 
-                return this.paymentModes; 
+            get
+            {
+                return this.paymentModes;
             }
             set
             {
@@ -183,9 +179,9 @@ namespace PasaBuy.App.ViewModels.eCommerce
         /// </summary>
         public ObservableCollection<Product> CartDetails
         {
-            get 
-            { 
-                return this.cartDetails; 
+            get
+            {
+                return this.cartDetails;
             }
             set
             {
@@ -370,7 +366,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                         }
                         await Task.Delay(500);
                         btn.IsEnabled = true;
-                    }   
+                    }
                 }
                 else
                 {

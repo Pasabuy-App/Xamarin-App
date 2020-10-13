@@ -1,11 +1,9 @@
 ﻿using Nancy.TinyIoc;
+using PasaBuy.App.ViewModels.Chat;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
 using System.Globalization;
 using System.Reflection;
-using PasaBuy.App.ViewModels.Chat;
+using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.MobilePOS.Base
 {

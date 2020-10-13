@@ -1,6 +1,6 @@
-﻿using System;
+﻿using PasaBuy.App.Controls;
+using System;
 using System.Linq;
-using PasaBuy.App.Controls;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 

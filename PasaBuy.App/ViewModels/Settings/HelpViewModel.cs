@@ -1,8 +1,5 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using PasaBuy.App.Views.Master;
-using PasaBuy.App.Views.Settings;
-using PasaBuy.App.Views;
 
 namespace PasaBuy.App.ViewModels.Settings
 {

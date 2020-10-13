@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
-using DataVice;
-using PasaBuy.App.Models.Onboarding;
-using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Controllers;
-using PasaBuy.App.Views.Onboarding;
+﻿using DataVice;
 using Newtonsoft.Json;
-using static PasaBuy.App.Models.Onboarding.VerifyAccountVar;
+using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
+using PasaBuy.App.Models.Onboarding;
+using PasaBuy.App.Views.Onboarding;
+using System;
+using Xamarin.Forms;
+using static PasaBuy.App.Models.Onboarding.VerifyAccountVar;
 
 namespace PasaBuy.App.ViewModels.Onboarding
 {

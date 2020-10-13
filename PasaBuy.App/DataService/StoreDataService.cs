@@ -1,6 +1,6 @@
-﻿using System.Reflection;
+﻿using PasaBuy.App.ViewModels.Marketplace;
+using System.Reflection;
 using System.Runtime.Serialization.Json;
-using PasaBuy.App.ViewModels.Marketplace;
 using Xamarin.Forms.Internals;
 
 namespace PasaBuy.App.DataService

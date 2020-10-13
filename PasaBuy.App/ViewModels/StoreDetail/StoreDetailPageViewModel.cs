@@ -1,5 +1,4 @@
-﻿using PasaBuy.App.Models.StoreDetail;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;

@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using PasaBuy.App.Models.Driver;
-using PasaBuy.App.Views.Master;
-using Xamarin.Forms;
-using Xamarin.Forms.Internals;
-using PasaBuy.App.Views.Driver;
+﻿using Newtonsoft.Json;
+using PasaBuy.App.Behaviors.Chat;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
+using PasaBuy.App.Models.Driver;
+using PasaBuy.App.ViewModels.Chat;
+using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
 using System.Globalization;
 using System.Linq;
-using PasaBuy.App.Behaviors.Chat;
-using PasaBuy.App.ViewModels.Chat;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace PasaBuy.App.ViewModels.Driver
 {

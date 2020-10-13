@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PasaBuy.App.Controllers;
-using PasaBuy.App.Controllers.Notice;
+﻿using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
-using PasaBuy.App.Models.Feeds;
-using PasaBuy.App.Models.Onboarding;
 using PasaBuy.App.ViewModels.Feeds;
-using PasaBuy.App.Views.Feeds;
 using Plugin.Media;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using SocioPress;
-using FFImageLoading;
 
 namespace PasaBuy.App.Views.Posts
 {
@@ -32,7 +22,7 @@ namespace PasaBuy.App.Views.Posts
             //}
             StatusImage.Source = "https://i2.wp.com/seds.org/wp-content/uploads/2020/06/placeholder.png?fit=1200%2C800&ssl=1";
             StatusImage.LoadingPlaceholder = "https://i2.wp.com/seds.org/wp-content/uploads/2020/06/placeholder.png?fit=1200%2C800&ssl=1";
-            
+
 
         }
 

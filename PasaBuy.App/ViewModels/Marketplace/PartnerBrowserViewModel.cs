@@ -4,9 +4,7 @@ using PasaBuy.App.Local;
 using PasaBuy.App.Models.Marketplace;
 using PasaBuy.App.Views.Notice;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -14,7 +12,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
 {
     public class PartnerBrowserViewModel : BaseViewModel
     {
-        public  ObservableCollection<PartnerStore> partnerStoresRotator;
+        public ObservableCollection<PartnerStore> partnerStoresRotator;
 
         public static ObservableCollection<Store> storeList;
 
@@ -48,13 +46,14 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public ObservableCollection<PartnerStore> PartnerStoresRotator
         {
-            get 
+            get
             {
-                return partnerStoresRotator; 
+                return partnerStoresRotator;
             }
             set
-            {   partnerStoresRotator = value; 
-                this.NotifyPropertyChanged(); 
+            {
+                partnerStoresRotator = value;
+                this.NotifyPropertyChanged();
             }
         }
 
