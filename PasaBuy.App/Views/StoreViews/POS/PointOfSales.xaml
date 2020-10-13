@@ -113,7 +113,7 @@
                                             x:Name="backButton"
                                             WidthRequest="35"
                                             CornerRadius="4"
-                                            CommandParameter="{Binding ID}}"
+                                            CommandParameter="{Binding ID}"
                                             BackgroundColor="{DynamicResource PrimaryColor}"
                                             TextColor="White"
                                             Style="{StaticResource SfButtonStyle}"

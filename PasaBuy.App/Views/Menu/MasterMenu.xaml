@@ -253,7 +253,7 @@
 
                                 <Label
                                     Grid.Column="1"
-                                    Margin="0,14"
+                                    Margin="0,12"
                                     FontFamily="{StaticResource Montserrat-SemiBold}"
                                     Style="{StaticResource ProfileLabelStyle}"
                                     Text="My Drives" />
