@@ -37,7 +37,7 @@ namespace PasaBuy.App.Views.StoreViews
             PSACache.Instance.UserInfo.store_banner = item.Banner;
 
             //PSACache.Instance.SaveUserData();
-            App.Current.MainPage = new NavigationView();
+             App.Current.MainPage = new NavigationView();
         }
     }
 }

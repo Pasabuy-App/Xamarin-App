@@ -68,7 +68,7 @@
     <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.3" />
     <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.1.0.57" />
     <PackageReference Include="Syncfusion.Xamarin.Cards" Version="18.1.0.57" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.3.0.40" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.1.0.57" />
     <PackageReference Include="Syncfusion.Xamarin.Expander" Version="18.1.0.57" />
     <PackageReference Include="Syncfusion.Xamarin.SfAutoComplete" Version="18.1.0.57" />
     <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="18.1.0.57" />
