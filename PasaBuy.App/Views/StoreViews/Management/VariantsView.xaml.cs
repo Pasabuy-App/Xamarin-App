@@ -1,7 +1,8 @@
 ﻿using PasaBuy.App.Models.MobilePOS;
 using PasaBuy.App.ViewModels.MobilePOS;
+using System;
 using System.Linq;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,7 +19,21 @@ namespace PasaBuy.App.Views.StoreViews.Management
         public VariantsView()
         {
             InitializeComponent();
+            pullToRefresh.Refreshing += PullToRefresh_Refreshing;
         }
+
+        private async void PullToRefresh_Refreshing(object sender, EventArgs args)
+        {
+            pullToRefresh.IsRefreshing = true;
+            await Task.Delay(500);
+            LastIndex = 11;
+            isFirstLoad = false;
+            Offset = 0;
+            ProductViewModel.productsList.Clear();
+            ProductViewModel.LoadData("");
+            pullToRefresh.IsRefreshing = false;
+        }
+
         private void listView_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
         {
             var item = e.ItemData as ProductData;

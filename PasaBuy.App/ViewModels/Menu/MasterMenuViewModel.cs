@@ -1,21 +1,23 @@
 ﻿
-using PasaBuy.App.Local;
-using PasaBuy.App.Models.MobilePOS;
-using PasaBuy.App.ViewModels.Chat;
-using PasaBuy.App.ViewModels.Feeds;
-using PasaBuy.App.Views.Advisory;
-using PasaBuy.App.Views.Chat;
-using PasaBuy.App.Views.Currency;
-using PasaBuy.App.Views.Feeds;
-using PasaBuy.App.Views.Navigation;
-using PasaBuy.App.Views.Notification;
-using PasaBuy.App.Views.Settings;
-using PasaBuy.App.Views.StoreViews;
-using System;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using PasaBuy.App.Views.Notification;
+using PasaBuy.App.Views.Settings;
+using PasaBuy.App.Views.Feeds;
+using PasaBuy.App.Views.Advisory;
+using PasaBuy.App.Views.Currency;
+using PasaBuy.App.Local;
+using PasaBuy.App.ViewModels.Feeds;
+using PasaBuy.App.Views.Navigation;
+using System;
+using PasaBuy.App.ViewModels.MobilePOS;
+using PasaBuy.App.Http;
+using PasaBuy.App.ViewModels.Chat;
+using PasaBuy.App.Views.Chat;
+using PasaBuy.App.Views.StoreViews;
+using PasaBuy.App.Models.MobilePOS;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace PasaBuy.App.ViewModels.Menu
 {
@@ -406,12 +408,12 @@ namespace PasaBuy.App.ViewModels.Menu
             if (!Status)
             {
                 Status = true;
-                Device.BeginInvokeOnMainThread(() =>
-               {
-                   MasterView.MyType = "mover";
-                   App.Current.MainPage = new NavigationView();
-                   Status = false;
-               });
+                Device.BeginInvokeOnMainThread( () =>
+                {
+                    MasterView.MyType = "mover";
+                    App.Current.MainPage = new NavigationView();
+                    Status = false;
+                });
             }
         }
 
@@ -426,14 +428,10 @@ namespace PasaBuy.App.ViewModels.Menu
                 //IsBusy = true;
                 Status = true;
                 //IsBusy = true;
-                Device.BeginInvokeOnMainThread(async () =>
-               {
-                   MasterView.MyType = "store";
-                    //DashboardOrdersViewModel.LoadOrder("pending", "");
-                    //App.Current.MainPage = new NavigationView();
+                Device.BeginInvokeOnMainThread( async () =>
+                {
                     await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyStoresList()));
-                   Status = false;
-                    //IsBusy = false;
+                    Status = false;
                 });
             }
         }

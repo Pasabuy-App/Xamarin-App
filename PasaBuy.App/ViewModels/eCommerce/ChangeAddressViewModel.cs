@@ -137,7 +137,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
         }
         private async void PinAnotherClicked(object obj)
         {
-            await Application.Current.MainPage.Navigation.PushModalAsync(new AddressInMapPage());
+            await Application.Current.MainPage.Navigation.PushModalAsync(new PasaBuy.App.Views.Settings.AddAddressPage());
 
         }
         private void SelectAddressClicked(object obj)

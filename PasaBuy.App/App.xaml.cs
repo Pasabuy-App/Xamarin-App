@@ -1,9 +1,17 @@
+using Xamarin.Forms;
+using PasaBuy.App.Local;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
-using PasaBuy.App.Local;
+using PasaBuy.App.Views;
+using System;
+using USocketNet;
+using USocketNet.Model;
 using PasaBuy.App.Views.Onboarding;
-using Xamarin.Forms;
+using PasaBuy.App.Views.StoreViews.Management;
+using PasaBuy.App.Views.StoreViews;
+using PasaBuy.App.Views.Navigation;
+using PasaBuy.App.Views.eCommerce;
 
 namespace PasaBuy.App
 {

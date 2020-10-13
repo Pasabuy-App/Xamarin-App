@@ -1,7 +1,5 @@
-﻿using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Models.MobilePOS;
+﻿using PasaBuy.App.Models.MobilePOS;
 using PasaBuy.App.ViewModels.MobilePOS;
-using PasaBuy.App.Views.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,29 +12,13 @@ using Xamarin.Forms.Xaml;
 namespace PasaBuy.App.Views.StoreViews
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Dashboard : ContentPage
+    public partial class MainView : ContentPage
     {
         public bool isClicked = false;
-        public Dashboard()
+        public MainView()
         {
             InitializeComponent();
-            if (MasterView.MyType == "store")
-            {
-                this.BindingContext = new DashboardOrdersViewModel();
-                Title = "Orders";
-            }
-            if (MasterView.MyType == "mover")
-            {
-                Title = "Dashboard";
-            }
-        }
-
-        private void SearchBar_OnTextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (!string.IsNullOrWhiteSpace(e.NewTextValue))
-            {
-   
-            }
+            this.BindingContext = new MainViewModel();
         }
 
         private async void NewOrders_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
@@ -60,7 +42,7 @@ namespace PasaBuy.App.Views.StoreViews
             }
         }
 
-        private  async void SfTabView_TabItemTapped(object sender, Syncfusion.XForms.TabView.TabItemTappedEventArgs e)
+        private async void SfTabView_TabItemTapped(object sender, Syncfusion.XForms.TabView.TabItemTappedEventArgs e)
         {
             if (!isClicked)
             {
@@ -69,27 +51,27 @@ namespace PasaBuy.App.Views.StoreViews
                 {
                     //new Alert("New Orders", "New Orders", "New Orders");
                     //DashboardOrdersViewModel.orderList.Clear();
-                    DashboardOrdersViewModel.LoadOrder("pending", "");
+                    MainViewModel.LoadOrder("pending", "");
                 }
                 if (e.TabItem.Title == "Pending")
                 {
                     //new Alert("Pending", "Pending", "Pending");
                     //DashboardOrdersViewModel.orderList.Clear();
-                    DashboardOrdersViewModel.LoadOrder("received", "");
+                    MainViewModel.LoadOrder("received", "");
                 }
                 if (e.TabItem.Title == "Declined")
                 {
                     //DashboardOrdersViewModel.orderList.Clear();
-                    DashboardOrdersViewModel.LoadOrder("cancelled", "");
+                    MainViewModel.LoadOrder("cancelled", "");
                     //new Alert("Declined", "Declined", "Declined");
                 }
                 if (e.TabItem.Title == "Completed")
                 {
                     //DashboardOrdersViewModel.orderList.Clear();
-                    DashboardOrdersViewModel.LoadOrder("shipping", "");
+                    MainViewModel.LoadOrder("shipping", "");
                     //new Alert("Completed", "Completed", "Completed");
                 }
-                await Task.Delay(500);
+                await Task.Delay(200);
                 isClicked = false;
             }
         }

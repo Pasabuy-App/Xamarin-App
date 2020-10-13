@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <pages:PopupPage
-    x:Class="PasaBuy.App.Views.PopupModals.PopupAddVariants"
+    x:Class="PasaBuy.App.Views.PopupModals.PopupEditOptions"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
@@ -53,33 +53,47 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-   
-                        <Entry
-                            x:Name="Name"
+
+                    <Entry
+                            x:Name="CatName"
                             Grid.Row="0"
                             Grid.Column="0"
                             Grid.ColumnSpan="2"
                             FontFamily="{StaticResource Montserrat-Regular}"
                             MaxLength="100"
-                            Placeholder="Variant Name"
+                            Placeholder="Option Name"
                             PlaceholderColor="LightGray"
                             Text="{Binding Name}"
                             VerticalOptions="EndAndExpand" />
-                        <Editor
+                    <Editor
                             x:Name="Description"
                             Grid.Row="1"
                             Grid.Column="0"
                             Grid.ColumnSpan="2"
                             FontFamily="{StaticResource Montserrat-Regular}"
                             MaxLength="250"
-                            Placeholder="(Optional) Variant Description"
+                            Placeholder="(Optional) Option Description"
                             Text="{Binding Description}"
                             PlaceholderColor="LightGray"
                             VerticalOptions="EndAndExpand" />
 
-                        <button:SfButton
+                    <Entry
+                            x:Name="Price"
                             Grid.Row="2"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            FontFamily="{StaticResource Montserrat-Regular}"
+                            MaxLength="100"
+                            Placeholder="Price"
+                            PlaceholderColor="LightGray"
+                            Text="{Binding Name}"
+                            VerticalOptions="EndAndExpand" />
+
+                    <button:SfButton
+                            Grid.Row="3"
                             Grid.Column="0"
                             BackgroundColor="Green"
                             Margin="0,20,0,0"
@@ -89,11 +103,10 @@
                             FontFamily="{StaticResource Montserrat-Regular}"
                             HorizontalOptions="FillAndExpand"
                             Text="OK"
-                            Clicked="OKModal"
                             TextColor="White"
                             VerticalOptions="Center" />
-                        <button:SfButton
-                            Grid.Row="2"
+                    <button:SfButton
+                            Grid.Row="3"
                             Grid.Column="1"
                             BackgroundColor="Red"
                             Margin="0,20,0,0"
@@ -106,7 +119,7 @@
                             Text="{texts:Translate Cancel}"
                             TextColor="White"
                             VerticalOptions="Center" />
-                    </Grid>
+                </Grid>
             </StackLayout>
         </Frame>
     </StackLayout>

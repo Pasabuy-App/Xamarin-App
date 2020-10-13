@@ -213,6 +213,7 @@
                                                             Grid.Column="1"
                                                             VerticalOptions="Center">
                                                             <Label
+                                                                x:Name="ProductName"
                                                                 LineBreakMode="TailTruncation"
                                                                 Style="{StaticResource ProductNameTitleStyle}"
                                                                 Text="{Binding Product_name}" />
@@ -260,7 +261,7 @@
                                                             BackgroundColor="{DynamicResource Gray-400}"
                                                             HeightRequest="0.5" />
                                                         <Grid.GestureRecognizers>
-                                                            <TapGestureRecognizer Command="{Binding Path=BindingContext.ShowVariantsCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}}"/>
+                                                            <TapGestureRecognizer Command="{Binding Path=BindingContext.ShowVariantsCommand, Source={x:Reference listView}}" CommandParameter="{Binding ID}}"/>
                                                         </Grid.GestureRecognizers>
                                                     </Grid>
                                                 </DataTemplate>

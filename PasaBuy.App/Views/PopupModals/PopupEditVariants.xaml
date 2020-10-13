@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <pages:PopupPage
-    x:Class="PasaBuy.App.Views.PopupModals.PopupAddVariants"
+    x:Class="PasaBuy.App.Views.PopupModals.PopupEditVariants"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
@@ -54,9 +54,9 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-   
-                        <Entry
-                            x:Name="Name"
+
+                    <Entry
+                            x:Name="CatName"
                             Grid.Row="0"
                             Grid.Column="0"
                             Grid.ColumnSpan="2"
@@ -66,7 +66,7 @@
                             PlaceholderColor="LightGray"
                             Text="{Binding Name}"
                             VerticalOptions="EndAndExpand" />
-                        <Editor
+                    <Editor
                             x:Name="Description"
                             Grid.Row="1"
                             Grid.Column="0"
@@ -78,7 +78,7 @@
                             PlaceholderColor="LightGray"
                             VerticalOptions="EndAndExpand" />
 
-                        <button:SfButton
+                    <button:SfButton
                             Grid.Row="2"
                             Grid.Column="0"
                             BackgroundColor="Green"
@@ -89,10 +89,9 @@
                             FontFamily="{StaticResource Montserrat-Regular}"
                             HorizontalOptions="FillAndExpand"
                             Text="OK"
-                            Clicked="OKModal"
                             TextColor="White"
                             VerticalOptions="Center" />
-                        <button:SfButton
+                    <button:SfButton
                             Grid.Row="2"
                             Grid.Column="1"
                             BackgroundColor="Red"
@@ -106,7 +105,7 @@
                             Text="{texts:Translate Cancel}"
                             TextColor="White"
                             VerticalOptions="Center" />
-                    </Grid>
+                </Grid>
             </StackLayout>
         </Frame>
     </StackLayout>

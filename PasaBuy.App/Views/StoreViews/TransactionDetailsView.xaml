@@ -11,7 +11,8 @@
               xmlns:model="clr-namespace:PasaBuy.App.Models.MobilePOS" 
              xmlns:controls="clr-namespace:PasaBuy.App.Controls"
              x:Class="PasaBuy.App.Views.StoreViews.TransactionDetailsView"
-             Title="Transaction Details">
+             Title="Transaction Details"
+             BackgroundColor="{DynamicResource Gray-White}">
     
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -215,7 +216,7 @@
                             x:Name="Declined"
                             Clicked="Declined_Clicked"
                             Grid.Column="0"
-                            BackgroundColor="#fa7069"
+                            BackgroundColor="#ff0000"
                             BorderColor="{DynamicResource BlackColor}"
                             BorderWidth="2"
                             CornerRadius="4"
@@ -228,7 +229,7 @@
                             Clicked="Accepted_Clicked"
                             x:Name="Accepted"
                             Grid.Column="1"
-                            BackgroundColor="#34e048"
+                            BackgroundColor="#2eb82e"
                             BorderColor="{StaticResource BlackColor}"
                             BorderWidth="2"
                             CornerRadius="4"
