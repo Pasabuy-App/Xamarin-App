@@ -1,19 +1,7 @@
-﻿using PasaBuy.App.Models.Locations;
-using PasaBuy.App.ViewModels.Location;
-using Syncfusion.SfCalendar.XForms;
-using Syncfusion.XForms.Cards;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using Xamarin.Forms.Internals;
-using Xamarin.Forms.PlatformConfiguration;
-using Xamarin.Forms.Xaml;
-using DataVice;
-using PasaBuy.App.Controllers;
-using PasaBuy.App.Controllers.Notice;
-using Newtonsoft.Json;
-using PasaBuy.App.Models.Onboarding;
+﻿using PasaBuy.App.Models.Onboarding;
 using PasaBuy.App.ViewModels.Onboarding;
+using Xamarin.Forms.Internals;
+using Xamarin.Forms.Xaml;
 
 namespace PasaBuy.App.Views.Onboarding
 {
@@ -97,4 +85,4 @@ namespace PasaBuy.App.Views.Onboarding
             AddressVar.br = BarangayPicker.SelectedValue.ToString();
         }
     }
-}   
+}

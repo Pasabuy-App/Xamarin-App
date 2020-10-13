@@ -1,21 +1,11 @@
-﻿    using PasaBuy.App.Models.Feeds;
-using System;
-using System.Collections.Generic;
-using PasaBuy.App.Controllers;
-using System.Collections.ObjectModel;
-using System.Text;
+﻿using Newtonsoft.Json;
 using PasaBuy.App.Controllers.Notice;
-using Newtonsoft.Json;
 using PasaBuy.App.Local;
+using PasaBuy.App.Models.Feeds;
+using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
-using PasaBuy.App.Models.Onboarding;
-using System.Diagnostics;
-using PasaBuy.App.Views.Feeds;
-using PasaBuy.App.Views.Driver;
-using PasaBuy.App.Views;
-using PasaBuy.App.Views.Chat;
-using PasaBuy.App.ViewModels.Chat;
 
 namespace PasaBuy.App.ViewModels.Feeds
 {
@@ -92,7 +82,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                                 //title = "Pasabuy - Hide";
                                 title = "<b> Destination: " + post.data[i].pickup_location + " </b>";
                                 pickup_location = string.IsNullOrEmpty(post.data[i].vehicle_date) ? "Date: " : "Date: " + post.data[i].vehicle_date.Substring(0, 10);
-                                vehicle_type = "Return Place: " + post.data[i].drop_off_location; 
+                                vehicle_type = "Return Place: " + post.data[i].drop_off_location;
                                 do_price = "Time: " + post.data[i].time_price;
                             }
                             if (type == "Pahatid")
@@ -108,7 +98,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                                 title = "Item Name: " + post.data[i].title;
                                 content = "Description: " + post.data[i].content;
                                 pickup_location = string.IsNullOrEmpty(post.data[i].vehicle_date) ? "Date: " : "Date: " + post.data[i].vehicle_date.Substring(0, 10);
-                                vehicle_type = "Location: " + post.data[i].pickup_location; 
+                                vehicle_type = "Location: " + post.data[i].pickup_location;
                                 do_price = "Time: " + post.data[i].time_price;
                             }
 

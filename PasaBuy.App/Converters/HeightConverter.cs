@@ -1,10 +1,8 @@
 ﻿using PasaBuy.App.Models.Marketplace;
 using Syncfusion.ListView.XForms;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
-using System.Text;
 using Xamarin.Forms;
 
 namespace PasaBuy.App.Converters

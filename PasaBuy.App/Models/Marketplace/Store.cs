@@ -1,11 +1,5 @@
-﻿using PasaBuy.App.Local;
-using System.Runtime.Serialization;
-using Xamarin.Forms.Internals;
-using System.ComponentModel;
-using PasaBuy.App.Controllers;
-using System;
+﻿using Syncfusion.XForms.Buttons;
 using Xamarin.Forms;
-using Syncfusion.XForms.Buttons;
 
 namespace PasaBuy.App.Models.Marketplace
 {
@@ -66,7 +60,7 @@ namespace PasaBuy.App.Models.Marketplace
             }
         }
 
-        public string Title 
+        public string Title
         {
             get
             {
@@ -75,11 +69,11 @@ namespace PasaBuy.App.Models.Marketplace
             set
             {
                 this.title = value;
-            } 
+            }
         }
 
-     
-        public string Description 
+
+        public string Description
         {
             get
             {
@@ -88,7 +82,7 @@ namespace PasaBuy.App.Models.Marketplace
             set
             {
                 this.short_info = value;
-            } 
+            }
         }
 
         public string Logo
@@ -176,7 +170,7 @@ namespace PasaBuy.App.Models.Marketplace
         }
 
 
-        public string Offer 
+        public string Offer
         {
             get
             {
@@ -187,7 +181,7 @@ namespace PasaBuy.App.Models.Marketplace
                 this.offer = value;
             }
         }
-        public string ItemRating 
+        public string ItemRating
         {
             get
             {

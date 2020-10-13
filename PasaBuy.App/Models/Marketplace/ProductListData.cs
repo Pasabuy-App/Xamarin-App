@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PasaBuy.App.Models.Marketplace
+﻿namespace PasaBuy.App.Models.Marketplace
 {
     public class ProductListData
     {
@@ -15,7 +11,7 @@ namespace PasaBuy.App.Models.Marketplace
             public string total = string.Empty;
             public string store_name = string.Empty;
             public string cat_name = string.Empty;
-            public string product_name = string.Empty;  
+            public string product_name = string.Empty;
             public string short_info = string.Empty;
             public string long_info = string.Empty;
             public string sku = string.Empty;

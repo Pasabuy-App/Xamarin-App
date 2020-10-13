@@ -3,7 +3,6 @@ using PasaBuy.App.Views.StoreViews;
 using PasaBuy.App.Views.StoreViews.Management;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace PasaBuy.App.Models.MobilePOS
 {

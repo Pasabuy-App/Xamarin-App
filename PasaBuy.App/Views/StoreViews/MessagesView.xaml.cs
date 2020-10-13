@@ -1,13 +1,7 @@
 ﻿using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Models.Chat;
 using PasaBuy.App.ViewModels.Chat;
-using PasaBuy.App.ViewModels.MobilePOS;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TindaPress;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

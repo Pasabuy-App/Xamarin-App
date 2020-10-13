@@ -1,14 +1,12 @@
-﻿using Xamarin.Forms;
-using PasaBuy.App.Models.Settings;
-using System.Collections.ObjectModel;
-using Xamarin.Forms.Internals;
-using PasaBuy.App.Views.Master;
-using PasaBuy.App.Views.Settings;
-using PasaBuy.App.Views;
+﻿using Newtonsoft.Json;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
-using Newtonsoft.Json;
+using PasaBuy.App.Models.Settings;
+using PasaBuy.App.Views.Settings;
 using System;
+using System.Collections.ObjectModel;
+using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace PasaBuy.App.ViewModels.Settings
 {

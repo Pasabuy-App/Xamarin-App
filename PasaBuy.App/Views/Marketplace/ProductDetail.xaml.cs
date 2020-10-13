@@ -1,8 +1,6 @@
 ﻿using PasaBuy.App.ViewModels.Marketplace;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -49,7 +47,7 @@ namespace PasaBuy.App.Views.Marketplace
                         numericUpDown.Value = item.TotalQuantity;
                         Price.Text = "P" + item.ActualPrice;
                         double totalprice = item.TotalQuantity * item.ActualPrice;
-                        TotalPrice.Text = "Total: P" + totalprice.ToString() ;
+                        TotalPrice.Text = "Total: P" + totalprice.ToString();
                     }
                 }
             }
@@ -63,7 +61,7 @@ namespace PasaBuy.App.Views.Marketplace
         private void numericUpDown_ValueChanged(object sender, Syncfusion.SfNumericUpDown.XForms.ValueEventArgs e)
         {
             double total = Convert.ToDouble(price) * Convert.ToDouble(e.Value);
-            TotalPrice.Text = "Total: P" +  Convert.ToString(total);
+            TotalPrice.Text = "Total: P" + Convert.ToString(total);
             totalprice = Convert.ToString(total);
             qty = Convert.ToInt32(e.Value);
             //Console.WriteLine("Value: " + e.Value + " total: " + total);

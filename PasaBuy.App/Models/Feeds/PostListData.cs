@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PasaBuy.App.Models.Feeds
+﻿namespace PasaBuy.App.Models.Feeds
 {
     public class PostListData
     {

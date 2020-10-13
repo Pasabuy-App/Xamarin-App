@@ -1,9 +1,5 @@
 ﻿using Newtonsoft.Json;
 using PasaBuy.App.Models.Onboarding;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 using Xamarin.Essentials;
 
 namespace PasaBuy.App.Local
@@ -104,7 +100,7 @@ namespace PasaBuy.App.Local
         /// </summary>
         private PSACache()
         {
-            
+
         }
 
         public bool hasToken

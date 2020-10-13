@@ -1,10 +1,4 @@
 ﻿using Newtonsoft.Json;
-using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Local;
-using Syncfusion.XForms.ProgressBar;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Essentials;
 
 namespace PasaBuy.App.Models.Onboarding
@@ -81,7 +75,8 @@ namespace PasaBuy.App.Models.Onboarding
 
         public static bool Exist
         {
-            get {
+            get
+            {
                 return Preferences.ContainsKey("UserInfo");
             }
         }

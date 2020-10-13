@@ -1,11 +1,11 @@
-﻿using System;
+﻿using PasaBuy.App.Models.Onboarding;
+using PasaBuy.App.ViewModels.Onboarding;
+using Syncfusion.SfRotator.XForms;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using PasaBuy.App.Models.Onboarding;
-using PasaBuy.App.ViewModels.Onboarding;
-using Syncfusion.SfRotator.XForms;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 

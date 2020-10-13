@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.DataService;
+using PasaBuy.App.Local;
 using PasaBuy.App.ViewModels;
+using PasaBuy.App.Views.PopupModals;
+using Rg.Plugins.Popup.Services;
+using System;
+using System.Linq;
+using System.Reflection;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 using Xamarin.Forms.Xaml;
-using Xamarin.Essentials;
-using PasaBuy.App.DataService;
-using System.Reflection;
-using Rg.Plugins.Popup.Services;
-using PasaBuy.App.Views.PopupModals;
-using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Local;
 
 namespace PasaBuy.App.Views.Driver
 {
@@ -23,7 +20,7 @@ namespace PasaBuy.App.Views.Driver
         #region Fields
 
         public static string status_deli = "Slide to right to Update Status";
-        public string deliveryStatus; 
+        public string deliveryStatus;
         public static string carItem = string.Empty;
         public static string item_id = string.Empty;
         public static string storeName = string.Empty;
@@ -40,7 +37,7 @@ namespace PasaBuy.App.Views.Driver
         public static double curlocLatitude = 0;
         public static double curlocLongitude = 0;
 
-        
+
         #endregion
 
 
@@ -65,9 +62,9 @@ namespace PasaBuy.App.Views.Driver
         }
 
 
-        public  StartDeliveryPage()
+        public StartDeliveryPage()
         {
-            map =  new Xamarin.Forms.GoogleMaps.Map();
+            map = new Xamarin.Forms.GoogleMaps.Map();
             InitializeComponent();
             BindingContext = mapPageViewModel = new MapPageViewModel();
             status.Text = status_deli;
@@ -77,7 +74,7 @@ namespace PasaBuy.App.Views.Driver
             StoreName.Text = storeName;
             StoreAddress.Text = waypointAddress;
             ClientAddress.Text = destinationAddress;
-              
+
             //OrderIDandOrderTime.Text = item_id;
 
             /*switch (deliveryStatus)
@@ -192,7 +189,7 @@ namespace PasaBuy.App.Views.Driver
                 var location = await Geolocation.GetLocationAsync(request);
                 Position pos = new Position(curlocLatitude, curlocLongitude);
 
-   
+
                 map.Pins.Clear();
                 //map.Polylines.Clear();
                 //Get the cars nearrby from api but here we are hardcoding the contents
@@ -214,8 +211,8 @@ namespace PasaBuy.App.Views.Driver
                         };
                         map.Pins.Add(VehiclePins);
                         map.MoveToRegion(MapSpan.FromCenterAndRadius(pos, Xamarin.Forms.GoogleMaps.Distance.FromMiles(0.1)));
-                        
-                       
+
+
 
 
                     }
@@ -274,13 +271,13 @@ namespace PasaBuy.App.Views.Driver
 
         #endregion
 
-       /* void StartDelivery_Clicked(System.Object sender, System.EventArgs e)
-        {
-            PopupNavigation.Instance.PushAsync(new PopupOpenExternalMap());
-        }*/
+        /* void StartDelivery_Clicked(System.Object sender, System.EventArgs e)
+         {
+             PopupNavigation.Instance.PushAsync(new PopupOpenExternalMap());
+         }*/
 
 
-        public  async void StartDelivery_Clicked(System.Object sender, System.EventArgs e)
+        public async void StartDelivery_Clicked(System.Object sender, System.EventArgs e)
         {
             Compass.Start(SensorSpeed.UI, applyLowPassFilter: true);
             Compass.ReadingChanged += Compass_ReadingChanged;
@@ -324,7 +321,7 @@ namespace PasaBuy.App.Views.Driver
             map.Pins.Add(pin);
 
         }
-        
+
 
         #region page Method
         async void Handle_SlideCompleted(object sender, System.EventArgs e)
@@ -334,7 +331,7 @@ namespace PasaBuy.App.Views.Driver
                 case "I've recieve the package":
 
                     stats.Text = "Deliver Package";
-                   
+
                     break;
 
                 case "Deliver Package":
@@ -429,7 +426,7 @@ namespace PasaBuy.App.Views.Driver
 
         }
 
-        public  void pinLocation()
+        public void pinLocation()
         {
             Pin pin1 = new Pin()
             {
@@ -439,7 +436,7 @@ namespace PasaBuy.App.Views.Driver
                 Position = new Position(Convert.ToDouble(StoreLatittude), Convert.ToDouble(StoreLongitude)),
                 Rotation = 0,
                 Tag = "id -toawd",
-            };  
+            };
             map.Pins.Add(pin1);
 
             map.MoveToRegion(MapSpan.FromCenterAndRadius(pin1.Position, Xamarin.Forms.GoogleMaps.Distance.FromKilometers(2)));
@@ -467,7 +464,7 @@ namespace PasaBuy.App.Views.Driver
 
         public static async void OpenMapApp()
         {
-            
+
         }
     }
 }

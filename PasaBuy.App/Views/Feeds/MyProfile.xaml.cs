@@ -1,13 +1,12 @@
-﻿using PasaBuy.App.ViewModels.Feeds;
+﻿using PasaBuy.App.Models.Feeds;
+using PasaBuy.App.ViewModels.Feeds;
 using System;
+using System.Linq;
+using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
-using Xamarin.Essentials;
-using System.Threading.Tasks;
-using PasaBuy.App.Models.Feeds;
-using System.Diagnostics;
-using System.Linq;
 
 namespace PasaBuy.App.Views.Feeds
 {

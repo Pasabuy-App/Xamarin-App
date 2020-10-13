@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
+﻿using System.ComponentModel;
 
 namespace PasaBuy.App.Models.Driver
 {
@@ -14,7 +11,7 @@ namespace PasaBuy.App.Models.Driver
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
-        
+
         private string store_logo = string.Empty;
         private string id = string.Empty;
         private string hash_id = string.Empty;
@@ -23,7 +20,7 @@ namespace PasaBuy.App.Models.Driver
         private string store_address = string.Empty;
         private string store_lat = string.Empty;
         private string store_long = string.Empty;
-        
+
         private string customer = string.Empty;
         private string customer_address = string.Empty;
         private string customer_lat = string.Empty;

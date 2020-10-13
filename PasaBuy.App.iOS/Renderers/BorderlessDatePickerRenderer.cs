@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-
-using Foundation;
-using PasaBuy.App.Controls;
+﻿using PasaBuy.App.Controls;
 using PasaBuy.App.iOS.Renderers;
+using System.ComponentModel;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;

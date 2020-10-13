@@ -1,7 +1,5 @@
 using PasaBuy.App.DataService;
-using PasaBuy.App.Views.Master;
 using System;
-using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 

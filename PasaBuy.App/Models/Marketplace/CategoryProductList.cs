@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace PasaBuy.App.Models.Marketplace
 {
-   public class CategoryProductList
+    public class CategoryProductList
     {
         public class Discount
         {

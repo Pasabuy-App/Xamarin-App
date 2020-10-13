@@ -1,7 +1,7 @@
-﻿using System.Reflection;
+﻿using PasaBuy.App.ViewModels.Notification;
+using System.Reflection;
 using System.Runtime.Serialization.Json;
 using Xamarin.Forms.Internals;
-using PasaBuy.App.ViewModels.Notification;
 
 namespace PasaBuy.App.DataService
 {

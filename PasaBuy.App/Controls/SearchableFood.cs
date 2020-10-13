@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms.Internals;
+﻿using Xamarin.Forms.Internals;
 
 namespace PasaBuy.App.Controls
 {
@@ -14,7 +11,7 @@ namespace PasaBuy.App.Controls
             {
                 var taskInfo = obj as Models.Marketplace.FoodStore;
 
-                if(taskInfo == null || string.IsNullOrEmpty(taskInfo.Title) || string.IsNullOrEmpty(taskInfo.Description) || string.IsNullOrEmpty(taskInfo.Barangay) ||
+                if (taskInfo == null || string.IsNullOrEmpty(taskInfo.Title) || string.IsNullOrEmpty(taskInfo.Description) || string.IsNullOrEmpty(taskInfo.Barangay) ||
                     string.IsNullOrEmpty(taskInfo.Province))
                 {
                     return false;
@@ -27,7 +24,7 @@ namespace PasaBuy.App.Controls
                     taskInfo.Province.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant());
 
             }
-            
+
             return false;
 
         }

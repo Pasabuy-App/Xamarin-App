@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
-using Syncfusion.XForms.Buttons;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
 
 namespace PasaBuy.App.Models.Marketplace
 {
     public class Categories
     {
-   
+
         #region Fields
 
         private string ID = string.Empty;
@@ -28,7 +22,7 @@ namespace PasaBuy.App.Models.Marketplace
 
         public ObservableCollection<ProductList> Prods
         {
- 
+
             get
             {
 

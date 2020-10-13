@@ -5,7 +5,6 @@ using PasaBuy.App.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace PasaBuy.App.Http
@@ -18,7 +17,7 @@ namespace PasaBuy.App.Http
         {
             get
             {
-                if(instance == null)
+                if (instance == null)
                 {
                     instance = new UserEnabledFeature();
                 }
@@ -70,8 +69,8 @@ namespace PasaBuy.App.Http
                 using (HttpClient httpClient = new HttpClient())
                 {
                     var dict = new Dictionary<string, string>();
-                        dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
-                        dict.Add("snky", PSACache.Instance.UserInfo.snky);
+                    dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
+                    dict.Add("snky", PSACache.Instance.UserInfo.snky);
                     var form = new FormUrlEncodedContent(dict);
 
                     var response = await httpClient.PostAsync(PSAConfig.CurrentRestUrl + featureType, form);

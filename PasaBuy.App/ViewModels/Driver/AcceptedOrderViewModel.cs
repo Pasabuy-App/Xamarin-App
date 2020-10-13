@@ -3,11 +3,8 @@ using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Driver;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using Xamarin.Forms;
-using PasaBuy.App.ViewModels.Driver;
 
 
 namespace PasaBuy.App.ViewModels.Driver
@@ -38,12 +35,12 @@ namespace PasaBuy.App.ViewModels.Driver
         {
             try
             {
-                HatidPress.Deliveries.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", "", PSACache.Instance.UserInfo.wpid, "", (bool success, string data) => 
+                HatidPress.Deliveries.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", "", PSACache.Instance.UserInfo.wpid, "", (bool success, string data) =>
                 {
                     if (success)
                     {
                         AcceptedListOrder datas = JsonConvert.DeserializeObject<AcceptedListOrder>(data);
-                        for(int i = 0; i < datas.data.Length; i++)
+                        for (int i = 0; i < datas.data.Length; i++)
                         {
                             if (datas.data.Length != 0)
                             {
@@ -68,7 +65,7 @@ namespace PasaBuy.App.ViewModels.Driver
                                 acceptedorderlist.Add(new AcceptedListOrder()
                                 {
                                     ID = id,
-                                    
+
                                     WaypointAddress = waypoint_address,
                                     WaypointLat = waypoint_lat,
                                     WaypointLong = waypoint_long,
@@ -81,7 +78,7 @@ namespace PasaBuy.App.ViewModels.Driver
                                     Fee = fee,
                                     StoreName = store_name,
 
-                                }) ;
+                                });
 
                             }
                         }

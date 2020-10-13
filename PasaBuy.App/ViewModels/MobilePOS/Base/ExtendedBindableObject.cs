@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
 using System.Linq.Expressions;
 using System.Reflection;
+using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.MobilePOS.Base
 {

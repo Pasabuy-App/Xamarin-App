@@ -1,12 +1,10 @@
-﻿using PasaBuy.App.Views.Master;
-using PasaBuy.App.Views.Article;
+﻿using PasaBuy.App.Local;
+using PasaBuy.App.Views;
+using PasaBuy.App.Views.Advisory;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Model = PasaBuy.App.Models.Article;
-using PasaBuy.App.Views.Advisory;
-using PasaBuy.App.Views;
-using PasaBuy.App.Local;
 
 namespace PasaBuy.App.ViewModels.Advisory
 {

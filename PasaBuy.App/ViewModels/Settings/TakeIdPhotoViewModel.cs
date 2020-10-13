@@ -1,9 +1,4 @@
-﻿using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Views.Settings;
-using Plugin.Media;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using PasaBuy.App.Views.Settings;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 

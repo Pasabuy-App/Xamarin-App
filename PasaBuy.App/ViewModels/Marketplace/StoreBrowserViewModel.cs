@@ -1,18 +1,14 @@
-﻿using PasaBuy.App.Models.Marketplace;
-using PasaBuy.App.Views.Marketplace;
-using PasaBuy.App.Views.Master;
+﻿using Newtonsoft.Json;
+using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
+using PasaBuy.App.Models.Marketplace;
+using PasaBuy.App.Views.Notice;
 using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using PasaBuy.App.Local;
-using PasaBuy.App.Controllers.Notice;
-using Newtonsoft.Json;
 using System.Runtime.Serialization;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using Xamarin.Essentials;
-using PasaBuy.App.Views.Notice;
 
 namespace PasaBuy.App.ViewModels.Marketplace
 {
@@ -35,27 +31,27 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public ObservableCollection<Categories> ItemCategories
         {
-            get 
-            { 
-                return itemCategories; 
+            get
+            {
+                return itemCategories;
             }
-            set 
-            { 
-                itemCategories = value; 
-                this.NotifyPropertyChanged(); 
+            set
+            {
+                itemCategories = value;
+                this.NotifyPropertyChanged();
             }
         }
 
         public ObservableCollection<Store> StoreList
         {
-            get 
-            { 
-                return storeList; 
+            get
+            {
+                return storeList;
             }
-            set 
-            { 
-                storeList = value; 
-                this.NotifyPropertyChanged(); 
+            set
+            {
+                storeList = value;
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -84,7 +80,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                     if (success)
                     {
                         StoreListData datas = JsonConvert.DeserializeObject<StoreListData>(data);
-                      
+
                         for (int i = 0; i < datas.data.Length; i++)
                         {
                             itemCategories.Add(new Categories()
@@ -125,8 +121,9 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         if (datas.data.Length == 0)
                         {
                             (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new NoStoresPage()));
-                            
-                        } else
+
+                        }
+                        else
                         {
                             for (int i = 0; i < datas.data.Length; i++)
                             {
@@ -204,7 +201,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         /// </summary>
         public Command<object> ItemTappedCommand
         {
-     
+
             get
             {
                 return this.itemTappedCommand ?? (this.itemTappedCommand = new Command<object>(this.NavigateToNextPage));
@@ -225,7 +222,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
         }
 
-      
+
         #endregion
     }
 }

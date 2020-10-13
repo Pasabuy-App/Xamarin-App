@@ -1,20 +1,10 @@
 ﻿using PasaBuy.App.Controllers.Notice;
-using Plugin.Media;
-using Android.Runtime;
-using Syncfusion.DataSource.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Android;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Internals;
-using Xamarin.Forms.Xaml;
 using PasaBuy.App.Local;
-using PasaBuy.App.Models.Onboarding;
 using PasaBuy.App.ViewModels.Feeds;
+using Plugin.Media;
+using System;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace PasaBuy.App.Views.Posts
 {
@@ -76,7 +66,7 @@ namespace PasaBuy.App.Views.Posts
             }
         }
 
-        
+
 
 
         async void AddItemImage(object sender, EventArgs args)
@@ -84,7 +74,7 @@ namespace PasaBuy.App.Views.Posts
             await CrossMedia.Current.Initialize();
             if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
             {
-               new Alert("Error", "No camera available", "Failed");
+                new Alert("Error", "No camera available", "Failed");
             }
 
             var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions

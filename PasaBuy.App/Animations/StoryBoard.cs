@@ -1,9 +1,7 @@
 ﻿using PasaBuy.App.Animations.Base;
-using System;
 using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace PasaBuy.App.Animations
 {

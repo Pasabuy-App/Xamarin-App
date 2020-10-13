@@ -1,13 +1,13 @@
-﻿using PasaBuy.App.Views.Onboarding;
+﻿using DataVice;
+using Newtonsoft.Json;
+using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
+using PasaBuy.App.Models.Onboarding;
+using PasaBuy.App.Views.Onboarding;
+using System;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using System;
-using PasaBuy.App.Controllers.Notice;
-using Newtonsoft.Json;
-using PasaBuy.App.Models.Onboarding;
-using DataVice;
-using PasaBuy.App.Local;
 
 namespace PasaBuy.App.ViewModels.Onboarding
 {
@@ -32,7 +32,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// </summary>
         public SignInViewModel()
         {
-            
+
             this.LoginCommand = new Command(this.LoginClicked);
             this.SignUpCommand = new Command(this.SignUpClicked);
             this.ForgotPasswordCommand = new Command(this.ForgotPasswordClicked);
@@ -128,7 +128,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void LoginClicked(object obj)
         {
-            if( string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password) )
+            if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password))
             {
                 return; //Disrupt process, required field is required!
             }
@@ -231,11 +231,11 @@ namespace PasaBuy.App.ViewModels.Onboarding
                 if (!State)
                 {
                     State = true;
-                    Device.BeginInvokeOnMainThread( async () =>
-                    {
-                        await App.Current.MainPage.Navigation.PushModalAsync(new SignUpPage());
-                        State = false;
-                    });
+                    Device.BeginInvokeOnMainThread(async () =>
+                   {
+                       await App.Current.MainPage.Navigation.PushModalAsync(new SignUpPage());
+                       State = false;
+                   });
                 }
             }
             catch (Exception e)

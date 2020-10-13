@@ -3,9 +3,7 @@ using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.MobilePOS;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 
 namespace PasaBuy.App.ViewModels.MobilePOS
 {
@@ -34,22 +32,22 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                     if (success)
                     {
                         SettingsAddressData add = JsonConvert.DeserializeObject<SettingsAddressData>(data);
-                            for (int i = 0; i < add.data.Length; i++)
+                        for (int i = 0; i < add.data.Length; i++)
+                        {
+                            string id = add.data[i].ID;
+                            string street = add.data[i].street;
+                            string brgy = add.data[i].brgy;
+                            string city = add.data[i].city;
+                            string province = add.data[i].province;
+                            string country = add.data[i].country;
+                            string type = add.data[i].type;
+                            addressList.Add(new SettingsAddressData()
                             {
-                                string id = add.data[i].ID;
-                                string street = add.data[i].street;
-                                string brgy = add.data[i].brgy;
-                                string city = add.data[i].city;
-                                string province = add.data[i].province;
-                                string country = add.data[i].country;
-                                string type = add.data[i].type;
-                                addressList.Add(new SettingsAddressData()
-                                {
-                                    ID = id,
-                                    Street = street + " " + brgy + " " + city + " " + province + ", " + country,
-                                    Type = type,
-                                });
-                            }
+                                ID = id,
+                                Street = street + " " + brgy + " " + city + " " + province + ", " + country,
+                                Type = type,
+                            });
+                        }
                     }
                     else
                     {

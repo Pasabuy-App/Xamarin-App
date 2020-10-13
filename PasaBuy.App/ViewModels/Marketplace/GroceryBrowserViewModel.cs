@@ -2,13 +2,8 @@
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Marketplace;
-using PasaBuy.App.Views.Marketplace;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.Marketplace
@@ -36,14 +31,14 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public ObservableCollection<Groceries> Grocerystorelist
         {
-            get 
-            { 
-                return grocerystorelist; 
-            }
-            set 
+            get
             {
-                grocerystorelist = value; 
-                this.NotifyPropertyChanged(); 
+                return grocerystorelist;
+            }
+            set
+            {
+                grocerystorelist = value;
+                this.NotifyPropertyChanged();
             }
         }
         public GroceryBrowserViewModel()
@@ -73,7 +68,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 Offer = "50% off",
                                 ItemRating = "4.5",
                                 Banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(datas.data[i].banner), //https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png
-                                Street = datas.data[i].street + " " +  datas.data[i].brgy + " " + datas.data[i].city + " " + datas.data[i].province + ", " + datas.data[i].country //"#4 Rainbow Ave Pacita 2 San Pedro City, Laguna"
+                                Street = datas.data[i].street + " " + datas.data[i].brgy + " " + datas.data[i].city + " " + datas.data[i].province + ", " + datas.data[i].country //"#4 Rainbow Ave Pacita 2 San Pedro City, Laguna"
                             });
                         }
                     }

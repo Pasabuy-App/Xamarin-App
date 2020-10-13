@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using Xamarin.Forms;
-using Xamarin.Forms.Internals;
-using PasaBuy.App.Models.Currency;
-using Model = PasaBuy.App.Models.Currency.Transaction;
-using System.Linq;
-using Rg.Plugins.Popup.Services;
-using PasaBuy.App.Views.PopupModals;
+﻿using Newtonsoft.Json;
 using PasaBuy.App.Commands;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
-using Newtonsoft.Json;
-using System.Threading.Tasks;
+using PasaBuy.App.Models.Currency;
 using PasaBuy.App.Views.Currency;
+using System;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+using Xamarin.Forms.Internals;
+using Model = PasaBuy.App.Models.Currency.Transaction;
 
 namespace PasaBuy.App.ViewModels.Currency
 {
@@ -118,7 +116,7 @@ namespace PasaBuy.App.ViewModels.Currency
                 {
                     if (success)
                     {
-                        WalletCreditsModel wallet = JsonConvert.DeserializeObject<WalletCreditsModel>(data); 
+                        WalletCreditsModel wallet = JsonConvert.DeserializeObject<WalletCreditsModel>(data);
                         for (int i = 0; i < wallet.data.Length; i++)
                         {
                             _CreditsList.Add(new WalletCreditsModel()

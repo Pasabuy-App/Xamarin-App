@@ -1,19 +1,13 @@
-﻿using PasaBuy.App.Controllers;
+﻿using DataVice;
+using Newtonsoft.Json;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
-using PasaBuy.App.Views.Master;
+using PasaBuy.App.Models.Settings;
+using Plugin.Media;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using DataVice;
-using Plugin.Media;
-using Newtonsoft.Json;
-using PasaBuy.App.Models.Settings;
 
 namespace PasaBuy.App.Views.Settings
 {
@@ -85,7 +79,7 @@ namespace PasaBuy.App.Views.Settings
 
         public async void SaveBanner(object sender, EventArgs e)
         {
-            if(bannerUrl == null)
+            if (bannerUrl == null)
             {
                 new Alert("Failed", "Please select an image for banner first", "Ok");
                 return;
@@ -96,21 +90,21 @@ namespace PasaBuy.App.Views.Settings
                 if (!isEnable)
                 {
                     isEnable = true;
-                        Upload.Instance.Image(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, bannerUrl, "", "", "banner", "", (bool success, string data) =>
+                    Upload.Instance.Image(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, bannerUrl, "", "", "banner", "", (bool success, string data) =>
+                    {
+                        if (success)
                         {
-                            if (success)
-                            {
-                                new Alert("Success", "Banner successfully updated", "Ok");
-                                EditProfile datas = JsonConvert.DeserializeObject<EditProfile>(data);
-                                PSACache.Instance.UserInfo.banner = datas.data;
-                                PSACache.Instance.SaveUserData();
-                                ViewModels.Menu.MasterMenuViewModel.Insertimage(PSACache.Instance.UserInfo.banner);
-                            }
-                            else
-                            {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                            }
-                        });
+                            new Alert("Success", "Banner successfully updated", "Ok");
+                            EditProfile datas = JsonConvert.DeserializeObject<EditProfile>(data);
+                            PSACache.Instance.UserInfo.banner = datas.data;
+                            PSACache.Instance.SaveUserData();
+                            ViewModels.Menu.MasterMenuViewModel.Insertimage(PSACache.Instance.UserInfo.banner);
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        }
+                    });
                     await Task.Delay(200);
                     isEnable = false;
                 }
@@ -128,21 +122,21 @@ namespace PasaBuy.App.Views.Settings
                 if (!isEnable)
                 {
                     isEnable = true;
-                        /*Users.Instance.EditProfile(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, Fname.Text, Lname.Text, Nname.Text, (bool success, string data) =>
+                    /*Users.Instance.EditProfile(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, Fname.Text, Lname.Text, Nname.Text, (bool success, string data) =>
+                    {
+                        if (success)
                         {
-                            if (success)
-                            {
-                                new Alert("Success", "Data successfully updated", "Ok");
-                                PSACache.Instance.UserInfo.dname = Nname.Text;
-                                PSACache.Instance.UserInfo.lname = Lname.Text;
-                                PSACache.Instance.UserInfo.fname = Fname.Text;
-                                PSACache.Instance.SaveUserData();
-                            }
-                            else
-                            {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                            }
-                        });*/
+                            new Alert("Success", "Data successfully updated", "Ok");
+                            PSACache.Instance.UserInfo.dname = Nname.Text;
+                            PSACache.Instance.UserInfo.lname = Lname.Text;
+                            PSACache.Instance.UserInfo.fname = Fname.Text;
+                            PSACache.Instance.SaveUserData();
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        }
+                    });*/
                     await Task.Delay(200);
                     isEnable = false;
                 }

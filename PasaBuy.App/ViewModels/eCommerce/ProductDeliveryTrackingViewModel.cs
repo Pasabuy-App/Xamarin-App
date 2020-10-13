@@ -1,9 +1,7 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Runtime.Serialization;
-using PasaBuy.App.Local;
+﻿using PasaBuy.App.Local;
 using PasaBuy.App.Models.eCommerce;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Xamarin.Forms.Internals;
 
 namespace PasaBuy.App.ViewModels.eCommerce

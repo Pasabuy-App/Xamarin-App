@@ -1,13 +1,10 @@
 ﻿using Newtonsoft.Json;
-using PasaBuy.App.Commands;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Marketplace;
 using PasaBuy.App.Views.Marketplace;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -26,13 +23,13 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             get
             {
-                if(instance == null)
+                if (instance == null)
                 {
                     instance = new FoodBrowserViewModel();
                 }
                 return instance;
             }
-            
+
         }
 
         public ICommand SelectStoreCommand
@@ -73,14 +70,14 @@ namespace PasaBuy.App.ViewModels.Marketplace
         }
         public ObservableCollection<FoodStore> FoodStorelist
         {
-            get 
-            { 
-                return foodstorelist; 
+            get
+            {
+                return foodstorelist;
             }
-            set 
-            { 
-                foodstorelist = value; 
-                this.NotifyPropertyChanged(); 
+            set
+            {
+                foodstorelist = value;
+                this.NotifyPropertyChanged();
             }
         }
         bool _isRefreshing = false;
@@ -105,11 +102,11 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public FoodBrowserViewModel()
         {
-            RefreshCommand = new Command<string>( (key) =>
-            {
-                RefreshData();
-                IsRefreshing = false;
-            });
+            RefreshCommand = new Command<string>((key) =>
+           {
+               RefreshData();
+               IsRefreshing = false;
+           });
             isLoad = false;
             foodstorelist = new ObservableCollection<FoodStore>();
             _bestSellers = new ObservableCollection<FoodStore>();
@@ -215,7 +212,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         private void NavigateToNextPage(object selectedItem)
         {
-           
+
         }
 
         //public ObservableCollection<FoodStore> NavigationList { get; set; }

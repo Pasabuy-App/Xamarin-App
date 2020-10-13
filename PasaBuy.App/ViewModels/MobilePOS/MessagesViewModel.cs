@@ -2,12 +2,9 @@
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Chat;
-using PasaBuy.App.Models.MobilePOS;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
-using System.Text;
 
 namespace PasaBuy.App.ViewModels.MobilePOS
 {

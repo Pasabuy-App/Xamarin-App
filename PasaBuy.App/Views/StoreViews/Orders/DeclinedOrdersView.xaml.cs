@@ -1,10 +1,5 @@
 ﻿using PasaBuy.App.Models.MobilePOS;
 using PasaBuy.App.ViewModels.MobilePOS;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -19,7 +14,8 @@ namespace PasaBuy.App.Views.StoreViews.Orders
             InitializeComponent();
             /*this.BindingContext = new DashboardOrdersViewModel();
             DashboardOrdersViewModel.orderList.Clear();
-            DashboardOrdersViewModel.LoadOrder("cancelled", "")*/;
+            DashboardOrdersViewModel.LoadOrder("cancelled", "")*/
+            ;
         }
 
         private void DeclinedOrders_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)

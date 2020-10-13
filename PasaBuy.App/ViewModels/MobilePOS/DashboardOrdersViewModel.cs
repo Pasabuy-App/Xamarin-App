@@ -1,12 +1,10 @@
-﻿using PasaBuy.App.Controllers.Notice;
+﻿using MobilePOS;
+using Newtonsoft.Json;
+using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.MobilePOS;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
-using MobilePOS;
-using Newtonsoft.Json;
 
 namespace PasaBuy.App.ViewModels.MobilePOS
 {

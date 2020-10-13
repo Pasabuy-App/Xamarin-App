@@ -1,8 +1,5 @@
 ﻿using PasaBuy.App.Models.Marketplace;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 
 namespace PasaBuy.App.ViewModels.Marketplace
 {
@@ -12,14 +9,14 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public ObservableCollection<Variants> VariantsList
         {
-            get 
-            { 
-                return _variantsList; 
+            get
+            {
+                return _variantsList;
             }
             set
-            { 
-                _variantsList = value; 
-                this.NotifyPropertyChanged(); 
+            {
+                _variantsList = value;
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -34,7 +31,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                     Name = "Size"
                 });
             }
-           
+
         }
     }
 }

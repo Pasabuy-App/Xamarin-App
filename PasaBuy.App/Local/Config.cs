@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PasaBuy.App.Local
 {
@@ -59,7 +57,7 @@ namespace PasaBuy.App.Local
 
                 return returning + devBaseUrl;
             }
-        } 
+        }
 
         /// <summary>
         /// Syncfusion Demo image root URL.

@@ -1,12 +1,11 @@
-﻿using PasaBuy.App.Controllers;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using PasaBuy.App.Views.ErrorAndEmpty;
+﻿using Microsoft.AppCenter.Crashes;
 using PasaBuy.App.Local;
+using PasaBuy.App.Views.ErrorAndEmpty;
+using System;
 using USocketNet;
 using USocketNet.Model;
-using System;
-using Microsoft.AppCenter.Crashes;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace PasaBuy.App.Views.Onboarding
 {
@@ -50,7 +49,7 @@ namespace PasaBuy.App.Views.Onboarding
 
         public static void CheckConnectivityAndToken()
         {
-            if (PSADevice.HasInternet )
+            if (PSADevice.HasInternet)
             {
                 if (PSACache.Instance.hasUserinfo)
                 {
@@ -63,7 +62,7 @@ namespace PasaBuy.App.Views.Onboarding
 
                 App.Current.MainPage = new SignInPage();
 
-                if ( !PSACache.DoneWithGettingStarted )
+                if (!PSACache.DoneWithGettingStarted)
                 {
                     App.Current.MainPage = new GettingStarted();
                 }

@@ -1,8 +1,6 @@
 ﻿using PasaBuy.App.Resources.Texts;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 using Xamarin.Forms;
 
 namespace PasaBuy.App.Converters

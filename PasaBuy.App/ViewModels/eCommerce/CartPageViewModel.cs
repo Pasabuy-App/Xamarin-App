@@ -1,20 +1,14 @@
+using PasaBuy.App.Commands;
+using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
+using PasaBuy.App.Models.Marketplace;
+using PasaBuy.App.Views.eCommerce;
+using PasaBuy.App.Views.ErrorAndEmpty;
 using System.Collections.ObjectModel;
-using PasaBuy.App.Models;
+using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using System.Runtime.Serialization;
-using PasaBuy.App.Controls;
-using PasaBuy.App.Views.eCommerce;
-using PasaBuy.App.Models.Marketplace;
-using Syncfusion.ListView.XForms;
-using PasaBuy.App.Local;
-using System.Threading.Tasks;
-using PasaBuy.App.Views.ErrorAndEmpty;
-using System;
-using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Views.StoreDetail;
-using System.Linq;
-using PasaBuy.App.Commands;
 
 namespace PasaBuy.App.ViewModels.eCommerce
 {

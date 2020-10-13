@@ -5,12 +5,6 @@ using PasaBuy.App.Models.MobilePOS;
 using PasaBuy.App.ViewModels.MobilePOS;
 using Plugin.Media;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -195,47 +189,47 @@ namespace PasaBuy.App.Views.StoreViews
 
                 if (ProductName.HasError == false && Short.HasError == false && Price.HasError == false && Category.HasError == false)
                 {
-                        if (pdid == "0")
+                    if (pdid == "0")
+                    {
+                        TindaPress.Product.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, PSACache.Instance.UserInfo.stid, ProductNames.Text, filepath, Shorts.Text, lon, sku, Prices.Text, weight, dimension, (bool success, string data) =>
                         {
-                            TindaPress.Product.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, PSACache.Instance.UserInfo.stid, ProductNames.Text, filepath, Shorts.Text, lon, sku, Prices.Text, weight, dimension, (bool success, string data) =>
+                            if (success)
                             {
-                                if (success)
-                                {
-                                    ProductsView.LastIndex = 11;
-                                    ProductsView.isFirstLoad = false;
-                                    ProductsView.Offset = 0;
-                                    ProductViewModel.productsList.Clear();
-                                    ProductViewModel.LoadData("");
-                                    Navigation.PopAsync();
-                                }
-                                else
-                                {
-                                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                ProductsView.LastIndex = 11;
+                                ProductsView.isFirstLoad = false;
+                                ProductsView.Offset = 0;
+                                ProductViewModel.productsList.Clear();
+                                ProductViewModel.LoadData("");
+                                Navigation.PopAsync();
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
 
-                                }
-                            });
-                        }
-                        else
+                            }
+                        });
+                    }
+                    else
+                    {
+                        TindaPress.Product.Instance.Update(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, pdid, PSACache.Instance.UserInfo.stid, ProductNames.Text, filepath, Shorts.Text, lon, sku, Prices.Text, weight, dimension, (bool success, string data) =>
                         {
-                            TindaPress.Product.Instance.Update(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, pdid, PSACache.Instance.UserInfo.stid, ProductNames.Text, filepath, Shorts.Text, lon, sku, Prices.Text, weight, dimension, (bool success, string data) =>
+                            if (success)
                             {
-                                if (success)
-                                {
-                                    ProductsView.LastIndex = 11;
-                                    ProductsView.isFirstLoad = false;
-                                    ProductsView.Offset = 0;
-                                    pdid = "0";
-                                    ProductViewModel.productsList.Clear();
-                                    ProductViewModel.LoadData("");
-                                    Navigation.PopAsync();
-                                }
-                                else
-                                {
-                                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                ProductsView.LastIndex = 11;
+                                ProductsView.isFirstLoad = false;
+                                ProductsView.Offset = 0;
+                                pdid = "0";
+                                ProductViewModel.productsList.Clear();
+                                ProductViewModel.LoadData("");
+                                Navigation.PopAsync();
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
 
-                                }
-                            });
-                        }
+                            }
+                        });
+                    }
                 }
             }
             catch (Exception ex)

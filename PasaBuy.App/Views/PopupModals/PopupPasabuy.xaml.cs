@@ -2,12 +2,6 @@
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace PasaBuy.App.Views.PopupModals
@@ -25,12 +19,12 @@ namespace PasaBuy.App.Views.PopupModals
             this.pahatidInfo.Text = "A mover drops off a passenger at a destination.";
             this.pasakayInfo.Text = "A mover invites a passenger to share a ride towards a destination.";
             isTapped = false;
-    
+
         }
 
         private async void GoToPasabuy(object sender, EventArgs e)
         {
-          
+
             if (!isTapped)
             {
                 isTapped = true;
@@ -50,7 +44,7 @@ namespace PasaBuy.App.Views.PopupModals
             }
         }
 
-        private async  void GoToPahatid(object sender, EventArgs e)
+        private async void GoToPahatid(object sender, EventArgs e)
         {
             if (!isTapped)
             {

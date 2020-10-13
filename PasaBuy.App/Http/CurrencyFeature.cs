@@ -5,7 +5,6 @@ using PasaBuy.App.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace PasaBuy.App.Http
@@ -18,7 +17,7 @@ namespace PasaBuy.App.Http
         {
             get
             {
-                if(instance == null)
+                if (instance == null)
                 {
                     instance = new CurrencyFeature();
                 }
@@ -63,9 +62,9 @@ namespace PasaBuy.App.Http
                 using (HttpClient httpClient = new HttpClient())
                 {
                     var dict = new Dictionary<string, string>();
-                        dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
-                        dict.Add("snky", PSACache.Instance.UserInfo.snky);
-                        dict.Add("abbv", currencyFeature.Value);
+                    dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
+                    dict.Add("snky", PSACache.Instance.UserInfo.snky);
+                    dict.Add("abbv", currencyFeature.Value);
                     var form = new FormUrlEncodedContent(dict);
 
                     var response = await httpClient.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/coinpress/v1/user/wallet/create", form);

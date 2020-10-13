@@ -1,10 +1,9 @@
-﻿using Xamarin.Forms;
+﻿using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Models.Settings;
-using System.Collections.ObjectModel;
-using Xamarin.Forms.Internals;
 using PasaBuy.App.Views.Settings;
-using PasaBuy.App.Views;
-using PasaBuy.App.Controllers.Notice;
+using System.Collections.ObjectModel;
+using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace PasaBuy.App.ViewModels.Settings
 {
@@ -14,11 +13,11 @@ namespace PasaBuy.App.ViewModels.Settings
     [Preserve(AllMembers = true)]
     public class ContactViewModel : BaseViewModel
     {
-       
-        public ObservableCollection<Contact> ContactDetails { get; set; }
-      
 
-      
+        public ObservableCollection<Contact> ContactDetails { get; set; }
+
+
+
         public ContactViewModel()
         {
             this.EditCommand = new Command(this.EditButtonClicked);

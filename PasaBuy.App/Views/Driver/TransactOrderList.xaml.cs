@@ -1,18 +1,14 @@
-﻿using PasaBuy.App.Controllers.Notice;
+﻿using Newtonsoft.Json;
+using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
+using PasaBuy.App.Models.Driver;
 using PasaBuy.App.ViewModels.Driver;
+using PasaBuy.App.Views.PopupModals;
+using Rg.Plugins.Popup.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using PasaBuy.App.Local;
-using Newtonsoft.Json;
-using PasaBuy.App.Models.Driver;
-using Xamarin.Essentials;
-using Rg.Plugins.Popup.Services;
-using PasaBuy.App.Views.PopupModals;
 
 namespace PasaBuy.App.Views.Driver
 {
@@ -25,22 +21,22 @@ namespace PasaBuy.App.Views.Driver
             this.BindingContext = new PendingOrderViewModel();
         }
 
-       
+
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             var btn = (Label)sender;
             var id = btn.ClassId;
-        
-             try
-             {
+
+            try
+            {
                 HatidPress.Deliveries.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", id, "", "", "pending", (bool success, string data) =>
                 {
                     //new Alert("", data, "ok");
                     if (success)
                     {
                         TransactListData datas = JsonConvert.DeserializeObject<TransactListData>(data);
-                        if (datas.data.Length != 0 )
+                        if (datas.data.Length != 0)
                         {
                             for (int i = 0; i < datas.data.Length; i++)
                             {
@@ -63,7 +59,7 @@ namespace PasaBuy.App.Views.Driver
                             }
                             PopupNavigation.Instance.PushAsync(new PopupAcceptOrder());
                         }
-                        
+
                     }
                     else
                     {
@@ -73,26 +69,26 @@ namespace PasaBuy.App.Views.Driver
                 });
 
             }
-             catch (FeatureNotSupportedException fnsEx)
-             {
-                 // Handle not supported on device exception
-                 Console.WriteLine("Handle not supported on device exception" + " " + fnsEx);
-             }
-             catch (FeatureNotEnabledException fneEx)
-             {
-                 // Handle not enabled on device exception
-                 Console.WriteLine("Handle not enabled on device exception" + " " + fneEx);
-             }
-             catch (PermissionException pEx)
-             {
-                 // Handle permission exception
-                 Console.WriteLine("Handle permission exception" + " " + pEx);
-             }
-             catch (Exception ex)
-             {
-                 // Unable to get location
-                 Console.WriteLine("Unable to get location" + " " + ex);
-             }
+            catch (FeatureNotSupportedException fnsEx)
+            {
+                // Handle not supported on device exception
+                Console.WriteLine("Handle not supported on device exception" + " " + fnsEx);
+            }
+            catch (FeatureNotEnabledException fneEx)
+            {
+                // Handle not enabled on device exception
+                Console.WriteLine("Handle not enabled on device exception" + " " + fneEx);
+            }
+            catch (PermissionException pEx)
+            {
+                // Handle permission exception
+                Console.WriteLine("Handle permission exception" + " " + pEx);
+            }
+            catch (Exception ex)
+            {
+                // Unable to get location
+                Console.WriteLine("Unable to get location" + " " + ex);
+            }
         }
     }
 }

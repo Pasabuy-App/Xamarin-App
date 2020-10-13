@@ -1,6 +1,4 @@
 ﻿using PasaBuy.App.Views.Onboarding;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;

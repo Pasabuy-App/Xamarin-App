@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PasaBuy.App.Controllers.Notice
+﻿namespace PasaBuy.App.Controllers.Notice
 {
     public class Alert
     {

@@ -1,8 +1,6 @@
-﻿using PasaBuy.App.DataService;
-using PasaBuy.App.Models.Marketplace;
+﻿using PasaBuy.App.Models.Marketplace;
 using PasaBuy.App.ViewModels.Marketplace;
 using System;
-using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
@@ -33,7 +31,7 @@ namespace PasaBuy.App.Views.Marketplace
         {
             base.OnSizeAllocated(width, height);
 
-           
+
         }
 
         /// <summary>
@@ -43,7 +41,7 @@ namespace PasaBuy.App.Views.Marketplace
         /// <param name="e">Event Args</param>
         private void SearchButton_Clicked(object sender, EventArgs e)
         {
-            
+
         }
 
         /// <summary>
@@ -53,7 +51,7 @@ namespace PasaBuy.App.Views.Marketplace
         /// <param name="e">Event Args</param>
         private void BackToTitle_Clicked(object sender, EventArgs e)
         {
-           
+
         }
 
         /// <summary>
@@ -61,7 +59,7 @@ namespace PasaBuy.App.Views.Marketplace
         /// </summary>
         private void SearchBoxAnimationCompleted()
         {
-          
+
         }
 
         /// <summary>
@@ -93,15 +91,15 @@ namespace PasaBuy.App.Views.Marketplace
 
         private void RestaurantList_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
         {
-           /* var item = e.ItemData as Store;
-            if (StoreBrowserViewModel.storelist.Last() == item && StoreBrowserViewModel.storelist.Count() != 1)
-            {
-                if (StoreBrowserViewModel.storelist.IndexOf(item) >= LastIndex)
-                {
-                    LastIndex += 6;
-                    StoreBrowserViewModel.LoadStore(item.Id);
-                }
-            }*/
+            /* var item = e.ItemData as Store;
+             if (StoreBrowserViewModel.storelist.Last() == item && StoreBrowserViewModel.storelist.Count() != 1)
+             {
+                 if (StoreBrowserViewModel.storelist.IndexOf(item) >= LastIndex)
+                 {
+                     LastIndex += 6;
+                     StoreBrowserViewModel.LoadStore(item.Id);
+                 }
+             }*/
         }
     }
 }

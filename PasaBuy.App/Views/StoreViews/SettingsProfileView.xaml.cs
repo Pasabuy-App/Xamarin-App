@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using PasaBuy.App.Controllers.Notice;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PasaBuy.App.Local;
-using Plugin.Media;
-using DataVice;
+﻿using DataVice;
 using Newtonsoft.Json;
+using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
 using PasaBuy.App.Models.Settings;
-
+using Plugin.Media;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

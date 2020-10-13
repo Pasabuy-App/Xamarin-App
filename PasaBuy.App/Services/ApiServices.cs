@@ -1,10 +1,9 @@
-﻿using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using PasaBuy.App.Controllers.Notice;
+﻿using Newtonsoft.Json;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Navigation;
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace PasaBuy.App.Services
 {

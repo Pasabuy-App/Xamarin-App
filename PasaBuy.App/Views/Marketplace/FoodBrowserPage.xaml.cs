@@ -1,12 +1,7 @@
-﻿using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.DataService;
-using PasaBuy.App.Models.Marketplace;
+﻿using PasaBuy.App.Models.Marketplace;
 using PasaBuy.App.ViewModels.Marketplace;
-using PasaBuy.App.Views.StoreDetail;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -97,7 +92,7 @@ namespace PasaBuy.App.Views.Marketplace
             if (!isTapped)
             {
                 isTapped = true;
-                   var item = e.ItemData as FoodStore;
+                var item = e.ItemData as FoodStore;
 
                 //new Alert("ok", "." + item.Id + ".HAHAHA", "ok");
 

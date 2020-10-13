@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Syncfusion.XForms.BadgeView;
+using System;
 using System.Globalization;
-using Syncfusion.XForms.BadgeView;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 

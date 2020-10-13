@@ -1,13 +1,12 @@
-﻿using PasaBuy.App.Views.Master;
+﻿using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
+using PasaBuy.App.Models.Settings;
+using PasaBuy.App.ViewModels.Settings;
 using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
-using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Models.Settings;
-using PasaBuy.App.ViewModels.Settings;
-using PasaBuy.App.Local;
-using System.Threading.Tasks;
 
 namespace PasaBuy.App.Views.Settings
 {
@@ -84,4 +83,4 @@ namespace PasaBuy.App.Views.Settings
         }
     }
 
- }
+}

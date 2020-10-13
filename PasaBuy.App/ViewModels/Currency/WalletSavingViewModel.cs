@@ -1,18 +1,16 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using PasaBuy.App.Commands;
+using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
+using PasaBuy.App.Models.Currency;
+using PasaBuy.App.Views.Currency;
+using System;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using PasaBuy.App.Models.Currency;
 using Model = PasaBuy.App.Models.Currency.Transaction;
-using System.Linq;
-using PasaBuy.App.Commands;
-using PasaBuy.App.Views.PopupModals;
-using Rg.Plugins.Popup.Services;
-using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Views.Currency;
-using PasaBuy.App.Local;
-using Newtonsoft.Json;
-using System.Threading.Tasks;
 
 namespace PasaBuy.App.ViewModels.Currency
 {
@@ -57,14 +55,14 @@ namespace PasaBuy.App.ViewModels.Currency
         public static ObservableCollection<WalletSavingsModel> _SavingsList;
         public ObservableCollection<WalletSavingsModel> SavingsList
         {
-            get 
-            { 
-                return _SavingsList; 
+            get
+            {
+                return _SavingsList;
             }
-            set 
-            { 
-                _SavingsList = value; 
-                this.NotifyPropertyChanged(); 
+            set
+            {
+                _SavingsList = value;
+                this.NotifyPropertyChanged();
             }
         }
         #endregion
@@ -806,35 +804,35 @@ namespace PasaBuy.App.ViewModels.Currency
 
         private void ConfirmSendClicked(object obj)
         {
-           /* try
-            {
-                //Console.WriteLine("wallet id: " + PopupSendWalletSavings.walletid + " amount: " + PopupSendWalletSavings.amount + " currency: " + PopupSendWalletSavings.currency_id);
-                CoinPress.Wallet.Instance.Send(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PopupSendWalletSavings.walletid, PopupSendWalletSavings.amount, currency_id, PopupSendWalletSavings.notes, (bool success, string data) =>
-                {
-                    if (success)
-                    {
-                        //Console.WriteLine("." +this.Amount + ". ." + PopupSendWalletSavings.amount + ".");
-                        //double amount = (Convert.ToDouble(this.Amount) - Convert.ToDouble(PopupSendWalletSavings.amount));
-                        //this.Amount = "0";// amount.ToString();
-                        //new Alert("Send Money", "Send money successfully.", "OK"); // back to wallet page
-                        //LoadBalance();
-                        _SavingsList.Clear();
-                        LoadData(currency_id, "");
-                        WalletSaving.LastIndex = 11;
-                        new Alert("Send Money", "Send money successfully.", "OK");
-                        PopupNavigation.Instance.PopAsync();
-                        Console.WriteLine("Count:" + _SavingsList.Count);
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                });
-            }
-            catch (Exception e)
-            {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
-            }*/
+            /* try
+             {
+                 //Console.WriteLine("wallet id: " + PopupSendWalletSavings.walletid + " amount: " + PopupSendWalletSavings.amount + " currency: " + PopupSendWalletSavings.currency_id);
+                 CoinPress.Wallet.Instance.Send(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PopupSendWalletSavings.walletid, PopupSendWalletSavings.amount, currency_id, PopupSendWalletSavings.notes, (bool success, string data) =>
+                 {
+                     if (success)
+                     {
+                         //Console.WriteLine("." +this.Amount + ". ." + PopupSendWalletSavings.amount + ".");
+                         //double amount = (Convert.ToDouble(this.Amount) - Convert.ToDouble(PopupSendWalletSavings.amount));
+                         //this.Amount = "0";// amount.ToString();
+                         //new Alert("Send Money", "Send money successfully.", "OK"); // back to wallet page
+                         //LoadBalance();
+                         _SavingsList.Clear();
+                         LoadData(currency_id, "");
+                         WalletSaving.LastIndex = 11;
+                         new Alert("Send Money", "Send money successfully.", "OK");
+                         PopupNavigation.Instance.PopAsync();
+                         Console.WriteLine("Count:" + _SavingsList.Count);
+                     }
+                     else
+                     {
+                         new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                     }
+                 });
+             }
+             catch (Exception e)
+             {
+                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+             }*/
         }
         #endregion
     }

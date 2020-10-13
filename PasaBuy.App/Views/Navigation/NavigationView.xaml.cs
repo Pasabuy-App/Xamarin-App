@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -25,7 +21,7 @@ namespace PasaBuy.App.Views.Navigation
             {
                 Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(PasaBuy.App.Views.Driver.DashboardPage)));
             }
-           
+
 
         }
         protected override void OnAppearing()

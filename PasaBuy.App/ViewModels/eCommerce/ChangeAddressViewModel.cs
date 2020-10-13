@@ -5,14 +5,12 @@ using PasaBuy.App.Local;
 using PasaBuy.App.Models.Settings;
 using PasaBuy.App.Views.eCommerce;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.eCommerce
 {
-    public class ChangeAddressViewModel: BaseViewModel
+    public class ChangeAddressViewModel : BaseViewModel
     {
         public static ObservableCollection<AddressData> _addressList;
 

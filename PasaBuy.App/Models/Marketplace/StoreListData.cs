@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PasaBuy.App.Models.Marketplace
+﻿namespace PasaBuy.App.Models.Marketplace
 {
     public class StoreListData
     {

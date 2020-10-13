@@ -4,11 +4,7 @@ using PasaBuy.App.Views.Driver;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -20,7 +16,7 @@ namespace PasaBuy.App.Views.PopupModals
     {
 
 
-        public static string store_logo ;
+        public static string store_logo;
         public static string carItem = "car / sedan";
         public static string item_id = string.Empty;
         public static string storeName = string.Empty;
@@ -38,9 +34,9 @@ namespace PasaBuy.App.Views.PopupModals
         public PopupAcceptOrder()
         {
             InitializeComponent();
-           
+
             Store.Text = storeName;
-            Order.Text = item_id + " | "+orderTime;
+            Order.Text = item_id + " | " + orderTime;
             WaypointAddress.Text = waypointAddress;
             OriginAddress.Text = destinationAddress;
             OrderTime.Text = "30";
@@ -54,7 +50,7 @@ namespace PasaBuy.App.Views.PopupModals
             stopwatch.Start();
             if (flag == true)
             {
-                
+
                 Device.StartTimer(TimeSpan.FromSeconds(1), () =>
                 {
                     OrderTime.Text = (TimeLimit - stopwatch.Elapsed.Seconds).ToString();
@@ -84,8 +80,8 @@ namespace PasaBuy.App.Views.PopupModals
             var request = new GeolocationRequest(GeolocationAccuracy.Medium);
             var location = await Geolocation.GetLocationAsync(request);
 
-        
-            HatidPress.Deliveries.Instance.Accept(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "100", item_id, "car / sedan", location.Latitude.ToString(), location.Longitude.ToString(), (bool success, string data) => 
+
+            HatidPress.Deliveries.Instance.Accept(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "100", item_id, "car / sedan", location.Latitude.ToString(), location.Longitude.ToString(), (bool success, string data) =>
             {
                 try
                 {
@@ -133,7 +129,7 @@ namespace PasaBuy.App.Views.PopupModals
                     Console.WriteLine("Unable to get location" + " " + ex);
                 }
             });
-       
+
         }
     }
 }

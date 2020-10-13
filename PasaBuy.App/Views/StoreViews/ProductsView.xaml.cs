@@ -3,9 +3,7 @@ using PasaBuy.App.Local;
 using PasaBuy.App.Models.MobilePOS;
 using PasaBuy.App.ViewModels.MobilePOS;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -99,22 +97,22 @@ namespace PasaBuy.App.Views.StoreViews
                     bool answer = await DisplayAlert("Delete Product?", "Are you sure to delete this?", "Yes", "No");
                     if (answer)
                     {
-                            var btn = sender as Grid;
-                            TindaPress.Product.Instance.Delete(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, btn.ClassId, (bool success, string data) =>
+                        var btn = sender as Grid;
+                        TindaPress.Product.Instance.Delete(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, btn.ClassId, (bool success, string data) =>
+                        {
+                            if (success)
                             {
-                                if (success)
-                                {
-                                    LastIndex = 11;
-                                    isFirstLoad = false;
-                                    Offset = 0;
-                                    ProductViewModel.productsList.Clear();
-                                    ProductViewModel.LoadData("");
-                                }
-                                else
-                                {
-                                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                                }
-                            });
+                                LastIndex = 11;
+                                isFirstLoad = false;
+                                Offset = 0;
+                                ProductViewModel.productsList.Clear();
+                                ProductViewModel.LoadData("");
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            }
+                        });
                     }
                     await Task.Delay(200);
                     count = 0;

@@ -3,9 +3,7 @@ using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Marketplace;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 
 namespace PasaBuy.App.ViewModels.MobilePOS
 {
@@ -19,7 +17,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             {
                 return myStores;
             }
-            set 
+            set
             {
                 myStores = value;
                 this.NotifyPropertyChanged();
@@ -65,7 +63,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                     Description = "First Description",
                     Logo = "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg"
                 });*/
-                
+
             }
             catch (Exception e)
             {

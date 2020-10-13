@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace PasaBuy.App.Models.Driver
 {
@@ -24,7 +21,7 @@ namespace PasaBuy.App.Models.Driver
         private double store_lat = 0;
         private double store_long = 0;
         private string customer = string.Empty;
-        private double customer_lat = 0 ;
+        private double customer_lat = 0;
         private double customer_long = 0;
         private string customer_address = string.Empty;
         private string product = string.Empty;

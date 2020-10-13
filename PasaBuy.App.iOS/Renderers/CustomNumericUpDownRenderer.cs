@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Foundation;
-using PasaBuy.App.CustomRenderers;
-using UIKit;
-using Xamarin.Forms.Platform.iOS;
+﻿using PasaBuy.App.CustomRenderers;
 using Xamarin.Forms;
 
 
@@ -17,6 +9,6 @@ namespace PasaBuy.App.iOS.Renderers
 {
     public class CustomNumericNumericUpDownRenderer : CustomNumericUpDown
     {
-       
+
     }
 }

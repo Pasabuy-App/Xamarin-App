@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PasaBuy.App.Models.Notification
+﻿namespace PasaBuy.App.Models.Notification
 {
     public class TaskNotificationData
     {

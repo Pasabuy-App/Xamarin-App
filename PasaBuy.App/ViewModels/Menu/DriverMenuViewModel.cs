@@ -1,22 +1,11 @@
-﻿using PasaBuy.App.Views.Master;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using PasaBuy.App.Local;
+using PasaBuy.App.Views;
+using PasaBuy.App.Views.Backend;
+using PasaBuy.App.Views.Driver;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using PasaBuy.App.Views.Notification;
-using PasaBuy.App.Views.Settings;
-using PasaBuy.App.Views.Chat;
-using PasaBuy.App.Views.Marketplace;
-using System.Linq;
-using PasaBuy.App.Views.Feeds;
-using PasaBuy.App.Views.Advisory;
-using PasaBuy.App.Controllers;
-using PasaBuy.App.Views;
-using PasaBuy.App.Views.Currency;
-using PasaBuy.App.Views.Backend;
-using PasaBuy.App.Views.Driver;
-using PasaBuy.App.Local;
 
 namespace PasaBuy.App.ViewModels.Menu
 {
@@ -195,7 +184,7 @@ namespace PasaBuy.App.ViewModels.Menu
             //Do something
         }
 
-    
+
 
         /// <summary>
         /// Invoked when the navigation button is clicked.
@@ -205,7 +194,7 @@ namespace PasaBuy.App.ViewModels.Menu
         {
             this.UpdateSelectedItemColor(obj);
             //Views.Driver.Navigation.StoreAddress = string.Empty;
-           
+
             //(App.Current.MainPage as MasterDetailPage).Detail = new NavigationPage(new Navigation());
             //Do something
         }
@@ -225,7 +214,7 @@ namespace PasaBuy.App.ViewModels.Menu
         /// Invoked when the message button is clicked.
         /// </summary>
         /// <param name="obj">The object</param>
-        private  void MessageButtonClicked(object obj)
+        private void MessageButtonClicked(object obj)
         {
             this.UpdateSelectedItemColor(obj);
             (App.Current.MainPage as MasterDetailPage).Detail = new NavigationPage(new DriverMessagePage());

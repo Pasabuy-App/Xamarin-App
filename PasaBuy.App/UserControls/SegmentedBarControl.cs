@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
 using System.Linq;
+using Xamarin.Forms;
 
 namespace PasaBuy.App.UserControls
 {
@@ -156,7 +155,8 @@ namespace PasaBuy.App.UserControls
                 childrenLayout.ClassId = item;
                 _mainContentLayout.Children.Add(childrenLayout);
                 var tapGestureRecognizer = new TapGestureRecognizer();
-                tapGestureRecognizer.Tapped += (s, e) => {
+                tapGestureRecognizer.Tapped += (s, e) =>
+                {
                     ItemSelected = ((StackLayout)s).ClassId;
                 };
                 childrenLayout.GestureRecognizers.Add(tapGestureRecognizer);

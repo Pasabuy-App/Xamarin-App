@@ -4,7 +4,6 @@ using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Chat;
 using PasaBuy.App.ViewModels.Driver;
-using PasaBuy.App.Views;
 using PasaBuy.App.Views.Chat;
 using PasaBuy.App.Views.Driver;
 using PasaBuy.App.Views.Navigation;

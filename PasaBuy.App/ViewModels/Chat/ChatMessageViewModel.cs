@@ -1,21 +1,15 @@
-using System;
-using System.Collections.ObjectModel;
-using PasaBuy.App.Models.Chat;
-using PasaBuy.App.Views.Master;
-using Xamarin.Forms;
-using Xamarin.Forms.Internals;
-using PasaBuy.App.Views.Chat;
+using Newtonsoft.Json;
+using PasaBuy.App.Behaviors.Chat;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
-using Newtonsoft.Json;
-using System.Threading.Tasks;
-using System.Globalization;
-using System.Linq;
+using PasaBuy.App.Models.Chat;
+using System;
 using System.Collections.Generic;
-using Syncfusion.ListView.XForms;
-using PasaBuy.App.Behaviors.Chat;
+using System.Globalization;
+using System.Threading.Tasks;
 using USocketNet;
-using SocioPress;
+using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace PasaBuy.App.ViewModels.Chat
 {

@@ -1,6 +1,6 @@
+using CoreGraphics;
 using PasaBuy.App.Controls;
 using PasaBuy.App.iOS;
-using CoreGraphics;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 

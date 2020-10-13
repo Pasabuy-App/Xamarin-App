@@ -1,12 +1,10 @@
-﻿using System.Collections.ObjectModel;
+﻿using PasaBuy.App.Local;
+using PasaBuy.App.Models;
+using Syncfusion.XForms.Buttons;
+using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using Syncfusion.XForms.Buttons;
-using PasaBuy.App.Models;
 using Model = PasaBuy.App.Models.Article;
-using PasaBuy.App.Views.Master;
-using PasaBuy.App.Views.Advisory;
-using PasaBuy.App.Local;
 
 namespace PasaBuy.App.ViewModels.Advisory
 {

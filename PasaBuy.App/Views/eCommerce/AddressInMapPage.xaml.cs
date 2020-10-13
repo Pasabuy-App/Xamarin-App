@@ -1,9 +1,4 @@
-﻿using PasaBuy.App.Controllers.Notice;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 using Xamarin.Forms.Xaml;
@@ -45,7 +40,7 @@ namespace PasaBuy.App.Views.eCommerce
             }
             else
             {
-           
+
                 Pin pin1 = new Pin()
                 {
                     Type = PinType.Place,
@@ -61,7 +56,7 @@ namespace PasaBuy.App.Views.eCommerce
             }
 
 
-            
+
         }
 
         async void map_PinDragEnd(System.Object sender, Xamarin.Forms.GoogleMaps.PinDragEventArgs e)

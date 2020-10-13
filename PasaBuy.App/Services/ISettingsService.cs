@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using System.Linq.Expressions;
-
-namespace PasaBuy.App.Services
+﻿namespace PasaBuy.App.Services
 {
     public interface ISettingsService
     {

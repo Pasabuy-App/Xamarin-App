@@ -1,8 +1,5 @@
 ﻿using PasaBuy.App.Services;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace PasaBuy.App.ViewModels.MobilePOS.Base

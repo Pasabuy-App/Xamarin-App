@@ -1,5 +1,4 @@
-﻿using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Views.ProductDetail;
+﻿using PasaBuy.App.Views.ProductDetail;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;

@@ -1,18 +1,8 @@
-﻿using Rg.Plugins.Popup.Pages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Local;
-using PasaBuy.App.ViewModels.MobilePOS;
-using PasaBuy.App.Views.Navigation;
-using Plugin.Media;
+﻿using PasaBuy.App.Views.Driver;
+using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
-using Xamarin.Forms;
+using System;
 using Xamarin.Forms.Xaml;
-using PasaBuy.App.Views.Driver;
 
 namespace PasaBuy.App.Views.PopupModals
 {
@@ -26,7 +16,7 @@ namespace PasaBuy.App.Views.PopupModals
             InitializeComponent();
         }
 
-        private  void OKModal_Clicked(object sender, EventArgs e)
+        private void OKModal_Clicked(object sender, EventArgs e)
         {
             StartDeliveryPage.OpenMapApp();
         }
