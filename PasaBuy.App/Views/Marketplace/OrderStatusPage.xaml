@@ -1,12 +1,203 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PasaBuy.App.Views.Marketplace.OrderStatusPage">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms" xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="PasaBuy.App.Views.Marketplace.OrderStatusPage"
+             BackgroundColor="{DynamicResource Gray-White}"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0"
+                  Padding="15,8,15,8"
+                  BackgroundColor="{StaticResource PrimaryColor}"
+                  HeightRequest="{OnPlatform Android='46',
+                                                   iOS='56'}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <buttons:SfButton
+                            x:Name="backButton"
+                            Clicked="backButton_Clicked"
+                            Grid.Column="0"
+                            CornerRadius="4"
+                            TextColor="White"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                <Label Grid.Column="1" 
+                       x:Name="TitleName"
+                       Text="Order Status"
+                       Margin="0,0,20,0"
+                       FontFamily="{StaticResource Montserrat-Medium}"
+                       FontSize="{StaticResource LargeSize}"
+                       HorizontalOptions="CenterAndExpand"
+                       TextColor="{DynamicResource Gray-White}"
+                       VerticalOptions="Center" />
+            </Grid>
+            <Grid Grid.Row="1" RowSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30*" />
+                    <RowDefinition Height="30*" />
+                    <RowDefinition Height="40*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0"
+                      Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25*" />
+                        <ColumnDefinition Width="13*" />
+                        <ColumnDefinition Width="25*" />
+                        <ColumnDefinition Width="12*" />
+                        <ColumnDefinition Width="25*" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <ffimageloading:CachedImage Aspect="AspectFill"
+                                                Grid.Column="0"
+                                                Source="https://cdn4.iconfinder.com/data/icons/delivery-5/512/delivery-04-512.png"
+			                                    DownsampleToViewSize="true" 
+                                                Transformations="{Binding TurnGreyScale}"
+                                                FadeAnimationEnabled="False" >
+                    </ffimageloading:CachedImage>
+                    
+                    <ffimageloading:CachedImage Aspect="AspectFit"
+                                                Grid.Column="1"
+                                                Source="https://img.icons8.com/plasticine/2x/arrow.png"
+			                                    DownsampleToViewSize="true" 
+                                                Transformations="{Binding TurnGreyScale}"
+                                                FadeAnimationEnabled="False" >
+                    </ffimageloading:CachedImage>
+
+                    <ffimageloading:CachedImage Aspect="AspectFit"
+                                                Grid.Column="2"
+                                                Source="https://www.clipartmax.com/png/middle/151-1515481_restaurant-icon-png-logo-for-hospitality-industry.png"
+			                                    DownsampleToViewSize="true" 
+                                                FadeAnimationEnabled="False" >
+                    </ffimageloading:CachedImage>
+
+                    <ffimageloading:CachedImage Aspect="AspectFit"
+                                                Grid.Column="3"
+                                                Source="https://img.icons8.com/plasticine/2x/arrow.png"
+			                                    DownsampleToViewSize="true" 
+                                                Transformations="{Binding TurnGreyScale}"
+                                                FadeAnimationEnabled="False" >
+                    </ffimageloading:CachedImage>
+
+                    <ffimageloading:CachedImage Aspect="AspectFit"
+                                                Grid.Column="4"
+                                                Source="https://www.pikpng.com/pngl/b/243-2439658_customer-service-icon-png-transparent-customer-icon-png.png"
+			                                    DownsampleToViewSize="true" 
+                                                Transformations="{Binding TurnGreyScale}"
+                                                FadeAnimationEnabled="False" >
+                    </ffimageloading:CachedImage>
+                    <Grid Grid.Row="1"
+                          Grid.ColumnSpan="5">
+                        <progressBar:SfStepProgressBar HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                            <progressBar:StepView PrimaryText="Driver found" />
+                            <progressBar:StepView PrimaryText="Driver is on the way to the store" />
+                            <progressBar:StepView PrimaryText="Preparing your order" Status="InProgress" />
+                            <progressBar:StepView PrimaryText="Driver is on the way to you" />
+                            <progressBar:StepView PrimaryText="Confirm your order" />
+                        </progressBar:SfStepProgressBar>
+                    </Grid>
+                </Grid>
+
+                <Frame Grid.Row="1"
+                       Margin="10,10,10,0"
+                       HasShadow="True"
+                       VerticalOptions="FillAndExpand">
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="0.5" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Forms9Patch:Label Grid.Row="0"
+                                           Text="26 minutes"
+                                           FontFamily="{StaticResource Montserrat-SemiBold}"
+                                           FontSize="{DynamicResource BigSize}"
+                                           TextColor="{DynamicResource Gray-900}"
+                                           HorizontalTextAlignment="Center"
+                                           AutoFit="Width"/>
+                        <Forms9Patch:Label Grid.Row="1"
+                                           Text="Estimated Time of Arrival"
+                                           Margin="0,0,0,10"
+                                           FontFamily="{StaticResource Montserrat-SemiBold}"
+                                           FontSize="{DynamicResource LargeSize}"
+                                           TextColor="{DynamicResource Gray-900}"
+                                           HorizontalTextAlignment="Center"
+                                           AutoFit="Width"/>
+                        <BoxView Grid.Row="2" Style="{StaticResource SeparatorStyle}" />
+                        <Grid Grid.Row="3" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+            
+                            <buttons:SfButton BackgroundColor="{DynamicResource WhiteColor}"
+                                              TextColor="{DynamicResource Gray-900}"
+                                              Grid.Column="0" 
+                                              Text="Message Store" 
+                                              ShowIcon="True" 
+                                              ImageSource="https://www.clipartkey.com/mpngs/m/244-2444890_chat-bubble-messages-free-messages-icon-png.png"/>
+                            <buttons:SfButton Grid.Column="1"
+                                              BackgroundColor="{DynamicResource WhiteColor}"
+                                              TextColor="{DynamicResource Gray-900}"
+                                              Text="Message Driver" 
+                                              ShowIcon="True"
+                                              Padding="25"
+                                              ImageSource="https://www.clipartkey.com/mpngs/m/244-2444890_chat-bubble-messages-free-messages-icon-png.png"/>
+                        </Grid>
+
+                    </Grid>
+                </Frame>
+                <Frame Grid.Row="2"
+                       Margin="10,-10,10,0"
+                       Padding="20,0,20,0"
+                       HasShadow="True"
+                       VerticalOptions="FillAndExpand">
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Forms9Patch:Label Grid.Row="0"
+                                           Grid.Column="0"
+                                           Text="26 minutes"
+                                           FontFamily="{StaticResource Montserrat-SemiBold}"
+                                           FontSize="{DynamicResource LargeSize}"
+                                           TextColor="{DynamicResource Gray-900}"
+                                           HorizontalTextAlignment="Start"
+                                           AutoFit="Width"/>
+                    </Grid>
+                </Frame>
+                
+
+
+
+
+            </Grid>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

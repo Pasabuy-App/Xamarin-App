@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PasaBuy.App.ViewModels.Marketplace;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,13 @@ namespace PasaBuy.App.Views.Marketplace
         public OrderStatusPage()
         {
             InitializeComponent();
+            this.BindingContext = new OrderStatusViewModel();
+
+        }
+
+        private void backButton_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PopModalAsync();
         }
     }
 }
