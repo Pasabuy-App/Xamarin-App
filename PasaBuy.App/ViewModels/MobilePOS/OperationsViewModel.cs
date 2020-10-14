@@ -2,17 +2,20 @@
 using PasaBuy.App.Models.MobilePOS;
 using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
+using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
+using MobilePOS;
+using PasaBuy.App.Local;
+using Newtonsoft.Json;
+using System.Globalization;
 
 namespace PasaBuy.App.ViewModels.MobilePOS
 {
     public class OperationsViewModel : BaseViewModel
     {
         public static ObservableCollection<Operations> _daysOfTheWeek;
-
-        public static ObservableCollection<Operations> _scheduleList;
 
         public static ObservableCollection<Operations> _operationsList;
 
@@ -28,22 +31,9 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
         private async void ViewOperation(string id)
         {
-            new Alert("ok", id, "ok");
+            //new Alert("ok", id, "ok");
+            PopupViewOperations.opid = id;
             await PopupNavigation.Instance.PushAsync(new PopupViewOperations());
-        }
-
-        public ICommand EditScheduleCommand
-        {
-            get
-            {
-                return new Command<string>((x) => EditSchedule(x));
-            }
-        }
-
-        private async void EditSchedule(string id)
-        {
-            new Alert("ok", id, "ok");
-            await PopupNavigation.Instance.PushAsync(new PopupEditSchedule());
         }
 
         public bool IsOnline
@@ -85,149 +75,47 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
         }
 
-
-        public ObservableCollection<Operations> ScheduleList
-        {
-            get
-            {
-                return _scheduleList;
-            }
-            set
-            {
-                _scheduleList = value;
-                this.NotifyPropertyChanged();
-            }
-        }
-
         public OperationsViewModel()
         {
             this.IsOnline = true;
 
-            this.DaysOfTheWeek = new ObservableCollection<Operations>()
+            _operationsList = new ObservableCollection<Operations>();
+            LoadOperation("");
+        }
+        
+        public static void LoadOperation(string opid)
+        {
+            try
             {
-                new Operations
+                _operationsList.Clear();
+                Operation.Instance.ListByID_Sales(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, opid, (bool success, string data) =>
                 {
-                    Day = "Monday"
-
-                },
-                new Operations
-                {
-                    Day = "Tuesday"
-
-                },
-                new Operations
-                {
-                    Day = "Wednesday"
-
-                },
-                new Operations
-                {
-                    Day = "Thursday"
-
-                },
-                new Operations
-                {
-                    Day = "Friday"
-
-                },
-                new Operations
-                {
-                    Day = "Saturday"
-
-                },
-                new Operations
-                {
-                    Day = "Sunday"
-
-                }
-            };
-
-            this.ScheduleList = new ObservableCollection<Operations>()
+                    if (success)
+                    {
+                        CultureInfo provider = new CultureInfo("fr-FR");
+                        Operations datas = JsonConvert.DeserializeObject<Operations>(data);
+                        for (int i = 0; i < datas.data.Length; i++)
+                        {
+                            string dates = string.IsNullOrEmpty(datas.data[i].date) ? "0000-00-00 00:00:00" : datas.data[i].date;
+                            DateTime date = DateTime.ParseExact(dates, "yyyy-MM-dd HH:mm:ss", provider);
+                            _operationsList.Add(new Operations()
+                            {
+                                Id = datas.data[i].ID,
+                                Date = "Date: " + date.ToString("MMMM dd, yyyy"),
+                                TotalSales = "Total Sales: " + datas.data[i].total_sale
+                            });
+                        }
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+            }
+            catch (Exception e)
             {
-                new Operations
-                {
-                    Day = "Monday",
-                    Opening = "11:00 AM",
-                    Closing = "10:00 PM",
-                    FullSchedule = "10:00 AM - 10:00 PM"
-                },
-                new Operations
-                {
-                    Day = "Tuesday",
-                    Opening = "10:00 AM",
-                    Closing = "11:30 PM",
-                    FullSchedule = "10:00 AM - 11:30 PM"
-                },
-                new Operations
-                {
-                    Day = "Thursday",
-                    Opening = "10:30 AM",
-                    Closing = "10:00 PM",
-                    FullSchedule = "10:30 AM - 10:00 PM"
-                },
-                new Operations
-                {
-                    Day = "Friday",
-                    Opening = "11:00 AM",
-                    Closing = "09:00 PM",
-                    FullSchedule = "11:00 AM - 9:00 PM"
-                },
-                new Operations
-                {
-                    Day = "Saturday",
-                    Opening = "11:30 AM",
-                    Closing = "11:00 PM",
-                    FullSchedule = "11:30 AM - 11:00 PM"
-                },
-                new Operations
-                {
-                    Day = "Saturday",
-                    Opening = "11:30 AM",
-                    Closing = "11:00 PM",
-                    FullSchedule = "11:30 AM - 11:00 PM"
-                },
-                new Operations
-                {
-                    Day = "Saturday",
-                    Opening = "11:30 AM",
-                    Closing = "11:00 PM",
-                    FullSchedule = "11:30 AM - 11:00 PM"
-                },
-            };
-
-            this.OperationsList = new ObservableCollection<Operations>()
-            {
-                new Operations
-                {
-                    Id = "1",
-                    Date = "Date: Oct. 5, 2020",
-                    TotalSales = "Total Sales: 23,000.50"
-
-                },
-                new Operations
-                {
-                    Id = "23",
-                    Date = "Date: Oct. 5, 2020",
-                    TotalSales = "Total Sales: 23,000.50"
-
-                },
-                new Operations
-                {
-                    Id = "49",
-                    Date = "Date: Oct. 5, 2020",
-                    TotalSales = "Total Sales: 23,000.50"
-
-                },
-                new Operations
-                {
-                    Id = "83",
-                    Date = "Date: Oct. 5, 2020",
-                    TotalSales = "Total Sales: 23,000.50"
-
-                }
-
-            };
-
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+            }
         }
 
     }

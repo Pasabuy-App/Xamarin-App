@@ -21,6 +21,10 @@ namespace PasaBuy.App.Models.MobilePOS
             public string type = string.Empty;
             public string open = string.Empty;
             public string close = string.Empty;
+            public string total_sale = string.Empty;
+            public string date = string.Empty;
+            public string date_open = string.Empty;
+            public string date_close = string.Empty;
         }
 
         public string Id

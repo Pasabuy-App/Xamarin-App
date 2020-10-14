@@ -122,7 +122,7 @@
                            HorizontalOptions="End"
                            FontSize="15"
                            VerticalTextAlignment="Start"
-                           Text="October 23, 2020"
+                           x:Name="Date"
                            TextColor="{DynamicResource Gray-900}" />
                     <StackLayout Grid.Row="1">
                         <Label FontFamily="{StaticResource Montserrat-SemiBold}"
@@ -137,7 +137,7 @@
                            HorizontalOptions="End"
                            FontSize="15"
                            VerticalTextAlignment="Start"
-                           Text="10:00 AM"
+                           x:Name="Opened"
                            TextColor="{DynamicResource Gray-900}" />
                     <StackLayout Grid.Row="2"
                                  Margin="0,0,0,10">
@@ -154,8 +154,8 @@
                            HorizontalOptions="End"
                            Padding="10,0,0,0"
                            FontSize="15"
+                           x:Name="Closed"
                            VerticalTextAlignment="Start"
-                           Text="11:30 PM"
                            TextColor="{DynamicResource Gray-900}" />
 
                     <BoxView Grid.Row="3" 
