@@ -15,7 +15,22 @@ namespace PasaBuy.App.ViewModels.Marketplace
     {
         public ObservableCollection<PartnerStore> partnerStoresRotator;
 
+        public ObservableCollection<Store> storeList;
+
         public static ObservableCollection<Categories> itemCategories;
+
+        public ObservableCollection<Store> StoreList
+        {
+            get
+            {
+                return storeList;
+            }
+            set
+            {
+                storeList = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
         public ObservableCollection<Categories> ItemCategories
         {
@@ -64,15 +79,23 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public PartnerBrowserViewModel()
         {
-            itemCategories = new ObservableCollection<Categories>();
-            itemCategories.Clear();
-
-            RefreshCommand = new Command<string>((key) =>
+            this.StoreList = new ObservableCollection<Store>()
             {
-                itemCategories.Clear();
-                LoadCategory();
-                IsRefreshing = false;
-            });
+                new Store
+                {
+                    Title = "Store na Malakas",
+                    Street = "#Rainbow Ave, San Pedro, Laguna",
+                    Logo = "House.png",
+                    Description = "NA"
+                },
+                new Store
+                {
+                    Title = "Store na Store",
+                    Street = "#23 Sunflower St, Putatan, Muntinlupa",
+                    Logo = "House.png",
+                    Description = "NA"
+                },
+            };
 
             this.PartnerStoresRotator = new ObservableCollection<PartnerStore>()
             {
