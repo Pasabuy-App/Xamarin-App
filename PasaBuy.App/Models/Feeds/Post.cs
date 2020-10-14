@@ -23,7 +23,7 @@ namespace PasaBuy.App.Models.Feeds
         private Boolean isimage = false;
         private string linkpost = string.Empty;
         private string post_author = string.Empty;
-        private int column = 1;
+        private int column = 2;
         private int colspan = 1;
         private int procolumn = 1;
         private int procolspan = 1;
@@ -72,9 +72,9 @@ namespace PasaBuy.App.Models.Feeds
             {
                 isContent2 = false;
                 isAccept = false; // If post is status, accept button is visible
-                HomeColSpan = 2;
+                HomeColSpan = 3;
                 HomeCol = 0;
-                ProfileColSpan = 2;
+                ProfileColSpan = 3;
                 ProfileCol = 0;
             }
             else

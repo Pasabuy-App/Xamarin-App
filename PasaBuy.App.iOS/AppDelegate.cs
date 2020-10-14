@@ -54,6 +54,7 @@ namespace PasaBuy.App.iOS
             SfBorderRenderer.Init();
             SfButtonRenderer.Init();
             Rg.Plugins.Popup.Popup.Init();
+            Forms9Patch.iOS.Settings.Initialize(this);
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

@@ -15,6 +15,7 @@
              xmlns:local="clr-namespace:PasaBuy.App.Views.Feeds.Templates" 
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
              xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
+             xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch"
              x:Name="homePage"
              NavigationPage.TitleIconImageSource="LogoHeader.png">
 
@@ -61,10 +62,11 @@
                                                               VerticalOptions="StartAndExpand">
 
                                                     <border:SfBorder CornerRadius="50"
-                                                                             border:BorderColor="White" 
-                                                                             BorderWidth="2">
-                                                        <ImageButton WidthRequest="40" HeightRequest="40" ClassId="{Binding Post_author}" Clicked="ImageButton_Clicked"
-                                                                       BackgroundColor="{DynamicResource Gray-400}">
+                                                                     border:BorderColor="White" 
+                                                                     BorderWidth="2">
+                                                        <ImageButton WidthRequest="40" HeightRequest="40" ClassId="{Binding Post_author}" 
+                                                                     Clicked="ImageButton_Clicked"
+                                                                      BackgroundColor="{DynamicResource Gray-400}">
                                                             <ImageButton.Source>
                                                                 <UriImageSource
                                                                             CacheValidity="14"
@@ -87,10 +89,15 @@
                                                                       CornerRadius="4" Clicked="SfButton_Clicked" ClassId="{Binding Post_author}"
                                                                       HorizontalOptions="End">
 
-                                                        <Label Text="{Binding Author}" 
+                                                        <!--<Label Text="{Binding Author}" 
                                                                Style="{StaticResource PostAuthor}"
-                                                               x:Name="LabelAuthor"/>
-                                                    </buttons:SfButton>
+                                                               x:Name="LabelAuthor"/>-->
+                                                    <Forms9Patch:Label Text="{Binding Author}"
+                                                                       Style="{StaticResource PostAuthor}"
+                                                                       x:Name="LabelAuthor"
+                                                                       AutoFit="Width"/>
+
+                                                </buttons:SfButton>
 
                                                 </Grid>
 
