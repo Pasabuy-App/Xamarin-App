@@ -15,9 +15,6 @@
              x:Class="PasaBuy.App.Views.StoreViews.Management.ProductVariants"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
-    <ContentPage.BindingContext>
-        <viewModel:VariantsViewModel />
-    </ContentPage.BindingContext>
 
     <ContentPage.Resources>
         <ResourceDictionary>

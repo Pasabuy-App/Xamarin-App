@@ -1,4 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Text;
 
 namespace PasaBuy.App.Models.Marketplace
 {
@@ -6,6 +9,7 @@ namespace PasaBuy.App.Models.Marketplace
     {
         private string name = string.Empty;
         private string id = string.Empty;
+        private string price = string.Empty;
 
         public OptionsData[] data;
         public class OptionsData
@@ -15,8 +19,23 @@ namespace PasaBuy.App.Models.Marketplace
             public string name = string.Empty;
             public string info = string.Empty;
             public string status = string.Empty;
+            public string price = string.Empty;
         }
 
+
+        public string Price
+        {
+            get
+            {
+                return this.price;
+            }
+
+            set
+            {
+                this.price = value;
+                OnPropertyChanged("Price");
+            }
+        }
 
         public string Name
         {

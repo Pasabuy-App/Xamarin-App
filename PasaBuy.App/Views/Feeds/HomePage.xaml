@@ -13,7 +13,8 @@
              xmlns:shimmer="clr-namespace:Syncfusion.XForms.Shimmer;assembly=Syncfusion.Core.XForms"
              BackgroundColor="{DynamicResource Gray-White}"
              xmlns:local="clr-namespace:PasaBuy.App.Views.Feeds.Templates" 
-             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+             xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
              x:Name="homePage"
              NavigationPage.TitleIconImageSource="LogoHeader.png">
 
@@ -211,8 +212,8 @@
         <RefreshView IsRefreshing="{Binding IsRefreshing}"   
                      x:Name="rv"
                      Command="{Binding RefreshCommand}">
-
-            <ScrollView VerticalScrollBarVisibility="Never" Padding="0, 0, 0, -10">
+            <Grid>
+                <ScrollView VerticalScrollBarVisibility="Never" Padding="0, 0, 0, -10">
 
                 <Grid RowSpacing="10" ColumnSpacing="0" TranslationY="-10">
                     <Grid.RowDefinitions>
@@ -249,8 +250,16 @@
 
                 </Grid>
 
-        </ScrollView>
-        
+            </ScrollView>
+
+                <loading:LoadingIndicator
+                Grid.Row="0" 
+                x:Name="isBusy"
+                HorizontalOptions="Fill"
+                IsRunning="{Binding isBusy, Mode=TwoWay}"
+                VerticalOptions="Fill" />
+
+            </Grid>
         </RefreshView>
     </ContentView.Content>
     

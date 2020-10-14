@@ -26,7 +26,8 @@ namespace PasaBuy.App.Views.Marketplace
                 Loading.IsRunning = true;
                 Loading.IsVisible = true;
                 var item = e.ItemData as Categories;
-                PartnerBrowserViewModel.LoadStore(item.Id, "");
+                PartnerListViewModel.LoadStore(item.Id, "");
+                PartnerListPage.catid = item.Id;
                 PartnerListPage.pageTitle = item.Title;
                 await App.Current.MainPage.Navigation.PushModalAsync(new PartnerListPage());
                 Loading.IsRunning = false;
