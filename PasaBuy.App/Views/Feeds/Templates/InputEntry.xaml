@@ -26,7 +26,7 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
@@ -50,51 +50,64 @@
                     </Image>
                 </border:SfBorder>
             </Grid>
-                <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
-                                  Margin="0, 25, 20, 20">
-                    <border:SfBorder Style="{StaticResource SfBorderStyle}">
-                        <control:BorderlessEntry
-                              x:Name="PostEntry"
-                              ReturnType="Send"
-                              Placeholder="Say something..."
-                              Style="{StaticResource EntryStyle}">
-                        </control:BorderlessEntry>
-                    </border:SfBorder>
-                </Grid>
-            <Grid Grid.Row="1" Grid.ColumnSpan="3" 
+            <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
+                                Margin="0, 25, 20, 20">
+                <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                    <control:BorderlessEntry
+                            x:Name="PostEntry"
+                            ReturnType="Send"
+                            Placeholder="Say something..."
+                            Style="{StaticResource EntryStyle}">
+                    </control:BorderlessEntry>
+                </border:SfBorder>
+            </Grid>
+            
+            <Grid Grid.Row="1" Grid.ColumnSpan="3"
+                  BackgroundColor="{DynamicResource Gray-100}"
                   ColumnSpacing="0"
                   RowSpacing="0"
-                  Padding="0, 0, 0, 12">
+                  Padding="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Row="1" Grid.Column="0">
+                <Grid Grid.Row="0" Grid.ColumnSpan="5">
+                    <BoxView HeightRequest="1"
+                             BackgroundColor="{DynamicResource Gray-400}"
+                             Margin="0"></BoxView>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="0" Padding="0">
                     <Button Text="Status" 
                             Clicked="PostStatus"
-                            BorderColor="{DynamicResource Gray-300}"
-                            BorderWidth="1"
                             BackgroundColor="{DynamicResource Gray-100}"/>
                 </Grid>
-                <Grid Grid.Row="1" Grid.Column="1">
+                <Grid Grid.Row="1" Grid.Column="1" Padding="0, 10">
+                    <BoxView WidthRequest="2"
+                             BackgroundColor="{DynamicResource Gray-400}"
+                             Margin="0"></BoxView>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="2" Padding="0">
                     <Button Text="Pasabuy" 
                             IsEnabled="True"
                             Clicked="PostRequest"
-                            BorderColor="{DynamicResource Gray-300}"
-                            BorderWidth="1"
                             BackgroundColor="{DynamicResource Gray-100}"/>
                 </Grid>
-                <Grid Grid.Row="1" Grid.Column="2">
+                <Grid Grid.Row="1" Grid.Column="3" Padding="0, 10">
+                    <BoxView WidthRequest="2"
+                             BackgroundColor="{DynamicResource Gray-400}"
+                             Margin="0"></BoxView>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="4" Padding="0">
                     <Button Text="Sell" 
                             IsEnabled="True"
                             Clicked="PostSell"
-                            BorderColor="{DynamicResource Gray-300}"
-                            BorderWidth="1"
                             BackgroundColor="{DynamicResource Gray-100}"/>
                 </Grid>
             </Grid>
