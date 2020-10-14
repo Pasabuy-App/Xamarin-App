@@ -2,6 +2,7 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using PasaBuy.App.Local;
+using PasaBuy.App.Views.Marketplace;
 using PasaBuy.App.Views.Onboarding;
 using Xamarin.Forms;
 

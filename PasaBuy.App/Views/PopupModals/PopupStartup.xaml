@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="PasaBuy.App.Views.PopupModals.PopupStartup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App" 
+    xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Accordion;assembly=Syncfusion.Expander.XForms" 
+    xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms" xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch">
+    <pages:PopupPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="PopupItemHeaderStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0,0,0,0" />
+            </Style>
+            <Style x:Key="PopupLabelStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="End" />
+                <Setter Property="Margin" Value="10,0,0,12" />
+            </Style>
+            <Style x:Key="IconButtonStyle" TargetType="buttons:SfButton">
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="WidthRequest" Value="40" />
+            </Style>
+            <!--  Common style for SfButtons  -->
+            <Style x:Key="SfButtonStyle" TargetType="buttons:SfButton">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="{DynamicResource Gray-700}" />
+                <Setter Property="FontFamily" Value="Montserrat-Regular" />
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+            <x:String x:Key="ArrowRight">&#xe728;</x:String>
+        </ResourceDictionary>
+    </pages:PopupPage.Resources>
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            DurationIn="500"
+            EasingIn="SpringOut"
+            PositionIn="Bottom"
+            PositionOut="Center"
+            ScaleIn="1"
+            ScaleOut="0.7" />
+    </pages:PopupPage.Animation>
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <Frame
+            x:Name="FrameContainer"
+            Margin="15"
+            Padding="20"
+            BackgroundColor="{DynamicResource Gray-100}"
+            CornerRadius="6"
+            HorizontalOptions="Center">
+            <StackLayout
+                Padding="0"
+                IsClippedToBounds="True"
+                Spacing="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Row="0"
+                                 Padding="15"
+                                 HorizontalOptions="FillAndExpand">
+                        <Forms9Patch:Label AutoFit="Width"
+                                           FontSize="20"
+                                           LineHeight="3"
+                                           FontFamily="{StaticResource Montserrat-Medium}"
+                                           Text="Do you want to verify your account to enjoy all the services of PasaBuy.App?"
+                                           Grid.ColumnSpan="2"
+                                           TextColor="{DynamicResource Gray-Black}"/>
+                    </StackLayout>
+                    <Grid Grid.Row="1"
+                          Padding="15">
+                        <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="EndAndExpand">
+                            <buttons:SfButton
+                            CornerRadius="5"
+                            TextColor="White"
+                            Clicked="VerifyNow"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            Style="{StaticResource SfButtonStyle}"
+                            Text="Verify Now" />
+                            <Forms9Patch:Label AutoFit="Width"
+                                           FontSize="14"
+                                           Margin="10,0,15,0"
+                                           FontFamily="{StaticResource Montserrat-Medium}"
+                                           Text="Skip"
+                                           Grid.ColumnSpan="2"
+                                           HorizontalTextAlignment="End"
+                                           VerticalTextAlignment="Center"
+                                           TextDecorations="Underline"
+                                           TextColor="{DynamicResource Gray-Black}">
+                                <Forms9Patch:Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="SkipVerify" NumberOfTapsRequired="1"/>
+                                </Forms9Patch:Label.GestureRecognizers>
+                            </Forms9Patch:Label>
+                        </StackLayout>
+                        
+                    </Grid>
+                </Grid>
+        
+                    
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</pages:PopupPage>

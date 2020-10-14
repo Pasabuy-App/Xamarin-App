@@ -79,7 +79,7 @@
                         HeightRequest="40"
                         Padding="6,0,0,0"
                         Style="{StaticResource FormBorderStyle}">
-                        <control:CustomTimePicker PlaceHolderText="Opening Time"/>
+                        <control:CustomTimePicker PlaceHolderText="Opening Time" x:Name="Open"/>
                     </border:SfBorder>
 
                     <border:SfBorder
@@ -89,7 +89,7 @@
                         HeightRequest="40"
                         Padding="6,0,0,0"
                         Style="{StaticResource FormBorderStyle}">
-                        <control:CustomTimePicker PlaceHolderText="Closing Time"/>
+                        <control:CustomTimePicker PlaceHolderText="Closing Time" x:Name="Close"/>
                     </border:SfBorder>
 
                     <button:SfButton
@@ -103,6 +103,7 @@
                             FontFamily="{StaticResource Montserrat-Regular}"
                             HorizontalOptions="FillAndExpand"
                             Text="OK"
+                            Clicked="OKModal"
                             TextColor="White"
                             VerticalOptions="Center" />
                     <button:SfButton

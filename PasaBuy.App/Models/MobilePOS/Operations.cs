@@ -14,6 +14,18 @@ namespace PasaBuy.App.Models.MobilePOS
 
         private bool is_online;
 
+        public OperationsData[] data;
+        public class OperationsData
+        {
+            public string ID = string.Empty;
+            public string type = string.Empty;
+            public string open = string.Empty;
+            public string close = string.Empty;
+            public string total_sale = string.Empty;
+            public string date = string.Empty;
+            public string date_open = string.Empty;
+            public string date_close = string.Empty;
+        }
 
         public string Id
         {

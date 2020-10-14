@@ -72,7 +72,7 @@ namespace PasaBuy.App.ViewModels.Chat
                             string types = chat.data[i].types;
                             string name = chat.data[i].name;
                             string content = chat.data[i].content;
-                            string date_created = chat.data[i].date_created == null ? "" : chat.data[i].date_created;
+                            string date_created = chat.data[i].date_created == null ? DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") : chat.data[i].date_created;
                             string date_seen = chat.data[i].date_seen == null ? "" : chat.data[i].date_seen;
                             string avatar = chat.data[i].avatar;
                             string sender_id = chat.data[i].sender_id;

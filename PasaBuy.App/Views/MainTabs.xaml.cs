@@ -3,6 +3,8 @@ using PasaBuy.App.ViewModels.Marketplace;
 using PasaBuy.App.ViewModels.Menu;
 using PasaBuy.App.Views.Feeds;
 using PasaBuy.App.Views.Marketplace;
+using PasaBuy.App.Views.PopupModals;
+using Rg.Plugins.Popup.Services;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -19,6 +21,7 @@ namespace PasaBuy.App.Views
         {
             InitializeComponent();
             isButton = false;
+            PopupNavigation.Instance.PushAsync(new PopupStartup());
         }
 
         private async void TabView_TabItemTapped(object sender, Syncfusion.XForms.TabView.TabItemTappedEventArgs e)
@@ -52,8 +55,7 @@ namespace PasaBuy.App.Views
                 if (e.TabItem.Title == "PARTNER")
                 {
                     //StoreBrowserPage.LastIndex = 11;
-                    PartnerBrowserViewModel.itemCategories.Clear();
-                    PartnerBrowserViewModel.LoadCategory();
+                    //PartnerBrowserViewModel.LoadCategory();
                 }
                 /*if (e.TabItem.Title == "MESSAGE")
                 {

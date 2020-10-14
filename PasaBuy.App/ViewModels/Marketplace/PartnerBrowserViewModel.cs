@@ -13,9 +13,24 @@ namespace PasaBuy.App.ViewModels.Marketplace
 {
     public class PartnerBrowserViewModel : BaseViewModel
     {
-        public ObservableCollection<PartnerStore> partnerStoresRotator;
+        public static ObservableCollection<PartnerStore> partnerStoresRotator;
+
+        public static ObservableCollection<Store> storeList;
 
         public static ObservableCollection<Categories> itemCategories;
+
+        public ObservableCollection<Store> StoreList
+        {
+            get
+            {
+                return storeList;
+            }
+            set
+            {
+                storeList = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
         public ObservableCollection<Categories> ItemCategories
         {
@@ -64,31 +79,56 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public PartnerBrowserViewModel()
         {
-            itemCategories = new ObservableCollection<Categories>();
-            itemCategories.Clear();
-
             RefreshCommand = new Command<string>((key) =>
             {
-                itemCategories.Clear();
-                LoadCategory();
+                storeList.Clear();
+                partnerStoresRotator.Clear();
+                LoadPartner("");
+                LoadRotator();
                 IsRefreshing = false;
             });
-
-            this.PartnerStoresRotator = new ObservableCollection<PartnerStore>()
+            storeList = new ObservableCollection<Store>();
+            storeList.Clear();
+            partnerStoresRotator = new ObservableCollection<PartnerStore>();
+            partnerStoresRotator.Clear();
+        }
+        public static void LoadPartner(string lastid)
+        {
+            try
             {
-                new PartnerStore
+                TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "robinson", "", "1", lastid, (bool success, string data) =>
                 {
-                    Image = "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg"
-                },
-                new PartnerStore
-                {
-                    Image = "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg"
-                },
-                new PartnerStore
-                {
-                    Image = "https://pasabuy.app/wp-content/uploads/2020/10/DeliveryVan.png"
-                }
-            };
+                    if (success)
+                    {
+                        StoreListData datas = JsonConvert.DeserializeObject<StoreListData>(data);
+
+                        if (datas.data.Length > 0)
+                        {
+                            for (int i = 0; i < datas.data.Length; i++)
+                            {
+                                storeList.Add(new Store()
+                                {
+                                    Id = datas.data[i].ID,
+                                    Title = datas.data[i].title,
+                                    Description = datas.data[i].short_info,
+                                    Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(datas.data[i].avatar),
+                                    Offer = "50% off",
+                                    ItemRating = "4.5",
+                                    Street = datas.data[i].brgy + " " + datas.data[i].city
+                                });
+                            }
+                        }
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+            }
         }
 
         public static void LoadCategory()
@@ -118,6 +158,29 @@ namespace PasaBuy.App.ViewModels.Marketplace
                     }
                 });
 
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+            }
+        }
+
+        public static void LoadRotator()
+        {
+            try
+            {
+                partnerStoresRotator.Add(new PartnerStore()
+                {
+                    Image = "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg"
+                });
+                partnerStoresRotator.Add(new PartnerStore()
+                {
+                    Image = "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg"
+                });
+                partnerStoresRotator.Add(new PartnerStore()
+                {
+                    Image = "https://pasabuy.app/wp-content/uploads/2020/10/DeliveryVan.png"
+                });
             }
             catch (Exception e)
             {
