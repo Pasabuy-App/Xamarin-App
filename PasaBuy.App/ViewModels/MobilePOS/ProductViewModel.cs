@@ -5,10 +5,7 @@ using PasaBuy.App.Local;
 using PasaBuy.App.Models.MobilePOS;
 using PasaBuy.App.Views.StoreViews.Management;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
-using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.MobilePOS
@@ -17,8 +14,8 @@ namespace PasaBuy.App.ViewModels.MobilePOS
     {
         #region Fields
         public static ObservableCollection<ProductData> productsList;
-        
-        /*private DelegateCommand _showVariantsCommand;
+
+        private DelegateCommand _showVariantsCommand;
 
         public DelegateCommand ShowVariantsCommand =>
           _showVariantsCommand ?? (_showVariantsCommand = new DelegateCommand(ShowVariantsClicked));
@@ -26,25 +23,8 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         private async void ShowVariantsClicked(object obj)
         {
             IsBusy = false;
-
             await Application.Current.MainPage.Navigation.PushModalAsync(new ProductVariants());
             IsBusy = true;
-        }*/
-        public ICommand ShowVariantsCommand
-        {
-            get
-            {
-                return new Command<string>((x) => ShowVariantsClicked(x));
-            }
-        }
-
-        private async void ShowVariantsClicked(string id)
-        {
-            //new Alert("Product to variants", id, "ok");
-            await Application.Current.MainPage.Navigation.PushModalAsync(new ProductVariants());
-            VariantsViewModel._variantsList.Clear();
-            VariantsViewModel.LoadVariants(id);
-            ProductVariants.product_id = id;
         }
 
         public ObservableCollection<ProductData> ProductsList

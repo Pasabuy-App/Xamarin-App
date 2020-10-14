@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms" xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             x:Class="PasaBuy.App.Views.StoreViews.POS.PointOfSales"
+             BackgroundColor="{DynamicResource Gray-White}"
+             Title="Point of Sales">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!--  Common style for separator BoxView  -->
+            <Style x:Key="SeparatorStyle" TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="1" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource Gray-500}" />
+            </Style>
+            <!--  Common style for SfButtons  -->
+            <Style x:Key="SfButtonStyle" TargetType="buttons:SfButton">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="{DynamicResource Gray-700}" />
+                <Setter Property="FontFamily" Value="Montserrat-Regular" />
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30*" />
+                    <RowDefinition Height="0.5*" />
+                    <RowDefinition Height="69*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Padding="15,10,15,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+                       Padding="10,0,0,0"
+                       Grid.Row="0"
+                       Grid.ColumnSpan="2"
+                       FontSize="{StaticResource LargerSize}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"
+                       Text="Summary"
+                       TextColor="{DynamicResource Gray-900}" />
+
+                    <!--Labels on the Left-->
+                    <Label FontFamily="{StaticResource Montserrat-Medium}"
+                       Padding="10,0,0,0"
+                       Grid.Row="1"
+                       Grid.Column="0"
+                       FontSize="{StaticResource MediumSize}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Start"
+                       Text="Total Bill"
+                       TextColor="{DynamicResource Gray-900}" />
+                    <Label FontFamily="{StaticResource Montserrat-Medium}"
+                       Padding="10,0,0,0"
+                       Grid.Row="2"
+                       Grid.Column="0"
+                       FontSize="{StaticResource MediumSize}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Start"
+                       Text="Tax"
+                       TextColor="{DynamicResource Gray-900}" />
+                    <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+                       Padding="10,0,0,0"
+                       Grid.Row="3"
+                       Grid.Column="0"
+                       FontSize="{StaticResource MediumSize}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Start"
+                       Text="TOTAL"
+                       TextColor="{DynamicResource Gray-900}" />
+
+                    <!--Values on the Right-->
+                    <Label FontFamily="{StaticResource Montserrat-Medium}"
+                       Padding="10,0,0,0"
+                       Grid.Row="1"
+                       Grid.Column="1"
+                       FontSize="{StaticResource MediumSize}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="End"
+                       Text="250.25"
+                       TextColor="{DynamicResource Gray-900}" />
+                    <Label FontFamily="{StaticResource Montserrat-Medium}"
+                       Padding="10,0,0,0"
+                       Grid.Row="2"
+                       Grid.Column="1"
+                       FontSize="{StaticResource MediumSize}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="End"
+                       Text="0.00"
+                       TextColor="{DynamicResource Gray-900}" />
+                    <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+                       Padding="10,0,0,0"
+                       Grid.Row="3"
+                       Grid.Column="1"
+                       FontSize="{StaticResource MediumSize}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="End"
+                       Text="250.25"
+                       TextColor="{DynamicResource Gray-900}" />
+                    
+                    <buttons:SfButton Grid.Row="4"
+                                            Grid.Column="1"
+                                            x:Name="backButton"
+                                            WidthRequest="35"
+                                            CornerRadius="4"
+                                            CommandParameter="{Binding ID}"
+                                            BackgroundColor="{DynamicResource PrimaryColor}"
+                                            TextColor="White"
+                                            Style="{StaticResource SfButtonStyle}"
+                                            Text="Checkout" />
+
+                </Grid>
+                <BoxView Grid.Row="1" 
+                     Margin="0,-1,0,0" 
+                     BackgroundColor="{DynamicResource Gray-300}"
+                     Style="{DynamicResource SeparatorStyle}" />
+
+                <sync:SfListView Grid.Row="2"
+                            Margin="0,15,0,0"
+                            x:Name="Transactions"
+                            AutoFitMode="Height"
+                            FocusBorderThickness="0"
+                            ItemSpacing="0,1,0,0"
+                            ListViewCachingStrategy="RecycleTemplate"
+                            AllowSwiping="True"
+                            ItemsSource="{Binding CurrentOrder}"
+                            SelectionMode="None">
+
+                    <sync:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="0.5*" />
+                                </Grid.RowDefinitions>
+                                <StackLayout Grid.Row="0"
+                                         Padding="8,12,8,0">
+
+                                    <Grid Padding="0,0,8,10" RowSpacing="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="0.5*" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="70*" />
+                                            <ColumnDefinition Width="30*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+                                           Padding="10,0,0,0"
+                                           Grid.Row="0"
+                                           Grid.Column="0"
+                                           FontSize="{StaticResource MediumSize}"
+                                           VerticalTextAlignment="Center"
+                                           HorizontalTextAlignment="Start"
+                                           Text="{Binding Name}"
+                                           TextColor="{DynamicResource Gray-900}" />
+
+                                        <numeric:SfNumericUpDown x:Name="numericUpDown" 
+                                                             Grid.Row="0"
+                                                             Grid.Column="1"
+                                                             Maximum="10" 
+                                                             Minimum="1" 
+                                                             MaximumDecimalDigits="0"
+                                                             Value="1"
+                                                             TextAlignment="Center"
+                                                             HorizontalOptions="End"
+                                                             SpinButtonAlignment="Both"
+                                                             FormatString="n"/>
+                                    </Grid>
+
+                                </StackLayout>
+                                <BoxView Grid.Row="1" 
+                                     Margin="0,-1,0,0" 
+                                     BackgroundColor="{DynamicResource Gray-300}"
+                                     Style="{DynamicResource SeparatorStyle}" />
+                            </Grid>
+
+                        </DataTemplate>
+                    </sync:SfListView.ItemTemplate>
+                    <sync:SfListView.RightSwipeTemplate>
+                        <DataTemplate x:Name="RightSwipeTemplate">
+                            <Grid ClassId="{Binding ID}"
+                                  Grid.Column="1"
+                                  Margin="15,10,15,10"
+                                  BackgroundColor="Red"
+                                  HorizontalOptions="Fill"
+                                  VerticalOptions="Fill">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer  x:Name="Delete" />
+                                </Grid.GestureRecognizers>
+                                <Grid HorizontalOptions="Center" VerticalOptions="Center">
+                                    <Image Grid.Row="0"
+                                           Grid.Column="0"
+                                           BackgroundColor="Transparent"
+                                           HeightRequest="28"
+                                           Source="Delete.png"
+                                           WidthRequest="28" />
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </sync:SfListView.RightSwipeTemplate>
+                </sync:SfListView>
+            </Grid>
+            <fab:FloatingActionButtonView
+				    ColorNormal="{StaticResource PrimaryColor}"
+				    ColorPressed="{StaticResource Orange}"
+				    ColorRipple="{StaticResource Yellow}"
+				    x:Name="AddProductButton"
+                    Command="{Binding AddOrderProductCommand}"
+                    ImageName ="add_24.png"
+				    IsVisible="True"
+                    VerticalOptions="EndAndExpand"
+                    HorizontalOptions="StartAndExpand"
+				    AbsoluteLayout.LayoutFlags="PositionProportional"
+				    AbsoluteLayout.LayoutBounds="0.95,0.95,80,80">
+            </fab:FloatingActionButtonView>
+        </Grid>
+       
+    </ContentPage.Content>
+</ContentPage>

@@ -80,14 +80,15 @@
                                DisplayMemberPath="FullName"
                                DataSource="{Binding UsersList}"
                                MaximumDropDownHeight="100">
+
                             <autocomplete:SfAutoComplete.AutoCompleteSource>
                                 <ListCollection:List x:TypeArguments="x:String">
                                 </ListCollection:List>
                             </autocomplete:SfAutoComplete.AutoCompleteSource>
+
                         </autocomplete:SfAutoComplete>
 
                     </Grid>
-
 
                     <Grid Grid.Row="1"
                           Grid.ColumnSpan="2">

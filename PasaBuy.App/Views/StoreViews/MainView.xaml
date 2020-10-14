@@ -210,9 +210,9 @@
                             TitleFontColor="{DynamicResource Gray-700}"
                             TitleFontFamily="{StaticResource Montserrat-Medium}"
                             TitleFontSize="14">
-                            <!--<tabView:SfTabItem.Content>
+                            <tabView:SfTabItem.Content>
                                 <view:PendingOrdersView />
-                            </tabView:SfTabItem.Content>-->
+                            </tabView:SfTabItem.Content>
                         </tabView:SfTabItem>
 
                         <tabView:SfTabItem
@@ -221,9 +221,9 @@
                             TitleFontColor="{DynamicResource Gray-700}"
                             TitleFontFamily="{StaticResource Montserrat-Medium}"
                             TitleFontSize="14">
-                            <!--<tabView:SfTabItem.Content>
+                            <tabView:SfTabItem.Content>
                                 <view:DeclinedOrdersView />
-                            </tabView:SfTabItem.Content>-->
+                            </tabView:SfTabItem.Content>
                         </tabView:SfTabItem>
 
                         <tabView:SfTabItem

@@ -428,6 +428,7 @@ namespace PasaBuy.App.ViewModels.Menu
                 //IsBusy = true;
                 Status = true;
                 //IsBusy = true;
+                MasterView.MyType = "store";
                 Device.BeginInvokeOnMainThread( async () =>
                 {
                     await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyStoresList()));
