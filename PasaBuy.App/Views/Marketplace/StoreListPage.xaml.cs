@@ -18,6 +18,7 @@ namespace PasaBuy.App.Views.Marketplace
         public StoreListPage()
         {
             InitializeComponent();
+            this.BindingContext = new StoreListViewModel();
             PageTitle.Text = pageTitle;
             isTapped = false;
         }
@@ -115,12 +116,12 @@ namespace PasaBuy.App.Views.Marketplace
         private void StoreList_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
         {
             var item = e.ItemData as Store;
-            if (StoreBrowserViewModel.storeList.Last() == item && StoreBrowserViewModel.storeList.Count() != 1)
+            if (StoreListViewModel.storeList.Last() == item && StoreListViewModel.storeList.Count() != 1)
             {
-                if (StoreBrowserViewModel.storeList.IndexOf(item) >= LastIndex)
+                if (StoreListViewModel.storeList.IndexOf(item) >= LastIndex)
                 {
                     LastIndex += 6;
-                    StoreBrowserViewModel.LoadStore(catid, item.Id);
+                    StoreListViewModel.LoadMore(catid, item.Id);
                 }
             }
         }

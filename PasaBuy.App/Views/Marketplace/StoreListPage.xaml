@@ -11,17 +11,13 @@
              x:Class="PasaBuy.App.Views.Marketplace.StoreListPage"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
-     <ContentPage.Resources>
+    <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
-
-    <ContentPage.BindingContext>
-        <viewModel:StoreBrowserViewModel />
-    </ContentPage.BindingContext>
 
     <ContentPage.ControlTemplate>
         <ControlTemplate>
@@ -44,7 +40,12 @@
         </ControlTemplate>
     </ContentPage.ControlTemplate>
     <ContentPage.Content>
-        <Grid>
+
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"   
+                     x:Name="rv"
+                     Command="{Binding RefreshCommand}">
+        <ScrollView>
+            <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -163,7 +164,7 @@
                                         <border:SfBorder  BackgroundColor="{DynamicResource Gray-200}"
                                             Style="{StaticResource ProfileBorderStyle}" HorizontalOptions="Start">
                                             <Image HeightRequest="80" WidthRequest="80" BackgroundColor="{DynamicResource Gray-200}" 
-                                                   Aspect="AspectFill" Source="Idcard.png" >
+                                                   Aspect="AspectFill" Source="{Binding Logo}" >
 
                                             </Image>
                                         </border:SfBorder>
@@ -198,7 +199,7 @@
                                                      FontSize="14"
                                                      LineHeight="{OnPlatform Android=1.25,
                                                      Default=-1}"
-                                                     Text="Store Address"
+                                                     Text="{Binding Street}"
                                                       TextColor="{DynamicResource Gray-800}" />
                                         </StackLayout>
 
@@ -219,6 +220,9 @@
                 </sync:SfListView>
             </StackLayout>
 
-        </Grid>
+            </Grid>
+        </ScrollView>
+        </RefreshView>
+
     </ContentPage.Content>
 </ContentPage>
