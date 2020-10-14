@@ -2,6 +2,7 @@
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Marketplace;
+using PasaBuy.App.Views.Marketplace;
 using PasaBuy.App.Views.Notice;
 using System;
 using System.Collections.ObjectModel;
@@ -14,22 +15,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
     {
         public ObservableCollection<PartnerStore> partnerStoresRotator;
 
-        public static ObservableCollection<Store> storeList;
-
         public static ObservableCollection<Categories> itemCategories;
-
-        public ObservableCollection<Store> StoreList
-        {
-            get
-            {
-                return storeList;
-            }
-            set
-            {
-                storeList = value;
-                this.NotifyPropertyChanged();
-            }
-        }
 
         public ObservableCollection<Categories> ItemCategories
         {
@@ -57,7 +43,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-
         bool _isRefreshing = false;
         public bool IsRefreshing
         {
@@ -79,17 +64,15 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public PartnerBrowserViewModel()
         {
+            itemCategories = new ObservableCollection<Categories>();
+            itemCategories.Clear();
+
             RefreshCommand = new Command<string>((key) =>
             {
                 itemCategories.Clear();
                 LoadCategory();
                 IsRefreshing = false;
             });
-
-            storeList = new ObservableCollection<Store>();
-            itemCategories = new ObservableCollection<Categories>();
-            storeList.Clear();
-            itemCategories.Clear();
 
             this.PartnerStoresRotator = new ObservableCollection<PartnerStore>()
             {
@@ -112,7 +95,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             try
             {
-                TindaPress.Category.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "all", "", "1", "1", (bool success, string data) =>
+                TindaPress.Category.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "robinson", "", "3", "1", (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -124,7 +107,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                             {
                                 Id = datas.data[i].ID,
                                 Title = datas.data[i].title,
-                                Avatar = datas.data[i].avatar, //PSAProc.GetUrl(datas.data[i].avatar),
+                                Avatar = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-product.png" : PSAProc.GetUrl(datas.data[i].avatar), //PSAProc.GetUrl(datas.data[i].avatar),
                                 Info = "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-product.png"
                             });
                         }
@@ -135,50 +118,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
                     }
                 });
 
-            }
-            catch (Exception e)
-            {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
-            }
-        }
-
-        public static void LoadStore(string catid, string lastid)
-        {
-            try
-            {
-                TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, "", "1", lastid, (bool success, string data) =>
-                {
-                    if (success)
-                    {
-                        StoreListData datas = JsonConvert.DeserializeObject<StoreListData>(data);
-                        Console.WriteLine(data);
-                        if (datas.data.Length == 0)
-                        {
-                            (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new NoStoresPage()));
-
-                        }
-                        else
-                        {
-                            for (int i = 0; i < datas.data.Length; i++)
-                            {
-                                storeList.Add(new Store()
-                                {
-                                    Id = datas.data[i].ID,
-                                    Title = datas.data[i].title,
-                                    Description = datas.data[i].short_info,
-                                    Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(datas.data[i].avatar),
-                                    Offer = "50% off",
-                                    ItemRating = "4.5",
-                                    Banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png" : PSAProc.GetUrl(datas.data[i].banner)
-                                });
-                            }
-                        }
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                });
             }
             catch (Exception e)
             {
