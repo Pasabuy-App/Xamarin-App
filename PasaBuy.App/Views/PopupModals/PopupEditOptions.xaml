@@ -58,7 +58,7 @@
                     </Grid.RowDefinitions>
 
                     <Entry
-                            x:Name="CatName"
+                            x:Name="Name"
                             Grid.Row="0"
                             Grid.Column="0"
                             Grid.ColumnSpan="2"
@@ -90,7 +90,7 @@
                             Placeholder="Price"
                             PlaceholderColor="LightGray"
                             Text="{Binding Name}"
-                            VerticalOptions="EndAndExpand" />
+                            VerticalOptions="EndAndExpand" Keyboard="Numeric" />
 
                     <button:SfButton
                             Grid.Row="3"
@@ -103,6 +103,7 @@
                             FontFamily="{StaticResource Montserrat-Regular}"
                             HorizontalOptions="FillAndExpand"
                             Text="OK"
+                            Clicked="OkModal"
                             TextColor="White"
                             VerticalOptions="Center" />
                     <button:SfButton
