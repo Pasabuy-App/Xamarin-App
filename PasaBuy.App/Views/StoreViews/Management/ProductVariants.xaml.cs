@@ -27,6 +27,8 @@ namespace PasaBuy.App.Views.StoreViews.Management
         public ProductVariants()
         {
             InitializeComponent();
+            this.BindingContext = new VariantsViewModel();
+            pullToRefresh.Refreshing += PullToRefresh_Refreshing;
             //TitleName.Text = "Product Name";
             try
             {
@@ -48,19 +50,19 @@ namespace PasaBuy.App.Views.StoreViews.Management
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
-            pullToRefresh.Refreshing += PullToRefresh_Refreshing;
         }
 
         private async void PullToRefresh_Refreshing(object sender, EventArgs args)
         {
             pullToRefresh.IsRefreshing = true;
-            await Task.Delay(500);
+            await Task.Delay(100);
             LastIndex = 11;
             isFirstLoad = false;
             Offset = 0;
             VariantsViewModel._variantsList.Clear();
             VariantsViewModel.LoadVariants(product_id);
             pullToRefresh.IsRefreshing = false;
+            //new Alert("Variants to Options", " Click Add Model " + PopupAddVariants.type + " " + product_id, "OK");
         }
 
         private void backButton_Clicked(object sender, EventArgs e)
@@ -83,8 +85,9 @@ namespace PasaBuy.App.Views.StoreViews.Management
                         {
                             if (success)
                             {
-                                VariantsViewModel._variantsList.Clear();
-                                VariantsViewModel.LoadVariants(ProductVariants.product_id);
+                                //VariantsViewModel._variantsList.Clear();
+                                VariantsViewModel.LoadVariants(product_id);
+                                //new Alert("Variants to Options", " Click Add Model " + PopupAddVariants.type + " " + product_id, "OK");
                             }
                             else
                             {
@@ -109,11 +112,8 @@ namespace PasaBuy.App.Views.StoreViews.Management
             {
                 count = 1;
                 var btn = sender as Grid;
-                PopupAddVariants.variant_id = btn.ClassId;
-                PopupAddVariants.type = "variants";
-                await PopupNavigation.Instance.PushAsync(new PopupAddVariants());
-                //btn.ClassId;
-                //new Alert("ID", "." + btn.ClassId + ".", "OK");
+                PopupEditVariants.variant_id = btn.ClassId;
+                await PopupNavigation.Instance.PushAsync(new PopupEditVariants());
                 await Task.Delay(200);
                 count = 0;
             }

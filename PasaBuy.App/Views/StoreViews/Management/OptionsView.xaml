@@ -101,7 +101,7 @@
                                Grid.Column="2"
                                HorizontalOptions="End">
                             <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding AddVariantsCommand}" NumberOfTapsRequired="1" />
+                                <TapGestureRecognizer Command="{Binding AddOptionsCommand}" NumberOfTapsRequired="1" />
                             </Image.GestureRecognizers>
                         </Image>
 

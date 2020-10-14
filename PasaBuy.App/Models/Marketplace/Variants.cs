@@ -1,4 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Text;
 
 namespace PasaBuy.App.Models.Marketplace
 {
@@ -6,6 +9,7 @@ namespace PasaBuy.App.Models.Marketplace
     {
         private string name = string.Empty;
         private string id = string.Empty;
+        private string baseprice = string.Empty;
 
         public VariantsData[] data;
         public class VariantsData
@@ -15,6 +19,20 @@ namespace PasaBuy.App.Models.Marketplace
             public string name = string.Empty;
             public string info = string.Empty;
             public string status = string.Empty;
+            public string baseprice = string.Empty;
+        }
+        public string Baseprice
+        {
+            get
+            {
+                return this.baseprice;
+            }
+
+            set
+            {
+                this.baseprice = value;
+                OnPropertyChanged("Baseprice");
+            }
         }
         public string Name
         {
@@ -53,4 +71,3 @@ namespace PasaBuy.App.Models.Marketplace
         }
     }
 }
-
