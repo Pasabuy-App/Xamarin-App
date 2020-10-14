@@ -95,7 +95,12 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
-        <Grid>
+
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"   
+                     x:Name="rv"
+                     Command="{Binding RefreshCommand}">
+            <Grid>
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -160,7 +165,9 @@
                                               Style="{StaticResource NavigationBarButtonStyle }"
                                               Text="{StaticResource Search}" />
             </StackLayout>
-            <Grid Grid.Row="1">
+
+                <ScrollView Grid.Row="1">
+                <Grid Grid.Row="1">
                 <listView:SfListView
                     Padding="15,0,15,15"
                     AutoFitMode="Height"
@@ -172,6 +179,7 @@
                                   Desktop='0,0,24,24'}"
                     ItemsSource="{Binding StoreList}"
                     x:Name="StoreList"
+                    ItemTapped="Partner_ItemTapped"
                     ItemTemplate="{StaticResource listTemplate}"
                     SelectionBackgroundColor="Transparent"
                     VerticalOptions="FillAndExpand">
@@ -216,11 +224,11 @@
                     </listView:SfListView.HeaderTemplate>
                 </listView:SfListView>
             </Grid>
+            </ScrollView>
+            
         </Grid>
 
-        
-       
-
+        </RefreshView>
 
     </ContentView.Content>
 </ContentView>

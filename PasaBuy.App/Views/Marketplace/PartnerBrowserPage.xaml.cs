@@ -14,7 +14,7 @@ namespace PasaBuy.App.Views.Marketplace
         {
             InitializeComponent();
             this.BindingContext = new PartnerBrowserViewModel();
-         
+            isTapped = false;
         }
 
         protected override void OnSizeAllocated(double width, double height)
@@ -86,13 +86,22 @@ namespace PasaBuy.App.Views.Marketplace
 
         private async void Partner_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
-       
-                var item = e.ItemData as Categories;
+                /*var item = e.ItemData as Categories;
                 PartnerListViewModel.LoadStore(item.Id, "");
                 PartnerListPage.catid = item.Id;
                 PartnerListPage.pageTitle = item.Title;
-                await App.Current.MainPage.Navigation.PushModalAsync(new PartnerListPage());
-           
+                await App.Current.MainPage.Navigation.PushModalAsync(new PartnerListPage());*/
+           if (!isTapped)
+            {
+                isTapped = true;
+                var item = e.ItemData as Store;
+                StoreDetailsViewModel.store_id = item.Id;
+                StoreDetailsViewModel.Loadcategory(item.Id);
+                StoreDetailsViewModel.Loadstoredetails(item.Id);
+                await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+                await System.Threading.Tasks.Task.Delay(200);
+                isTapped = false;
+            }
 
         }
     }

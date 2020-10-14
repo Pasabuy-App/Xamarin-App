@@ -115,7 +115,7 @@ namespace PasaBuy.App.Views.Marketplace
 
         private void StoreList_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
         {
-            var item = e.ItemData as Store;
+            /*var item = e.ItemData as Store;
             if (StoreListViewModel.storeList.Last() == item && StoreListViewModel.storeList.Count() != 1)
             {
                 if (StoreListViewModel.storeList.IndexOf(item) >= LastIndex)
@@ -123,7 +123,7 @@ namespace PasaBuy.App.Views.Marketplace
                     LastIndex += 6;
                     StoreListViewModel.LoadMore(catid, item.Id);
                 }
-            }
+            }*/
         }
     }
 }
