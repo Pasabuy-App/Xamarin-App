@@ -10,7 +10,7 @@ namespace PasaBuy.App.Views.StoreViews.Management
         public SchedulesView()
         {
             InitializeComponent();
-            this.BindingContext = new PasaBuy.App.ViewModels.MobilePOS.OperationsViewModel();
+            this.BindingContext = new PasaBuy.App.ViewModels.MobilePOS.ScheduleViewModel();
         }
     }
 }
