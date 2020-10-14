@@ -35,6 +35,7 @@ namespace PasaBuy.App.Droid
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Forms9Patch.Droid.Settings.Initialize(this);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
             SfPopupLayoutRenderer.Init();
             Xamarin.FormsGoogleMaps.Init(this, savedInstanceState);
