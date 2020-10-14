@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:helper="clr-namespace:PasaBuy.App.Helpers"
-             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Menu" xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Menu"
              BackgroundColor="{DynamicResource Gray-100}"
              Title="Master"
              x:Class="PasaBuy.App.Views.Menu.StoreMenu"
