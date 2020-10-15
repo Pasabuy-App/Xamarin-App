@@ -118,7 +118,6 @@ namespace PasaBuy.App.ViewModels.Menu
             this.UserPhoto = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
             this.UserBanner = PSAProc.GetUrl(PSACache.Instance.UserInfo.bannerUrl);
             this.email = PSACache.Instance.UserInfo.email;
-            LocalNotif.Instance.NotifyLocalDevice("sample", "sample message");
 
             this.ProfileCommand = new Command(this.ProfileButtonClicked);
             this.MessageCommand = new Command(this.MessageButtonClicked);
