@@ -110,7 +110,8 @@
                         <button:SfButton
                             Grid.Row="4"
                             Margin="35, 30, 35, 10"
-                            Clicked="SfButton_Clicked"
+                            x:Name="CopyID"
+                            Clicked="CopyID_Clicked"
                             CornerRadius="5"
                             TextColor="White"
                             VerticalOptions="End"

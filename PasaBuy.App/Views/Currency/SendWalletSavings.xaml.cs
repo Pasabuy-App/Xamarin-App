@@ -16,7 +16,18 @@ namespace PasaBuy.App.Views.Currency
         public SendWalletSavings()
         {
             InitializeComponent();
+
+            ViewModels.Currency.WalletSavingViewModel._SavingsList.CollectionChanged += CollectionChanges;
         }
+
+        private async void CollectionChanges(object sender, EventArgs e)
+        {
+            await Task.Delay(100);
+            WalletId.Text = "";
+            Amount.Text = "";
+            Note.Text = "";
+        }
+
         public void BackButtonClicked(object sender, EventArgs e)
         {
             Navigation.PopModalAsync();

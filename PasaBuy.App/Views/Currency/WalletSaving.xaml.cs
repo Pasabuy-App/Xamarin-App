@@ -18,7 +18,7 @@ namespace PasaBuy.App.Views.Currency
     public partial class WalletSaving : ContentView
     {
         public static int LastIndex = 11;
-
+        public bool isTapped;
         public static string currency_id;
         /// <summary>
         /// Initializes a new instance of the <see cref="WalletSaving"/> class.
@@ -27,9 +27,7 @@ namespace PasaBuy.App.Views.Currency
         {
             InitializeComponent();
             LastIndex = 11;
-
-
-
+            isTapped = false;
         }
 
         private void SfListView_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
@@ -50,15 +48,24 @@ namespace PasaBuy.App.Views.Currency
             //await SendImage.FadeTo(0.3, 200);
             //await SendImage.FadeTo(1, 200);
             //Views.Currency.SendWalletSavings.currency_id = currency_id;
-            await App.Current.MainPage.Navigation.PushModalAsync(new SendWalletSavings());
+            if (!isTapped)
+            {
+                isTapped = true;
+                await App.Current.MainPage.Navigation.PushModalAsync(new SendWalletSavings());
+                isTapped = false;
+            }
         }
 
         private async void ReceiveMoney_Tapped(object sender, EventArgs e)
         {
             //await ReceiveImage.FadeTo(0.3, 200);
             //await ReceiveImage.FadeTo(1, 200);
-
-            await PopupNavigation.Instance.PushAsync(new PopupShowWalletSavings());
+            if (!isTapped)
+            {
+                isTapped = true;
+                await PopupNavigation.Instance.PushAsync(new PopupShowWalletSavings());
+                isTapped = false;
+            }
         }
     }
 }
