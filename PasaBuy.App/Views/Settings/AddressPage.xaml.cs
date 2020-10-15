@@ -41,6 +41,7 @@ namespace PasaBuy.App.Views.Settings
             if (!isEnable)
             {
                 isEnable = true;
+                AddAddressPage.addPath = "New";
                 Navigation.PushModalAsync(new AddAddressPage());
                 Device.BeginInvokeOnMainThread(async () =>
                 {

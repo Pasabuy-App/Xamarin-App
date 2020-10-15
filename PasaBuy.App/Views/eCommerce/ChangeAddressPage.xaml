@@ -160,7 +160,7 @@
                     <buttons:SfButton Grid.Row="2"
                                      Margin="0,15,0,0"
                                      HorizontalOptions="FillAndExpand"
-                                     Command="{Binding PinAnotherCommand}"
+                                     Command="{Binding AddAddressCommand}"
                                      Style="{StaticResource SfGradientButtonStyle}"
                                      Text="Add Another Address" />
                 </StackLayout>

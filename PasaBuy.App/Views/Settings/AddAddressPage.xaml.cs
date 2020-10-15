@@ -16,6 +16,7 @@ namespace PasaBuy.App.Views.Settings
     {
         private bool isEnable = false;
         private string filePath = string.Empty;
+        public static string addPath;
         public AddAddressPage()
         {
             InitializeComponent();
@@ -50,9 +51,17 @@ namespace PasaBuy.App.Views.Settings
                         {
                             if (success)
                             {
+                                if (addPath == "New")
+                                {
+                                    AddressViewModel.addressDetails.Clear();
+                                    AddressViewModel.LoadData();
+                                }
+                                if (addPath == "Another")
+                                {
+                                    ViewModels.eCommerce.ChangeAddressViewModel._addressList.Clear();
+                                    ViewModels.eCommerce.ChangeAddressViewModel.LoadData();
+                                }
                                 Navigation.PopModalAsync();
-                                AddressViewModel.addressDetails.Clear();
-                                AddressViewModel.LoadData();
                             }
                             else
                             {

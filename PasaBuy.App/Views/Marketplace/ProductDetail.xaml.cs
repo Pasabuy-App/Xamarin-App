@@ -26,7 +26,7 @@ namespace PasaBuy.App.Views.Marketplace
             ProductLogo.Source = productimage;
             ProductName.Text = productname;
             Short_Info.Text = shortinfo;
-            Price.Text = "P" + price;
+            Price.Text = "₱" + price;
             isCartClicked = false;
 
             bool itemExists = ViewModels.eCommerce.CartPageViewModel.cartDetails.Any(item =>
@@ -36,7 +36,7 @@ namespace PasaBuy.App.Views.Marketplace
             if (!itemExists)
             {
                 numericUpDown.Value = 1;
-                TotalPrice.Text = "Total: P" + totalprice;
+                TotalPrice.Text = "Total: ₱" + totalprice;
             }
             else
             {
@@ -45,9 +45,9 @@ namespace PasaBuy.App.Views.Marketplace
                     if (item.ID == productid)
                     {
                         numericUpDown.Value = item.TotalQuantity;
-                        Price.Text = "P" + item.ActualPrice;
+                        Price.Text = "₱" + item.ActualPrice;
                         double totalprice = item.TotalQuantity * item.ActualPrice;
-                        TotalPrice.Text = "Total: P" + totalprice.ToString();
+                        TotalPrice.Text = "Total: ₱" + totalprice.ToString();
                     }
                 }
             }
@@ -61,7 +61,7 @@ namespace PasaBuy.App.Views.Marketplace
         private void numericUpDown_ValueChanged(object sender, Syncfusion.SfNumericUpDown.XForms.ValueEventArgs e)
         {
             double total = Convert.ToDouble(price) * Convert.ToDouble(e.Value);
-            TotalPrice.Text = "Total: P" + Convert.ToString(total);
+            TotalPrice.Text = "Total: ₱" + Convert.ToString(total);
             totalprice = Convert.ToString(total);
             qty = Convert.ToInt32(e.Value);
             //Console.WriteLine("Value: " + e.Value + " total: " + total);

@@ -15,7 +15,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
         public static ObservableCollection<AddressData> _addressList;
 
         private DelegateCommand _selectAddressCommand;
-        private DelegateCommand _pinAnotherCommand;
+        private DelegateCommand _addAddressCommand;
         private DelegateCommand _confirmAddress;
         public ChangeAddressViewModel()
         {
@@ -98,8 +98,8 @@ namespace PasaBuy.App.ViewModels.eCommerce
         public DelegateCommand SelectAddressCommand =>
             _selectAddressCommand ?? (_selectAddressCommand = new DelegateCommand(SelectAddressClicked));
 
-        public DelegateCommand PinAnotherCommand =>
-           _pinAnotherCommand ?? (_pinAnotherCommand = new DelegateCommand(PinAnotherClicked));
+        public DelegateCommand AddAddressCommand =>
+           _addAddressCommand ?? (_addAddressCommand = new DelegateCommand(AddAddressClicked));
 
         public DelegateCommand ConfirmAddress =>
             _confirmAddress ?? (_confirmAddress = new DelegateCommand(ConfirmAddressClicked));
@@ -135,10 +135,10 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
         }
-        private async void PinAnotherClicked(object obj)
+        private async void AddAddressClicked(object obj)
         {
+            Views.Settings.AddAddressPage.addPath = "Another";
             await Application.Current.MainPage.Navigation.PushModalAsync(new PasaBuy.App.Views.Settings.AddAddressPage());
-
         }
         private void SelectAddressClicked(object obj)
         {
