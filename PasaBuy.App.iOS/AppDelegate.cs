@@ -16,6 +16,7 @@ using Syncfusion.XForms.iOS.PopupLayout;
 using Syncfusion.XForms.iOS.ProgressBar;
 using Syncfusion.XForms.iOS.TabView;
 using UIKit;
+using UserNotifications;
 
 namespace PasaBuy.App.iOS
 {
@@ -36,6 +37,8 @@ namespace PasaBuy.App.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             Xamarin.FormsGoogleMaps.Init(PSAConfig.googleApiKey);
+            UNUserNotificationCenter.Current.Delegate = new iOSNotificationReceiver();
+
             SfSegmentedControlRenderer.Init();
             SfLinearProgressBarRenderer.Init();
             SfPopupLayoutRenderer.Init();

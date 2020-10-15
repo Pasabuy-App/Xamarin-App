@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Driver;
 using System;
@@ -17,9 +18,7 @@ namespace PasaBuy.App.Views.Driver
             InitializeComponent();
             DisplayCurloc();
             map.IsTrafficEnabled = true;
-
             fetch_order(0);
-
         }
 
         // Display Current Location of User
@@ -76,7 +75,6 @@ namespace PasaBuy.App.Views.Driver
                     if (success)
                     {
                         TransactListData datas = JsonConvert.DeserializeObject<TransactListData>(data);
-
                         if (datas.data.Length != 0)
                         {
                             Continue_deliver.IsVisible = true;
@@ -148,7 +146,6 @@ namespace PasaBuy.App.Views.Driver
                 // Unable to get location
                 Console.WriteLine("Unable to get location" + " " + ex);
             }
-
         }
 
         private void Continue_delivery_Tapped(object sender, EventArgs e)

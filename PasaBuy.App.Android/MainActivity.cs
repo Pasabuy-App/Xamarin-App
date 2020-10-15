@@ -4,12 +4,14 @@ using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
+using PasaBuy.App.Local.Notice;
 using Plugin.CurrentActivity;
 using Syncfusion.XForms.Android.PopupLayout;
+using Xamarin.Forms;
 
 namespace PasaBuy.App.Droid
 {
-    [Activity(Label = "PasaBuy.App", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "PasaBuy.App", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, LaunchMode = LaunchMode.SingleTop, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
 
@@ -39,6 +41,8 @@ namespace PasaBuy.App.Droid
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
             SfPopupLayoutRenderer.Init();
             Xamarin.FormsGoogleMaps.Init(this, savedInstanceState);
+
+            CreateNotificationFromIntent(Intent);
 
             LoadApplication(new App());
 
@@ -75,6 +79,22 @@ namespace PasaBuy.App.Droid
                 {
                     // Permissions already granted - display a message.
                 }
+            }
+        }
+        
+        protected override void OnNewIntent(Intent intent)
+        {
+            CreateNotificationFromIntent(intent);
+        }
+
+        void CreateNotificationFromIntent(Intent intent)
+        {
+            if (intent?.Extras != null)
+            {
+                string title = intent.Extras.GetString(AndroidNotificationManager.TitleKey);
+                string message = intent.Extras.GetString(AndroidNotificationManager.MessageKey);
+
+                DependencyService.Get<INotificationManager>().ReceiveNotification(title, message);
             }
         }
 

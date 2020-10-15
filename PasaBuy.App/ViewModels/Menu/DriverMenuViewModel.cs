@@ -1,4 +1,5 @@
 ﻿using PasaBuy.App.Local;
+using PasaBuy.App.Local.Notice;
 using PasaBuy.App.Views;
 using PasaBuy.App.Views.Backend;
 using PasaBuy.App.Views.Driver;
@@ -43,7 +44,6 @@ namespace PasaBuy.App.ViewModels.Menu
             this.profileImage = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
             this.userBanner = PSAProc.GetUrl(PSACache.Instance.UserInfo.bannerUrl);
             this.email = PSACache.Instance.UserInfo.email;
-
             this.DashboardCommand = new Command(this.DashboardButtonClicked);
             this.NavigationCommand = new Command(this.NavigationButtonClicked);
             this.TransactionCommand = new Command(this.TransactionButtonClicked);

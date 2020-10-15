@@ -2,7 +2,8 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using PasaBuy.App.Local;
-using PasaBuy.App.Views.Marketplace;
+using PasaBuy.App.Local.Notice;
+using PasaBuy.App.Views;
 using PasaBuy.App.Views.Onboarding;
 using Xamarin.Forms;
 
@@ -15,6 +16,7 @@ namespace PasaBuy.App
             InitializeComponent();
 
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(PSAConfig.sfApiKey);
+            DependencyService.Get<INotificationManager>().Initialize();
 
             //Initialized all PCL required by PasaBuy.App
             DataVice.DVHost.Instance.Initialized(PSAConfig.CurrentRestUrl);

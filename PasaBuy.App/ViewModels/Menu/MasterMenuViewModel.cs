@@ -18,6 +18,7 @@ using PasaBuy.App.Views.StoreViews;
 using PasaBuy.App.Models.MobilePOS;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using PasaBuy.App.Local.Notice;
 
 namespace PasaBuy.App.ViewModels.Menu
 {
@@ -117,6 +118,7 @@ namespace PasaBuy.App.ViewModels.Menu
             this.UserPhoto = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
             this.UserBanner = PSAProc.GetUrl(PSACache.Instance.UserInfo.bannerUrl);
             this.email = PSACache.Instance.UserInfo.email;
+            LocalNotif.Instance.NotifyLocalDevice("sample", "sample message");
 
             this.ProfileCommand = new Command(this.ProfileButtonClicked);
             this.MessageCommand = new Command(this.MessageButtonClicked);

@@ -1,4 +1,6 @@
-﻿
+﻿using PasaBuy.App.Local.Notice;
+using PasaBuy.App.Services;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,10 +12,7 @@ namespace PasaBuy.App.Views
         public Demoguy()
         {
             InitializeComponent();
-        }
 
-        void Handle_SlideCompleted(object sender, System.EventArgs e)
-        {
         }
     }
 }
