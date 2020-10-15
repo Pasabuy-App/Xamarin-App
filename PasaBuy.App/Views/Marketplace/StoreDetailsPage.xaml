@@ -129,7 +129,7 @@
                                                 BackgroundColor="{DynamicResource Transparent}"
                                                 HeightRequest="265"
                                                 HorizontalOptions="FillAndExpand"
-                                                Source="https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg"
+                                                Source="{Binding Banner}"
                                                 VerticalOptions="Start">
                                             </Image>
                                         </StackLayout>

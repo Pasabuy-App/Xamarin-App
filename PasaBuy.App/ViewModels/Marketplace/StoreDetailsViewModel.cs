@@ -279,15 +279,15 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         {
                             string title = datas.data[i].title;
                             string short_info = datas.data[i].short_info;
-                            string avatar = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : datas.data[i].avatar;
-                            string banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png" : datas.data[i].banner;
+                            string avatar = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(datas.data[i].avatar);
+                            string banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg" : PSAProc.GetUrl(datas.data[i].banner);
                             string province = datas.data[i].province;
                             string city = datas.data[i].city;
                             storedetailslist.Add(new StoreDetails()
                             {
                                 StoreTitle = title,
                                 StoreDescription = short_info,
-                                Logo = PSAProc.GetUrl(avatar),
+                                Logo = avatar,
                                 Banner = banner,
                                 Province = city + ", " + province,
                                 City = city
