@@ -35,6 +35,7 @@ namespace PasaBuy.App.ViewModels.Feeds
         #region Constructor
         public HomepageViewModel()
         {
+            IsBusy = true;
             MyProfileViewModel.LoadTotal(PSACache.Instance.UserInfo.wpid);
             RefreshCommand = new Command<string>((key) =>
             {
@@ -49,6 +50,7 @@ namespace PasaBuy.App.ViewModels.Feeds
 
             userinfoList = new ObservableCollection<Personnels>();
             userinfoList.CollectionChanged += CollectionChanges;
+            IsBusy = false;
         }
 
         public static void Insertimage(string url)

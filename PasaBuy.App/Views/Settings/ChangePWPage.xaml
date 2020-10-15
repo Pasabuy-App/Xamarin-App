@@ -12,8 +12,9 @@
              xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
              x:Class="PasaBuy.App.Views.Settings.ChangePWPage"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-             BackgroundColor="{DynamicResource Gray-100}"
-             xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms">
+             BackgroundColor="{DynamicResource Gray-White}"
+             xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms" 
+             xmlns:loading="clr-namespace:PasaBuy.App.UserControls">
     
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -46,7 +47,8 @@
         </ControlTemplate>
     </ContentPage.ControlTemplate>
     <ContentPage.Content>
-        <StackLayout
+        <Grid>
+            <StackLayout
                     Margin="{core:OnPlatformOrientationThickness PhonePortrait='20,32',
                                                                  PhoneLandscape='150,32',
                                                                  TabletPortrait='200,50',
@@ -56,7 +58,7 @@
                     VerticalOptions="FillAndExpand"
                     WidthRequest="{OnPlatform Default='-1',
                                               UWP='350'}">
-            
+
                 <Grid RowSpacing="24" VerticalOptions="CenterAndExpand">
 
                     <Grid.RowDefinitions>
@@ -145,8 +147,15 @@
                             Text="SUBMIT" />
 
                 </Grid>
-
-        </StackLayout>
+            </StackLayout>
+            <loading:LoadingIndicator
+                    Grid.Row="0"
+                    Grid.RowSpan="4"
+                    HorizontalOptions="Fill"
+                    IsRunning="{Binding IsBusy, Mode=TwoWay}"
+                    VerticalOptions="Fill" />
+        </Grid>
+       
     </ContentPage.Content>
 
 

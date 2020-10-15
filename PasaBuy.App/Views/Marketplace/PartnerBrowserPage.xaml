@@ -225,6 +225,11 @@
                             </listView:SfListView>
                         </Grid>
                 </ScrollView>
+                <loading:LoadingIndicator
+                    Grid.RowSpan="3"
+                    HorizontalOptions="Fill"
+                    IsRunning="{Binding IsBusy, Mode=TwoWay}"
+                    VerticalOptions="Fill" />
 
             </Grid>
 

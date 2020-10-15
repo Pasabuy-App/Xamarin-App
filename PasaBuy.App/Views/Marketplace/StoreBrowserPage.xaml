@@ -12,7 +12,8 @@
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:behavior1="clr-namespace:PasaBuy.App.Behaviors" 
              xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
-             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+             xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="True"
              x:Name="storeBrowserPage"
@@ -42,22 +43,23 @@
         <RefreshView IsRefreshing="{Binding IsRefreshing}"   
                      x:Name="rv"
                      Command="{Binding RefreshCommand}">
-        <ScrollView>
-            <StackLayout Spacing="0" Padding="0,0,0,20">
-                <ffimageloading:CachedImage Aspect="AspectFill"
+            <Grid>
+                <ScrollView>
+                    <StackLayout Spacing="0" Padding="0,0,0,20">
+                        <ffimageloading:CachedImage Aspect="AspectFill"
                                             HeightRequest="325"
                                             Source="https://pasabuy.app/wp-content/uploads/2020/10/Motorcycle.png"
 			                                DownsampleToViewSize="True" 
                                             FadeAnimationEnabled="True">
-                </ffimageloading:CachedImage>
+                        </ffimageloading:CachedImage>
 
 
-                <StackLayout
+                        <StackLayout
                     Margin="16,25,16,0"
                     Orientation="Horizontal"
                     Spacing="0">
 
-                    <Label
+                            <Label
                         Margin="0,5,0,10"
                         FontFamily="{StaticResource Montserrat-SemiBold}"
                         FontSize="12"
@@ -68,7 +70,7 @@
                         TextColor="{DynamicResource Gray-800}"
                         VerticalOptions="Center" />
 
-                    <!--<buttons:SfButton
+                            <!--<buttons:SfButton
                         Margin="0"
                         Padding="0"
                         BackgroundColor="{DynamicResource Gray-White}"
@@ -79,9 +81,9 @@
                         Text="VIEW ALL"
                         TextColor="{DynamicResource Blue}" />-->
 
-                </StackLayout>
+                        </StackLayout>
 
-                <listView:SfListView
+                        <listView:SfListView
                     Margin="8,0"
                     Padding="0"
                     AutoFitMode="Height"
@@ -95,12 +97,12 @@
                     SelectionBackgroundColor="Transparent"
                     TapCommand="{Binding ItemSelectedCommand}">
 
-                    <listView:SfListView.ItemTemplate>
+                            <listView:SfListView.ItemTemplate>
 
-                        <DataTemplate>
+                                <DataTemplate>
 
-                            <!--  Frame to have rounded corners  -->
-                            <controls:CustomShadowFrame
+                                    <!--  Frame to have rounded corners  -->
+                                    <controls:CustomShadowFrame
                                 Margin="8"
                                 Padding="0"
                                 BackgroundColor="White"
@@ -109,14 +111,14 @@
                                 HasShadow="true"
                                 HeightRequest="189"
                                 WidthRequest="165">
-                                <StackLayout
+                                        <StackLayout
                                     Margin="0"
                                     Padding="0"
                                     HorizontalOptions="CenterAndExpand"
                                     Spacing="0"
                                     VerticalOptions="CenterAndExpand">
-                                    <!--  Product image  -->
-                                    <Image
+                                            <!--  Product image  -->
+                                            <Image
                                         Margin="0,0,0,8"
                                         Aspect="AspectFill"
                                         BackgroundColor="{DynamicResource Gray-200}"
@@ -125,8 +127,8 @@
                                         Source="{Binding Avatar}"
                                         VerticalOptions="Center"
                                         WidthRequest="165" />
-                                    <!--  Product name  -->
-                                    <Label
+                                            <!--  Product name  -->
+                                            <Label
                                         Margin="0,0,0,8"
                                         FontFamily="{StaticResource Montserrat-Medium}"
                                         FontSize="16"
@@ -134,23 +136,31 @@
                                         LineHeight="1.25"
                                         Text="{Binding Title}"
                                         TextColor="{DynamicResource Gray-900}" />
-                                </StackLayout>
-                            </controls:CustomShadowFrame>
-                        </DataTemplate>
-                    </listView:SfListView.ItemTemplate>
+                                        </StackLayout>
+                                    </controls:CustomShadowFrame>
+                                </DataTemplate>
+                            </listView:SfListView.ItemTemplate>
 
-                    <listView:SfListView.Behaviors>
-                        <behavior1:SfListViewExtendHeightBehavior />
-                    </listView:SfListView.Behaviors>
+                            <listView:SfListView.Behaviors>
+                                <behavior1:SfListViewExtendHeightBehavior />
+                            </listView:SfListView.Behaviors>
 
-                    <!--  Layout to customize number of columns in SfListView  -->
-                    <listView:SfListView.LayoutManager>
-                        <listView:GridLayout SpanCount="{core:OnPlatformOrientationIntValue Desktop=4, PhonePortrait=2, PhoneLandscape=4, TabletPortrait=4, TabletLandscape=5}" />
-                    </listView:SfListView.LayoutManager>
-                </listView:SfListView>
+                            <!--  Layout to customize number of columns in SfListView  -->
+                            <listView:SfListView.LayoutManager>
+                                <listView:GridLayout SpanCount="{core:OnPlatformOrientationIntValue Desktop=4, PhonePortrait=2, PhoneLandscape=4, TabletPortrait=4, TabletLandscape=5}" />
+                            </listView:SfListView.LayoutManager>
+                        </listView:SfListView>
 
-            </StackLayout>
-        </ScrollView>
+                    </StackLayout>
+                </ScrollView>
+                <loading:LoadingIndicator
+                    Grid.Row="0"
+                    x:Name="LoadingIndicator"
+                    HorizontalOptions="Fill"
+                    IsRunning="{Binding IsBusy, Mode=TwoWay}"
+                    VerticalOptions="Fill" />
+            </Grid>
+        
 
         </RefreshView>
     </ContentView.Content>

@@ -208,7 +208,7 @@
                                                        Text="Open Now"
                                                        TextColor="LightGreen"
                                                        VerticalTextAlignment="Center" />
-                                                
+
                                                 <Label FontFamily="{StaticResource FontIcons}"
                                                        Grid.Row="0"
                                                        Grid.Column="1"
@@ -218,7 +218,7 @@
                                                        TextColor="{DynamicResource PrimaryColor}"
                                                        VerticalTextAlignment="Center" />
                                             </Grid>
-                                            
+
                                             <Grid Grid.Column="0"
                                                   Grid.RowSpan="3"
                                                   HorizontalOptions="FillAndExpand"
@@ -235,7 +235,7 @@
                                                     </Image.Source>
                                                 </Image>
                                             </Grid>
-                                            
+
                                         </Grid>
                                     </Frame>
                                 </DataTemplate>
@@ -244,7 +244,12 @@
                         </listView:SfListView>
                     </pulltoRefresh:SfPullToRefresh.PullableContent>
                 </pulltoRefresh:SfPullToRefresh>
-        </Grid>
+            </Grid>
+            <loading:LoadingIndicator
+                    Grid.RowSpan="3"
+                    HorizontalOptions="Fill"
+                    IsRunning="{Binding IsBusy, Mode=TwoWay}"
+                    VerticalOptions="Fill" />
         </Grid>
            
     </ContentView.Content>

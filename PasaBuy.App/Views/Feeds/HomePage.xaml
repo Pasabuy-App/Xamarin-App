@@ -92,12 +92,12 @@
                                                         <!--<Label Text="{Binding Author}" 
                                                                Style="{StaticResource PostAuthor}"
                                                                x:Name="LabelAuthor"/>-->
-                                                    <Forms9Patch:Label Text="{Binding Author}"
+                                                        <Forms9Patch:Label Text="{Binding Author}"
                                                                        Style="{StaticResource PostAuthor}"
                                                                        x:Name="LabelAuthor"
                                                                        AutoFit="Width"/>
 
-                                                </buttons:SfButton>
+                                                    </buttons:SfButton>
 
                                                 </Grid>
 
@@ -199,7 +199,7 @@
                                                             BackgroundColor="{DynamicResource Gray-100}"/>
                                             </Grid>
                                         </Grid>
-
+                                        
                                     </Grid>
                             </ViewCell.View>
                         </ViewCell>
@@ -260,11 +260,11 @@
             </ScrollView>
 
                 <loading:LoadingIndicator
-                Grid.Row="0" 
-                x:Name="isBusy"
-                HorizontalOptions="Fill"
-                IsRunning="{Binding isBusy, Mode=TwoWay}"
-                VerticalOptions="Fill" />
+                    Grid.Row="0"
+                    HorizontalOptions="Fill"
+                    IsRunning="{Binding IsBusy, Mode=TwoWay}"
+                    VerticalOptions="Fill" />
+
 
             </Grid>
         </RefreshView>

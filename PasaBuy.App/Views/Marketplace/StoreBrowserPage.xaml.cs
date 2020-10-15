@@ -74,6 +74,8 @@ namespace PasaBuy.App.Views.Marketplace
             if (!isTapped)
             {
                 isTapped = true;
+                LoadingIndicator.IsRunning = true;
+                LoadingIndicator.IsVisible = true;
                 var item = e.ItemData as Categories;
                 //App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
                 //StoreDetailsViewModel.loadcategory(item.Id);
@@ -84,8 +86,10 @@ namespace PasaBuy.App.Views.Marketplace
                 StoreListPage.pageTitle = item.Title;
                 StoreListViewModel.LoadStore(item.Id, "");
                 await App.Current.MainPage.Navigation.PushModalAsync(new StoreListPage());
-                await System.Threading.Tasks.Task.Delay(200);
+                await System.Threading.Tasks.Task.Delay(100);
                 isTapped = false;
+                LoadingIndicator.IsRunning = false;
+                LoadingIndicator.IsVisible = false;
             }
         }
 

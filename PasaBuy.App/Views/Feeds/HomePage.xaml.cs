@@ -58,7 +58,6 @@ namespace PasaBuy.App.Views.Feeds
             if (!isBtn)
             {
                 isBtn = true;
-                isBusy.IsRunning = true;
                 var btn = (SfButton)sender;
                 var classId = btn.ClassId;
                 if (classId != PSACache.Instance.UserInfo.wpid)
@@ -67,9 +66,7 @@ namespace PasaBuy.App.Views.Feeds
                     MyProfileViewModel.LoadTotal(classId);
                     MyProfileViewModel.user_id = classId;
 
-                    await Task.Delay(1000);
                     await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
-                    isBusy.IsRunning = false;
                     isBtn = false;
                     /*Device.BeginInvokeOnMainThread(async () =>
                     {
@@ -84,7 +81,6 @@ namespace PasaBuy.App.Views.Feeds
             if (!isBtn)
             {
                 isBtn = true;
-                isBusy.IsRunning = true;
                 var btn = (ImageButton)sender;
                 var classId = btn.ClassId;
                 if (classId != PSACache.Instance.UserInfo.wpid)
@@ -92,9 +88,7 @@ namespace PasaBuy.App.Views.Feeds
                     MyProfileViewModel.GetProfile(classId);
                     MyProfileViewModel.LoadTotal(classId);
                     MyProfileViewModel.user_id = classId;
-                    await Task.Delay(1000);
                     await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
-                    isBusy.IsRunning = false;
                     isBtn = false;
 
                     /*Device.BeginInvokeOnMainThread(async () =>
