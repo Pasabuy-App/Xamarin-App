@@ -56,6 +56,10 @@ namespace PasaBuy.App.Views
                 {
                     //StoreBrowserPage.LastIndex = 11;
                     //PartnerBrowserViewModel.LoadCategory();
+                    PartnerBrowserViewModel.storeList.Clear();
+                    PartnerBrowserViewModel.LoadPartner("");
+                    PartnerBrowserViewModel.partnerStoresRotator.Clear();
+                    PartnerBrowserViewModel.LoadRotator();
                 }
                 /*if (e.TabItem.Title == "MESSAGE")
                 {
