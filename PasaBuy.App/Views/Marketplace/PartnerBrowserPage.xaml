@@ -100,133 +100,133 @@
                      x:Name="rv"
                      Command="{Binding RefreshCommand}">
             <Grid>
-            
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <StackLayout Grid.Row="0" 
-                                    x:Name="TitleView"
-                                    Padding="16,8"
-                                    HeightRequest="64"
-                                    BackgroundColor="{DynamicResource Gray-White}"
-                                    HorizontalOptions="FillAndExpand"
-                                    Orientation="Horizontal"
-                                    Spacing="0">
-                <StackLayout   x:Name="Title"
-                                            HorizontalOptions="FillAndExpand"
-                                            IsVisible="True"
-                                            Orientation="Horizontal"
-                                            Margin="12,0,0,0"
-                                            Spacing="0"
-                                            VerticalOptions="FillAndExpand">
-                    <Label Margin="12,0" 
-                                       x:Name="PageTitle"
-                                        HeightRequest="24"
-                                        FontFamily="{StaticResource Montserrat-Medium}"
-                                        FontSize="16"
-                                        HorizontalOptions="CenterAndExpand"
-                                        LineHeight="1.25"
-                                        Text="Search store"
-                                        TextColor="{DynamicResource Gray-900}"
-                                        VerticalOptions="Center"
-                                        VerticalTextAlignment="Center" />
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackLayout Grid.Row="0" 
+                                        x:Name="TitleView"
+                                        Padding="16,8"
+                                        HeightRequest="40"
+                                        BackgroundColor="{DynamicResource Gray-White}"
+                                        HorizontalOptions="FillAndExpand"
+                                        Orientation="Horizontal"
+                                        Spacing="0">
+                    <StackLayout   x:Name="Title"
+                                                HorizontalOptions="FillAndExpand"
+                                                IsVisible="True"
+                                                Orientation="Horizontal"
+                                                Margin="12,0,0,0"
+                                                Spacing="0"
+                                                VerticalOptions="FillAndExpand">
+                        <Label Margin="12,0" 
+                                           x:Name="PageTitle"
+                                            HeightRequest="24"
+                                            FontFamily="{StaticResource Montserrat-Medium}"
+                                            FontSize="16"
+                                            HorizontalOptions="CenterAndExpand"
+                                            LineHeight="1.25"
+                                            Text="Search store"
+                                            TextColor="{DynamicResource Gray-900}"
+                                            VerticalOptions="Center"
+                                            VerticalTextAlignment="Center" />
 
+                    </StackLayout>
+
+                    <StackLayout x:Name="Search"
+                                             HorizontalOptions="EndAndExpand"
+                                             IsVisible="False"
+                                             Orientation="Horizontal"
+                                             Spacing="0">
+
+                        <!--  Back to title layout  -->
+                        <buttons:SfButton x:Name="BackToTitle"
+                                                      Clicked="BackToTitle_Clicked"
+                                                      Style="{StaticResource NavigationBarButtonStyle}"
+                                                      Text="{StaticResource Back}" />
+
+                        <!--  Rounded Search Entry  -->
+                        <border:SfBorder Style="{DynamicResource SfBorderStyle}">
+
+                            <controls:BorderlessEntry x:Name="SearchEntry"
+                                                                  HorizontalOptions="FillAndExpand"
+                                                                  Placeholder="Search here"
+                                                                  Text="{Binding SearchText, Mode=TwoWay}"
+                                                                  Style="{StaticResource SearchEntryStyle}"/>
+                        </border:SfBorder>
+
+                    </StackLayout>
+
+                    <!--  Search Button  -->
+                    <buttons:SfButton x:Name="SearchButton"
+                                                  IsVisible="True"
+                                                  Clicked="SearchButton_Clicked"
+                                                  Style="{StaticResource NavigationBarButtonStyle }"
+                                                  Text="{StaticResource Search}" />
                 </StackLayout>
+                <BoxView   Grid.Row="1" Style="{StaticResource SeparatorStyle}" />
+                <ScrollView Grid.Row="2">
+                        <Grid Grid.Row="1">
+                            <listView:SfListView
+                            Padding="15,0,15,15"
+                            AutoFitMode="Height"
+                            IsScrollBarVisible="False"
+                            ItemSpacing="{core:OnPlatformOrientationThickness 
+                                          Default='0,0,32,32',
+                                          PhonePortrait='0,0,0,16',
+                                          PhoneLandscape='0,0,16,16',
+                                          Desktop='0,0,24,24'}"
+                            ItemsSource="{Binding StoreList}"
+                            x:Name="StoreList"
+                            ItemTapped="Partner_ItemTapped"
+                            ItemTemplate="{StaticResource listTemplate}"
+                            SelectionBackgroundColor="Transparent"
+                            VerticalOptions="FillAndExpand">
+                                <listView:SfListView.HeaderTemplate>
+                                    <DataTemplate>
+                                        <Grid RowSpacing="0" ColumnSpacing="0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
 
-                <StackLayout x:Name="Search"
-                                         HorizontalOptions="EndAndExpand"
-                                         IsVisible="False"
-                                         Orientation="Horizontal"
-                                         Spacing="0">
+                                            <!--Image Carousel Above-->
+                                            <rotator:SfRotator Grid.Row="0"
+                                                           BackgroundColor="{StaticResource Transparent}"
+                                                           DotsBorderColor="Transparent"
+                                                           HeightRequest="240"
+                                                           HorizontalOptions="StartAndExpand"
+                                                           ItemsSource="{Binding PartnerStoresRotator}"
+                                                           NavigationDirection="Horizontal"
+                                                           NavigationStripMode="Dots"
+                                                           SelectedDotColor="{DynamicResource PrimaryColor}"
+                                                           UnselectedDotColor="{DynamicResource Gray-200}"
+                                                           VerticalOptions="Start"
+                                                           EnableAutoPlay="True" 
+                                                           NavigationDelay="2700">
+                                                <rotator:SfRotator.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <ffimageloading:CachedImage Aspect="Fill"
+                                                            BackgroundColor="{DynamicResource Gray-200}"
+                                                            Source="{Binding Image}"
+			                                                DownsampleToViewSize="True" 
+                                                            FadeAnimationEnabled="True">
+                                                        </ffimageloading:CachedImage>
+                                                    </DataTemplate>
+                                                </rotator:SfRotator.ItemTemplate>
+                                            </rotator:SfRotator>
 
-                    <!--  Back to title layout  -->
-                    <buttons:SfButton x:Name="BackToTitle"
-                                                  Clicked="BackToTitle_Clicked"
-                                                  Style="{StaticResource NavigationBarButtonStyle}"
-                                                  Text="{StaticResource Back}" />
+                                            <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}" />
 
-                    <!--  Rounded Search Entry  -->
-                    <border:SfBorder Style="{DynamicResource SfBorderStyle}">
+                                        </Grid>
+                                    </DataTemplate>
+                                </listView:SfListView.HeaderTemplate>
+                            </listView:SfListView>
+                        </Grid>
+                </ScrollView>
 
-                        <controls:BorderlessEntry x:Name="SearchEntry"
-                                                              HorizontalOptions="FillAndExpand"
-                                                              Placeholder="Search here"
-                                                              Text="{Binding SearchText, Mode=TwoWay}"
-                                                              Style="{StaticResource SearchEntryStyle}"/>
-                    </border:SfBorder>
-
-                </StackLayout>
-
-                <!--  Search Button  -->
-                <buttons:SfButton x:Name="SearchButton"
-                                              IsVisible="True"
-                                              Clicked="SearchButton_Clicked"
-                                              Style="{StaticResource NavigationBarButtonStyle }"
-                                              Text="{StaticResource Search}" />
-            </StackLayout>
-
-                <ScrollView Grid.Row="1">
-                <Grid Grid.Row="1">
-                <listView:SfListView
-                    Padding="15,0,15,15"
-                    AutoFitMode="Height"
-                    IsScrollBarVisible="False"
-                    ItemSpacing="{core:OnPlatformOrientationThickness 
-                                  Default='0,0,32,32',
-                                  PhonePortrait='0,0,0,16',
-                                  PhoneLandscape='0,0,16,16',
-                                  Desktop='0,0,24,24'}"
-                    ItemsSource="{Binding StoreList}"
-                    x:Name="StoreList"
-                    ItemTapped="Partner_ItemTapped"
-                    ItemTemplate="{StaticResource listTemplate}"
-                    SelectionBackgroundColor="Transparent"
-                    VerticalOptions="FillAndExpand">
-                    <listView:SfListView.HeaderTemplate>
-                        <DataTemplate>
-                            <Grid RowSpacing="0" ColumnSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-
-                                <!--Image Carousel Above-->
-                                <rotator:SfRotator Grid.Row="0"
-                                                   BackgroundColor="{StaticResource Transparent}"
-                                                   DotsBorderColor="Transparent"
-                                                   HeightRequest="240"
-                                                   HorizontalOptions="StartAndExpand"
-                                                   ItemsSource="{Binding PartnerStoresRotator}"
-                                                   NavigationDirection="Horizontal"
-                                                   NavigationStripMode="Dots"
-                                                   SelectedDotColor="{DynamicResource PrimaryColor}"
-                                                   UnselectedDotColor="{DynamicResource Gray-200}"
-                                                   VerticalOptions="Start"
-                                                   EnableAutoPlay="True" 
-                                                   NavigationDelay="2700">
-                                    <rotator:SfRotator.ItemTemplate>
-                                        <DataTemplate>
-                                            <ffimageloading:CachedImage Aspect="Fill"
-                                                    BackgroundColor="{DynamicResource Gray-200}"
-                                                    Source="{Binding Image}"
-			                                        DownsampleToViewSize="True" 
-                                                    FadeAnimationEnabled="True">
-                                            </ffimageloading:CachedImage>
-                                        </DataTemplate>
-                                    </rotator:SfRotator.ItemTemplate>
-                                </rotator:SfRotator>
-
-                                <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}" />
-
-                            </Grid>
-                        </DataTemplate>
-                    </listView:SfListView.HeaderTemplate>
-                </listView:SfListView>
             </Grid>
-            </ScrollView>
-            
-        </Grid>
 
         </RefreshView>
 

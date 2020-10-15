@@ -184,7 +184,7 @@
                         </Grid.ColumnDefinitions>
                         <Forms9Patch:Label Grid.Row="0"
                                            Grid.Column="0"
-                                           Text="26 minutes"
+                                           Text=""
                                            FontFamily="{StaticResource Montserrat-SemiBold}"
                                            FontSize="{DynamicResource LargeSize}"
                                            TextColor="{DynamicResource Gray-900}"
