@@ -42,21 +42,12 @@
         <viewModel:HelpViewModel/>
     </ContentPage.BindingContext>
 
-    <StackLayout Spacing="0">
-        <Grid RowSpacing="0" ColumnSpacing="0" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <!-- Seperator -->
-            <BoxView Grid.Row="0" Style="{StaticResource SeparatorStyle}"/>
-
-            <WebView x:Name="privacy" 
-                     WidthRequest="1000" HeightRequest="1000" 
-                     Source="https://pasabuy.app/help-center/?amp=true" 
-                     Margin="0,0,0,10"/>
-        </Grid>
-    </StackLayout>
+    <ContentPage.Content>
+        <WebView x:Name="privacy" 
+                 HorizontalOptions="FillAndExpand"
+                 HeightRequest="1000"
+                 Source="https://pasabuy.app/help-center/?amp=true"
+                 Margin="0,0,0,0"/>
+    </ContentPage.Content>
 
 </ContentPage>

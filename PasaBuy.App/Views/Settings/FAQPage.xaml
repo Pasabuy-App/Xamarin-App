@@ -39,21 +39,11 @@
     </ContentPage.Padding>
 
     <ContentPage.Content>
-        <Grid RowSpacing="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
-            <!-- Seperator -->
-            <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}"/>
-
-            <WebView x:Name="privacy" 
-                     WidthRequest="1000" HeightRequest="1000" 
-                     Source="https://pasabuy.app/frequently-asked-question/?amp=true" 
-                     Margin="0,0,0,10"/>
-
-        </Grid>
+        <WebView x:Name="privacy" 
+                 HorizontalOptions="FillAndExpand"
+                 HeightRequest="1000"
+                 Source="https://pasabuy.app/frequently-asked-question/?amp=true"
+                 Margin="0,0,0,0" />
     </ContentPage.Content>
+
 </ContentPage>
