@@ -98,19 +98,20 @@
                             CornerRadius="7"
                             Command="{Binding LoginCommand}"
                             Style="{StaticResource SfButtonStyle}"
+                            TextColor="{DynamicResource Gray-900}"
                             Text="LOG IN" />
 
-                        <Label
+                        <!--<Label
                         Grid.Row="6"
                         FontFamily="{StaticResource Montserrat-Medium}"
                         HorizontalTextAlignment="Center"
                         Style="{StaticResource LabelStyle}"
-                        Text="Or create an account using social media" />
+                        Text="Or create an account using social media" />-->
 
                         <!--  Login button with social icons -->
-                        <Grid Grid.Row="7">
+                        <!--<Grid Grid.Row="7">
                             <template:SocialIconTemplate /> 
-                        </Grid>
+                        </Grid>-->
 
                     </Grid>
 

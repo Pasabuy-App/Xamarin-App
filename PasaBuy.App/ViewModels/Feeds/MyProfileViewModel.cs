@@ -295,9 +295,9 @@ namespace PasaBuy.App.ViewModels.Feeds
                 if (PSACache.Instance.UserInfo.city != "")
                 {
                     isCity = true;
-                    this.City = "(ic) Lives in " + PSACache.Instance.UserInfo.city;
+                    this.City = "Lives in " + PSACache.Instance.UserInfo.city;
                 }
-                this.Joined = "(ic) Joined at " + date.ToString("MMMM yyyy");
+                this.Joined = "Joined at " + date.ToString("MMMM yyyy");
                 isRefered = false;
                 this.Refered = "";
                 this.Transacts = transactcount;

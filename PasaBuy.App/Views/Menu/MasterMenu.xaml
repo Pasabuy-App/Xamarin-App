@@ -189,7 +189,7 @@
                                         Grid.Column="0"
                                         helper:RTLHelper.Margin="35, 0, 8, 0"
                                         Style="{StaticResource ProfileIconLabelStyle}"
-                                        Text="&#xf022;" />
+                                        Text="&#xf5a2;" />
 
                                 <Label
                                         Grid.Column="1"
