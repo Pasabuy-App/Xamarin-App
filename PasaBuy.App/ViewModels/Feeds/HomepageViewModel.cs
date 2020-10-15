@@ -2,8 +2,12 @@
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Feeds;
+using PasaBuy.App.Models.MobilePOS;
+using PasaBuy.App.ViewModels.Menu;
+using Plugin.Media.Abstractions;
 using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -17,6 +21,14 @@ namespace PasaBuy.App.ViewModels.Feeds
         {
             get { return homePostList; }
             set { homePostList = value; this.NotifyPropertyChanged(); }
+        }
+
+        public static ObservableCollection<Personnels> userinfoList;
+
+        public ObservableCollection<Personnels> UserinfoList
+        {
+            get { return userinfoList; }
+            set { userinfoList = value; this.NotifyPropertyChanged(); }
         }
         #endregion
 
@@ -33,6 +45,23 @@ namespace PasaBuy.App.ViewModels.Feeds
             homePostList = new ObservableCollection<Post>();
             LoadData("");
             this.InquireCommand = new Command(this.InquireClicked);
+            this.Photo = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
+
+            userinfoList = new ObservableCollection<Personnels>();
+            userinfoList.CollectionChanged += CollectionChanges;
+        }
+
+        public static void Insertimage(string url)
+        {
+            userinfoList.Add(new Personnels()
+            {
+                Avatar = url
+            });
+        }
+        private async void CollectionChanges(object sender, EventArgs e)
+        {
+            await Task.Delay(100);
+            this.Photo = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
         }
 
         /// <summary>
@@ -158,11 +187,20 @@ namespace PasaBuy.App.ViewModels.Feeds
             }
         }
 
+        public string photo;
         public string Photo
         {
             get
             {
-                return PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
+                return photo;
+            }
+            set
+            {
+                if (photo != value)
+                {
+                    photo = value;
+                    this.NotifyPropertyChanged();
+                }
             }
         }
 

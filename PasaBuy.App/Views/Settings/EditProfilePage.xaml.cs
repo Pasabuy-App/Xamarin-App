@@ -60,6 +60,7 @@ namespace PasaBuy.App.Views.Settings
                             PSACache.Instance.UserInfo.avatar = datas.data;
                             PSACache.Instance.SaveUserData();
                             ViewModels.Menu.MasterMenuViewModel.Insertimage(PSACache.Instance.UserInfo.avatar);
+                            ViewModels.Feeds.HomepageViewModel.Insertimage(PSACache.Instance.UserInfo.avatar);
                         }
                         else
                         {
