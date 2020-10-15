@@ -25,14 +25,15 @@ namespace PasaBuy.App.Views.PopupModals
             PopupNavigation.Instance.PopAsync();
         }
 
-        private async void SfButton_Clicked(object sender, EventArgs e)
+        private async void CopyID_Clicked(object sender, EventArgs e)
         {
             await Clipboard.SetTextAsync(WalletID.Text);
             if (Clipboard.HasText)
             {
-                await PopupNavigation.Instance.PopAsync();
                 var text = await Clipboard.GetTextAsync();
-                await DisplayAlert("Success", string.Format("Copied to clipboard {0}.", text), "OK");
+                //await DisplayAlert("Success", string.Format("Copied to clipboard {0}.", text), "OK");
+                Plugin.Toast.CrossToastPopUp.Current.ShowToastMessage(string.Format("Copied to clipboard {0}.", text));
+                await PopupNavigation.Instance.PopAsync();
             }
         }
     }

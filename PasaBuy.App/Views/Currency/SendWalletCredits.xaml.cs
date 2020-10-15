@@ -25,7 +25,7 @@ namespace PasaBuy.App.Views.Currency
 
         private async void ShowModal(object sender, EventArgs e)
         {
-            WalletIds.HasError = !string.IsNullOrWhiteSpace(WalletId.Text) ? false : true;
+            WalletIds.HasError = !string.IsNullOrWhiteSpace(WalletId.Text) ? false : true; 
             Amounts.HasError = !string.IsNullOrWhiteSpace(Amount.Text) ? false : true;
             var btn = sender as SfButton;
             if (btn.IsEnabled)
