@@ -26,7 +26,7 @@
                             BorderColor="{DynamicResource Gray-White}"
                             CornerRadius="8"
                             HasShadow="True"
-                            HeightRequest="130"
+                            HeightRequest="100"
                             HorizontalOptions="FillAndExpand"
                             VerticalOptions="FillAndExpand">
                     <StackLayout>
@@ -45,7 +45,7 @@
                             </border:SfBorder>
 
                             <StackLayout Grid.Column="1"
-                                            Margin="16,5"
+                                            Margin="8,5"
                                             HorizontalOptions="Start"
                                             Spacing="2"
                                             VerticalOptions="FillAndExpand">

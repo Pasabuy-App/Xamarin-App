@@ -171,11 +171,11 @@ namespace PasaBuy.App.ViewModels.Marketplace
             {
                 partnerStoresRotator.Add(new PartnerStore()
                 {
-                    Image = "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg"
+                    Image = "https://pasabuy.app/wp-content/uploads/2020/10/Rob1.jpg"
                 });
                 partnerStoresRotator.Add(new PartnerStore()
                 {
-                    Image = "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg"
+                    Image = "https://pasabuy.app/wp-content/uploads/2020/10/rob2.jpg"
                 });
                 partnerStoresRotator.Add(new PartnerStore()
                 {

@@ -58,7 +58,7 @@
         <Frame
             x:Name="FrameContainer"
             Margin="15"
-            Padding="15"
+            Padding="10"
             BackgroundColor="{DynamicResource Gray-100}"
             CornerRadius="6"
             HorizontalOptions="Center">
