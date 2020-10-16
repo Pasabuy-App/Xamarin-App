@@ -36,18 +36,26 @@ namespace PasaBuy.App.Views.Navigation
                 this.PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
 
-        public static ObservableCollection<Personnels> storeinfoList;
+        public static ObservableCollection<Personnels> _logobanner;
 
-        public ObservableCollection<Personnels> StoreinfoList
+        public ObservableCollection<Personnels> LogoBanner
         {
-            get { return storeinfoList; }
-            set { storeinfoList = value; OnPropertyChanged("StoreinfoList"); }
+            get { return _logobanner; }
+            set { _logobanner = value; OnPropertyChanged("LogoBanner"); }
         }
+        public static ObservableCollection<Operations> _switchlist;
 
+        public ObservableCollection<Operations> SwitchList
+        {
+            get { return _switchlist; }
+            set { _switchlist = value; OnPropertyChanged("SwitchList"); }
+        }
+        public static bool _switch;
+        public bool isTapped;
+        public int isClicked;
         public MasterView()
         {
             InitializeComponent();
-
             //UserName.Text = PSACache.Instance.UserInfo.dname;
             //Email.Text = PSACache.Instance.UserInfo.email;
 
@@ -64,7 +72,7 @@ namespace PasaBuy.App.Views.Navigation
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Point of Sales"), Icon = "Idcard.png", TargetType = typeof(StoreViews.POS.PointOfSales) });
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Management"), Icon = "Idcard.png", TargetType = typeof(ManagementView) });
                 //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Categories"), Icon = "Idcard.png", TargetType = typeof(CategoryView) });
-                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Transactions"), Icon = "Idcard.png", TargetType = typeof(TransactionsView) });
+                //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Transactions"), Icon = "Idcard.png", TargetType = typeof(TransactionsView) });
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Messages"), Icon = "Idcard.png", TargetType = typeof(MessagesView) });
                 //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Vouchers"), Icon = "Idcard.png", TargetType = typeof(VouchersView) });
                 //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Documents"), Icon = "Idcard.png", TargetType = typeof(DocumentsView) });
@@ -89,11 +97,43 @@ namespace PasaBuy.App.Views.Navigation
             navigationDrawerList.ItemsSource = menuList;
             navigationDrawerList.SelectedItem = menuList.FirstOrDefault();
 
-            storeinfoList = new ObservableCollection<Personnels>();
-            storeinfoList.CollectionChanged += CollectionChanges;
-
+            _logobanner = new ObservableCollection<Personnels>();
+            _logobanner.CollectionChanged += LogoBannerChanges;
+            _switchlist = new ObservableCollection<Operations>();
+            _switchlist.CollectionChanged += SwitchChanges;
+            PopupGoOnline._switch = "false";
+            isTapped = false;
+            _switch = false;
+            isClicked = 0;
         }
-        private async void CollectionChanges(object sender, EventArgs e)
+        private void SwitchChanges(object sender, EventArgs e)
+        {
+            if (_switch)
+            {
+                isTapped = true;
+                isActiveSwitch.IsOn = true;
+                Status.Text = "Go offline";
+                isTapped = false;
+                //_switch = false;
+            }
+            else
+            {
+                isTapped = true;
+                isActiveSwitch.IsOn = false;
+                Status.Text = "Go online";
+                isTapped = false;
+                //_switch = true;
+            }
+        }
+        public static void InsertSwitch(string _switch)
+        {
+            _switchlist.Add(new Operations()
+            {
+                Date_Time = _switch
+            });
+        }
+
+        private async void LogoBannerChanges(object sender, EventArgs e)
         {
             await Task.Delay(100);
             if (MyType == "mover")
@@ -109,7 +149,7 @@ namespace PasaBuy.App.Views.Navigation
         }
         public static void Insertimage(string url)
         {
-            storeinfoList.Add(new Personnels()
+            _logobanner.Add(new Personnels()
             {
                 Avatar = url
             });
@@ -137,7 +177,15 @@ namespace PasaBuy.App.Views.Navigation
 
         private async void isActive(object sender, Syncfusion.XForms.Buttons.SwitchStateChangedEventArgs e)
         {
-            await PopupNavigation.Instance.PushAsync(new PopupGoOnline());
+            if (!isTapped)
+            {
+                isTapped = true;
+                PopupGoOnline._switch = isActiveSwitch.IsOn.ToString();
+                await PopupNavigation.Instance.PushAsync(new PopupGoOnline());
+                isTapped = false;
+                //Console.WriteLine("isActiveSwitch.IsOn.ToString(): " + isActiveSwitch.IsOn.ToString());
+                //new Controllers.Notice.Alert("Switch", isActiveSwitch.IsOn.ToString(), "Ok");
+            }
         }
     }
 }
