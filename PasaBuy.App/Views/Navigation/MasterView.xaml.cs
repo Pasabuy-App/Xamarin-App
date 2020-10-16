@@ -125,13 +125,6 @@ namespace PasaBuy.App.Views.Navigation
                 //_switch = true;
             }
         }
-        public static void InsertSwitch(string _switch)
-        {
-            _switchlist.Add(new Operations()
-            {
-                Date_Time = _switch
-            });
-        }
 
         private async void LogoBannerChanges(object sender, EventArgs e)
         {
