@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+             xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:converter="clr-namespace:PasaBuy.App.Converters"
+             x:Class="PasaBuy.App.Views.Currency.PasabuyPlusPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{DynamicResource Gray-White}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <converter:BooleanToColorConverter x:Key="BooleanToColorConverter" />
+            <converter:BooleanToStringConverter x:Key="BoolToStringConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Spacing="0" >
+                <controls:TitleView Title="PasaBuy Plus" 
+                                    BackgroundColor="{DynamicResource PrimaryColor}" >
+                    <controls:TitleView.LeadingView>
+                        <buttons:SfButton
+                            x:Name="backButton"
+                            Clicked="BackButtonClicked"
+                            CornerRadius="4"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                    </controls:TitleView.LeadingView>
+                </controls:TitleView>
+                <ContentPresenter />
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid RowSpacing="0" ColumnSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" 
+                      Padding="15,10,15,20"
+                      Margin="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Amount -->
+                    <Label 
+                           Grid.Row="0"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           TextColor="{Binding IsCredited, Converter={x:StaticResource BooleanToColorConverter}, ConverterParameter=5}"
+                           Style="{StaticResource LabelStyle}"
+                           FontSize="25"
+                           LineHeight="{OnPlatform Android=1.5, Default=-1}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text=" ₱" />
+                                <Span Text="{Binding Amount}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <!-- Name -->
+                    <Label 
+                           Grid.Row="1"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Text="Current Balance"
+                           Style="{StaticResource LabelStyle}"
+                           LineHeight="{OnPlatform Android=1.5, Default=-1}" />
+                </Grid>
+                <Grid Grid.Row="1"
+                      HorizontalOptions="FillAndExpand"
+                      Padding="0,15,0,15"
+                      BackgroundColor="{DynamicResource Transparent}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <buttons:SfButton
+                            Command="{Binding TopUpCommand}"
+                            CornerRadius="5"
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            Margin="10,0,10,0"
+                            TextColor="White"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            Text="Top Up" />
+                </Grid>
+
+                <BoxView Grid.Row="2"  Style="{StaticResource SeparatorStyle}" />
+                
+                <Grid Grid.Row="3"
+                      Padding="0,15,0,10">
+
+                    <Label Margin="16,0,16,0"
+                           Text="TRANSACTIONS"
+                           TextColor="{DynamicResource Gray-800}"
+                           FontSize="12"
+                           LineHeight="{OnPlatform Android=1.5, Default=-1}"
+                           FontFamily="{DynamicResource Montserrat-SemiBold}"
+                           HorizontalOptions="Start" />
+                </Grid>
+
+                <listView:SfListView Grid.Row="4" 
+                                     IsScrollBarVisible="False"
+                                     ItemSpacing="0"
+                                     ItemsSource="{Binding PasabuyPlusList}" 
+                                     SelectionBackgroundColor="{DynamicResource TappedBackgroundColor}"
+                                     TapCommand="{Binding ItemTappedCommand}"
+                                     AutoFitMode="Height">
+                    <listView:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid RowSpacing="0" ColumnSpacing="0">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Profile Image -->
+                                <border:SfBorder Grid.RowSpan="3"
+                                                 Margin="16"
+                                                 WidthRequest="40"
+                                                 HeightRequest="40"
+                                                 CornerRadius="20"
+                                                 BorderWidth="0"
+                                                 VerticalOptions="Center">
+                                    <Image Aspect="Fill">
+                                        <Image.Source>
+                                            <UriImageSource Uri="{Binding ProfileImage}" 
+			                                                CacheValidity="14" 
+			                                                CachingEnabled="True" />
+                                        </Image.Source>
+                                    </Image>
+                                </border:SfBorder>
+
+                                <!-- Name -->
+                                <Label Grid.Column="1"
+                                       Margin="0,15,0,4"
+                                       HorizontalOptions="Start"
+                                       Text="{Binding Name}"
+                                       Style="{StaticResource LabelStyle}"
+                                       LineHeight="{OnPlatform Android=1.5, Default=-1}" />
+
+                                <!-- Transaction Title -->
+                                <Label Grid.Row="1"
+                                       Grid.Column="1"
+                                       Margin="0,0,0,16"
+                                       HorizontalOptions="Start"
+                                       Text="{Binding Note}"
+                                       TextColor="{DynamicResource Gray-700}"
+                                       FontSize="12"
+                                       FontFamily="{DynamicResource Montserrat-Medium}"
+                                       LineHeight="{OnPlatform Android=1.5, Default=-1}" />
+
+                                <!-- Amount -->
+                                <Label Grid.Column="1"
+                                       Margin="0,16,16,4"
+                                       HorizontalOptions="End"
+                                       TextColor="{Binding IsCredited, Converter={x:StaticResource BooleanToColorConverter}, ConverterParameter=5}"
+                                       Style="{StaticResource LabelStyle}"
+                                       LineHeight="{OnPlatform Android=1.5, Default=-1}">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding IsCredited, Converter={StaticResource BoolToStringConverter}, ConverterParameter=2}" />
+                                            <Span Text=" ₱" />
+                                            <Span Text="{Binding Amount}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                <!-- Date -->
+                                <Label Grid.Row="1"
+                                       Grid.Column="1"
+                                       Margin="0,0,16,16"
+                                       HorizontalOptions="End"
+                                       Text="{Binding Date, StringFormat='{}{0:dd MMM yyyy}'}"
+                                       TextColor="{DynamicResource Gray-700}"
+                                       FontSize="12"
+                                       FontFamily="{DynamicResource Montserrat-Medium}"
+                                       LineHeight="{OnPlatform Android=1.5, Default=-1}" />
+
+                                <!-- Seperator -->
+                                <BoxView Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource SeparatorStyle}" />
+
+                            </Grid>
+                        </DataTemplate>
+                    </listView:SfListView.ItemTemplate>
+                </listView:SfListView>
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

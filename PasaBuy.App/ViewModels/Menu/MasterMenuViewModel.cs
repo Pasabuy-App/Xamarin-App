@@ -128,10 +128,13 @@ namespace PasaBuy.App.ViewModels.Menu
             this.DriverCommand = new Command(this.DriverButtonClicked);
             this.StoreCommand = new Command(this.StoreButtonClicked);
             this.SettingCommand = new Command(this.SettingButtonClicked);
+            this.PasabuyPlusCommand = new Command(this.PasabuyPlusClicked);
 
             userinfoList = new ObservableCollection<Personnels>();
             userinfoList.CollectionChanged += CollectionChanges;
         }
+
+  
 
         public static void Insertimage(string url)
         {
@@ -279,6 +282,7 @@ namespace PasaBuy.App.ViewModels.Menu
         /// Gets or sets the command that is executed when the request view is clicked.
         /// </summary>
         public Command SettingCommand { get; set; }
+        public Command PasabuyPlusCommand { get; set; }
         #endregion
 
         #region Methods
@@ -299,6 +303,19 @@ namespace PasaBuy.App.ViewModels.Menu
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyTransactionsPage()));
+                    Status = false;
+                });
+            }
+        }
+
+        private void PasabuyPlusClicked(object obj)
+        {
+            if (!Status)
+            {
+                Status = true;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new PasabuyPlusPage()));
                     Status = false;
                 });
             }

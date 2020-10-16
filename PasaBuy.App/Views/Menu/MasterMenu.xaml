@@ -176,7 +176,7 @@
 
                             <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                            <!--  Grid for wallet label and icon  -->
+                            <!--  Grid for Transaction label and icon  -->
                             <Grid x:Name="TransactionGrid"
                                     BackgroundColor="{DynamicResource Transparent}">
 
@@ -206,6 +206,31 @@
 
                             <BoxView Style="{StaticResource SeparatorStyle}" />
 
+                            <!--  Grid for pasabuy plus label and icon  -->
+                            <Grid x:Name="PasabuyPlusGrid"
+                                BackgroundColor="{DynamicResource Transparent}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    Grid.Column="0"
+                                    helper:RTLHelper.Margin="35, 0, 8, 0"
+                                    Style="{StaticResource ProfileIconLabelStyle}"
+                                    Text="&#xf51e;" />
+                                <Label
+                                    Grid.Column="1"
+                                    Margin="0,14"
+                                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                                    Style="{StaticResource ProfileLabelStyle}"
+                                    Text="PasaBuy Plus" />
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding PasabuyPlusCommand}" CommandParameter="{x:Reference PasabuyPlusGrid}" />
+                                </Grid.GestureRecognizers>
+                            </Grid>
+
+                            <BoxView Style="{StaticResource SeparatorStyle}" />
+                            
                             <!--  Grid for wallet label and icon  -->
                             <Grid x:Name="WalletGrid"
                                 BackgroundColor="{DynamicResource Transparent}">
