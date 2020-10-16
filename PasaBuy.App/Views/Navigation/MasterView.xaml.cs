@@ -112,7 +112,7 @@ namespace PasaBuy.App.Views.Navigation
             {
                 isTapped = true;
                 isActiveSwitch.IsOn = true;
-                Status.Text = "Go offline";
+                Status.Text = "Online";
                 isTapped = false;
                 //_switch = false;
             }
@@ -120,7 +120,7 @@ namespace PasaBuy.App.Views.Navigation
             {
                 isTapped = true;
                 isActiveSwitch.IsOn = false;
-                Status.Text = "Go online";
+                Status.Text = "Offline";
                 isTapped = false;
                 //_switch = true;
             }
@@ -131,14 +131,14 @@ namespace PasaBuy.App.Views.Navigation
             {
                 isTapped = true;
                 isActiveSwitch.IsOn = true;
-                Status.Text = "Go offline";
+                Status.Text = "Online";
                 isTapped = false;
             }
             else
             {
                 isTapped = true;
                 isActiveSwitch.IsOn = false;
-                Status.Text = "Go online";
+                Status.Text = "Offline";
                 isTapped = false;
             }
         }
