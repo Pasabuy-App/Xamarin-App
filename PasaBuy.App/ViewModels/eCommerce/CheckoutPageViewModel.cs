@@ -349,10 +349,11 @@ namespace PasaBuy.App.ViewModels.eCommerce
                         btn.IsEnabled = false;
                         //new Alert("Success", "Payment Success! method: " + PaymentView.method + " addid: " + address_id.ToString(), "OK");
                         //Console.WriteLine("Method: " + PaymentView.method + " Address ID: " + address_id); //address id in first selection in 
+
                         foreach (var car in CartPageViewModel.cartDetails)
                         {
                             //Console.WriteLine("Method: " + PaymentView.method + " Address ID: " + address_id + " ." + car.Stid.ToString() + ". ." + car.ID.ToString() + ". ." + car.TotalQuantity.ToString() + ".");
-                            Customers.Instance.Create(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, car.Stid.ToString(), car.ID.ToString(), "1", car.TotalQuantity.ToString(), "", PaymentView.method, address_id.ToString(), (bool success, string data) =>
+                            Customers.Instance.Create(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, car.Stid.ToString(), car.ID.ToString(), car.TotalQuantity.ToString(), "", PaymentView.method, address_id.ToString(), (bool success, string data) =>
                             {
                                 if (success)
                                 {
@@ -364,6 +365,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                                 }
                             });
                         }
+
                         await Task.Delay(500);
                         btn.IsEnabled = true;
                     }
