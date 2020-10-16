@@ -132,6 +132,7 @@
                                    FontSize="16"
                                    VerticalTextAlignment="Center"
                                    HorizontalTextAlignment="Start"
+                                   x:Name="Status"
                                    Text="Go online"
                                    TextColor="{DynamicResource Gray-900}" />
                             <Grid Grid.Column="1"
@@ -139,7 +140,6 @@
                                   VerticalOptions="CenterAndExpand">
                                 <syncfusion:SfSwitch VisualType="Material" 
                                                      StateChanged="isActive" 
-                                                     IsOn="{Binding OperationsViewModel.IsOnline,Source={x:Reference MasterRoot}}"
                                                      x:Name="isActiveSwitch">
                                 </syncfusion:SfSwitch>
                             </Grid>
