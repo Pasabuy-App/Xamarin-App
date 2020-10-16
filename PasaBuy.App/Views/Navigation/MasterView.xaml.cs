@@ -52,7 +52,6 @@ namespace PasaBuy.App.Views.Navigation
         }
         public static bool _switch;
         public bool isTapped;
-        public int isClicked;
         public MasterView()
         {
             InitializeComponent();
@@ -104,7 +103,8 @@ namespace PasaBuy.App.Views.Navigation
             PopupGoOnline._switch = "false";
             isTapped = false;
             _switch = false;
-            isClicked = 0;
+            ValidateStatus();
+
         }
         private void SwitchChanges(object sender, EventArgs e)
         {
@@ -112,7 +112,7 @@ namespace PasaBuy.App.Views.Navigation
             {
                 isTapped = true;
                 isActiveSwitch.IsOn = true;
-                Status.Text = "Go offline";
+                Status.Text = "Online";
                 isTapped = false;
                 //_switch = false;
             }
@@ -120,12 +120,28 @@ namespace PasaBuy.App.Views.Navigation
             {
                 isTapped = true;
                 isActiveSwitch.IsOn = false;
-                Status.Text = "Go online";
+                Status.Text = "Offline";
                 isTapped = false;
                 //_switch = true;
             }
         }
-
+        public void ValidateStatus()
+        {
+            if (PSACache.Instance.UserInfo.store_status)
+            {
+                isTapped = true;
+                isActiveSwitch.IsOn = true;
+                Status.Text = "Online";
+                isTapped = false;
+            }
+            else
+            {
+                isTapped = true;
+                isActiveSwitch.IsOn = false;
+                Status.Text = "Offline";
+                isTapped = false;
+            }
+        }
         private async void LogoBannerChanges(object sender, EventArgs e)
         {
             await Task.Delay(100);

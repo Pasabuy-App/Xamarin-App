@@ -16,7 +16,34 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 {
     public class ScheduleViewModel : BaseViewModel
     {
-        public static ObservableCollection<Operations> _scheduleList;
+        public bool _GetStarted;
+        public bool GetStarted
+        {
+            get
+            {
+                return _GetStarted;
+            }
+            set
+            {
+                _GetStarted = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        public ICommand SubmitCommand
+        {
+            get
+            {
+                return new Command<string>((x) => Submit());
+            }
+        }
+        private  void Submit()
+        {
+            GetStarted = false;
+            Local.PSACache.Instance.UserInfo.store_schedule = true;
+            Local.PSACache.Instance.SaveUserData();
+        }
+
         public ICommand EditScheduleCommand
         {
             get
@@ -31,6 +58,8 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             PopupEditSchedule.day = day;
             await PopupNavigation.Instance.PushAsync(new PopupEditSchedule());
         }
+
+        public static ObservableCollection<Operations> _scheduleList;
         public ObservableCollection<Operations> ScheduleList
         {
             get
@@ -47,6 +76,14 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         {
             _scheduleList = new ObservableCollection<Operations>();
             LoadSchedule();
+            if (Local.PSACache.Instance.UserInfo.store_schedule)
+            {
+                GetStarted = false;
+            }
+            else
+            {
+                GetStarted = true;
+            }
         }
         public static void LoadSchedule()
         {

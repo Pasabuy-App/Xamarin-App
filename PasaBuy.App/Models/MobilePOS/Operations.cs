@@ -11,6 +11,7 @@ namespace PasaBuy.App.Models.MobilePOS
         private string full_schedule = string.Empty;
         private string date = string.Empty;
         private string total_sales;
+        private string date_time = string.Empty;
 
         private bool is_online;
 
@@ -27,6 +28,18 @@ namespace PasaBuy.App.Models.MobilePOS
             public string date_close = string.Empty;
         }
 
+        public string Date_Time
+        {
+            get
+            {
+                return date_time;
+            }
+            set
+            {
+                date_time = value;
+                OnPropertyChanged("Date_Time");
+            }
+        }
         public string Id
         {
             get

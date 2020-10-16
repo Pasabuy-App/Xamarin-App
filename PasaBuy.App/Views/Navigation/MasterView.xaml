@@ -133,7 +133,7 @@
                                    VerticalTextAlignment="Center"
                                    HorizontalTextAlignment="Start"
                                    x:Name="Status"
-                                   Text="Go online"
+                                   Text="Offline"
                                    TextColor="{DynamicResource Gray-900}" />
                             <Grid Grid.Column="1"
                                   HorizontalOptions="CenterAndExpand"

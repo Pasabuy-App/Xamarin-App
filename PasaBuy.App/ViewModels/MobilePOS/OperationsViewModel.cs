@@ -19,7 +19,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
         public static ObservableCollection<Operations> _operationsList;
 
-        public bool is_online;
+        //public bool is_online;
 
         public ICommand ViewOperationCommand
         {
@@ -36,7 +36,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             await PopupNavigation.Instance.PushAsync(new PopupViewOperations());
         }
 
-        public bool IsOnline
+        /*public bool IsOnline
         {
             get
             {
@@ -47,7 +47,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 is_online = value;
                 this.NotifyPropertyChanged();
             }
-        }
+        }*/
 
         public ObservableCollection<Operations> DaysOfTheWeek
         {
@@ -75,12 +75,48 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
         }
 
+        public bool _GetStarted;
+        public bool GetStarted
+        {
+            get
+            {
+                return _GetStarted;
+            }
+            set
+            {
+                _GetStarted = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        public ICommand SubmitCommand
+        {
+            get
+            {
+                return new Command<string>((x) => Submit());
+            }
+        }
+        private void Submit()
+        {
+            GetStarted = false;
+            Local.PSACache.Instance.UserInfo.store_operation = true;
+            Local.PSACache.Instance.SaveUserData();
+        }
+
         public OperationsViewModel()
         {
-            this.IsOnline = true;
+            //this.IsOnline = true;
 
             _operationsList = new ObservableCollection<Operations>();
             LoadOperation("");
+            if (Local.PSACache.Instance.UserInfo.store_operation)
+            {
+                GetStarted = false;
+            }
+            else
+            {
+                GetStarted = true;
+            }
         }
         
         public static void LoadOperation(string opid)

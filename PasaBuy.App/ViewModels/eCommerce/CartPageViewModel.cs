@@ -89,6 +89,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(cartDetails);
             Xamarin.Essentials.Preferences.Set(stid, json);
             //System.Diagnostics.Debug.WriteLine(json);
+            //new Alert("Data", json, "OK");
         }
         public static void Convert2List(string stid)
         {

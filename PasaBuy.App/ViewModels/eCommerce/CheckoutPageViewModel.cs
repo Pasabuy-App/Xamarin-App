@@ -349,6 +349,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                         btn.IsEnabled = false;
                         //new Alert("Success", "Payment Success! method: " + PaymentView.method + " addid: " + address_id.ToString(), "OK");
                         //Console.WriteLine("Method: " + PaymentView.method + " Address ID: " + address_id); //address id in first selection in 
+
                         foreach (var car in CartPageViewModel.cartDetails)
                         {
                             //Console.WriteLine("Method: " + PaymentView.method + " Address ID: " + address_id + " ." + car.Stid.ToString() + ". ." + car.ID.ToString() + ". ." + car.TotalQuantity.ToString() + ".");
@@ -364,6 +365,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                                 }
                             });
                         }
+
                         await Task.Delay(500);
                         btn.IsEnabled = true;
                     }
