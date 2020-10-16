@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Syncfusion.XForms.Buttons;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -21,7 +22,6 @@ namespace PasaBuy.App.Models.Marketplace
             public string status = string.Empty;
             public string price = string.Empty;
         }
-
 
         public string Price
         {

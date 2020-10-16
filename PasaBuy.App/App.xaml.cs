@@ -4,6 +4,7 @@ using Microsoft.AppCenter.Crashes;
 using PasaBuy.App.Local;
 using PasaBuy.App.Local.Notice;
 using PasaBuy.App.Views;
+using PasaBuy.App.Views.Marketplace;
 using PasaBuy.App.Views.Onboarding;
 using Xamarin.Forms;
 

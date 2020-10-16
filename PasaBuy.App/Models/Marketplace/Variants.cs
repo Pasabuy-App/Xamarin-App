@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
 
@@ -10,6 +11,9 @@ namespace PasaBuy.App.Models.Marketplace
         private string name = string.Empty;
         private string id = string.Empty;
         private string baseprice = string.Empty;
+        private string group_key = string.Empty;
+
+        public ObservableCollection<Options> options { get; set; }
 
         public VariantsData[] data;
         public class VariantsData
@@ -21,6 +25,21 @@ namespace PasaBuy.App.Models.Marketplace
             public string status = string.Empty;
             public string baseprice = string.Empty;
         }
+
+        public string GroupKey
+        {
+            get
+            {
+                return this.group_key;
+            }
+
+            set
+            {
+                this.group_key = value;
+                OnPropertyChanged("GroupKey");
+            }
+        }
+
         public string Baseprice
         {
             get
