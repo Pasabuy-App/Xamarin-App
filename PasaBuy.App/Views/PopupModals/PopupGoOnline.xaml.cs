@@ -33,15 +33,19 @@ namespace PasaBuy.App.Views.PopupModals
 
         private void ConfirmModal(object sender, EventArgs e)
         {
-            if (_switch == "True")
+            if (_switch == "True") // store is open
             {
+                //new Controllers.Notice.Alert("Switch", "Store is open", "Ok"); // insert
                 Views.Navigation.MasterView._switch = true;
                 Views.Navigation.MasterView._switchlist.Clear();
+                UpdateOperations("open");
             }
-            else
+            else // store is close
             {
+                //new Controllers.Notice.Alert("Switch", "Store is close", "Ok"); // update
                 Views.Navigation.MasterView._switch = false;
                 Views.Navigation.MasterView._switchlist.Clear();
+                UpdateOperations("close");
                 //save to cache then load it to set the switch to true then insert open to database.
             }
             Local.PSACache.Instance.UserInfo.store_status = Convert.ToBoolean(_switch);
@@ -49,38 +53,13 @@ namespace PasaBuy.App.Views.PopupModals
             PopupNavigation.Instance.PopAsync();
         }
 
-        public void InsertOperations()
+        public void UpdateOperations(string status) // status = open or close
         {
             try
             {
-                Operation.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, (bool success, string data) =>
+                Operation.Instance.Update(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, status, (bool success, string data) =>
                 {
-                    if (success)
-                    {
-
-                    }
-                    else
-                    {
-                        new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                });
-            }
-            catch (Exception e)
-            {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
-            }
-        }
-        public void UpdateOperations()
-        {
-            try
-            {
-                Operation.Instance.Update(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, "", (bool success, string data) =>
-                {
-                    if (success)
-                    {
-
-                    }
-                    else
+                    if (!success)
                     {
                         new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                     }
