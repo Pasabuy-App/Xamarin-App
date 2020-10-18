@@ -14,6 +14,9 @@ namespace PasaBuy.App.Models.Marketplace
             public string title { get; set; }
             public string info { get; set; }
             public string status { get; set; }
+            public string store_address { get; set; }
+            public string store_name { get; set; }
+
             public List<CatProduct> products { get; set; }
         }
     }

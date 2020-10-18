@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace PasaBuy.App.Models.Marketplace
 {
@@ -14,11 +15,42 @@ namespace PasaBuy.App.Models.Marketplace
         private string title = string.Empty;
         private string info = string.Empty;
         private string status = string.Empty;
+        private string store_name = string.Empty;
+        private string store_address = string.Empty;
+
         private ObservableCollection<ProductList> prods = new ObservableCollection<ProductList>();
 
         #endregion
 
         #region properties
+
+
+        public string StoreName
+        {
+            get
+            {
+                return store_name;
+            }
+            set
+            {
+                store_name = value;
+                OnPropertyChanged("StoreName");
+            }
+        }
+
+        public string StoreAddress
+        {
+            get
+            {
+                return store_address;
+            }
+            set
+            {
+                store_address = value;
+                OnPropertyChanged("StoreAddress");
+            }
+        }
+
 
         public ObservableCollection<ProductList> Prods
         {
@@ -124,5 +156,14 @@ namespace PasaBuy.App.Models.Marketplace
         }
 
         #endregion
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged(string name)
+        {
+            if (this.PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(name));
+        }
     }
 }

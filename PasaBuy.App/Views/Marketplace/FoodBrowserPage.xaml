@@ -145,10 +145,10 @@
 
                
                          <listView:SfListView Margin="8,0"
-                                                     Grid.Row="2"
-                                                        Padding="0"
-                                                        AutoFitMode="Height"
-                                                        ColumnSpacing="0"
+                                              Grid.Row="2"
+                                              Padding="0"
+                                              AutoFitMode="Height"
+                                              ColumnSpacing="0"
                                                         FocusBorderColor="Transparent"
                                                         x:Name="StoreListStack"
                                                         ItemsSource="{Binding FoodStorelist}"
@@ -216,25 +216,26 @@
 
                                                             <!--  Store Name label  -->
                                                             <Label Text="{Binding Title}"  
-                                                       FontSize="16" 
-                                                       FontFamily="{StaticResource Montserrat-SemiBold}" 
-                                                       HorizontalOptions="Start" 
-                                                       TextColor="{DynamicResource Gray-900}" 
-                                                       LineBreakMode="NoWrap"/>
+                                                                   FontSize="16" 
+                                                                   x:Name="StoreName"
+                                                                   FontFamily="{StaticResource Montserrat-SemiBold}" 
+                                                                   HorizontalOptions="Start" 
+                                                                   TextColor="{DynamicResource Gray-900}" 
+                                                                   LineBreakMode="NoWrap"/>
 
                                                             <!--  Store operational hours label  -->
                                                             <Label  Text="10:00am - 6:00pm" 
-                                                        FontSize="12" 
-                                                        FontFamily="{StaticResource Montserrat-Medium}" 
-                                                        HorizontalOptions="Start" 
-                                                        TextColor="{DynamicResource Gray-700}"/>
+                                                                    FontSize="12" 
+                                                                    FontFamily="{StaticResource Montserrat-Medium}" 
+                                                                    HorizontalOptions="Start" 
+                                                                    TextColor="{DynamicResource Gray-700}"/>
 
                                                             <!--  Distance label  -->
                                                          <Label  Text="34km"  
-                                                        FontSize="12" 
-                                                        FontFamily="{StaticResource Montserrat-Medium}" 
-                                                        HorizontalOptions="Start" 
-                                                        TextColor="{DynamicResource Gray-700}"/>
+                                                                 FontSize="12" 
+                                                                 FontFamily="{StaticResource Montserrat-Medium}" 
+                                                                 HorizontalOptions="Start" 
+                                                                 TextColor="{DynamicResource Gray-700}"/>
 
                                                         </StackLayout>
 

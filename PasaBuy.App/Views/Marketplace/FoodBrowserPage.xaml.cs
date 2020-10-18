@@ -87,26 +87,6 @@ namespace PasaBuy.App.Views.Marketplace
             this.SearchEntry.Focus();
         }
 
-        private async void FoodRestorantTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
-        {
-            if (!isTapped)
-            {
-                isTapped = true;
-                var item = e.ItemData as FoodStore;
-
-                //new Alert("ok", "." + item.Id + ".HAHAHA", "ok");
-
-                /* StoreDetailsViewModel.loadcategory(item.Id);
-                 StoreDetailsViewModel.loadstoredetails(item.Id);*/
-                StoreDetailsViewModel.store_id = item.Id;
-                StoreDetailsViewModel.Loadcategory(item.Id);
-                StoreDetailsViewModel.Loadstoredetails(item.Id);
-                await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
-                await Task.Delay(200);
-                isTapped = false;
-            }
-        }
-
         private void SfListView_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
         {
             /*var item = e.ItemData as FoodStore;
