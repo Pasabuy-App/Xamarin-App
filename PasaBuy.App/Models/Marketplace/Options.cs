@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace PasaBuy.App.Models.Marketplace
@@ -11,6 +12,25 @@ namespace PasaBuy.App.Models.Marketplace
         private string name = string.Empty;
         private string id = string.Empty;
         private string price = string.Empty;
+        public SfRadioGroupKey GroupKey { get; set; }
+
+        private bool _isChecked;
+
+        public bool IsChecked
+        {
+            get
+            {
+                return this._isChecked;
+            }
+            set
+            {
+                if (_isChecked == value)
+                    return;
+
+                _isChecked = value;
+                OnPropertyChanged("IsChecked");
+            }
+        }
 
         public OptionsData[] data;
         public class OptionsData
@@ -72,5 +92,7 @@ namespace PasaBuy.App.Models.Marketplace
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
+
+
     }
 }

@@ -45,9 +45,13 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
             if (!IsBusy)
             {
+                IsBusy = true;
                 CanNavigate = false;
                 StoreDetailsViewModel.store_id = storeId;
+                //StoreDetailsViewModel.Loadcategory(storeId);
                 await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+                await Task.Delay(300);
+                IsBusy = false;
                 CanNavigate = true;
             }
         }

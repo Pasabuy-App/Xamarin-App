@@ -8,11 +8,36 @@ namespace PasaBuy.App.ViewModels.Marketplace
     {
         private ObservableCollection<Variants> _variantsList;
         private ObservableCollection<Options> _optionsList;
+        private bool isChecked = false;
+
+        public SfRadioGroupKey GroupKey { get; set; }
+
+        public bool IsChecked
+        {
+            get 
+            { 
+                return isChecked; 
+            }
+            set 
+            {
+                isChecked = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
         public ObservableCollection<Options> OptionsList
         {
             get
             {
+                GroupKey = new SfRadioGroupKey();
+
+                if (_optionsList != null)
+                {
+                    foreach (var item in _optionsList)
+                    {
+                        item.GroupKey = GroupKey;
+                    }
+                }
                 return _optionsList;
             }
             set
@@ -38,7 +63,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         public ProductDetailViewModel()
         {
             _variantsList = new ObservableCollection<Variants>();
-     
+        
             ObservableCollection<Options> size_options = new ObservableCollection<Options>();
             size_options.Add(new Options() { Name = "Medium", Price = "+25.00" });
             size_options.Add(new Options() { Name = "Large", Price = "+45.00" });
@@ -49,8 +74,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
             sweetness_options.Add(new Options() { Name = "75%", Price = "+0.00" });
             sweetness_options.Add(new Options() { Name = "100%", Price = "+0.00" });
 
-            _variantsList.Add(new Variants() { Name = "Size", options = size_options, GroupKey = "Size" });
-            _variantsList.Add(new Variants() { Name = "Sweetness Level", options = sweetness_options , GroupKey = "Sweetness Level"});
+            _variantsList.Add(new Variants() { Name = "Size", options = size_options });
+            _variantsList.Add(new Variants() { Name = "Sweetness Level", options = sweetness_options});
 
             //this.VariantsList = new ObservableCollection<Variants>()
             //{
@@ -67,8 +92,9 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
             //};
 
-
-
         }
+
+
     }
+
 }

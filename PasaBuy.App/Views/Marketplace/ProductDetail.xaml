@@ -19,7 +19,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            
+
             <DataTemplate x:Key="variantsTemplate">
                 <Frame HasShadow="True">
                     <StackLayout>
@@ -28,34 +28,25 @@
                                FontSize="{DynamicResource MediumSize}"
                                Text="{Binding Name}"
                                TextColor="{DynamicResource Gray-900}" />
-                                <StackLayout BindableLayout.ItemsSource="{Binding options}">
-                                    <BindableLayout.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="*" />
-                                                </Grid.ColumnDefinitions>
-                                                
-                                                 <buttons:SfRadioButton Grid.Column="0"
-                                                                        CheckedColor="{DynamicResource PrimaryColor}"
-                                                                        HorizontalTextAlignment="Start"
-                                                                        Text="{Binding Name}"
-                                                                        GroupKey="{Binding GroupKey}"
-                                                                        Margin="15,0,0,0"/>
-
-                                                <Label FontFamily="{StaticResource Montserrat-SemiBold}"
-                                                       Padding="5,0,0,0"
-                                                       Grid.Column="1"
-                                                       HorizontalTextAlignment="End"
-                                                       FontSize="{DynamicResource MediumSize}"
-                                                       Text="{Binding Price}"
-                                                       TextColor="{DynamicResource Gray-900}" />
-                                            </Grid>
-                                        </DataTemplate>     
-                                    </BindableLayout.ItemTemplate>
-                                </StackLayout>
+                  
+                            <buttons:SfRadioGroup x:Name="radioGroup"
+                                                  BindableLayout.ItemsSource="{Binding options}"
+                                                  HorizontalOptions="Start"
+                                                  VerticalOptions="Start">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <buttons:SfRadioButton x:Name="Variants"
+                                                                       Margin="15,0,0,0"
+                                                                       CheckedColor="{DynamicResource PrimaryColor}"
+                                                                       Text="{Binding Name}" />
+                                            
+                                  
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </buttons:SfRadioGroup>
+                        
                     </StackLayout>
+                   
                 </Frame>
             </DataTemplate>
         </ResourceDictionary>
@@ -86,6 +77,7 @@
                 <StackLayout Spacing="0" Padding="0,0,0,0">
                     <syncListView:SfListView
                             Margin="8,0"
+                            x:Name="listView"
                             Padding="0"
                             ColumnSpacing="0"
                             FocusBorderColor="Transparent"
