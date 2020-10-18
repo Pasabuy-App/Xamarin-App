@@ -214,7 +214,7 @@
                                                         Grid.Row="0"
                                                         x:Name="ProductLogo"
                                                         HeightRequest="{OnIdiom Phone=280,Default=380}"
-                                                        Source="https://pasabuy.app/wp-content/uploads/2020/10/Motorcycle.png"
+                                                        Source="{Binding StoreBanner}"
 			                                            DownsampleToViewSize="True" 
                                                         FadeAnimationEnabled="True">
                                 </ffimageloading:CachedImage>
@@ -234,7 +234,7 @@
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
                                         <Forms9Patch:Label Grid.Row="0"
-                                                       Text="Sample Store Name"
+                                                       Text="{Binding StoreName}"
                                                        x:Name="StoreName"
                                                        Lines="0"
                                                        MinFontSize="14"
@@ -246,7 +246,7 @@
                                                        AutoFit="Width"/>
 
                                         <Forms9Patch:Label Grid.Row="1"
-                                                       Text="#4 Rainbow Avenue, Pacita 2, San Pedro City, Laguna, 4024"
+                                                       Text="{Binding StoreAddress}"
                                                        x:Name="StoreAddress"
                                                        Lines="0"
                                                        MinFontSize="12"
@@ -283,7 +283,7 @@
                                                                AutoFit="Width"/>
 
                                                 <Forms9Patch:Label Grid.Row="1"
-                                                               Text="Lorem ipsum dolor what the heal this is numb become so far so becoming this so more than this cant u see." 
+                                                               Text="{Binding AboutStore}" 
                                                                x:Name="StoreDescription"
                                                                Lines="0"
                                                                MinFontSize="10"

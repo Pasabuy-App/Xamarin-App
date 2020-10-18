@@ -25,10 +25,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public static string store_id = string.Empty;
 
-        public string store_name;
-
-        public string store_address;
-
         private ObservableCollection<Categories> _storeData;
 
         private ObservableCollection<ProductList> productsList;
@@ -93,6 +89,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
+        public string store_name;
         public string StoreName
         {
             get { return store_name; }
@@ -102,12 +99,36 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 this.NotifyPropertyChanged();
             }
         }
+
+        public string store_address;
         public string StoreAddress
         {
             get { return store_address; }
             set
             {
                 store_address = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        public string about_store;
+        public string AboutStore
+        {
+            get { return about_store; }
+            set
+            {
+                about_store = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        public string store_banner;
+        public string StoreBanner
+        {
+            get { return store_banner; }
+            set
+            {
+                store_banner = value;
                 this.NotifyPropertyChanged();
             }
         }
@@ -141,8 +162,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
         public StoreDetailsViewModel()
         {
             _storeData = new ObservableCollection<Categories>();
-            
             Loadcategory(store_id);
+            LoadStoreDetails(store_id);
             //CartPageViewModel.cartDetails = new ObservableCollection<ProductList>();
             //CartPageViewModel.Convert2List(store_id);
             //this.CartItemCount = CartPageViewModel.cartDetails.Count;
@@ -263,8 +284,36 @@ namespace PasaBuy.App.ViewModels.Marketplace
             await Application.Current.MainPage.Navigation.PushModalAsync(page);
         }
 
+        public void LoadStoreDetails(string stid)
+        {
+            try
+            {
+                TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", stid, "1", "", (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        StoreDetailListData datas = JsonConvert.DeserializeObject<StoreDetailListData>(data);
+                        for (int i = 0; i < datas.data.Length; i++)
+                        {
+                            this.StoreName = datas.data[i].title;
+                            this.StoreAddress = datas.data[i].street + " " + datas.data[i].brgy + " " + datas.data[i].city + " " + datas.data[i].province;
+                            this.AboutStore = !string.IsNullOrEmpty(datas.data[i].short_info) ? datas.data[i].short_info : "No information found.";
+                            this.StoreBanner = PSAProc.GetUrl(datas.data[i].banner); // "https://pasabuy.app/wp-content/uploads/2020/10/Motorcycle.png";
+                        }
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+            }
+        }
 
-        public async void Loadcategory(string stid)
+        public void Loadcategory(string stid)
         {
             IsBusy = true;
             try
