@@ -12,7 +12,11 @@ namespace PasaBuy.App.Views
         public Demoguy()
         {
             InitializeComponent();
+        }
 
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            
         }
     }
 }

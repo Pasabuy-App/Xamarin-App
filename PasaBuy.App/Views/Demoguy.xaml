@@ -14,6 +14,7 @@
                HorizontalOptions="Center"
                VerticalOptions="Start" />
             <Button Text="Create Notification"
+                    Clicked="Button_Clicked"
                 HorizontalOptions="Center"
                 VerticalOptions="Start"
                 /> 

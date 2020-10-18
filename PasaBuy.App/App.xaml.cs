@@ -6,6 +6,7 @@ using PasaBuy.App.Local.Notice;
 using PasaBuy.App.Views;
 using PasaBuy.App.Views.Marketplace;
 using PasaBuy.App.Views.Onboarding;
+using System;
 using Xamarin.Forms;
 
 namespace PasaBuy.App
@@ -30,6 +31,8 @@ namespace PasaBuy.App
 
             //commit
             MainPage = new NavigationPage(new SplashPage());
+
+            LocalNotif.Instance.Show("Test Notification", "Elon Musk partnered with PasaBuy.App to deliver package to Mars.", "Its now done!", DateTime.Now.AddSeconds(60));
         }
 
         protected override void OnStart()
