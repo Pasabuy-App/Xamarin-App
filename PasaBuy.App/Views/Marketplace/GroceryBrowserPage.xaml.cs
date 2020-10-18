@@ -107,8 +107,7 @@ namespace PasaBuy.App.Views.Marketplace
                 isTapped = true;
                 var item = e.ItemData as Groceries;
                 StoreDetailsViewModel.store_id = item.Id;
-                StoreDetailsViewModel.Loadcategory(item.Id);
-                StoreDetailsViewModel.Loadstoredetails(item.Id);
+                //StoreDetailsViewModel.Loadcategory(item.Id);
                 await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
                 await System.Threading.Tasks.Task.Delay(200);
                 isTapped = false;

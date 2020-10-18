@@ -261,7 +261,7 @@
                                                             BackgroundColor="{DynamicResource Gray-400}"
                                                             HeightRequest="0.5" />
                                                         <Grid.GestureRecognizers>
-                                                            <TapGestureRecognizer Command="{Binding Path=BindingContext.ShowVariantsCommand, Source={x:Reference listView}}" CommandParameter="{Binding ID}}"/>
+                                                            <TapGestureRecognizer Command="{Binding Path=BindingContext.ShowVariantsCommand, Source={x:Reference listView}}" CommandParameter="{Binding ID}"/>
                                                         </Grid.GestureRecognizers>
                                                     </Grid>
                                                 </DataTemplate>

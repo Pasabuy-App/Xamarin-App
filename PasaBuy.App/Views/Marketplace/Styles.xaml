@@ -166,6 +166,17 @@
         <Setter Property="FontSize" Value="16" />
     </Style>
 
+    <OnPlatform x:Key="ProfileIconPlatform" x:TypeArguments="x:String" iOS="Font Awesome 5 Free" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free" />
+    <!--  Common style for profile page icon Label  -->
+    <Style x:Key="ProfileIconLabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="FontFamily" Value="{DynamicResource ProfileIconPlatform}" />
+    </Style>
+
     <!--  Common style for option labels  -->
     <Style
         x:Key="OptionButtonLabelStyle"

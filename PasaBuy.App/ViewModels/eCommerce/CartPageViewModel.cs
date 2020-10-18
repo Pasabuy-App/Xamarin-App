@@ -40,6 +40,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
         public static int refresh = 0;
 
 
+
         #endregion
 
         #region Constructor
@@ -51,7 +52,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
             CheckoutPageViewModel.deliveryAddress = new ObservableCollection<Models.eCommerce.Customer>();
         }
 
-        public static void InsertCart(string storeid, string id, string name, string summary, string image, double price, double totalprice, int quantity)
+        public static void InsertCart(string storeid, string id, string name, string summary, string image, double price, int quantity)
         {
             bool itemExists = cartDetails.Any(item =>
             {

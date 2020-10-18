@@ -38,15 +38,14 @@ namespace PasaBuy.App.ViewModels.Settings
         /// </summary>
         public SettingViewModel()
         {
-            isVisible = true;
-            /*if (PSACache.Instance.UserInfo.verify != "Verified")
+            if (Local.PSACache.Instance.UserInfo.verify == "UNVERIFIED")
             {
                 isVisible = true;
             }
             else
             {
                 isVisible = false;
-            }*/
+            }
             this.EditProfileCommand = new Command(this.EditProfileClicked);
             this.MyAddressCommand = new Command(this.MyAddressClicked);
             this.MyContactCommand = new Command(this.MyContactClicked);

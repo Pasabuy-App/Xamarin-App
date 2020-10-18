@@ -65,7 +65,22 @@ namespace PasaBuy.App.ViewModels.eCommerce
             //deliveryAddress.Clear();
             PaymentMethod();
             //MyAddress();
+            LoadCart();
         }
+
+        public void LoadCart()
+        {
+            _ListOrder = new ObservableCollection<Models.MobilePOS.OrderModel>();
+            foreach (var car in CartPageViewModel.cartDetails)
+            {
+                _ListOrder.Add(new Models.MobilePOS.OrderModel()
+                {
+                    ID = car.ID.ToString(),
+                    TotalQuantity = car.TotalQuantity
+                });
+            }
+        }
+
         public static void InsertAddress(string id, string person, string type, string fulladdress, string contact)
         {
             deliveryAddress.Clear();
@@ -329,6 +344,24 @@ namespace PasaBuy.App.ViewModels.eCommerce
             // Do something
         }
 
+        public static ObservableCollection<Models.MobilePOS.OrderModel> _ListOrder;
+        public ObservableCollection<Models.MobilePOS.OrderModel> ListOrder
+        {
+            get
+            {
+                return _ListOrder;
+            }
+            set
+            {
+                if (_ListOrder == value)
+                {
+                    return;
+                }
+
+                _ListOrder = value;
+                this.NotifyPropertyChanged();
+            }
+        }
         /// <summary>
         /// Invoked when the Place order button is clicked.
         /// </summary>
@@ -350,10 +383,10 @@ namespace PasaBuy.App.ViewModels.eCommerce
                         //new Alert("Success", "Payment Success! method: " + PaymentView.method + " addid: " + address_id.ToString(), "OK");
                         //Console.WriteLine("Method: " + PaymentView.method + " Address ID: " + address_id); //address id in first selection in 
 
-                        foreach (var car in CartPageViewModel.cartDetails)
+                        /*foreach (var car in CartPageViewModel.cartDetails)
                         {
-                            //Console.WriteLine("Method: " + PaymentView.method + " Address ID: " + address_id + " ." + car.Stid.ToString() + ". ." + car.ID.ToString() + ". ." + car.TotalQuantity.ToString() + ".");
-                            Customers.Instance.Create(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, car.Stid.ToString(), car.ID.ToString(), car.TotalQuantity.ToString(), "", PaymentView.method, address_id.ToString(), (bool success, string data) =>
+                            Console.WriteLine("Method: " + PaymentView.method + " Address ID: " + address_id + " StoreID: ." + Marketplace.StoreDetailsViewModel.store_id + ". Pdid: ." + car.ID.ToString() + ". Qty: ." + car.TotalQuantity.ToString() + ".");
+                            *//*Customers.Instance.Create(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, car.Stid.ToString(), car.ID.ToString(), car.TotalQuantity.ToString(), "", PaymentView.method, address_id.ToString(), (bool success, string data) =>
                             {
                                 if (success)
                                 {
@@ -363,9 +396,25 @@ namespace PasaBuy.App.ViewModels.eCommerce
                                 {
                                     new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                                 }
-                            });
-                        }
+                            });*//*
+                        }*/
 
+                        
+
+                        Http.POSFeature.Instance.CreateOrder(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, Marketplace.StoreDetailsViewModel.store_id, PaymentView.method, address_id.ToString(), "", ListOrder, (bool success, string data) =>
+                        {
+                            if (success)
+                            {
+                                Console.WriteLine("Success! " + HtmlUtils.ConvertToPlainText(data));
+                                //(App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new PaymentSuccessPage()));
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            }
+                        });
+
+                       
                         await Task.Delay(500);
                         btn.IsEnabled = true;
                     }

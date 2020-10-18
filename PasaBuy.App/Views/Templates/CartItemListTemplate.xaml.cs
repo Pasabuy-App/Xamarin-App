@@ -76,7 +76,7 @@ namespace PasaBuy.App.Views.Templates
             /*double total = Convert.ToDouble(btn.ClassId.ToString()) * Convert.ToDouble(e.Value);
             Console.WriteLine("Total Price: " + total);*/
             //Console.WriteLine("Total Quantity: " + e.Value + " ClassID: " + btn.ClassId.ToString());
-            CartPageViewModel.InsertCart(ViewModels.Marketplace.StoreDetailsViewModel.store_id, btn.ClassId.ToString(), "", "", "", 0, 0, Convert.ToInt32(e.Value));
+            CartPageViewModel.InsertCart(ViewModels.Marketplace.StoreDetailsViewModel.store_id, btn.ClassId.ToString(), "", "", "", 0, Convert.ToInt32(e.Value));
 
             //CartPageViewModel cart = new CartPageViewModel();
             //cart.UpdatePrice();
