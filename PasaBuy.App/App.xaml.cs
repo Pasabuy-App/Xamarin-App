@@ -17,7 +17,6 @@ namespace PasaBuy.App
             InitializeComponent();
 
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(PSAConfig.sfApiKey);
-            DependencyService.Get<INotificationManager>().Initialize();
 
             //Initialized all PCL required by PasaBuy.App
             DataVice.DVHost.Instance.Initialized(PSAConfig.CurrentRestUrl);

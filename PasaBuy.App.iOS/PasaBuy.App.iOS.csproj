@@ -67,8 +67,6 @@
     <AppExtensionDebugBundleId />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="iOSNotificationManager.cs" />
-    <Compile Include="iOSNotificationReceiver.cs" />
     <Compile Include="LocationUpdateServices.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />

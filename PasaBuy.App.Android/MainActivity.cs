@@ -42,8 +42,6 @@ namespace PasaBuy.App.Droid
             SfPopupLayoutRenderer.Init();
             Xamarin.FormsGoogleMaps.Init(this, savedInstanceState);
 
-            CreateNotificationFromIntent(Intent);
-
             LoadApplication(new App());
 
         }
@@ -81,23 +79,5 @@ namespace PasaBuy.App.Droid
                 }
             }
         }
-        
-        protected override void OnNewIntent(Intent intent)
-        {
-            CreateNotificationFromIntent(intent);
-        }
-
-        void CreateNotificationFromIntent(Intent intent)
-        {
-            if (intent?.Extras != null)
-            {
-                string title = intent.Extras.GetString(AndroidNotificationManager.TitleKey);
-                string message = intent.Extras.GetString(AndroidNotificationManager.MessageKey);
-
-                DependencyService.Get<INotificationManager>().ReceiveNotification(title, message);
-            }
-        }
-
-
     }
 }
