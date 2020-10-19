@@ -160,19 +160,6 @@
                 </Grid>
 
 
-                <!--<fab:FloatingActionButtonView
-				    ColorNormal="{StaticResource PrimaryColor}"
-				    ColorPressed="{StaticResource Orange}"
-				    ColorRipple="{StaticResource Yellow}"
-				    x:Name="AddProductButton"
-                    ImageName ="add_24.png"
-				    IsVisible="True"
-                    VerticalOptions="EndAndExpand"
-                    HorizontalOptions="EndAndExpand"
-				    AbsoluteLayout.LayoutFlags="PositionProportional"
-				    AbsoluteLayout.LayoutBounds="0.95,0.95,80,80">
-                </fab:FloatingActionButtonView>-->
-
             </Grid>
             <local:LoadingIndicator
                 Grid.Row="0"

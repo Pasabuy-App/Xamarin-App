@@ -102,7 +102,6 @@
                                                    FontFamily="{StaticResource Montserrat-Medium}"
                                                    HeightRequest="21" />
 
-                            <!--NOTE FOR RUSSEL: Change text color to green if approved, otherwise red if pending.-->
                             <!-- Status -->
                                 <buttons:SfButton Grid.Column="3" IsVisible="{Binding isGreen}"
                                                               Grid.RowSpan="3" 

@@ -2,7 +2,7 @@
 using PasaBuy.App.ViewModels.MobilePOS;
 using PasaBuy.App.Views.Navigation;
 using System;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -22,7 +22,7 @@ namespace PasaBuy.App.Views.StoreViews
             Navigation.PopModalAsync();
         }
 
-        private void SfListView_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        private async void SfListView_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
             MasterView.MyType = "store";
             var item = e.ItemData as Models.Marketplace.Store;
@@ -33,6 +33,7 @@ namespace PasaBuy.App.Views.StoreViews
             PSACache.Instance.UserInfo.store_banner = item.Banner;
 
             //PSACache.Instance.SaveUserData();
+            await Task.Delay(500);
              App.Current.MainPage = new NavigationView();
         }
     }
