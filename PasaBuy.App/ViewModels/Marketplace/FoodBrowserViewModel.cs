@@ -17,7 +17,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public static ObservableCollection<FoodStore> foodstorelist;
 
-        public static ObservableCollection<FoodStore> _bestSellers;
+        public static ObservableCollection<FeaturedStoreModel> _bestSellers;
         private static FoodBrowserViewModel instance;
         public static FoodBrowserViewModel Instance
         {
@@ -56,7 +56,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-        public ObservableCollection<FoodStore> BestSellers
+        public ObservableCollection<FeaturedStoreModel> BestSellers
         {
             get
             {
@@ -109,7 +109,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
            });
             isLoad = false;
             foodstorelist = new ObservableCollection<FoodStore>();
-            _bestSellers = new ObservableCollection<FoodStore>();
+            _bestSellers = new ObservableCollection<FeaturedStoreModel>();
 
         }
         public static async void RefreshData()
@@ -135,12 +135,12 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 {
                     if (success)
                     {
-                        FoodStoreListData datas = JsonConvert.DeserializeObject<FoodStoreListData>(data);
+                        FeaturedStoreModel datas = JsonConvert.DeserializeObject<FeaturedStoreModel>(data);
                         for (int i = 0; i < datas.data.Length; i++)
                         {
-                            _bestSellers.Add(new FoodStore()
+                            _bestSellers.Add(new FeaturedStoreModel()
                             {
-                                //Id = datas.data[i].ID,
+                                Id = datas.data[i].ID,
                                 Title = datas.data[i].title,
                                 Logo = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg" : PSAProc.GetUrl(datas.data[i].banner)
                             });
@@ -156,15 +156,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
-
-            /*for (int i = 0; i < 4; i++)
-            {
-                _bestSellers.Add(new FoodStore()
-                {
-                    Title = "Test Store",
-                    Logo = "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg"
-                });
-            }*/
         }
 
         public static void LoadFood(string lastid)
