@@ -162,7 +162,7 @@
                                                             VerticalOptions="Fill">
                                                 <Grid.GestureRecognizers>
 
-                                                    <TapGestureRecognizer  x:Name="Delete" Tapped="Delete_Tapped"/>
+                                                    <TapGestureRecognizer  x:Name="Delete" />
                                                 </Grid.GestureRecognizers>
                                                 <Grid HorizontalOptions="Center" VerticalOptions="Center">
                                                     <Image
