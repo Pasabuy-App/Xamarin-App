@@ -4,6 +4,7 @@ using PasaBuy.App.Local;
 using PasaBuy.App.Models.Marketplace;
 using PasaBuy.App.Views.eCommerce;
 using PasaBuy.App.Views.ErrorAndEmpty;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -39,7 +40,25 @@ namespace PasaBuy.App.ViewModels.eCommerce
 
         public static int refresh = 0;
 
+        public static ObservableCollection<Options> _quantityChanged;
+        public ObservableCollection<Options> QuantityChanged
+        {
+            get
+            {
+                return _quantityChanged;
+            }
 
+            set
+            {
+                if (_quantityChanged == value)
+                {
+                    return;
+                }
+
+                _quantityChanged = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
         #endregion
 
@@ -47,9 +66,34 @@ namespace PasaBuy.App.ViewModels.eCommerce
 
         public CartPageViewModel()
         {
-            this.DeliveryFee = "Free";
-            this.UpdatePrice();
             CheckoutPageViewModel.deliveryAddress = new ObservableCollection<Models.eCommerce.Customer>();
+
+            cartDetails = new ObservableCollection<ProductList>(Marketplace.StoreDetailsViewModel.cartDetails);
+            LoadCart();
+
+            _quantityChanged = new ObservableCollection<Options>();
+            _quantityChanged.CollectionChanged += CollectionChanges;
+        }
+        public void LoadCart()
+        {
+            double totalprice = 0;
+            foreach (ProductList prod in cartDetails)
+            {
+                double variant_price = 0;
+                if (prod.Vrid > 0)
+                {
+                    variant_price = prod.Vrid_Price;
+                }
+                totalprice += Convert.ToInt32(prod.Quantity) * (prod.ActualPrice + variant_price);
+            }
+            this.TotalPrice = totalprice;
+            this.DiscountPrice = totalprice;
+            this.DeliveryFee = "Free";
+        }
+
+        private void CollectionChanges(object sender, EventArgs e)
+        {
+            LoadCart();
         }
 
         public static void InsertCart(string storeid, string id, string name, string summary, string image, double price, int quantity)
@@ -97,11 +141,11 @@ namespace PasaBuy.App.ViewModels.eCommerce
             if (Xamarin.Essentials.Preferences.ContainsKey(stid))
             {
                 string data = Xamarin.Essentials.Preferences.Get(stid, "{}");
-                //System.Diagnostics.Debug.WriteLine(data);
                 var result = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.Generic.List<ProductList>>(data);
                 //System.Diagnostics.Debug.WriteLine("Count" + result.Count);
+                //System.Diagnostics.Debug.WriteLine(data);
 
-                CartPageViewModel.cartDetails = new ObservableCollection<ProductList>(result);
+                cartDetails = new ObservableCollection<ProductList>(result);
             }
         }
         #endregion
@@ -314,7 +358,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
 
         #region Methods
 
-        private async void ChangeAddressClicked(object obj)
+        private void ChangeAddressClicked(object obj)
         {
             //await Application.Current.MainPage.Navigation.PushAsync(new ChangeAddressPage());
             new Alert("Ok", "ok", "ok");
@@ -355,7 +399,9 @@ namespace PasaBuy.App.ViewModels.eCommerce
             {
                 this.CartDetails.Remove(product);
                 this.UpdatePrice();
-                Convert2String(product.stid);
+                //Convert2String(product.stid);
+                Marketplace.StoreDetailsViewModel.cartDetails.Remove(product);
+                Marketplace.StoreDetailsViewModel.Convert2String(product.stid);
 
                 if (this.CartDetails.Count == 0)
                 {

@@ -9,7 +9,9 @@
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
              xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms" 
-             xmlns:syncListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:templateSelector="clr-namespace:PasaBuy.App.Helpers" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:syncListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
+             xmlns:templateSelector="clr-namespace:PasaBuy.App.Helpers" 
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
              x:Class="PasaBuy.App.Views.Marketplace.ProductDetail"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="{DynamicResource Gray-White}">
@@ -22,11 +24,14 @@
 
             <DataTemplate x:Key="radioTemplate">
                     <buttons:SfRadioButton  Grid.Column="0"
+                                            x:Name="Options"
+                                            StateChanged="Options_StateChanged"
                                             Margin="8,12,8,0"
                                             HorizontalOptions="FillAndExpand"
                                             FontSize="{DynamicResource MediumSize}" 
                                             FontFamily="{StaticResource Montserrat-Medium}"
                                             TextColor="{DynamicResource Gray-900}"
+                                            ClassId="{Binding Id}"
                                             Text="{Binding Name}" />
             </DataTemplate>
 
@@ -60,7 +65,7 @@
                                                 VerticalOptions="Center" 
                                                 Padding="0,10,0,2"
                                                 Margin="8,8,8,0"
-                                                Text="{Binding Price}" 
+                                                Text="{Binding Price, StringFormat='+ {0:F2}'}" 
                                                 FontSize="{DynamicResource MediumSize}" 
                                                 FontFamily="{StaticResource Montserrat-Medium}" 
                                                 TextColor="{DynamicResource Gray-900}"
@@ -129,7 +134,7 @@
                                                                 Grid.Row="0"
                                                                 x:Name="ProductLogo"
                                                                 HeightRequest="250"
-                                                                Source="https://pasabuy.app/wp-content/uploads/2020/10/Motorcycle.png"
+                                                                Source="{Binding ProductImage}"
 			                                                    DownsampleToViewSize="True" 
                                                                 FadeAnimationEnabled="True">
                                 </ffimageloading:CachedImage>
@@ -158,17 +163,17 @@
                                                     VerticalOptions="Center" 
                                                     Grid.Row="0"
                                                     Grid.Column="0"
-                                                    Text="Super Burger" 
+                                                    Text="{Binding ProductName}" 
                                                     Padding="10,5,0,0"
                                                     FontSize="{DynamicResource LargeSize}" 
                                                     FontFamily="{StaticResource Montserrat-Bold}" 
                                                     TextColor="{DynamicResource Gray-900}"
                                                     LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
 
-                                        <Label  HorizontalOptions="End" 
+                                        <Label  HorizontalOptions="End"  
                                                     x:Name="Price"
                                                     VerticalOptions="Center" 
-                                                    Text="₱230" 
+                                                    Text="{Binding Price, StringFormat='₱ {0:F2}'}" 
                                                     Grid.Row="0"
                                                     Grid.Column="1" 
                                                     Padding="10,5,10,0"
@@ -180,7 +185,7 @@
                                         <Label  HorizontalOptions="Start" 
                                                 x:Name="Short_Info"
                                                     VerticalOptions="Center" 
-                                                    Text="Cheeseburger topped with favourite mushroom and quarter pound beef steak." 
+                                                    Text="{Binding Short_Info}" 
                                                     FontSize="{DynamicResource MediumSize}" 
                                                     MaxLines="3"
                                                     Padding="10,5,0,0"
@@ -208,7 +213,7 @@
                                 <BoxView Grid.Row="0" Style="{StaticResource SeparatorStyle}" />
                                 <Label  HorizontalOptions="Start" 
                                         VerticalOptions="Start" 
-                                        Text="Special Instructions"
+                                        Text="Special Instructions :"
                                         Margin="5,5,0,0"
                                         Grid.Row="1"
                                         FontSize="{DynamicResource MediumSize}" 
@@ -217,7 +222,7 @@
                                         LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
                                 <Label  HorizontalOptions="Start" 
                                         VerticalOptions="Start" 
-                                        Text="Specify special requests or instructions for this product"
+                                        Text="Specify special requests or instructions for this product."
                                         Margin="5,5,0,0"
                                         Grid.Row="2"
                                         FontSize="{DynamicResource SmallSize}" 
@@ -231,11 +236,12 @@
                                         ContainerBackgroundColor="Transparent"
                                         ContainerType="Outlined"
                                         FocusedColor="{DynamicResource BlackColor}"
-                                        Hint="Thigh part please"
+                                        Hint="Ex. Thigh part please."
                                         HorizontalOptions="Fill"
                                         LeadingViewPosition="Inside">
                                     <Editor
                                         HeightRequest="80"
+                                        Text="{Binding SpecialInstructions}"
                                         MaxLength="250" />
                                 </inputLayout:SfTextInputLayout>
                             </Grid>
@@ -251,7 +257,7 @@
                                              Margin="20, 10, 20, 0"
                                              Minimum="1" 
                                              MaximumDecimalDigits="0"
-                                             Value="1"
+                                             Value="{Binding Quantity}"
                                              TextAlignment="Center"
                                              SpinButtonAlignment="Both"
                                              FormatString="n"/>
@@ -273,10 +279,10 @@
                         </Grid.ColumnDefinitions>
                     
                         <Label HorizontalOptions="StartAndExpand" 
-                               x:Name="Price"
+                               x:Name="Quantity"
                                VerticalOptions="CenterAndExpand"
                                Padding="18,8,0,5"
-                               Text="2" 
+                               Text="{Binding TotalItems}" 
                                Grid.Column="0" 
                                FontSize="18" 
                                FontFamily="{StaticResource Montserrat-Bold}" 
@@ -295,9 +301,10 @@
 
                         <!--Text="{Binding ActualPrice, StringFormat='₱ {0:F2}'}"-->
                         <Label HorizontalOptions="EndAndExpand" 
+                               x:Name="TotalPrice"
                                VerticalOptions="CenterAndExpand"
                                Padding="18,8,10,5"
-                               Text="₱160.00"
+                               Text="{Binding TotalPrice, StringFormat='₱ {0:F2}'}"
                                Grid.Column="2" 
                                FontSize="18" 
                                FontFamily="{StaticResource Montserrat-Bold}" 

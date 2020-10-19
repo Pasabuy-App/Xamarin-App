@@ -54,6 +54,12 @@ namespace PasaBuy.App.Http
                 {
                     dict.Add("data[items][" + i + "][pdid]", order.ID.ToString());
                     dict.Add("data[items][" + i + "][qty]", order.TotalQuantity.ToString());
+                    int ii = 0;
+                    foreach (var var in order.Variants)
+                    {
+                        dict.Add("data[items][" + i + "][variants][varid" + ii + "]", var.ID.ToString());
+                        ii++;
+                    }
                     i++;
                 }
 

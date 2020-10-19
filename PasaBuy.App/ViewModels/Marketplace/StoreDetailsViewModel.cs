@@ -8,6 +8,7 @@ using PasaBuy.App.Views.eCommerce;
 using PasaBuy.App.Views.ErrorAndEmpty;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -158,22 +159,81 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 this.NotifyPropertyChanged();
             }
         }
+
+        public static ObservableCollection<ProductList> cartDetails;
+        public ObservableCollection<ProductList> CartDetails
+        {
+            get
+            {
+                return cartDetails;
+            }
+
+            set
+            {
+                if (cartDetails == value)
+                {
+                    return;
+                }
+
+                cartDetails = value;
+                this.NotifyPropertyChanged();
+            }
+        }
         #endregion
         public StoreDetailsViewModel()
         {
             _storeData = new ObservableCollection<Categories>();
-            Loadcategory(store_id);
-            LoadStoreDetails(store_id);
+            cartDetails = new ObservableCollection<ProductList>();
+            Convert2List(store_id);
+            this.CartItemCount = cartDetails.Count;
+            cartDetails.CollectionChanged += CollectionChanges;
+
             //CartPageViewModel.cartDetails = new ObservableCollection<ProductList>();
             //CartPageViewModel.Convert2List(store_id);
             //this.CartItemCount = CartPageViewModel.cartDetails.Count;
-            //categoriesdata.Clear();
             //CartPageViewModel.cartDetails.CollectionChanged += CollectionChanges;
 
+            Loadcategory(store_id);
+            LoadStoreDetails(store_id);
+
         }
+        public static void InsertCart(string id, int vrid, double vrid_price, string name, string summary, string image, double price, int quantity)
+        {
+            cartDetails.Insert(0, new ProductList()
+            {
+                Stid = store_id,
+                Vrid = vrid,
+                Vrid_Price = vrid_price,
+                ID = id,
+                Name = name,
+                Summary = summary,
+                PreviewImage = PSAProc.GetUrl(image),
+                ActualPrice = price,
+                TotalQuantity = quantity,
+                Quantity = quantity
+            });
+            Convert2String(store_id);
+        }
+        public static void Convert2String(string stid)
+        {
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(cartDetails);
+            Xamarin.Essentials.Preferences.Set(stid, json);
+        }
+        public static void Convert2List(string stid)
+        {
+            if (Xamarin.Essentials.Preferences.ContainsKey(stid))
+            {
+                string data = Xamarin.Essentials.Preferences.Get(stid, "{}");
+                var result = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.Generic.List<ProductList>>(data);
+
+                cartDetails = new ObservableCollection<ProductList>(result);
+            }
+        }
+
         private void CollectionChanges(object sender, EventArgs e)
         {
-            this.CartItemCount = CartPageViewModel.cartDetails.Count;
+            //this.CartItemCount = CartPageViewModel.cartDetails.Count;
+            this.CartItemCount = cartDetails.Count;
         }
 
         ICommand goToCartCommand;
@@ -196,24 +256,13 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-
         private async void AddToCartClicked(string id)
         {
-           
-            //await Application.Current.MainPage.Navigation.PushModalAsync(new Views.Marketplace.ProductDetail());
             try
             {
                 if (!isCartClicked)
                 {
-                    //await Application.Current.MainPage.Navigation.PushModalAsync(new Views.Marketplace.ProductDetail());
                     isCartClicked = true;
-
-                    //btn.IsVisible = false;
-                    //btn.BackgroundImage = "Idcard.png";
-                    //btn.BackgroundColor = Color.Red;
-                    //btn.Text = "&#xe724;";
-                    //this.cartItemCount = this.cartItemCount;
-                    //this.CartItemCount += 1;
                     TindaPress.Product.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, store_id, "", id, "1", "", (bool success, string data) =>
                     {
                         if (success)
@@ -221,14 +270,12 @@ namespace PasaBuy.App.ViewModels.Marketplace
                             ProductListData datas = JsonConvert.DeserializeObject<ProductListData>(data);
                             for (int i = 0; i < datas.data.Length; i++)
                             {
-                                Views.Marketplace.ProductDetail.productid = datas.data[i].ID.ToString();
-                                Views.Marketplace.ProductDetail.productname = datas.data[i].product_name.ToString();
-                                Views.Marketplace.ProductDetail.shortinfo = datas.data[i].short_info.ToString();
+                                ProductDetailViewModel.productid = datas.data[i].ID.ToString();
+                                ProductDetailViewModel.productname = datas.data[i].product_name.ToString();
+                                ProductDetailViewModel.shortinfo = datas.data[i].short_info.ToString();
 
-                                Views.Marketplace.ProductDetail.productimage = PSAProc.GetUrl(datas.data[i].preview.ToString());
-                                Views.Marketplace.ProductDetail.price = datas.data[i].price.ToString();
-                                Views.Marketplace.ProductDetail.totalprice = datas.data[i].price.ToString();
-                                //CartPageViewModel.InsertCart(store_id, datas.data[i].ID, datas.data[i].product_name, datas.data[i].short_info, datas.data[i].preview, Convert.ToDouble(datas.data[i].price), Convert.ToDouble(datas.data[i].price), 1);
+                                ProductDetailViewModel.productimage = PSAProc.GetUrl(datas.data[i].preview.ToString());
+                                ProductDetailViewModel.price = datas.data[i].price.ToString();
                             }
                             Application.Current.MainPage.Navigation.PushModalAsync(new Views.Marketplace.ProductDetail());
                         }
@@ -255,10 +302,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 if (this.cartItemCount != 0)
                 {
                     isCartClicked = true;
-                    //await Application.Current.MainPage.Navigation.PushModalAsync(new CartPage());
                     CanNavigate = false;
                     IsCartBusy = true;
-                    //await RunTask(NavigateToPage(new CartPage()));
                     await NavigateToPage(new CartPage());
                     CanNavigate = true;
                     IsCartBusy = false;
@@ -340,12 +385,11 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                     {
                                         ID = catRoot.data[i].products[j].ID,
                                         PreviewImage = PSAProc.GetUrl(catRoot.data[i].products[j].preview) == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-product.png" : PSAProc.GetUrl(catRoot.data[i].products[j].preview),
-                                        Name = catRoot.data[i].products[j].product_name, // "Name: " + i + " " + j,
+                                        Name = catRoot.data[i].products[j].product_name,
                                         ActualPrice = Convert.ToDouble(catRoot.data[i].products[j].price),
-                                        Description = catRoot.data[i].products[j].short_info //"Info: " + i + " " + j
+                                        Description = catRoot.data[i].products[j].short_info 
                                     });
                                 }
-                                
                               
                                 _storeData.Add(new Categories()
                                 {
@@ -354,12 +398,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                     Title = catRoot.data[i].title,
                                     Prods = productsList
                                 });
-                           
                             }
-
                         }
-                       
-
                     }
                 });
             }
