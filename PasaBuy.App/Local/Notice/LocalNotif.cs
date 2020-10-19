@@ -1,4 +1,5 @@
 ﻿using PasaBuy.App.Services;
+using Plugin.LocalNotification;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,8 +9,6 @@ namespace PasaBuy.App.Local.Notice
 {
     public class LocalNotif
     {
-        INotificationManager notificationManager;
-
         public static LocalNotif instance;
         public static LocalNotif Instance 
         {
@@ -25,29 +24,47 @@ namespace PasaBuy.App.Local.Notice
 
         public LocalNotif()
         {
-            notificationManager = DependencyService.Get<INotificationManager>();
-            notificationManager.NotificationReceived += (sender, eventArgs) =>
+            // Local Notification received event listener
+            NotificationCenter.Current.NotificationReceived += OnLocalNotificationReceived;
+
+            // Local Notification tap event listener
+            NotificationCenter.Current.NotificationTapped += OnLocalNotificationTapped;
+        }
+
+        public void Show(string title, string description, string data)
+        {
+            var notification = new NotificationRequest
             {
-                var evtData = (NotificationEventArgs)eventArgs;
-                ShowNotification(evtData.Title, evtData.Message);
+                NotificationId = 100,
+                Title = data,
+                Description = description,
+                ReturningData = data
             };
+            NotificationCenter.Current.Show(notification);
         }
 
-        void ShowNotification(string title, string message)
+        public void Show(string title, string description, string data, DateTime date)
         {
-            Device.BeginInvokeOnMainThread(() =>
+            TimeSpan tspan = date.Subtract(DateTime.Now);
+            var notification = new NotificationRequest
             {
-                var msg = new Label()
-                {
-                    Text = $"Notification Received:\nTitle: {title}\nMessage: {message}"
-                };
-            });
+                NotificationId = 100,
+                Title = data,
+                Description = description,
+                ReturningData = data,
+                NotifyTime = DateTime.Now.Add(tspan)
+            };
+            NotificationCenter.Current.Show(notification);
         }
 
-
-        public void NotifyLocalDevice(string title, string message)
+        private void OnLocalNotificationReceived(NotificationReceivedEventArgs e)
         {
-            notificationManager.ScheduleNotification(title, message);
+            Console.WriteLine("Demoguy! Received Notification => " + e.Title + " Description: " + e.Description);
+        }
+
+        private void OnLocalNotificationTapped(NotificationTappedEventArgs e)
+        {
+            Console.WriteLine("Demoguy! Tapped Notification => " + e.Data );
         }
     }
 }

@@ -4,10 +4,9 @@ using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
-using PasaBuy.App.Local.Notice;
 using Plugin.CurrentActivity;
+using Plugin.LocalNotification;
 using Syncfusion.XForms.Android.PopupLayout;
-using Xamarin.Forms;
 
 namespace PasaBuy.App.Droid
 {
@@ -41,10 +40,11 @@ namespace PasaBuy.App.Droid
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
             SfPopupLayoutRenderer.Init();
             Xamarin.FormsGoogleMaps.Init(this, savedInstanceState);
-
-            CreateNotificationFromIntent(Intent);
+            NotificationCenter.CreateNotificationChannel();	
 
             LoadApplication(new App());
+
+            NotificationCenter.NotifyNotificationTapped(Intent);
 
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -81,23 +81,11 @@ namespace PasaBuy.App.Droid
                 }
             }
         }
-        
+
         protected override void OnNewIntent(Intent intent)
         {
-            CreateNotificationFromIntent(intent);
+            NotificationCenter.NotifyNotificationTapped(intent);
+            base.OnNewIntent(intent);
         }
-
-        void CreateNotificationFromIntent(Intent intent)
-        {
-            if (intent?.Extras != null)
-            {
-                string title = intent.Extras.GetString(AndroidNotificationManager.TitleKey);
-                string message = intent.Extras.GetString(AndroidNotificationManager.MessageKey);
-
-                DependencyService.Get<INotificationManager>().ReceiveNotification(title, message);
-            }
-        }
-
-
     }
 }
