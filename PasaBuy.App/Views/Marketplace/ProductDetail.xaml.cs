@@ -41,5 +41,11 @@ namespace PasaBuy.App.Views.Marketplace
             //new Controllers.Notice.Alert("OK", "Ok", "Ok");
          
         }
+
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            await CartGrid.FadeTo(0.5, 200);
+            await CartGrid.FadeTo(1, 200);
+        }
     }
 }

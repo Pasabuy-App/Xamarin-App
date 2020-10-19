@@ -249,6 +249,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         async void GoToCartClicked(object obj)
         {
+            IsBusy = true;
             if (!isCartClicked)
             {
                 if (this.cartItemCount != 0)
@@ -263,15 +264,18 @@ namespace PasaBuy.App.ViewModels.Marketplace
                     IsCartBusy = false;
                     await Task.Delay(100);
                     isCartClicked = false;
+                    IsBusy = false;
                 }
                 else
                 {
                     isCartClicked = true;
                     CanNavigate = false;
                     IsCartBusy = true;
+                    IsBusy = true;
                     await NavigateToPage(new EmptyCartPage());
                     CanNavigate = true;
                     IsCartBusy = false;
+                    IsBusy = false;
                     await Task.Delay(100);
                     isCartClicked = false;
                 }
