@@ -1,6 +1,9 @@
-﻿using PasaBuy.App.Models.Marketplace;
+﻿using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Models.Marketplace;
 using Syncfusion.XForms.Buttons;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.Marketplace
 {
@@ -11,6 +14,22 @@ namespace PasaBuy.App.ViewModels.Marketplace
         private bool isChecked = false;
 
         public SfRadioGroupKey GroupKey { get; set; }
+
+        public ICommand AddToCartCommand
+        {
+            get
+            {
+                return new Command<string>((x) => AddToCartClicked(x));
+            }
+        }
+
+
+        private async void AddToCartClicked(string id)
+        {
+            new Alert("Something went Wrong", "test", "OK");
+            
+        }
+
 
         public bool IsChecked
         {
