@@ -72,26 +72,7 @@ namespace PasaBuy.App.Views.Templates
 
         private void numericUpDown_ValueChanged(object sender, Syncfusion.SfNumericUpDown.XForms.ValueEventArgs e)
         {
-            var btn = (SfNumericUpDown)sender;
-            /*double total = Convert.ToDouble(btn.ClassId.ToString()) * Convert.ToDouble(e.Value);
-            Console.WriteLine("Total Price: " + total);*/
-            //Console.WriteLine("Total Quantity: " + e.Value + " ClassID: " + btn.ClassId.ToString());
-            CartPageViewModel.InsertCart(ViewModels.Marketplace.StoreDetailsViewModel.store_id, btn.ClassId.ToString(), "", "", "", 0, Convert.ToInt32(e.Value));
-
-            //CartPageViewModel cart = new CartPageViewModel();
-            //cart.UpdatePrice();
-            //Console.WriteLine("cart.TotalPrice: " + cart.TotalPrice);
-            //CartPageViewModel cart = (CartPageViewModel)BindingContext;
-            //cart.TotalPrice = Convert.ToDouble(e.Value) * 80;
-            //cart.GetQuantity(Convert.ToDouble(e.Value), Convert.ToInt32(btn.ClassId.ToString()));
-            //Console.WriteLine("ValueChanges: " + e.Value.ToString());
-            //PasaBuy.App.ViewModels.eCommerce.CartPageViewModel.ChangeValue(Convert.ToInt32(e.Value.ToString()));
+            CartPageViewModel._quantityChanged.Clear();
         }
-
-        /*private void numericUpDown_ValueChanged(object sender, Syncfusion.SfNumericUpDown.XForms.ValueEventArgs e)
-        {
-            //Console.WriteLine("ValueChanges: " + e.Value.ToString());
-            PasaBuy.App.ViewModels.eCommerce.CartPageViewModel.ChangeValue(Convert.ToInt32(e.Value.ToString()));
-        }*/
     }
 }
