@@ -24,9 +24,6 @@ namespace PasaBuy.App.Droid.Renderers
                 Control.Text = (e.NewElement as Controls.CalenderDatePicker).PlaceHolderText;
                 Control.Gravity = Android.Views.GravityFlags.CenterVertical;
                 Control.SetPadding(20, 0, 0, 0);
-                Control.SetHintTextColor(Android.Graphics.Color.ParseColor(customPicker.PlaceHolderColor));
-
-
             }
         }
 
