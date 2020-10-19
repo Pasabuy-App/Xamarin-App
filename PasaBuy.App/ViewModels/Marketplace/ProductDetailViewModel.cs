@@ -73,9 +73,15 @@ namespace PasaBuy.App.ViewModels.Marketplace
             sweetness_options.Add(new Options() { Name = "50%", Price = "+0.00" });
             sweetness_options.Add(new Options() { Name = "75%", Price = "+0.00" });
             sweetness_options.Add(new Options() { Name = "100%", Price = "+0.00" });
+            ObservableCollection<Options> flavor = new ObservableCollection<Options>();
+            flavor.Add(new Options() { Name = "Spicy", Price = "+0.00" });
+            flavor.Add(new Options() { Name = "Original", Price = "+0.00" });
+
 
             _variantsList.Add(new Variants() { Name = "Size", options = size_options });
             _variantsList.Add(new Variants() { Name = "Sweetness Level", options = sweetness_options});
+            _variantsList.Add(new Variants() { Name = "Flavor", options = flavor });
+
 
             //this.VariantsList = new ObservableCollection<Variants>()
             //{
