@@ -9,10 +9,13 @@ namespace PasaBuy.App.Views.PopupModals
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PopupShowWalletCredit : PopupPage
     {
+        public static string wallet_id;
+        public static string wallet_title;
         public PopupShowWalletCredit()
         {
             InitializeComponent();
-            WalletID.Text = ViewModels.Currency.WalletCreditViewModel.wallet_id;
+            WalletID.Text = wallet_id;
+            Title.Text = wallet_title;
         }
 
         private void CancelModal(object sender, EventArgs e)

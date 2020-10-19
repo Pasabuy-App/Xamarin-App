@@ -103,7 +103,7 @@
                                Padding="10,0,0,0"
                                FontSize="18"
                                VerticalTextAlignment="Center"
-                               Text="Credits Wallet ID"
+                               x:Name="Title"
                                TextColor="{DynamicResource Gray-900}" />
                         </StackLayout>
 
