@@ -41,7 +41,7 @@ namespace PasaBuy.App.Views.Currency
                     LastIndex += 6;
                 }
             }
-        }
+        } 
 
         private async void SendMoney_Tapped(object sender, EventArgs e)
         {
@@ -63,8 +63,10 @@ namespace PasaBuy.App.Views.Currency
             if (!isTapped)
             {
                 isTapped = true;
-                await PopupNavigation.Instance.PushAsync(new PopupShowWalletCredit());
-                isTapped = false;
+                PopupShowWalletCredit.wallet_title = "Credits Wallet ID";
+                PopupShowWalletCredit.wallet_id = WalletCreditViewModel.wallet_id;
+                await PopupNavigation.Instance.PushAsync(new PopupShowWalletCredit()); 
+                 isTapped = false;
             }
         }
     }

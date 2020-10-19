@@ -77,6 +77,16 @@ namespace PasaBuy.App.Views.Navigation
                 //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Documents"), Icon = "Idcard.png", TargetType = typeof(DocumentsView) });
                 //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Reports"), Icon = "Idcard.png", TargetType = typeof(ReportsView) });
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Settings"), Icon = "Idcard.png", TargetType = typeof(SettingsView) });
+
+
+                _logobanner = new ObservableCollection<Personnels>();
+                _logobanner.CollectionChanged += LogoBannerChanges;
+                _switchlist = new ObservableCollection<Operations>();
+                _switchlist.CollectionChanged += SwitchChanges;
+                PopupGoOnline._switch = "false";
+                isTapped = false;
+                _switch = false;
+                ValidateStatus();
             }
             if (MyType == "mover")
             {
@@ -96,14 +106,6 @@ namespace PasaBuy.App.Views.Navigation
             navigationDrawerList.ItemsSource = menuList;
             navigationDrawerList.SelectedItem = menuList.FirstOrDefault();
 
-            _logobanner = new ObservableCollection<Personnels>();
-            _logobanner.CollectionChanged += LogoBannerChanges;
-            _switchlist = new ObservableCollection<Operations>();
-            _switchlist.CollectionChanged += SwitchChanges;
-            PopupGoOnline._switch = "false";
-            isTapped = false;
-            _switch = false;
-            ValidateStatus();
 
         }
         private void SwitchChanges(object sender, EventArgs e)
@@ -189,8 +191,12 @@ namespace PasaBuy.App.Views.Navigation
             if (!isTapped)
             {
                 isTapped = true;
-                PopupGoOnline._switch = isActiveSwitch.IsOn.ToString();
-                await PopupNavigation.Instance.PushAsync(new PopupGoOnline());
+                if (MyType == "store")
+                {
+                    PopupGoOnline._switch = isActiveSwitch.IsOn.ToString();
+                    await PopupNavigation.Instance.PushAsync(new PopupGoOnline());
+                }
+
                 isTapped = false;
                 //Console.WriteLine("isActiveSwitch.IsOn.ToString(): " + isActiveSwitch.IsOn.ToString());
                 //new Controllers.Notice.Alert("Switch", isActiveSwitch.IsOn.ToString(), "Ok");

@@ -18,38 +18,46 @@ namespace PasaBuy.App.Views.PopupModals
 
         private void CancelModal(object sender, EventArgs e)
         {
-            if (_switch == "True")
+            if (Views.Navigation.MasterView.MyType == "store")
             {
-                Views.Navigation.MasterView._switch = false;
-                Views.Navigation.MasterView._switchlist.Clear();
+                if (_switch == "True")
+                {
+                    Views.Navigation.MasterView._switch = false;
+                    Views.Navigation.MasterView._switchlist.Clear();
+                }
+                else
+                {
+                    Views.Navigation.MasterView._switch = true;
+                    Views.Navigation.MasterView._switchlist.Clear();
+                }
             }
-            else
-            {
-                Views.Navigation.MasterView._switch = true;
-                Views.Navigation.MasterView._switchlist.Clear();
-            }
+
             PopupNavigation.Instance.PopAsync();
         }
 
         private void ConfirmModal(object sender, EventArgs e)
         {
-            if (_switch == "True") // store is open
+            if (Views.Navigation.MasterView.MyType == "store")
             {
-                //new Controllers.Notice.Alert("Switch", "Store is open", "Ok"); // insert
-                Views.Navigation.MasterView._switch = true;
-                Views.Navigation.MasterView._switchlist.Clear();
-                UpdateOperations("open");
+                if (_switch == "True") // store is open
+                {
+                    //new Controllers.Notice.Alert("Switch", "Store is open", "Ok"); // insert
+                    Views.Navigation.MasterView._switch = true;
+                    Views.Navigation.MasterView._switchlist.Clear();
+                    UpdateOperations("open");
+                }
+                else // store is close
+                {
+                    //new Controllers.Notice.Alert("Switch", "Store is close", "Ok"); // update
+                    Views.Navigation.MasterView._switch = false;
+                    Views.Navigation.MasterView._switchlist.Clear();
+                    UpdateOperations("close");
+                    //save to cache then load it to set the switch to true then insert open to database.
+                }
+                Local.PSACache.Instance.UserInfo.store_status = Convert.ToBoolean(_switch);
+                Local.PSACache.Instance.SaveUserData();
             }
-            else // store is close
-            {
-                //new Controllers.Notice.Alert("Switch", "Store is close", "Ok"); // update
-                Views.Navigation.MasterView._switch = false;
-                Views.Navigation.MasterView._switchlist.Clear();
-                UpdateOperations("close");
-                //save to cache then load it to set the switch to true then insert open to database.
-            }
-            Local.PSACache.Instance.UserInfo.store_status = Convert.ToBoolean(_switch);
-            Local.PSACache.Instance.SaveUserData();
+
             PopupNavigation.Instance.PopAsync();
         }
 
