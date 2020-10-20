@@ -137,6 +137,7 @@
                                              ItemSize="150"
                                              Orientation="Horizontal" 
                                              ItemsSource="{Binding BestSellers}" 
+                                             TapCommand="{Binding ItemTappedCommand}"
                                              ItemSpacing="8, 0, 8, 0" 
                                              ItemTemplate="{StaticResource BestSellersTemplate}"
                                              IsScrollBarVisible="False"/>

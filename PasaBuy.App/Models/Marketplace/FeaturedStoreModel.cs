@@ -13,6 +13,7 @@ namespace PasaBuy.App.Models.Marketplace
         public class FoodStoreData
         {
             public string ID = string.Empty;
+            public string stid = string.Empty;
             public string catid = string.Empty;
             public string add_id = string.Empty;
             public string comm = string.Empty;

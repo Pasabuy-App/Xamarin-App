@@ -140,7 +140,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         {
                             _bestSellers.Add(new FeaturedStoreModel()
                             {
-                                Id = datas.data[i].ID,
+                                Id = datas.data[i].stid,
                                 Title = datas.data[i].title,
                                 Logo = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg" : PSAProc.GetUrl(datas.data[i].banner)
                             });
@@ -244,11 +244,18 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-        private void NavigateToNextPage(object selectedItem)
+        private async void NavigateToNextPage(object selectedItem)
         {
-
+            if (!IsBusy)
+            {
+                IsBusy = true;
+                CanNavigate = false;
+                StoreDetailsViewModel.store_id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as FeaturedStoreModel).Id;
+                await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+                await Task.Delay(300);
+                IsBusy = false;
+                CanNavigate = true;
+            }
         }
-
-        //public ObservableCollection<FoodStore> NavigationList { get; set; }
     }
 }
