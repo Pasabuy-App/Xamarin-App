@@ -185,6 +185,7 @@
                                 IsScrollBarVisible="false"
                                 ItemSpacing="0,27,0,0"
                                 ItemSize="50"
+                                x:Name="ListView"
                                 AllowSwiping="True"
                                 ItemsSource="{Binding VehicleList}"
                                 SelectionBackgroundColor="Transparent"
@@ -264,6 +265,9 @@
                                                     </StackLayout>
                                                 </Grid>
                                             </Grid>
+                                            <controls:CustomShadowFrame.GestureRecognizers>
+                                                <TapGestureRecognizer  Command="{Binding BindingContext.MyVehicleCommand,Source={x:Reference ListView}}" CommandParameter="{Binding Identification}" />
+                                            </controls:CustomShadowFrame.GestureRecognizers>
                                         </controls:CustomShadowFrame>
                                     </ViewCell>
                                 </DataTemplate>

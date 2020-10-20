@@ -32,12 +32,47 @@ namespace PasaBuy.App.Views.PopupModals
                 }
             }
 
+            if (Views.Navigation.MasterView.MyType == "mover")
+            {
+                if (_switch == "True")
+                {
+                    Views.Navigation.MasterView._switch = false;
+                    Views.Navigation.MasterView._switchlist.Clear();
+                }
+                else
+                {
+                    Views.Navigation.MasterView._switch = true;
+                    Views.Navigation.MasterView._switchlist.Clear();
+                }
+            }
+
             PopupNavigation.Instance.PopAsync();
         }
 
         private void ConfirmModal(object sender, EventArgs e)
         {
             if (Views.Navigation.MasterView.MyType == "store")
+            {
+                if (_switch == "True") // store is open
+                {
+                    //new Controllers.Notice.Alert("Switch", "Store is open", "Ok"); // insert
+                    Views.Navigation.MasterView._switch = true;
+                    Views.Navigation.MasterView._switchlist.Clear();
+                    UpdateOperations("open");
+                }
+                else // store is close
+                {
+                    //new Controllers.Notice.Alert("Switch", "Store is close", "Ok"); // update
+                    Views.Navigation.MasterView._switch = false;
+                    Views.Navigation.MasterView._switchlist.Clear();
+                    UpdateOperations("close");
+                    //save to cache then load it to set the switch to true then insert open to database.
+                }
+                Local.PSACache.Instance.UserInfo.store_status = Convert.ToBoolean(_switch);
+                Local.PSACache.Instance.SaveUserData();
+            }
+
+            if (Views.Navigation.MasterView.MyType == "mover")
             {
                 if (_switch == "True") // store is open
                 {
@@ -77,6 +112,26 @@ namespace PasaBuy.App.Views.PopupModals
             {
                 new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
+        }
+
+        public void UpdateAttendance(string status)
+        {
+            try
+            {
+                HatidPress.Rider.Instance.UpdateAttendance(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, status, "", (bool success, string data) => 
+                { 
+
+                });
+            }
+            catch (Exception e)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+            }
+        }
+
+        public void UploadLocation()
+        {
+
         }
     }
 }

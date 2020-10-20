@@ -19,6 +19,8 @@ using PasaBuy.App.Models.MobilePOS;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using PasaBuy.App.Local.Notice;
+using Rg.Plugins.Popup.Services;
+using PasaBuy.App.Views.Driver;
 
 namespace PasaBuy.App.ViewModels.Menu
 {
@@ -421,15 +423,15 @@ namespace PasaBuy.App.ViewModels.Menu
         /// Invoked when the driver button is clicked.
         /// </summary>
         /// <param name="obj">The object</param>
-        private void DriverButtonClicked(object obj)
+        private  void DriverButtonClicked(object obj)
         {
             if (!Status)
             {
                 Status = true;
-                Device.BeginInvokeOnMainThread( () =>
+                Device.BeginInvokeOnMainThread(async () =>
                 {
                     MasterView.MyType = "mover";
-                    App.Current.MainPage = new NavigationView();
+                    await(App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new VehicleListPage()));
                     Status = false;
                 });
             }

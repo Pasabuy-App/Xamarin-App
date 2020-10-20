@@ -160,10 +160,7 @@
                                                             BackgroundColor="Red"
                                                             HorizontalOptions="Fill"
                                                             VerticalOptions="Fill">
-                                                <Grid.GestureRecognizers>
-
-                                                    <TapGestureRecognizer  x:Name="Delete" />
-                                                </Grid.GestureRecognizers>
+                                               
                                                 <Grid HorizontalOptions="Center" VerticalOptions="Center">
                                                     <Image
                                                                     Grid.Row="0"

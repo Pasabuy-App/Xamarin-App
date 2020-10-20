@@ -1,4 +1,5 @@
-﻿using PasaBuy.App.ViewModels.Driver;
+﻿using Forms9Patch;
+using PasaBuy.App.ViewModels.Driver;
 using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using PasaBuy.App.Local.Notice;
 
 namespace PasaBuy.App.Views.Driver
 {
@@ -23,6 +25,7 @@ namespace PasaBuy.App.Views.Driver
 
         private void backButton_Clicked(object sender, EventArgs e)
         {
+            Console.WriteLine("tapped");
             Navigation.PopModalAsync();
         }
 
@@ -31,6 +34,11 @@ namespace PasaBuy.App.Views.Driver
             await AddButton.FadeTo(0.5, 100);
             await AddButton.FadeTo(1, 100);
             await PopupNavigation.Instance.PushAsync(new PopupVehiclesSelection());
+        }
+
+        private void MyVehicle_Tapped(object sender, EventArgs e)
+        {
+
         }
     }
 }

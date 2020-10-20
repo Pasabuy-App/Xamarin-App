@@ -5,11 +5,34 @@ using System.Text;
 
 namespace PasaBuy.App.Models.Driver
 {
-    public class VehicleList
+    public class VehicleList : INotifyPropertyChanged
     {
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged(string name)
+        {
+            if (this.PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(name));
+        }
+
+        private string ID = string.Empty;
         private string vehicle_type = string.Empty;
-        private string image = string.Empty;
+        private string vehicle = string.Empty;
         private string status = string.Empty;
+
+        public string Identification
+        {
+            get
+            {
+                return ID;
+            }
+            set
+            {
+                ID = value;
+                OnPropertyChanged("VehicleType");
+            }
+        }
 
         public string VehicleType
         {
@@ -28,11 +51,11 @@ namespace PasaBuy.App.Models.Driver
         {
             get
             {
-                return image;
+                return vehicle;
             }
             set
             {
-                image = value;
+                vehicle = value;
                 OnPropertyChanged("VehicleImage");
             }
         }
@@ -50,12 +73,14 @@ namespace PasaBuy.App.Models.Driver
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged(string name)
+        public VehicleListData[] data;
+        public class VehicleListData
         {
-            if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(name));
+            public string ID = string.Empty;
+            public string vehicle_type = string.Empty;
+            public string vehicle = string.Empty;
+            public string status = string.Empty;
         }
+
     }
 }
