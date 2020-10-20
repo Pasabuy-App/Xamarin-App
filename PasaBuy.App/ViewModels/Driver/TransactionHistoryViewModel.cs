@@ -170,10 +170,21 @@ namespace PasaBuy.App.ViewModels.Driver
                 return this.itemTappedCommand ?? (this.itemTappedCommand = new Command<object>(this.ItemSelected));
             }
         }
-        private void ItemSelected(object selectedItem)
+        private async void ItemSelected(object selectedItem)
         {
-            string id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Models.Driver.TransactListData).ID;
-            new Controllers.Notice.Alert("There is no ViewDetailsPage", "This is the Transaction ID : " + id, "OK");
+            //string id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Models.Driver.TransactListData).ID;
+            //new Controllers.Notice.Alert("There is no ViewDetailsPage", "This is the Transaction ID : " + id, "OK"); // 27 ORDER ID
+            var item = (selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Models.Driver.TransactListData;
+            Views.StoreViews.TransactionDetailsView.id = item.ID;
+            Views.StoreViews.TransactionDetailsView.customer = item.Customer;
+            Views.StoreViews.TransactionDetailsView.orderid = item.Hash_id;
+            Views.StoreViews.TransactionDetailsView.totalprice = item.Price;
+            Views.StoreViews.TransactionDetailsView.datecreated = item.Date_created;
+            Views.StoreViews.TransactionDetailsView.method = "Cash";// item.Method;
+            Views.StoreViews.TransactionDetailsView.order_type = "completed";
+            Views.StoreViews.TransactionDetailsView.stage_type = "completed";
+            ViewModels.MobilePOS.OrderDetailsViewModel.LoadOrder("completed", "27");
+            await Application.Current.MainPage.Navigation.PushModalAsync(new Views.StoreViews.TransactionDetailsView());
         }
 
     }
