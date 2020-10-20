@@ -11,7 +11,7 @@
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
     xmlns:local="clr-namespace:PasaBuy.App.Views.Inputs"
-    xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Onboarding"
+    xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Onboarding" xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
     NavigationPage.HasNavigationBar="False" 
     BackgroundColor="{DynamicResource Gray-White}"
     x:Class="PasaBuy.App.Views.Onboarding.SignUpPage">
@@ -29,18 +29,31 @@
     <ContentPage.BindingContext>
         <viewModel:SignUpPageViewModel />
     </ContentPage.BindingContext>
+    
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Spacing="0" >
+                <control:TitleView Title="Create Account " FontSize="14"
+                                    BackgroundColor="{DynamicResource PrimaryColor}" >
+                    <control:TitleView.LeadingView >
+                        <buttons:SfButton
+                            x:Name="backButton"
+                            Clicked="backButton_Clicked"
+                            CornerRadius="4"
+                            BackgroundColor="Transparent"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                    </control:TitleView.LeadingView>
+
+                </control:TitleView>
+                <ContentPresenter />
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
 
     <ContentPage.Content>
-        <Grid Padding="0, 40, 0, 40">
-
+        <Grid>
             <ScrollView HorizontalOptions="Center">
-                <ScrollView.VerticalOptions>
-                    <OnIdiom
-                        x:TypeArguments="LayoutOptions"
-                        Default="CenterAndExpand"
-                        Phone="FillAndExpand" />
-                </ScrollView.VerticalOptions>
-
                 <StackLayout
                     Margin="{core:OnPlatformOrientationThickness PhonePortrait='20,32',
                                                                  PhoneLandscape='150,32',
@@ -74,47 +87,59 @@
                             Text="Join the Community!" />
 
                         <!--  Entry to get username from user  -->
-                        <border:SfBorder BorderColor="{Binding Source={x:Reference UserNameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+                        <border:SfBorder BorderColor="Black"
                                  Style="{StaticResource SfBorderStyle}">
                             <control:BorderlessEntry
                             x:Name="UserNameEntry"
                             Placeholder="Username"
+                            ReturnType="Next"
+                                TextColor="Black"
                             Text="{Binding Username}"
+                            PlaceholderColor="{DynamicResource Gray-900}"
                             Style="{StaticResource EntryTextBoxStyle}" />
                         </border:SfBorder>
 
                         <!--  Entry to get email ID from user  -->
-                        <border:SfBorder BorderColor="{Binding Source={x:Reference EmailEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+                        <border:SfBorder BorderColor="Black"
                                  Style="{StaticResource SfBorderStyle}">
                             <control:BorderlessEntry
                             x:Name="EmailEntry"
+                            ReturnType="Next"
+                                TextColor="Black"
                             Placeholder="Email Address"
                             Text="{Binding Email}"
+                            PlaceholderColor="{DynamicResource Gray-900}"
                             Style="{StaticResource EntryTextBoxStyle}" />
                         </border:SfBorder>
 
                         <!--  Entry to get last name from user  -->
-                        <border:SfBorder BorderColor="{Binding Source={x:Reference LnameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+                        <border:SfBorder BorderColor="Black"
                                  Style="{StaticResource SfBorderStyle}">
                             <control:BorderlessEntry
                             x:Name="LnameEntry"
                             Placeholder="Last Name"
+                                TextColor="Black"
+                            ReturnType="Next"
                             Text="{Binding Lname}"
+                            PlaceholderColor="{DynamicResource Gray-900}"
                             Style="{StaticResource EntryTextBoxStyle}" />
                         </border:SfBorder>
 
                         <!--  Entry to get first name from user  -->
-                        <border:SfBorder BorderColor="{Binding Source={x:Reference FnameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+                        <border:SfBorder BorderColor="Black"
                                  Style="{StaticResource SfBorderStyle}">
                             <control:BorderlessEntry
                             x:Name="FnameEntry"
                             Placeholder="First Name"
+                                ReturnType="Next"
                             Text="{Binding Fname}"
+                            PlaceholderColor="{DynamicResource Gray-900}"
+                            TextColor="{DynamicResource BlackColor}"
                             Style="{StaticResource EntryTextBoxStyle}" />
                         </border:SfBorder>
-
+                        
                         <border:SfBorder
-                        BorderColor="{Binding Source={x:Reference BirthdayPicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=2}"
+                        BorderColor="Black"
                         HeightRequest="40"
                         Style="{StaticResource SfBorderStyle}">
                             <control:CalenderDatePicker Date="{Binding BirthDay}" 
@@ -122,19 +147,23 @@
                                 Style="{StaticResource SfBorderStyle}"
                                 FontFamily="{StaticResource Montserrat-Regular}"
                                 FontSize="16"
+                                
                                 Format="yyyy-MM-dd"
-                                TextColor="{DynamicResource Gray-800}"
+                                TextColor="Black"
                                 PlaceHolderText="Date of Birth"/>
                         </border:SfBorder>
 
                         <border:SfBorder
-                        BorderColor="{Binding Source={x:Reference GenderPicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=2}"
+                        BorderColor="Black"
                         Style="{StaticResource SfBorderStyle}">
                             <combobox:SfComboBox
                                 x:Name="GenderPicker"
                                 SelectedValue="{Binding Gender, Mode=TwoWay}"
                                 Style="{StaticResource ComboBoxStyle}"
                                 Watermark="Gender"
+              
+                                TextColor="Black"
+                                WatermarkColor="{DynamicResource Gray-900}"
                                 VerticalOptions="CenterAndExpand">
                                 <combobox:SfComboBox.ComboBoxSource>
                                     <ListCollection:List x:TypeArguments="x:String">
@@ -150,7 +179,7 @@
                                                     FontSize="25"
                                                     HorizontalTextAlignment="Center"
                                                     Text="{StaticResource DropDownButtonIcon}"
-                                                    TextColor="{DynamicResource Gray-600}"
+                                                    TextColor="{DynamicResource Gray-900}"
                                                     VerticalTextAlignment="Center" />
                                         </combobox:DropDownButtonSettings.View>
                                     </combobox:DropDownButtonSettings>
@@ -158,14 +187,17 @@
                             </combobox:SfComboBox>
                         </border:SfBorder>
 
-
+                        
                         <border:SfBorder
-                        BorderColor="{Binding Source={x:Reference CountryPicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=2}"
+                        BorderColor="Black"
                         Style="{StaticResource SfBorderStyle}">
                             <combobox:SfComboBox
                                 x:Name="CountryPicker"
                                 Style="{StaticResource ComboBoxStyle}"
                                 Watermark="Country"
+                                TextColor="Black"
+                          
+                                WatermarkColor="{DynamicResource Gray-900}"
                                 SelectionChanged="CountryPicker_SelectionChanged"
                                 SelectedValuePath="CountryCode"
                                 VerticalOptions="CenterAndExpand">
@@ -189,14 +221,16 @@
                                 </combobox:SfComboBox.DropDownButtonSettings>
                             </combobox:SfComboBox>
                         </border:SfBorder>
-
+                        
                         <border:SfBorder
-                        BorderColor="{Binding Source={x:Reference ProvincePicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=2}"
+                        BorderColor="Black"
                         Style="{StaticResource SfBorderStyle}">
                             <combobox:SfComboBox
                                 x:Name="ProvincePicker"
                                 Style="{StaticResource ComboBoxStyle}"
                                 Watermark="Province"
+                                TextColor="Black"
+                                WatermarkColor="{DynamicResource Gray-900}"
                                 SelectedValuePath="ProvinceCode"
                                 SelectionChanged="ProvincePicker_SelectionChanged"
                                 VerticalOptions="CenterAndExpand">
@@ -222,7 +256,7 @@
                         </border:SfBorder>
 
                         <border:SfBorder
-                        BorderColor="{Binding Source={x:Reference CityPicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=2}"
+                        BorderColor="Black"
                         Style="{StaticResource SfBorderStyle}">
                             <combobox:SfComboBox
                                 x:Name="CityPicker"
@@ -230,6 +264,8 @@
                                 SelectionChanged="CityPicker_SelectionChanged"
                                 Style="{StaticResource ComboBoxStyle}"
                                 Watermark="City"
+                                TextColor="Black"
+                                WatermarkColor="{DynamicResource Gray-900}"
                                 VerticalOptions="CenterAndExpand">
                                 <combobox:SfComboBox.ComboBoxSource>
                                     <ListCollection:List x:TypeArguments="x:String">
@@ -253,7 +289,7 @@
                         </border:SfBorder>
 
                         <border:SfBorder
-                        BorderColor="{Binding Source={x:Reference BarangayPicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=2}"
+                        BorderColor="Black"
                         Style="{StaticResource SfBorderStyle}">
                             <combobox:SfComboBox
                                 x:Name="BarangayPicker"
@@ -261,6 +297,8 @@
                                 SelectionChanged="BarangayPicker_SelectionChanged"
                                 Style="{StaticResource ComboBoxStyle}"
                                 Watermark="Barangay"
+                                TextColor="Black"
+                                WatermarkColor="{DynamicResource Gray-900}"
                                 VerticalOptions="CenterAndExpand">
                                 <combobox:SfComboBox.ComboBoxSource>
                                     <ListCollection:List x:TypeArguments="x:String">
@@ -284,10 +322,13 @@
                         </border:SfBorder>
 
                         <!--  Entry to get street address from user  -->
-                        <border:SfBorder BorderColor="{Binding Source={x:Reference StreetEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+                        <border:SfBorder BorderColor="Black" 
                                  Style="{StaticResource SfBorderStyle}">
                             <control:BorderlessEntry
                             x:Name="StreetEntry"
+                            TextColor="Black"
+                            ReturnType="Next"
+                            PlaceholderColor="{DynamicResource Gray-900}"
                             Placeholder="Street/Unit/Flr/Bldg"
                             Text="{Binding StreetEntry}"
                             Style="{StaticResource EntryTextBoxStyle}" />
@@ -297,7 +338,9 @@
                         <!--  Sign-up button  -->
                         <buttons:SfButton
                             Command="{Binding SignUpCommand}"
-                            CornerRadius="7"
+                            CornerRadius="5"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            TextColor="White"
                             FontFamily="{StaticResource Montserrat-SemiBold}"
                             Style="{StaticResource SfButtonStyle}"
                             Text="REGISTER" />
@@ -306,20 +349,15 @@
                     <StackLayout
                         HorizontalOptions="Center"
                         Orientation="Horizontal"
+                        Padding="0,15,0,15"
                         Spacing="1"
-                        VerticalOptions="End">
-
-                        <!--<StackLayout.Padding>
-                            <OnIdiom
-                                x:DataType="Thickness"
-                                Default="0, 48, 0, 0"
-                                Phone="0" />
-                        </StackLayout.Padding>-->
+                        VerticalOptions="Center">
 
                         <Label
                             FontFamily="{StaticResource Montserrat-Medium}"
                             HorizontalOptions="CenterAndExpand"
                             HorizontalTextAlignment="Center"
+                            TextColor="Black"
                             Style="{StaticResource LabelStyle}"
                             Text="Already have an account?"
                             VerticalTextAlignment="Center" />
@@ -327,30 +365,19 @@
                         <buttons:SfButton
                             Command="{Binding LoginCommand}"
                             Style="{StaticResource SfFlatButtonStyle}"
+                            TextColor="{DynamicResource PrimaryColor}"
                             Text="LOGIN" />
 
                     </StackLayout>
                 </StackLayout>
             </ScrollView>
-
-            <StackLayout
-                    x:Name="aiLayout"
-                    IsVisible="{Binding State}"
-                    AbsoluteLayout.LayoutBounds="0,0,1,1"
-                    AbsoluteLayout.LayoutFlags="All"
-                    BackgroundColor="Gray" Opacity="0.5" ClassId="123">
-                <ActivityIndicator
-                        x:Name="isBusy"
-                        IsRunning="true"
-                        HorizontalOptions="CenterAndExpand"
-                        VerticalOptions="CenterAndExpand"
-                        HeightRequest="100"
-                        WidthRequest="100"
-                        Color="Black"/>
-            </StackLayout>
-
+            <loading:LoadingIndicator
+                Grid.Row="0"
+                HorizontalOptions="Fill"
+                IsRunning="{Binding State, Mode=TwoWay}"
+                VerticalOptions="Fill" />
         </Grid>
-
+        
     </ContentPage.Content>
 </ContentPage>
 

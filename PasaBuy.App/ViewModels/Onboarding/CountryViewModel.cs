@@ -1,10 +1,12 @@
 ﻿using DataVice;
+using Forms9Patch;
 using Newtonsoft.Json;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Onboarding;
 using System;
 using System.Collections.ObjectModel;
+using Alert = PasaBuy.App.Controllers.Notice.Alert;
 
 namespace PasaBuy.App.ViewModels.Onboarding
 {
@@ -26,6 +28,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
                     if (success)
                     {
                         CountryData country = JsonConvert.DeserializeObject<CountryData>(data);
+                     
                         for (int i = 0; i < country.data.Length; i++)
                         {
                             string code = country.data[i].code;
