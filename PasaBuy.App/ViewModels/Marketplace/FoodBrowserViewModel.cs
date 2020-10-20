@@ -193,6 +193,49 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
+        public static void SearchStore(string search)
+        {
+            try
+            {
+                TindaPress.Store.Instance.Search(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, search, (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        FoodStoreListData datas = JsonConvert.DeserializeObject<FoodStoreListData>(data);
+                        if (datas.data.Length > 0)
+                        {
+                            foodstorelist.Clear();
+                            for (int i = 0; i < datas.data.Length; i++)
+                            {
+                                foodstorelist.Add(new FoodStore()
+                                {
+                                    Id = datas.data[i].ID,
+                                    Title = datas.data[i].title,
+                                    Description = datas.data[i].short_info,
+                                    Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(datas.data[i].avatar),
+                                    Offer = "50% off",
+                                    ItemRating = "4.5",
+                                    Banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png" : PSAProc.GetUrl(datas.data[i].banner)
+                                });
+                            }
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", "No store found.", "Try Again");
+                        }
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+            }
+        }
+
         public Command<object> ItemTappedCommand
         {
             get
