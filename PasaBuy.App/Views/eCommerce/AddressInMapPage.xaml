@@ -22,8 +22,8 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="60*" />
-                <RowDefinition Height="40*" />
+                <RowDefinition Height="70*" />
+                <RowDefinition Height="30*" />
             </Grid.RowDefinitions>
             <map:Map x:Name="map" PinDragEnd="map_PinDragEnd" Grid.Row="0"/>
             <StackLayout Grid.Row="1"
@@ -34,7 +34,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <border:SfBorder BorderColor="{Binding Source={x:Reference FloorEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+                    <!--border:SfBorder BorderColor="{Binding Source={x:Reference FloorEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
                                      Style="{StaticResource BusinessFormBorderStyle}"
                                      Grid.Row="0">
                         <controls:BorderlessEntry
@@ -44,7 +44,7 @@
                             Text="{Binding FloorEntry}"
                             TextColor="{DynamicResource Gray-Black}"
                             Style="{StaticResource EntryTextBoxStyle}" />
-                    </border:SfBorder>
+                    </-->
                     <border:SfBorder BorderColor="{Binding Source={x:Reference StreetEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
                                      Style="{StaticResource BusinessFormBorderStyle}"
                                      Grid.Row="1">

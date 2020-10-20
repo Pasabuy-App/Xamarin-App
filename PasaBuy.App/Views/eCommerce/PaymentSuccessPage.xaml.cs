@@ -19,6 +19,19 @@ namespace PasaBuy.App.Views.eCommerce
             InitializeComponent();
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                int numModals = Application.Current.MainPage.Navigation.ModalStack.Count;
+                for (int currModal = 0; currModal < numModals; currModal++)
+                {
+                    await Application.Current.MainPage.Navigation.PopModalAsync(false);
+                }
+            });
+            return base.OnBackButtonPressed();
+        }
+
         private async void SfButton_Clicked(object sender, System.EventArgs e)
         {
             int numModals = Application.Current.MainPage.Navigation.ModalStack.Count;

@@ -4,6 +4,45 @@ namespace PasaBuy.App.Models.Marketplace
 {
     public class ProductList
     {
+        public double totalprice;
+        public double TotalPrice
+        {
+            get
+            {
+                return totalprice;
+            }
+            set
+            {
+                totalprice = value;
+                OnPropertyChanged("TotalPrice");
+            }
+        }
+        public double vrid_price;
+        public double Vrid_Price
+        {
+            get
+            {
+                return vrid_price;
+            }
+            set
+            {
+                vrid_price = value;
+                OnPropertyChanged("Vrid_Price");
+            }
+        }
+        public int vrid;
+        public int Vrid
+        {
+            get
+            {
+                return vrid;
+            }
+            set
+            {
+                vrid = value;
+                OnPropertyChanged("Vrid");
+            }
+        }
         public string stid = string.Empty;
         public string Stid
         {
