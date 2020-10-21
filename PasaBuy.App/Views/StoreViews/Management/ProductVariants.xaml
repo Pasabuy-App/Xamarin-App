@@ -207,21 +207,21 @@
                                                                    Grid.ColumnSpan="2"
                                                                    Style="{StaticResource ProductNameTitleStyle}"
                                                                    FontFamily="{StaticResource Montserrat-Medium}"
-                                                                   Text="{Binding Short_info}" />
+                                                                   Text="{Binding Info}" />
 
                                                             <Label Grid.Row="0"
                                                                    Grid.Column="1"
                                                                    HorizontalOptions="EndAndExpand"
                                                                    Style="{StaticResource ProductNameTitleStyle}"
                                                                    FontFamily="{StaticResource Montserrat-Medium}"
-                                                                   Text="100" />
+                                                                   Text="" />
 
                                                             <Label Grid.Row="1"
                                                                    Grid.Column="1"
                                                                    HorizontalOptions="EndAndExpand"
                                                                    Style="{StaticResource ProductNameTitleStyle}"
                                                                    FontFamily="{StaticResource Montserrat-Medium}"
-                                                                   Text="Base Price: Yes" />
+                                                                   Text="{Binding Baseprice}" />
 
 
 
