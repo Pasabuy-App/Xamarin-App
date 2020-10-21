@@ -19,7 +19,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0"
-                  Padding="15,15,15,15"
+                  Padding="15,5,15,5"
                   BackgroundColor="{StaticResource PrimaryColor}"
                   HeightRequest="{OnPlatform Android='46',
                                                    iOS='56'}">

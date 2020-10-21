@@ -24,6 +24,8 @@ namespace PasaBuy.App.Views.StoreViews
 
         private async void SfListView_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
+            Loader.IsVisible = true;
+            Loader.IsRunning = true;
             MasterView.MyType = "store";
             var item = e.ItemData as Models.Marketplace.Store;
             PSACache.Instance.UserInfo.stid = item.Id;
@@ -34,7 +36,9 @@ namespace PasaBuy.App.Views.StoreViews
 
             //PSACache.Instance.SaveUserData();
             await Task.Delay(500);
-             App.Current.MainPage = new NavigationView();
+            Loader.IsVisible = false;
+            Loader.IsRunning = false;
+            App.Current.MainPage = new NavigationView();
         }
     }
 }

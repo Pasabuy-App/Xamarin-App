@@ -21,7 +21,8 @@
     <ContentPage.Content>
         <Grid>
             <Grid>
-                <Grid RowSpacing="0">
+                <Grid RowSpacing="0"
+                      CompressedLayout.IsHeadless="True">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
@@ -52,7 +53,9 @@
                                     VerticalOptions="Center" />
 
                     </Grid>
-                    <StackLayout Grid.Row="1" Spacing="0">
+                    <StackLayout Grid.Row="1" 
+                                 CompressedLayout.IsHeadless="True"
+                                 Spacing="0">
 
                         <listView:SfListView
                                 Padding="15,0,10,0"
@@ -78,7 +81,9 @@
                                                 HorizontalOptions="FillAndExpand"
                                                 VerticalOptions="FillAndExpand">
                                             <Grid>
-                                                <Grid ColumnSpacing="0" RowSpacing="0">
+                                                <Grid ColumnSpacing="0"
+                                                      CompressedLayout.IsHeadless="True"
+                                                      RowSpacing="0">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="120" />
                                                         <ColumnDefinition Width="*" />
@@ -88,16 +93,18 @@
                                                     <ffimageloading:CachedImage
                                                             Grid.Row="0"
                                                             Grid.Column="0"
+                                                            Aspect="Fill"
                                                             CacheType="Memory"
                                                             DownsampleToViewSize="True"
-                                                            HeightRequest="120"
+                                                            HeightRequest="90"
                                                             HorizontalOptions="Center"
                                                             Source="{Binding Logo}"
-                                                            TransformPlaceholders="True"
-                                                            WidthRequest="120">
+                                                            FadeAnimationEnabled="True"
+                                                            WidthRequest="130">
                                                     </ffimageloading:CachedImage>
                                                     <StackLayout
                                                             Grid.Column="1"
+                                                            CompressedLayout.IsHeadless="True"
                                                             Padding="16"
                                                             HorizontalOptions="FillAndExpand"
                                                             Spacing="0"
@@ -126,6 +133,7 @@
                                                         <StackLayout
                                                             HorizontalOptions="FillAndExpand"
                                                             Orientation="Horizontal"
+                                                            CompressedLayout.IsHeadless="True"
                                                             Spacing="0"
                                                             VerticalOptions="EndAndExpand">
                                                             <Label
@@ -137,7 +145,7 @@
                                                                 FontSize="12"
                                                                 LineHeight="{OnPlatform Android=1.5,
                                                                                         Default=-1}"
-                                                                Text="123"
+                                                                Text="5"
                                                                 TextColor="{DynamicResource Gray-700}"
                                                                 VerticalOptions="Center">
                                                             </Label>
@@ -145,6 +153,8 @@
                                                             <!--  Navigation icon  -->
                                                             <Label
                                                                 HorizontalOptions="EndAndExpand"
+                                                                FontSize="20"
+                                                                TextColor="{DynamicResource PrimaryColor}"
                                                                 Style="{StaticResource RightArrowLabelStyle}" />
                                                         </StackLayout>
                                                     </StackLayout>
@@ -164,6 +174,7 @@
             <local:LoadingIndicator
                 Grid.Row="0"
                 IsVisible="False"
+                x:Name="Loader"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill" />
         </Grid>

@@ -65,7 +65,7 @@
                             FontFamily="{StaticResource Montserrat-Regular}"
                             MaxLength="100"
                             Placeholder="Option Name"
-                            PlaceholderColor="LightGray"
+                            PlaceholderColor="{DynamicResource Gray-900}"
                             Text="{Binding Name}"
                             VerticalOptions="EndAndExpand" />
                     <Editor
@@ -77,7 +77,7 @@
                             MaxLength="250"
                             Placeholder="(Optional) Option Description"
                             Text="{Binding Description}"
-                            PlaceholderColor="LightGray"
+                            PlaceholderColor="{DynamicResource Gray-900}"
                             VerticalOptions="EndAndExpand" />
 
                     <Entry
@@ -88,7 +88,7 @@
                             FontFamily="{StaticResource Montserrat-Regular}"
                             MaxLength="100"
                             Placeholder="Price"
-                            PlaceholderColor="LightGray"
+                            PlaceholderColor="{DynamicResource Gray-900}"
                             Text="{Binding Name}"
                             VerticalOptions="EndAndExpand" Keyboard="Numeric" />
 
