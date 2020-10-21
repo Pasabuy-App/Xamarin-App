@@ -91,7 +91,8 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                 {
                                     Id = variants.data[i].ID,
                                     Name = variants.data[i].name,
-                                    Baseprice = variants.data[i].baseprice
+                                    Info = variants.data[i].info == "None" ? "" : variants.data[i].info,
+                                    Baseprice = "Base Price: " + variants.data[i].baseprice
                                 });
                             }
                         }
