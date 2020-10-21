@@ -13,7 +13,7 @@ namespace PasaBuy.App.Models.Marketplace
         private string baseprice = string.Empty;
         public ObservableCollection<Options> options { get; set; }
 
-
+        public ObservableCollection<Options> addons { get; set; }
 
         public VariantsData[] data;
         public class VariantsData
@@ -25,9 +25,9 @@ namespace PasaBuy.App.Models.Marketplace
             public string status = string.Empty;
             public string baseprice = string.Empty;
             public ObservableCollection<Options> options { get; set; }
+            public ObservableCollection<Options> addons { get; set; }
+
         }
-
-
 
         public string Baseprice
         {

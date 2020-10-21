@@ -18,6 +18,21 @@ namespace PasaBuy.App.ViewModels.Marketplace
         #region Fields
         private ObservableCollection<Variants> _variantsList;
         private ObservableCollection<Options> _optionsList;
+        private ObservableCollection<Options> _addonsList;
+
+        public ObservableCollection<Options> AddonsList
+        {
+            get
+            {
+                return _addonsList;
+            }
+            set
+            {
+                _addonsList = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
         public bool IsChecked
         {
             get
@@ -184,6 +199,10 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             _itemList = new ObservableCollection<ProductList>();
             _variantsList = new ObservableCollection<Variants>();
+            _addonsList = new ObservableCollection<Options>();
+
+
+
 
             this.ProductName = productname;
             this.Price = Convert.ToDouble(price);
@@ -270,6 +289,11 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public void LoadVariants(string product_id)
         {
+            _addonsList = new ObservableCollection<Options>();
+
+            _addonsList.Add(new Options() { Name = "Extra Gravy", Price = +10.00 });
+            _addonsList.Add(new Options() { Name = "Extra Rice", Price = +10.00 });
+
             try
             {
                 Http.TindaFeature.Instance.VariantList_Options(product_id, (bool success, string data) =>
@@ -288,7 +312,9 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                     _optionsList.Add(new Options() { Id = var.data[i].options[j].ID, Name = var.data[i].options[j].name, Price = Convert.ToDouble(var.data[i].options[j].price) });
                                 }
 
-                                _variantsList.Add(new Variants() { Name = var.data[i].name, options = _optionsList });
+                                _variantsList.Add(new Variants() { Name = var.data[i].name, options = _optionsList});
+                                _variantsList.Add(new Variants() { Name = "Add-ons",  addons = _addonsList });
+
                             }
                         }
                     }
