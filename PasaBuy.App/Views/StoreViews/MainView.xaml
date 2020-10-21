@@ -20,11 +20,11 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="35*" />
-                <RowDefinition Height="65*" />
+                <!--<RowDefinition Height="35*" />-->
+                <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" Padding="5,10,5,10">
+            <!--<Grid Grid.Row="0" Padding="5,10,5,10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="60*" />
                     <ColumnDefinition Width="40*" />
@@ -102,12 +102,12 @@
                            VerticalOptions="Center" />
 
                 </Grid>
-            </Grid>
+            </Grid>-->
 
             <tabView:SfTabView BackgroundColor="{DynamicResource Gray-White}" 
                                 VisibleHeaderCount="4"
                                 TabItemTapped="SfTabView_TabItemTapped"
-                                Grid.Row="1">
+                                Grid.Row="0">
                         <tabView:SfTabView.SelectionIndicatorSettings>
                             <tabView:SelectionIndicatorSettings StrokeThickness="3" 
                                                                 Color="{DynamicResource PrimaryColor}" />

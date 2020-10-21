@@ -99,7 +99,7 @@
                             FontFamily="{StaticResource Montserrat-SemiBold}"
                             FontSize="12" 
                             HorizontalOptions="End" 
-                            TextColor="White"
+                            TextColor="{StaticResource Blue}"
                             Command="{Binding ForgotPasswordCommand}"
                             Style="{StaticResource SfFlatButtonStyle}"
                             Text="FORGOT PASSWORD?" />
@@ -139,6 +139,7 @@
                             Clicked="SignUpClicked"
                             CornerRadius="4"
                             Style="{StaticResource SfFlatButtonStyle}"
+                            TextColor="{StaticResource Blue}"
                             Text="REGISTER" />
 
                     </StackLayout>

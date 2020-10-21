@@ -31,7 +31,7 @@ namespace PasaBuy.App
             PSACache.Instance.Initialize();
 
             //commit
-            MainPage = new NavigationPage(new SplashPage());
+            MainPage = new NavigationPage(new VerifyResetPage());
 
             LocalNotif.Instance.Show("Test Notification", "Elon Musk partnered with PasaBuy.App to deliver package to Mars.", "Its now done!", DateTime.Now.AddSeconds(60));
         }
