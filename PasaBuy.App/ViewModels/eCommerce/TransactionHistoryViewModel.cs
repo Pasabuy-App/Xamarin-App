@@ -3,8 +3,11 @@ using Newtonsoft.Json;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.eCommerce;
+using PasaBuy.App.Views.Settings;
 using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -111,14 +114,29 @@ namespace PasaBuy.App.ViewModels.eCommerce
         #endregion
 
         #region Properties
-        private Command<object> itemSelectedCommand;
-        public Command<object> ItemSelectedCommand
+
+        public ICommand ItemSelectedCommand
         {
             get
             {
-                return this.itemSelectedCommand ?? (this.itemSelectedCommand = new Command<object>(this.ItemSelected));
+                return new Command<string>((x) => LoadDetails(x));
             }
         }
+
+        public async void LoadDetails(string id)
+        {
+
+            if (!IsBusy)
+            {
+                IsBusy = true;
+                CanNavigate = false;
+                await App.Current.MainPage.Navigation.PushModalAsync(new MyTransactionDetails());
+                await Task.Delay(300);
+                IsBusy = false;
+                CanNavigate = true;
+            }
+        }
+  
 
         #endregion
 
