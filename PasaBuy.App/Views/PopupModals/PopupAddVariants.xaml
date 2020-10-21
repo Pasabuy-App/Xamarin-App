@@ -81,6 +81,7 @@
                             VerticalOptions="EndAndExpand" />
                     <button:SfCheckBox x:Name="checkBox"
                                        IsChecked="True"
+                                       StateChanged="checkBox_StateChanged"
                                        Margin="0,10,0,10"
                                        FontFamily="{StaticResource Montserrat-Regular}"
                                        Grid.Row="2"
