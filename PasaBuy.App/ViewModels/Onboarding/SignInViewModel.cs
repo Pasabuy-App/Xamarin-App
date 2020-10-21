@@ -154,9 +154,10 @@ namespace PasaBuy.App.ViewModels.Onboarding
 
                         
 
-                        if (!token.isSuccess || HtmlUtils.ConvertToPlainText(token.message) != "Please activate your account first." )
+                        if (!token.isSuccess)
                         {
                             new Alert("Something went Wrong", HtmlUtils.ConvertToPlainText(token.message), "OK");
+                            State = false;
                             return;
                         } 
                        
@@ -230,6 +231,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
             catch (Exception e)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                State = false;
             }
         }
 
