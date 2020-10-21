@@ -21,6 +21,7 @@ namespace PasaBuy.App.Views.PopupModals
     public partial class PopupEditVariants : PopupPage
     {
         public static string variant_id;
+        public int isBase = 0;
         public PopupEditVariants()
         {
             InitializeComponent();
@@ -37,6 +38,7 @@ namespace PasaBuy.App.Views.PopupModals
                             {
                                 Name.Text = variants.data[i].name;
                                 Description.Text = variants.data[i].info;
+                                checkBox.IsChecked = variants.data[i].baseprice == "Yes" ? true : false;
                             }
                         }
                         else
@@ -64,7 +66,8 @@ namespace PasaBuy.App.Views.PopupModals
             {
                 if (!string.IsNullOrWhiteSpace(Name.Text))
                 {
-                    TindaPress.Variant.Instance.Update(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, variant_id, ProductVariants.product_id, "", "", Name.Text, Description.Text, (bool success, string data) =>
+                    //new Alert("Yes", "OK: " + isBase, "OK");
+                    TindaPress.Variant.Instance.Update(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, variant_id, ProductVariants.product_id, isBase.ToString(), "", Name.Text, Description.Text, (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -82,6 +85,20 @@ namespace PasaBuy.App.Views.PopupModals
             catch (Exception ex)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
+            }
+        }
+
+        private void checkBox_StateChanged(object sender, Syncfusion.XForms.Buttons.StateChangedEventArgs e)
+        {
+            if (e.IsChecked.HasValue && e.IsChecked.Value)
+            {
+                //checkBox.Text = "Checked State";
+                isBase = 1;
+            }
+            else if (e.IsChecked.HasValue && !e.IsChecked.Value)
+            {
+                //checkBox.Text = "Unchecked State";
+                isBase = 0;
             }
         }
     }
