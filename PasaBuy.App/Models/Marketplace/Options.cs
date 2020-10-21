@@ -9,6 +9,7 @@ namespace PasaBuy.App.Models.Marketplace
 {
     public class Options
     {
+        public string status = string.Empty;
         public string name = string.Empty;
         public string price = string.Empty;
         public string ID = string.Empty;
@@ -44,6 +45,19 @@ namespace PasaBuy.App.Models.Marketplace
             public string info = string.Empty;
             public string status = string.Empty;
             public string price = string.Empty;
+        }
+        public string Status
+        {
+            get
+            {
+                return this.status;
+            }
+
+            set
+            {
+                this.status = value;
+                OnPropertyChanged("Status");
+            }
         }
 
         public double Price
