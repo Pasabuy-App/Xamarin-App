@@ -262,7 +262,7 @@
                 <loading:LoadingIndicator
                     Grid.Row="0"
                     HorizontalOptions="Fill"
-                    IsRunning="{Binding IsBusy, Mode=TwoWay}"
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}"
                     VerticalOptions="Fill" />
 
 
