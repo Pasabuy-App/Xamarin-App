@@ -19,6 +19,7 @@ namespace PasaBuy.App.Views.Settings
         public VerificationFillPage()
         {
             InitializeComponent();
+            Loader.IsVisible = false;
             IdTypeEntry.Text = idType;
             IDNumberEntry.Text = idnumber;
             LastNameEntry.Text = PSACache.Instance.UserInfo.lname;
@@ -38,6 +39,7 @@ namespace PasaBuy.App.Views.Settings
                 {
                     if (!isEnable)
                     {
+                        Loader.IsVisible = true;
                         isEnable = true;
                         DataVice.Documents.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "id", idDocType, idPath, idnumber, "", (bool success, string data) =>
                         {
@@ -48,15 +50,21 @@ namespace PasaBuy.App.Views.Settings
                                     if (success)
                                     {
                                         Navigation.PushModalAsync(new VerificationFinal());
+                                        Loader.IsVisible = false;
+                                        isEnable = false;
                                     }
                                     else
                                     {
+                                        isEnable = false;
+                                        Loader.IsVisible = false;
                                         new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data2), "Try Again");
                                     }
                                 });
                             }
                             else
                             {
+                                isEnable = false;
+                                Loader.IsVisible = false;
                                 new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                             }
                         });
@@ -65,6 +73,8 @@ namespace PasaBuy.App.Views.Settings
             }
             catch (Exception ex)
             {
+                isEnable = false;
+                Loader.IsVisible = false;
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
             }
         }

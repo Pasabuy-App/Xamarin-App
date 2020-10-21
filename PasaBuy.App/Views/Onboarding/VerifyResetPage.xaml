@@ -8,8 +8,9 @@
     xmlns:converter="clr-namespace:PasaBuy.App.Converters"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
-    xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Onboarding"
+    xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Onboarding" xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
     NavigationPage.HasNavigationBar="False"
+    BackgroundColor="{DynamicResource Gray-White}"
     x:Class="PasaBuy.App.Views.Onboarding.VerifyResetPage">
 
     <ContentPage.Resources>
@@ -29,31 +30,44 @@
         <viewModel:VerifyResetViewModel />
     </ContentPage.BindingContext>
 
-    <ContentPage.ControlTemplate>
-        <ControlTemplate>
-            <StackLayout Spacing="0" >
-                <controls:TitleView Title="Reset Password" FontSize="14"
-                                    BackgroundColor="{DynamicResource PrimaryColor}" >
-                    <!--<controls:TitleView.LeadingView >
-                        <buttons:SfButton
+   
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid
+                        Grid.Row="0"
+                        Padding="15,5,15,5"
+                        BackgroundColor="{StaticResource PrimaryColor}"
+                        HeightRequest="{OnPlatform Android='46',
+                                                   iOS='56'}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <buttons:SfButton
                             x:Name="backButton"
+                            Clicked="backButton_Clicked"
+                            Grid.Column="0"
                             CornerRadius="4"
                             BackgroundColor="Transparent"
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
-                    </controls:TitleView.LeadingView>-->
+                    <Label Grid.Column="1"
+                                    FontFamily="{StaticResource Montserrat-Medium}"
+                                    FontSize="17"
+                                    HorizontalOptions="Start"
+                                    Text="Reset Password"
+                                    TextColor="{DynamicResource Gray-White}"
+                                    VerticalOptions="Center" />
 
-                </controls:TitleView>
-                <ContentPresenter />
-            </StackLayout>
-        </ControlTemplate>
-    </ContentPage.ControlTemplate>
-
-    <ContentPage.Content>
-        <AbsoluteLayout>
-            <Grid AbsoluteLayout.LayoutFlags="All"
-                  AbsoluteLayout.LayoutBounds="0,1,1,1">
-                <StackLayout
+                </Grid>
+                <Grid Grid.Row="1">
+                    <StackLayout
                     Padding="0, 50, 0, 50"
                     Margin="{core:OnPlatformOrientationThickness PhonePortrait='20,32',
                                                                  PhoneLandscape='150,32',
@@ -64,82 +78,75 @@
                     VerticalOptions="FillAndExpand"
                     WidthRequest="{OnPlatform Default='-1',
                                               UWP='350'}">
+                        <Grid RowSpacing="24" VerticalOptions="CenterAndExpand">
 
-                    <Grid RowSpacing="24" VerticalOptions="CenterAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
+                            <!--  Label to display the title of this page  -->
+                            <Label
+                                Grid.Row="0"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="20"
+                                HorizontalOptions="Center"
+                                TextColor="{DynamicResource Gray-900}"
+                                Style="{StaticResource LabelStyle}"
+                                Text="Recover your Account"
+                                VerticalOptions="Center" />
 
-                        <!--  Label to display the title of this page  -->
-                        <Label
-                            Grid.Row="0"
-                            FontFamily="{StaticResource Montserrat-SemiBold}"
-                            FontSize="20"
-                            HorizontalOptions="Center"
-                            Style="{StaticResource LabelStyle}"
-                            Text="Verify Account"
-                            VerticalOptions="Center" />
+                            <!--  Label to display the description of this page  -->
+                            <Label
+                                Grid.Row="1"
+                                Margin="0,-16,0,8"
+                                FontFamily="{StaticResource Montserrat-Medium}"
+                                HorizontalTextAlignment="Center"
+                                TextColor="{DynamicResource Gray-900}"
+                                Style="{StaticResource LabelStyle}"
+                                Text="Check your email for the activation key and type it here to reset your password" />
 
-                        <!--  Label to display the description of this page  -->
-                        <Label
-                            Grid.Row="1"
-                            Margin="0,-16,0,8"
-                            FontFamily="{StaticResource Montserrat-Medium}"
-                            HorizontalTextAlignment="Center"
-                            Style="{StaticResource LabelStyle}"
-                            Text="Check your email for the activation key and type it here to reset your password" />
+                            <!--  Entry to get new password from user  -->
 
-                        <!--  Entry to get new password from user  -->
+                            <!--  Entry to get confirm password from user  -->
+                            <border:SfBorder
+                                Grid.Row="2"
+                                Padding="15,0,0,0"
+                                BorderColor="{DynamicResource BlackColor}"
+                                Style="{StaticResource FormBorderStyle}">
+                                <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-900}"
+                                                          Placeholder="Activation key" 
+                                                          TextColor="{DynamicResource BlackColor}"
+                                                          x:Name="ActivationKey" 
+                                                          Text="{Binding ActivationKey}" 
+                                                          HeightRequest="40" 
+                                                          Style="{StaticResource EntryTextStyle}" />
 
-                        <!--  Entry to get confirm password from user  -->
-                        <border:SfBorder
-                            Grid.Row="2"
-                            Padding="15,0,0,0"
-                            Style="{StaticResource FormBorderStyle}">
-                            <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Activation key" x:Name="ActivationKey"  Text="{Binding ActivationKey}" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
+                            </border:SfBorder>
 
-                        </border:SfBorder>
-
-                        <!--  Submit button  -->
-                        <buttons:SfButton
+                            <!--  Submit button  -->
+                            <buttons:SfButton
                             Grid.Row="4"
-                            Margin="0, 20, 0, 20"
+                            Margin="0, 0, 0, 20"
                             Command="{Binding SubmitCommand}"
-                            CornerRadius="20"
+                            CornerRadius="6"
                             TextColor="White"
                             BackgroundColor="{DynamicResource PrimaryColor}"
                             Text="SUBMIT"
                             Style="{StaticResource SfButtonStyle}" />
-                    </Grid>
-                </StackLayout>
-                <StackLayout
-                    x:Name="aiLayout"
-                    IsVisible="{Binding State}"
-                    AbsoluteLayout.LayoutBounds="0,0,1,1"
-                    AbsoluteLayout.LayoutFlags="All"
-                    BackgroundColor="Gray" Opacity="0.5" ClassId="123">
-                    <ActivityIndicator
-                        x:Name="isBusy"
-                        IsRunning="true"
-                        HorizontalOptions="CenterAndExpand"
-                        VerticalOptions="CenterAndExpand"
-                        HeightRequest="100"
-                        WidthRequest="100"
-                        Color="Black"/>
-                </StackLayout>
+                        </Grid>
+
+                    </StackLayout>
+                </Grid>
             </Grid>
-        </AbsoluteLayout>
+            <loading:LoadingIndicator
+                    Grid.Row="0"
+                    HorizontalOptions="Fill"
+                    x:Name="Loader"
+                    IsRunning="{Binding State, Mode=TwoWay}"
+                    VerticalOptions="Fill" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

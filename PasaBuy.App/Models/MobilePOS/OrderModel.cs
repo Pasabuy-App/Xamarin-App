@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace PasaBuy.App.Models.MobilePOS
@@ -12,11 +13,25 @@ namespace PasaBuy.App.Models.MobilePOS
             get { return id; }
             set { id = value; }
         }
+
         private int qty { get; set; }
         public int TotalQuantity
         {
             get { return qty; }
             set { qty = value; }
+        }
+
+        private ObservableCollection<VariantModel> variants = new ObservableCollection<VariantModel>();
+        public ObservableCollection<VariantModel> Variants
+        {
+            get
+            {
+                return this.variants;
+            }
+            set
+            {
+                this.variants = value;
+            }
         }
     }
 }

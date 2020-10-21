@@ -47,6 +47,15 @@
     <Color x:Key="Link">#567cd7</Color>
 
 
+    <!-- Common style for right arrow labels -->
+    <Style x:Key="RightArrowLabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource Gray-600}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="Text" Value="{StaticResource ArrowRight}" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+    </Style>
+
     <!--  Common style for Navigation bar SfButton  -->
     <Style x:Key="NavigationBarButtonStyle" TargetType="buttons:SfButton">
         <Setter Property="TextColor" Value="{DynamicResource Gray-Black}" />

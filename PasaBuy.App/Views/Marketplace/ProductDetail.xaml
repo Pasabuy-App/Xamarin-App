@@ -9,7 +9,9 @@
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
              xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms" 
-             xmlns:syncListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:syncListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
+             xmlns:templateSelector="clr-namespace:PasaBuy.App.Helpers" 
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
              x:Class="PasaBuy.App.Views.Marketplace.ProductDetail"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="{DynamicResource Gray-White}">
@@ -19,7 +21,20 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            
+
+            <DataTemplate x:Key="radioTemplate">
+                    <buttons:SfRadioButton  Grid.Column="0"
+                                            x:Name="Options"
+                                            StateChanged="Options_StateChanged"
+                                            Margin="8,12,8,0"
+                                            HorizontalOptions="FillAndExpand"
+                                            FontSize="{DynamicResource MediumSize}" 
+                                            FontFamily="{StaticResource Montserrat-Medium}"
+                                            TextColor="{DynamicResource Gray-900}"
+                                            ClassId="{Binding Id}"
+                                            Text="{Binding Name}" />
+            </DataTemplate>
+
             <DataTemplate x:Key="variantsTemplate">
                 <Frame HasShadow="True">
                     <StackLayout>
@@ -28,34 +43,43 @@
                                FontSize="{DynamicResource MediumSize}"
                                Text="{Binding Name}"
                                TextColor="{DynamicResource Gray-900}" />
-                                <StackLayout BindableLayout.ItemsSource="{Binding options}">
-                                    <BindableLayout.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="*" />
-                                                </Grid.ColumnDefinitions>
-                                                
-                                                 <buttons:SfRadioButton Grid.Column="0"
-                                                                        CheckedColor="{DynamicResource PrimaryColor}"
-                                                                        HorizontalTextAlignment="Start"
-                                                                        Text="{Binding Name}"
-                                                                        GroupKey="{Binding GroupKey}"
-                                                                        Margin="15,0,0,0"/>
+                        <Grid ColumnSpacing="0" RowSpacing="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <buttons:SfRadioGroup BindableLayout.ItemsSource="{Binding options}" 
+                                                  Spacing="0" 
+                                                  Grid.Column="0">
+                                <BindableLayout.ItemTemplateSelector>
+                                    <templateSelector:VariantsTemplateSelecteior VariantsTemplate="{StaticResource radioTemplate}" />
+                                </BindableLayout.ItemTemplateSelector>
+                            </buttons:SfRadioGroup>
+                            <StackLayout Grid.Column="1"
+                                         Spacing="0" 
+                                         HorizontalOptions="End"
+                                         BindableLayout.ItemsSource="{Binding options}">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label  HorizontalOptions="End" 
+                                                VerticalOptions="Center" 
+                                                Padding="0,10,0,2"
+                                                Margin="8,8,8,0"
+                                                Text="{Binding Price, StringFormat='+ {0:F2}'}" 
+                                                FontSize="{DynamicResource MediumSize}" 
+                                                FontFamily="{StaticResource Montserrat-Medium}" 
+                                                TextColor="{DynamicResource Gray-900}"
+                                                LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+                            
+                        </Grid>
+                    
+                        
 
-                                                <Label FontFamily="{StaticResource Montserrat-SemiBold}"
-                                                       Padding="5,0,0,0"
-                                                       Grid.Column="1"
-                                                       HorizontalTextAlignment="End"
-                                                       FontSize="{DynamicResource MediumSize}"
-                                                       Text="{Binding Price}"
-                                                       TextColor="{DynamicResource Gray-900}" />
-                                            </Grid>
-                                        </DataTemplate>     
-                                    </BindableLayout.ItemTemplate>
-                                </StackLayout>
                     </StackLayout>
+                   
                 </Frame>
             </DataTemplate>
         </ResourceDictionary>
@@ -84,8 +108,9 @@
     <ContentPage.Content>
             <Grid>
                 <StackLayout Spacing="0" Padding="0,0,0,0">
-                    <syncListView:SfListView
+                <syncListView:SfListView
                             Margin="8,0"
+                            x:Name="listView"
                             Padding="0"
                             ColumnSpacing="0"
                             FocusBorderColor="Transparent"
@@ -98,89 +123,133 @@
                             SelectionBackgroundColor="Transparent"
                             ItemTemplate="{StaticResource variantsTemplate}"
                             TapCommand="{Binding ItemSelectedCommand}">
-                        <syncListView:SfListView.HeaderTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <ffimageloading:CachedImage Aspect="Fill" 
+                    <syncListView:SfListView.HeaderTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <ffimageloading:CachedImage Aspect="Fill" 
                                                                 Grid.Row="0"
                                                                 x:Name="ProductLogo"
                                                                 HeightRequest="250"
-                                                                Source="https://pasabuy.app/wp-content/uploads/2020/10/Motorcycle.png"
+                                                                Source="{Binding ProductImage}"
 			                                                    DownsampleToViewSize="True" 
                                                                 FadeAnimationEnabled="True">
-                                    </ffimageloading:CachedImage>
+                                </ffimageloading:CachedImage>
 
-                                    <Frame CornerRadius="4"  Opacity="0.25" BackgroundColor="{DynamicResource Gray-Black}"/>
+                                <Frame CornerRadius="4"  Opacity="0.25" BackgroundColor="{DynamicResource Gray-Black}"/>
 
-                                    <StackLayout Margin="0" 
+                                <StackLayout Margin="0" 
                                                  Grid.Row="1"
                                                  Padding="0" 
                                                  HeightRequest="100"
                                                  Orientation="Vertical" 
                                                  Spacing="0">
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="70*" />
-                                                <ColumnDefinition Width="30*" />
-                                            </Grid.ColumnDefinitions>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="70*" />
+                                            <ColumnDefinition Width="30*" />
+                                        </Grid.ColumnDefinitions>
 
-                                            <!--  Product name label  -->
-                                            <Label  HorizontalOptions="Start" 
+                                        <!--  Product name label  -->
+                                        <Label  HorizontalOptions="Start" 
                                                     x:Name="ProductName"
                                                     VerticalOptions="Center" 
                                                     Grid.Row="0"
                                                     Grid.Column="0"
-                                                    Text="Super Burger" 
-                                                    FontSize="20" 
+                                                    Text="{Binding ProductName}" 
+                                                    Padding="10,5,0,0"
+                                                    FontSize="{DynamicResource LargeSize}" 
                                                     FontFamily="{StaticResource Montserrat-Bold}" 
                                                     TextColor="{DynamicResource Gray-900}"
                                                     LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
 
-                                            <Label  HorizontalOptions="End" 
+                                        <Label  HorizontalOptions="End"  
                                                     x:Name="Price"
                                                     VerticalOptions="Center" 
-                                                    Text="P230" 
+                                                    Text="{Binding Price, StringFormat='₱ {0:F2}'}" 
                                                     Grid.Row="0"
                                                     Grid.Column="1" 
+                                                    Padding="10,5,10,0"
                                                     FontSize="18" 
                                                     FontFamily="{StaticResource Montserrat-Bold}" 
                                                     TextColor="{DynamicResource Gray-900}"
                                                     LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
 
-                                            <Label  HorizontalOptions="Start" x:Name="Short_Info"
+                                        <Label  HorizontalOptions="Start" 
+                                                x:Name="Short_Info"
                                                     VerticalOptions="Center" 
-                                                    Text="This is a super burger asda asd asd asd asd asdasda sd" 
-                                                    FontSize="13" 
+                                                    Text="{Binding Short_Info}" 
+                                                    FontSize="{DynamicResource MediumSize}" 
                                                     MaxLines="3"
+                                                    Padding="10,5,0,0"
                                                     Grid.Row="1"
+                                                    Grid.ColumnSpan="2"
                                                     Grid.Column="0"
                                                     FontFamily="{StaticResource Montserrat-Medium}" 
                                                     TextColor="{DynamicResource Gray-900}"
                                                     LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
-                                            <Label  HorizontalOptions="End" 
-                                                    x:Name="TotalPrice"
-                                                    VerticalOptions="Start" 
-                                                    Grid.Row="1"
-                                                    Grid.Column="1"
-                                                    Text="Base Price" 
-                                                    FontSize="13" 
-                                                    FontFamily="{StaticResource Montserrat-Medium}" 
-                                                    TextColor="{DynamicResource Gray-900}"
-                                                    LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
-                                        </Grid>
-                                    </StackLayout>
-                                </Grid>
-                            </DataTemplate>
-                        </syncListView:SfListView.HeaderTemplate>
-                    </syncListView:SfListView>
+          
+                                    </Grid>
+                                </StackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </syncListView:SfListView.HeaderTemplate>
+                    <syncListView:SfListView.FooterTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,15,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0.5*" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <BoxView Grid.Row="0" Style="{StaticResource SeparatorStyle}" />
+                                <Label  HorizontalOptions="Start" 
+                                        VerticalOptions="Start" 
+                                        Text="Special Instructions :"
+                                        Margin="5,5,0,0"
+                                        Grid.Row="1"
+                                        FontSize="{DynamicResource MediumSize}" 
+                                        FontFamily="{StaticResource Montserrat-Medium}" 
+                                        TextColor="{DynamicResource Gray-900}"
+                                        LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
+                                <Label  HorizontalOptions="Start" 
+                                        VerticalOptions="Start" 
+                                        Text="Specify special requests or instructions for this product."
+                                        Margin="5,5,0,0"
+                                        Grid.Row="2"
+                                        FontSize="{DynamicResource SmallSize}" 
+                                        FontFamily="{StaticResource Montserrat-Medium}" 
+                                        TextColor="{DynamicResource Gray-900}"
+                                        LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
+                                
+                                <inputLayout:SfTextInputLayout
+                                        x:Name="SpecialInstructions"
+                                        Grid.Row="3"
+                                        ContainerBackgroundColor="Transparent"
+                                        ContainerType="Outlined"
+                                        FocusedColor="{DynamicResource BlackColor}"
+                                        Hint="Ex. Thigh part please."
+                                        HorizontalOptions="Fill"
+                                        LeadingViewPosition="Inside">
+                                    <Editor
+                                        HeightRequest="80"
+                                        Text="{Binding SpecialInstructions}"
+                                        MaxLength="250" />
+                                </inputLayout:SfTextInputLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </syncListView:SfListView.FooterTemplate>
+                </syncListView:SfListView>
+
+                
                 <StackLayout Padding="90,-10,90,0">
                     <numeric:SfNumericUpDown x:Name="numericUpDown" 
                                              ValueChanged="numericUpDown_ValueChanged"
@@ -188,20 +257,65 @@
                                              Margin="20, 10, 20, 0"
                                              Minimum="1" 
                                              MaximumDecimalDigits="0"
-                                             Value="1"
+                                             Value="{Binding Quantity}"
                                              TextAlignment="Center"
                                              SpinButtonAlignment="Both"
                                              FormatString="n"/>
                     
                 </StackLayout>
 
-                <buttons:SfButton Clicked="Add2CartClicked"
-                                      Margin="20, 5, 20, 20"
-                                      CornerRadius="5"
-                                      TextColor="White"
-                                      BackgroundColor="{DynamicResource PrimaryColor}"
-                                      Style="{StaticResource SfButtonStyle}"
-                                      Text="Add to Cart" />
+                
+                <StackLayout Margin="0, 5, 0, 10"
+                             Grid.Row="0"
+                             HeightRequest="60"
+                             BackgroundColor="{DynamicResource PrimaryColor}"
+                             Grid.RowSpan="2">
+                    <Grid BackgroundColor="{DynamicResource PrimaryColor}"
+                          x:Name="CartGrid">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                    
+                        <Label HorizontalOptions="StartAndExpand" 
+                               x:Name="Quantity"
+                               VerticalOptions="CenterAndExpand"
+                               Padding="18,8,0,5"
+                               Text="{Binding TotalItems}" 
+                               Grid.Column="0" 
+                               FontSize="18" 
+                               FontFamily="{StaticResource Montserrat-Bold}" 
+                               TextColor="{DynamicResource WhiteColor}"
+                               LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
+                       
+                        <Label HorizontalOptions="StartAndExpand" 
+                               VerticalOptions="CenterAndExpand"
+                               Padding="18,8,0,5"
+                               Text="Add to Cart" 
+                               Grid.Column="1" 
+                               FontSize="16" 
+                               FontFamily="{StaticResource Montserrat-Bold}" 
+                               TextColor="{DynamicResource WhiteColor}"
+                               LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
+
+                        <!--Text="{Binding ActualPrice, StringFormat='₱ {0:F2}'}"-->
+                        <Label HorizontalOptions="EndAndExpand" 
+                               x:Name="TotalPrice"
+                               VerticalOptions="CenterAndExpand"
+                               Padding="18,8,10,5"
+                               Text="{Binding TotalPrice, StringFormat='₱ {0:F2}'}"
+                               Grid.Column="2" 
+                               FontSize="18" 
+                               FontFamily="{StaticResource Montserrat-Bold}" 
+                               TextColor="{DynamicResource WhiteColor}"
+                               LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding AddToCartCommand}" Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </StackLayout>
+
 
 
             </StackLayout>

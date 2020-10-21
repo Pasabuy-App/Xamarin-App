@@ -8,8 +8,9 @@
     xmlns:converter="clr-namespace:PasaBuy.App.Converters"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
-    xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Onboarding"
+    xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Onboarding" xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
     NavigationPage.HasNavigationBar="False"
+    BackgroundColor="{DynamicResource Gray-White}"
     x:Class="PasaBuy.App.Views.Onboarding.VerifyAccountPage">
 
     <ContentPage.Resources>
@@ -32,16 +33,18 @@
     <ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0" >
-                <controls:TitleView Title="Activation" FontSize="14"
+                <controls:TitleView Title="Activation" FontSize="15"
                                     BackgroundColor="{DynamicResource PrimaryColor}" >
-                    <!--<controls:TitleView.LeadingView >
+                    <controls:TitleView.LeadingView >
                         <buttons:SfButton
                             x:Name="backButton"
                             CornerRadius="4"
+                            Clicked="backButton_Clicked"
                             BackgroundColor="Transparent"
+                            TextColor="White"
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
-                    </controls:TitleView.LeadingView>-->
+                    </controls:TitleView.LeadingView>
 
                 </controls:TitleView>
                 <ContentPresenter />
@@ -50,9 +53,7 @@
     </ContentPage.ControlTemplate>
 
     <ContentPage.Content>
-        <AbsoluteLayout>
-            <Grid AbsoluteLayout.LayoutFlags="All"
-              AbsoluteLayout.LayoutBounds="0,1,1,1">
+            <Grid>
                 <StackLayout
                     Padding="0, 50, 0, 50"
                     Margin="{core:OnPlatformOrientationThickness PhonePortrait='20,32',
@@ -89,6 +90,7 @@
                             FontSize="20"
                             HorizontalOptions="Center"
                             Style="{StaticResource LabelStyle}"
+                            TextColor="{DynamicResource Gray-900}"
                             Text="Activate Account"
                             VerticalOptions="Center" />
 
@@ -98,6 +100,7 @@
                             Margin="0,-16,0,8"
                             FontFamily="{StaticResource Montserrat-Medium}"
                             HorizontalTextAlignment="Center"
+                            TextColor="{DynamicResource Gray-900}"
                             Style="{StaticResource LabelStyle}"
                             Text="Enter username and activation key" />
 
@@ -105,8 +108,16 @@
                         <border:SfBorder
                             Grid.Row="2"
                             Padding="15,0,0,0"
+                            BorderColor="Black"
                             Style="{StaticResource FormBorderStyle}">
-                            <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Username" x:Name="Username" Text="{Binding Username}" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
+                            <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-900}" 
+                                                      Placeholder="Username" 
+                                                      x:Name="Username" 
+                                                      TextColor="Black"
+                                                      ReturnType="Next"
+                                                      Text="{Binding Username}"
+                                                      HeightRequest="40"  
+                                                      Style="{StaticResource EntryTextStyle}" />
 
                         </border:SfBorder>
 
@@ -114,8 +125,16 @@
                         <border:SfBorder
                             Grid.Row="3"
                             Padding="15,0,0,0"
+                            BorderColor="Black"
                             Style="{StaticResource FormBorderStyle}">
-                            <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-800}" Placeholder="Activation key" x:Name="ActivationKey" Text="{Binding ActivationKey}" HeightRequest="40"  Style="{StaticResource EntryTextStyle}" />
+                            <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-900}" 
+                                                      Placeholder="Activation key"
+                                                      x:Name="ActivationKey" 
+                                                      Text="{Binding ActivationKey}"
+                                                      HeightRequest="40"  
+                                                      TextColor="Black"
+                                                      ReturnType="Next"
+                                                      Style="{StaticResource EntryTextStyle}" />
 
                         </border:SfBorder>
 
@@ -124,7 +143,7 @@
                             Grid.Row="4"
                             Margin="0, 20, 0, 20"
                             Command="{Binding SubmitCommand}"
-                            CornerRadius="20"
+                            CornerRadius="5"
                             TextColor="White"
                             BackgroundColor="{DynamicResource PrimaryColor}"
                             Text="SUBMIT"
@@ -133,23 +152,14 @@
                     </Grid>
 
                 </StackLayout>
-                <StackLayout
-                    x:Name="aiLayout"
-                    IsVisible="{Binding State}"
-                    AbsoluteLayout.LayoutBounds="0,0,1,1"
-                    AbsoluteLayout.LayoutFlags="All"
-                    BackgroundColor="Gray" Opacity="0.5" ClassId="123">
-                    <ActivityIndicator
-                        x:Name="isBusy"
-                        IsRunning="true"
-                        HorizontalOptions="CenterAndExpand"
-                        VerticalOptions="CenterAndExpand"
-                        HeightRequest="100"
-                        WidthRequest="100"
-                        Color="Black"/>
-                </StackLayout>
+                <loading:LoadingIndicator
+                    Grid.Row="0"
+                    HorizontalOptions="Fill"
+                    x:Name="Loader"
+                    IsRunning="{Binding State, Mode=TwoWay}"
+                    VerticalOptions="Fill" />
             </Grid>
-        </AbsoluteLayout>
+      
     </ContentPage.Content>
     
 </ContentPage>

@@ -25,11 +25,6 @@ namespace PasaBuy.App.Droid.Renderers
                     //Control.SetTextColor(Color.FromHex("#a2a3a4").ToAndroid());
                 }
 
-                if (Control != null)
-                {
-                    Control.SetHintTextColor(Android.Graphics.Color.ParseColor(element.PlaceHolderColor));
-                }
-
                 Control.Background = null;
 
                 var layoutParams = new MarginLayoutParams(Control.LayoutParameters);

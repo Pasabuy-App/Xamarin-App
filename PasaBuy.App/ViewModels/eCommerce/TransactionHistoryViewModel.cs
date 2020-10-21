@@ -25,7 +25,6 @@ namespace PasaBuy.App.ViewModels.eCommerce
         #region Constructor
         public TransactionHistoryViewModel()
         {
-            this.ItemSelectedCommand = new Command(this.ItemSelected);
             transactionDetails = new ObservableCollection<Transactions>();
             LoadData();
         }
@@ -112,16 +111,14 @@ namespace PasaBuy.App.ViewModels.eCommerce
         #endregion
 
         #region Properties
-        /// <summary>
-        /// Gets or sets the employee details.
-        /// </summary>
-        /// <value>The employee details.</value>
-        //public ObservableCollection<Transactions> TransactionDetails { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command that will be executed when an item is selected.
-        /// </summary>
-        public Command ItemSelectedCommand { get; set; }
+        private Command<object> itemSelectedCommand;
+        public Command<object> ItemSelectedCommand
+        {
+            get
+            {
+                return this.itemSelectedCommand ?? (this.itemSelectedCommand = new Command<object>(this.ItemSelected));
+            }
+        }
 
         #endregion
 
@@ -132,7 +129,18 @@ namespace PasaBuy.App.ViewModels.eCommerce
         /// </summary>
         private void ItemSelected(object selectedItem)
         {
-            // Do something
+            //var item = (selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Transactions;
+            //new Alert("2", "1: " + item.ID, "Ok");
+            /*Views.StoreViews.TransactionDetailsView.id = item.ID;
+            Views.StoreViews.TransactionDetailsView.customer = item.CustomerName;
+            Views.StoreViews.TransactionDetailsView.orderid = item.ID;
+            Views.StoreViews.TransactionDetailsView.totalprice = item.TransactionAmount;
+            Views.StoreViews.TransactionDetailsView.datecreated = item.Date;
+            Views.StoreViews.TransactionDetailsView.method = "Cash";// item.Method;
+            Views.StoreViews.TransactionDetailsView.order_type = "completed";
+            Views.StoreViews.TransactionDetailsView.stage_type = "completed";
+            ViewModels.MobilePOS.OrderDetailsViewModel.LoadOrder("completed", "27");
+            await Application.Current.MainPage.Navigation.PushModalAsync(new Views.StoreViews.TransactionDetailsView());*/
         }
 
         #endregion

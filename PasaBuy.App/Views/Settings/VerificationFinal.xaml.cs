@@ -17,5 +17,10 @@ namespace PasaBuy.App.Views.Settings
         {
             App.Current.MainPage = new MainTabs();
         }
+        protected override bool OnBackButtonPressed()
+        {
+            App.Current.MainPage = new MainTabs();
+            return base.OnBackButtonPressed();
+        }
     }
 }

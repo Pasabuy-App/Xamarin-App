@@ -34,6 +34,7 @@
                         PlaceholderColor="{DynamicResource PlaceholderColor}"
                         Style="{StaticResource EntryStyle}"
                         Keyboard="Email"
+                        ReturnType="Next"
                         Text="{Binding Email}" />
                     
                     <!--  Login entry label -->

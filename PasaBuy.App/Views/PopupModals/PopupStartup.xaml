@@ -71,6 +71,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
+                    
                     <StackLayout Grid.Row="0"
                                  Padding="15"
                                  HorizontalOptions="FillAndExpand">
@@ -82,17 +83,11 @@
                                            Grid.ColumnSpan="2"
                                            TextColor="{DynamicResource Gray-Black}"/>
                     </StackLayout>
+                    
                     <Grid Grid.Row="1"
                           Padding="15">
                         <StackLayout Orientation="Horizontal"
                                      HorizontalOptions="EndAndExpand">
-                            <buttons:SfButton
-                            CornerRadius="5"
-                            TextColor="White"
-                            Clicked="VerifyNow"
-                            BackgroundColor="{DynamicResource PrimaryColor}"
-                            Style="{StaticResource SfButtonStyle}"
-                            Text="Verify Now" />
                             <Forms9Patch:Label AutoFit="Width"
                                            FontSize="14"
                                            Margin="10,0,15,0"
@@ -107,6 +102,14 @@
                                     <TapGestureRecognizer Tapped="SkipVerify" NumberOfTapsRequired="1"/>
                                 </Forms9Patch:Label.GestureRecognizers>
                             </Forms9Patch:Label>
+                            <buttons:SfButton
+                            CornerRadius="5"
+                            TextColor="White"
+                            Clicked="VerifyNow"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            Style="{StaticResource SfButtonStyle}"
+                            Text="Verify Now" />
+                         
                         </StackLayout>
                         
                     </Grid>

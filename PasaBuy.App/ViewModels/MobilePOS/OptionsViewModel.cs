@@ -67,7 +67,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                 {
                                     Id = options.data[i].ID,
                                     Name = options.data[i].name,
-                                    Price = options.data[i].price
+                                    Price = Convert.ToDouble(options.data[i].price)
                                 });
                             }
                         }

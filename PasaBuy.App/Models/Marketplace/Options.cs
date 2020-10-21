@@ -2,15 +2,38 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace PasaBuy.App.Models.Marketplace
 {
     public class Options
     {
-        private string name = string.Empty;
+        public string name = string.Empty;
+        public string price = string.Empty;
+        public string ID = string.Empty;
+        private string names = string.Empty;
         private string id = string.Empty;
-        private string price = string.Empty;
+        private double prices;
+        public SfRadioGroupKey GroupKey { get; set; }
+
+        private bool _isChecked;
+
+        public bool IsChecked
+        {
+            get
+            {
+                return this._isChecked;
+            }
+            set
+            {
+                if (_isChecked == value)
+                    return;
+
+                _isChecked = value;
+                OnPropertyChanged("IsChecked");
+            }
+        }
 
         public OptionsData[] data;
         public class OptionsData
@@ -23,16 +46,16 @@ namespace PasaBuy.App.Models.Marketplace
             public string price = string.Empty;
         }
 
-        public string Price
+        public double Price
         {
             get
             {
-                return this.price;
+                return this.prices;
             }
 
             set
             {
-                this.price = value;
+                this.prices = value;
                 OnPropertyChanged("Price");
             }
         }
@@ -41,12 +64,12 @@ namespace PasaBuy.App.Models.Marketplace
         {
             get
             {
-                return this.name;
+                return this.names;
             }
 
             set
             {
-                this.name = value;
+                this.names = value;
                 OnPropertyChanged("Name");
             }
         }
@@ -72,5 +95,7 @@ namespace PasaBuy.App.Models.Marketplace
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
+
+
     }
 }

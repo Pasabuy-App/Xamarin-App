@@ -19,7 +19,18 @@ namespace PasaBuy.App.Views.Onboarding
         public SignInPage()
         {
             InitializeComponent();
+            SignupButton.IsEnabled = true;
         }
 
+        private async void SignUpClicked(object sender, System.EventArgs e)
+        {
+            SignupButton.IsEnabled = false;
+            Loader.IsVisible = true;
+            Loader.IsRunning = true;
+            await Navigation.PushModalAsync(new SignUpPage());
+            SignupButton.IsEnabled = true;
+            Loader.IsVisible = false;
+            Loader.IsRunning = false;
+        }
     }
 }

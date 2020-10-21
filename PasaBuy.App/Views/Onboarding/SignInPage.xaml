@@ -75,32 +75,36 @@
                             x:Name="PasswordEntry"
                             IsPassword="True"
                             Placeholder="Password"
+                            ReturnType="Next"
                             PlaceholderColor="{DynamicResource Gray-700}"
                             Style="{StaticResource EntryStyle}"
                             Text="{Binding Password}" />
                         </border:SfBorder>
 
-                        <!--  Forgot password link  -->
-                        <buttons:SfButton
-                            x:Name="ForgotPasswordLabel"
-                            Grid.Row="4" CornerRadius="7"
-                            Margin="0,16"
-                            FontFamily="{StaticResource Montserrat-SemiBold}"
-                            FontSize="12" 
-                            HorizontalOptions="End" 
-                            Command="{Binding ForgotPasswordCommand}"
-                            Style="{StaticResource SfFlatButtonStyle}"
-                            Text="FORGOT PASSWORD?" />
-                        
-                        <buttons:SfButton
-                            Grid.Row="5"
-                            Margin="0,16"
+                    <buttons:SfButton
+                            Grid.Row="4"
+                            Margin="0,25,0,0"
                             CornerRadius="7"
                             Command="{Binding LoginCommand}"
                             Style="{StaticResource SfButtonStyle}"
                             TextColor="{DynamicResource Gray-900}"
-                            Text="LOG IN" />
+                            Text="LOGIN" />
 
+                    <!--  Forgot password link  -->
+                        <buttons:SfButton
+                            x:Name="ForgotPasswordLabel"
+                            Grid.Row="5" 
+                            CornerRadius="7"
+                            Margin="0,16"
+                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                            FontSize="12" 
+                            HorizontalOptions="End" 
+                            TextColor="{StaticResource Blue}"
+                            Command="{Binding ForgotPasswordCommand}"
+                            Style="{StaticResource SfFlatButtonStyle}"
+                            Text="FORGOT PASSWORD?" />
+                        
+                       
                         <!--<Label
                         Grid.Row="6"
                         FontFamily="{StaticResource Montserrat-Medium}"
@@ -131,10 +135,12 @@
 
                         <!--  Sign-up button  -->
                         <buttons:SfButton
-                        Command="{Binding SignUpCommand}"
-                        CornerRadius="4"
-                        Style="{StaticResource SfFlatButtonStyle}"
-                        Text="REGISTER" />
+                            x:Name="SignupButton"
+                            Clicked="SignUpClicked"
+                            CornerRadius="4"
+                            Style="{StaticResource SfFlatButtonStyle}"
+                            TextColor="{StaticResource Blue}"
+                            Text="REGISTER" />
 
                     </StackLayout>
 
@@ -142,6 +148,7 @@
             <loading:LoadingIndicator
                 Grid.Row="0"
                 HorizontalOptions="Fill"
+                x:Name="Loader"
                 IsRunning="{Binding State, Mode=TwoWay}"
                 VerticalOptions="Fill" />
 

@@ -4,6 +4,8 @@ using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Onboarding;
 using PasaBuy.App.Views.Onboarding;
+using PasaBuy.App.Views.PopupModals;
+using Rg.Plugins.Popup.Services;
 using System;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -138,15 +140,26 @@ namespace PasaBuy.App.ViewModels.Onboarding
                 State = true;
                 Users.Instance.Auth(Email, Password, (bool success, string data) =>
                 {
+                    if (HtmlUtils.ConvertToPlainText(data) == "Please activate your account first.")
+                    {
+                        PopupNavigation.Instance.PushAsync(new PopupUnverifiedAccount());
+                        State = false;
+                        return;
+                       
+                    }
+
                     if (success)
                     {
                         Token token = JsonConvert.DeserializeObject<Token>(data);
 
-                        if (!token.isSuccess)
+                        
+
+                        if (!token.isSuccess || HtmlUtils.ConvertToPlainText(token.message) != "Please activate your account first." )
                         {
                             new Alert("Something went Wrong", HtmlUtils.ConvertToPlainText(token.message), "OK");
                             return;
-                        }
+                        } 
+                       
 
                         //Initialized the class first.
                         PSACache.Instance.UserInfo = new UserInfo();

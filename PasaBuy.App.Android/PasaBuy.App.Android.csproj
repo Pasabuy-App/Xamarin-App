@@ -234,7 +234,6 @@
     <Compile Include="Renderers\BorderlessPickerRendererAndroid.cs" />
     <Compile Include="Renderers\BorderlessTimePickerRenderer.cs" />
     <Compile Include="Renderers\CalendarDatePickerRenderer.cs" />
-    <Compile Include="Renderers\CustomNumericUpDownRenderer.cs" />
     <Compile Include="Renderers\RoundedEntryRendererAndroid.cs" />
     <Compile Include="Renderers\RoundedPickerRendererAndroid.cs" />
     <Compile Include="Resources\Resource.designer.cs" />

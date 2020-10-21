@@ -28,7 +28,6 @@ namespace PasaBuy.App.Droid.Renderers
                 if (Control != null)
                 {
                     Control.SetTextColor(Android.Graphics.Color.Rgb(0, 0, 0));
-                    Control.SetHintTextColor(Android.Graphics.Color.Rgb(182, 182, 182));
                 }
 
                 Control.Background = null;

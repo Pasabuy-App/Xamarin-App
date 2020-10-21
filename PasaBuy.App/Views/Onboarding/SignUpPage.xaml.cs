@@ -84,5 +84,11 @@ namespace PasaBuy.App.Views.Onboarding
         {
             AddressVar.br = BarangayPicker.SelectedValue.ToString();
         }
+
+        private void backButton_Clicked(object sender, System.EventArgs e)
+        {
+            Navigation.PopModalAsync();
+        }
+
     }
 }
