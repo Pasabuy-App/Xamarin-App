@@ -63,7 +63,8 @@ namespace PasaBuy.App.Views
                 isButton = true;
                 if (e.TabItem.Title == "HOME")
                 {
-                    HomePage.LastIndex = 11;
+                    HomePage.LastIndex = 12;
+                    HomePage.isFirstLoad = false;
                     HomepageViewModel.homePostList.Clear();
                     HomepageViewModel.LoadData("");
                     MasterMenuViewModel.postbutton = string.Empty;

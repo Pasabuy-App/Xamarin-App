@@ -6,9 +6,12 @@ using PasaBuy.App.Models.Onboarding;
 using PasaBuy.App.ViewModels.Driver;
 using PasaBuy.App.ViewModels.Feeds;
 using PasaBuy.App.Views.Driver;
+using Syncfusion.GridCommon.ScrollAxis;
+using Syncfusion.ListView.XForms;
 using Syncfusion.XForms.Buttons;
 using System;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -20,12 +23,53 @@ namespace PasaBuy.App.Views.Feeds
     public partial class HomePage : ContentView
     {
         public bool isBtn = false;
-        public static int LastIndex = 11;
+        public static int LastIndex;
+
+        ScrollAxisBase scrollRows;
+        bool isAlertShown = false;
+        public static bool isFirstLoad = false;
         public HomePage()
         {
             InitializeComponent();
-            LastIndex = 11;
+
+            VisualContainer visualContainer = listView.GetType().GetRuntimeProperties().First(p => p.Name == "VisualContainer").GetValue(listView) as VisualContainer;
+            scrollRows = visualContainer.GetType().GetRuntimeProperties().First(p => p.Name == "ScrollRows").GetValue(visualContainer) as ScrollAxisBase;
+            scrollRows.Changed += ScrollRows_Changed;
+
+            LastIndex = 12;
         }
+        private void ScrollRows_Changed(object sender, ScrollChangedEventArgs e)
+        {
+            var lastIndex = scrollRows.LastBodyVisibleLineIndex;
+
+            //To include header if used
+            var header = (listView.HeaderTemplate != null && !listView.IsStickyHeader) ? 1 : 0;
+
+            //To include footer if used
+            var footer = (listView.FooterTemplate != null && !listView.IsStickyFooter) ? 1 : 0;
+            var totalItems = listView.DataSource.DisplayItems.Count + header + footer;
+
+            if ((lastIndex == totalItems - 1))
+            {
+                if (!isAlertShown)
+                {
+                    if (isFirstLoad)
+                    {
+                        //new Alert("Alert", "End of list reached...", "Ok");
+                        HomepageViewModel.LoadData(LastIndex.ToString());
+                        LastIndex += 7;
+                    }
+                    else
+                    {
+                        isFirstLoad = true;
+                    }
+                    isAlertShown = true;
+                }
+            }
+            else
+                isAlertShown = false;
+        }
+
         private async void Button_Clicked(object sender, EventArgs e)
         {
             var button = (Button)sender;
@@ -42,15 +86,16 @@ namespace PasaBuy.App.Views.Feeds
 
         private void homeListView_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
         {
-            var item = e.ItemData as Post;
+            /*var item = e.ItemData as Post;
             if (HomepageViewModel.homePostList.Last() == item && HomepageViewModel.homePostList.Count() != 1)
             {
                 if (HomepageViewModel.homePostList.IndexOf(item) >= LastIndex)
                 {
                     LastIndex += 6;
-                    HomepageViewModel.LoadData(item.Last_ID);
+                    new Alert("OK", "OK", "OK");
+                    //HomepageViewModel.LoadData(item.Last_ID);
                 }
-            }
+            }*/
         }
 
         private async void SfButton_Clicked(object sender, EventArgs e)
