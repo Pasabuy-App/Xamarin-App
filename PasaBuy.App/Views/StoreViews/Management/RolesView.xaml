@@ -17,19 +17,17 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ContentPage.ToolbarItems>
+    <!--<ContentPage.ToolbarItems>
         <ToolbarItem
             Order="Primary"
-            Clicked="AddTapped"
-            Priority="1"
-            Text="asd">
+            Priority="1">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="Android" Value="add_24.png" />
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
-    </ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>-->
     <ContentPage.Content>
         <Grid CompressedLayout.IsHeadless="True">
             <syncListView:SfListView
@@ -104,7 +102,7 @@
                                            WidthRequest="28" />
                                 </Grid>
                             </Grid>
-                            <Grid ClassId="{Binding ID}"
+                            <Grid ClassId="{Binding Id}"
                                   Grid.Column="1"
                                   BackgroundColor="Red"
                                   HorizontalOptions="Fill"

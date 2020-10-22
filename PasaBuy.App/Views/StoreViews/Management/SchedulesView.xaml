@@ -18,10 +18,11 @@
         <ResourceDictionary>
             <DataTemplate x:Key="ScheduleTemplate">
                 <Grid Margin="0"
-                                  Padding="8,2,8,12"
-                                  BackgroundColor="{DynamicResource Gray-White}"
-                                  ColumnSpacing="0"
-                                  RowSpacing="0">
+                      Padding="8,2,8,12"
+                      CompressedLayout.IsHeadless="True"
+                      BackgroundColor="{DynamicResource Gray-White}"
+                      ColumnSpacing="0"
+                      RowSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
@@ -74,7 +75,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout CompressedLayout.IsHeadless="True">
             <StackLayout Padding="10"
                          Margin="0,0,0,5"
                          VerticalOptions="FillAndExpand"

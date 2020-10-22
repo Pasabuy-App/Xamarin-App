@@ -1,4 +1,7 @@
-﻿using PasaBuy.App.Models.MobilePOS;
+﻿using PasaBuy.App.Commands;
+using PasaBuy.App.Models.MobilePOS;
+using PasaBuy.App.Views.PopupModals;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,6 +14,17 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         public static ObservableCollection<RolesModel> _rolesList;
 
         public static ObservableCollection<RolesModel> _accessList;
+
+        private DelegateCommand _addTapped;
+
+        public DelegateCommand AddTapped =>
+          _addTapped ?? (_addTapped = new DelegateCommand(AddTappedFunction));
+
+        private async void AddTappedFunction(object obj)
+        {
+            await PopupNavigation.Instance.PushAsync(new PopupAddRole());
+
+        }
 
         public ObservableCollection<RolesModel> AccessList
         {

@@ -182,7 +182,9 @@
                             HasError="False"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
-                            <Entry MaxLength="50"  x:Name="ProductNames" />
+                            <Entry MaxLength="50" 
+                                   x:Name="ProductNames" 
+                                   ReturnType="Next" />
                             <inputLayout:SfTextInputLayout.LeadingView>
                                 <Label
                                     FontSize="18"
@@ -204,7 +206,9 @@
                             LeadingViewPosition="Inside">
                             <Entry
                                 VerticalOptions="Center"
-                                HorizontalOptions="FillAndExpand" x:Name="Shorts"/>
+                                HorizontalOptions="FillAndExpand" 
+                                ReturnType="Next"
+                                x:Name="Shorts"/>
                             <inputLayout:SfTextInputLayout.LeadingView>
                                 <Label
                                     FontSize="18"
@@ -247,10 +251,11 @@
                             Hint="Selling Price"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
-                            <Entry
-                                VerticalOptions="Center"
-                                HorizontalOptions="FillAndExpand"
-                                Keyboard="Numeric" x:Name="Prices"/>
+                            <Entry ReturnType="Next"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="FillAndExpand"
+                                    Keyboard="Numeric" 
+                                    x:Name="Prices"/>
                             <inputLayout:SfTextInputLayout.LeadingView>
                                 <Label
                                     FontSize="18"
@@ -324,7 +329,9 @@
                             <Entry
                                 VerticalOptions="Center"
                                 HorizontalOptions="FillAndExpand"
-                                Keyboard="Numeric" x:Name="SKUs"/>
+                                Keyboard="Numeric"
+                                ReturnType="Next"
+                                x:Name="SKUs"/>
                             <inputLayout:SfTextInputLayout.LeadingView>
                                 <Label
                                     FontSize="18"
@@ -348,7 +355,9 @@
                             <inputLayout:SfTextInputLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OpenSourceUnitCommand}" />
                             </inputLayout:SfTextInputLayout.GestureRecognizers>
-                            <Entry Focused="OnUnit_Focused" x:Name="Weights" />
+                            <Entry Focused="OnUnit_Focused"
+                                   ReturnType="Next"
+                                   x:Name="Weights" />
                             <inputLayout:SfTextInputLayout.LeadingView>
                                 <Label
                                     FontSize="18"
@@ -369,9 +378,10 @@
                             Hint="(Optional) Dimension"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
-                            <Entry
+                            <Entry ReturnType="Next"
                                 VerticalOptions="Center"
-                                HorizontalOptions="FillAndExpand" x:Name="Dimensions"/>
+                                HorizontalOptions="FillAndExpand" 
+                                x:Name="Dimensions"/>
                             <inputLayout:SfTextInputLayout.LeadingView>
                                 <Label
                                     FontSize="18"

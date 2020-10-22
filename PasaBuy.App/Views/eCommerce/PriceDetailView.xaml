@@ -174,7 +174,7 @@
             x:Name="PlaceOrder"
             Command="{Binding PlaceOrderCommand}"
             CommandParameter="{x:Reference PlaceOrder}"
-            CornerRadius="20"
+            CornerRadius="5"
             FontFamily="{StaticResource Montserrat-SemiBold}"
             HeightRequest="40"
             HorizontalOptions="{OnIdiom Default=FillAndExpand,

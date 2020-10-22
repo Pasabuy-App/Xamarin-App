@@ -3,10 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
-             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+             xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl" 
+             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.MobilePOS"
              x:Class="PasaBuy.App.Views.StoreViews.POS.PointOfSales"
-             BackgroundColor="{DynamicResource Gray-White}"
-             Title="Point of Sales">
+             Title="POS Terminal"
+             BackgroundColor="{DynamicResource Gray-White}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <!--  Common style for separator BoxView  -->
@@ -23,6 +25,9 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <viewModel:POSViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid>
             <Grid CompressedLayout.IsHeadless="True">

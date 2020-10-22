@@ -8,41 +8,7 @@
              xmlns:viewModelBase="clr-namespace:PasaBuy.App.ViewModels.MobilePOS.Base;assembly=PasaBuy.App"
              viewModelBase:ViewModelLocator.AutoWireViewModel="true"
              MasterBehavior="Popover">
-    <MasterDetailPage.Resources>
-        <ResourceDictionary>
-            <Style x:Key="MainMenuTitleStyle" TargetType="{x:Type Label}">
-                <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}" />
-                <Setter Property="FontSize" Value="18" />
-                <Setter Property="HorizontalOptions" Value="Start" />
-                <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="Margin" Value="12, 0" />
-                <Setter Property="TextColor" Value="{StaticResource Gray-Black}" />
-            </Style>
-            <Style x:Key="MainHeaderLabelStyle" TargetType="{x:Type Label}">
-                <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}" />
-                <Setter Property="FontSize" Value="18" />
-                <Setter Property="TextColor" Value="{StaticResource Gray-White}" />
-                <Setter Property="HorizontalOptions" Value="Start" />
-                <Setter Property="Margin" Value="20,0" />
-            </Style>
-            <Style x:Key="SfGradientViewStyle" TargetType="gradient:SfGradientView">
-                <Setter Property="Opacity" Value="0.92" />
-                <Setter Property="VerticalOptions" Value="FillAndExpand" />
-                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-                <Setter Property="BackgroundBrush">
-                    <Setter.Value>
-                        <gradient:SfLinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                            <gradient:SfLinearGradientBrush.GradientStops>
-                                <gradient:SfGradientStop Offset="0.0" Color="{StaticResource Orange}" />
-                                <gradient:SfGradientStop Offset="1.0" Color="{StaticResource PrimaryColor}" />
-                            </gradient:SfLinearGradientBrush.GradientStops>
-                        </gradient:SfLinearGradientBrush>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            <converters:StoreMobileNumberConverter x:Key="storeMobileNumberConverter" />
-        </ResourceDictionary>
-    </MasterDetailPage.Resources>
+  
 
     <MasterDetailPage.Master>
         <pages:MasterView x:Name="RootPage" />

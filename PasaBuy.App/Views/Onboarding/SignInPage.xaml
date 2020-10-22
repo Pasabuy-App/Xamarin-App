@@ -9,12 +9,10 @@
              xmlns:control="clr-namespace:PasaBuy.App.Controls"
              xmlns:local="clr-namespace:PasaBuy.App.Views.Onboarding"
              xmlns:template="clr-namespace:PasaBuy.App.Views.Templates"
-             xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms" xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
-             BackgroundImageSource="{core:OnPlatformOrientationStringValue Default=LoginBackground.png,
-                                                                           iOSPhoneLandscape=LoginBackground-Landscape.png,
-                                                                           iOSTabletLandscape=LoginBackground-Landscape.png}"
-             Style="{StaticResource ContentPageStyle}" 
+             xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms" 
+             xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
              NavigationPage.HasNavigationBar="False" 
+             BackgroundColor="{DynamicResource Gray-White}"
              x:Class="PasaBuy.App.Views.Onboarding.SignInPage" >
 
     <ContentPage.Resources>
@@ -33,7 +31,7 @@
 
     <ContentPage.Content>
         <Grid>
-            <gradient:SfGradientView Style="{StaticResource SfGradientStyle}" />
+            <!--<gradient:SfGradientView Style="{StaticResource SfGradientStyle}" />-->
 
             <StackLayout  Spacing="0"
                               Padding="20,0,20,0"
@@ -61,10 +59,12 @@
                             Margin="0,-20,0,70"
                             HorizontalTextAlignment="Center"
                             Style="{StaticResource LabelStyle}"
+                            TextColor="{DynamicResource Gray-900}"
                             FontSize="17"
                             Text="v1.0.0 - Beta Release" />
                         <!--  Entry to get email ID from user  -->
-                        <local:LoginEmailEntry Grid.Row="2" Padding="0,24" />
+                        <local:LoginEmailEntry Grid.Row="2"
+                                               Padding="0,24" />
 
                         <!--  Entry to get password from user  -->
                         <border:SfBorder
@@ -87,7 +87,8 @@
                             CornerRadius="7"
                             Command="{Binding LoginCommand}"
                             Style="{StaticResource SfButtonStyle}"
-                            TextColor="{DynamicResource Gray-900}"
+                            TextColor="{DynamicResource WhiteColor}"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
                             Text="LOGIN" />
 
                     <!--  Forgot password link  -->
@@ -99,7 +100,7 @@
                             FontFamily="{StaticResource Montserrat-SemiBold}"
                             FontSize="12" 
                             HorizontalOptions="End" 
-                            TextColor="{StaticResource Blue}"
+                            TextColor="{DynamicResource PrimaryColor}"
                             Command="{Binding ForgotPasswordCommand}"
                             Style="{StaticResource SfFlatButtonStyle}"
                             Text="FORGOT PASSWORD?" />
@@ -131,6 +132,7 @@
                         HorizontalTextAlignment="Center"
                         Style="{StaticResource LabelStyle}"
                         Text="Don't have an account?"
+                        TextColor="{DynamicResource Gray-900}"
                         VerticalTextAlignment="Center" />
 
                         <!--  Sign-up button  -->
@@ -139,7 +141,7 @@
                             Clicked="SignUpClicked"
                             CornerRadius="4"
                             Style="{StaticResource SfFlatButtonStyle}"
-                            TextColor="{StaticResource Blue}"
+                            TextColor="{DynamicResource PrimaryColor}"
                             Text="REGISTER" />
 
                     </StackLayout>

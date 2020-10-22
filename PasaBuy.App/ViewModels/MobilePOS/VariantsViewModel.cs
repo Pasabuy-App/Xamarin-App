@@ -82,7 +82,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                     if (success)
                     {
                         Variants variants = JsonConvert.DeserializeObject<Variants>(data);
-                        Console.WriteLine(data);
+       
                         if (variants.data.Length > 0)
                         {
                             for (int i = 0; i < variants.data.Length; i++)

@@ -19,11 +19,11 @@ namespace PasaBuy.App.Droid.Renderers
             base.OnElementChanged(e);
             if (this.Control != null)
             {
-                var customPicker = e.NewElement as CalenderDatePicker;
-                this.Control.SetBackground(null);
-                Control.Text = (e.NewElement as Controls.CalenderDatePicker).PlaceHolderText;
-                Control.Gravity = Android.Views.GravityFlags.CenterVertical;
-                Control.SetPadding(20, 0, 0, 0);
+                //var customPicker = e.NewElement as CalenderDatePicker;
+                //this.Control.SetBackground(null);
+                //Control.Text = (e.NewElement as Controls.CalenderDatePicker).PlaceHolderText;
+                //Control.Gravity = Android.Views.GravityFlags.CenterVertical;
+                //Control.SetPadding(20, 0, 0, 0);
             }
         }
 

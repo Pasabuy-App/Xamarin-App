@@ -15,7 +15,7 @@ namespace PasaBuy.App.Views.Navigation
             InitializeComponent();
             if (MasterView.MyType == "store")
             {
-                Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(PasaBuy.App.Views.StoreViews.MainView)));
+                Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(PasaBuy.App.Views.StoreViews.Dashboard)));
             }
             if (MasterView.MyType == "mover")
             {

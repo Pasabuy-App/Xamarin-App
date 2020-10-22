@@ -16,7 +16,7 @@ namespace PasaBuy.App.Views.StoreViews.POS
         public PointOfSales()
         {
             InitializeComponent();
-            this.BindingContext = new POSViewModel();
+            //this.BindingContext = new POSViewModel();
         }
     }
 }
