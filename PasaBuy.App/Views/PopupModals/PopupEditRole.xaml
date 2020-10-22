@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="PasaBuy.App.Views.PopupModals.PopupEditRole"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App" 
+    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
+    xmlns:behavior1="clr-namespace:PasaBuy.App.Behaviors" 
+    xmlns:controls="clr-namespace:PasaBuy.App.Controls"
+    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms">
+    <pages:PopupPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="PopupItemHeaderStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0,0,0,0" />
+            </Style>
+
+            <Style x:Key="PopupLabelStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="End" />
+                <Setter Property="Margin" Value="10,0,0,12" />
+            </Style>
+        </ResourceDictionary>
+    </pages:PopupPage.Resources>
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            DurationIn="500"
+            EasingIn="SpringOut"
+            PositionIn="Bottom"
+            PositionOut="Center"
+            ScaleIn="1"
+            ScaleOut="0.7" />
+    </pages:PopupPage.Animation>
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <Frame
+            x:Name="FrameContainer"
+            Margin="15"
+            Padding="15,15,15,15"
+            BackgroundColor="White"
+            CornerRadius="6"
+            HorizontalOptions="Center">
+            <StackLayout
+                Padding="10,5"
+                IsClippedToBounds="True"
+                Spacing="3">
+                <Grid RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid
+                        Grid.Row="1"
+                        ColumnSpacing="8"
+                        RowSpacing="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60" />
+                            <RowDefinition Height="60" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="60" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*" />
+                            <ColumnDefinition Width="0.5*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Entry
+                            x:Name="RoleName"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                            MaxLength="30"
+                            Placeholder="Manager, Cashier, etc."
+                            PlaceholderColor="{DynamicResource Gray-900}"
+                            Text="{Binding Name}"
+                            VerticalOptions="EndAndExpand" />
+
+                        <Editor
+                            x:Name="Description"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                            MaxLength="250"
+                            HeightRequest="80"
+                            Placeholder="Short Description"
+                            Text="{Binding Description}"
+                            PlaceholderColor="{DynamicResource Gray-900}"
+                            VerticalOptions="StartAndExpand" />
+
+                        <StackLayout Grid.Row="2"
+                                     Grid.ColumnSpan="2"
+                                     CompressedLayout.IsHeadless="True">
+                            <listView:SfListView Margin="0,0"
+                                                Padding="0"
+                                                AutoFitMode="Height"
+                                                ColumnSpacing="0"
+                                                FocusBorderColor="Transparent"
+                                                HorizontalOptions="FillAndExpand"
+                                                IsStickyHeader="True"
+                                                ItemsSource="{Binding AccessList}"
+                                                RowSpacing="0"
+                                                SelectionBackgroundColor="Transparent"
+                                                TapCommand="{Binding ItemSelectedCommand}">
+                                <listView:SfListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <controls:CustomShadowFrame
+                                            Margin="8"
+                                            Padding="0,5,0,5"
+                                            BackgroundColor="White"
+                                            BorderColor="White"
+                                            CornerRadius="4"
+                                            HasShadow="true">
+                                            <button:SfCheckBox Text="{Binding AccessName}" 
+                                                                   Padding="0,3,0,3"
+                                                                   CheckedColor="{DynamicResource PrimaryColor}"
+                                                                   FontSize="12"/>
+                                        </controls:CustomShadowFrame>
+                                    </DataTemplate>
+                                </listView:SfListView.ItemTemplate>
+
+                                <listView:SfListView.Behaviors>
+                                    <behavior1:SfListViewExtendHeightBehavior />
+                                </listView:SfListView.Behaviors>
+
+                                <listView:SfListView.LayoutManager>
+                                    <listView:GridLayout SpanCount="{core:OnPlatformOrientationIntValue Desktop=4, PhonePortrait=2, PhoneLandscape=4, TabletPortrait=4, TabletLandscape=5}" />
+                                </listView:SfListView.LayoutManager>
+                            </listView:SfListView>
+                        </StackLayout>
+
+                        <button:SfButton
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            BackgroundColor="Green"
+                            BorderColor="{DynamicResource BlackColor}"
+                            BorderWidth="2"
+                            CornerRadius="4"
+                            FontFamily="{StaticResource Montserrat-Regular}"
+                            HorizontalOptions="FillAndExpand"
+                            Text="OK"
+                            TextColor="White"
+                            VerticalOptions="Center" />
+                        <button:SfButton
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            BackgroundColor="Red"
+                            BorderColor="{StaticResource BlackColor}"
+                            BorderWidth="2"
+                            CornerRadius="4"
+                            Clicked="CancelModal"
+                            FontFamily="{StaticResource Montserrat-Regular}"
+                            HorizontalOptions="FillAndExpand"
+                            Text="{texts:Translate Cancel}"
+                            TextColor="White"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </Grid>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</pages:PopupPage>

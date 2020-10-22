@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:syncListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="PasaBuy.App.Views.StoreViews.Management.RolesView"
+             Title="Personnel Roles"
+             BackgroundColor="{DynamicResource Gray-White}">
+   
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Order="Primary"
+            Clicked="AddTapped"
+            Priority="1"
+            Text="asd">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android" Value="add_24.png" />
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <Grid CompressedLayout.IsHeadless="True">
+            <syncListView:SfListView
+                                Padding="15,15,15,15"
+                                AutoFitMode="Height"
+                                IsScrollBarVisible="false"
+                                ItemSpacing="0,10,0,0"
+                                ItemSize="50"
+                                x:Name="ListView"
+                                AllowSwiping="True"
+                                ItemsSource="{Binding RolesList}"
+                                SelectionBackgroundColor="Transparent"
+                                VerticalOptions="FillAndExpand">
+                <syncListView:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <!--  View of each card item  -->
+                            <controls:CustomShadowFrame
+                                                Margin="0,2,5,5"
+                                                Padding="0"
+                                                BackgroundColor="{DynamicResource Gray-White}"
+                                                BorderColor="{DynamicResource Gray-White}"
+                                                BorderWidth="1"
+                                                CornerRadius="4"
+                                                HasShadow="True"
+                                                HorizontalOptions="FillAndExpand"
+                                                VerticalOptions="FillAndExpand">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Label Grid.Row="0"
+                                           FontFamily="{StaticResource Montserrat-SemiBold}"
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="Center"
+                                           Margin="10,0,0,0"
+                                           Padding="10,15,10,15"
+                                           FontSize="{DynamicResource MediumSize}"
+                                           LineHeight="{OnPlatform Android=1.5, Default=-1}"
+                                           Text="{Binding RoleTitle}"
+                                           TextColor="{DynamicResource Gray-900}" />
+                                </Grid>
+                                <controls:CustomShadowFrame.GestureRecognizers>
+                                    <TapGestureRecognizer  Command="{Binding BindingContext.MyVehicleCommand,Source={x:Reference ListView}}" CommandParameter="{Binding Identification}" />
+                                </controls:CustomShadowFrame.GestureRecognizers>
+                            </controls:CustomShadowFrame>
+                        </ViewCell>
+                    </DataTemplate>
+                </syncListView:SfListView.ItemTemplate>
+                <syncListView:SfListView.RightSwipeTemplate>
+                    <DataTemplate x:Name="RightSwipeTemplate">
+                        <Grid Padding="5,8,5,8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid ClassId="{Binding Id}"
+                                  Grid.Column="0"
+                                  BackgroundColor="{DynamicResource PrimaryColor}"
+                                  HorizontalOptions="Fill"
+                                  VerticalOptions="Fill">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer x:Name="Update" Tapped="Update_Tapped" NumberOfTapsRequired="1"/>
+                                </Grid.GestureRecognizers>
+                                <Grid HorizontalOptions="Center" 
+                                      VerticalOptions="Center">
+                                    <Image Grid.Row="0"
+                                           Grid.Column="0"
+                                           BackgroundColor="Transparent"
+                                           HeightRequest="28"
+                                           Source="edit_white.png"
+                                           WidthRequest="28" />
+                                </Grid>
+                            </Grid>
+                            <Grid ClassId="{Binding ID}"
+                                  Grid.Column="1"
+                                  BackgroundColor="Red"
+                                  HorizontalOptions="Fill"
+                                  VerticalOptions="Fill">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer  x:Name="Delete" NumberOfTapsRequired="1" />
+                                </Grid.GestureRecognizers>
+                                <Grid HorizontalOptions="Center" 
+                                      VerticalOptions="Center">
+                                    <Image Grid.Row="0"
+                                           Grid.Column="0"
+                                           BackgroundColor="Transparent"
+                                           HeightRequest="28"
+                                           Source="Delete.png"
+                                           WidthRequest="28" />
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </syncListView:SfListView.RightSwipeTemplate>
+            </syncListView:SfListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
