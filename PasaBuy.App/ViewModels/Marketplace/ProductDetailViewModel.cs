@@ -16,10 +16,48 @@ namespace PasaBuy.App.ViewModels.Marketplace
     public class ProductDetailViewModel : BaseViewModel
     {
         #region Fields
-        private ObservableCollection<Variants> _variantsList;
-        private ObservableCollection<Options> _optionsList;
+        public static ObservableCollection<Variants> _variantsList;
+        public static ObservableCollection<Options> _optionsList;
         private ObservableCollection<Options> _addonsList;
-
+        public static ObservableCollection<Options> _AddOnsList;
+        public static ObservableCollection<Options> _OptionsList;
+        public static ObservableCollection<Options> _AllVariants;
+        public ObservableCollection<Options> AllVariants
+        {
+            get
+            {
+                return _AllVariants;
+            }
+            set
+            {
+                _AllVariants = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+        public ObservableCollection<Options> OptionList
+        {
+            get
+            {
+                return _OptionsList;
+            }
+            set
+            {
+                _OptionsList = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+        public ObservableCollection<Options> AddOnsList
+        {
+            get
+            {
+                return _AddOnsList;
+            }
+            set
+            {
+                _AddOnsList = value;
+                this.NotifyPropertyChanged();
+            }
+        }
         public ObservableCollection<Options> AddonsList
         {
             get
@@ -194,15 +232,30 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 this.NotifyPropertyChanged();
             }
         }
+        public bool _isRunning = false;
+        public bool isRunning
+        {
+            get
+            {
+                return _isRunning;
+            }
+            set
+            {
+                _isRunning = value;
+                this.NotifyPropertyChanged();
+            }
+        }
         #endregion
         public ProductDetailViewModel()
         {
             _itemList = new ObservableCollection<ProductList>();
             _variantsList = new ObservableCollection<Variants>();
+
+            _optionsList = new ObservableCollection<Options>();
             _addonsList = new ObservableCollection<Options>();
-
-
-
+            _AddOnsList = new ObservableCollection<Options>();
+            _OptionsList = new ObservableCollection<Options>();
+            _AllVariants = new ObservableCollection<Options>();
 
             this.ProductName = productname;
             this.Price = Convert.ToDouble(price);
@@ -219,6 +272,111 @@ namespace PasaBuy.App.ViewModels.Marketplace
             StoreDetailsViewModel.cartDetails.CollectionChanged += CollectionChanges;
             LoadCart();
         }
+
+        public static void InsertVariants(string vrid, string name)
+        {
+            string option_id = string.Empty;
+            double price;
+            foreach (Variants var in _variantsList)
+            {
+                if (var.ID == vrid)
+                {
+                    foreach (Options op in var.options)
+                    {
+                        if (op.Vrid == vrid && op.Name == name)
+                        {
+                            option_id = op.Id;
+                            price = op.Price;
+                            bool itemExists = _OptionsList.Any(ops =>
+                            {
+                                return (ops.Vrid == vrid);
+                            });
+                            if (!itemExists)
+                            {
+                                _OptionsList.Add(new Options()
+                                {
+                                    Vrid = vrid,
+                                    Id = option_id,
+                                    Name = name,
+                                    Price = price
+                                });
+                            }
+                            else
+                            {
+                                foreach (Options opt2 in _OptionsList)
+                                {
+                                    if (opt2.Vrid == vrid)
+                                    {
+                                        opt2.Id = option_id;
+                                        opt2.Name = name;
+                                        opt2.Price = price;
+                                        break;
+                                    }
+                                }
+                            }
+                            break;
+                        }
+
+                    }
+                    break;
+                }
+            }
+        }
+        public static void InsertAddOns(string vrid, string name)
+        {
+            foreach (Variants var in _variantsList)
+            {
+                if (var.ID == vrid)
+                {
+                    foreach (Options op in var.addons)
+                    {
+                        if (op.Vrid == vrid && op.Name == name)
+                        {
+                            _AddOnsList.Add(new Options()
+                            {
+                                Vrid = vrid,
+                                Id = op.Id,
+                                Name = name,
+                                Price = op.Price
+                            });
+                            break;
+                        }
+
+                    }
+                    break;
+                }
+            }
+        }
+        public static void RemoveAddOns(string vrid, string name)
+        {
+            if (_AddOnsList.Count > 0)
+            {
+                foreach (Variants var in _variantsList)
+                {
+                    if (var.ID == vrid)
+                    {
+                        foreach (Options op in var.addons)
+                        {
+                            if (op.Vrid == vrid && op.Name == name)
+                            {
+                                foreach (var item in _AddOnsList)
+                                {
+                                    if (item.Vrid == vrid && item.Id == op.Id && item.Name == name)
+                                    {
+                                        _AddOnsList.Remove(item);
+                                        break;
+                                    }
+                                }
+                                break;
+                            }
+
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+
         private void CollectionChanges(object sender, EventArgs e)
         {
             LoadCart();
@@ -230,15 +388,14 @@ namespace PasaBuy.App.ViewModels.Marketplace
             double totalprice = 0;
             foreach (ProductList prod in StoreDetailsViewModel.cartDetails)
             {
-                double variant_price = 0;
-                if (prod.Vrid > 0)
+                double varprice = 0;
+                foreach (Options var in prod.Variants)
                 {
-                    variant_price = prod.Vrid_Price;
+                    varprice += var.Price;
                 }
-                totalprice += Convert.ToInt32(prod.Quantity) * (prod.ActualPrice + variant_price);
+                totalprice += prod.Quantity * (prod.ActualPrice + varprice);
             }
             this.TotalPrice = totalprice;
-            //InsertItemToCart(item.ID, item.Vrid, Convert.ToInt32(item.Quantity), item.ActualPrice);
         }
 
         public ICommand AddToCartCommand
@@ -249,40 +406,65 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-        private void AddToCartClicked(string id)
+        private async void AddToCartClicked(string id)
         {
-            if (Views.Marketplace.ProductDetail.variants_id != 0)
+            if (!isRunning)
             {
-                try
+                isRunning = true;
+                if (_variantsList.Count > 0)
                 {
-                    TindaPress.Variant.Instance.Listing(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, productid, "0", "1", Views.Marketplace.ProductDetail.variants_id.ToString(), (bool success, string data) =>
+                    int count = 0;
+                    foreach (var item in _variantsList)
                     {
-                        if (success)
+                        if (item.Base == "Required(1)")
                         {
-                            Options options = JsonConvert.DeserializeObject<Options>(data);
-                            if (options.data.Length > 0)
+                            count++;
+                        }
+                    }
+                    if (count != _OptionsList.Count) // Count of selected variants/options that required
+                    {
+                        isRunning = false;
+                        new Alert("Notice to User", "Please select required options.", "Try Again"); // Show error if required item is not equal to selected
+                    }
+                    else
+                    {
+                        if (_OptionsList.Count > 0)
+                        {
+                            foreach (Options ops in _OptionsList)
                             {
-                                for (int i = 0; i < options.data.Length; i++)
+                                _AllVariants.Add(new Options()
                                 {
-                                    StoreDetailsViewModel.InsertCart(productid, Views.Marketplace.ProductDetail.variants_id, Convert.ToDouble(options.data[i].price), this.ProductName, this.Short_Info, this.ProductImage, this.Price, this.Quantity);
-                                }
+                                    Vrid = ops.Vrid,
+                                    Id = ops.Id,
+                                    Name = ops.Name,
+                                    Price = ops.Price,
+                                });
                             }
                         }
-                        else
+                        if (_AddOnsList.Count > 0)
                         {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            foreach (Options ops in _AddOnsList)
+                            {
+                                _AllVariants.Add(new Options()
+                                {
+                                    Vrid = ops.Vrid,
+                                    Id = ops.Id,
+                                    Name = ops.Name,
+                                    Price = ops.Price,
+                                });
+                            }
                         }
-                    });
+
+                        StoreDetailsViewModel.InsertCart(productid, this.ProductName, this.Short_Info, this.ProductImage, this.Price, this.Quantity, _AllVariants);
+                        isRunning = false;
+                        await Application.Current.MainPage.Navigation.PopModalAsync();
+                    }
                 }
-                catch (Exception e)
+                else
                 {
-                    new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
-                }
-            }
-            else
-            {
-                {
-                    StoreDetailsViewModel.InsertCart(productid, 0, 0, this.ProductName, this.Short_Info, this.ProductImage, this.Price, this.Quantity);
+                    StoreDetailsViewModel.InsertCart(productid, this.ProductName, this.Short_Info, this.ProductImage, this.Price, this.Quantity, _AllVariants);
+                    isRunning = false;
+                    await Application.Current.MainPage.Navigation.PopModalAsync();
                 }
             }
         }
@@ -306,9 +488,21 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                     _optionsList.Clear();
                                     for (int j = 0; j < var.data[i].options.Count; j++)
                                     {
-                                        _optionsList.Add(new Options() { Id = var.data[i].options[j].ID, Name = var.data[i].options[j].name, Price = Convert.ToDouble(var.data[i].options[j].price) });
+                                        _optionsList.Add(new Options()
+                                        {
+                                            Vrid = var.data[i].ID,
+                                            Id = var.data[i].options[j].ID,
+                                            Name = var.data[i].options[j].name,
+                                            Price = Convert.ToDouble(var.data[i].options[j].price)
+                                        });
                                     }
-                                    _variantsList.Add(new Variants() { Name = var.data[i].name, options = _optionsList });
+                                    _variantsList.Add(new Variants()
+                                    {
+                                        ID = var.data[i].ID,
+                                        Name = var.data[i].name,
+                                        Base = "Required(1)",
+                                        options = _optionsList
+                                    });
                                 }
                                 else
                                 {
@@ -316,9 +510,21 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                     _addonsList.Clear();
                                     for (int j = 0; j < var.data[i].options.Count; j++)
                                     {
-                                        _addonsList.Add(new Options() { Id = var.data[i].options[j].ID, Name = var.data[i].options[j].name, Price = Convert.ToDouble(var.data[i].options[j].price) });
+                                        _addonsList.Add(new Options()
+                                        {
+                                            Vrid = var.data[i].ID,
+                                            Id = var.data[i].options[j].ID,
+                                            Name = var.data[i].options[j].name,
+                                            Price = Convert.ToDouble(var.data[i].options[j].price)
+                                        });
                                     }
-                                    _variantsList.Add(new Variants() { Name = var.data[i].name, addons = _addonsList });
+                                    _variantsList.Add(new Variants()
+                                    {
+                                        ID = var.data[i].ID,
+                                        Name = var.data[i].name,
+                                        Base = "Optional",
+                                        addons = _addonsList
+                                    });
                                 }
 
                             }

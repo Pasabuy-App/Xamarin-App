@@ -197,26 +197,27 @@ namespace PasaBuy.App.ViewModels.Marketplace
             LoadStoreDetails(store_id);
 
         }
-        public static void InsertCart(string id, int vrid, double vrid_price, string name, string summary, string image, double price, int quantity)
+        public static void InsertCart(string id, string name, string summary, string image, double price, int quantity, ObservableCollection<Options> Variants)
         {
+            // TODO : ADD OBSERVABLE COLLECTION FOR VARIANTS
             cartDetails.Insert(0, new ProductList()
             {
                 Stid = store_id,
-                Vrid = vrid,
-                Vrid_Price = vrid_price,
                 ID = id,
                 Name = name,
                 Summary = summary,
                 PreviewImage = PSAProc.GetUrl(image),
                 ActualPrice = price,
                 TotalQuantity = quantity,
-                Quantity = quantity
+                Quantity = quantity,
+                Variants = Variants
+
             });
             Convert2String(store_id);
         }
         public static void Convert2String(string stid)
         {
-            string json = Newtonsoft.Json.JsonConvert.SerializeObject(cartDetails);
+            string json = JsonConvert.SerializeObject(cartDetails);
             Xamarin.Essentials.Preferences.Set(stid, json);
         }
         public static void Convert2List(string stid)
@@ -224,7 +225,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
             if (Xamarin.Essentials.Preferences.ContainsKey(stid))
             {
                 string data = Xamarin.Essentials.Preferences.Get(stid, "{}");
-                var result = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.Generic.List<ProductList>>(data);
+                var result = JsonConvert.DeserializeObject<System.Collections.Generic.List<ProductList>>(data);
 
                 cartDetails = new ObservableCollection<ProductList>(result);
             }

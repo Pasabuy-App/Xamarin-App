@@ -28,7 +28,7 @@ namespace PasaBuy.App.Views.Marketplace
 
         protected override bool OnBackButtonPressed()
         {
-            Device.BeginInvokeOnMainThread(async () =>
+            Device.BeginInvokeOnMainThread(() =>
             {
                 variants_id = 0;
             });
@@ -51,9 +51,25 @@ namespace PasaBuy.App.Views.Marketplace
             if (e.IsChecked.HasValue && e.IsChecked.Value)
             {
                 //variants_options = (sender as Syncfusion.XForms.Buttons.SfRadioButton).Text;
-                variants_id = Convert.ToInt32((sender as Syncfusion.XForms.Buttons.SfRadioButton).ClassId);
-                //new Controllers.Notice.Alert("Something went Wrong", "test " + variants_options + " id: " + variants_id, "OK");
+                //(sender as Syncfusion.XForms.Buttons.SfRadioButton).Text = "";
+                //variants_id = Convert.ToInt32((sender as Syncfusion.XForms.Buttons.SfRadioButton).ClassId);
+                //new Controllers.Notice.Alert("Something went Wrong", "test " + variants_id, "1 " + (sender as Syncfusion.XForms.Buttons.SfRadioButton).Text);
+                ProductDetailViewModel.InsertVariants((sender as Syncfusion.XForms.Buttons.SfRadioButton).ClassId, (sender as Syncfusion.XForms.Buttons.SfRadioButton).Text);
             }
         }
+
+        private void checkBox_StateChanged(object sender, Syncfusion.XForms.Buttons.StateChangedEventArgs e)
+        {
+            // TODO : if check, insert to observable collection. if uncheck, check the option id then remove it from observable collection.
+            if (e.IsChecked.HasValue && e.IsChecked.Value)
+            {
+                ProductDetailViewModel.InsertAddOns( (sender as Syncfusion.XForms.Buttons.SfCheckBox).ClassId, (sender as Syncfusion.XForms.Buttons.SfCheckBox).Text);
+            }
+            else
+            {
+                ProductDetailViewModel.RemoveAddOns( (sender as Syncfusion.XForms.Buttons.SfCheckBox).ClassId, (sender as Syncfusion.XForms.Buttons.SfCheckBox).Text);
+            }
+        }
+
     }
 }
