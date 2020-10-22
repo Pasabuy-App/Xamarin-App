@@ -18,6 +18,21 @@ namespace PasaBuy.App.ViewModels.Marketplace
         #region Fields
         private ObservableCollection<Variants> _variantsList;
         private ObservableCollection<Options> _optionsList;
+        private ObservableCollection<Options> _addonsList;
+
+        public ObservableCollection<Options> AddonsList
+        {
+            get
+            {
+                return _addonsList;
+            }
+            set
+            {
+                _addonsList = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
         public bool IsChecked
         {
             get
@@ -184,6 +199,10 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             _itemList = new ObservableCollection<ProductList>();
             _variantsList = new ObservableCollection<Variants>();
+            _addonsList = new ObservableCollection<Options>();
+
+
+
 
             this.ProductName = productname;
             this.Price = Convert.ToDouble(price);
@@ -281,14 +300,27 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         {
                             if (var.data[i].options.Count != 0)
                             {
-                                _optionsList = new ObservableCollection<Options>();
-                                _optionsList.Clear();
-                                for (int j = 0; j < var.data[i].options.Count; j++)
+                                if (var.data[i].baseprice == "Yes")
                                 {
-                                    _optionsList.Add(new Options() { Id = var.data[i].options[j].ID, Name = var.data[i].options[j].name, Price = Convert.ToDouble(var.data[i].options[j].price) });
+                                    _optionsList = new ObservableCollection<Options>();
+                                    _optionsList.Clear();
+                                    for (int j = 0; j < var.data[i].options.Count; j++)
+                                    {
+                                        _optionsList.Add(new Options() { Id = var.data[i].options[j].ID, Name = var.data[i].options[j].name, Price = Convert.ToDouble(var.data[i].options[j].price) });
+                                    }
+                                    _variantsList.Add(new Variants() { Name = var.data[i].name, Base = "Required(1)", options = _optionsList });
+                                }
+                                else
+                                {
+                                    _addonsList = new ObservableCollection<Options>();
+                                    _addonsList.Clear();
+                                    for (int j = 0; j < var.data[i].options.Count; j++)
+                                    {
+                                        _addonsList.Add(new Options() { Id = var.data[i].options[j].ID, Name = var.data[i].options[j].name, Price = Convert.ToDouble(var.data[i].options[j].price) });
+                                    }
+                                    _variantsList.Add(new Variants() { Name = var.data[i].name, Base = "Optional", addons = _addonsList });
                                 }
 
-                                _variantsList.Add(new Variants() { Name = var.data[i].name, options = _optionsList });
                             }
                         }
                     }

@@ -44,14 +44,14 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
-        <StackLayout>
+        <StackLayout CompressedLayout.IsHeadless="True">
             <listView:SfListView x:Name="CompletedOrders"
                                  AutoFitMode="Height"
                                  FocusBorderThickness="0"
                                  ItemSpacing="0,1,0,0"
                                  VerticalOptions="StartAndExpand"
                                  ItemTapped="CompletedOrders_ItemTapped"
-                                                 ItemsSource="{Binding OrderList}"
+                                 ItemsSource="{Binding OrderList}"
                                  SelectionMode="None">
                 <!--Item Source is for testing purposes only. Kindly bind into specific viewmodels-->
 

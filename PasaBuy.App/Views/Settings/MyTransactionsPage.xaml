@@ -7,7 +7,10 @@
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              NavigationPage.HasNavigationBar="False"
              xmlns:helper="clr-namespace:PasaBuy.App.Helpers" 
-             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.eCommerce"
+             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.eCommerce" 
+             xmlns:syncListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              x:Class="PasaBuy.App.Views.Settings.MyTransactionsPage"
              BackgroundColor="{DynamicResource Gray-White}">
     <ContentPage.Resources>
@@ -42,29 +45,39 @@
         </ControlTemplate>
     </ContentPage.ControlTemplate>
     <ContentPage.Content>
-        <ScrollView>
-
-            <StackLayout
-                x:Name="transactionList"
-                Padding="16"
-                BindableLayout.ItemsSource="{Binding TransactionDetails}"
-                Spacing="16">
-                <BindableLayout.ItemTemplate>
+        <StackLayout CompressedLayout.IsHeadless="True">
+            <syncListView:SfListView
+                            Margin="8,0"
+                            x:Name="transactionList"
+                            Padding="0"
+                            ColumnSpacing="0"
+                            FocusBorderColor="Transparent"
+                            HorizontalOptions="FillAndExpand"
+                            HeaderSize="350"
+                            IsScrollBarVisible="False"
+                            ItemsSource="{Binding TransactionDetails}"
+                            RowSpacing="0"
+                            AutoFitMode="DynamicHeight"
+                            SelectionBackgroundColor="Transparent"
+                            TapCommand="{Binding ItemSelectedCommand}">
+                <syncListView:SfListView.ItemTemplate>
                     <DataTemplate>
                         <controls:CustomShadowFrame
                             Margin="0"
                             Padding="0"
-                            BackgroundColor="{DynamicResource Gray-White}"
+                            BackgroundColor="{DynamicResource Gray-100}"
                             BorderColor="{DynamicResource Gray-White}"
                             CornerRadius="4"
                             HasShadow="True"
-                            HeightRequest="80">
+                            HeightRequest="95">
                             <controls:CustomShadowFrame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Path=BindingContext.ItemSelectedCommand, Source={x:Reference transactionList}}" CommandParameter="{Binding .}" />
+                                <TapGestureRecognizer Command="{Binding Path=BindingContext.ItemSelectedCommand, Source={x:Reference transactionList}}" CommandParameter="{Binding ID}" />
                             </controls:CustomShadowFrame.GestureRecognizers>
 
-                            <Grid ColumnSpacing="0" RowSpacing="0">
+                            <Grid ColumnSpacing="0"
+                                  RowSpacing="0">
                                 <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
@@ -74,31 +87,28 @@
                                 </Grid.ColumnDefinitions>
 
                                 <!--  Profile image  -->
-                                <border:SfBorder
-                                    Grid.RowSpan="2"
-                                    Margin="16"
-                                    BorderWidth="0"
-                                    CornerRadius="24"
-                                    HorizontalOptions="Center"
-                                    VerticalOptions="Center">
-                                    <Image
-                                        BackgroundColor="{DynamicResource Gray-200}"
-                                        HeightRequest="48"
-                                        WidthRequest="48" >
-                                        <Image.Source>
-                                            <UriImageSource Uri="{Binding Image}" 
-			                                 CacheValidity="14" 
-			                                 CachingEnabled="true"/>
-                                        </Image.Source>
-                                    </Image>
-                                </border:SfBorder>
+                                <ffimageloading:CachedImage Grid.RowSpan="2"
+                                                            Grid.Column="0"
+                                                            Aspect="Fill"
+                                                            Margin="5,12,0,0"
+                                                            CacheType="Memory"
+                                                            HeightRequest="50"
+                                                            WidthRequest="50"
+                                                            DownsampleToViewSize="True"
+                                                            Source="{Binding Image}"
+                                                            FadeAnimationEnabled="True">
+                                    <ffimageloading:CachedImage.Transformations>
+                                        <transformations:CircleTransformation />
+                                    </ffimageloading:CachedImage.Transformations>
+                                </ffimageloading:CachedImage>
 
                                 <!--  Customer name and transactiona amount label  -->
                                 <StackLayout
                                     Grid.Row="0"
                                     Grid.Column="1"
                                     Padding="0"
-                                    helper:RTLHelper.Margin="0,16,16,4"
+                                    CompressedLayout.IsHeadless="True"
+                                    helper:RTLHelper.Margin="8,16,16,4"
                                     Orientation="Horizontal"
                                     Spacing="0">
                                     <Label
@@ -121,8 +131,9 @@
                                     Grid.Row="1"
                                     Grid.Column="1"
                                     Padding="0"
-                                    helper:RTLHelper.Margin="0,0,16,0"
+                                    helper:RTLHelper.Margin="8,0,16,0"
                                     Orientation="Horizontal"
+                                    CompressedLayout.IsHeadless="True"
                                     Spacing="0">
                                     <Label
                                         FontFamily="{StaticResource Montserrat-Medium}"
@@ -140,11 +151,20 @@
                                         TextColor="{DynamicResource Gray-700}" />
                                 </StackLayout>
 
+                                <Label FontFamily="{StaticResource Montserrat-Medium}"
+                                       Grid.Row="2"
+                                       helper:RTLHelper.Margin="8,0,16,0"
+                                       Grid.Column="1"
+                                       HorizontalOptions="End"
+                                       HorizontalTextAlignment="End"
+                                       Text="Completed"
+                                       TextColor="{DynamicResource Green}"/>
+
                             </Grid>
                         </controls:CustomShadowFrame>
                     </DataTemplate>
-                </BindableLayout.ItemTemplate>
-            </StackLayout>
-        </ScrollView>
+                </syncListView:SfListView.ItemTemplate>
+            </syncListView:SfListView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

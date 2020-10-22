@@ -20,6 +20,7 @@ namespace PasaBuy.App.Views.PopupModals
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PopupAddVariants : PopupPage
     {
+        public int isBase = 1;
         public PopupAddVariants()
         {
             InitializeComponent();
@@ -36,7 +37,7 @@ namespace PasaBuy.App.Views.PopupModals
             {
                 if (!string.IsNullOrWhiteSpace(Name.Text))
                 {
-                    TindaPress.Variant.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "0", ProductVariants.product_id, "0", "", Name.Text, Description.Text, (bool success, string data) =>
+                    TindaPress.Variant.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "0", ProductVariants.product_id, isBase.ToString(), "", Name.Text, Description.Text, (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -53,6 +54,20 @@ namespace PasaBuy.App.Views.PopupModals
             catch (Exception ex)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
+            }
+        }
+
+        private void checkBox_StateChanged(object sender, Syncfusion.XForms.Buttons.StateChangedEventArgs e)
+        {
+            if (e.IsChecked.HasValue && e.IsChecked.Value)
+            {
+                //checkBox.Text = "Checked State";
+                isBase = 1;
+            }
+            else if (e.IsChecked.HasValue && !e.IsChecked.Value)
+            {
+                //checkBox.Text = "Unchecked State";
+                isBase = 0;
             }
         }
     }

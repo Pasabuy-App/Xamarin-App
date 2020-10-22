@@ -136,16 +136,6 @@ namespace PasaBuy.App.ViewModels.Menu
             userinfoList.CollectionChanged += CollectionChanges;
         }
 
-  
-
-        public static void Insertimage(string url)
-        {
-            userinfoList.Add(new Personnels()
-            {
-                Avatar = url
-            });
-        }
-
         private async void CollectionChanges(object sender, EventArgs e)
         {
             await Task.Delay(100);

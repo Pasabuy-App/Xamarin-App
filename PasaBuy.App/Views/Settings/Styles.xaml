@@ -18,7 +18,7 @@
     <x:String x:Key="Account">&#xe70e;</x:String>
     <x:String x:Key="Bell">&#xe700;</x:String>
     <x:String x:Key="Mail">&#xe725;</x:String>
-    <x:String x:Key="Help">&#xe72c;</x:String>form
+    <x:String x:Key="Help">&#xe72c;</x:String>
     <x:String x:Key="Edit">&#xe727;</x:String>
     <x:String x:Key="Pin">&#xe729;</x:String>
     <x:String x:Key="Cart">&#xe708;</x:String>
@@ -37,7 +37,7 @@
     <Color x:Key="LightGreen">#35c659</Color>
     <Color x:Key="OrangeyYellow">#fcbc0f</Color>
 
-    <x:String x:Key="Rating">&#xe70c;</x:String>s
+    <x:String x:Key="Rating">&#xe70c;</x:String>
     <x:String x:Key="ArrowRight">&#xe728;</x:String>
     <x:String x:Key="Add">&#xe730;</x:String>
     <x:String x:Key="PhotosIcon">&#xe731;</x:String>
@@ -70,6 +70,19 @@
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="ReturnType" Value="Done" />
     </Style>
+
+    <OnPlatform x:Key="ProfileIconPlatform" x:TypeArguments="x:String" iOS="Font Awesome 5 Free" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free" />
+    <!--  Common style for profile page icon Label  -->
+    <Style x:Key="ProfileIconLabelStyle" TargetType="Label">
+        <Setter Property="Margin" Value="16,8" />
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="FontFamily" Value="{DynamicResource ProfileIconPlatform}" />
+    </Style>
+
 
     <Style x:Key="EntryTextStyle" TargetType="control:BorderlessEntry">
         <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}"/>

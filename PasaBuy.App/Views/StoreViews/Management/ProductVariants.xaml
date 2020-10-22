@@ -175,92 +175,55 @@
                                             SwipeStarted="Handle_SwipeStarted"-->
                                             <syncListView:SfListView.ItemTemplate>
                                                 <DataTemplate>
-                                                    <Frame x:Name="frame" HasShadow="True" Padding="2" Margin="2">
-                                                        <Grid ColumnSpacing="0" RowSpacing="0">
+                                                    <Frame x:Name="frame" 
+                                                           HasShadow="True" 
+                                                           Padding="2" 
+                                                           Margin="2">
+                                                        <Grid ColumnSpacing="0" 
+                                                              Padding="10"
+                                                              RowSpacing="2">
                                                             <Grid.GestureRecognizers>
-                                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.ShowOptionsCommand, Source={x:Reference listView}}" CommandParameter="{Binding Id}}"/>
+                                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.ShowOptionsCommand, Source={x:Reference listView}}" CommandParameter="{Binding Id}"/>
                                                             </Grid.GestureRecognizers>
                                                             <Grid.RowDefinitions>
-                                                                <RowDefinition Height="*" />
-                                                                <RowDefinition Height="0.5" />
+                                                                <RowDefinition Height="auto" />
+                                                                <RowDefinition Height="auto" />
                                                             </Grid.RowDefinitions>
                                                             <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="65" />
                                                                 <ColumnDefinition Width="*" />
-                                                                <ColumnDefinition Width="100" />
+                                                                <ColumnDefinition Width="*" />
                                                             </Grid.ColumnDefinitions>
-                                                            <ffimageloading:CachedImage
-                                                            Grid.Row="0"
-                                                            Grid.Column="0"
-                                                            Margin="0"
-                                                            CacheType="Memory"
-                                                            DownsampleToViewSize="True"
-                                                            HeightRequest="50"
-                                                            HorizontalOptions="Center"
-                                                            LoadingPlaceholder="{Binding Preview}"
-                                                            Source="{Binding Preview}"
-                                                            TransformPlaceholders="True"
-                                                            WidthRequest="50">
-                                                                <ffimageloading:CachedImage.Transformations>
-                                                                    <transformations:RoundedTransformation
-                                                                    BorderHexColor="#000000"
-                                                                    BorderSize="2"
-                                                                    Radius="30" />
-                                                                </ffimageloading:CachedImage.Transformations>
-                                                            </ffimageloading:CachedImage>
 
-                                                            <StackLayout
-                                                            Grid.Row="0"
-                                                            Grid.Column="1"
-                                                            VerticalOptions="Center">
-                                                                <Label
-                                                                LineBreakMode="TailTruncation"
-                                                                Style="{StaticResource ProductNameTitleStyle}"
-                                                                Text="{Binding Name}" />
-                                                                <StackLayout Orientation="Horizontal">
-                                                                    <Label Style="{StaticResource ProductUnitStyle}" />
-                                                                    <Label Style="{StaticResource ProductUnitStyle}" Text="{Binding Short_info}" />
-                                                                </StackLayout>
-                                                            </StackLayout>
+                                                            <Label LineBreakMode="TailTruncation"
+                                                                   Grid.Row="0"
+                                                                   Grid.Column="0"
+                                                                   Style="{StaticResource ProductNameTitleStyle}"
+                                                                   FontFamily="{StaticResource Montserrat-Medium}"
+                                                                   Text="{Binding Name}" />
+                                                            
+                                                            <Label LineBreakMode="TailTruncation"
+                                                                   Grid.Row="1"
+                                                                   Grid.Column="0"
+                                                                   Grid.ColumnSpan="2"
+                                                                   Style="{StaticResource ProductNameTitleStyle}"
+                                                                   FontFamily="{StaticResource Montserrat-Medium}"
+                                                                   Text="{Binding Info}" />
 
-                                                            <StackLayout
-                                                            Grid.Row="0"
-                                                            Grid.Column="2"
-                                                            Orientation="Vertical"
-                                                            VerticalOptions="Center">
-                                                                <Grid RowSpacing="0">
-                                                                    <Grid.RowDefinitions>
-                                                                        <RowDefinition Height="0.2*" />
-                                                                        <RowDefinition Height="0.3*" />
-                                                                        <RowDefinition Height="0.2*" />
-                                                                        <RowDefinition Height="0.3*" />
-                                                                    </Grid.RowDefinitions>
+                                                            <Label Grid.Row="0"
+                                                                   Grid.Column="1"
+                                                                   HorizontalOptions="EndAndExpand"
+                                                                   Style="{StaticResource ProductNameTitleStyle}"
+                                                                   FontFamily="{StaticResource Montserrat-Medium}"
+                                                                   Text="" />
 
-                                                                    <Label
-                                                                    Grid.Row="0"
-                                                                    FontFamily="{StaticResource Montserrat-Regular}"
-                                                                    FontSize="10"
-                                                                    Text="" />
-                                                                    <Label
-                                                                    Grid.Row="1"
-                                                                    Style="{StaticResource PurchasePriceStyle}"
-                                                                    Text="" />
-                                                                    <Label
-                                                                    Grid.Row="2"
-                                                                    FontFamily="{StaticResource Montserrat-Regular}"
-                                                                    FontSize="10" />
-                                                                    <Label
-                                                                    Grid.Row="3"
-                                                                    Style="{StaticResource SalePriceStyle}"
-                                                                    Text="{Binding Price}" />
-                                                                </Grid>
-                                                            </StackLayout>
+                                                            <Label Grid.Row="1"
+                                                                   Grid.Column="1"
+                                                                   HorizontalOptions="EndAndExpand"
+                                                                   Style="{StaticResource ProductNameTitleStyle}"
+                                                                   FontFamily="{StaticResource Montserrat-Medium}"
+                                                                   Text="{Binding Baseprice}" />
 
-                                                            <BoxView
-                                                            Grid.Row="1"
-                                                            Grid.ColumnSpan="3"
-                                                            BackgroundColor="{DynamicResource Gray-400}"
-                                                            HeightRequest="0.5" />
+
 
                                                         </Grid>
                                                     </Frame>
@@ -338,6 +301,7 @@
             <local:LoadingIndicator
                 Grid.Row="0"
                 IsVisible="False"
+                x:Name="Loader"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill" />
         </Grid>

@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl" 
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
-             xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.MobilePOS"
+             xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
+             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.MobilePOS"
              x:Class="PasaBuy.App.Views.StoreViews.SettingsAddressView"
              Title="My Address">
 
@@ -133,7 +133,7 @@
                     </sync:SfListView>
                 </StackLayout>
 
-                <fab:FloatingActionButtonView
+                <!--<fab:FloatingActionButtonView
 				    ColorNormal="{StaticResource PrimaryColor}"
 				    ColorPressed="{StaticResource Orange}"
 				    ColorRipple="{StaticResource Yellow}"
@@ -144,7 +144,7 @@
                     HorizontalOptions="EndAndExpand"
 				    AbsoluteLayout.LayoutFlags="PositionProportional"
 				    AbsoluteLayout.LayoutBounds="0.95,0.95,80,80">
-                </fab:FloatingActionButtonView>
+                </fab:FloatingActionButtonView>-->
             </Grid>
         </Grid>
     </ContentPage.Content>

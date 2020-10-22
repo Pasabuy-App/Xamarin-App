@@ -172,6 +172,7 @@
                                             IsStickyHeader="True"
                                             IsEnabled="{Binding IsBusy}"
                                             ItemSize="80"
+                                            ListViewCachingStrategy="RecycleTemplate"
                                             ItemsSource="{Binding ProductsList}"
                                             SelectionMode="None">
                                             <!--SwipeEnded="Handle_SwipeEnded"
@@ -184,9 +185,9 @@
                                                             <RowDefinition Height="0.5" />
                                                         </Grid.RowDefinitions>
                                                         <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="65" />
+                                                            <ColumnDefinition Width="auto" />
                                                             <ColumnDefinition Width="*" />
-                                                            <ColumnDefinition Width="100" />
+                                                            <ColumnDefinition Width="auto" />
                                                         </Grid.ColumnDefinitions>
                                                         <ffimageloading:CachedImage
                                                             Grid.Row="0"
@@ -199,7 +200,7 @@
                                                             LoadingPlaceholder="{Binding Preview}"
                                                             Source="{Binding Preview}"
                                                             TransformPlaceholders="True"
-                                                            WidthRequest="50">
+                                                            WidthRequest="70">
                                                             <ffimageloading:CachedImage.Transformations>
                                                                 <transformations:RoundedTransformation
                                                                     BorderHexColor="#000000"
@@ -210,6 +211,7 @@
 
                                                         <StackLayout
                                                             Grid.Row="0"
+                                                            Margin="5,0,0,0"
                                                             Grid.Column="1"
                                                             VerticalOptions="Center">
                                                             <Label
@@ -222,39 +224,14 @@
                                                                 <Label Style="{StaticResource ProductUnitStyle}" Text="{Binding Short_info}" />
                                                             </StackLayout>
                                                         </StackLayout>
-
-                                                        <StackLayout
-                                                            Grid.Row="0"
-                                                            Grid.Column="2"
-                                                            Orientation="Vertical"
-                                                            VerticalOptions="Center">
-                                                            <Grid RowSpacing="0">
-                                                                <Grid.RowDefinitions>
-                                                                    <RowDefinition Height="0.2*" />
-                                                                    <RowDefinition Height="0.3*" />
-                                                                    <RowDefinition Height="0.2*" />
-                                                                    <RowDefinition Height="0.3*" />
-                                                                </Grid.RowDefinitions>
-
-                                                                <Label
-                                                                    Grid.Row="0"
-                                                                    FontFamily="{StaticResource Montserrat-Regular}"
-                                                                    FontSize="10"
-                                                                    Text="" />
-                                                                <Label
-                                                                    Grid.Row="1"
-                                                                    Style="{StaticResource PurchasePriceStyle}"
-                                                                    Text="" />
-                                                                <Label
-                                                                    Grid.Row="2"
-                                                                    FontFamily="{StaticResource Montserrat-Regular}"
-                                                                    FontSize="10" />
-                                                                <Label
-                                                                    Grid.Row="3"
-                                                                    Style="{StaticResource SalePriceStyle}"
-                                                                    Text="{Binding Price}" />
-                                                            </Grid>
-                                                        </StackLayout>
+                                                        <Label Text="{Binding Price, StringFormat='₱ {0:F2}'}"
+                                                               Grid.Row="0"
+                                                               Margin="0,-15,0,0"
+                                                               Grid.Column="2"
+                                                               FontFamily="{StaticResource Montserrat-Medium}"
+                                                               VerticalOptions="Center"
+                                                               HorizontalOptions="End"/>
+                                                        
                                                         <BoxView
                                                             Grid.Row="1"
                                                             Grid.ColumnSpan="3"

@@ -17,7 +17,7 @@ namespace PasaBuy.App.Views.StoreViews
         public SettingsAddressView()
         {
             InitializeComponent();
-            AddAddressButton.Clicked += AddAddressClicked;
+            //AddAddressButton.Clicked += AddAddressClicked;
             SettingsAddressViewModel.addressList.CollectionChanged += CollectionChanges;
         }
         private void CollectionChanges(object sender, EventArgs e)
@@ -25,11 +25,11 @@ namespace PasaBuy.App.Views.StoreViews
             Console.WriteLine("Count: " + SettingsAddressViewModel.addressList.Count());
             if (SettingsAddressViewModel.addressList.Count() >= 0)
             {
-                AddAddressButton.IsVisible = false;
+                //AddAddressButton.IsVisible = false;
             }
             else
             {
-                AddAddressButton.IsVisible = true;
+                //AddAddressButton.IsVisible = true;
             }
         }
         private async void AddAddressClicked(object sender, EventArgs e)
@@ -69,7 +69,7 @@ namespace PasaBuy.App.Views.StoreViews
                             {
                                 SettingsAddressViewModel.addressList.Clear();
                                 SettingsAddressViewModel.LoadData();
-                                AddAddressButton.IsVisible = true;
+                                //AddAddressButton.IsVisible = true;
                             }
                             else
                             {

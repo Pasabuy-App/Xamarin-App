@@ -59,8 +59,8 @@ namespace PasaBuy.App.Views.Settings
                             EditProfile datas = JsonConvert.DeserializeObject<EditProfile>(data);
                             PSACache.Instance.UserInfo.avatar = datas.data;
                             PSACache.Instance.SaveUserData();
-                            ViewModels.Menu.MasterMenuViewModel.Insertimage(PSACache.Instance.UserInfo.avatar);
-                            ViewModels.Feeds.HomepageViewModel.Insertimage(PSACache.Instance.UserInfo.avatar);
+                            ViewModels.Feeds.HomepageViewModel.userinfoList.Clear();
+                            ViewModels.Menu.MasterMenuViewModel.userinfoList.Clear();
                         }
                         else
                         {
@@ -99,7 +99,7 @@ namespace PasaBuy.App.Views.Settings
                             EditProfile datas = JsonConvert.DeserializeObject<EditProfile>(data);
                             PSACache.Instance.UserInfo.banner = datas.data;
                             PSACache.Instance.SaveUserData();
-                            ViewModels.Menu.MasterMenuViewModel.Insertimage(PSACache.Instance.UserInfo.banner);
+                            ViewModels.Menu.MasterMenuViewModel.userinfoList.Clear();
                         }
                         else
                         {

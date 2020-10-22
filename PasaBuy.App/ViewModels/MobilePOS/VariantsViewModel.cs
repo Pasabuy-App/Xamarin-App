@@ -82,6 +82,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                     if (success)
                     {
                         Variants variants = JsonConvert.DeserializeObject<Variants>(data);
+                        Console.WriteLine(data);
                         if (variants.data.Length > 0)
                         {
                             for (int i = 0; i < variants.data.Length; i++)
@@ -90,7 +91,8 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                 {
                                     Id = variants.data[i].ID,
                                     Name = variants.data[i].name,
-                                    Baseprice = variants.data[i].baseprice
+                                    Info = variants.data[i].info == "None" ? "" : variants.data[i].info,
+                                    Baseprice = "Base Price: " + variants.data[i].baseprice
                                 });
                             }
                         }
