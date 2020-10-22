@@ -41,7 +41,7 @@ namespace PasaBuy.App.ViewModels.Driver
                     Customer = "Please revised rest api.",
                     Hash_id = "Order #0000",
                     Date_created = "Oct. 20, 2020 06:33 PM",
-                    Price = "₱ 0",
+                    Price =0,
                     Status = "Pending"
                 });
                 _HistoryList.Add(new Models.Driver.TransactListData()
@@ -51,7 +51,7 @@ namespace PasaBuy.App.ViewModels.Driver
                     Customer = "Name",
                     Hash_id = "Order #4323",
                     Date_created = "Sept. 5, 2020 10:23 AM",
-                    Price = "₱ 250",
+                    Price = 250,
                     Status = "Completed"
                 });
                 _HistoryList.Add(new Models.Driver.TransactListData()
@@ -61,7 +61,7 @@ namespace PasaBuy.App.ViewModels.Driver
                     Customer = "Name",
                     Hash_id = "Order #4323",
                     Date_created = "Sept. 5, 2020 10:23 AM",
-                    Price = "₱ 250",
+                    Price =250,
                     Status = "Completed"
                 });
                 _HistoryList.Add(new Models.Driver.TransactListData()
@@ -71,7 +71,7 @@ namespace PasaBuy.App.ViewModels.Driver
                     Customer = "Name",
                     Hash_id = "Order #4323",
                     Date_created = "Sept. 5, 2020 10:23 AM",
-                    Price = "₱ 250",
+                    Price = 250,
                     Status = "Completed"
                 });
                 _HistoryList.Add(new Models.Driver.TransactListData()
@@ -81,7 +81,7 @@ namespace PasaBuy.App.ViewModels.Driver
                     Customer = "Name",
                     Hash_id = "Order #4323",
                     Date_created = "Sept. 5, 2020 10:23 AM",
-                    Price = "₱ 250",
+                    Price = 250,
                     Status = "Completed"
                 });
                 _HistoryList.Add(new Models.Driver.TransactListData()
@@ -91,7 +91,7 @@ namespace PasaBuy.App.ViewModels.Driver
                     Customer = "Name",
                     Hash_id = "Order #4323",
                     Date_created = "Sept. 5, 2020 10:23 AM",
-                    Price = "₱ 250",
+                    Price = 250,
                     Status = "Completed"
                 });
                 _HistoryList.Add(new Models.Driver.TransactListData()
@@ -101,7 +101,7 @@ namespace PasaBuy.App.ViewModels.Driver
                     Customer = "Name",
                     Hash_id = "Order #4323",
                     Date_created = "Sept. 5, 2020 10:23 AM",
-                    Price = "₱ 250",
+                    Price = 250,
                     Status = "Completed"
                 });
                 _HistoryList.Add(new Models.Driver.TransactListData()
@@ -111,7 +111,7 @@ namespace PasaBuy.App.ViewModels.Driver
                     Customer = "Name",
                     Hash_id = "Order #4323",
                     Date_created = "Sept. 5, 2020 10:23 AM",
-                    Price = "₱ 250",
+                    Price = 250,
                     Status = "Completed"
                 });
                 _HistoryList.Add(new Models.Driver.TransactListData()
@@ -121,7 +121,7 @@ namespace PasaBuy.App.ViewModels.Driver
                     Customer = "Name",
                     Hash_id = "Order #4323",
                     Date_created = "Sept. 5, 2020 10:23 AM",
-                    Price = "₱ 250",
+                    Price = 250,
                     Status = "Completed"
                 });
                 _HistoryList.Add(new Models.Driver.TransactListData()
@@ -131,7 +131,7 @@ namespace PasaBuy.App.ViewModels.Driver
                     Customer = "Name",
                     Hash_id = "Order #4323",
                     Date_created = "Sept. 5, 2020 10:23 AM",
-                    Price = "₱ 250",
+                    Price = 250,
                     Status = "Completed"
                 });
                 _HistoryList.Add(new Models.Driver.TransactListData()
@@ -141,7 +141,7 @@ namespace PasaBuy.App.ViewModels.Driver
                     Customer = "Name",
                     Hash_id = "Order #4323",
                     Date_created = "Sept. 5, 2020 10:23 AM",
-                    Price = "₱ 250",
+                    Price = 250,
                     Status = "Completed"
                 });
                 _HistoryList.Add(new Models.Driver.TransactListData()
@@ -151,7 +151,7 @@ namespace PasaBuy.App.ViewModels.Driver
                     Customer = "Name",
                     Hash_id = "Order #4323",
                     Date_created = "Sept. 5, 2020 10:23 AM",
-                    Price = "₱ 250",
+                    Price = 250,
                     Status = "Completed"
                 });
             }
@@ -178,7 +178,7 @@ namespace PasaBuy.App.ViewModels.Driver
             Views.StoreViews.TransactionDetailsView.id = item.ID;
             Views.StoreViews.TransactionDetailsView.customer = item.Customer;
             Views.StoreViews.TransactionDetailsView.orderid = item.Hash_id;
-            Views.StoreViews.TransactionDetailsView.totalprice = item.Price;
+            Views.StoreViews.TransactionDetailsView.totalprice = item.Price.ToString();
             Views.StoreViews.TransactionDetailsView.datecreated = item.Date_created;
             Views.StoreViews.TransactionDetailsView.method = "Cash";// item.Method;
             Views.StoreViews.TransactionDetailsView.order_type = "completed";

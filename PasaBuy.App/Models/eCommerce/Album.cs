@@ -21,6 +21,7 @@ namespace PasaBuy.App.Models.eCommerce
         private string date;
 
         private string transactionAmount;
+        private string status;
 
         private bool isCredited;
 
@@ -36,7 +37,19 @@ namespace PasaBuy.App.Models.eCommerce
         #endregion
 
         #region Properties
+        public string Status
+        {
+            get
+            {
+                return this.status;
+            }
 
+            set
+            {
+                this.status = value;
+                this.OnPropertyChanged(nameof(Status));
+            }
+        }
         public string ID
         {
             get

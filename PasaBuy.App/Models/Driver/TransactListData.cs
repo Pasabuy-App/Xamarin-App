@@ -27,7 +27,7 @@ namespace PasaBuy.App.Models.Driver
         private string customer_long = string.Empty;
 
         private string product_name = string.Empty;
-        private string price = string.Empty;
+        private double price;
         private string quantity = string.Empty;
         private string status = string.Empty;
         private string date_created = string.Empty;
@@ -123,7 +123,7 @@ namespace PasaBuy.App.Models.Driver
             }
         }
 
-        public string Price
+        public double Price
         {
             get { return price; }
             set

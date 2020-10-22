@@ -69,7 +69,7 @@ namespace PasaBuy.App.ViewModels.Driver
                                         Store_logo = Store_logo,
                                         ID = ID,
                                         Hash_id = ItemID,
-                                        Price = Price,
+                                        Price = Convert.ToDouble(Price),
                                         Product = Product,
                                         Quantity = Quantity,
                                         Status = Status,
