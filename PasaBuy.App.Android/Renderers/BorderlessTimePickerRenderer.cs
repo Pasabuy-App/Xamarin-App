@@ -14,28 +14,27 @@ namespace PasaBuy.App.Droid.Renderers
         }
         protected override void OnElementChanged(ElementChangedEventArgs<Xamarin.Forms.TimePicker> e)
         {
-            //base.OnElementChanged(e);
+            base.OnElementChanged(e);
 
-            //if (e.OldElement == null)
-            //{
-            //    var element = e.NewElement as CustomTimePicker;
-            //    if (!string.IsNullOrWhiteSpace(element.PlaceHolderText))
-            //    {
-            //        Control.Text = element.PlaceHolderText;
-            //    }
+            if (e.OldElement == null)
+            {
+                var element = e.NewElement as CustomTimePicker;
+                if (!string.IsNullOrWhiteSpace(element.PlaceHolderText))
+                {
+                    Control.Text = element.PlaceHolderText;
+                }
 
-            //    Control.Background = null;
+                Control.Background = null;
 
-            //    var layoutParams = new MarginLayoutParams(Control.LayoutParameters);
-            //    layoutParams.SetMargins(0, 0, 0, 0);
-            //    LayoutParameters = layoutParams;
-            //    Control.LayoutParameters = layoutParams;
-            //    Control.SetPadding(50, 0, 0, 0);
+                var layoutParams = new MarginLayoutParams(Control.LayoutParameters);
+                layoutParams.SetMargins(0, 0, 0, 0);
+                LayoutParameters = layoutParams;
+                Control.LayoutParameters = layoutParams;
+                Control.SetPadding(50, 0, 0, 0);
 
 
 
-            //}
-
+            }
 
 
 
