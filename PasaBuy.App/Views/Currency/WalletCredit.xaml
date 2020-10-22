@@ -41,7 +41,7 @@
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0" 
-                      Padding="15,10,15,20"
+                      Padding="15,45,15,25"
                       Margin="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -53,9 +53,9 @@
                            Grid.Row="0"
                            HorizontalOptions="Center"
                            VerticalOptions="Center"
-                           TextColor="{Binding IsCredited, Converter={x:StaticResource BooleanToColorConverter}, ConverterParameter=5}"
+                           TextColor="{DynamicResource PrimaryColor}"
                            Style="{StaticResource LabelStyle}"
-                           FontSize="25"
+                           FontSize="{DynamicResource ExtraBigSize}"
                            LineHeight="{OnPlatform Android=1.5, Default=-1}">
                         <Label.FormattedText>
                             <FormattedString>
@@ -71,6 +71,7 @@
                            HorizontalOptions="Center"
                            VerticalOptions="Center"
                            Text="Current Balance"
+                           FontSize="{DynamicResource MediumSize}"
                            Style="{StaticResource LabelStyle}"
                            LineHeight="{OnPlatform Android=1.5, Default=-1}" />
                 </Grid>
