@@ -308,7 +308,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                     {
                                         _optionsList.Add(new Options() { Id = var.data[i].options[j].ID, Name = var.data[i].options[j].name, Price = Convert.ToDouble(var.data[i].options[j].price) });
                                     }
-                                    _variantsList.Add(new Variants() { Name = var.data[i].name, Base = "Required(1)", options = _optionsList });
+                                    _variantsList.Add(new Variants() { Name = var.data[i].name, options = _optionsList });
                                 }
                                 else
                                 {
@@ -318,7 +318,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                     {
                                         _addonsList.Add(new Options() { Id = var.data[i].options[j].ID, Name = var.data[i].options[j].name, Price = Convert.ToDouble(var.data[i].options[j].price) });
                                     }
-                                    _variantsList.Add(new Variants() { Name = var.data[i].name, Base = "Optional", addons = _addonsList });
+                                    _variantsList.Add(new Variants() { Name = var.data[i].name, addons = _addonsList });
                                 }
 
                             }

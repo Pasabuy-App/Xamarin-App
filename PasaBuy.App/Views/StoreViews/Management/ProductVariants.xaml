@@ -75,7 +75,8 @@
     <ContentPage.Content>
         <Grid>
             <Grid>
-                <Grid RowSpacing="0">
+                <Grid RowSpacing="0"
+                      CompressedLayout.IsHeadless="True">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
@@ -197,33 +198,36 @@
                                                             <Label LineBreakMode="TailTruncation"
                                                                    Grid.Row="0"
                                                                    Grid.Column="0"
-                                                                   Style="{StaticResource ProductNameTitleStyle}"
-                                                                   FontFamily="{StaticResource Montserrat-Medium}"
+                                                                   FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                                   FontSize="{DynamicResource SmallSize}"
+                                                                   TextColor="{DynamicResource Gray-900}"
                                                                    Text="{Binding Name}" />
                                                             
                                                             <Label LineBreakMode="TailTruncation"
                                                                    Grid.Row="1"
                                                                    Grid.Column="0"
                                                                    Grid.ColumnSpan="2"
+                                                                   FontFamily="{StaticResource Montserrat-Medium}"
+                                                                   FontSize="{DynamicResource SmallerSize}"
+                                                                   TextColor="{DynamicResource Gray-900}"
+                                                                   Text="{Binding Info}" />
+
+                                                            <!--<Label Grid.Row="0"
+                                                                   Grid.Column="1"
+                                                                   HorizontalOptions="EndAndExpand"
                                                                    Style="{StaticResource ProductNameTitleStyle}"
                                                                    FontFamily="{StaticResource Montserrat-Medium}"
-                                                                   Text="{Binding Info}" />
+                                                                   Text="" />-->
 
                                                             <Label Grid.Row="0"
                                                                    Grid.Column="1"
                                                                    HorizontalOptions="EndAndExpand"
-                                                                   Style="{StaticResource ProductNameTitleStyle}"
-                                                                   FontFamily="{StaticResource Montserrat-Medium}"
-                                                                   Text="" />
-
-                                                            <Label Grid.Row="1"
-                                                                   Grid.Column="1"
-                                                                   HorizontalOptions="EndAndExpand"
-                                                                   Style="{StaticResource ProductNameTitleStyle}"
-                                                                   FontFamily="{StaticResource Montserrat-Medium}"
-                                                                   Text="{Binding Baseprice}" />
-
-
+                                                                    FontFamily="{StaticResource Montserrat-Medium}"
+                                                                    FontSize="{DynamicResource SmallSize}"
+                                                                    LineHeight="{OnPlatform Android=1.25,
+                                                                                            Default=-1}"
+                                                                    Text="{Binding Baseprice}"
+                                                                    TextColor="{DynamicResource Gray-900}" />
 
                                                         </Grid>
                                                     </Frame>

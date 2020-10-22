@@ -21,12 +21,6 @@ namespace PasaBuy.App.Views.StoreViews.Management
             this.BindingContext = new RolesViewModel();
         }
 
-        private async void AddTapped(object sender, EventArgs e)
-        {
-            await PopupNavigation.Instance.PushAsync(new PopupAddRole());
-
-        }
-
         private async void Update_Tapped(object sender, EventArgs e)
         {
             await PopupNavigation.Instance.PushAsync(new PopupEditRole());

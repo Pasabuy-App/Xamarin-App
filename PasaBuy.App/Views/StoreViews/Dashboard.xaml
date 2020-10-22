@@ -7,8 +7,7 @@
              xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms" 
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-             BackgroundColor="{DynamicResource Transparent}"
-              xmlns:model="clr-namespace:PasaBuy.App.Models.MobilePOS"
+             BackgroundColor="{DynamicResource Gray-White}"
              xmlns:view="clr-namespace:PasaBuy.App.Views.StoreViews.Orders" 
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
@@ -70,7 +69,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid>
+        <Grid CompressedLayout.IsHeadless="True">
             <StackLayout Spacing="0" VerticalOptions="FillAndExpand">
                 <tabView:SfTabView BackgroundColor="{DynamicResource Gray-White}" 
                                    VisibleHeaderCount="4" 

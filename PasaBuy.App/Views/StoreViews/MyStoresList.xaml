@@ -58,7 +58,7 @@
                                  Spacing="0">
 
                         <listView:SfListView
-                                Padding="15,0,10,0"
+                                Padding="15,0,10,10"
                                 AutoFitMode="Height"
                                 IsScrollBarVisible="false"
                                 ItemSpacing="0,27,0,0"
@@ -72,7 +72,7 @@
                                         <!--  View of each card item  -->
                                         <controls:CustomShadowFrame
                                                 Margin="0,2,5,5"
-                                                Padding="0"
+                                                Padding="0,0,0,15"
                                                 BackgroundColor="{DynamicResource Gray-White}"
                                                 BorderColor="{DynamicResource Gray-White}"
                                                 BorderWidth="1"

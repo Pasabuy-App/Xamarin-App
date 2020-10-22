@@ -7,7 +7,6 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
-using static PasaBuy.App.Models.Marketplace.ProductListData;
 
 namespace PasaBuy.App.ViewModels.MobilePOS
 {
@@ -57,64 +56,65 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
         }
 
-        public Command AddOrderProductCommand 
-        { 
-            get; 
-            set; 
-        }
-
         public POSViewModel()
         {
-            this.ProductsList = new ObservableCollection<Models.MobilePOS.ProductData>()
-            {
-                new Models.MobilePOS.ProductData
-                {
-                    ID = "1",
-                    Product_name = "Snickers"
-                },
-                new Models.MobilePOS.ProductData
-                {
-                    ID = "13",
-                    Product_name = "Strawberry Shake"
-                },
-                new Models.MobilePOS.ProductData
-                {
-                    ID = "15",
-                    Product_name = "Chocolate Shake"
-                },
-                new Models.MobilePOS.ProductData
-                {
-                    ID = "21",
-                    Product_name = "Milk Shake"
-                },
-                new Models.MobilePOS.ProductData
-                {
-                    ID = "51",
-                    Product_name = "C2 Apple"
-                },
-            };
-            this.CurrentOrder = new ObservableCollection<Models.MobilePOS.PointOfSales>()
-            {
-                new Models.MobilePOS.PointOfSales
-                {
-                    Name = "Cheeseburger"
-                },
-                new Models.MobilePOS.PointOfSales
-                {
-                    Name = "Taco Chips"
-                },
-                new Models.MobilePOS.PointOfSales
-                {
-                    Name = "Galaxy Drink"
-                },
-            };
+
+            //this.ProductsList = new ObservableCollection<Models.MobilePOS.ProductData>()
+            //{
+            //    new Models.MobilePOS.ProductData
+            //    {
+            //        ID = "1",
+            //        Product_name = "Snickers"
+            //    },
+            //    new Models.MobilePOS.ProductData
+            //    {
+            //        ID = "13",
+            //        Product_name = "Strawberry Shake"
+            //    },
+            //    new Models.MobilePOS.ProductData
+            //    {
+            //        ID = "15",
+            //        Product_name = "Chocolate Shake"
+            //    },
+            //    new Models.MobilePOS.ProductData
+            //    {
+            //        ID = "21",
+            //        Product_name = "Milk Shake"
+            //    },
+            //    new Models.MobilePOS.ProductData
+            //    {
+            //        ID = "51",
+            //        Product_name = "C2 Apple"
+            //    },
+            //};
+            //this.CurrentOrder = new ObservableCollection<Models.MobilePOS.PointOfSales>()
+            //{
+            //    new Models.MobilePOS.PointOfSales
+            //    {
+            //        Name = "Cheeseburger"
+            //    },
+            //    new Models.MobilePOS.PointOfSales
+            //    {
+            //        Name = "Taco Chips"
+            //    },
+            //    new Models.MobilePOS.PointOfSales
+            //    {
+            //        Name = "Galaxy Drink"
+            //    },
+            //};
 
             this.AddOrderProductCommand = new Command(this.AddOrderProductClicked);
         }
 
+        public Command AddOrderProductCommand
+        {
+            get;
+            set;
+        }
+
         private async void AddOrderProductClicked(object obj)
         {
-            await(App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new SelectProduct()));
+            await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new SelectProduct()));
         }
     }
 }

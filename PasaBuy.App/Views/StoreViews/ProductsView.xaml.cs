@@ -94,7 +94,7 @@ namespace PasaBuy.App.Views.StoreViews
                 if (count == 0)
                 {
                     count = 1;
-                    bool answer = await DisplayAlert("Delete Product?", "Are you sure to delete this?", "Yes", "No");
+                    bool answer = await DisplayAlert("Delete Product", "Are you sure to delete this?", "Yes", "No");
                     if (answer)
                     {
                         var btn = sender as Grid;

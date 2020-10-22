@@ -168,79 +168,63 @@
                                             SwipeStarted="Handle_SwipeStarted"-->
                                             <syncListView:SfListView.ItemTemplate>
                                                 <DataTemplate>
-                                                    <Frame x:Name="frame" HasShadow="True" Padding="2" Margin="2">
-                                                        <Grid ColumnSpacing="0" RowSpacing="0">
-                                                            <Grid.GestureRecognizers>
-                                                                <TapGestureRecognizer />
-                                                            </Grid.GestureRecognizers>
+                                                    <Frame x:Name="frame" 
+                                                           HasShadow="True" 
+                                                           Padding="2" 
+                                                           Margin="2">
+                                                        <Grid ColumnSpacing="0" 
+                                                              Padding="10"
+                                                              RowSpacing="2">
                                                             <Grid.RowDefinitions>
-                                                                <RowDefinition Height="*" />
-                                                                <RowDefinition Height="0.5" />
+                                                                <RowDefinition Height="auto" />
+                                                                <RowDefinition Height="auto" />
                                                             </Grid.RowDefinitions>
                                                             <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="65" />
                                                                 <ColumnDefinition Width="*" />
-                                                                <ColumnDefinition Width="100" />
+                                                                <ColumnDefinition Width="*" />
                                                             </Grid.ColumnDefinitions>
 
-                                                            <StackLayout
-                                                            Grid.Row="0"
-                                                            Grid.Column="1"
-                                                            VerticalOptions="Center">
-                                                                <Label
-                                                                LineBreakMode="TailTruncation"
-                                                                Style="{StaticResource ProductNameTitleStyle}"
-                                                                Text="{Binding Name}" />
-                                                                <StackLayout Orientation="Horizontal">
-                                                                    <Label Style="{StaticResource ProductUnitStyle}" />
-                                                                    <Label Style="{StaticResource ProductUnitStyle}" Text="{Binding Short_info}" />
-                                                                </StackLayout>
-                                                            </StackLayout>
+                                                            <Label LineBreakMode="TailTruncation"
+                                                                   Grid.Row="0"
+                                                                   Grid.Column="0"
+                                                                   FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                                   FontSize="{DynamicResource SmallSize}"
+                                                                   TextColor="{DynamicResource Gray-900}"
+                                                                   Text="{Binding Name}" />
 
-                                                            <StackLayout
-                                                            Grid.Row="0"
-                                                            Grid.Column="2"
-                                                            Orientation="Vertical"
-                                                            VerticalOptions="Center">
-                                                                <Grid RowSpacing="0">
-                                                                    <Grid.RowDefinitions>
-                                                                        <RowDefinition Height="0.2*" />
-                                                                        <RowDefinition Height="0.3*" />
-                                                                        <RowDefinition Height="0.2*" />
-                                                                        <RowDefinition Height="0.3*" />
-                                                                    </Grid.RowDefinitions>
+                                                            <Label LineBreakMode="TailTruncation"
+                                                                   Grid.Row="1"
+                                                                   Grid.Column="0"
+                                                                   Grid.ColumnSpan="2"
+                                                                   FontFamily="{StaticResource Montserrat-Medium}"
+                                                                   FontSize="{DynamicResource SmallerSize}"
+                                                                   TextColor="{DynamicResource Gray-900}"
+                                                                   Text="{Binding Info}" />
 
-                                                                    <Label
-                                                                    Grid.Row="0"
-                                                                    FontFamily="{StaticResource Montserrat-Regular}"
-                                                                    FontSize="10"
-                                                                    Text="" />
-                                                                    <Label
-                                                                    Grid.Row="1"
-                                                                    Style="{StaticResource PurchasePriceStyle}"
-                                                                    Text="" />
-                                                                    <Label
-                                                                    Grid.Row="2"
-                                                                    FontFamily="{StaticResource Montserrat-Regular}"
-                                                                    FontSize="10" />
-                                                                    <Label
-                                                                    Grid.Row="3"
-                                                                    Style="{StaticResource SalePriceStyle}"
-                                                                    Text="{Binding Price}" />
-                                                                </Grid>
-                                                            </StackLayout>
-                                                            <BoxView
-                                                            Grid.Row="1"
-                                                            Grid.ColumnSpan="3"
-                                                            BackgroundColor="{DynamicResource Gray-400}"
-                                                            HeightRequest="0.5" />
+                                                            <!--<Label Grid.Row="0"
+                                                                   Grid.Column="1"
+                                                                   HorizontalOptions="EndAndExpand"
+                                                                   Style="{StaticResource ProductNameTitleStyle}"
+                                                                   FontFamily="{StaticResource Montserrat-Medium}"
+                                                                   Text="" />-->
+
+                                                            <Label Grid.Row="0"
+                                                                   Grid.Column="1"
+                                                                   HorizontalOptions="EndAndExpand"
+                                                                    FontFamily="{StaticResource Montserrat-Medium}"
+                                                                    FontSize="{DynamicResource SmallSize}"
+                                                                    LineHeight="{OnPlatform Android=1.25,
+                                                                                            Default=-1}"
+                                                                    Text="{Binding Price, StringFormat='₱ {0:F2}'}"
+                                                                    TextColor="{DynamicResource Gray-900}" />
                                                         </Grid>
                                                     </Frame>
                                                 </DataTemplate>
                                             </syncListView:SfListView.ItemTemplate>
                                             <syncListView:SfListView.RightSwipeTemplate>
                                                 <DataTemplate x:Name="RightSwipeTemplate">
-                                                    <Grid>
+                                                    <Grid Padding="5,15,5,15"
+                                                          CompressedLayout.IsHeadless="True">
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition Width="*" />
                                                             <ColumnDefinition Width="*" />

@@ -18,12 +18,9 @@ namespace PasaBuy.App.Views.StoreViews
             if (MasterView.MyType == "store")
             {
                 this.BindingContext = new DashboardOrdersViewModel();
-                Title = "Orders";
-            }
-            if (MasterView.MyType == "mover")
-            {
                 Title = "Dashboard";
             }
+          
         }
 
         private void SearchBar_OnTextChanged(object sender, TextChangedEventArgs e)

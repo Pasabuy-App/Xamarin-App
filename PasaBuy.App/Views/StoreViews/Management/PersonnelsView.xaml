@@ -32,7 +32,8 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <Grid RowSpacing="0">
+        <Grid RowSpacing="0"
+              CompressedLayout.IsHeadless="True">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
