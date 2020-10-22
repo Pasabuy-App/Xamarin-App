@@ -9,6 +9,7 @@ namespace PasaBuy.App.Models.Marketplace
 {
     public class Options
     {
+        public string vrid = string.Empty;
         public string status = string.Empty;
         public string name = string.Empty;
         public string price = string.Empty;
@@ -45,6 +46,19 @@ namespace PasaBuy.App.Models.Marketplace
             public string info = string.Empty;
             public string status = string.Empty;
             public string price = string.Empty;
+        }
+        public string Vrid
+        {
+            get
+            {
+                return this.vrid;
+            }
+
+            set
+            {
+                this.vrid = value;
+                OnPropertyChanged("Vrid");
+            }
         }
         public string Status
         {

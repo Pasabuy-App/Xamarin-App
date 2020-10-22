@@ -1,9 +1,26 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace PasaBuy.App.Models.Marketplace
 {
     public class ProductList
     {
+        private ObservableCollection<Options> vars = new ObservableCollection<Options>();
+        public ObservableCollection<Options> Variants
+        {
+
+            get
+            {
+
+                return this.vars;
+            }
+
+            set
+            {
+                this.vars = value;
+            }
+        }
+
         public double totalprice;
         public double TotalPrice
         {
@@ -15,32 +32,6 @@ namespace PasaBuy.App.Models.Marketplace
             {
                 totalprice = value;
                 OnPropertyChanged("TotalPrice");
-            }
-        }
-        public double vrid_price;
-        public double Vrid_Price
-        {
-            get
-            {
-                return vrid_price;
-            }
-            set
-            {
-                vrid_price = value;
-                OnPropertyChanged("Vrid_Price");
-            }
-        }
-        public int vrid;
-        public int Vrid
-        {
-            get
-            {
-                return vrid;
-            }
-            set
-            {
-                vrid = value;
-                OnPropertyChanged("Vrid");
             }
         }
         public string stid = string.Empty;

@@ -12,6 +12,7 @@ namespace PasaBuy.App.Models.Marketplace
         private string id = string.Empty;
         private string baseprice = string.Empty;
         private string info = string.Empty;
+        private string bases = string.Empty;
         public ObservableCollection<Options> options { get; set; }
 
         public ObservableCollection<Options> addons { get; set; }
@@ -28,6 +29,32 @@ namespace PasaBuy.App.Models.Marketplace
             public ObservableCollection<Options> options { get; set; }
             public ObservableCollection<Options> addons { get; set; }
 
+        }
+        public string ID
+        {
+            get
+            {
+                return this.id;
+            }
+
+            set
+            {
+                this.id = value;
+                OnPropertyChanged("ID");
+            }
+        }
+        public string Base
+        {
+            get
+            {
+                return this.bases;
+            }
+
+            set
+            {
+                this.bases = value;
+                OnPropertyChanged("Base");
+            }
         }
         public string Info
         {
