@@ -17,5 +17,10 @@ namespace PasaBuy.App.Views.Settings
         {
             Navigation.PopModalAsync();
         }
+
+        private void transactionList_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
+        {
+            // 12 - 7
+        }
     }
 }
