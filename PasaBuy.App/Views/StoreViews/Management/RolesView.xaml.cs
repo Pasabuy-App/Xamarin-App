@@ -1,4 +1,5 @@
-﻿using PasaBuy.App.ViewModels.MobilePOS;
+﻿using Forms9Patch;
+using PasaBuy.App.ViewModels.MobilePOS;
 using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -29,6 +30,11 @@ namespace PasaBuy.App.Views.StoreViews.Management
         private void Delete_Tapped(object sender, EventArgs e)
         {
 
+        }
+
+        private async void ToolbarItem_Clicked(object sender, EventArgs e)
+        {
+            await PopupNavigation.Instance.PushAsync(new PopupAddRole());
         }
     }
 }

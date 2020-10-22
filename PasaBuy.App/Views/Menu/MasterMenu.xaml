@@ -322,7 +322,7 @@
                             <BoxView Style="{StaticResource SeparatorStyle}"  IsVisible="{Binding isStore}"/>
 
                             <!--  Grid for advisory label and icon  -->
-                            <Grid x:Name="AdvisoryGrid"
+                            <!--<Grid x:Name="AdvisoryGrid"
                                     BackgroundColor="{DynamicResource Transparent}">
 
                                 <Grid.ColumnDefinitions>
@@ -349,7 +349,7 @@
 
                             </Grid>
 
-                            <BoxView Style="{StaticResource SeparatorStyle}" />
+                            <BoxView Style="{StaticResource SeparatorStyle}" />-->
 
                             <!--  Grid for setting label and icon  -->
                             <Grid x:Name="SettingGrid"

@@ -183,7 +183,7 @@
                     <BoxView Style="{StaticResource SeparatorStyle}"  IsVisible="{Binding isVisible}" />
 
                     <!--  Grid for Account link label and navigation bar icon  -->
-                    <controls:TapAnimationGrid
+                    <!--<controls:TapAnimationGrid
                     BackgroundColor="{DynamicResource Gray-White}"
                     ColumnSpacing="0"
                     Command="{Binding LinkAccountCommand}"
@@ -194,24 +194,24 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <!--  Link account icon  -->
+                        --><!--  Link account icon  --><!--
                         <Label
                         Grid.Column="0"
                         Margin="16,0,0,0"
                         Style="{StaticResource IconLabelStyle}"
                         Text="{StaticResource Share}" />
-                        <!--  Link account label  -->
+                        --><!--  Link account label  --><!--
                         <Label
                         Grid.Column="1"
                         Style="{StaticResource LabelStyle}"
                         Text="Link Account" />
-                        <!--  Navigation icon  -->
+                        --><!--  Navigation icon  --><!--
                         <Label
                         Grid.Column="2"
                         Style="{StaticResource IconLabelStyle}"
                         Text="{StaticResource Next}"/>
                     </controls:TapAnimationGrid>
-                    <BoxView BackgroundColor="{DynamicResource Gray-100}" HeightRequest="20" />
+                    <BoxView BackgroundColor="{DynamicResource Gray-100}" HeightRequest="20" />-->
 
                     <!--  Header label for Support setting  -->
                     <Label
