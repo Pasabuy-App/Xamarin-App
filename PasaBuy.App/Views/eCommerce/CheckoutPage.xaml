@@ -6,7 +6,7 @@
     xmlns:controls="clr-namespace:PasaBuy.App.Controls"
     xmlns:local="clr-namespace:PasaBuy.App.Views.eCommerce"
     xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.eCommerce" 
-    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:localindicator="clr-namespace:PasaBuy.App.UserControls"
     Title="Checkout"
     BackgroundColor="{DynamicResource Gray-100}"
     NavigationPage.HasNavigationBar="False">
@@ -45,30 +45,40 @@
     </ContentPage.ControlTemplate>
 
     <ContentPage.Content>
-        <ScrollView>
-            <Grid
+        <Grid>
+
+            <ScrollView>
+                <Grid
                 Padding="{OnIdiom Default='0',
                                   Desktop='16,16,16,0'}"
                 ColumnSpacing="0"
                 RowSpacing="16">
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-                <!--  ListView for Delivery  -->
-                <local:DeliveryView Margin="{OnIdiom Phone='0,16,0,0', Tablet='0,24,0,0', Desktop=0}" />
+                    <!--  ListView for Delivery  -->
+                    <local:DeliveryView Margin="{OnIdiom Phone='0,16,0,0', Tablet='0,24,0,0', Desktop=0}" />
 
-                <!--  ListView for Payment  -->
-                <local:PaymentView Grid.Row="1" Margin="{OnIdiom Default=0, Tablet='0,24,0,0'}" />
+                    <!--  ListView for Payment  -->
+                    <local:PaymentView Grid.Row="1" Margin="{OnIdiom Default=0, Tablet='0,24,0,0'}" />
 
-                <!--  Price Details  -->
-                <local:PriceDetailView Grid.Row="2" ActionText="PAY NOW" />
+                    <!--  Price Details  -->
+                    <local:PriceDetailView Grid.Row="2" ActionText="PAY NOW" />
 
-            </Grid>
-        </ScrollView>
+                </Grid>
+
+            </ScrollView>
+            <localindicator:LoadingIndicator
+                Grid.Row="0"
+                HorizontalOptions="Fill"
+                x:Name="Loader"
+                IsRunning="{Binding isRunning, Mode=TwoWay}"
+                VerticalOptions="Fill" />
+        </Grid>
     </ContentPage.Content>
 
 </ContentPage>

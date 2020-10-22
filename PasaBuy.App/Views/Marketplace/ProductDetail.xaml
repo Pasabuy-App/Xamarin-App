@@ -32,17 +32,19 @@
                                             FontFamily="{StaticResource Montserrat-Medium}"
                                             TextColor="{DynamicResource Gray-900}"
                                             CheckedColor="{DynamicResource PrimaryColor}"
-                                            ClassId="{Binding Id}"
+                                            ClassId="{Binding Vrid}"
                                             Text="{Binding Name}" />
             </DataTemplate>
 
             <DataTemplate x:Key="checkboxTemplate">
                 <buttons:SfCheckBox x:Name="checkBox" 
                                     Margin="8,8,0,0"
+                                    StateChanged="checkBox_StateChanged"
                                     CheckedColor="{DynamicResource PrimaryColor}"
                                     FontSize="{DynamicResource MediumSize}" 
                                     FontFamily="{StaticResource Montserrat-Medium}"
                                     TextColor="{DynamicResource Gray-900}"
+                                    ClassId="{Binding Vrid}"
                                     Text="{Binding Name}"/>
             </DataTemplate>
 
@@ -66,7 +68,7 @@
                                Grid.Column="1"
                                HorizontalTextAlignment="End"
                                FontSize="{DynamicResource MediumSize}"
-                               Text="Required(1)"
+                               Text="{Binding Base}"
                                TextColor="{DynamicResource Gray-900}" />
                         </Grid>
                         
@@ -191,6 +193,7 @@
                                 <ffimageloading:CachedImage Aspect="Fill" 
                                                                 Grid.Row="0"
                                                                 x:Name="ProductLogo"
+                                                                ClassId="{Binding ID}"
                                                                 HeightRequest="250"
                                                                 Source="{Binding ProductImage}"
 			                                                    DownsampleToViewSize="True" 
@@ -377,6 +380,13 @@
 
 
             </StackLayout>
-            </Grid>
+
+            <local:LoadingIndicator
+                Grid.Row="0"
+                HorizontalOptions="Fill"
+                x:Name="Loader"
+                IsRunning="{Binding isRunning, Mode=TwoWay}"
+                VerticalOptions="Fill" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -85,9 +85,7 @@ namespace PasaBuy.App.Views.StoreViews.Management
                         {
                             if (success)
                             {
-                                //VariantsViewModel._variantsList.Clear();
                                 VariantsViewModel.LoadVariants(product_id);
-                                //new Alert("Variants to Options", " Click Add Model " + PopupAddVariants.type + " " + product_id, "OK");
                             }
                             else
                             {

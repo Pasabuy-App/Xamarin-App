@@ -79,16 +79,18 @@ namespace PasaBuy.App.ViewModels.eCommerce
             double totalprice = 0;
             foreach (ProductList prod in cartDetails)
             {
-                double variant_price = 0;
-                if (prod.Vrid > 0)
+                double varprice = 0;
+                foreach (Options var in prod.Variants)
                 {
-                    variant_price = prod.Vrid_Price;
+                    varprice += var.Price;
                 }
-                totalprice += Convert.ToInt32(prod.Quantity) * (prod.ActualPrice + variant_price);
+                totalprice += prod.Quantity * (prod.ActualPrice + varprice);
             }
             this.TotalPrice = totalprice;
             this.DiscountPrice = totalprice;
+
             this.DeliveryFee = "Free";
+            Marketplace.StoreDetailsViewModel.Convert2String(Marketplace.StoreDetailsViewModel.store_id);
         }
 
         private void CollectionChanges(object sender, EventArgs e)
@@ -142,8 +144,6 @@ namespace PasaBuy.App.ViewModels.eCommerce
             {
                 string data = Xamarin.Essentials.Preferences.Get(stid, "{}");
                 var result = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.Generic.List<ProductList>>(data);
-                //System.Diagnostics.Debug.WriteLine("Count" + result.Count);
-                //System.Diagnostics.Debug.WriteLine(data);
 
                 cartDetails = new ObservableCollection<ProductList>(result);
             }
@@ -381,6 +381,8 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     CheckoutPageViewModel.discount = this.DiscountPrice;
                     CheckoutPageViewModel.totalprice = this.TotalPrice;
                     CheckoutPageViewModel.charges = this.DeliveryFee;
+                    Marketplace.StoreDetailsViewModel.Convert2List(Marketplace.StoreDetailsViewModel.store_id);
+                    CheckoutPageViewModel.LoadCart();
                     PaymentView.method = string.Empty;
                     await Application.Current.MainPage.Navigation.PushModalAsync(new CheckoutPage());
                     await Task.Delay(200);
