@@ -289,11 +289,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public void LoadVariants(string product_id)
         {
-            _addonsList = new ObservableCollection<Options>();
-
-            _addonsList.Add(new Options() { Name = "Extra Gravy", Price = +10.00 });
-            _addonsList.Add(new Options() { Name = "Extra Rice", Price = +10.00 });
-
             try
             {
                 Http.TindaFeature.Instance.VariantList_Options(product_id, (bool success, string data) =>
@@ -305,15 +300,26 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         {
                             if (var.data[i].options.Count != 0)
                             {
-                                _optionsList = new ObservableCollection<Options>();
-                                _optionsList.Clear();
-                                for (int j = 0; j < var.data[i].options.Count; j++)
+                                if (var.data[i].baseprice == "Yes")
                                 {
-                                    _optionsList.Add(new Options() { Id = var.data[i].options[j].ID, Name = var.data[i].options[j].name, Price = Convert.ToDouble(var.data[i].options[j].price) });
+                                    _optionsList = new ObservableCollection<Options>();
+                                    _optionsList.Clear();
+                                    for (int j = 0; j < var.data[i].options.Count; j++)
+                                    {
+                                        _optionsList.Add(new Options() { Id = var.data[i].options[j].ID, Name = var.data[i].options[j].name, Price = Convert.ToDouble(var.data[i].options[j].price) });
+                                    }
+                                    _variantsList.Add(new Variants() { Name = var.data[i].name, Base = "Required(1)", options = _optionsList });
                                 }
-
-                                _variantsList.Add(new Variants() { Name = var.data[i].name, options = _optionsList});
-                                _variantsList.Add(new Variants() { Name = "Add-ons",  addons = _addonsList });
+                                else
+                                {
+                                    _addonsList = new ObservableCollection<Options>();
+                                    _addonsList.Clear();
+                                    for (int j = 0; j < var.data[i].options.Count; j++)
+                                    {
+                                        _addonsList.Add(new Options() { Id = var.data[i].options[j].ID, Name = var.data[i].options[j].name, Price = Convert.ToDouble(var.data[i].options[j].price) });
+                                    }
+                                    _variantsList.Add(new Variants() { Name = var.data[i].name, Base = "Optional", addons = _addonsList });
+                                }
 
                             }
                         }
