@@ -59,7 +59,7 @@ namespace PasaBuy.App.Views.Marketplace
             }
         }
 
-        private async void StoreTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        /*private async void StoreTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
             if (!isTapped)
             {
@@ -74,7 +74,7 @@ namespace PasaBuy.App.Views.Marketplace
                 await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
                 isTapped = false;
             }
-        }
+        }*/
 
         protected override void OnSizeAllocated(double width, double height)
         {
