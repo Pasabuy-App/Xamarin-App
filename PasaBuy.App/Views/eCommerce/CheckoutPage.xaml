@@ -67,7 +67,7 @@
                     <local:PaymentView Grid.Row="1" Margin="{OnIdiom Default=0, Tablet='0,24,0,0'}" />
 
                     <!--  Price Details  -->
-                    <local:PriceDetailView Grid.Row="2" ActionText="PAY NOW" />
+                    <local:PriceDetailView Grid.Row="2" ActionText="CHECKOUT" />
 
                 </Grid>
 
