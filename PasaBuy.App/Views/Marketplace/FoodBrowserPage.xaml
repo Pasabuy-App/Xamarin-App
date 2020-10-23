@@ -176,9 +176,8 @@
 
                                                     <ffimageloading:CachedImage Aspect="Fill"
                                                                 Grid.Column="0"
-                                                             
                                                                 Grid.Row="0"
-                                                                Source="https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg"
+                                                                Source="{Binding Banner}"
 			                                                    DownsampleToViewSize="True" 
                                                                 FadeAnimationEnabled="True">
                                                     </ffimageloading:CachedImage>

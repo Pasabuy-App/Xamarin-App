@@ -1,8 +1,11 @@
 ﻿using Newtonsoft.Json;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
+using PasaBuy.App.Models.Marketplace;
 using PasaBuy.App.Models.MobilePOS;
+using PasaBuy.App.Views.PopupModals;
 using PasaBuy.App.Views.StoreViews.POS;
+using Rg.Plugins.Popup.Services;
 using Syncfusion.XForms.Buttons;
 using System;
 using System.Collections.Generic;
@@ -19,6 +22,36 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         public static ObservableCollection<Models.MobilePOS.PointOfSales> _currentOrder;
 
         public static ObservableCollection<Models.MobilePOS.ProductData> productsList;
+
+        private ObservableCollection<Variants> _variantsList;
+
+        private ObservableCollection<Options> _optionsList;
+
+        public ObservableCollection<Options> OptionsList
+        {
+            get
+            {
+                return _optionsList;
+            }
+            set
+            {
+                _optionsList = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<Variants> VariantsList
+        {
+            get
+            {
+                return _variantsList;
+            }
+            set
+            {
+                _variantsList = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
 
         public  ObservableCollection<Models.MobilePOS.PointOfSales> CurrentOrder
@@ -57,18 +90,32 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             productsList = new ObservableCollection<ProductData>();
             _currentOrder = new ObservableCollection<Models.MobilePOS.PointOfSales>();
             LoadProduct();
-            _currentOrder.Add(new Models.MobilePOS.PointOfSales()
-            {
-                Name = "Test Item",
-                Price = 120,
-                Id = "123"
-            });
+            _variantsList = new ObservableCollection<Variants>();
+
+            ObservableCollection<Options> size_options = new ObservableCollection<Options>();
+            size_options.Add(new Options() { Name = "Medium", Price = +25.00 });
+            size_options.Add(new Options() { Name = "Large", Price = +45.00 });
+            size_options.Add(new Options() { Name = "Grande", Price = +65.00 });
+            ObservableCollection<Options> sweetness_options = new ObservableCollection<Options>();
+            sweetness_options.Add(new Options() { Name = "25%", Price = +0.00 });
+            sweetness_options.Add(new Options() { Name = "50%", Price = +0.00 });
+            sweetness_options.Add(new Options() { Name = "75%", Price = +0.00 });
+            sweetness_options.Add(new Options() { Name = "100%", Price = +0.00 });
+
+            _variantsList.Add(new Variants() { Name = "Size", options = size_options });
+            _variantsList.Add(new Variants() { Name = "Sweetness Level", options = sweetness_options });
 
         }
 
-        private ICommand _addToOrderCommand;
+        private ICommand _showVariants;
 
-        public ICommand AddToOrderCommand => _addToOrderCommand ?? (_addToOrderCommand = new Command<string>(AddToOrder));
+        private ICommand _addToOrder;
+
+        public ICommand AddToOrderCommand => _addToOrder ?? (_addToOrder = new Command<string>(AddToOrderClicked));
+
+        
+
+        public ICommand ShowVariantsCommand => _showVariants ?? (_showVariants = new Command<string>(ShowVariantsClicked));
 
         private async void LoadProduct()
         {
@@ -112,28 +159,28 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
         }
 
-        private void AddToOrder(string selectedItemId)
+
+        private void AddToOrderClicked(string selectedItemId)
+        {
+
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                await PopupNavigation.Instance.PopAsync();
+                await Application.Current.MainPage.Navigation.PopModalAsync();
+            });
+           
+        }
+
+        private void ShowVariantsClicked(string selectedItemId)
         {
             var item = ProductsList.FirstOrDefault(x => x.ID.Equals(selectedItemId));
 
+            //Step 1: Get item.id and use it to get variants
 
-            _currentOrder.Add(new Models.MobilePOS.PointOfSales
+            Device.BeginInvokeOnMainThread(async () =>
             {
-                Name = "Test Item34",
-                Price = 120,
-                Id = "123"
+                await PopupNavigation.Instance.PushAsync(new PopupShowVariants());
             });
-
-            _currentOrder.Add(new Models.MobilePOS.PointOfSales
-            {
-                Name = item.Product_name,
-                Price = item.Price,
-                Id = selectedItemId
-            });
-
-            Console.WriteLine(item.Price + item.Product_name + item.ID);
-            Application.Current.MainPage.Navigation.PopModalAsync();
-
 
         }
 

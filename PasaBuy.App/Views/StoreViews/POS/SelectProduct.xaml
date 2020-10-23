@@ -92,7 +92,7 @@
                                             x:Name="backButton"
                                             WidthRequest="35"
                                             CornerRadius="4"
-                                            Command="{Binding Path=BindingContext.AddToOrderCommand, Source={x:Reference listView}}" 
+                                            Command="{Binding Path=BindingContext.ShowVariantsCommand, Source={x:Reference listView}}" 
                                             CommandParameter="{Binding ID}"
                                             BackgroundColor="{DynamicResource PrimaryColor}"
                                             TextColor="White"
