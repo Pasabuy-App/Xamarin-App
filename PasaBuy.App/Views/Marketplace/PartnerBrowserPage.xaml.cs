@@ -121,13 +121,13 @@ namespace PasaBuy.App.Views.Marketplace
             this.SearchEntry.Focus();
         }
 
-        private async void Partner_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        /*private async void Partner_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
-                /*var item = e.ItemData as Categories;
+                *//*var item = e.ItemData as Categories;
                 PartnerListViewModel.LoadStore(item.Id, "");
                 PartnerListPage.catid = item.Id;
                 PartnerListPage.pageTitle = item.Title;
-                await App.Current.MainPage.Navigation.PushModalAsync(new PartnerListPage());*/
+                await App.Current.MainPage.Navigation.PushModalAsync(new PartnerListPage());*//*
            if (!isTapped)
             {
                 isTapped = true;
@@ -139,6 +139,6 @@ namespace PasaBuy.App.Views.Marketplace
                 isTapped = false;
             }
 
-        }
+        }*/
     }
 }
