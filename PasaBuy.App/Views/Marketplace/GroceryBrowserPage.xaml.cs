@@ -18,7 +18,7 @@ namespace PasaBuy.App.Views.Marketplace
         {
             InitializeComponent();
             isTapped = false;
-            pullToRefresh.Refreshing += PullToRefresh_Refreshing;
+            //pullToRefresh.Refreshing += PullToRefresh_Refreshing;
             //this.BindingContext = StoreDataService.Instance.RestaurantViewModel;
 
             SearchEntry.Completed += (sender, args) => SearchStore(sender, args);
@@ -59,15 +59,19 @@ namespace PasaBuy.App.Views.Marketplace
             }
         }
 
-        private async void PullToRefresh_Refreshing(object sender, EventArgs args)
+        /*private async void PullToRefresh_Refreshing(object sender, EventArgs args)
         {
             pullToRefresh.IsRefreshing = true;
-            await Task.Delay(500);
+            LoadingIndicator.IsRunning = true;
+            LoadingIndicator.IsVisible = true;
             LastIndex = 11;
             GroceryBrowserViewModel.grocerystorelist.Clear();
             GroceryBrowserViewModel.LoadGrocery("");
+            await Task.Delay(500);
             pullToRefresh.IsRefreshing = false;
-        }
+            LoadingIndicator.IsRunning = false;
+            LoadingIndicator.IsVisible = false;
+        }*/
         protected override void OnSizeAllocated(double width, double height)
         {
             base.OnSizeAllocated(width, height);
@@ -136,19 +140,23 @@ namespace PasaBuy.App.Views.Marketplace
         }
 
 
-        private async void GroceriesTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        /*private async void GroceriesTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
             if (!isTapped)
             {
                 isTapped = true;
+                LoadingIndicator.IsRunning = true;
+                LoadingIndicator.IsVisible = true;
                 var item = e.ItemData as Groceries;
                 StoreDetailsViewModel.store_id = item.Id;
                 //StoreDetailsViewModel.Loadcategory(item.Id);
                 await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
                 await System.Threading.Tasks.Task.Delay(200);
                 isTapped = false;
+                LoadingIndicator.IsRunning = false;
+                LoadingIndicator.IsVisible = false;
             }
-        }
+        }*/
 
         private void RestaurantList_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
         {

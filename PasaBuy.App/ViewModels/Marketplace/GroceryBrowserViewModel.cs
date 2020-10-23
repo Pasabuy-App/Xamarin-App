@@ -4,6 +4,7 @@ using PasaBuy.App.Local;
 using PasaBuy.App.Models.Marketplace;
 using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.Marketplace
@@ -41,46 +42,91 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 this.NotifyPropertyChanged();
             }
         }
+        bool _isRefreshing = false;
+        public bool IsRefreshing
+        {
+            get
+            {
+                return _isRefreshing;
+            }
+            set
+            {
+                if (_isRefreshing != value)
+                {
+                    _isRefreshing = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        bool _IsRunning = false;
+        public bool IsRunning
+        {
+            get
+            {
+                return _IsRunning;
+            }
+            set
+            {
+                if (_IsRunning != value)
+                {
+                    _IsRunning = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
         public GroceryBrowserViewModel()
         {
             grocerystorelist = new ObservableCollection<Groceries>();
             grocerystorelist.Clear();
-            //LoadGrocery("");
+            RefreshCommand = new Command<string>((key) =>
+            {
+                grocerystorelist.Clear();
+                LoadGrocery("");
+                IsRefreshing = false;
+            });
+            LoadGrocery("");
         }
 
-        public static void LoadGrocery(string lastid)
+        public void LoadGrocery(string lastid)
         {
             try
             {
-                TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "2", "", "1", lastid, (bool success, string data) =>
+                if (!IsRunning)
                 {
-                    if (success)
+                    IsRunning = true;
+                    TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "2", "", "1", lastid, (bool success, string data) =>
                     {
-                        GroceriesStoreListData datas = JsonConvert.DeserializeObject<GroceriesStoreListData>(data);
-                        for (int i = 0; i < datas.data.Length; i++)
+                        if (success)
                         {
-                            grocerystorelist.Add(new Groceries()
+                            GroceriesStoreListData datas = JsonConvert.DeserializeObject<GroceriesStoreListData>(data);
+                            for (int i = 0; i < datas.data.Length; i++)
                             {
-                                Id = datas.data[i].ID,
-                                Title = datas.data[i].title,
-                                Description = datas.data[i].short_info,
-                                Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(datas.data[i].avatar), // "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png"
-                                Offer = "50% off",
-                                ItemRating = "4.5",
-                                Banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(datas.data[i].banner), //https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png
-                                Street = datas.data[i].street + " " + datas.data[i].brgy + " " + datas.data[i].city + " " + datas.data[i].province + ", " + datas.data[i].country //"#4 Rainbow Ave Pacita 2 San Pedro City, Laguna"
-                            });
+                                grocerystorelist.Add(new Groceries()
+                                {
+                                    Id = datas.data[i].ID,
+                                    Title = datas.data[i].title,
+                                    Description = datas.data[i].short_info,
+                                    Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(datas.data[i].avatar), // "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png"
+                                    Offer = "50% off",
+                                    ItemRating = "4.5",
+                                    Banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(datas.data[i].banner), //https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png
+                                    Street = datas.data[i].street + " " + datas.data[i].brgy + " " + datas.data[i].city + " " + datas.data[i].province + ", " + datas.data[i].country //"#4 Rainbow Ave Pacita 2 San Pedro City, Laguna"
+                                });
+                            }
+                            IsRunning = false;
                         }
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                });
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsRunning = false;
+                        }
+                    });
+                }
             }
             catch (Exception e)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                IsRunning = false;
             }
         }
 
@@ -137,13 +183,21 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-        private void NavigateToNextPage(object selectedItem)
+        private async void NavigateToNextPage(object selectedItem)
         {
-            //var item = selectedItem.ItemData as FoodStore;
+            if (!IsRunning)
+            {
+                IsRunning = true;
+                CanNavigate = false;
+                StoreDetailsViewModel.store_id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Groceries).Id;
+                await Task.Delay(300);
+                await App.Current.MainPage.Navigation.PushModalAsync(new Views.Marketplace.StoreDetailsPage());
 
-            //new Alert("ok", "." +".HAHAHA", "ok");
+                await Task.Delay(300);
+                IsRunning = false;
+                CanNavigate = true;
+            }
         }
 
-        //public ObservableCollection<Groceries> NavigationList { get; set; }
     }
 }
