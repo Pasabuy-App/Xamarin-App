@@ -93,7 +93,6 @@
                     IsStickyHeader="True"
                     ItemsSource="{Binding ItemCategories}"
                     RowSpacing="0"
-                    ItemTapped="StoreTapped"
                     SelectionBackgroundColor="Transparent"
                     TapCommand="{Binding ItemSelectedCommand}">
 
@@ -155,9 +154,8 @@
                 </ScrollView>
                 <loading:LoadingIndicator
                     Grid.Row="0"
-                    x:Name="LoadingIndicator"
                     HorizontalOptions="Fill"
-                    IsRunning="{Binding IsBusy, Mode=TwoWay}"
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}"
                     VerticalOptions="Fill" />
             </Grid>
         

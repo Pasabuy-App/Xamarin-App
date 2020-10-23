@@ -6,6 +6,7 @@ using PasaBuy.App.Views.Notice;
 using System;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -39,50 +40,73 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 this.NotifyPropertyChanged();
             }
         }
-
+        bool _IsRunning = false;
+        public bool IsRunning
+        {
+            get
+            {
+                return _IsRunning;
+            }
+            set
+            {
+                if (_IsRunning != value)
+                {
+                    _IsRunning = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
         public StoreBrowserViewModel()
         {
+            itemCategories = new ObservableCollection<Categories>();
+            itemCategories.Clear();
+            LoadCategory();
             RefreshCommand = new Command<string>((key) =>
             {
                 itemCategories.Clear();
                 LoadCategory();
                 IsRefreshing = false;
             });
-            itemCategories = new ObservableCollection<Categories>();
-            itemCategories.Clear();
         }
 
-        public static void LoadCategory()
+        public void LoadCategory()
         {
             try
             {
-                TindaPress.Category.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "all", "", "1", "1", (bool success, string data) =>
+                if (!IsRunning)
                 {
-                    if (success)
+                    IsRunning = true;
+                    TindaPress.Category.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "all", "", "1", "1", (bool success, string data) =>
                     {
-                        StoreListData datas = JsonConvert.DeserializeObject<StoreListData>(data);
-
-                        for (int i = 0; i < datas.data.Length; i++)
+                        if (success)
                         {
-                            itemCategories.Add(new Categories()
+                            StoreListData datas = JsonConvert.DeserializeObject<StoreListData>(data);
+
+                            for (int i = 0; i < datas.data.Length; i++)
                             {
-                                Id = datas.data[i].ID,
-                                Title = datas.data[i].title,
-                                Avatar = datas.data[i].avatar, //PSAProc.GetUrl(datas.data[i].avatar),
-                                Info = "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-product.png"
-                            });
+                                itemCategories.Add(new Categories()
+                                {
+                                    Id = datas.data[i].ID,
+                                    Title = datas.data[i].title,
+                                    Avatar = datas.data[i].avatar, //PSAProc.GetUrl(datas.data[i].avatar),
+                                    Info = "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-product.png"
+                                });
+                            }
+                            IsRunning = false;
                         }
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                });
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsRunning = false;
+                        }
+                    });
+                }
 
             }
             catch (Exception e)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                IsRunning = false;
             }
         }
 
@@ -132,14 +156,13 @@ namespace PasaBuy.App.ViewModels.Marketplace
         /// <summary>
         /// Gets the command that will be executed when an item is selected.
         /// </summary>
-        public Command<object> ItemTappedCommand
+        public Command<object> ItemSelectedCommand
         {
             get
             {
                 return this.itemTappedCommand ?? (this.itemTappedCommand = new Command<object>(this.NavigateToNextPage));
             }
         }
-
 
         #endregion
 
@@ -149,8 +172,21 @@ namespace PasaBuy.App.ViewModels.Marketplace
         /// Invoked when an item is selected from the navigation list.
         /// </summary>
         /// <param name="selectedItem">Selected item from the list view.</param>
-        private void NavigateToNextPage(object selectedItem)
+        private async void NavigateToNextPage(object selectedItem)
         {
+            if (!IsRunning)
+            {
+                IsRunning = true;
+                Views.Marketplace.StoreListPage.catid = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Categories).Id;
+                Views.Marketplace.StoreListPage.pageTitle = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Categories).Title;
+
+                StoreListViewModel.LoadStore(Views.Marketplace.StoreListPage.catid, "");
+                await Task.Delay(300);
+                await App.Current.MainPage.Navigation.PushModalAsync(new Views.Marketplace.StoreListPage());
+
+                await Task.Delay(300);
+                IsRunning = false;
+            }
         }
 
 
