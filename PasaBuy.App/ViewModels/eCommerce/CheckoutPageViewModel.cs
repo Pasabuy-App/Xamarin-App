@@ -409,7 +409,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
         /// Invoked when the Place order button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
-        private async void PlaceOrderClicked(object obj)
+        private void PlaceOrderClicked(object obj)
         {
             try
             {
@@ -428,8 +428,9 @@ namespace PasaBuy.App.ViewModels.eCommerce
                         {
                             if (success)
                             {
+                                //new Alert("Succes", "Success", "Success");
                                 (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new PaymentSuccessPage()));
-                                //isRunning = false;
+                                isRunning = false;
                             }
                             else
                             {

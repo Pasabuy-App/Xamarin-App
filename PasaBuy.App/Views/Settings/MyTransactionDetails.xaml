@@ -69,7 +69,7 @@
                                                 Grid.RowSpan="2"
                                                 Margin="10,-5,0,0"
                                                 Grid.Column="0"
-                                                Source="Avatar.png"
+                                                Source="{Binding Image}"
                                                 HeightRequest="45"
                                                 x:Name="ImageId"
 			                                    DownsampleToViewSize="true" 
@@ -85,7 +85,7 @@
                                FontSize="{DynamicResource MediumSize}"
                                VerticalTextAlignment="Center"
                                HorizontalTextAlignment="Start"
-                               Text="Store Name"
+                               Text="{Binding Name}"
                                x:Name="StoreName"
                                TextColor="{DynamicResource Gray-900}" />
 
@@ -96,7 +96,7 @@
                                FontSize="{DynamicResource SmallSize}" 
                                VerticalTextAlignment="Center"
                                HorizontalTextAlignment="End"
-                               Text="Order #143"
+                               Text="{Binding OrderID}"
                                x:Name="OrderIDandOrderTime"
                                TextColor="{DynamicResource Gray-900}" />
 
@@ -120,7 +120,7 @@
                                x:Name="StoreAddress"
                                VerticalTextAlignment="Center"
                                HorizontalTextAlignment="Start"
-                               Text="Alabang, Muntinlupa City (Store address)"
+                               Text="{Binding StoreAddress}"
                                TextColor="{DynamicResource Gray-900}" />
                     <Label FontSize="18"
                                Grid.Row="3" 
@@ -132,7 +132,7 @@
                                Style="{StaticResource ProfileIconLabelStyle}"
                                TextColor="{DynamicResource BlackColor}"
                                Text="&#xf015;" />
-                    <Label Grid.Row="3"
+                    <Label Grid.Row="3" 
                                Grid.Column="1"
                                Margin="10,-3,0,8"
                                Grid.ColumnSpan="2"
@@ -142,7 +142,7 @@
                                VerticalTextAlignment="Center"
                                HorizontalTextAlignment="Start"
                                x:Name="ClientAddress"
-                               Text="#4 Rainbow Ave, City of San Pedro, Laguna, Philippines (Delivery Address)"
+                               Text="{Binding MyAddress}"
                                TextColor="{DynamicResource Gray-900}" />
                     <Label Grid.Row="4"
                                Grid.Column="0"
@@ -242,7 +242,7 @@
                                 Grid.Row="0"
                                 Padding="0,10,0,2"
                                 Margin="15,8,8,0"
-                                Text="123.00" 
+                                Text="{Binding SubTotal}" 
                                 FontSize="{DynamicResource SmallSize}" 
                                 FontFamily="{StaticResource Montserrat-Medium}" 
                                 TextColor="{DynamicResource Gray-900}"
@@ -268,11 +268,12 @@
                                 Grid.Row="1"
                                 Padding="0,0,0,2"
                                 Margin="15,0,8,0"
-                                Text="23.00" 
+                                Text="{Binding Fee}" 
                                 FontSize="{DynamicResource SmallSize}" 
                                 FontFamily="{StaticResource Montserrat-Medium}" 
                                 TextColor="{DynamicResource Gray-900}"
                                 LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
+                        
 
                         <BoxView Grid.Row="2"
                                  Grid.ColumnSpan="2"
@@ -298,7 +299,7 @@
                                 Grid.Row="3"
                                 Padding="0,0,0,2"
                                 Margin="15,0,8,0"
-                                Text="223.00" 
+                                Text="{Binding Total}" 
                                 FontSize="{DynamicResource SmallSize}" 
                                 FontFamily="{StaticResource Montserrat-SemiBold}" 
                                 TextColor="{DynamicResource BlackColor}"
