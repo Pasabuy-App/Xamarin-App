@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="PasaBuy.App.Views.PopupModals.PopupViewPersonnel"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App" 
+    xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Accordion;assembly=Syncfusion.Expander.XForms" 
+    xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    xmlns:controls="clr-namespace:PasaBuy.App.Controls">
+    <pages:PopupPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="PopupItemHeaderStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0,0,0,0" />
+            </Style>
+
+            <Style x:Key="PopupLabelStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="End" />
+                <Setter Property="Margin" Value="10,0,0,12" />
+            </Style>
+
+            <Style x:Key="IconButtonStyle" TargetType="buttons:SfButton">
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="WidthRequest" Value="40" />
+            </Style>
+            <x:String x:Key="ArrowRight">&#xe728;</x:String>
+            <x:String x:Key="Home">&#xe706;</x:String>
+            <x:String x:Key="Lunch">&#xe74e;</x:String>
+
+
+        </ResourceDictionary>
+    </pages:PopupPage.Resources>
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            DurationIn="500"
+            EasingIn="SpringOut"
+            PositionIn="Bottom"
+            PositionOut="Center"
+            ScaleIn="1"
+            ScaleOut="0.7" />
+    </pages:PopupPage.Animation>
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <Frame
+            x:Name="FrameContainer"
+            Margin="15"
+            Padding="0,0,0,5"
+            BackgroundColor="{DynamicResource Gray-100}"
+            CornerRadius="6"
+            HorizontalOptions="Center">
+            <StackLayout
+                Padding="0"
+                IsClippedToBounds="True"
+                Spacing="0">
+                <Grid RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10*" />
+                        <RowDefinition Height="90*" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0"
+                          HorizontalOptions="End" 
+                          VerticalOptions="Start">
+                        <Image
+                              Grid.Row="0"
+                              Grid.Column="0"
+                              HeightRequest="30"
+                              Source="cross_512.png"
+                              WidthRequest="30">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="CloseModal" NumberOfTapsRequired="1"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                    <Grid Grid.Row="1"
+                          Padding="15,10,15,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30*" />
+                            <ColumnDefinition Width="70*" />
+                        </Grid.ColumnDefinitions>
+                        <!--LEFT LABELS-->
+                        <Label HorizontalOptions="EndAndExpand" 
+                               VerticalOptions="CenterAndExpand"
+                               Padding="0,5,0,0"
+                               Text="Name: " 
+                               Grid.Column="0"
+                               Grid.Row="0"
+                               FontSize="{DynamicResource MediumSize}" 
+                               FontFamily="{StaticResource Montserrat-Medium}" 
+                               TextColor="{DynamicResource Gray-900}"
+                               LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
+                        <Label HorizontalOptions="EndAndExpand" 
+                               VerticalOptions="CenterAndExpand"
+                               Padding="0,5,0,0"
+                               Text="Position: " 
+                               Grid.Column="0"
+                               Grid.Row="1"
+                               FontSize="{DynamicResource MediumSize}" 
+                               FontFamily="{StaticResource Montserrat-Medium}" 
+                               TextColor="{DynamicResource Gray-900}"
+                               LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
+                        <Label HorizontalOptions="EndAndExpand" 
+                               VerticalOptions="CenterAndExpand"
+                               Padding="0,5,0,0"
+                               Text="Gender: " 
+                               Grid.Column="0"
+                               Grid.Row="2"
+                               FontSize="{DynamicResource MediumSize}" 
+                               FontFamily="{StaticResource Montserrat-Medium}" 
+                               TextColor="{DynamicResource Gray-900}"
+                               LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
+                        <Label HorizontalOptions="EndAndExpand" 
+                               VerticalOptions="CenterAndExpand"
+                               Padding="0,5,0,0"
+                               Text="Date Hired: " 
+                               Grid.Column="0"
+                               Grid.Row="3"
+                               FontSize="{DynamicResource SmallSize}" 
+                               FontFamily="{StaticResource Montserrat-Medium}" 
+                               TextColor="{DynamicResource Gray-900}"
+                               LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
+                        <Label HorizontalOptions="EndAndExpand" 
+                               VerticalOptions="CenterAndExpand"
+                               Padding="0,5,0,0"
+                               Text="Status: " 
+                               Grid.Column="0"
+                               Grid.Row="4"
+                               FontSize="{DynamicResource SmallSize}" 
+                               FontFamily="{StaticResource Montserrat-Medium}" 
+                               TextColor="{DynamicResource Gray-900}"
+                               LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
+                        
+                        <!--RIGHT VALUES-->
+                        <Label HorizontalOptions="StartAndExpand" 
+                               VerticalOptions="CenterAndExpand"
+                               Padding="0,5,0,0"
+                               Text="Lorz Becislao " 
+                               Grid.Column="1"
+                               Grid.Row="0"
+                               FontSize="{DynamicResource MediumSize}" 
+                               FontFamily="{StaticResource Montserrat-Bold}" 
+                               TextColor="{DynamicResource Gray-900}"
+                               LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
+                        <Label HorizontalOptions="StartAndExpand" 
+                               VerticalOptions="CenterAndExpand"
+                               Padding="0,5,0,0"
+                               Text="Backend Janitor " 
+                               Grid.Column="1"
+                               Grid.Row="1"
+                               FontSize="{DynamicResource MediumSize}" 
+                               FontFamily="{StaticResource Montserrat-Bold}" 
+                               TextColor="{DynamicResource Gray-900}"
+                               LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
+                        <Label HorizontalOptions="StartAndExpand" 
+                               VerticalOptions="CenterAndExpand"
+                               Padding="0,5,0,0"
+                               Text="Male? " 
+                               Grid.Column="1"
+                               Grid.Row="2"
+                               FontSize="{DynamicResource MediumSize}" 
+                               FontFamily="{StaticResource Montserrat-Bold}" 
+                               TextColor="{DynamicResource Gray-900}"
+                               LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
+                        <Label HorizontalOptions="StartAndExpand" 
+                               VerticalOptions="CenterAndExpand"
+                               Padding="0,5,0,0"
+                               Text="July 13, 2020" 
+                               Grid.Column="1"
+                               Grid.Row="3"
+                               FontSize="{DynamicResource SmallSize}" 
+                               FontFamily="{StaticResource Montserrat-Bold}" 
+                               TextColor="{DynamicResource Gray-900}"
+                               LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
+                        <Label HorizontalOptions="StartAndExpand" 
+                               VerticalOptions="CenterAndExpand"
+                               Padding="0,5,0,0"
+                               Text="Terminated" 
+                               Grid.Column="1"
+                               Grid.Row="4"
+                               FontSize="{DynamicResource SmallSize}" 
+                               FontFamily="{StaticResource Montserrat-Bold}" 
+                               TextColor="{DynamicResource Gray-900}"
+                               LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
+                    </Grid>
+                </Grid>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</pages:PopupPage>

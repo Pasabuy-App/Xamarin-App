@@ -7,7 +7,7 @@
              xmlns:syncListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
              xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App"
-             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" xmlns:controls="clr-namespace:PasaBuy.App.Controls"
              BackgroundColor="{DynamicResource Gray-White}"
              x:Class="PasaBuy.App.Views.StoreViews.Management.PersonnelsView"
              Title="{texts:Translate PersonnelTitle}">
@@ -86,16 +86,16 @@
      
                                     <syncListView:SfListView.ItemTemplate>
                                         <DataTemplate>
-                                            <Grid
-                                                Margin="0"
-                                                Padding="8,12,8,0"
+                                            <controls:CustomShadowFrame
+                                                Margin="0,2,5,5"
+                                                Padding="8,10,8,10"
                                                 BackgroundColor="{DynamicResource Gray-White}"
-                                                ColumnSpacing="0"
-                                                RowSpacing="0">
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                </Grid.RowDefinitions>
+                                                BorderColor="{DynamicResource Gray-White}"
+                                                BorderWidth="1"
+                                                CornerRadius="4"
+                                                HasShadow="True"
+                                                HorizontalOptions="FillAndExpand"
+                                                VerticalOptions="FillAndExpand">
                                                 <Grid Grid.Row="0" Padding="0,0,8,10" RowSpacing="0">
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="Auto" />
@@ -125,31 +125,36 @@
                                                            Grid.Row="0"
                                                            Grid.Column="1"
                                                            HorizontalOptions="StartAndExpand"
-                                                             TextColor="{DynamicResource BlackColor}">
+                                                           FontFamily="{StaticResource Montserrat-SemiBold}" 
+                                                           TextColor="{DynamicResource Gray-900}">
                                                     </Label>
                                                     <Label Text="{Binding Position}"
                                                            Grid.Row="1"
                                                            Grid.Column="1"
                                                            HorizontalOptions="StartAndExpand"
-                                                           TextColor="{DynamicResource Gray-800}">
+                                                           FontFamily="{StaticResource Montserrat-Medium}" 
+                                                           TextColor="{DynamicResource Gray-900}">
                                                     </Label>
 
                                                     <Label Text="{Binding DateCreated}"
                                                            Grid.Row="0"
                                                            Grid.Column="2"
                                                            HorizontalOptions="End"
-                                                             TextColor="{DynamicResource BlackColor}">
+                                                           FontFamily="{StaticResource Montserrat-SemiBold}" 
+                                                           TextColor="{DynamicResource Gray-900}">
                                                     </Label>
                                                     <Label Text="Employee Since"
                                                            Grid.Row="1"
                                                            Grid.Column="2"
                                                            HorizontalOptions="End"
-                                                           TextColor="{DynamicResource Gray-800}">
+                                                           FontFamily="{StaticResource Montserrat-Medium}" 
+                                                           TextColor="{DynamicResource Gray-900}">
                                                     </Label>
-
+                                                    <Grid.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.ViewPersonnelCommand, Source={x:Reference listView}}" CommandParameter="{Binding FullName}"/>
+                                                    </Grid.GestureRecognizers>
                                                 </Grid>
-                                                <BoxView Grid.Row="1" Margin="0,-2,0,0" Style="{DynamicResource SeparatorStyle}" />
-                                            </Grid>
+                                            </controls:CustomShadowFrame>
                                         </DataTemplate>
                                     </syncListView:SfListView.ItemTemplate>
                                     <syncListView:SfListView.RightSwipeTemplate>

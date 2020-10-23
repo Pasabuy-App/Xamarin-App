@@ -1,8 +1,12 @@
 ﻿using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.MobilePOS;
+using PasaBuy.App.Views.PopupModals;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.MobilePOS
 {
@@ -13,6 +17,19 @@ namespace PasaBuy.App.ViewModels.MobilePOS
     {
         public static ObservableCollection<Personnels> _personnelsList;
         public static ObservableCollection<Personnels> _usersList;
+
+        public ICommand ViewPersonnelCommand
+        {
+            get
+            {
+                return new Command<string>((x) => ViewPersonnelClicked(x));
+            }
+        }
+        private async void ViewPersonnelClicked(string id)
+        {
+            new Alert("Test", id, "Personnel Id");
+            await PopupNavigation.Instance.PushAsync(new PopupViewPersonnel());
+        }
 
         public ObservableCollection<Personnels> PersonnelsList
         {
