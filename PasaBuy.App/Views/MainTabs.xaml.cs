@@ -63,36 +63,36 @@ namespace PasaBuy.App.Views
                 isButton = true;
                 if (e.TabItem.Title == "HOME")
                 {
-                    HomePage.LastIndex = 12;
+                    /*HomePage.LastIndex = 12;
                     HomePage.isFirstLoad = false;
                     HomepageViewModel.homePostList.Clear();
                     HomepageViewModel.LoadData("");
-                    MasterMenuViewModel.postbutton = string.Empty;
+                    MasterMenuViewModel.postbutton = string.Empty;*/
                 }
                 if (e.TabItem.Title == "STORE")
                 {
                     //StoreBrowserPage.LastIndex = 11;
-                    StoreBrowserViewModel.itemCategories.Clear();
-                    StoreBrowserViewModel.LoadCategory();
+                    //StoreBrowserViewModel.itemCategories.Clear();
+                    //StoreBrowserViewModel.LoadCategory();
                 }
                 if (e.TabItem.Title == "GROCERY")
                 {
-                    GroceryBrowserPage.LastIndex = 11;
+                    /*GroceryBrowserPage.LastIndex = 11;
                     GroceryBrowserViewModel.grocerystorelist.Clear();
-                    GroceryBrowserViewModel.LoadGrocery("");
+                    GroceryBrowserViewModel.LoadGrocery("");*/
                 }
                 if (e.TabItem.Title == "FOOD")
                 {
-                    FoodBrowserViewModel.RefreshData();
+                    //FoodBrowserViewModel.RefreshData();
                 }
                 if (e.TabItem.Title == "PARTNER")
                 {
                     //StoreBrowserPage.LastIndex = 11;
                     //PartnerBrowserViewModel.LoadCategory();
-                    PartnerBrowserViewModel.storeList.Clear();
+                    /*PartnerBrowserViewModel.storeList.Clear();
                     PartnerBrowserViewModel.LoadPartner("");
                     PartnerBrowserViewModel.partnerStoresRotator.Clear();
-                    PartnerBrowserViewModel.LoadRotator();
+                    PartnerBrowserViewModel.LoadRotator();*/
                 }
                 /*if (e.TabItem.Title == "MESSAGE")
                 {
