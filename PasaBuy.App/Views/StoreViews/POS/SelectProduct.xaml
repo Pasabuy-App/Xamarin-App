@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
-             xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
              x:Class="PasaBuy.App.Views.StoreViews.POS.SelectProduct"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="{DynamicResource Gray-White}">
@@ -92,8 +92,8 @@
                                             x:Name="backButton"
                                             WidthRequest="35"
                                             CornerRadius="4"
-                                            Command="{Binding Path=BindingContext.AddToOrderCommand, Source={x:Reference listView}}"
-                                            CommandParameter="{Binding ID}}"
+                                            Command="{Binding Path=BindingContext.ShowVariantsCommand, Source={x:Reference listView}}" 
+                                            CommandParameter="{Binding ID}"
                                             BackgroundColor="{DynamicResource PrimaryColor}"
                                             TextColor="White"
                                             Style="{StaticResource SfButtonStyle}"
@@ -110,6 +110,12 @@
                     </sync:SfListView.ItemTemplate>
                 </sync:SfListView>
             </StackLayout>
+            <loading:LoadingIndicator
+                HorizontalOptions="Fill"
+                x:Name="Loader"
+                Grid.RowSpan="2"
+                IsRunning="{Binding IsBusy, Mode=TwoWay}"
+                VerticalOptions="Fill" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

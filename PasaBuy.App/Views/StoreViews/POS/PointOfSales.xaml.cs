@@ -1,4 +1,5 @@
-﻿using PasaBuy.App.ViewModels.MobilePOS;
+﻿using Microsoft.AppCenter.Crashes;
+using PasaBuy.App.ViewModels.MobilePOS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,12 @@ namespace PasaBuy.App.Views.StoreViews.POS
         public PointOfSales()
         {
             InitializeComponent();
-            //this.BindingContext = new POSViewModel();
+            this.BindingContext = new POSViewModel();
+        }
+
+        private void AddOrderProduct(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new SelectProduct());
         }
     }
 }

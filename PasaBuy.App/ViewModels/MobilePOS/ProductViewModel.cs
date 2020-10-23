@@ -89,7 +89,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                             string id = product.data[i].ID;
                             string product_name = product.data[i].product_name;
                             string short_info = product.data[i].short_info;
-                            string price = product.data[i].price;
+                            float price = (float)Convert.ToDouble(product.data[i].price);
                             string preview = product.data[i].preview;
                             productsList.Add(new ProductData()
                             {

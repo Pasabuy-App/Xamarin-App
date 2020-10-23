@@ -34,16 +34,16 @@ namespace PasaBuy.App.Views.Chat
         /// </summary>
         public void BackButtonClicked(object sender, EventArgs e)
         {
-            RecentChatViewModel.chatItems.Clear();
-            RecentChatViewModel.LoadMesssage("");
-            ChatMessageViewModel.refresh = 1;
+            //RecentChatViewModel.chatItems.Clear();
+            //RecentChatViewModel.LoadMesssage("");
+            //ChatMessageViewModel.refresh = 1;
             Navigation.PopModalAsync();
         }
         protected override bool OnBackButtonPressed()
         {
-            RecentChatViewModel.chatItems.Clear();
-            RecentChatViewModel.LoadMesssage("");
-            ChatMessageViewModel.refresh = 1;
+            //RecentChatViewModel.chatItems.Clear();
+            //RecentChatViewModel.LoadMesssage("");
+            //ChatMessageViewModel.refresh = 1;
             return base.OnBackButtonPressed();
         }
 

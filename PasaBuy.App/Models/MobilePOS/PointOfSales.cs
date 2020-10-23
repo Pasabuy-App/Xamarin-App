@@ -5,9 +5,37 @@ using System.Text;
 
 namespace PasaBuy.App.Models.MobilePOS
 {
-    public class PointOfSales
+    public class PointOfSales : INotifyPropertyChanged
     {
         private string name = string.Empty;
+        private string id = string.Empty;
+        private float price;
+
+        public string Id
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+                OnPropertyChanged("Id");
+            }
+        }
+
+        public float Price
+        {
+            get
+            {
+                return price;
+            }
+            set
+            {
+                price = value;
+                OnPropertyChanged("Price");
+            }
+        }
 
         public string Name
         {

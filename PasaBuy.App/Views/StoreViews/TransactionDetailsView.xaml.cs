@@ -1,5 +1,6 @@
 ﻿using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.ViewModels.MobilePOS;
+using PasaBuy.App.Views.Chat;
 using System;
 using System.Threading.Tasks;
 
@@ -99,6 +100,15 @@ namespace PasaBuy.App.Views.StoreViews
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
             }
+        }
+
+        private void MessageCustomer(object sender, EventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                await Task.Delay(200);
+                await App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new ChatMessagePage()));
+            });
         }
     }
 }
