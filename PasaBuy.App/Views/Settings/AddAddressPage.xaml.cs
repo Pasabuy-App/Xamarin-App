@@ -35,9 +35,9 @@ namespace PasaBuy.App.Views.Settings
         {
             try
             {
-                if (!isEnable)
+                if (!LoadingIndicator.IsRunning)
                 {
-                    isEnable = true;
+                    LoadingIndicator.IsRunning = true;
                     if (!string.IsNullOrWhiteSpace(StreetEntry.Text) && !string.IsNullOrWhiteSpace(ContactEntry.Text) && !string.IsNullOrEmpty(ContactTypePicker.Text))
                     {
                         string type = string.Empty;
@@ -58,27 +58,25 @@ namespace PasaBuy.App.Views.Settings
                                 }
                                 if (addPath == "Another")
                                 {
-                                    ViewModels.eCommerce.ChangeAddressViewModel._addressList.Clear();
-                                    ViewModels.eCommerce.ChangeAddressViewModel.LoadData();
+                                   /* ViewModels.eCommerce.ChangeAddressViewModel._addressList.Clear();
+                                    ViewModels.eCommerce.ChangeAddressViewModel.LoadData();*/
                                 }
                                 Navigation.PopModalAsync();
+                                LoadingIndicator.IsRunning = false;
                             }
                             else
                             {
                                 new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                LoadingIndicator.IsRunning = false;
                             }
                         });
-                        Device.BeginInvokeOnMainThread(async () =>
-                            {
-                                await Task.Delay(200);
-                                isEnable = false;
-                            });
                     }
                 }
             }
             catch (Exception ex)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
+                LoadingIndicator.IsRunning = false;
             }
 
         }

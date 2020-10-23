@@ -6,6 +6,7 @@ using PasaBuy.App.Models.Settings;
 using PasaBuy.App.Views.eCommerce;
 using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.eCommerce
@@ -17,16 +18,30 @@ namespace PasaBuy.App.ViewModels.eCommerce
         private DelegateCommand _selectAddressCommand;
         private DelegateCommand _addAddressCommand;
         private DelegateCommand _confirmAddress;
+        public bool _isRunning = false;
+        public bool isRunning
+        {
+            get
+            {
+                return _isRunning;
+            }
+            set
+            {
+                _isRunning = value;
+                this.NotifyPropertyChanged();
+            }
+        }
         public ChangeAddressViewModel()
         {
             _addressList = new ObservableCollection<AddressData>();
             _addressList.Clear();
             LoadData();
         }
-        public static void LoadData()
+        public void LoadData()
         {
             try
             {
+                isRunning = true;
                 DataVice.Address.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, (bool success, string data) =>
                 {
                     if (success)
@@ -53,17 +68,19 @@ namespace PasaBuy.App.ViewModels.eCommerce
                                 ContactPerson = address.data[i].contact_person
                             });
                         }
+                        isRunning = false;
                     }
                     else
                     {
                         new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-
+                        isRunning = false;
                     }
                 });
             }
             catch (Exception e)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                isRunning = false;
             }
         }
         public ObservableCollection<AddressData> AddressList
@@ -108,76 +125,93 @@ namespace PasaBuy.App.ViewModels.eCommerce
         {
             try
             {
-                //Console.WriteLine("Ayup: ." + StreetEntry + ". ." + AddressInMapPage.address_id + ". ." +AddressInMapPage.lat.ToString() + ". ." + AddressInMapPage.lon.ToString());
-                DataVice.Address.Instance.Update(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, AddressInMapPage.address_id, "", "", "", "", StreetEntry, AddressInMapPage.lat.ToString(), AddressInMapPage.lon.ToString(), (bool success, string data) =>
+                if (!isRunning)
                 {
-                    if (success)
+                    isRunning = true;
+                    DataVice.Address.Instance.Update(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, AddressInMapPage.address_id, "", "", "", "", StreetEntry, AddressInMapPage.lat.ToString(), AddressInMapPage.lon.ToString(), (bool success, string data) =>
                     {
-                        Device.BeginInvokeOnMainThread(async () =>
+                        if (success)
                         {
-                            CheckoutPageViewModel.InsertAddress(AddressInMapPage.address_id, AddressInMapPage.person, AddressInMapPage.type, AddressInMapPage.full_address, AddressInMapPage.contact);
-                            int numModals = Application.Current.MainPage.Navigation.ModalStack.Count;
-                            for (int currModal = 0; currModal < numModals - 3; currModal++)
+                            Device.BeginInvokeOnMainThread(async () =>
                             {
-                                await Application.Current.MainPage.Navigation.PopModalAsync(false);
-                            }
-                        });
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-
-                    }
-                });
+                                CheckoutPageViewModel.InsertAddress(AddressInMapPage.address_id, AddressInMapPage.person, AddressInMapPage.type, AddressInMapPage.full_address, AddressInMapPage.contact);
+                                int numModals = Application.Current.MainPage.Navigation.ModalStack.Count;
+                                for (int currModal = 0; currModal < numModals - 3; currModal++)
+                                {
+                                    await Application.Current.MainPage.Navigation.PopModalAsync(false);
+                                }
+                                isRunning = false;
+                            });
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            isRunning = false;
+                        }
+                    });
+                }
             }
             catch (Exception e)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                isRunning = false;
             }
         }
         private async void AddAddressClicked(object obj)
         {
-            Views.Settings.AddAddressPage.addPath = "Another";
-            await Application.Current.MainPage.Navigation.PushModalAsync(new PasaBuy.App.Views.Settings.AddAddressPage());
+            if (!isRunning)
+            {
+                isRunning = true;
+                Views.Settings.AddAddressPage.addPath = "Another";
+                await Task.Delay(200);
+                await Application.Current.MainPage.Navigation.PushModalAsync(new PasaBuy.App.Views.Settings.AddAddressPage());
+                isRunning = false;
+            }
         }
         private void SelectAddressClicked(object obj)
         {
             try
             {
-                var btn = obj as TapGestureRecognizer;
-                DataVice.Address.Instance.SelectByID(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, btn.ClassId, (bool success, string data) =>
+                if (!isRunning)
                 {
-                    if (success)
+                    isRunning = true;
+                    var btn = obj as TapGestureRecognizer;
+                    DataVice.Address.Instance.SelectByID(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, btn.ClassId, (bool success, string data) =>
                     {
-                        AddressData address = JsonConvert.DeserializeObject<AddressData>(data);
-                        CheckoutPageViewModel.address_id = Convert.ToInt32(btn.ClassId);
-                        AddressInMapPage.address_id = btn.ClassId;
-                        AddressInMapPage.street = btn.ClassId;
-                        for (int i = 0; i < address.data.Length; i++)
+                        if (success)
                         {
-                            AddressInMapPage.street = address.data[i].street;
-                            AddressInMapPage.type = address.data[i].types;
-                            AddressInMapPage.contact = address.data[i].contact;
-                            AddressInMapPage.person = string.IsNullOrEmpty(address.data[i].contact_person) ? PSACache.Instance.UserInfo.dname : address.data[i].contact_person;
-                            AddressInMapPage.full_address = address.data[i].street + " " + address.data[i].brgy + " " + address.data[i].city + " " + address.data[i].province + ", " + address.data[i].country;
-                            AddressInMapPage.lat = Convert.ToDouble(address.data[i].latitude);
-                            AddressInMapPage.lon = Convert.ToDouble(address.data[i].longitude);
+                            AddressData address = JsonConvert.DeserializeObject<AddressData>(data);
+                            CheckoutPageViewModel.address_id = Convert.ToInt32(btn.ClassId);
+                            AddressInMapPage.address_id = btn.ClassId;
+                            AddressInMapPage.street = btn.ClassId;
+                            for (int i = 0; i < address.data.Length; i++)
+                            {
+                                AddressInMapPage.street = address.data[i].street;
+                                AddressInMapPage.type = address.data[i].types;
+                                AddressInMapPage.contact = address.data[i].contact;
+                                AddressInMapPage.person = string.IsNullOrEmpty(address.data[i].contact_person) ? PSACache.Instance.UserInfo.dname : address.data[i].contact_person;
+                                AddressInMapPage.full_address = address.data[i].street + " " + address.data[i].brgy + " " + address.data[i].city + " " + address.data[i].province + ", " + address.data[i].country;
+                                AddressInMapPage.lat = Convert.ToDouble(address.data[i].latitude);
+                                AddressInMapPage.lon = Convert.ToDouble(address.data[i].longitude);
+                            }
+                            Device.BeginInvokeOnMainThread(async () =>
+                            {
+                                await Application.Current.MainPage.Navigation.PushModalAsync(new AddressInMapPage());
+                                isRunning = false;
+                            });
                         }
-                        Device.BeginInvokeOnMainThread(async () =>
+                        else
                         {
-                            await Application.Current.MainPage.Navigation.PushModalAsync(new AddressInMapPage());
-                        });
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-
-                    }
-                });
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            isRunning = false;
+                        }
+                    });
+                }
             }
             catch (Exception e)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                isRunning = false;
             }
         }
 
