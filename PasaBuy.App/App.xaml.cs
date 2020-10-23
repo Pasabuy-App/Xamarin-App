@@ -7,6 +7,8 @@ using PasaBuy.App.Views;
 using PasaBuy.App.Views.Driver;
 using PasaBuy.App.Views.Marketplace;
 using PasaBuy.App.Views.Onboarding;
+using PasaBuy.App.Views.StoreViews;
+using PasaBuy.App.Views.StoreViews.POS;
 using System;
 using Xamarin.Forms;
 

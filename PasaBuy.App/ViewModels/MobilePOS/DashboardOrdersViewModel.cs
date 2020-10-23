@@ -22,6 +22,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         {
             orderList = new ObservableCollection<OrdersDataModel>();
             LoadOrder("pending", "");
+
         }
         public static void LoadOrder(string stage, string odid)
         {

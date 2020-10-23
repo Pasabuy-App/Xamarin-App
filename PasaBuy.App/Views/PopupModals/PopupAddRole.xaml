@@ -30,6 +30,7 @@
                 <Setter Property="VerticalOptions" Value="End" />
                 <Setter Property="Margin" Value="10,0,0,12" />
             </Style>
+      
         </ResourceDictionary>
     </pages:PopupPage.Resources>
     <pages:PopupPage.Animation>

@@ -9,7 +9,7 @@ namespace PasaBuy.App.Models.MobilePOS
         private string short_info = string.Empty;
         private string long_info = string.Empty;
         private string sku = string.Empty;
-        private string price = string.Empty;
+        private float price;
         private string weight = string.Empty;
         private string preview = string.Empty;
         private string dimension = string.Empty;
@@ -40,7 +40,7 @@ namespace PasaBuy.App.Models.MobilePOS
                 OnPropertyChanged("Weight");
             }
         }
-        public string Price
+        public float Price
         {
             get { return price; }
             set

@@ -1,9 +1,13 @@
-﻿using PasaBuy.App.Controllers.Notice;
+﻿using Newtonsoft.Json;
+using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
 using PasaBuy.App.Models.MobilePOS;
 using PasaBuy.App.Views.StoreViews.POS;
+using Syncfusion.XForms.Buttons;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -16,21 +20,8 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
         public static ObservableCollection<Models.MobilePOS.ProductData> productsList;
 
-        public ICommand AddToOrderCommand
-        {
-            get
-            {
-                return new Command<string>((x) => AddToOrder(x));
-            }
-        }
 
-        private async void AddToOrder(string id)
-        {
-            new Alert("ok", id, "ok");
-            await (App.Current.MainPage).Navigation.PopModalAsync();
-        }
-
-        public ObservableCollection<Models.MobilePOS.PointOfSales> CurrentOrder
+        public  ObservableCollection<Models.MobilePOS.PointOfSales> CurrentOrder
         {
             get
             {
@@ -38,6 +29,10 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
             set
             {
+                if (_currentOrder == value)
+                {
+                    return;
+                }
                 _currentOrder = value;
                 this.NotifyPropertyChanged();
             }
@@ -58,52 +53,88 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
         public POSViewModel()
         {
-
-            //this.ProductsList = new ObservableCollection<Models.MobilePOS.ProductData>()
-            //{
-            //    new Models.MobilePOS.ProductData
-            //    {
-            //        ID = "1",
-            //        Product_name = "Snickers"
-            //    },
-            //    new Models.MobilePOS.ProductData
-            //    {
-            //        ID = "13",
-            //        Product_name = "Strawberry Shake"
-            //    },
-            //    new Models.MobilePOS.ProductData
-            //    {
-            //        ID = "15",
-            //        Product_name = "Chocolate Shake"
-            //    },
-            //    new Models.MobilePOS.ProductData
-            //    {
-            //        ID = "21",
-            //        Product_name = "Milk Shake"
-            //    },
-            //    new Models.MobilePOS.ProductData
-            //    {
-            //        ID = "51",
-            //        Product_name = "C2 Apple"
-            //    },
-            //};
-            //this.CurrentOrder = new ObservableCollection<Models.MobilePOS.PointOfSales>()
-            //{
-            //    new Models.MobilePOS.PointOfSales
-            //    {
-            //        Name = "Cheeseburger"
-            //    },
-            //    new Models.MobilePOS.PointOfSales
-            //    {
-            //        Name = "Taco Chips"
-            //    },
-            //    new Models.MobilePOS.PointOfSales
-            //    {
-            //        Name = "Galaxy Drink"
-            //    },
-            //};
-
             this.AddOrderProductCommand = new Command(this.AddOrderProductClicked);
+            productsList = new ObservableCollection<ProductData>();
+            _currentOrder = new ObservableCollection<Models.MobilePOS.PointOfSales>();
+            LoadProduct();
+            _currentOrder.Add(new Models.MobilePOS.PointOfSales()
+            {
+                Name = "Test Item",
+                Price = 120,
+                Id = "123"
+            });
+
+        }
+
+        private ICommand _addToOrderCommand;
+
+        public ICommand AddToOrderCommand => _addToOrderCommand ?? (_addToOrderCommand = new Command<string>(AddToOrder));
+
+        private async void LoadProduct()
+        {
+            IsBusy = true;
+            try
+            {
+                TindaPress.Product.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, "", "", "1", "", (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        ProductData product = JsonConvert.DeserializeObject<ProductData>(data);
+                        for (int i = 0; i < product.data.Length; i++)
+                        {
+                            string id = product.data[i].ID;
+                            string product_name = product.data[i].product_name;
+                            string short_info = product.data[i].short_info;
+                            float price = (float) Convert.ToDouble(product.data[i].price);
+                            string preview = product.data[i].preview;
+                            productsList.Add(new ProductData()
+                            {
+                                ID = id,
+                                Product_name = product_name,
+                                Short_info = short_info,
+                                Price = price,
+                                Preview = PSAProc.GetUrl(preview)
+                            });
+                        }
+                        IsBusy = false;
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        IsBusy = false;
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                IsBusy = false;
+            }
+        }
+
+        private void AddToOrder(string selectedItemId)
+        {
+            var item = ProductsList.FirstOrDefault(x => x.ID.Equals(selectedItemId));
+
+
+            _currentOrder.Add(new Models.MobilePOS.PointOfSales
+            {
+                Name = "Test Item34",
+                Price = 120,
+                Id = "123"
+            });
+
+            _currentOrder.Add(new Models.MobilePOS.PointOfSales
+            {
+                Name = item.Product_name,
+                Price = item.Price,
+                Id = selectedItemId
+            });
+
+            Console.WriteLine(item.Price + item.Product_name + item.ID);
+            Application.Current.MainPage.Navigation.PopModalAsync();
+
+
         }
 
         public Command AddOrderProductCommand

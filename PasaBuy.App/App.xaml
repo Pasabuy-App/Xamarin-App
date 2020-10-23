@@ -22,11 +22,11 @@
             <Color x:Key="Primary-400">#fff133</Color>
             <Color x:Key="MainWrapperBackgroundColor">#E8EAF6</Color>
 
-
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{DynamicResource PrimaryColor}"></Setter>
                 <Setter Property="BarTextColor" Value="White"></Setter>
             </Style>
+            
             <Style TargetType="{x:Type ActivityIndicator}">
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="HorizontalOptions" Value="Center" />

@@ -38,7 +38,12 @@ namespace PasaBuy.App.Views.StoreViews
             await Task.Delay(500);
             Loader.IsVisible = false;
             Loader.IsRunning = false;
-            App.Current.MainPage = new NavigationView();
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                App.Current.MainPage = new NavigationView();
+            });
+           
+
         }
     }
 }

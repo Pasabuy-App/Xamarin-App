@@ -210,6 +210,8 @@ namespace PasaBuy.App.ViewModels.eCommerce
         /// <summary>
         /// Gets or sets the property that has been bound with SfListView, which displays the delivery address.
         /// </summary>
+        /// 
+
         public ObservableCollection<Customer> DeliveryAddress
         {
             get

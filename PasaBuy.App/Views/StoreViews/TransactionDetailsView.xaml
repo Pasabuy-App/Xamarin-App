@@ -45,14 +45,14 @@
             <StackLayout Spacing="0" VerticalOptions="FillAndExpand">
 
                 <Grid Margin="0"
-                      Padding="8,12,8,0"
+                      Padding="8,12,8,12"
                       BackgroundColor="{DynamicResource Gray-White}"
                       ColumnSpacing="0"
                       RowSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <Grid Padding="0,0,8,10" RowSpacing="0">
+                    <Grid  RowSpacing="0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -67,7 +67,7 @@
                         <ffimageloading:CachedImage Aspect="AspectFit"
                                                 Grid.Row="0"
                                                 Grid.RowSpan="3"
-                                                Margin="5,0,30,0"
+                                                Margin="5,0,15,0"
                                                 Grid.Column="0"
                                                 Source="Avatar.png"
                                                 HeightRequest="50"
@@ -79,35 +79,62 @@
                         </ffimageloading:CachedImage>
 
                         <Label  x:Name="Customer"
-                                           Grid.Row="0"
-                                           Grid.Column="1"
-                                           HorizontalOptions="StartAndExpand"
-                                           TextColor="{DynamicResource BlackColor}">
+                                FontFamily="{StaticResource Montserrat-Medium}"
+                                TextColor="{DynamicResource Gray-900}"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalOptions="StartAndExpand">
                         </Label>
+
                         <Label  x:Name="OrderID"
+                                Margin="0,8,0,0"
                                            Grid.Row="1"
                                            Grid.Column="1"
                                            HorizontalOptions="StartAndExpand"
-                                           TextColor="{DynamicResource Gray-800}">
+                                          FontFamily="{StaticResource Montserrat-Medium}"
+                                TextColor="{DynamicResource Gray-900}">
                         </Label>
                         <Label  x:Name="DateCreated"
+                                Margin="0,8,0,0"
                                            Grid.Row="2"
                                            Grid.Column="1"
                                            HorizontalOptions="StartAndExpand"
-                                           TextColor="{DynamicResource Gray-800}">
+                                           FontFamily="{StaticResource Montserrat-Medium}"
+                                TextColor="{DynamicResource Gray-900}">
                         </Label>
                         <Label  x:Name="TotalPrice"
                                            Grid.Row="0"
                                            Grid.Column="2"
                                            HorizontalOptions="StartAndExpand"
-                                           TextColor="{DynamicResource BlackColor}">
+                                           FontFamily="{StaticResource Montserrat-Medium}"
+                                TextColor="{DynamicResource Gray-900}">
                         </Label>
                         <Label  x:Name="Method"
-                                           Grid.Row="2"
+                                Margin="0,8,0,0"
+                                           Grid.Row="1"
                                            Grid.Column="2"
                                            HorizontalOptions="StartAndExpand"
-                                           TextColor="{DynamicResource Gray-800}">
+                                           FontFamily="{StaticResource Montserrat-Medium}"
+                                TextColor="{DynamicResource Gray-900}">
                         </Label>
+
+                        <ffimageloading:CachedImage Aspect="AspectFit"
+                                                Grid.Row="2"
+                                                HorizontalOptions="StartAndExpand"
+                                                Margin="0,5,0,0"
+                                                Grid.Column="2"
+                                                Source="https://pasabuy.app/wp-content/uploads/2020/10/messages.jpg"
+                                                HeightRequest="35"
+			                                    DownsampleToViewSize="true" 
+                                               FadeAnimationEnabled="True" >
+                            <ffimageloading:CachedImage.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="MessageCustomer" NumberOfTapsRequired="1"/>
+                            </ffimageloading:CachedImage.GestureRecognizers>
+                        </ffimageloading:CachedImage>
+
+
+
+
                     </Grid>
                 </Grid>
                 
@@ -115,7 +142,7 @@
                 <yummy:PancakeView
                     Margin="0,5,0,25"
                     Padding="5,10,5,0"
-                    BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
+                    BackgroundColor="{DynamicResource Gray-100}"
                     CornerRadius="20,20,20,20"
                     VerticalOptions="FillAndExpand">
                     <Grid Padding="15,20,15,20">
@@ -148,7 +175,7 @@
                                 AutoFitMode="Height"
                                 FocusBorderThickness="0"
                                 ItemSpacing="0,1,0,0"
-                                                 ItemsSource="{Binding OrderList}"
+                                ItemsSource="{Binding OrderList}"
                                 SelectionMode="None">
                                 <sync:SfListView.ItemTemplate>
                                     <DataTemplate>
@@ -175,7 +202,8 @@
                                                    Grid.Row="0"
                                                    Grid.Column="0"
                                                    HorizontalOptions="StartAndExpand"
-                                                   TextColor="{DynamicResource BlackColor}">
+                                                   FontFamily="{StaticResource Montserrat-Medium}"
+                                                    TextColor="{DynamicResource Gray-900}">
                                                 </Label>
 
                                                 <Label Text="{Binding Quantity}"
@@ -183,14 +211,16 @@
                                                    Grid.Column="0"
                                                    Margin="0,5,0,0"
                                                    HorizontalOptions="StartAndExpand"
-                                                   TextColor="{DynamicResource Gray-900}">
+                                                   FontFamily="{StaticResource Montserrat-Medium}"
+                                                    TextColor="{DynamicResource Gray-900}">
                                                 </Label>
 
                                                 <Label Text="{Binding TotalPrice}"
                                                    Grid.Row="0"
                                                    Grid.Column="2"
                                                    HorizontalOptions="EndAndExpand"
-                                                   TextColor="{DynamicResource BlackColor}">
+                                                   FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                   TextColor="{DynamicResource Gray-900}">
                                                 </Label>
                                             </Grid>
                                         </Grid>
