@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -44,17 +45,83 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 }
             }
         }
+        bool _IsRunning = false;
+        public bool IsRunning
+        {
+            get
+            {
+                return _IsRunning;
+            }
+            set
+            {
+                if (_IsRunning != value)
+                {
+                    _IsRunning = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
         public ICommand RefreshCommand { protected set; get; }
         public StoreListViewModel()
         {
             RefreshCommand = new Command<string>((key) =>
             {
                 storeList.Clear();
-                LoadStore(StoreListPage.catid, "");
+                LoadRefresh(StoreListPage.catid, "");
                 IsRefreshing = false;
             });
             storeList = new ObservableCollection<Store>();
             storeList.Clear();
+        }
+        public void LoadRefresh(string catid, string lastid)
+        {
+            try
+            {
+                if (!IsRunning)
+                {
+                    IsRunning = true;
+                    TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, "", "1", lastid, (bool success, string data) =>
+                    {
+                        if (success)
+                        {
+                            StoreListData datas = JsonConvert.DeserializeObject<StoreListData>(data);
+
+                            if (datas.data.Length == 0)
+                            {
+                                (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new NoStoresPage()));
+                            }
+                            else
+                            {
+                                for (int i = 0; i < datas.data.Length; i++)
+                                {
+                                    storeList.Add(new Store()
+                                    {
+                                        Id = datas.data[i].ID,
+                                        Title = datas.data[i].title,
+                                        Description = datas.data[i].short_info,
+                                        Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(datas.data[i].avatar),
+                                        Offer = "50% off",
+                                        ItemRating = "4.5",
+                                        Banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png" : PSAProc.GetUrl(datas.data[i].banner),
+                                        Street = datas.data[i].brgy + " " + datas.data[i].city
+                                    });
+                                }
+                            }
+                            IsRunning = false;
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsRunning = false;
+                        }
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                IsRunning = false;
+            }
         }
         public static void LoadMore(string catid, string lastid)
         {
@@ -180,6 +247,28 @@ namespace PasaBuy.App.ViewModels.Marketplace
             catch (Exception e)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+            }
+        }
+
+        private Command<object> itemTappedCommand;
+        public Command<object> ItemTappedCommand
+        {
+            get
+            {
+                return this.itemTappedCommand ?? (this.itemTappedCommand = new Command<object>(this.NavigateToNextPage));
+            }
+        }
+        private async void NavigateToNextPage(object selectedItem)
+        {
+            if (!IsRunning)
+            {
+                IsRunning = true;
+                StoreDetailsViewModel.store_id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Store).Id;
+                await Task.Delay(300);
+                await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+
+                await Task.Delay(300);
+                IsRunning = false;
             }
         }
     }
