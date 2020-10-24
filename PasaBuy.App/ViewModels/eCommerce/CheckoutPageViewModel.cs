@@ -392,9 +392,13 @@ namespace PasaBuy.App.ViewModels.eCommerce
 
         private async void ChangeAddressClicked(object obj)
         {
-            IsBusy = false;
-            await Application.Current.MainPage.Navigation.PushModalAsync(new ChangeAddressPage());
-            IsBusy = true;
+            if (!isRunning)
+            {
+                isRunning = true;
+                await Task.Delay(200);
+                await Application.Current.MainPage.Navigation.PushModalAsync(new ChangeAddressPage());
+                isRunning = false;
+            }
         }
 
         /// <summary>

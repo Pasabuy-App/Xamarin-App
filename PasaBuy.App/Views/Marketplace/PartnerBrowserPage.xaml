@@ -179,7 +179,7 @@
                                           Desktop='0,0,24,24'}"
                             ItemsSource="{Binding StoreList}"
                             x:Name="StoreList"
-                            ItemTapped="Partner_ItemTapped"
+                            TapCommand="{Binding ItemTappedCommand}"
                             ItemTemplate="{StaticResource listTemplate}"
                             SelectionBackgroundColor="Transparent"
                             VerticalOptions="FillAndExpand">
@@ -227,8 +227,9 @@
                 </ScrollView>
                 <loading:LoadingIndicator
                     Grid.RowSpan="3"
+                    x:Name="LoadingIndicator"
                     HorizontalOptions="Fill"
-                    IsRunning="{Binding IsBusy, Mode=TwoWay}"
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}"
                     VerticalOptions="Fill" />
 
             </Grid>

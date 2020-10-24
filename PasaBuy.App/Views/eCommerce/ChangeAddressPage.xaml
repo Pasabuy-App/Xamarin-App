@@ -6,7 +6,7 @@
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.eCommerce"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
-             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:localindicator="clr-namespace:PasaBuy.App.UserControls"
              x:Class="PasaBuy.App.Views.eCommerce.ChangeAddressPage"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
@@ -41,45 +41,47 @@
         <viewModel:ChangeAddressViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <ScrollView>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <StackLayout BackgroundColor="{DynamicResource Gray-White}"
+        <Grid>
+            
+            <ScrollView>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <StackLayout BackgroundColor="{DynamicResource Gray-White}"
                          Grid.Row="0"
                          BindableLayout.ItemsSource="{Binding AddressList}"
                          x:Name="AddressListStack"
                          Spacing="0">
-                    <BindableLayout.EmptyView>
-                        <StackLayout HorizontalOptions="Center" 
+                        <BindableLayout.EmptyView>
+                            <StackLayout HorizontalOptions="Center" 
                                      VerticalOptions="Center"
                                      Margin="0,50,0,0">
-                            <Label Text="No address saved."/>
-                        </StackLayout>
-                    </BindableLayout.EmptyView>
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <yummy:PancakeView 
+                                <Label Text="No address saved."/>
+                            </StackLayout>
+                        </BindableLayout.EmptyView>
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <yummy:PancakeView 
                                         Padding="15"
                                         Margin="10,15,10,5"
                                         BackgroundColor="{DynamicResource Gray-100}"
                                         CornerRadius="5"
                                         VerticalOptions="FillAndExpand">
-                                <Grid RowSpacing="0">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
+                                    <Grid RowSpacing="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
 
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="auto" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
 
-                                    <Label LineBreakMode="NoWrap" 
+                                        <Label LineBreakMode="NoWrap" 
                                        IsVisible="{Binding isType}"
                                        Grid.Row="0" 
                                        HorizontalOptions="Start" 
@@ -87,17 +89,17 @@
                                        Grid.Column="0"
                                        VerticalOptions="Center" 
                                        LineHeight="{OnPlatform Default=-1, Android=1.5}">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="{Binding Types}"
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding Types}"
                                                           FontSize="14" 
                                                           TextColor="{DynamicResource Gray-900}"
                                                           FontFamily="{StaticResource Montserrat-SemiBold}"/>
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
 
-                                    <Label Text="{StaticResource MapPin}" 
+                                        <Label Text="{StaticResource MapPin}" 
                                        IsVisible="{Binding isLocation}"
                                        Grid.Row="1" 
                                        Grid.Column="0" 
@@ -109,8 +111,8 @@
                                        HorizontalOptions="Center"
                                        TextColor="{DynamicResource Gray-900}"/>
 
-                                    <!-- Address -->
-                                    <Label  Text="{Binding FullAddress}" 
+                                        <!-- Address -->
+                                        <Label  Text="{Binding FullAddress}" 
                                         IsVisible="{Binding isLocation}"
                                         Grid.Row="1"
                                         Grid.Column="1" 
@@ -122,7 +124,7 @@
                                         HorizontalOptions="StartAndExpand"
                                         VerticalOptions="Start"/>
 
-                                    <Label Text="{StaticResource Phone}" 
+                                        <Label Text="{StaticResource Phone}" 
                                        Grid.Row="2" 
                                        Grid.Column="0" 
                                        FontSize="18"  
@@ -133,8 +135,8 @@
                                        HorizontalOptions="Center"
                                        TextColor="{DynamicResource Gray-900}"/>
 
-                                    <!-- Phone -->
-                                    <Label  Text="{Binding ContactNumber}" 
+                                        <!-- Phone -->
+                                        <Label  Text="{Binding ContactNumber}" 
                                         Grid.Row="2"
                                         Grid.Column="1" 
                                         Margin="0,5,0,0"
@@ -145,26 +147,37 @@
                                         HorizontalOptions="StartAndExpand"
                                         VerticalOptions="Start"/>
 
-                                    <Grid.GestureRecognizers>
-                                        <TapGestureRecognizer x:Name="TappedG"  ClassId="{Binding ID}" Command="{Binding BindingContext.SelectAddressCommand,Source={x:Reference AddressListStack}}" CommandParameter="{x:Reference TappedG}"/>
-                                    </Grid.GestureRecognizers>
-                                </Grid>
-                            </yummy:PancakeView>
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer x:Name="TappedG"  ClassId="{Binding ID}" Command="{Binding BindingContext.SelectAddressCommand,Source={x:Reference AddressListStack}}" CommandParameter="{x:Reference TappedG}"/>
+                                        </Grid.GestureRecognizers>
+                                    </Grid>
+                                </yummy:PancakeView>
 
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-                </StackLayout>
-                <StackLayout Grid.Row="1" 
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                    <StackLayout Grid.Row="1" 
                              Padding="15"
                              BackgroundColor="{DynamicResource Gray-White}">
-                    <buttons:SfButton Grid.Row="2"
+                        <buttons:SfButton Grid.Row="2"
                                      Margin="0,15,0,0"
                                      HorizontalOptions="FillAndExpand"
                                      Command="{Binding AddAddressCommand}"
                                      Style="{StaticResource SfGradientButtonStyle}"
                                      Text="Add Another Address" />
-                </StackLayout>
-            </Grid>
-        </ScrollView>
+                    </StackLayout>
+
+
+
+                </Grid>
+
+            </ScrollView>
+
+            <localindicator:LoadingIndicator
+                HorizontalOptions="Fill"
+                x:Name="Loader"
+                IsRunning="{Binding isRunning, Mode=TwoWay}"
+                VerticalOptions="Fill" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

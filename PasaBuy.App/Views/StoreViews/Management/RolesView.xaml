@@ -59,16 +59,29 @@
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
+                                    
                                     <Label Grid.Row="0"
                                            FontFamily="{StaticResource Montserrat-SemiBold}"
                                            HorizontalOptions="Start"
                                            VerticalOptions="Center"
                                            Margin="10,0,0,0"
-                                           Padding="10,15,10,15"
+                                           Padding="10,15,10,0"
                                            FontSize="{DynamicResource MediumSize}"
                                            LineHeight="{OnPlatform Android=1.5, Default=-1}"
                                            Text="{Binding RoleTitle}"
+                                           TextColor="{DynamicResource Gray-900}" />
+                                    
+                                    <Label Grid.Row="1"
+                                           FontFamily="{StaticResource Montserrat-Medium}"
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="Start"
+                                           Padding="10,0,0,10"
+                                           Margin="10,0,0,0"
+                                           FontSize="{DynamicResource SmallSize}"
+                                           LineHeight="{OnPlatform Android=1.5, Default=-1}"
+                                           Text="Manages the finances of the store"
                                            TextColor="{DynamicResource Gray-900}" />
                                 </Grid>
                                 <controls:CustomShadowFrame.GestureRecognizers>

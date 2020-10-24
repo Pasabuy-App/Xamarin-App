@@ -29,28 +29,28 @@ namespace PasaBuy.App.Models.MobilePOS
             All = new List<Management>
             {
 
-                new Management(typeof(ProductsView), "Idcard.png", TextsTranslateManager.Translate("ProductsTitle"),
+                new Management(typeof(ProductsView), "https://pasabuy.app/wp-content/uploads/2020/10/management-product.png", TextsTranslateManager.Translate("ProductsTitle"),
                                       TextsTranslateManager.Translate("ProductManagementDescriptions")),
 
-                 new Management(typeof(CategoryView), "Idcard.png", TextsTranslateManager.Translate("CategoriesTitle"),
+                 new Management(typeof(CategoryView), "https://pasabuy.app/wp-content/uploads/2020/10/management-category.png", TextsTranslateManager.Translate("CategoriesTitle"),
                                       TextsTranslateManager.Translate("CategoryManagementDescriptions")),
 
-                 new Management(typeof(VariantsView), "Idcard.png", TextsTranslateManager.Translate("VariantsTitle"),
+                 new Management(typeof(VariantsView), "https://pasabuy.app/wp-content/uploads/2020/10/management-variants.png", TextsTranslateManager.Translate("VariantsTitle"),
                                       TextsTranslateManager.Translate("VariantsManagementDescriptions")),
 
-                 new Management(typeof(PersonnelsView), "Idcard.png", TextsTranslateManager.Translate("Personnel"),
+                 new Management(typeof(PersonnelsView), "https://pasabuy.app/wp-content/uploads/2020/10/management-personnel.jpg", TextsTranslateManager.Translate("Personnel"),
                                       TextsTranslateManager.Translate("PersonnelManagementDescriptions")),
 
-                 new Management(typeof(OperationsView), "Idcard.png", TextsTranslateManager.Translate("Operations"),
+                 new Management(typeof(OperationsView), "https://pasabuy.app/wp-content/uploads/2020/10/management.png", TextsTranslateManager.Translate("Operations"),
                                       TextsTranslateManager.Translate("View list of operations and total sales")),
 
-                 new Management(typeof(SchedulesView), "Idcard.png", TextsTranslateManager.Translate("Schedules"),
+                 new Management(typeof(SchedulesView), "https://pasabuy.app/wp-content/uploads/2020/10/management-schedule.png", TextsTranslateManager.Translate("Schedules"),
                                       TextsTranslateManager.Translate("Add or update store schedule")),
 
-                 new Management(typeof(DocumentsView), "Idcard.png", TextsTranslateManager.Translate("DocumentsTitle"),
+                 new Management(typeof(DocumentsView), "Ihttps://pasabuy.app/wp-content/uploads/2020/10/management-documents.png", TextsTranslateManager.Translate("DocumentsTitle"),
                                       TextsTranslateManager.Translate("DocumentsManagementDescriptions")),
 
-                 new Management(typeof(RolesView), "Idcard.png", TextsTranslateManager.Translate("Personnel Roles"),
+                 new Management(typeof(RolesView), "https://pasabuy.app/wp-content/uploads/2020/10/management.png", TextsTranslateManager.Translate("Personnel Roles"),
                                       TextsTranslateManager.Translate("Manage access roles of your personnel")),
 
                 //new Management(typeof(VouchersView), "Idcard.png", TextsTranslateManager.Translate("VouchersTitle"),

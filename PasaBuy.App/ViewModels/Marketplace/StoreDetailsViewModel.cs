@@ -179,6 +179,22 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 this.NotifyPropertyChanged();
             }
         }
+        bool _IsRunning = false;
+        public bool IsRunning
+        {
+            get
+            {
+                return _IsRunning;
+            }
+            set
+            {
+                if (_IsRunning != value)
+                {
+                    _IsRunning = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
         #endregion
         public StoreDetailsViewModel()
         {
@@ -257,13 +273,13 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-        private async void AddToCartClicked(string id)
+        private void AddToCartClicked(string id)
         {
             try
             {
-                if (!isCartClicked)
+                if (!IsRunning)
                 {
-                    isCartClicked = true;
+                    IsRunning = true;
                     TindaPress.Product.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, store_id, "", id, "1", "", (bool success, string data) =>
                     {
                         if (success)
@@ -279,51 +295,38 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 ProductDetailViewModel.price = datas.data[i].price.ToString();
                             }
                             Application.Current.MainPage.Navigation.PushModalAsync(new Views.Marketplace.ProductDetail());
+                            IsRunning = false;
                         }
                         else
                         {
                             new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsRunning = false;
                         }
                     });
-                    await Task.Delay(1000);
-                    isCartClicked = false;
                 }
             }
             catch (Exception e)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                IsRunning = false;
             }
         }
 
         async void GoToCartClicked(object obj)
         {
-            IsBusy = true;
-            if (!isCartClicked)
+            if (!IsRunning)
             {
+                IsRunning = true;
+                await Task.Delay(500);
                 if (this.cartItemCount != 0)
                 {
-                    isCartClicked = true;
-                    CanNavigate = false;
-                    IsCartBusy = true;
                     await NavigateToPage(new CartPage());
-                    CanNavigate = true;
-                    IsCartBusy = false;
-                    await Task.Delay(100);
-                    isCartClicked = false;
-                    IsBusy = false;
+                    IsRunning = false;
                 }
                 else
                 {
-                    isCartClicked = true;
-                    CanNavigate = false;
-                    IsCartBusy = true;
-                    IsBusy = true;
                     await NavigateToPage(new EmptyCartPage());
-                    CanNavigate = true;
-                    IsCartBusy = false;
-                    IsBusy = false;
-                    await Task.Delay(100);
-                    isCartClicked = false;
+                    IsRunning = false;
                 }
             }
 
@@ -365,9 +368,9 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public void Loadcategory(string stid)
         {
-            IsBusy = true;
             try
             {
+                IsRunning = true;
                 TindaPress.Category.Instance.ProductList(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", stid, "", "1", (bool success, string data) =>
                 {
                     if (success)
@@ -388,10 +391,10 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                         PreviewImage = PSAProc.GetUrl(catRoot.data[i].products[j].preview) == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-product.png" : PSAProc.GetUrl(catRoot.data[i].products[j].preview),
                                         Name = catRoot.data[i].products[j].product_name,
                                         ActualPrice = Convert.ToDouble(catRoot.data[i].products[j].price),
-                                        Description = catRoot.data[i].products[j].short_info 
+                                        Description = catRoot.data[i].products[j].short_info
                                     });
                                 }
-                              
+
                                 _storeData.Add(new Categories()
                                 {
                                     Id = catRoot.data[i].ID,
@@ -401,15 +404,20 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 });
                             }
                         }
+                        IsRunning = false;
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        IsRunning = false;
                     }
                 });
             }
             catch (Exception e)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
-                IsBusy = false;
+                IsRunning = false;
             }
-            IsBusy = false;
         }
 
     }

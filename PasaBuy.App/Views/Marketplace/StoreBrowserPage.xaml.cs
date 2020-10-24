@@ -69,7 +69,7 @@ namespace PasaBuy.App.Views.Marketplace
         {
         }
 
-        private async void StoreTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        /*private async void StoreTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
             if (!isTapped)
             {
@@ -91,7 +91,7 @@ namespace PasaBuy.App.Views.Marketplace
                 LoadingIndicator.IsRunning = false;
                 LoadingIndicator.IsVisible = false;
             }
-        }
+        }*/
 
         private void RestaurantList_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
         {

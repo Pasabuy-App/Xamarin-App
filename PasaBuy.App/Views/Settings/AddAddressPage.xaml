@@ -388,8 +388,8 @@
             </ScrollView>
             <loading:LoadingIndicator
                     Grid.Row="0"
+                    x:Name="LoadingIndicator"
                     HorizontalOptions="Fill"
-                    IsRunning="{Binding IsBusy, Mode=TwoWay}"
                     VerticalOptions="Fill" />
         </Grid>
         

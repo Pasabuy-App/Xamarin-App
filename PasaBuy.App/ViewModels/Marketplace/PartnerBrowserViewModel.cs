@@ -6,6 +6,7 @@ using PasaBuy.App.Views.Marketplace;
 using PasaBuy.App.Views.Notice;
 using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -74,6 +75,22 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 }
             }
         }
+        bool _IsRunning = false;
+        public bool IsRunning
+        {
+            get
+            {
+                return _IsRunning;
+            }
+            set
+            {
+                if (_IsRunning != value)
+                {
+                    _IsRunning = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
 
         public ICommand RefreshCommand { protected set; get; }
 
@@ -83,7 +100,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
             {
                 storeList.Clear();
                 partnerStoresRotator.Clear();
-                LoadPartner("");
+                LoadPartner();
                 LoadRotator();
                 IsRefreshing = false;
             });
@@ -91,43 +108,52 @@ namespace PasaBuy.App.ViewModels.Marketplace
             storeList.Clear();
             partnerStoresRotator = new ObservableCollection<PartnerStore>();
             partnerStoresRotator.Clear();
+            LoadPartner();
+            LoadRotator();
         }
-        public static void LoadPartner(string lastid)
+        public void LoadPartner()
         {
             try
             {
-                TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "robinson", "", "1", lastid, (bool success, string data) =>
+                if (!IsRunning)
                 {
-                    if (success)
+                    IsRunning = true;
+                    TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "robinson", "", "1", "", (bool success, string data) =>
                     {
-                        StoreListData datas = JsonConvert.DeserializeObject<StoreListData>(data);
-
-                        if (datas.data.Length > 0)
+                        if (success)
                         {
-                            for (int i = 0; i < datas.data.Length; i++)
+                            StoreListData datas = JsonConvert.DeserializeObject<StoreListData>(data);
+
+                            if (datas.data.Length > 0)
                             {
-                                storeList.Add(new Store()
+                                for (int i = 0; i < datas.data.Length; i++)
                                 {
-                                    Id = datas.data[i].ID,
-                                    Title = datas.data[i].title,
-                                    Description = datas.data[i].short_info,
-                                    Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(datas.data[i].avatar),
-                                    Offer = "50% off",
-                                    ItemRating = "4.5",
-                                    Street = datas.data[i].brgy + " " + datas.data[i].city
-                                });
+                                    storeList.Add(new Store()
+                                    {
+                                        Id = datas.data[i].ID,
+                                        Title = datas.data[i].title,
+                                        Description = datas.data[i].short_info,
+                                        Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(datas.data[i].avatar),
+                                        Offer = "50% off",
+                                        ItemRating = "4.5",
+                                        Street = datas.data[i].brgy + " " + datas.data[i].city
+                                    });
+                                }
+                                IsRunning = false;
                             }
                         }
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                });
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsRunning = false;
+                        }
+                    });
+                }
             }
             catch (Exception e)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                IsRunning = false;
             }
         }
 
@@ -228,6 +254,29 @@ namespace PasaBuy.App.ViewModels.Marketplace
             catch (Exception e)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+            }
+        }
+
+        private Command<object> itemTappedCommand;
+        public Command<object> ItemTappedCommand
+        {
+            get
+            {
+                return this.itemTappedCommand ?? (this.itemTappedCommand = new Command<object>(this.NavigateToNextPage));
+            }
+        }
+
+        private async void NavigateToNextPage(object selectedItem)
+        {
+            if (!IsRunning)
+            {
+                IsRunning = true;
+                StoreDetailsViewModel.store_id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Store).Id;
+
+                await Task.Delay(300);
+                await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+                await Task.Delay(300);
+                IsRunning = false;
             }
         }
     }

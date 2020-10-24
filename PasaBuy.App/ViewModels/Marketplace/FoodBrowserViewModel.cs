@@ -32,30 +32,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         }
 
-        public ICommand SelectStoreCommand
-        {
-            get
-            {
-                return new Command<string>((x) => LoadDetails(x));
-            }
-        }
-
-        public async void LoadDetails(string storeId)
-        {
-
-            if (!IsBusy)
-            {
-                IsBusy = true;
-                CanNavigate = false;
-                StoreDetailsViewModel.store_id = storeId;
-                //StoreDetailsViewModel.Loadcategory(storeId);
-                await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
-                await Task.Delay(300);
-                IsBusy = false;
-                CanNavigate = true;
-            }
-        }
-
         public ObservableCollection<FeaturedStoreModel> BestSellers
         {
             get
@@ -96,38 +72,45 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 }
             }
         }
+        bool _IsRunning = false;
+        public bool IsRunning
+        {
+            get
+            {
+                return _IsRunning;
+            }
+            set
+            {
+                if (_IsRunning != value)
+                {
+                    _IsRunning = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
         public static bool isLoad;
-
         public ICommand RefreshCommand { protected set; get; }
 
         public FoodBrowserViewModel()
         {
-            RefreshCommand = new Command<string>((key) =>
-           {
-               RefreshData();
-               IsRefreshing = false;
-           });
-            isLoad = false;
             foodstorelist = new ObservableCollection<FoodStore>();
             _bestSellers = new ObservableCollection<FeaturedStoreModel>();
-
-        }
-        public static async void RefreshData()
-        {
-            if (!isLoad)
+            RefreshCommand = new Command<string>((key) =>
             {
-                isLoad = true;
-                FoodBrowserPage.LastIndex = 11;
+                FoodBrowserPage.LastIndex = 11; 
                 _bestSellers.Clear();
                 foodstorelist.Clear();
                 LoadBestSeller();
-                LoadFood("");
-                await Task.Delay(1000);
-                isLoad = false;
-            }
+                LoadFood();
+                IsRefreshing = false;
+            });
+            isLoad = false;
+
+            LoadBestSeller();
+            LoadFood();
         }
 
-        public static void LoadBestSeller()
+        public void LoadBestSeller()
         {
             try
             {
@@ -158,38 +141,45 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-        public static void LoadFood(string lastid)
+        public void LoadFood()
         {
             try
             {
-                TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "1", "", "1", lastid, (bool success, string data) =>
+                if (!IsRunning)
                 {
-                    if (success)
+                    IsRunning = true;
+                    TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "1", "", "1", "", (bool success, string data) =>
                     {
-                        FoodStoreListData datas = JsonConvert.DeserializeObject<FoodStoreListData>(data);
-                        for (int i = 0; i < datas.data.Length; i++)
+                        if (success)
                         {
-                            foodstorelist.Add(new FoodStore()
+                            FoodStoreListData datas = JsonConvert.DeserializeObject<FoodStoreListData>(data);
+                            for (int i = 0; i < datas.data.Length; i++)
                             {
-                                Id = datas.data[i].ID,
-                                Title = datas.data[i].title,
-                                Description = datas.data[i].short_info,
-                                Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(datas.data[i].avatar),
-                                Offer = "50% off",
-                                ItemRating = "4.5",
-                                Banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png" : PSAProc.GetUrl(datas.data[i].banner)
-                            });
+                                foodstorelist.Add(new FoodStore()
+                                {
+                                    Id = datas.data[i].ID,
+                                    Title = datas.data[i].title,
+                                    Description = datas.data[i].short_info,
+                                    Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(datas.data[i].avatar),
+                                    Offer = "50% off",
+                                    ItemRating = "4.5",
+                                    Banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg" : PSAProc.GetUrl(datas.data[i].banner)
+                                });
+                            }
+                            IsRunning = false;
                         }
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                });
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsRunning = false;
+                        }
+                    });
+                }
             }
             catch (Exception e)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                IsRunning = false;
             }
         }
 
@@ -246,14 +236,38 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         private async void NavigateToNextPage(object selectedItem)
         {
-            if (!IsBusy)
+            if (!IsRunning)
             {
-                IsBusy = true;
+                IsRunning = true;
                 CanNavigate = false;
                 StoreDetailsViewModel.store_id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as FeaturedStoreModel).Id;
+                await Task.Delay(300);
                 await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
                 await Task.Delay(300);
-                IsBusy = false;
+                IsRunning = false;
+                CanNavigate = true;
+            }
+        }
+
+        public ICommand SelectStoreCommand
+        {
+            get
+            {
+                return new Command<string>((x) => LoadDetails(x));
+            }
+        }
+
+        public async void LoadDetails(string storeId)
+        {
+            if (!IsRunning)
+            {
+                IsRunning = true;
+                CanNavigate = false;
+                StoreDetailsViewModel.store_id = storeId;
+                await Task.Delay(300);
+                await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+                await Task.Delay(300);
+                IsRunning = false;
                 CanNavigate = true;
             }
         }
