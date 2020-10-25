@@ -15,7 +15,7 @@
              xmlns:local="clr-namespace:PasaBuy.App.Views.Feeds.Templates" 
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
              xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
-             xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch"
+             xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch" xmlns:controls="clr-namespace:PasaBuy.App.Controls"
              x:Name="homePage"
              NavigationPage.TitleIconImageSource="LogoHeader.png">
 
@@ -241,12 +241,8 @@
                         <listView:SfListView.HeaderTemplate>
                             <DataTemplate>
                                 <Grid BackgroundColor="{DynamicResource Gray-White}">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
-                                    <StackLayout Grid.Row="0"
-                                                 Padding="0,0,0,-10">
+                                    
+                                     <StackLayout Padding="0,0,0,-10">
                                         <local:InputEntry/>
                                     </StackLayout>
                                 </Grid>

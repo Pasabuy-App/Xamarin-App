@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Controls;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Feeds;
 using PasaBuy.App.Models.Onboarding;
@@ -31,12 +32,12 @@ namespace PasaBuy.App.Views.Feeds
         public HomePage()
         {
             InitializeComponent();
-
             VisualContainer visualContainer = listView.GetType().GetRuntimeProperties().First(p => p.Name == "VisualContainer").GetValue(listView) as VisualContainer;
             scrollRows = visualContainer.GetType().GetRuntimeProperties().First(p => p.Name == "ScrollRows").GetValue(visualContainer) as ScrollAxisBase;
             scrollRows.Changed += ScrollRows_Changed;
 
             LastIndex = 12;
+
         }
         private void ScrollRows_Changed(object sender, ScrollChangedEventArgs e)
         {
@@ -181,5 +182,7 @@ namespace PasaBuy.App.Views.Feeds
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
             }
         }
+
+       
     }
 }

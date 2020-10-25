@@ -7,7 +7,7 @@
              xmlns:converter="clr-namespace:PasaBuy.App.Converters"
              x:Class="PasaBuy.App.Views.Feeds.Templates.InputEntry"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-             xmlns:control="clr-namespace:PasaBuy.App.Controls">
+             xmlns:control="clr-namespace:PasaBuy.App.Controls" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms">
 
     <ContentView.Resources>
         <ResourceDictionary>
@@ -21,6 +21,7 @@
     <ContentView.Content>
         <Grid BackgroundColor="{DynamicResource Gray-White}">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
@@ -50,8 +51,10 @@
                     </Image>
                 </border:SfBorder>
             </Grid>
-            <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
-                                Margin="0, 25, 20, 20">
+            <Grid Grid.Row="0" 
+                  Grid.Column="1"
+                  Grid.ColumnSpan="2"
+                  Margin="0, 25, 20, 20">
                 <border:SfBorder Style="{StaticResource SfBorderStyle}">
                     <control:BorderlessEntry
                             x:Name="PostEntry"
@@ -61,8 +64,77 @@
                     </control:BorderlessEntry>
                 </border:SfBorder>
             </Grid>
-            
-            <Grid Grid.Row="1" Grid.ColumnSpan="3"
+
+            <border:SfBorder Grid.Row="1" 
+                             Margin="0,0,0,15"
+                             Grid.ColumnSpan="3"
+                             BorderColor="{DynamicResource Gray-200}"
+                             HorizontalOptions="FillAndExpand"
+                             Style="{StaticResource SfBorderStyle}" 
+                             CornerRadius="2">
+                <StackLayout x:Name="TitleView"
+                             HeightRequest="40"
+                             Padding="16,8"
+                             BackgroundColor="{DynamicResource Gray-White}"
+                             Orientation="Horizontal"
+                             Spacing="0">
+                    <StackLayout  x:Name="Title"
+                              HorizontalOptions="FillAndExpand"
+                              IsVisible="True"
+                               Orientation="Horizontal"
+                              Spacing="0"
+                              Margin="20,0,0,0"
+                              VerticalOptions="FillAndExpand">
+                        <Label Margin="16,0"
+                           HeightRequest="24"
+                           FontFamily="{StaticResource Montserrat-Medium}"
+                          FontSize="16"
+                           HorizontalOptions="CenterAndExpand"
+                           LineHeight="1.25"
+                           Text="Looking for something?"
+                           TextColor="{DynamicResource Gray-900}"
+                           VerticalOptions="Center"
+                           VerticalTextAlignment="Center" />
+                    </StackLayout>
+                    <StackLayout x:Name="Search"
+                             HorizontalOptions="EndAndExpand"
+                             IsVisible="False"
+                             Grid.ColumnSpan="3"
+                             Orientation="Horizontal"
+                             Spacing="0">
+                        <buttons:SfButton x:Name="BackToTitle"
+                                          Clicked="BackToTitle_Clicked"
+                                          Style="{StaticResource NavigationBarButtonStyle}"
+                                          Text="{StaticResource Back}" />
+                        <border:SfBorder Style="{DynamicResource SfBorderStyle}"
+                                         Grid.ColumnSpan="3"
+                                         BackgroundColor="Transparent"
+                                         Padding="10,0,0,0"
+                                         BorderColor="{DynamicResource Gray-200}"
+                                         VerticalOptions="FillAndExpand"
+                                         HorizontalOptions="FillAndExpand">
+                            <control:BorderlessEntry x:Name="SearchEntry"
+                                                 HorizontalOptions="FillAndExpand"
+                                                 BackgroundColor="Transparent"
+                                                 Placeholder="Search here"
+                                                 Grid.ColumnSpan="3"
+                                                 ReturnType="Search"
+                                                 Text="{Binding SearchText, Mode=TwoWay}"
+                                                 Style="{StaticResource SearchEntryStyle}"/>
+                        </border:SfBorder>
+                    </StackLayout>
+                    <!--  Search Button  -->
+                    <buttons:SfButton x:Name="SearchButton"
+                                      Clicked="SearchButton_Clicked"
+                                       IsVisible="True"
+                                      Command="{Binding SearchButtonCommand}"
+                                       Style="{StaticResource NavigationBarButtonStyle }"
+                                       Text="{StaticResource Search}" />
+                </StackLayout>
+            </border:SfBorder>
+
+            <Grid Grid.Row="2" 
+                  Grid.ColumnSpan="3"
                   BackgroundColor="{DynamicResource Gray-100}"
                   ColumnSpacing="0"
                   RowSpacing="0"
