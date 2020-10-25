@@ -127,12 +127,14 @@ namespace PasaBuy.App.Views.Posts
                     if (btn == false)
                     {
                         btn = true;
-                        SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, StatusEditor.Text, "", "status", filePath, "", "", "", "", "", (bool success, string data) =>
+                        Http.SocioFeature.Instance.Post_Insert(StatusEditor.Text, "", "status", filePath, "", "", "", "", "", (bool success, string data) =>
                         {
                             if (success)
                             {
                                 if (PasaBuy.App.ViewModels.Menu.MasterMenuViewModel.postbutton == string.Empty)
                                 {
+                                    Views.Feeds.HomePage.LastIndex = 12;
+                                    Views.Feeds.HomePage.isFirstLoad = false;
                                     HomepageViewModel.homePostList.Clear();
                                     HomepageViewModel.LoadData("");
                                 }
