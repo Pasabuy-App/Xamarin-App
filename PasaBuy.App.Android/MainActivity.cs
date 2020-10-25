@@ -43,7 +43,7 @@ namespace PasaBuy.App.Droid
             NotificationCenter.CreateNotificationChannel();	
 
             LoadApplication(new App());
-
+ 
             NotificationCenter.NotifyNotificationTapped(Intent);
 
         }

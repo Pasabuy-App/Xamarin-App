@@ -134,10 +134,15 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 //PSACache.Instance.UserInfo.roid = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Store).roid;
                 PSACache.Instance.UserInfo.store_logo = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Store).Logo;
                 PSACache.Instance.UserInfo.store_banner = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Store).Banner;
-                await Task.Delay(300);
-                App.Current.MainPage = new Views.Navigation.NavigationView();
-                await Task.Delay(300);
-                IsRunning = false;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(300);
+                    App.Current.MainPage = new Views.Navigation.NavigationView();
+                    await Task.Delay(300);
+                    IsRunning = false;
+                });
+
+                
             }
         }
     }

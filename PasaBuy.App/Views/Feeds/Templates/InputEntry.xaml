@@ -19,7 +19,7 @@
     </ContentView.Resources>
     
     <ContentView.Content>
-        <Grid>
+        <Grid BackgroundColor="{DynamicResource Gray-White}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>

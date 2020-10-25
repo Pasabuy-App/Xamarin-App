@@ -4,8 +4,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:controls="clr-namespace:PasaBuy.App.Controls"
-             xmlns:local="clr-namespace:PasaBuy.App.CustomRenderers"
-             xmlns:aspectratio ="clr-namespace:PasaBuy.App.Views.Feeds.Templates" 
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              BackgroundColor="{DynamicResource Gray-White}"
@@ -50,12 +48,15 @@
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Row="0"  Grid.ColumnSpan="3" 
+                <Grid Grid.Row="0" 
+                      Grid.ColumnSpan="3" 
                       BackgroundColor="{DynamicResource Gray-300}"
-                      VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="220">
-                    <ffimageloading:CachedImage Aspect="AspectFit"
+                      VerticalOptions="FillAndExpand" 
+                      HorizontalOptions="FillAndExpand" HeightRequest="220">
+                    <ffimageloading:CachedImage Aspect="AspectFill"
                                                 x:Name="StatusImage"
-			                                    DownsampleToViewSize="true" FadeAnimationEnabled="True" LoadingPriority="Highest">
+			                                    DownsampleToViewSize="true" 
+                                                FadeAnimationEnabled="True">
                     </ffimageloading:CachedImage>
                     
                     <Grid.GestureRecognizers>

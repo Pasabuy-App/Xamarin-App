@@ -47,11 +47,14 @@ namespace PasaBuy.App.Models.MobilePOS
                  new Management(typeof(SchedulesView), "https://pasabuy.app/wp-content/uploads/2020/10/management-schedule.png", TextsTranslateManager.Translate("Schedules"),
                                       TextsTranslateManager.Translate("Add or update store schedule")),
 
-                 new Management(typeof(DocumentsView), "Ihttps://pasabuy.app/wp-content/uploads/2020/10/management-documents.png", TextsTranslateManager.Translate("DocumentsTitle"),
+                 new Management(typeof(DocumentsView), "https://pasabuy.app/wp-content/uploads/2020/10/management-documents.jpg", TextsTranslateManager.Translate("DocumentsTitle"),
                                       TextsTranslateManager.Translate("DocumentsManagementDescriptions")),
 
                  new Management(typeof(RolesView), "https://pasabuy.app/wp-content/uploads/2020/10/management.png", TextsTranslateManager.Translate("Personnel Roles"),
                                       TextsTranslateManager.Translate("Manage access roles of your personnel")),
+
+                 new Management(typeof(PaymentsView), "https://pasabuy.app/wp-content/uploads/2020/10/management-payments.png", TextsTranslateManager.Translate("Payments"),
+                                      TextsTranslateManager.Translate("Manage store wallet and payments")),
 
                 //new Management(typeof(VouchersView), "Idcard.png", TextsTranslateManager.Translate("VouchersTitle"),
                 //                      TextsTranslateManager.Translate("VouchersManagementDescriptions")),

@@ -167,9 +167,10 @@
     </ContentPage.ControlTemplate>
     <ContentPage.Content>
             <Grid>
-                <StackLayout Spacing="0" Padding="0,0,0,0">
+                <StackLayout Spacing="0" 
+                             Padding="0,0,0,0">
                 <syncListView:SfListView
-                            Margin="8,0"
+                            Margin="0,0,0,0"
                             x:Name="listView"
                             Padding="0"
                             ColumnSpacing="0"
@@ -191,13 +192,13 @@
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <ffimageloading:CachedImage Aspect="Fill" 
-                                                                Grid.Row="0"
-                                                                x:Name="ProductLogo"
-                                                                ClassId="{Binding ID}"
-                                                                HeightRequest="250"
-                                                                Source="{Binding ProductImage}"
-			                                                    DownsampleToViewSize="True" 
-                                                                FadeAnimationEnabled="True">
+                                                            Grid.Row="0"
+                                                            x:Name="ProductLogo"
+                                                            ClassId="{Binding ID}"
+                                                            HeightRequest="250"
+                                                            Source="{Binding ProductImage}"
+			                                                DownsampleToViewSize="True" 
+                                                            FadeAnimationEnabled="True">
                                 </ffimageloading:CachedImage>
 
                                 <Frame CornerRadius="4"  Opacity="0.25" BackgroundColor="{DynamicResource Gray-Black}"/>

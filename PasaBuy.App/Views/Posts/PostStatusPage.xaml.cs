@@ -20,8 +20,8 @@ namespace PasaBuy.App.Views.Posts
             //{
 
             //}
-            StatusImage.Source = "https://i2.wp.com/seds.org/wp-content/uploads/2020/06/placeholder.png?fit=1200%2C800&ssl=1";
-            StatusImage.LoadingPlaceholder = "https://i2.wp.com/seds.org/wp-content/uploads/2020/06/placeholder.png?fit=1200%2C800&ssl=1";
+            //StatusImage.Source = "https://i2.wp.com/seds.org/wp-content/uploads/2020/06/placeholder.png?fit=1200%2C800&ssl=1";
+            //StatusImage.LoadingPlaceholder = "https://i2.wp.com/seds.org/wp-content/uploads/2020/06/placeholder.png?fit=1200%2C800&ssl=1";
 
 
         }
@@ -70,10 +70,7 @@ namespace PasaBuy.App.Views.Posts
 
             var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
             {
-                Directory = "Sample",
-                Name = "item-image.jpg",
-                CompressionQuality = 40,
-                AllowCropping = true
+                CompressionQuality = 40
             });
 
             if (file == null)
