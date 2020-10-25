@@ -37,6 +37,8 @@ namespace PasaBuy.App.Views.StoreViews
                 isClicked = true;
                 var item = e.ItemData as OrdersDataModel;
                 TransactionDetailsView.id = item.ID;
+                TransactionDetailsView.avatar = item.Avatar;
+                TransactionDetailsView.user_id = item.User_ID;
                 TransactionDetailsView.customer = item.Customer;
                 TransactionDetailsView.orderid = item.OrderID;
                 TransactionDetailsView.totalprice = item.TotalPrice;
@@ -44,7 +46,7 @@ namespace PasaBuy.App.Views.StoreViews
                 TransactionDetailsView.method = item.Method;
                 TransactionDetailsView.order_type = "Pending";
                 TransactionDetailsView.stage_type = "pending";
-                OrderDetailsViewModel.LoadOrder(item.Stage, item.ID);
+                OrderDetailsViewModel.LoadOrder(item.Stage, Local.PSACache.Instance.UserInfo.stid, item.ID);
                 await Navigation.PushModalAsync(new TransactionDetailsView());
                 await Task.Delay(500);
                 isClicked = false;
@@ -86,25 +88,29 @@ namespace PasaBuy.App.Views.StoreViews
                 if (e.TabItem.Title == "New Orders")
                 {
                     //new Alert("New Orders", "New Orders", "New Orders");
-                    //DashboardOrdersViewModel.orderList.Clear();
-                    DashboardOrdersViewModel.LoadOrder("pending", "");
+                    DashboardOrdersViewModel.stages = "pending";
+                    DashboardOrdersViewModel.orderList.Clear();
+                    DashboardOrdersViewModel.LoadOrder("pending");
                 }
                 if (e.TabItem.Title == "Pending")
                 {
                     //new Alert("Pending", "Pending", "Pending");
-                    //DashboardOrdersViewModel.orderList.Clear();
-                    DashboardOrdersViewModel.LoadOrder("received", "");
+                    DashboardOrdersViewModel.stages = "received";
+                    DashboardOrdersViewModel.orderList.Clear();
+                    DashboardOrdersViewModel.LoadOrder("received");
                 }
                 if (e.TabItem.Title == "Declined")
                 {
-                    //DashboardOrdersViewModel.orderList.Clear();
-                    DashboardOrdersViewModel.LoadOrder("cancelled", "");
+                    DashboardOrdersViewModel.stages = "cancelled";
+                    DashboardOrdersViewModel.orderList.Clear();
+                    DashboardOrdersViewModel.LoadOrder("cancelled");
                     //new Alert("Declined", "Declined", "Declined");
                 }
                 if (e.TabItem.Title == "Completed")
                 {
-                    //DashboardOrdersViewModel.orderList.Clear();
-                    DashboardOrdersViewModel.LoadOrder("shipping", "");
+                    DashboardOrdersViewModel.stages = "shipping";
+                    DashboardOrdersViewModel.orderList.Clear();
+                    DashboardOrdersViewModel.LoadOrder("shipping");
                     //new Alert("Completed", "Completed", "Completed");
                 }
                 await Task.Delay(500);
