@@ -21,7 +21,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         public OrderDetailsViewModel()
         {
             orderList = new ObservableCollection<OrdersDataModel>();
-            orderList.Clear();
+            //orderList.Clear();
             //LoadOrder("pending", "");
         }
         public static void ProcessOrder(string odid, string stage, string stage_type)
@@ -32,8 +32,9 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 {
                     if (success)
                     {
+                        DashboardOrdersViewModel.stages = "received";
                         DashboardOrdersViewModel.orderList.Clear();
-                        DashboardOrdersViewModel.LoadOrder(stage_type, "");
+                        DashboardOrdersViewModel.LoadOrder(stage_type);
                     }
                     else
                     {
@@ -46,11 +47,12 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
         }
-        public static void LoadOrder(string stage, string odid)
+
+        public static void LoadOrder(string stage, string stid, string odid)
         {
             try
             {
-                Customers.Instance.OrderList(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, stage, "", odid, (bool success, string data) =>
+                Customers.Instance.OrderList(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, stage, stid, odid, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -61,15 +63,15 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                             {
                                 orderList.Add(new OrdersDataModel()
                                 {
-                                    ID = order.data[i].odid,
-                                    OrderID = "Order ID " + order.data[i].odid.GetHashCode().ToString(),
+                                    ID = order.data[i].ID,
+                                    OrderID = "Order ID " + order.data[i].ID.GetHashCode().ToString(),
                                     Date_Time = order.data[i].date_created,
-                                    TotalPrice = "PHP " + order.data[i].totalprice,
+                                    TotalPrice = "₱ " + order.data[i].totalprice,
                                     Customer = order.data[i].customer,
                                     Method = order.data[i].method,
                                     Stage = order.data[i].stage,
                                     Product = order.data[i].product_name,
-                                    Quantity = order.data[i].qty + " x " + order.data[i].price
+                                    Quantity = order.data[i].qty + " x (" + order.data[i].price + " + " + order.data[i].variant_price + ")"
                                 });
                             }
                         }

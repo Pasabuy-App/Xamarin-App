@@ -226,6 +226,7 @@ namespace PasaBuy.App.Models.Driver
             public string product_name = string.Empty;
             public string price = string.Empty;
             public string quantity = string.Empty;
+            public string qty = string.Empty;
             public string status = string.Empty;
             public string date_created = string.Empty;
             public string date_ordered = string.Empty;
