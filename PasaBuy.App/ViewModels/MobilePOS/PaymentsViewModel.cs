@@ -1,7 +1,9 @@
-﻿using PasaBuy.App.Views.PopupModals;
+﻿using PasaBuy.App.Models.MobilePOS;
+using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -10,6 +12,20 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 {
     public class PaymentsViewModel : BaseViewModel
     {
+        private ObservableCollection<StorePayment> _walletTransactions;
+
+        public ObservableCollection<StorePayment> WalletTransactions
+        {
+            get
+            {
+                return _walletTransactions;
+            }
+            set
+            {
+                _walletTransactions = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
         public ICommand SetupCommand
         {
@@ -37,7 +53,23 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
         public PaymentsViewModel()
         {
+            _walletTransactions = new ObservableCollection<StorePayment>();
 
+            for (int i = 0; i < 5; i++)
+            {
+                _walletTransactions.Add(new StorePayment()
+                {
+                    ID = "0",
+                    Avatar = "Avatar.png",
+                    TransactionName = "Lorz Becislao",
+                    TransactionInfo = "Wallet Recharge",
+                    TransactionDate = "20 Oct 2020",
+                    Amount = 150
+                });
+            }
         }
+            
+
+
     }
 }
