@@ -22,10 +22,8 @@ namespace PasaBuy.App.Views.StoreViews
             Navigation.PopModalAsync();
         }
 
-        private async void SfListView_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        /*private async void SfListView_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
-            Loader.IsVisible = true;
-            Loader.IsRunning = true;
             MasterView.MyType = "store";
             var item = e.ItemData as Models.Marketplace.Store;
             PSACache.Instance.UserInfo.stid = item.Id;
@@ -36,14 +34,12 @@ namespace PasaBuy.App.Views.StoreViews
 
             //PSACache.Instance.SaveUserData();
             await Task.Delay(500);
-            Loader.IsVisible = false;
-            Loader.IsRunning = false;
             Device.BeginInvokeOnMainThread(async () =>
             {
                 App.Current.MainPage = new NavigationView();
             });
            
 
-        }
+        }*/
     }
 }

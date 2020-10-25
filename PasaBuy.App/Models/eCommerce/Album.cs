@@ -23,6 +23,12 @@ namespace PasaBuy.App.Models.eCommerce
         private string transactionAmount;
         private string status;
 
+        private string my_address;
+
+        private string store_address;
+
+        private string method;
+
         private bool isCredited;
 
         #endregion
@@ -37,6 +43,45 @@ namespace PasaBuy.App.Models.eCommerce
         #endregion
 
         #region Properties
+        public string Method
+        {
+            get
+            {
+                return this.method;
+            }
+
+            set
+            {
+                this.method = value;
+                this.OnPropertyChanged(nameof(Method));
+            }
+        }
+        public string My_Address
+        {
+            get
+            {
+                return this.my_address;
+            }
+
+            set
+            {
+                this.my_address = value;
+                this.OnPropertyChanged(nameof(My_Address));
+            }
+        }
+        public string Store_Address
+        {
+            get
+            {
+                return this.store_address;
+            }
+
+            set
+            {
+                this.store_address = value;
+                this.OnPropertyChanged(nameof(Store_Address));
+            }
+        }
         public string Status
         {
             get
@@ -188,14 +233,24 @@ namespace PasaBuy.App.Models.eCommerce
             public string ID = string.Empty;
             public string product_name = string.Empty;
             public string store_name = string.Empty;
+            public string store_logo = string.Empty;
             public string odid = string.Empty;
             public string qty = string.Empty;
             public string price = string.Empty;
             public string totalprice = string.Empty;
             public string stage = string.Empty;
-            public string store_logo = string.Empty;
             public string date_created = string.Empty;
             public string method = string.Empty;
+            public string store_street = string.Empty;
+            public string store_brgy = string.Empty;
+            public string store_city = string.Empty;
+            public string store_province = string.Empty;
+            public string store_country = string.Empty;
+            public string my_street = string.Empty;
+            public string my_brgy = string.Empty;
+            public string my_city = string.Empty;
+            public string my_province = string.Empty;
+            public string my_country = string.Empty;
         }
     }
 }

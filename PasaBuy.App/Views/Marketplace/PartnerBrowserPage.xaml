@@ -227,7 +227,6 @@
                 </ScrollView>
                 <loading:LoadingIndicator
                     Grid.RowSpan="3"
-                    x:Name="LoadingIndicator"
                     HorizontalOptions="Fill"
                     IsRunning="{Binding IsRunning, Mode=TwoWay}"
                     VerticalOptions="Fill" />

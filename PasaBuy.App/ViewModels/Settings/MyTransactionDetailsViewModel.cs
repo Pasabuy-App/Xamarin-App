@@ -149,6 +149,8 @@ namespace PasaBuy.App.ViewModels.Settings
         public static string _subtotal;
         public static string _fee;
         public static string _total;
+        public static string _method;
+        public static string _date_created;
         public MyTransactionDetailsViewModel()
         {
             this.Image = _image;
@@ -179,7 +181,7 @@ namespace PasaBuy.App.ViewModels.Settings
                                 _transactionDetails.Add(new TransactListData()
                                 {
                                     Product = order.data[i].product_name,
-                                    Quantity = order.data[i].quantity,
+                                    Quantity = order.data[i].qty,
                                     Price =  Convert.ToDouble(order.data[i].price)
                                 });
                             }

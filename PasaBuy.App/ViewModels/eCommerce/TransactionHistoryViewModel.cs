@@ -91,12 +91,15 @@ namespace PasaBuy.App.ViewModels.eCommerce
                                 string _status = order.data[i].stage != "cancelled" ? order.data[i].stage == "completed" ? "Delivered" : "On-Going" : "Cancelled";
                                 transactionDetails.Add(new Transactions()
                                 {
-                                    ID = order.data[i].odid,
+                                    ID = order.data[i].ID,
                                     CustomerName = order.data[i].store_name,
-                                    TransactionDescription = "Order ID " + order.data[i].odid.GetHashCode().ToString(),
+                                    TransactionDescription = "Order ID " + order.data[i].ID.GetHashCode().ToString(),
                                     Image = string.IsNullOrEmpty(order.data[i].store_logo) || order.data[i].store_logo == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(order.data[i].store_logo),
                                     TransactionAmount = "₱ " + Convert.ToDouble(order.data[i].totalprice).ToString(),
                                     Date = mydate.ToString("MMM. dd, yyyy hh:mm tt"),
+                                    Store_Address = order.data[i].store_street + " " + order.data[i].store_brgy + ", " + order.data[i].store_city + " " + order.data[i].store_province + ", " + order.data[i].store_country,
+                                    My_Address = order.data[i].my_street + " " + order.data[i].my_brgy + ", " + order.data[i].my_city + " " + order.data[i].my_province + ", " + order.data[i].my_country,
+                                    Method = order.data[i].store_name,
                                     Status = _status
                                 });
                             }
@@ -185,21 +188,24 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 IsRunning = true;
                 CanNavigate = false;
                 var item = (selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Transactions;
-                ViewModels.Settings.MyTransactionDetailsViewModel._id = item.ID;
-                ViewModels.Settings.MyTransactionDetailsViewModel._image = item.Image;
-                ViewModels.Settings.MyTransactionDetailsViewModel._name = item.CustomerName;
-                ViewModels.Settings.MyTransactionDetailsViewModel._orderid = item.TransactionDescription;
-                ViewModels.Settings.MyTransactionDetailsViewModel._storeaddress = "Store Address";
-                ViewModels.Settings.MyTransactionDetailsViewModel._myadress = "My Address";
-                ViewModels.Settings.MyTransactionDetailsViewModel._subtotal = item.TransactionAmount;
-                ViewModels.Settings.MyTransactionDetailsViewModel._fee = "Free";
-                ViewModels.Settings.MyTransactionDetailsViewModel._total = item.TransactionAmount;
+                await Task.Delay(300);
                 if (item.Status == "On-Going")
                 {
                     await App.Current.MainPage.Navigation.PushModalAsync(new PasaBuy.App.Views.Marketplace.OrderStatusPage());
                 }
                 else
                 {
+                    ViewModels.Settings.MyTransactionDetailsViewModel._id = item.ID;
+                    ViewModels.Settings.MyTransactionDetailsViewModel._image = item.Image;
+                    ViewModels.Settings.MyTransactionDetailsViewModel._name = item.CustomerName;
+                    ViewModels.Settings.MyTransactionDetailsViewModel._orderid = item.TransactionDescription;
+                    ViewModels.Settings.MyTransactionDetailsViewModel._storeaddress = item.Store_Address;
+                    ViewModels.Settings.MyTransactionDetailsViewModel._myadress = item.My_Address;
+                    ViewModels.Settings.MyTransactionDetailsViewModel._subtotal = item.TransactionAmount;
+                    ViewModels.Settings.MyTransactionDetailsViewModel._fee = "Free";
+                    ViewModels.Settings.MyTransactionDetailsViewModel._total = item.TransactionAmount;
+                    ViewModels.Settings.MyTransactionDetailsViewModel._date_created = item.Date;
+                    ViewModels.Settings.MyTransactionDetailsViewModel._method = item.Method;
                     await App.Current.MainPage.Navigation.PushModalAsync(new MyTransactionDetails());
                 }
                 IsRunning = false;

@@ -72,6 +72,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 }
             }
         }
+        public ICommand RefreshCommand { protected set; get; }
+
         bool _IsRunning = false;
         public bool IsRunning
         {
@@ -89,7 +91,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
         public static bool isLoad;
-        public ICommand RefreshCommand { protected set; get; }
 
         public FoodBrowserViewModel()
         {

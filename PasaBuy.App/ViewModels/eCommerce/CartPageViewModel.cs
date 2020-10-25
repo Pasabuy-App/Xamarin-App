@@ -59,6 +59,19 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 this.NotifyPropertyChanged();
             }
         }
+        public bool _isRunning = false;
+        public bool isRunning
+        {
+            get
+            {
+                return _isRunning;
+            }
+            set
+            {
+                _isRunning = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
         #endregion
 
@@ -371,12 +384,11 @@ namespace PasaBuy.App.ViewModels.eCommerce
         /// <param name="obj">The Object</param>
         private async void PlaceOrderClicked(object obj)
         {
-            //Console.WriteLine("Bato: " + CartDetails.Count);
             if (CartDetails.Count > 0)
             {
-                if (!isCartClicked)
+                if (!isRunning)
                 {
-                    isCartClicked = true;
+                    isRunning = true;
                     CheckoutPageViewModel.coupon = this.DiscountPercent;
                     CheckoutPageViewModel.discount = this.DiscountPrice;
                     CheckoutPageViewModel.totalprice = this.TotalPrice;
@@ -384,9 +396,9 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     Marketplace.StoreDetailsViewModel.Convert2List(Marketplace.StoreDetailsViewModel.store_id);
                     CheckoutPageViewModel.LoadCart();
                     PaymentView.method = string.Empty;
-                    await Application.Current.MainPage.Navigation.PushModalAsync(new CheckoutPage());
                     await Task.Delay(200);
-                    isCartClicked = false;
+                    await Application.Current.MainPage.Navigation.PushModalAsync(new CheckoutPage());
+                    isRunning = false;
                 }
             }
         }
@@ -397,17 +409,29 @@ namespace PasaBuy.App.ViewModels.eCommerce
         /// <param name="obj">The Object</param>
         private async void RemoveClicked(object obj)
         {
-            if (obj is ProductList product)
+            if (!isRunning)
             {
-                this.CartDetails.Remove(product);
-                this.UpdatePrice();
-                //Convert2String(product.stid);
-                Marketplace.StoreDetailsViewModel.cartDetails.Remove(product);
-                Marketplace.StoreDetailsViewModel.Convert2String(product.stid);
-
-                if (this.CartDetails.Count == 0)
+                isRunning = true;
+                if (obj is ProductList product)
                 {
-                    await NavigateToPage(new EmptyCartPage());
+                    this.CartDetails.Remove(product);
+                    LoadCart();
+
+                    //this.UpdatePrice();
+                    //Convert2String(product.stid);
+
+                    Marketplace.StoreDetailsViewModel.cartDetails.Remove(product);
+                    Marketplace.StoreDetailsViewModel.Convert2String(product.stid);
+
+                    if (this.CartDetails.Count == 0)
+                    {
+                        await NavigateToPage(new EmptyCartPage());
+                        isRunning = false;
+                    }
+                    else
+                    {
+                        isRunning = false;
+                    }
                 }
             }
         }

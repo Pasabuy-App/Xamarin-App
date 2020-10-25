@@ -11,6 +11,36 @@ namespace PasaBuy.App.Models.MobilePOS
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
+        private string stid = string.Empty;
+        public string Store_ID
+        {
+            get { return stid; }
+            set
+            {
+                stid = value;
+                OnPropertyChanged("Store_ID");
+            }
+        }
+        private string user_id = string.Empty;
+        public string User_ID
+        {
+            get { return user_id; }
+            set
+            {
+                user_id = value;
+                OnPropertyChanged("User_ID");
+            }
+        }
+        private string avatar = string.Empty;
+        public string Avatar
+        {
+            get { return avatar; }
+            set
+            {
+                avatar = value;
+                OnPropertyChanged("Avatar");
+            }
+        }
         private string stages = string.Empty;
         public string Stage
         {
@@ -105,11 +135,15 @@ namespace PasaBuy.App.Models.MobilePOS
         public class OrderData
         {
             public string ID = string.Empty;
+            public string avatar = string.Empty;
+            public string stid = string.Empty;
+            public string user_id = string.Empty;
             public string product_name = string.Empty;
             public string customer = string.Empty;
             public string odid = string.Empty;
             public string qty = string.Empty;
             public string price = string.Empty;
+            public string variant_price = string.Empty;
             public string totalprice = string.Empty;
             public string stage = string.Empty;
             public string preview = string.Empty;

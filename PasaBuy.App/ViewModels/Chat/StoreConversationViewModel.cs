@@ -85,8 +85,8 @@ namespace PasaBuy.App.ViewModels.Chat
             {
                 if (refresh == 0)
                 {
-                    StoreMessageViewModel.storeChatList.Clear();
-                    StoreMessageViewModel.LoadMesssage("");
+                    //StoreMessageViewModel.storeChatList.Clear();
+                    //StoreMessageViewModel.LoadMesssage("");
                     PopupMessage();
                     return true;
                 }
@@ -368,7 +368,7 @@ namespace PasaBuy.App.ViewModels.Chat
                 ChatMessageListViewBehavior.isFirstLoad = false;
                 try
                 {
-                    string types = "0";
+                    /*string types = "0";
                     if (type == "1")
                     {
                         types = "2";
@@ -377,7 +377,7 @@ namespace PasaBuy.App.ViewModels.Chat
                     {
                         types = type;
                     }
-                    types = type == "1" ? types = "2" : types;
+                    types = type == "1" ? types = "2" : types;*/
                     if (count == 0)
                     {
                         count = 1;

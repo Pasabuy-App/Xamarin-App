@@ -35,7 +35,7 @@ namespace PasaBuy.App.Views.StoreViews
                 TransactionDetailsView.method = item.Method;
                 TransactionDetailsView.order_type = "Pending";
                 TransactionDetailsView.stage_type = "pending";
-                OrderDetailsViewModel.LoadOrder(item.Stage, item.ID);
+                OrderDetailsViewModel.LoadOrder(Local.PSACache.Instance.UserInfo.stid, "", item.ID);
                 await Navigation.PushModalAsync(new TransactionDetailsView());
                 await Task.Delay(500);
                 isClicked = false;
