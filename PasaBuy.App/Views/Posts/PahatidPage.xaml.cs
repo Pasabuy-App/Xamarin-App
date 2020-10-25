@@ -33,12 +33,14 @@ namespace PasaBuy.App.Views.Posts
                     DropOffs.HasError = string.IsNullOrEmpty(DropOff.Text) || string.IsNullOrWhiteSpace(DropOff.Text) ? true : false;
                     if (PickUps.HasError == false && DropOffs.HasError == false)
                     {
-                        SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "Pahatid", "content", "pahatid", "", "", TimePicker.Time.ToString(), PickUp.Text, DropOff.Text, DatePicker.Date.ToString(), (bool success, string data) =>
+                        Http.SocioFeature.Instance.Post_Insert("Pahatid", "content", "pahatid", "", "", TimePicker.Time.ToString(), PickUp.Text, DropOff.Text, DatePicker.Date.ToString(), (bool success, string data) =>
                         {
                             if (success)
                             {
-                                if (PasaBuy.App.ViewModels.Menu.MasterMenuViewModel.postbutton == string.Empty)
+                                if (ViewModels.Menu.MasterMenuViewModel.postbutton == string.Empty)
                                 {
+                                    Views.Feeds.HomePage.LastIndex = 12;
+                                    Views.Feeds.HomePage.isFirstLoad = false;
                                     HomepageViewModel.homePostList.Clear();
                                     HomepageViewModel.LoadData("");
                                 }
@@ -53,7 +55,6 @@ namespace PasaBuy.App.Views.Posts
                             else
                             {
                                 new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                                isBtn = false;
                             }
                         });
                     }
