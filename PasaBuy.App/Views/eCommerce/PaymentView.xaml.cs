@@ -28,12 +28,15 @@ namespace PasaBuy.App.Views.eCommerce
                 {
                     method = "Cash";
                 }
-                //System.Console.WriteLine("Payment Option: " + method);
+                if (method == "Savings Wallet")
+                {
+                    method = "Wallet";
+                }
+                /*if (method == "Card Payment")
+                {
+                    method = "Card";
+                }*/
             }
-            /*else if (e.IsChecked.HasValue && !e.IsChecked.Value)
-            {
-                (sender as Syncfusion.XForms.Buttons.SfRadioButton).Text = "Unchecked State";
-            }*/
 
         }
     }

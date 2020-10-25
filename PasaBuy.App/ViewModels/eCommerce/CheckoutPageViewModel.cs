@@ -160,9 +160,17 @@ namespace PasaBuy.App.ViewModels.eCommerce
         {
             this.PaymentModes = new ObservableCollection<Payment>
             {
-                new Payment {PaymentMode = "Card Payment"},
-                new Payment {PaymentMode = "Cash on Delivery"},
-                new Payment {PaymentMode = "Savings Wallet"},
+                /*new Payment
+                {
+                    PaymentMode = "Goldman Sachs Bank Credit Card", CardNumber = "48** **** **** 9876",
+                    CardTypeIcon = "Card.png"
+                },
+                new Payment {PaymentMode = "Card Payment"},*/
+                new Payment {PaymentMode = "Cash on Delivery"}, // CASH
+                new Payment {PaymentMode = "Savings Wallet"}, // WALLET - REST - IF NO WALLET - MESSAGE / IF
+                // EXTRAS - COUPONS(X) / PASABUY PLUS(/) (OPTIONAL)
+                // IF COD = ENABLE PASABUY
+                // IF WALLET - DISABLE PASABUY
             };
         }
         #endregion
@@ -432,9 +440,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                         {
                             if (success)
                             {
-                                //new Alert("Succes", "Success", "Success");
                                 (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new PaymentSuccessPage()));
-                                isRunning = false;
                             }
                             else
                             {
