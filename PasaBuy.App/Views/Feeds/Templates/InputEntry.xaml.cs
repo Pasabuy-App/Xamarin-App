@@ -29,12 +29,14 @@ namespace PasaBuy.App.Views.Feeds.Templates
             {
                 try
                 {
-                    SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PostEntry.Text, "", "status", "", "", "", "", "", "", (bool success, string data) =>
+                    Http.SocioFeature.Instance.Post_Insert(PostEntry.Text, "", "status", "", "", "", "", "", "", (bool success, string data) =>
                     {
                         if (success)
                         {
                             if (PasaBuy.App.ViewModels.Menu.MasterMenuViewModel.postbutton == string.Empty)
                             {
+                                Views.Feeds.HomePage.LastIndex = 12;
+                                Views.Feeds.HomePage.isFirstLoad = false;
                                 HomepageViewModel.homePostList.Clear();
                                 HomepageViewModel.LoadData("");
                             }
