@@ -172,11 +172,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                     {
                         StoreListData datas = JsonConvert.DeserializeObject<StoreListData>(data);
 
-                        if (datas.data.Length == 0)
-                        {
-                            (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new NoStoresPage()));
-                        }
-                        else
+                        if (datas.data.Length > 0)
                         {
                             for (int i = 0; i < datas.data.Length; i++)
                             {
@@ -192,6 +188,10 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                     Street = datas.data[i].brgy + " " + datas.data[i].city
                                 });
                             }
+                        }
+                        else
+                        {
+                            (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new NoStoresPage()));
                         }
                     }
                     else
