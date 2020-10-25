@@ -70,7 +70,7 @@
                         TextColor="{DynamicResource Gray-800}"
                         VerticalOptions="Center" />
 
-                            <!--<buttons:SfButton
+                        <!--<buttons:SfButton
                         Margin="0"
                         Padding="0"
                         BackgroundColor="{DynamicResource Gray-White}"

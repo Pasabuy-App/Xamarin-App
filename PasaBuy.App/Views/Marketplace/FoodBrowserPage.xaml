@@ -160,6 +160,7 @@
                                     <listView:SfListView.ItemTemplate>
                                         <DataTemplate>
                                             <Frame
+                                                Margin="0, 10, 0, 5"
                                                     Padding="0"
                                                     BackgroundColor="{DynamicResource Gray-White}"
                                                     BorderColor="{DynamicResource Gray-White}"
@@ -182,7 +183,7 @@
                                                                 FadeAnimationEnabled="True">
                                                     </ffimageloading:CachedImage>
 
-                                                    <buttons:SfButton                
+                                                    <!-- <buttons:SfButton                
                                                              x:Name="favouriteIcon"   
                                                              Text="{StaticResource Favourite}"  FontSize="18"  
                                                              Command="{Binding Path=BindingContext.FavouriteCommand, Source={x:Reference favouriteIcon}}"                                                     
@@ -193,7 +194,7 @@
                                                              WidthRequest="40"
                                                              HeightRequest="40"
                                                              HorizontalOptions="End" VerticalOptions="Start">
-                                                    </buttons:SfButton>
+                                                    </buttons:SfButton> -->
 
                                                     <Grid Grid.Row="1"  Padding="8,16,0,16" ColumnSpacing="0">
                                                         <Grid.ColumnDefinitions>
