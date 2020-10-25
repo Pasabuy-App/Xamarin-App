@@ -172,23 +172,52 @@ namespace PasaBuy.App.ViewModels.Marketplace
         /// Invoked when an item is selected from the navigation list.
         /// </summary>
         /// <param name="selectedItem">Selected item from the list view.</param>
-        private async void NavigateToNextPage(object selectedItem)
+        private void NavigateToNextPage(object selectedItem)
         {
-            if (!IsRunning)
+            CheckStore(((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Categories).Id, ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Categories).Title);
+        }
+
+        public void CheckStore(string catid, string title)
+        {
+            try
             {
-                IsRunning = true;
-                Views.Marketplace.StoreListPage.catid = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Categories).Id;
-                Views.Marketplace.StoreListPage.pageTitle = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Categories).Title;
+                if (!IsRunning)
+                {
+                    IsRunning = true;
+                    TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, "", "1", "", async (bool success, string data) =>
+                    {
+                        if (success)
+                        {
+                            StoreListData datas = JsonConvert.DeserializeObject<StoreListData>(data);
 
-                StoreListViewModel.LoadStore(Views.Marketplace.StoreListPage.catid, "");
-                await Task.Delay(300);
-                await App.Current.MainPage.Navigation.PushModalAsync(new Views.Marketplace.StoreListPage());
-
-                await Task.Delay(300);
+                            if (datas.data.Length > 0)
+                            {
+                                Views.Marketplace.StoreListPage.catid = catid;
+                                Views.Marketplace.StoreListPage.pageTitle = title;
+                                StoreListViewModel.LoadStore(catid, "");
+                                await App.Current.MainPage.Navigation.PushModalAsync(new Views.Marketplace.StoreListPage());
+                                IsRunning = false;
+                            }
+                            else
+                            {
+                                await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new NoStoresPage()));
+                                IsRunning = false;
+                            }
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsRunning = false;
+                        }
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
                 IsRunning = false;
             }
         }
-
 
         #endregion
     }
