@@ -148,7 +148,7 @@
                          <listView:SfListView Margin="8,0"
                                               Grid.Row="2"
                                               Padding="0"
-                                              AutoFitMode="Height"
+                                              AutoFitMode="DynamicHeight"
                                               ColumnSpacing="0"
                                                         FocusBorderColor="Transparent"
                                                         x:Name="StoreListStack"

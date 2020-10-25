@@ -66,6 +66,37 @@ namespace PasaBuy.App.Http
                 callback(false, "Network Error! Check your connection.");
             }
         }
+
+        /// <summary>
+        /// Method for Store search.
+        /// </summary>
+        public async void Store_Search(string search, string types, Action<bool, string> callback)
+        {
+            var dict = new Dictionary<string, string>();
+            dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
+            dict.Add("snky", PSACache.Instance.UserInfo.snky);
+            dict.Add("search", search);
+            dict.Add("types", types);
+
+            var content = new FormUrlEncodedContent(dict);
+
+            var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/tindapress/v1/stores/search", content);
+            response.EnsureSuccessStatusCode();
+
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+                Models.Token token = JsonConvert.DeserializeObject<Models.Token>(result);
+
+                bool success = token.status == "success" ? true : false;
+                string data = token.status == "success" ? result : token.message;
+                callback(success, data);
+            }
+            else
+            {
+                callback(false, "Network Error! Check your connection.");
+            }
+        }
         #endregion
     }
 }
