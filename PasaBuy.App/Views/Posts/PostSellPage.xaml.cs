@@ -32,12 +32,14 @@ namespace PasaBuy.App.Views.Posts
                     if (btn == false)
                     {
                         btn = true;
-                        SocioPress.Posts.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, ItemName.Text, ItemDescription.Text, "sell", filePath, ItemCategory.Text, ItemPrice.Text, PickUpLocation.Text, "", VehicleType.Text, (bool success, string data) =>
+                        Http.SocioFeature.Instance.Post_Insert(ItemName.Text, ItemDescription.Text, "sell", filePath, ItemCategory.Text, ItemPrice.Text, PickUpLocation.Text, "", VehicleType.Text, (bool success, string data) =>
                         {
                             if (success)
                             {
                                 if (PasaBuy.App.ViewModels.Menu.MasterMenuViewModel.postbutton == string.Empty)
                                 {
+                                    Views.Feeds.HomePage.LastIndex = 12;
+                                    Views.Feeds.HomePage.isFirstLoad = false;
                                     HomepageViewModel.homePostList.Clear();
                                     HomepageViewModel.LoadData("");
                                 }
