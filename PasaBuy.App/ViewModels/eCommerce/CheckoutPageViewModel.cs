@@ -436,7 +436,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     else if (PaymentView.method != string.Empty)
                     {
                         var btn = obj as Syncfusion.XForms.Buttons.SfButton;
-                        Http.POSFeature.Instance.CreateOrder(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, Marketplace.StoreDetailsViewModel.store_id, PaymentView.method, address_id.ToString(), "", ListOrder, (bool success, string data) =>
+                        Http.POSFeature.Instance.CreateOrder(Marketplace.StoreDetailsViewModel.store_id, PaymentView.method, address_id.ToString(), "", ListOrder, (bool success, string data) =>
                         {
                             if (success)
                             {
