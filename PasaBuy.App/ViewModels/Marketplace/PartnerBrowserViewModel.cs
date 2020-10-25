@@ -141,6 +141,10 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 }
                                 IsRunning = false;
                             }
+                            else
+                            {
+                                IsRunning = false;
+                            }
                         }
                         else
                         {
