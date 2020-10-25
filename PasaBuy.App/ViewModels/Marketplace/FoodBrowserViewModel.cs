@@ -188,7 +188,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             try
             {
-                TindaPress.Store.Instance.Search(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, search, (bool success, string data) =>
+                Http.TindaFeature.Instance.Store_Search(search, "food/drink", (bool success, string data) =>
                 {
                     if (success)
                     {
