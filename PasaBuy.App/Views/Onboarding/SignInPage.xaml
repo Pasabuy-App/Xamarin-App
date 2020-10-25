@@ -79,7 +79,6 @@
                                 PlaceholderColor="{DynamicResource Gray-700}"
                                 Style="{StaticResource EntryStyle}"
                                 Text="{Binding Password}" />
-                            <!--<Entry x:Name="PasswordEntry" />-->
                         </border:SfBorder>
 
                     <buttons:SfButton

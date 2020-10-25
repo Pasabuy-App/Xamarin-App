@@ -9,7 +9,7 @@
              xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms" 
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
              xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms" 
-             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:behavior1="clr-namespace:PasaBuy.App.Behaviors" xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:behavior1="clr-namespace:PasaBuy.App.Behaviors" xmlns:loading="clr-namespace:PasaBuy.App.UserControls" xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch"
              BackgroundColor="{DynamicResource Gray-White}"
              x:Class="PasaBuy.App.Views.Marketplace.FoodBrowserPage">
 
@@ -216,15 +216,23 @@
                                                         <StackLayout Margin="8,0,0,0" Grid.Column="1" Spacing="1" >
 
                                                             <!--  Store Name label  -->
-                                                            <Label Text="{Binding Title}"  
+                                                            <!--<Label Text="{Binding Title}"  
                                                                    FontSize="16" 
                                                                    x:Name="StoreName"
                                                                    FontFamily="{StaticResource Montserrat-SemiBold}" 
                                                                    HorizontalOptions="Start" 
                                                                    TextColor="{DynamicResource Gray-900}" 
-                                                                   LineBreakMode="NoWrap"/>
+                                                                   LineBreakMode="NoWrap"/>-->
 
-                                                            <!--  Store operational hours label  -->
+                                                            <Forms9Patch:Label  Text="{Binding Title}"  
+                                                                                FontFamily="{StaticResource Montserrat-SemiBold}" 
+                                                                                HorizontalOptions="Start" 
+                                                                                x:Name="StoreName"
+                                                                                TextColor="{DynamicResource Gray-900}" 
+                                                                                Lines="1"
+                                                                                AutoFit="Width"/>
+
+                                                    <!--  Store operational hours label  -->
                                                             <Label  Text="10:00am - 6:00pm" 
                                                                     FontSize="12" 
                                                                     FontFamily="{StaticResource Montserrat-Medium}" 
