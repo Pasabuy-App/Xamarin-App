@@ -18,7 +18,7 @@ namespace PasaBuy.App.Views.PopupModals
         public PopupAddRole()
         {
             InitializeComponent();
-            this.BindingContext = new RolesViewModel();
+            this.BindingContext = new AccessViewModel();
 
         }
 

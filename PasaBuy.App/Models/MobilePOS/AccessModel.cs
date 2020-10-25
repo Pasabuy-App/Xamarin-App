@@ -1,33 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
 
 namespace PasaBuy.App.Models.MobilePOS
 {
-    public class RolesModel
+    public class AccessModel : INotifyPropertyChanged
     {
-        private string role_title = string.Empty;
-        private string id = string.Empty;
         private string access_name = string.Empty;
         private string access_id = string.Empty;
 
-        public ObservableCollection<AccessModel> Access { get; set; }
-
-
-        public string Id
-        {
-            get
-            {
-                return id;
-            }
-            set
-            {
-                id = value;
-                OnPropertyChanged("Id");
-            }
-        }
 
         public string AccessName
         {
@@ -55,18 +37,6 @@ namespace PasaBuy.App.Models.MobilePOS
             }
         }
 
-        public string RoleTitle
-        {
-            get
-            {
-                return role_title;
-            }
-            set
-            {
-                role_title = value;
-                OnPropertyChanged("RoleTitle");
-            }
-        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
