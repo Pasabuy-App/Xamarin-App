@@ -39,11 +39,11 @@ namespace PasaBuy.App.Http
         #endregion
 
         #region Create Method
-        public async void CreateOrder(string wpid, string snky, string stid, string method, string addid, string msg, System.Collections.ObjectModel.ObservableCollection<Models.MobilePOS.OrderModel> List, Action<bool, string> callback)
+        public async void CreateOrder(string stid, string method, string addid, string msg, System.Collections.ObjectModel.ObservableCollection<Models.MobilePOS.OrderModel> List, Action<bool, string> callback)
         {
             var dict = new Dictionary<string, string>();
-                dict.Add("wpid", wpid);
-                dict.Add("snky", snky);
+                dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
+                dict.Add("snky", PSACache.Instance.UserInfo.snky);
                 dict.Add("stid", stid);
                 dict.Add("addid", addid);
                 dict.Add("method", method);
