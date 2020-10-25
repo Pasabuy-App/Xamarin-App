@@ -83,7 +83,7 @@
                                                 Grid.RowSpan="3"
                                                 Margin="5,0,30,0"
                                                 Grid.Column="0"
-                                                Source="Avatar.png"
+                                                Source="{Binding Avatar}"
                                                 HeightRequest="50"
                                                 x:Name="ImageId"
 			                                    DownsampleToViewSize="true" FadeAnimationEnabled="True" >
