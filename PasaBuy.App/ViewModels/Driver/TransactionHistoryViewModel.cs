@@ -183,7 +183,7 @@ namespace PasaBuy.App.ViewModels.Driver
             Views.StoreViews.TransactionDetailsView.method = "Cash";// item.Method;
             Views.StoreViews.TransactionDetailsView.order_type = "completed";
             Views.StoreViews.TransactionDetailsView.stage_type = "completed";
-            ViewModels.MobilePOS.OrderDetailsViewModel.LoadOrder("completed", "27");
+            ViewModels.MobilePOS.OrderDetailsViewModel.LoadOrder("", "completed", "27");
             await Application.Current.MainPage.Navigation.PushModalAsync(new Views.StoreViews.TransactionDetailsView());
         }
 
