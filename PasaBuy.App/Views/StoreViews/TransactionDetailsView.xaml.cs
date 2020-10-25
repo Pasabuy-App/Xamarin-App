@@ -1,4 +1,5 @@
 ﻿using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
 using PasaBuy.App.ViewModels.MobilePOS;
 using PasaBuy.App.Views.Chat;
 using System;
@@ -14,6 +15,9 @@ namespace PasaBuy.App.Views.StoreViews
     {
         public static string id = string.Empty;
         public static string customer = string.Empty;
+        public static string stid = string.Empty;
+        public static string user_id = string.Empty;
+        public static string avatar = string.Empty;
         public static string orderid = string.Empty;
         public static string totalprice = string.Empty;
         public static string method = string.Empty;
@@ -30,9 +34,18 @@ namespace PasaBuy.App.Views.StoreViews
             DateCreated.Text = datecreated;
             TotalPrice.Text = totalprice;
             Method.Text = method;
+            if (order_type == "Completed" || order_type == "Received")
+            {
+                MessageButton.IsVisible = true;
+            }
+            else
+            {
+                MessageButton.IsVisible = false;
+            }
             if (order_type == "Completed" || order_type == "Declined")
             {
                 Decline_Accept.IsVisible = false;
+
             }
             else
             {
@@ -106,8 +119,16 @@ namespace PasaBuy.App.Views.StoreViews
         {
             Device.BeginInvokeOnMainThread(async () =>
             {
+                ViewModels.Chat.StoreConversationViewModel.refresh = 0;
                 await Task.Delay(200);
-                await App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new ChatMessagePage()));
+
+                ViewModels.Chat.StoreConversationViewModel.ProfileNames = customer;
+                ViewModels.Chat.StoreConversationViewModel.ProfileImages = avatar;
+                ViewModels.Chat.StoreConversationViewModel.user_id = user_id;
+                ViewModels.Chat.StoreConversationViewModel.storeid = PSACache.Instance.UserInfo.stid;
+                await ((App.Current.MainPage as MasterDetailPage).Detail as NavigationPage).Navigation.PushModalAsync(new StoreConversationPage());
+
+                //await App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new ChatMessagePage()));
             });
         }
     }

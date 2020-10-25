@@ -118,7 +118,7 @@
                                 TextColor="{DynamicResource Gray-900}">
                         </Label>
 
-                        <ffimageloading:CachedImage Aspect="AspectFit"
+                        <ffimageloading:CachedImage Aspect="AspectFit" x:Name="MessageButton"
                                                 Grid.Row="2"
                                                 HorizontalOptions="StartAndExpand"
                                                 Margin="0,5,0,0"
