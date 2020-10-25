@@ -1,5 +1,6 @@
 ﻿using PasaBuy.App.Views.Onboarding;
 using PasaBuy.App.Views.Settings;
+using Rg.Plugins.Popup.Services;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -309,12 +310,15 @@ namespace PasaBuy.App.ViewModels.Settings
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     await Task.Delay(100);
-                    Application.Current.MainPage = new NavigationPage(new SignInPage());
-                    Preferences.Remove("UserInfo");
+                    //Application.Current.MainPage = new NavigationPage(new SignInPage());
+                    await PopupNavigation.Instance.PushAsync(new PasaBuy.App.Views.PopupModals.PopupConfirmLogout());
+                    //Preferences.Remove("UserInfo");
                     isEnable = false;
                 });
             }
         }
+
+      
 
         private void VerifyAccountClicked(object obj)
         {

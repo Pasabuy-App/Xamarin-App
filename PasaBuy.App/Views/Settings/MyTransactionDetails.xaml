@@ -62,7 +62,6 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     <ffimageloading:CachedImage Aspect="AspectFit"
                                                 Grid.Row="0"
@@ -79,7 +78,8 @@
                         </ffimageloading:CachedImage.Transformations>
                     </ffimageloading:CachedImage>
                     <Label Grid.Row="0"
-                               Grid.Column="1"
+                           Grid.Column="1"
+                           Grid.ColumnSpan="2"
                                FontFamily="{StaticResource Montserrat-SemiBold}"
                                Padding="10,0,0,0"
                                FontSize="{DynamicResource MediumSize}"
@@ -89,8 +89,8 @@
                                x:Name="StoreName"
                                TextColor="{DynamicResource Gray-900}" />
 
-                    <Label Grid.Row="0"
-                               Grid.Column="2"
+                    <!--<Label Grid.Row="1"
+                               Grid.Column="0"
                                FontFamily="{StaticResource Montserrat-Medium}"
                                Padding="10,0,0,0"
                                FontSize="{DynamicResource SmallSize}" 
@@ -98,7 +98,17 @@
                                HorizontalTextAlignment="End"
                                Text="{Binding OrderID}"
                                x:Name="OrderIDandOrderTime"
-                               TextColor="{DynamicResource Gray-900}" />
+                               TextColor="{DynamicResource Gray-900}" />-->
+                    <Label  FontSize="{DynamicResource SmallSize}" 
+                               Grid.Row="1" 
+                               Grid.Column="1"
+                             Grid.ColumnSpan="2"
+                               HorizontalTextAlignment="Start"
+                               HorizontalOptions="Start"
+                               Margin="10,0,0,0"
+                               FontFamily="{StaticResource Montserrat-SemiBold}"
+                               TextColor="{DynamicResource Gray-900}"
+                               Text="{Binding OrderID}" />
 
                     <Label FontSize="18"
                                Grid.Row="2" 

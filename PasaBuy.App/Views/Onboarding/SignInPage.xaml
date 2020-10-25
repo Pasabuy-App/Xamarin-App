@@ -68,17 +68,18 @@
 
                         <!--  Entry to get password from user  -->
                         <border:SfBorder
-                        Grid.Row="3"
-                        BorderColor="{Binding Source={x:Reference PasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
-                        Style="{StaticResource SfBorderStyle}" CornerRadius="7">
-                            <control:BorderlessEntry
-                            x:Name="PasswordEntry"
-                            IsPassword="True"
-                            Placeholder="Password"
-                            ReturnType="Next"
-                            PlaceholderColor="{DynamicResource Gray-700}"
-                            Style="{StaticResource EntryStyle}"
-                            Text="{Binding Password}" />
+                            Grid.Row="3"
+                            BorderColor="{Binding Source={x:Reference PasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                            Style="{StaticResource SfBorderStyle}" CornerRadius="7">
+                                <control:BorderlessEntry
+                                x:Name="PasswordEntry"
+                                IsPassword="True"
+                                Placeholder="Password"
+                                ReturnType="Next"
+                                PlaceholderColor="{DynamicResource Gray-700}"
+                                Style="{StaticResource EntryStyle}"
+                                Text="{Binding Password}" />
+                            <!--<Entry x:Name="PasswordEntry" />-->
                         </border:SfBorder>
 
                     <buttons:SfButton
@@ -105,18 +106,6 @@
                             Style="{StaticResource SfFlatButtonStyle}"
                             Text="FORGOT PASSWORD?" />
                         
-                       
-                        <!--<Label
-                        Grid.Row="6"
-                        FontFamily="{StaticResource Montserrat-Medium}"
-                        HorizontalTextAlignment="Center"
-                        Style="{StaticResource LabelStyle}"
-                        Text="Or create an account using social media" />-->
-
-                        <!--  Login button with social icons -->
-                        <!--<Grid Grid.Row="7">
-                            <template:SocialIconTemplate /> 
-                        </Grid>-->
 
                     </Grid>
 
