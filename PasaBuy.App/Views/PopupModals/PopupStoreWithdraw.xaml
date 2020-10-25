@@ -100,7 +100,6 @@
                             Grid.Column="0"
                             BackgroundColor="Green"
                             BorderColor="{DynamicResource BlackColor}"
-                            Command="{Binding Path=BindingContext.AddToOrderCommand, Source={x:Reference listView}}" 
                             BorderWidth="2"
                             CornerRadius="4"
                             FontFamily="{StaticResource Montserrat-Regular}"

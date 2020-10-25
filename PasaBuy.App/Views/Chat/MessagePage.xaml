@@ -62,19 +62,13 @@
                 Spacing="0">
 
                         <StackLayout 
-                    x:Name="ProfileView"
-                    HorizontalOptions="FillAndExpand"
-                    IsVisible="True"
-                    Orientation="Horizontal"
-                    Spacing="0" 
-                    VerticalOptions="FillAndExpand">
+                            x:Name="ProfileView"
+                            HorizontalOptions="FillAndExpand"
+                            IsVisible="True"
+                            Orientation="Horizontal"
+                            Spacing="0" 
+                            VerticalOptions="FillAndExpand">
 
-                            <!--  Menu Button  -->
-                            <!--buttons:SfButton
-                        x:Name="MenuBackButton"
-                        Command="{Binding BackCommand}"
-                        Style="{StaticResource NavigationBarButtonStyle}"
-                        Text="{StaticResource Back}" />-->
 
                             <!--  Rounded Profile Image  -->
                             <border:SfBorder BackgroundColor="{DynamicResource Gray-200}" Style="{StaticResource ProfileBorderStyle}">
@@ -92,63 +86,45 @@
                                 </Image>
                             </border:SfBorder>
 
-                            <!--  Recent Chat page Title  -->
-                            <!--<Label
-                        Margin="16,0" 
-                        FontFamily="{StaticResource Montserrat-SemiBold}"
-                        FontSize="18"
-                        HorizontalOptions="Start"
-                        LineHeight="1.25"
-                        Text="Messages"
-                        TextColor="{DynamicResource Gray-White}"
-                        VerticalOptions="Center"
-                        VerticalTextAlignment="Center" />-->
+                    
 
                         </StackLayout>
 
-                        <StackLayout 
-                    x:Name="SearchBox"
-                    HorizontalOptions="EndAndExpand"
-                    IsVisible="False"
-                    Orientation="Horizontal"
-                    Spacing="0">
+                        <StackLayout x:Name="SearchBox"
+                                    HorizontalOptions="EndAndExpand"
+                                    IsVisible="False"
+                                    Orientation="Horizontal"
+                                    Spacing="0">    
 
                             <buttons:SfButton
-                        x:Name="BackButton"
-                        Clicked="BackButton_Clicked"
-                        Style="{StaticResource NavigationBarButtonStyle}"
-                        Text="{StaticResource Next}" />
+                                x:Name="BackButton"
+                                Clicked="BackButton_Clicked"
+                                Style="{StaticResource NavigationBarButtonStyle}"
+                                Text="{StaticResource Next}" />
 
                             <!--  Rounded Search Entry  -->
                             <border:SfBorder Style="{DynamicResource SfBorderStyle}">
 
                                 <controls:BorderlessEntry
-                            x:Name="SearchEntry"
-                            BindingContext="{x:Reference ListView}"
-                            HorizontalOptions="FillAndExpand"
-                            Placeholder="Search here..."
-                            Style="{StaticResource ChatSearchEntryStyle}"
-                            Margin="16, 0, 16, 0"
-                            Text="{Binding SearchText, Mode=TwoWay}" />
+                                        x:Name="SearchEntry"
+                                        BindingContext="{x:Reference ListView}"
+                                        HorizontalOptions="FillAndExpand"
+                                        Placeholder="Search here..."
+                                        Style="{StaticResource ChatSearchEntryStyle}"
+                                        Margin="16, 0, 16, 0"
+                                        Text="{Binding SearchText, Mode=TwoWay}" />
 
                             </border:SfBorder>
                         </StackLayout>
 
                         <!--  Search Button  -->
                         <buttons:SfButton
-                    x:Name="SearchButton"
-                    BindingContext="{x:Reference ProfileView}"
-                    Clicked="SearchButton_Clicked"
-                    IsVisible="{Binding Path=IsVisible}"
-                    Style="{StaticResource NavigationBarButtonStyle}"
-                    Text="{StaticResource Search}" />
-
-                        <!--  Menu Button  -->
-                        <!--<buttons:SfButton
-                    x:Name="MenuButton"
-                    Command="{Binding MenuCommand}"
-                    Style="{StaticResource NavigationBarButtonStyle}"
-                    Text="{StaticResource Menu}" />-->
+                            x:Name="SearchButton"
+                            BindingContext="{x:Reference ProfileView}"
+                            Clicked="SearchButton_Clicked"
+                            IsVisible="{Binding Path=IsVisible}"
+                            Style="{StaticResource NavigationBarButtonStyle}"
+                            Text="{StaticResource Search}" />
 
                     </StackLayout>
 
@@ -157,17 +133,18 @@
 
                     <!--  Searchable List view  -->
                     <controls:SearchableChatList
-                x:Name="ListView" ItemAppearing="ListView_ItemAppearing"
-                AllowSwiping="True"
-                AutoFitMode="Height"
-                FocusBorderThickness="0"
-                ItemsSource="{Binding ChatItems}"
-                SearchText="{Binding SearchText}"
-                TapCommand="{Binding ItemSelectedCommand}"
-                SelectionGesture="Tap"
-                SelectionMode="Single"
-                SwipeOffset="156"
-                VerticalOptions="FillAndExpand">
+                            x:Name="ListView"
+                            ItemAppearing="ListView_ItemAppearing"
+                            AllowSwiping="True"
+                            AutoFitMode="Height"
+                            FocusBorderThickness="0"
+                            ItemsSource="{Binding ChatItems}"
+                            SearchText="{Binding SearchText}"
+                            TapCommand="{Binding ItemSelectedCommand}"
+                            SelectionGesture="Tap"
+                            SelectionMode="Single"
+                            SwipeOffset="156"
+                            VerticalOptions="FillAndExpand">
 
                         <controls:SearchableChatList.ItemTemplate>
                             <DataTemplate>

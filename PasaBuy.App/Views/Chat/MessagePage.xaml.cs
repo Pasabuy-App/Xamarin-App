@@ -103,6 +103,7 @@ namespace PasaBuy.App.Views.Chat
         private void SearchButton_Clicked(object sender, EventArgs e)
         {  
             this.ProfileView.IsVisible = false;
+            this.SearchBox.IsVisible = true;
 
             if (this.TitleBar != null)
             {
