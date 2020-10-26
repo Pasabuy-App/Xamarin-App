@@ -12,7 +12,6 @@ namespace PasaBuy.App
         public App()
         {
             InitializeComponent();
-
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(PSAConfig.sfApiKey);
 
             //Initialized all PCL required by PasaBuy.App
