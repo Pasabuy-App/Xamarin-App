@@ -7,19 +7,32 @@ namespace PasaBuy.App.Models.MobilePOS
 {
     public class AccessModel : INotifyPropertyChanged
     {
-        private string access_name = string.Empty;
-        private string access_id = string.Empty;
+        public string ID = string.Empty;
+        public string title = string.Empty;
+        public string actions = string.Empty;
+        public string groups = string.Empty;
 
-
+        public string AccessActions
+        {
+            get
+            {
+                return actions;
+            }
+            set
+            {
+                actions = value;
+                OnPropertyChanged("AccessActions");
+            }
+        }
         public string AccessName
         {
             get
             {
-                return access_name;
+                return title;
             }
             set
             {
-                access_name = value;
+                title = value;
                 OnPropertyChanged("AccessName");
             }
         }
@@ -28,11 +41,11 @@ namespace PasaBuy.App.Models.MobilePOS
         {
             get
             {
-                return access_id;
+                return ID;
             }
             set
             {
-                access_id = value;
+                ID = value;
                 OnPropertyChanged("AccessId");
             }
         }

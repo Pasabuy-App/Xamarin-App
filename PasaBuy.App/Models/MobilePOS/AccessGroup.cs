@@ -6,8 +6,15 @@ using System.Text;
 
 namespace PasaBuy.App.Models.MobilePOS
 {
+    public class AccessData
+    {
+        public string name = string.Empty;
+        public ObservableCollection<AccessModel> access { get; set; }
+    }
     public class AccessGroup : INotifyPropertyChanged
     {
+        public AccessData[] data;
+
         private string group_name = string.Empty;
 
         public ObservableCollection<AccessModel> AccessList { get; set; }

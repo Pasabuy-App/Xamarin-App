@@ -33,12 +33,15 @@
 
             <DataTemplate x:Key="checkboxTemplate">
                 <button:SfCheckBox  Grid.Column="0"
+                                    x:Name="Access"
+                                    StateChanged="Access_StateChanged"
                                     Grid.ColumnSpan="2"
                                     Margin="8,12,8,0"
                                     CheckedColor="{DynamicResource PrimaryColor}"
                                     HorizontalOptions="FillAndExpand"
                                     FontSize="{DynamicResource SmallSize}" 
                                     FontFamily="{StaticResource Montserrat-Medium}" 
+                                    ClassId="{Binding AccessId}"
                                     Text="{Binding AccessName}" />
             </DataTemplate>
 
@@ -162,6 +165,7 @@
                             FontFamily="{StaticResource Montserrat-Regular}"
                             HorizontalOptions="FillAndExpand"
                             Text="OK"
+                            Command="{Binding InsertRoleCommand}"
                             TextColor="White"
                             VerticalOptions="Center" />
                         <button:SfButton
