@@ -3,7 +3,6 @@ using PasaBuy.App.Local;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 
 namespace PasaBuy.App.Http
 {
@@ -40,7 +39,7 @@ namespace PasaBuy.App.Http
         /// <summary>
         /// Method for Variants listing with options using product id.
         /// </summary>
-        public async void VariantList_Options(string pdid,  Action<bool, string> callback)
+        public async void VariantList_Options(string pdid, Action<bool, string> callback)
         {
             var dict = new Dictionary<string, string>();
             dict.Add("wpid", PSACache.Instance.UserInfo.wpid);

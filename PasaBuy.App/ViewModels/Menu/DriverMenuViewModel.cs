@@ -1,5 +1,4 @@
 ﻿using PasaBuy.App.Local;
-using PasaBuy.App.Local.Notice;
 using PasaBuy.App.Views;
 using PasaBuy.App.Views.Backend;
 using PasaBuy.App.Views.Driver;

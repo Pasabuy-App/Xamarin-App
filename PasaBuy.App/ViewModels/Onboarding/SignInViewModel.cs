@@ -152,15 +152,15 @@ namespace PasaBuy.App.ViewModels.Onboarding
                     {
                         Token token = JsonConvert.DeserializeObject<Token>(data);
 
-                        
+
 
                         if (!token.isSuccess)
                         {
                             new Alert("Something went Wrong", HtmlUtils.ConvertToPlainText(token.message), "OK");
                             State = false;
                             return;
-                        } 
-                       
+                        }
+
 
                         //Initialized the class first.
                         PSACache.Instance.UserInfo = new UserInfo();

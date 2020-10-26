@@ -1,26 +1,22 @@
 ﻿
-using Xamarin.Forms;
-using Xamarin.Forms.Internals;
+using PasaBuy.App.Local;
+using PasaBuy.App.Models.MobilePOS;
+using PasaBuy.App.ViewModels.Chat;
+using PasaBuy.App.ViewModels.Feeds;
+using PasaBuy.App.Views.Advisory;
+using PasaBuy.App.Views.Chat;
+using PasaBuy.App.Views.Currency;
+using PasaBuy.App.Views.Driver;
+using PasaBuy.App.Views.Feeds;
+using PasaBuy.App.Views.Navigation;
 using PasaBuy.App.Views.Notification;
 using PasaBuy.App.Views.Settings;
-using PasaBuy.App.Views.Feeds;
-using PasaBuy.App.Views.Advisory;
-using PasaBuy.App.Views.Currency;
-using PasaBuy.App.Local;
-using PasaBuy.App.ViewModels.Feeds;
-using PasaBuy.App.Views.Navigation;
-using System;
-using PasaBuy.App.ViewModels.MobilePOS;
-using PasaBuy.App.Http;
-using PasaBuy.App.ViewModels.Chat;
-using PasaBuy.App.Views.Chat;
 using PasaBuy.App.Views.StoreViews;
-using PasaBuy.App.Models.MobilePOS;
+using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using PasaBuy.App.Local.Notice;
-using Rg.Plugins.Popup.Services;
-using PasaBuy.App.Views.Driver;
+using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace PasaBuy.App.ViewModels.Menu
 {
@@ -413,7 +409,7 @@ namespace PasaBuy.App.ViewModels.Menu
         /// Invoked when the driver button is clicked.
         /// </summary>
         /// <param name="obj">The object</param>
-        private  void DriverButtonClicked(object obj)
+        private void DriverButtonClicked(object obj)
         {
             if (!Status)
             {
@@ -421,7 +417,7 @@ namespace PasaBuy.App.ViewModels.Menu
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     MasterView.MyType = "mover";
-                    await(App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new VehicleListPage()));
+                    await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new VehicleListPage()));
                     Status = false;
                 });
             }
@@ -439,11 +435,11 @@ namespace PasaBuy.App.ViewModels.Menu
                 Status = true;
                 //IsBusy = true;
                 MasterView.MyType = "store";
-                Device.BeginInvokeOnMainThread( async () =>
-                {
-                    await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyStoresList()));
-                    Status = false;
-                });
+                Device.BeginInvokeOnMainThread(async () =>
+               {
+                   await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyStoresList()));
+                   Status = false;
+               });
             }
         }
 

@@ -1,6 +1,4 @@
-﻿using PasaBuy.App.Models.Marketplace;
-using PasaBuy.App.ViewModels.Marketplace;
-using System;
+﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;

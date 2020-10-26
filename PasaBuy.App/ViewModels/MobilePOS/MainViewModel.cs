@@ -4,9 +4,7 @@ using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.MobilePOS;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 
 namespace PasaBuy.App.ViewModels.MobilePOS
 {
@@ -17,14 +15,14 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         public static ObservableCollection<OrdersDataModel> orderList;
         public ObservableCollection<OrdersDataModel> OrderList
         {
-            get 
+            get
             {
                 return orderList;
             }
             set
             {
-                orderList = value; 
-                this.NotifyPropertyChanged(); 
+                orderList = value;
+                this.NotifyPropertyChanged();
             }
         }
 

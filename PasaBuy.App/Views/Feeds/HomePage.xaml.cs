@@ -1,8 +1,6 @@
 ﻿using Newtonsoft.Json;
 using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Controls;
 using PasaBuy.App.Local;
-using PasaBuy.App.Models.Feeds;
 using PasaBuy.App.Models.Onboarding;
 using PasaBuy.App.ViewModels.Driver;
 using PasaBuy.App.ViewModels.Feeds;
@@ -183,6 +181,6 @@ namespace PasaBuy.App.Views.Feeds
             }
         }
 
-       
+
     }
 }

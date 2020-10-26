@@ -107,16 +107,16 @@ namespace PasaBuy.App.ViewModels.Feeds
                                  }
                                  if (type == "Pasabay")
                                  {
-                                    //title = "Pasabuy - Hide";
-                                    title = "<b> Destination: " + post.data[i].pickup_location + " </b>";
+                                     //title = "Pasabuy - Hide";
+                                     title = "<b> Destination: " + post.data[i].pickup_location + " </b>";
                                      pickup_location = "Date: " + post.data[i].vehicle_date;
                                      vehicle_type = "Return Place: " + post.data[i].drop_off_location;
                                      do_price = "Time: " + post.data[i].time_price;
                                  }
                                  if (type == "Pahatid")
                                  {
-                                    //title = "Pasabuy - Hide";
-                                    title = "<b> Pick-up: " + post.data[i].pickup_location + " </b>";
+                                     //title = "Pasabuy - Hide";
+                                     title = "<b> Pick-up: " + post.data[i].pickup_location + " </b>";
                                      pickup_location = "Date: " + post.data[i].vehicle_date;
                                      vehicle_type = "Drop-off: " + post.data[i].drop_off_location;
                                      do_price = "Time: " + post.data[i].time_price;

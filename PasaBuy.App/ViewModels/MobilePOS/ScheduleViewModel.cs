@@ -5,10 +5,8 @@ using PasaBuy.App.Models.MobilePOS;
 using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -37,7 +35,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 return new Command<string>((x) => Submit());
             }
         }
-        private  void Submit()
+        private void Submit()
         {
             GetStarted = false;
             Local.PSACache.Instance.UserInfo.store_schedule = true;

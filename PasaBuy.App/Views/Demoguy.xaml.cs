@@ -1,6 +1,4 @@
-﻿using PasaBuy.App.Local.Notice;
-using PasaBuy.App.Services;
-using System;
+﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,7 +14,7 @@ namespace PasaBuy.App.Views
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

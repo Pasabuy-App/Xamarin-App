@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace PasaBuy.App.Helpers
 {
@@ -9,7 +6,7 @@ namespace PasaBuy.App.Helpers
     {
         #region Public Properties
 
-  
+
 
         public DataTemplate VariantsTemplate { get; set; }
 

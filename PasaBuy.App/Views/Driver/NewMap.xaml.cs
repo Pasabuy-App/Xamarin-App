@@ -1,6 +1,5 @@
 ﻿using PasaBuy.App.DataService;
 using PasaBuy.App.ViewModels;
-using System;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 using Xamarin.Forms.Xaml;

@@ -1,6 +1,4 @@
 ﻿using PasaBuy.App.ViewModels.eCommerce;
-using Syncfusion.SfNumericUpDown.XForms;
-using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;

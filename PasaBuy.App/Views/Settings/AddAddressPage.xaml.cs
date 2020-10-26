@@ -5,7 +5,6 @@ using PasaBuy.App.ViewModels.Onboarding;
 using PasaBuy.App.ViewModels.Settings;
 using Plugin.Media;
 using System;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -58,8 +57,8 @@ namespace PasaBuy.App.Views.Settings
                                 }
                                 if (addPath == "Another")
                                 {
-                                   /* ViewModels.eCommerce.ChangeAddressViewModel._addressList.Clear();
-                                    ViewModels.eCommerce.ChangeAddressViewModel.LoadData();*/
+                                    /* ViewModels.eCommerce.ChangeAddressViewModel._addressList.Clear();
+                                     ViewModels.eCommerce.ChangeAddressViewModel.LoadData();*/
                                 }
                                 Navigation.PopModalAsync();
                                 LoadingIndicator.IsRunning = false;

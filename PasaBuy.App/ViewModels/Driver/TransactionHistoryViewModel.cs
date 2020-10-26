@@ -1,9 +1,5 @@
-﻿using Forms9Patch;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.Driver
@@ -13,14 +9,15 @@ namespace PasaBuy.App.ViewModels.Driver
         public static ObservableCollection<Models.Driver.TransactListData> _HistoryList;
         public ObservableCollection<Models.Driver.TransactListData> HistoryList
         {
-            get 
-            { 
-                return _HistoryList; 
+            get
+            {
+                return _HistoryList;
             }
-            set 
-            { 
-                _HistoryList = value; 
-                this.NotifyPropertyChanged(); }
+            set
+            {
+                _HistoryList = value;
+                this.NotifyPropertyChanged();
+            }
         }
 
         public static int LastIndex = 11;
@@ -41,7 +38,7 @@ namespace PasaBuy.App.ViewModels.Driver
                     Customer = "Please revised rest api.",
                     Hash_id = "Order #0000",
                     Date_created = "Oct. 20, 2020 06:33 PM",
-                    Price =0,
+                    Price = 0,
                     Status = "Pending"
                 });
                 _HistoryList.Add(new Models.Driver.TransactListData()
@@ -61,7 +58,7 @@ namespace PasaBuy.App.ViewModels.Driver
                     Customer = "Name",
                     Hash_id = "Order #4323",
                     Date_created = "Sept. 5, 2020 10:23 AM",
-                    Price =250,
+                    Price = 250,
                     Status = "Completed"
                 });
                 _HistoryList.Add(new Models.Driver.TransactListData()

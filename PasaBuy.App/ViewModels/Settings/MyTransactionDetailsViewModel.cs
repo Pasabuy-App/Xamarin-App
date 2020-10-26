@@ -1,15 +1,10 @@
-﻿using PasaBuy.App.Local;
-using PasaBuy.App.Models.Driver;
-using PasaBuy.App.Models.MobilePOS;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
-using MobilePOS;
-using System.Globalization;
+﻿using MobilePOS;
 using Newtonsoft.Json;
-using PasaBuy.App.Models.eCommerce;
 using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
+using PasaBuy.App.Models.Driver;
+using System;
+using System.Collections.ObjectModel;
 
 namespace PasaBuy.App.ViewModels.Settings
 {
@@ -182,7 +177,7 @@ namespace PasaBuy.App.ViewModels.Settings
                                 {
                                     Product = order.data[i].product_name,
                                     Quantity = order.data[i].qty,
-                                    Price =  Convert.ToDouble(order.data[i].price)
+                                    Price = Convert.ToDouble(order.data[i].price)
                                 });
                             }
                         }

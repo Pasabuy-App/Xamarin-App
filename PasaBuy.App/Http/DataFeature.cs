@@ -4,8 +4,6 @@ using PasaBuy.App.Models;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PasaBuy.App.Http
 {
@@ -42,8 +40,8 @@ namespace PasaBuy.App.Http
         public async void VerifyUser(Action<bool, string> callback)
         {
             var dict = new Dictionary<string, string>();
-                dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
-                dict.Add("snky", PSACache.Instance.UserInfo.snky);
+            dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
+            dict.Add("snky", PSACache.Instance.UserInfo.snky);
             var content = new FormUrlEncodedContent(dict);
 
             var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/datavice/v1/user/verify/docs", content);

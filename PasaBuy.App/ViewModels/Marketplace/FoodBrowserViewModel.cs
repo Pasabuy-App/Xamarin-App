@@ -98,7 +98,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
             _bestSellers = new ObservableCollection<FeaturedStoreModel>();
             RefreshCommand = new Command<string>((key) =>
             {
-                FoodBrowserPage.LastIndex = 11; 
+                FoodBrowserPage.LastIndex = 11;
                 _bestSellers.Clear();
                 foodstorelist.Clear();
                 LoadBestSeller();

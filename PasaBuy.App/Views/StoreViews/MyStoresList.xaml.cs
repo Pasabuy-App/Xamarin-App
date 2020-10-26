@@ -1,8 +1,5 @@
-﻿using PasaBuy.App.Local;
-using PasaBuy.App.ViewModels.MobilePOS;
-using PasaBuy.App.Views.Navigation;
+﻿using PasaBuy.App.ViewModels.MobilePOS;
 using System;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

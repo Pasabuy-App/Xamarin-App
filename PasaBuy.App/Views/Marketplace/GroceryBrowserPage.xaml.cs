@@ -1,8 +1,5 @@
-﻿using PasaBuy.App.Models.Marketplace;
-using PasaBuy.App.ViewModels.Marketplace;
+﻿using PasaBuy.App.ViewModels.Marketplace;
 using System;
-using System.Linq;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -160,15 +157,15 @@ namespace PasaBuy.App.Views.Marketplace
 
         private void RestaurantList_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
         {
-           /* var item = e.ItemData as Groceries;
-            if (GroceryBrowserViewModel.grocerystorelist.Last() == item && GroceryBrowserViewModel.grocerystorelist.Count() != 1)
-            {
-                if (GroceryBrowserViewModel.grocerystorelist.IndexOf(item) >= LastIndex)
-                {
-                    LastIndex += 6;
-                    GroceryBrowserViewModel.LoadGrocery(item.Id);
-                }
-            }*/
+            /* var item = e.ItemData as Groceries;
+             if (GroceryBrowserViewModel.grocerystorelist.Last() == item && GroceryBrowserViewModel.grocerystorelist.Count() != 1)
+             {
+                 if (GroceryBrowserViewModel.grocerystorelist.IndexOf(item) >= LastIndex)
+                 {
+                     LastIndex += 6;
+                     GroceryBrowserViewModel.LoadGrocery(item.Id);
+                 }
+             }*/
         }
 
     }

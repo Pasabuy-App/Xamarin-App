@@ -7,12 +7,6 @@ using PasaBuy.App.Views.StoreViews.Management;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace PasaBuy.App.Views.PopupModals
@@ -24,7 +18,7 @@ namespace PasaBuy.App.Views.PopupModals
         public PopupEditOptions()
         {
             InitializeComponent();
-            if (!string.IsNullOrWhiteSpace(option_id)) 
+            if (!string.IsNullOrWhiteSpace(option_id))
             {
                 TindaPress.Variant.Instance.Listing(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, ProductVariants.product_id, OptionsViewModel.variant_id, "1", option_id, (bool success, string data) =>
                 {

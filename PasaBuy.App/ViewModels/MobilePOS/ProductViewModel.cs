@@ -1,14 +1,10 @@
 ﻿using Newtonsoft.Json;
-using PasaBuy.App.Commands;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.MobilePOS;
-using PasaBuy.App.Views.PopupModals;
 using PasaBuy.App.Views.StoreViews.Management;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;

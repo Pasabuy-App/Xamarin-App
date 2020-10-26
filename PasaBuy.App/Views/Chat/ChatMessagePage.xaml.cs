@@ -1,4 +1,3 @@
-using PasaBuy.App.ViewModels.Chat;
 using System;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;

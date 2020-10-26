@@ -53,7 +53,7 @@ namespace PasaBuy.App.Views.PopupModals
             {
                 days = "sun";
             }
-            days = day != "Monday" ? day != "Tuesday" ? day != "Wednesday" ? day != "Thursday" ? day != "Friday" ? day != "Saturday" ? "sun" : "sat" : "fri" : "thu" : "wed" : "tue" : "mon" ;
+            days = day != "Monday" ? day != "Tuesday" ? day != "Wednesday" ? day != "Thursday" ? day != "Friday" ? day != "Saturday" ? "sun" : "sat" : "fri" : "thu" : "wed" : "tue" : "mon";
             //new Alert(days, Open.Time + ". ." + Close.Time, day);
             if (Open.Time.ToString() == "00:00:00" || Close.Time.ToString() == "00:00:00")
             {

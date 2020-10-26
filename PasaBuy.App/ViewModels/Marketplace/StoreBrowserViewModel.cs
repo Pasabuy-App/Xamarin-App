@@ -5,8 +5,6 @@ using PasaBuy.App.Models.Marketplace;
 using PasaBuy.App.Views.Notice;
 using System;
 using System.Collections.ObjectModel;
-using System.Runtime.Serialization;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;

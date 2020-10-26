@@ -5,9 +5,7 @@ using PasaBuy.App.Models.Driver;
 using PasaBuy.App.Views.Driver;
 using PasaBuy.App.Views.Navigation;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -45,7 +43,7 @@ namespace PasaBuy.App.ViewModels.Driver
                     if (success)
                     {
                         VehicleList datas = JsonConvert.DeserializeObject<VehicleList>(data);
-                        for (int i = 0; i < datas.data.Length; i++ )
+                        for (int i = 0; i < datas.data.Length; i++)
                         {
                             _vehicleList.Add(new VehicleList()
                             {
@@ -85,16 +83,16 @@ namespace PasaBuy.App.ViewModels.Driver
             if (!IsBusy)
             {
                 IsBusy = true;
-               
+
                 MasterView.MyType = "mover";
                 new Alert("some", Identification, "ok");
-                  
+
                 App.Current.MainPage = new DashboardPage();
 
                 IsBusy = false;
-               // CanNavigate = true;
+                // CanNavigate = true;
             }
-          
+
         }
         #endregion
 

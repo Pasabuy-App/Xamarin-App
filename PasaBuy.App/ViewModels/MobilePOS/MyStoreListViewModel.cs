@@ -97,7 +97,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                     Banner = datas.data[i].banner == "None" || string.IsNullOrEmpty(datas.data[i].banner) ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png" : PSAProc.GetUrl(datas.data[i].banner)
                                 });
                             }
-                            IsRunning = false ;
+                            IsRunning = false;
                         }
                         else
                         {
@@ -142,7 +142,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                     IsRunning = false;
                 });
 
-                
+
             }
         }
     }

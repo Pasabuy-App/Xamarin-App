@@ -4,7 +4,6 @@ using PasaBuy.App.Resources.Texts;
 using PasaBuy.App.Views.Driver;
 using PasaBuy.App.Views.PopupModals;
 using PasaBuy.App.Views.StoreViews;
-using PasaBuy.App.Views.StoreViews.POS;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;

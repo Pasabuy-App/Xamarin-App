@@ -3,7 +3,6 @@ using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Marketplace;
 using PasaBuy.App.Views.Marketplace;
-using PasaBuy.App.Views.Notice;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;

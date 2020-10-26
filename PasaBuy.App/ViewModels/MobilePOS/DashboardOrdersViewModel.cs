@@ -6,7 +6,6 @@ using PasaBuy.App.Models.MobilePOS;
 using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -18,14 +17,14 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         public static ObservableCollection<OrdersDataModel> orderList;
         public ObservableCollection<OrdersDataModel> OrderList
         {
-            get 
-            { 
-                return orderList; 
+            get
+            {
+                return orderList;
             }
-            set 
-            { 
-                orderList = value; 
-                this.NotifyPropertyChanged(); 
+            set
+            {
+                orderList = value;
+                this.NotifyPropertyChanged();
             }
         }
 

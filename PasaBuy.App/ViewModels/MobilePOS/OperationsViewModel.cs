@@ -1,15 +1,15 @@
-﻿using PasaBuy.App.Controllers.Notice;
+﻿using MobilePOS;
+using Newtonsoft.Json;
+using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
 using PasaBuy.App.Models.MobilePOS;
 using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Windows.Input;
 using Xamarin.Forms;
-using MobilePOS;
-using PasaBuy.App.Local;
-using Newtonsoft.Json;
-using System.Globalization;
 
 namespace PasaBuy.App.ViewModels.MobilePOS
 {
@@ -118,7 +118,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 GetStarted = true;
             }
         }
-        
+
         public static void LoadOperation(string opid)
         {
             try

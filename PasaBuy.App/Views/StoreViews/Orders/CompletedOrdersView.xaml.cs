@@ -1,5 +1,4 @@
-﻿using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Models.MobilePOS;
+﻿using PasaBuy.App.Models.MobilePOS;
 using PasaBuy.App.ViewModels.MobilePOS;
 
 using Xamarin.Forms;

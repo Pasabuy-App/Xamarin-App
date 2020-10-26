@@ -1,8 +1,6 @@
 ﻿using FFImageLoading.Transformations;
 using FFImageLoading.Work;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace PasaBuy.App.ViewModels.Marketplace
 {
@@ -23,7 +21,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         }
 
-      
+
         public class CustomTransformationSelector : ITransformation
         {
             readonly ITransformation PlaceholderTransformation = new CircleTransformation(5d, "#EEEEEE");

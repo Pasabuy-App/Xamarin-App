@@ -1,7 +1,5 @@
 ﻿using PasaBuy.App.ViewModels.Marketplace;
 using System;
-using System.Linq;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -17,7 +15,7 @@ namespace PasaBuy.App.Views.Marketplace
         {
             InitializeComponent();
             this.BindingContext = new ProductDetailViewModel();
-          
+
         }
 
         public async void BackButtonClicked(object sender, EventArgs e)
@@ -37,7 +35,7 @@ namespace PasaBuy.App.Views.Marketplace
 
         private void numericUpDown_ValueChanged(object sender, Syncfusion.SfNumericUpDown.XForms.ValueEventArgs e)
         {
-           
+
         }
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
@@ -63,11 +61,11 @@ namespace PasaBuy.App.Views.Marketplace
             // TODO : if check, insert to observable collection. if uncheck, check the option id then remove it from observable collection.
             if (e.IsChecked.HasValue && e.IsChecked.Value)
             {
-                ProductDetailViewModel.InsertAddOns( (sender as Syncfusion.XForms.Buttons.SfCheckBox).ClassId, (sender as Syncfusion.XForms.Buttons.SfCheckBox).Text);
+                ProductDetailViewModel.InsertAddOns((sender as Syncfusion.XForms.Buttons.SfCheckBox).ClassId, (sender as Syncfusion.XForms.Buttons.SfCheckBox).Text);
             }
             else
             {
-                ProductDetailViewModel.RemoveAddOns( (sender as Syncfusion.XForms.Buttons.SfCheckBox).ClassId, (sender as Syncfusion.XForms.Buttons.SfCheckBox).Text);
+                ProductDetailViewModel.RemoveAddOns((sender as Syncfusion.XForms.Buttons.SfCheckBox).ClassId, (sender as Syncfusion.XForms.Buttons.SfCheckBox).Text);
             }
         }
 

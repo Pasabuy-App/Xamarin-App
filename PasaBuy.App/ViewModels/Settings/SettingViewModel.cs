@@ -1,8 +1,6 @@
-﻿using PasaBuy.App.Views.Onboarding;
-using PasaBuy.App.Views.Settings;
+﻿using PasaBuy.App.Views.Settings;
 using Rg.Plugins.Popup.Services;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -318,7 +316,7 @@ namespace PasaBuy.App.ViewModels.Settings
             }
         }
 
-      
+
 
         private void VerifyAccountClicked(object obj)
         {

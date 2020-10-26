@@ -101,7 +101,7 @@ namespace PasaBuy.App.Views.Chat
         /// <param name="sender">The Sender</param>
         /// <param name="e">Event Args</param>
         private void SearchButton_Clicked(object sender, EventArgs e)
-        {  
+        {
             this.ProfileView.IsVisible = false;
             this.SearchBox.IsVisible = true;
 

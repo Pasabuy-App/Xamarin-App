@@ -1,9 +1,9 @@
-﻿using Rg.Plugins.Popup.Pages;
+﻿using MobilePOS;
+using PasaBuy.App.Local;
+using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
 using Xamarin.Forms.Xaml;
-using MobilePOS;
-using PasaBuy.App.Local;
 
 namespace PasaBuy.App.Views.PopupModals
 {
@@ -118,8 +118,8 @@ namespace PasaBuy.App.Views.PopupModals
         {
             try
             {
-                HatidPress.Rider.Instance.UpdateAttendance(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, status, "", (bool success, string data) => 
-                { 
+                HatidPress.Rider.Instance.UpdateAttendance(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, status, "", (bool success, string data) =>
+                {
 
                 });
             }

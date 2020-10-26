@@ -1,18 +1,6 @@
-﻿using Newtonsoft.Json;
-using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Local;
-using PasaBuy.App.Models.Marketplace;
-using PasaBuy.App.Models.MobilePOS;
-using PasaBuy.App.Views.PopupModals;
-using PasaBuy.App.Views.StoreViews.POS;
-using Rg.Plugins.Popup.Services;
-using Syncfusion.XForms.Buttons;
+﻿using PasaBuy.App.Views.StoreViews.POS;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.MobilePOS
@@ -20,7 +8,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
     public class POSViewModel : BaseViewModel
     {
         public static ObservableCollection<Models.MobilePOS.PointOfSales> _currentOrder;
-        public  ObservableCollection<Models.MobilePOS.PointOfSales> CurrentOrder
+        public ObservableCollection<Models.MobilePOS.PointOfSales> CurrentOrder
         {
             get
             {

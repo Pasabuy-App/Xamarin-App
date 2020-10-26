@@ -1,8 +1,5 @@
 ﻿using PasaBuy.App.Models.Driver;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 
 namespace PasaBuy.App.ViewModels.Driver
 {
@@ -22,11 +19,11 @@ namespace PasaBuy.App.ViewModels.Driver
                 this.NotifyPropertyChanged();
             }
         }
-        public DriverDocumentsViewModel() 
+        public DriverDocumentsViewModel()
         {
             _documentsList = new ObservableCollection<DriverDocuments>();
 
-            for(int i = 0; i < 5; i++)
+            for (int i = 0; i < 5; i++)
             {
                 _documentsList.Add(new DriverDocuments()
                 {

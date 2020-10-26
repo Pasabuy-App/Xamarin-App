@@ -40,10 +40,10 @@ namespace PasaBuy.App.Droid
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
             SfPopupLayoutRenderer.Init();
             Xamarin.FormsGoogleMaps.Init(this, savedInstanceState);
-            NotificationCenter.CreateNotificationChannel();	
+            NotificationCenter.CreateNotificationChannel();
 
             LoadApplication(new App());
- 
+
             NotificationCenter.NotifyNotificationTapped(Intent);
 
         }

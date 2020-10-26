@@ -4,7 +4,6 @@ using PasaBuy.App.Local;
 using PasaBuy.App.Models.Feeds;
 using PasaBuy.App.Models.MobilePOS;
 using PasaBuy.App.ViewModels.Menu;
-using Plugin.Media.Abstractions;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -19,14 +18,14 @@ namespace PasaBuy.App.ViewModels.Feeds
         public static ObservableCollection<Post> homePostList;
         public ObservableCollection<Post> HomePosts
         {
-            get 
-            { 
-                return homePostList; 
+            get
+            {
+                return homePostList;
             }
-            set 
-            { 
-                homePostList = value; 
-                this.NotifyPropertyChanged(); 
+            set
+            {
+                homePostList = value;
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -34,14 +33,14 @@ namespace PasaBuy.App.ViewModels.Feeds
 
         public ObservableCollection<Personnels> UserinfoList
         {
-            get 
-            { 
-                return userinfoList; 
+            get
+            {
+                return userinfoList;
             }
-            set 
-            { 
-                userinfoList = value; 
-                this.NotifyPropertyChanged(); 
+            set
+            {
+                userinfoList = value;
+                this.NotifyPropertyChanged();
             }
         }
         public bool isRunning;

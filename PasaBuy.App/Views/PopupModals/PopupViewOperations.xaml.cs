@@ -1,13 +1,13 @@
-﻿using Rg.Plugins.Popup.Pages;
-using Rg.Plugins.Popup.Services;
-using System;
-using Xamarin.Forms.Xaml;
-using MobilePOS;
-using PasaBuy.App.Local;
-using PasaBuy.App.Models.MobilePOS;
+﻿using MobilePOS;
 using Newtonsoft.Json;
 using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
+using PasaBuy.App.Models.MobilePOS;
+using Rg.Plugins.Popup.Pages;
+using Rg.Plugins.Popup.Services;
+using System;
 using System.Globalization;
+using Xamarin.Forms.Xaml;
 
 namespace PasaBuy.App.Views.PopupModals
 {

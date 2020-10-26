@@ -3,12 +3,10 @@ using Newtonsoft.Json;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Marketplace;
-using PasaBuy.App.ViewModels.eCommerce;
 using PasaBuy.App.Views.eCommerce;
 using PasaBuy.App.Views.ErrorAndEmpty;
 using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -375,7 +373,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 {
                     if (success)
                     {
-                        
+
                         Root catRoot = JsonConvert.DeserializeObject<Root>(data);
                         for (int i = 0; i < catRoot.data.Length; i++)
                         {

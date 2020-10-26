@@ -1,20 +1,16 @@
-﻿using PasaBuy.App.Services;
-using Plugin.LocalNotification;
+﻿using Plugin.LocalNotification;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
 
 namespace PasaBuy.App.Local.Notice
 {
     public class LocalNotif
     {
         public static LocalNotif instance;
-        public static LocalNotif Instance 
+        public static LocalNotif Instance
         {
-            get 
-            { 
-                if(instance == null)
+            get
+            {
+                if (instance == null)
                 {
                     instance = new LocalNotif();
                 }
@@ -64,7 +60,7 @@ namespace PasaBuy.App.Local.Notice
 
         private void OnLocalNotificationTapped(NotificationTappedEventArgs e)
         {
-            Console.WriteLine("Demoguy! Tapped Notification => " + e.Data );
+            Console.WriteLine("Demoguy! Tapped Notification => " + e.Data);
         }
     }
 }

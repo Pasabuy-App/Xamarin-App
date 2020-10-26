@@ -1,6 +1,5 @@
 ﻿using PasaBuy.App.Models.MobilePOS;
 using PasaBuy.App.ViewModels.MobilePOS;
-using PasaBuy.App.Views.Navigation;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -15,10 +14,10 @@ namespace PasaBuy.App.Views.StoreViews
         public Dashboard()
         {
             InitializeComponent();
-            
-                this.BindingContext = new DashboardOrdersViewModel();
-                Title = "Dashboard";
-          
+
+            this.BindingContext = new DashboardOrdersViewModel();
+            Title = "Dashboard";
+
         }
 
         private void SearchBar_OnTextChanged(object sender, TextChangedEventArgs e)

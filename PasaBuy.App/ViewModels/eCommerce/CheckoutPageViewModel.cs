@@ -1,9 +1,7 @@
-﻿using MobilePOS;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using PasaBuy.App.Commands;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
-using PasaBuy.App.Models;
 using PasaBuy.App.Models.eCommerce;
 using PasaBuy.App.Views.eCommerce;
 using System;
@@ -83,7 +81,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
             // TODO : REVISE WITH VARIANTS
             _ListOrder = new ObservableCollection<Models.MobilePOS.OrderModel>();
             _VariantList = new ObservableCollection<Models.MobilePOS.VariantModel>();
-            
+
             foreach (var car in CartPageViewModel.cartDetails)
             {
                 foreach (var vars in car.Variants)

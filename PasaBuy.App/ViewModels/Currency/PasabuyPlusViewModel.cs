@@ -5,11 +5,8 @@ using PasaBuy.App.Local;
 using PasaBuy.App.Models.Currency;
 using Rg.Plugins.Popup.Services;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.Currency
 {
@@ -17,7 +14,7 @@ namespace PasaBuy.App.ViewModels.Currency
     {
 
         public string _Amount;
-        
+
         public string Amount
         {
             get
@@ -65,7 +62,7 @@ namespace PasaBuy.App.ViewModels.Currency
             _PasabuyPlusList = new ObservableCollection<PasabuyPlusModel>();
             CreateWallet();
         }
-        
+
         public void LoadData(string currency, string offset)
         {
             try

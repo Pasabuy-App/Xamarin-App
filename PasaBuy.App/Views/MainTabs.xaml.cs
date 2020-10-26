@@ -1,9 +1,4 @@
 ﻿using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.ViewModels.Feeds;
-using PasaBuy.App.ViewModels.Marketplace;
-using PasaBuy.App.ViewModels.Menu;
-using PasaBuy.App.Views.Feeds;
-using PasaBuy.App.Views.Marketplace;
 using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
 using System;

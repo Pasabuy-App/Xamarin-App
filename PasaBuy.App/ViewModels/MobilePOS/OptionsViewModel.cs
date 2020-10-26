@@ -7,9 +7,7 @@ using PasaBuy.App.Views.PopupModals;
 using PasaBuy.App.Views.StoreViews.Management;
 using Rg.Plugins.Popup.Services;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 
 namespace PasaBuy.App.ViewModels.MobilePOS
 {

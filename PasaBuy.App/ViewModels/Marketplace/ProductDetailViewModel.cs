@@ -1,9 +1,7 @@
 ﻿using Newtonsoft.Json;
-using PanCardView.Extensions;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Marketplace;
-using Rg.Plugins.Popup.Services;
 using Syncfusion.XForms.Buttons;
 using System;
 using System.Collections.ObjectModel;
