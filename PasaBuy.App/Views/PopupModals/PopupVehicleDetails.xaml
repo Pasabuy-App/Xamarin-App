@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="PasaBuy.App.Views.PopupModals.PopupVehicleDetails"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:converter="clr-namespace:PasaBuy.App.Converters" xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch" 
+     xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
+    xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms">
+    <pages:PopupPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="BooleanToColorConverter" />
+            <converter:BooleanToStringConverter x:Key="BoolToStringConverter" />
+
+            <Style x:Key="IconButtonStyle" TargetType="buttons:SfButton">
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="WidthRequest" Value="40" />
+            </Style>
+
+            <Style x:Key="NavigationBarButtonStyle" TargetType="buttons:SfButton">
+                <Setter Property="TextColor" Value="{DynamicResource Gray-Black}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="BorderWidth" Value="0" />
+                <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+            </Style>
+
+            <Style x:Key="SearchEntryStyle" TargetType="controls:BorderlessEntry">
+                <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-700}" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="{DynamicResource Gray-Black}" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="ReturnType" Value="Done" />
+            </Style>
+
+            <!--  Common style for borders  -->
+            <Style x:Key="SfBorderStyle" TargetType="border:SfBorder">
+                <Setter Property="BackgroundColor" Value="{DynamicResource Gray-200}" />
+                <Setter Property="BorderColor" Value="{DynamicResource Gray-700}" />
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="BorderWidth" Value="1" />
+            </Style>
+
+            <!--  Common style for separator BoxView  -->
+            <Style x:Key="SeparatorStyle" TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="1" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource Gray-500}" />
+            </Style>
+
+            <Style x:Key="ComboBoxStyle" TargetType="combobox:SfComboBox">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}"/>
+                <Setter Property="TextSize" Value="16"/>
+                <Setter Property="TextColor" Value="{DynamicResource Gray-900}"/>
+                <Setter Property="ShowBorder" Value="False"/>
+                <Setter Property="WatermarkColor" Value="{DynamicResource Gray-600}"/>
+                <Setter Property="Margin" Value="0,0,0,0"/>
+                <Setter Property="HeightRequest" Value="40"/>
+            </Style>
+
+            <!--  Common style for flat buttons  -->
+            <Style x:Key="SfFlatButtonStyle" TargetType="buttons:SfButton">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="EntryTextBoxStyle" TargetType="controls:BorderlessEntry">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="TextColor" Value="{DynamicResource Gray-900}"/>
+                <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-600}"/>
+                <Setter Property="Margin" Value="0,0"/>
+                <Setter Property="HeightRequest" Value="40"/>
+            </Style>
+
+            <x:String x:Key="ArrowRight">&#xe728;</x:String>
+            <x:String x:Key="Home">&#xe706;</x:String>
+            <x:String x:Key="Lunch">&#xe74e;</x:String>
+            <x:String x:Key="Back">&#xe709;</x:String>
+            <x:String x:Key="Search">&#xe705;</x:String>
+            <x:String x:Key="DropDownButtonIcon">&#xe70b;</x:String>
+
+        </ResourceDictionary>
+    </pages:PopupPage.Resources>
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            DurationIn="500"
+            EasingIn="SpringOut"
+            PositionIn="Bottom"
+            PositionOut="Center"
+            ScaleIn="1"
+            ScaleOut="0.7" />
+    </pages:PopupPage.Animation>
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <Frame
+            x:Name="FrameContainer"
+            Margin="20,15,20,15"
+            Padding="0,0,0,5"
+            BackgroundColor="{DynamicResource Gray-White}"
+            CornerRadius="6"
+            HorizontalOptions="Center">
+            <StackLayout
+                Padding="0"
+                IsClippedToBounds="True"
+                Spacing="0">
+                <Grid RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0"
+                          HorizontalOptions="End" 
+                          VerticalOptions="Start">
+                        <Image
+                              Grid.Row="0"
+                              Grid.Column="0"
+                              HeightRequest="30"
+                              Source="cross_512.png"
+                              WidthRequest="30">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="CloseModal" NumberOfTapsRequired="1"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1"
+                      Padding="15,10,15,10"
+                      RowSpacing="8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <border:SfBorder
+                        BorderColor="Black"
+                        Grid.Row="0"
+                        Style="{StaticResource SfBorderStyle}">
+                        <combobox:SfComboBox
+                                SelectedValue="{Binding Gender, Mode=TwoWay}"
+                                Style="{StaticResource ComboBoxStyle}"
+                                Watermark="Vehicle Type"
+                                TextColor="Black"
+                                BackgroundColor="{DynamicResource Gray-White}"
+                                WatermarkColor="{DynamicResource Gray-900}"
+                                VerticalOptions="CenterAndExpand">
+                            <combobox:SfComboBox.ComboBoxSource>
+                                <ListCollection:List x:TypeArguments="x:String">
+                                    <x:String>Male</x:String>
+                                    <x:String>Female</x:String>
+                                </ListCollection:List>
+                            </combobox:SfComboBox.ComboBoxSource>
+                            <combobox:SfComboBox.DropDownButtonSettings>
+                                <combobox:DropDownButtonSettings>
+                                    <combobox:DropDownButtonSettings.View>
+                                        <Label BackgroundColor="{DynamicResource Gray-White}"
+                                                    FontFamily="{StaticResource FontIcons}"
+                                                    FontSize="25"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="{StaticResource DropDownButtonIcon}"
+                                                    TextColor="{DynamicResource Gray-900}"
+                                                    VerticalTextAlignment="Center" />
+                                    </combobox:DropDownButtonSettings.View>
+                                </combobox:DropDownButtonSettings>
+                            </combobox:SfComboBox.DropDownButtonSettings>
+                        </combobox:SfComboBox>
+                    </border:SfBorder>
+                    <border:SfBorder
+                        BorderColor="Black"
+                        Grid.Row="1"
+                        Style="{StaticResource SfBorderStyle}">
+                        <combobox:SfComboBox
+                                SelectedValue="{Binding Gender, Mode=TwoWay}"
+                                Style="{StaticResource ComboBoxStyle}"
+                                Watermark="Maker"
+                                TextColor="Black"
+                                BackgroundColor="{DynamicResource Gray-White}"
+                                WatermarkColor="{DynamicResource Gray-900}"
+                                VerticalOptions="CenterAndExpand">
+                            <combobox:SfComboBox.ComboBoxSource>
+                                <ListCollection:List x:TypeArguments="x:String">
+                                    <x:String>Male</x:String>
+                                    <x:String>Female</x:String>
+                                </ListCollection:List>
+                            </combobox:SfComboBox.ComboBoxSource>
+                            <combobox:SfComboBox.DropDownButtonSettings>
+                                <combobox:DropDownButtonSettings>
+                                    <combobox:DropDownButtonSettings.View>
+                                        <Label BackgroundColor="{DynamicResource Gray-White}"
+                                                    FontFamily="{StaticResource FontIcons}"
+                                                    FontSize="25"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="{StaticResource DropDownButtonIcon}"
+                                                    TextColor="{DynamicResource Gray-900}"
+                                                    VerticalTextAlignment="Center" />
+                                    </combobox:DropDownButtonSettings.View>
+                                </combobox:DropDownButtonSettings>
+                            </combobox:SfComboBox.DropDownButtonSettings>
+                        </combobox:SfComboBox>
+                    </border:SfBorder>
+                    <border:SfBorder
+                        BorderColor="Black"
+                        Grid.Row="2"
+                        Style="{StaticResource SfBorderStyle}">
+                        <combobox:SfComboBox
+                                SelectedValue="{Binding Gender, Mode=TwoWay}"
+                                Style="{StaticResource ComboBoxStyle}"
+                                Watermark="Model"
+                                TextColor="Black"
+                                BackgroundColor="{DynamicResource Gray-White}"
+                                WatermarkColor="{DynamicResource Gray-900}"
+                                VerticalOptions="CenterAndExpand">
+                            <combobox:SfComboBox.ComboBoxSource>
+                                <ListCollection:List x:TypeArguments="x:String">
+                                    <x:String>Male</x:String>
+                                    <x:String>Female</x:String>
+                                </ListCollection:List>
+                            </combobox:SfComboBox.ComboBoxSource>
+                            <combobox:SfComboBox.DropDownButtonSettings>
+                                <combobox:DropDownButtonSettings>
+                                    <combobox:DropDownButtonSettings.View>
+                                        <Label BackgroundColor="{DynamicResource Gray-White}"
+                                                    FontFamily="{StaticResource FontIcons}"
+                                                    FontSize="25"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="{StaticResource DropDownButtonIcon}"
+                                                    TextColor="{DynamicResource Gray-900}"
+                                                    VerticalTextAlignment="Center" />
+                                    </combobox:DropDownButtonSettings.View>
+                                </combobox:DropDownButtonSettings>
+                            </combobox:SfComboBox.DropDownButtonSettings>
+                        </combobox:SfComboBox>
+                    </border:SfBorder>
+
+                    <border:SfBorder BorderColor="Black"
+                                     Grid.Row="3"
+                                     BackgroundColor="{DynamicResource Gray-White}"
+                                     Style="{StaticResource SfBorderStyle}">
+                        <controls:BorderlessEntry
+                            x:Name="EmailEntry"
+                            ReturnType="Next"
+                            TextColor="Black"
+                            Margin="5,0,0,0"
+                            Placeholder="Plate Number"
+                            Text="{Binding Email}"
+                            BackgroundColor="{DynamicResource Gray-White}"
+                            PlaceholderColor="{DynamicResource Gray-900}"
+                            Style="{StaticResource EntryTextBoxStyle}" />
+                    </border:SfBorder>
+
+                    <buttons:SfButton Grid.Row="4"
+                            CornerRadius="4"
+                            Margin="0,15,0,15"
+                            Padding="0,8,0,8"
+                            Style="{StaticResource SfFlatButtonStyle}"
+                            TextColor="{DynamicResource Gray-White}"
+                            Command="{Binding SubmitCommand}"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            Text="Submit" />
+                </Grid>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</pages:PopupPage>

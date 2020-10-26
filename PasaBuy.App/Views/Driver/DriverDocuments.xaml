@@ -44,6 +44,14 @@
                                     Text="My Documents"
                                     TextColor="{DynamicResource Gray-White}"
                                     VerticalOptions="Center" />
+                        <Image Source="add_24.png"
+                               Grid.Column="2"
+                               HorizontalOptions="End">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding AddDocumentsCommand}" NumberOfTapsRequired="1" />
+                            </Image.GestureRecognizers>
+                        </Image>
+
 
                     </Grid>
                     <Grid Grid.Row="1">

@@ -21,7 +21,7 @@ namespace PasaBuy.App.Local
         /// <summary>
         /// Development url.
         /// </summary>
-        public static string devBaseUrl { get; } = "10.0.2.2/wordpress";
+        public static string devBaseUrl { get; } = "10.12.91.198";
 
         /// <summary>
         /// WordPress media host url.

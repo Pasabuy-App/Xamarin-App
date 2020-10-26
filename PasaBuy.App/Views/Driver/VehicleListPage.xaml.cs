@@ -31,7 +31,7 @@ namespace PasaBuy.App.Views.Driver
         {
             await AddButton.FadeTo(0.5, 100);
             await AddButton.FadeTo(1, 100);
-            await PopupNavigation.Instance.PushAsync(new PopupVehiclesSelection());
+            await PopupNavigation.Instance.PushAsync(new PopupVehicleDetails());
         }
 
         private void MyVehicle_Tapped(object sender, EventArgs e)

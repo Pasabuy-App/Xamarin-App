@@ -4,6 +4,7 @@ using PasaBuy.App.Local;
 using PasaBuy.App.Models.Driver;
 using PasaBuy.App.Views.Driver;
 using PasaBuy.App.Views.Navigation;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -14,6 +15,8 @@ namespace PasaBuy.App.ViewModels.Driver
     public class VehicleListViewModel : BaseViewModel
     {
         public static ObservableCollection<VehicleList> _vehicleList;
+
+        public Command SubmitCommand { get; set; }
 
         public ObservableCollection<VehicleList> VehicleList
         {
@@ -30,6 +33,7 @@ namespace PasaBuy.App.ViewModels.Driver
 
         public VehicleListViewModel()
         {
+            this.SubmitCommand = new Command(this.SubmitClicked);
             _vehicleList = new ObservableCollection<VehicleList>();
             LoadData();
         }
@@ -104,6 +108,15 @@ namespace PasaBuy.App.ViewModels.Driver
         }
         #endregion
 
+        private void SubmitClicked(object obj)
+        {
+              Device.BeginInvokeOnMainThread(async () =>
+              {
+                    await App.Current.MainPage.Navigation.PushModalAsync(new Views.Driver.DriverDocuments());
+                    await PopupNavigation.Instance.PopAsync();
+              });
+            
+        }
 
     }
 }
