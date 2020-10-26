@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("PasaBuy.App.iOS")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Our mission is to become a community where honesty, integrity, quality, profitability, and on-time delivery transpire for all app users' benefit and enjoyment.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("PasaBuy Tech IT Services")]
 [assembly: AssemblyProduct("PasaBuy.App.iOS")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
