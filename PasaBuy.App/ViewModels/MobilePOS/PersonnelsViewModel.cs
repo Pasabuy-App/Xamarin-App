@@ -31,6 +31,19 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             await PopupNavigation.Instance.PushAsync(new PopupViewPersonnel());
         }
 
+        public ICommand ChangeWalletCommand
+        {
+            get
+            {
+                return new Command<string>((x) => ChangeWalletClicked(x));
+            }
+        }
+        private async void ChangeWalletClicked(string id)
+        {
+            new Alert("Test", id, "Personnel Id");
+            await App.Current.MainPage.Navigation.PopModalAsync();
+        }
+
         public ObservableCollection<Personnels> PersonnelsList
         {
             get
@@ -159,7 +172,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                     User_id = personnel.data[i].wpid,
                                     Avatar = PSAProc.GetUrl(personnel.data[i].avatar),
                                     FullName = personnel.data[i].dname,
-                                    Position = "",
+                                    Position = "Manager",
                                     DateCreated = datecustom.ToString("MMM. dd, yyyy")  // Date format - October 11, 2020
                                 });
                             }

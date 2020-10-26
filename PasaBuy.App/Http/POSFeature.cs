@@ -184,6 +184,64 @@ namespace PasaBuy.App.Http
                 callback(false, "Network Error! Check your connection.");
             }
         }
+
+        /// <summary>
+        /// Listing of store wallet data and list transactions.
+        /// </summary>
+        public async void Wallet_Info(Action<bool, string> callback)
+        {
+            var dict = new Dictionary<string, string>();
+            dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
+            dict.Add("snky", PSACache.Instance.UserInfo.snky);
+
+            var content = new FormUrlEncodedContent(dict);
+
+            var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/mobilepos/v2/personnels/role/access/list", content);
+            response.EnsureSuccessStatusCode();
+
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+                Token token = JsonConvert.DeserializeObject<Token>(result);
+
+                bool success = token.status == "success" ? true : false;
+                string data = token.status == "success" ? result : token.message;
+                callback(success, data);
+            }
+            else
+            {
+                callback(false, "Network Error! Check your connection.");
+            }
+        }
+
+        public async void Create_Store_Wallet(string user_id, Action<bool, string> callback)
+        {
+            var dict = new Dictionary<string, string>();
+            dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
+            dict.Add("snky", PSACache.Instance.UserInfo.snky);
+            dict.Add("stid", PSACache.Instance.UserInfo.stid);
+            dict.Add("user_id", user_id);
+
+            var content = new FormUrlEncodedContent(dict);
+
+            var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/mobilepos/v2/wallets/insert", content);
+            response.EnsureSuccessStatusCode();
+
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+                Token token = JsonConvert.DeserializeObject<Token>(result);
+
+                bool success = token.status == "success" ? true : false;
+                string data = token.status == "success" ? result : token.message;
+                callback(success, data);
+            }
+            else
+            {
+                callback(false, "Network Error! Check your connection.");
+            }
+        }
+
         #endregion
     }
 }
