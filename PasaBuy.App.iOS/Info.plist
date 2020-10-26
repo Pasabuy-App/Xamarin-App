@@ -21,13 +21,13 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>UIFontIcons.ttf</string>
-		<string>Montserrat-Bold.ttf</string>
-		<string>Montserrat-Medium.ttf</string>
-		<string>Montserrat-Regular.ttf</string>
-		<string>Montserrat-SemiBold.ttf</string>
 		<string>Font Awesome 5 Brands-Regular-400.otf</string>
 		<string>Font Awesome 5 Free-Regular-400.otf</string>
 		<string>Font Awesome 5 Free-Solid-900.otf</string>
+    <string>Montserrat-Bold.ttf</string>
+		<string>Montserrat-Medium.ttf</string>
+		<string>Montserrat-Regular.ttf</string>
+		<string>Montserrat-SemiBold.ttf</string>
 	</array>
 	<key>MinimumOSVersion</key>
 	<string>9.0</string>
