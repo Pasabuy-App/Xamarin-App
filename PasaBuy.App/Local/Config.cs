@@ -11,22 +11,22 @@ namespace PasaBuy.App.Local
         /// Rest API base url using WP PLugins.
         /// </summary>
         /// 
-        public static bool onProduction { get; } = true;
+        public static bool onProduction { get; } = false;
 
         /// <summary>
         /// Does the current RestURL used SSL.
         /// </summary>
-        public static bool onSSL { get; } = true;
+        public static bool onSSL { get; } = false;
 
         /// <summary>
         /// Development url.
         /// </summary>
-        public static string devBaseUrl { get; } = "10.0.2.2";
+        public static string devBaseUrl { get; } = "10.0.2.2/wordpress";
 
         /// <summary>
         /// WordPress media host url.
         /// </summary>
-        public static string devMediaUrl { get; } = "wordpress.dev";
+        public static string devMediaUrl { get; } = "localhost/wordpress";
 
         /// <summary>
         /// RestAPI Root url c/o WordPress.

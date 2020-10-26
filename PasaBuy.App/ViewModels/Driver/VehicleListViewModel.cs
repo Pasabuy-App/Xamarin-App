@@ -38,7 +38,15 @@ namespace PasaBuy.App.ViewModels.Driver
         {
             try
             {
-                HatidPress.Vehicles.Instance.list(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", (bool success, string data) =>
+                Http.HatidFeature.Instance.VehicList("", "", "", "", "", "", "", "", (bool success, string data) => 
+                {
+
+
+                    
+                });
+
+
+               /* HatidPress.Vehicles.Instance.list(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -58,7 +66,7 @@ namespace PasaBuy.App.ViewModels.Driver
                     {
                         new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                     }
-                });
+                });*/
             }
             catch (Exception e)
             {
