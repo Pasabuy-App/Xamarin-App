@@ -1,4 +1,6 @@
 ﻿using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
+using PasaBuy.App.ViewModels.MobilePOS;
 using PasaBuy.App.Views.Navigation;
 using Plugin.Media;
 using System;
@@ -105,6 +107,119 @@ namespace PasaBuy.App.Views.Driver
             DocumentImage.Source = imageSource;
             filepath = file.Path;
 
+        }
+
+
+        private void OKModal_Clicked(object sender, EventArgs e)
+        {
+            //new Alert(DocumentTypePicker.Text, "Path: " + filepath, "OK");
+            try
+            {
+                if (filepath != string.Empty && DocumentTypePicker.Text != string.Empty)
+                {
+                    string doctype = string.Empty;
+                    if (MasterView.MyType == "store")
+                    {
+                        if (DocumentTypePicker.Text == "DTI Registration")
+                        {
+                            doctype = "dti_registration";
+                        }
+                        if (DocumentTypePicker.Text == "Barangay Clearance")
+                        {
+                            doctype = "barangay_clearance";
+                        }
+                        if (DocumentTypePicker.Text == "Lease Contract")
+                        {
+                            doctype = "lease_contract";
+                        }
+                        if (DocumentTypePicker.Text == "Community Tax")
+                        {
+                            doctype = "community_tax";
+                        }
+                        if (DocumentTypePicker.Text == "Occupancy Permit")
+                        {
+                            doctype = "occupancy_permit";
+                        }
+                        if (DocumentTypePicker.Text == "Sanitary Permit")
+                        {
+                            doctype = "sanitary_permit";
+                        }
+                        if (DocumentTypePicker.Text == "Fire Permit")
+                        {
+                            doctype = "fire_permit";
+                        }
+                        if (DocumentTypePicker.Text == "Mayor's Permit")
+                        {
+                            doctype = "mayors_permit";
+                        }
+                        TindaPress.Document.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, doctype, filepath, (bool success, string data) =>
+                        {
+                            if (success)
+                            {
+                                DocumentViewModel.documentList.Clear();
+                                DocumentViewModel.LoadData();
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+
+                            }
+                        });
+                    }
+                    if (MasterView.MyType == "mover")
+                    {
+                        if (DocumentTypePicker.Text == "Vehicle's Back")
+                        {
+                            doctype = "vehicle_back";
+                        }
+                        if (DocumentTypePicker.Text == "Vehicle's Left")
+                        {
+                            doctype = "vehicle_left";
+                        }
+                        if (DocumentTypePicker.Text == "Vehicle's Right")
+                        {
+                            doctype = "vehicle_right";
+                        }
+                        if (DocumentTypePicker.Text == "Vehicle's Front")
+                        {
+                            doctype = "vehicle_front";
+                        }
+                        if (DocumentTypePicker.Text == "Vehicle CR")
+                        {
+                            doctype = "vehicle_cr";
+                        }
+                        if (DocumentTypePicker.Text == "Vehicle OR")
+                        {
+                            doctype = "vehicle_or";
+                        }
+                        if (DocumentTypePicker.Text == "License OR")
+                        {
+                            doctype = "license_or";
+                        }
+                        if (DocumentTypePicker.Text == "License Card")
+                        {
+                            doctype = "license_card";
+                        }
+                        HatidPress.Documents.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, filepath, doctype, PSACache.Instance.UserInfo.stid, "", (bool success, string data) =>
+                        {
+                            if (success)
+                            {
+                                DocumentViewModel.documentList.Clear();
+                                DocumentViewModel.LoadData();
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+
+                            }
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
+            }
         }
     }
 }
