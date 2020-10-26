@@ -83,6 +83,7 @@
                                FontFamily="{StaticResource Montserrat-SemiBold}"
                                Grid.Column="1"
                                Margin="5,10,5,0"
+                               x:Name="MoverName"
                                FontSize="{DynamicResource MediumSize}"
                                LineHeight="{OnPlatform Android=1.5, Default=-1}"
                                Text="Lorz Becislao"

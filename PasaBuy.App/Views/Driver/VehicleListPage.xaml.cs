@@ -1,4 +1,5 @@
-﻿using PasaBuy.App.ViewModels.Driver;
+﻿using PasaBuy.App.Local;
+using PasaBuy.App.ViewModels.Driver;
 using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -14,6 +15,9 @@ namespace PasaBuy.App.Views.Driver
         public VehicleListPage()
         {
             InitializeComponent();
+            Console.WriteLine(PSACache.Instance.UserInfo.avatar+PSACache.Instance.UserInfo.dname);
+            ImageId.Source = PSAProc.GetUrl( PSACache.Instance.UserInfo.avatar);
+            MoverName.Text = PSACache.Instance.UserInfo.dname;
             this.BindingContext = new VehicleListViewModel();
         }
 
