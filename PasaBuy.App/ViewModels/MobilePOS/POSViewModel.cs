@@ -143,7 +143,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             {
                 Id = product_id,
                 Name = product_name,
-                Price = price,
+                Price = Convert.ToSingle(price),
                 Quantity = quantity
             });
         }

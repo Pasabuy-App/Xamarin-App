@@ -10,6 +10,7 @@ namespace PasaBuy.App.Models.MobilePOS
         private string name = string.Empty;
         private string id = string.Empty;
         private float price;
+        public float Quantity;
 
         public string Id
         {

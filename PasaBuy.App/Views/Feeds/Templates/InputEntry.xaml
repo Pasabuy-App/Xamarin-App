@@ -31,9 +31,9 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Row="0" 
+            <Grid Grid.Row="1" 
                   Grid.ColumnSpan="1"
-                              Margin="20, 25, 10, 20">
+                              Margin="20, 10, 10, 20">
                 <border:SfBorder Grid.Row="0"
                                          border:BorderColor="White" 
                                          BorderWidth="2"
@@ -51,22 +51,10 @@
                     </Image>
                 </border:SfBorder>
             </Grid>
-            <Grid Grid.Row="0" 
-                  Grid.Column="1"
-                  Grid.ColumnSpan="2"
-                  Margin="0, 25, 20, 20">
-                <border:SfBorder Style="{StaticResource SfBorderStyle}">
-                    <control:BorderlessEntry
-                            x:Name="PostEntry"
-                            ReturnType="Send"
-                            Placeholder="Say something..."
-                            Style="{StaticResource EntryStyle}">
-                    </control:BorderlessEntry>
-                </border:SfBorder>
-            </Grid>
 
-            <border:SfBorder Grid.Row="1" 
-                             Margin="0,0,0,15"
+            <border:SfBorder Grid.Row="0" 
+                             Margin="0,15,0,20"
+                             HeightRequest="65"
                              Grid.ColumnSpan="3"
                              BorderColor="{DynamicResource Gray-200}"
                              HorizontalOptions="FillAndExpand"
@@ -132,6 +120,20 @@
                                        Text="{StaticResource Search}" />
                 </StackLayout>
             </border:SfBorder>
+            
+            <Grid Grid.Row="1" 
+                  Grid.Column="1"
+                  Grid.ColumnSpan="2"
+                  Margin="0, 10, 20, 20">
+                <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                    <control:BorderlessEntry
+                            x:Name="PostEntry"
+                            ReturnType="Send"
+                            Placeholder="Say something..."
+                            Style="{StaticResource EntryStyle}">
+                    </control:BorderlessEntry>
+                </border:SfBorder>
+            </Grid>
 
             <Grid Grid.Row="2" 
                   Grid.ColumnSpan="3"
