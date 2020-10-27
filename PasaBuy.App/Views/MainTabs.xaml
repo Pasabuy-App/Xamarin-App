@@ -7,7 +7,8 @@
              xmlns:store="clr-namespace:PasaBuy.App.Views.Marketplace"
              xmlns:food="clr-namespace:PasaBuy.App.Views.Marketplace"
              xmlns:grocery="clr-namespace:PasaBuy.App.Views.Marketplace"
-             xmlns:menu="clr-namespace:PasaBuy.App.Views.Menu"
+             xmlns:menu="clr-namespace:PasaBuy.App.Views.Menu" 
+             xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl"
              x:Class="PasaBuy.App.Views.MainTabs"
              NavigationPage.HasNavigationBar="False"
              NavigationPage.HasBackButton="False">
@@ -21,96 +22,111 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-
-        <tabView:SfTabView BackgroundColor="{DynamicResource PrimaryColor}" 
+        <Grid>
+            <tabView:SfTabView BackgroundColor="{DynamicResource PrimaryColor}" 
                             TabItemTapped="TabView_TabItemTapped"
                             TabHeaderPosition="Top"
                             VisibleHeaderCount="6" 
                             EnableSwiping="false" 
                             DisplayMode="Image">
 
-            <!--TABS CONFIGS-->
-            <tabView:SfTabView.SelectionIndicatorSettings>
-                <tabView:SelectionIndicatorSettings
+                <!--TABS CONFIGS-->
+                <tabView:SfTabView.SelectionIndicatorSettings>
+                    <tabView:SelectionIndicatorSettings
                     AnimationDuration="200"
                     Color="{DynamicResource Gray-White}" 
                     Position="Bottom" 
                     StrokeThickness="3"/>
-            </tabView:SfTabView.SelectionIndicatorSettings>
+                </tabView:SfTabView.SelectionIndicatorSettings>
 
-            <!--HOME TAB-->
-            <tabView:SfTabItem Title="HOME" 
+                <!--HOME TAB-->
+                <tabView:SfTabItem Title="HOME" 
                                 IconFont="{StaticResource Home}"
                                 FontIconFontColor="{DynamicResource Gray-200}"
                                 FontIconFontFamily="{StaticResource FontFamily}"
                                 TitleFontColor="{DynamicResource Gray-200}"
                                 SelectionColor="{DynamicResource Gray-White}">
-                <!--<tabView:SfTabItem.Content>
+                    <!--<tabView:SfTabItem.Content>
                     <home:HomePage/>
                 </tabView:SfTabItem.Content>-->
-            </tabView:SfTabItem>
+                </tabView:SfTabItem>
 
-            <!--FOOD TAB-->
-            <tabView:SfTabItem Title="FOOD"
+                <!--FOOD TAB-->
+                <tabView:SfTabItem Title="FOOD"
                                 IconFont="{StaticResource Food}"
                                 FontIconFontColor="{DynamicResource Gray-200}"
                                 FontIconFontFamily="{StaticResource FontFamily}"
                                 TitleFontColor="{DynamicResource Gray-200}"
                                 SelectionColor="{DynamicResource Gray-White}">
-                <!--<tabView:SfTabItem.Content>
+                    <!--<tabView:SfTabItem.Content>
                     <food:FoodBrowserPage/>
                 </tabView:SfTabItem.Content>-->
-            </tabView:SfTabItem>
-            
-            <!--STORE TAB-->
-            <tabView:SfTabItem Title="STORE"
+                </tabView:SfTabItem>
+
+                <!--STORE TAB-->
+                <tabView:SfTabItem Title="STORE"
                                 IconFont="{StaticResource Stores}"
                                 FontIconFontColor="{DynamicResource Gray-200}"
                                 FontIconFontFamily="{StaticResource FontFamily}"
                                 TitleFontColor="{DynamicResource Gray-200}"
                                 SelectionColor="{DynamicResource Gray-White}">
-                <!--<tabView:SfTabItem.Content>
+                    <!--<tabView:SfTabItem.Content>
                     <store:StoreBrowserPage/>
                 </tabView:SfTabItem.Content>-->
-            </tabView:SfTabItem>
+                </tabView:SfTabItem>
 
-            <!--GROCERY TAB-->
-            <tabView:SfTabItem Title="GROCERY"
+                <!--GROCERY TAB-->
+                <tabView:SfTabItem Title="GROCERY"
                                 IconFont="{StaticResource Market}"
                                 FontIconFontColor="{DynamicResource Gray-200}"
                                 FontIconFontFamily="{StaticResource FontFamily}"
                                 TitleFontColor="{DynamicResource Gray-200}"
                                 SelectionColor="{DynamicResource Gray-White}">
-                <!--<tabView:SfTabItem.Content>
+                    <!--<tabView:SfTabItem.Content>
                     <grocery:GroceryBrowserPage/>
                 </tabView:SfTabItem.Content>-->
-            </tabView:SfTabItem>
+                </tabView:SfTabItem>
 
-            <!--PARTNER TAB-->
-            <tabView:SfTabItem Title="PARTNER"
+                <!--PARTNER TAB-->
+                <tabView:SfTabItem Title="PARTNER"
                                IconFont="{StaticResource Partner}"
                                FontIconFontColor="{DynamicResource Gray-200}"
                                FontIconFontFamily="{StaticResource FontFamily}"
                                TitleFontColor="{DynamicResource Gray-200}"
                                SelectionColor="{DynamicResource Gray-White}">
-                <!--<tabView:SfTabItem.Content>
+                    <!--<tabView:SfTabItem.Content>
                     <partner:PartnerBrowserPage/>
                 </tabView:SfTabItem.Content>-->
-            </tabView:SfTabItem>
+                </tabView:SfTabItem>
 
-            <!--BURGER TAB-->
-            <tabView:SfTabItem Title="MENU"
+                <!--BURGER TAB-->
+                <tabView:SfTabItem Title="MENU"
                                 IconFont="{StaticResource Menu}"
                                 FontIconFontColor="{DynamicResource Gray-200}"
                                 FontIconFontFamily="{StaticResource FontFamily}"
                                 TitleFontColor="{DynamicResource Gray-200}"
                                 SelectionColor="{DynamicResource Gray-White}">
-                <tabView:SfTabItem.Content>
-                    <menu:MasterMenu/>
-                </tabView:SfTabItem.Content>
-            </tabView:SfTabItem>
+                    <tabView:SfTabItem.Content>
+                        <menu:MasterMenu/>
+                    </tabView:SfTabItem.Content>
+                </tabView:SfTabItem>
 
-        </tabView:SfTabView>
+            </tabView:SfTabView>
+            <fab:FloatingActionButtonView
+				    ColorNormal="{StaticResource PrimaryColor}"
+				    ColorPressed="{StaticResource Orange}"
+				    ColorRipple="{StaticResource Yellow}"
+				    x:Name="AddProductButton"
+                    Command="{Binding AddOrderProductCommand}"
+                    ImageName ="reward.png"
+				    IsVisible="True"
+                    VerticalOptions="EndAndExpand"
+                    HorizontalOptions="EndAndExpand"
+				    AbsoluteLayout.LayoutFlags="PositionProportional"
+				    AbsoluteLayout.LayoutBounds="0.95,0.95,80,80">
+            </fab:FloatingActionButtonView>
+        </Grid>
+        
         
     </ContentPage.Content>
 </ContentPage>
