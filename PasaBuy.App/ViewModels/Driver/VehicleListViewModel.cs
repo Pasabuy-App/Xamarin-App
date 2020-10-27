@@ -232,10 +232,10 @@ namespace PasaBuy.App.ViewModels.Driver
                     string id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as VehicleList).Identification;
                     string status = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as VehicleList).Status;
                     PSACache.Instance.UserInfo.vhid = id;
-                    if (status == "ACTIVE")
+                    if (status == "ACTIVATED")
                     {
                         MasterView.MyType = "mover";
-                        App.Current.MainPage = new DashboardPage();
+                        App.Current.MainPage = new NavigationView();
                         IsBusy = false;
                     }
                     else
