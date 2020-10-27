@@ -3,11 +3,14 @@ using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Feeds;
 using PasaBuy.App.Models.MobilePOS;
+using PasaBuy.App.Models.Onboarding;
 using PasaBuy.App.ViewModels.Menu;
 using System;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.Feeds
@@ -43,7 +46,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                 this.NotifyPropertyChanged();
             }
         }
-        public bool isRunning;
+        public bool isRunning = false;
 
         public bool IsRunning
         {
@@ -61,10 +64,129 @@ namespace PasaBuy.App.ViewModels.Feeds
         #endregion
 
         #region Constructor
+        public Command<object> GoToProfileCommand { get; set; }
+        private async void OnTapped(object obj)
+        {
+            var post = obj as Post;
+            if (post.Post_author != PSACache.Instance.UserInfo.wpid)
+            {
+                GetProfile(post.Post_author);
+            }
+        }
+        public Command<object> ShareCommand { get; set; }
+        private async void OnShared(object obj)
+        {
+            var post = obj as Post;
+            await ShareUri(post.LinkPost);
+        }
+        public async Task ShareUri(string uri)
+        {
+            await Share.RequestAsync(new ShareTextRequest
+            {
+                Uri = uri
+            });
+        }
+        public Command<object> AcceptCommand { get; set; }
+        private async void OnAccepted(object obj)
+        {
+            var post = obj as Post;
+            GetProfile(post.Post_author);
+        }
+        public void GetData(string uid)
+        {
+            try
+            {
+                if (!IsRunning)
+                {
+                    IsRunning  = true;
+                    SocioPress.Profile.Instance.GetData(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, uid, async (bool success, string data) =>
+                    {
+                        if (success)
+                        {
+                            UserInfo uinfo = JsonConvert.DeserializeObject<UserInfo>(data);
+                            Driver.DriverChatMessageViewModel.ProfileNames = uinfo.data.dname;
+                            Driver.DriverChatMessageViewModel.ProfileImages = PSAProc.GetUrl(uinfo.data.avatar);
+                            Driver.DriverChatMessageViewModel.user_id = uid;
+                            Driver.DriverChatMessageViewModel.myPage = "home";
+                            Driver.DriverChatMessageViewModel.refresh = 0;
+                            await App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new Views.Driver.DriverChatMessagePage()));
+                            IsRunning = false;
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsRunning = false;
+                        }
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
+                IsRunning = false;
+            }
+        }
+
+        public void GetProfile(string uid)
+        {
+            try
+            {
+                if (!IsRunning)
+                {
+                    IsRunning = true;
+                    SocioPress.Profile.Instance.GetData(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, uid, async (bool success2, string data2) =>
+                    {
+                        if (success2)
+                        {
+                            UserInfo uinfo = JsonConvert.DeserializeObject<UserInfo>(data2);
+
+                            if (uinfo.Succeed)
+                            {
+                                MyProfileViewModel.bannerImages = PSAProc.GetUrl(uinfo.data.banner);
+                                MyProfileViewModel.profileImages = PSAProc.GetUrl(uinfo.data.avatar);
+                                MyProfileViewModel.displayNames = uinfo.data.dname;
+                                MyProfileViewModel.verification = uinfo.data.verify;
+                                MyProfileViewModel.city = uinfo.data.city == null ? "" : uinfo.data.city;
+
+                                CultureInfo provider = new CultureInfo("fr-FR");
+                                DateTime date = DateTime.ParseExact(PSACache.Instance.UserInfo.date_registered == string.Empty ? new DateTime().ToString() : PSACache.Instance.UserInfo.date_registered, "yyyy-MM-dd HH:mm:ss", provider);
+
+                                MyProfileViewModel.joined = date.ToString("MMMM yyyy");
+
+                                MyProfileViewModel.LoadTotal(uid);
+                                MyProfileViewModel.user_id = uid;
+                                await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new Views.Feeds.MyProfile()));
+                                IsRunning = false;
+                            }
+
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data2), "Try Again");
+                                IsRunning = false;
+                            }
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data2), "Try Again");
+                            IsRunning = false;
+                        }
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                IsRunning = false;
+            }
+        }
+
         public HomepageViewModel()
         {
-            IsRunning = false;
             MyProfileViewModel.LoadTotal(PSACache.Instance.UserInfo.wpid);
+
+            GoToProfileCommand = new Command<object>(OnTapped);
+            ShareCommand = new Command<object>(OnShared);
+            AcceptCommand = new Command<object>(OnAccepted);
 
             RefreshCommand = new Command<string>((key) =>
             {
@@ -86,13 +208,6 @@ namespace PasaBuy.App.ViewModels.Feeds
             userinfoList.CollectionChanged += CollectionChanges;
         }
 
-        /*public static void Insertimage(string url)
-        {
-            userinfoList.Add(new Personnels()
-            {
-                Avatar = url
-            });
-        }*/
         private async void CollectionChanges(object sender, EventArgs e)
         {
             await Task.Delay(100);
@@ -181,6 +296,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
         }
+
         public void LoadData2()
         {
             try
@@ -321,7 +437,6 @@ namespace PasaBuy.App.ViewModels.Feeds
                 }
             }
         }
-
         #endregion
 
         #region Method
