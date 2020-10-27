@@ -26,7 +26,7 @@ namespace PasaBuy.App.Local
         /// <summary>
         /// WordPress media host url.
         /// </summary>
-        public static string devMediaUrl { get; } = "localhost/wordpress";
+        public static string devMediaUrl { get; } = "10.12.91.198";
 
         /// <summary>
         /// RestAPI Root url c/o WordPress.
