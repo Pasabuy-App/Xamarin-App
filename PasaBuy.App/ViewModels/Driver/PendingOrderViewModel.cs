@@ -26,7 +26,7 @@ namespace PasaBuy.App.ViewModels.Driver
             orderlist = new ObservableCollection<TransactListData>();
             orderlist.Clear();
 
-            LoadOrder();
+            //LoadOrder();
 
         }
 
