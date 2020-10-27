@@ -36,6 +36,7 @@ namespace PasaBuy.App.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             Xamarin.FormsGoogleMaps.Init(PSAConfig.googleApiKey);
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
 
             SfSegmentedControlRenderer.Init();
             SfLinearProgressBarRenderer.Init();

@@ -160,6 +160,7 @@
                 <Grid Grid.Row="1" Grid.Column="0" Padding="0">
                     <Button Text="Status" 
                             Clicked="PostStatus"
+                            TextColor="{DynamicResource Gray-Black}"
                             BackgroundColor="{DynamicResource Gray-100}"/>
                 </Grid>
                 <Grid Grid.Row="1" Grid.Column="1" Padding="0, 10">
@@ -171,6 +172,7 @@
                     <Button Text="Pasabuy" 
                             IsEnabled="True"
                             Clicked="PostRequest"
+                            TextColor="{DynamicResource Gray-Black}"
                             BackgroundColor="{DynamicResource Gray-100}"/>
                 </Grid>
                 <Grid Grid.Row="1" Grid.Column="3" Padding="0, 10">
@@ -182,6 +184,7 @@
                     <Button Text="Sell" 
                             IsEnabled="True"
                             Clicked="PostSell"
+                            TextColor="{DynamicResource Gray-Black}"
                             BackgroundColor="{DynamicResource Gray-100}"/>
                 </Grid>
             </Grid>

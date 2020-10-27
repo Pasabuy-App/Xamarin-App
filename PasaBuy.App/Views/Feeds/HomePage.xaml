@@ -188,6 +188,7 @@
                                                                 Clicked="AcceptButton"
                                                                 BorderColor="{DynamicResource Gray-300}"
                                                                 BorderWidth="1"
+                                                        TextColor="{DynamicResource Gray-Black}"
                                                                 BackgroundColor="{DynamicResource Gray-100}"/>
                                             </Grid>
                                             <Grid Grid.Row="1" Grid.Column="{Binding HomeCol}" Grid.ColumnSpan="{Binding HomeColSpan}">
@@ -196,6 +197,7 @@
                                                             IsEnabled="True"
                                                             BorderColor="{DynamicResource Gray-300}"
                                                             BorderWidth="1"
+                                                        TextColor="{DynamicResource Gray-Black}"
                                                             BackgroundColor="{DynamicResource Gray-100}"/>
                                             </Grid>
                                         </Grid>

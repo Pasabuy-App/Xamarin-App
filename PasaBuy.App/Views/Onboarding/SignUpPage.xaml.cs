@@ -77,7 +77,6 @@ namespace PasaBuy.App.Views.Onboarding
             BarangayPicker.BindingContext = brgy;
             BarangayPicker.DataSource = brgy.BrgyCollection;
             BarangayPicker.DisplayMemberPath = "Name";
-
         }
 
         private void BarangayPicker_SelectionChanged(object sender, Syncfusion.XForms.ComboBox.SelectionChangedEventArgs e)

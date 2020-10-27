@@ -29,6 +29,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
 
                         for (int i = 0; i < country.data.Length; i++)
                         {
+                            Console.WriteLine("Demoguy! " + country.data[i].name);
                             string code = country.data[i].code;
                             string name = country.data[i].name;
                             countryCollection.Add(new CountryData() { CountryCode = code, Name = name });
@@ -37,7 +38,6 @@ namespace PasaBuy.App.ViewModels.Onboarding
                     else
                     {
                         new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-
                     }
                 });
             }

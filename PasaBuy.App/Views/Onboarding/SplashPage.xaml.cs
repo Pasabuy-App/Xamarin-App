@@ -1,4 +1,4 @@
-﻿using Microsoft.AppCenter.Crashes;
+﻿//using Microsoft.AppCenter.Crashes;
 using PasaBuy.App.Local;
 using PasaBuy.App.Views.ErrorAndEmpty;
 using System;
@@ -43,7 +43,7 @@ namespace PasaBuy.App.Views.Onboarding
 
             catch (Exception e)
             {
-                Crashes.TrackError(e);
+                //Crashes.TrackError(e);
             }
         }
 

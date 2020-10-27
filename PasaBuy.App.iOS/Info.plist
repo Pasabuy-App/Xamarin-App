@@ -21,16 +21,16 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>UIFontIcons.ttf</string>
-		<string>Montserrat-Bold.ttf</string>
-		<string>Montserrat-Medium.ttf</string>
-		<string>Montserrat-Regular.ttf</string>
-		<string>Montserrat-SemiBold.ttf</string>
 		<string>Font Awesome 5 Brands-Regular-400.otf</string>
 		<string>Font Awesome 5 Free-Regular-400.otf</string>
 		<string>Font Awesome 5 Free-Solid-900.otf</string>
+    <string>Montserrat-Bold.ttf</string>
+		<string>Montserrat-Medium.ttf</string>
+		<string>Montserrat-Regular.ttf</string>
+		<string>Montserrat-SemiBold.ttf</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>8.0</string>
+	<string>9.0</string>
 	<key>CFBundleDisplayName</key>
 	<string>PasaBuy.App</string>
 	<key>CFBundleIdentifier</key>
@@ -41,8 +41,6 @@
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
 	<string>PasaBuy.App</string>
-	<key>XSAppIconAssets</key>
-	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.0</string>
 	<key>UIBackgroundModes</key>
@@ -70,5 +68,7 @@
 		<string>MKDirectionsModeRideShare</string>
 		<string>MKDirectionsModeTaxi</string>
 	</array>
+	<key>XSAppIconAssets</key>
+	<string>Assets.xcassets/AppIcons.appiconset</string>
 </dict>
 </plist>

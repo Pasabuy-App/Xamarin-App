@@ -38,14 +38,17 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+            
             <OnPlatform x:Key="SmallSize" x:TypeArguments="x:Double">
                 <On Platform="iOS" Value="16" />
                 <On Platform="Android" Value="15" />
             </OnPlatform>
+            
             <OnPlatform x:Key="SmallerSize" x:TypeArguments="x:Double">
                 <On Platform="iOS" Value="14" />
                 <On Platform="Android" Value="13" />
             </OnPlatform>
+            
             <OnPlatform x:Key="BaseFontSize" x:TypeArguments="x:Double">
                 <On Platform="iOS" Value="16" />
                 <On Platform="Android" Value="15" />
