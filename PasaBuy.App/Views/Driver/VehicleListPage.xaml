@@ -69,8 +69,8 @@
                                                 Grid.RowSpan="2"
                                                 Margin="5,0,5,0"
                                                 Grid.Column="0"
-                                                Source="Avatar.png"
                                                 HeightRequest="80"
+                                                Source="{Binding Avatar}"
                                                 x:Name="ImageId"
 			                                    DownsampleToViewSize="true" 
                                                 FadeAnimationEnabled="True" >
@@ -83,12 +83,12 @@
                                FontFamily="{StaticResource Montserrat-SemiBold}"
                                Grid.Column="1"
                                Margin="5,10,5,0"
+                               Text="{Binding Name}"
                                x:Name="MoverName"
                                FontSize="{DynamicResource MediumSize}"
                                LineHeight="{OnPlatform Android=1.5, Default=-1}"
-                               Text="Lorz Becislao"
                                TextColor="{DynamicResource Gray-900}" />
-                        <rating:SfRating Value="5"
+                        <rating:SfRating Value="{Binding Rating}"
                                          Grid.Row="1"
                                          ItemSize="25"
                                          ReadOnly="True"
@@ -133,7 +133,7 @@
                                HorizontalTextAlignment="End"
                                FontSize="{DynamicResource MediumSize}"
                                LineHeight="{OnPlatform Android=1.5, Default=-1}"
-                               Text="Active"
+                               Text="{Binding Status}"
                                TextColor="{DynamicResource Green}" />
                         <Label Grid.Row="1"
                                FontFamily="{StaticResource Montserrat-SemiBold}"
@@ -142,7 +142,7 @@
                                Margin="5,10,5,0"
                                FontSize="{DynamicResource MediumSize}"
                                LineHeight="{OnPlatform Android=1.5, Default=-1}"
-                               Text="Sept. 20, 2021"
+                               Text="{Binding Expiry}"
                                TextColor="{DynamicResource Gray-900}" />
 
                     </Grid>
@@ -191,6 +191,7 @@
                                 x:Name="ListView"
                                 AllowSwiping="True"
                                 ItemsSource="{Binding VehicleList}"
+                                TapCommand="{Binding ItemTappedCommand}"
                                 SelectionBackgroundColor="Transparent"
                                 VerticalOptions="FillAndExpand">
                             <listView:SfListView.ItemTemplate>
@@ -268,9 +269,9 @@
                                                     </StackLayout>
                                                 </Grid>
                                             </Grid>
-                                            <controls:CustomShadowFrame.GestureRecognizers>
-                                                <TapGestureRecognizer  Command="{Binding BindingContext.MyVehicleCommand,Source={x:Reference ListView}}" CommandParameter="{Binding Identification}" />
-                                            </controls:CustomShadowFrame.GestureRecognizers>
+                                            <!--<controls:CustomShadowFrame.GestureRecognizers>
+                                                <TapGestureRecognizer  Command="{Binding Path=BindingContext.ItemTappedCommand ,Source={x:Reference ListView}}" CommandParameter="{Binding .}" />
+                                            </controls:CustomShadowFrame.GestureRecognizers>-->
                                         </controls:CustomShadowFrame>
                                     </ViewCell>
                                 </DataTemplate>
