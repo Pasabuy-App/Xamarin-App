@@ -15,7 +15,7 @@ namespace PasaBuy.App.Views.StoreViews
         {
             InitializeComponent();
 
-            this.BindingContext = new DashboardOrdersViewModel();
+            //this.BindingContext = new DashboardOrdersViewModel();
             Title = "Dashboard";
 
         }
