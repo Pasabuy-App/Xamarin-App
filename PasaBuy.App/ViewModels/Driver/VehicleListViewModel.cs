@@ -101,53 +101,89 @@ namespace PasaBuy.App.ViewModels.Driver
             }
         }
 
+        bool _isRefreshing = false;
+        public bool IsRefreshing
+        {
+            get
+            {
+                return _isRefreshing;
+            }
+            set
+            {
+                if (_isRefreshing != value)
+                {
+                    _isRefreshing = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        public ICommand RefreshCommand { protected set; get; }
         public Command SubmitCommand { get; set; }
 
+        public static string status;
+        public static string expiry;
+        public static int rating;
         public VehicleListViewModel()
         {
+            this.Rating = rating;
+            this.Status = status;
+            this.Expiry = expiry;
             this.Avatar = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatar);
             this.Name = PSACache.Instance.UserInfo.dname;
             this.SubmitCommand = new Command(this.SubmitClicked);
             _vehicleList = new ObservableCollection<VehicleList>();
-            LoadData();
+            LoadVehicle();
+            RefreshCommand = new Command<string>((key) =>
+            {
+                LoadVehicle();
+                IsRefreshing = false;
+            });
         }
 
-        public void LoadData()
+        public void LoadVehicle()
         {
             try
             {
-                Http.HatidFeature.Instance.Mover_Data((bool success, string data) =>
+                if (!IsBusy)
                 {
-                    if (success)
+                    IsBusy = true;
+                    _vehicleList.Clear();
+                    Http.HatidFeature.Instance.Listing_Vehicle("", PSACache.Instance.UserInfo.mvid, "", "", "", "", "", "", (bool success, string data) =>
                     {
-                        CultureInfo provider = new CultureInfo("fr-FR");
-                        MoverDataModel datas = JsonConvert.DeserializeObject<MoverDataModel>(data);
-                        for (int i = 0; i < datas.data.Length; i++)
+                        if (success)
                         {
-                            DateTime date = DateTime.ParseExact(datas.data[i].date_created, "yyyy-MM-dd HH:mm:ss", provider);
-                            PSACache.Instance.UserInfo.mvid = datas.data[i].mvid;
-                            this.Rating = datas.data[i].rate;
-                            this.Status = datas.data[i].mover_doc;
-                            this.Expiry = date.ToString("MMM. dd, yyyy");
-
-                            LoadVehicle();
+                            VehicleList vehicle = JsonConvert.DeserializeObject<VehicleList>(data);
+                            for (int i = 0; i < vehicle.data.Length; i++)
+                            {
+                                _vehicleList.Add(new VehicleList()
+                                {
+                                    Identification = vehicle.data[i].ID,
+                                    VehicleType = vehicle.data[i].types,
+                                    VehicleImage = string.IsNullOrEmpty(vehicle.data[i].preview) ? "" : PSAProc.GetUrl(vehicle.data[i].preview),
+                                    Status = vehicle.data[i].status.ToUpper()
+                                });
+                            }
+                            IsBusy = false;
                         }
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                });
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsBusy = false;
+                        }
+                    });
+                }
             }
             catch (Exception e)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                IsBusy = false;
             }
         }
-        public static void LoadVehicle()
+        public static void RefreshVehicle()
         {
             try
             {
+                _vehicleList.Clear();
                 Http.HatidFeature.Instance.Listing_Vehicle("", PSACache.Instance.UserInfo.mvid, "", "", "", "", "", "", (bool success, string data) =>
                 {
                     if (success)

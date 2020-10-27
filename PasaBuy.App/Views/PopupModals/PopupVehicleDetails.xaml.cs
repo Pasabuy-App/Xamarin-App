@@ -86,8 +86,7 @@ namespace PasaBuy.App.Views.PopupModals
                         {
                             if (success)
                             {
-                                VehicleListViewModel._vehicleList.Clear();
-                                VehicleListViewModel.LoadVehicle();
+                                VehicleListViewModel.RefreshVehicle();
                                 await PopupNavigation.Instance.PopAsync();
                                 isClicked = false;
                             }
