@@ -17,6 +17,19 @@ namespace PasaBuy.App.ViewModels.MobilePOS
     {
         public static ObservableCollection<Personnels> _personnelsList;
         public static ObservableCollection<Personnels> _usersList;
+        public static ObservableCollection<RolesModel> _rolesList;
+        public ObservableCollection<RolesModel> RolesList
+        {
+            get
+            {
+                return _rolesList;
+            }
+            set
+            {
+                _rolesList = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
         public ICommand ViewPersonnelCommand
         {
@@ -73,10 +86,49 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         {
             _personnelsList = new ObservableCollection<Personnels>();
             _usersList = new ObservableCollection<Personnels>();
+            _rolesList = new ObservableCollection<RolesModel>();
             _personnelsList.Clear();
             _usersList.Clear();
             LoadData();
+            LoadRoleList();
         }
+
+        public void LoadRoleList()
+        {
+            try
+            {
+                Http.POSFeature.Instance.Role_List("", "active", (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        RolesModel role = Newtonsoft.Json.JsonConvert.DeserializeObject<RolesModel>(data);
+                        if (role.data.Length > 0)
+                        {
+                            for (int i = 0; i < role.data.Length; i++)
+                            {
+                                _rolesList.Add(new RolesModel()
+                                {
+                                    Id = role.data[i].ID,
+                                    RoleTitle = role.data[i].title,
+                                    RoleInfo = role.data[i].info,
+                                    RoleStatus = role.data[i].status,
+                                });
+                            }
+                        }
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", Local.HtmlUtils.ConvertToPlainText(data), "Try Again");
+
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+            }
+        }
+
         public static void LoadUser()
         {
             _usersList.Add(new Personnels
