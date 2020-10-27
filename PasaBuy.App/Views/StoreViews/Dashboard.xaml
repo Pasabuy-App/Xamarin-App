@@ -90,8 +90,8 @@
                         TitleFontColor="{DynamicResource Gray-700}"
                         TitleFontFamily="{StaticResource Montserrat-Medium}"
                         TitleFontSize="14">
-                            <tabView:SfTabItem.Content>
-                                <listView:SfListView x:Name="NewOrders"
+                            <!--<tabView:SfTabItem.Content>
+                                    <listView:SfListView x:Name="NewOrders"
                                                  AutoFitMode="Height"
                                                  FocusBorderThickness="0"
                                                  ItemSpacing="0,1,0,0"
@@ -99,9 +99,8 @@
                                                      ItemTapped="NewOrders_ItemTapped"
                                                  ItemsSource="{Binding OrderList}"
                                                  SelectionMode="None">
-                                    <!--Item Source is for testing purposes only. Kindly bind into specific viewmodels-->
 
-                                    <listView:SfListView.ItemTemplate>
+                                        <listView:SfListView.ItemTemplate>
                                         <DataTemplate>
                                             <Grid Margin="0"
                                               Padding="8,12,8,0"
@@ -179,7 +178,7 @@
                                         </DataTemplate>
                                     </listView:SfListView.ItemTemplate>
                                 </listView:SfListView>
-                            </tabView:SfTabItem.Content>
+                            </tabView:SfTabItem.Content>-->
                         </tabView:SfTabItem>
 
                         <tabView:SfTabItem
@@ -188,10 +187,10 @@
                         TitleFontColor="{DynamicResource Gray-700}"
                         TitleFontFamily="{StaticResource Montserrat-Medium}"
                         TitleFontSize="14">
-                            <tabView:SfTabItem.Content>
-                                <view:PendingOrdersView />
-                            </tabView:SfTabItem.Content>
-                        </tabView:SfTabItem>
+                                <!--<tabView:SfTabItem.Content>
+                                    <view:PendingOrdersView />
+                                </tabView:SfTabItem.Content>-->
+                            </tabView:SfTabItem>
 
                         <tabView:SfTabItem
                         Title="Declined"
@@ -199,9 +198,9 @@
                         TitleFontColor="{DynamicResource Gray-700}"
                         TitleFontFamily="{StaticResource Montserrat-Medium}"
                         TitleFontSize="14">
-                            <tabView:SfTabItem.Content>
+                            <!--<tabView:SfTabItem.Content>
                                 <view:DeclinedOrdersView />
-                            </tabView:SfTabItem.Content>
+                            </tabView:SfTabItem.Content>-->
                         </tabView:SfTabItem>
 
                         <tabView:SfTabItem
@@ -210,9 +209,9 @@
                         TitleFontColor="{DynamicResource Gray-700}"
                         TitleFontFamily="{StaticResource Montserrat-Medium}"
                         TitleFontSize="14">
-                            <tabView:SfTabItem.Content>
+                            <!--<tabView:SfTabItem.Content>
                                 <view:CompletedOrdersView />
-                            </tabView:SfTabItem.Content>
+                            </tabView:SfTabItem.Content>-->
                         </tabView:SfTabItem>
 
                     </tabView:SfTabView>

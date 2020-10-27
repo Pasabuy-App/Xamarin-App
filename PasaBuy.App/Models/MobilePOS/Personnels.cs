@@ -10,6 +10,7 @@ namespace PasaBuy.App.Models.MobilePOS
             public string ID = string.Empty;
             public string wpid = string.Empty;
             public string avatar = string.Empty;
+            public string name = string.Empty;
             public string dname = string.Empty;
             public string position = string.Empty;
             public string date_created = string.Empty;

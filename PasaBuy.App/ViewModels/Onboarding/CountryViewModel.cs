@@ -10,7 +10,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
 {
     public class CountryViewModel
     {
-        private ObservableCollection<CountryData> countryCollection;
+        public  ObservableCollection<CountryData> countryCollection;
         public ObservableCollection<CountryData> CountryCollection
         {
             get { return countryCollection; }

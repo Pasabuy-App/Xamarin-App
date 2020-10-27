@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+             xmlns:converter="clr-namespace:PasaBuy.App.Converters" 
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
+             xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
+             xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch"
+             BackgroundColor="{DynamicResource Gray-White}"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="PasaBuy.App.Views.StoreViews.Management.SearchWalletPersonnel">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid CompressedLayout.IsHeadless="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0"
+                  Padding="15,8,15,8"
+                  BackgroundColor="{StaticResource PrimaryColor}"
+                  HeightRequest="{OnPlatform Android='46',
+                                                   iOS='56'}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <buttons:SfButton
+                            x:Name="backButton"
+                            Clicked="BackButtonClicked"
+                            Grid.Column="0"
+                            CornerRadius="4"
+                            TextColor="White"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                <Label Grid.Column="1" 
+                       x:Name="TitleName"
+                       Text="Store Wallet"
+                       Margin="0,0,20,0"
+                       FontFamily="{StaticResource Montserrat-Medium}"
+                       FontSize="{StaticResource LargeSize}"
+                       HorizontalOptions="StartAndExpand"
+                       TextColor="{DynamicResource Gray-White}"
+                       VerticalOptions="Center" />
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <StackLayout x:Name="TitleView"
+                    Padding="16,8"
+                    Grid.Row="0" 
+                    HeightRequest="40"
+                    BackgroundColor="{DynamicResource Gray-White}"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal"
+                    Spacing="0">
+                    <StackLayout  x:Name="Title"
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="True"
+                        Orientation="Horizontal"
+                        Spacing="0"
+                        Margin="20,0,0,0"
+                        VerticalOptions="FillAndExpand">
+                        <Label Margin="16,0"
+                            HeightRequest="24"
+                            FontFamily="{StaticResource Montserrat-Medium}"
+                            FontSize="16"
+                            HorizontalOptions="CenterAndExpand"
+                            LineHeight="1.25"
+                            Text="Search store personnel"
+                            TextColor="{DynamicResource Gray-900}"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center" />
+                    </StackLayout>
+                    <StackLayout x:Name="Search"
+                        HorizontalOptions="EndAndExpand"
+                        IsVisible="False"
+                        Orientation="Horizontal"
+                        Spacing="0">
+                        <buttons:SfButton x:Name="BackToTitle"
+                            Clicked="BackToTitle_Clicked"
+                            TextColor="{DynamicResource Gray-900}"
+                            Style="{StaticResource NavigationBarButtonStyle}"
+                            Text="{StaticResource Back}" />
+                        <border:SfBorder Style="{DynamicResource SfBorderStyle}">
+                            <controls:BorderlessEntry x:Name="SearchEntry"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="Search here"
+                                ReturnType="Search"
+                                Text="{Binding SearchText, Mode=TwoWay}"
+                                Style="{StaticResource SearchEntryStyle}"/>
+                        </border:SfBorder>
+                    </StackLayout>
+                    <!--  Search Button  -->
+                    <buttons:SfButton x:Name="SearchButton"
+                        IsVisible="True"
+                        Clicked="SearchButton_Clicked"
+                        TextColor="{DynamicResource Gray-900}"
+                        Style="{StaticResource NavigationBarButtonStyle }"
+                        Text="{StaticResource Search}" />
+                </StackLayout>
+
+                <BoxView  Grid.Row="1" Style="{StaticResource SeparatorStyle}" />
+
+                <listView:SfListView Grid.Row="2" 
+                                     IsScrollBarVisible="False"
+                                     ItemSpacing="0"
+                                     x:Name="listView"
+                                     HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="FillAndExpand"
+                                     ItemsSource="{Binding PersonnelsList}"
+                                     SelectionBackgroundColor="{DynamicResource Gray-300}"
+                                     AutoFitMode="Height">
+                    <listView:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid RowSpacing="0" ColumnSpacing="0">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Profile Image -->
+                                <ffimageloading:CachedImage Aspect="Fill"
+                                                        Grid.Row="0"
+                                                        Grid.RowSpan="3"
+                                                        Margin="16"
+                                                        WidthRequest="40"
+                                                        HeightRequest="40"
+                                                        VerticalOptions="Center"
+                                                        Source="{Binding Avatar}"
+			                                            DownsampleToViewSize="true" 
+                                                        FadeAnimationEnabled="True" >
+                                    <ffimageloading:CachedImage.Transformations>
+                                        <fftransformations:CircleTransformation />
+                                    </ffimageloading:CachedImage.Transformations>
+                                </ffimageloading:CachedImage>
+
+                                <!-- Name -->
+                                <Forms9Patch:Label Text="{Binding FullName}"
+                                                       FontSize="{DynamicResource SmallSize}" 
+                                                       FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                       TextColor="{DynamicResource Gray-900}"
+                                                       Margin="0,15,0,4"
+                                                       Grid.Column="1"
+                                                       Lines="1"
+                                                       HorizontalOptions="Start"
+                                                       AutoFit="Width"/>
+
+                                <!-- Transaction Title -->
+                                <Label Grid.Row="1"
+                                       Grid.Column="1"
+                                       Margin="0,0,0,16"
+                                       HorizontalOptions="Start"
+                                       FontSize="{DynamicResource SmallSize}" 
+                                       FontFamily="{StaticResource Montserrat-Medium}"
+                                       TextColor="{DynamicResource Gray-900}"
+                                       LineHeight="{OnPlatform Android=1.5, Default=-1}" />
+
+
+                                <Forms9Patch:Label Text="{Binding DateCreated, StringFormat='{}{0:dd MMM yyyy}'}"
+                                                       FontSize="{DynamicResource SmallSize}" 
+                                                       FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                       TextColor="{DynamicResource Gray-900}"
+                                                       Margin="0,16,16,4"
+                                                       Grid.Column="1"
+                                                       Lines="1"
+                                                       HorizontalOptions="End"
+                                                       AutoFit="Width"/>
+
+                                <!-- Seperator -->
+                                <BoxView Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource SeparatorStyle}" />
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.ChangeWalletCommand,Source={x:Reference listView}}" CommandParameter="{Binding Id}"/>
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                        </DataTemplate>
+                    </listView:SfListView.ItemTemplate>
+                </listView:SfListView>
+
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

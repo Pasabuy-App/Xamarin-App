@@ -94,6 +94,8 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                     {
                         if (success)
                         {
+                            RolesViewModel._rolesList.Clear();
+                            RolesViewModel.LoadRoleList();
                             PopupNavigation.Instance.PopAsync();
                         }
                         else

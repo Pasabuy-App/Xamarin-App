@@ -19,5 +19,10 @@ namespace PasaBuy.App.Views.Currency
         {
             Navigation.PopModalAsync();
         }
+
+        private void ViewParticipatingStores(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new PasabuyStoreList());
+        }
     }
 }

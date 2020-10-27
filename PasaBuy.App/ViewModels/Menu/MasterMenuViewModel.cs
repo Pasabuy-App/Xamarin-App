@@ -1,7 +1,11 @@
 ﻿
+using Newtonsoft.Json;
+using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
+using PasaBuy.App.Models.Driver;
 using PasaBuy.App.Models.MobilePOS;
 using PasaBuy.App.ViewModels.Chat;
+using PasaBuy.App.ViewModels.Driver;
 using PasaBuy.App.ViewModels.Feeds;
 using PasaBuy.App.Views.Advisory;
 using PasaBuy.App.Views.Chat;
@@ -14,6 +18,7 @@ using PasaBuy.App.Views.Settings;
 using PasaBuy.App.Views.StoreViews;
 using System;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -106,7 +111,9 @@ namespace PasaBuy.App.ViewModels.Menu
             /*isDriver = true;
             isStore = true;*/
 
-            isDriver = true;
+            //isDriver = true;
+            CheckMover();
+
             isStore = true;
             IsBusy = false;
             //isDriver = UserEnabledFeature.Instance.isMover;
@@ -137,6 +144,38 @@ namespace PasaBuy.App.ViewModels.Menu
             await Task.Delay(100);
             this.UserPhoto = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
             this.UserBanner = PSAProc.GetUrl(PSACache.Instance.UserInfo.bannerUrl);
+        }
+
+        public void CheckMover()
+        {
+            try
+            {
+                Http.HatidFeature.Instance.Mover_Data((bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        isDriver = true;
+                        CultureInfo provider = new CultureInfo("fr-FR");
+                        MoverDataModel datas = JsonConvert.DeserializeObject<MoverDataModel>(data);
+                        for (int i = 0; i < datas.data.Length; i++)
+                        {
+                            DateTime date = DateTime.ParseExact(datas.data[i].date_created, "yyyy-MM-dd HH:mm:ss", provider);
+                            PSACache.Instance.UserInfo.mvid = datas.data[i].mvid;
+                            VehicleListViewModel.rating = datas.data[i].rate;
+                            VehicleListViewModel.status = datas.data[i].banned == false ? datas.data[i].mover_doc : "Banned";
+                            VehicleListViewModel.expiry = date.ToString("MMM. dd, yyyy");
+                        }
+                    }
+                    else
+                    {
+                        isDriver = false;
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+            }
         }
 
         #endregion

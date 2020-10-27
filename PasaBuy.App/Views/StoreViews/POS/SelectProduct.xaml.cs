@@ -12,7 +12,7 @@ namespace PasaBuy.App.Views.StoreViews.POS
         public SelectProduct()
         {
             InitializeComponent();
-            this.BindingContext = new POSViewModel();
+            this.BindingContext = new POSProductViewModel();
         }
 
         private void backButton_Clicked(object sender, EventArgs e)

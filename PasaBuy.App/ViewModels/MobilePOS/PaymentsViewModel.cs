@@ -1,7 +1,10 @@
-﻿using PasaBuy.App.Models.MobilePOS;
+﻿using PasaBuy.App.Models.Currency;
+using PasaBuy.App.Models.MobilePOS;
 using PasaBuy.App.Views.PopupModals;
+using PasaBuy.App.Views.StoreViews.Management;
 using Rg.Plugins.Popup.Services;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -10,6 +13,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
     public class PaymentsViewModel : BaseViewModel
     {
         private ObservableCollection<StorePayment> _walletTransactions;
+        public ObservableCollection<WalletCreditsModel> _walletCredits;
 
         public ObservableCollection<StorePayment> WalletTransactions
         {
@@ -24,6 +28,19 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
         }
 
+        public ObservableCollection<WalletCreditsModel> WalletCreditsInformation
+        {
+            get
+            {
+                return _walletCredits;
+            }
+            set
+            {
+                _walletCredits = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
         public ICommand SetupCommand
         {
             get
@@ -33,7 +50,11 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         }
         private async void SetupClicked(string id)
         {
-            await PopupNavigation.Instance.PushAsync(new PopupSetupWallet());
+            IsBusy = true;
+            await App.Current.MainPage.Navigation.PushModalAsync(new SearchWalletPersonnel());
+            await Task.Delay(500);
+            IsBusy = false;
+
         }
 
         public ICommand WithdrawCommand
@@ -51,6 +72,8 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         public PaymentsViewModel()
         {
             _walletTransactions = new ObservableCollection<StorePayment>();
+            _walletCredits = new ObservableCollection<WalletCreditsModel>();
+
 
             for (int i = 0; i < 5; i++)
             {

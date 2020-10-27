@@ -94,11 +94,13 @@
                           Grid.ColumnSpan="2">
                         <Picker x:Name="PositionPicker" 
                                 HorizontalOptions="FillAndExpand"
+                                ItemsSource="{Binding RolesList}"
+                                ItemDisplayBinding="{Binding RoleTitle}"
                                 Title="Select position">
                             <Picker.Items>
-                                <x:String>Manager</x:String>
-                                <x:String>Store Staff</x:String>
-                                <x:String>Cashier</x:String>
+
+                                <!--<x:String>Store Staff</x:String>
+                                <x:String>Cashier</x:String>-->
                             </Picker.Items>
                         </Picker>
                     </Grid>

@@ -120,6 +120,18 @@ namespace PasaBuy.App.Models.Driver
             }
         }
 
+        public DocumentListData[] data;
 
+    }
+    public class DocumentListData
+    {
+        public string ID = string.Empty;
+        public string vhid = string.Empty;
+        public string types = string.Empty;
+        public string status = string.Empty;
+        public string preview = string.Empty;
+        public string comments = string.Empty;
+        public string created_by = string.Empty;
+        public string date_created = string.Empty;
     }
 }

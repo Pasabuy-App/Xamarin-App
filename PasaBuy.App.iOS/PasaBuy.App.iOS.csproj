@@ -364,4 +364,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\Icon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\reward.png" />
+  </ItemGroup>
 </Project>

@@ -1,4 +1,5 @@
-﻿using PasaBuy.App.Views.StoreViews.POS;
+﻿using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Views.StoreViews.POS;
 using System;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
@@ -97,7 +98,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         public POSViewModel()
         {
             this.AddOrderProductCommand = new Command(this.AddOrderProductClicked);
-            this.RemoveOrderProductCommand = new Command(this.RemoveOrderProductClicked);
+            DeleteCommand = new Command<object>(OnTapped);
             _currentOrder = new ObservableCollection<Models.MobilePOS.PointOfSales>();
             _quantity = new ObservableCollection<Models.MobilePOS.PointOfSales>();
             _currentOrder.Clear();
@@ -135,17 +136,14 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 Quantity = quantity
             });
         }
-        public Command RemoveOrderProductCommand
+
+        public Command<object> DeleteCommand { get; set; }
+
+        private void OnTapped(object obj)
         {
-            get;
-            set;
-        }
-        private void RemoveOrderProductClicked(object obj)
-        {
-            if (obj is Models.MobilePOS.PointOfSales pos)
-            {
-                this.CurrentOrder.Remove(pos);
-            }
+            var pos = obj as Models.MobilePOS.PointOfSales;
+            _currentOrder.Remove(pos);
+            App.Current.MainPage.DisplayAlert("Message", "Item Deleted :" + pos.Name, "Ok");
         }
 
         public Command AddOrderProductCommand

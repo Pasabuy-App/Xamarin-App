@@ -95,6 +95,16 @@
                     </Grid.ColumnDefinitions>
 
                     <buttons:SfButton
+                            CornerRadius="5"
+                            Grid.Column="0"
+                            Clicked="ViewParticipatingStores"
+                            Grid.Row="0"
+                            Margin="10,0,10,0"
+                            TextColor="White"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            Text="Participating Stores" />
+
+                    <buttons:SfButton
                             Command="{Binding TopUpCommand}"
                             CornerRadius="5"
                             Grid.Column="1"

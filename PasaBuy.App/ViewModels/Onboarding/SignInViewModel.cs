@@ -140,13 +140,13 @@ namespace PasaBuy.App.ViewModels.Onboarding
                 State = true;
                 Users.Instance.Auth(Email, Password, (bool success, string data) =>
                 {
-                    if (!success && HtmlUtils.ConvertToPlainText(data) == "Please activate your account first.")
+                    /*if (!success && HtmlUtils.ConvertToPlainText(data) == "Please activate your account first.")
                     {
                         PopupNavigation.Instance.PushAsync(new PopupUnverifiedAccount());
                         State = false;
                         return;
 
-                    }
+                    }*/
 
                     if (success)
                     {

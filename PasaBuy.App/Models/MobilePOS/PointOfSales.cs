@@ -1,4 +1,9 @@
-﻿using System.ComponentModel;
+﻿using PasaBuy.App.Models.Marketplace;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Text;
 
 namespace PasaBuy.App.Models.MobilePOS
 {
@@ -6,8 +11,37 @@ namespace PasaBuy.App.Models.MobilePOS
     {
         private string name = string.Empty;
         private string id = string.Empty;
-        private float price;
-        public float Quantity;
+        private double price;
+        private int quantity;
+
+        private ObservableCollection<Options> vars = new ObservableCollection<Options>();
+        public ObservableCollection<Options> Variants
+        {
+
+            get
+            {
+
+                return this.vars;
+            }
+
+            set
+            {
+                this.vars = value;
+            }
+        }
+
+        public int Quantity
+        {
+            get
+            {
+                return quantity;
+            }
+            set
+            {
+                quantity = value;
+                OnPropertyChanged("Quantity");
+            }
+        }
 
         public string Id
         {
@@ -22,7 +56,7 @@ namespace PasaBuy.App.Models.MobilePOS
             }
         }
 
-        public float Price
+        public double Price
         {
             get
             {
