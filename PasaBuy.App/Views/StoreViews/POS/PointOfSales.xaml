@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms" xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              x:Class="PasaBuy.App.Views.StoreViews.POS.PointOfSales"
+             x:Name="POS"
              BackgroundColor="{DynamicResource Gray-White}"
              Title="Point of Sales">
     <ContentPage.Resources>
@@ -87,7 +88,7 @@
                        FontSize="{StaticResource MediumSize}"
                        VerticalTextAlignment="Center"
                        HorizontalTextAlignment="End"
-                       Text="250.25"
+                       Text="{Binding Bill}"
                        TextColor="{DynamicResource Gray-900}" />
                     <Label FontFamily="{StaticResource Montserrat-Medium}"
                        Padding="10,0,0,0"
@@ -96,7 +97,7 @@
                        FontSize="{StaticResource MediumSize}"
                        VerticalTextAlignment="Center"
                        HorizontalTextAlignment="End"
-                       Text="0.00"
+                       Text="{Binding Tax}"
                        TextColor="{DynamicResource Gray-900}" />
                     <Label FontFamily="{StaticResource Montserrat-SemiBold}"
                        Padding="10,0,0,0"
@@ -105,7 +106,7 @@
                        FontSize="{StaticResource MediumSize}"
                        VerticalTextAlignment="Center"
                        HorizontalTextAlignment="End"
-                       Text="250.25"
+                       Text="{Binding Total}"
                        TextColor="{DynamicResource Gray-900}" />
 
                     <buttons:SfButton Grid.Row="4"
@@ -171,7 +172,8 @@
                                                              Maximum="10" 
                                                              Minimum="1" 
                                                              MaximumDecimalDigits="0"
-                                                             Value="1"
+                                                             Value="{Binding Quantity}"
+                                                             ValueChanged="numericUpDown_ValueChanged"
                                                              TextAlignment="Center"
                                                              HorizontalOptions="End"
                                                              SpinButtonAlignment="Both"
@@ -187,6 +189,7 @@
 
                         </DataTemplate>
                     </sync:SfListView.ItemTemplate>
+
                     <sync:SfListView.RightSwipeTemplate>
                         <DataTemplate x:Name="RightSwipeTemplate">
                             <Grid ClassId="{Binding ID}"
@@ -196,7 +199,7 @@
                                   HorizontalOptions="Fill"
                                   VerticalOptions="Fill">
                                 <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer  x:Name="Delete" />
+                                    <TapGestureRecognizer  Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference Transactions}}" CommandParameter="{Binding .}"/>
                                 </Grid.GestureRecognizers>
                                 <Grid HorizontalOptions="Center" VerticalOptions="Center">
                                     <Image Grid.Row="0"
@@ -209,6 +212,7 @@
                             </Grid>
                         </DataTemplate>
                     </sync:SfListView.RightSwipeTemplate>
+
                 </sync:SfListView>
             </Grid>
             <fab:FloatingActionButtonView

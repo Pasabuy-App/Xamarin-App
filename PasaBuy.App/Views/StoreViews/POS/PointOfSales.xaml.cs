@@ -15,9 +15,9 @@ namespace PasaBuy.App.Views.StoreViews.POS
             this.BindingContext = new POSViewModel();
         }
 
-        private void AddOrderProduct(object sender, EventArgs e)
+        private void numericUpDown_ValueChanged(object sender, Syncfusion.SfNumericUpDown.XForms.ValueEventArgs e)
         {
-            Navigation.PushModalAsync(new SelectProduct());
+            POSViewModel._quantity.Clear();
         }
     }
 }
