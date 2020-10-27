@@ -14,5 +14,6 @@ namespace PasaBuy.App.Models.Driver
         public string date_created = string.Empty;
         public string mover_doc = string.Empty;
         public int rate;
+        public bool banned;
     }
 }
