@@ -10,6 +10,7 @@
              xmlns:menu="clr-namespace:PasaBuy.App.Views.Menu" 
              xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl"
              x:Class="PasaBuy.App.Views.MainTabs"
+             xmlns:pasabuyplus="clr-namespace:PasaBuy.App.Views.Currency"
              NavigationPage.HasNavigationBar="False"
              NavigationPage.HasBackButton="False">
 
@@ -116,8 +117,9 @@
 				    ColorNormal="{StaticResource PrimaryColor}"
 				    ColorPressed="{StaticResource Orange}"
 				    ColorRipple="{StaticResource Yellow}"
-				    x:Name="AddProductButton"
-                    Command="{Binding AddOrderProductCommand}"
+				    x:Name="ShowPasabuyStoresButton"
+                    Command="{Binding ShowPasabuyStores}"
+                    CommandParameter="{x:Type pasabuyplus:PasabuyPlusPage}"
                     ImageName ="reward.png"
 				    IsVisible="True"
                     VerticalOptions="EndAndExpand"
