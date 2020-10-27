@@ -152,7 +152,9 @@
                         Grid.Row="0"
                         Style="{StaticResource SfBorderStyle}">
                         <combobox:SfComboBox
-                                SelectedValue="{Binding Gender, Mode=TwoWay}"
+                                x:Name="combo_Type"
+                                SelectedValuePath="ID"
+                                SelectionChanged="combo_Type_SelectionChanged"
                                 Style="{StaticResource ComboBoxStyle}"
                                 Watermark="Vehicle Type"
                                 TextColor="Black"
@@ -161,8 +163,7 @@
                                 VerticalOptions="CenterAndExpand">
                             <combobox:SfComboBox.ComboBoxSource>
                                 <ListCollection:List x:TypeArguments="x:String">
-                                    <x:String>Male</x:String>
-                                    <x:String>Female</x:String>
+                                    <x:String></x:String>
                                 </ListCollection:List>
                             </combobox:SfComboBox.ComboBoxSource>
                             <combobox:SfComboBox.DropDownButtonSettings>
@@ -185,7 +186,9 @@
                         Grid.Row="1"
                         Style="{StaticResource SfBorderStyle}">
                         <combobox:SfComboBox
-                                SelectedValue="{Binding Gender, Mode=TwoWay}"
+                                x:Name="combo_Maker"
+                                SelectedValuePath="ID"
+                                SelectionChanged="combo_Maker_SelectionChanged"
                                 Style="{StaticResource ComboBoxStyle}"
                                 Watermark="Maker"
                                 TextColor="Black"
@@ -194,8 +197,7 @@
                                 VerticalOptions="CenterAndExpand">
                             <combobox:SfComboBox.ComboBoxSource>
                                 <ListCollection:List x:TypeArguments="x:String">
-                                    <x:String>Male</x:String>
-                                    <x:String>Female</x:String>
+                                    <x:String></x:String>
                                 </ListCollection:List>
                             </combobox:SfComboBox.ComboBoxSource>
                             <combobox:SfComboBox.DropDownButtonSettings>
@@ -218,7 +220,9 @@
                         Grid.Row="2"
                         Style="{StaticResource SfBorderStyle}">
                         <combobox:SfComboBox
-                                SelectedValue="{Binding Gender, Mode=TwoWay}"
+                                x:Name="combo_Model"
+                                SelectedValuePath="ID"
+                                SelectionChanged="combo_Model_SelectionChanged"
                                 Style="{StaticResource ComboBoxStyle}"
                                 Watermark="Model"
                                 TextColor="Black"
@@ -227,8 +231,7 @@
                                 VerticalOptions="CenterAndExpand">
                             <combobox:SfComboBox.ComboBoxSource>
                                 <ListCollection:List x:TypeArguments="x:String">
-                                    <x:String>Male</x:String>
-                                    <x:String>Female</x:String>
+                                    <x:String></x:String>
                                 </ListCollection:List>
                             </combobox:SfComboBox.ComboBoxSource>
                             <combobox:SfComboBox.DropDownButtonSettings>
@@ -252,12 +255,11 @@
                                      BackgroundColor="{DynamicResource Gray-White}"
                                      Style="{StaticResource SfBorderStyle}">
                         <controls:BorderlessEntry
-                            x:Name="EmailEntry"
+                            x:Name="PlateNumber"
                             ReturnType="Next"
                             TextColor="Black"
                             Margin="5,0,0,0"
                             Placeholder="Plate Number"
-                            Text="{Binding Email}"
                             BackgroundColor="{DynamicResource Gray-White}"
                             PlaceholderColor="{DynamicResource Gray-900}"
                             Style="{StaticResource EntryTextBoxStyle}" />
@@ -269,7 +271,7 @@
                             Padding="0,8,0,8"
                             Style="{StaticResource SfFlatButtonStyle}"
                             TextColor="{DynamicResource Gray-White}"
-                            Command="{Binding SubmitCommand}"
+                            Clicked="SubmitModal"
                             BackgroundColor="{DynamicResource PrimaryColor}"
                             Text="Submit" />
                 </Grid>
