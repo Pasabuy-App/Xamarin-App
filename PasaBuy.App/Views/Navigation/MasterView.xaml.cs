@@ -71,7 +71,7 @@ namespace PasaBuy.App.Views.Navigation
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Management"), Icon = "https://pasabuy.app/wp-content/uploads/2020/10/management.png", TargetType = typeof(ManagementView) });
                 //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Categories"), Icon = "Idcard.png", TargetType = typeof(CategoryView) });
                 //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Transactions"), Icon = "Idcard.png", TargetType = typeof(TransactionsView) });
-                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Messages"), Icon = "https://pasabuy.app/wp-content/uploads/2020/10/messages.jpg", TargetType = typeof(MessagesView) });
+                //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Messages"), Icon = "https://pasabuy.app/wp-content/uploads/2020/10/messages.jpg", TargetType = typeof(MessagesView) });
                 //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Vouchers"), Icon = "Idcard.png", TargetType = typeof(VouchersView) });
                 //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Documents"), Icon = "Idcard.png", TargetType = typeof(DocumentsView) });
                 //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Reports"), Icon = "Idcard.png", TargetType = typeof(ReportsView) });
@@ -97,7 +97,7 @@ namespace PasaBuy.App.Views.Navigation
                 Email.Text = PSACache.Instance.UserInfo.email;
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Dashboard"), Icon = "Idcard.png", TargetType = typeof(Views.Driver.DashboardPage) });
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Transactions"), Icon = "Idcard.png", TargetType = typeof(TransactionsHistoryPage) });
-                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Messages"), Icon = "Idcard.png", TargetType = typeof(MessagesView) });
+                //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Messages"), Icon = "Idcard.png", TargetType = typeof(MessagesView) });
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Documents"), Icon = "Idcard.png", TargetType = typeof(DocumentsView) });
             }
 
