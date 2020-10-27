@@ -19,9 +19,14 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
+
         <Grid>
             <Grid>
-                <Grid RowSpacing="0">
+
+                <RefreshView IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                     x:Name="rv"
+                     Command="{Binding RefreshCommand}">
+                    <Grid RowSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="8*" />
                         <RowDefinition Height="15*" />
@@ -55,6 +60,7 @@
                                     VerticalOptions="Center" />
 
                     </Grid>
+
                     <Grid Grid.Row="1" Padding="15,10,15,10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -147,12 +153,12 @@
 
                     </Grid>
 
-                        <Grid Grid.Row="3"
+                    <Grid Grid.Row="3"
                               Padding="15,0,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
                         <Label Grid.Row="0"
                                    FontFamily="{StaticResource Montserrat-SemiBold}"
@@ -166,23 +172,26 @@
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="AddVehiclesTapped" NumberOfTapsRequired="1"  />
                             </Label.GestureRecognizers>
-                                
+
                         </Label>
-                        <Label 
+                        <!--<Label 
                                    FontFamily="{StaticResource Montserrat-SemiBold}"
                                    Grid.Column="1"
                                    Margin="5,10,5,0"
                                    FontSize="13"
                                    LineHeight="{OnPlatform Android=1.5, Default=-1}"
                                    Text="Swipe left to delete vehicle"
-                                   TextColor="{DynamicResource Gray-900}" />
+                                   TextColor="{DynamicResource Gray-900}" />-->
 
-                        </Grid>
-                   
-                    <StackLayout Grid.Row="4" 
+                    </Grid>
+
+                    <ScrollView Grid.Row="4" 
+                                 Margin="0,15,0,0">
+
+                        <StackLayout Grid.Row="4" 
                                  Margin="0,15,0,0"
                                  Spacing="0">
-                        <listView:SfListView
+                            <listView:SfListView
                                 Padding="15,0,10,0"
                                 AutoFitMode="Height"
                                 IsScrollBarVisible="false"
@@ -194,11 +203,11 @@
                                 TapCommand="{Binding ItemTappedCommand}"
                                 SelectionBackgroundColor="Transparent"
                                 VerticalOptions="FillAndExpand">
-                            <listView:SfListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <!--  View of each card item  -->
-                                        <controls:CustomShadowFrame
+                                <listView:SfListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <!--  View of each card item  -->
+                                            <controls:CustomShadowFrame
                                                 Margin="0,2,5,5"
                                                 Padding="0"
                                                 BackgroundColor="{DynamicResource Gray-White}"
@@ -208,14 +217,14 @@
                                                 HasShadow="True"
                                                 HorizontalOptions="FillAndExpand"
                                                 VerticalOptions="FillAndExpand">
-                                            <Grid>
-                                                <Grid ColumnSpacing="0" RowSpacing="0">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="120" />
-                                                        <ColumnDefinition Width="*" />
-                                                    </Grid.ColumnDefinitions>
+                                                <Grid>
+                                                    <Grid ColumnSpacing="0" RowSpacing="0">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="120" />
+                                                            <ColumnDefinition Width="*" />
+                                                        </Grid.ColumnDefinitions>
 
-                                                    <ffimageloading:CachedImage
+                                                        <ffimageloading:CachedImage
                                                             Grid.Row="0"
                                                             Grid.Column="0"
                                                             CacheType="Memory"
@@ -225,16 +234,16 @@
                                                             Source="{Binding VehicleImage}"
                                                             TransformPlaceholders="True"
                                                             WidthRequest="70">
-                                                    </ffimageloading:CachedImage>
-                                                    <StackLayout
+                                                        </ffimageloading:CachedImage>
+                                                        <StackLayout
                                                             Grid.Column="1"
                                                             Padding="16"
                                                             HorizontalOptions="FillAndExpand"
                                                             Spacing="0"
                                                             VerticalOptions="FillAndExpand">
 
-                                                        <!--  Name of the item  -->
-                                                        <Label
+                                                            <!--  Name of the item  -->
+                                                            <Label
                                                             FontFamily="{StaticResource Montserrat-SemiBold}"
                                                             FontSize="16"
                                                             LineHeight="{OnPlatform Android=1.5,
@@ -242,8 +251,8 @@
                                                             Text="{Binding VehicleType}"
                                                             TextColor="{DynamicResource Gray-900}" />
 
-                                                        <!--  Description about the item  -->
-                                                        <Label
+                                                            <!--  Description about the item  -->
+                                                            <Label
                                                             Margin="0,4,0,8"
                                                             FontFamily="{StaticResource Montserrat-Medium}"
                                                             FontSize="14"
@@ -252,31 +261,31 @@
                                                             Text="{Binding Status}"
                                                             TextColor="{DynamicResource Green}" />
 
-                                                        <!--  Average rating from the overall rating  -->
-                                                        <StackLayout
+                                                            <!--  Average rating from the overall rating  -->
+                                                            <StackLayout
                                                             HorizontalOptions="FillAndExpand"
                                                             Orientation="Horizontal"
                                                             Spacing="0"
                                                             VerticalOptions="EndAndExpand">
 
-                                                            <!--  Navigation icon  -->
-                                                            <Label
+                                                                <!--  Navigation icon  -->
+                                                                <Label
                                                                 HorizontalOptions="EndAndExpand"
                                                                 FontSize="20"
                                                                 TextColor="{DynamicResource PrimaryColor}"
                                                                 Style="{StaticResource RightArrowLabelStyle}" />
+                                                            </StackLayout>
                                                         </StackLayout>
-                                                    </StackLayout>
+                                                    </Grid>
                                                 </Grid>
-                                            </Grid>
-                                            <!--<controls:CustomShadowFrame.GestureRecognizers>
+                                                <!--<controls:CustomShadowFrame.GestureRecognizers>
                                                 <TapGestureRecognizer  Command="{Binding Path=BindingContext.ItemTappedCommand ,Source={x:Reference ListView}}" CommandParameter="{Binding .}" />
                                             </controls:CustomShadowFrame.GestureRecognizers>-->
-                                        </controls:CustomShadowFrame>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </listView:SfListView.ItemTemplate>
-                            <listView:SfListView.RightSwipeTemplate>
+                                            </controls:CustomShadowFrame>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </listView:SfListView.ItemTemplate>
+                                <!--<listView:SfListView.RightSwipeTemplate>
                                 <DataTemplate x:Name="RightSwipeTemplate">
                                     <Grid Padding="15,20,15,20">
                                         <Grid.ColumnDefinitions>
@@ -301,18 +310,20 @@
                                         </Grid>
                                     </Grid>
                                 </DataTemplate>
-                            </listView:SfListView.RightSwipeTemplate>
-                        </listView:SfListView>
-                    </StackLayout>
+                            </listView:SfListView.RightSwipeTemplate>-->
+                            </listView:SfListView>
+                        </StackLayout>
+                    </ScrollView>
 
                 </Grid>
-
-
+                </RefreshView>
             </Grid>
             <local:LoadingIndicator
+                IsRunning="{Binding IsBusy, Mode=TwoWay}"
                 Grid.Row="0"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill" />
         </Grid>
+        
     </ContentPage.Content>
 </ContentPage>
