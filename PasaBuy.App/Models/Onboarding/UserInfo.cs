@@ -28,6 +28,8 @@ namespace PasaBuy.App.Models.Onboarding
         public bool store_status = false;
         public bool store_schedule = false;
         public bool store_operation = false;
+        public string mvid = string.Empty;
+        public string vhid = string.Empty;
 
         public UserInfoData data = new UserInfoData();
 
@@ -51,6 +53,8 @@ namespace PasaBuy.App.Models.Onboarding
             public string roid = string.Empty;
             public string store_logo = string.Empty;
             public string store_banner = string.Empty;
+            public string mvid = string.Empty;
+            public string vhid = string.Empty;
         }
 
         public string avatarUrl
