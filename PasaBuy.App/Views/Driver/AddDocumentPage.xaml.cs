@@ -1,5 +1,6 @@
 ﻿using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
+using PasaBuy.App.ViewModels.Driver;
 using PasaBuy.App.ViewModels.MobilePOS;
 using PasaBuy.App.Views.Navigation;
 using Plugin.Media;
@@ -18,33 +19,16 @@ namespace PasaBuy.App.Views.Driver
     public partial class AddDocumentPage : ContentPage
     {
         public string filepath = string.Empty;
+        public string doc_type_id = string.Empty;
         public AddDocumentPage()
         {
             InitializeComponent();
-            List<string> list = new List<string>();
-            if (MasterView.MyType == "store")
-            {
-                list.Add("DTI Registration");
-                list.Add("Barangay Clearance");
-                list.Add("Lease Contract");
-                list.Add("Community Tax");
-                list.Add("Occupancy Permit");
-                list.Add("Sanitary Permit");
-                list.Add("Fire Permit");
-                list.Add("Mayor's Permit");
-            }
-            if (MasterView.MyType == "mover")
-            {
-                list.Add("License Card");
-                list.Add("License OR");
-                list.Add("Vehicle CR");
-                list.Add("Vehicle OR");
-                list.Add("Vehicle's Front");
-                list.Add("Vehicle's Right");
-                list.Add("Vehicle's Left");
-                list.Add("Vehicle's Back");
-            }
-            DocumentTypePicker.DataSource = list;
+
+            DocTypeListViewModel doctypelist = new DocTypeListViewModel();
+            DocumentTypePicker.BindingContext = doctypelist;
+            DocumentTypePicker.DataSource = doctypelist.DocTypeList;
+            DocumentTypePicker.DisplayMemberPath = "Title";
+            DocumentTypePicker.SelectedValuePath = "ID";
         }
 
         void RemoveDocumentImage(object sender, EventArgs args)
@@ -112,114 +96,48 @@ namespace PasaBuy.App.Views.Driver
 
         private void OKModal_Clicked(object sender, EventArgs e)
         {
-            //new Alert(DocumentTypePicker.Text, "Path: " + filepath, "OK");
             try
             {
-                if (filepath != string.Empty && DocumentTypePicker.Text != string.Empty)
+                if (!isRunning.IsRunning)
                 {
-                    string doctype = string.Empty;
-                    if (MasterView.MyType == "store")
+                    isRunning.IsRunning = true;
+                    if (!string.IsNullOrEmpty(filepath) && !string.IsNullOrEmpty(DocumentTypePicker.Text))
                     {
-                        if (DocumentTypePicker.Text == "DTI Registration")
+                        if (MasterView.MyType == "mover")
                         {
-                            doctype = "dti_registration";
-                        }
-                        if (DocumentTypePicker.Text == "Barangay Clearance")
-                        {
-                            doctype = "barangay_clearance";
-                        }
-                        if (DocumentTypePicker.Text == "Lease Contract")
-                        {
-                            doctype = "lease_contract";
-                        }
-                        if (DocumentTypePicker.Text == "Community Tax")
-                        {
-                            doctype = "community_tax";
-                        }
-                        if (DocumentTypePicker.Text == "Occupancy Permit")
-                        {
-                            doctype = "occupancy_permit";
-                        }
-                        if (DocumentTypePicker.Text == "Sanitary Permit")
-                        {
-                            doctype = "sanitary_permit";
-                        }
-                        if (DocumentTypePicker.Text == "Fire Permit")
-                        {
-                            doctype = "fire_permit";
-                        }
-                        if (DocumentTypePicker.Text == "Mayor's Permit")
-                        {
-                            doctype = "mayors_permit";
-                        }
-                        TindaPress.Document.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, doctype, filepath, (bool success, string data) =>
-                        {
-                            if (success)
+                            Http.HatidFeature.Instance.Insert_VDocuments(filepath, PSACache.Instance.UserInfo.vhid, doc_type_id, "", (bool success, string data) =>
                             {
-                                DocumentViewModel.documentList.Clear();
-                                DocumentViewModel.LoadData();
-                            }
-                            else
-                            {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-
-                            }
-                        });
-                    }
-                    if (MasterView.MyType == "mover")
-                    {
-                        if (DocumentTypePicker.Text == "Vehicle's Back")
-                        {
-                            doctype = "vehicle_back";
+                                if (success)
+                                {
+                                    DriverDocumentsViewModel.LoadDocument();
+                                    Navigation.PopModalAsync();
+                                    isRunning.IsRunning = false ;
+                                }
+                                else
+                                {
+                                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                    isRunning.IsRunning = false;
+                                }
+                            });
                         }
-                        if (DocumentTypePicker.Text == "Vehicle's Left")
-                        {
-                            doctype = "vehicle_left";
-                        }
-                        if (DocumentTypePicker.Text == "Vehicle's Right")
-                        {
-                            doctype = "vehicle_right";
-                        }
-                        if (DocumentTypePicker.Text == "Vehicle's Front")
-                        {
-                            doctype = "vehicle_front";
-                        }
-                        if (DocumentTypePicker.Text == "Vehicle CR")
-                        {
-                            doctype = "vehicle_cr";
-                        }
-                        if (DocumentTypePicker.Text == "Vehicle OR")
-                        {
-                            doctype = "vehicle_or";
-                        }
-                        if (DocumentTypePicker.Text == "License OR")
-                        {
-                            doctype = "license_or";
-                        }
-                        if (DocumentTypePicker.Text == "License Card")
-                        {
-                            doctype = "license_card";
-                        }
-                        HatidPress.Documents.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, filepath, doctype, PSACache.Instance.UserInfo.stid, "", (bool success, string data) =>
-                        {
-                            if (success)
-                            {
-                                DocumentViewModel.documentList.Clear();
-                                DocumentViewModel.LoadData();
-                            }
-                            else
-                            {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-
-                            }
-                        });
                     }
                 }
             }
             catch (Exception ex)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
+                isRunning.IsRunning = false;
             }
+        }
+
+        private void backButton_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PopModalAsync();
+        }
+
+        private void DocumentTypePicker_SelectionChanged(object sender, Syncfusion.XForms.ComboBox.SelectionChangedEventArgs e)
+        {
+            doc_type_id = DocumentTypePicker.SelectedValue.ToString();
         }
     }
 }
