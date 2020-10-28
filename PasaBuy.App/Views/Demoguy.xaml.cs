@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PasaBuy.App.Views.PopupModals;
+using Rg.Plugins.Popup.Services;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,9 +14,9 @@ namespace PasaBuy.App.Views
             InitializeComponent();
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
+        private async void Button_Clicked(object sender, EventArgs e)
         {
-
+            await PopupNavigation.Instance.PushAsync(new PopupSelectSchedule());
         }
     }
 }

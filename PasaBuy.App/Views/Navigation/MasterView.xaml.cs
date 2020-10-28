@@ -198,7 +198,7 @@ namespace PasaBuy.App.Views.Navigation
                 if (MyType == "mover")
                 {
                     PopupGoOnline._switch = isActiveSwitch.IsOn.ToString();
-                    await PopupNavigation.Instance.PushAsync(new PopupGoOnline());
+                    await PopupNavigation.Instance.PushAsync(new PopupSelectSchedule());
                 }
 
                 isTapped = false;
