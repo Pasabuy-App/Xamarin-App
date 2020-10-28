@@ -3,7 +3,7 @@ using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Threading.Tasks;
-
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -23,7 +23,19 @@ namespace PasaBuy.App.Views
                 UserVerify();
             }
             isButton = false;
+
+            ShowPasabuyStores = new Command<Type>(async (Type pageType) =>
+            {
+                Page page = (Page)Activator.CreateInstance(pageType);
+                await Navigation.PushModalAsync(page);
+            });
+
+            BindingContext = this;
+
         }
+
+
+        public ICommand ShowPasabuyStores { private set; get; }
 
         public static void UserVerify()
         {
@@ -101,5 +113,7 @@ namespace PasaBuy.App.Views
                 isButton = false;
             }
         }
+
+
     }
 }

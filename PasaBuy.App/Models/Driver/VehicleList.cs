@@ -14,6 +14,11 @@ namespace PasaBuy.App.Models.Driver
         }
 
         private string ID = string.Empty;
+        private string mvid = string.Empty;
+        private string types = string.Empty;
+        private string plate = string.Empty;
+        private string maker = string.Empty;
+        private string model = string.Empty;
         private string vehicle_type = string.Empty;
         private string vehicle = string.Empty;
         private string status = string.Empty;
@@ -71,13 +76,20 @@ namespace PasaBuy.App.Models.Driver
         }
 
         public VehicleListData[] data;
-        public class VehicleListData
-        {
-            public string ID = string.Empty;
-            public string vehicle_type = string.Empty;
-            public string vehicle = string.Empty;
-            public string status = string.Empty;
-        }
 
+    }
+    public class VehicleListData
+    {
+        public string ID = string.Empty;
+        public string mvid = string.Empty;
+        public string types = string.Empty;
+        public string status = string.Empty;
+        public string plate = string.Empty;
+        public string maker = string.Empty;
+        public string model = string.Empty;
+        public string preview = string.Empty;
+        public string owner = string.Empty;
+        public string created_by = string.Empty;
+        public string date_created = string.Empty;
     }
 }

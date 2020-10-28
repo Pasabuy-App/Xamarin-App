@@ -1,11 +1,14 @@
 ﻿using Newtonsoft.Json;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Driver;
+using PasaBuy.App.Views.PopupModals;
 using System;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 using Xamarin.Forms.Xaml;
+using PasaBuy.App.Views.PopupModals;
+using Rg.Plugins.Popup.Services;
 
 namespace PasaBuy.App.Views.Driver
 {
@@ -59,9 +62,9 @@ namespace PasaBuy.App.Views.Driver
             }
         }
 
-        private void ShowAvailableDeliveries(object sender, EventArgs e)
+        private async void ShowAvailableDeliveries(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new TransactionDriverView());
+            await PopupNavigation.Instance.PushAsync(new PopupAcceptOrder());
         }
 
         private async void fetch_order(int smp)
@@ -69,7 +72,7 @@ namespace PasaBuy.App.Views.Driver
 
             try
             {
-                HatidPress.Deliveries.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", "", "", "accepted", (bool success, string data) =>
+                /*HatidPress.Deliveries.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", "", "", "accepted", (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -123,7 +126,7 @@ namespace PasaBuy.App.Views.Driver
                             Continue_deliver.IsVisible = false;
                         }
                     }
-                });
+                });*/
             }
             catch (FeatureNotSupportedException fnsEx)
             {

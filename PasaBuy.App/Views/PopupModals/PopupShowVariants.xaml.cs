@@ -11,7 +11,7 @@ namespace PasaBuy.App.Views.PopupModals
         public PopupShowVariants()
         {
             InitializeComponent();
-            this.BindingContext = new PasaBuy.App.ViewModels.MobilePOS.POSViewModel();
+            this.BindingContext = new PasaBuy.App.ViewModels.MobilePOS.POSVariantViewModel();
         }
 
         private void CancelModal(object sender, EventArgs e)

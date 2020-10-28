@@ -64,8 +64,8 @@
                                                     <border:SfBorder CornerRadius="50"
                                                                      border:BorderColor="White" 
                                                                      BorderWidth="2">
-                                                        <ImageButton WidthRequest="40" HeightRequest="40" ClassId="{Binding Post_author}" 
-                                                                     Clicked="ImageButton_Clicked"
+                                                        <ImageButton WidthRequest="40" HeightRequest="40" 
+                                                                     Command="{Binding Path=BindingContext.GoToProfileCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"
                                                                      BackgroundColor="{DynamicResource Gray-400}">
                                                             <ImageButton.Source>
                                                                 <UriImageSource
@@ -86,7 +86,8 @@
                                                                       HeightRequest="40"
                                                                       BackgroundColor="Transparent"
                                                                       FontSize="15"
-                                                                      CornerRadius="4" Clicked="SfButton_Clicked" ClassId="{Binding Post_author}"
+                                                                      CornerRadius="4" 
+                                                                       Command="{Binding Path=BindingContext.GoToProfileCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"
                                                                       HorizontalOptions="End">
 
                                                         <!--<Label Text="{Binding Author}" 
@@ -183,17 +184,17 @@
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
                                             <Grid Grid.Row="1" Grid.Column="0">
-                                                <Button Text="{Binding AcceptText}" ClassId="{Binding Post_author}"
+                                                <Button Text="{Binding AcceptText}"
                                                                 IsEnabled="{Binding isAccept}"
-                                                                Clicked="AcceptButton"
+                                                                Command="{Binding Path=BindingContext.AcceptCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"
                                                                 BorderColor="{DynamicResource Gray-300}"
                                                                 BorderWidth="1"
                                                         TextColor="{DynamicResource Gray-Black}"
                                                                 BackgroundColor="{DynamicResource Gray-100}"/>
                                             </Grid>
                                             <Grid Grid.Row="1" Grid.Column="{Binding HomeCol}" Grid.ColumnSpan="{Binding HomeColSpan}">
-                                                <Button Text="Share" x:Name="ShareButton" ClassId="{Binding LinkPost}"
-                                                            Clicked="Button_Clicked"
+                                                <Button Text="Share" x:Name="ShareButton" 
+                                                            Command="{Binding Path=BindingContext.ShareCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"
                                                             IsEnabled="True"
                                                             BorderColor="{DynamicResource Gray-300}"
                                                             BorderWidth="1"

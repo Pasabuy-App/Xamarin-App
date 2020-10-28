@@ -15,7 +15,7 @@ namespace PasaBuy.App.Views.Driver
         public TransactionDriverView()
         {
             InitializeComponent();
-            this.BindingContext = new PendingOrderViewModel();
+            //this.BindingContext = new PendingOrderViewModel();
 
         }
 

@@ -427,5 +427,8 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Partner.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\reward.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

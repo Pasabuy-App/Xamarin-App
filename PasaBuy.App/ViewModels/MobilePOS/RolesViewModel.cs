@@ -1,16 +1,19 @@
 ﻿using PasaBuy.App.Commands;
+using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Models.MobilePOS;
 using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.MobilePOS
 {
     public class RolesViewModel : BaseViewModel
     {
-        public static ObservableCollection<RolesModel> _rolesList;
-
-        public static ObservableCollection<RolesModel> _accessList;
 
         private DelegateCommand _addTapped;
 
@@ -20,22 +23,9 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         private async void AddTappedFunction(object obj)
         {
             await PopupNavigation.Instance.PushAsync(new PopupAddRole());
-
         }
 
-        public ObservableCollection<RolesModel> AccessList
-        {
-            get
-            {
-                return _accessList;
-            }
-            set
-            {
-                _accessList = value;
-                this.NotifyPropertyChanged();
-            }
-        }
-
+        public static ObservableCollection<RolesModel> _rolesList;
         public ObservableCollection<RolesModel> RolesList
         {
             get
@@ -48,92 +38,71 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 this.NotifyPropertyChanged();
             }
         }
+        bool _isRefreshing = false;
+        public bool IsRefreshing
+        {
+            get
+            {
+                return _isRefreshing;
+            }
+            set
+            {
+                if (_isRefreshing != value)
+                {
+                    _isRefreshing = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        public ICommand RefreshCommand { protected set; get; }
 
         public RolesViewModel()
         {
-            this.RolesList = new ObservableCollection<RolesModel>()
-            {
-                new RolesModel
-                {
-                    Id = "1",
-                    RoleTitle = "Manager"
-                },
-                new RolesModel
-                {
-                    Id = "13",
-                    RoleTitle = "Cashier"
-                }
+            _rolesList = new ObservableCollection<RolesModel>();
+            LoadRoleList();
 
-            };
 
-            this.AccessList = new ObservableCollection<RolesModel>()
+            RefreshCommand = new Command<string>((key) =>
             {
-                new RolesModel
+                _rolesList.Clear();
+                LoadRoleList();
+                IsRefreshing = false;
+            });
+        }
+
+        public static void LoadRoleList()
+        {
+            try
+            {
+                Http.POSFeature.Instance.Role_List("", "active", (bool success, string data) =>
                 {
-                    AccessId = "1",
-                    AccessName = "Can delete product"
-                },
-                new RolesModel
-                {
-                    AccessId = "1",
-                    AccessName = "Can add product"
-                },
-                new RolesModel
-                {
-                    AccessId = "1",
-                    AccessName = "Can edit product"
-                },
-                new RolesModel
-                {
-                    AccessId = "1",
-                    AccessName = "Can delete product"
-                },
-                new RolesModel
-                {
-                    AccessId = "1",
-                    AccessName = "Can delete product"
-                },
-                new RolesModel
-                {
-                    AccessId = "1",
-                    AccessName = "Can delete product"
-                },
-                new RolesModel
-                {
-                    AccessId = "1",
-                    AccessName = "Can delete product"
-                },
-                new RolesModel
-                {
-                    AccessId = "1",
-                    AccessName = "Can delete product"
-                },
-                new RolesModel
-                {
-                    AccessId = "1",
-                    AccessName = "Can delete product"
-                },
-                new RolesModel
-                {
-                    AccessId = "1",
-                    AccessName = "Can delete product"
-                },
-                new RolesModel
-                {
-                    AccessId = "1",
-                    AccessName = "Can delete product"
-                },
-                new RolesModel
-                {
-                    AccessId = "1",
-                    AccessName = "Can delete category"
-                },
-                new RolesModel
-                {
-                    AccessId = "1",
-                    AccessName = "Can delete personnel"
-                }
-            };
+                    if (success)
+                    {
+                        RolesModel role = Newtonsoft.Json.JsonConvert.DeserializeObject<RolesModel>(data);
+                        if (role.data.Length > 0)
+                        {
+                            for (int i = 0; i < role.data.Length; i++)
+                            {
+                                _rolesList.Add(new RolesModel()
+                                {
+                                    Id = role.data[i].ID,
+                                    RoleTitle = role.data[i].title,
+                                    RoleInfo = role.data[i].info,
+                                    RoleStatus = role.data[i].status,
+                                });
+                            }
+                        }
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", Local.HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+            }
         }
     }
 }

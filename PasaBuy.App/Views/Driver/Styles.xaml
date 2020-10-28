@@ -43,6 +43,7 @@
     <x:String x:Key="Delivered">&#xe741;</x:String>
     <x:String x:Key="New Message">&#xe720;</x:String>
     <x:String x:Key="ArrowRight">&#xe728;</x:String>
+    <x:String x:Key="DropDownButtonIcon">&#xe70b;</x:String>
     <Color x:Key="TappedBackgroundColor">#eaeaea</Color>
     <Color x:Key="Link">#567cd7</Color>
 
@@ -123,6 +124,16 @@
         <Setter Property="BorderColor" Value="Transparent" />
         <Setter Property="CornerRadius" Value="25" />
         <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+    </Style>
+
+    <Style x:Key="ComboBoxStyle" TargetType="combobox:SfComboBox">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}"/>
+        <Setter Property="TextSize" Value="16"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}"/>
+        <Setter Property="ShowBorder" Value="False"/>
+        <Setter Property="WatermarkColor" Value="{DynamicResource Gray-600}"/>
+        <Setter Property="Margin" Value="8,3,0,-3"/>
+        <Setter Property="HeightRequest" Value="40"/>
     </Style>
 
     <!--  Common style for profile border style  -->

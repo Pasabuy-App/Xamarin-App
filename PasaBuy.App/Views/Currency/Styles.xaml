@@ -11,7 +11,7 @@
     <x:String x:Key="Menu">&#xe72e;</x:String>
     <x:String x:Key="Bell">&#xe700;</x:String>
     <x:String x:Key="Back">&#xe709;</x:String>
-    
+    <x:String x:Key="ArrowRight">&#xe728;</x:String>
     <x:String x:Key="DropDownButtonIcon">&#xe70b;</x:String>
 
     <Color x:Key="Transparent">Transparent</Color>
@@ -25,7 +25,6 @@
     <Color x:Key="Link">#567cd7</Color>
     <Color x:Key="Bright-Cyan">#3cdeff</Color>
     <Color x:Key="Lemon-Lime">#bdff27</Color>
-
     <converter:DynamicResourceToColorConverter x:Key="DynamicResourceToColorConverter" />
 
     <Style x:Key="ContentPageStyle" TargetType="ContentPage">
@@ -58,6 +57,14 @@
             </Setter.Value>
         </Setter>
 
+    </Style>
+
+    <Style x:Key="RightArrowLabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource Gray-600}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="Text" Value="{StaticResource ArrowRight}" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
     </Style>
 
     <!--  Common style for profile border style  -->

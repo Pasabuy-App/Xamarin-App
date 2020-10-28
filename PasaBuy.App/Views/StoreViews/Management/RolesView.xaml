@@ -7,6 +7,7 @@
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="PasaBuy.App.Views.StoreViews.Management.RolesView"
              Title="Personnel Roles"
+             x:Name="Role"
              BackgroundColor="{DynamicResource Gray-White}">
    
     <ContentPage.Resources>
@@ -30,8 +31,14 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <Grid CompressedLayout.IsHeadless="True">
-            <syncListView:SfListView
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"   
+                     x:Name="rv"
+                     Command="{Binding RefreshCommand}">
+
+        <ScrollView>
+            
+            <Grid CompressedLayout.IsHeadless="True">
+                <syncListView:SfListView
                                 Padding="15,15,15,15"
                                 AutoFitMode="Height"
                                 IsScrollBarVisible="false"
@@ -42,11 +49,11 @@
                                 ItemsSource="{Binding RolesList}"
                                 SelectionBackgroundColor="Transparent"
                                 VerticalOptions="FillAndExpand">
-                <syncListView:SfListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <!--  View of each card item  -->
-                            <controls:CustomShadowFrame
+                    <syncListView:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <!--  View of each card item  -->
+                                <controls:CustomShadowFrame
                                                 Margin="0,2,5,5"
                                                 Padding="0"
                                                 BackgroundColor="{DynamicResource Gray-White}"
@@ -56,13 +63,13 @@
                                                 HasShadow="True"
                                                 HorizontalOptions="FillAndExpand"
                                                 VerticalOptions="FillAndExpand">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    
-                                    <Label Grid.Row="0"
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+
+                                        <Label Grid.Row="0"
                                            FontFamily="{StaticResource Montserrat-SemiBold}"
                                            HorizontalOptions="Start"
                                            VerticalOptions="Center"
@@ -72,8 +79,8 @@
                                            LineHeight="{OnPlatform Android=1.5, Default=-1}"
                                            Text="{Binding RoleTitle}"
                                            TextColor="{DynamicResource Gray-900}" />
-                                    
-                                    <Label Grid.Row="1"
+
+                                        <Label Grid.Row="1"
                                            FontFamily="{StaticResource Montserrat-Medium}"
                                            HorizontalOptions="Start"
                                            VerticalOptions="Start"
@@ -81,63 +88,67 @@
                                            Margin="10,0,0,0"
                                            FontSize="{DynamicResource SmallSize}"
                                            LineHeight="{OnPlatform Android=1.5, Default=-1}"
-                                           Text="Manages the finances of the store"
+                                           Text="{Binding RoleInfo}"
                                            TextColor="{DynamicResource Gray-900}" />
-                                </Grid>
-                                <controls:CustomShadowFrame.GestureRecognizers>
-                                    <TapGestureRecognizer  Command="{Binding BindingContext.MyVehicleCommand,Source={x:Reference ListView}}" CommandParameter="{Binding Identification}" />
-                                </controls:CustomShadowFrame.GestureRecognizers>
-                            </controls:CustomShadowFrame>
-                        </ViewCell>
-                    </DataTemplate>
-                </syncListView:SfListView.ItemTemplate>
-                <syncListView:SfListView.RightSwipeTemplate>
-                    <DataTemplate x:Name="RightSwipeTemplate">
-                        <Grid Padding="5,8,5,8">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid ClassId="{Binding Id}"
+                                    </Grid>
+                                    <controls:CustomShadowFrame.GestureRecognizers>
+                                        <TapGestureRecognizer  Command="{Binding BindingContext.MyVehicleCommand,Source={x:Reference ListView}}" CommandParameter="{Binding Identification}" />
+                                    </controls:CustomShadowFrame.GestureRecognizers>
+                                </controls:CustomShadowFrame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </syncListView:SfListView.ItemTemplate>
+                    <syncListView:SfListView.RightSwipeTemplate>
+                        <DataTemplate x:Name="RightSwipeTemplate">
+                            <Grid Padding="5,8,5,8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid ClassId="{Binding Id}"
                                   Grid.Column="0"
                                   BackgroundColor="{DynamicResource PrimaryColor}"
                                   HorizontalOptions="Fill"
                                   VerticalOptions="Fill">
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer x:Name="Update" Tapped="Update_Tapped" NumberOfTapsRequired="1"/>
-                                </Grid.GestureRecognizers>
-                                <Grid HorizontalOptions="Center" 
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer x:Name="Update" Tapped="Update_Tapped" NumberOfTapsRequired="1"/>
+                                    </Grid.GestureRecognizers>
+                                    <Grid HorizontalOptions="Center" 
                                       VerticalOptions="Center">
-                                    <Image Grid.Row="0"
+                                        <Image Grid.Row="0"
                                            Grid.Column="0"
                                            BackgroundColor="Transparent"
                                            HeightRequest="28"
                                            Source="edit_white.png"
                                            WidthRequest="28" />
+                                    </Grid>
                                 </Grid>
-                            </Grid>
-                            <Grid ClassId="{Binding Id}"
+                                <Grid ClassId="{Binding Id}" x:Name="DeleteBtn"
                                   Grid.Column="1"
                                   BackgroundColor="Red"
                                   HorizontalOptions="Fill"
                                   VerticalOptions="Fill">
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer  x:Name="Delete" NumberOfTapsRequired="1" />
-                                </Grid.GestureRecognizers>
-                                <Grid HorizontalOptions="Center" 
+                                    <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer  x:Name="Delete" NumberOfTapsRequired="1" Tapped="Delete_Tapped"/>
+                                    </Grid.GestureRecognizers>
+                                    <Grid HorizontalOptions="Center" 
                                       VerticalOptions="Center">
-                                    <Image Grid.Row="0"
+                                        <Image Grid.Row="0"
                                            Grid.Column="0"
                                            BackgroundColor="Transparent"
                                            HeightRequest="28"
                                            Source="Delete.png"
                                            WidthRequest="28" />
+                                    </Grid>
                                 </Grid>
                             </Grid>
-                        </Grid>
-                    </DataTemplate>
-                </syncListView:SfListView.RightSwipeTemplate>
-            </syncListView:SfListView>
-        </Grid>
+                        </DataTemplate>
+                    </syncListView:SfListView.RightSwipeTemplate>
+                </syncListView:SfListView>
+            </Grid>
+
+            </ScrollView>
+        </RefreshView>
+
     </ContentPage.Content>
 </ContentPage>

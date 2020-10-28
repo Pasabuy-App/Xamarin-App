@@ -19,7 +19,6 @@ namespace PasaBuy.App.Views.PopupModals
         private void CancelModal(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PopAsync();
-            //Console.WriteLine("AutoComplete Value: " + autoComplete.SelectedValue.ToString());
         }
     }
 }

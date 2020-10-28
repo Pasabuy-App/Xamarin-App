@@ -1,7 +1,10 @@
 
 using PasaBuy.App.Local;
 using PasaBuy.App.Local.Notice;
+using PasaBuy.App.Views.Currency;
+using PasaBuy.App.Views.Driver;
 using PasaBuy.App.Views.Onboarding;
+using PasaBuy.App.Views.PopupModals;
 using System;
 using Xamarin.Forms;
 

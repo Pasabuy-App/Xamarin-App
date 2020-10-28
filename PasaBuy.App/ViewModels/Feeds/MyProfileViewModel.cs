@@ -32,23 +32,23 @@ namespace PasaBuy.App.ViewModels.Feeds
         }
 
         public static string user_id = string.Empty;
-        private string bannerImage;
-        private string profileImage;
-        private Boolean ismessage = false;
-        private Boolean isinput = false;
-        private Boolean isreferred = false;
-        private Boolean iscity = false;
+        public string bannerImage;
+        public string profileImage;
+        public Boolean ismessage = false;
+        public Boolean isinput = false;
+        public Boolean isreferred = false;
+        public Boolean iscity = false;
         public static int postcount;
         public static int transactcount;
         public static float ratingscount;
-        private static string bannerImages = string.Empty;
-        private static string profileImages = string.Empty;
-        private static string displayNames = string.Empty;
-        private static string verification = string.Empty;
-        private static string city = string.Empty;
-        private static string joined = string.Empty;
-        private bool isEnable = false;
-        bool _isRefreshing = false;
+        public static string bannerImages = string.Empty;
+        public static string profileImages = string.Empty;
+        public static string displayNames = string.Empty;
+        public static string verification = string.Empty;
+        public static string city = string.Empty;
+        public static string joined = string.Empty;
+        public bool isEnable = false;
+        public bool _isRefreshing = false;
         public int countpost;
 
         #endregion
@@ -292,10 +292,11 @@ namespace PasaBuy.App.ViewModels.Feeds
                 this.ProfileImage = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
                 this.DisplayName = PSACache.Instance.UserInfo.dname;
                 this.Verification = PSACache.Instance.UserInfo.verify;
-                if (PSACache.Instance.UserInfo.city != "")
+
+                if (!string.IsNullOrEmpty(PSACache.Instance.UserInfo.city))
                 {
                     isCity = true;
-                    this.City = "Lives in " + PSACache.Instance.UserInfo.city;
+                    this.City = "(ic) Lives in " + city;
                 }
                 this.Joined = "Joined at " + date.ToString("MMMM yyyy");
                 isRefered = false;
@@ -314,7 +315,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                 this.ProfileImage = profileImages;
                 this.DisplayName = displayNames;
                 this.Verification = verification;
-                if (city != "")
+                if (!string.IsNullOrEmpty(city))
                 {
                     isCity = true;
                     this.City = "(ic) Lives in " + city;
@@ -329,11 +330,11 @@ namespace PasaBuy.App.ViewModels.Feeds
             RefreshCommand = new Command<string>((key) =>
             {
                 profilePostList.Clear();
-                LoadData(userid);
+                //LoadData(userid);
                 IsRefreshing = false;
             });
             profilePostList = new ObservableCollection<Post>();
-            LoadData(userid);
+            //LoadData(userid);
             profilePostList.CollectionChanged += CollectionChanges;
         }
 
@@ -343,48 +344,6 @@ namespace PasaBuy.App.ViewModels.Feeds
             await Task.Delay(50);
             //Console.WriteLine("profilePostList.Count: " + profilePostList.Count + " postcount: " + postcount);
             this.PostsCount = postcount;
-        }
-        public static void GetProfile(string uid)
-        {
-            try
-            {
-                SocioPress.Profile.Instance.GetData(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, uid, (bool success2, string data2) =>
-                {
-                    if (success2)
-                    {
-                        UserInfo uinfo = JsonConvert.DeserializeObject<UserInfo>(data2);
-
-                        if (uinfo.Succeed)
-                        {
-                            //this.ProfileImage = "https://pasabuy.app/wp-content/plugins/SocioPress/assets/default-avatar.png";
-                            bannerImages = PSAProc.GetUrl(uinfo.data.banner);
-                            profileImages = PSAProc.GetUrl(uinfo.data.avatar);
-                            displayNames = uinfo.data.dname;
-                            verification = uinfo.data.verify;
-                            Console.WriteLine("City: ." + uinfo.data.city + ".");
-                            city = uinfo.data.city == null ? "" : uinfo.data.city;
-
-                            CultureInfo provider = new CultureInfo("fr-FR");
-                            DateTime date = DateTime.ParseExact(PSACache.Instance.UserInfo.date_registered == string.Empty ? new DateTime().ToString() : PSACache.Instance.UserInfo.date_registered, "yyyy-MM-dd HH:mm:ss", provider);
-
-                            joined = date.ToString("MMMM yyyy");
-                        }
-
-                        else
-                        {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data2), "Try Again");
-                        }
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data2), "Try Again");
-                    }
-                });
-            }
-            catch (Exception e)
-            {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
-            }
         }
 
         #endregion

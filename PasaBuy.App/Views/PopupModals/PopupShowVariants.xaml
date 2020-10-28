@@ -196,7 +196,7 @@
                                 Grid.Row="0"
                                 Padding="0,5,0,2"
                                 Margin="8,0,8,0"
-                                Text="Galaxy Tea" 
+                                Text="{Binding Product_Name}" 
                                 FontSize="{DynamicResource LargeSize}" 
                                 FontFamily="{StaticResource Montserrat-SemiBold}" 
                                 TextColor="{DynamicResource Gray-900}"

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:local="clr-namespace:PasaBuy.App.UserControls"
              x:Class="PasaBuy.App.Views.Driver.DriverDocuments"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="{DynamicResource Gray-White}">
@@ -15,121 +15,122 @@
     <ContentPage.Content>
         <Grid>
             <Grid>
-                <Grid RowSpacing="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Grid
+
+                <RefreshView IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                     x:Name="rv"
+                     Command="{Binding RefreshCommand}">
+
+                    <ScrollView>
+                        
+                        <Grid RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid
                         Grid.Row="0"
                         Padding="15,5,15,5"
                         BackgroundColor="{StaticResource PrimaryColor}"
                         HeightRequest="{OnPlatform Android='46',
                                                    iOS='56'}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <buttons:SfButton
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <buttons:SfButton
                             x:Name="backButton"
                             Clicked="backButton_Clicked"
                             Grid.Column="0"
                             CornerRadius="4"
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
-                        <Label Grid.Column="1"
+                                <Label Grid.Column="1"
                                     FontFamily="{StaticResource Montserrat-Medium}"
                                     FontSize="17"
                                     HorizontalOptions="Start"
                                     Text="My Documents"
                                     TextColor="{DynamicResource Gray-White}"
                                     VerticalOptions="Center" />
+                                <Image Source="add_24.png"
+                               Grid.Column="2"
+                               HorizontalOptions="End">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding AddDocumentsCommand}" NumberOfTapsRequired="1" />
+                                    </Image.GestureRecognizers>
+                                </Image>
 
-                    </Grid>
-                    <Grid Grid.Row="1">
-                        <StackLayout Spacing="0" VerticalOptions="FillAndExpand">
-                            <sync:SfListView
+
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <StackLayout Spacing="0" VerticalOptions="FillAndExpand">
+                                    <sync:SfListView
                                 AllowSwiping="True"
                                 AutoFitMode="Height"
                                 FocusBorderThickness="0"
                                 ItemSpacing="0,1,0,0"
                                 IsScrollBarVisible="False"
                                 IsStickyHeader="True"
-                                ItemsSource="{Binding DocumentList}"
+                                ItemsSource="{Binding DocumentsList}"
                                 SelectionMode="None">
-                                <!--Item Source is for testing purposes only. Kindly bind into specific viewmodels-->
+                                        <!--Item Source is for testing purposes only. Kindly bind into specific viewmodels-->
 
-                                <sync:SfListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid RowSpacing="0" ColumnSpacing="0" HeightRequest="72">
+                                        <sync:SfListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid RowSpacing="0" ColumnSpacing="0" HeightRequest="72">
 
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                            </Grid.RowDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
 
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
 
-                                            <!-- Image Icon -->
-                                            <Label Grid.RowSpan="3" 
+                                                    <!-- Image Icon -->
+                                                    <Label Grid.RowSpan="3" 
                                                    Margin="17,0"
                                                    TextColor="{DynamicResource Gray-600}"
                                                    VerticalOptions="CenterAndExpand"
-                                                   Text="{StaticResource Photos}"
                                                    FontSize="18"
                                                    FontFamily="{StaticResource FontIcons}" />
 
-                                            <!-- Document Name -->
-                                            <Label Grid.Column="1"
+                                                    <!-- Document Name -->
+                                                    <Label Grid.Column="1"
                                                    Grid.ColumnSpan="3"
                                                    Margin="0,13,0,0"
-                                                   Text="{Binding Name}"
+                                                   Text="{Binding Type}"
                                                    TextColor="{DynamicResource Gray-900}"
                                                    FontSize="16"
                                                    FontFamily="{StaticResource Montserrat-Medium}"
                                                    HeightRequest="24" />
 
-                                            <!-- Document Type -->
-                                            <Label Grid.Row="1"
+                                                    <!-- Document Type -->
+                                                    <Label Grid.Row="1"
                                                    Grid.Column="1"
                                                    Margin="0,0,0,14"
-                                                   Text="{Binding Type}"
-                                                   TextColor="{DynamicResource Gray-700}"
-                                                   FontSize="14"
-                                                   FontFamily="{StaticResource Montserrat-Medium}"
-                                                   HeightRequest="21" />
-
-                                            <!-- Document Size -->
-                                            <Label Grid.Row="1"
-                                                   Grid.Column="2"
-                                                   Margin="24,0,0,14"
                                                    Text="{Binding Date}"
                                                    TextColor="{DynamicResource Gray-700}"
                                                    FontSize="14"
                                                    FontFamily="{StaticResource Montserrat-Medium}"
                                                    HeightRequest="21" />
 
-                                            <!-- Status -->
-                                            <buttons:SfButton Grid.Column="3" IsVisible="{Binding isGreen}"
-                                                              Grid.RowSpan="3" 
-                                                              Margin="15,0,15,0"
-                                                              TextColor="{DynamicResource Green}"
-                                                              BackgroundColor="{DynamicResource Transparent}"
-                                                              HorizontalOptions="End"
-                                                              HorizontalTextAlignment="End"
-                                                              VerticalOptions="Center"
-                                                              Text="{Binding Status}"
-                                                              FontSize="16"
-                                                              HeightRequest="40"
-                                                              FontFamily="{StaticResource FontIcons}" />
+                                                    <!-- Document Size -->
+                                                    <Label Grid.Row="1"
+                                                   Grid.Column="2"
+                                                   Margin="24,0,0,14"
+                                                   Text=""
+                                                   TextColor="{DynamicResource Gray-700}"
+                                                   FontSize="14"
+                                                   FontFamily="{StaticResource Montserrat-Medium}"
+                                                   HeightRequest="21" />
 
-                                            <buttons:SfButton Grid.Column="3" IsVisible="{Binding isRed}"
+                                                    <!-- Status -->
+                                                    <buttons:SfButton Grid.Column="3" IsVisible="{Binding isGreen}"
                                                               Grid.RowSpan="3" 
                                                               Margin="15,0,15,0"
                                                               TextColor="{DynamicResource Red}"
@@ -142,42 +143,67 @@
                                                               HeightRequest="40"
                                                               FontFamily="{StaticResource FontIcons}" />
 
-                                            <!-- Seperator -->
-                                            <BoxView Grid.Row="2" Grid.ColumnSpan="4" Style="{DynamicResource SeparatorStyle}" />
+                                                    <buttons:SfButton Grid.Column="3" IsVisible="{Binding isRed}"
+                                                              Grid.RowSpan="3" 
+                                                              Margin="15,0,15,0"
+                                                              TextColor="{DynamicResource Green}"
+                                                              BackgroundColor="{DynamicResource Transparent}"
+                                                              HorizontalOptions="End"
+                                                              HorizontalTextAlignment="End"
+                                                              VerticalOptions="Center"
+                                                              Text="{Binding Status}"
+                                                              FontSize="16"
+                                                              HeightRequest="40"
+                                                              FontFamily="{StaticResource FontIcons}" />
 
-                                        </Grid>
-                                    </DataTemplate>
-                                </sync:SfListView.ItemTemplate>
-                                <sync:SfListView.RightSwipeTemplate>
-                                    <DataTemplate x:Name="RightSwipeTemplate">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-                                            <Grid ClassId="{Binding ID}"
+
+                                                    <!-- Seperator -->
+                                                    <BoxView Grid.Row="2" Grid.ColumnSpan="4" Style="{DynamicResource SeparatorStyle}" />
+
+                                                </Grid>
+                                            </DataTemplate>
+                                        </sync:SfListView.ItemTemplate>
+                                        <!--<sync:SfListView.RightSwipeTemplate>
+                                            <DataTemplate x:Name="RightSwipeTemplate">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid ClassId="{Binding ID}"
                                                             Grid.Column="1"
                                                             BackgroundColor="Red"
                                                             HorizontalOptions="Fill"
                                                             VerticalOptions="Fill">
-                                               
-                                                <Grid HorizontalOptions="Center" VerticalOptions="Center">
-                                                    <Image
+
+                                                        <Grid HorizontalOptions="Center" VerticalOptions="Center">
+                                                            <Image
                                                                     Grid.Row="0"
                                                                     Grid.Column="0"
                                                                     BackgroundColor="Transparent"
                                                                     HeightRequest="28"
                                                                     Source="Delete.png"
                                                                     WidthRequest="28" />
+                                                        </Grid>
+                                                    </Grid>
                                                 </Grid>
-                                            </Grid>
-                                        </Grid>
-                                    </DataTemplate>
-                                </sync:SfListView.RightSwipeTemplate>
-                            </sync:SfListView>
-                        </StackLayout>
-                    </Grid>
-                </Grid>
+                                            </DataTemplate>
+                                        </sync:SfListView.RightSwipeTemplate>-->
+                                    </sync:SfListView>
+                                </StackLayout>
+                            </Grid>
+                        </Grid>
+
+                    </ScrollView>
+                    
+                </RefreshView>
+
+                <local:LoadingIndicator
+                IsRunning="{Binding IsBusy, Mode=TwoWay}"
+                Grid.Row="0"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill" />
+
             </Grid>
         </Grid>
     </ContentPage.Content>
