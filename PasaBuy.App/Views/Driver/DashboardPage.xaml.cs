@@ -68,7 +68,16 @@ namespace PasaBuy.App.Views.Driver
 
         private void CollectionChages(object sender, EventArgs e)
         {
-            Pending_Order.IsVisible = true; // Show the Ongoing deliveries button.
+            if (_OrderList.Count > 0)
+            {
+                Pending_Order.IsVisible = true; // Show the Ongoing deliveries button.
+                // If the order is accepted by the mover, add the item to observable collection.
+            }
+            else
+            {
+                Pending_Order.IsVisible = false; // Hide the Ongoing deliveries button.
+                // If the status of the order is shipped or completed or cancelled, clear the observable collection.
+            }
         }
 
         // Display Current Location of User
