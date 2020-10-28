@@ -7,20 +7,68 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 using Xamarin.Forms.Xaml;
-using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
+using System.Linq;
 
 namespace PasaBuy.App.Views.Driver
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DashboardPage : ContentPage
     {
+        public static bool time;
+        public static System.Collections.ObjectModel.ObservableCollection<Models.eCommerce.Transactions> _OrderList;
+        public System.Collections.ObjectModel.ObservableCollection<Models.eCommerce.Transactions> OrderList
+        {
+            get
+            {
+                return _OrderList;
+            }
+            set
+            {
+                _OrderList = value;
+                this.OnPropertyChanged(nameof(OrderList));
+            }
+        }
+
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        protected void NotifyPropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        {
+            this.PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+        }
+
         public DashboardPage()
         {
             InitializeComponent();
             DisplayCurloc();
             map.IsTrafficEnabled = true;
-            fetch_order(0);
+            //fetch_order(0);
+            time = true;
+            PushOrder("");
+            Pending_Order.IsVisible = false;
+            _OrderList = new System.Collections.ObjectModel.ObservableCollection<Models.eCommerce.Transactions>();
+            _OrderList.CollectionChanged += CollectionChages;
+        }
+
+        public static void PushOrder(string odid)
+        {
+            Device.StartTimer(TimeSpan.FromSeconds(15), doitt);
+            bool doitt()
+            {
+                if (time)
+                {
+                    PopupNavigation.Instance.PushAsync(new PopupAcceptOrder());
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        private void CollectionChages(object sender, EventArgs e)
+        {
+            Pending_Order.IsVisible = true; // Show the Ongoing deliveries button.
         }
 
         // Display Current Location of User
@@ -64,7 +112,9 @@ namespace PasaBuy.App.Views.Driver
 
         private async void ShowAvailableDeliveries(object sender, EventArgs e)
         {
-            await PopupNavigation.Instance.PushAsync(new PopupAcceptOrder());
+            //await PopupNavigation.Instance.PushAsync(new PopupAcceptOrder());
+
+            await Navigation.PushModalAsync(new StartDeliveryPage());
         }
 
         private async void fetch_order(int smp)
@@ -152,7 +202,7 @@ namespace PasaBuy.App.Views.Driver
 
         private void Continue_delivery_Tapped(object sender, EventArgs e)
         {
-            fetch_order(1);
+            //fetch_order(1);
         }
     }
 }
