@@ -98,7 +98,7 @@ namespace PasaBuy.App.Views.Navigation
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Dashboard"), Icon = "Idcard.png", TargetType = typeof(Views.Driver.DashboardPage) });
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Transactions"), Icon = "Idcard.png", TargetType = typeof(TransactionsHistoryPage) });
                 //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Messages"), Icon = "Idcard.png", TargetType = typeof(MessagesView) });
-                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Documents"), Icon = "Idcard.png", TargetType = typeof(DocumentsView) });
+                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Documents"), Icon = "Idcard.png", TargetType = typeof(DriverDocumentView) });
             }
 
             menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Homepage"), Icon = "https://pasabuy.app/wp-content/uploads/2020/10/home.jpg", TargetType = typeof(MainTabs) });
