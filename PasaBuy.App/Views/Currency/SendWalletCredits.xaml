@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:controls="clr-namespace:PasaBuy.App.Controls" xmlns:converter="clr-namespace:PasaBuy.App.Converters"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" 
+             xmlns:controls="clr-namespace:PasaBuy.App.Controls"
+             xmlns:converter="clr-namespace:PasaBuy.App.Converters" xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
              x:Class="PasaBuy.App.Views.Currency.SendWalletCredits"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="{DynamicResource Gray-White}">
@@ -13,35 +17,49 @@
             <converter:BooleanToStringConverter x:Key="BoolToStringConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ContentPage.ControlTemplate>
-        <ControlTemplate>
-            <StackLayout Spacing="0" >
-                <controls:TitleView Title="Send Wallet"
-                                    FontSize="15"
-                                    BackgroundColor="{DynamicResource PrimaryColor}" >
-                    <controls:TitleView.LeadingView>
-                        <buttons:SfButton
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0"
+                        Padding="15,5,15,5"
+                        BackgroundColor="{StaticResource PrimaryColor}"
+                        HeightRequest="{OnPlatform Android='46',
+                                                   iOS='56'}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <buttons:SfButton
                             x:Name="backButton"
-                            Clicked="BackButtonClicked"
+                            Clicked="backButton_Clicked"
+                            Grid.Column="0"
                             CornerRadius="4"
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
-                    </controls:TitleView.LeadingView>
-                </controls:TitleView>
-                <ContentPresenter />
-            </StackLayout>
-        </ControlTemplate>
-    </ContentPage.ControlTemplate>
-    <ContentPage.Content>
-        <StackLayout Padding="20" Margin="0,30,0,0">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+                    <Label Grid.Column="1"
+                                    FontFamily="{StaticResource Montserrat-Medium}"
+                                    FontSize="17"
+                                    HorizontalOptions="Start"
+                                    Text="Send Credits Wallet"
+                                    TextColor="{DynamicResource Gray-White}"
+                                    VerticalOptions="Center" />
 
-                <inputLayout:SfTextInputLayout 
+                </Grid>
+                <Grid Grid.Row="1"
+                      Padding="10,35,10,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <inputLayout:SfTextInputLayout 
                             Grid.Row="0"
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
@@ -51,19 +69,19 @@
                             x:Name="WalletIds"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
-                    <Entry MaxLength="50"  
+                        <Entry MaxLength="50"  
                            x:Name="WalletId" />
-                    <inputLayout:SfTextInputLayout.LeadingView>
-                        <Label
+                        <inputLayout:SfTextInputLayout.LeadingView>
+                            <Label
                                     FontSize="18"
                                     VerticalTextAlignment="Center"
                                     Style="{StaticResource ProfileIconLabelStyle}"
                                     TextColor="{DynamicResource BlackColor}"
                                     Text="&#xf555;" />
-                    </inputLayout:SfTextInputLayout.LeadingView>
-                </inputLayout:SfTextInputLayout>
+                        </inputLayout:SfTextInputLayout.LeadingView>
+                    </inputLayout:SfTextInputLayout>
 
-                <inputLayout:SfTextInputLayout 
+                    <inputLayout:SfTextInputLayout 
                             Grid.Row="1"
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
@@ -73,20 +91,20 @@
                             x:Name="Amounts"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
-                    <Entry MaxLength="50" 
+                        <Entry MaxLength="50" 
                            Keyboard="Numeric"
                            x:Name="Amount" />
-                    <inputLayout:SfTextInputLayout.LeadingView>
-                        <Label
+                        <inputLayout:SfTextInputLayout.LeadingView>
+                            <Label
                                     FontSize="18"
                                     VerticalTextAlignment="Center"
                                     Style="{StaticResource ProfileIconLabelStyle}"
                                     TextColor="{DynamicResource BlackColor}"
                                     Text="&#xf53c;" />
-                    </inputLayout:SfTextInputLayout.LeadingView>
-                </inputLayout:SfTextInputLayout>
+                        </inputLayout:SfTextInputLayout.LeadingView>
+                    </inputLayout:SfTextInputLayout>
 
-                <inputLayout:SfTextInputLayout 
+                    <inputLayout:SfTextInputLayout 
                             Grid.Row="2"
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
@@ -95,30 +113,36 @@
                             HasError="False"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
-                    <Entry MaxLength="50" 
+                        <Entry MaxLength="50" 
                            VerticalTextAlignment="Start"
                            HeightRequest="100"
                            x:Name="Note" />
-                    <inputLayout:SfTextInputLayout.LeadingView>
-                        <Label
+                        <inputLayout:SfTextInputLayout.LeadingView>
+                            <Label
                                     FontSize="18"
                                     VerticalTextAlignment="Center"
                                     Style="{StaticResource ProfileIconLabelStyle}"
                                     TextColor="{DynamicResource BlackColor}"
                                     Text="&#xf249;" />
-                    </inputLayout:SfTextInputLayout.LeadingView>
-                </inputLayout:SfTextInputLayout>
+                        </inputLayout:SfTextInputLayout.LeadingView>
+                    </inputLayout:SfTextInputLayout>
 
-                <buttons:SfButton
+                    <buttons:SfButton
                             Grid.Row="3"
                             Margin="0, 30, 0, 20"
-                            CornerRadius="10"
+                            CornerRadius="5"
                             TextColor="White"
                             Clicked="ShowModal"
                             BackgroundColor="{DynamicResource PrimaryColor}"
                             Style="{StaticResource SfButtonStyle}"
                             Text="Send" />
+                </Grid>
             </Grid>
-        </StackLayout>
+            <loading:LoadingIndicator
+                    Grid.Row="0"
+                    HorizontalOptions="Fill"
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}"
+                    VerticalOptions="Fill" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

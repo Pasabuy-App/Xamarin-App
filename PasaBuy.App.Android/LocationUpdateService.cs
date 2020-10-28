@@ -61,17 +61,17 @@ namespace PasaBuy.App.Droid
 
         public void OnProviderDisabled(string provider)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void OnProviderEnabled(string provider)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void OnStatusChanged(string provider, [GeneratedEnum] Availability status, Bundle extras)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
 
         }
     }

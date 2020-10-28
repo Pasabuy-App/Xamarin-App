@@ -7,7 +7,7 @@
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:controls="clr-namespace:PasaBuy.App.Controls"
              xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
-             xmlns:wallet="clr-namespace:PasaBuy.App.Views.Currency"
+             xmlns:wallet="clr-namespace:PasaBuy.App.Views.Currency" xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
              x:Class="PasaBuy.App.Views.Currency.WalletPage"
              NavigationPage.HasNavigationBar="False">
 
@@ -40,34 +40,42 @@
 
     <ContentPage.Content>
 
-        
-        <tabView:SfTabView BackgroundColor="{DynamicResource Gray-White}" VisibleHeaderCount="2">
-            <tabView:SfTabView.SelectionIndicatorSettings>
-                <tabView:SelectionIndicatorSettings StrokeThickness="3" Color="{DynamicResource PrimaryColor}" />
-            </tabView:SfTabView.SelectionIndicatorSettings>
-            <tabView:SfTabItem
+        <Grid>
+            <tabView:SfTabView BackgroundColor="{DynamicResource Gray-White}" VisibleHeaderCount="2">
+                <tabView:SfTabView.SelectionIndicatorSettings>
+                    <tabView:SelectionIndicatorSettings StrokeThickness="3" Color="{DynamicResource PrimaryColor}" />
+                </tabView:SfTabView.SelectionIndicatorSettings>
+                <tabView:SfTabItem
                 Title="Savings"
                 SelectionColor="{DynamicResource PrimaryColor}"
                 TitleFontColor="{DynamicResource Gray-700}"
                 TitleFontFamily="{StaticResource Montserrat-Medium}"
                 TitleFontSize="14">
-                <tabView:SfTabItem.Content>
-                    <wallet:WalletSaving/>
-                </tabView:SfTabItem.Content>
-            </tabView:SfTabItem>
+                    <tabView:SfTabItem.Content>
+                        <wallet:WalletSaving/>
+                    </tabView:SfTabItem.Content>
+                </tabView:SfTabItem>
 
-            <tabView:SfTabItem
+                <tabView:SfTabItem
                 Title="Credits"
                 SelectionColor="{DynamicResource PrimaryColor}"
                 TitleFontColor="{DynamicResource Gray-700}"
                 TitleFontFamily="{StaticResource Montserrat-Medium}"
                 TitleFontSize="14">
-                <tabView:SfTabItem.Content>
-                    <wallet:WalletCredit/>
-                </tabView:SfTabItem.Content>
-            </tabView:SfTabItem>
+                    <tabView:SfTabItem.Content>
+                        <wallet:WalletCredit/>
+                    </tabView:SfTabItem.Content>
+                </tabView:SfTabItem>
 
-        </tabView:SfTabView>
+            </tabView:SfTabView>
+            <loading:LoadingIndicator
+                    Grid.Row="0"
+                    HorizontalOptions="Fill"
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}"
+                    VerticalOptions="Fill" />
+        </Grid>
+        
+        
 
 
     </ContentPage.Content>

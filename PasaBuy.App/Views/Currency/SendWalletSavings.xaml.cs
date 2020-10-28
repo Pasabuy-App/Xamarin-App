@@ -28,7 +28,7 @@ namespace PasaBuy.App.Views.Currency
             Note.Text = "";
         }
 
-        public void BackButtonClicked(object sender, EventArgs e)
+        public void backButton_Clicked(object sender, EventArgs e)
         {
             Navigation.PopModalAsync();
         }
