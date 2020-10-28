@@ -461,6 +461,12 @@ namespace PasaBuy.App.Views.Driver
             Compass.Stop();
             Navigation.PopModalAsync();
         }
+        protected override bool OnBackButtonPressed()
+        {
+            Compass.Stop();
+            Navigation.PopModalAsync();
+            return base.OnBackButtonPressed();
+        }
 
         public static async void OpenMapApp()
         {
