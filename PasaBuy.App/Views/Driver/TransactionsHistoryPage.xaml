@@ -5,7 +5,9 @@
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
              xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              x:Class="PasaBuy.App.Views.Driver.TransactionsHistoryPage"
-             xmlns:model="clr-namespace:PasaBuy.App.Models.MobilePOS" xmlns:pulltoRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
+             xmlns:model="clr-namespace:PasaBuy.App.Models.MobilePOS" 
+             xmlns:pulltoRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms" 
+             xmlns:local="clr-namespace:PasaBuy.App.UserControls"
              Title="All Transactions">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -17,28 +19,30 @@
     <ContentPage.Content>
         <Grid>
 
-            <pulltoRefresh:SfPullToRefresh
+            <Grid>
+
+                <pulltoRefresh:SfPullToRefresh
                                     x:Name="pullToRefresh"
                                     IsRefreshing="False"
                                     PullingThreshold="150"
                                     RefreshContentHeight="50"
                                     RefreshContentWidth="50"
                                     TransitionMode="Push">
-                <pulltoRefresh:SfPullToRefresh.ProgressStrokeWidth>
-                    <OnPlatform x:TypeArguments="x:Double">
-                        <On Platform="Android">
-                            <OnIdiom
+                    <pulltoRefresh:SfPullToRefresh.ProgressStrokeWidth>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="Android">
+                                <OnIdiom
                                                     x:TypeArguments="x:Double"
                                                     Phone="6"
                                                     Tablet="3" />
-                        </On>
-                        <On Platform="UWP" Value="2" />
-                        <On Platform="iOS,macOS" Value="2" />
-                    </OnPlatform>
-                </pulltoRefresh:SfPullToRefresh.ProgressStrokeWidth>
-                <pulltoRefresh:SfPullToRefresh.PullableContent>
-                    
-                    <sync:SfListView x:Name="NewOrders"
+                            </On>
+                            <On Platform="UWP" Value="2" />
+                            <On Platform="iOS,macOS" Value="2" />
+                        </OnPlatform>
+                    </pulltoRefresh:SfPullToRefresh.ProgressStrokeWidth>
+                    <pulltoRefresh:SfPullToRefresh.PullableContent>
+
+                        <sync:SfListView x:Name="NewOrders"
                              AutoFitMode="Height"
                              FocusBorderThickness="0"
                              ItemSpacing="0,1,0,0"
@@ -47,32 +51,32 @@
                              ItemsSource="{Binding HistoryList}"
                              ItemAppearing="NewOrders_ItemAppearing"
                              SelectionMode="None">
-                <!--Item Source is for testing purposes only. Kindly bind into specific viewmodels-->
+                            <!--Item Source is for testing purposes only. Kindly bind into specific viewmodels-->
 
-                <sync:SfListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Margin="0"
+                            <sync:SfListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0"
                               Padding="8,12,8,0"
                               BackgroundColor="{DynamicResource Gray-White}"
                               ColumnSpacing="0"
                               RowSpacing="0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Grid Padding="0,0,8,10" RowSpacing="0" Grid.Row="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid Padding="0,0,8,10" RowSpacing="0" Grid.Row="0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
 
-                                <ffimageloading:CachedImage Aspect="AspectFit"
+                                            <ffimageloading:CachedImage Aspect="AspectFit"
                                                             Grid.Row="0"
                                                             Grid.RowSpan="3"
                                                             Margin="5,0,30,0"
@@ -82,51 +86,58 @@
                                                             x:Name="ImageId"
 			                                                DownsampleToViewSize="true"
                                                             FadeAnimationEnabled="True" >
-                                    <ffimageloading:CachedImage.Transformations>
-                                        <fftransformations:CircleTransformation />
-                                    </ffimageloading:CachedImage.Transformations>
-                                </ffimageloading:CachedImage>
+                                                <ffimageloading:CachedImage.Transformations>
+                                                    <fftransformations:CircleTransformation />
+                                                </ffimageloading:CachedImage.Transformations>
+                                            </ffimageloading:CachedImage>
 
-                                <Label Text="{Binding Customer}"
+                                            <Label Text="{Binding Customer}"
                                                        Grid.Row="0"
                                                        Grid.Column="1"
                                                        HorizontalOptions="StartAndExpand"
                                                        TextColor="{DynamicResource BlackColor}">
-                                </Label>
-                                <Label Text="{Binding Hash_id}"
+                                            </Label>
+                                            <Label Text="{Binding Hash_id}"
                                                        Grid.Row="1"
                                                        Grid.Column="1"
                                                        HorizontalOptions="StartAndExpand"
                                                        TextColor="{DynamicResource Gray-800}">
-                                </Label>
-                                <Label Text="{Binding Date_created}"
+                                            </Label>
+                                            <Label Text="{Binding Date_created}"
                                                        Grid.Row="2"
                                                        Grid.Column="1"
                                                        HorizontalOptions="StartAndExpand"
                                                        TextColor="{DynamicResource Gray-800}">
-                                </Label>
-                                <Label Text="{Binding Price}"
+                                            </Label>
+                                            <Label Text="{Binding Price}"
                                                        Grid.Row="0"
                                                        Grid.Column="2"
                                                        HorizontalOptions="StartAndExpand"
                                                        TextColor="{DynamicResource BlackColor}">
-                                </Label>
-                                <Label Text="{Binding Status}"
+                                            </Label>
+                                            <Label Text="{Binding Status}"
                                                        Grid.Row="2"
                                                        Grid.Column="2"
                                                        HorizontalOptions="StartAndExpand"
                                                        TextColor="{DynamicResource Green}">
-                                </Label>
-                            </Grid>
-                            <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="1"/>
-                        </Grid>
-                    </DataTemplate>
-                </sync:SfListView.ItemTemplate>
-            </sync:SfListView>
-            
-            </pulltoRefresh:SfPullToRefresh.PullableContent>
-            </pulltoRefresh:SfPullToRefresh>
+                                            </Label>
+                                        </Grid>
+                                        <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="1"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </sync:SfListView.ItemTemplate>
+                        </sync:SfListView>
 
+                    </pulltoRefresh:SfPullToRefresh.PullableContent>
+                </pulltoRefresh:SfPullToRefresh>
+
+            </Grid>
+
+            <local:LoadingIndicator
+                x:Name="IsRunning"
+                Grid.Row="0"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>
