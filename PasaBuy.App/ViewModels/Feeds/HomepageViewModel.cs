@@ -87,7 +87,7 @@ namespace PasaBuy.App.ViewModels.Feeds
             });
         }
         public Command<object> AcceptCommand { get; set; }
-        private async void OnAccepted(object obj)
+        private void OnAccepted(object obj)
         {
             var post = obj as Post;
             GetProfile(post.Post_author);
@@ -98,7 +98,7 @@ namespace PasaBuy.App.ViewModels.Feeds
             {
                 if (!IsRunning)
                 {
-                    IsRunning  = true;
+                    IsRunning = true;
                     SocioPress.Profile.Instance.GetData(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, uid, async (bool success, string data) =>
                     {
                         if (success)
@@ -199,7 +199,7 @@ namespace PasaBuy.App.ViewModels.Feeds
             });
 
             homePostList = new ObservableCollection<Post>();
-            LoadData2();
+            //LoadData2();
 
             this.InquireCommand = new Command(this.InquireClicked);
             this.Photo = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
