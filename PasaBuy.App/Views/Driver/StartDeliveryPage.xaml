@@ -80,7 +80,8 @@
                             </local1:SlideToActView.FillBar>
                         </local1:SlideToActView>
                     </StackLayout>
-                    <StackLayout Grid.Row="2" 
+                    
+                    <!--<StackLayout Grid.Row="2" 
                                  Margin="0,5,0,5">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -137,8 +138,52 @@
 
 
                         </Grid>
+                    </StackLayout>-->
+                    
+                    <StackLayout Grid.Row="2" x:Name="Accept_Cancel" IsVisible="false"
+                                 Margin="10,0,10,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            
+
+                            <buttons:SfButton 
+                               FontFamily="{StaticResource Montserrat-Medium}"
+                               BackgroundColor="Orange"
+                               Grid.Column="0"
+                               FontSize="13"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center"
+                               Text="Accept"
+                               TextColor="{DynamicResource WhiteColor}"/>
+                            
+                            <buttons:SfButton 
+                               FontFamily="{StaticResource Montserrat-Medium}"
+                               BackgroundColor="Red"
+                               Grid.Column="1"
+                               FontSize="13"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center"
+                               Text="Cancel"
+                               TextColor="{DynamicResource WhiteColor}"/>
+
+                            <!--<Label FontFamily="{StaticResource Montserrat-Medium}"
+                               Grid.Column="4"
+                               FontSize="13"
+                               x:Name="stats"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center"
+                               Text="For Pickup"
+                               TextColor="{DynamicResource BlackColor}" />-->
+
+
+                        </Grid>
                     </StackLayout>
-                    <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="3"/>
+
+                    <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="3" x:Name="Accept_Cancel_BoxView" />
+                    
                     <Grid Grid.Row="4" VerticalOptions="End">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto" />
@@ -172,7 +217,6 @@
                                FontSize="14"
                                VerticalTextAlignment="Center"
                                HorizontalTextAlignment="Start"
-                               Text="Store Name"
                                x:Name="StoreName"
                                TextColor="{DynamicResource Gray-900}" />
 
@@ -183,7 +227,6 @@
                                FontSize="13"
                                VerticalTextAlignment="Center"
                                HorizontalTextAlignment="Start"
-                               Text="Order #143 | 5 mins ago"
                                x:Name="OrderIDandOrderTime"
                                TextColor="{DynamicResource Gray-900}" />
 
@@ -207,7 +250,6 @@
                                x:Name="StoreAddress"
                                VerticalTextAlignment="Center"
                                HorizontalTextAlignment="Start"
-                               Text="Alabang, Muntinlupa City (Store address)"
                                TextColor="{DynamicResource Gray-900}" />
                         <Label FontSize="18"
                                Grid.Row="3" 
@@ -229,7 +271,6 @@
                                VerticalTextAlignment="Center"
                                HorizontalTextAlignment="Start"
                                x:Name="ClientAddress"
-                               Text="#4 Rainbow Ave, City of San Pedro, Laguna, Philippines (Delivery Address)"
                                TextColor="{DynamicResource Gray-900}" />
                     </Grid>
                 </Grid>

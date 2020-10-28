@@ -23,8 +23,8 @@ namespace PasaBuy.App.Views.PopupModals
         public static string user_lat = "14.3291744";// string.Empty;
         public static string user_long = "121.0063577"; // string.Empty;
         public static string orderName = string.Empty;
-        public static string waypointAddress = "Store Address";// string.Empty;
-        public static string destinationAddress = "Customr Address"; // string.Empty;
+        public static string waypointAddress = "National Road San Galing, San Pedro Laguna, Philippines";// string.Empty;
+        public static string destinationAddress = "BLock 10 Lot 18 Narra St. San Francisco, Biñan Laguna, Philippines"; // string.Empty;
         public static string orderTime = "08:30 AM"; //string.Empty;
 
 
@@ -35,7 +35,7 @@ namespace PasaBuy.App.Views.PopupModals
             InitializeComponent();
 
             Store.Text = storeName;
-            Order.Text = item_id + " | " + orderTime;
+            Order.Text = item_id;// + " | " + orderTime;
             WaypointAddress.Text = waypointAddress;
             OriginAddress.Text = destinationAddress;
             OrderTime.Text = "30";
@@ -78,6 +78,15 @@ namespace PasaBuy.App.Views.PopupModals
             DashboardPage.PushOrder("");
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            PopupNavigation.Instance.PopAsync();
+            OrderTimer(false);
+            DashboardPage.time = true;// remove this if you want to remove the timer
+            DashboardPage.PushOrder("");
+            return base.OnBackButtonPressed();
+        }
+
         async private void AcceptOrder(object sender, EventArgs e)
         {
             var request = new GeolocationRequest(GeolocationAccuracy.Medium);
@@ -85,6 +94,8 @@ namespace PasaBuy.App.Views.PopupModals
 
             StartDeliveryPage.item_id = item_id;
             StartDeliveryPage.storeName = storeName;
+            StartDeliveryPage.orderName = orderName;
+            StartDeliveryPage.orderTime = orderTime;
             StartDeliveryPage.waypointAddress = waypointAddress;
             StartDeliveryPage.destinationAddress = destinationAddress;
 
@@ -98,7 +109,8 @@ namespace PasaBuy.App.Views.PopupModals
             await Navigation.PushModalAsync(new StartDeliveryPage());
             OrderTimer(false);
             DashboardPage.time = false;// remove this if you want to remove the timer
-            DashboardPage._OrderList.Clear();
+            DashboardPage._OrderList.Add( new Models.eCommerce.Transactions() { ID = item_id }); // Add orderid to observable collection.
+            StartDeliveryPage.order_status = "preparing";
         }
     }
 }
