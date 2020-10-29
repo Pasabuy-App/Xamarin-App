@@ -11,7 +11,10 @@
     xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms">
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+    xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms" 
+    xmlns:local1="clr-namespace:PasaBuy.App.UserControls">
+    
     <pages:PopupPage.Resources>
         <ResourceDictionary>
             <Style x:Key="PopupItemHeaderStyle" TargetType="{x:Type Label}">
@@ -47,6 +50,7 @@
 
         </ResourceDictionary>
     </pages:PopupPage.Resources>
+    
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation
             DurationIn="500"
@@ -56,52 +60,55 @@
             ScaleIn="1"
             ScaleOut="0.7" />
     </pages:PopupPage.Animation>
-    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-        <Frame
+
+    <Grid>
+
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <Frame
             x:Name="FrameContainer"
             Margin="15"
             Padding="0"
             BackgroundColor="White"
             CornerRadius="6"
             HorizontalOptions="Center">
-            <StackLayout
+                <StackLayout
                 Padding="0"
                 IsClippedToBounds="True"
                 Spacing="0">
-                <Grid RowSpacing="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="10*" />
-                        <RowDefinition Height="20*" />
-                        <RowDefinition Height="50*" />
-                        <RowDefinition Height="20" />
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0"
+                    <Grid RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10*" />
+                            <RowDefinition Height="20*" />
+                            <RowDefinition Height="50*" />
+                            <RowDefinition Height="20" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0"
                           HorizontalOptions="End" 
                           VerticalOptions="Start">
-                        <Image
+                            <Image
                               Grid.Row="0"
                               Grid.Column="0"
                               HeightRequest="30"
                               Source="cross_512.png"
                               WidthRequest="30">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="CloseModal" NumberOfTapsRequired="1"/>
-                            </Image.GestureRecognizers>
-                        </Image>
-                    </Grid>
-                    <Grid Grid.Row="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <ffimageloading:CachedImage Aspect="AspectFit"
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="CloseModal" NumberOfTapsRequired="1"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <ffimageloading:CachedImage Aspect="AspectFit"
                                                 Grid.Row="0"
                                                 Grid.RowSpan="2"
                                                 Margin="5,-10,0,0"
@@ -111,11 +118,11 @@
                                                 x:Name="ImageId"
 			                                    DownsampleToViewSize="true" 
                                                 FadeAnimationEnabled="True" >
-                            <ffimageloading:CachedImage.Transformations>
-                                <fftransformations:CircleTransformation />
-                            </ffimageloading:CachedImage.Transformations>
-                        </ffimageloading:CachedImage>
-                        <Label Grid.Row="0"
+                                <ffimageloading:CachedImage.Transformations>
+                                    <fftransformations:CircleTransformation />
+                                </ffimageloading:CachedImage.Transformations>
+                            </ffimageloading:CachedImage>
+                            <Label Grid.Row="0"
                                Grid.Column="1"
                                FontFamily="{StaticResource Montserrat-SemiBold}"
                                Padding="10,0,0,0"
@@ -125,7 +132,7 @@
                                Text=""
                                x:Name="Store"
                                TextColor="{DynamicResource Gray-900}" />
-                        <Label Grid.Row="1"
+                            <Label Grid.Row="1"
                                Grid.Column="1"
                                FontFamily="{StaticResource Montserrat-Medium}"
                                Padding="10,0,0,0"
@@ -135,7 +142,7 @@
                                Text="Order #143 | 5 mins ago"
                                x:Name="Order"
                                TextColor="{DynamicResource Gray-900}" />
-                        <buttons:SfButton Margin="0,-10,0,0"
+                            <buttons:SfButton Margin="0,-10,0,0"
                                           HorizontalTextAlignment="Center"  
                                           Grid.Row="2" 
                                           Grid.Column="0"
@@ -143,7 +150,7 @@
                                           TextColor="Black"
                                           Style="{StaticResource IconButtonStyle}" 
                                           Text="{StaticResource Lunch}"/>
-                        <Label Grid.Row="2"
+                            <Label Grid.Row="2"
                                Grid.Column="1"
                                Margin="0,-10,0,0"
                                Grid.ColumnSpan="2"
@@ -155,8 +162,8 @@
                                Text="Alabang, Muntinlupa City (Store address)"
                                x:Name="WaypointAddress"
                                TextColor="{DynamicResource Gray-900}" />
-                        
-                        <buttons:SfButton 
+
+                            <buttons:SfButton 
                                           HorizontalTextAlignment="Center"  
                                           Grid.Row="3" 
                                           Margin="0,-15,0,0"
@@ -165,7 +172,7 @@
                                           TextColor="Black"
                                           Style="{StaticResource IconButtonStyle}" 
                                           Text="{StaticResource Home}"/>
-                        <Label Grid.Row="3"
+                            <Label Grid.Row="3"
                                Grid.Column="1"
                                Grid.ColumnSpan="2"
                                Margin="0,-10,0,0"
@@ -177,20 +184,20 @@
                                x:Name="OriginAddress"
                                Text="#4 Rainbow Ave, Pacita 2, Laguna (Delivery address)"
                                TextColor="{DynamicResource Gray-900}" />
-                    </Grid>
-                    <yummy:PancakeView
+                        </Grid>
+                        <yummy:PancakeView
                         Grid.Row="2"
                         Padding="10,10,10,0"
                         Margin="10,15,10,15"
                         BackgroundColor="{DynamicResource Gray-100}"
                         CornerRadius="20,20,20,20"
                         VerticalOptions="FillAndExpand">
-                        <Grid RowSpacing="0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Label Grid.Row="0"
+                            <Grid RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="0"
                                    FontFamily="{StaticResource Montserrat-SemiBold}"
                                    Padding="10,0,0,0"
                                    FontSize="14"
@@ -198,7 +205,7 @@
                                    HorizontalTextAlignment="Center"
                                    Text="Press the button to accept the order before the timer runs out."
                                    TextColor="{DynamicResource Gray-900}" />
-                            <progressBar:SfCircularProgressBar x:Name="CustomContentCircularProgressBar" 
+                                <progressBar:SfCircularProgressBar x:Name="CustomContentCircularProgressBar" 
                                                                Progress="30"
                                                                Maximum="30"
                                                                AnimationDuration="30000"
@@ -206,8 +213,8 @@
                                                                ProgressColor="{DynamicResource PrimaryColor}"
                                                                HorizontalOptions="Center" 
                                                                Grid.Row="1" >
-                                <progressBar:SfCircularProgressBar.Content>
-                                    <Label Grid.Row="0"
+                                    <progressBar:SfCircularProgressBar.Content>
+                                        <Label Grid.Row="0"
                                                Padding="5,0,0,10"
                                                FontFamily="{StaticResource Montserrat-SemiBold}"
                                                FontSize="60"
@@ -216,15 +223,23 @@
                                                x:Name="OrderTime"
                                                TextColor="{DynamicResource Gray-900}" />
 
-                                </progressBar:SfCircularProgressBar.Content>
-                                <progressBar:SfCircularProgressBar.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="AcceptOrder" NumberOfTapsRequired="1" ></TapGestureRecognizer>
-                                </progressBar:SfCircularProgressBar.GestureRecognizers>
-                            </progressBar:SfCircularProgressBar>
-                        </Grid>
-                    </yummy:PancakeView>
-                </Grid>
-            </StackLayout>
-        </Frame>
-    </StackLayout>
+                                    </progressBar:SfCircularProgressBar.Content>
+                                    <progressBar:SfCircularProgressBar.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="AcceptOrder" NumberOfTapsRequired="1" ></TapGestureRecognizer>
+                                    </progressBar:SfCircularProgressBar.GestureRecognizers>
+                                </progressBar:SfCircularProgressBar>
+                            </Grid>
+                        </yummy:PancakeView>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+
+        <local1:LoadingIndicator
+                    x:Name="IsRunning"
+                    IsRunning="False"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Fill" />
+    </Grid>
+    
 </pages:PopupPage>

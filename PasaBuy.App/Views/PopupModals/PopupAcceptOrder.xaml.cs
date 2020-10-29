@@ -97,44 +97,50 @@ namespace PasaBuy.App.Views.PopupModals
 
             try
             {
-                Http.HatidFeature.Instance.Accept_Order(odid, async (bool success, string data) =>
+                if (!IsRunning.IsRunning)
                 {
-                    if (success)
+                    IsRunning.IsRunning = true;
+                    Http.HatidFeature.Instance.Accept_Order(odid, async (bool success, string data) =>
                     {
+                        if (success)
+                        {
+                            var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+                            var location = await Geolocation.GetLocationAsync(request);
 
-                        var request = new GeolocationRequest(GeolocationAccuracy.Medium);
-                        var location = await Geolocation.GetLocationAsync(request);
+                            StartDeliveryPage.item_id = item_id;
+                            StartDeliveryPage.storeName = storeName;
+                            StartDeliveryPage.orderName = orderName;
+                            StartDeliveryPage.orderTime = orderTime;
+                            StartDeliveryPage.waypointAddress = waypointAddress;
+                            StartDeliveryPage.destinationAddress = destinationAddress;
 
-                        StartDeliveryPage.item_id = item_id;
-                        StartDeliveryPage.storeName = storeName;
-                        StartDeliveryPage.orderName = orderName;
-                        StartDeliveryPage.orderTime = orderTime;
-                        StartDeliveryPage.waypointAddress = waypointAddress;
-                        StartDeliveryPage.destinationAddress = destinationAddress;
+                            StartDeliveryPage.StoreLatittude = store_lat;
+                            StartDeliveryPage.StoreLongitude = store_long;
 
-                        StartDeliveryPage.StoreLatittude = store_lat;
-                        StartDeliveryPage.StoreLongitude = store_long;
+                            StartDeliveryPage.UserLatitude = user_lat;
+                            StartDeliveryPage.userLongitude = user_long;
 
-                        StartDeliveryPage.UserLatitude = user_lat;
-                        StartDeliveryPage.userLongitude = user_long;
+                            OrderTimer(false);
+                            DashboardPage.time = false;// remove this if you want to remove the timer
+                            DashboardPage._OrderList.Add(new Models.eCommerce.Transactions() { ID = item_id }); // Add orderid to observable collection.
+                            StartDeliveryPage.order_status = "preparing";
 
-                        OrderTimer(false);
-                        DashboardPage.time = false;// remove this if you want to remove the timer
-                        DashboardPage._OrderList.Add(new Models.eCommerce.Transactions() { ID = item_id }); // Add orderid to observable collection.
-                        StartDeliveryPage.order_status = "preparing";
-
-                        PopupNavigation.Instance.PopAsync();
-                        await Navigation.PushModalAsync(new StartDeliveryPage());
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                });
+                            PopupNavigation.Instance.PopAsync();
+                            await Navigation.PushModalAsync(new StartDeliveryPage());
+                            IsRunning.IsRunning = false ;
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsRunning.IsRunning = false;
+                        }
+                    });
+                }
             }
             catch (Exception e)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                IsRunning.IsRunning = false;
             }
         }
     }
