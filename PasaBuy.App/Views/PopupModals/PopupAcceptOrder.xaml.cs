@@ -33,7 +33,7 @@ namespace PasaBuy.App.Views.PopupModals
         public PopupAcceptOrder()
         {
             InitializeComponent();
-
+            this.CloseWhenBackgroundIsClicked = false;
             Store.Text = storeName;
             Order.Text = orderName;// + " | " + orderTime;
             WaypointAddress.Text = waypointAddress;
@@ -89,12 +89,30 @@ namespace PasaBuy.App.Views.PopupModals
 
         private void AcceptOrder(object sender, EventArgs e)
         {
-            Accpet_Order(item_id);
+            Accept_Order(item_id);
         }
 
-        public void Accpet_Order(string odid)
+        public async void Accept_Order(string odid)
         {
+            //IsGpsEnable = Xamarin.Forms.DependencyService.Get<IGpsDependencyService>().IsGpsEnable();
 
+            //if (!IsGpsEnable)
+            //{
+            //    Xamarin.Forms.DependencyService.Get<IGpsDependencyService>().OpenSettings();
+            //}
+
+            try
+            {
+                var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+                var location = await Geolocation.GetLocationAsync(request);
+            }
+            catch (FeatureNotEnabledException featureNotEnabledException)
+            {
+                await Application.Current.MainPage.DisplayAlert("Notice to User", "Please enable your location first." + featureNotEnabledException, "OK");
+
+            }
+
+           
             try
             {
                 if (!IsRunning.IsRunning)
@@ -104,8 +122,7 @@ namespace PasaBuy.App.Views.PopupModals
                     {
                         if (success)
                         {
-                            var request = new GeolocationRequest(GeolocationAccuracy.Medium);
-                            var location = await Geolocation.GetLocationAsync(request);
+                            
 
                             StartDeliveryPage.item_id = item_id;
                             StartDeliveryPage.storeName = storeName;
@@ -136,6 +153,11 @@ namespace PasaBuy.App.Views.PopupModals
                         }
                     });
                 }
+            }
+            catch (FeatureNotEnabledException featureNotEnabledException)
+            {
+                new Alert("Something went Wrong", "Please enable location " + featureNotEnabledException, "OK");
+                IsRunning.IsRunning = false;
             }
             catch (Exception e)
             {

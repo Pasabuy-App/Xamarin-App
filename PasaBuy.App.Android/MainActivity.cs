@@ -4,9 +4,15 @@ using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
+using Android.Support.V4.App;
+using Android.Support.V4.Content;
+using Android.Webkit;
 using Plugin.CurrentActivity;
 using Plugin.LocalNotification;
+using Plugin.Permissions;
 using Syncfusion.XForms.Android.PopupLayout;
+using System;
+using System.Linq;
 
 namespace PasaBuy.App.Droid
 {
@@ -23,6 +29,9 @@ namespace PasaBuy.App.Droid
                 Manifest.Permission.AccessCoarseLocation,
                 Manifest.Permission.AccessFineLocation
         };
+
+        public String mGeolocationOrigin;
+        public GeolocationPermissions.ICallback mGeolocationCallback;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -41,20 +50,36 @@ namespace PasaBuy.App.Droid
             SfPopupLayoutRenderer.Init();
             Xamarin.FormsGoogleMaps.Init(this, savedInstanceState);
             NotificationCenter.CreateNotificationChannel();
-
+            Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
             LoadApplication(new App());
 
             NotificationCenter.NotifyNotificationTapped(Intent);
 
         }
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
-        {
-            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum]
+   Android.Content.PM.Permission[] grantResults)
+        {
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            if (permissions.Contains(Manifest.Permission.AccessFineLocation))
+            {
+                bool allow = false;
+                if (grantResults[0] == Android.Content.PM.Permission.Granted)
+                {
+                    // user has allowed these permissions
+                    allow = true;
+                }
+                if (mGeolocationCallback != null)
+                {
+                    mGeolocationCallback.Invoke(mGeolocationOrigin, allow, false);
+                }
+            }
         }
 
-        public override void OnBackPressed()
+
+    public override void OnBackPressed()
         {
             if (Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed))
             {

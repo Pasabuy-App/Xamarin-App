@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
+             xmlns:converter="clr-namespace:PasaBuy.App.Converters" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:local="clr-namespace:PasaBuy.App.UserControls"
+             x:Class="PasaBuy.App.Views.Driver.DriverScheduleView"
+             Title="Driver Schedule">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        <ResourceDictionary>
+            <DataTemplate x:Key="ScheduleTemplate">
+                <Grid Margin="0"
+                      Padding="8,2,8,12"
+                      CompressedLayout.IsHeadless="True"
+                      BackgroundColor="{DynamicResource Gray-White}"
+                      ColumnSpacing="0"
+                      RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" 
+                                      Margin="0,0,0,15"
+                                      RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="{Binding Day}"
+                                           Grid.Row="0"
+                                           Grid.Column="1"
+                                           FontFamily="{StaticResource Montserrat-Medium}"
+                                           HorizontalOptions="StartAndExpand"
+                                           VerticalOptions="Start"
+                                           TextColor="{DynamicResource Gray-900}">
+                        </Label>
+                        <Label Text="{Binding FullSchedule}"
+                                           Grid.Row="1"
+                                           Grid.Column="1"
+                                           FontFamily="{StaticResource Montserrat-Medium}"
+                                           HorizontalOptions="StartAndExpand"
+                                           VerticalOptions="CenterAndExpand"
+                                           TextColor="{DynamicResource Gray-900}">
+                        </Label>
+                        <buttons:SfButton
+                            x:Name="backButton"
+                            Grid.Row="0"
+                            Grid.RowSpan="2"
+                            Grid.Column="2"
+                            CornerRadius="4"
+                            TextColor="Black"
+                            ClassId="{Binding Day}"
+                            Command="{Binding BindingContext.EditScheduleCommand,Source={x:Reference listView}}"
+                            CommandParameter="{Binding Day}"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource EditIcon}" />
+                    </Grid>
+                    <BoxView Grid.Row="1" Margin="0,-1,0,0" Style="{DynamicResource SeparatorStyle}" />
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout Padding="5,15,5,15">
+                <syncListView:SfListView x:Name="listView"
+                                         FocusBorderThickness="0"
+                                         IsScrollBarVisible="False"
+                                         IsStickyHeader="True"
+                                         ItemSize="70"
+                                         FooterSize="50"
+                                         ListViewCachingStrategy="RecycleTemplate"
+                                         ItemsSource="{Binding ScheduleList}"
+                                         ItemTemplate="{StaticResource ScheduleTemplate}"
+                                         SelectionMode="None">
+
+                </syncListView:SfListView>
+            </StackLayout>
+            <local:LoadingIndicator
+                x:Name="isRunning"
+                Grid.Row="0"
+                HorizontalOptions="Fill"
+                IsRunning="{Binding IsRunning, Mode=TwoWay}"
+                VerticalOptions="Fill" />
+        </Grid>
+        
+        
+    </ContentPage.Content>
+</ContentPage>

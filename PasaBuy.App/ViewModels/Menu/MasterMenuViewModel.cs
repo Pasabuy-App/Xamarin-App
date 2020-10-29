@@ -1,6 +1,7 @@
 ﻿
 using Newtonsoft.Json;
 using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Library;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Driver;
 using PasaBuy.App.Models.MobilePOS;
@@ -88,6 +89,21 @@ namespace PasaBuy.App.ViewModels.Menu
                     _isStore = value;
                     this.NotifyPropertyChanged();
                 }
+            }
+        }
+
+        private bool _isGpsEnable;
+
+        public bool IsGpsEnable
+        {
+            get
+            {
+                return _isGpsEnable;
+            }
+            set
+            {
+                _isGpsEnable = value;
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -448,18 +464,29 @@ namespace PasaBuy.App.ViewModels.Menu
         /// Invoked when the driver button is clicked.
         /// </summary>
         /// <param name="obj">The object</param>
-        private void DriverButtonClicked(object obj)
+        private async void DriverButtonClicked(object obj)
         {
-            if (!Status)
+            IsGpsEnable = Xamarin.Forms.DependencyService.Get<IGpsDependencyService>().IsGpsEnable();
+
+            if (!IsGpsEnable)
             {
-                Status = true;
-                Device.BeginInvokeOnMainThread(async () =>
+                await Application.Current.MainPage.DisplayAlert("Notice to User", "Please enable your location first.", "OK");
+                Xamarin.Forms.DependencyService.Get<IGpsDependencyService>().OpenSettings();
+            } 
+            else
+            {
+                if (!Status)
                 {
-                    MasterView.MyType = "mover";
-                    await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new VehicleListPage()));
-                    Status = false;
-                });
+                    Status = true;
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        MasterView.MyType = "mover";
+                        await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new VehicleListPage()));
+                        Status = false;
+                    });
+                }
             }
+            
         }
 
         /// <summary>

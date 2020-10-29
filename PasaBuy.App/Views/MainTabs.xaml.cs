@@ -1,7 +1,10 @@
 ﻿using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Library;
 using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
 using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -32,8 +35,13 @@ namespace PasaBuy.App.Views
 
             BindingContext = this;
 
+            
+
         }
 
+        
+
+      
 
         public ICommand ShowPasabuyStores { private set; get; }
 

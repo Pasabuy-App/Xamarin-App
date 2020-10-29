@@ -95,10 +95,12 @@ namespace PasaBuy.App.Views.Navigation
                 Logo.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatar);
                 Banner.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.banner);
                 Email.Text = PSACache.Instance.UserInfo.email;
-                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Dashboard"), Icon = "Idcard.png", TargetType = typeof(Views.Driver.DashboardPage) });
-                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Transactions"), Icon = "Idcard.png", TargetType = typeof(TransactionsHistoryPage) });
+                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Dashboard"), Icon = "https://pasabuy.app/wp-content/uploads/2020/10/dashboard.png", TargetType = typeof(Views.Driver.DashboardPage) });
+                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Transactions"), Icon = "https://pasabuy.app/wp-content/uploads/2020/10/transactions.png", TargetType = typeof(TransactionsHistoryPage) });
                 //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Messages"), Icon = "Idcard.png", TargetType = typeof(MessagesView) });
-                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Documents"), Icon = "Idcard.png", TargetType = typeof(DriverDocumentView) });
+                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Documents"), Icon = "https://pasabuy.app/wp-content/uploads/2020/10/management-documents.jpg", TargetType = typeof(DriverDocumentView) });
+                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Schedules"), Icon = "https://pasabuy.app/wp-content/uploads/2020/10/management-schedule.png", TargetType = typeof(DriverScheduleView) });
+
             }
 
             menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Homepage"), Icon = "https://pasabuy.app/wp-content/uploads/2020/10/home.jpg", TargetType = typeof(MainTabs) });

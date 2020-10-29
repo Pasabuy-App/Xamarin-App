@@ -46,6 +46,7 @@
     <x:String x:Key="DropDownButtonIcon">&#xe70b;</x:String>
     <Color x:Key="TappedBackgroundColor">#eaeaea</Color>
     <Color x:Key="Link">#567cd7</Color>
+    <x:String x:Key="EditIcon">&#xe727;</x:String>
 
 
     <!-- Common style for right arrow labels -->
