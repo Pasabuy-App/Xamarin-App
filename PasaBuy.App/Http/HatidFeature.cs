@@ -320,6 +320,36 @@ namespace PasaBuy.App.Http
                 callback(false, "Network Error! Check your connection.");
             }
         }
+
+        /// <summary>
+        /// Accept the order of customer that will show.
+        /// </summary>
+        public async void Accept_Order(string odid, Action<bool, string> callback)
+        {
+            var dict = new Dictionary<string, string>();
+                dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
+                dict.Add("snky", PSACache.Instance.UserInfo.snky);
+                dict.Add("vhid", PSACache.Instance.UserInfo.vhid);
+                dict.Add("odid", odid);
+            var content = new FormUrlEncodedContent(dict);
+
+            var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/hatidpress/v2/deliveries/accept", content);
+            response.EnsureSuccessStatusCode();
+
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+                Token token = JsonConvert.DeserializeObject<Token>(result);
+
+                bool success = token.status == "success" ? true : false;
+                string data = token.status == "success" ? result : token.message;
+                callback(success, data);
+            }
+            else
+            {
+                callback(false, "Network Error! Check your connection.");
+            }
+        }
         #endregion
     }
 }
