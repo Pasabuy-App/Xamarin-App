@@ -15,17 +15,17 @@ namespace PasaBuy.App.Views.PopupModals
     public partial class PopupAcceptOrder : PopupPage
     {
         public static string store_logo;
-        public static string carItem = "car / sedan";
-        public static string item_id = "#-154145";// string.Empty;
-        public static string storeName = "PasaBuy Dev Store"; //string.Empty;
-        public static string store_lat = "14.357342"; // string.Empty;
-        public static string store_long = "121.058751"; // string.Empty;
-        public static string user_lat = "14.3291744";// string.Empty;
-        public static string user_long = "121.0063577"; // string.Empty;
-        public static string orderName = string.Empty;
-        public static string waypointAddress = "National Road San Galing, San Pedro Laguna, Philippines";// string.Empty;
-        public static string destinationAddress = "BLock 10 Lot 18 Narra St. San Francisco, Biñan Laguna, Philippines"; // string.Empty;
-        public static string orderTime = "08:30 AM"; //string.Empty;
+        public static string carItem;//= "car / sedan";
+        public static string item_id;//= "#-154145";// string.Empty;
+        public static string storeName;//= "PasaBuy Dev Store"; //string.Empty;
+        public static string store_lat;//= "14.357342"; // string.Empty;
+        public static string store_long;//= "121.058751"; // string.Empty;
+        public static string user_lat;// = "14.3291744";// string.Empty;
+        public static string user_long;// = "121.0063577"; // string.Empty;
+        public static string orderName;//= string.Empty;
+        public static string waypointAddress;// = "National Road San Galing, San Pedro Laguna, Philippines";// string.Empty;
+        public static string destinationAddress;// = "BLock 10 Lot 18 Narra St. San Francisco, Biñan Laguna, Philippines"; // string.Empty;
+        public static string orderTime;//= "08:30 AM"; //string.Empty;
 
 
         Stopwatch stopwatch = new Stopwatch();
@@ -35,7 +35,7 @@ namespace PasaBuy.App.Views.PopupModals
             InitializeComponent();
 
             Store.Text = storeName;
-            Order.Text = item_id;// + " | " + orderTime;
+            Order.Text = orderName;// + " | " + orderTime;
             WaypointAddress.Text = waypointAddress;
             OriginAddress.Text = destinationAddress;
             OrderTime.Text = "30";
@@ -87,30 +87,55 @@ namespace PasaBuy.App.Views.PopupModals
             return base.OnBackButtonPressed();
         }
 
-        async private void AcceptOrder(object sender, EventArgs e)
+        private void AcceptOrder(object sender, EventArgs e)
         {
-            var request = new GeolocationRequest(GeolocationAccuracy.Medium);
-            var location = await Geolocation.GetLocationAsync(request);
+            Accpet_Order(item_id);
+        }
 
-            StartDeliveryPage.item_id = item_id;
-            StartDeliveryPage.storeName = storeName;
-            StartDeliveryPage.orderName = orderName;
-            StartDeliveryPage.orderTime = orderTime;
-            StartDeliveryPage.waypointAddress = waypointAddress;
-            StartDeliveryPage.destinationAddress = destinationAddress;
+        public void Accpet_Order(string odid)
+        {
 
-            StartDeliveryPage.StoreLatittude = store_lat;
-            StartDeliveryPage.StoreLongitude = store_long;
+            try
+            {
+                Http.HatidFeature.Instance.Accept_Order(odid, async (bool success, string data) =>
+                {
+                    if (success)
+                    {
 
-            StartDeliveryPage.UserLatitude = user_lat;
-            StartDeliveryPage.userLongitude = user_long;
+                        var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+                        var location = await Geolocation.GetLocationAsync(request);
 
-            PopupNavigation.Instance.PopAsync();
-            await Navigation.PushModalAsync(new StartDeliveryPage());
-            OrderTimer(false);
-            DashboardPage.time = false;// remove this if you want to remove the timer
-            DashboardPage._OrderList.Add( new Models.eCommerce.Transactions() { ID = item_id }); // Add orderid to observable collection.
-            StartDeliveryPage.order_status = "preparing";
+                        StartDeliveryPage.item_id = item_id;
+                        StartDeliveryPage.storeName = storeName;
+                        StartDeliveryPage.orderName = orderName;
+                        StartDeliveryPage.orderTime = orderTime;
+                        StartDeliveryPage.waypointAddress = waypointAddress;
+                        StartDeliveryPage.destinationAddress = destinationAddress;
+
+                        StartDeliveryPage.StoreLatittude = store_lat;
+                        StartDeliveryPage.StoreLongitude = store_long;
+
+                        StartDeliveryPage.UserLatitude = user_lat;
+                        StartDeliveryPage.userLongitude = user_long;
+
+                        OrderTimer(false);
+                        DashboardPage.time = false;// remove this if you want to remove the timer
+                        DashboardPage._OrderList.Add(new Models.eCommerce.Transactions() { ID = item_id }); // Add orderid to observable collection.
+                        StartDeliveryPage.order_status = "preparing";
+
+                        PopupNavigation.Instance.PopAsync();
+                        await Navigation.PushModalAsync(new StartDeliveryPage());
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+            }
         }
     }
 }
