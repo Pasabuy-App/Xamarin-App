@@ -39,9 +39,6 @@ namespace PasaBuy.App.Views
 
         }
 
-        
-
-      
 
         public ICommand ShowPasabuyStores { private set; get; }
 

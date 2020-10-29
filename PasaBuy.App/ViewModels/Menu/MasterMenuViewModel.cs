@@ -466,15 +466,7 @@ namespace PasaBuy.App.ViewModels.Menu
         /// <param name="obj">The object</param>
         private async void DriverButtonClicked(object obj)
         {
-            IsGpsEnable = Xamarin.Forms.DependencyService.Get<IGpsDependencyService>().IsGpsEnable();
-
-            if (!IsGpsEnable)
-            {
-                await Application.Current.MainPage.DisplayAlert("Notice to User", "Please enable your location first.", "OK");
-                Xamarin.Forms.DependencyService.Get<IGpsDependencyService>().OpenSettings();
-            } 
-            else
-            {
+            
                 if (!Status)
                 {
                     Status = true;
@@ -485,7 +477,6 @@ namespace PasaBuy.App.ViewModels.Menu
                         Status = false;
                     });
                 }
-            }
             
         }
 

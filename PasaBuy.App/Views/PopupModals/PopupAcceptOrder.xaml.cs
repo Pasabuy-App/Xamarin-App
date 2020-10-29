@@ -1,10 +1,13 @@
 ﻿using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Library;
 using PasaBuy.App.Local;
 using PasaBuy.App.Views.Driver;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -92,15 +95,30 @@ namespace PasaBuy.App.Views.PopupModals
             Accept_Order(item_id);
         }
 
+        protected void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private bool _isGpsEnable;
+
+        public bool IsGpsEnable
+        {
+            get
+            {
+                return _isGpsEnable;
+            }
+            set
+            {
+                _isGpsEnable = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
         public async void Accept_Order(string odid)
         {
-            //IsGpsEnable = Xamarin.Forms.DependencyService.Get<IGpsDependencyService>().IsGpsEnable();
-
-            //if (!IsGpsEnable)
-            //{
-            //    Xamarin.Forms.DependencyService.Get<IGpsDependencyService>().OpenSettings();
-            //}
-
             try
             {
                 var request = new GeolocationRequest(GeolocationAccuracy.Medium);
@@ -108,62 +126,65 @@ namespace PasaBuy.App.Views.PopupModals
             }
             catch (FeatureNotEnabledException featureNotEnabledException)
             {
-                await Application.Current.MainPage.DisplayAlert("Notice to User", "Please enable your location first." + featureNotEnabledException, "OK");
+                await Application.Current.MainPage.DisplayAlert("Notice to User", "Please enable your location first.", "OK");
+                Xamarin.Forms.DependencyService.Get<IGpsDependencyService>().OpenSettings();
 
             }
 
-           
-            try
+            IsGpsEnable = Xamarin.Forms.DependencyService.Get<IGpsDependencyService>().IsGpsEnable();
+
+            if (IsGpsEnable)
             {
-                if (!IsRunning.IsRunning)
+                try
                 {
-                    IsRunning.IsRunning = true;
-                    Http.HatidFeature.Instance.Accept_Order(odid, async (bool success, string data) =>
+                    if (!IsRunning.IsRunning)
                     {
-                        if (success)
+                       
+                        Http.HatidFeature.Instance.Accept_Order(odid, async (bool success, string data) =>
                         {
-                            
+                            if (success)
+                            {
 
-                            StartDeliveryPage.item_id = item_id;
-                            StartDeliveryPage.storeName = storeName;
-                            StartDeliveryPage.orderName = orderName;
-                            StartDeliveryPage.orderTime = orderTime;
-                            StartDeliveryPage.waypointAddress = waypointAddress;
-                            StartDeliveryPage.destinationAddress = destinationAddress;
+                                StartDeliveryPage.item_id = item_id;
+                                StartDeliveryPage.storeName = storeName;
+                                StartDeliveryPage.orderName = orderName;
+                                StartDeliveryPage.orderTime = orderTime;
+                                StartDeliveryPage.waypointAddress = waypointAddress;
+                                StartDeliveryPage.destinationAddress = destinationAddress;
 
-                            StartDeliveryPage.StoreLatittude = store_lat;
-                            StartDeliveryPage.StoreLongitude = store_long;
+                                StartDeliveryPage.StoreLatittude = store_lat;
+                                StartDeliveryPage.StoreLongitude = store_long;
 
-                            StartDeliveryPage.UserLatitude = user_lat;
-                            StartDeliveryPage.userLongitude = user_long;
+                                StartDeliveryPage.UserLatitude = user_lat;
+                                StartDeliveryPage.userLongitude = user_long;
 
-                            OrderTimer(false);
-                            DashboardPage.time = false;// remove this if you want to remove the timer
-                            DashboardPage._OrderList.Add(new Models.eCommerce.Transactions() { ID = item_id }); // Add orderid to observable collection.
-                            StartDeliveryPage.order_status = "preparing";
+                                OrderTimer(false);
+                                DashboardPage.time = false;// remove this if you want to remove the timer
+                                DashboardPage._OrderList.Add(new Models.eCommerce.Transactions() { ID = item_id }); // Add orderid to observable collection.
+                                StartDeliveryPage.order_status = "preparing";
 
-                            PopupNavigation.Instance.PopAsync();
-                            await Navigation.PushModalAsync(new StartDeliveryPage());
-                            IsRunning.IsRunning = false ;
-                        }
-                        else
-                        {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                            IsRunning.IsRunning = false;
-                        }
-                    });
+                                PopupNavigation.Instance.PopAsync();
+                                await Navigation.PushModalAsync(new StartDeliveryPage());
+                                IsRunning.IsRunning = false;
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                IsRunning.IsRunning = false;
+                            }
+                        });
+                    }
                 }
-            }
-            catch (FeatureNotEnabledException featureNotEnabledException)
-            {
-                new Alert("Something went Wrong", "Please enable location " + featureNotEnabledException, "OK");
-                IsRunning.IsRunning = false;
-            }
-            catch (Exception e)
-            {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
-                IsRunning.IsRunning = false;
-            }
+                catch (Exception e)
+                {
+                    new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                    IsRunning.IsRunning = false;
+                }
+            } 
+           
+
+            
+            
         }
     }
 }
