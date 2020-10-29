@@ -1,26 +1,144 @@
-﻿using PasaBuy.App.DataService;
+﻿using Newtonsoft.Json;
+using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.DataService;
+using PasaBuy.App.Local;
 using PasaBuy.App.Models.Navigation;
 using PasaBuy.App.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 
 namespace PasaBuy.App.ViewModels
 {
-    public class MapPageViewModel
+    public class MapPageViewModel : BaseViewModel
     {
         ILocationUpdateService loc;
 
         public double curlocLat = 0;
         public double curlocLong = 0;
 
-        public MapPageViewModel()
+        public Command CompleteCommand { get; set; }
+        public Command CancelCommand { get; set; }
+
+        public bool _isVisible = false;
+        public bool isVisible 
         {
+            get
+            {
+                return _isVisible;
+            }
+            set
+            {
+                if (_isVisible != value)
+                {
+                    _isVisible = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
         }
 
+        public MapPageViewModel()
+        {
+            this.CompleteCommand = new Command(this.CompleteClicked);
+            this.CancelCommand = new Command(this.CancelClicked);
+
+            IsBusy = false;
+            UpdateStatus(Views.Driver.StartDeliveryPage.item_id);
+
+        }
+
+
+        public void UpdateStatus(string odid)
+        {
+
+            try
+            {
+                if (!IsBusy)
+                {
+                    IsBusy = true;
+                    Http.POSFeature.Instance.Order_List(odid, (bool success, string data) =>
+                    {
+                        if (success)
+                        {
+                            Models.MobilePOS.OrderDetailsModel order = JsonConvert.DeserializeObject<Models.MobilePOS.OrderDetailsModel>(data);
+                            for (int i = 0; i < order.data.Length; i++)
+                            {
+                                Views.Driver.StartDeliveryPage.order_status = order.data[i].stages;
+                                if (order.data[i].stages == "shipping")
+                                {
+                                    isVisible = true;
+                                }
+                                else
+                                {
+                                    isVisible = false;
+                                }
+                            }
+                            IsBusy = false;
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsBusy = false;
+                        }
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                IsBusy = false;
+            }
+        }
+
+        private void CompleteClicked(object obj)
+        {
+            UpdateOrderStatus(Views.Driver.StartDeliveryPage.item_id, "completed");
+        }
+
+        private void CancelClicked(object obj)
+        {
+            UpdateOrderStatus(Views.Driver.StartDeliveryPage.item_id, "cancelled");
+        }
+
+        public async void UpdateOrderStatus(string odid, string status)
+        {
+            try
+            {
+                string stats = status == "completed" ? "complete" : "cancel";
+                bool answer =  await Application.Current.MainPage.DisplayAlert("Notice to Mover", "Are you sure to " + stats + " this?", "Yes", "No");
+                if (answer)
+                {
+                    if (!IsBusy)
+                    {
+                        IsBusy = true;
+                        Http.POSFeature.Instance.Order_Update_Status(odid, status, async (bool success, string data) =>
+                        {
+                            if (success)
+                            {
+                                Views.Driver.DashboardPage._OrderList.Clear();
+                                await Application.Current.MainPage.Navigation.PopModalAsync();
+                                IsBusy = false;
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                IsBusy = false;
+                            }
+                        });
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                IsBusy = false;
+            }
+        }
 
         public class VehicleLocations
         {
