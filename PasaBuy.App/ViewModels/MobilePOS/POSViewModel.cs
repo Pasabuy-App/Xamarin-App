@@ -122,13 +122,13 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 totalprice += (pos.Price * pos.Quantity);
             }
             this.Tax = "₱ 0.00";
-            this.Bill = "₱ " + totalprice.ToString();
-            this.Total = "₱ " + totalprice.ToString();
+            this.Bill = "₱ " + totalprice.ToString() + ".00";
+            this.Total = "₱ " + totalprice.ToString() + ".00";
         }
 
         public static void InsertData(string product_id, string product_name, double price, int quantity)
         {
-            _currentOrder.Insert(0, new Models.MobilePOS.PointOfSales()
+            _currentOrder.Add(new Models.MobilePOS.PointOfSales()
             {
                 Id = product_id,
                 Name = product_name,

@@ -70,5 +70,7 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcons.appiconset</string>
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>PasaBuy.App needs access to your current location.</string>
 </dict>
 </plist>

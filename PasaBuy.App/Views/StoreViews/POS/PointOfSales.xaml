@@ -152,7 +152,8 @@
                                             <RowDefinition Height="0.5*" />
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="70*" />
+                                            <ColumnDefinition Width="25*" />
+                                            <ColumnDefinition Width="45*" />
                                             <ColumnDefinition Width="30*" />
                                         </Grid.ColumnDefinitions>
 
@@ -163,12 +164,23 @@
                                            FontSize="{StaticResource MediumSize}"
                                            VerticalTextAlignment="Center"
                                            HorizontalTextAlignment="Start"
+                                           Text="{Binding Price, StringFormat='₱ {0:F2}'}" 
+                                           TextColor="{DynamicResource Gray-900}" />
+
+                                        <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+                                           Padding="10,0,0,0"
+                                           Grid.Row="0"
+                                           Grid.Column="1"
+                                           FontSize="{StaticResource MediumSize}"
+                                           VerticalTextAlignment="Center"
+                                           HorizontalTextAlignment="Center"
+                                           LineBreakMode="TailTruncation"
                                            Text="{Binding Name}"
                                            TextColor="{DynamicResource Gray-900}" />
 
                                         <numeric:SfNumericUpDown x:Name="numericUpDown" 
                                                              Grid.Row="0"
-                                                             Grid.Column="1"
+                                                             Grid.Column="2"
                                                              Maximum="10" 
                                                              Minimum="1" 
                                                              MaximumDecimalDigits="0"
