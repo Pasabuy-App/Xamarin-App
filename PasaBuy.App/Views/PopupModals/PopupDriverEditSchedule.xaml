@@ -104,6 +104,7 @@
                             FontFamily="{StaticResource Montserrat-Regular}"
                             HorizontalOptions="FillAndExpand"
                             Text="OK"
+                            Clicked="OKModal"
                             TextColor="White"
                             VerticalOptions="Center" />
                     <button:SfButton

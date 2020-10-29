@@ -37,7 +37,7 @@ namespace PasaBuy.App.Http
         }
         #endregion
 
-        #region Method
+        #region Mover Data
 
         /// <summary>
         /// Get mover data using wpid.
@@ -66,6 +66,9 @@ namespace PasaBuy.App.Http
                 callback(false, "Network Error! Check your connection.");
             }
         }
+        #endregion
+
+        #region Vehicle
 
         /// <summary>
         /// List of vehicle of mover.
@@ -230,6 +233,10 @@ namespace PasaBuy.App.Http
             }
         }
 
+        #endregion
+
+        #region Vehicle Documents
+
         /// <summary>
         /// List of documents of vehicle.
         /// </summary>
@@ -321,6 +328,10 @@ namespace PasaBuy.App.Http
             }
         }
 
+        #endregion
+
+        #region Accept Order
+
         /// <summary>
         /// Accept the order of customer that will show.
         /// </summary>
@@ -350,6 +361,70 @@ namespace PasaBuy.App.Http
                 callback(false, "Network Error! Check your connection.");
             }
         }
+
+        #endregion
+
+        #region Schedule
+
+        /// <summary>
+        /// Listing of schedule of mover.
+        public async void Listing_Schedule(Action<bool, string> callback)
+        {
+            var dict = new Dictionary<string, string>();
+                dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
+                dict.Add("snky", PSACache.Instance.UserInfo.snky);
+            var content = new FormUrlEncodedContent(dict);
+
+            var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/hatidpress/v2/schedule/list", content);
+            response.EnsureSuccessStatusCode();
+
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+                Token token = JsonConvert.DeserializeObject<Token>(result);
+
+                bool success = token.status == "success" ? true : false;
+                string data = token.status == "success" ? result : token.message;
+                callback(success, data);
+            }
+            else
+            {
+                callback(false, "Network Error! Check your connection.");
+            }
+        }
+
+        /// <summary>
+        /// Accept the order of customer that will show.
+        /// </summary>
+        public async void Insert_Schedule(string type, string started, string ended, Action<bool, string> callback)
+        {
+            var dict = new Dictionary<string, string>();
+                dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
+                dict.Add("snky", PSACache.Instance.UserInfo.snky);
+                dict.Add("mvid", PSACache.Instance.UserInfo.mvid);
+                dict.Add("type", type);
+                dict.Add("started", started);
+                dict.Add("ended", ended);
+            var content = new FormUrlEncodedContent(dict);
+
+            var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/hatidpress/v2/schedule/insert", content);
+            response.EnsureSuccessStatusCode();
+
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+                Token token = JsonConvert.DeserializeObject<Token>(result);
+
+                bool success = token.status == "success" ? true : false;
+                string data = token.status == "success" ? result : token.message;
+                callback(success, data);
+            }
+            else
+            {
+                callback(false, "Network Error! Check your connection.");
+            }
+        }
+
         #endregion
     }
 }
