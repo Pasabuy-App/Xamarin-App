@@ -25,34 +25,6 @@ namespace PasaBuy.App.Views.PopupModals
         private void OKModal(object sender, EventArgs e)
         {
             string days = string.Empty;
-            if (day == "Monday")
-            {
-                days = "mon";
-            }
-            if (day == "Tuesday")
-            {
-                days = "tue";
-            }
-            if (day == "Wednesday")
-            {
-                days = "wed";
-            }
-            if (day == "Thursday")
-            {
-                days = "thu";
-            }
-            if (day == "Friday")
-            {
-                days = "fri";
-            }
-            if (day == "Saturday")
-            {
-                days = "sat";
-            }
-            if (day == "Sunday")
-            {
-                days = "sun";
-            }
             days = day != "Monday" ? day != "Tuesday" ? day != "Wednesday" ? day != "Thursday" ? day != "Friday" ? day != "Saturday" ? "sun" : "sat" : "fri" : "thu" : "wed" : "tue" : "mon";
             //new Alert(days, Open.Time + ". ." + Close.Time, day);
             if (Open.Time.ToString() == "00:00:00" || Close.Time.ToString() == "00:00:00")
