@@ -19,7 +19,7 @@ namespace PasaBuy.App.Views.Driver
     {
         #region Fields
 
-        public static string status_deli = "Slide to right to Update Status";
+        public static string status_deli = "Swipe to right to start the delivery."; //"Slide to right to Update Status";
         public string deliveryStatus;
         public static string carItem = string.Empty;
         public static string item_id = string.Empty;
@@ -36,7 +36,7 @@ namespace PasaBuy.App.Views.Driver
         public static bool drawpath = false;
         public static double curlocLatitude = 0;
         public static double curlocLongitude = 0;
-
+        public static string order_status;
 
         #endregion
 
@@ -74,24 +74,34 @@ namespace PasaBuy.App.Views.Driver
             StoreName.Text = storeName;
             StoreAddress.Text = waypointAddress;
             ClientAddress.Text = destinationAddress;
-
-            //OrderIDandOrderTime.Text = item_id;
-
-            /*switch (deliveryStatus)
+            OrderIDandOrderTime.Text = orderName;
+            if (order_status == "shipping")
             {
-                case "true":
-                    StartDelivery.Text = "Ongoing";
-                    break;
-                case "ongoing":
-                    StartDelivery.Text = "Continue";
-                    break;
-                default:
-                    StartDelivery.Text = "Start Delivery";
-                    break;
-            }*/
+                Accept_Cancel.IsVisible = true;
+                Accept_Cancel_BoxView.IsVisible = true;
+            }
+            else
+            {
+                Accept_Cancel.IsVisible = false;
+                Accept_Cancel_BoxView.IsVisible = false;
+            }
+                //OrderIDandOrderTime.Text = item_id;
+
+                /*switch (deliveryStatus)
+                {
+                    case "true":
+                        StartDelivery.Text = "Ongoing";
+                        break;
+                    case "ongoing":
+                        StartDelivery.Text = "Continue";
+                        break;
+                    default:
+                        StartDelivery.Text = "Start Delivery";
+                        break;
+                }*/
 
 
-        }
+            }
 
 
         public async void DisplayCurloc()
@@ -105,30 +115,30 @@ namespace PasaBuy.App.Views.Driver
                 {
                     Position p = new Position(location.Latitude, location.Longitude);
                     MapSpan mapSpan = MapSpan.FromCenterAndRadius(p, Xamarin.Forms.GoogleMaps.Distance.FromKilometers(2));
-                    map.MoveToRegion(mapSpan);
+                    //map.MoveToRegion(mapSpan);
                     //await GetLocationName(p);
-                    Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
+                    //Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
                 }
             }
             catch (FeatureNotSupportedException fnsEx)
             {
                 // Handle not supported on device exception
-                Console.WriteLine("Handle not supported on device exception" + " " + fnsEx);
+                //Console.WriteLine("Handle not supported on device exception" + " " + fnsEx);
             }
             catch (FeatureNotEnabledException fneEx)
             {
                 // Handle not enabled on device exception
-                Console.WriteLine("Handle not enabled on device exception" + " " + fneEx);
+                //Console.WriteLine("Handle not enabled on device exception" + " " + fneEx);
             }
             catch (PermissionException pEx)
             {
                 // Handle permission exception
-                Console.WriteLine("Handle permission exception" + " " + pEx);
+                //Console.WriteLine("Handle permission exception" + " " + pEx);
             }
             catch (Exception ex)
             {
                 // Unable to get location
-                Console.WriteLine("Unable to get location" + " " + ex);
+                //Console.WriteLine("Unable to get location" + " " + ex);
             }
         }
 
@@ -137,7 +147,7 @@ namespace PasaBuy.App.Views.Driver
         {
             var assembly = typeof(NewMap).GetTypeInfo().Assembly;
             var stream = assembly.GetManifestResourceStream($"polyline.Theme.json");
-            Console.WriteLine(stream + "theme");
+            //Console.WriteLine(stream + "theme");
             string themeFile;
             using (var reader = new System.IO.StreamReader(stream))
             {
@@ -146,6 +156,7 @@ namespace PasaBuy.App.Views.Driver
             }
             map.MapStyle = MapStyle.FromJson(themeFile);
         }
+
         async void Button_Clicked(System.Object sender, System.EventArgs e)
         {
             var contents = await mapPageViewModel.LoadVehicles();
@@ -171,6 +182,7 @@ namespace PasaBuy.App.Views.Driver
             map.MoveToRegion(MapSpan.FromCenterAndRadius(positions, Xamarin.Forms.GoogleMaps.Distance.FromMeters(500)));
 
         }
+
         // Update Vehicle
         void Button_Clicked_1(System.Object sender, System.EventArgs e)
         {
@@ -326,7 +338,48 @@ namespace PasaBuy.App.Views.Driver
         #region page Method
         async void Handle_SlideCompleted(object sender, System.EventArgs e)
         {
-            switch (stats.Text)
+            if (order_status == "preparing")
+            {
+                if (Device.RuntimePlatform == Device.iOS)
+                {
+
+                    var location = new Location(Convert.ToDouble(StoreLatittude), Convert.ToDouble(StoreLongitude));
+                    var options = new MapLaunchOptions { NavigationMode = NavigationMode.Driving };
+
+                    await Xamarin.Essentials.Map.OpenAsync(location);
+                }
+                else if (Device.RuntimePlatform == Device.Android)
+                {
+
+                    var location = new Location(Convert.ToDouble(StoreLatittude), Convert.ToDouble(StoreLongitude));
+                    var options = new MapLaunchOptions { NavigationMode = NavigationMode.Driving };
+
+                    await Xamarin.Essentials.Map.OpenAsync(location);
+
+                }
+                order_status = "shipping";
+                status_deli = "Swipe to right to start the shipping.";
+            }
+            if (order_status == "shipping")
+            {
+                if (Device.RuntimePlatform == Device.iOS)
+                {
+
+                    var location2 = new Location(Convert.ToDouble(UserLatitude), Convert.ToDouble(userLongitude));
+
+                    await Xamarin.Essentials.Map.OpenAsync(location2);
+                }
+                else if (Device.RuntimePlatform == Device.Android)
+                {
+
+                    var location2 = new Location(Convert.ToDouble(UserLatitude), Convert.ToDouble(userLongitude));
+
+                    await Xamarin.Essentials.Map.OpenAsync(location2);
+
+                }
+            }
+
+            /*switch (stats.Text)
             {
                 case "I've recieve the package":
 
@@ -422,7 +475,7 @@ namespace PasaBuy.App.Views.Driver
 
                 }
 
-            }
+            }*/
 
         }
 
@@ -460,6 +513,12 @@ namespace PasaBuy.App.Views.Driver
         {
             Compass.Stop();
             Navigation.PopModalAsync();
+        }
+        protected override bool OnBackButtonPressed()
+        {
+            Compass.Stop();
+            Navigation.PopModalAsync();
+            return base.OnBackButtonPressed();
         }
 
         public static async void OpenMapApp()

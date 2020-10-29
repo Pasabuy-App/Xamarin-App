@@ -14,20 +14,19 @@ namespace PasaBuy.App.Views.PopupModals
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PopupAcceptOrder : PopupPage
     {
-
-
         public static string store_logo;
         public static string carItem = "car / sedan";
-        public static string item_id = string.Empty;
-        public static string storeName = string.Empty;
-        public static string store_lat = string.Empty;
-        public static string store_long = string.Empty;
-        public static string user_lat = string.Empty;
-        public static string user_long = string.Empty;
+        public static string item_id = "#-154145";// string.Empty;
+        public static string storeName = "PasaBuy Dev Store"; //string.Empty;
+        public static string store_lat = "14.357342"; // string.Empty;
+        public static string store_long = "121.058751"; // string.Empty;
+        public static string user_lat = "14.3291744";// string.Empty;
+        public static string user_long = "121.0063577"; // string.Empty;
         public static string orderName = string.Empty;
-        public static string waypointAddress = string.Empty;
-        public static string destinationAddress = string.Empty;
-        public static string orderTime = string.Empty;
+        public static string waypointAddress = "National Road San Galing, San Pedro Laguna, Philippines";// string.Empty;
+        public static string destinationAddress = "BLock 10 Lot 18 Narra St. San Francisco, Biñan Laguna, Philippines"; // string.Empty;
+        public static string orderTime = "08:30 AM"; //string.Empty;
+
 
         Stopwatch stopwatch = new Stopwatch();
 
@@ -36,26 +35,28 @@ namespace PasaBuy.App.Views.PopupModals
             InitializeComponent();
 
             Store.Text = storeName;
-            Order.Text = item_id + " | " + orderTime;
+            Order.Text = item_id;// + " | " + orderTime;
             WaypointAddress.Text = waypointAddress;
             OriginAddress.Text = destinationAddress;
             OrderTime.Text = "30";
             OrderTimer(true);
-
+            DashboardPage.time = false;// remove this if you want to remove the timer
         }
 
         public void OrderTimer(Boolean flag)
         {
             int TimeLimit = 30;
-            stopwatch.Start();
             if (flag == true)
             {
-
+                stopwatch.Start();
                 Device.StartTimer(TimeSpan.FromSeconds(1), () =>
                 {
-                    OrderTime.Text = (TimeLimit - stopwatch.Elapsed.Seconds).ToString();
-                    if (30 - stopwatch.Elapsed.Seconds == 1)
+                    int countdown = TimeLimit - stopwatch.Elapsed.Seconds;
+                    OrderTime.Text = countdown.ToString();
+                    if (countdown == 1)
                     {
+                        DashboardPage.time = true;// remove this if you want to remove the timer
+                        DashboardPage.PushOrder("");
                         PopupNavigation.Instance.PopAsync();
                         return false;
                     }
@@ -73,6 +74,17 @@ namespace PasaBuy.App.Views.PopupModals
         {
             PopupNavigation.Instance.PopAsync();
             OrderTimer(false);
+            DashboardPage.time = true;// remove this if you want to remove the timer
+            DashboardPage.PushOrder("");
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            PopupNavigation.Instance.PopAsync();
+            OrderTimer(false);
+            DashboardPage.time = true;// remove this if you want to remove the timer
+            DashboardPage.PushOrder("");
+            return base.OnBackButtonPressed();
         }
 
         async private void AcceptOrder(object sender, EventArgs e)
@@ -80,56 +92,25 @@ namespace PasaBuy.App.Views.PopupModals
             var request = new GeolocationRequest(GeolocationAccuracy.Medium);
             var location = await Geolocation.GetLocationAsync(request);
 
+            StartDeliveryPage.item_id = item_id;
+            StartDeliveryPage.storeName = storeName;
+            StartDeliveryPage.orderName = orderName;
+            StartDeliveryPage.orderTime = orderTime;
+            StartDeliveryPage.waypointAddress = waypointAddress;
+            StartDeliveryPage.destinationAddress = destinationAddress;
 
-            HatidPress.Deliveries.Instance.Accept(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "100", item_id, "car / sedan", location.Latitude.ToString(), location.Longitude.ToString(), (bool success, string data) =>
-            {
-                try
-                {
-                    if (success)
-                    {
+            StartDeliveryPage.StoreLatittude = store_lat;
+            StartDeliveryPage.StoreLongitude = store_long;
 
-                        StartDeliveryPage.item_id = item_id;
-                        StartDeliveryPage.storeName = storeName;
-                        StartDeliveryPage.waypointAddress = waypointAddress;
-                        StartDeliveryPage.destinationAddress = destinationAddress;
+            StartDeliveryPage.UserLatitude = user_lat;
+            StartDeliveryPage.userLongitude = user_long;
 
-                        StartDeliveryPage.StoreLatittude = store_lat;
-                        StartDeliveryPage.StoreLongitude = store_long;
-
-                        StartDeliveryPage.UserLatitude = user_lat;
-                        StartDeliveryPage.userLongitude = user_long;
-
-                        Navigation.PushModalAsync(new StartDeliveryPage());
-                        PopupNavigation.Instance.PopAsync();
-                        OrderTimer(false);
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                }
-                catch (FeatureNotSupportedException fnsEx)
-                {
-                    // Handle not supported on device exception
-                    Console.WriteLine("Handle not supported on device exception" + " " + fnsEx);
-                }
-                catch (FeatureNotEnabledException fneEx)
-                {
-                    // Handle not enabled on device exception
-                    Console.WriteLine("Handle not enabled on device exception" + " " + fneEx);
-                }
-                catch (PermissionException pEx)
-                {
-                    // Handle permission exception
-                    Console.WriteLine("Handle permission exception" + " " + pEx);
-                }
-                catch (Exception ex)
-                {
-                    // Unable to get location
-                    Console.WriteLine("Unable to get location" + " " + ex);
-                }
-            });
-
+            PopupNavigation.Instance.PopAsync();
+            await Navigation.PushModalAsync(new StartDeliveryPage());
+            OrderTimer(false);
+            DashboardPage.time = false;// remove this if you want to remove the timer
+            DashboardPage._OrderList.Add( new Models.eCommerce.Transactions() { ID = item_id }); // Add orderid to observable collection.
+            StartDeliveryPage.order_status = "preparing";
         }
     }
 }

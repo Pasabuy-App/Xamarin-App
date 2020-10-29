@@ -70,6 +70,7 @@ namespace PasaBuy.App.Local
         public static string sfApiKey { get; } = "MjYwNjY0QDMxMzgyZTMxMmUzMGlJTnpSZVBDTG4raGhBaU5DOVRFbFBKWmxRYVVHd1hxNUx2cXcrZFliMmc9"; //Test Key
         public const string googleApiKey = "AIzaSyDNDC5kv3pGvM-1zhPXU8yFewflraQaGDs"; //Test Key
         public const string GeoMatrixGoogleApiKey = "AIzaSyDeR29pTg1D5Exga3rQd8a3XKL3XtukQQg"; //Test Key
+        public static int Timer { get; } = 30;
 
     }
 }

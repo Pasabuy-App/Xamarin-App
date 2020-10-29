@@ -14,17 +14,6 @@ namespace PasaBuy.App.Views.Driver
         {
             InitializeComponent();
             this.BindingContext = new ViewModels.Driver.TransactionHistoryViewModel();
-            pullToRefresh.Refreshing += PullToRefresh_Refreshing;
-        }
-
-        private async void PullToRefresh_Refreshing(object sender, EventArgs args)
-        {
-            pullToRefresh.IsRefreshing = true;
-            await Task.Delay(500);
-            ViewModels.Driver.TransactionHistoryViewModel.LastIndex = 11;
-            ViewModels.Driver.TransactionHistoryViewModel._HistoryList.Clear();
-            ViewModels.Driver.TransactionHistoryViewModel.LoadData("");
-            pullToRefresh.IsRefreshing = false;
         }
 
         private void NewOrders_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
