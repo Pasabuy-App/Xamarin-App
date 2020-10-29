@@ -1,10 +1,13 @@
-﻿using PasaBuy.App.Controllers.Notice;
+﻿using Newtonsoft.Json;
+using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.Local;
 using PasaBuy.App.Models.Driver;
 using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -13,7 +16,6 @@ namespace PasaBuy.App.ViewModels.Driver
 {
     public class DriverScheduleViewModel : BaseViewModel
     {
-        public static ObservableCollection<DriverSchedule> _schedules;
         public static ObservableCollection<DriverScheduleModel> _scheduleList;
 
         public ObservableCollection<DriverScheduleModel> ScheduleList
@@ -29,33 +31,6 @@ namespace PasaBuy.App.ViewModels.Driver
             }
         }
 
-        public ObservableCollection<DriverSchedule> Schedules
-        {
-            get 
-            { 
-                return _schedules; 
-            }
-            set 
-            {
-                _schedules = value; 
-                this.NotifyPropertyChanged(); 
-            }
-        }
-
-        public ICommand PickSchedCommand
-        {
-            get
-            {
-                return new Command<string>((x) => PickSchedule(x));
-            }
-        }
-
-        private async void PickSchedule(string id)
-        {
-             new Alert("Demo", "Selected schedule ID: " + id, "OK");
-
-        }
-
         public ICommand EditScheduleCommand
         {
             get
@@ -66,35 +41,122 @@ namespace PasaBuy.App.ViewModels.Driver
 
         private async void EditSchedule(string day)
         {
-            new Alert("ok", day, "ok");
-            //PopupEditSchedule.day = day;
+            PopupDriverEditSchedule.day = day;
             await PopupNavigation.Instance.PushAsync(new PopupDriverEditSchedule());
         }
 
         public DriverScheduleViewModel()
         {
             _scheduleList = new ObservableCollection<DriverScheduleModel>();
-            _schedules = new ObservableCollection<DriverSchedule>();
+            LoadSchedule();
+        }
 
-            for (int i = 0; i < 6; i++)
+        public static void LoadSchedule()
+        {
+            try
             {
-                _scheduleList.Add(new DriverScheduleModel()
+                _scheduleList.Clear();
+                Http.HatidFeature.Instance.Listing_Schedule((bool success, string data) =>
                 {
-                    Day = "Monday",
-                    FullSchedule = "10:30 AM - 09:00 PM"
+                    if (success)
+                    {
+                        CultureInfo provider = new CultureInfo("fr-FR");
+                        string mon = string.Empty;
+                        string tue = string.Empty;
+                        string wed = string.Empty;
+                        string thu = string.Empty;
+                        string fri = string.Empty;
+                        string sat = string.Empty;
+                        string sun = string.Empty;
+
+                        DriverScheduleModel datas = JsonConvert.DeserializeObject<DriverScheduleModel>(data);
+
+                        for (int i = 0; i < datas.data.Length; i++)
+                        {
+                            string open_time = string.IsNullOrEmpty(datas.data[i].started) ? "00:00:00" : datas.data[i].started;
+                            string close_time = string.IsNullOrEmpty(datas.data[i].ended) ? "00:00:00" : datas.data[i].ended;
+                            DateTime open = DateTime.ParseExact(open_time, "HH:mm:ss", provider);
+                            DateTime close = DateTime.ParseExact(close_time, "HH:mm:ss", provider);
+                            if (datas.data[i].types == "mon")
+                            {
+                                mon = open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
+                            }
+                            if (datas.data[i].types == "tue")
+                            {
+                                tue = open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
+                            }
+                            if (datas.data[i].types == "wed")
+                            {
+                                wed = open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
+                                //wed = datas.data[i].open + " AM " + datas.data[i].close + " PM";
+                            }
+                            if (datas.data[i].types == "thu")
+                            {
+                                thu = open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
+                                //thu = datas.data[i].open + " AM " + datas.data[i].close + " PM";
+                            }
+                            if (datas.data[i].types == "fri")
+                            {
+                                fri = open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
+                                //fri = datas.data[i].open + " AM " + datas.data[i].close + " PM";
+                            }
+                            if (datas.data[i].types == "sat")
+                            {
+                                sat = open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
+                                //sat = datas.data[i].open + " AM " + datas.data[i].close + " PM";
+                            }
+                            if (datas.data[i].types == "sun")
+                            {
+                                sun = open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
+                                //sun = datas.data[i].open + " AM " + datas.data[i].close + " PM";
+                            }
+                        }
+                        _scheduleList.Add(new DriverScheduleModel()
+                        {
+                            Day = "Monday",
+                            FullSchedule = mon
+                        });
+                        _scheduleList.Add(new DriverScheduleModel()
+                        {
+                            Day = "Tuesday",
+                            FullSchedule = tue
+                        });
+                        _scheduleList.Add(new DriverScheduleModel()
+                        {
+                            Day = "Wednesday",
+                            FullSchedule = wed
+                        });
+                        _scheduleList.Add(new DriverScheduleModel()
+                        {
+                            Day = "Thursday",
+                            FullSchedule = thu
+                        });
+                        _scheduleList.Add(new DriverScheduleModel()
+                        {
+                            Day = "Friday",
+                            FullSchedule = fri
+                        });
+                        _scheduleList.Add(new DriverScheduleModel()
+                        {
+                            Day = "Saturday",
+                            FullSchedule = sat
+                        });
+                        _scheduleList.Add(new DriverScheduleModel()
+                        {
+                            Day = "Sunday",
+                            FullSchedule = sun
+                        });
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
                 });
             }
-            
-            for(int i = 0; i < 7; i++)
+            catch (Exception e)
             {
-                _schedules.Add(new DriverSchedule()
-                {
-                    ItemID = "1",
-                    ScheduleStart = "10:00 AM",
-                    ScheduleEnd = "09:30 PM",
-                });
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
-            
         }
     }
 }

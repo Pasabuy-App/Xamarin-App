@@ -5,8 +5,20 @@ using System.Text;
 
 namespace PasaBuy.App.Models.Driver
 {
+    public class SchedulesData
+    {
+        public string ID = string.Empty;
+        public string mvid = string.Empty;
+        public string types = string.Empty;
+        public string started = string.Empty;
+        public string ended = string.Empty;
+        public string date_created = string.Empty;
+        public string status = string.Empty;
+    }
     public class DriverScheduleModel
     {
+        public SchedulesData[] data;
+
         private string time_start = string.Empty;
         private string time_end = string.Empty;
         private string full_schedule = string.Empty;
