@@ -17,32 +17,16 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid>
 
+        <RefreshView IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                     x:Name="rv"
+                     Command="{Binding RefreshCommand}">
             <Grid>
 
-                <pulltoRefresh:SfPullToRefresh
-                                    x:Name="pullToRefresh"
-                                    IsRefreshing="False"
-                                    PullingThreshold="150"
-                                    RefreshContentHeight="50"
-                                    RefreshContentWidth="50"
-                                    TransitionMode="Push">
-                    <pulltoRefresh:SfPullToRefresh.ProgressStrokeWidth>
-                        <OnPlatform x:TypeArguments="x:Double">
-                            <On Platform="Android">
-                                <OnIdiom
-                                                    x:TypeArguments="x:Double"
-                                                    Phone="6"
-                                                    Tablet="3" />
-                            </On>
-                            <On Platform="UWP" Value="2" />
-                            <On Platform="iOS,macOS" Value="2" />
-                        </OnPlatform>
-                    </pulltoRefresh:SfPullToRefresh.ProgressStrokeWidth>
-                    <pulltoRefresh:SfPullToRefresh.PullableContent>
+                <ScrollView>
+                <Grid>
 
-                        <sync:SfListView x:Name="NewOrders"
+                    <sync:SfListView x:Name="NewOrders"
                              AutoFitMode="Height"
                              FocusBorderThickness="0"
                              ItemSpacing="0,1,0,0"
@@ -51,32 +35,32 @@
                              ItemsSource="{Binding HistoryList}"
                              ItemAppearing="NewOrders_ItemAppearing"
                              SelectionMode="None">
-                            <!--Item Source is for testing purposes only. Kindly bind into specific viewmodels-->
+                        <!--Item Source is for testing purposes only. Kindly bind into specific viewmodels-->
 
-                            <sync:SfListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Margin="0"
+                        <sync:SfListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0"
                               Padding="8,12,8,0"
                               BackgroundColor="{DynamicResource Gray-White}"
                               ColumnSpacing="0"
                               RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid Padding="0,0,8,10" RowSpacing="0" Grid.Row="0">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
-                                        <Grid Padding="0,0,8,10" RowSpacing="0" Grid.Row="0">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="Auto" />
-                                            </Grid.ColumnDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
 
-                                            <ffimageloading:CachedImage Aspect="AspectFit"
+                                        <ffimageloading:CachedImage Aspect="AspectFit"
                                                             Grid.Row="0"
                                                             Grid.RowSpan="3"
                                                             Margin="5,0,30,0"
@@ -86,58 +70,59 @@
                                                             x:Name="ImageId"
 			                                                DownsampleToViewSize="true"
                                                             FadeAnimationEnabled="True" >
-                                                <ffimageloading:CachedImage.Transformations>
-                                                    <fftransformations:CircleTransformation />
-                                                </ffimageloading:CachedImage.Transformations>
-                                            </ffimageloading:CachedImage>
+                                            <ffimageloading:CachedImage.Transformations>
+                                                <fftransformations:CircleTransformation />
+                                            </ffimageloading:CachedImage.Transformations>
+                                        </ffimageloading:CachedImage>
 
-                                            <Label Text="{Binding Customer}"
+                                        <Label Text="{Binding Customer}"
                                                        Grid.Row="0"
                                                        Grid.Column="1"
                                                        HorizontalOptions="StartAndExpand"
                                                        TextColor="{DynamicResource BlackColor}">
-                                            </Label>
-                                            <Label Text="{Binding Hash_id}"
+                                        </Label>
+                                        <Label Text="{Binding Hash_id}"
                                                        Grid.Row="1"
                                                        Grid.Column="1"
                                                        HorizontalOptions="StartAndExpand"
                                                        TextColor="{DynamicResource Gray-800}">
-                                            </Label>
-                                            <Label Text="{Binding Date_created}"
+                                        </Label>
+                                        <Label Text="{Binding Date_created}"
                                                        Grid.Row="2"
                                                        Grid.Column="1"
                                                        HorizontalOptions="StartAndExpand"
                                                        TextColor="{DynamicResource Gray-800}">
-                                            </Label>
-                                            <Label Text="{Binding Price}"
+                                        </Label>
+                                        <Label Text="{Binding Price}"
                                                        Grid.Row="0"
                                                        Grid.Column="2"
                                                        HorizontalOptions="StartAndExpand"
                                                        TextColor="{DynamicResource BlackColor}">
-                                            </Label>
-                                            <Label Text="{Binding Status}"
+                                        </Label>
+                                        <Label Text="{Binding Status}"
                                                        Grid.Row="2"
                                                        Grid.Column="2"
                                                        HorizontalOptions="StartAndExpand"
                                                        TextColor="{DynamicResource Green}">
-                                            </Label>
-                                        </Grid>
-                                        <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="1"/>
+                                        </Label>
                                     </Grid>
-                                </DataTemplate>
-                            </sync:SfListView.ItemTemplate>
-                        </sync:SfListView>
+                                    <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="1"/>
+                                </Grid>
+                            </DataTemplate>
+                        </sync:SfListView.ItemTemplate>
+                    </sync:SfListView>
 
-                    </pulltoRefresh:SfPullToRefresh.PullableContent>
-                </pulltoRefresh:SfPullToRefresh>
+                </Grid>
 
-            </Grid>
+            </ScrollView>
 
-            <local:LoadingIndicator
-                x:Name="IsRunning"
+                <local:LoadingIndicator
+                IsRunning="{Binding IsBusy, Mode=TwoWay}"
                 Grid.Row="0"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill" />
-        </Grid>
+
+            </Grid>
+        </RefreshView>
     </ContentPage.Content>
 </ContentPage>
