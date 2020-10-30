@@ -79,7 +79,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    TindaPress.Personnel.Instance.Store_List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "active", (bool success, string data) =>
+                    Http.POSFeature.Instance.Personnel_Store_List("active", (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -92,7 +92,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                     Id = datas.data[i].ID,
                                     //RoleID = datas.data[i].roid,
                                     Title = datas.data[i].title,
-                                    Description = datas.data[i].short_info,
+                                    Description = datas.data[i].info,
                                     Logo = datas.data[i].avatar == "None" || string.IsNullOrEmpty(datas.data[i].avatar) ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(datas.data[i].avatar),
                                     Banner = datas.data[i].banner == "None" || string.IsNullOrEmpty(datas.data[i].banner) ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png" : PSAProc.GetUrl(datas.data[i].banner)
                                 });
