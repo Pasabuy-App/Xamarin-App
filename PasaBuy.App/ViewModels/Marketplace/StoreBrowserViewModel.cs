@@ -74,20 +74,18 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    TindaPress.Category.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "all", "", "1", "1", (bool success, string data) =>
+                    Http.TindaFeature.Instance.StoreCategoryList((bool success, string data) =>
                     {
                         if (success)
                         {
                             StoreListData datas = JsonConvert.DeserializeObject<StoreListData>(data);
-
                             for (int i = 0; i < datas.data.Length; i++)
                             {
                                 itemCategories.Add(new Categories()
                                 {
                                     Id = datas.data[i].ID,
                                     Title = datas.data[i].title,
-                                    Avatar = datas.data[i].avatar, //PSAProc.GetUrl(datas.data[i].avatar),
-                                    Info = "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-product.png"
+                                    Avatar = PSAProc.GetUrl(datas.data[i].avatar),
                                 });
                             }
                             IsRunning = false;

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using System;
 using System.Collections.Generic;
@@ -96,6 +97,41 @@ namespace PasaBuy.App.Http
                 callback(false, "Network Error! Check your connection.");
             }
         }
+
+        public async void StoreCategoryList(Action<bool, string> callback)
+        {
+            try
+            {
+                var dict = new Dictionary<string, string>();
+                dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
+                dict.Add("snky", PSACache.Instance.UserInfo.snky);
+
+                var content = new FormUrlEncodedContent(dict);
+
+                var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/tindapress/v2/store/category/list", content);
+                response.EnsureSuccessStatusCode();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string result = await response.Content.ReadAsStringAsync();
+                    Models.Token token = JsonConvert.DeserializeObject<Models.Token>(result);
+
+                    bool success = token.status == "success" ? true : false;
+                    string data = token.status == "success" ? result : token.message;
+                    callback(success, data);
+                }
+                else
+                {
+                    callback(false, "Network Error! Check your connection.");
+                }
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+            }
+        }
+
+
         #endregion
     }
 }
