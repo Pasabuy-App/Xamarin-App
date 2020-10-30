@@ -17,6 +17,42 @@ namespace PasaBuy.App.Views.StoreViews
         {
             InitializeComponent();
             this.BindingContext = new AddPersonnelViewModel();
+            SearchEntry.Completed += (sender, args) => SearchStore(sender, args);
+            AddPersonnelViewModel._userList.CollectionChanged += CollectionChanges;
+        }
+        private void CollectionChanges(object sender, EventArgs e)
+        {
+            this.SearchButton.IsVisible = true;
+            if (this.TitleView != null)
+            {
+                double opacity;
+
+                // Animating Width of the search box, from full width to 0 before it removed from view.
+                var shrinkAnimation = new Animation(property =>
+                {
+                    Search.WidthRequest = property;
+                    opacity = property / TitleView.Width;
+                    Search.Opacity = opacity;
+                },
+                TitleView.Width, 0, Easing.Linear);
+                shrinkAnimation.Commit(Search, "Shrink", 16, 250, Easing.Linear, (p, q) => this.SearchBoxAnimationCompleted());
+            }
+
+            SearchEntry.Text = string.Empty;
+        }
+        public void SearchStore(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(SearchEntry.Text))
+                {
+                    AddPersonnelViewModel.SearchUser(SearchEntry.Text);
+                }
+            }
+            catch (Exception ex)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
+            }
         }
 
         private async void backButton_Clicked(object sender, EventArgs e)

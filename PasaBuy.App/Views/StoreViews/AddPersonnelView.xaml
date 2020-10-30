@@ -18,7 +18,14 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid>
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"   
+                     x:Name="rv"
+                     Command="{Binding RefreshCommand}">
+
+            <ScrollView>
+
+                <Grid>
+            
             <Grid RowSpacing="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
@@ -49,6 +56,7 @@
                                     VerticalOptions="Center" />
 
                 </Grid>
+                
                 <Grid Grid.Row="1">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -121,7 +129,6 @@
                                 x:Name="listView"
                                 AllowSwiping="True"
                                 ItemsSource="{Binding UserList}"
-                                TapCommand="{Binding ItemTappedCommand}"
                                 SelectionBackgroundColor="Transparent"
                                 VerticalOptions="FillAndExpand">
                             <listView:SfListView.ItemTemplate>
@@ -170,7 +177,7 @@
                                             </Label>
                                           
                                             <Grid.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.ChooseRoleCommand, Source={x:Reference listView}}" CommandParameter="{Binding User_id}"/>
+                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.ChooseRoleCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"/>
                                             </Grid.GestureRecognizers>
                                         </Grid>
                                     </controls:CustomShadowFrame>
@@ -182,8 +189,12 @@
             </Grid>
             <loading:LoadingIndicator
                 HorizontalOptions="Fill"
-                IsRunning="{Binding IsBusy, Mode=TwoWay}"
+                IsRunning="{Binding IsRunning, Mode=TwoWay}"
                 VerticalOptions="Fill" />
-        </Grid>
+
+                </Grid>
+            </ScrollView>
+        </RefreshView>
+
     </ContentPage.Content>
 </ContentPage>
