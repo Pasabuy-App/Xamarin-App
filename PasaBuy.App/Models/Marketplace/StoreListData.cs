@@ -12,6 +12,7 @@
             public string comm = string.Empty;
             public string cat_name = string.Empty;
             public string title = string.Empty;         // store name
+            public string info = string.Empty;
             public string short_info = string.Empty;
             public string long_info = string.Empty;
             public string avatar = string.Empty;
