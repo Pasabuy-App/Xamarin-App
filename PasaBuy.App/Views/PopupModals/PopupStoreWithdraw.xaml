@@ -89,6 +89,7 @@
 
                         <Label FontFamily="{StaticResource Montserrat-Medium}"
                                Padding="10,0,0,0"
+                               Grid.ColumnSpan="2"
                                FontSize="{DynamicResource MediumSize}"
                                VerticalTextAlignment="Center"
                                HorizontalOptions="StartAndExpand"
