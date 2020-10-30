@@ -1,12 +1,189 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:controls="clr-namespace:PasaBuy.App.Controls"
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
+             BackgroundColor="{DynamicResource Gray-White}"
+             NavigationPage.HasNavigationBar="False"
              x:Class="PasaBuy.App.Views.StoreViews.AddPersonnelView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0"
+                        Padding="15,5,15,5"
+                        BackgroundColor="{StaticResource PrimaryColor}"
+                        HeightRequest="{OnPlatform Android='46',
+                                                   iOS='56'}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <buttons:SfButton
+                            x:Name="backButton"
+                            Clicked="backButton_Clicked"
+                            Grid.Column="0"
+                            CornerRadius="4"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                    <Label Grid.Column="1"
+                                    FontFamily="{StaticResource Montserrat-Medium}"
+                                    FontSize="17"
+                                    HorizontalOptions="Start"
+                                    Text="Add Store Personnel"
+                                    TextColor="{DynamicResource Gray-White}"
+                                    VerticalOptions="Center" />
+
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <StackLayout x:Name="TitleView"
+                                    Padding="16,8"
+                                    Grid.Row="0" 
+                                    HeightRequest="40"
+                                    BackgroundColor="{DynamicResource Gray-White}"
+                                    HorizontalOptions="FillAndExpand"
+                                    Orientation="Horizontal"
+                                    Spacing="0">
+                            <StackLayout  x:Name="Title"
+                                        HorizontalOptions="FillAndExpand"
+                                        IsVisible="True"
+                                        Orientation="Horizontal"
+                                        Spacing="0"
+                                        Margin="20,0,0,0"
+                                        VerticalOptions="FillAndExpand">
+                                <Label Margin="16,0"
+                                        HeightRequest="24"
+                                        FontFamily="{StaticResource Montserrat-Medium}"
+                                        FontSize="16"
+                                        HorizontalOptions="CenterAndExpand"
+                                        LineHeight="1.25"
+                                        Text="Search User"
+                                        TextColor="{DynamicResource Gray-900}"
+                                        VerticalOptions="Center"
+                                        VerticalTextAlignment="Center" />
+                            </StackLayout>
+                            <StackLayout x:Name="Search"
+                                        HorizontalOptions="EndAndExpand"
+                                        IsVisible="False"
+                                        Orientation="Horizontal"
+                                        Spacing="0">
+                                <buttons:SfButton x:Name="BackToTitle"
+                                                Clicked="BackToTitle_Clicked"
+                                                Style="{StaticResource NavigationBarButtonStyle}"
+                                                TextColor="{DynamicResource Gray-900}"
+                                                Text="{StaticResource Back}" />
+                                <border:SfBorder Style="{DynamicResource SfBorderStyle}">
+                                    <controls:BorderlessEntry x:Name="SearchEntry"
+                                                                HorizontalOptions="FillAndExpand"
+                                                                Placeholder="Search here"
+                                                                Text="{Binding SearchText, Mode=TwoWay}"
+                                                                Style="{StaticResource SearchEntryStyle}"/>
+                                </border:SfBorder>
+                            </StackLayout>
+                            <!--  Search Button  -->
+                            <buttons:SfButton x:Name="SearchButton"
+                                            IsVisible="True"
+                                            Clicked="SearchButton_Clicked"
+                                            TextColor="{DynamicResource Gray-900}"
+                                            Style="{StaticResource NavigationBarButtonStyle }"
+                                            Text="{StaticResource Search}" />
+                        </StackLayout>
+
+                        <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}" />
+
+                        <listView:SfListView Grid.Row="2"
+                                Padding="15,0,10,0"
+                                AutoFitMode="Height"
+                                IsScrollBarVisible="false"
+                                ItemSpacing="0,27,0,0"
+                                ItemSize="50"
+                                x:Name="listView"
+                                AllowSwiping="True"
+                                ItemsSource="{Binding UserList}"
+                                TapCommand="{Binding ItemTappedCommand}"
+                                SelectionBackgroundColor="Transparent"
+                                VerticalOptions="FillAndExpand">
+                            <listView:SfListView.ItemTemplate>
+                                <DataTemplate>
+                                    <controls:CustomShadowFrame
+                                                Margin="0,2,5,5"
+                                                Padding="8,10,8,10"
+                                                BackgroundColor="{DynamicResource Gray-White}"
+                                                BorderColor="{DynamicResource Gray-White}"
+                                                BorderWidth="1"
+                                                CornerRadius="4"
+                                                HasShadow="True"
+                                                HorizontalOptions="FillAndExpand"
+                                                VerticalOptions="FillAndExpand">
+                                        <Grid Grid.Row="0" Padding="0,0,8,10" RowSpacing="0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <ffimageloading:CachedImage Aspect="AspectFit"
+                                                        Grid.Row="0"
+                                                        Grid.RowSpan="3"
+                                                        Margin="5,0,30,0"
+                                                        Grid.Column="0"
+                                                        Source="{Binding Avatar}"
+                                                        HeightRequest="50"
+			                                            DownsampleToViewSize="true" 
+                                                        FadeAnimationEnabled="True" >
+                                                <ffimageloading:CachedImage.Transformations>
+                                                    <transformations:CircleTransformation />
+                                                </ffimageloading:CachedImage.Transformations>
+                                            </ffimageloading:CachedImage>
+
+                                            <Label Text="{Binding FullName}"
+                                                           Grid.Row="0"
+                                                           Grid.Column="1"
+                                                           HorizontalOptions="StartAndExpand"
+                                                           FontFamily="{StaticResource Montserrat-SemiBold}" 
+                                                           TextColor="{DynamicResource Gray-900}">
+                                            </Label>
+                                          
+                                            <Grid.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.ChooseRoleCommand, Source={x:Reference listView}}" CommandParameter="{Binding User_id}"/>
+                                            </Grid.GestureRecognizers>
+                                        </Grid>
+                                    </controls:CustomShadowFrame>
+                                </DataTemplate>
+                            </listView:SfListView.ItemTemplate>
+                        </listView:SfListView>
+                    </Grid>
+                </Grid>
+            </Grid>
+            <loading:LoadingIndicator
+                HorizontalOptions="Fill"
+                IsRunning="{Binding IsBusy, Mode=TwoWay}"
+                VerticalOptions="Fill" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

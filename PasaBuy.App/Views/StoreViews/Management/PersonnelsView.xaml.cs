@@ -40,7 +40,11 @@ namespace PasaBuy.App.Views.StoreViews.Management
 
         private async void AddTapped(object sender, EventArgs e)
         {
-            await PopupNavigation.Instance.PushAsync(new PopupAddPersonnel());
+            //await PopupNavigation.Instance.PushAsync(new PopupAddPersonnel());
+            AddButton.IsEnabled = false;
+            await Navigation.PushModalAsync(new AddPersonnelView());
+            AddButton.IsEnabled = true;
+
         }
 
         private async void Update_Tapped(object sender, EventArgs e)

@@ -104,5 +104,26 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
         }
+
+        public ICommand AddRoleCommand
+        {
+            get
+            {
+                return new Command<string>((x) => AddRoleClicked(x));
+            }
+        }
+
+        private async void AddRoleClicked(string id)
+        {
+            if (!IsBusy)
+            {
+                IsBusy = true;
+                await App.Current.MainPage.DisplayAlert("Ok", "Selected user role:" + id, "OK");
+                await PopupNavigation.Instance.PopAsync();
+                await App.Current.MainPage.Navigation.PopModalAsync();
+                IsBusy = false;
+            }
+
+        }
     }
 }

@@ -5,6 +5,8 @@ using PasaBuy.App.Views.Currency;
 using PasaBuy.App.Views.Driver;
 using PasaBuy.App.Views.Onboarding;
 using PasaBuy.App.Views.PopupModals;
+using PasaBuy.App.Views.StoreViews;
+using PasaBuy.App.Views.StoreViews.Management;
 using System;
 using Xamarin.Forms;
 

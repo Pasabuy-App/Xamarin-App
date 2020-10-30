@@ -22,6 +22,7 @@
         <ToolbarItem
             Order="Primary"
             Priority="1"
+            x:Name="AddButton"
             Clicked="AddTapped"
             Text="asd">
             <ToolbarItem.Icon>
