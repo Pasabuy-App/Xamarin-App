@@ -24,7 +24,7 @@
 
     <ContentPage.Content>
         <Grid>
-            <tabView:SfTabView BackgroundColor="{DynamicResource PrimaryColor}" 
+            <tabView:SfTabView BackgroundColor="{DynamicResource Gray-White}" 
                             TabItemTapped="TabView_TabItemTapped"
                             TabHeaderPosition="Top"
                             VisibleHeaderCount="6" 
@@ -35,7 +35,7 @@
                 <tabView:SfTabView.SelectionIndicatorSettings>
                     <tabView:SelectionIndicatorSettings
                     AnimationDuration="200"
-                    Color="{DynamicResource Gray-White}" 
+                    Color="{DynamicResource PrimaryColor}" 
                     Position="Bottom" 
                     StrokeThickness="3"/>
                 </tabView:SfTabView.SelectionIndicatorSettings>
@@ -43,10 +43,10 @@
                 <!--HOME TAB-->
                 <tabView:SfTabItem Title="HOME" 
                                 IconFont="{StaticResource Home}"
-                                FontIconFontColor="{DynamicResource Gray-200}"
+                                FontIconFontColor="{DynamicResource PrimaryColor}"
                                 FontIconFontFamily="{StaticResource FontFamily}"
-                                TitleFontColor="{DynamicResource Gray-200}"
-                                SelectionColor="{DynamicResource Gray-White}">
+                                TitleFontColor="{DynamicResource PrimaryColor}"
+                                SelectionColor="{DynamicResource PrimaryColor}">
                     <tabView:SfTabItem.Content>
                         <home:HomePage/>
                     </tabView:SfTabItem.Content>
@@ -55,10 +55,10 @@
                 <!--FOOD TAB-->
                 <tabView:SfTabItem Title="FOOD"
                                 IconFont="{StaticResource Food}"
-                                FontIconFontColor="{DynamicResource Gray-200}"
+                                FontIconFontColor="{DynamicResource PrimaryColor}"
                                 FontIconFontFamily="{StaticResource FontFamily}"
-                                TitleFontColor="{DynamicResource Gray-200}"
-                                SelectionColor="{DynamicResource Gray-White}">
+                                TitleFontColor="{DynamicResource PrimaryColor}"
+                                SelectionColor="{DynamicResource PrimaryColor}">
                     <!--<tabView:SfTabItem.Content>
                         <food:FoodBrowserPage/>
                     </tabView:SfTabItem.Content>-->
@@ -67,10 +67,10 @@
                 <!--STORE TAB-->
                 <tabView:SfTabItem Title="STORE"
                                 IconFont="{StaticResource Stores}"
-                                FontIconFontColor="{DynamicResource Gray-200}"
+                                FontIconFontColor="{DynamicResource PrimaryColor}"
                                 FontIconFontFamily="{StaticResource FontFamily}"
-                                TitleFontColor="{DynamicResource Gray-200}"
-                                SelectionColor="{DynamicResource Gray-White}">
+                                TitleFontColor="{DynamicResource PrimaryColor}"
+                                SelectionColor="{DynamicResource PrimaryColor}">
                     <!--<tabView:SfTabItem.Content>
                         <store:StoreBrowserPage/>
                     </tabView:SfTabItem.Content>-->
@@ -79,10 +79,10 @@
                 <!--GROCERY TAB-->
                 <tabView:SfTabItem Title="GROCERY"
                                 IconFont="{StaticResource Market}"
-                                FontIconFontColor="{DynamicResource Gray-200}"
+                                FontIconFontColor="{DynamicResource PrimaryColor}"
                                 FontIconFontFamily="{StaticResource FontFamily}"
-                                TitleFontColor="{DynamicResource Gray-200}"
-                                SelectionColor="{DynamicResource Gray-White}">
+                                TitleFontColor="{DynamicResource PrimaryColor}"
+                                SelectionColor="{DynamicResource PrimaryColor}">
                     <!--<tabView:SfTabItem.Content>
                         <grocery:GroceryBrowserPage/>
                     </tabView:SfTabItem.Content>-->
@@ -91,10 +91,10 @@
                 <!--PARTNER TAB-->
                 <tabView:SfTabItem Title="PARTNER"
                                IconFont="{StaticResource Partner}"
-                               FontIconFontColor="{DynamicResource Gray-200}"
+                               FontIconFontColor="{DynamicResource PrimaryColor}"
                                FontIconFontFamily="{StaticResource FontFamily}"
-                               TitleFontColor="{DynamicResource Gray-200}"
-                               SelectionColor="{DynamicResource Gray-White}">
+                               TitleFontColor="{DynamicResource PrimaryColor}"
+                               SelectionColor="{DynamicResource PrimaryColor}">
                     <!--<tabView:SfTabItem.Content>
                         <partner:PartnerBrowserPage/>
                     </tabView:SfTabItem.Content>-->
@@ -103,10 +103,10 @@
                 <!--BURGER TAB-->
                 <tabView:SfTabItem Title="MENU"
                                 IconFont="{StaticResource Menu}"
-                                FontIconFontColor="{DynamicResource Gray-200}"
+                                FontIconFontColor="{DynamicResource PrimaryColor}"
                                 FontIconFontFamily="{StaticResource FontFamily}"
-                                TitleFontColor="{DynamicResource Gray-200}"
-                                SelectionColor="{DynamicResource Gray-White}">
+                                TitleFontColor="{DynamicResource PrimaryColor}"
+                                SelectionColor="{DynamicResource PrimaryColor}">
                     <tabView:SfTabItem.Content>
                         <menu:MasterMenu/>
                     </tabView:SfTabItem.Content>
