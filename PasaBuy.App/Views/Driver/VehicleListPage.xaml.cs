@@ -27,15 +27,16 @@ namespace PasaBuy.App.Views.Driver
 
         private async void AddVehiclesTapped(object sender, EventArgs e)
         {
+            Loader.IsRunning = true;
+            await System.Threading.Tasks.Task.Delay(500);
             if (count == 0)
             {
                 count = 1;
-                await AddButton.FadeTo(0.5, 100);
-                await AddButton.FadeTo(1, 100);
                 await PopupNavigation.Instance.PushAsync(new PopupVehicleDetails());
                 await System.Threading.Tasks.Task.Delay(200);
                 count = 0;
             }
+            Loader.IsRunning = false;
         }
     }
 }

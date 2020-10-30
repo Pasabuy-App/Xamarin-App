@@ -1,5 +1,6 @@
 ﻿using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Library;
+using PasaBuy.App.ViewModels.Marketplace;
 using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -23,7 +24,7 @@ namespace PasaBuy.App.Views
             InitializeComponent();
             if (Local.PSACache.Instance.UserInfo.verify == "UNVERIFIED")
             {
-                UserVerify();
+                //UserVerify();
             }
             isButton = false;
 
@@ -84,8 +85,8 @@ namespace PasaBuy.App.Views
                 if (e.TabItem.Title == "STORE")
                 {
                     //StoreBrowserPage.LastIndex = 11;
-                    //StoreBrowserViewModel.itemCategories.Clear();
                     //StoreBrowserViewModel.LoadCategory();
+                    //StoreBrowserViewModel.itemCategories.Clear();
                 }
                 if (e.TabItem.Title == "GROCERY")
                 {

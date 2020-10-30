@@ -51,7 +51,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 return new Command<string>((x) => ChooseRoleClicked(x));
             }
         }
-
+        
         private async void ChooseRoleClicked(string id)
         {
             if (!IsBusy)

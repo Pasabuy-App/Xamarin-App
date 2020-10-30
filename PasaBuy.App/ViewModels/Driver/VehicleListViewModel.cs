@@ -131,6 +131,7 @@ namespace PasaBuy.App.ViewModels.Driver
             this.Avatar = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatar);
             this.Name = PSACache.Instance.UserInfo.dname;
             this.SubmitCommand = new Command(this.SubmitClicked);
+            this.ItemTappedCommand = new Command<object>(ItemClicked);
             _vehicleList = new ObservableCollection<VehicleList>();
             LoadVehicle();
             RefreshCommand = new Command<string>((key) =>
@@ -139,6 +140,7 @@ namespace PasaBuy.App.ViewModels.Driver
                 IsRefreshing = false;
             });
         }
+
 
         public void LoadVehicle()
         {
@@ -214,23 +216,20 @@ namespace PasaBuy.App.ViewModels.Driver
 
         #region Commands
 
-        private Command<object> itemTappedCommand;
-        public Command<object> ItemTappedCommand
-        {
-            get
-            {
-                return this.itemTappedCommand ?? (this.itemTappedCommand = new Command<object>(this.ItemSelected));
-            }
-        }
-        private async void ItemSelected(object selectedItem)
+        public Command<object> ItemTappedCommand { get; set; }
+
+        private async void ItemClicked(object selectedItem)
         {
             try
             {
                 if (!IsBusy)
                 {
                     IsBusy = true;
-                    string id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as VehicleList).Identification;
-                    string status = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as VehicleList).Status;
+                    var vehicle = selectedItem as VehicleList;
+                    //string id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as VehicleList).Identification;
+                    //string status = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as VehicleList).Status;
+                    string id = vehicle.Identification;
+                    string status = vehicle.Status;
                     PSACache.Instance.UserInfo.vhid = id;
                     if (status == "ACTIVATED")
                     {
