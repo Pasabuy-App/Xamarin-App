@@ -22,7 +22,10 @@ namespace PasaBuy.App.Views.Currency
 
         private void ViewParticipatingStores(object sender, EventArgs e)
         {
+            Loader.IsRunning = true;
             Navigation.PushModalAsync(new PasabuyStoreList());
+            Loader.IsRunning = false;
+
         }
     }
 }
