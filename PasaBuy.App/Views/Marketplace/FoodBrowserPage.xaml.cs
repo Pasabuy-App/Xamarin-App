@@ -120,18 +120,5 @@ namespace PasaBuy.App.Views.Marketplace
             this.SearchEntry.Focus();
         }
 
-        private void SfListView_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
-        {
-            /*var item = e.ItemData as FoodStore;
-            //Console.WriteLine("Lastindex: " + LastIndex + " item.Id: ." + item.Id + ".");
-            if (FoodBrowserViewModel.foodstorelist.Last() == item && FoodBrowserViewModel.foodstorelist.Count() != 1)
-            {
-                if (FoodBrowserViewModel.foodstorelist.IndexOf(item) >= LastIndex)
-                {
-                    LastIndex += 6;
-                    FoodBrowserViewModel.LoadFood(item.Id);
-                }
-            }*/
-        }
     }
 }

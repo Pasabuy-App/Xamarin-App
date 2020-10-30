@@ -115,7 +115,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             try
             {
-                TindaPress.Store.Instance.FeaturedList(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, (bool success, string data) =>
+                Http.TindaFeature.Instance.FeaturedList((bool success, string data) =>
                 {
                     if (success)
                     {
@@ -149,7 +149,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "1", "", "1", "", (bool success, string data) =>
+                    Http.TindaFeature.Instance.FoodList("food/drinks", (bool success, string data) =>
                     {
                         if (success)
                         {

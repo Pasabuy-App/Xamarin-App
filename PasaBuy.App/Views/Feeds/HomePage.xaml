@@ -240,7 +240,7 @@
                                          ItemTemplate="{StaticResource postTemplate}"
                                          ItemsSourceChangeCachingStrategy="RecycleItems"
                                          ItemsSource="{Binding HomePosts}"
-                                         AutoFitMode="DynamicHeight">
+                                         AutoFitMode="None">
                         <listView:SfListView.HeaderTemplate>
                             <DataTemplate>
                                 <Grid BackgroundColor="{DynamicResource Gray-White}">
