@@ -36,7 +36,6 @@ namespace PasaBuy.App.Views.StoreViews
                                 Shorts.Text = product.data[i].short_info;
                                 Prices.Text = product.data[i].price;
                                 ProductCategory.Text = product.data[i].cat_name;
-                                Longs.Text = product.data[i].long_info;
                                 SKUs.Text = product.data[i].sku;
                                 Weights.Text = product.data[i].weight;
                                 Dimensions.Text = product.data[i].dimension;
@@ -58,12 +57,11 @@ namespace PasaBuy.App.Views.StoreViews
             else
             {
                 Title = "Add Product";
-                productImage.Source = "Idcard.png";
+                productImage.Source = "https://pasabuy.app/wp-content/uploads/2020/10/management-product.png";
                 ProductNames.Text = "";
                 Shorts.Text = "";
                 Prices.Text = "";
                 ProductCategory.Text = "";
-                Longs.Text = "";
                 SKUs.Text = "";
                 Weights.Text = "";
                 Dimensions.Text = "";
@@ -72,7 +70,7 @@ namespace PasaBuy.App.Views.StoreViews
 
         void RemoveProductImageCommand(object sender, EventArgs args)
         {
-            productImage.Source = "Idcard.png";
+            productImage.Source = "https://pasabuy.app/wp-content/uploads/2020/10/management-product.png";
         }
 
         async void OpenCameraCommand(object sender, EventArgs args)
@@ -181,7 +179,6 @@ namespace PasaBuy.App.Views.StoreViews
                 Short.HasError = Shorts.Text == null || string.IsNullOrWhiteSpace(Shorts.Text) ? true : false;
                 Price.HasError = Prices.Text == null || string.IsNullOrWhiteSpace(Prices.Text) ? true : false;
                 Category.HasError = ProductCategory.Text == null || string.IsNullOrWhiteSpace(ProductCategory.Text) ? true : false;
-                string lon = Longs.Text == null || string.IsNullOrWhiteSpace(Longs.Text) ? "N/A" : Longs.Text;
                 string sku = SKUs.Text == null || string.IsNullOrWhiteSpace(SKUs.Text) ? "N/A" : SKUs.Text;
                 string weight = Weights.Text == null || string.IsNullOrWhiteSpace(Weights.Text) ? "N/A" : Weights.Text;
                 string dimension = Dimensions.Text == null || string.IsNullOrWhiteSpace(Dimensions.Text) ? "N/A" : Dimensions.Text;
@@ -191,7 +188,7 @@ namespace PasaBuy.App.Views.StoreViews
                 {
                     if (pdid == "0")
                     {
-                        TindaPress.Product.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, PSACache.Instance.UserInfo.stid, ProductNames.Text, filepath, Shorts.Text, lon, sku, Prices.Text, weight, dimension, (bool success, string data) =>
+                        TindaPress.Product.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, PSACache.Instance.UserInfo.stid, ProductNames.Text, filepath, Shorts.Text, "test long", sku, Prices.Text, weight, dimension, (bool success, string data) =>
                         {
                             if (success)
                             {
@@ -211,7 +208,7 @@ namespace PasaBuy.App.Views.StoreViews
                     }
                     else
                     {
-                        TindaPress.Product.Instance.Update(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, pdid, PSACache.Instance.UserInfo.stid, ProductNames.Text, filepath, Shorts.Text, lon, sku, Prices.Text, weight, dimension, (bool success, string data) =>
+                        TindaPress.Product.Instance.Update(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, pdid, PSACache.Instance.UserInfo.stid, ProductNames.Text, filepath, Shorts.Text, "test long", sku, Prices.Text, weight, dimension, (bool success, string data) =>
                         {
                             if (success)
                             {

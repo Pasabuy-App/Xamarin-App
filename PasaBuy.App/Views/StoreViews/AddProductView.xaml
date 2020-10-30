@@ -102,7 +102,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
+
                         </Grid.RowDefinitions>
 
                         <Grid Grid.Row="0">
@@ -220,25 +220,27 @@
                         </inputLayout:SfTextInputLayout>
 
                         <inputLayout:SfTextInputLayout
-                            x:Name="Long"
+                            x:Name="Disc"
                             Grid.Row="3"
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
                             FocusedColor="{DynamicResource BlackColor}"
-                            Hint="(Optional) Long Description"
+                            Hint="Discount"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
-                            <Editor
-                                HeightRequest="80"
-                                MaxLength="250"
-                                x:Name="Longs" />
+                            <Entry
+                                VerticalOptions="Center"
+                                HorizontalOptions="FillAndExpand" 
+                                ReturnType="Next"
+                                Keyboard="Numeric"
+                                x:Name="Discount"/>
                             <inputLayout:SfTextInputLayout.LeadingView>
                                 <Label
                                     FontSize="18"
                                     VerticalTextAlignment="Center"
                                     Style="{StaticResource ProfileIconLabelStyle}"
                                     TextColor="{DynamicResource BlackColor}"
-                                    Text="&#xf46d;" />
+                                    Text="&#xf295;" />
                             </inputLayout:SfTextInputLayout.LeadingView>
                         </inputLayout:SfTextInputLayout>
 

@@ -10,7 +10,7 @@
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
     xmlns:behavior1="clr-namespace:PasaBuy.App.Behaviors" 
     xmlns:controls="clr-namespace:PasaBuy.App.Controls"
-    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms">
+    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms" xmlns:templateSelector="clr-namespace:PasaBuy.App.Helpers">
     <pages:PopupPage.Resources>
         <ResourceDictionary>
             <Style x:Key="PopupItemHeaderStyle" TargetType="{x:Type Label}">
@@ -30,6 +30,21 @@
                 <Setter Property="VerticalOptions" Value="End" />
                 <Setter Property="Margin" Value="10,0,0,12" />
             </Style>
+        </ResourceDictionary>
+        <ResourceDictionary>
+            <DataTemplate x:Key="checkboxTemplate">
+                <button:SfCheckBox  Grid.Column="0"
+                                    x:Name="Access"
+                                    Grid.ColumnSpan="2"
+                                    Margin="8,12,8,0"
+                                    CheckedColor="{DynamicResource PrimaryColor}"
+                                    HorizontalOptions="FillAndExpand"
+                                    FontSize="{DynamicResource SmallSize}" 
+                                    FontFamily="{StaticResource Montserrat-Medium}" 
+                                    ClassId="{Binding AccessId}"
+                                    Text="{Binding AccessName}" />
+            </DataTemplate>
+
         </ResourceDictionary>
     </pages:PopupPage.Resources>
     <pages:PopupPage.Animation>
@@ -98,46 +113,28 @@
                             PlaceholderColor="{DynamicResource Gray-900}"
                             VerticalOptions="StartAndExpand" />
 
-                        <StackLayout Grid.Row="2"
-                                     Grid.ColumnSpan="2"
-                                     CompressedLayout.IsHeadless="True">
-                            <listView:SfListView Margin="0,0"
-                                                Padding="0"
-                                                AutoFitMode="Height"
-                                                ColumnSpacing="0"
-                                                FocusBorderColor="Transparent"
-                                                HorizontalOptions="FillAndExpand"
-                                                IsStickyHeader="True"
-                                                ItemsSource="{Binding AccessList}"
-                                                RowSpacing="0"
-                                                SelectionBackgroundColor="Transparent"
-                                                TapCommand="{Binding ItemSelectedCommand}">
-                                <listView:SfListView.ItemTemplate>
+                        <ScrollView Grid.Row="2"
+                                    Grid.ColumnSpan="2">
+                            <StackLayout BindableLayout.ItemsSource="{Binding AccessGroup}">
+                                <BindableLayout.ItemTemplate>
                                     <DataTemplate>
-                                        <controls:CustomShadowFrame
-                                            Margin="8"
-                                            Padding="0,5,0,5"
-                                            BackgroundColor="White"
-                                            BorderColor="White"
-                                            CornerRadius="4"
-                                            HasShadow="true">
-                                            <button:SfCheckBox Text="{Binding AccessName}" 
-                                                                   Padding="0,3,0,3"
-                                                                   CheckedColor="{DynamicResource PrimaryColor}"
-                                                                   FontSize="12"/>
-                                        </controls:CustomShadowFrame>
+                                        <StackLayout>
+                                            <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                       Padding="5,0,0,0"
+                                                       FontSize="{DynamicResource MediumSize}"
+                                                       Text="{Binding GroupName}"
+                                                       TextColor="{DynamicResource Gray-900}" />
+                                            <button:SfRadioGroup BindableLayout.ItemsSource="{Binding AccessList}" 
+                                                                         Grid.Column="0">
+                                                <BindableLayout.ItemTemplateSelector>
+                                                    <templateSelector:VariantsTemplateSelecteior VariantsTemplate="{StaticResource checkboxTemplate}" />
+                                                </BindableLayout.ItemTemplateSelector>
+                                            </button:SfRadioGroup>
+                                        </StackLayout>
                                     </DataTemplate>
-                                </listView:SfListView.ItemTemplate>
-
-                                <listView:SfListView.Behaviors>
-                                    <behavior1:SfListViewExtendHeightBehavior />
-                                </listView:SfListView.Behaviors>
-
-                                <listView:SfListView.LayoutManager>
-                                    <listView:GridLayout SpanCount="{core:OnPlatformOrientationIntValue Desktop=4, PhonePortrait=2, PhoneLandscape=4, TabletPortrait=4, TabletLandscape=5}" />
-                                </listView:SfListView.LayoutManager>
-                            </listView:SfListView>
-                        </StackLayout>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+                        </ScrollView>
 
                         <button:SfButton
                             Grid.Row="3"
@@ -149,6 +146,7 @@
                             FontFamily="{StaticResource Montserrat-Regular}"
                             HorizontalOptions="FillAndExpand"
                             Text="OK"
+                            Command="{Binding InsertRoleCommand}"
                             TextColor="White"
                             VerticalOptions="Center" />
                         <button:SfButton

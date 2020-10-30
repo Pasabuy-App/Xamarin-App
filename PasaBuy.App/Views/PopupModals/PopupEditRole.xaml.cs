@@ -11,7 +11,7 @@ namespace PasaBuy.App.Views.PopupModals
         public PopupEditRole()
         {
             InitializeComponent();
-            this.BindingContext = new RolesViewModel();
+            this.BindingContext = new AccessViewModel();
         }
 
         private void CancelModal(object sender, EventArgs e)
