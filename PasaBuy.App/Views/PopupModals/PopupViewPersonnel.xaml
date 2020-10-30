@@ -94,7 +94,6 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="30*" />
@@ -124,19 +123,9 @@
                         <Label HorizontalOptions="EndAndExpand" 
                                VerticalOptions="CenterAndExpand"
                                Padding="0,5,0,0"
-                               Text="Gender: " 
-                               Grid.Column="0"
-                               Grid.Row="2"
-                               FontSize="{DynamicResource MediumSize}" 
-                               FontFamily="{StaticResource Montserrat-Medium}" 
-                               TextColor="{DynamicResource Gray-900}"
-                               LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
-                        <Label HorizontalOptions="EndAndExpand" 
-                               VerticalOptions="CenterAndExpand"
-                               Padding="0,5,0,0"
                                Text="Date Hired: " 
                                Grid.Column="0"
-                               Grid.Row="3"
+                               Grid.Row="2"
                                FontSize="{DynamicResource SmallSize}" 
                                FontFamily="{StaticResource Montserrat-Medium}" 
                                TextColor="{DynamicResource Gray-900}"
@@ -146,7 +135,7 @@
                                Padding="0,5,0,0"
                                Text="Status: " 
                                Grid.Column="0"
-                               Grid.Row="4"
+                               Grid.Row="3"
                                FontSize="{DynamicResource SmallSize}" 
                                FontFamily="{StaticResource Montserrat-Medium}" 
                                TextColor="{DynamicResource Gray-900}"
@@ -156,7 +145,7 @@
                         <Label HorizontalOptions="StartAndExpand" 
                                VerticalOptions="CenterAndExpand"
                                Padding="0,5,0,0"
-                               Text="Lorz Becislao " 
+                               x:Name="xName"
                                Grid.Column="1"
                                Grid.Row="0"
                                FontSize="{DynamicResource MediumSize}" 
@@ -166,7 +155,7 @@
                         <Label HorizontalOptions="StartAndExpand" 
                                VerticalOptions="CenterAndExpand"
                                Padding="0,5,0,0"
-                               Text="Backend Janitor " 
+                               x:Name="xPostition"
                                Grid.Column="1"
                                Grid.Row="1"
                                FontSize="{DynamicResource MediumSize}" 
@@ -176,44 +165,34 @@
                         <Label HorizontalOptions="StartAndExpand" 
                                VerticalOptions="CenterAndExpand"
                                Padding="0,5,0,0"
-                               Text="Male? " 
+                               x:Name="xDate"
                                Grid.Column="1"
                                Grid.Row="2"
-                               FontSize="{DynamicResource MediumSize}" 
+                               FontSize="{DynamicResource SmallSize}" 
                                FontFamily="{StaticResource Montserrat-Bold}" 
                                TextColor="{DynamicResource Gray-900}"
                                LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
                         <Label HorizontalOptions="StartAndExpand" 
                                VerticalOptions="CenterAndExpand"
                                Padding="0,5,0,0"
-                               Text="July 13, 2020" 
+                               x:Name="xStatus"
                                Grid.Column="1"
                                Grid.Row="3"
                                FontSize="{DynamicResource SmallSize}" 
                                FontFamily="{StaticResource Montserrat-Bold}" 
                                TextColor="{DynamicResource Gray-900}"
                                LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
-                        <Label HorizontalOptions="StartAndExpand" 
-                               VerticalOptions="CenterAndExpand"
-                               Padding="0,5,0,0"
-                               Text="Terminated" 
-                               Grid.Column="1"
-                               Grid.Row="4"
-                               FontSize="{DynamicResource SmallSize}" 
-                               FontFamily="{StaticResource Montserrat-Bold}" 
-                               TextColor="{DynamicResource Gray-900}"
-                               LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
 
-                        <StackLayout Grid.Row="5"
+                        <StackLayout Grid.Row="4"
                                      HorizontalOptions="Center"
                                      Padding="25,15,25,15"
                                      Grid.ColumnSpan="2">
-                            <buttons:SfButton x:Name="backButton"
+                            <buttons:SfButton x:Name="xActivate"
+                                              Clicked="xActivate_Clicked"
                                               CornerRadius="4"
                                               FontSize="{DynamicResource MediumSize}"
                                               BackgroundColor="{DynamicResource PrimaryColor}"
-                                              TextColor="White"
-                                              Text="Deactivate" />
+                                              TextColor="White" />
                         </StackLayout>
                        
                     </Grid>

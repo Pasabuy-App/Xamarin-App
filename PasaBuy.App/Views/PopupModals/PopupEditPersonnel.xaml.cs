@@ -8,6 +8,7 @@ namespace PasaBuy.App.Views.PopupModals
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PopupEditPersonnel : PopupPage
     {
+        public static string id;
         public PopupEditPersonnel()
         {
             InitializeComponent();
