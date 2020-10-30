@@ -3,6 +3,7 @@ using PasaBuy.App.Local;
 using PasaBuy.App.ViewModels.Feeds;
 using Plugin.Media;
 using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,6 +17,7 @@ namespace PasaBuy.App.Views.Posts
         public PostStatusPage()
         {
             InitializeComponent();
+            
             //if (StatusImage.IsLoading)
             //{
 
@@ -118,10 +120,13 @@ namespace PasaBuy.App.Views.Posts
 
         }
 
-        private void SfButton_Clicked(object sender, EventArgs e)
+        private async void SfButton_Clicked(object sender, EventArgs e)
         {
+            Loader.IsRunning = true;
             try
             {
+                Loader.IsRunning = true;
+
                 if (!string.IsNullOrWhiteSpace(StatusEditor.Text))
                 {
                     if (btn == false)
@@ -144,10 +149,12 @@ namespace PasaBuy.App.Views.Posts
                                     MyProfileViewModel.LoadData(PSACache.Instance.UserInfo.wpid);
                                 }
                                 Navigation.PopModalAsync();
+                                Loader.IsRunning = false;
                             }
                             else
                             {
                                 new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                Loader.IsRunning = false;
                             }
                         });
                     }
@@ -155,12 +162,15 @@ namespace PasaBuy.App.Views.Posts
                 else
                 {
                     new Alert("Notice to user", "Required fields cannot be empty.", "OK");
+                    Loader.IsRunning = false;
                 }
             }
             catch (Exception ex)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
+                Loader.IsRunning = false;
             }
+            Loader.IsRunning = false;
         }
     }
 }

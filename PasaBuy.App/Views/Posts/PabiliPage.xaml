@@ -4,7 +4,7 @@
              xmlns:converter="clr-namespace:PasaBuy.App.Converters" 
              xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
-             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
              BackgroundColor="{DynamicResource Gray-White}"
              x:Class="PasaBuy.App.Views.Posts.PabiliPage">
     <ContentPage.Resources>
@@ -16,44 +16,57 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ContentPage.ControlTemplate>
-        <ControlTemplate>
-            <StackLayout Spacing="0" >
-                <controls:TitleView Title="Pabili" 
-                                    FontSize="16"
-                                    BackgroundColor="{DynamicResource PrimaryColor}" >
-                    <controls:TitleView.LeadingView >
-                        <buttons:SfButton
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0"
+                        Padding="15,5,15,5"
+                        BackgroundColor="{StaticResource PrimaryColor}"
+                        HeightRequest="{OnPlatform Android='46',
+                                                   iOS='56'}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <buttons:SfButton
                             x:Name="backButton"
-                            CornerRadius="4"
                             Clicked="backButton_Clicked"
+                            Grid.Column="0"
+                            CornerRadius="4"
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
-                    </controls:TitleView.LeadingView>
-                </controls:TitleView>
-                <ContentPresenter />
-            </StackLayout>
-        </ControlTemplate>
-    </ContentPage.ControlTemplate>
-    <ContentPage.Content>
-        <StackLayout>
-            <Grid Padding="15" >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
+                    <Label Grid.Column="1"
+                                    FontFamily="{StaticResource Montserrat-Medium}"
+                                    FontSize="17"
+                                    HorizontalOptions="Start"
+                                    Text="Post Pabili"
+                                    TextColor="{DynamicResource Gray-White}"
+                                    VerticalOptions="Center" />
 
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                </Grid>
+                <Grid Grid.Row="1"
+                      Padding="15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <inputLayout:SfTextInputLayout
+                    <inputLayout:SfTextInputLayout
                             Grid.Row="0"
                             Margin="0,0,0,-15"
                             Grid.ColumnSpan="2"
@@ -63,9 +76,9 @@
                             Hint="Item Name" x:Name="ItemNames"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
-                    <Entry MaxLength="50" ReturnType="Next" x:Name="ItemName" />
-                    <inputLayout:SfTextInputLayout.LeadingView>
-                        <Label
+                        <Entry MaxLength="50" ReturnType="Next" x:Name="ItemName" />
+                        <inputLayout:SfTextInputLayout.LeadingView>
+                            <Label
                                             Margin="0"
                                             FontFamily="{StaticResource FontIcons}"
                                             FontSize="25"
@@ -73,10 +86,10 @@
                                             Text="{StaticResource Cart}"
                                             TextColor="{DynamicResource Gray-600}"
                                             VerticalTextAlignment="Center" />
-                    </inputLayout:SfTextInputLayout.LeadingView>
-                </inputLayout:SfTextInputLayout>
+                        </inputLayout:SfTextInputLayout.LeadingView>
+                    </inputLayout:SfTextInputLayout>
 
-                <inputLayout:SfTextInputLayout
+                    <inputLayout:SfTextInputLayout
                             Grid.Row="1"
                             Margin="0,0,0,-15"
                             Grid.ColumnSpan="2"
@@ -86,9 +99,9 @@
                             Hint="Item Description"  x:Name="Descriptions"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
-                    <Entry MaxLength="150"  HeightRequest="80" ReturnType="Next" x:Name="Description"/>
-                    <inputLayout:SfTextInputLayout.LeadingView>
-                        <Label
+                        <Entry MaxLength="150"  HeightRequest="80" ReturnType="Next" x:Name="Description"/>
+                        <inputLayout:SfTextInputLayout.LeadingView>
+                            <Label
                                             Margin="0"
                                             FontFamily="{StaticResource FontIcons}"
                                             FontSize="25"
@@ -96,10 +109,10 @@
                                             Text="{StaticResource Termsofservice}"
                                             TextColor="{DynamicResource Gray-600}"
                                             VerticalTextAlignment="Center" />
-                    </inputLayout:SfTextInputLayout.LeadingView>
-                </inputLayout:SfTextInputLayout>
+                        </inputLayout:SfTextInputLayout.LeadingView>
+                    </inputLayout:SfTextInputLayout>
 
-                <inputLayout:SfTextInputLayout
+                    <inputLayout:SfTextInputLayout
                             Grid.Row="2"
                             Margin="0,0,0,-15"
                             Grid.ColumnSpan="2"
@@ -109,9 +122,9 @@
                             Hint="Location"  x:Name="Locations"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
-                    <Entry MaxLength="50" ReturnType="Next" x:Name="Location"/>
-                    <inputLayout:SfTextInputLayout.LeadingView>
-                        <Label
+                        <Entry MaxLength="50" ReturnType="Next" x:Name="Location"/>
+                        <inputLayout:SfTextInputLayout.LeadingView>
+                            <Label
                                             Margin="0"
                                             FontFamily="{StaticResource FontIcons}"
                                             FontSize="25"
@@ -119,10 +132,10 @@
                                             Text="{StaticResource MapPin}"
                                             TextColor="{DynamicResource Gray-600}"
                                             VerticalTextAlignment="Center" />
-                    </inputLayout:SfTextInputLayout.LeadingView>
-                </inputLayout:SfTextInputLayout>
+                        </inputLayout:SfTextInputLayout.LeadingView>
+                    </inputLayout:SfTextInputLayout>
 
-                <inputLayout:SfTextInputLayout
+                    <inputLayout:SfTextInputLayout
                             Grid.Row="3"
                             Grid.ColumnSpan="1"
                             Grid.Column="0"
@@ -133,11 +146,11 @@
                             Hint="Date"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
-                    <DatePicker MinimumDate="{Binding MinDate}"
+                        <DatePicker MinimumDate="{Binding MinDate}"
                                 MaximumDate="{Binding MaxDate}"
                                 Date="{Binding SelectedDate}" x:Name="DatePicker"/>
-                    <inputLayout:SfTextInputLayout.LeadingView>
-                        <Label
+                        <inputLayout:SfTextInputLayout.LeadingView>
+                            <Label
                                             Margin="0"
                                             FontFamily="{StaticResource FontIcons}"
                                             FontSize="25"
@@ -145,9 +158,9 @@
                                             Text="{StaticResource Calendar}"
                                             TextColor="{DynamicResource Gray-600}"
                                             VerticalTextAlignment="Center" />
-                    </inputLayout:SfTextInputLayout.LeadingView>
-                </inputLayout:SfTextInputLayout>
-                <inputLayout:SfTextInputLayout
+                        </inputLayout:SfTextInputLayout.LeadingView>
+                    </inputLayout:SfTextInputLayout>
+                    <inputLayout:SfTextInputLayout
                             Grid.Row="3"
                             Grid.ColumnSpan="1"
                             Grid.Column="1"
@@ -158,9 +171,9 @@
                             Hint="Time"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
-                    <TimePicker Time="12:00" x:Name="TimePicker"/>
-                    <inputLayout:SfTextInputLayout.LeadingView>
-                        <Label
+                        <TimePicker Time="12:00" x:Name="TimePicker"/>
+                        <inputLayout:SfTextInputLayout.LeadingView>
+                            <Label
                                             Margin="0"
                                             FontFamily="{StaticResource FontIcons}"
                                             FontSize="25"
@@ -168,10 +181,10 @@
                                             Text="{StaticResource Bell}"
                                             TextColor="{DynamicResource Gray-600}"
                                             VerticalTextAlignment="Center" />
-                    </inputLayout:SfTextInputLayout.LeadingView>
-                </inputLayout:SfTextInputLayout>
+                        </inputLayout:SfTextInputLayout.LeadingView>
+                    </inputLayout:SfTextInputLayout>
 
-                <Label Grid.Row="4"
+                    <Label Grid.Row="4"
                        Grid.Column="0"
                        FontFamily="{StaticResource Montserrat-Medium}"
                        FontSize="14"
@@ -180,17 +193,17 @@
                        HorizontalTextAlignment="Start"
                        Text="Pabili Fee"
                        TextColor="{DynamicResource Gray-900}" />
-                <Label Grid.Row="4"
+                    <Label Grid.Row="4"
                        Grid.Column="1"
                        FontFamily="{StaticResource Montserrat-Medium}"
                        FontSize="14"
                        Margin="0,20,0,0"
                        VerticalTextAlignment="Center"
-                       HorizontalTextAlignment="Start"
-                       Text="P 120"
+                       HorizontalTextAlignment="End"
+                       Text="P 120.00"
                        TextColor="{DynamicResource Gray-900}" />
 
-                <Label Grid.Row="5"
+                    <Label Grid.Row="5"
                        Grid.Column="0"
                        FontFamily="{StaticResource Montserrat-Medium}"
                        FontSize="14"
@@ -198,15 +211,15 @@
                        HorizontalTextAlignment="Start"
                        Text="Taxes"
                        TextColor="{DynamicResource Gray-900}" />
-                <Label Grid.Row="5"
+                    <Label Grid.Row="5"
                        Grid.Column="1"
                        FontFamily="{StaticResource Montserrat-Medium}"
                        FontSize="14"
                        VerticalTextAlignment="Center"
-                       HorizontalTextAlignment="Start"
-                       Text="P 0"
+                       HorizontalTextAlignment="End"
+                       Text="P 0.00"
                        TextColor="{DynamicResource Gray-900}" />
-                <Label Grid.Row="6"
+                    <Label Grid.Row="6"
                        Grid.Column="0"
                        FontFamily="{StaticResource Montserrat-SemiBold}"
                        FontSize="16"
@@ -215,28 +228,34 @@
                        HorizontalTextAlignment="Start"
                        Text="Total"
                        TextColor="{DynamicResource Gray-900}" />
-                <Label Grid.Row="6"
+                    <Label Grid.Row="6"
                        Grid.Column="1"
                        FontFamily="{StaticResource Montserrat-SemiBold}"
                        FontSize="16"
                        Margin="0,20,0,0"
                        VerticalTextAlignment="Center"
-                       HorizontalTextAlignment="Start"
-                       Text="P 120"
+                       HorizontalTextAlignment="End"
+                       Text="P 120.00"
                        TextColor="{DynamicResource Gray-900}" />
 
-                <buttons:SfButton
+                    <buttons:SfButton
                             Grid.Row="7"
                             Grid.ColumnSpan="2"
                             Margin="0, 30, 0, 20"
-                            CornerRadius="10"
+                            CornerRadius="6"
                             TextColor="White"
                             Clicked="SfButton_Clicked"
                             BackgroundColor="{DynamicResource PrimaryColor}"
                             Style="{StaticResource SfButtonStyle}"
                             Text="POST" />
 
+                </Grid>
             </Grid>
-        </StackLayout>
+            <loading:LoadingIndicator
+                HorizontalOptions="Fill"
+                x:Name="Loader"
+                IsRunning="{Binding IsBusy, Mode=TwoWay}"
+                VerticalOptions="Fill" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -27,6 +27,9 @@ namespace PasaBuy.App.Views.Posts
         {
             try
             {
+                Loader.IsRunning = true;
+                Loader.IsVisible = true;
+
                 if (!string.IsNullOrWhiteSpace(ItemName.Text) || !string.IsNullOrWhiteSpace(ItemDescription.Text) || !string.IsNullOrWhiteSpace(PickUpLocation.Text) || !string.IsNullOrWhiteSpace(ItemPrice.Text) || !string.IsNullOrWhiteSpace(VehicleType.Text) || !string.IsNullOrWhiteSpace(ItemCategory.Text))
                 {
                     if (btn == false)
@@ -49,10 +52,14 @@ namespace PasaBuy.App.Views.Posts
                                     MyProfileViewModel.LoadData(PSACache.Instance.UserInfo.wpid);
                                 }
                                 Navigation.PopModalAsync();
+                                Loader.IsRunning = false;
+                                Loader.IsVisible = false;
                             }
                             else
                             {
                                 new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                Loader.IsRunning = false;
+                                Loader.IsVisible = false;
                             }
                         });
                     }
@@ -60,12 +67,18 @@ namespace PasaBuy.App.Views.Posts
                 else
                 {
                     new Alert("Notice to user", "Required fields cannot be empty.", "OK");
+                    Loader.IsRunning = false;
+                    Loader.IsVisible = false;
                 }
             }
             catch (Exception ex)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
+                Loader.IsRunning = false;
+                Loader.IsVisible = false;
             }
+            Loader.IsRunning = false;
+            Loader.IsVisible = false;
         }
 
 

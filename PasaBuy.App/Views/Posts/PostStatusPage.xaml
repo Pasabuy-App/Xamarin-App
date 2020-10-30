@@ -5,7 +5,7 @@
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:controls="clr-namespace:PasaBuy.App.Controls"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
@@ -16,59 +16,70 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ContentPage.ControlTemplate>
-        <ControlTemplate>
-            <StackLayout Spacing="0" >
-                <controls:TitleView Title="Share thoughts" 
-                                    FontSize="14"
-                                    BackgroundColor="{DynamicResource PrimaryColor}" >
-                    <controls:TitleView.LeadingView >
-                        <buttons:SfButton
+    <ContentPage.Content>
+        <Grid>
+            <Grid RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0"
+                        Padding="15,5,15,5"
+                        BackgroundColor="{StaticResource PrimaryColor}"
+                        HeightRequest="{OnPlatform Android='46',
+                                                   iOS='56'}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <buttons:SfButton
                             x:Name="backButton"
                             Clicked="BackButtonClicked"
+                            Grid.Column="0"
                             CornerRadius="4"
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
-                    </controls:TitleView.LeadingView>
-                </controls:TitleView>
-                <ContentPresenter />
-            </StackLayout>
-        </ControlTemplate>
-    </ContentPage.ControlTemplate>
-    <ContentPage.Content>
-        <ScrollView>
-            <Grid RowSpacing="15" ColumnSpacing="0" Padding="10, 10, 10, 20">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Row="0" 
+                    <Label Grid.Column="1"
+                                    FontFamily="{StaticResource Montserrat-Medium}"
+                                    FontSize="17"
+                                    HorizontalOptions="Start"
+                                    Text="Share what's on your mind"
+                                    TextColor="{DynamicResource Gray-White}"
+                                    VerticalOptions="Center" />
+
+                </Grid>
+                <ScrollView Grid.Row="1">
+                    <Grid RowSpacing="15" ColumnSpacing="0" Padding="10, 10, 10, 20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Row="0" 
                       Grid.ColumnSpan="3" 
                       BackgroundColor="{DynamicResource Gray-300}"
                       VerticalOptions="FillAndExpand" 
                       HorizontalOptions="FillAndExpand" HeightRequest="220">
-                    <ffimageloading:CachedImage Aspect="AspectFill"
+                            <ffimageloading:CachedImage Aspect="AspectFill"
                                                 x:Name="StatusImage"
 			                                    DownsampleToViewSize="true" 
                                                 FadeAnimationEnabled="True">
-                    </ffimageloading:CachedImage>
-                    
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer
+                            </ffimageloading:CachedImage>
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer
                                 Tapped="AddStatusImage"
                                 NumberOfTapsRequired="1" />
-                    </Grid.GestureRecognizers>
-                </Grid>
-                
-   
-                <!--  Submit button  -->
-                <buttons:SfButton
+                            </Grid.GestureRecognizers>
+                        </Grid>
+
+                        <!--  Submit button  -->
+                        <buttons:SfButton
                             Grid.Row="1"
                             Grid.Column="1"
                             Grid.ColumnSpan="1"
@@ -80,8 +91,8 @@
                             Style="{StaticResource SfButtonStyle}"
                             Text="Take Photo" />
 
-                <!--  Submit button  -->
-                <buttons:SfButton
+                        <!--  Submit button  -->
+                        <buttons:SfButton
                             Grid.Row="1"
                             Grid.Column="2"
                             Grid.ColumnSpan="1"
@@ -93,30 +104,30 @@
                             Style="{StaticResource SfButtonStyle}"
                             Text="Upload Photo" />
 
-                <border:SfBorder Padding="8, 0, 0, 0" 
+                        <border:SfBorder Padding="8, 0, 0, 0" 
                                  HeightRequest="120"
                                  Grid.Row="2"  
                                  Grid.ColumnSpan="3"
                                  Style="{StaticResource SfBorderStyle}">
-                    <controls:BorderlessEditor
+                            <controls:BorderlessEditor
                                 x:Name="StatusEditor"
                                 HeightRequest="120"
                                 Placeholder="Share what's on your mind"
                                 PlaceholderColor="{DynamicResource Gray-700}"
                                 TextColor="{DynamicResource Gray-900}">
-                        <controls:BorderlessEditor.Margin>
-                            <OnPlatform
+                                <controls:BorderlessEditor.Margin>
+                                    <OnPlatform
                                         x:TypeArguments="Thickness"
                                         Android="0,0,5,0"
                                         Default="0,0,5,0"
                                         iOS="-5,0,5,0" />
-                        </controls:BorderlessEditor.Margin>
-                    </controls:BorderlessEditor>
+                                </controls:BorderlessEditor.Margin>
+                            </controls:BorderlessEditor>
 
-                </border:SfBorder>
+                        </border:SfBorder>
 
-                <!--  Submit button  -->
-                <buttons:SfButton
+                        <!--  Submit button  -->
+                        <buttons:SfButton
                             Grid.Row="3"
                             Grid.ColumnSpan="3"
                             Margin="0, 20, 0, 20"
@@ -128,7 +139,14 @@
                             Text="SUBMIT" />
 
 
+                    </Grid>
+                </ScrollView>
             </Grid>
-        </ScrollView>
+            <loading:LoadingIndicator
+                HorizontalOptions="Fill"
+                x:Name="Loader"
+                VerticalOptions="Fill" />
+        </Grid>
     </ContentPage.Content>
+    
 </ContentPage>

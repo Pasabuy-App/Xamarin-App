@@ -31,6 +31,7 @@ namespace PasaBuy.App.Views.Posts
                     isBtn = true;
                     PickUps.HasError = string.IsNullOrEmpty(PickUp.Text) || string.IsNullOrWhiteSpace(PickUp.Text) ? true : false;
                     DropOffs.HasError = string.IsNullOrEmpty(DropOff.Text) || string.IsNullOrWhiteSpace(DropOff.Text) ? true : false;
+
                     if (PickUps.HasError == false && DropOffs.HasError == false)
                     {
                         Http.SocioFeature.Instance.Post_Insert("Pahatid", "content", "pahatid", "", "", TimePicker.Time.ToString(), PickUp.Text, DropOff.Text, DatePicker.Date.ToString(), (bool success, string data) =>

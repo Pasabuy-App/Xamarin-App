@@ -25,6 +25,9 @@ namespace PasaBuy.App.Views.Posts
         {
             try
             {
+                Loader.IsRunning = true;
+                Loader.IsVisible = true;
+
                 if (!isBtn)
                 {
                     isBtn = true;
@@ -51,10 +54,14 @@ namespace PasaBuy.App.Views.Posts
                                 }
                                 Navigation.PopModalAsync();
                                 isBtn = false;
+                                Loader.IsRunning = false;
+                                Loader.IsVisible = false;
                             }
                             else
                             {
                                 new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                Loader.IsRunning = false;
+                                Loader.IsVisible = false;
                             }
                         });
                     }
@@ -64,6 +71,8 @@ namespace PasaBuy.App.Views.Posts
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
                 isBtn = false;
+                Loader.IsRunning = false;
+                Loader.IsVisible = false;
             }
         }
     }

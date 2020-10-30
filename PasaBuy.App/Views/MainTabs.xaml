@@ -47,9 +47,9 @@
                                 FontIconFontFamily="{StaticResource FontFamily}"
                                 TitleFontColor="{DynamicResource Gray-200}"
                                 SelectionColor="{DynamicResource Gray-White}">
-                    <!--<tabView:SfTabItem.Content>
+                    <tabView:SfTabItem.Content>
                         <home:HomePage/>
-                    </tabView:SfTabItem.Content>-->
+                    </tabView:SfTabItem.Content>
                 </tabView:SfTabItem>
 
                 <!--FOOD TAB-->

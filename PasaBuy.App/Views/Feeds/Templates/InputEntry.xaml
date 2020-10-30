@@ -33,7 +33,7 @@
 
             <Grid Grid.Row="1" 
                   Grid.ColumnSpan="1"
-                              Margin="20, 10, 10, 20">
+                  Margin="20, 10, 10, 20">
                 <border:SfBorder Grid.Row="0"
                                          border:BorderColor="White" 
                                          BorderWidth="2"
@@ -140,7 +140,8 @@
                   BackgroundColor="{DynamicResource Gray-100}"
                   ColumnSpacing="0"
                   RowSpacing="0"
-                  Padding="0">
+                  Padding="0"
+                  Margin="0,0,0,8">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>

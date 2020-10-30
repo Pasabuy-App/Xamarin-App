@@ -78,7 +78,6 @@
                            VerticalOptions="Center" />
                     </Grid>
 
-
                     <Grid Grid.Row="1"
                           Grid.ColumnSpan="2">
                         <Picker x:Name="PositionPicker" 

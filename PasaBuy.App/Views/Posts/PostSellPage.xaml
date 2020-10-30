@@ -6,7 +6,10 @@
              xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
              xmlns:controls="clr-namespace:PasaBuy.App.Controls"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-             xmlns:local="clr-namespace:PasaBuy.App.CustomRenderers" xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             xmlns:local="clr-namespace:PasaBuy.App.CustomRenderers" 
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+             xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
@@ -17,73 +20,87 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ContentPage.ControlTemplate>
-        <ControlTemplate>
-            <StackLayout Spacing="0" >
-                <controls:TitleView Title="Sell Something" 
-                                    FontSize="16"
-                                    BackgroundColor="{DynamicResource PrimaryColor}" >
-                    <controls:TitleView.LeadingView >
-                        <buttons:SfButton
+    <ContentPage.Content>
+        <Grid>
+            <Grid RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0"
+                        Padding="15,5,15,5"
+                        BackgroundColor="{StaticResource PrimaryColor}"
+                        HeightRequest="{OnPlatform Android='46',
+                                                   iOS='56'}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <buttons:SfButton
                             x:Name="backButton"
                             Clicked="BackButtonClicked"
+                            Grid.Column="0"
                             CornerRadius="4"
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
-                    </controls:TitleView.LeadingView>
-                </controls:TitleView>
-                <ContentPresenter />
-            </StackLayout>
-        </ControlTemplate>
-    </ContentPage.ControlTemplate>
-    <ContentPage.Content>
-        <ScrollView VerticalScrollBarVisibility="Never" Padding="0, 0, 0, 20">
-            <Grid RowSpacing="15" ColumnSpacing="0" Padding="10">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                    <Label Grid.Column="1"
+                                    FontFamily="{StaticResource Montserrat-Medium}"
+                                    FontSize="17"
+                                    HorizontalOptions="Start"
+                                    Text="Sell Something"
+                                    TextColor="{DynamicResource Gray-White}"
+                                    VerticalOptions="Center" />
 
-                <border:SfBorder Grid.Row="0"
+                </Grid>
+                <ScrollView VerticalScrollBarVisibility="Never" 
+                            Grid.Row="1"
+                            Padding="0, 0, 0, 20">
+                    <Grid RowSpacing="15" ColumnSpacing="0" Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <border:SfBorder Grid.Row="0"
                                          border:BorderColor="White" 
                                          BorderWidth="2"
                                          CornerRadius="1"
                                          Grid.ColumnSpan="3">
-                    <Image
+                            <Image
                                 BackgroundColor="{DynamicResource Gray-400}"
                                 HeightRequest="175"
                                 x:Name="ItemImage"
                                 Aspect="AspectFill">
-                        <Image.Source>
-                            <UriImageSource
+                                <Image.Source>
+                                    <UriImageSource
                                             
                                             CacheValidity="14"
                                             CachingEnabled="true"
                                             Uri="{Binding SellingImage}" />
-                        </Image.Source>
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer
+                                </Image.Source>
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer
                                 Tapped="AddItemImage"
-                                NumberOfTapsRequired="1" />         
-                        </Image.GestureRecognizers>
-                    </Image>
-                    
-                </border:SfBorder>
+                                NumberOfTapsRequired="1" />
+                                </Image.GestureRecognizers>
+                            </Image>
 
-                <!--  take photo button  -->
-                <buttons:SfButton
+                        </border:SfBorder>
+
+                        <!--  take photo button  -->
+                        <buttons:SfButton
                             Grid.Row="1"
                             Grid.Column="1"
                             Grid.ColumnSpan="1"
@@ -95,8 +112,8 @@
                             Style="{StaticResource SfButtonStyle}"
                             Text="Take Photo" />
 
-                <!--  select photo button  -->
-                <buttons:SfButton
+                        <!--  select photo button  -->
+                        <buttons:SfButton
                             Grid.Row="1"
                             Grid.Column="2"
                             Grid.ColumnSpan="1"
@@ -108,131 +125,136 @@
                             Style="{StaticResource SfButtonStyle}"
                             Text="Upload Photo" />
 
-                <border:SfBorder
+                        <border:SfBorder
                     Grid.Row="2"
                     Grid.ColumnSpan="3"
                         Style="{StaticResource SfBorderStyle}">
-                    <combobox:SfComboBox
+                            <combobox:SfComboBox
                                 x:Name="ItemCategory"
                                 SelectedValue="{Binding ItemCategory, Mode=TwoWay}"
                                 Style="{StaticResource ComboBoxStyle}"
                                 Watermark="Item Category"
                                 VerticalOptions="CenterAndExpand">
-                        <combobox:SfComboBox.ComboBoxSource>
-                            <ListCollection:List x:TypeArguments="x:String">
-                                <x:String>Appliances</x:String>
-                                <x:String>Clothings</x:String>
-                                <x:String>Gadgets</x:String>
-                                <x:String>Hobbies</x:String>
-                                <x:String>Housings</x:String>
-                                <x:String>Medicines</x:String>
-                                <x:String>Convenience</x:String>
-                                <x:String>Pet / Poultry</x:String>
-                            </ListCollection:List>
-                        </combobox:SfComboBox.ComboBoxSource>
-                        <combobox:SfComboBox.DropDownButtonSettings>
-                            <combobox:DropDownButtonSettings>
-                                <combobox:DropDownButtonSettings.View>
-                                    <Label
+                                <combobox:SfComboBox.ComboBoxSource>
+                                    <ListCollection:List x:TypeArguments="x:String">
+                                        <x:String>Appliances</x:String>
+                                        <x:String>Clothings</x:String>
+                                        <x:String>Gadgets</x:String>
+                                        <x:String>Hobbies</x:String>
+                                        <x:String>Housings</x:String>
+                                        <x:String>Medicines</x:String>
+                                        <x:String>Convenience</x:String>
+                                        <x:String>Pet / Poultry</x:String>
+                                    </ListCollection:List>
+                                </combobox:SfComboBox.ComboBoxSource>
+                                <combobox:SfComboBox.DropDownButtonSettings>
+                                    <combobox:DropDownButtonSettings>
+                                        <combobox:DropDownButtonSettings.View>
+                                            <Label
                                           FontFamily="{StaticResource FontIcons}"
                                           FontSize="25"
                                           HorizontalTextAlignment="Center"
                                           Text="{StaticResource DropDownButtonIcon}"
                                           TextColor="{DynamicResource Gray-600}"
                                           VerticalTextAlignment="Center" />
-                                </combobox:DropDownButtonSettings.View>
-                            </combobox:DropDownButtonSettings>
-                        </combobox:SfComboBox.DropDownButtonSettings>
-                    </combobox:SfComboBox>
-                </border:SfBorder>
+                                        </combobox:DropDownButtonSettings.View>
+                                    </combobox:DropDownButtonSettings>
+                                </combobox:SfComboBox.DropDownButtonSettings>
+                            </combobox:SfComboBox>
+                        </border:SfBorder>
 
-                <border:SfBorder Grid.Row="3"  Grid.ColumnSpan="3"
+                        <border:SfBorder Grid.Row="3"  Grid.ColumnSpan="3"
                                  HeightRequest="40"
                                  Padding="0, 0, 0, 0"
                                  Style="{StaticResource SfBorderStyle}">
-                    <controls:BorderlessEntry
+                            <controls:BorderlessEntry
                             x:Name="ItemName"
                             FontSize="16"
                             Placeholder="Item Name"
+                            ReturnType="Next"
                             PlaceholderColor="{DynamicResource Gray-700}"
                             Text="{Binding ItemName}"
                             Style="{StaticResource EntryTextBoxStyle}" />
-                </border:SfBorder>
+                        </border:SfBorder>
 
-                <border:SfBorder Grid.Row="4"  Grid.ColumnSpan="3"
+                        <border:SfBorder Grid.Row="4"  Grid.ColumnSpan="3"
                                  HeightRequest="75"
                                  Padding="0, 0, 0, 0"
                                  Style="{StaticResource SfBorderStyle}">
-                    <controls:BorderlessEntry
+                            <controls:BorderlessEntry
                             x:Name="ItemDescription"
                             FontSize="16"
                             Placeholder="Item Description"
                             VerticalTextAlignment="Start"
+                            ReturnType="Next"
                             PlaceholderColor="{DynamicResource Gray-700}"
                             Text="{Binding ItemDescription}"
                             Style="{StaticResource EntryTextBoxStyle}" />
-                </border:SfBorder>
-                
-                <border:SfBorder Grid.Row="5"  Grid.ColumnSpan="3"
+                        </border:SfBorder>
+
+                        <border:SfBorder Grid.Row="5"  Grid.ColumnSpan="3"
                                  Padding="0, 0, 0, 0"
                                  Style="{StaticResource SfBorderStyle}">
-                    <controls:BorderlessEntry
+                            <controls:BorderlessEntry
                             x:Name="ItemPrice"
                             FontSize="16"
+                            Keyboard="Numeric"
+                            ReturnType="Next"    
                             Placeholder="Item Price"
                             PlaceholderColor="{DynamicResource Gray-700}"
                             Text="{Binding ItemPrice}"
                             Style="{StaticResource EntryTextBoxStyle}" />
-                </border:SfBorder>
+                        </border:SfBorder>
 
 
-                <border:SfBorder
+                        <border:SfBorder
                     Grid.Row="6"
                     Grid.ColumnSpan="3"
                         Style="{StaticResource SfBorderStyle}">
-                    <combobox:SfComboBox
+                            <combobox:SfComboBox
                                 x:Name="VehicleType"
                                 SelectedValue="{Binding VehicleType, Mode=TwoWay}"
                                 Style="{StaticResource ComboBoxStyle}"
                                 Watermark="Vehicle Type"
                                 VerticalOptions="CenterAndExpand">
-                        <combobox:SfComboBox.ComboBoxSource>
-                            <ListCollection:List x:TypeArguments="x:String">
-                                <x:String>Bicycle</x:String>
-                                <x:String>Motorcycle</x:String>
-                                <x:String>4-Wheeled Vehicle</x:String>
-                            </ListCollection:List>
-                        </combobox:SfComboBox.ComboBoxSource>
-                        <combobox:SfComboBox.DropDownButtonSettings>
-                            <combobox:DropDownButtonSettings>
-                                <combobox:DropDownButtonSettings.View>
-                                    <Label
+                                <combobox:SfComboBox.ComboBoxSource>
+                                    <ListCollection:List x:TypeArguments="x:String">
+                                        <x:String>Bicycle</x:String>
+                                        <x:String>Motorcycle</x:String>
+                                        <x:String>4-Wheeled Vehicle</x:String>
+                                    </ListCollection:List>
+                                </combobox:SfComboBox.ComboBoxSource>
+                                <combobox:SfComboBox.DropDownButtonSettings>
+                                    <combobox:DropDownButtonSettings>
+                                        <combobox:DropDownButtonSettings.View>
+                                            <Label
                                                     FontFamily="{StaticResource FontIcons}"
                                                     FontSize="25"
                                                     HorizontalTextAlignment="Center"
                                                     Text="{StaticResource DropDownButtonIcon}"
                                                     TextColor="{DynamicResource Gray-600}"
                                                     VerticalTextAlignment="Center" />
-                                </combobox:DropDownButtonSettings.View>
-                            </combobox:DropDownButtonSettings>
-                        </combobox:SfComboBox.DropDownButtonSettings>
-                    </combobox:SfComboBox>
-                </border:SfBorder>
+                                        </combobox:DropDownButtonSettings.View>
+                                    </combobox:DropDownButtonSettings>
+                                </combobox:SfComboBox.DropDownButtonSettings>
+                            </combobox:SfComboBox>
+                        </border:SfBorder>
 
-                <border:SfBorder Grid.Row="7"  Grid.ColumnSpan="3"
+                        <border:SfBorder Grid.Row="7"  Grid.ColumnSpan="3"
                                  Padding="0, 0, 0, 0"
                                  Style="{StaticResource SfBorderStyle}">
-                    <controls:BorderlessEntry
+                            <controls:BorderlessEntry
                             x:Name="PickUpLocation"
                             FontSize="16"
+                            ReturnType="Next"
                             Placeholder="Pickup Loction"
                             PlaceholderColor="{DynamicResource Gray-700}"
                             Text="{Binding PickUpLocation}"
                             Style="{StaticResource EntryTextBoxStyle}" />
-                </border:SfBorder>
+                        </border:SfBorder>
 
-                <!--  Submit button  -->
-                <buttons:SfButton
+                        <!--  Submit button  -->
+                        <buttons:SfButton
                             Grid.Row="8"
                             Grid.ColumnSpan="3"
                             Margin="0, 20, 0, 20"
@@ -243,7 +265,14 @@
                             Style="{StaticResource SfButtonStyle}"
                             Text="SUBMIT" />
 
+                    </Grid>
+                </ScrollView>
             </Grid>
-        </ScrollView>
+            <loading:LoadingIndicator
+                HorizontalOptions="Fill"
+                x:Name="Loader"
+                IsRunning="{Binding IsBusy, Mode=TwoWay}"
+                VerticalOptions="Fill" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
