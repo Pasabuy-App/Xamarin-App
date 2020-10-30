@@ -18,19 +18,6 @@ namespace PasaBuy.App.Views.StoreViews.Management
         {
             InitializeComponent();
             this.BindingContext = new PersonnelsViewModel();
-            pullToRefresh.Refreshing += PullToRefresh_Refreshing;
-        }
-
-        private async void PullToRefresh_Refreshing(object sender, EventArgs args)
-        {
-            pullToRefresh.IsRefreshing = true;
-            await Task.Delay(500);
-            /*LastIndex = 11;
-            isFirstLoad = false;
-            Offset = 0;*/
-            PersonnelsViewModel._personnelsList.Clear();
-            PersonnelsViewModel.LoadData();
-            pullToRefresh.IsRefreshing = false;
         }
 
         private void backButton_Clicked(object sender, EventArgs e)
@@ -47,13 +34,13 @@ namespace PasaBuy.App.Views.StoreViews.Management
 
         }
 
-        private async void Update_Tapped(object sender, EventArgs e)
+        /*private async void Update_Tapped(object sender, EventArgs e)
         {
             var btn = sender as Grid; //  btn.ClassId
             await PopupNavigation.Instance.PushAsync(new PopupEditPersonnel());
-        }
+        }*/
 
-        private async void Delete_Tapped(object sender, EventArgs e)
+        /*private async void Delete_Tapped(object sender, EventArgs e)
         {
             try
             {
@@ -85,6 +72,6 @@ namespace PasaBuy.App.Views.StoreViews.Management
             {
                 new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
             }
-        }
+        }*/
     }
 }
