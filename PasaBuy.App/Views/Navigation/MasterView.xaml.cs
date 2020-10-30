@@ -80,12 +80,6 @@ namespace PasaBuy.App.Views.Navigation
 
                 _logobanner = new ObservableCollection<Personnels>();
                 _logobanner.CollectionChanged += LogoBannerChanges;
-                _switchlist = new ObservableCollection<Operations>();
-                _switchlist.CollectionChanged += SwitchChanges;
-                PopupGoOnline._switch = "false";
-                isTapped = false;
-                _switch = false;
-                ValidateStatus();
             }
             if (MyType == "mover")
             {
@@ -102,6 +96,12 @@ namespace PasaBuy.App.Views.Navigation
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Schedules"), Icon = "https://pasabuy.app/wp-content/uploads/2020/10/management-schedule.png", TargetType = typeof(DriverScheduleView) });
 
             }
+            _switchlist = new ObservableCollection<Operations>();
+            _switchlist.CollectionChanged += SwitchChanges;
+            PopupGoOnline._switch = "false";
+            isTapped = false;
+            _switch = false;
+            ValidateStatus();
 
             menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Homepage"), Icon = "https://pasabuy.app/wp-content/uploads/2020/10/home.jpg", TargetType = typeof(MainTabs) });
             navigationDrawerList.ItemsSource = menuList;
@@ -109,6 +109,7 @@ namespace PasaBuy.App.Views.Navigation
 
 
         }
+
         private void SwitchChanges(object sender, EventArgs e)
         {
             if (_switch)
@@ -128,37 +129,51 @@ namespace PasaBuy.App.Views.Navigation
                 //_switch = true;
             }
         }
+
         public void ValidateStatus()
         {
-            if (PSACache.Instance.UserInfo.store_status)
-            {
-                isTapped = true;
-                isActiveSwitch.IsOn = true;
-                Status.Text = "Online";
-                isTapped = false;
-            }
-            else
-            {
-                isTapped = true;
-                isActiveSwitch.IsOn = false;
-                Status.Text = "Offline";
-                isTapped = false;
-            }
-        }
-        private async void LogoBannerChanges(object sender, EventArgs e)
-        {
-            await Task.Delay(100);
-            if (MyType == "mover")
-            {
-                Logo.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatar);
-                Banner.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.banner);
-            }
             if (MyType == "store")
             {
-                Logo.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.store_logo);
-                Banner.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.store_banner);
+                if (PSACache.Instance.UserInfo.store_status)
+                {
+                    isTapped = true;
+                    isActiveSwitch.IsOn = true;
+                    Status.Text = "Online";
+                    isTapped = false;
+                }
+                else
+                {
+                    isTapped = true;
+                    isActiveSwitch.IsOn = false;
+                    Status.Text = "Offline";
+                    isTapped = false;
+                }
+            }
+            if (MyType == "mover")
+            {
+                if (PSACache.Instance.UserInfo.mover_status)
+                {
+                    isTapped = true;
+                    isActiveSwitch.IsOn = true;
+                    Status.Text = "Online";
+                    isTapped = false;
+                }
+                else
+                {
+                    isTapped = true;
+                    isActiveSwitch.IsOn = false;
+                    Status.Text = "Offline";
+                    isTapped = false;
+                }
             }
         }
+
+        private void LogoBannerChanges(object sender, EventArgs e)
+        {
+            Logo.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.store_logo);
+            Banner.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.store_banner);
+        }
+
         public static void Insertimage(string url)
         {
             _logobanner.Add(new Personnels()
@@ -200,12 +215,11 @@ namespace PasaBuy.App.Views.Navigation
                 if (MyType == "mover")
                 {
                     PopupGoOnline._switch = isActiveSwitch.IsOn.ToString();
-                    await PopupNavigation.Instance.PushAsync(new PopupSelectSchedule());
+                    //await PopupNavigation.Instance.PushAsync(new PopupSelectSchedule());
+                    await PopupNavigation.Instance.PushAsync(new PopupGoOnline());
                 }
 
                 isTapped = false;
-                //Console.WriteLine("isActiveSwitch.IsOn.ToString(): " + isActiveSwitch.IsOn.ToString());
-                //new Controllers.Notice.Alert("Switch", isActiveSwitch.IsOn.ToString(), "Ok");
             }
         }
     }

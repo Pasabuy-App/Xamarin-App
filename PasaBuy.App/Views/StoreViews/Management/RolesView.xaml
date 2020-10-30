@@ -102,10 +102,9 @@
                         <DataTemplate x:Name="RightSwipeTemplate">
                             <Grid Padding="5,8,5,8">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Grid ClassId="{Binding Id}"
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                <Grid ClassId="{Binding Id}" IsVisible="false"
                                   Grid.Column="0"
                                   BackgroundColor="{DynamicResource PrimaryColor}"
                                   HorizontalOptions="Fill"
@@ -124,7 +123,7 @@
                                     </Grid>
                                 </Grid>
                                 <Grid ClassId="{Binding Id}" x:Name="DeleteBtn"
-                                  Grid.Column="1"
+                                  Grid.Column="0"
                                   BackgroundColor="Red"
                                   HorizontalOptions="Fill"
                                   VerticalOptions="Fill">

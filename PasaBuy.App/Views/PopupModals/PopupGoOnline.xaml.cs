@@ -55,14 +55,12 @@ namespace PasaBuy.App.Views.PopupModals
             {
                 if (_switch == "True") // store is open
                 {
-                    //new Controllers.Notice.Alert("Switch", "Store is open", "Ok"); // insert
                     Views.Navigation.MasterView._switch = true;
                     Views.Navigation.MasterView._switchlist.Clear();
                     UpdateOperations("open");
                 }
                 else // store is close
                 {
-                    //new Controllers.Notice.Alert("Switch", "Store is close", "Ok"); // update
                     Views.Navigation.MasterView._switch = false;
                     Views.Navigation.MasterView._switchlist.Clear();
                     UpdateOperations("close");
@@ -74,22 +72,20 @@ namespace PasaBuy.App.Views.PopupModals
 
             if (Views.Navigation.MasterView.MyType == "mover")
             {
-                if (_switch == "True") // store is open
+                if (_switch == "True") // mover is open
                 {
-                    //new Controllers.Notice.Alert("Switch", "Store is open", "Ok"); // insert
                     Views.Navigation.MasterView._switch = true;
                     Views.Navigation.MasterView._switchlist.Clear();
-                    UpdateOperations("open");
+                    //UpdateAttendance("open");
                 }
-                else // store is close
+                else // mover is close
                 {
-                    //new Controllers.Notice.Alert("Switch", "Store is close", "Ok"); // update
                     Views.Navigation.MasterView._switch = false;
                     Views.Navigation.MasterView._switchlist.Clear();
-                    UpdateOperations("close");
+                    //UpdateAttendance("close");
                     //save to cache then load it to set the switch to true then insert open to database.
                 }
-                Local.PSACache.Instance.UserInfo.store_status = Convert.ToBoolean(_switch);
+                Local.PSACache.Instance.UserInfo.mover_status = Convert.ToBoolean(_switch);
                 Local.PSACache.Instance.SaveUserData();
             }
 
