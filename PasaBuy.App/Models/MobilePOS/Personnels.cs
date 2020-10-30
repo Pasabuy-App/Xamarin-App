@@ -12,8 +12,11 @@ namespace PasaBuy.App.Models.MobilePOS
             public string avatar = string.Empty;
             public string name = string.Empty;
             public string dname = string.Empty;
+            public string display_name = string.Empty;
             public string position = string.Empty;
             public string date_created = string.Empty;
+            public string status = string.Empty;
+            public string activated = string.Empty;
         }
 
         private string id = string.Empty;
@@ -35,6 +38,34 @@ namespace PasaBuy.App.Models.MobilePOS
             {
                 user_id = value;
                 OnPropertyChanged("User_id");
+            }
+        }
+        private string activated = string.Empty;
+
+        public string Activated
+        {
+            get
+            {
+                return activated;
+            }
+            set
+            {
+                activated = value;
+                OnPropertyChanged("Activated");
+            }
+        }
+        private string status = string.Empty;
+
+        public string Status
+        {
+            get
+            {
+                return status;
+            }
+            set
+            {
+                status = value;
+                OnPropertyChanged("Status");
             }
         }
         public string DateCreated
