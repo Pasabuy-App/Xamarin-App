@@ -207,7 +207,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
             //this.CartItemCount = CartPageViewModel.cartDetails.Count;
             //CartPageViewModel.cartDetails.CollectionChanged += CollectionChanges;
 
-            Loadcategory(store_id);
+            //Loadcategory(store_id);
             LoadStoreDetails(store_id);
 
         }
@@ -339,7 +339,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             try
             {
-                TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", stid, "1", "", (bool success, string data) =>
+                Http.TindaFeature.Instance.StoreProductsList(stid, "active", (bool success, string data) =>
                 {
                     if (success)
                     {

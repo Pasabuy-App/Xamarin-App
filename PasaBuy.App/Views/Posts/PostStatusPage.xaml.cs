@@ -122,16 +122,14 @@ namespace PasaBuy.App.Views.Posts
 
         private async void SfButton_Clicked(object sender, EventArgs e)
         {
-            Loader.IsRunning = true;
             try
             {
-                Loader.IsRunning = true;
 
                 if (!string.IsNullOrWhiteSpace(StatusEditor.Text))
                 {
-                    if (btn == false)
+                    if (!Loader.IsRunning)
                     {
-                        btn = true;
+                        Loader.IsRunning = true;
                         Http.SocioFeature.Instance.Post_Insert(StatusEditor.Text, "", "status", filePath, "", "", "", "", "", (bool success, string data) =>
                         {
                             if (success)
@@ -142,6 +140,7 @@ namespace PasaBuy.App.Views.Posts
                                     Views.Feeds.HomePage.isFirstLoad = false;
                                     HomepageViewModel.homePostList.Clear();
                                     HomepageViewModel.LoadData("");
+                                    Loader.IsRunning = false;
                                 }
                                 else
                                 {
@@ -170,7 +169,6 @@ namespace PasaBuy.App.Views.Posts
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
                 Loader.IsRunning = false;
             }
-            Loader.IsRunning = false;
         }
     }
 }
