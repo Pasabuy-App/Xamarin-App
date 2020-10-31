@@ -166,7 +166,7 @@ namespace PasaBuy.App.ViewModels.Menu
         {
             try
             {
-                Http.HatidFeature.Instance.Mover_Data((bool success, string data) =>
+                Http.HatidPress.MoverData.Instance.GetData((bool success, string data) =>
                 {
                     if (success)
                     {
