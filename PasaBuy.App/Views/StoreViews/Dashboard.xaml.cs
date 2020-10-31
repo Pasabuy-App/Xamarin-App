@@ -29,56 +29,11 @@ namespace PasaBuy.App.Views.StoreViews
             }
         }
 
-        private async void NewOrders_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        private void NewOrders_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
-            if (!isClicked)
-            {
-                isClicked = true;
-                var item = e.ItemData as OrdersDataModel;
-                TransactionDetailsView.id = item.ID;
-                TransactionDetailsView.avatar = item.Avatar;
-                TransactionDetailsView.user_id = item.User_ID;
-                TransactionDetailsView.customer = item.Customer;
-                TransactionDetailsView.orderid = item.OrderID;
-                TransactionDetailsView.totalprice = item.TotalPrice;
-                TransactionDetailsView.datecreated = item.Date_Time;
-                TransactionDetailsView.method = item.Method;
-                TransactionDetailsView.order_type = "Pending";
-                TransactionDetailsView.stage_type = "pending";
-                OrderDetailsViewModel.LoadOrder(item.Stage, Local.PSACache.Instance.UserInfo.stid, item.ID);
-                await Navigation.PushModalAsync(new TransactionDetailsView());
-                await Task.Delay(500);
-                isClicked = false;
-            }
+
         }
-        /*void Handle_SelectionChanged(object sender, Syncfusion.XForms.TabView.SelectionChangedEventArgs e)
-        {
-            var selectedIndex = e.Index;
-            if (selectedIndex == 0)
-            {
-                //new Alert("New Orders", "New Orders", "New Orders");
-                //DashboardOrdersViewModel.orderList.Clear();
-                DashboardOrdersViewModel.LoadOrder("pending", "");
-            }
-            if (selectedIndex == 1)
-            {
-                //new Alert("Pending", "Pending", "Pending");
-                //DashboardOrdersViewModel.orderList.Clear();
-                DashboardOrdersViewModel.LoadOrder("received", "");
-            }
-            if (selectedIndex == 2)
-            {
-                //new Alert("Declined", "Declined", "Declined");
-                //DashboardOrdersViewModel.orderList.Clear();
-                DashboardOrdersViewModel.LoadOrder("cancelled", "");
-            }
-            if (selectedIndex == 3)
-            {
-                //new Alert("Completed", "Completed", "Completed");
-                //DashboardOrdersViewModel.orderList.Clear();
-                DashboardOrdersViewModel.LoadOrder("shipping", "");
-            }
-        }*/
+
         private async void SfTabView_TabItemTapped(object sender, Syncfusion.XForms.TabView.TabItemTappedEventArgs e)
         {
             if (!isClicked)
@@ -116,26 +71,5 @@ namespace PasaBuy.App.Views.StoreViews
                 isClicked = false;
             }
         }
-
-        /*private void SfTabView_SelectionChanged(object sender, Syncfusion.XForms.TabView.SelectionChangedEventArgs e)
-        {
-            var selectedIndex = e.Index;
-            if (selectedIndex == 0)
-            {
-                DashboardOrdersViewModel.LoadOrder("pending", "");
-            }
-            if (selectedIndex == 1)
-            {
-                DashboardOrdersViewModel.LoadOrder("received", "");
-            }
-            if (selectedIndex == 2)
-            {
-                DashboardOrdersViewModel.LoadOrder("cancelled", "");
-            }
-            if (selectedIndex == 3)
-            {
-                DashboardOrdersViewModel.LoadOrder("shipping", "");
-            }
-        }*/
     }
 }

@@ -66,7 +66,7 @@
 
                     <Grid Grid.Row="0"
                           Grid.ColumnSpan="2">
-                        <Entry x:Name="PersonnelName"
+                        <Entry x:Name="PersonnelName" IsEnabled="False"
                            Grid.Row="0"
                            Grid.Column="0"
                            Grid.ColumnSpan="2"
@@ -74,19 +74,17 @@
                            FontFamily="{StaticResource Montserrat-Regular}"
                            MaxLength="100"
                            PlaceholderColor="{DynamicResource Gray-700}"
-                           Text="Personnel Name"
                            VerticalOptions="Center" />
                     </Grid>
 
                     <Grid Grid.Row="1"
                           Grid.ColumnSpan="2">
                         <Picker x:Name="PositionPicker" 
-                                HorizontalOptions="FillAndExpand"
-                                Title="Manager">
+                                ItemsSource="{Binding RolesList}"
+                                ItemDisplayBinding="{Binding RoleTitle}"
+                                Title="Select a role."
+                                HorizontalOptions="FillAndExpand">
                             <Picker.Items>
-                                <x:String>Manager</x:String>
-                                <x:String>Store Staff</x:String>
-                                <x:String>Cashier</x:String>
                             </Picker.Items>
                         </Picker>
                     </Grid>

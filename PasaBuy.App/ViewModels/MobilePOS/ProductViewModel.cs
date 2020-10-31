@@ -61,7 +61,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             IsBusy = true;
             productsList = new ObservableCollection<ProductData>();
             productsList.Clear();
-            LoadData("");
+            //LoadData("");
             /*productsList.Add(new ProductData()
             {
                 ID = "0",

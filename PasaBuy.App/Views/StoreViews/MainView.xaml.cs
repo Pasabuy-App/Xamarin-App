@@ -17,9 +17,9 @@ namespace PasaBuy.App.Views.StoreViews
             this.BindingContext = new MainViewModel();
         }
 
-        private async void NewOrders_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        private void NewOrders_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
-            if (!isClicked)
+            /*if (!isClicked)
             {
                 isClicked = true;
                 var item = e.ItemData as OrdersDataModel;
@@ -35,7 +35,7 @@ namespace PasaBuy.App.Views.StoreViews
                 await Navigation.PushModalAsync(new TransactionDetailsView());
                 await Task.Delay(500);
                 isClicked = false;
-            }
+            }*/
         }
 
         private async void SfTabView_TabItemTapped(object sender, Syncfusion.XForms.TabView.TabItemTappedEventArgs e)
