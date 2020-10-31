@@ -95,7 +95,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    Http.DataFeature.Instance.Search_User("", "", (bool success, string data) =>
+                    Http.DataVice.Users.Instance.Search_User("", "", (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -138,7 +138,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         {
             try
             {
-                Http.DataFeature.Instance.Search_User(search, "", (bool success, string data) =>
+                Http.DataVice.Users.Instance.Search_User(search, "", (bool success, string data) =>
                 {
                     if (success)
                     {

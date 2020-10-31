@@ -47,16 +47,14 @@ namespace PasaBuy.App.Views
         {
             try
             {
-                Http.DataFeature.Instance.VerifyUser((bool success, string data) =>
+                Http.DataVice.Users.Instance.VerifyUser((bool success, string data) =>
                 {
                     if (success)
                     {
-                        //Console.WriteLine("Verified!");
                         verify = "VERIFIED";
                     }
                     else
                     {
-                        //Console.WriteLine("Unverified!");
                         PopupNavigation.Instance.PushAsync(new PopupStartup());
                         verify = "UNVERIFIED";
                     }

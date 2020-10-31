@@ -230,6 +230,13 @@ namespace PasaBuy.App.Models.Driver
             public string status = string.Empty;
             public string date_created = string.Empty;
             public string date_ordered = string.Empty;
+
+            public string ID = string.Empty;
+            public string order_id = string.Empty;
+            public string total_price = string.Empty;
+            public string customer_name = string.Empty;
+            public string customer_avatar = string.Empty;
+            public string stages = string.Empty;
         }
 
     }
