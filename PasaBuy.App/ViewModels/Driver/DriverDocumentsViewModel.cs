@@ -68,7 +68,7 @@ namespace PasaBuy.App.ViewModels.Driver
                 {
                     IsBusy = true;
                     _documentsList.Clear();
-                    Http.HatidFeature.Instance.Listing_VDocuments(PSACache.Instance.UserInfo.vhid, "", (bool success, string data) =>
+                    Http.HatidPress.Documents.Instance.Listing_VDocuments( "", (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -120,7 +120,7 @@ namespace PasaBuy.App.ViewModels.Driver
             try
             {
                 _documentsList.Clear();
-                Http.HatidFeature.Instance.Listing_VDocuments(PSACache.Instance.UserInfo.vhid, "", (bool success, string data) =>
+                Http.HatidPress.Documents.Instance.Listing_VDocuments("", (bool success, string data) =>
                 {
                     if (success)
                     {
