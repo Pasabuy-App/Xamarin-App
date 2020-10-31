@@ -139,8 +139,7 @@ namespace PasaBuy.App.Views.PopupModals
                 {
                     if (!IsRunning.IsRunning)
                     {
-                       
-                        Http.HatidFeature.Instance.Accept_Order(odid, async (bool success, string data) =>
+                        Http.HatidPress.Order.Instance.Accept_Order(odid, async (bool success, string data) =>
                         {
                             if (success)
                             {
