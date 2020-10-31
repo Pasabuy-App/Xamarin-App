@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 
-
 namespace PasaBuy.App.Http.MobilePOS
 {
     public class Wallet
