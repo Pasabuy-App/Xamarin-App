@@ -46,7 +46,7 @@ namespace PasaBuy.App.Views.Settings
                         filePath = !string.IsNullOrEmpty(filePath) ? filePath : "";
                         ContactPersonEntry.Text = !string.IsNullOrWhiteSpace(ContactPersonEntry.Text) ? ContactPersonEntry.Text : "";
                         //Console.WriteLine("." + filePath+ ". ."+ type + ". ." + AddressVar.co + ". ." + AddressVar.pr + ". ." + AddressVar.ct + ". ." + AddressVar.br + ". ." + StreetEntry.Text + ". ." + ContactEntry.Text + ". ." + ContactTypePicker.Text + ". ." + ContactPersonEntry.Text + ".");
-                        DataVice.Address.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, filePath, type, AddressVar.co, AddressVar.pr, AddressVar.ct, AddressVar.br, StreetEntry.Text, ContactEntry.Text, ContactTypePicker.Text, ContactPersonEntry.Text, "", "", (bool success, string data) =>
+                        Http.DataVice.Address.Instance.Insert( filePath, type, AddressVar.co, AddressVar.pr, AddressVar.ct, AddressVar.br, StreetEntry.Text, ContactEntry.Text, ContactTypePicker.Text, ContactPersonEntry.Text, "", "", (bool success, string data) =>
                         {
                             if (success)
                             {

@@ -903,9 +903,6 @@
     <Reference Include="CoinPress-PCL">
       <HintPath>Resources\CoinPress-PCL.dll</HintPath>
     </Reference>
-    <Reference Include="DataVice-PCL">
-      <HintPath>Resources\DataVice-PCL.dll</HintPath>
-    </Reference>
     <Reference Include="HatidPress-PCL">
       <HintPath>Resources\HatidPress-PCL.dll</HintPath>
     </Reference>

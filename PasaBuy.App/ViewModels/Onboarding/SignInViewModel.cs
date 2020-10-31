@@ -1,5 +1,4 @@
-﻿using DataVice;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Onboarding;
@@ -138,7 +137,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
             try
             {
                 State = true;
-                Users.Instance.Auth(Email, Password, (bool success, string data) =>
+                Http.DataVice.Users.Instance.Auth(Email, Password, (bool success, string data) =>
                 {
                     /*if (!success && HtmlUtils.ConvertToPlainText(data) == "Please activate your account first.")
                     {

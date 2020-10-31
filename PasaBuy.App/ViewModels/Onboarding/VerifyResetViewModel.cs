@@ -1,5 +1,4 @@
-﻿using DataVice;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Onboarding;
@@ -100,7 +99,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
                 if (!State)
                 {
                     State = true;
-                    Users.Instance.Activate(ActivationKey, VerifyAccountVar.un, (bool success, string data) =>
+                    Http.DataVice.Users.Instance.Activate(ActivationKey, VerifyAccountVar.un, (bool success, string data) =>
                     {
                         if (success)
                         {

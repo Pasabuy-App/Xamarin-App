@@ -1,5 +1,4 @@
-﻿using DataVice;
-using PasaBuy.App.Controllers.Notice;
+﻿using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Onboarding;
 using PasaBuy.App.Views.Onboarding;
@@ -75,7 +74,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
                 if (!State)
                 {
                     State = true;
-                    Users.Instance.Forgot(Email, (bool success, string data) =>
+                    Http.DataVice.Users.Instance.Forgot(Email, (bool success, string data) =>
                     {
                         if (success)
                         {

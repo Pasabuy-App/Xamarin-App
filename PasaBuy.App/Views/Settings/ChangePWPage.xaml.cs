@@ -1,5 +1,4 @@
-﻿using DataVice;
-using PasaBuy.App.Controllers.Notice;
+﻿using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using System;
 using System.Threading.Tasks;
@@ -43,7 +42,7 @@ namespace PasaBuy.App.Views.Settings
                     if (!isEnable)
                     {
                         isEnable = true;
-                        Users.Instance.ChangePassword(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, OldPassword.Text, NewPassword.Text, ConfirmNewPassword.Text, (bool success, string data) =>
+                        Http.DataVice.Users.Instance.ChangePassword(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, OldPassword.Text, NewPassword.Text, ConfirmNewPassword.Text, (bool success, string data) =>
                         {
                             if (success)
                             {

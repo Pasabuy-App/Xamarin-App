@@ -1,5 +1,4 @@
-﻿using DataVice;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Settings;
@@ -79,7 +78,7 @@ namespace PasaBuy.App.Views.StoreViews
         {
             try
             {
-                Upload.Instance.Image(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, filepath, PSACache.Instance.UserInfo.stid, "", type, "", (bool success, string data) =>
+                Http.DataVice.Upload.Instance.Image(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, filepath, PSACache.Instance.UserInfo.stid, "", type, "", (bool success, string data) =>
                 {
                     if (success)
                     {

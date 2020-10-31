@@ -1,5 +1,4 @@
-﻿using DataVice;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Onboarding;
 using System;
@@ -21,7 +20,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
             countryCollection = new ObservableCollection<CountryData>();
             try
             {
-                Locations.Instance.Countries("datavice", (bool success, string data) =>
+                Http.DataVice.Locations.Instance.Countries("datavice", (bool success, string data) =>
                 {
                     if (success)
                     {

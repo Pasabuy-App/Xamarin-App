@@ -61,7 +61,7 @@ namespace PasaBuy.App.Views.Settings
                     bool answer = await DisplayAlert("Delete Address?", "Are you sure to delete this?", "Yes", "No");
                     if (answer)
                     {
-                        DataVice.Address.Instance.Delete(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, item.SelectedAddress, (bool success, string data) =>
+                        Http.DataVice.Address.Instance.Delete( item.SelectedAddress, (bool success, string data) =>
                         {
                             if (success)
                             {

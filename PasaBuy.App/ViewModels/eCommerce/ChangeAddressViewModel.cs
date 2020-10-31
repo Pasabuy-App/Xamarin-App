@@ -42,7 +42,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
             try
             {
                 isRunning = true;
-                DataVice.Address.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, (bool success, string data) =>
+                Http.DataVice.Address.Instance.Listing((bool success, string data) =>
                 {
                     if (success)
                     {
@@ -128,7 +128,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 if (!isRunning)
                 {
                     isRunning = true;
-                    DataVice.Address.Instance.Update(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, AddressInMapPage.address_id, "", "", "", "", StreetEntry, AddressInMapPage.lat.ToString(), AddressInMapPage.lon.ToString(), (bool success, string data) =>
+                    Http.DataVice.Address.Instance.Update(AddressInMapPage.address_id, "", "", "", "", StreetEntry, AddressInMapPage.lat.ToString(), AddressInMapPage.lon.ToString(), (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -176,7 +176,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 {
                     isRunning = true;
                     var btn = obj as TapGestureRecognizer;
-                    DataVice.Address.Instance.SelectByID(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, btn.ClassId, (bool success, string data) =>
+                    Http.DataVice.Address.Instance.SelectByID( btn.ClassId, (bool success, string data) =>
                     {
                         if (success)
                         {

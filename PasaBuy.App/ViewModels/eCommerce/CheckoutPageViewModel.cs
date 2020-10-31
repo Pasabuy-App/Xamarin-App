@@ -116,7 +116,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
         {
             try
             {
-                DataVice.Address.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, (bool success, string data) =>
+                Http.DataVice.Address.Instance.Listing( (bool success, string data) =>
                 {
                     if (success)
                     {

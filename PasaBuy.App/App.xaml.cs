@@ -21,7 +21,6 @@ namespace PasaBuy.App
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(PSAConfig.sfApiKey);
 
             //Initialized all PCL required by PasaBuy.App
-            DataVice.DVHost.Instance.Initialized(PSAConfig.CurrentRestUrl);
             SocioPress.SPHost.Instance.Initialized(PSAConfig.CurrentRestUrl);
             TindaPress.TPHost.Instance.Initialized(PSAConfig.CurrentRestUrl);
             HatidPress.HPHost.Instance.Initialized(PSAConfig.CurrentRestUrl);
