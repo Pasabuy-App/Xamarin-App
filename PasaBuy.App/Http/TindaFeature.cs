@@ -131,7 +131,7 @@ namespace PasaBuy.App.Http
             }
         }
 
-        public async void FoodList(string type, Action<bool, string> callback)
+        public async void StoreTypeList(string type, Action<bool, string> callback)
         {
             try
             {

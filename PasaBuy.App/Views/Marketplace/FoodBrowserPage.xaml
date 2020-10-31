@@ -9,7 +9,10 @@
              xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms" 
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
              xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms" 
-             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:behavior1="clr-namespace:PasaBuy.App.Behaviors" xmlns:loading="clr-namespace:PasaBuy.App.UserControls" xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+             xmlns:behavior1="clr-namespace:PasaBuy.App.Behaviors" 
+             xmlns:loading="clr-namespace:PasaBuy.App.UserControls" 
+             xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch"
              BackgroundColor="{DynamicResource Gray-White}"
              x:Class="PasaBuy.App.Views.Marketplace.FoodBrowserPage">
 

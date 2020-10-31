@@ -149,7 +149,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    Http.TindaFeature.Instance.FoodList("food/drinks", (bool success, string data) =>
+                    Http.TindaFeature.Instance.StoreTypeList("food/drinks", (bool success, string data) =>
                     {
                         if (success)
                         {
