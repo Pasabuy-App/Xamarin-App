@@ -15,6 +15,7 @@ namespace PasaBuy.App.Views.PopupModals
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PopupChooseRole : PopupPage
     {
+        public static string user_id;
         public PopupChooseRole()
         {
             InitializeComponent();

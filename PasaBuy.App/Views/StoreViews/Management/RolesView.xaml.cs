@@ -18,7 +18,7 @@ namespace PasaBuy.App.Views.StoreViews.Management
             this.BindingContext = new RolesViewModel();
         }
 
-        private async void Update_Tapped(object sender, EventArgs e)
+        /*private async void Update_Tapped(object sender, EventArgs e)
         {
             await PopupNavigation.Instance.PushAsync(new PopupEditRole());
         }
@@ -56,7 +56,7 @@ namespace PasaBuy.App.Views.StoreViews.Management
             {
                 new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
             }
-        }
+        }*/
 
         private async void ToolbarItem_Clicked(object sender, EventArgs e)
         {

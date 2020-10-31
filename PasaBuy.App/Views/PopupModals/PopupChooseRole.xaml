@@ -131,7 +131,7 @@
                                             
                                         </Grid>
                                         <controls:CustomShadowFrame.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Path=BindingContext.AddRoleCommand, Source={x:Reference StackList}}" CommandParameter="{Binding RoleTitle}"/>
+                                            <TapGestureRecognizer Command="{Binding Path=BindingContext.AddRoleCommand, Source={x:Reference StackList}}" CommandParameter="{Binding .}"/>
                                         </controls:CustomShadowFrame.GestureRecognizers>
                                     </controls:CustomShadowFrame>
                                 </DataTemplate>

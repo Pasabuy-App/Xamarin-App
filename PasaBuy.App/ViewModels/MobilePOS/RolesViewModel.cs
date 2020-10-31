@@ -61,6 +61,9 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             _rolesList = new ObservableCollection<RolesModel>();
             LoadRoleList();
 
+            AddRoleCommand = new Command<object>(AddRoleClicked);
+            DeleteRoleCommand = new Command<object>(DeleteRoleClicked);
+            UpdateRoleCommand = new Command<object>(UpdateRoleClicked);
 
             RefreshCommand = new Command<string>((key) =>
             {
@@ -105,25 +108,118 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
         }
 
-        public ICommand AddRoleCommand
+        public void LoadListRole()
         {
-            get
+            try
             {
-                return new Command<string>((x) => AddRoleClicked(x));
+                this.RolesList.Clear();
+                Http.POSFeature.Instance.Role_List("", "active", (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        RolesModel role = Newtonsoft.Json.JsonConvert.DeserializeObject<RolesModel>(data);
+                        if (role.data.Length > 0)
+                        {
+                            for (int i = 0; i < role.data.Length; i++)
+                            {
+                                this.RolesList.Add(new RolesModel()
+                                {
+                                    Id = role.data[i].ID,
+                                    RoleTitle = role.data[i].title,
+                                    RoleInfo = role.data[i].info,
+                                    RoleStatus = role.data[i].status,
+                                });
+                            }
+                        }
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", Local.HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
         }
 
-        private async void AddRoleClicked(string id)
+        public Command<object> AddRoleCommand { get; set; }
+
+        private void AddRoleClicked(object obj)
         {
-            if (!IsBusy)
+            try
             {
-                IsBusy = true;
-                await App.Current.MainPage.DisplayAlert("Ok", "Selected user role:" + id, "OK");
-                await PopupNavigation.Instance.PopAsync();
-                await App.Current.MainPage.Navigation.PopModalAsync();
+                if (!IsBusy)
+                {
+                    IsBusy = true;
+                    var role = obj as RolesModel;
+                    Http.POSFeature.Instance.Personnel_Insert(PopupChooseRole.user_id, role.Id, "1234", async (bool success, string data) =>
+                    {
+                        if (success)
+                        {
+                            PersonnelsViewModel._personnelsList.Clear();
+                            PersonnelsViewModel.LoadData();
+                            await PopupNavigation.Instance.PopAsync();
+                            await App.Current.MainPage.Navigation.PopModalAsync();
+                            IsBusy = false;
+                        }
+                        else
+                        {
+                            new Controllers.Notice.Alert("Notice to User", Local.HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsBusy = false;
+                        }
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
                 IsBusy = false;
             }
+        }
 
+        public Command<object> DeleteRoleCommand { get; set; }
+
+        private async void DeleteRoleClicked(object obj)
+        {
+            try
+            {
+                if (!IsBusy)
+                {
+                    IsBusy = true;
+                    bool answer = await Application.Current.MainPage.DisplayAlert("Delete Confirmation", "Are you sure to delete this?", "Yes", "No");
+                    if (answer)
+                    {
+                        var role = obj as RolesModel;
+                        Http.POSFeature.Instance.Role_Delete(role.Id, (bool success, string data) =>
+                        {
+                            if (success)
+                            {
+                                LoadListRole();
+                                IsBusy = false;
+                            }
+                            else
+                            {
+                                new Controllers.Notice.Alert("Notice to User", Local.HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                IsBusy = false;
+                            }
+                        });
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                IsBusy = false;
+            }
+        }
+
+        public Command<object> UpdateRoleCommand { get; set; }
+
+        private async void UpdateRoleClicked(object obj)
+        {
+            await PopupNavigation.Instance.PushAsync(new PopupEditRole());
         }
     }
 }

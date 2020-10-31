@@ -37,6 +37,10 @@ namespace PasaBuy.App.Http
         #endregion
 
         #region VerifyUser Method
+        /// <summary>
+        /// Verify user.
+        /// </summary>
+        /// <param name="callback"></param>
         public async void VerifyUser(Action<bool, string> callback)
         {
             var dict = new Dictionary<string, string>();
@@ -61,6 +65,43 @@ namespace PasaBuy.App.Http
                 callback(false, "Network Error! Check your connection.");
             }
         }
+
+        #endregion
+
+        #region Search User
+
+        /// <summary>
+        /// Search user.
+        /// </summary>
+        /// <param name="search"></param>
+        /// <param name="lid"></param>
+        /// <param name="callback"></param>
+        public async void Search_User(string search, string lid, Action<bool, string> callback)
+        {
+            var dict = new Dictionary<string, string>();
+                dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
+                dict.Add("snky", PSACache.Instance.UserInfo.snky);
+                dict.Add("search", search);
+            var content = new FormUrlEncodedContent(dict);
+
+            var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/datavice/v1/user/search", content);
+            response.EnsureSuccessStatusCode();
+
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+                Token token = JsonConvert.DeserializeObject<Token>(result);
+
+                bool success = token.status == "success" ? true : false;
+                string data = token.status == "success" ? result : token.message;
+                callback(success, data);
+            }
+            else
+            {
+                callback(false, "Network Error! Check your connection.");
+            }
+        }
+
         #endregion
     }
 }
