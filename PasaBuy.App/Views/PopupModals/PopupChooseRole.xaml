@@ -121,13 +121,13 @@
                                                    Grid.Row="0"
                                                    Text="{Binding RoleTitle}"
                                                    TextColor="{DynamicResource Gray-900}" />
-                                            <!--<Label FontFamily="{StaticResource Montserrat-Medium}"
+                                            <Label FontFamily="{StaticResource Montserrat-Medium}"
                                                    FontSize="{DynamicResource SmallSize}"
                                                    VerticalTextAlignment="Center"
                                                    HorizontalTextAlignment="Start"
                                                    Grid.Row="1"
-                                                   Text="{Binding RoleInfo}"
-                                                   TextColor="{DynamicResource Gray-900}" />-->
+                                                   Text="{Binding RoleStatus}"
+                                                   TextColor="{DynamicResource Gray-900}" />
                                             
                                         </Grid>
                                         <controls:CustomShadowFrame.GestureRecognizers>
