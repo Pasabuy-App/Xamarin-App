@@ -29,7 +29,7 @@ namespace PasaBuy.App.ViewModels.Driver
             try
             {
                 _MakerList = new ObservableCollection<TypeListModel>();
-                Http.HatidFeature.Instance.Listing_Maker(val, "", "", (bool success, string data) =>
+                Http.HatidPress.Vehicle.Instance.Listing_Maker(val, "", "", (bool success, string data) =>
                 {
                     if (success)
                     {

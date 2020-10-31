@@ -30,7 +30,7 @@ namespace PasaBuy.App.ViewModels.Driver
             try
             {
                 _ModelList = new ObservableCollection<TypeListModel>();
-                Http.HatidFeature.Instance.Listing_Model(val, "",  "", "", (bool success, string data) =>
+                Http.HatidPress.Vehicle.Instance.Listing_Model(val, "", "", "", (bool success, string data) =>
                 {
                     if (success)
                     {

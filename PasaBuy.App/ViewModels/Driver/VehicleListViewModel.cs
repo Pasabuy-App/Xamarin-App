@@ -150,7 +150,7 @@ namespace PasaBuy.App.ViewModels.Driver
                 {
                     IsBusy = true;
                     _vehicleList.Clear();
-                    Http.HatidFeature.Instance.Listing_Vehicle("", PSACache.Instance.UserInfo.mvid, "", "", "", "", "", "", (bool success, string data) =>
+                    Http.HatidPress.Vehicle.Instance.Listing_Vehicle( "", "", "", "", "", "", (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -186,7 +186,7 @@ namespace PasaBuy.App.ViewModels.Driver
             try
             {
                 _vehicleList.Clear();
-                Http.HatidFeature.Instance.Listing_Vehicle("", PSACache.Instance.UserInfo.mvid, "", "", "", "", "", "", (bool success, string data) =>
+                Http.HatidPress.Vehicle.Instance.Listing_Vehicle("", "", "", "", "", "", (bool success, string data) =>
                 {
                     if (success)
                     {

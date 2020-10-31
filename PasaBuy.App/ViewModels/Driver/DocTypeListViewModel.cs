@@ -29,7 +29,7 @@ namespace PasaBuy.App.ViewModels.Driver
             try
             {
                 _DocTypeList = new ObservableCollection<TypeListModel>();
-                Http.HatidFeature.Instance.Listing_DocTyoe((bool success, string data) =>
+                Http.HatidPress.Documents.Instance.Listing_DocType((bool success, string data) =>
                 {
                     if (success)
                     {
