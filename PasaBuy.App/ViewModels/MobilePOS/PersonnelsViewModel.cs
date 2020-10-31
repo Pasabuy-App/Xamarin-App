@@ -129,7 +129,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    Http.POSFeature.Instance.Role_List("", "active", (bool success, string data) =>
+                    Http.MobilePOS.Role.Instance.Listing("", "active", (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -169,7 +169,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         {
             try
             {
-                Http.POSFeature.Instance.Personnel_Listing("", "", "", (bool success, string data) =>
+                Http.MobilePOS.Personnel.Instance.Listing("", "", "", (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -216,7 +216,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 {
                     IsRunning = true;
                     this.PersonnelsList.Clear();
-                    Http.POSFeature.Instance.Personnel_Listing("", "", "", (bool success, string data) =>
+                    Http.MobilePOS.Personnel.Instance.Listing("", "", "", (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -272,7 +272,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                     if (answer)
                     {
                         var person = obj as Personnels;
-                        Http.POSFeature.Instance.Personnel_Delete(person.Id, (bool success, string data) =>
+                        Http.MobilePOS.Personnel.Instance.Delete(person.Id, (bool success, string data) =>
                         {
                             if (success)
                             {
@@ -322,8 +322,10 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             {
                 IsRunning = true;
                 var person = obj as Personnels;
-                PopupEditPersonnel.id = person.Id;
-                await PopupNavigation.Instance.PushAsync(new PopupEditPersonnel());
+                /*PopupEditPersonnel.id = person.Id;
+                PopupEditPersonnel.role_id = person.Position;
+                PopupEditPersonnel.name = person.FullName;*/
+                await PopupNavigation.Instance.PushAsync(new PopupChooseRole());
                 IsRunning = false;
             }
         }

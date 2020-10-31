@@ -79,7 +79,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    Http.POSFeature.Instance.Personnel_Store_List("active", (bool success, string data) =>
+                    Http.MobilePOS.Personnel.Instance.Store_List("active", (bool success, string data) =>
                     {
                         if (success)
                         {

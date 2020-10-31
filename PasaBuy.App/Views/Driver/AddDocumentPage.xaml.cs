@@ -105,7 +105,7 @@ namespace PasaBuy.App.Views.Driver
                     {
                         if (MasterView.MyType == "mover")
                         {
-                            Http.HatidFeature.Instance.Insert_VDocuments(filepath, PSACache.Instance.UserInfo.vhid, doc_type_id, "", (bool success, string data) =>
+                            Http.HatidPress.Documents.Instance.Insert_VDocuments(filepath, doc_type_id, "", (bool success, string data) =>
                             {
                                 if (success)
                                 {

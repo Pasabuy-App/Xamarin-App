@@ -73,7 +73,7 @@ namespace PasaBuy.App.Views.Driver
         {
             try
             {
-                Http.POSFeature.Instance.Order_List(odid, (bool success, string data) =>
+                Http.MobilePOS.Order.Instance.Listing(odid, async (bool success, string data) =>
                 {
                     if (success)
                     {

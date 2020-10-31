@@ -31,7 +31,6 @@ namespace PasaBuy.App.Views.PopupModals
         {
             string days = string.Empty;
             days = day != "Monday" ? day != "Tuesday" ? day != "Wednesday" ? day != "Thursday" ? day != "Friday" ? day != "Saturday" ? "sun" : "sat" : "fri" : "thu" : "wed" : "tue" : "mon";
-            //new Alert(days, Open.Time + ". ." + Close.Time, day);
             if (Open.Time.ToString() == "00:00:00" || Close.Time.ToString() == "00:00:00")
             {
                 new Alert("Notice to User", "Please enter opening or closing time.", "Try Again");
@@ -40,7 +39,7 @@ namespace PasaBuy.App.Views.PopupModals
             {
                 try
                 {
-                    Http.HatidFeature.Instance.Insert_Schedule(days, Open.Time.ToString(), Close.Time.ToString(), (bool success, string data) =>
+                    Http.HatidPress.Schedule.Instance.Insert_Schedule(days, Open.Time.ToString(), Close.Time.ToString(), (bool success, string data) =>
                     {
                         if (success)
                         {

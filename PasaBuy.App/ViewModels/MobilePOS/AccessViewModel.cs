@@ -90,7 +90,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 }
                 else
                 {
-                    Http.POSFeature.Instance.Role_Insert(this.Name, this.Description, _myAccessList, (bool success, string data) =>
+                    Http.MobilePOS.Role.Instance.Insert(this.Name, this.Description, _myAccessList, (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -114,7 +114,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         {
             try
             {
-                Http.POSFeature.Instance.Access_List((bool success, string data) =>
+                Http.MobilePOS.Role.Instance.AccessList((bool success, string data) =>
                 {
                     if (success)
                     {

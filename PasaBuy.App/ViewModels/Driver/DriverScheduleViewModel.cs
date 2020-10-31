@@ -56,7 +56,7 @@ namespace PasaBuy.App.ViewModels.Driver
             try
             {
                 _scheduleList.Clear();
-                Http.HatidFeature.Instance.Listing_Schedule((bool success, string data) =>
+                Http.HatidPress.Schedule.Instance.Listing_Schedule((bool success, string data) =>
                 {
                     if (success)
                     {
@@ -88,27 +88,22 @@ namespace PasaBuy.App.ViewModels.Driver
                             if (datas.data[i].types == "wed")
                             {
                                 wed = open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
-                                //wed = datas.data[i].open + " AM " + datas.data[i].close + " PM";
                             }
                             if (datas.data[i].types == "thu")
                             {
                                 thu = open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
-                                //thu = datas.data[i].open + " AM " + datas.data[i].close + " PM";
                             }
                             if (datas.data[i].types == "fri")
                             {
                                 fri = open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
-                                //fri = datas.data[i].open + " AM " + datas.data[i].close + " PM";
                             }
                             if (datas.data[i].types == "sat")
                             {
                                 sat = open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
-                                //sat = datas.data[i].open + " AM " + datas.data[i].close + " PM";
                             }
                             if (datas.data[i].types == "sun")
                             {
                                 sun = open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
-                                //sun = datas.data[i].open + " AM " + datas.data[i].close + " PM";
                             }
                         }
                         _scheduleList.Add(new DriverScheduleModel()

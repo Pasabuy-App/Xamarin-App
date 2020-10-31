@@ -61,7 +61,7 @@ namespace PasaBuy.App.ViewModels
                 if (!IsBusy)
                 {
                     IsBusy = true;
-                    Http.POSFeature.Instance.Order_List(odid, (bool success, string data) =>
+                    Http.MobilePOS.Order.Instance.Listing(odid, async (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -116,7 +116,7 @@ namespace PasaBuy.App.ViewModels
                     if (!IsBusy)
                     {
                         IsBusy = true;
-                        Http.POSFeature.Instance.Order_Update_Status(odid, status, async (bool success, string data) =>
+                        Http.MobilePOS.Order.Instance.UpdateStatus(odid, status, async (bool success, string data) =>
                         {
                             if (success)
                             {

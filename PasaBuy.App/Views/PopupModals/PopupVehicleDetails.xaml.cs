@@ -82,7 +82,7 @@ namespace PasaBuy.App.Views.PopupModals
                     isClicked = true;
                     if (!string.IsNullOrEmpty(type_id) && !string.IsNullOrEmpty(maker_id) && !string.IsNullOrEmpty(model_id))
                     {
-                        Http.HatidFeature.Instance.Vehicle_Insert(PSACache.Instance.UserInfo.mvid, type_id, PlateNumber.Text, maker_id, model_id, async (bool success, string data) =>
+                        Http.HatidPress.Vehicle.Instance.Vehicle_Insert(type_id, PlateNumber.Text, maker_id, model_id, async (bool success, string data) =>
                         {
                             if (success)
                             {

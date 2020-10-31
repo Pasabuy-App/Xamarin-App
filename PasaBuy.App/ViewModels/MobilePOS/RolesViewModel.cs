@@ -77,7 +77,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         {
             try
             {
-                Http.POSFeature.Instance.Role_List("", "active", (bool success, string data) =>
+                Http.MobilePOS.Role.Instance.Listing("", "", (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -91,7 +91,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                     Id = role.data[i].ID,
                                     RoleTitle = role.data[i].title,
                                     RoleInfo = role.data[i].info,
-                                    RoleStatus = role.data[i].status,
+                                    RoleStatus = role.data[i].status == "active" ? "Active" : "Inactive",
                                 });
                             }
                         }
@@ -113,7 +113,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             try
             {
                 this.RolesList.Clear();
-                Http.POSFeature.Instance.Role_List("", "active", (bool success, string data) =>
+                Http.MobilePOS.Role.Instance.Listing("", "active", (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -127,7 +127,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                     Id = role.data[i].ID,
                                     RoleTitle = role.data[i].title,
                                     RoleInfo = role.data[i].info,
-                                    RoleStatus = role.data[i].status,
+                                    RoleStatus = role.data[i].status == "active" ? "Active" : "Inactive",
                                 });
                             }
                         }
@@ -154,7 +154,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 {
                     IsBusy = true;
                     var role = obj as RolesModel;
-                    Http.POSFeature.Instance.Personnel_Insert(PopupChooseRole.user_id, role.Id, "1234", async (bool success, string data) =>
+                    Http.MobilePOS.Personnel.Instance.Insert(PopupChooseRole.user_id, role.Id, "1234", async (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -192,7 +192,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                     if (answer)
                     {
                         var role = obj as RolesModel;
-                        Http.POSFeature.Instance.Role_Delete(role.Id, (bool success, string data) =>
+                        Http.MobilePOS.Role.Instance.Delete(role.Id, (bool success, string data) =>
                         {
                             if (success)
                             {
