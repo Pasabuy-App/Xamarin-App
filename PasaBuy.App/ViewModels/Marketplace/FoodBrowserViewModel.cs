@@ -154,6 +154,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         if (success)
                         {
                             FoodStoreListData datas = JsonConvert.DeserializeObject<FoodStoreListData>(data);
+
                             for (int i = 0; i < datas.data.Length; i++)
                             {
                                 foodstorelist.Add(new FoodStore()

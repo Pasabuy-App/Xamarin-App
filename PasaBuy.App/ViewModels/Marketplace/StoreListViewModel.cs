@@ -164,7 +164,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             try
             {
-                TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, "", "1", lastid, (bool success, string data) =>
+                Http.TindaFeature.Instance.StoreByCategoryList(catid, async (bool success, string data) =>
                 {
                     if (success)
                     {

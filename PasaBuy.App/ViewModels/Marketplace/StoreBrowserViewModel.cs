@@ -180,7 +180,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, "", "1", "", async (bool success, string data) =>
+                    Http.TindaFeature.Instance.StoreByCategoryList(catid, async (bool success, string data) => 
                     {
                         if (success)
                         {
