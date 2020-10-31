@@ -77,7 +77,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         {
             try
             {
-                Http.POSFeature.Instance.Role_List("", "", (bool success, string data) =>
+                Http.MobilePOS.Role.Instance.Listing("", "", (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -113,7 +113,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             try
             {
                 this.RolesList.Clear();
-                Http.POSFeature.Instance.Role_List("", "active", (bool success, string data) =>
+                Http.MobilePOS.Role.Instance.Listing("", "active", (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -192,7 +192,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                     if (answer)
                     {
                         var role = obj as RolesModel;
-                        Http.POSFeature.Instance.Role_Delete(role.Id, (bool success, string data) =>
+                        Http.MobilePOS.Role.Instance.Delete(role.Id, (bool success, string data) =>
                         {
                             if (success)
                             {
