@@ -14,16 +14,29 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         public static ObservableCollection<OrdersDataModel> orderList;
         public ObservableCollection<OrdersDataModel> OrderList
         {
-            get { return orderList; }
-            set { orderList = value; this.NotifyPropertyChanged(); }
+            get 
+            { 
+                return orderList; 
+            }
+            set 
+            { 
+                if (orderList != value)
+                {
+                    orderList = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
         }
+        public static string order_id;
         #endregion
+
         public OrderDetailsViewModel()
         {
             orderList = new ObservableCollection<OrdersDataModel>();
-            //orderList.Clear();
-            //LoadOrder("pending", "");
+            orderList.Clear();
+            LoadOrder("pending", "", order_id);
         }
+
         public static void ProcessOrder(string odid, string stage, string stage_type)
         {
             try
@@ -81,15 +94,6 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                         new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                     }
                 });
-                /*orderList.Add(new OrdersDataModel()
-                {
-                    ID = "1",
-                    OrderID = "Order ID " + "15".GetHashCode().ToString(),
-                    Date_Time = "Sept. 5 2020, 09:10 AM",
-                    TotalPrice = "PHP 250",
-                    Customer = "Malakas",
-                    Method = "Cash"
-                });*/
             }
             catch (Exception e)
             {
