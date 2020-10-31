@@ -169,7 +169,7 @@
                 <ScrollView Grid.Row="2">
                         <Grid Grid.Row="1">
                             <listView:SfListView
-                            Padding="15,0,15,15"
+                            Padding="0,0,0,15"
                             AutoFitMode="Height"
                             IsScrollBarVisible="False"
                             ItemSpacing="{core:OnPlatformOrientationThickness 

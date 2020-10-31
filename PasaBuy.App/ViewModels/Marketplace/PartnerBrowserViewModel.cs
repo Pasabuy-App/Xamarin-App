@@ -117,7 +117,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "robinson", "", "1", "", (bool success, string data) =>
+                    Http.TindaFeature.Instance.StoreTypeList("robinson", (bool success, string data) =>
                     {
                         if (success)
                         {
