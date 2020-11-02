@@ -78,7 +78,7 @@ namespace PasaBuy.App.Views.PopupModals
             }
             catch (Exception ex)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2IU01-AU", "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2CAT-IAU.", "OK");
             }
         }
     }

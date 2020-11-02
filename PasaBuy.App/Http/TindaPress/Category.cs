@@ -77,7 +77,7 @@ namespace PasaBuy.App.Http.TindaPress
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2L01", "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2CAT-L1.", "OK");
             }
         }
 
@@ -115,7 +115,7 @@ namespace PasaBuy.App.Http.TindaPress
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2I01", "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2CAT-I1.", "OK");
             }
         }
 
@@ -154,7 +154,7 @@ namespace PasaBuy.App.Http.TindaPress
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: TPV2UD01", "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: TPV2CAT-UD1.", "OK");
             }
         }
 

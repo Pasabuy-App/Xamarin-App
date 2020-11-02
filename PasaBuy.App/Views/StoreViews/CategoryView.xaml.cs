@@ -67,7 +67,7 @@ namespace PasaBuy.App.Views.StoreViews
             }
             catch (Exception ex)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2D01.", "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2CAT-D1.", "OK");
                 IsRunning.IsRunning = false;
             }
         }
