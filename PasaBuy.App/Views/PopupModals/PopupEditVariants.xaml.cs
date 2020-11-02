@@ -30,9 +30,9 @@ namespace PasaBuy.App.Views.PopupModals
                             Variants variants = JsonConvert.DeserializeObject<Variants>(data);
                             for (int i = 0; i < variants.data.Length; i++)
                             {
-                                Name.Text = variants.data[i].name;
+                                Name.Text = variants.data[i].title;
                                 Description.Text = variants.data[i].info;
-                                checkBox.IsChecked = variants.data[i].baseprice == "Yes" ? true : false;
+                                checkBox.IsChecked = variants.data[i].required == "true" ? true : false;
                             }
                         }
                         else

@@ -75,7 +75,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         {
             try
             {
-                Http.TindaFeature.Instance.VariantList_Options(product_id, (bool success, string data) =>
+                Http.TindaFeature.Instance.VariantList_Options(product_id, "active", (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -100,7 +100,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                 _variantsList.Add(new Variants()
                                 {
                                     ID = var.data[i].ID,
-                                    Name = var.data[i].name,
+                                    Title = var.data[i].title,
                                     options = _optionsList
                                 });
                             }

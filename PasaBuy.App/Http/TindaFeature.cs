@@ -40,16 +40,18 @@ namespace PasaBuy.App.Http
         /// <summary>
         /// Method for Variants listing with options using product id.
         /// </summary>
-        public async void VariantList_Options(string pdid, Action<bool, string> callback)
+        public async void VariantList_Options(string pdid, string status, Action<bool, string> callback)
         {
             var dict = new Dictionary<string, string>();
             dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
             dict.Add("snky", PSACache.Instance.UserInfo.snky);
             dict.Add("pdid", pdid);
+            dict.Add("status", status);
+
 
             var content = new FormUrlEncodedContent(dict);
 
-            var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/tindapress/v1/variants/option/list", content);
+            var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/tindapress/v2/product/variant/list", content);
             response.EnsureSuccessStatusCode();
 
             if (response.IsSuccessStatusCode)
@@ -199,13 +201,15 @@ namespace PasaBuy.App.Http
             }
         }
 
-        public async void FeaturedList(Action<bool, string> callback)
+        public async void FeaturedList(string status, Action<bool, string> callback)
         {
             try
             {
                 var dict = new Dictionary<string, string>();
                 dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
                 dict.Add("snky", PSACache.Instance.UserInfo.snky);
+                dict.Add("status", status);
+
 
                 var content = new FormUrlEncodedContent(dict);
 
@@ -334,7 +338,6 @@ namespace PasaBuy.App.Http
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
         }
-
 
         #endregion
     }

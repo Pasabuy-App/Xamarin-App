@@ -209,6 +209,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
             Loadcategory(store_id);
             LoadStoreDetails(store_id);
+            AddToCartCommand = new Command<object>(AddToCartClicked);
 
         }
         public static void InsertCart(string id, string name, string summary, string image, double price, int quantity, ObservableCollection<Options> Variants)
@@ -263,44 +264,25 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-        public ICommand AddToCartCommand
-        {
-            get
-            {
-                return new Command<string>((x) => AddToCartClicked(x));
-            }
-        }
+        public Command<object> AddToCartCommand { get; set; }
 
-        private void AddToCartClicked(string id)
+
+        private void AddToCartClicked(object obj)
         {
             try
             {
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    TindaPress.Product.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, store_id, "", id, "1", "", (bool success, string data) =>
-                    {
-                        if (success)
-                        {
-                            ProductListData datas = JsonConvert.DeserializeObject<ProductListData>(data);
-                            for (int i = 0; i < datas.data.Length; i++)
-                            {
-                                ProductDetailViewModel.productid = datas.data[i].ID.ToString();
-                                ProductDetailViewModel.productname = datas.data[i].product_name.ToString();
-                                ProductDetailViewModel.shortinfo = datas.data[i].short_info.ToString();
-
-                                ProductDetailViewModel.productimage = PSAProc.GetUrl(datas.data[i].preview.ToString());
-                                ProductDetailViewModel.price = datas.data[i].price.ToString();
-                            }
-                            Application.Current.MainPage.Navigation.PushModalAsync(new Views.Marketplace.ProductDetail());
-                            IsRunning = false;
-                        }
-                        else
-                        {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                            IsRunning = false;
-                        }
-                    });
+                    CanNavigate = false;
+                    var product = obj as ProductList;
+                    ProductDetailViewModel.productid = product.ID;
+                    ProductDetailViewModel.productname = product.Name;
+                    ProductDetailViewModel.productimage = product.Avatar;
+                    ProductDetailViewModel.shortinfo = product.Description;
+                    ProductDetailViewModel.price = product.ActualPrice;
+                    Application.Current.MainPage.Navigation.PushModalAsync(new Views.Marketplace.ProductDetail());
+                    IsRunning = false;
                 }
             }
             catch (Exception e)
@@ -308,6 +290,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
                 IsRunning = false;
             }
+                
         }
 
         async void GoToCartClicked(object obj)

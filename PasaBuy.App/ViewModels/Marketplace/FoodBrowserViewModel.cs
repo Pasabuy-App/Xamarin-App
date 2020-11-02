@@ -94,6 +94,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public FoodBrowserViewModel()
         {
+            ItemTappedCommand = new Command<object>(NavigateToNextPage);
             foodstorelist = new ObservableCollection<FoodStore>();
             _bestSellers = new ObservableCollection<FeaturedStoreModel>();
             RefreshCommand = new Command<string>((key) =>
@@ -115,7 +116,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             try
             {
-                Http.TindaFeature.Instance.FeaturedList((bool success, string data) =>
+                Http.TindaFeature.Instance.FeaturedList("active", (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -124,7 +125,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         {
                             _bestSellers.Add(new FeaturedStoreModel()
                             {
-                                Id = datas.data[i].hsid,
+                                ID = datas.data[i].stid,
                                 Title = datas.data[i].title,
                                 Logo = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg" : PSAProc.GetUrl(datas.data[i].banner)
                             });
@@ -228,26 +229,19 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-        public Command<object> ItemTappedCommand
-        {
-            get
-            {
-                return this.itemTappedCommand ?? (this.itemTappedCommand = new Command<object>(this.NavigateToNextPage));
-            }
-        }
 
-        private async void NavigateToNextPage(object selectedItem)
+        public Command<object> ItemTappedCommand { get; set; }
+
+        private async void NavigateToNextPage(object obj)
         {
             if (!IsRunning)
             {
                 IsRunning = true;
-                CanNavigate = false;
-                StoreDetailsViewModel.store_id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as FeaturedStoreModel).Id;
-                await Task.Delay(300);
+                var product = obj as FeaturedStoreModel;
+                StoreDetailsViewModel.store_id = product.ID;
+                new Alert("Ok", product.ID, "ok");
                 await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
-                await Task.Delay(300);
                 IsRunning = false;
-                CanNavigate = true;
             }
         }
 
@@ -266,9 +260,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 IsRunning = true;
                 CanNavigate = false;
                 StoreDetailsViewModel.store_id = storeId;
-                await Task.Delay(300);
                 await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
-                await Task.Delay(300);
                 IsRunning = false;
                 CanNavigate = true;
             }

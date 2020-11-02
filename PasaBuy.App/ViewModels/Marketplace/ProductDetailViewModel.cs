@@ -208,7 +208,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         public static string productname;
         public static string shortinfo;
         public static string productimage;
-        public static string price;
+        public static double price;
         private bool isChecked = false;
 
         public SfRadioGroupKey GroupKey { get; set; }
@@ -471,16 +471,17 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             try
             {
-                Http.TindaFeature.Instance.VariantList_Options(product_id, (bool success, string data) =>
+                Http.TindaFeature.Instance.VariantList_Options(product_id, "active" , (bool success, string data) =>
                 {
                     if (success)
                     {
                         Variants var = JsonConvert.DeserializeObject<Variants>(data);
+                       
                         for (int i = 0; i < var.data.Length; i++)
                         {
                             if (var.data[i].options.Count != 0)
                             {
-                                if (var.data[i].baseprice == "Yes")
+                                if (var.data[i].required == "true")
                                 {
                                     _optionsList = new ObservableCollection<Options>();
                                     _optionsList.Clear();
@@ -490,14 +491,14 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                         {
                                             Vrid = var.data[i].ID,
                                             Id = var.data[i].options[j].ID,
-                                            Name = var.data[i].options[j].name,
+                                            Name = "Test",
                                             Price = Convert.ToDouble(var.data[i].options[j].price)
                                         });
                                     }
                                     _variantsList.Add(new Variants()
                                     {
                                         ID = var.data[i].ID,
-                                        Name = var.data[i].name,
+                                        Title = var.data[i].title,
                                         Base = "Required(1)",
                                         options = _optionsList
                                     });
@@ -519,7 +520,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                     _variantsList.Add(new Variants()
                                     {
                                         ID = var.data[i].ID,
-                                        Name = var.data[i].name,
+                                        Title = var.data[i].title,
                                         Base = "Optional",
                                         addons = _addonsList
                                     });

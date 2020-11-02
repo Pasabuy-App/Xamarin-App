@@ -90,9 +90,9 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                 _variantsList.Add(new Variants()
                                 {
                                     Id = variants.data[i].ID,
-                                    Name = variants.data[i].name,
+                                    Title = variants.data[i].title,
                                     Info = variants.data[i].info == "None" ? "" : variants.data[i].info,
-                                    Baseprice = "Base Price: " + variants.data[i].baseprice
+                                    Required = "Base Price: " + variants.data[i].required
                                 });
                             }
                         }

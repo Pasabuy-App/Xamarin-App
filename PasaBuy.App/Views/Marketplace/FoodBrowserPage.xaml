@@ -45,6 +45,9 @@
                            LineHeight="{OnPlatform Android=1.5, Default=-1}" 
                            LineBreakMode="TailTruncation">
                     </Label>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BindingContext.ItemTappedCommand,Source={x:Reference featuredListView}}" CommandParameter="{Binding .}"/>
+                    </StackLayout.GestureRecognizers>
                 </StackLayout>
             </DataTemplate>
         </ResourceDictionary>
@@ -138,9 +141,9 @@
                                              SelectionMode="None" 
                                              HeightRequest="280" 
                                              ItemSize="150"
+                                             x:Name="featuredListView"
                                              Orientation="Horizontal" 
                                              ItemsSource="{Binding BestSellers}" 
-                                             TapCommand="{Binding ItemTappedCommand}"
                                              ItemSpacing="8, 0, 8, 0" 
                                              ItemTemplate="{StaticResource BestSellersTemplate}"
                                              IsScrollBarVisible="False"/>

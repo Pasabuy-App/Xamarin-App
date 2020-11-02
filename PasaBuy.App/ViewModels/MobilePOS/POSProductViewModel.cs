@@ -90,7 +90,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 if (!IsBusy)
                 {
                     IsBusy = true;
-                    Http.TindaFeature.Instance.VariantList_Options(product_id, async (bool success, string data) =>
+                    Http.TindaFeature.Instance.VariantList_Options(product_id, "active", async (bool success, string data) =>
                     {
                         if (success)
                         {

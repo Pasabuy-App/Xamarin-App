@@ -61,7 +61,7 @@
                                Grid.Column="0"
                                HorizontalTextAlignment="Start"
                                FontSize="{DynamicResource MediumSize}"
-                               Text="{Binding Name}"
+                               Text="{Binding Title}"
                                TextColor="{DynamicResource Gray-900}" />
                             <Label FontFamily="{StaticResource Montserrat-SemiBold}"
                                Padding="5,0,0,0"

@@ -5,9 +5,9 @@ namespace PasaBuy.App.Models.Marketplace
 {
     public class Variants
     {
-        private string name = string.Empty;
+        private string title = string.Empty;
         private string id = string.Empty;
-        private string baseprice = string.Empty;
+        private string required = string.Empty;
         private string info = string.Empty;
         private string bases = string.Empty;
         public ObservableCollection<Options> options { get; set; }
@@ -19,10 +19,10 @@ namespace PasaBuy.App.Models.Marketplace
         {
             public string ID = string.Empty;
             public string pdid = string.Empty;
-            public string name = string.Empty;
+            public string title = string.Empty;
             public string info = string.Empty;
             public string status = string.Empty;
-            public string baseprice = string.Empty;
+            public string required = string.Empty;
             public ObservableCollection<Options> options { get; set; }
             public ObservableCollection<Options> addons { get; set; }
 
@@ -66,30 +66,30 @@ namespace PasaBuy.App.Models.Marketplace
                 OnPropertyChanged("Info");
             }
         }
-        public string Baseprice
+        public string Required
         {
             get
             {
-                return this.baseprice;
+                return this.required;
             }
 
             set
             {
-                this.baseprice = value;
+                this.required = value;
                 OnPropertyChanged("Baseprice");
             }
         }
-        public string Name
+        public string Title
         {
             get
             {
-                return this.name;
+                return this.title;
             }
 
             set
             {
-                this.name = value;
-                OnPropertyChanged("Name");
+                this.title = value;
+                OnPropertyChanged("Title");
             }
         }
 

@@ -36,8 +36,9 @@
 
         }
 
-        private string ID = string.Empty;
+        private string id = string.Empty;
         private string catid = string.Empty;
+        private string stid = string.Empty;
         private string add_id = string.Empty;
         private string comm = string.Empty;
         private string cat_name = string.Empty;
@@ -64,15 +65,27 @@
 
 
 
-        public string Id
+        public string ID
         {
             get
             {
-                return ID;
+                return id;
             }
             set
             {
-                this.ID = value;
+                this.id = value;
+            }
+        }
+
+        public string StoreId
+        {
+            get
+            {
+                return stid;
+            }
+            set
+            {
+                this.stid = value;
             }
         }
 

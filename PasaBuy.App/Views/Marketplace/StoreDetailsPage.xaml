@@ -108,7 +108,7 @@
                                                         CornerRadius="4"
                                                         TextColor="{DynamicResource PrimaryColor}"
                                                         Command="{Binding Source={x:Reference Name=listView}, Path=BindingContext.AddToCartCommand}"
-                                                        CommandParameter="{Binding ID}"
+                                                        CommandParameter="{Binding .}"
                                                         FontSize="22"
                                                         Style="{StaticResource IconButtonStyle}"
                                                         Text="{StaticResource Add}" />

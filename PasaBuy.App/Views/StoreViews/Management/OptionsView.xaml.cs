@@ -36,7 +36,7 @@ namespace PasaBuy.App.Views.StoreViews.Management
                         if (success)
                         {
                             Variants variants = JsonConvert.DeserializeObject<Variants>(data);
-                            TitleName.Text = variants.data[0].name;
+                            TitleName.Text = variants.data[0].title;
                         }
                         else
                         {
