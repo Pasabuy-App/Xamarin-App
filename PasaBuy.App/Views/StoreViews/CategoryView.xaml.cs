@@ -18,14 +18,24 @@ namespace PasaBuy.App.Views.StoreViews
         {
             InitializeComponent();
             this.BindingContext = new CategoryViewModel();
-            SearchText.TextChanged += OnTextChanged;
+            //SearchText.TextChanged += OnTextChanged;
+            SearchText.SearchButtonPressed += SearchButtonPress;
         }
 
         void OnTextChanged(object sender, EventArgs e)
         {
             SearchBar searchBar = (SearchBar)sender;
-            CategoryViewModel.RefreshCategory(searchBar.Text);
+            //CategoryViewModel.RefreshCategory(searchBar.Text);
             //searchResults.ItemsSource = DataService.GetSearchResults(searchBar.Text);
+        }
+
+        void SearchButtonPress(object sender, EventArgs e)
+        {
+            SearchBar searchBar = (SearchBar)sender;
+            if (!string.IsNullOrWhiteSpace(searchBar.Text))
+            {
+                CategoryViewModel.RefreshCategory(searchBar.Text);
+            }
         }
 
         private async void Delete_Tapped(object sender, EventArgs e)
@@ -57,7 +67,7 @@ namespace PasaBuy.App.Views.StoreViews
             }
             catch (Exception ex)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2D01", "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2D01.", "OK");
                 IsRunning.IsRunning = false;
             }
         }

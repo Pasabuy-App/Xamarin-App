@@ -141,7 +141,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2L01-VM", "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2L01-VM.", "OK");
                 IsRunning = false;
             }
         }
@@ -175,7 +175,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2L01-VM", "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2L01-VM.", "OK");
             }
         }
     }
