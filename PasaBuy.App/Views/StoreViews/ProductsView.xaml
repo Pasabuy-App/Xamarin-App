@@ -17,10 +17,6 @@
              x:Class="PasaBuy.App.Views.StoreViews.ProductsView"
              Title="{texts:Translate ProductsTitle}">
 
-    <ContentPage.BindingContext>
-        <viewModel:ProductViewModel />
-    </ContentPage.BindingContext>
-
     <ContentPage.Resources>
         <ResourceDictionary>
 
@@ -62,22 +58,33 @@
             <converters:ImageConverter x:Key="ByteArrayToImage" />
         </ResourceDictionary>
     </ContentPage.Resources>
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem
             Order="Primary"
-            Clicked="AddTapped"
+            Command="{Binding AddCommand}"
             Priority="1"
-            Text="asd">
+            Text="">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="Android" Value="add_24.png" />
+                    <On Platform="IOS" Value="add_24.png" />
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
     </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
-        <Grid>
+
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"   
+                     x:Name="rv"
+                     Command="{Binding RefreshCommand}">
+
+            <ScrollView VerticalScrollBarVisibility="Never" Padding="0, 0, 0, -10">
+                
+                <Grid>
             <Grid>
+
                 <Grid RowSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -104,6 +111,7 @@
                                 FontSize="14"
                                 HorizontalOptions="FillAndExpand"
                                 Text="{Binding ScannedText, Mode=TwoWay}"
+                                x:Name="SearchText"
                                 Placeholder="Search product"
                                 VerticalOptions="CenterAndExpand">
                                 <SearchBar.PlaceholderColor>
@@ -162,26 +170,6 @@
                             <Grid Padding="0,0"
                                   Grid.Row="1"
                                   VerticalOptions="FillAndExpand">
-                                <pulltoRefresh:SfPullToRefresh
-                                    x:Name="pullToRefresh"
-                                    IsRefreshing="False"
-                                    PullingThreshold="150"
-                                    RefreshContentHeight="50"
-                                    RefreshContentWidth="50"
-                                    TransitionMode="Push">
-                                    <pulltoRefresh:SfPullToRefresh.ProgressStrokeWidth>
-                                        <OnPlatform x:TypeArguments="x:Double">
-                                            <On Platform="Android">
-                                                <OnIdiom
-                                                    x:TypeArguments="x:Double"
-                                                    Phone="6"
-                                                    Tablet="3" />
-                                            </On>
-                                            <On Platform="UWP" Value="2" />
-                                            <On Platform="iOS,macOS" Value="2" />
-                                        </OnPlatform>
-                                    </pulltoRefresh:SfPullToRefresh.ProgressStrokeWidth>
-                                    <pulltoRefresh:SfPullToRefresh.PullableContent>
                                         <syncListView:SfListView
                                             x:Name="listView" 
                                             ItemAppearing="listView_ItemAppearing"
@@ -292,7 +280,7 @@
                                                             HorizontalOptions="Fill"
                                                             VerticalOptions="Fill">
                                                             <Grid.GestureRecognizers>
-                                                                <TapGestureRecognizer x:Name="Update" Tapped="Update_Tapped"/>
+                                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.UpdateCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"/>
                                                             </Grid.GestureRecognizers>
                                                             <Grid HorizontalOptions="Center" VerticalOptions="Center">
                                                                 <Image
@@ -327,35 +315,23 @@
                                                 </DataTemplate>
                                             </syncListView:SfListView.RightSwipeTemplate>
                                         </syncListView:SfListView>
-                                    </pulltoRefresh:SfPullToRefresh.PullableContent>
-                                </pulltoRefresh:SfPullToRefresh>
-                            </Grid>
+
+                                    </Grid>
                         </Grid>
                     </yummy:PancakeView>
                 </Grid>
-          
-
-                <!--<fab:FloatingActionButtonView
-				    ColorNormal="{StaticResource PrimaryColor}"
-				    ColorPressed="{StaticResource Orange}"
-				    ColorRipple="{StaticResource Yellow}"
-				    x:Name="AddProductButton"
-                    Command="{Binding AddProductCommand}"
-                    CommandParameter="{x:Type view:AddProductView }"
-                    ImageName ="add_24.png"
-				    IsVisible="True"
-                    VerticalOptions="EndAndExpand"
-                    HorizontalOptions="EndAndExpand"
-				    AbsoluteLayout.LayoutFlags="PositionProportional"
-				    AbsoluteLayout.LayoutBounds="0.95,0.95,80,80">
-                </fab:FloatingActionButtonView>-->
 
             </Grid>
             <local:LoadingIndicator
+                x:Name="IsRunning"
                 Grid.Row="0"
-                IsVisible="False"
+                IsRunning="{Binding IsRunning, Mode=TwoWay}"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill" />
-        </Grid>
+                </Grid>
+
+            </ScrollView>
+
+        </RefreshView>
     </ContentPage.Content>
 </ContentPage>

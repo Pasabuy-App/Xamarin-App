@@ -27,11 +27,11 @@
         <ToolbarItem
             Order="Primary"
             Command="{Binding AddCommand}"
-            Priority="1"
-            Text="asd">
+            Priority="1">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="Android" Value="add_24.png" />
+                    <On Platform="IOS" Value="add_24.png" />
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
@@ -256,6 +256,7 @@
             
                     <loading:LoadingIndicator
                         x:Name="IsRunning"
+                        Grid.Row="0"
                         HorizontalOptions="Fill"
                         IsRunning="{Binding IsRunning, Mode=TwoWay}"
                         VerticalOptions="Fill" />

@@ -16,8 +16,8 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 {
     public class POSProductViewModel : BaseViewModel
     {
-        public static ObservableCollection<Models.MobilePOS.ProductData> productsList;
-        public ObservableCollection<Models.MobilePOS.ProductData> ProductsList
+        public static ObservableCollection<Models.TindaFeature.ProductModel> productsList;
+        public ObservableCollection<Models.TindaFeature.ProductModel> ProductsList
         {
             get
             {
@@ -31,7 +31,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         }
         public POSProductViewModel()
         {
-            productsList = new ObservableCollection<Models.MobilePOS.ProductData>();
+            productsList = new ObservableCollection<Models.TindaFeature.ProductModel>();
             LoadProduct();
         }
         private void LoadProduct()
@@ -43,21 +43,16 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 {
                     if (success)
                     {
-                        Models.MobilePOS.ProductData product = JsonConvert.DeserializeObject<Models.MobilePOS.ProductData>(data);
+                        Models.TindaFeature.ProductModel product = JsonConvert.DeserializeObject<Models.TindaFeature.ProductModel>(data);
                         for (int i = 0; i < product.data.Length; i++)
                         {
-                            string id = product.data[i].ID;
-                            string product_name = product.data[i].product_name;
-                            string short_info = product.data[i].short_info;
-                            float price = (float)Convert.ToDouble(product.data[i].price);
-                            string preview = product.data[i].preview;
-                            productsList.Add(new Models.MobilePOS.ProductData()
+                            productsList.Add(new Models.TindaFeature.ProductModel()
                             {
-                                ID = id,
-                                Product_name = product_name,
-                                Short_info = short_info,
-                                Price = price,
-                                Preview = PSAProc.GetUrl(preview)
+                                ID = product.data[i].ID,
+                                Product_name = product.data[i].title,
+                                Short_info = product.data[i].info,
+                                Price = Convert.ToDouble(product.data[i].price),
+                                Preview = PSAProc.GetUrl(product.data[i].avatar)
                             });
                         }
                         IsBusy = false;

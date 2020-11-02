@@ -33,8 +33,8 @@ namespace PasaBuy.App.Views.StoreViews.Management
                 {
                     if (success)
                     {
-                        ProductData product = JsonConvert.DeserializeObject<ProductData>(data);
-                        TitleName.Text = product.data[0].product_name;
+                        Models.TindaFeature.ProductModel product = JsonConvert.DeserializeObject<Models.TindaFeature.ProductModel>(data);
+                        TitleName.Text = product.data[0].title;
                     }
                     else
                     {
