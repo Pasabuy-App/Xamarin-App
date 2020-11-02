@@ -62,17 +62,17 @@ namespace PasaBuy.App.Models.Marketplace
             }
         }
 
-        public string previewImage = string.Empty;
-        public string PreviewImage
+        public string avatar = string.Empty;
+        public string Avatar
         {
             get
             {
-                return previewImage;
+                return avatar;
             }
             set
             {
-                previewImage = value;
-                OnPropertyChanged("PreviewImage");
+                avatar = value;
+                OnPropertyChanged("Avatar");
             }
         }
 

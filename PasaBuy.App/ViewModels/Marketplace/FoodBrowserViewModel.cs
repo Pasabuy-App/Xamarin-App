@@ -124,7 +124,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         {
                             _bestSellers.Add(new FeaturedStoreModel()
                             {
-                                Id = datas.data[i].stid,
+                                Id = datas.data[i].hsid,
                                 Title = datas.data[i].title,
                                 Logo = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg" : PSAProc.GetUrl(datas.data[i].banner)
                             });
@@ -159,7 +159,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                             {
                                 foodstorelist.Add(new FoodStore()
                                 {
-                                    Id = datas.data[i].ID,
+                                    Id = datas.data[i].hsid,
                                     Title = datas.data[i].title,
                                     Description = datas.data[i].short_info,
                                     Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(datas.data[i].avatar),

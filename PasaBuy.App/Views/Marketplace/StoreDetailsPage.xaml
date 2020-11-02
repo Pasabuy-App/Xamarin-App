@@ -70,7 +70,7 @@
                                                                              Grid.RowSpan="2"
                                                                              HeightRequest="70"
                                                                              WidthRequest="70"
-                                                                             Source="{Binding PreviewImage}"
+                                                                             Source="{Binding Avatar}"
 			                                                                 DownsampleToViewSize="True" 
                                                                              FadeAnimationEnabled="True">
                                             </ffimageloading:CachedImage>

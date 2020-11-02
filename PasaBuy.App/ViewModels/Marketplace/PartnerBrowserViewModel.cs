@@ -129,7 +129,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 {
                                     storeList.Add(new Store()
                                     {
-                                        Id = datas.data[i].ID,
+                                        Id = datas.data[i].hsid,
                                         Title = datas.data[i].title,
                                         Description = datas.data[i].short_info,
                                         Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(datas.data[i].avatar),
@@ -176,7 +176,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                             {
                                 storeList.Add(new Store()
                                 {
-                                    Id = datas.data[i].ID,
+                                    Id = datas.data[i].hsid,
                                     Title = datas.data[i].title,
                                     Description = datas.data[i].short_info,
                                     Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(datas.data[i].avatar),

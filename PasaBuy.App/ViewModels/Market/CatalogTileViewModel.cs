@@ -51,7 +51,7 @@ namespace PasaBuy.App.ViewModels.Market
                             productList.Add(new ProductList()
                             {
                                 //PreviewImage = "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-product.png",
-                                PreviewImage = PSAProc.GetUrl(preview),
+                                Avatar = PSAProc.GetUrl(preview),
                                 Name = product_name,
                                 Summary = short_info,
                                 Description = long_info,

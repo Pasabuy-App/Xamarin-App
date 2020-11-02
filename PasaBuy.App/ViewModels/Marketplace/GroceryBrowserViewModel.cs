@@ -103,7 +103,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                             {
                                 grocerystorelist.Add(new Groceries()
                                 {
-                                    Id = datas.data[i].ID,
+                                    Id = datas.data[i].hsid,
                                     Title = datas.data[i].title,
                                     Description = datas.data[i].short_info,
                                     Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(datas.data[i].avatar), // "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png"
@@ -146,7 +146,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                             {
                                 grocerystorelist.Add(new Groceries()
                                 {
-                                    Id = datas.data[i].ID,
+                                    Id = datas.data[i].hsid,
                                     Title = datas.data[i].title,
                                     Description = datas.data[i].short_info,
                                     Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(datas.data[i].avatar), // "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png"
@@ -192,7 +192,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 StoreDetailsViewModel.store_id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Groceries).Id;
                 await Task.Delay(300);
                 await App.Current.MainPage.Navigation.PushModalAsync(new Views.Marketplace.StoreDetailsPage());
-
                 await Task.Delay(300);
                 IsRunning = false;
                 CanNavigate = true;

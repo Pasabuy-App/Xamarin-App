@@ -207,7 +207,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
             //this.CartItemCount = CartPageViewModel.cartDetails.Count;
             //CartPageViewModel.cartDetails.CollectionChanged += CollectionChanges;
 
-            //Loadcategory(store_id);
+            Loadcategory(store_id);
             LoadStoreDetails(store_id);
 
         }
@@ -220,7 +220,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 ID = id,
                 Name = name,
                 Summary = summary,
-                PreviewImage = PSAProc.GetUrl(image),
+                Avatar = PSAProc.GetUrl(image),
                 ActualPrice = price,
                 TotalQuantity = quantity,
                 Quantity = quantity,
@@ -339,11 +339,12 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             try
             {
-                Http.TindaFeature.Instance.StoreProductsList(stid, "active", (bool success, string data) =>
+                Http.TindaFeature.Instance.GetStore(stid, (bool success, string data) =>
                 {
                     if (success)
                     {
                         StoreDetailListData datas = JsonConvert.DeserializeObject<StoreDetailListData>(data);
+                    
                         for (int i = 0; i < datas.data.Length; i++)
                         {
                             this.StoreName = datas.data[i].title;
@@ -369,12 +370,13 @@ namespace PasaBuy.App.ViewModels.Marketplace
             try
             {
                 IsRunning = true;
-                TindaPress.Category.Instance.ProductList(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", stid, "", "1", (bool success, string data) =>
+                Http.TindaFeature.Instance.ProductsByCategoryList(stid, (bool success, string data) =>
                 {
                     if (success)
                     {
 
                         Root catRoot = JsonConvert.DeserializeObject<Root>(data);
+                        
                         for (int i = 0; i < catRoot.data.Length; i++)
                         {
                             if (catRoot.data[i].products.Count != 0)
@@ -386,10 +388,9 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                     productsList.Add(new ProductList()
                                     {
                                         ID = catRoot.data[i].products[j].ID,
-                                        PreviewImage = PSAProc.GetUrl(catRoot.data[i].products[j].preview) == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-product.png" : PSAProc.GetUrl(catRoot.data[i].products[j].preview),
-                                        Name = catRoot.data[i].products[j].product_name,
-                                        ActualPrice = Convert.ToDouble(catRoot.data[i].products[j].price),
-                                        Description = catRoot.data[i].products[j].short_info
+                                        Avatar = PSAProc.GetUrl(catRoot.data[i].products[j].avatar) == "" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-product.png" : PSAProc.GetUrl(catRoot.data[i].products[j].avatar),
+                                        Name = catRoot.data[i].products[j].title,
+                                        ActualPrice = Convert.ToDouble(catRoot.data[i].products[j].price)
                                     });
                                 }
 
@@ -402,6 +403,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 });
                             }
                         }
+                       
                         IsRunning = false;
                     }
                     else

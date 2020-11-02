@@ -125,7 +125,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     ID = id,
                     Name = name,
                     Summary = summary,
-                    PreviewImage = PSAProc.GetUrl(image),
+                    Avatar = PSAProc.GetUrl(image),
                     ActualPrice = price,
                     TotalQuantity = quantity,
                     Quantity = quantity

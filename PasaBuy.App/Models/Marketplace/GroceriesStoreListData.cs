@@ -9,6 +9,7 @@
         public class GroceriesStoreData
         {
             public string ID = string.Empty;
+            public string hsid = string.Empty;
             public string catid = string.Empty;
             public string add_id = string.Empty;
             public string comm = string.Empty;
