@@ -31,13 +31,13 @@ namespace PasaBuy.App.Views.StoreViews.Management
             isFirstLoad = false;
             Offset = 0;
             ProductViewModel.productsList.Clear();
-            ProductViewModel.LoadData("");
+            ProductViewModel.RefreshProduct("");
             pullToRefresh.IsRefreshing = false;
         }
 
         private void listView_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
         {
-            var item = e.ItemData as ProductData;
+            /*var item = e.ItemData as Models.TindaFeature.ProductModel;
             if (ProductViewModel.productsList.Last() == item && ProductViewModel.productsList.Count() != 1)
             {
                 if (ProductViewModel.productsList.IndexOf(item) >= LastIndex)
@@ -53,7 +53,7 @@ namespace PasaBuy.App.Views.StoreViews.Management
                     LastIndex += 6;
                     ProductViewModel.LoadData(Offset.ToString());
                 }
-            }
+            }*/
         }
     }
 }

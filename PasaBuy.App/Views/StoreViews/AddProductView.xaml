@@ -99,9 +99,6 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
 
                         </Grid.RowDefinitions>
 
@@ -319,88 +316,12 @@
 
                         </inputLayout:SfTextInputLayout>
 
-                        <inputLayout:SfTextInputLayout
-                            x:Name="SKU"
-                            Grid.Row="6"
-                            ContainerBackgroundColor="Transparent"
-                            ContainerType="Outlined"
-                            FocusedColor="{DynamicResource BlackColor}"
-                            Hint="(Optional) Stock Keeping Unit"
-                            HorizontalOptions="Fill"
-                            LeadingViewPosition="Inside">
-                            <Entry
-                                VerticalOptions="Center"
-                                HorizontalOptions="FillAndExpand"
-                                Keyboard="Numeric"
-                                ReturnType="Next"
-                                x:Name="SKUs"/>
-                            <inputLayout:SfTextInputLayout.LeadingView>
-                                <Label
-                                    FontSize="18"
-                                    VerticalTextAlignment="Center"
-                                    Style="{StaticResource ProfileIconLabelStyle}"
-                                    TextColor="{DynamicResource BlackColor}"
-                                    Text="&#xf02a;" />
-                            </inputLayout:SfTextInputLayout.LeadingView>
-                        </inputLayout:SfTextInputLayout>
-
-                        <inputLayout:SfTextInputLayout
-                            x:Name="Weight"
-                            Grid.Row="7"
-                            ContainerBackgroundColor="Transparent"
-                            ContainerType="Outlined"
-                            FocusedColor="{DynamicResource BlackColor}"
-                            Hint="(Optional) Weight"
-                            HorizontalOptions="Fill"
-                            LeadingViewPosition="Inside"
-                            TrailingViewPosition="Inside">
-                            <inputLayout:SfTextInputLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding OpenSourceUnitCommand}" />
-                            </inputLayout:SfTextInputLayout.GestureRecognizers>
-                            <Entry Focused="OnUnit_Focused"
-                                   ReturnType="Next"
-                                   x:Name="Weights" />
-                            <inputLayout:SfTextInputLayout.LeadingView>
-                                <Label
-                                    FontSize="18"
-                                    VerticalTextAlignment="Center"
-                                    Style="{StaticResource ProfileIconLabelStyle}"
-                                    TextColor="{DynamicResource BlackColor}"
-                                    Text="&#xf24e;" />
-                            </inputLayout:SfTextInputLayout.LeadingView>
-                        </inputLayout:SfTextInputLayout>
-
-                        <inputLayout:SfTextInputLayout
-                            x:Name="Dimension"
-                            Grid.Row="8"
-                            ContainerBackgroundColor="Transparent"
-                            ContainerType="Outlined"
-                            Margin="0, 0, 0, 30"
-                            FocusedColor="{DynamicResource BlackColor}"
-                            Hint="(Optional) Dimension"
-                            HorizontalOptions="Fill"
-                            LeadingViewPosition="Inside">
-                            <Entry ReturnType="Next"
-                                VerticalOptions="Center"
-                                HorizontalOptions="FillAndExpand" 
-                                x:Name="Dimensions"/>
-                            <inputLayout:SfTextInputLayout.LeadingView>
-                                <Label
-                                    FontSize="18"
-                                    VerticalTextAlignment="Center"
-                                    Style="{StaticResource ProfileIconLabelStyle}"
-                                    TextColor="{DynamicResource BlackColor}"
-                                    Text="&#xf546;" />
-                            </inputLayout:SfTextInputLayout.LeadingView>
-                        </inputLayout:SfTextInputLayout>
-                        
                     </Grid>
                 </StackLayout>
             </ScrollView>
             <customViews:LoadingIndicator
-                Grid.Row="0"
+                x:Name="IsRunning"
                 HorizontalOptions="Fill"
-                IsVisible="false"
                 VerticalOptions="Fill" />
         </Grid>
     </ContentPage.Content>

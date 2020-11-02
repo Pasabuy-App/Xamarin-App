@@ -371,4 +371,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\reward.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\add_24.png" />
+  </ItemGroup>
 </Project>
