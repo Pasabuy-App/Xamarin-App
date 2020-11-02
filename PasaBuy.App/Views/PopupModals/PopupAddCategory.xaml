@@ -129,7 +129,7 @@
                             BackgroundColor="Green"
                             BorderColor="{DynamicResource BlackColor}"
                             BorderWidth="2"
-                            Clicked="SfButton_Clicked"
+                            Clicked="Insert_UpdateModal"
                             CornerRadius="4"
                             FontFamily="{StaticResource Montserrat-Regular}"
                             HorizontalOptions="FillAndExpand"

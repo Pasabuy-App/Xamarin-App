@@ -14,39 +14,22 @@ namespace PasaBuy.App.Views.PopupModals
     public partial class PopupAddCategory : PopupPage
     {
         public static string catid = "0";
+        public static string catname;
+        public static string catinfo;
         public PopupAddCategory()
         {
             InitializeComponent();
             if (catid != "0")
             {
                 CatTitle.Text = "Edit Category";
-                try
-                {
-                    TindaPress.Category.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, PSACache.Instance.UserInfo.stid, "2", "1", (bool success, string data) =>
-                    {
-                        if (success)
-                        {
-                            CategoryListData post = JsonConvert.DeserializeObject<CategoryListData>(data);
-                            for (int i = 0; i < post.data.Length; i++)
-                            {
-                                string id = post.data[i].ID;
-                                string title = post.data[i].title;
-                                string info = post.data[i].info;
-                                CatName.Text = title;
-                                Description.Text = info;
-                            }
-                        }
-                        else
-                        {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-
-                        }
-                    });
-                }
-                catch (Exception e)
-                {
-                    new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
-                }
+                CatName.Text = catname;
+                Description.Text = catinfo;
+            }
+            else
+            {
+                CatTitle.Text = "Add Category";
+                CatName.Text = string.Empty;
+                Description.Text = string.Empty;
             }
         }
 
@@ -55,7 +38,7 @@ namespace PasaBuy.App.Views.PopupModals
             PopupNavigation.Instance.PopAsync();
         }
 
-        private void SfButton_Clicked(object sender, EventArgs e)
+        private void Insert_UpdateModal(object sender, EventArgs e)
         {
             try
             {
@@ -63,12 +46,11 @@ namespace PasaBuy.App.Views.PopupModals
                 {
                     if (catid == "0")
                     {
-                        TindaPress.Category.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, "product", CatName.Text, Description.Text, (bool success, string data) =>
+                        Http.TindaPress.Category.Instance.Insert(CatName.Text, Description.Text, (bool success, string data) =>
                         {
                             if (success)
                             {
-                                CategoryViewModel.categoriesList.Clear();
-                                CategoryViewModel.LoadData();
+                                CategoryViewModel.RefreshCategory("");
                                 PopupNavigation.Instance.PopAsync();
                             }
                             else
@@ -79,13 +61,11 @@ namespace PasaBuy.App.Views.PopupModals
                     }
                     else
                     {
-                        TindaPress.Category.Instance.Update(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, CatName.Text, Description.Text, (bool success, string data) =>
+                        Http.TindaPress.Category.Instance.UpdateDelete(catid, "", CatName.Text, Description.Text, (bool success, string data) =>
                         {
                             if (success)
                             {
-                                CategoryViewModel.categoriesList.Clear();
-                                CategoryViewModel.LoadData();
-                                CatTitle.Text = "Add Category";
+                                CategoryViewModel.RefreshCategory("");
                                 PopupNavigation.Instance.PopAsync();
                             }
                             else
@@ -98,7 +78,7 @@ namespace PasaBuy.App.Views.PopupModals
             }
             catch (Exception ex)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2CAT-IAU.", "OK");
             }
         }
     }

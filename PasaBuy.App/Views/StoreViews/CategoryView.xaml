@@ -6,7 +6,8 @@
              xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl" 
              xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.MobilePOS"
              x:Class="PasaBuy.App.Views.StoreViews.CategoryView"
-             xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App"
+             xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App" 
+             xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
              Title="{texts:Translate CategoriesTitle}">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -22,13 +23,10 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ContentPage.BindingContext>
-        <viewModel:CategoryViewModel />
-    </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
         <ToolbarItem
             Order="Primary"
-            Clicked="AddCategoryClicked"
+            Command="{Binding AddCommand}"
             Priority="1"
             Text="asd">
             <ToolbarItem.Icon>
@@ -39,213 +37,234 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <Grid>
-                <Grid RowSpacing="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Grid
-                        Grid.Row="0"
-                        Padding="15,0,15,25"
-                        BackgroundColor="{StaticResource PrimaryColor}"
-                        HeightRequest="{OnPlatform Android='46',
-                                                   iOS='56'}">
-                        <Frame
-                            Margin="0"
-                            Padding="10,0"
-                            BackgroundColor="{StaticResource Gray-White}"
-                            CornerRadius="{OnPlatform Android='23',
-                                                      iOS='28'}"
+
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"   
+                     x:Name="rv"
+                     Command="{Binding RefreshCommand}">
+            
+            <ScrollView VerticalScrollBarVisibility="Never" Padding="0, 0, 0, -10">
+                
+                <Grid>
+                
+                    <Grid RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid
+                            Grid.Row="0"
+                            Padding="15,0,15,25"
+                            BackgroundColor="{StaticResource PrimaryColor}"
                             HeightRequest="{OnPlatform Android='46',
                                                        iOS='56'}">
-                            <SearchBar
-                                Margin="5,5,10,5"
-                                FontFamily="{StaticResource Montserrat-Regular}"
-                                FontSize="14"
-                                HorizontalOptions="FillAndExpand"
-                                Text="{Binding ScannedText, Mode=TwoWay}"
-                                Placeholder="Search category"
-                                VerticalOptions="CenterAndExpand">
-                                <SearchBar.PlaceholderColor>
-                                    <OnPlatform x:TypeArguments="Color" Android="DarkGray" />
-                                </SearchBar.PlaceholderColor>
-                                <SearchBar.BackgroundColor>
-                                    <OnPlatform
-                                        x:TypeArguments="Color"
-                                        Android="{StaticResource WhiteColor}"
-                                        iOS="Transparent" />
-                                </SearchBar.BackgroundColor>
-                                <SearchBar.TextColor>
-                                    <OnPlatform
-                                        x:TypeArguments="Color"
-                                        Android="{StaticResource BlackColor}"
-                                        iOS="{StaticResource BlackColor}" />
-                                </SearchBar.TextColor>
-                                <SearchBar.CancelButtonColor>
-                                    <OnPlatform
-                                        x:TypeArguments="Color"
-                                        Android="{StaticResource BlackColor}"
-                                        iOS="{StaticResource BlackColor}" />
-                                </SearchBar.CancelButtonColor>
-                            </SearchBar>
-                        </Frame>
+                            <Frame
+                                Margin="0"
+                                Padding="10,0"
+                                BackgroundColor="{StaticResource Gray-White}"
+                                CornerRadius="{OnPlatform Android='23',
+                                                          iOS='28'}"
+                                HeightRequest="{OnPlatform Android='46',
+                                                           iOS='56'}">
+                                <SearchBar
+                                    Margin="5,5,10,5"
+                                    FontFamily="{StaticResource Montserrat-Regular}"
+                                    FontSize="14"
+                                    HorizontalOptions="FillAndExpand"
+                                    Text="{Binding ScannedText, Mode=TwoWay}"
+                                    x:Name="SearchText"
+                                    Placeholder="Search category"
+                                    VerticalOptions="CenterAndExpand">
+                                    <SearchBar.PlaceholderColor>
+                                        <OnPlatform x:TypeArguments="Color" Android="DarkGray" />
+                                    </SearchBar.PlaceholderColor>
+                                    <SearchBar.BackgroundColor>
+                                        <OnPlatform
+                                            x:TypeArguments="Color"
+                                            Android="{StaticResource WhiteColor}"
+                                            iOS="Transparent" />
+                                    </SearchBar.BackgroundColor>
+                                    <SearchBar.TextColor>
+                                        <OnPlatform
+                                            x:TypeArguments="Color"
+                                            Android="{StaticResource BlackColor}"
+                                            iOS="{StaticResource BlackColor}" />
+                                    </SearchBar.TextColor>
+                                    <SearchBar.CancelButtonColor>
+                                        <OnPlatform
+                                            x:TypeArguments="Color"
+                                            Android="{StaticResource BlackColor}"
+                                            iOS="{StaticResource BlackColor}" />
+                                    </SearchBar.CancelButtonColor>
+                                </SearchBar>
+                            </Frame>
                         
-                    </Grid>
+                        </Grid>
                     
                
-                    <yummy:PancakeView
-                        Grid.Row="1"
-                        Margin="0,-10,0,0"
-                        Padding="10,10"
-                        BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
-                        CornerRadius="20,20,0,0"
-                        VerticalOptions="FillAndExpand">
-                        <Grid RowSpacing="10">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="0.5*" />
-                                </Grid.ColumnDefinitions>
-                                <Label
-                                    Grid.Column="1"
-                                    FontFamily="{StaticResource Montserrat-Medium}"
-                                    FontSize="13"
-                                    HorizontalOptions="EndAndExpand"
-                                    Text="Swipe left to edit or delete product"
-                                    TextColor="{DynamicResource Gray-800}"
-                                    VerticalOptions="Center" />
+                        <yummy:PancakeView
+                            Grid.Row="1"
+                            Margin="0,-10,0,0"
+                            Padding="10,10"
+                            BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
+                            CornerRadius="20,20,0,0"
+                            VerticalOptions="FillAndExpand">
+                            <Grid RowSpacing="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.5*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        Grid.Column="1"
+                                        FontFamily="{StaticResource Montserrat-Medium}"
+                                        FontSize="13"
+                                        HorizontalOptions="EndAndExpand"
+                                        Text="Swipe left to edit or delete product"
+                                        TextColor="{DynamicResource Gray-800}"
+                                        VerticalOptions="Center" />
+                                </Grid>
+
+                                <sync:SfListView
+                                    x:Name="listView"
+                                    Grid.Row="1"
+                                    AllowSwiping="True"
+                                    AutoFitMode="Height"
+                                    IsStickyHeader="True"
+                                    ListViewCachingStrategy="RecycleTemplate"
+                                    ItemsSource="{Binding CategoriesList}"
+                                    SelectedItem="{Binding SelectedCategory, Mode=OneWay}"
+                                    SelectionBackgroundColor="Khaki"
+                                    SelectionGesture="Tap"
+                                    SelectionMode="SingleDeselect">
+                                    <sync:SfListView.LayoutManager>
+                                        <sync:GridLayout SpanCount="2" />
+                                    </sync:SfListView.LayoutManager>
+                                    <sync:SfListView.ItemSize>
+                                        <OnPlatform x:TypeArguments="x:Double">
+                                            <On Platform="Android">
+                                                <OnIdiom
+                                                    x:TypeArguments="x:Double"
+                                                    Phone="100"
+                                                    Tablet="140" />
+                                            </On>
+                                            <On Platform="iOS">
+                                                <OnIdiom
+                                                    x:TypeArguments="x:Double"
+                                                    Phone="100"
+                                                    Tablet="140" />
+                                            </On>
+                                        </OnPlatform>
+                                    </sync:SfListView.ItemSize>
+
+                                    <sync:SfListView.SwipeOffset>
+                                        <OnIdiom
+                                            x:TypeArguments="x:Double"
+                                            Desktop="200"
+                                            Phone="100"
+                                            Tablet="200" />
+                                    </sync:SfListView.SwipeOffset>
+                                    <sync:SfListView.SwipeThreshold>
+                                        <OnIdiom
+                                            x:TypeArguments="x:Double"
+                                            Desktop="100"
+                                            Phone="50"
+                                            Tablet="100" />
+                                    </sync:SfListView.SwipeThreshold>
+                                    <sync:SfListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid >
+                                                <Frame
+                                                    Margin="5"
+                                                    Padding="5,15"
+                                                
+                                                    BackgroundColor="{StaticResource Gray-White}"
+                                                    BorderColor="{DynamicResource Gray-300}"
+                                                    CornerRadius="6"
+                                                    HasShadow="False">
+                                                    <Label
+                                                        Grid.Row="0"
+                                                        FontSize="14"
+                                                        VerticalOptions="Center" 
+                                                        HorizontalOptions="FillAndExpand"
+                                                        LineBreakMode="WordWrap"
+                                                        MaxLines="2"
+                                                        Style="{StaticResource CategoryNameStyle}"
+                                                        Text="{Binding Title}" />
+                                                </Frame>
+                                            </Grid>
+
+                                        </DataTemplate>
+                                    </sync:SfListView.ItemTemplate>
+                                    <sync:SfListView.RightSwipeTemplate>
+                                        <DataTemplate x:Name="RightSwipeTemplate">
+                                            <Grid Padding="0, 7, 0, 7">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid 
+                                                    Grid.Column="0"
+                                                    BackgroundColor="#32CD32"
+                                                    HorizontalOptions="Fill"
+                                                    VerticalOptions="Fill">
+                                                    <Grid.GestureRecognizers >
+
+                                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.UpdateCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"/>
+                                                    </Grid.GestureRecognizers>
+                                                    <Grid HorizontalOptions="Center" VerticalOptions="Center">
+                                                        <Image
+                                                            Grid.Row="0"
+                                                            Grid.Column="0"
+                                                            BackgroundColor="Transparent"
+                                                            HeightRequest="28"
+                                                            Source="edit_white.png"
+                                                            WidthRequest="28" />
+                                                    </Grid>
+                                                </Grid>
+                                                <Grid ClassId="{Binding ID}"
+                                                    Grid.Column="1"
+                                                    BackgroundColor="#FF0000"
+                                                
+                                                    HorizontalOptions="Fill"
+                                                    VerticalOptions="Fill">
+                                                    <Grid.GestureRecognizers >
+
+                                                        <TapGestureRecognizer  x:Name="Delete" Tapped="Delete_Tapped" />
+                                                        
+                                                    </Grid.GestureRecognizers>
+                                                    <Grid HorizontalOptions="Center" VerticalOptions="Center">
+                                                        <Image
+                                                            Grid.Row="0"
+                                                            Grid.Column="0"
+                                                            BackgroundColor="Transparent"
+                                                            HeightRequest="28"
+                                                            Source="Delete.png"
+                                                            WidthRequest="28" />
+                                                    </Grid>
+                                                </Grid>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </sync:SfListView.RightSwipeTemplate>
+
+                                </sync:SfListView>
                             </Grid>
-
-                            <sync:SfListView
-                                x:Name="listView"
-                                Grid.Row="1"
-                                AllowSwiping="True"
-                                AutoFitMode="Height"
-                                IsStickyHeader="True"
-                                ListViewCachingStrategy="RecycleTemplate"
-                                ItemsSource="{Binding CategoriesList}"
-                                SelectedItem="{Binding SelectedCategory, Mode=OneWay}"
-                                SelectionBackgroundColor="Khaki"
-                                SelectionGesture="Tap"
-                                SelectionMode="SingleDeselect">
-                                <sync:SfListView.LayoutManager>
-                                    <sync:GridLayout SpanCount="2" />
-                                </sync:SfListView.LayoutManager>
-                                <sync:SfListView.ItemSize>
-                                    <OnPlatform x:TypeArguments="x:Double">
-                                        <On Platform="Android">
-                                            <OnIdiom
-                                                x:TypeArguments="x:Double"
-                                                Phone="100"
-                                                Tablet="140" />
-                                        </On>
-                                        <On Platform="iOS">
-                                            <OnIdiom
-                                                x:TypeArguments="x:Double"
-                                                Phone="100"
-                                                Tablet="140" />
-                                        </On>
-                                    </OnPlatform>
-                                </sync:SfListView.ItemSize>
-
-                                <sync:SfListView.SwipeOffset>
-                                    <OnIdiom
-                                        x:TypeArguments="x:Double"
-                                        Desktop="200"
-                                        Phone="100"
-                                        Tablet="200" />
-                                </sync:SfListView.SwipeOffset>
-                                <sync:SfListView.SwipeThreshold>
-                                    <OnIdiom
-                                        x:TypeArguments="x:Double"
-                                        Desktop="100"
-                                        Phone="50"
-                                        Tablet="100" />
-                                </sync:SfListView.SwipeThreshold>
-                                <sync:SfListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid >
-                                            <Frame
-                                                Margin="5"
-                                                Padding="5,15"
-                                                
-                                                BackgroundColor="{StaticResource Gray-White}"
-                                                BorderColor="{DynamicResource Gray-300}"
-                                                CornerRadius="6"
-                                                HasShadow="False">
-                                                <Label
-                                                    Grid.Row="0"
-                                                    FontSize="14"
-                                                    VerticalOptions="Center" 
-                                                    HorizontalOptions="FillAndExpand"
-                                                    LineBreakMode="WordWrap"
-                                                    MaxLines="2"
-                                                    Style="{StaticResource CategoryNameStyle}"
-                                                    Text="{Binding Title}" />
-                                            </Frame>
-                                        </Grid>
-
-                                    </DataTemplate>
-                                </sync:SfListView.ItemTemplate>
-                                <sync:SfListView.RightSwipeTemplate>
-                                    <DataTemplate x:Name="RightSwipeTemplate">
-                                        <Grid Padding="0, 7, 0, 7">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-                                            <Grid  ClassId="{Binding ID}"
-                                                Grid.Column="0"
-                                                BackgroundColor="#32CD32"
-                                                HorizontalOptions="Fill"
-                                                VerticalOptions="Fill">
-                                                <Grid.GestureRecognizers >
-                                                    <TapGestureRecognizer x:Name="Update" Tapped="Update_Tapped"/>
-                                                </Grid.GestureRecognizers>
-                                                <Grid HorizontalOptions="Center" VerticalOptions="Center">
-                                                    <Image
-                                                        Grid.Row="0"
-                                                        Grid.Column="0"
-                                                        BackgroundColor="Transparent"
-                                                        HeightRequest="28"
-                                                        Source="edit_white.png"
-                                                        WidthRequest="28" />
-                                                </Grid>
-                                            </Grid>
-                                            <Grid ClassId="{Binding ID}"
-                                                Grid.Column="1"
-                                                BackgroundColor="#FF0000"
-                                                
-                                                HorizontalOptions="Fill"
-                                                VerticalOptions="Fill">
-                                                <Grid.GestureRecognizers >
-
-                                                    <TapGestureRecognizer  x:Name="Delete" Tapped="Delete_Tapped" />
-                                                </Grid.GestureRecognizers>
-                                                <Grid HorizontalOptions="Center" VerticalOptions="Center">
-                                                    <Image
-                                                        Grid.Row="0"
-                                                        Grid.Column="0"
-                                                        BackgroundColor="Transparent"
-                                                        HeightRequest="28"
-                                                        Source="Delete.png"
-                                                        WidthRequest="28" />
-                                                </Grid>
-                                            </Grid>
-                                        </Grid>
-                                    </DataTemplate>
-                                </sync:SfListView.RightSwipeTemplate>
-
-                            </sync:SfListView>
-                        </Grid>
-                    </yummy:PancakeView>
+                        </yummy:PancakeView>
                 </Grid>
+            
+                    <loading:LoadingIndicator
+                        x:Name="IsRunning"
+                        HorizontalOptions="Fill"
+                        IsRunning="{Binding IsRunning, Mode=TwoWay}"
+                        VerticalOptions="Fill" />
 
-        </Grid>
+                </Grid>
+                
+            </ScrollView>
+            
+        </RefreshView>
     </ContentPage.Content>
 </ContentPage>
     

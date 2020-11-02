@@ -14,21 +14,27 @@ namespace PasaBuy.App.Views.StoreViews
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CategoryView : ContentPage
     {
-        public int count = 0;
         public CategoryView()
         {
             InitializeComponent();
+            this.BindingContext = new CategoryViewModel();
+            //SearchText.TextChanged += OnTextChanged;
+            SearchText.SearchButtonPressed += SearchButtonPress;
         }
 
-        private async void AddCategoryClicked(object sender, EventArgs e)
+        void OnTextChanged(object sender, EventArgs e)
         {
-            if (count == 0)
+            SearchBar searchBar = (SearchBar)sender;
+            //CategoryViewModel.RefreshCategory(searchBar.Text);
+            //searchResults.ItemsSource = DataService.GetSearchResults(searchBar.Text);
+        }
+
+        void SearchButtonPress(object sender, EventArgs e)
+        {
+            SearchBar searchBar = (SearchBar)sender;
+            if (!string.IsNullOrWhiteSpace(searchBar.Text))
             {
-                count = 1;
-                await Task.Delay(200);
-                PopupAddCategory.catid = "0";
-                await PopupNavigation.Instance.PushAsync(new PopupAddCategory());
-                count = 0;
+                CategoryViewModel.RefreshCategory(searchBar.Text);
             }
         }
 
@@ -39,34 +45,31 @@ namespace PasaBuy.App.Views.StoreViews
                 bool answer = await DisplayAlert("Delete Category?", "Are you sure to delete this?", "Yes", "No");
                 if (answer)
                 {
-                    var btn = sender as Grid;
-                    TindaPress.Category.Instance.Delete(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, btn.ClassId, (bool success, string data) =>
+                    if (!IsRunning.IsRunning)
                     {
-                        if (success)
+                        IsRunning.IsRunning = true;
+                        var btn = sender as Grid;
+                        Http.TindaPress.Category.Instance.UpdateDelete(btn.ClassId, "inactive", "", "", (bool success, string data) =>
                         {
-                            CategoryViewModel.categoriesList.Clear();
-                            CategoryViewModel.LoadData();
-                        }
-                        else
-                        {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                        }
-                    });
+                            if (success)
+                            {
+                                CategoryViewModel.RefreshCategory("");
+                                IsRunning.IsRunning = false;
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                IsRunning.IsRunning = false;
+                            }
+                        });
+                    }
                 }
             }
             catch (Exception ex)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2CAT-D1.", "OK");
+                IsRunning.IsRunning = false;
             }
-        }
-
-        private async void Update_Tapped(object sender, EventArgs e)
-        {
-            var btn = sender as Grid;
-            await Task.Delay(200);
-            PopupAddCategory.catid = btn.ClassId;
-            await PopupNavigation.Instance.PushAsync(new PopupAddCategory());
-            //new Alert("Title", btn.ClassId, "OK");
         }
     }
 }

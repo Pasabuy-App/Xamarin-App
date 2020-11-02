@@ -1,47 +1,168 @@
 ﻿using Newtonsoft.Json;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
-using PasaBuy.App.Models.MobilePOS;
+using PasaBuy.App.Views.PopupModals;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.MobilePOS
 {
     public class CategoryViewModel : BaseViewModel
     {
         #region Fields
-        public static ObservableCollection<CategoryData> categoriesList;
-        public ObservableCollection<CategoryData> CategoriesList
+
+        public static ObservableCollection<Models.TindaFeature.CategoryModel> categoriesList;
+        public ObservableCollection<Models.TindaFeature.CategoryModel> CategoriesList
         {
-            get { return categoriesList; }
-            set { categoriesList = value; this.NotifyPropertyChanged(); }
+            get 
+            { 
+                return categoriesList; 
+            }
+            set 
+            { 
+                if (categoriesList != value)
+                {
+                    categoriesList = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
         }
+
+        public bool isRunning = false;
+
+        public bool IsRunning
+        {
+            get
+            {
+                return isRunning;
+            }
+            set
+            {
+                isRunning = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        bool _isRefreshing = false;
+        public bool IsRefreshing
+        {
+            get
+            {
+                return _isRefreshing;
+            }
+            set
+            {
+                if (_isRefreshing != value)
+                {
+                    _isRefreshing = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        public ICommand RefreshCommand { protected set; get; }
+
         #endregion
         public CategoryViewModel()
         {
-            categoriesList = new ObservableCollection<CategoryData>();
-            categoriesList.Clear();
-            LoadData();
+            categoriesList = new ObservableCollection<Models.TindaFeature.CategoryModel>();
+            LoadCategory();
+            AddCommand = new Command<object>(AddClicked);
+            UpdateCommand = new Command<object>(UpdateClicked);
+
+            RefreshCommand = new Command<string>((key) =>
+            {
+                LoadCategory();
+                IsRefreshing = false;
+            });
         }
-        public static void LoadData()
+        public Command<object> AddCommand { get; set; }
+
+        private async void AddClicked(object obj)
+        {
+            if (!IsRunning)
+            {
+                IsRunning = true;
+                PopupAddCategory.catid = "0";
+                await PopupNavigation.Instance.PushAsync(new PopupAddCategory());
+                IsRunning = false;
+            }
+        }
+
+        public Command<object> UpdateCommand { get; set; }
+
+        private async void UpdateClicked(object obj)
+        {
+            if (!IsRunning)
+            {
+                IsRunning = true;
+                var cat = obj as Models.TindaFeature.CategoryModel;
+                PopupAddCategory.catid = cat.ID;
+                PopupAddCategory.catname = cat.Title;
+                PopupAddCategory.catinfo = cat.Info;
+                await PopupNavigation.Instance.PushAsync(new PopupAddCategory());
+                IsRunning = false;
+            }
+        }
+
+        public void LoadCategory()
         {
             try
             {
-                TindaPress.Category.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", PSACache.Instance.UserInfo.stid, "2", "1", (bool success, string data) =>
+                if (!IsRunning)
+                {
+                    IsRunning = true;
+                    categoriesList.Clear();
+                    Http.TindaPress.Category.Instance.Listing("", "", "active", (bool success, string data) =>
+                    {
+                        if (success)
+                        {
+                            Models.TindaFeature.CategoryModel category = JsonConvert.DeserializeObject<Models.TindaFeature.CategoryModel>(data);
+                            for (int i = 0; i < category.data.Length; i++)
+                            {
+                                categoriesList.Add(new Models.TindaFeature.CategoryModel()
+                                {
+                                    ID = category.data[i].ID,
+                                    Title = category.data[i].title,
+                                    Info = category.data[i].info
+                                });
+                            }
+                            IsRunning = false;
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsRunning = false;
+                        }
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2CAT-L1CVM.", "OK");
+                IsRunning = false;
+            }
+        }
+
+        public static void RefreshCategory(string search)
+        {
+            try
+            {
+                categoriesList.Clear();
+                Http.TindaPress.Category.Instance.Listing("", search, "active", (bool success, string data) =>
                 {
                     if (success)
                     {
-                        CategoryListData post = JsonConvert.DeserializeObject<CategoryListData>(data);
-                        for (int i = 0; i < post.data.Length; i++)
+                        Models.TindaFeature.CategoryModel category = JsonConvert.DeserializeObject<Models.TindaFeature.CategoryModel>(data);
+                        for (int i = 0; i < category.data.Length; i++)
                         {
-                            string id = post.data[i].ID;
-                            string title = post.data[i].title;
-                            string info = post.data[i].info;
-                            categoriesList.Add(new CategoryData()
+                            categoriesList.Add(new Models.TindaFeature.CategoryModel()
                             {
-                                ID = id,
-                                Title = title,
-                                Info = info
+                                ID = category.data[i].ID,
+                                Title = category.data[i].title,
+                                Info = category.data[i].info
                             });
                         }
                     }
@@ -54,7 +175,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2CAT-L2CVM.", "OK");
             }
         }
     }
