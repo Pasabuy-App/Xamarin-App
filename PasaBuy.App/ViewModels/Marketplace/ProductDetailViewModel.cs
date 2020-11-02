@@ -491,7 +491,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                         {
                                             Vrid = var.data[i].ID,
                                             Id = var.data[i].options[j].ID,
-                                            Name = "Test",
+                                            Name = var.data[i].options[j].name,
                                             Price = Convert.ToDouble(var.data[i].options[j].price)
                                         });
                                     }
