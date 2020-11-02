@@ -10,16 +10,26 @@ namespace PasaBuy.App.ViewModels.MobilePOS
     public class AddProductViewModel : BaseViewModel
     {
         #region Fields
-        public static ObservableCollection<CategoryData> categoriesList;
-        public ObservableCollection<CategoryData> CategoryList
+        public static ObservableCollection<Models.TindaFeature.CategoryModel> categoriesList;
+        public ObservableCollection<Models.TindaFeature.CategoryModel> CategoryList
         {
-            get { return categoriesList; }
-            set { categoriesList = value; this.NotifyPropertyChanged(); }
+            get 
+            { 
+                return categoriesList; 
+            }
+            set 
+            {
+                if (categoriesList != value)
+                {
+                    categoriesList = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
         }
         #endregion
         public AddProductViewModel()
         {
-            categoriesList = new ObservableCollection<CategoryData>();
+            categoriesList = new ObservableCollection<Models.TindaFeature.CategoryModel>();
             categoriesList.Clear();
             LoadData();
         }
@@ -27,33 +37,29 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         {
             try
             {
-                TindaPress.Category.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", PSACache.Instance.UserInfo.stid, "2", "1", (bool success, string data) =>
+                Http.TindaPress.Category.Instance.Listing("", "", "active", (bool success, string data) =>
                 {
                     if (success)
                     {
-                        CategoryListData post = JsonConvert.DeserializeObject<CategoryListData>(data);
-                        for (int i = 0; i < post.data.Length; i++)
+                        Models.TindaFeature.CategoryModel category = JsonConvert.DeserializeObject<Models.TindaFeature.CategoryModel>(data);
+                        for (int i = 0; i < category.data.Length; i++)
                         {
-                            string id = post.data[i].ID;
-                            string title = post.data[i].title;
-                            string info = post.data[i].info;
-                            categoriesList.Add(new CategoryData()
+                            categoriesList.Add(new Models.TindaFeature.CategoryModel()
                             {
-                                Title = title,
-                                ID = id
+                                Title = category.data[i].title,
+                                ID = category.data[i].ID
                             });
                         }
                     }
                     else
                     {
                         new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-
                     }
                 });
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2L01-APVM.", "OK");
             }
         }
     }
