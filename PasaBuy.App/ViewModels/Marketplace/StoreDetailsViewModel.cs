@@ -333,7 +333,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
                             this.StoreName = datas.data[i].title;
                             this.StoreAddress = datas.data[i].street + " " + datas.data[i].brgy + " " + datas.data[i].city + " " + datas.data[i].province;
                             this.AboutStore = !string.IsNullOrEmpty(datas.data[i].short_info) ? datas.data[i].short_info : "No information found.";
-                            this.StoreBanner = PSAProc.GetUrl(datas.data[i].banner); // "https://pasabuy.app/wp-content/uploads/2020/10/Motorcycle.png";
+                            this.StoreBanner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(datas.data[i].banner); // "https://pasabuy.app/wp-content/uploads/2020/10/Motorcycle.png";
+
                         }
                     }
                     else

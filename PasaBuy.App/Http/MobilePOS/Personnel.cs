@@ -77,7 +77,7 @@ namespace PasaBuy.App.Http.MobilePOS
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2PNL-L1.", "OK");
             }
         }
 
@@ -89,12 +89,12 @@ namespace PasaBuy.App.Http.MobilePOS
             try
             {
                 var dict = new Dictionary<string, string>();
-                    dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
-                    dict.Add("snky", PSACache.Instance.UserInfo.snky);
-                    dict.Add("stid", PSACache.Instance.UserInfo.stid);
-                    dict.Add("user_id", user_id);
-                    dict.Add("roid", roid);
-                    dict.Add("pincode", pincode);
+                dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
+                dict.Add("snky", PSACache.Instance.UserInfo.snky);
+                dict.Add("stid", PSACache.Instance.UserInfo.stid);
+                dict.Add("user_id", user_id);
+                dict.Add("roid", roid);
+                dict.Add("pincode", pincode);
                 var content = new FormUrlEncodedContent(dict);
 
                 var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/mobilepos/v2/personnels/insert", content);
@@ -116,7 +116,45 @@ namespace PasaBuy.App.Http.MobilePOS
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2PNL-I1.", "OK");
+            }
+        }
+
+        /// <summary>
+        /// Update of personnel.
+        /// </summary>
+        public async void Update(string pid, string roid, string pincode, Action<bool, string> callback)
+        {
+            try
+            {
+                var dict = new Dictionary<string, string>();
+                    dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
+                    dict.Add("snky", PSACache.Instance.UserInfo.snky);
+                    dict.Add("pid", pid);
+                    dict.Add("roid", roid);
+                    dict.Add("pincode", pincode);
+                var content = new FormUrlEncodedContent(dict);
+
+                var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/mobilepos/v2/personnels/update", content);
+                response.EnsureSuccessStatusCode();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string result = await response.Content.ReadAsStringAsync();
+                    Token token = JsonConvert.DeserializeObject<Token>(result);
+
+                    bool success = token.status == "success" ? true : false;
+                    string data = token.status == "success" ? result : token.message;
+                    callback(success, data);
+                }
+                else
+                {
+                    callback(false, "Network Error! Check your connection.");
+                }
+            }
+            catch (Exception e)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2PNL-U1.", "OK");
             }
         }
 
@@ -152,7 +190,7 @@ namespace PasaBuy.App.Http.MobilePOS
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2PNL-D1.", "OK");
             }
         }
 
@@ -188,7 +226,7 @@ namespace PasaBuy.App.Http.MobilePOS
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2PNL-LS1.", "OK");
             }
         }
 

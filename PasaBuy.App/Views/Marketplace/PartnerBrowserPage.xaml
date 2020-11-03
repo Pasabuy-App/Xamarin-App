@@ -9,7 +9,8 @@
              xmlns:loading="clr-namespace:PasaBuy.App.UserControls" 
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
-             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+             xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch"
              BackgroundColor="{DynamicResource Gray-White}"
              x:Class="PasaBuy.App.Views.Marketplace.PartnerBrowserPage">
     <ContentView.Resources>
@@ -19,78 +20,30 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
         <ResourceDictionary>
-            <DataTemplate x:Key="listTemplate">
-                <Frame
-                            Padding="0"
-                            BackgroundColor="{DynamicResource Gray-White}"
-                            BorderColor="{DynamicResource Gray-White}"
-                            CornerRadius="8"
-                            HasShadow="True"
-                            HeightRequest="100"
-                            HorizontalOptions="FillAndExpand"
-                            VerticalOptions="FillAndExpand">
-                    <StackLayout>
-                        <Grid Margin="16,8,8,8"  ColumnSpacing="0" RowSpacing="0" >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <border:SfBorder  BackgroundColor="{DynamicResource Gray-200}"
-                                            Style="{StaticResource ProfileBorderStyle}" HorizontalOptions="Start">
-                                <Image HeightRequest="80" WidthRequest="80" BackgroundColor="{DynamicResource Gray-200}" 
-                                                   Aspect="AspectFill" Source="{Binding Logo}" >
+            <DataTemplate x:Key="BestSellersTemplate">
+                <StackLayout Spacing="8">
+                    <border:SfBorder CornerRadius="8" BorderWidth="0">
 
-                                </Image>
-                            </border:SfBorder>
-
-                            <StackLayout Grid.Column="1"
-                                            Margin="8,5"
-                                            HorizontalOptions="Start"
-                                            Spacing="2"
-                                            VerticalOptions="FillAndExpand">
-
-                                <!--  Name of the store  -->
-                                <Forms9Patch:Label Text="{Binding Title}"
-                                                   FontFamily="{StaticResource Montserrat-SemiBold}"
-                                                   FontSize="15"
-                                                   LineHeight="{OnPlatform Android=1.25,
-                                                                        Default=-1}"
-                                                   TextColor="{DynamicResource Gray-900}"
-                                                   AutoFit="Width"/>
-
-                                <!--  Description of store  -->
-                                <Forms9Patch:Label Text="{Binding Description}"
-                                                   FontFamily="{StaticResource Montserrat-Medium}"
-                                                   FontSize="14"
-                                                   LineHeight="{OnPlatform Android=1.25,
-                                                                        Default=-1}"
-                                                   TextColor="{DynamicResource Gray-900}"
-                                                   AutoFit="Width"/>
-                   
-
-                                <!--  Store Address  -->
-                                <Forms9Patch:Label Text="{Binding Street}"
-                                                   FontFamily="{StaticResource Montserrat-Medium}"
-                                                   FontSize="14"
-                                                   LineHeight="{OnPlatform Android=1.25,
-                                                                        Default=-1}"
-                                                   TextColor="{DynamicResource Gray-900}"
-                                                   AutoFit="Width"/>
-                            </StackLayout>
-
-                            <border:SfBorder BackgroundColor="{DynamicResource Green}" WidthRequest="24" HeightRequest="20"
-                                                      HorizontalOptions="End" Margin="0,8,0,0" VerticalOptions="Start"
-                                                      Grid.Column="2" CornerRadius="4" BorderColor="Transparent">
-                                <Label  FontFamily="{StaticResource Montserrat-Medium}" 
-                                                        Text="4.5" HorizontalOptions="Center"
-                                                        FontSize="12" LineHeight="{OnPlatform Android=1.5,
-                                                        Default=-1}" TextColor="{DynamicResource Gray-White}" VerticalTextAlignment="Center" />
-                            </border:SfBorder>
-                        </Grid>
-                        <BoxView Style="{StaticResource SeparatorStyle}" />
-                    </StackLayout>
-                </Frame>
+                        <ffimageloading:CachedImage Aspect="AspectFill"
+                                                    HeightRequest="220"
+                                                    WidthRequest="150"
+                                                    BackgroundColor="{DynamicResource Gray-200}"
+                                                    Source="{Binding Logo}"
+			                                        DownsampleToViewSize="True" 
+                                                    FadeAnimationEnabled="True">
+                        </ffimageloading:CachedImage>
+                    </border:SfBorder>
+                    <Label Text="{Binding Title}" 
+                           FontFamily="{StaticResource Montserrat-SemiBold}"
+                           FontSize="14" 
+                           TextColor="{DynamicResource Gray-900}" 
+                           LineHeight="{OnPlatform Android=1.5, Default=-1}" 
+                           LineBreakMode="TailTruncation">
+                    </Label>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BindingContext.FeaturedTappedCommand,Source={x:Reference featuredListView}}" CommandParameter="{Binding .}"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
             </DataTemplate>
         </ResourceDictionary>
     </ContentView.Resources>
@@ -167,32 +120,16 @@
                 </StackLayout>
                 <BoxView   Grid.Row="1" Style="{StaticResource SeparatorStyle}" />
                 <ScrollView Grid.Row="2">
-                        <Grid Grid.Row="1">
-                            <listView:SfListView
-                            Padding="0,0,0,15"
-                            AutoFitMode="Height"
-                            IsScrollBarVisible="False"
-                            ItemSpacing="{core:OnPlatformOrientationThickness 
-                                          Default='0,0,32,32',
-                                          PhonePortrait='0,0,0,16',
-                                          PhoneLandscape='0,0,16,16',
-                                          Desktop='0,0,24,24'}"
-                            ItemsSource="{Binding StoreList}"
-                            x:Name="StoreList"
-                            TapCommand="{Binding ItemTappedCommand}"
-                            ItemTemplate="{StaticResource listTemplate}"
-                            SelectionBackgroundColor="Transparent"
-                            VerticalOptions="FillAndExpand">
-                                <listView:SfListView.HeaderTemplate>
-                                    <DataTemplate>
-                                        <Grid RowSpacing="0" ColumnSpacing="0">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                            </Grid.RowDefinitions>
-
-                                            <!--Image Carousel Above-->
-                                            <rotator:SfRotator Grid.Row="0"
+                     <CollectionView ItemsSource="{Binding StoreList}"
+                                        Margin="5,0,0,0"
+                                        x:Name="StoreList">
+                            <CollectionView.Header>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <rotator:SfRotator Grid.Row="0"
                                                            BackgroundColor="{StaticResource Transparent}"
                                                            DotsBorderColor="Transparent"
                                                            HeightRequest="240"
@@ -205,25 +142,105 @@
                                                            VerticalOptions="Start"
                                                            EnableAutoPlay="True" 
                                                            NavigationDelay="2700">
-                                                <rotator:SfRotator.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <ffimageloading:CachedImage Aspect="Fill"
+                                        <rotator:SfRotator.ItemTemplate>
+                                            <DataTemplate>
+                                                <ffimageloading:CachedImage Aspect="Fill"
                                                             BackgroundColor="{DynamicResource Gray-200}"
                                                             Source="{Binding Image}"
 			                                                DownsampleToViewSize="True" 
                                                             FadeAnimationEnabled="True">
-                                                        </ffimageloading:CachedImage>
-                                                    </DataTemplate>
-                                                </rotator:SfRotator.ItemTemplate>
-                                            </rotator:SfRotator>
+                                                </ffimageloading:CachedImage>
+                                            </DataTemplate>
+                                        </rotator:SfRotator.ItemTemplate>
+                                    </rotator:SfRotator>
 
-                                            <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}" />
+                                    <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}" />
+                                    
+                                </Grid>
+                                
+                            </CollectionView.Header>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <StackLayout>
+                                            <Grid Margin="16,8,8,8"  ColumnSpacing="0" RowSpacing="0" >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <border:SfBorder  BackgroundColor="{DynamicResource Gray-200}"
+                                                Style="{StaticResource ProfileBorderStyle}" HorizontalOptions="Start">
+                                                    <Image HeightRequest="80" WidthRequest="80" 
+                                                           BackgroundColor="{DynamicResource Gray-200}" 
+                                                           Aspect="AspectFill">
+                                                    <Image.Source>
+                                                        <UriImageSource Uri="{Binding Logo}" 
+			                                                             CacheValidity="14" 
+			                                                             CachingEnabled="true"/>         
+                                                    </Image.Source>
+                                                </Image>
+                                                </border:SfBorder>
 
-                                        </Grid>
-                                    </DataTemplate>
-                                </listView:SfListView.HeaderTemplate>
-                            </listView:SfListView>
-                        </Grid>
+                                                <StackLayout Grid.Column="1"
+                                                Margin="8,5"
+                                                HorizontalOptions="Start"
+                                                Spacing="2"
+                                                VerticalOptions="FillAndExpand">
+
+                                                    <!--  Name of the store  -->
+                                                    <Forms9Patch:Label Text="{Binding Title}"
+                                                       FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                       FontSize="15"
+                                                       LineHeight="{OnPlatform Android=1.25,
+                                                                            Default=-1}"
+                                                       TextColor="{DynamicResource Gray-900}"
+                                                       AutoFit="Width"/>
+
+                                                    <!--  Description of store  -->
+                                                    <Forms9Patch:Label Text="{Binding Description}"
+                                                       FontFamily="{StaticResource Montserrat-Medium}"
+                                                       FontSize="14"
+                                                       LineHeight="{OnPlatform Android=1.25,
+                                                                            Default=-1}"
+                                                       TextColor="{DynamicResource Gray-900}"
+                                                       AutoFit="Width"/>
+
+
+                                                    <!--  Store Address  -->
+                                                    <Forms9Patch:Label Text="{Binding Street}"
+                                                       FontFamily="{StaticResource Montserrat-Medium}"
+                                                       FontSize="14"
+                                                       LineHeight="{OnPlatform Android=1.25,
+                                                                            Default=-1}"
+                                                       TextColor="{DynamicResource Gray-900}"
+                                                       AutoFit="Width"/>
+                                                </StackLayout>
+
+                                                <border:SfBorder BackgroundColor="{DynamicResource Green}" 
+                                                                 WidthRequest="40"
+                                                                 HeightRequest="20"
+                                                                 HorizontalOptions="End"
+                                                                 Margin="0,8,0,0"
+                                                                 VerticalOptions="Start"
+                                                                 Grid.Column="2" 
+                                                                 CornerRadius="4" 
+                                                                 BorderColor="Transparent">
+                                                    <Label  FontFamily="{StaticResource Montserrat-Medium}" 
+                                                            Text="{Binding ItemRating}"
+                                                            HorizontalOptions="Center"
+                                                            FontSize="12"
+                                                            LineHeight="{OnPlatform Android=1.5, Default=-1}" 
+                                                            TextColor="{DynamicResource Gray-White}" 
+                                                            VerticalTextAlignment="Center" />
+                                                </border:SfBorder>
+                                            </Grid>
+                                            <BoxView Style="{StaticResource SeparatorStyle}" />
+                                        </StackLayout>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
                 </ScrollView>
                 <loading:LoadingIndicator
                     Grid.RowSpan="3"

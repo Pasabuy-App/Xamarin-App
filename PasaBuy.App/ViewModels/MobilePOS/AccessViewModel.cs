@@ -9,11 +9,11 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 {
     public class AccessViewModel : BaseViewModel
     {
-        private ObservableCollection<AccessGroup> _accessGroup;
-        public static ObservableCollection<AccessModel> _accessList;
-        public static ObservableCollection<AccessModel> _myAccessList;
+        private ObservableCollection<Models.POSFeature.AccessGroup> _accessGroup;
+        public static ObservableCollection<Models.POSFeature.AccessModel> _accessList;
+        public static ObservableCollection<Models.POSFeature.AccessModel> _myAccessList;
 
-        public ObservableCollection<AccessGroup> AccessGroup
+        public ObservableCollection<Models.POSFeature.AccessGroup> AccessGroup
         {
             get
             {
@@ -26,7 +26,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
         }
 
-        public ObservableCollection<AccessModel> AccessList
+        public ObservableCollection<Models.POSFeature.AccessModel> AccessList
         {
             get
             {
@@ -38,7 +38,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 this.NotifyPropertyChanged();
             }
         }
-        public ObservableCollection<AccessModel> MyAccessList
+        public ObservableCollection<Models.POSFeature.AccessModel> MyAccessList
         {
             get
             {
@@ -72,11 +72,27 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 this.NotifyPropertyChanged();
             }
         }
+        bool _IsRunning = false;
+        public bool IsRunning
+        {
+            get
+            {
+                return _IsRunning;
+            }
+            set
+            {
+                if (_IsRunning != value)
+                {
+                    _IsRunning = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
 
         public AccessViewModel()
         {
-            _accessGroup = new ObservableCollection<AccessGroup>();
-            _myAccessList = new ObservableCollection<AccessModel>();
+            _accessGroup = new ObservableCollection<Models.POSFeature.AccessGroup>();
+            _myAccessList = new ObservableCollection<Models.POSFeature.AccessModel>();
             LoadAccess();
             this.InsertRoleCommand = new DelegateCommand(InsertRoleClicked);
         }
@@ -84,61 +100,79 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         {
             try
             {
-                if (string.IsNullOrEmpty(this.Description) || string.IsNullOrEmpty(this.Name) || _myAccessList.Count == 0)
+                if (!IsRunning)
                 {
-                    new Alert("Notice to User", "Please input title, description or add an access.", "Try Again");
-                }
-                else
-                {
-                    Http.MobilePOS.Role.Instance.Insert(this.Name, this.Description, _myAccessList, (bool success, string data) =>
+                    IsRunning = true;
+                    if (string.IsNullOrEmpty(this.Description) || string.IsNullOrEmpty(this.Name) || _myAccessList.Count == 0)
                     {
-                        if (success)
+                        new Alert("Notice to User", "Please input title, description or add an access.", "Try Again");
+                        IsRunning = false;
+                    }
+                    else
+                    {
+                        Http.MobilePOS.Role.Instance.Insert(this.Name, this.Description, _myAccessList, (bool success, string data) =>
                         {
-                            RolesViewModel._rolesList.Clear();
-                            RolesViewModel.LoadRoleList();
-                            PopupNavigation.Instance.PopAsync();
-                        }
-                        else
-                        {
-                            new Controllers.Notice.Alert("Notice to User", Local.HtmlUtils.ConvertToPlainText(data), "Try Again");
-                        }
-                    });
+                            if (success)
+                            {
+                                RolesViewModel.LoadRoleList();
+                                PopupNavigation.Instance.PopAsync();
+                                IsRunning = false;
+                            }
+                            else
+                            {
+                                new Controllers.Notice.Alert("Notice to User", Local.HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                IsRunning = false;
+                            }
+                        });
+                    }
                 }
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ROL-I1AVM.", "OK");
+                IsRunning = false;
             }
         }
         public void LoadAccess()
         {
             try
             {
-                Http.MobilePOS.Role.Instance.AccessList((bool success, string data) =>
+                if (!IsRunning)
                 {
-                    if (success)
+                    IsRunning = true;
+                    Http.MobilePOS.Role.Instance.AccessList((bool success, string data) =>
                     {
-                        AccessGroup access = Newtonsoft.Json.JsonConvert.DeserializeObject<AccessGroup>(data);
-                        for (int i = 0; i < access.data.Length; i++)
+                        if (success)
                         {
-                            _accessGroup.Add(new AccessGroup() { GroupName = access.data[i].name, AccessList = access.data[i].access });
+                            Models.POSFeature.AccessGroup access = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.POSFeature.AccessGroup>(data);
+                            for (int i = 0; i < access.data.Length; i++)
+                            {
+                                _accessGroup.Add(new Models.POSFeature.AccessGroup()
+                                {
+                                    GroupName = access.data[i].name,
+                                    AccessList = access.data[i].access
+                                });
+                            }
+                            IsRunning = false;
                         }
-                    }
-                    else
-                    {
-                        new Controllers.Notice.Alert("Notice to User", Local.HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                });
+                        else
+                        {
+                            new Controllers.Notice.Alert("Notice to User", Local.HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsRunning = false;
+                        }
+                    });
+                }
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2RAL-L1AVM.", "OK");
+                IsRunning = false;
             }
         }
 
         public static void Insert(string access_id)
         {
-            _myAccessList.Add(new AccessModel()
+            _myAccessList.Add(new Models.POSFeature.AccessModel()
             {
                 ID = access_id
             });
@@ -146,7 +180,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
         public static void Remove(string access_id)
         {
-            foreach (AccessModel var in _myAccessList)
+            foreach (Models.POSFeature.AccessModel var in _myAccessList)
             {
                 if (var.ID == access_id)
                 {

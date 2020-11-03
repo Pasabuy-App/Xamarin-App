@@ -15,6 +15,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
     {
         public static ObservableCollection<PartnerStore> partnerStoresRotator;
 
+        public static ObservableCollection<FeaturedStoreModel> _bestSellers;
+
         public static ObservableCollection<Store> storeList;
 
         public static ObservableCollection<Categories> itemCategories;
@@ -28,6 +30,19 @@ namespace PasaBuy.App.ViewModels.Marketplace
             set
             {
                 storeList = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<FeaturedStoreModel> BestSellers
+        {
+            get
+            {
+                return _bestSellers;
+            }
+            set
+            {
+                _bestSellers = value;
                 this.NotifyPropertyChanged();
             }
         }
@@ -95,6 +110,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public PartnerBrowserViewModel()
         {
+            _bestSellers = new ObservableCollection<FeaturedStoreModel>();
             RefreshCommand = new Command<string>((key) =>
             {
                 storeList.Clear();
@@ -132,10 +148,10 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                         Id = datas.data[i].hsid,
                                         Title = datas.data[i].title,
                                         Description = datas.data[i].short_info,
-                                        Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(datas.data[i].avatar),
+                                        Logo = PSAProc.GetUrl(datas.data[i].avatar),
                                         Offer = "50% off",
-                                        ItemRating = "4.5",
-                                        Street = datas.data[i].brgy + " " + datas.data[i].city
+                                        ItemRating = datas.data[i].rates == "No ratings yet" ? "N/A" : datas.data[i].rates,
+                                        Street = datas.data[i].brgy + ", " + datas.data[i].city
                                     });
                                 }
                                 IsRunning = false;
@@ -160,6 +176,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
+        
         public static void SearchStore(string search)
         {
             try

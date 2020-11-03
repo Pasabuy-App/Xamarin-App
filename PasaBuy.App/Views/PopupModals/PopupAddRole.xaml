@@ -10,7 +10,9 @@
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
     xmlns:behavior1="clr-namespace:PasaBuy.App.Behaviors" 
     xmlns:controls="clr-namespace:PasaBuy.App.Controls"
-    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms" xmlns:templateSelector="clr-namespace:PasaBuy.App.Helpers">
+    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms" 
+    xmlns:templateSelector="clr-namespace:PasaBuy.App.Helpers" xmlns:local="clr-namespace:PasaBuy.App.UserControls">
+    
     <pages:PopupPage.Resources>
         <ResourceDictionary>
             <Style x:Key="PopupItemHeaderStyle" TargetType="{x:Type Label}">
@@ -47,6 +49,7 @@
 
         </ResourceDictionary>
     </pages:PopupPage.Resources>
+    
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation
             DurationIn="500"
@@ -56,39 +59,42 @@
             ScaleIn="1"
             ScaleOut="0.7" />
     </pages:PopupPage.Animation>
+    
     <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-        <Frame
+        <Grid>
+
+            <Frame
             x:Name="FrameContainer"
             Margin="15"
             Padding="15,15,15,15"
             BackgroundColor="White"
             CornerRadius="6"
             HorizontalOptions="Center">
-            <StackLayout
+                <StackLayout
                 Padding="10,5"
                 IsClippedToBounds="True"
                 Spacing="3">
-                <Grid RowSpacing="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
+                    <Grid RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                    <Grid
+                        <Grid
                         Grid.Row="1"
                         ColumnSpacing="8"
                         RowSpacing="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="60" />
-                            <RowDefinition Height="60" />
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="60" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.5*" />
-                            <ColumnDefinition Width="0.5*" />
-                        </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="60" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.5*" />
+                                <ColumnDefinition Width="0.5*" />
+                            </Grid.ColumnDefinitions>
 
-                        <Entry
+                            <Entry
                             x:Name="RoleName"
                             Grid.Row="0"
                             Grid.Column="0"
@@ -100,7 +106,7 @@
                             Text="{Binding Name}"
                             VerticalOptions="EndAndExpand" />
 
-                        <Editor
+                            <Editor
                             x:Name="Description"
                             Grid.Row="1"
                             Grid.Column="0"
@@ -113,30 +119,30 @@
                             PlaceholderColor="{DynamicResource Gray-900}"
                             VerticalOptions="StartAndExpand" />
 
-                        <ScrollView Grid.Row="2"
+                            <ScrollView Grid.Row="2"
                                     Grid.ColumnSpan="2">
-                            <StackLayout BindableLayout.ItemsSource="{Binding AccessGroup}">
-                                <BindableLayout.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackLayout>
-                                            <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+                                <StackLayout BindableLayout.ItemsSource="{Binding AccessGroup}">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackLayout>
+                                                <Label FontFamily="{StaticResource Montserrat-SemiBold}"
                                                        Padding="5,0,0,0"
                                                        FontSize="{DynamicResource MediumSize}"
                                                        Text="{Binding GroupName}"
                                                        TextColor="{DynamicResource Gray-900}" />
-                                            <button:SfRadioGroup BindableLayout.ItemsSource="{Binding AccessList}" 
+                                                <button:SfRadioGroup BindableLayout.ItemsSource="{Binding AccessList}" 
                                                                          Grid.Column="0">
-                                                <BindableLayout.ItemTemplateSelector>
-                                                    <templateSelector:VariantsTemplateSelecteior VariantsTemplate="{StaticResource checkboxTemplate}" />
-                                                </BindableLayout.ItemTemplateSelector>
-                                            </button:SfRadioGroup>
-                                        </StackLayout>
-                                    </DataTemplate>
-                                </BindableLayout.ItemTemplate>
-                            </StackLayout>
-                        </ScrollView>
-                        
-                        <button:SfButton
+                                                    <BindableLayout.ItemTemplateSelector>
+                                                        <templateSelector:VariantsTemplateSelecteior VariantsTemplate="{StaticResource checkboxTemplate}" />
+                                                    </BindableLayout.ItemTemplateSelector>
+                                                </button:SfRadioGroup>
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </StackLayout>
+                            </ScrollView>
+
+                            <button:SfButton
                             Grid.Row="3"
                             Grid.Column="0"
                             BackgroundColor="Green"
@@ -149,7 +155,7 @@
                             Command="{Binding InsertRoleCommand}"
                             TextColor="White"
                             VerticalOptions="Center" />
-                        <button:SfButton
+                            <button:SfButton
                             Grid.Row="3"
                             Grid.Column="1"
                             BackgroundColor="Red"
@@ -162,9 +168,16 @@
                             Text="{texts:Translate Cancel}"
                             TextColor="White"
                             VerticalOptions="Center" />
+                        </Grid>
                     </Grid>
-                </Grid>
-            </StackLayout>
-        </Frame>
+                </StackLayout>
+            </Frame>
+            <local:LoadingIndicator
+                    x:Name="IsRunning"
+                    HorizontalOptions="Fill"
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}"
+                    VerticalOptions="Fill" />
+        </Grid>
     </StackLayout>
+    
 </pages:PopupPage>

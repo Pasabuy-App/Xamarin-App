@@ -13,9 +13,9 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 {
     public class AddPersonnelViewModel : BaseViewModel
     {
-        public static ObservableCollection<Personnels> _userList;
+        public static ObservableCollection<Models.POSFeature.PersonnelModel> _userList;
 
-        public ObservableCollection<Personnels> UserList
+        public ObservableCollection<Models.POSFeature.PersonnelModel> UserList
         {
             get
             {
@@ -63,7 +63,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
         public AddPersonnelViewModel()
         {
-            _userList = new ObservableCollection<Personnels>();
+            _userList = new ObservableCollection<Models.POSFeature.PersonnelModel>();
             LoadUser();
 
             RefreshCommand = new Command<string>((key) =>
@@ -81,7 +81,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             if (!IsBusy)
             {
                 IsBusy = true;
-                var person = obj as Personnels;
+                var person = obj as Models.POSFeature.PersonnelModel;
                 PopupChooseRole.user_id = person.User_id;
                 await PopupNavigation.Instance.PushAsync(new PopupChooseRole());
                 IsBusy = false;
@@ -99,12 +99,12 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                     {
                         if (success)
                         {
-                            Personnels user = Newtonsoft.Json.JsonConvert.DeserializeObject<Personnels>(data);
+                            Models.POSFeature.PersonnelModel user = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.POSFeature.PersonnelModel>(data);
                             if (user.data.Length > 0)
                             {
                                 for (int i = 0; i < user.data.Length; i++)
                                 {
-                                    _userList.Add(new Personnels()
+                                    _userList.Add(new Models.POSFeature.PersonnelModel()
                                     {
                                         User_id = user.data[i].ID,
                                         Avatar = user.data[i].avatar == "" ? "" : PSAProc.GetUrl(user.data[i].avatar),
@@ -142,13 +142,13 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 {
                     if (success)
                     {
-                        Personnels user = Newtonsoft.Json.JsonConvert.DeserializeObject<Personnels>(data);
+                        Models.POSFeature.PersonnelModel user = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.POSFeature.PersonnelModel>(data);
                         if (user.data.Length > 0)
                         {
                             _userList.Clear();
                             for (int i = 0; i < user.data.Length; i++)
                             {
-                                _userList.Add(new Personnels()
+                                _userList.Add(new Models.POSFeature.PersonnelModel()
                                 {
                                     User_id = user.data[i].ID,
                                     Avatar = user.data[i].avatar == "" ? "" : PSAProc.GetUrl(user.data[i].avatar),

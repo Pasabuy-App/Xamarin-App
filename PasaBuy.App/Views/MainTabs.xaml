@@ -71,9 +71,9 @@
                                 FontIconFontFamily="{StaticResource FontFamily}"
                                 TitleFontColor="{DynamicResource PrimaryColor}"
                                 SelectionColor="{DynamicResource PrimaryColor}">
-                    <!--<tabView:SfTabItem.Content>
+                    <tabView:SfTabItem.Content>
                         <store:StoreBrowserPage/>
-                    </tabView:SfTabItem.Content>-->
+                    </tabView:SfTabItem.Content>
                 </tabView:SfTabItem>
 
                 <!--GROCERY TAB-->
@@ -95,9 +95,9 @@
                                FontIconFontFamily="{StaticResource FontFamily}"
                                TitleFontColor="{DynamicResource PrimaryColor}"
                                SelectionColor="{DynamicResource PrimaryColor}">
-                    <!--<tabView:SfTabItem.Content>
+                    <tabView:SfTabItem.Content>
                         <partner:PartnerBrowserPage/>
-                    </tabView:SfTabItem.Content>-->
+                    </tabView:SfTabItem.Content>
                 </tabView:SfTabItem>
 
                 <!--BURGER TAB-->

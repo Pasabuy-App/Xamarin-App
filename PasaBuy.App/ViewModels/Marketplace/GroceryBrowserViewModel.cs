@@ -2,6 +2,7 @@
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Marketplace;
+using PasaBuy.App.Views.Marketplace;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -15,6 +16,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public static ObservableCollection<Groceries> grocerystorelist;
 
+        public static ObservableCollection<FeaturedStoreModel> _bestSellers;
+
         private static GroceryBrowserViewModel instance;
         public static GroceryBrowserViewModel Instance
         {
@@ -27,6 +30,19 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 return instance;
             }
 
+        }
+
+        public ObservableCollection<FeaturedStoreModel> BestSellers
+        {
+            get
+            {
+                return _bestSellers;
+            }
+            set
+            {
+                _bestSellers = value;
+                this.NotifyPropertyChanged();
+            }
         }
 
 
@@ -76,6 +92,9 @@ namespace PasaBuy.App.ViewModels.Marketplace
         }
         public GroceryBrowserViewModel()
         {
+            ItemTappedCommand = new Command<object>(NavigateToNextPage);
+            FeaturedTappedCommand = new Command<object>(NavigateToFeatured);
+            _bestSellers = new ObservableCollection<FeaturedStoreModel>();
             grocerystorelist = new ObservableCollection<Groceries>();
             grocerystorelist.Clear();
             RefreshCommand = new Command<string>((key) =>
@@ -84,7 +103,40 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 LoadGrocery("");
                 IsRefreshing = false;
             });
+            LoadBestSeller();
             LoadGrocery("");
+            
+        }
+
+        public void LoadBestSeller()
+        {
+            try
+            {
+                Http.TindaFeature.Instance.FeaturedList("active", (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        FeaturedStoreModel datas = JsonConvert.DeserializeObject<FeaturedStoreModel>(data);
+                        for (int i = 0; i < datas.data.Length; i++)
+                        {
+                            _bestSellers.Add(new FeaturedStoreModel()
+                            {
+                                ID = datas.data[i].stid,
+                                Title = datas.data[i].title,
+                                Logo = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg" : PSAProc.GetUrl(datas.data[i].banner)
+                            });
+                        }
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+            }
         }
 
         public void LoadGrocery(string lastid)
@@ -99,6 +151,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         if (success)
                         {
                             GroceriesStoreListData datas = JsonConvert.DeserializeObject<GroceriesStoreListData>(data);
+                          
                             for (int i = 0; i < datas.data.Length; i++)
                             {
                                 grocerystorelist.Add(new Groceries()
@@ -106,11 +159,11 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                     Id = datas.data[i].hsid,
                                     Title = datas.data[i].title,
                                     Description = datas.data[i].short_info,
-                                    Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(datas.data[i].avatar), // "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png"
-                                    Offer = "",
-                                    ItemRating = "4.5",
+                                    //StoreRating = datas.data[i].store_rating,
+                                    //Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(datas.data[i].avatar), // "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png"
+                                    //Offer = "",
                                     Banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(datas.data[i].banner), //https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png
-                                    Street = datas.data[i].street + " " + datas.data[i].brgy + " " + datas.data[i].city + " " + datas.data[i].province + ", " + datas.data[i].country //"#4 Rainbow Ave Pacita 2 San Pedro City, Laguna"
+                                    Street = datas.data[i].street + ", " + datas.data[i].brgy + ", " + datas.data[i].city + ", " + datas.data[i].province + ", " + datas.data[i].country //"#4 Rainbow Ave Pacita 2 San Pedro City, Laguna"
                                 });
                             }
                             IsRunning = false;
@@ -175,26 +228,32 @@ namespace PasaBuy.App.ViewModels.Marketplace
         }
 
         public Command RefreshCommand { protected set; get; }
-        public Command<object> ItemTappedCommand
-        {
-            get
-            {
-                return this.itemTappedCommand ?? (this.itemTappedCommand = new Command<object>(this.NavigateToNextPage));
-            }
-        }
 
-        private async void NavigateToNextPage(object selectedItem)
+        public Command<object> ItemTappedCommand { get; set; }
+
+        public Command<object> FeaturedTappedCommand { get; set; }
+
+        private async void NavigateToNextPage(object obj)
         {
             if (!IsRunning)
             {
                 IsRunning = true;
-                CanNavigate = false;
-                StoreDetailsViewModel.store_id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Groceries).Id;
-                await Task.Delay(300);
+                var store = obj as Groceries;
+                StoreDetailsViewModel.store_id = store.Id;
                 await App.Current.MainPage.Navigation.PushModalAsync(new Views.Marketplace.StoreDetailsPage());
-                await Task.Delay(300);
                 IsRunning = false;
-                CanNavigate = true;
+            }
+        }
+
+        private async void NavigateToFeatured(object obj)
+        {
+            if (!IsRunning)
+            {
+                IsRunning = true;
+                var product = obj as FeaturedStoreModel;
+                StoreDetailsViewModel.store_id = product.ID;
+                await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+                IsRunning = false;
             }
         }
 

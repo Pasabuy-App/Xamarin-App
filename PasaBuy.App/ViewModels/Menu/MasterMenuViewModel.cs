@@ -107,9 +107,9 @@ namespace PasaBuy.App.ViewModels.Menu
             }
         }
 
-        public static ObservableCollection<Personnels> userinfoList;
+        public static ObservableCollection<Models.POSFeature.PersonnelModel> userinfoList;
 
-        public ObservableCollection<Personnels> UserinfoList
+        public ObservableCollection<Models.POSFeature.PersonnelModel> UserinfoList
         {
             get { return userinfoList; }
             set { userinfoList = value; this.NotifyPropertyChanged(); }
@@ -151,7 +151,7 @@ namespace PasaBuy.App.ViewModels.Menu
             this.SettingCommand = new Command(this.SettingButtonClicked);
             this.PasabuyPlusCommand = new Command(this.PasabuyPlusClicked);
 
-            userinfoList = new ObservableCollection<Personnels>();
+            userinfoList = new ObservableCollection<Models.POSFeature.PersonnelModel>();
             userinfoList.CollectionChanged += CollectionChanges;
         }
 
