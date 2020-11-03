@@ -123,6 +123,12 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 IsRunning = true;
                 var product = obj as Models.TindaFeature.ProductModel;
                 AddProductView.pdid = product.ID;
+                AddProductView.name = product.Product_name;
+                AddProductView.info = product.Short_info;
+                AddProductView.price = product.Price.ToString();
+                AddProductView.discount = product.Discount;
+                AddProductView.avatar = product.Preview;
+                AddProductView.category_name = product.Category_Name;
                 await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new AddProductView()));
                 IsRunning = false;
             }

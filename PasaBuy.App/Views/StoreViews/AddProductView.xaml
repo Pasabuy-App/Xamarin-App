@@ -60,7 +60,7 @@
             Order="Primary"
             Clicked="Discard"
             Priority="1"
-            Text="asd">
+            Text="">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="Android" Value="cross_512.png" />

@@ -121,7 +121,7 @@ namespace PasaBuy.App.Http.TindaPress
         /// <summary>
         /// Insert product.
         /// </summary>
-        public async void Insert(string avatar, string pcid, string title, string info, string price, string discount, Action<bool, string> callback)
+        public async void Insert(string avatar, string pcid, string title, string info, string price, string discount, string inventory, Action<bool, string> callback)
         {
             try
             {
@@ -134,6 +134,7 @@ namespace PasaBuy.App.Http.TindaPress
                     multiForm.Add(new StringContent(info), "info");
                     multiForm.Add(new StringContent(price), "price");
                     multiForm.Add(new StringContent(discount), "discount");
+                    multiForm.Add(new StringContent(inventory), "inventory");
                     FileStream fs = File.OpenRead(avatar);
                     multiForm.Add(new StreamContent(fs), "avatar", Path.GetFileName(avatar));
 
@@ -163,7 +164,7 @@ namespace PasaBuy.App.Http.TindaPress
         /// <summary>
         /// Update product.
         /// </summary>
-        public async void Update(string avatar, string pdid, string pcid, string title, string info, string price, string discount, Action<bool, string> callback)
+        public async void Update(string avatar, string pdid, string pcid, string title, string info, string price, string discount, string inventory, Action<bool, string> callback)
         {
             try
             {
@@ -176,7 +177,8 @@ namespace PasaBuy.App.Http.TindaPress
                     multiForm.Add(new StringContent(info), "info");
                     multiForm.Add(new StringContent(price), "price");
                     multiForm.Add(new StringContent(discount), "discount");
-                    FileStream fs = File.OpenRead(avatar);
+                    multiForm.Add(new StringContent(inventory), "inventory");
+                FileStream fs = File.OpenRead(avatar);
                     multiForm.Add(new StreamContent(fs), "avatar", Path.GetFileName(avatar));
 
                 var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/tindapress/v2/product/update", multiForm);

@@ -147,9 +147,9 @@ namespace PasaBuy.App.Views.StoreViews
             //Context.ItemIndex = e.ItemIndex;
         }
 
-        private void Discard(object sender, EventArgs e)
+        private async void Discard(object sender, EventArgs e)
         {
-            Navigation.PopAsync();
+            await Navigation.PopModalAsync();
         }
         private void AddProduct(object sender, EventArgs e)
         {
@@ -169,7 +169,7 @@ namespace PasaBuy.App.Views.StoreViews
                         IsRunning.IsRunning = true;
                         if (pdid == "0")
                         {
-                            Http.TindaPress.Product.Instance.Insert(filepath, catid, ProductNames.Text, Shorts.Text, Prices.Text, Discount.Text, (bool success, string data) =>
+                            Http.TindaPress.Product.Instance.Insert(filepath, catid, ProductNames.Text, Shorts.Text, Prices.Text, Discount.Text, "false", async (bool success, string data) =>
                             {
                                 if (success)
                                 {
@@ -177,7 +177,7 @@ namespace PasaBuy.App.Views.StoreViews
                                     ProductsView.isFirstLoad = false;
                                     ProductsView.Offset = 0;
                                     ProductViewModel.RefreshProduct("");
-                                    Navigation.PopAsync();
+                                    await Navigation.PopModalAsync();
                                     IsRunning.IsRunning = false;
                                 }
                                 else
@@ -189,7 +189,7 @@ namespace PasaBuy.App.Views.StoreViews
                         }
                         else
                         {
-                            Http.TindaPress.Product.Instance.Update(filepath, pdid, catid, ProductNames.Text, Shorts.Text, Prices.Text, Discount.Text, (bool success, string data) =>
+                            Http.TindaPress.Product.Instance.Update(filepath, pdid, catid, ProductNames.Text, Shorts.Text, Prices.Text, Discount.Text, "false", async (bool success, string data) =>
                             {
                                 if (success)
                                 {
@@ -198,7 +198,7 @@ namespace PasaBuy.App.Views.StoreViews
                                     ProductsView.Offset = 0;
                                     pdid = "0";
                                     ProductViewModel.RefreshProduct("");
-                                    Navigation.PopAsync();
+                                    await Navigation.PopModalAsync();
                                     IsRunning.IsRunning = false;
                                 }
                                 else
