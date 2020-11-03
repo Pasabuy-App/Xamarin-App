@@ -177,9 +177,12 @@
                                                                   HorizontalOptions="Start" Margin="0,4,0,0" VerticalOptions="Start"
                                                                   Grid.Column="0" CornerRadius="6" BorderColor="Transparent">
                                                     <Label  FontFamily="{StaticResource Montserrat-Medium}" 
-                                                                    Text="{Binding ItemRating}" HorizontalOptions="Center"
-                                                                    FontSize="16" LineHeight="{OnPlatform Android=1.5,
-                                                                    Default=-1}" TextColor="{DynamicResource Gray-White}" VerticalTextAlignment="Center" />
+                                                            Text="{Binding ItemRating}"
+                                                            HorizontalOptions="Center"
+                                                            FontSize="16" 
+                                                            LineHeight="{OnPlatform Android=1.5,Default=-1}"
+                                                            TextColor="{DynamicResource Gray-White}"
+                                                            VerticalTextAlignment="Center" />
                                                 </border:SfBorder>
 
                                                 <StackLayout Margin="8,0,0,0" Grid.Column="1" Spacing="1" >
