@@ -99,14 +99,16 @@ namespace PasaBuy.App.Http.MobilePOS
         /// <summary>
         /// Customer create order using stid method, addid, msg and list.
         /// </summary>
-        public async void Listing(string odid, Action<bool, string> callback)
+        public async void Listing(string stid, string odid, string stages, Action<bool, string> callback)
         {
             try
             {
                 var dict = new Dictionary<string, string>();
                     dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
                     dict.Add("snky", PSACache.Instance.UserInfo.snky);
+                    dict.Add("stid", stid);
                     dict.Add("odid", odid);
+                    dict.Add("stages", stages);
                 var content = new FormUrlEncodedContent(dict);
 
                 var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/mobilepos/v2/orders/list", content);
@@ -128,14 +130,14 @@ namespace PasaBuy.App.Http.MobilePOS
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ODR-L1.", "OK");
             }
         }
 
         /// <summary>
-        /// Update the status of order (cancelled, accepted, ongoing, preparing, shipping, completed)
+        /// Update the status of order (cancelled, accepted, preparing, shipping)
         /// </summary>
-        public async void UpdateStatus(string odid, string status, Action<bool, string> callback)
+        public async void UpdateStages(string odid, string stages, string status, Action<bool, string> callback)
         {
             try
             {
@@ -143,6 +145,7 @@ namespace PasaBuy.App.Http.MobilePOS
                     dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
                     dict.Add("snky", PSACache.Instance.UserInfo.snky);
                     dict.Add("odid", odid);
+                    dict.Add("stages", stages);
                     dict.Add("status", status);
                 var content = new FormUrlEncodedContent(dict);
 
@@ -165,7 +168,7 @@ namespace PasaBuy.App.Http.MobilePOS
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ODR-U1.", "OK");
             }
         }
 

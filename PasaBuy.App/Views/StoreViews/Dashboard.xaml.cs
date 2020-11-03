@@ -15,7 +15,7 @@ namespace PasaBuy.App.Views.StoreViews
         {
             InitializeComponent();
 
-            //this.BindingContext = new DashboardOrdersViewModel();
+            this.BindingContext = new DashboardOrdersViewModel();
             Title = "Dashboard";
 
         }
@@ -36,39 +36,37 @@ namespace PasaBuy.App.Views.StoreViews
 
         private async void SfTabView_TabItemTapped(object sender, Syncfusion.XForms.TabView.TabItemTappedEventArgs e)
         {
-            if (!isClicked)
+            if (!IsRunning.IsRunning)
             {
-                isClicked = true;
-                if (e.TabItem.Title == "New Orders")
-                {
-                    //new Alert("New Orders", "New Orders", "New Orders");
-                    DashboardOrdersViewModel.stages = "pending";
-                    DashboardOrdersViewModel.orderList.Clear();
-                    DashboardOrdersViewModel.LoadOrder("pending");
-                }
+                IsRunning.IsRunning = true;
                 if (e.TabItem.Title == "Pending")
                 {
-                    //new Alert("Pending", "Pending", "Pending");
-                    DashboardOrdersViewModel.stages = "received";
-                    DashboardOrdersViewModel.orderList.Clear();
-                    DashboardOrdersViewModel.LoadOrder("received");
+                    DashboardOrdersViewModel.stages = "1";
+                    DashboardOrdersViewModel.RefreshOrder("1");
+                    await Task.Delay(300);
+                    IsRunning.IsRunning = false;
                 }
-                if (e.TabItem.Title == "Declined")
+                if (e.TabItem.Title == "On-Going")
                 {
-                    DashboardOrdersViewModel.stages = "cancelled";
-                    DashboardOrdersViewModel.orderList.Clear();
-                    DashboardOrdersViewModel.LoadOrder("cancelled");
-                    //new Alert("Declined", "Declined", "Declined");
+                    DashboardOrdersViewModel.stages = "2";
+                    DashboardOrdersViewModel.RefreshOrder("2");
+                    await Task.Delay(300);
+                    IsRunning.IsRunning = false;
                 }
                 if (e.TabItem.Title == "Completed")
                 {
-                    DashboardOrdersViewModel.stages = "shipping";
-                    DashboardOrdersViewModel.orderList.Clear();
-                    DashboardOrdersViewModel.LoadOrder("shipping");
-                    //new Alert("Completed", "Completed", "Completed");
+                    DashboardOrdersViewModel.stages = "3";
+                    DashboardOrdersViewModel.RefreshOrder("3");
+                    await Task.Delay(300);
+                    IsRunning.IsRunning = false;
                 }
-                await Task.Delay(500);
-                isClicked = false;
+                if (e.TabItem.Title == "Cancelled")
+                {
+                    DashboardOrdersViewModel.stages = "4";
+                    DashboardOrdersViewModel.RefreshOrder("4");
+                    await Task.Delay(300);
+                    IsRunning.IsRunning = false;
+                }
             }
         }
     }
