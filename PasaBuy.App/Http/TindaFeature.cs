@@ -100,13 +100,17 @@ namespace PasaBuy.App.Http
             }
         }
 
-        public async void StoreCategoryList(Action<bool, string> callback)
+        public async void StoreCategoryList(string status, string group, Action<bool, string> callback)
         {
             try
             {
                 var dict = new Dictionary<string, string>();
                 dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
                 dict.Add("snky", PSACache.Instance.UserInfo.snky);
+                dict.Add("status", status);
+                dict.Add("category_groups", group);
+
+
 
                 var content = new FormUrlEncodedContent(dict);
 
