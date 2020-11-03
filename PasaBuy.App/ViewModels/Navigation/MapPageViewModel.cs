@@ -61,7 +61,7 @@ namespace PasaBuy.App.ViewModels
                 if (!IsBusy)
                 {
                     IsBusy = true;
-                    Http.MobilePOS.Order.Instance.Listing(odid, async (bool success, string data) =>
+                    Http.MobilePOS.Order.Instance.Listing("", odid, "", async (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -90,7 +90,7 @@ namespace PasaBuy.App.ViewModels
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ODR-L1MPVM.", "OK");
                 IsBusy = false;
             }
         }
@@ -116,7 +116,7 @@ namespace PasaBuy.App.ViewModels
                     if (!IsBusy)
                     {
                         IsBusy = true;
-                        Http.MobilePOS.Order.Instance.UpdateStatus(odid, status, async (bool success, string data) =>
+                        Http.MobilePOS.Order.Instance.UpdateStages(odid, status, "", async (bool success, string data) =>
                         {
                             if (success)
                             {
@@ -135,7 +135,7 @@ namespace PasaBuy.App.ViewModels
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ODR-U1MPVM.", "OK");
                 IsBusy = false;
             }
         }

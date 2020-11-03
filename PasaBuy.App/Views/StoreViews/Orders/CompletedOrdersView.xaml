@@ -50,7 +50,7 @@
                                  FocusBorderThickness="0"
                                  ItemSpacing="0,1,0,0"
                                  VerticalOptions="StartAndExpand"
-                                 ItemTapped="CompletedOrders_ItemTapped"
+                                 TapCommand ="{Binding ItemTappedCommand}"
                                  ItemsSource="{Binding OrderList}"
                                  SelectionMode="None">
                 <!--Item Source is for testing purposes only. Kindly bind into specific viewmodels-->
@@ -92,31 +92,31 @@
                                     </ffimageloading:CachedImage.Transformations>
                                 </ffimageloading:CachedImage>
 
-                                <Label Text="{Binding Customer}"
+                                <Label Text="{Binding CustomerName}"
                                                        Grid.Row="0"
                                                        Grid.Column="1"
                                                        HorizontalOptions="StartAndExpand"
                                                        TextColor="{DynamicResource BlackColor}">
                                 </Label>
-                                <Label Text="{Binding OrderID}"
+                                <Label Text="{Binding Pubkey}"
                                                        Grid.Row="1"
                                                        Grid.Column="1"
                                                        HorizontalOptions="StartAndExpand"
                                                        TextColor="{DynamicResource Gray-800}">
                                 </Label>
-                                <Label Text="{Binding Date_Time}"
+                                <Label Text="{Binding DateTime}"
                                                        Grid.Row="2"
                                                        Grid.Column="1"
                                                        HorizontalOptions="StartAndExpand"
                                                        TextColor="{DynamicResource Gray-800}">
                                 </Label>
-                                <Label Text="{Binding TotalPrice}"
+                                <Label Text="{Binding TotalPrice, StringFormat='₱ {0:F2}'}"
                                                        Grid.Row="0"
                                                        Grid.Column="2"
                                                        HorizontalOptions="StartAndExpand"
                                                        TextColor="{DynamicResource BlackColor}">
                                 </Label>
-                                <Label Text="{Binding Method}"
+                                <Label Text="{Binding Stages}"
                                                        Grid.Row="2"
                                                        Grid.Column="2"
                                                        HorizontalOptions="StartAndExpand"

@@ -22,20 +22,5 @@ namespace PasaBuy.App.Views.StoreViews
         {
             Navigation.PopModalAsync();
         }
-
-        private void Declined_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Accepted_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void MessageCustomer(object sender, EventArgs e)
-        {
-
-        }
     }
 }

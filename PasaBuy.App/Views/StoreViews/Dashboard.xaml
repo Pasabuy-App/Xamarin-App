@@ -85,45 +85,45 @@
                         </tabView:SfTabView.SelectionIndicatorSettings>
 
                         <tabView:SfTabItem
-                        Title="New Orders"
+                        Title="Pending"
                         SelectionColor="{DynamicResource PrimaryColor}"
                         TitleFontColor="{DynamicResource Gray-700}"
                         TitleFontFamily="{StaticResource Montserrat-Medium}"
                         TitleFontSize="14">
-                            <!--<tabView:SfTabItem.Content>
+                                <tabView:SfTabItem.Content>
                                     <listView:SfListView x:Name="NewOrders"
                                                  AutoFitMode="Height"
                                                  FocusBorderThickness="0"
                                                  ItemSpacing="0,1,0,0"
                                                  VerticalOptions="StartAndExpand"
-                                                     ItemTapped="NewOrders_ItemTapped"
+                                                 TapCommand ="{Binding ItemTappedCommand}"
                                                  ItemsSource="{Binding OrderList}"
                                                  SelectionMode="None">
 
                                         <listView:SfListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid Margin="0"
+                                            <DataTemplate>
+                                                <Grid Margin="0"
                                               Padding="8,12,8,0"
                                               BackgroundColor="{DynamicResource Gray-White}"
                                               ColumnSpacing="0"
                                               RowSpacing="0">
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                </Grid.RowDefinitions>
-                                                <Grid Padding="0,0,8,10" RowSpacing="0" Grid.Row="0">
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="Auto" />
                                                         <RowDefinition Height="Auto" />
-                                                        <RowDefinition Height="Auto" />
                                                     </Grid.RowDefinitions>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto" />
-                                                        <ColumnDefinition Width="*" />
-                                                        <ColumnDefinition Width="Auto" />
-                                                    </Grid.ColumnDefinitions>
+                                                    <Grid Padding="0,0,8,10" RowSpacing="0" Grid.Row="0">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto" />
+                                                            <RowDefinition Height="Auto" />
+                                                            <RowDefinition Height="Auto" />
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                        </Grid.ColumnDefinitions>
 
-                                                    <ffimageloading:CachedImage Aspect="AspectFit"
+                                                        <ffimageloading:CachedImage Aspect="AspectFit"
                                                 Grid.Row="0"
                                                 Grid.RowSpan="3"
                                                 Margin="5,0,30,0"
@@ -132,76 +132,65 @@
                                                 HeightRequest="50"
                                                 x:Name="ImageId"
 			                                    DownsampleToViewSize="true" FadeAnimationEnabled="True" >
-                                                        <ffimageloading:CachedImage.Transformations>
-                                                            <fftransformations:CircleTransformation />
-                                                        </ffimageloading:CachedImage.Transformations>
-                                                    </ffimageloading:CachedImage>
+                                                            <ffimageloading:CachedImage.Transformations>
+                                                                <fftransformations:CircleTransformation />
+                                                            </ffimageloading:CachedImage.Transformations>
+                                                        </ffimageloading:CachedImage>
 
-                                                    <Label Text="{Binding Customer}"
+                                                        <Label Text="{Binding CustomerName}"
                                                        Grid.Row="0"
                                                        Grid.Column="1"
                                                        HorizontalOptions="StartAndExpand"
                                                         FontFamily="{StaticResource Montserrat-SemiBold}"
                                                        TextColor="{DynamicResource Gray-900}">
-                                                    </Label>
-                                                    <Label Text="{Binding OrderID}"
+                                                        </Label>
+                                                        <Label Text="{Binding Pubkey}"
                                                        Grid.Row="1"
                                                        FontFamily="{StaticResource Montserrat-Medium}"
                                                        TextColor="{DynamicResource Gray-900}"
                                                        Grid.Column="1"
                                                        HorizontalOptions="StartAndExpand">
-                                                    </Label>
-                                                    <Label Text="{Binding Date_Time}"
+                                                        </Label>
+                                                        <Label Text="{Binding DateTime}"
                                                        Grid.Row="2"
                                                        Grid.Column="1"
                                                        HorizontalOptions="StartAndExpand"
                                                         FontFamily="{StaticResource Montserrat-Medium}"
                                                        TextColor="{DynamicResource Gray-900}">
-                                                    </Label>
-                                                    <Label Text="{Binding TotalPrice}"
+                                                        </Label>
+                                                        <Label Text="{Binding TotalPrice, StringFormat='₱ {0:F2}'}"
                                                        Grid.Row="0"
                                                        Grid.Column="2"
                                                        HorizontalOptions="StartAndExpand"
                                                         FontFamily="{StaticResource Montserrat-Medium}"
                                                        TextColor="{DynamicResource Gray-900}">
-                                                    </Label>
-                                                    <Label Text="{Binding Method}"
+                                                        </Label>
+                                                        <Label Text="{Binding Stages}"
                                                        Grid.Row="1"
                                                        Grid.Column="2"
                                                        HorizontalOptions="StartAndExpand"
                                                         FontFamily="{StaticResource Montserrat-Medium}"
                                                        TextColor="{DynamicResource Gray-900}">
-                                                    </Label>
+                                                        </Label>
+                                                    </Grid>
+                                                    <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="1"/>
                                                 </Grid>
-                                                <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="1"/>
-                                            </Grid>
-                                        </DataTemplate>
-                                    </listView:SfListView.ItemTemplate>
-                                </listView:SfListView>
-                            </tabView:SfTabItem.Content>-->
-                        </tabView:SfTabItem>
-
-                        <tabView:SfTabItem
-                        Title="Pending"
-                        SelectionColor="{DynamicResource PrimaryColor}"
-                        TitleFontColor="{DynamicResource Gray-700}"
-                        TitleFontFamily="{StaticResource Montserrat-Medium}"
-                        TitleFontSize="14">
-                                <!--<tabView:SfTabItem.Content>
-                                    <view:PendingOrdersView />
-                                </tabView:SfTabItem.Content>-->
+                                            </DataTemplate>
+                                        </listView:SfListView.ItemTemplate>
+                                    </listView:SfListView>
+                                </tabView:SfTabItem.Content>
                             </tabView:SfTabItem>
 
                         <tabView:SfTabItem
-                        Title="Declined"
+                        Title="On-Going"
                         SelectionColor="{DynamicResource PrimaryColor}"
                         TitleFontColor="{DynamicResource Gray-700}"
                         TitleFontFamily="{StaticResource Montserrat-Medium}"
                         TitleFontSize="14">
-                            <!--<tabView:SfTabItem.Content>
-                                <view:DeclinedOrdersView />
-                            </tabView:SfTabItem.Content>-->
-                        </tabView:SfTabItem>
+                                <tabView:SfTabItem.Content>
+                                    <view:PendingOrdersView />
+                                </tabView:SfTabItem.Content>
+                            </tabView:SfTabItem>
 
                         <tabView:SfTabItem
                         Title="Completed"
@@ -209,9 +198,20 @@
                         TitleFontColor="{DynamicResource Gray-700}"
                         TitleFontFamily="{StaticResource Montserrat-Medium}"
                         TitleFontSize="14">
-                            <!--<tabView:SfTabItem.Content>
+                                <tabView:SfTabItem.Content>
                                 <view:CompletedOrdersView />
-                            </tabView:SfTabItem.Content>-->
+                            </tabView:SfTabItem.Content>
+                        </tabView:SfTabItem>
+
+                        <tabView:SfTabItem
+                        Title="Cancelled"
+                        SelectionColor="{DynamicResource PrimaryColor}"
+                        TitleFontColor="{DynamicResource Gray-700}"
+                        TitleFontFamily="{StaticResource Montserrat-Medium}"
+                        TitleFontSize="14">
+                                <tabView:SfTabItem.Content>
+                                <view:DeclinedOrdersView />
+                            </tabView:SfTabItem.Content>
                         </tabView:SfTabItem>
 
                     </tabView:SfTabView>
@@ -220,7 +220,7 @@
             </ScrollView>
 
             <local:LoadingIndicator
-                    Grid.RowSpan="3"
+                    x:Name="IsRunning"
                     HorizontalOptions="Fill"
                     IsRunning="{Binding IsRunning, Mode=TwoWay}"
                     VerticalOptions="Fill" />
