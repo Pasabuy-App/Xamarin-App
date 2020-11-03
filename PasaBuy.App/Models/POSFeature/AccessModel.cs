@@ -1,6 +1,8 @@
-﻿using System.ComponentModel;
+﻿
 
-namespace PasaBuy.App.Models.MobilePOS
+using System.ComponentModel;
+
+namespace PasaBuy.App.Models.POSFeature
 {
     public class AccessModel : INotifyPropertyChanged
     {

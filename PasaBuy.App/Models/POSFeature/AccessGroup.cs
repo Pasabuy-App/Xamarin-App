@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 
-namespace PasaBuy.App.Models.MobilePOS
+namespace PasaBuy.App.Models.POSFeature
 {
     public class AccessData
     {
