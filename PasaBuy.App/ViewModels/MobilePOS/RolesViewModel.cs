@@ -71,6 +71,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
         }
         public ICommand RefreshCommand { protected set; get; }
+        public static string personnel_id = "0";
 
         public RolesViewModel()
         {
@@ -188,22 +189,42 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 {
                     IsBusy = true;
                     var role = obj as Models.POSFeature.RoleModel;
-                    Http.MobilePOS.Personnel.Instance.Insert(PopupChooseRole.user_id, role.Id, "1234", async (bool success, string data) =>
+                    if (personnel_id == "0")
                     {
-                        if (success)
+                        Http.MobilePOS.Personnel.Instance.Insert(PopupChooseRole.user_id, role.Id, "1234", async (bool success, string data) =>
                         {
-                            PersonnelsViewModel._personnelsList.Clear();
-                            PersonnelsViewModel.LoadData();
-                            await PopupNavigation.Instance.PopAsync();
-                            await App.Current.MainPage.Navigation.PopModalAsync();
-                            IsBusy = false;
-                        }
-                        else
+                            if (success)
+                            {
+                                PersonnelsViewModel.RefreshPersonnel();
+                                PopupNavigation.Instance.PopAsync();
+                                await App.Current.MainPage.Navigation.PopModalAsync();
+                                IsBusy = false;
+                            }
+                            else
+                            {
+                                new Controllers.Notice.Alert("Notice to User", Local.HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                IsBusy = false;
+                            }
+                        });
+                    }
+                    else
+                    {
+                        Http.MobilePOS.Personnel.Instance.Update(personnel_id, role.Id, "1234", async (bool success, string data) =>
                         {
-                            new Controllers.Notice.Alert("Notice to User", Local.HtmlUtils.ConvertToPlainText(data), "Try Again");
-                            IsBusy = false;
-                        }
-                    });
+                            if (success)
+                            {
+                                personnel_id = "0";
+                                PersonnelsViewModel.RefreshPersonnel();
+                                await PopupNavigation.Instance.PopAsync();
+                                IsBusy = false;
+                            }
+                            else
+                            {
+                                new Controllers.Notice.Alert("Notice to User", Local.HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                IsBusy = false;
+                            }
+                        });
+                    }
                 }
             }
             catch (Exception e)

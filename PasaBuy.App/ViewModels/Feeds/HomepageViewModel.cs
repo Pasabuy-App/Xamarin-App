@@ -32,9 +32,9 @@ namespace PasaBuy.App.ViewModels.Feeds
             }
         }
 
-        public static ObservableCollection<Personnels> userinfoList;
+        public static ObservableCollection<Models.POSFeature.PersonnelModel> userinfoList;
 
-        public ObservableCollection<Personnels> UserinfoList
+        public ObservableCollection<Models.POSFeature.PersonnelModel> UserinfoList
         {
             get
             {
@@ -204,7 +204,7 @@ namespace PasaBuy.App.ViewModels.Feeds
             this.InquireCommand = new Command(this.InquireClicked);
             this.Photo = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
 
-            userinfoList = new ObservableCollection<Personnels>();
+            userinfoList = new ObservableCollection<Models.POSFeature.PersonnelModel>();
             userinfoList.CollectionChanged += CollectionChanges;
         }
 

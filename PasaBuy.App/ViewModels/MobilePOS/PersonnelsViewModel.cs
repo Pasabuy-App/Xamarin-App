@@ -15,10 +15,10 @@ namespace PasaBuy.App.ViewModels.MobilePOS
     /// </summary>
     public class PersonnelsViewModel : BaseViewModel
     {
-        public static ObservableCollection<Personnels> _personnelsList;
-        public static ObservableCollection<Personnels> _usersList;
-        public static ObservableCollection<RolesModel> _rolesList;
-        public ObservableCollection<RolesModel> RolesList
+        public static ObservableCollection<Models.POSFeature.PersonnelModel> _personnelsList;
+        public static ObservableCollection<Models.POSFeature.PersonnelModel> _usersList;
+        public static ObservableCollection<Models.POSFeature.RoleModel> _rolesList;
+        public ObservableCollection<Models.POSFeature.RoleModel> RolesList
         {
             get
             {
@@ -44,7 +44,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             await App.Current.MainPage.Navigation.PopModalAsync();
         }
 
-        public ObservableCollection<Personnels> PersonnelsList
+        public ObservableCollection<Models.POSFeature.PersonnelModel> PersonnelsList
         {
             get
             {
@@ -56,7 +56,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 this.NotifyPropertyChanged();
             }
         }
-        public ObservableCollection<Personnels> UsersList
+        public ObservableCollection<Models.POSFeature.PersonnelModel> UsersList
         {
             get
             {
@@ -103,12 +103,15 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         public ICommand RefreshCommand { protected set; get; }
         public PersonnelsViewModel()
         {
-            _personnelsList = new ObservableCollection<Personnels>();
-            _usersList = new ObservableCollection<Personnels>();
-            _rolesList = new ObservableCollection<RolesModel>();
-            _personnelsList.Clear();
+            _usersList = new ObservableCollection<Models.POSFeature.PersonnelModel>();
             _usersList.Clear();
-            LoadData2();
+
+            this.PersonnelsList = new ObservableCollection<Models.POSFeature.PersonnelModel>();
+            LoadPersonnel();
+
+            _personnelsList = new ObservableCollection<Models.POSFeature.PersonnelModel>();
+            _rolesList = new ObservableCollection<Models.POSFeature.RoleModel>();
+
             LoadRoleList();
             DeleteCommand = new Command<object>(DeleteClicked);
             ViewPersonnelCommand = new Command<object>(ViewPersonnelClicked);
@@ -117,7 +120,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             RefreshCommand = new Command<string>((key) =>
             {
                 _personnelsList.Clear();
-                LoadData2();
+                LoadPersonnel();
                 IsRefreshing = false;
             });
         }
@@ -133,12 +136,12 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                     {
                         if (success)
                         {
-                            RolesModel role = Newtonsoft.Json.JsonConvert.DeserializeObject<RolesModel>(data);
+                            Models.POSFeature.RoleModel role = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.POSFeature.RoleModel>(data);
                             if (role.data.Length > 0)
                             {
                                 for (int i = 0; i < role.data.Length; i++)
                                 {
-                                    _rolesList.Add(new RolesModel()
+                                    _rolesList.Add(new Models.POSFeature.RoleModel()
                                     {
                                         Id = role.data[i].ID,
                                         RoleTitle = role.data[i].title,
@@ -160,20 +163,21 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ROL-L1PVM.", "OK");
                 IsRunning = false;
             }
         }
 
-        public static void LoadData()
+        public static void RefreshPersonnel()
         {
             try
             {
-                Http.MobilePOS.Personnel.Instance.Listing("", "", "", (bool success, string data) =>
+                _personnelsList.Clear();
+                Http.MobilePOS.Personnel.Instance.Listing("", "", "active", (bool success, string data) =>
                 {
                     if (success)
                     {
-                        Personnels personnel = Newtonsoft.Json.JsonConvert.DeserializeObject<Personnels>(data);
+                        Models.POSFeature.PersonnelModel personnel = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.POSFeature.PersonnelModel>(data);
                         if (personnel.data.Length > 0)
                         {
                             for (int i = 0; i < personnel.data.Length; i++)
@@ -181,7 +185,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                 string date_created = personnel.data[i].date_created; // "2020-10-11 11:05:07";
                                 DateTime datecustom = new DateTime(Convert.ToInt32(date_created.Substring(0, 4)), Convert.ToInt32(date_created.Substring(5, 2)), Convert.ToInt32(date_created.Substring(8, 2)));
 
-                                _personnelsList.Add(new Personnels
+                                _personnelsList.Add(new Models.POSFeature.PersonnelModel
                                 {
                                     Id = personnel.data[i].ID,
                                     User_id = personnel.data[i].wpid,
@@ -204,11 +208,11 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2PNL-L1PVM.", "OK");
             }
         }
 
-        public void LoadData2()
+        public void LoadPersonnel()
         {
             try
             {
@@ -216,11 +220,11 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 {
                     IsRunning = true;
                     this.PersonnelsList.Clear();
-                    Http.MobilePOS.Personnel.Instance.Listing("", "", "", (bool success, string data) =>
+                    Http.MobilePOS.Personnel.Instance.Listing("", "", "active", (bool success, string data) =>
                     {
                         if (success)
                         {
-                            Personnels personnel = Newtonsoft.Json.JsonConvert.DeserializeObject<Personnels>(data);
+                            Models.POSFeature.PersonnelModel personnel = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.POSFeature.PersonnelModel>(data);
                             if (personnel.data.Length > 0)
                             {
                                 for (int i = 0; i < personnel.data.Length; i++)
@@ -228,7 +232,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                     string date_created = personnel.data[i].date_created; // "2020-10-11 11:05:07";
                                     DateTime datecustom = new DateTime(Convert.ToInt32(date_created.Substring(0, 4)), Convert.ToInt32(date_created.Substring(5, 2)), Convert.ToInt32(date_created.Substring(8, 2)));
 
-                                    this.PersonnelsList.Add(new Personnels
+                                    this.PersonnelsList.Add(new Models.POSFeature.PersonnelModel
                                     {
                                         Id = personnel.data[i].ID,
                                         User_id = personnel.data[i].wpid,
@@ -254,7 +258,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2PNL-L2PVM.", "OK");
                 IsRunning = false;
             }
         }
@@ -268,15 +272,15 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    bool answer = await Application.Current.MainPage.DisplayAlert("Delete Persoonnel?", "Are you sure to delete this?", "Yes", "No");
+                    bool answer = await Application.Current.MainPage.DisplayAlert("Delete Personnel?", "Are you sure to delete this?", "Yes", "No");
                     if (answer)
                     {
-                        var person = obj as Personnels;
+                        var person = obj as Models.POSFeature.PersonnelModel;
                         Http.MobilePOS.Personnel.Instance.Delete(person.Id, (bool success, string data) =>
                         {
                             if (success)
                             {
-                                LoadData2();
+                                RefreshPersonnel();
                                 IsRunning = false;
                             }
                             else
@@ -294,7 +298,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2PNL-D1PVM.", "OK");
                 IsRunning = false;
             }
         }
@@ -304,7 +308,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             if (!IsRunning)
             {
                 IsRunning = true;
-                var person = obj as Personnels;
+                var person = obj as Models.POSFeature.PersonnelModel;
                 PopupViewPersonnel.id = person.Id;
                 PopupViewPersonnel.name = person.FullName;
                 PopupViewPersonnel.position = person.Position;
@@ -321,10 +325,8 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             if (!IsRunning)
             {
                 IsRunning = true;
-                var person = obj as Personnels;
-                /*PopupEditPersonnel.id = person.Id;
-                PopupEditPersonnel.role_id = person.Position;
-                PopupEditPersonnel.name = person.FullName;*/
+                var person = obj as Models.POSFeature.PersonnelModel;
+                RolesViewModel.personnel_id = person.Id;
                 await PopupNavigation.Instance.PushAsync(new PopupChooseRole());
                 IsRunning = false;
             }

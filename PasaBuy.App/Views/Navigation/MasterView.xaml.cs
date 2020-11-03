@@ -35,9 +35,9 @@ namespace PasaBuy.App.Views.Navigation
                 this.PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
 
-        public static ObservableCollection<Personnels> _logobanner;
+        public static ObservableCollection<Models.POSFeature.PersonnelModel> _logobanner;
 
-        public ObservableCollection<Personnels> LogoBanner
+        public ObservableCollection<Models.POSFeature.PersonnelModel> LogoBanner
         {
             get { return _logobanner; }
             set { _logobanner = value; OnPropertyChanged("LogoBanner"); }
@@ -78,7 +78,7 @@ namespace PasaBuy.App.Views.Navigation
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Settings"), Icon = "https://pasabuy.app/wp-content/uploads/2020/10/settings.png", TargetType = typeof(SettingsView) });
 
 
-                _logobanner = new ObservableCollection<Personnels>();
+                _logobanner = new ObservableCollection<Models.POSFeature.PersonnelModel>();
                 _logobanner.CollectionChanged += LogoBannerChanges;
             }
             if (MyType == "mover")
@@ -176,7 +176,7 @@ namespace PasaBuy.App.Views.Navigation
 
         public static void Insertimage(string url)
         {
-            _logobanner.Add(new Personnels()
+            _logobanner.Add(new Models.POSFeature.PersonnelModel()
             {
                 Avatar = url
             });
