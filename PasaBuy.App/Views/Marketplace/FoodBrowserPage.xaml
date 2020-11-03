@@ -12,7 +12,7 @@
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
              xmlns:behavior1="clr-namespace:PasaBuy.App.Behaviors" 
              xmlns:loading="clr-namespace:PasaBuy.App.UserControls" 
-             xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch" xmlns:horizontal="clr-namespace:SuaveControls.DynamicStackLayout;assembly=SuaveControls.DynamicStackLayout"
+             xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch" 
              BackgroundColor="{DynamicResource Gray-White}"
              x:Class="PasaBuy.App.Views.Marketplace.FoodBrowserPage">
 
@@ -50,107 +50,7 @@
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
             </DataTemplate>
-            <DataTemplate x:Key="ItemTemplate">
-                <ViewCell>
-                    <ViewCell.View>
-                        <Frame
-                                                        Margin="0, 10, 0, 5"
-                                                            Padding="0"
-                                                            BackgroundColor="{DynamicResource Gray-White}"
-                                                            BorderColor="{DynamicResource Gray-White}"
-                                                            CornerRadius="8"
-                                                            HasShadow="True"
-                                                            HeightRequest="270"
-                                                            HorizontalOptions="FillAndExpand"
-                                                            VerticalOptions="FillAndExpand">
-                            <Grid RowSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-
-                                <ffimageloading:CachedImage Aspect="Fill"
-                                                                        Grid.Column="0"
-                                                                        Grid.Row="0"
-                                                                        Source="{Binding Banner}"
-			                                                            DownsampleToViewSize="True" 
-                                                                        FadeAnimationEnabled="True">
-                                </ffimageloading:CachedImage>
-
-                                <!-- <buttons:SfButton                
-                                                                     x:Name="favouriteIcon"   
-                                                                     Text="{StaticResource Favourite}"  FontSize="18"  
-                                                                     Command="{Binding Path=BindingContext.FavouriteCommand, Source={x:Reference favouriteIcon}}"                                                     
-                                                                     CommandParameter="{x:Reference favouriteIcon}"                    
-                                                                     Grid.Row="0" Margin="0,5,5,0" CornerRadius="20"
-                                                                     FontFamily="{StaticResource FontIcons}"
-                                                                     TextColor="{StaticResource Gray-White}" BackgroundColor="Transparent"
-                                                                     WidthRequest="40"
-                                                                     HeightRequest="40"
-                                                                     HorizontalOptions="End" VerticalOptions="Start">
-                                                            </buttons:SfButton> -->
-
-                                <Grid Grid.Row="1"  Padding="8,16,0,16" ColumnSpacing="0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <!--  Card view for displaying items  -->
-                                    <border:SfBorder BackgroundColor="{DynamicResource LightGreen}" WidthRequest="50" HeightRequest="50"
-                                                                  HorizontalOptions="Start" Margin="0,4,0,0" VerticalOptions="Start"
-                                                                  Grid.Column="0" CornerRadius="6" BorderColor="Transparent">
-                                        <Label  FontFamily="{StaticResource Montserrat-Medium}" 
-                                                                    Text="{Binding ItemRating}" HorizontalOptions="Center"
-                                                                    FontSize="16" LineHeight="{OnPlatform Android=1.5,
-                                                                    Default=-1}" TextColor="{DynamicResource Gray-White}" VerticalTextAlignment="Center" />
-                                    </border:SfBorder>
-
-                                    <StackLayout Margin="8,0,0,0" Grid.Column="1" Spacing="1" >
-
-                                        <!--  Store Name label  -->
-                                        <!--<Label Text="{Binding Title}"  
-                                                                           FontSize="16" 
-                                                                           x:Name="StoreName"
-                                                                           FontFamily="{StaticResource Montserrat-SemiBold}" 
-                                                                           HorizontalOptions="Start" 
-                                                                           TextColor="{DynamicResource Gray-900}" 
-                                                                           LineBreakMode="NoWrap"/>-->
-
-                                        <Forms9Patch:Label  Text="{Binding Title}"  
-                                                                                        FontFamily="{StaticResource Montserrat-SemiBold}" 
-                                                                                        HorizontalOptions="Start" 
-                                                                                        x:Name="StoreName"
-                                                                                        TextColor="{DynamicResource Gray-900}" 
-                                                                                        Lines="1"
-                                                                                        AutoFit="Width"/>
-
-                                        <!--  Store operational hours label  -->
-                                        <Label  Text="10:00am - 6:00pm" 
-                                                                            FontSize="12" 
-                                                                            FontFamily="{StaticResource Montserrat-Medium}" 
-                                                                            HorizontalOptions="Start" 
-                                                                            TextColor="{DynamicResource Gray-700}"/>
-
-                                        <!--  Distance label  -->
-                                        <Label  Text="34km"  
-                                                                         FontSize="12" 
-                                                                         FontFamily="{StaticResource Montserrat-Medium}" 
-                                                                         HorizontalOptions="Start" 
-                                                                         TextColor="{DynamicResource Gray-700}"/>
-
-                                    </StackLayout>
-
-                                </Grid>
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding BindingContext.SelectStoreCommand,Source={x:Reference StoreListStack}}" CommandParameter="{Binding Id}"/>
-                                </Grid.GestureRecognizers>
-                            </Grid>
-                        </Frame>
-                    </ViewCell.View>
-                </ViewCell>
-            </DataTemplate>
+            
         </ResourceDictionary>
     </ContentView.Resources>
 

@@ -308,7 +308,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                     {
                         IsRunning = false;
                         PostListData post = JsonConvert.DeserializeObject<PostListData>(data);
-                        Console.WriteLine(data);
+                       
                         for (int i = 0; i < post.data.Length; i++)
                         {
                             string image_height = "-1";
