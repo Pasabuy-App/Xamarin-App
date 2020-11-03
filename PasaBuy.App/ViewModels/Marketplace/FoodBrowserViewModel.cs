@@ -150,7 +150,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    Http.TindaFeature.Instance.StoreTypeList("food/drinks", (bool success, string data) =>
+                    Http.TindaFeature.Instance.StoreTypeList("food/drinks", "active", "",(bool success, string data) =>
                     {
                         if (success)
                         {
@@ -163,10 +163,10 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                     Id = datas.data[i].hsid,
                                     Title = datas.data[i].title,
                                     Description = datas.data[i].short_info,
-                                    Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(datas.data[i].avatar),
+                                    Logo = datas.data[i].avatar == "" && datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(datas.data[i].avatar),
                                     Offer = "50% off",
                                     ItemRating = "4.5",
-                                    Banner = datas.data[i].banner == "" ? "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg" : PSAProc.GetUrl(datas.data[i].banner)
+                                    Banner = datas.data[i].banner == "None" && datas.data[i].banner == "" ? "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg" : PSAProc.GetUrl(datas.data[i].banner)
                                 });
                             }
                             IsRunning = false;

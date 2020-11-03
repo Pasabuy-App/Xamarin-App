@@ -133,7 +133,7 @@ namespace PasaBuy.App.Http
             }
         }
 
-        public async void StoreTypeList(string type, Action<bool, string> callback)
+        public async void StoreTypeList(string type, string status, string category_id, Action<bool, string> callback)
         {
             try
             {
@@ -141,6 +141,8 @@ namespace PasaBuy.App.Http
                 dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
                 dict.Add("snky", PSACache.Instance.UserInfo.snky);
                 dict.Add("type", type);
+                dict.Add("status", status);
+                dict.Add("scid", category_id);
 
                 var content = new FormUrlEncodedContent(dict);
 

@@ -120,7 +120,7 @@
 				    x:Name="ShowPasabuyStoresButton"
                     Command="{Binding ShowPasabuyStores}"
                     CommandParameter="{x:Type pasabuyplus:PasabuyPlusPage}"
-                    ImageName ="reward.png"
+                    ImageName ="plusofficial.png"
 				    IsVisible="True"
                     VerticalOptions="EndAndExpand"
                     HorizontalOptions="EndAndExpand"

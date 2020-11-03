@@ -94,7 +94,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    Http.TindaFeature.Instance.StoreTypeList("market", (bool success, string data) =>
+                    Http.TindaFeature.Instance.StoreTypeList("market", "active", "" ,(bool success, string data) =>
                     {
                         if (success)
                         {
