@@ -239,7 +239,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 IsRunning = true;
                 var product = obj as FeaturedStoreModel;
                 StoreDetailsViewModel.store_id = product.ID;
-                new Alert("Ok", product.ID, "ok");
                 await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
                 IsRunning = false;
             }

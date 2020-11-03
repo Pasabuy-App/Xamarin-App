@@ -110,8 +110,6 @@ namespace PasaBuy.App.Http
                 dict.Add("status", status);
                 dict.Add("category_groups", group);
 
-
-
                 var content = new FormUrlEncodedContent(dict);
 
                 var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/tindapress/v2/store/category/list", content);

@@ -3,11 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
-             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Marketplace" 
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
              xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-             xmlns:model="clr-namespace:PasaBuy.App.Models.MobilePOS" 
-             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms" xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
+             xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="PasaBuy.App.Views.Marketplace.StoreListPage"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
@@ -17,27 +16,32 @@
                 <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-    </ContentPage.Resources>
-    <!--<ContentPage.ControlTemplate>
-        <ControlTemplate>
-            <StackLayout Spacing="0" >
-                <controls:TitleView FontSize="14"
-                                    Title="Stores"
-                                    BackgroundColor="{DynamicResource PrimaryColor}" >
-                    <controls:TitleView.LeadingView >
-                        <buttons:SfButton
-                            x:Name="backButton"
-                            Clicked="BackButtonClicked"
-                            CornerRadius="4"
-                            TextColor="White"
-                            Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Back}" />
-                    </controls:TitleView.LeadingView>
-                </controls:TitleView>
-                <ContentPresenter />
+        <DataTemplate x:Key="BestSellersTemplate">
+            <StackLayout Spacing="8">
+                <border:SfBorder CornerRadius="8" BorderWidth="0">
+
+                    <ffimageloading:CachedImage Aspect="AspectFill"
+                                                    HeightRequest="220"
+                                                    WidthRequest="150"
+                                                    BackgroundColor="{DynamicResource Gray-200}"
+                                                    Source="{Binding Logo}"
+			                                        DownsampleToViewSize="True" 
+                                                    FadeAnimationEnabled="True">
+                    </ffimageloading:CachedImage>
+                </border:SfBorder>
+                <Label Text="{Binding Title}" 
+                           FontFamily="{StaticResource Montserrat-SemiBold}"
+                           FontSize="14" 
+                           TextColor="{DynamicResource Gray-900}" 
+                           LineHeight="{OnPlatform Android=1.5, Default=-1}" 
+                           LineBreakMode="TailTruncation">
+                </Label>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BindingContext.FeaturedTappedCommand,Source={x:Reference featuredListView}}" CommandParameter="{Binding .}"/>
+                </StackLayout.GestureRecognizers>
             </StackLayout>
-        </ControlTemplate>
-    </ContentPage.ControlTemplate>-->
+        </DataTemplate>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <RefreshView IsRefreshing="{Binding IsRefreshing}"   
                      x:Name="rv"
@@ -53,9 +57,9 @@
                         </Grid.RowDefinitions>
 
                         <Grid Grid.Row="0"
-                        Padding="15,5,15,5"
-                        BackgroundColor="{StaticResource PrimaryColor}"
-                        HeightRequest="{OnPlatform Android='46',
+                            Padding="15,5,15,5"
+                            BackgroundColor="{StaticResource PrimaryColor}"
+                            HeightRequest="{OnPlatform Android='46',
                                                    iOS='56'}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto" />
@@ -95,14 +99,7 @@
                                     Spacing="0"
                                     VerticalOptions="FillAndExpand">
 
-                                <!--  Back button command  -->
-                                <!--<buttons:SfButton x:Name="backButton"
-                                        Command="{Binding BackButtonCommand}"
-                                        CommandParameter="{x:Reference backButton}"
-                                        CornerRadius="4"
-                                        Style="{StaticResource IconButtonStyle}"
-                                        Text="{StaticResource Back}" />-->
-
+          
                                 <!--  Restaurant page Title  -->
                                 <Label Margin="16,0"  x:Name="PageTitle"
                                         HeightRequest="24"
@@ -154,20 +151,21 @@
                         <BoxView Grid.Row="2" Style="{StaticResource SeparatorStyle}" />
 
                         <Grid Grid.Row="3"
-                          VerticalOptions="FillAndExpand">
-                            <sync:SfListView  Padding="15,0,15,15"
-                                            AutoFitMode="Height"
-                                            ItemSpacing="{core:OnPlatformOrientationThickness Default='0,0,32,32',
-                                                                                                  PhonePortrait='0,0,0,16',
-                                                                                                  PhoneLandscape='0,0,16,16',
-                                                                                                  Desktop='0,0,24,24'}"
-                                                    ItemsSource="{Binding StoreList}"
-                                                    TapCommand="{Binding ItemTappedCommand}"
-                                                    ItemAppearing="StoreList_ItemAppearing"
-                                                    x:Name="StoreList"
-                                                    SelectionBackgroundColor="Transparent"
-                                                    VerticalOptions="FillAndExpand">
-                                <sync:SfListView.ItemTemplate>
+                              VerticalOptions="FillAndExpand">
+                            <CollectionView ItemsSource="{Binding StoreList}"
+                                            x:Name="StoreList">
+                                <CollectionView.Header>
+                                    <sync:SfListView  SelectionMode="None" 
+                                             HeightRequest="280" 
+                                             ItemSize="150"
+                                             x:Name="featuredListView"
+                                             Orientation="Horizontal" 
+                                             ItemsSource="{Binding BestSellers}" 
+                                             ItemSpacing="8, 0, 8, 0" 
+                                             ItemTemplate="{StaticResource BestSellersTemplate}"
+                                             IsScrollBarVisible="False"/>
+                                </CollectionView.Header>
+                                <CollectionView.ItemTemplate>
                                     <DataTemplate>
                                         <Frame Padding="0"
                                                        BackgroundColor="{DynamicResource Gray-White}"
@@ -243,10 +241,14 @@
                                                 </Grid>
                                                 <BoxView Style="{StaticResource SeparatorStyle}" />
                                             </StackLayout>
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding BindingContext.ItemTappedCommand,Source={x:Reference StoreList}}" 
+                                                                      CommandParameter="{Binding .}"/>
+                                            </Frame.GestureRecognizers>
                                         </Frame>
                                     </DataTemplate>
-                                </sync:SfListView.ItemTemplate>
-                            </sync:SfListView>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
                         </Grid>
                         <loading:LoadingIndicator
                             HorizontalOptions="Fill"

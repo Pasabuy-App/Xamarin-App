@@ -30,6 +30,7 @@
             public string email = string.Empty;
             public string offer = string.Empty;
             public string itemRating = string.Empty;
+            public string rates = string.Empty;
 
 
         }
