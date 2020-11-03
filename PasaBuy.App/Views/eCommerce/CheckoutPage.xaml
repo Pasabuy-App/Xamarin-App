@@ -24,61 +24,80 @@
         <viewModel:CheckoutPageViewModel />
     </ContentPage.BindingContext>
 
-    <ContentPage.ControlTemplate>
-        <ControlTemplate>
-            <StackLayout Spacing="0" >
-                <controls:TitleView Title="Checkout" 
-                                    BackgroundColor="{DynamicResource PrimaryColor}" >
-                    <controls:TitleView.LeadingView >
-                        <buttons:SfButton
-                            x:Name="backButton"
-                            Clicked="BackButtonClicked"
-                            CornerRadius="4"
-                            TextColor="White"
-                            Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Back}" />
-                    </controls:TitleView.LeadingView>
-                </controls:TitleView>
-                <ContentPresenter />
-            </StackLayout>
-        </ControlTemplate>
-    </ContentPage.ControlTemplate>
-
     <ContentPage.Content>
         <Grid>
-
-            <ScrollView>
-                <Grid
-                Padding="{OnIdiom Default='0',
-                                  Desktop='16,16,16,0'}"
-                ColumnSpacing="0"
-                RowSpacing="16">
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-
-                    <!--  ListView for Delivery  -->
-                    <local:DeliveryView Margin="{OnIdiom Phone='0,16,0,0', Tablet='0,24,0,0', Desktop=0}" />
-
-                    <!--  ListView for Payment  -->
-                    <local:PaymentView Grid.Row="1" Margin="{OnIdiom Default=0, Tablet='0,24,0,0'}" />
-
-                    <!--  Price Details  -->
-                    <local:PriceDetailView Grid.Row="2" ActionText="CHECKOUT" />
+            <Grid RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0"
+                       Padding="15,5,15,5"
+                       BackgroundColor="{StaticResource PrimaryColor}"
+                       HeightRequest="{OnPlatform Android='46',
+                                                   iOS='56'}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <buttons:SfButton x:Name="backButton"
+                                           Clicked="BackButtonClicked"
+                                           Grid.Column="0"
+                                           CornerRadius="4"
+                                           TextColor="White"
+                                           Style="{StaticResource IconButtonStyle}"
+                                           Text="{StaticResource Back}" />
+                    <Label Grid.Column="1"
+                                FontFamily="{StaticResource Montserrat-Medium}"
+                                FontSize="17"
+                                HorizontalOptions="Start"
+                                Text="Confirm Order"
+                                TextColor="{DynamicResource Gray-White}"
+                                VerticalOptions="Center" />
 
                 </Grid>
+                <Grid Grid.Row="1">
+                    <Grid Margin="{OnIdiom Default='0,16,0,0',Desktop='16'}"
+                          BackgroundColor="{OnIdiom Default={StaticResource Transparent}, Desktop={DynamicResource Gray-White},Converter={StaticResource DynamicResourceToColorConverter}}"
+                          ColumnSpacing="0"
+                          HorizontalOptions="{OnIdiom Default=Fill, Desktop=FillAndExpand}"
+                          RowSpacing="0">
 
-            </ScrollView>
+                        <ScrollView>
+                            <Grid Padding="{OnIdiom Default='0',
+                                                  Desktop='16,16,16,0'}"
+                                ColumnSpacing="0"
+                                RowSpacing="16">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <!--  ListView for Delivery  -->
+                                <local:DeliveryView Margin="{OnIdiom Phone='0,16,0,0', Tablet='0,24,0,0', Desktop=0}" />
+
+                                <!--  ListView for Payment  -->
+                                <local:PaymentView Grid.Row="1" Margin="{OnIdiom Default=0, Tablet='0,24,0,0'}" />
+
+                                <!--  Price Details  -->
+                                <local:PriceDetailView Grid.Row="2" ActionText="CHECKOUT" />
+
+                            </Grid>
+
+                        </ScrollView>
+
+                    </Grid> 
+                </Grid>
+            </Grid>
             <localindicator:LoadingIndicator
-                Grid.Row="0"
-                HorizontalOptions="Fill"
-                x:Name="Loader"
                 IsRunning="{Binding isRunning, Mode=TwoWay}"
+                HorizontalOptions="Fill"
                 VerticalOptions="Fill" />
         </Grid>
     </ContentPage.Content>
+
+
 
 </ContentPage>
