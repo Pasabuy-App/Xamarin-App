@@ -5,12 +5,10 @@
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
              xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
-             xmlns:template="clr-namespace:PasaBuy.App.Views.Templates"
-             xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms" 
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
-             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms" 
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
-             xmlns:pulltoRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms" xmlns:loading="clr-namespace:PasaBuy.App.UserControls" xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:pulltoRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms" 
+             xmlns:loading="clr-namespace:PasaBuy.App.UserControls" 
              x:Class="PasaBuy.App.Views.Marketplace.GroceryBrowserPage"
              BackgroundColor="White">
 
@@ -24,6 +22,31 @@
                 <ResourceDictionary Source="Stylex.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
+        <DataTemplate x:Key="BestSellersTemplate">
+            <StackLayout Spacing="8">
+                <border:SfBorder CornerRadius="8" BorderWidth="0">
+
+                    <ffimageloading:CachedImage Aspect="AspectFill"
+                                                    HeightRequest="220"
+                                                    WidthRequest="150"
+                                                    BackgroundColor="{DynamicResource Gray-200}"
+                                                    Source="{Binding Logo}"
+			                                        DownsampleToViewSize="True" 
+                                                    FadeAnimationEnabled="True">
+                    </ffimageloading:CachedImage>
+                </border:SfBorder>
+                <Label Text="{Binding Title}" 
+                           FontFamily="{StaticResource Montserrat-SemiBold}"
+                           FontSize="14" 
+                           TextColor="{DynamicResource Gray-900}" 
+                           LineHeight="{OnPlatform Android=1.5, Default=-1}" 
+                           LineBreakMode="TailTruncation">
+                </Label>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BindingContext.FeaturedTappedCommand,Source={x:Reference featuredListView}}" CommandParameter="{Binding .}"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+        </DataTemplate>
     </ContentView.Resources>
 
     <ContentView.Content>
@@ -110,125 +133,132 @@
                      x:Name="rv"
                      Command="{Binding RefreshCommand}">
                     <ScrollView>
-                        
-                        <listView:SfListView
-                                Padding="15,0,15,15"
-                                AutoFitMode="Height"
-                                IsScrollBarVisible="False"
-                                ItemSpacing="{core:OnPlatformOrientationThickness Default='0,0,32,32',
-                                                                              PhonePortrait='0,0,0,16',
-                                                                              PhoneLandscape='0,0,16,16',
-                                                                              Desktop='0,0,24,24'}"
-                                ItemsSource="{Binding Grocerystorelist}"
-                                ItemAppearing="RestaurantList_ItemAppearing"
-                                x:Name="RestaurantList"
-                                TapCommand="{Binding ItemTappedCommand}"
-                                SelectionBackgroundColor="Transparent"
-                                VerticalOptions="FillAndExpand">
-
-                        <listView:SfListView.ItemTemplate>
-                            <DataTemplate>
-                                <Frame
-                                        Padding="0"
-                                        BackgroundColor="{DynamicResource Gray-White}"
-                                        BorderColor="{DynamicResource Gray-White}"
-                                        CornerRadius="8"
-                                        HasShadow="True"
-                                        HeightRequest="130"
-                                        HorizontalOptions="FillAndExpand"
-                                        VerticalOptions="FillAndExpand">
+                        <CollectionView ItemsSource="{Binding Grocerystorelist}"
+                                        Margin="5,0,0,0"
+                                        x:Name="RestaurantList">
+                            <CollectionView.Header>
+                                <listView:SfListView  SelectionMode="None" 
+                                             HeightRequest="280" 
+                                             ItemSize="150"
+                                             x:Name="featuredListView"
+                                             Orientation="Horizontal" 
+                                             ItemsSource="{Binding BestSellers}" 
+                                             ItemSpacing="8, 0, 8, 0" 
+                                             ItemTemplate="{StaticResource BestSellersTemplate}"
+                                             IsScrollBarVisible="False"/>
+                            </CollectionView.Header>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
                                     <Grid>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="auto"/>
-                                            <RowDefinition Height="auto"/>
-                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
+                                        <controls:CustomShadowFrame Grid.Row="0"
+                                                Margin="0,8,5,12"
+                                                Padding="0,10,0,10"
+                                                BackgroundColor="{DynamicResource Gray-White}"
+                                                BorderColor="{DynamicResource Gray-White}"
+                                                BorderWidth="1"
+                                                CornerRadius="4"
+                                                HasShadow="True">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="auto"/>
+                                                    <RowDefinition Height="auto"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
 
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="50*"/>
-                                            <ColumnDefinition Width="50*"/>
-                                        </Grid.ColumnDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="50*"/>
+                                                    <ColumnDefinition Width="50*"/>
+                                                </Grid.ColumnDefinitions>
 
-                                        <Label FontFamily="{StaticResource Montserrat-SemiBold}"
-                                                   Padding="10,5,0,0"
-                                                   FontSize="13"
-                                                   Grid.Row="0"
-                                                   Grid.Column="1"
-                                                   Grid.ColumnSpan="2"
-                                                   MaxLines="2"
-                                                   LineBreakMode="TailTruncation"
-                                                   VerticalTextAlignment="Center"
-                                                   HorizontalTextAlignment="Start"
-                                                   Text="{Binding Title}"
-                                                   TextColor="{DynamicResource Gray-900}" />
-
-                                        <Label FontFamily="{StaticResource Montserrat-Regular}"
-                                                   Padding="10,5,0,0"
-                                                   Margin="0,-10,0,0"
-                                                   FontSize="{DynamicResource SmallerSize}"
-                                                   Grid.Row="1"
-                                                   Grid.Column="1"
-                                                   Grid.ColumnSpan="2"
-                                                   MaxLines="3"
-                                                   HeightRequest="70"
-                                                   LineBreakMode="TailTruncation"
-                                                   VerticalTextAlignment="Center"
-                                                   HorizontalTextAlignment="Start"
-                                                   Text="{Binding Street}"
-                                                   TextColor="{DynamicResource Gray-900}" />
-
-                                        <Grid  Grid.Row="2" 
-                                                   Grid.Column="1"
-                                                   Padding="10,0,10,0">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto" />
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-                                            <Label FontFamily="{StaticResource Montserrat-SemiBold}"
-                                                       Grid.Row="0"
-                                                       Grid.Column="0"
-                                                       FontSize="14"
-                                                       HorizontalTextAlignment="Start"
-                                                       Text="Open Now"
-                                                       TextColor="LightGreen"
-                                                       VerticalTextAlignment="Center" />
-
-                                            <Label FontFamily="{StaticResource FontIcons}"
+                                                <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                       Padding="10,5,0,0"
+                                                       FontSize="13"
                                                        Grid.Row="0"
                                                        Grid.Column="1"
-                                                       FontSize="27"
-                                                       HorizontalTextAlignment="End"
-                                                       Text="{StaticResource ArrowRight}"
-                                                       TextColor="{DynamicResource PrimaryColor}"
-                                                       VerticalTextAlignment="Center" />
-                                        </Grid>
+                                                       Grid.ColumnSpan="2"
+                                                       MaxLines="2"
+                                                       LineBreakMode="TailTruncation"
+                                                       VerticalTextAlignment="Center"
+                                                       HorizontalTextAlignment="Start"
+                                                       Text="{Binding Title}"
+                                                       TextColor="{DynamicResource Gray-900}" />
 
-                                        <Grid Grid.Column="0"
-                                              Grid.RowSpan="3"
-                                              HorizontalOptions="FillAndExpand"
-                                              VerticalOptions="FillAndExpand">
-                                            <Image  Aspect="Fill"
-                                                    BackgroundColor="{DynamicResource Gray-200}"
-                                                    HeightRequest="120"
-                                                    WidthRequest="120">
-                                                <Image.Source>
-                                                    <UriImageSource
+                                                <Label FontFamily="{StaticResource Montserrat-Regular}"
+                                                       Padding="10,5,0,0"
+                                                       Margin="0,-10,0,0"
+                                                       FontSize="{DynamicResource SmallerSize}"
+                                                       Grid.Row="1"
+                                                       Grid.Column="1"
+                                                       Grid.ColumnSpan="2"
+                                                       MaxLines="3"
+                                                       HeightRequest="70"
+                                                       LineBreakMode="TailTruncation"
+                                                       VerticalTextAlignment="Center"
+                                                       HorizontalTextAlignment="Start"
+                                                       Text="{Binding Street}"
+                                                       TextColor="{DynamicResource Gray-900}" />
+
+                                                <Grid  Grid.Row="2" 
+                                                       Grid.Column="1"
+                                                       Padding="10,0,10,0">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                           Grid.Row="0"
+                                                           Grid.Column="0"
+                                                           FontSize="14"
+                                                           HorizontalTextAlignment="Start"
+                                                           Text="Open Now"
+                                                           TextColor="LightGreen"
+                                                           VerticalTextAlignment="Center" />
+
+                                                    <Label FontFamily="{StaticResource FontIcons}"
+                                                           Grid.Row="0"
+                                                           Grid.Column="1"
+                                                           FontSize="27"
+                                                           HorizontalTextAlignment="End"
+                                                           Text="{StaticResource ArrowRight}"
+                                                           TextColor="{DynamicResource PrimaryColor}"
+                                                           VerticalTextAlignment="Center" />
+                                                </Grid>
+
+                                                <Grid Grid.Column="0"
+                                                      Grid.RowSpan="3"
+                                                      HorizontalOptions="FillAndExpand"
+                                                      VerticalOptions="FillAndExpand">
+                                                    <Image  Aspect="Fill"
+                                                            BackgroundColor="{DynamicResource Gray-200}"
+                                                            HeightRequest="120"
+                                                            WidthRequest="120">
+                                                        <Image.Source>
+                                                            <UriImageSource
                                                                     CacheValidity="14"
                                                                     CachingEnabled="true"
                                                                     Uri="{Binding Logo}" />
-                                                </Image.Source>
-                                            </Image>
-                                        </Grid>
+                                                        </Image.Source>
+                                                    </Image>
+                                                </Grid>
 
+                                            </Grid>
+                                            <controls:CustomShadowFrame.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding BindingContext.ItemTappedCommand,Source={x:Reference RestaurantList}}" 
+                                                                      CommandParameter="{Binding .}"/>
+                                            </controls:CustomShadowFrame.GestureRecognizers>
+                                        </controls:CustomShadowFrame>
+                                        <BoxView Grid.Row="1" BackgroundColor="{DynamicResource Gray-White}" HeightRequest="0" Style="{StaticResource SeparatorStyle}" />
                                     </Grid>
-                                </Frame>
-                            </DataTemplate>
-                        </listView:SfListView.ItemTemplate>
-
-                        </listView:SfListView>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
                     </ScrollView>
                 </RefreshView>
                     

@@ -31,6 +31,8 @@ namespace PasaBuy.App.Models.Marketplace
         private string email = string.Empty;
         private string offer = string.Empty;
         private string itemRating = string.Empty;
+        private string store_rating = string.Empty;
+
         #endregion
 
         #region Constructor
@@ -190,6 +192,18 @@ namespace PasaBuy.App.Models.Marketplace
             set
             {
                 this.itemRating = value;
+            }
+        }
+
+        public string StoreRating
+        {
+            get
+            {
+                return store_rating;
+            }
+            set
+            {
+                this.store_rating = value;
             }
         }
 
