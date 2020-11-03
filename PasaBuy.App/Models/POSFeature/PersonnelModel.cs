@@ -1,23 +1,11 @@
-﻿using System.ComponentModel;
+﻿
+using System.ComponentModel;
 
-namespace PasaBuy.App.Models.MobilePOS
+namespace PasaBuy.App.Models.POSFeature
 {
-    public class Personnels
+    public class PersonnelModel : INotifyPropertyChanged
     {
         public PersonnelsData[] data;
-        public class PersonnelsData
-        {
-            public string ID = string.Empty;
-            public string wpid = string.Empty;
-            public string avatar = string.Empty;
-            public string name = string.Empty;
-            public string dname = string.Empty;
-            public string display_name = string.Empty;
-            public string position = string.Empty;
-            public string date_created = string.Empty;
-            public string status = string.Empty;
-            public string activated = string.Empty;
-        }
 
         private string id = string.Empty;
         private string firstname = string.Empty;
@@ -167,5 +155,18 @@ namespace PasaBuy.App.Models.MobilePOS
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
+    }
+    public class PersonnelsData
+    {
+        public string ID = string.Empty;
+        public string wpid = string.Empty;
+        public string avatar = string.Empty;
+        public string name = string.Empty;
+        public string dname = string.Empty;
+        public string display_name = string.Empty;
+        public string position = string.Empty;
+        public string date_created = string.Empty;
+        public string status = string.Empty;
+        public string activated = string.Empty;
     }
 }
