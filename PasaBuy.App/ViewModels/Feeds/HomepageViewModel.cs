@@ -199,7 +199,7 @@ namespace PasaBuy.App.ViewModels.Feeds
             });
 
             homePostList = new ObservableCollection<Post>();
-            //LoadData2();
+            LoadData2();
 
             this.InquireCommand = new Command(this.InquireClicked);
             this.Photo = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
@@ -308,6 +308,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                     {
                         IsRunning = false;
                         PostListData post = JsonConvert.DeserializeObject<PostListData>(data);
+                        Console.WriteLine(data);
                         for (int i = 0; i < post.data.Length; i++)
                         {
                             string image_height = "-1";

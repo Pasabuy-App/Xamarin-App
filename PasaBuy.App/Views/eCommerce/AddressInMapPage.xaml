@@ -4,7 +4,10 @@
              xmlns:map="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps" 
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
-             xmlns:converter="clr-namespace:PasaBuy.App.Converters" xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.eCommerce" xmlns:localindicator="clr-namespace:PasaBuy.App.UserControls"
+             xmlns:converter="clr-namespace:PasaBuy.App.Converters"
+             xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.eCommerce" 
+             xmlns:localindicator="clr-namespace:PasaBuy.App.UserControls"
              x:Class="PasaBuy.App.Views.eCommerce.AddressInMapPage"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
@@ -21,60 +24,79 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid>
-
-            <Grid>
+            <Grid RowSpacing="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="70*" />
-                    <RowDefinition Height="30*" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <map:Map x:Name="map" PinDragEnd="map_PinDragEnd" Grid.Row="0"/>
-                <StackLayout Grid.Row="1"
+                <Grid Grid.Row="0"
+                       Padding="15,5,15,5"
+                       BackgroundColor="{StaticResource PrimaryColor}"
+                       HeightRequest="{OnPlatform Android='46',
+                                                   iOS='56'}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <button:SfButton x:Name="backButton"
+                                           Grid.Column="0"
+                                           Clicked="BackButtonClicked"
+                                           CornerRadius="4"
+                                           TextColor="White"
+                                           Style="{StaticResource IconButtonStyle}"
+                                           Text="{StaticResource Back}" />
+                    <Label Grid.Column="1"
+                                FontFamily="{StaticResource Montserrat-Medium}"
+                                FontSize="17"
+                                HorizontalOptions="Start"
+                                Text="Confirm Address"
+                                TextColor="{DynamicResource Gray-White}"
+                                VerticalOptions="Center" />
+
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70*" />
+                        <RowDefinition Height="30*" />
+                    </Grid.RowDefinitions>
+                    <map:Map x:Name="map" 
+                             PinDragEnd="map_PinDragEnd" 
+                             Grid.Row="0"/>
+                    <StackLayout Grid.Row="1"
                          Padding="20">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <!--border:SfBorder BorderColor="{Binding Source={x:Reference FloorEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
-                                     Style="{StaticResource BusinessFormBorderStyle}"
-                                     Grid.Row="0">
-                        <controls:BorderlessEntry
-                            x:Name="FloorEntry"
-                            Placeholder="(Optional) Floor/Unit/Bldg/Block"
-                            ReturnType="Next"
-                            Text="{Binding FloorEntry}"
-                            TextColor="{DynamicResource Gray-Black}"
-                            Style="{StaticResource EntryTextBoxStyle}" />
-                    </-->
-                        <border:SfBorder BorderColor="{Binding Source={x:Reference StreetEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
-                                     Style="{StaticResource BusinessFormBorderStyle}"
-                                     Grid.Row="1">
-                            <controls:BorderlessEntry
-                            x:Name="StreetEntry"
-                            Placeholder="(Optional) Street"
-                            ReturnType="Next"
-                            Text="{Binding StreetEntry}"
-                            TextColor="{DynamicResource Gray-Black}"
-                            Style="{StaticResource EntryTextBoxStyle}" />
-                        </border:SfBorder>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            
+                            <border:SfBorder BorderColor="{Binding Source={x:Reference StreetEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+                                             Style="{StaticResource BusinessFormBorderStyle}"
+                                             Grid.Row="0">
+                                <controls:BorderlessEntry
+                                    x:Name="StreetEntry"
+                                    Placeholder="(Optional) Street"
+                                    ReturnType="Next"
+                                    Text="{Binding StreetEntry}"
+                                    TextColor="{DynamicResource Gray-Black}"
+                                    Style="{StaticResource EntryTextBoxStyle}" />
+                            </border:SfBorder>
 
 
-                        <button:SfButton Grid.Row="2"
+                            <button:SfButton Grid.Row="1"
                                      Margin="0,15,0,0"
                                      HorizontalOptions="FillAndExpand"
                                      Command="{Binding ConfirmAddress}"
                                      Style="{StaticResource SfGradientButtonStyle}"
                                      Text="Confirm" />
 
-
-                    </Grid>
-                </StackLayout>
-
+                        </Grid>
+                    </StackLayout>
+                </Grid>
             </Grid>
             <localindicator:LoadingIndicator
-                HorizontalOptions="Fill"
                 IsRunning="{Binding isRunning, Mode=TwoWay}"
+                HorizontalOptions="Fill"
                 VerticalOptions="Fill" />
         </Grid>
     </ContentPage.Content>

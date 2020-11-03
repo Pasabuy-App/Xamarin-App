@@ -152,7 +152,9 @@ namespace PasaBuy.App.Views.Settings
                 Directory = "House-Front",
                 Name = "front-house.jpg",
                 CompressionQuality = 40,
-                AllowCropping = true
+                AllowCropping = true,
+                SaveToAlbum = false,
+                SaveMetaData = false,
             });
 
             if (file == null)
