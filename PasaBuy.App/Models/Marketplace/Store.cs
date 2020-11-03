@@ -19,6 +19,8 @@ namespace PasaBuy.App.Models.Marketplace
         private string long_info = string.Empty;
         private string avatar = string.Empty;
         private string banner = string.Empty;
+        private string opening = string.Empty;
+        private string closing = string.Empty;
         private string status = string.Empty;
         private string street = string.Empty;
         private string brgy = string.Empty;
@@ -82,6 +84,46 @@ namespace PasaBuy.App.Models.Marketplace
             set
             {
                 this.short_info = value;
+            }
+        }
+
+        public string CityAddress
+        {
+            get
+            {
+                return city + ", " + province;
+            }
+        }
+
+        public string TodayScheds
+        {
+            get
+            {
+                return opening + " - " + closing;
+            }
+        }
+
+        public string Opening
+        {
+            get
+            {
+                return opening;
+            }
+            set
+            {
+                this.opening = value;
+            }
+        }
+
+        public string Closing
+        {
+            get
+            {
+                return closing;
+            }
+            set
+            {
+                this.closing = value;
             }
         }
 

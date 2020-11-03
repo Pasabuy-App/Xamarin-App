@@ -28,12 +28,17 @@ namespace PasaBuy.App.ViewModels.Currency
             _storeList = new ObservableCollection<Store>();
             for(int i = 0; i < 7; i++)
             {
-                _storeList.Add(new Store
+                Store curStore = new Store
                 {
                     Title = "Pasabuy Dev Store",
-                    Description = "Sample Store for Development Purposes",
                     Logo = "House.png"
-                });
+                };
+                curStore.City = "Binan City";
+                curStore.Province = "Laguna";
+                curStore.Opening = "10:00 AM";
+                curStore.Closing = "8:00 PM";
+
+                _storeList.Add(curStore);
             }
         }
             
