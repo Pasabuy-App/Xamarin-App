@@ -1,21 +1,21 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 
-namespace PasaBuy.App.Models.MobilePOS
+namespace PasaBuy.App.Models.POSFeature
 {
-    public class RolesModel
+    public class RoleData
     {
-        public RolesData[] data;
-        public class RolesData
-        {
-            public string ID = string.Empty;
-            public string stid = string.Empty;
-            public string title = string.Empty;
-            public string info = string.Empty;
-            public string status = string.Empty;
-            public string created_by = string.Empty;
-            public string date_created = string.Empty;
-        }
+        public string ID = string.Empty;
+        public string stid = string.Empty;
+        public string title = string.Empty;
+        public string info = string.Empty;
+        public string status = string.Empty;
+        public string created_by = string.Empty;
+        public string date_created = string.Empty;
+    }
+    public class RoleModel : INotifyPropertyChanged
+    {
+        public RoleData[] data;
 
         private string role_status = string.Empty;
         private string role_info = string.Empty;
@@ -23,6 +23,7 @@ namespace PasaBuy.App.Models.MobilePOS
         private string id = string.Empty;
         private string access_name = string.Empty;
         private string access_id = string.Empty;
+
 
         public ObservableCollection<AccessModel> Access { get; set; }
 

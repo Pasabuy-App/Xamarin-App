@@ -4,7 +4,8 @@
              xmlns:syncListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
-             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+             xmlns:local="clr-namespace:PasaBuy.App.UserControls"
              x:Class="PasaBuy.App.Views.StoreViews.Management.RolesView"
              Title="Personnel Roles"
              x:Name="Role"
@@ -21,7 +22,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem
             Order="Primary"
-            Clicked="ToolbarItem_Clicked"
+            Command="{Binding AddRolePlusCommand}"
             Priority="1">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
@@ -151,8 +152,14 @@
                             </Grid>
                         </DataTemplate>
                     </syncListView:SfListView.RightSwipeTemplate>
-                </syncListView:SfListView>
-            </Grid>
+                    </syncListView:SfListView>
+
+                    <local:LoadingIndicator
+                    x:Name="IsRunning"
+                    HorizontalOptions="Fill"
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}"
+                    VerticalOptions="Fill" />
+                </Grid>
 
             </ScrollView>
         </RefreshView>

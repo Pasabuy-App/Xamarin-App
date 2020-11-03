@@ -76,14 +76,14 @@ namespace PasaBuy.App.Http.MobilePOS
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ROL-L1.", "OK");
             }
         }
 
         /// <summary>
         /// Insert of role using wpid, snky, stid, title, info and access.
         /// </summary>
-        public async void Insert(string title, string info, System.Collections.ObjectModel.ObservableCollection<Models.MobilePOS.AccessModel> List, Action<bool, string> callback)
+        public async void Insert(string title, string info, System.Collections.ObjectModel.ObservableCollection<Models.POSFeature.AccessModel> List, Action<bool, string> callback)
         {
             try
             {
@@ -122,7 +122,7 @@ namespace PasaBuy.App.Http.MobilePOS
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ROL-I1.", "OK");
             }
         }
 
@@ -158,7 +158,7 @@ namespace PasaBuy.App.Http.MobilePOS
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ROL-D1.", "OK");
             }
         }
 
@@ -193,7 +193,7 @@ namespace PasaBuy.App.Http.MobilePOS
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2RAL-I1.", "OK");
             }
         }
 

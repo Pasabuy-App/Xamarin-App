@@ -1,12 +1,9 @@
 ﻿using PasaBuy.App.Commands;
 using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Models.MobilePOS;
 using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -25,8 +22,8 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             await PopupNavigation.Instance.PushAsync(new PopupAddRole());
         }
 
-        public static ObservableCollection<RolesModel> _rolesList;
-        public ObservableCollection<RolesModel> RolesList
+        public static ObservableCollection<Models.POSFeature.RoleModel> _rolesList;
+        public ObservableCollection<Models.POSFeature.RoleModel> RolesList
         {
             get
             {
@@ -34,8 +31,11 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
             set
             {
-                _rolesList = value;
-                this.NotifyPropertyChanged();
+                if (_rolesList != value)
+                {
+                    _rolesList = value;
+                    this.NotifyPropertyChanged();
+                }
             }
         }
         bool _isRefreshing = false;
@@ -54,21 +54,39 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 }
             }
         }
+        bool _IsRunning = false;
+        public bool IsRunning
+        {
+            get
+            {
+                return _IsRunning;
+            }
+            set
+            {
+                if (_IsRunning != value)
+                {
+                    _IsRunning = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
         public ICommand RefreshCommand { protected set; get; }
 
         public RolesViewModel()
         {
-            _rolesList = new ObservableCollection<RolesModel>();
-            LoadRoleList();
+            this.RolesList = new ObservableCollection<Models.POSFeature.RoleModel>();
+            LoadListRole();
 
+            _rolesList = new ObservableCollection<Models.POSFeature.RoleModel>();
+
+            AddRolePlusCommand = new Command<object>(AddRolePlusClicked);
             AddRoleCommand = new Command<object>(AddRoleClicked);
             DeleteRoleCommand = new Command<object>(DeleteRoleClicked);
             UpdateRoleCommand = new Command<object>(UpdateRoleClicked);
 
             RefreshCommand = new Command<string>((key) =>
             {
-                _rolesList.Clear();
-                LoadRoleList();
+                LoadListRole();
                 IsRefreshing = false;
             });
         }
@@ -77,16 +95,17 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         {
             try
             {
-                Http.MobilePOS.Role.Instance.Listing("", "", (bool success, string data) =>
+                _rolesList.Clear();
+                Http.MobilePOS.Role.Instance.Listing("", "active", (bool success, string data) =>
                 {
                     if (success)
                     {
-                        RolesModel role = Newtonsoft.Json.JsonConvert.DeserializeObject<RolesModel>(data);
+                        Models.POSFeature.RoleModel role = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.POSFeature.RoleModel>(data);
                         if (role.data.Length > 0)
                         {
                             for (int i = 0; i < role.data.Length; i++)
                             {
-                                _rolesList.Add(new RolesModel()
+                                _rolesList.Add(new Models.POSFeature.RoleModel()
                                 {
                                     Id = role.data[i].ID,
                                     RoleTitle = role.data[i].title,
@@ -104,7 +123,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ROL-L1RVM.", "OK");
             }
         }
 
@@ -112,17 +131,19 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         {
             try
             {
-                this.RolesList.Clear();
-                Http.MobilePOS.Role.Instance.Listing("", "active", (bool success, string data) =>
+                if (!IsRunning)
                 {
-                    if (success)
+                    IsRunning = true;
+                    this.RolesList.Clear();
+                    Http.MobilePOS.Role.Instance.Listing("", "active", (bool success, string data) =>
                     {
-                        RolesModel role = Newtonsoft.Json.JsonConvert.DeserializeObject<RolesModel>(data);
-                        if (role.data.Length > 0)
+                        if (success)
                         {
+                            Models.POSFeature.RoleModel role = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.POSFeature.RoleModel>(data);
+
                             for (int i = 0; i < role.data.Length; i++)
                             {
-                                this.RolesList.Add(new RolesModel()
+                                this.RolesList.Add(new Models.POSFeature.RoleModel()
                                 {
                                     Id = role.data[i].ID,
                                     RoleTitle = role.data[i].title,
@@ -130,20 +151,33 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                     RoleStatus = role.data[i].status == "active" ? "Active" : "Inactive",
                                 });
                             }
+                            IsRunning = false;
                         }
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", Local.HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                });
+                        else
+                        {
+                            new Alert("Notice to User", Local.HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsRunning = false;
+                        }
+                    });
+                }
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ROL-L2RVM.", "OK");
+                IsRunning = false;
             }
         }
 
+        public Command<object> AddRolePlusCommand { get; set; }
+        private async void AddRolePlusClicked(object obj)
+        {
+            if (!IsRunning)
+            {
+                IsRunning = true;
+                await PopupNavigation.Instance.PushAsync(new PopupAddRole());
+                IsRunning = false;
+            }
+        }
         public Command<object> AddRoleCommand { get; set; }
 
         private void AddRoleClicked(object obj)
@@ -153,7 +187,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 if (!IsBusy)
                 {
                     IsBusy = true;
-                    var role = obj as RolesModel;
+                    var role = obj as Models.POSFeature.RoleModel;
                     Http.MobilePOS.Personnel.Instance.Insert(PopupChooseRole.user_id, role.Id, "1234", async (bool success, string data) =>
                     {
                         if (success)
@@ -174,7 +208,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2PNL-I1PVM.", "OK");
                 IsBusy = false;
             }
         }
@@ -185,41 +219,50 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         {
             try
             {
-                if (!IsBusy)
+                if (!IsRunning)
                 {
-                    IsBusy = true;
+                    IsRunning = true;
                     bool answer = await Application.Current.MainPage.DisplayAlert("Delete Confirmation", "Are you sure to delete this?", "Yes", "No");
                     if (answer)
                     {
-                        var role = obj as RolesModel;
+                        var role = obj as Models.POSFeature.RoleModel;
                         Http.MobilePOS.Role.Instance.Delete(role.Id, (bool success, string data) =>
                         {
                             if (success)
                             {
-                                LoadListRole();
-                                IsBusy = false;
+                                LoadRoleList();
+                                IsRunning = false;
                             }
                             else
                             {
                                 new Controllers.Notice.Alert("Notice to User", Local.HtmlUtils.ConvertToPlainText(data), "Try Again");
-                                IsBusy = false;
+                                IsRunning = false;
                             }
                         });
+                    }
+                    else
+                    {
+                        IsRunning = false;
                     }
                 }
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ROL-D1RVM.", "OK");
                 IsBusy = false;
             }
         }
 
         public Command<object> UpdateRoleCommand { get; set; }
 
-        private async void UpdateRoleClicked(object obj)
+        private async void UpdateRoleClicked(object obj)    
         {
-            await PopupNavigation.Instance.PushAsync(new PopupEditRole());
+            if (!IsRunning)
+            {
+                IsRunning = true;
+                await PopupNavigation.Instance.PushAsync(new PopupEditRole());
+                IsRunning = false;
+            }
         }
     }
 }
