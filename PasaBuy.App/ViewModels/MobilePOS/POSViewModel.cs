@@ -2,6 +2,7 @@
 using PasaBuy.App.Views.StoreViews.POS;
 using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.MobilePOS
@@ -114,16 +115,22 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             UpdatePrice();
         }
 
-        public void UpdatePrice()
+        public async void UpdatePrice()
         {
-            double totalprice = 0;
-            foreach (Models.MobilePOS.PointOfSales pos in _currentOrder)
+            if (!IsBusy)
             {
-                totalprice += (pos.Price * pos.Quantity);
+                IsBusy = true;
+                double totalprice = 0;
+                foreach (Models.MobilePOS.PointOfSales pos in _currentOrder)
+                {
+                    totalprice += (pos.Price * pos.Quantity);
+                }
+                this.Tax = "₱ 0.00";
+                this.Bill = "₱ " + totalprice.ToString() + ".00";
+                this.Total = "₱ " + totalprice.ToString() + ".00";
+                await Task.Delay(300);
+                IsBusy = false;
             }
-            this.Tax = "₱ 0.00";
-            this.Bill = "₱ " + totalprice.ToString() + ".00";
-            this.Total = "₱ " + totalprice.ToString() + ".00";
         }
 
         public static void InsertData(string product_id, string product_name, double price, int quantity)
@@ -139,11 +146,16 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
         public Command<object> DeleteCommand { get; set; }
 
-        private void OnTapped(object obj)
+        private async void OnTapped(object obj)
         {
-            var pos = obj as Models.MobilePOS.PointOfSales;
-            _currentOrder.Remove(pos);
-            App.Current.MainPage.DisplayAlert("Message", "Item Deleted :" + pos.Name, "Ok");
+            if (!IsBusy)
+            {
+                IsBusy = true;
+                var pos = obj as Models.MobilePOS.PointOfSales;
+                _currentOrder.Remove(pos);
+                await Task.Delay(300);
+                IsBusy = false;
+            }
         }
 
         public Command AddOrderProductCommand

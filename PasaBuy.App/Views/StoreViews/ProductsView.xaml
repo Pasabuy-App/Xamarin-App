@@ -172,7 +172,6 @@
                                           VerticalOptions="FillAndExpand">
                                                 <syncListView:SfListView
                                                     x:Name="listView" 
-                                                    ItemAppearing="listView_ItemAppearing"
                                                     ListViewCachingStrategy="RecycleTemplate"
                                                     AllowSwiping="True"
                                                     FocusBorderThickness="0"

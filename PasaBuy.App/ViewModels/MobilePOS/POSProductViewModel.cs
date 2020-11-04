@@ -39,7 +39,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             try
             {
                 IsBusy = true;
-                TindaPress.Product.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, "", "", "1", "", (bool success, string data) =>
+                Http.TindaPress.Product.Instance.Listing("", "", "active", (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -66,7 +66,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2PDT-L1POS.", "OK");
                 IsBusy = false;
             }
         }
@@ -76,28 +76,43 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         private void ShowVariantsClicked(string selectedItemId)
         {
             var item = ProductsList.FirstOrDefault(x => x.ID.Equals(selectedItemId));
-            ChechVariant(item.ID, item.Product_name, item.Price);
+            CheckVariant(item.ID, item.Product_name, item.Price);
         }
-        public void ChechVariant(string product_id, string product_name, double product_price)
+        public void CheckVariant(string product_id, string product_name, double product_price)
         {
             try
             {
                 if (!IsBusy)
                 {
                     IsBusy = true;
-                    Http.TindaFeature.Instance.VariantList_Options(product_id, "active", async (bool success, string data) =>
+
+                    Http.TindaPress.Variant.Instance.Listing(product_id, "", "", "active", async (bool success, string data) =>
                     {
                         if (success)
                         {
-                            Variants var = JsonConvert.DeserializeObject<Variants>(data);
-                            if (var.data.Length > 0)
+                            Models.TindaFeature.VariantModel variants = JsonConvert.DeserializeObject<Models.TindaFeature.VariantModel>(data);
+
+                            if (variants.data.Length > 0)
                             {
-                                POSVariantViewModel.product_id = product_id;
-                                POSVariantViewModel.product_name = product_name;
-                                POSVariantViewModel.product_price = product_price;
-                                POSVariantViewModel.LoadVariants(product_id);
-                                await PopupNavigation.Instance.PushAsync(new PopupShowVariants());
-                                IsBusy = false;
+                                for (int i = 0; i < variants.data.Length; i++)
+                                {
+                                    if (variants.data[i].options.Count != 0)
+                                    {
+                                        POSVariantViewModel.product_id = product_id;
+                                        POSVariantViewModel.product_name = product_name;
+                                        POSVariantViewModel.product_price = product_price;
+                                        await PopupNavigation.Instance.PushAsync(new PopupShowVariants());
+                                        IsBusy = false;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        POSViewModel.InsertData(product_id, product_name, product_price, 1);
+                                        await Application.Current.MainPage.Navigation.PopModalAsync();
+                                        IsBusy = false;
+                                        break;
+                                    }
+                                }
                             }
                             else
                             {
@@ -116,7 +131,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2VRT-L2POS.", "OK");
                 IsBusy = false;
             }
         }
