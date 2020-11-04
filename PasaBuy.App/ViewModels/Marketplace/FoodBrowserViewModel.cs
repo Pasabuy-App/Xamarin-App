@@ -197,7 +197,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             try
             {
-                Http.TindaFeature.Instance.Store_Search(search, "food/drink", (bool success, string data) =>
+                Http.TindaFeature.Instance.Store_Search(search, "food/drinks", (bool success, string data) =>
                 {
                     if (success)
                     {

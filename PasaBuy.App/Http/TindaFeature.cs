@@ -77,12 +77,12 @@ namespace PasaBuy.App.Http
             var dict = new Dictionary<string, string>();
             dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
             dict.Add("snky", PSACache.Instance.UserInfo.snky);
-            dict.Add("search", search);
-            dict.Add("types", types);
+            dict.Add("title", search);
+            dict.Add("type", types);
 
             var content = new FormUrlEncodedContent(dict);
 
-            var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/tindapress/v1/stores/search", content);
+            var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/tindapress/v2/store/list", content);
             response.EnsureSuccessStatusCode();
 
             if (response.IsSuccessStatusCode)
