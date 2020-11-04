@@ -8,27 +8,29 @@ using PasaBuy.App.Views.StoreViews.Management;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.MobilePOS
 {
     public class OptionsViewModel : BaseViewModel
     {
-        public static string variant_id;
         private DelegateCommand _addOptionsCommand;
         public DelegateCommand AddOptionsCommand =>
           _addOptionsCommand ?? (_addOptionsCommand = new DelegateCommand(AddOptinsClicked));
         private async void AddOptinsClicked(object obj)
         {
-            //PopupAddVariants.option_id = string.Empty;
-            //new Alert("Variants to Options", " Click Add Model " + PopupAddVariants.type + " " + ProductVariants.product_id, "OK");
-
-            //PopupAddVariants.type = string.Empty;
-            //new Alert("Variants to Options", " Click Add Model", "OK");
-            await PopupNavigation.Instance.PushAsync(new PopupEditOptions());
+            if (!IsRunning)
+            {
+                IsRunning = true;
+                PopupEditOptions.option_id = string.Empty;
+                await PopupNavigation.Instance.PushAsync(new PopupEditOptions());
+                IsRunning = false;
+            }
         }
 
-        public static ObservableCollection<Options> _optionsList;
-        public ObservableCollection<Options> OptionsList
+        public static ObservableCollection<Models.TindaFeature.VariantModel> _optionsList;
+        public ObservableCollection<Models.TindaFeature.VariantModel> OptionsList
 
         {
             get
@@ -41,31 +43,177 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 this.NotifyPropertyChanged();
             }
         }
+        public bool isRunning = false;
+
+        public bool IsRunning
+        {
+            get
+            {
+                return isRunning;
+            }
+            set
+            {
+                isRunning = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        bool _isRefreshing = false;
+        public bool IsRefreshing
+        {
+            get
+            {
+                return _isRefreshing;
+            }
+            set
+            {
+                if (_isRefreshing != value)
+                {
+                    _isRefreshing = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        public ICommand RefreshCommand { protected set; get; }
+
+        public static string variant_id;
         public OptionsViewModel()
         {
-            _optionsList = new ObservableCollection<Options>();
+            _optionsList = new ObservableCollection<Models.TindaFeature.VariantModel>();
+            LoadOptions();
 
-            LoadOptions(ProductVariants.product_id, variant_id);
+            RefreshCommand = new Command<string>((key) =>
+            {
+                LoadOptions();
+                IsRefreshing = false;
+            });
+
+            DeleteCommand = new Command<object>(DeleteClicked);
+            UpdateCommand = new Command<object>(UpdateClicked);
         }
-        public static void LoadOptions(string product_id, string variant_id)
+
+        public Command<object> DeleteCommand { get; set; }
+
+        private async void DeleteClicked(object obj)
+        {
+            try
+            {
+                if (!IsRunning)
+                {
+                    IsRunning = true;
+                    bool answer = await Application.Current.MainPage.DisplayAlert("Delete Option?", "Are you sure to delete this?", "Yes", "No");
+                    if (answer)
+                    {
+                        var variants = obj as Models.TindaFeature.VariantModel;
+                        Http.TindaPress.Variant.Instance.Delete(variants.ID, (bool success, string data) =>
+                        {
+                            if (success)
+                            {
+                                RefreshOptions();
+                                IsRunning = false;
+                            }
+                            else
+                            {
+                                new Controllers.Notice.Alert("Notice to User", Local.HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                IsRunning = false;
+                            }
+                        });
+                    }
+                    else
+                    {
+                        IsRunning = false;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2VRT-D1OVM.", "OK");
+                IsRunning = false;
+            }
+        }
+
+        public Command<object> UpdateCommand { get; set; }
+
+        private async void UpdateClicked(object obj)
+        {
+            if (!IsRunning)
+            {
+                IsRunning = true;
+                var variants = obj as Models.TindaFeature.VariantModel;
+                PopupEditOptions.option_id = variants.ID;
+                PopupEditOptions.option_name = variants.Title;
+                PopupEditOptions.option_info = variants.Info;
+                PopupEditOptions.option_price = variants.Price.ToString();
+                await PopupNavigation.Instance.PushAsync(new PopupEditOptions());
+                IsRunning = false;
+            }
+        }
+
+        public void LoadOptions()
+        {
+            try
+            {
+                if (!IsRunning)
+                {
+                    IsRunning = true;
+                    _optionsList.Clear();
+                    Http.TindaPress.Variant.Instance.Listing(ProductVariants.product_id, variant_id, "", "active", (bool success, string data) =>
+                    {
+                        if (success)
+                        {
+                            Models.TindaFeature.VariantModel variants = JsonConvert.DeserializeObject<Models.TindaFeature.VariantModel>(data);
+
+                            for (int i = 0; i < 1; i++)
+                            {
+                                for (int ii = 0; ii < variants.data[i].options.Count; ii++)
+                                {
+                                    _optionsList.Add(new Models.TindaFeature.VariantModel()
+                                    {
+                                        ID = variants.data[i].options[ii].ID,
+                                        Title = variants.data[i].options[ii].name,
+                                        Info = variants.data[i].options[ii].info,
+                                        Price = Convert.ToDouble(variants.data[i].options[ii].price)
+                                    });
+                                }
+                            }
+                            IsRunning = false;
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsRunning = false;
+                        }
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2VRT-L1OVM.", "OK");
+                IsRunning = false;
+            }
+        }
+
+        public static void RefreshOptions()
         {
             try
             {
                 _optionsList.Clear();
-                TindaPress.Variant.Instance.Listing(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, product_id, variant_id, "1", "", (bool success, string data) =>
+                Http.TindaPress.Variant.Instance.Listing(ProductVariants.product_id, variant_id, "", "active", (bool success, string data) =>
                 {
                     if (success)
                     {
-                        Options options = JsonConvert.DeserializeObject<Options>(data);
-                        if (options.data.Length > 0)
+                        Models.TindaFeature.VariantModel variants = JsonConvert.DeserializeObject<Models.TindaFeature.VariantModel>(data);
+
+                        for (int i = 0; i < 1; i++)
                         {
-                            for (int i = 0; i < options.data.Length; i++)
+                            for (int ii = 0; ii < variants.data[i].options.Count; ii++)
                             {
-                                _optionsList.Add(new Options()
+                                _optionsList.Add(new Models.TindaFeature.VariantModel()
                                 {
-                                    Id = options.data[i].ID,
-                                    Name = options.data[i].name,
-                                    Price = Convert.ToDouble(options.data[i].price)
+                                    ID = variants.data[i].options[ii].ID,
+                                    Title = variants.data[i].options[ii].name,
+                                    Info = variants.data[i].options[ii].info,
+                                    Price = Convert.ToDouble(variants.data[i].options[ii].price)
                                 });
                             }
                         }
@@ -78,7 +226,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2VRT-L2OVM.", "OK");
             }
         }
     }
