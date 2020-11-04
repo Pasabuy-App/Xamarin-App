@@ -71,12 +71,53 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             LoadVariants();
             ShowOptionsCommand = new Command<object>(ShowOptions);
             UpdateCommand = new Command<object>(UpdateClicked);
+            DeleteCommand = new Command<object>(DeleteClicked);
 
             RefreshCommand = new Command<string>((key) =>
             {
                 LoadVariants();
                 IsRefreshing = false;
             });
+        }
+
+        public Command<object> DeleteCommand { get; set; }
+
+        private async void DeleteClicked(object obj)
+        {
+            try
+            {
+                if (!IsRunning)
+                {
+                    IsRunning = true;
+                    bool answer = await Application.Current.MainPage.DisplayAlert("Delete Variant?", "Are you sure to delete this?", "Yes", "No");
+                    if (answer)
+                    {
+                        var variants = obj as Models.TindaFeature.VariantModel;
+                        Http.TindaPress.Variant.Instance.Delete(variants.ID, (bool success, string data) =>
+                        {
+                            if (success)
+                            {
+                                RefreshVariants();
+                                IsRunning = false;
+                            }
+                            else
+                            {
+                                new Controllers.Notice.Alert("Notice to User", Local.HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                IsRunning = false;
+                            }
+                        });
+                    }
+                    else
+                    {
+                        IsRunning = false;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2VRT-D1VVM.", "OK");
+                IsRunning = false;
+            }
         }
 
         public Command<object> UpdateCommand { get; set; }
@@ -90,8 +131,8 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 PopupEditVariants.variant_id = variants.ID;
                 PopupEditVariants.variant_name = variants.Title;
                 PopupEditVariants.variant_info = variants.Info;
-                PopupEditVariants.variant_required = variants.Required == "Base Price: Yes" ? "true" : "false" ;
-                await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new PopupEditVariants()));
+                PopupEditVariants.variant_required = variants.Required == "Required: Yes" ? "true" : "false";
+                await PopupNavigation.Instance.PushAsync(new PopupEditVariants());
                 IsRunning = false;
             }
         }

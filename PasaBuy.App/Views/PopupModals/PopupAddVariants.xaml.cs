@@ -52,7 +52,7 @@ namespace PasaBuy.App.Views.PopupModals
             }
             catch (Exception ex)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2VRT-I1AV.", "OK");
             }
         }
 

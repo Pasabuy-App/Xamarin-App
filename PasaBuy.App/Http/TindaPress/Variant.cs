@@ -78,7 +78,7 @@ namespace PasaBuy.App.Http.TindaPress
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2VRT-L1.", "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2VRT-L1." + e, "OK");
             }
         }
 
@@ -121,6 +121,84 @@ namespace PasaBuy.App.Http.TindaPress
             catch (Exception e)
             {
                 new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2VRT-I1.", "OK");
+            }
+        }
+
+        /// <summary>
+        /// Update variant.
+        /// </summary>
+        public async void Update(string pdid, string vrid, string title, string info, string required, string price, Action<bool, string> callback)
+        {
+            try
+            {
+                var dict = new Dictionary<string, string>();
+                    dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
+                    dict.Add("snky", PSACache.Instance.UserInfo.snky);
+                    dict.Add("stid", PSACache.Instance.UserInfo.stid);
+                    dict.Add("pdid", pdid);
+                    dict.Add("vrid", vrid);
+                    dict.Add("title", title);
+                    dict.Add("info", info);
+                    dict.Add("required", required);
+                    dict.Add("price", price);
+                var content = new FormUrlEncodedContent(dict);
+
+                var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/tindapress/v2/product/variant/update", content);
+                response.EnsureSuccessStatusCode();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string result = await response.Content.ReadAsStringAsync();
+                    Token token = JsonConvert.DeserializeObject<Token>(result);
+
+                    bool success = token.status == "success" ? true : false;
+                    string data = token.status == "success" ? result : token.message;
+                    callback(success, data);
+                }
+                else
+                {
+                    callback(false, "Network Error! Check your connection.");
+                }
+            }
+            catch (Exception e)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2VRT-I1.", "OK");
+            }
+        }
+
+        /// <summary>
+        /// Delete variant.
+        /// </summary>
+        public async void Delete( string vrid, Action<bool, string> callback)
+        {
+            try
+            {
+                var dict = new Dictionary<string, string>();
+                    dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
+                    dict.Add("snky", PSACache.Instance.UserInfo.snky);
+                    dict.Add("vrid", vrid);
+                var content = new FormUrlEncodedContent(dict);
+
+                var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/tindapress/v2/product/variant/delete", content);
+                response.EnsureSuccessStatusCode();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string result = await response.Content.ReadAsStringAsync();
+                    Token token = JsonConvert.DeserializeObject<Token>(result);
+
+                    bool success = token.status == "success" ? true : false;
+                    string data = token.status == "success" ? result : token.message;
+                    callback(success, data);
+                }
+                else
+                {
+                    callback(false, "Network Error! Check your connection.");
+                }
+            }
+            catch (Exception e)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2VRT-D1.", "OK");
             }
         }
 

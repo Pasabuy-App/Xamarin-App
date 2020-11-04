@@ -18,7 +18,8 @@ namespace PasaBuy.App.Views.PopupModals
         public static string variant_name;
         public static string variant_info;
         public static string variant_required;
-        public int isBase = 0;
+        public string isBase = "false";
+        public bool isTapped = false;
         public PopupEditVariants()
         {
             InitializeComponent();
@@ -32,7 +33,7 @@ namespace PasaBuy.App.Views.PopupModals
 
         private async void CancelModal(object sender, EventArgs e)
         {
-            await Navigation.PopModalAsync();
+            await PopupNavigation.Instance.PopAsync();
         }
 
         private void OKModal(object sender, EventArgs e)
@@ -41,24 +42,30 @@ namespace PasaBuy.App.Views.PopupModals
             {
                 if (!string.IsNullOrWhiteSpace(Name.Text))
                 {
-                    TindaPress.Variant.Instance.Update(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, variant_id, ProductVariants.product_id, isBase.ToString(), "", Name.Text, Description.Text, async (bool success, string data) =>
+                    if (!isTapped)
                     {
-                        if (success)
+                        isTapped = true;
+                        Http.TindaPress.Variant.Instance.Update(ProductVariants.product_id, variant_id, Name.Text, Description.Text, isBase, "0.00", async (bool success, string data) =>
                         {
-                            variant_id = string.Empty;
-                            VariantsViewModel.RefreshVariants();
-                            await Navigation.PopModalAsync();
-                        }
-                        else
-                        {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                        }
-                    });
+                            if (success)
+                            {
+                                variant_id = string.Empty;
+                                VariantsViewModel.RefreshVariants();
+                                await PopupNavigation.Instance.PopAsync();
+                                isTapped = false;
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                isTapped = false;
+                            }
+                        });
+                    }
                 }
             }
             catch (Exception ex)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2VRT-U1EV.", "OK");
             }
         }
 
@@ -66,11 +73,11 @@ namespace PasaBuy.App.Views.PopupModals
         {
             if (e.IsChecked.HasValue && e.IsChecked.Value)
             {
-                isBase = 1;
+                isBase = "true";
             }
             else if (e.IsChecked.HasValue && !e.IsChecked.Value)
             {
-                isBase = 0;
+                isBase = "false";
             }
         }
     }
