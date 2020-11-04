@@ -117,6 +117,14 @@ namespace PasaBuy.App.ViewModels.Marketplace
                     if (success)
                     {
                         FeaturedStoreModel datas = JsonConvert.DeserializeObject<FeaturedStoreModel>(data);
+                        if (datas.data.Length > 0)
+                        {
+                            HeaderSize = "280";
+                        }
+                        else
+                        {
+                            HeaderSize = "0";
+                        }
                         for (int i = 0; i < datas.data.Length; i++)
                         {
                             _bestSellers.Add(new FeaturedStoreModel()
