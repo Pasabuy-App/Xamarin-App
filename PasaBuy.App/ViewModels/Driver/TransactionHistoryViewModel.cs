@@ -75,8 +75,8 @@ namespace PasaBuy.App.ViewModels.Driver
                                 _HistoryList.Add(new Models.Driver.TransactListData()
                                 {
                                     ID = order.data[i].order_id,
-                                    Store_logo = order.data[i].customer_name,
-                                    Customer = Local.PSAProc.GetUrl(order.data[i].customer_avatar),
+                                    Customer = order.data[i].customer_name,
+                                    Store_logo = Local.PSAProc.GetUrl(order.data[i].customer_avatar),
                                     Hash_id = "Order #"+ order.data[i].order_id,
                                     Date_created = date.ToString("MMMM dd, yyyy"),
                                     Price = Convert.ToDouble(order.data[i].total_price),
@@ -116,8 +116,8 @@ namespace PasaBuy.App.ViewModels.Driver
                 IsBusy = true;
                 var item = (selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Models.Driver.TransactListData;
                 MobilePOS.OrderDetailsViewModel.order_id = item.ID;
-                MobilePOS.OrderDetailsViewModel.customer = item.Store_logo;
-                MobilePOS.OrderDetailsViewModel.avatar = item.Customer;
+                MobilePOS.OrderDetailsViewModel.customer = item.Customer;
+                MobilePOS.OrderDetailsViewModel.avatar = item.Store_logo;
                 MobilePOS.OrderDetailsViewModel.datecreated = item.Date_created;
                 MobilePOS.OrderDetailsViewModel.totalprice = item.Price;
                 MobilePOS.OrderDetailsViewModel.stages = item.Status;

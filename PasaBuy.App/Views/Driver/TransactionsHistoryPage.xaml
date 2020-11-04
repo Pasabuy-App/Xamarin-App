@@ -92,7 +92,7 @@
                                                        HorizontalOptions="StartAndExpand"
                                                        TextColor="{DynamicResource Gray-800}">
                                         </Label>
-                                        <Label Text="{Binding Price}"
+                                            <Label Text="{Binding Price, StringFormat='₱ {0:F2}'}" 
                                                        Grid.Row="0"
                                                        Grid.Column="2"
                                                        HorizontalOptions="StartAndExpand"
