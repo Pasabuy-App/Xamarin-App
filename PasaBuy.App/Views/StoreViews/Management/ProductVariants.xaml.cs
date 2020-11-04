@@ -34,7 +34,7 @@ namespace PasaBuy.App.Views.StoreViews.Management
             Navigation.PopModalAsync();
         }
 
-        private async void Delete_Tapped(object sender, EventArgs e)
+        /*private async void Delete_Tapped(object sender, EventArgs e)
         {
             try
             {
@@ -66,6 +66,6 @@ namespace PasaBuy.App.Views.StoreViews.Management
                 new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2VRT-D1PV.", "OK");
                 IsRunning.IsRunning = false;
             }
-        }
+        }*/
     }
 }

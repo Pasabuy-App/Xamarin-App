@@ -152,7 +152,6 @@
 
                                 <syncListView:SfListView
                                             x:Name="listView" 
-                                            ItemAppearing="listView_ItemAppearing"
                                             AllowSwiping="True"
                                             FocusBorderThickness="0"
                                             IsScrollBarVisible="False"
