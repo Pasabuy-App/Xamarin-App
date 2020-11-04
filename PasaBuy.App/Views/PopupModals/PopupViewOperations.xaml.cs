@@ -25,7 +25,7 @@ namespace PasaBuy.App.Views.PopupModals
                     if (success)
                     {
                         CultureInfo provider = new CultureInfo("fr-FR");
-                        Operations datas = JsonConvert.DeserializeObject<Operations>(data);
+                        Models.POSFeature.OperationModel datas = JsonConvert.DeserializeObject<Models.POSFeature.OperationModel>(data);
                         for (int i = 0; i < datas.data.Length; i++)
                         {
                             string open_time = string.IsNullOrEmpty(datas.data[i].date_open) ? "0000-00-00 00:00:00" : datas.data[i].date_open;

@@ -9,7 +9,7 @@
     xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App" 
     xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
     xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms" 
-    xmlns:control="clr-namespace:PasaBuy.App.Controls" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms">
+    xmlns:control="clr-namespace:PasaBuy.App.Controls" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" xmlns:local="clr-namespace:PasaBuy.App.UserControls">
 
     <pages:PopupPage.Resources>
         <ResourceDictionary>
@@ -48,51 +48,52 @@
             ScaleIn="1"
             ScaleOut="0.7" />
     </pages:PopupPage.Animation>
-    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-        <Frame
+    <Grid>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <Frame
             x:Name="FrameContainer"
             Margin="15"
             Padding="15,15,15,15"
             BackgroundColor="White"
             CornerRadius="6"
             HorizontalOptions="Center">
-            <StackLayout
+                <StackLayout
                 Padding="10,5"
                 IsClippedToBounds="True"
                 Spacing="3">
-                <Grid RowSpacing="0" Padding="0,15,0,20">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                    <Grid RowSpacing="0" Padding="0,15,0,20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
-                    <border:SfBorder
+                        <border:SfBorder
                         Grid.Row="0"
                         Grid.ColumnSpan="2"
                         Grid.Column="0"
                         HeightRequest="40"
                         Padding="6,0,0,0"
                         Style="{StaticResource FormBorderStyle}">
-                        <control:CustomTimePicker PlaceHolderText="Opening Time" x:Name="Open"/>
-                    </border:SfBorder>
+                            <control:CustomTimePicker PlaceHolderText="Opening Time" x:Name="Open"/>
+                        </border:SfBorder>
 
-                    <border:SfBorder
+                        <border:SfBorder
                         Grid.Row="1"
                         Grid.ColumnSpan="2"
                         Grid.Column="0"
                         HeightRequest="40"
                         Padding="6,0,0,0"
                         Style="{StaticResource FormBorderStyle}">
-                        <control:CustomTimePicker PlaceHolderText="Closing Time" x:Name="Close"/>
-                    </border:SfBorder>
+                            <control:CustomTimePicker PlaceHolderText="Closing Time" x:Name="Close"/>
+                        </border:SfBorder>
 
-                    <button:SfButton
+                        <button:SfButton
                             Grid.Row="3"
                             Grid.Column="0"
                             BackgroundColor="Green"
@@ -106,7 +107,7 @@
                             Clicked="OKModal"
                             TextColor="White"
                             VerticalOptions="Center" />
-                    <button:SfButton
+                        <button:SfButton
                             Grid.Row="3"
                             Grid.Column="1"
                             BackgroundColor="Red"
@@ -120,8 +121,13 @@
                             Text="{texts:Translate Cancel}"
                             TextColor="White"
                             VerticalOptions="Center" />
-                </Grid>
-            </StackLayout>
-        </Frame>
-    </StackLayout>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+        <local:LoadingIndicator
+                    x:Name="IsRunning"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Fill" />
+        </Grid>
 </pages:PopupPage>

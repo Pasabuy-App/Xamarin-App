@@ -24,33 +24,40 @@ namespace PasaBuy.App.Views.PopupModals
 
         private void OKModal(object sender, EventArgs e)
         {
-            string days = string.Empty;
-            days = day != "Monday" ? day != "Tuesday" ? day != "Wednesday" ? day != "Thursday" ? day != "Friday" ? day != "Saturday" ? "sun" : "sat" : "fri" : "thu" : "wed" : "tue" : "mon";
-            //new Alert(days, Open.Time + ". ." + Close.Time, day);
-            if (Open.Time.ToString() == "00:00:00" || Close.Time.ToString() == "00:00:00")
+            if (IsRunning.IsRunning == false)
             {
-                new Alert("Notice to User", "Please enter opening or closing time.", "Try Again");
-            }
-            else
-            {
-                try
+                IsRunning.IsRunning = true;
+                string days = string.Empty;
+                days = day != "Monday" ? day != "Tuesday" ? day != "Wednesday" ? day != "Thursday" ? day != "Friday" ? day != "Saturday" ? "sun" : "sat" : "fri" : "thu" : "wed" : "tue" : "mon";
+                if (Open.Time.ToString() == "00:00:00" || Close.Time.ToString() == "00:00:00")
                 {
-                    TindaPress.Schedule.Instance.Update(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, days, Open.Time.ToString(), Close.Time.ToString(), (bool success, string data) =>
-                    {
-                        if (success)
-                        {
-                            ScheduleViewModel.LoadSchedule();
-                            PopupNavigation.Instance.PopAsync();
-                        }
-                        else
-                        {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                        }
-                    });
+                    new Alert("Notice to User", "Please enter opening or closing time.", "Try Again");
+                    IsRunning.IsRunning = false;
                 }
-                catch (Exception ex)
+                else
                 {
-                    new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
+                    try
+                    {
+                        Http.MobilePOS.Schedule.Instance.Insert(days, Open.Time.ToString(), Close.Time.ToString(), async (bool success, string data) =>
+                        {
+                            if (success)
+                            {
+                                ScheduleViewModel.RefreshSchedule();
+                                await PopupNavigation.Instance.PopAsync();
+                                IsRunning.IsRunning = false;
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                IsRunning.IsRunning = false;
+                            }
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2SCH-I1ES.", "OK");
+                        IsRunning.IsRunning = false;
+                    }
                 }
             }
         }
