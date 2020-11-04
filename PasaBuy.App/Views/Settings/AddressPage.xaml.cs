@@ -78,7 +78,7 @@ namespace PasaBuy.App.Views.Settings
             }
             catch (Exception ex)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1ADD-D1AP.", "OK");
             }
 
         }

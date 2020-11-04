@@ -75,7 +75,7 @@ namespace PasaBuy.App.Http.DataVice
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1ADD-D1.", "OK");
             }
         }
 
@@ -128,7 +128,7 @@ namespace PasaBuy.App.Http.DataVice
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1ADD-I1.", "OK");
             }
         }
 
@@ -163,7 +163,7 @@ namespace PasaBuy.App.Http.DataVice
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1ADD-L1.", "OK");
             }
         }
 
@@ -206,7 +206,7 @@ namespace PasaBuy.App.Http.DataVice
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1ADD-U1.", "OK");
             }
         }
 
@@ -242,7 +242,7 @@ namespace PasaBuy.App.Http.DataVice
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1ADD-S1.", "OK");
             }
         }
 

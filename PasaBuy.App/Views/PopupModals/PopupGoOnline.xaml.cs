@@ -96,7 +96,7 @@ namespace PasaBuy.App.Views.PopupModals
         {
             try
             {
-                Operation.Instance.Update(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, status, (bool success, string data) =>
+                Http.MobilePOS.Operation.Instance.Update( "", (bool success, string data) =>
                 {
                     if (!success)
                     {
@@ -106,7 +106,7 @@ namespace PasaBuy.App.Views.PopupModals
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2OPE-I1GO.", "OK");
             }
         }
 

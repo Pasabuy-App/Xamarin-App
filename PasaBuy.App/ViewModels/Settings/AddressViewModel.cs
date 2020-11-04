@@ -69,22 +69,6 @@ namespace PasaBuy.App.ViewModels.Settings
                                 AddressPhoto = string.IsNullOrEmpty(address.data[i].preview) ? PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl) : PSAProc.GetUrl(address.data[i].preview)
                             });
                         }
-                        /* if (address.data.Length == 0)
-                         {
-                             addressDetails.Add(new Address()
-                             {
-                                 isPerson = false,
-                                 isPhone = false,
-                                 isPhoto = false,
-                                 isType = true,
-                                 isLocation = false,
-                                 SelectedAddress = "0",
-                                 AddressType = "No address found."
-                             });
-                         }
-                         else
-                         {
-                         }*/
                     }
                     else
                     {
@@ -95,7 +79,7 @@ namespace PasaBuy.App.ViewModels.Settings
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1ADD-L1AVM.", "OK");
             }
         }
 

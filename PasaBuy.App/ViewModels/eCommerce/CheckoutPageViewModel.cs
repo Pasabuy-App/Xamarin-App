@@ -151,7 +151,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1ADD-L1CPVM.", "OK");
             }
         }
         public void PaymentMethod()
