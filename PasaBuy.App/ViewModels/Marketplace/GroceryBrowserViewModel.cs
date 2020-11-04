@@ -112,7 +112,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             try
             {
-                Http.TindaFeature.Instance.FeaturedList("active", (bool success, string data) =>
+                Http.TindaFeature.Instance.FeaturedList("active", "market", (bool success, string data) =>
                 {
                     if (success)
                     {

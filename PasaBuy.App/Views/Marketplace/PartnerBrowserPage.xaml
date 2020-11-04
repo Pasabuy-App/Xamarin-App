@@ -236,7 +236,11 @@
                                                 </border:SfBorder>
                                             </Grid>
                                             <BoxView Style="{StaticResource SeparatorStyle}" />
-                                        </StackLayout>
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding BindingContext.ItemTappedCommand,Source={x:Reference StoreList}}" 
+                                                                      CommandParameter="{Binding .}"/>
+                                            </StackLayout.GestureRecognizers>
+                                    </StackLayout>
                                     </Grid>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>

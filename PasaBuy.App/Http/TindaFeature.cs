@@ -171,14 +171,16 @@ namespace PasaBuy.App.Http
             }
         }
 
-        public async void StoreByCategoryList(string scid, Action<bool, string> callback)
+        public async void StoreByCategoryList(string type, string status, Action<bool, string> callback)
         {
             try
             {
                 var dict = new Dictionary<string, string>();
                 dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
                 dict.Add("snky", PSACache.Instance.UserInfo.snky);
-                dict.Add("scid", scid);
+                dict.Add("groups", type);
+                dict.Add("status", status);
+
 
                 var content = new FormUrlEncodedContent(dict);
 
@@ -205,7 +207,7 @@ namespace PasaBuy.App.Http
             }
         }
 
-        public async void FeaturedList(string status, Action<bool, string> callback)
+        public async void FeaturedList(string status, string type, Action<bool, string> callback)
         {
             try
             {
@@ -213,6 +215,8 @@ namespace PasaBuy.App.Http
                 dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
                 dict.Add("snky", PSACache.Instance.UserInfo.snky);
                 dict.Add("status", status);
+                dict.Add("type", type);
+
 
 
                 var content = new FormUrlEncodedContent(dict);

@@ -156,7 +156,7 @@
                                             x:Name="StoreList">
                                 <CollectionView.Header>
                                     <sync:SfListView  SelectionMode="None" 
-                                             HeightRequest="280" 
+                                             HeightRequest="{Binding HeaderSize}" 
                                              ItemSize="150"
                                              x:Name="featuredListView"
                                              Orientation="Horizontal" 
