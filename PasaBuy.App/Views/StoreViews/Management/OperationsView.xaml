@@ -10,7 +10,7 @@
              xmlns:custom="clr-namespace:PasaBuy.App.Controls"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
              xmlns:syncListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
-             xmlns:view="clr-namespace:PasaBuy.App.Views.Templates"
+             xmlns:view="clr-namespace:PasaBuy.App.Views.Templates" xmlns:local="clr-namespace:PasaBuy.App.UserControls"
              Title="Operations"
              BackgroundColor="{DynamicResource Gray-White}">
     <ContentPage.Resources>
@@ -22,19 +22,21 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout Padding="10"
+        <Grid>
+            <StackLayout>
+
+                <StackLayout Padding="10"
                          Margin="0,0,0,5"
                          VerticalOptions="CenterAndExpand"
                          HorizontalOptions="CenterAndExpand"
                          IsVisible="{Binding GetStarted}">
-                <view:GetStartedTemplate/>
-            </StackLayout>
-            <BoxView  Margin="0,8,0,0" Style="{DynamicResource SeparatorStyle}" />
-            <StackLayout VerticalOptions="FillAndExpand"
+                    <view:GetStartedTemplate/>
+                </StackLayout>
+                <BoxView  Margin="0,8,0,0" Style="{DynamicResource SeparatorStyle}" />
+                <StackLayout VerticalOptions="FillAndExpand"
                          Margin="0,10,0,0"
                          HorizontalOptions="FillAndExpand">
-                <syncListView:SfListView x:Name="listView"
+                    <syncListView:SfListView x:Name="listView"
                                          FocusBorderThickness="0"
                                          IsScrollBarVisible="False"
                                          IsStickyHeader="True"
@@ -42,28 +44,28 @@
                                          ListViewCachingStrategy="RecycleTemplate"
                                          ItemsSource="{Binding OperationsList}"
                                          SelectionMode="None">
-                    <syncListView:SfListView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="0"
+                        <syncListView:SfListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0"
                                   Padding="8,12,8,0"
                                   BackgroundColor="{DynamicResource Gray-White}"
                                   ColumnSpacing="0"
                                   RowSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Row="0" Padding="0,0,8,10" RowSpacing="0">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <Label
+                                    <Grid Grid.Row="0" Padding="0,0,8,10" RowSpacing="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label
                                         Grid.Row="0"
                                         Grid.Column="1"
                                         FontFamily="{StaticResource Montserrat-Medium}"
@@ -71,7 +73,7 @@
                                         Text="{Binding Date}"
                                         TextColor="{DynamicResource Gray-900}"
                                         VerticalOptions="Center" />
-                                    <Label
+                                        <Label
                                         Grid.Row="1"
                                         Grid.Column="1"
                                         FontFamily="{StaticResource Montserrat-Medium}"
@@ -80,24 +82,31 @@
                                         TextColor="{DynamicResource Gray-900}"
                                         VerticalOptions="Center" />
 
-                                    <buttons:SfButton
+                                        <buttons:SfButton
                                         Grid.Row="0"
                                         Grid.RowSpan="2"
                                         Grid.Column="2"
                                         CornerRadius="4"
                                         TextColor="Black"
-                                        Command="{Binding BindingContext.ViewOperationCommand,Source={x:Reference listView}}"
-                                        CommandParameter="{Binding Id}"
+                                        Command="{Binding Path =BindingContext.ViewOperationCommand, Source={x:Reference listView}}"
+                                        CommandParameter="{Binding .}"
                                         Style="{StaticResource IconButtonStyle}"
-                                        Text="{StaticResource Show}" /> 
+                                        Text="{StaticResource Show}" />
 
+                                    </Grid>
+                                    <BoxView Grid.Row="1" Margin="0,-2,0,0" Style="{DynamicResource SeparatorStyle}" />
                                 </Grid>
-                                <BoxView Grid.Row="1" Margin="0,-2,0,0" Style="{DynamicResource SeparatorStyle}" />
-                            </Grid>
-                        </DataTemplate>
-                    </syncListView:SfListView.ItemTemplate>
-                </syncListView:SfListView>
+                            </DataTemplate>
+                        </syncListView:SfListView.ItemTemplate>
+                    </syncListView:SfListView>
+                </StackLayout>
             </StackLayout>
-        </StackLayout>
+            
+            <local:LoadingIndicator
+                IsRunning="{Binding IsRunning, Mode=TwoWay}"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill" />
+            
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
