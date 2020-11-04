@@ -20,19 +20,17 @@ namespace PasaBuy.App.Views.StoreViews.Management
         public VariantsView()
         {
             InitializeComponent();
-            pullToRefresh.Refreshing += PullToRefresh_Refreshing;
+            this.BindingContext = new ProductViewModel();
+            SearchText.SearchButtonPressed += SearchButtonPress;
         }
 
-        private async void PullToRefresh_Refreshing(object sender, EventArgs args)
+        void SearchButtonPress(object sender, EventArgs e)
         {
-            pullToRefresh.IsRefreshing = true;
-            await Task.Delay(500);
-            LastIndex = 11;
-            isFirstLoad = false;
-            Offset = 0;
-            ProductViewModel.productsList.Clear();
-            ProductViewModel.RefreshProduct("");
-            pullToRefresh.IsRefreshing = false;
+            SearchBar searchBar = (SearchBar)sender;
+            if (!string.IsNullOrWhiteSpace(searchBar.Text))
+            {
+                ProductViewModel.RefreshProduct(searchBar.Text);
+            }
         }
 
         private void listView_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)

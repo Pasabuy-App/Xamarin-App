@@ -16,45 +16,9 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 {
     public class VariantsViewModel : BaseViewModel
     {
-        public static ObservableCollection<Variants> _variantsList;
+        public static ObservableCollection<Models.TindaFeature.VariantModel> _variantsList;
 
-        private DelegateCommand _addVariantsCommand;
-
-        public DelegateCommand AddVariantsCommand =>
-          _addVariantsCommand ?? (_addVariantsCommand = new DelegateCommand(AddVariantsClicked));
-
-        public ICommand ShowOptionsCommand
-        {
-            get
-            {
-                return new Command<string>((x) => ShowOptions(x));
-            }
-        }
-
-        public bool isClicked;
-        private async void ShowOptions(string id)
-        {
-            if (!isClicked)
-            {
-                isClicked = true;
-                //new Alert("Variants to Options", "." + id + ". ." + ProductVariants.product_id + ".", "OK");
-                //OptionsView.variant_id = id;
-                //_optionsList.Clear();
-                OptionsViewModel.variant_id = id;
-                //PopupAddVariants.type = "options";
-                //new Alert("Variants to Options", " Click Add Model " + id + " " + ProductVariants.product_id, "OK");
-                await Application.Current.MainPage.Navigation.PushModalAsync(new OptionsView());
-                await Task.Delay(200);
-                isClicked = false;
-            }
-        }
-
-        private async void AddVariantsClicked(object obj)
-        {
-            await PopupNavigation.Instance.PushAsync(new PopupAddVariants());
-        }
-
-        public ObservableCollection<Variants> VariantsList
+        public ObservableCollection<Models.TindaFeature.VariantModel> VariantsList
         {
             get
             {
@@ -67,46 +31,175 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
         }
 
+        public bool isRunning = false;
+
+        public bool IsRunning
+        {
+            get
+            {
+                return isRunning;
+            }
+            set
+            {
+                isRunning = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        bool _isRefreshing = false;
+        public bool IsRefreshing
+        {
+            get
+            {
+                return _isRefreshing;
+            }
+            set
+            {
+                if (_isRefreshing != value)
+                {
+                    _isRefreshing = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        public ICommand RefreshCommand { protected set; get; }
+        public static string product_id;
+
         public VariantsViewModel()
         {
-            isClicked = false;
-            _variantsList = new ObservableCollection<Variants>();
+            _variantsList = new ObservableCollection<Models.TindaFeature.VariantModel>();
+            LoadVariants();
+            ShowOptionsCommand = new Command<object>(ShowOptions);
+            UpdateCommand = new Command<object>(UpdateClicked);
+
+            RefreshCommand = new Command<string>((key) =>
+            {
+                LoadVariants();
+                IsRefreshing = false;
+            });
         }
-        public static void LoadVariants(string product_id)
+
+        public Command<object> UpdateCommand { get; set; }
+
+        private async void UpdateClicked(object obj)
+        {
+            if (!IsRunning)
+            {
+                IsRunning = true;
+                var variants = obj as Models.TindaFeature.VariantModel;
+                PopupEditVariants.variant_id = variants.ID;
+                PopupEditVariants.variant_name = variants.Title;
+                PopupEditVariants.variant_info = variants.Info;
+                PopupEditVariants.variant_required = variants.Required == "Base Price: Yes" ? "true" : "false" ;
+                await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new PopupEditVariants()));
+                IsRunning = false;
+            }
+        }
+
+        private DelegateCommand _addVariantsCommand;
+
+        public DelegateCommand AddVariantsCommand =>
+          _addVariantsCommand ?? (_addVariantsCommand = new DelegateCommand(AddVariantsClicked));
+
+        public Command<object> ShowOptionsCommand { get; set; }
+
+        private async void ShowOptions(object obj)
+        {
+            if (!IsRunning)
+            {
+                IsRunning = true;
+                var variants = obj as Models.TindaFeature.VariantModel;
+                OptionsViewModel.variant_id = variants.ID;
+                OptionsView.title = variants.Title;
+                await Application.Current.MainPage.Navigation.PushModalAsync(new OptionsView());
+                IsRunning = false;
+            }
+        }
+
+        private async void AddVariantsClicked(object obj)
+        {
+            if (!IsRunning)
+            {
+                IsRunning = true;
+                await PopupNavigation.Instance.PushAsync(new PopupAddVariants());
+                IsRunning = false;
+            }
+        }
+
+        public void LoadVariants()
+        {
+            try
+            {
+                if (!IsRunning) 
+                {
+                    IsRunning = true;
+                    _variantsList.Clear();
+                    Http.TindaPress.Variant.Instance.Listing(product_id, "", "", "active", (bool success, string data) =>
+                    {
+                        if (success)
+                        {
+                            Models.TindaFeature.VariantModel variants = JsonConvert.DeserializeObject<Models.TindaFeature.VariantModel>(data);
+
+                            for (int i = 0; i < variants.data.Length; i++)
+                            {
+                                string required = variants.data[i].required == "true" ? "Yes" : "No";
+                                _variantsList.Add(new Models.TindaFeature.VariantModel()
+                                {
+                                    ID = variants.data[i].ID,
+                                    Title = variants.data[i].title,
+                                    Info = variants.data[i].info,
+                                    Required = "Required: " + required
+                                });
+                            }
+                            IsRunning = false;
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsRunning = false;
+                        }
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2VRT-L1VVM.", "OK");
+                IsRunning = false;
+            }
+        }
+
+        public static void RefreshVariants()
         {
             try
             {
                 _variantsList.Clear();
-                TindaPress.Variant.Instance.Listing(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, product_id, "0", "1", "", (bool success, string data) =>
+                Http.TindaPress.Variant.Instance.Listing(product_id, "", "", "active", (bool success, string data) =>
                 {
                     if (success)
                     {
-                        Variants variants = JsonConvert.DeserializeObject<Variants>(data);
+                        Models.TindaFeature.VariantModel variants = JsonConvert.DeserializeObject<Models.TindaFeature.VariantModel>(data);
 
-                        if (variants.data.Length > 0)
+                        for (int i = 0; i < variants.data.Length; i++)
                         {
-                            for (int i = 0; i < variants.data.Length; i++)
+                            string required = variants.data[i].required == "true" ? "Yes" : "No";
+                            _variantsList.Add(new Models.TindaFeature.VariantModel()
                             {
-                                _variantsList.Add(new Variants()
-                                {
-                                    Id = variants.data[i].ID,
-                                    Title = variants.data[i].title,
-                                    Info = variants.data[i].info == "None" ? "" : variants.data[i].info,
-                                    Required = "Base Price: " + variants.data[i].required
-                                });
-                            }
+                                ID = variants.data[i].ID,
+                                Title = variants.data[i].title,
+                                Info = variants.data[i].info,
+                                Required = "Required: " + required
+                            });
                         }
                     }
                     else
                     {
                         new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-
                     }
                 });
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2VRT-L2VVM.", "OK");
             }
         }
     }

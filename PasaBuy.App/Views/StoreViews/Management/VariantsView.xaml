@@ -12,9 +12,6 @@
              xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.MobilePOS" xmlns:controls="clr-namespace:PasaBuy.App.Controls"
              x:Class="PasaBuy.App.Views.StoreViews.Management.VariantsView"
              Title="Products">
-    <ContentPage.BindingContext>
-        <viewModel:ProductViewModel />
-    </ContentPage.BindingContext>
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -57,10 +54,17 @@
             <converters:ImageConverter x:Key="ByteArrayToImage" />
         </ResourceDictionary>
     </ContentPage.Resources>
+
     <ContentPage.Content>
-        <Grid>
-            <Grid>
-                <Grid RowSpacing="0"
+
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"   
+                     x:Name="rv"
+                     Command="{Binding RefreshCommand}">
+
+            <ScrollView VerticalScrollBarVisibility="Never" Padding="0, 0, 0, -10">
+
+                <Grid>
+                    <Grid RowSpacing="0"
                       CompressedLayout.IsHeadless="True">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -86,6 +90,7 @@
                                 FontSize="14"
                                 HorizontalOptions="FillAndExpand"
                                 Text="{Binding ScannedText, Mode=TwoWay}"
+                                x:Name="SearchText"
                                 Placeholder="Search product"
                                 VerticalOptions="CenterAndExpand">
                                 <SearchBar.PlaceholderColor>
@@ -144,43 +149,23 @@
                             <Grid Padding="0,0"
                                   Grid.Row="1"
                                   VerticalOptions="FillAndExpand">
-                                <pulltoRefresh:SfPullToRefresh
-                                    x:Name="pullToRefresh"
-                                    IsRefreshing="False"
-                                    PullingThreshold="150"
-                                    RefreshContentHeight="50"
-                                    RefreshContentWidth="50"
-                                    TransitionMode="Push">
-                                    <pulltoRefresh:SfPullToRefresh.ProgressStrokeWidth>
-                                        <OnPlatform x:TypeArguments="x:Double">
-                                            <On Platform="Android">
-                                                <OnIdiom
-                                                    x:TypeArguments="x:Double"
-                                                    Phone="6"
-                                                    Tablet="3" />
-                                            </On>
-                                            <On Platform="UWP" Value="2" />
-                                            <On Platform="iOS,macOS" Value="2" />
-                                        </OnPlatform>
-                                    </pulltoRefresh:SfPullToRefresh.ProgressStrokeWidth>
-                                    <pulltoRefresh:SfPullToRefresh.PullableContent>
-                                        <syncListView:SfListView
+
+                                <syncListView:SfListView
                                             x:Name="listView" 
                                             ItemAppearing="listView_ItemAppearing"
                                             AllowSwiping="True"
                                             FocusBorderThickness="0"
                                             IsScrollBarVisible="False"
                                             IsStickyHeader="True"
-                                            IsEnabled="{Binding IsBusy}"
                                             ItemSize="80"
                                             ListViewCachingStrategy="RecycleTemplate"
                                             ItemsSource="{Binding ProductsList}"
                                             SelectionMode="None">
-                                            <!--SwipeEnded="Handle_SwipeEnded"
+                                    <!--SwipeEnded="Handle_SwipeEnded"
                                             SwipeStarted="Handle_SwipeStarted"-->
-                                            <syncListView:SfListView.ItemTemplate>
-                                                <DataTemplate>
-                                                    <controls:CustomShadowFrame
+                                    <syncListView:SfListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <controls:CustomShadowFrame
                                                         Margin="5,2,5,5"
                                                         Padding="0,0,0,10"
                                                         BackgroundColor="{DynamicResource Gray-White}"
@@ -189,22 +174,22 @@
                                                         CornerRadius="4"
                                                         HeightRequest="80"
                                                         HasShadow="True">
-                                                        <Grid ColumnSpacing="0" 
+                                                <Grid ColumnSpacing="0" 
                                                           RowSpacing="0" 
                                                           Padding="5">
-                                                            <Grid.GestureRecognizers>
-                                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.ShowVariantsCommand, Source={x:Reference listView}}" CommandParameter="{Binding ID}"/>
-                                                            </Grid.GestureRecognizers>
-                                                            <Grid.RowDefinitions>
-                                                                <RowDefinition Height="auto" />
-                                                                <RowDefinition Height="auto" />
-                                                            </Grid.RowDefinitions>
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="auto" />
-                                                                <ColumnDefinition Width="*" />
-                                                                <ColumnDefinition Width="auto" />
-                                                            </Grid.ColumnDefinitions>
-                                                            <ffimageloading:CachedImage
+                                                    <Grid.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.ShowVariantsCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"/>
+                                                    </Grid.GestureRecognizers>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="auto" />
+                                                        <RowDefinition Height="auto" />
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="auto" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <ffimageloading:CachedImage
                                                             Grid.Row="0"
                                                             Grid.Column="0"
                                                             Grid.RowSpan="2"
@@ -217,15 +202,15 @@
                                                             Source="{Binding Preview}"
                                                             TransformPlaceholders="True"
                                                             WidthRequest="60">
-                                                                <ffimageloading:CachedImage.Transformations>
-                                                                    <transformations:RoundedTransformation
+                                                        <ffimageloading:CachedImage.Transformations>
+                                                            <transformations:RoundedTransformation
                                                                     BorderHexColor="#000000"
                                                                     BorderSize="2"
                                                                     Radius="30" />
-                                                                </ffimageloading:CachedImage.Transformations>
-                                                            </ffimageloading:CachedImage>
+                                                        </ffimageloading:CachedImage.Transformations>
+                                                    </ffimageloading:CachedImage>
 
-                                                            <Label Margin="5,4,0,0"
+                                                    <Label Margin="5,4,0,0"
                                                                Grid.Row="0"
                                                                Grid.Column="1"
                                                                     FontFamily="{StaticResource Montserrat-Medium}"
@@ -236,7 +221,7 @@
                                                                     Text="{Binding Product_name}"
                                                                     TextColor="{DynamicResource Gray-900}" />
 
-                                                            <Label Margin="5,4,0,0"
+                                                    <Label Margin="5,4,0,0"
                                                                Grid.Row="1"
                                                                Grid.Column="1"
                                                                FontFamily="{StaticResource Montserrat-Medium}"
@@ -247,7 +232,7 @@
                                                                 Text="{Binding Short_info}"
                                                                 TextColor="{DynamicResource Gray-900}" />
 
-                                                            <Label Margin="5,4,0,0"
+                                                    <Label Margin="5,4,0,0"
                                                                Grid.Row="0"
                                                                Grid.Column="2"
                                                                FontFamily="{StaticResource Montserrat-Medium}"
@@ -257,23 +242,27 @@
                                                                Text="{Binding Price, StringFormat='₱ {0:F2}'}"
                                                                TextColor="{DynamicResource Gray-900}" />
 
-                                                        </Grid>
-                                                    </controls:CustomShadowFrame>
-                                                </DataTemplate>
-                                            </syncListView:SfListView.ItemTemplate>
-                                        </syncListView:SfListView>
-                                    </pulltoRefresh:SfPullToRefresh.PullableContent>
-                                </pulltoRefresh:SfPullToRefresh>
+                                                </Grid>
+                                            </controls:CustomShadowFrame>
+                                        </DataTemplate>
+                                    </syncListView:SfListView.ItemTemplate>
+                                </syncListView:SfListView>
+
                             </Grid>
                         </Grid>
                     </yummy:PancakeView>
                 </Grid>
-            </Grid>
-            <local:LoadingIndicator
-                Grid.Row="0"
-                IsVisible="False"
-                HorizontalOptions="Fill"
-                VerticalOptions="Fill" />
-        </Grid>
+                    <local:LoadingIndicator
+                    x:Name="IsRunning"
+                    Grid.Row="0"
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Fill" />
+                </Grid>
+
+            </ScrollView>
+
+        </RefreshView>
+
     </ContentPage.Content>
 </ContentPage>
