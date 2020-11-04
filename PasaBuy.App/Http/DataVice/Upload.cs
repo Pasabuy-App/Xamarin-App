@@ -83,7 +83,7 @@ namespace PasaBuy.App.Http.DataVice
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1UPL-I1.", "OK");
             }
         }
         #endregion

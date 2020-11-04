@@ -102,7 +102,7 @@ namespace PasaBuy.App.Views.StoreViews
             }
             catch (Exception ex)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1UPL-I1SPV.", "OK");
             }
         }
     }
