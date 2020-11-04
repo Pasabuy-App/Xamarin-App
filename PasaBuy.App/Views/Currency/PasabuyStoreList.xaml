@@ -5,7 +5,7 @@
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
-             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False"
              x:Class="PasaBuy.App.Views.Currency.PasabuyStoreList">
@@ -117,7 +117,7 @@
             <StackLayout Grid.Row="2"
                          VerticalOptions="FillAndExpand">
                 <CollectionView ItemsSource="{Binding StoreList}"
-                            x:Name="StoreList">
+                                x:Name="StoreList">
                     <!--<CollectionView.Header>
                         <listView:SfListView SelectionMode="None" 
                                                  HeightRequest="{Binding HeaderSize}" 
@@ -203,6 +203,11 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </StackLayout>
+            <loading:LoadingIndicator
+                    Grid.RowSpan="3"
+                    HorizontalOptions="Fill"
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}"
+                    VerticalOptions="Fill" />
         </Grid>
 
     </ContentPage.Content>

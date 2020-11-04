@@ -2,6 +2,7 @@
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Marketplace;
+using PasaBuy.App.ViewModels.Marketplace;
 using PasaBuy.App.Views.Notice;
 using System;
 using System.Collections.Generic;
@@ -28,10 +29,51 @@ namespace PasaBuy.App.ViewModels.Currency
             }
         }
 
+        bool _isRefreshing = false;
+        public bool IsRefreshing
+        {
+            get
+            {
+                return _isRefreshing;
+            }
+            set
+            {
+                if (_isRefreshing != value)
+                {
+                    _isRefreshing = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+
+        bool _IsRunning = false;
+        public bool IsRunning
+        {
+            get
+            {
+                return _IsRunning;
+            }
+            set
+            {
+                if (_IsRunning != value)
+                {
+                    _IsRunning = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+
         public PasabuyStoreListViewModel()
         {
+            ItemTappedCommand = new Command<object>(NavigateToNextPage);
             _storeList = new ObservableCollection<Store>();
             _storeList.Clear();
+            RefreshCommand = new Command<string>((key) =>
+            {
+                _storeList.Clear();
+                LoadStore();
+                IsRefreshing = false;
+            });
             LoadStore();
            
         }
@@ -80,5 +122,20 @@ namespace PasaBuy.App.ViewModels.Currency
             }
         }
 
+        public Command RefreshCommand { protected set; get; }
+
+        public Command<object> ItemTappedCommand { get; set; }
+
+        private async void NavigateToNextPage(object obj)
+        {
+            if (!IsRunning)
+            {
+                IsRunning = true;
+                var store = obj as Store;
+                StoreDetailsViewModel.store_id = store.Id;
+                await App.Current.MainPage.Navigation.PushModalAsync(new Views.Marketplace.StoreDetailsPage());
+                IsRunning = false;
+            }
+        }
     }
 }
