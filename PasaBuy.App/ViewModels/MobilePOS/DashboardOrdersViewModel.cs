@@ -100,7 +100,8 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 OrderDetailsViewModel.datecreated = item.DateTime;
                 OrderDetailsViewModel.totalprice = item.TotalPrice;
                 OrderDetailsViewModel.stages = item.Stages;
-                OrderDetailsViewModel.customer = item.CustomerName;
+                OrderDetailsViewModel.customer = item.CustomerName; 
+                OrderDetailsViewModel.method = item.Method;
                 await App.Current.MainPage.Navigation.PushModalAsync(new Views.StoreViews.TransactionDetailsView());
                 IsRunning = false;
             }
@@ -131,7 +132,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                     StoreName = order.data[i].store_name,
                                     DateTime = date.ToString("MMM. dd, yyyy hh:mm tt"),
                                     TotalPrice = Convert.ToDouble(order.data[i].total_price),
-                                    Method = "No method.",
+                                    Method =  order.data[i].method,
                                     StoreAddress = order.data[i].store_address,
                                     CustomerAddress = order.data[i].cutomer_address,
                                     CustomerName = order.data[i].customer,
@@ -178,7 +179,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                 StoreName = order.data[i].store_name,
                                 DateTime = date.ToString("MMM. dd, yyyy hh:mm tt"),
                                 TotalPrice = Convert.ToDouble(order.data[i].total_price),
-                                Method = "No method.",
+                                Method = order.data[i].method,
                                 StoreAddress = order.data[i].store_address,
                                 CustomerAddress = order.data[i].cutomer_address,
                                 CustomerName = order.data[i].customer,

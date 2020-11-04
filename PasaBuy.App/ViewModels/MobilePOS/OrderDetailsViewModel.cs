@@ -199,13 +199,6 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
         }
 
-        public static string order_id;
-        public static string avatar;
-        public static string datecreated;
-        public static double totalprice;
-        public static string stages;
-        public static string customer;
-
         bool _IsRunning = false;
         public bool IsRunning
         {
@@ -223,6 +216,14 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
         }
 
+        public static string order_id;
+        public static string avatar;
+        public static string datecreated;
+        public static double totalprice;
+        public static string stages;
+        public static string customer;
+        public static string method;
+
         #endregion
 
         public OrderDetailsViewModel()
@@ -234,7 +235,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             this.OrderID = "Order ID: #" + order_id;
             this.DateCreated = datecreated;
             this.TotalPrice = totalprice;
-            this.Method = "No payment method.";
+            this.Method = method;
             this.isMessage = stages == "Preparing" ? true : false;
             this.isAccept = stages == "Pending" || stages == "Preparing" || stages == "Ongoing" ? true : false;
             this.txtAcceptPreparingShipping = stages != "Pending" ? stages != "Ongoing" ? "Ready for Shipping" : "Prepare Now" : "Accept";
@@ -285,11 +286,12 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                             {
                                 for (int ii = 0; ii < product.data[i].products.Count; ii++)
                                 {
+                                    double totalrpice = (Convert.ToDouble(product.data[i].products[ii].price) + Convert.ToDouble(product.data[i].products[ii].variants_price)) * Convert.ToInt32(product.data[i].products[ii].quantity);
                                     this.ProductList.Add(new Models.POSFeature.OrderDetailsModel()
                                     {
-                                        Price = product.data[i].products[ii].quantity,
-                                        Product = "product name",
-                                        Quantity = "5" + " x (150.00 + 15.00)"
+                                        Price = totalrpice,
+                                        Product = product.data[i].products[ii].product_name,
+                                        Quantity = product.data[i].products[ii].quantity  + " " + " x ( " + product.data[i].products[ii].price + " + " + product.data[i].products[ii].variants_price + " )"
                                     });
                                 }
                                 IsRunning = false;

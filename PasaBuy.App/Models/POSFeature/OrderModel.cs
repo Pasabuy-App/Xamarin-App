@@ -22,6 +22,7 @@ namespace PasaBuy.App.Models.POSFeature
         public int total_price = 0;
         public string date_created = string.Empty;
         public string stages = string.Empty;
+        public string method = string.Empty;
         public ObservableCollection<OrderDetailsModel> products;
     }
     public class OrderModel : INotifyPropertyChanged

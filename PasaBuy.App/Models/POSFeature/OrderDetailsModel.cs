@@ -14,8 +14,8 @@ namespace PasaBuy.App.Models.POSFeature
         public string variants_price { get; set; }
 
 
-        private string _Price = string.Empty;
-        public string Price
+        private double _Price;
+        public double Price
         {
             get { return _Price; }
             set
