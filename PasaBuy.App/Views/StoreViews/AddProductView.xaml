@@ -15,7 +15,7 @@
              x:Name="addProductView"
              Title="Add Product"
              BackgroundColor="{DynamicResource Gray-White}">
- 
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -33,7 +33,7 @@
             <Style x:Key="ListedItemLabelStyle" TargetType="{x:Type Label}">
                 <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}" />
                 <Setter Property="FontSize" Value="{StaticResource MediumSize}" />
-                <Setter Property="TextColor" Value="{StaticResource BlackColor}" /> 
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
                 <Setter Property="HorizontalOptions" Value="Start" />
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="Margin" Value="10,0,0,0" />
@@ -50,10 +50,6 @@
 
         </ResourceDictionary>
     </ContentPage.Resources>
-
-    <ContentPage.BindingContext>
-        <viewModel:AddProductViewModel />
-    </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
         <ToolbarItem
@@ -289,6 +285,55 @@
                                 <combobox:SfComboBox.ComboBoxSource>
                                     <ListCollection:List x:TypeArguments="x:String">
                                         <x:String></x:String>
+                                    </ListCollection:List>
+                                </combobox:SfComboBox.ComboBoxSource>
+                                <combobox:SfComboBox.DropDownButtonSettings>
+                                    <combobox:DropDownButtonSettings>
+                                        <combobox:DropDownButtonSettings.View>
+                                            <Label
+                                                    FontFamily="{StaticResource FontIcons}"
+                                                    FontSize="25"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="{StaticResource DropDownButtonIcon}"
+                                                    TextColor="{DynamicResource Gray-600}"
+                                                    VerticalTextAlignment="Center" />
+                                        </combobox:DropDownButtonSettings.View>
+                                    </combobox:DropDownButtonSettings>
+                                </combobox:SfComboBox.DropDownButtonSettings>
+                            </combobox:SfComboBox>
+                            <inputLayout:SfTextInputLayout.LeadingView>
+                                <Label
+                                    FontSize="18"
+                                    VerticalTextAlignment="Center"
+                                    Style="{StaticResource ProfileIconLabelStyle}"
+                                    TextColor="{DynamicResource BlackColor}"
+                                    Text="&#xf468;" />
+                            </inputLayout:SfTextInputLayout.LeadingView>
+
+                        </inputLayout:SfTextInputLayout>
+
+                        <inputLayout:SfTextInputLayout
+                            x:Name="Inventories"
+                            Grid.Row="6"
+                            ContainerBackgroundColor="Transparent"
+                            ContainerType="Outlined"
+                            FocusedColor="{DynamicResource BlackColor}"
+                            Hint="For Inventory ?"
+                            HorizontalOptions="Fill"
+                            LeadingViewPosition="Inside"
+                            TrailingViewPosition="Inside">
+                            <combobox:SfComboBox
+                                Style="{StaticResource ComboBoxStyle}"
+                                SelectionChanged="Inventory_SelectionChanged"
+                                TextColor="Black"
+                                x:Name="Inventory"
+                                HeightRequest="50"
+                                Watermark="Select category"
+                                VerticalOptions="StartAndExpand">
+                                <combobox:SfComboBox.ComboBoxSource>
+                                    <ListCollection:List x:TypeArguments="x:String">
+                                        <x:String>Yes</x:String>
+                                        <x:String>No</x:String>
                                     </ListCollection:List>
                                 </combobox:SfComboBox.ComboBoxSource>
                                 <combobox:SfComboBox.DropDownButtonSettings>

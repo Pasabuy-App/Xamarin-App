@@ -16,16 +16,19 @@ namespace PasaBuy.App.Views.StoreViews
         public static string filePath = string.Empty;
         public static string catid = string.Empty;
         public static string pdid = "0";
+        public static string pcid = "0";
         public static string name = string.Empty;
         public static string info = string.Empty;
         public static string price = string.Empty;
         public static string discount = string.Empty;
         public static string avatar = string.Empty;
         public static string category_name = string.Empty;
+        public static string inventory = string.Empty;
+        public static string inventories = string.Empty;
         public AddProductView()
         {
-            //this.BindingContext = new AddProductViewModel();
             InitializeComponent();
+            this.BindingContext = new AddProductViewModel();
             if (pdid != "0")
             {
                 Title = "Edit Product";
@@ -35,6 +38,9 @@ namespace PasaBuy.App.Views.StoreViews
                 ProductCategory.Text = category_name;
                 Discount.Text = discount;
                 productImage.Source = PSAProc.GetUrl(avatar);
+                catid = pcid;
+                inventories = inventory;
+                Inventory.Text = inventory == "true" ? "Yes" : "No";
             }
             else
             {
@@ -45,6 +51,9 @@ namespace PasaBuy.App.Views.StoreViews
                 Prices.Text = "";
                 Discount.Text = "";
                 ProductCategory.Text = "";
+                Inventory.Text = "";
+                inventories = string.Empty;
+                catid = string.Empty;
             }
         }
 
@@ -160,16 +169,17 @@ namespace PasaBuy.App.Views.StoreViews
                 Price.HasError = Prices.Text == null || string.IsNullOrWhiteSpace(Prices.Text) ? true : false;
                 Category.HasError = ProductCategory.Text == null || string.IsNullOrWhiteSpace(ProductCategory.Text) ? true : false;
                 Disc.HasError = Discount.Text == null || string.IsNullOrWhiteSpace(Discount.Text) ? true : false;
+                Inventories.HasError = Inventory.Text == null || string.IsNullOrWhiteSpace(Inventory.Text) ? true : false;
                 string filepath = filePath == null || filePath == "" || filePath == string.Empty ? "" : filePath;
 
-                if (ProductName.HasError == false && Short.HasError == false && Price.HasError == false && Category.HasError == false)
+                if (ProductName.HasError == false && Short.HasError == false && Price.HasError == false && Category.HasError == false && Disc.HasError == false && Inventories.HasError == false)
                 {
                     if (!IsRunning.IsRunning)
                     {
                         IsRunning.IsRunning = true;
                         if (pdid == "0")
                         {
-                            Http.TindaPress.Product.Instance.Insert(filepath, catid, ProductNames.Text, Shorts.Text, Prices.Text, Discount.Text, "false", async (bool success, string data) =>
+                            Http.TindaPress.Product.Instance.Insert(filepath, catid, ProductNames.Text, Shorts.Text, Prices.Text, Discount.Text, inventories, async (bool success, string data) =>
                             {
                                 if (success)
                                 {
@@ -189,7 +199,7 @@ namespace PasaBuy.App.Views.StoreViews
                         }
                         else
                         {
-                            Http.TindaPress.Product.Instance.Update(filepath, pdid, catid, ProductNames.Text, Shorts.Text, Prices.Text, Discount.Text, "false", async (bool success, string data) =>
+                            Http.TindaPress.Product.Instance.Update(filepath, pdid, catid, ProductNames.Text, Shorts.Text, Prices.Text, Discount.Text, inventories, async (bool success, string data) =>
                             {
                                 if (success)
                                 {
@@ -221,6 +231,11 @@ namespace PasaBuy.App.Views.StoreViews
         private void ProductCategory_SelectionChanged(object sender, Syncfusion.XForms.ComboBox.SelectionChangedEventArgs e)
         {
             catid = ProductCategory.SelectedValue.ToString();
+        }
+
+        private void Inventory_SelectionChanged(object sender, Syncfusion.XForms.ComboBox.SelectionChangedEventArgs e)
+        {
+            inventories = Inventory.SelectedItem.ToString() == "Yes" ? "true" : "false";
         }
     }
 }
