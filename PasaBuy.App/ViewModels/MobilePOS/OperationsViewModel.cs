@@ -19,36 +19,6 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
         public static ObservableCollection<Models.POSFeature.OperationModel> _operationsList;
 
-        //public bool is_online;
-
-        public ICommand ViewOperationCommand
-        {
-            get
-            {
-                return new Command<string>((x) => ViewOperation(x));
-            }
-        }
-
-        private async void ViewOperation(string id)
-        {
-            //new Alert("ok", id, "ok");
-            PopupViewOperations.opid = id;
-            await PopupNavigation.Instance.PushAsync(new PopupViewOperations());
-        }
-
-        /*public bool IsOnline
-        {
-            get
-            {
-                return is_online;
-            }
-            set
-            {
-                is_online = value;
-                this.NotifyPropertyChanged();
-            }
-        }*/
-
         public ObservableCollection<Models.POSFeature.OperationModel> DaysOfTheWeek
         {
             get
@@ -75,6 +45,23 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
         }
 
+        public bool _IsRunning = false;
+        public bool IsRunning
+        {
+            get
+            {
+                return _IsRunning;
+            }
+            set
+            {
+                if (_IsRunning != value)
+                {
+                    _IsRunning = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+
         public bool _GetStarted;
         public bool GetStarted
         {
@@ -96,16 +83,38 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 return new Command<string>((x) => Submit());
             }
         }
-        private void Submit()
+        private async void Submit()
         {
-            GetStarted = false;
-            Local.PSACache.Instance.UserInfo.store_operation = true;
-            Local.PSACache.Instance.SaveUserData();
+            if (!IsRunning)
+            {
+                IsRunning = true;
+                GetStarted = false;
+                Local.PSACache.Instance.UserInfo.store_operation = true;
+                Local.PSACache.Instance.SaveUserData();
+                await System.Threading.Tasks.Task.Delay(300);
+                IsRunning = false;
+            }
+        }
+        public Command<object> ViewOperationCommand { get; set; }
+        private async void ViewClicked(object obj)
+        {
+            if (!IsRunning)
+            {
+                IsRunning = true;
+
+                var operation = obj as Models.POSFeature.OperationModel;
+                PopupViewOperations.opid = operation.Id;
+                PopupViewOperations.open = operation.Opening;
+                PopupViewOperations.close = operation.Closing;
+                PopupViewOperations.date = operation.FullSchedule;
+                await PopupNavigation.Instance.PushAsync(new PopupViewOperations());
+                IsRunning = false;
+            }
         }
 
         public OperationsViewModel()
         {
-            //this.IsOnline = true;
+            ViewOperationCommand = new Command<object>(ViewClicked);
 
             _operationsList = new ObservableCollection<Models.POSFeature.OperationModel>();
             LoadOperation("");
@@ -119,12 +128,58 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
         }
 
-        public static void LoadOperation(string opid)
+        public void LoadOperation(string opid)
+        {
+            try
+            {
+                if (!IsRunning)
+                {
+                    IsRunning = true;
+                    _operationsList.Clear();
+                    Http.MobilePOS.Operation.Instance.Listing((bool success, string data) =>
+                    {
+                        if (success)
+                        {
+                            CultureInfo provider = new CultureInfo("fr-FR");
+                            Models.POSFeature.OperationModel datas = JsonConvert.DeserializeObject<Models.POSFeature.OperationModel>(data);
+                            for (int i = 0; i < datas.data.Length; i++)
+                            {
+                                DateTime date = DateTime.ParseExact(datas.data[i].date_created, "yyyy-MM-dd HH:mm:ss", provider);
+                                DateTime open = DateTime.ParseExact(datas.data[i].date_open, "HH:mm:ss", provider);
+                                DateTime close = DateTime.ParseExact(datas.data[i].date_close, "HH:mm:ss", provider);
+                                _operationsList.Add(new Models.POSFeature.OperationModel()
+                                {
+                                    Id = datas.data[i].ID,
+                                    Opening = open.ToString("hh:mm tt"),
+                                    Closing = close.ToString("hh:mm tt"),
+                                    Date = "Date: " + date.ToString("MMMM dd, yyyy"),
+                                    FullSchedule = date.ToString("MMMM dd, yyyy"),
+                                    TotalSales = "Total Sales: " + datas.data[i].total_sale
+                                });
+                            }
+                            IsRunning = false;
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsRunning = false;
+                        }
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2OPE-L1OVM.", "OK");
+                IsRunning = false;
+            }
+        }
+
+        public static void RefreshOperation()
         {
             try
             {
                 _operationsList.Clear();
-                Operation.Instance.ListByID_Sales(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, opid, (bool success, string data) =>
+                Http.MobilePOS.Operation.Instance.Listing((bool success, string data) =>
                 {
                     if (success)
                     {
@@ -132,12 +187,16 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                         Models.POSFeature.OperationModel datas = JsonConvert.DeserializeObject<Models.POSFeature.OperationModel>(data);
                         for (int i = 0; i < datas.data.Length; i++)
                         {
-                            string dates = string.IsNullOrEmpty(datas.data[i].date) ? "0000-00-00 00:00:00" : datas.data[i].date;
-                            DateTime date = DateTime.ParseExact(dates, "yyyy-MM-dd HH:mm:ss", provider);
+                            DateTime date = DateTime.ParseExact(datas.data[i].date_created, "yyyy-MM-dd HH:mm:ss", provider);
+                            DateTime open = DateTime.ParseExact(datas.data[i].date_open, "HH:mm:ss", provider);
+                            DateTime close = DateTime.ParseExact(datas.data[i].date_close, "HH:mm:ss", provider);
                             _operationsList.Add(new Models.POSFeature.OperationModel()
                             {
                                 Id = datas.data[i].ID,
+                                Opening = open.ToString("hh:mm tt"),
+                                Closing = close.ToString("hh:mm tt"),
                                 Date = "Date: " + date.ToString("MMMM dd, yyyy"),
+                                FullSchedule = date.ToString("MMMM dd, yyyy"),
                                 TotalSales = "Total Sales: " + datas.data[i].total_sale
                             });
                         }
@@ -150,7 +209,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2OPE-L2OVM.", "OK");
             }
         }
 

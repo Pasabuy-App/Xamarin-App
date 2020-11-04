@@ -146,9 +146,9 @@ namespace PasaBuy.App.Models.POSFeature
         public string types = string.Empty;
         public string started = string.Empty;
         public string ended = string.Empty;
-        public string total_sale = string.Empty;
-        public string date = string.Empty;
+        public string date_created = string.Empty;
         public string date_open = string.Empty;
         public string date_close = string.Empty;
+        public string total_sale = string.Empty;
     }
 }
