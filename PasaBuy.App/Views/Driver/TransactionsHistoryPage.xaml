@@ -33,7 +33,6 @@
                              VerticalOptions="StartAndExpand"
                              TapCommand="{Binding ItemTappedCommand}"
                              ItemsSource="{Binding HistoryList}"
-                             ItemAppearing="NewOrders_ItemAppearing"
                              SelectionMode="None">
                         <!--Item Source is for testing purposes only. Kindly bind into specific viewmodels-->
 

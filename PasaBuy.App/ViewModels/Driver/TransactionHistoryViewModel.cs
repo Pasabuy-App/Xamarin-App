@@ -116,6 +116,12 @@ namespace PasaBuy.App.ViewModels.Driver
                 IsBusy = true;
                 var item = (selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Models.Driver.TransactListData;
                 MobilePOS.OrderDetailsViewModel.order_id = item.ID;
+                MobilePOS.OrderDetailsViewModel.customer = item.Store_logo;
+                MobilePOS.OrderDetailsViewModel.avatar = item.Customer;
+                MobilePOS.OrderDetailsViewModel.datecreated = item.Date_created;
+                MobilePOS.OrderDetailsViewModel.totalprice = item.Price;
+                MobilePOS.OrderDetailsViewModel.stages = item.Status;
+                MobilePOS.OrderDetailsViewModel.method = "No method.";
                 await Application.Current.MainPage.Navigation.PushModalAsync(new Views.StoreViews.TransactionDetailsView());
                 IsBusy = false;
             }

@@ -16,7 +16,7 @@ namespace PasaBuy.App.Views.Driver
             this.BindingContext = new ViewModels.Driver.TransactionHistoryViewModel();
         }
 
-        private void NewOrders_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
+        /*private void NewOrders_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
         {
             var item = e.ItemData as Models.Driver.TransactListData;
             if (ViewModels.Driver.TransactionHistoryViewModel._HistoryList.Last() == item && ViewModels.Driver.TransactionHistoryViewModel._HistoryList.Count() != 1)
@@ -28,6 +28,6 @@ namespace PasaBuy.App.Views.Driver
                     //ViewModels.Driver.TransactionHistoryViewModel._HistoryList.LoadData(item.Last_ID);
                 }
             }
-        }
+        }*/
     }
 }
