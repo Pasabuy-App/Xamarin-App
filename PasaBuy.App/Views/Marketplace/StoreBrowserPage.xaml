@@ -47,8 +47,7 @@
                 <ScrollView>
                     <StackLayout Spacing="0" Padding="0,0,0,20">
                         <ffimageloading:CachedImage Aspect="AspectFill"
-                                            HeightRequest="325"
-                                            Source="https://pasabuy.app/wp-content/uploads/2020/10/Motorcycle.png"
+                                            Source="https://pasabuy.app/wp-content/uploads/2020/11/PasaMall-Banner.jpg"
 			                                DownsampleToViewSize="True" 
                                             FadeAnimationEnabled="True">
                         </ffimageloading:CachedImage>
