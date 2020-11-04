@@ -137,20 +137,18 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                         if (success)
                         {
                             Models.POSFeature.RoleModel role = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.POSFeature.RoleModel>(data);
-                            if (role.data.Length > 0)
+
+                            for (int i = 0; i < role.data.Length; i++)
                             {
-                                for (int i = 0; i < role.data.Length; i++)
+                                _rolesList.Add(new Models.POSFeature.RoleModel()
                                 {
-                                    _rolesList.Add(new Models.POSFeature.RoleModel()
-                                    {
-                                        Id = role.data[i].ID,
-                                        RoleTitle = role.data[i].title,
-                                        RoleInfo = role.data[i].info,
-                                        RoleStatus = role.data[i].status,
-                                    });
-                                }
-                                IsRunning = false;
+                                    Id = role.data[i].ID,
+                                    RoleTitle = role.data[i].title,
+                                    RoleInfo = role.data[i].info,
+                                    RoleStatus = role.data[i].status,
+                                });
                             }
+                            IsRunning = false;
                         }
                         else
                         {
