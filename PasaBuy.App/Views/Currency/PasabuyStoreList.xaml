@@ -14,6 +14,31 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <DataTemplate x:Key="BestSellersTemplate">
+                <StackLayout Spacing="8">
+                    <border:SfBorder CornerRadius="8" BorderWidth="0">
+
+                        <ffimageloading:CachedImage Aspect="AspectFill"
+                                                    HeightRequest="220"
+                                                    WidthRequest="150"
+                                                    BackgroundColor="{DynamicResource Gray-200}"
+                                                    Source="{Binding Logo}"
+			                                        DownsampleToViewSize="True" 
+                                                    FadeAnimationEnabled="True">
+                        </ffimageloading:CachedImage>
+                    </border:SfBorder>
+                    <Label Text="{Binding Title}" 
+                           FontFamily="{StaticResource Montserrat-SemiBold}"
+                           FontSize="14" 
+                           TextColor="{DynamicResource Gray-900}" 
+                           LineHeight="{OnPlatform Android=1.5, Default=-1}" 
+                           LineBreakMode="TailTruncation">
+                    </Label>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BindingContext.ItemTappedCommand,Source={x:Reference featuredListView}}" CommandParameter="{Binding .}"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </DataTemplate>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -21,7 +46,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <StackLayout x:Name="TitleView"
@@ -89,33 +114,37 @@
 
             <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}" />
 
-            <listView:SfListView Grid.Row="2"
-                                Padding="15,0,10,0"
-                                AutoFitMode="Height"
-                                IsScrollBarVisible="false"
-                                ItemSpacing="0,27,0,0"
-                                ItemSize="50"
-                                x:Name="ListView"
-                                ItemsSource="{Binding StoreList}"
-                                TapCommand="{Binding ItemTappedCommand}"
-                                SelectionBackgroundColor="Transparent"
-                                VerticalOptions="FillAndExpand">
-                <listView:SfListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <!--  View of each card item  -->
-                            <controls:CustomShadowFrame
-                                                Margin="0,2,5,5"
-                                                Padding="0"
+            <StackLayout Grid.Row="2"
+                         VerticalOptions="FillAndExpand">
+                <CollectionView ItemsSource="{Binding StoreList}"
+                            x:Name="StoreList">
+                    <!--<CollectionView.Header>
+                        <listView:SfListView SelectionMode="None" 
+                                                 HeightRequest="{Binding HeaderSize}" 
+                                                 ItemSize="150"
+                                                 x:Name="featuredListView"
+                                                 Orientation="Horizontal" 
+                                                 ItemsSource="{Binding BestSellers}" 
+                                                 ItemSpacing="8, 0, 8, 0" 
+                                                 ItemTemplate="{StaticResource BestSellersTemplate}"
+                                                 IsScrollBarVisible="False"/>
+                    </CollectionView.Header>-->
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <controls:CustomShadowFrame Grid.Row="0"
+                                                Margin="0,8,5,12"
+                                                Padding="0,5,0,5"
                                                 BackgroundColor="{DynamicResource Gray-White}"
-                                                BorderColor="{DynamicResource Gray-White}"
+                                                BorderColor="{DynamicResource Gray-300}"
                                                 BorderWidth="1"
                                                 CornerRadius="4"
-                                                HasShadow="True"
-                                                HorizontalOptions="FillAndExpand"
-                                                VerticalOptions="FillAndExpand">
+                                                HasShadow="True">
                                 <Grid>
                                     <Grid ColumnSpacing="0" RowSpacing="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="120" />
                                             <ColumnDefinition Width="*" />
@@ -124,8 +153,8 @@
                                         <ffimageloading:CachedImage
                                                             Grid.Row="0"
                                                             Grid.Column="0"
-                                                            CacheType="Memory"
-                                                            Margin="0, 20, 0, 20"
+                                                            Aspect="Fill"
+                                                            Margin="0, 8, 0, 8"
                                                             DownsampleToViewSize="True"
                                                             HeightRequest="70"
                                                             HorizontalOptions="Center"
@@ -133,15 +162,13 @@
                                                             TransformPlaceholders="True"
                                                             WidthRequest="70">
                                         </ffimageloading:CachedImage>
-                                        <StackLayout
-                                                            Grid.Column="1"
-                                                            Padding="16"
-                                                            HorizontalOptions="FillAndExpand"
-                                                            Spacing="0"
-                                                            VerticalOptions="FillAndExpand">
+                                        <StackLayout Grid.Column="1"
+                                                     Padding="16"
+                                                     HorizontalOptions="FillAndExpand"
+                                                     Spacing="0"
+                                                     VerticalOptions="FillAndExpand">
 
-                                            <Label
-                                                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                                            <Label FontFamily="{StaticResource Montserrat-SemiBold}"
                                                             FontSize="16"
                                                             LineHeight="{OnPlatform Android=1.5,
                                                                                     Default=-1}"
@@ -154,8 +181,8 @@
                                                             FontSize="{DynamicResource SmallerSize}"
                                                             LineHeight="{OnPlatform Android=1.2,
                                                                                     Default=-1}"
-                                                            Text="{Binding CityAddress}" />
-                                            
+                                                            Text="{Binding Street}" />
+
                                             <Label  LineBreakMode="TailTruncation"
                                                             Margin="0,4,0,0"
                                                             FontFamily="{StaticResource Montserrat-Medium}"
@@ -164,23 +191,18 @@
                                                                                     Default=-1}"
                                                             Text="{Binding TodayScheds}" />
 
-                                            <StackLayout
-                                                            HorizontalOptions="FillAndExpand"
-                                                            Orientation="Horizontal"
-                                                            Spacing="0"
-                                                            VerticalOptions="EndAndExpand">
-                                            </StackLayout>
+                                          
                                         </StackLayout>
                                     </Grid>
                                 </Grid>
-                                <!--<controls:CustomShadowFrame.GestureRecognizers>
-                                                <TapGestureRecognizer  Command="{Binding Path=BindingContext.ItemTappedCommand ,Source={x:Reference ListView}}" CommandParameter="{Binding .}" />
-                                            </controls:CustomShadowFrame.GestureRecognizers>-->
+                                <controls:CustomShadowFrame.GestureRecognizers>
+                                    <TapGestureRecognizer  Command="{Binding Path=BindingContext.ItemTappedCommand ,Source={x:Reference StoreList}}" CommandParameter="{Binding .}" />
+                                </controls:CustomShadowFrame.GestureRecognizers>
                             </controls:CustomShadowFrame>
-                        </ViewCell>
-                    </DataTemplate>
-                </listView:SfListView.ItemTemplate>
-            </listView:SfListView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
         </Grid>
 
     </ContentPage.Content>

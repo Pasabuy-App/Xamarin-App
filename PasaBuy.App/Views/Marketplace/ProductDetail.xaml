@@ -60,14 +60,14 @@
                                Padding="5,0,0,0"
                                Grid.Column="0"
                                HorizontalTextAlignment="Start"
-                               FontSize="{DynamicResource MediumSize}"
+                               FontSize="{DynamicResource SmallSize}"
                                Text="{Binding Title}"
                                TextColor="{DynamicResource Gray-900}" />
                             <Label FontFamily="{StaticResource Montserrat-SemiBold}"
                                Padding="5,0,0,0"
                                Grid.Column="1"
                                HorizontalTextAlignment="End"
-                               FontSize="{DynamicResource MediumSize}"
+                               FontSize="{DynamicResource SmallSize}"
                                Text="{Binding Base}"
                                TextColor="{DynamicResource Gray-900}" />
                         </Grid>
