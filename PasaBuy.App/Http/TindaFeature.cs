@@ -79,6 +79,7 @@ namespace PasaBuy.App.Http
             dict.Add("snky", PSACache.Instance.UserInfo.snky);
             dict.Add("title", search);
             dict.Add("type", types);
+            dict.Add("status", "active");
 
             var content = new FormUrlEncodedContent(dict);
 

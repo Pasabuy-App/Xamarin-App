@@ -94,9 +94,9 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             {
                 IsRunning = true;
                 var product = obj as Models.TindaFeature.ProductModel;
-                VariantsViewModel.product_id = product.ID;
-                ProductVariants.product_id = product.ID;
-                ProductVariants.product_name = product.Product_name;
+                //VariantsViewModel.product_id = product.ID;
+                //ProductVariants.product_id = product.ID;
+                //ProductVariants.product_name = product.Product_name;
                 await Application.Current.MainPage.Navigation.PushModalAsync(new ProductVariants());
                 IsRunning = false;
             }

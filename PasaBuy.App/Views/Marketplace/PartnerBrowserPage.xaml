@@ -103,10 +103,11 @@
                         <border:SfBorder Style="{DynamicResource SfBorderStyle}">
 
                             <controls:BorderlessEntry x:Name="SearchEntry"
-                                                                  HorizontalOptions="FillAndExpand"
-                                                                  Placeholder="Search here"
-                                                                  Text="{Binding SearchText, Mode=TwoWay}"
-                                                                  Style="{StaticResource SearchEntryStyle}"/>
+                                                      HorizontalOptions="FillAndExpand"
+                                                      Placeholder="Search here"
+                                                      ReturnType="Search"
+                                                      Text="{Binding SearchText, Mode=TwoWay}"
+                                                      Style="{StaticResource SearchEntryStyle}"/>
                         </border:SfBorder>
 
                     </StackLayout>

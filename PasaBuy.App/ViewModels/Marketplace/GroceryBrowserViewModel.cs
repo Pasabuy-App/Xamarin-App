@@ -112,7 +112,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             try
             {
-                Http.TindaFeature.Instance.FeaturedList("active", "market", (bool success, string data) =>
+                Http.TindaFeature.Instance.FeaturedList("active", "Grocery", (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -210,11 +210,11 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                     Id = datas.data[i].hsid,
                                     Title = datas.data[i].title,
                                     Description = datas.data[i].short_info,
-                                    Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(datas.data[i].avatar), // "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png"
-                                    Offer = "50% off",
-                                    ItemRating = "4.5",
+                                    //StoreRating = datas.data[i].store_rating,
+                                    //Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(datas.data[i].avatar), // "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png"
+                                    //Offer = "",
                                     Banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(datas.data[i].banner), //https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png
-                                    Street = datas.data[i].street + " " + datas.data[i].brgy + " " + datas.data[i].city + " " + datas.data[i].province + ", " + datas.data[i].country //"#4 Rainbow Ave Pacita 2 San Pedro City, Laguna"
+                                    Street = datas.data[i].street + ", " + datas.data[i].brgy + ", " + datas.data[i].city + ", " + datas.data[i].province + ", " + datas.data[i].country //"#4 Rainbow Ave Pacita 2 San Pedro City, Laguna"
                                 });
                             }
                         }

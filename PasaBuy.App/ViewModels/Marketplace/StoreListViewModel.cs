@@ -97,7 +97,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             try
             {
-                Http.TindaFeature.Instance.FeaturedList("active", "pasamall", (bool success, string data) =>
+                Http.TindaFeature.Instance.FeaturedList("active", "PasaMall", (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -204,7 +204,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                     Description = datas.data[i].short_info,
                                     Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(datas.data[i].avatar),
                                     Offer = "50% off",
-                                    ItemRating = "4.5",
+                                    ItemRating = datas.data[i].rates == "No ratings yet" ? "N/A" : datas.data[i].rates,
                                     Banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png" : PSAProc.GetUrl(datas.data[i].banner),
                                     Street = datas.data[i].brgy + " " + datas.data[i].city
                                 });
@@ -231,7 +231,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             try
             {
-                Http.TindaFeature.Instance.Store_Search(search, "storehub", (bool success, string data) =>
+                Http.TindaFeature.Instance.Store_Search(search, "pasamall", (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -248,7 +248,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                     Description = datas.data[i].short_info,
                                     Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(datas.data[i].avatar),
                                     Offer = "50% off",
-                                    ItemRating = "4.5",
+                                    ItemRating = datas.data[i].rates == "No ratings yet" ? "N/A" : datas.data[i].rates,
                                     Banner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png" : PSAProc.GetUrl(datas.data[i].banner),
                                     Street = datas.data[i].brgy + " " + datas.data[i].city
                                 });

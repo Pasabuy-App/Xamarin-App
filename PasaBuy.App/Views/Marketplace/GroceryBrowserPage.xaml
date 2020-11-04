@@ -104,11 +104,12 @@
                     <border:SfBorder Style="{DynamicResource SfBorderStyle}">
 
                         <controls:BorderlessEntry x:Name="SearchEntry"
-                            BindingContext="{x:Reference RestaurantList}"
-                            HorizontalOptions="FillAndExpand"
-                            Placeholder="Search here"
-                            Text="{Binding SearchText, Mode=TwoWay}"
-                            Style="{StaticResource SearchEntryStyle}"/>
+                                                  BindingContext="{x:Reference RestaurantList}"
+                                                  HorizontalOptions="FillAndExpand"
+                                                  Placeholder="Search here"
+                                                  ReturnType="Search"
+                                                  Text="{Binding SearchText, Mode=TwoWay}"
+                                                  Style="{StaticResource SearchEntryStyle}"/>
                     </border:SfBorder>
 
                 </StackLayout>
@@ -138,14 +139,14 @@
                                         x:Name="RestaurantList">
                             <CollectionView.Header>
                                 <listView:SfListView  SelectionMode="None" 
-                                             HeightRequest="280" 
-                                             ItemSize="150"
-                                             x:Name="featuredListView"
-                                             Orientation="Horizontal" 
-                                             ItemsSource="{Binding BestSellers}" 
-                                             ItemSpacing="8, 0, 8, 0" 
-                                             ItemTemplate="{StaticResource BestSellersTemplate}"
-                                             IsScrollBarVisible="False"/>
+                                                     HeightRequest="{Binding HeaderSize}" 
+                                                     ItemSize="150"
+                                                     x:Name="featuredListView"
+                                                     Orientation="Horizontal" 
+                                                     ItemsSource="{Binding BestSellers}" 
+                                                     ItemSpacing="8, 0, 8, 0" 
+                                                     ItemTemplate="{StaticResource BestSellersTemplate}"
+                                                     IsScrollBarVisible="False"/>
                             </CollectionView.Header>
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
