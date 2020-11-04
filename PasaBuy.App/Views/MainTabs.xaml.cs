@@ -24,7 +24,7 @@ namespace PasaBuy.App.Views
             InitializeComponent();
             if (Local.PSACache.Instance.UserInfo.verify == "UNVERIFIED")
             {
-                //UserVerify();
+                UserVerify();
             }
             isButton = false;
 

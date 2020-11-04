@@ -22,16 +22,13 @@ namespace PasaBuy.App.Views.Settings
             Loader.IsVisible = false;
             IdTypeEntry.Text = idType;
             IDNumberEntry.Text = idnumber;
-            LastNameEntry.Text = PSACache.Instance.UserInfo.lname;
-            FirstNameEntry.Text = PSACache.Instance.UserInfo.fname;
         }
         private void NextButtonClicked(object sender, EventArgs e)
         {
             try
             {
                 //TO DO :: Add validations
-                if (String.IsNullOrEmpty(IdTypeEntry.Text) || String.IsNullOrEmpty(IDNumberEntry.Text) || String.IsNullOrEmpty(LastNameEntry.Text)
-                    || String.IsNullOrEmpty(FirstNameEntry.Text) || String.IsNullOrEmpty(NationalityEntry.Text) || String.IsNullOrEmpty(ContactEntry.Text))
+                if (String.IsNullOrEmpty(IdTypeEntry.Text) || String.IsNullOrEmpty(IDNumberEntry.Text) || String.IsNullOrEmpty(NationalityEntry.Text) || String.IsNullOrEmpty(ContactEntry.Text))
                 {
                     new Alert("Failed", "Please complete all fields.", "Ok");
                 }

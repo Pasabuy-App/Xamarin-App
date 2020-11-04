@@ -55,7 +55,7 @@ namespace PasaBuy.App.ViewModels.Settings
             {
                 //IdPhotoPage.myTitle = "Take School ID Photo";
                 VerificationFillPage.idType = "School ID";
-                VerificationFillPage.idDocType = "school_id";
+                VerificationFillPage.idDocType = "school";
                 App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new IdPhotoPage()));
                 isEnable = true;
                 Device.BeginInvokeOnMainThread(async () =>
@@ -71,7 +71,7 @@ namespace PasaBuy.App.ViewModels.Settings
             {
                 //IdPhotoPage.myTitle = "Take Postal ID Photo";
                 VerificationFillPage.idType = "Postal ID";
-                VerificationFillPage.idDocType = "postal_id";
+                VerificationFillPage.idDocType = "postal";
                 App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new IdPhotoPage()));
                 isEnable = true;
                 Device.BeginInvokeOnMainThread(async () =>
@@ -87,7 +87,7 @@ namespace PasaBuy.App.ViewModels.Settings
             {
                 //IdPhotoPage.myTitle = "Take Senior Citizen's ID Photo";
                 VerificationFillPage.idType = "Senior Citizen's ID";
-                VerificationFillPage.idDocType = "senior_id";
+                VerificationFillPage.idDocType = "senior";
                 App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new IdPhotoPage()));
                 isEnable = true;
                 Device.BeginInvokeOnMainThread(async () =>
@@ -119,7 +119,7 @@ namespace PasaBuy.App.ViewModels.Settings
             {
                 //IdPhotoPage.myTitle = "Take Voter's ID Photo";
                 VerificationFillPage.idType = "Voter's ID";
-                VerificationFillPage.idDocType = "voters_id";
+                VerificationFillPage.idDocType = "voters";
                 App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new IdPhotoPage()));
                 isEnable = true;
                 Device.BeginInvokeOnMainThread(async () =>
@@ -167,7 +167,7 @@ namespace PasaBuy.App.ViewModels.Settings
             {
                 //IdPhotoPage.myTitle = "Take Driver's License Photo";
                 VerificationFillPage.idType = "Driver's License";
-                VerificationFillPage.idDocType = "drivers_license";
+                VerificationFillPage.idDocType = "driver";
                 App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new IdPhotoPage()));
                 isEnable = true;
                 Device.BeginInvokeOnMainThread(async () =>
@@ -193,29 +193,6 @@ namespace PasaBuy.App.ViewModels.Settings
                     isEnable = false;
                 });
             }
-            //await CrossMedia.Current.Initialize();
-            //if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
-            //{
-            //    new Alert("Error", "No camera available", "Failed");
-            //}
-
-            //var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
-            //{
-            //    Directory = "DocumentsFolder",
-            //    SaveToAlbum = true,
-            //    CompressionQuality = 40
-            //});
-
-            //if (file == null)
-            //    return;
-
-            //ImageSource imageSource = ImageSource.FromStream(() =>
-            //{
-            //    var stream = file.GetStream();
-            //    return stream;
-            //});
-
-            //var filePath = file.Path;
         }
 
 

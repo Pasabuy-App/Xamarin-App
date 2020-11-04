@@ -90,40 +90,6 @@
                         Margin="0,10,0,4"
                         HeightRequest="18" 
                         FontSize="12"
-                        Text="Last Name"
-                        TextColor="{DynamicResource Gray-800}" />
-                    <border:SfBorder BorderColor="{Binding Source={x:Reference LastNameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
-                                 Style="{StaticResource BusinessFormBorderStyle}">
-                        <controls:BorderlessEntry
-                            x:Name="LastNameEntry"
-                            Placeholder="Dela Cruz"
-                            TextColor="Black"
-                            Text="{Binding LastNameEntry}"
-                            Style="{StaticResource EntryTextBoxStyle}" />
-                    </border:SfBorder>
-
-                    <Label
-                        FontFamily="{StaticResource Montserrat-Medium}"
-                        Margin="0,10,0,4"
-                        HeightRequest="18" 
-                        FontSize="12"
-                        Text="First Name"
-                        TextColor="{DynamicResource Gray-800}" />
-                    <border:SfBorder BorderColor="{Binding Source={x:Reference FirstNameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
-                                 Style="{StaticResource BusinessFormBorderStyle}">
-                        <controls:BorderlessEntry
-                            x:Name="FirstNameEntry"
-                            Placeholder="Juan"
-                            TextColor="Black"
-                            Text="{Binding FirstNameEntry}"
-                            Style="{StaticResource EntryTextBoxStyle}" />
-                    </border:SfBorder>
-
-                    <Label
-                        FontFamily="{StaticResource Montserrat-Medium}"
-                        Margin="0,10,0,4"
-                        HeightRequest="18" 
-                        FontSize="12"
                         Text="Nationality"
                         TextColor="{DynamicResource Gray-800}" />
                     <border:SfBorder BorderColor="{Binding Source={x:Reference NationalityEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 

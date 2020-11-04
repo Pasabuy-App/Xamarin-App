@@ -61,7 +61,7 @@ namespace PasaBuy.App.Http.DataVice
                     FileStream fs = File.OpenRead(img);
                     multiForm.Add(new StreamContent(fs), "img", Path.GetFileName(img));
 
-                var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/datavice/v1/documents/insert", multiForm);
+                var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/datavice/v1/user/documents/insert", multiForm);
                 response.EnsureSuccessStatusCode();
 
                 if (response.IsSuccessStatusCode)
@@ -80,7 +80,7 @@ namespace PasaBuy.App.Http.DataVice
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1DOC-I1.", "OK");
             }
         }
 
