@@ -40,7 +40,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1LOC-P1PVM.", "OK");
             }
         }
     }
