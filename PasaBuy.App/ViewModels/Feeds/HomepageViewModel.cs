@@ -285,42 +285,43 @@ namespace PasaBuy.App.ViewModels.Feeds
                             string post_link = post.data[i].post_link;
                             string vehicle_type = post.data[i].vehicle_date;
                             string pickup_location = post.data[i].pickup_location;
-                            string do_price = "Drop-off: " + post.data[i].drop_off_location;
+                            string do_price = post.data[i].drop_off_location;
+                            string item_price = "₱ " + post.data[i].time_price + ".00";
                             if (type == "Selling")
                             {
-                                title = category + " : " + title;
+                                title = title;
                                 content = post.data[i].content;
-                                vehicle_type = "Vehicle: " + post.data[i].vehicle_date;
-                                pickup_location = "Pick-up: " + post.data[i].pickup_location;
-                                do_price = "Price: " + post.data[i].time_price;
+                                vehicle_type = post.data[i].vehicle_date;
+                                pickup_location = post.data[i].pickup_location;
+                                do_price =  post.data[i].time_price;
                             }
                             if (type == "Pasabay")
                             {
                                 //title = "Pasabuy - Hide";
-                                title = "<b> Destination: " + post.data[i].pickup_location + " </b>";
+                                title = post.data[i].pickup_location ;
                                 pickup_location = string.IsNullOrEmpty(post.data[i].vehicle_date) ? "Date: " : "Date: " + post.data[i].vehicle_date.Substring(0, 10);
-                                vehicle_type = "Return Place: " + post.data[i].drop_off_location;
-                                do_price = "Time: " + post.data[i].time_price;
+                                vehicle_type =  post.data[i].drop_off_location;
+                                do_price =  post.data[i].time_price;
                             }
                             if (type == "Pahatid")
                             {
                                 //title = "Pasabuy - Hide";
-                                title = "<b> Pick-up: " + post.data[i].pickup_location + " </b>";
+                                title = post.data[i].pickup_location;
                                 pickup_location = string.IsNullOrEmpty(post.data[i].vehicle_date) ? "Date: " : "Date: " + post.data[i].vehicle_date.Substring(0, 10);
-                                vehicle_type = "Drop-off: " + post.data[i].drop_off_location;
-                                do_price = "Time: " + post.data[i].time_price;
+                                vehicle_type = post.data[i].drop_off_location;
+                                do_price =  post.data[i].time_price;
                             }
                             if (type == "Pabili")
                             {
-                                title = "Item Name: " + post.data[i].title;
-                                content = "Description: " + post.data[i].content;
+                                title = post.data[i].title;
+                                content =  post.data[i].content;
                                 pickup_location = string.IsNullOrEmpty(post.data[i].vehicle_date) ? "Date: " : "Date: " + post.data[i].vehicle_date.Substring(0, 10);
-                                vehicle_type = "Location: " + post.data[i].pickup_location;
-                                do_price = "Time: " + post.data[i].time_price;
+                                vehicle_type = post.data[i].pickup_location;
+                                do_price = post.data[i].time_price;
                             }
 
                             homePostList.Add(new Post(PSAProc.GetUrl(author),
-                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link, post_author, pickup_location, vehicle_type, do_price));
+                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link, post_author, pickup_location, vehicle_type, do_price, category, item_price));
                         }
                     }
                     else
@@ -371,44 +372,46 @@ namespace PasaBuy.App.ViewModels.Feeds
                             string post_link = post.data[i].post_link;
                             string vehicle_type = post.data[i].vehicle_date;
                             string pickup_location = post.data[i].pickup_location;
-                            string do_price = "Drop-off: " + post.data[i].drop_off_location;
+                            string do_price = post.data[i].drop_off_location;
+                            string item_price = " : " + "₱ " + post.data[i].time_price + ".00";
                             if (type == "Selling")
                             {
-                                title = category + " : " + title;
+                                title = " : " + title;
                                 content = post.data[i].content;
-                                vehicle_type = "Vehicle: " + post.data[i].vehicle_date;
-                                pickup_location = "Pick-up: " + post.data[i].pickup_location;
-                                do_price = "Price: " + post.data[i].time_price;
+                                category = " : " + post.data[i].item_category;
+                                vehicle_type = " : " + post.data[i].vehicle_date;
+                                pickup_location = " : " + post.data[i].pickup_location;
+                                do_price = post.data[i].time_price;
                             }
                             if (type == "Pasabay")
                             {
                                 //title = "Pasabuy - Hide";
-                                title = "<b> Destination: " + post.data[i].pickup_location + " </b>";
+                                title = post.data[i].pickup_location;
                                 pickup_location = string.IsNullOrEmpty(post.data[i].vehicle_date) ? "Date: " : "Date: " + post.data[i].vehicle_date.Substring(0, 10);
-                                vehicle_type = "Return Place: " + post.data[i].drop_off_location;
-                                do_price = "Time: " + post.data[i].time_price;
+                                vehicle_type = post.data[i].drop_off_location;
+                                do_price = post.data[i].time_price;
                             }
                             if (type == "Pahatid")
                             {
                                 //title = "Pasabuy - Hide";
-                                title = "<b> Pick-up: " + post.data[i].pickup_location + " </b>";
+                                title = post.data[i].pickup_location;
                                 pickup_location = string.IsNullOrEmpty(post.data[i].vehicle_date) ? "Date: " : "Date: " + post.data[i].vehicle_date.Substring(0, 10);
-                                vehicle_type = "Drop-off: " + post.data[i].drop_off_location;
-                                do_price = "Time: " + post.data[i].time_price;
+                                vehicle_type = post.data[i].drop_off_location;
+                                do_price = post.data[i].time_price;
                             }
                             if (type == "Pabili")
                             {
-                                title = "Item Name: " + post.data[i].title;
-                                content = "Description: " + post.data[i].content;
+                                title =  post.data[i].title;
+                                content = post.data[i].content;
                                 pickup_location = string.IsNullOrEmpty(post.data[i].vehicle_date) ? "Date: " : "Date: " + post.data[i].vehicle_date.Substring(0, 10);
-                                vehicle_type = "Location: " + post.data[i].pickup_location;
-                                do_price = "Time: " + post.data[i].time_price;
+                                vehicle_type =  post.data[i].pickup_location;
+                                do_price = post.data[i].time_price;
                             }
 
 
 
                             homePostList.Add(new Post(PSAProc.GetUrl(author),
-                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link, post_author, pickup_location, vehicle_type, do_price));
+                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link, post_author, pickup_location, vehicle_type, do_price, category, item_price));
                         }
                     }
                     else

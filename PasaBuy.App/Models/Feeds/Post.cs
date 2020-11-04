@@ -21,6 +21,8 @@ namespace PasaBuy.App.Models.Feeds
         private Boolean iscontent = false;
         private Boolean iscontent2 = false;
         private Boolean isimage = false;
+        private Boolean show_title = false;
+        private Boolean show_dropoff = false;
         private string linkpost = string.Empty;
         private string post_author = string.Empty;
         private int column = 2;
@@ -31,9 +33,11 @@ namespace PasaBuy.App.Models.Feeds
         private string vehicle = string.Empty;
         private string pickup = string.Empty;
         private string do_price = string.Empty;
+        private string item_category = string.Empty;
+        private string item_price;
 
         public Post(string photo, string author, string types, string date, string seen, string title, string description, string images, string image_height,
-            string last_id, string post_link, string post_author, string pickup, string vehicle, string do_price)
+            string last_id, string post_link, string post_author, string pickup, string vehicle, string do_price, string item_category, string item_price)
         {
             this.last_id = last_id;
             this.photo = photo;
@@ -45,11 +49,13 @@ namespace PasaBuy.App.Models.Feeds
             this.title = title;
             this.description = description;
             this.images = images;
+            this.item_price = item_price;
+            this.item_category = item_category;
             this.linkpost = post_link;
             this.post_author = post_author;
-            this.pickup = "<b>" + pickup + "</b>";
-            this.vehicle = "<b>" + vehicle + "</b>";
-            this.do_price = "<b>" + do_price + "</b>";
+            this.pickup = pickup;
+            this.vehicle = vehicle;
+            this.do_price = do_price;
 
             if (images == "")
             {
@@ -76,12 +82,15 @@ namespace PasaBuy.App.Models.Feeds
                 HomeCol = 0;
                 ProfileColSpan = 3;
                 ProfileCol = 0;
+                ShowTitle = true;
             }
             else
             {
                 isContent2 = true;
                 if (types == "Selling")
                 {
+                    ShowTitle = false;
+                    ShowDropOff = false;
                     isContent = true; // set Content visible to true if post type is selling
                     AcceptText = "Inquire"; // renamed accept button if post type is selling
                 }
@@ -134,6 +143,16 @@ namespace PasaBuy.App.Models.Feeds
 
         }
 
+        public string ItemCategory
+        {
+            get { return item_category; }
+            set
+            {
+                item_category = value;
+                OnPropertyChanged("ItemCategory");
+            }
+        }
+
         public string Vehicle
         {
             get { return vehicle; }
@@ -161,6 +180,19 @@ namespace PasaBuy.App.Models.Feeds
                 OnPropertyChanged("DO_Price");
             }
         }
+
+        public string ItemPrice
+        {
+            get { return item_price; }
+            set
+            {
+                item_price = value;
+                OnPropertyChanged("ItemPrice");
+            }
+        }
+
+
+
         public string Post_author
         {
             get { return post_author; }
@@ -293,6 +325,33 @@ namespace PasaBuy.App.Models.Feeds
                 OnPropertyChanged("isAccept");
             }
         }
+
+        public Boolean ShowDropOff
+        {
+            get
+            {
+                return show_dropoff;
+            }
+            set
+            {
+                show_dropoff = value;
+                OnPropertyChanged("ShowDropOff");
+            }
+        }
+
+        public Boolean ShowTitle
+        {
+            get
+            {
+                return show_title;
+            }
+            set
+            {
+                show_title = value;
+                OnPropertyChanged("ShowTitle");
+            }
+        }
+
         public Boolean isContent
         {
             get
