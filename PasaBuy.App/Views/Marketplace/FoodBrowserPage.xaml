@@ -124,15 +124,15 @@
                     <CollectionView ItemsSource="{Binding FoodStorelist}"
                                     x:Name="StoreListStack">
                         <CollectionView.Header>
-                            <listView:SfListView  SelectionMode="None" 
-                                             HeightRequest="280" 
-                                             ItemSize="150"
-                                             x:Name="featuredListView"
-                                             Orientation="Horizontal" 
-                                             ItemsSource="{Binding BestSellers}" 
-                                             ItemSpacing="8, 0, 8, 0" 
-                                             ItemTemplate="{StaticResource BestSellersTemplate}"
-                                             IsScrollBarVisible="False"/>
+                             <listView:SfListView SelectionMode="None" 
+                                                 HeightRequest="{Binding HeaderSize}" 
+                                                 ItemSize="150"
+                                                 x:Name="featuredListView"
+                                                 Orientation="Horizontal" 
+                                                 ItemsSource="{Binding BestSellers}" 
+                                                 ItemSpacing="8, 0, 8, 0" 
+                                                 ItemTemplate="{StaticResource BestSellersTemplate}"
+                                                 IsScrollBarVisible="False"/>
                         </CollectionView.Header>
                         <CollectionView.ItemTemplate>
                             <DataTemplate>

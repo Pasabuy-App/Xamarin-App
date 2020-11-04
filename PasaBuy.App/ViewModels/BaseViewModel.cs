@@ -46,6 +46,19 @@ namespace PasaBuy.App.ViewModels
             }
         }
 
+        string _headerSize;
+        public string HeaderSize
+        {
+            get { return _headerSize; }
+            set
+            {
+                _headerSize = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+
+
         bool _canNavigate = true;
         public bool CanNavigate
         {

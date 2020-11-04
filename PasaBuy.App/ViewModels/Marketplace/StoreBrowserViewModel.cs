@@ -56,6 +56,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         }
         public StoreBrowserViewModel()
         {
+            ItemTappedCommand = new Command<object>(NavigateToNextPage);
             itemCategories = new ObservableCollection<Categories>();
             itemCategories.Clear();
             LoadCategory();
@@ -152,13 +153,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         /// <summary>
         /// Gets the command that will be executed when an item is selected.
         /// </summary>
-        public Command<object> ItemSelectedCommand
-        {
-            get
-            {
-                return this.itemTappedCommand ?? (this.itemTappedCommand = new Command<object>(this.NavigateToNextPage));
-            }
-        }
+        public Command<object> ItemTappedCommand { get; set; }
 
         #endregion
 
@@ -168,9 +163,10 @@ namespace PasaBuy.App.ViewModels.Marketplace
         /// Invoked when an item is selected from the navigation list.
         /// </summary>
         /// <param name="selectedItem">Selected item from the list view.</param>
-        private void NavigateToNextPage(object selectedItem)
+        private void NavigateToNextPage(object obj)
         {
-            CheckStore(((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Categories).Id, ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Categories).Title);
+            var category = obj as Categories;
+            CheckStore(category.Id, category.Title);
         }
 
         public void CheckStore(string catid, string title)
@@ -180,7 +176,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    Http.TindaFeature.Instance.StoreByCategoryList(catid, async (bool success, string data) => 
+                    Http.TindaFeature.Instance.StoreByCategoryList("pasamall", "active", async (bool success, string data) => 
                     {
                         if (success)
                         {

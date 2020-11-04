@@ -46,108 +46,80 @@
             <Grid>
                 <ScrollView>
                     <StackLayout Spacing="0" Padding="0,0,0,20">
-                        <ffimageloading:CachedImage Aspect="AspectFill"
+                        
+
+                        <CollectionView ItemsSource="{Binding ItemCategories}"
+                                        x:Name="CategoryList"
+                                        ItemsLayout="VerticalGrid, 2">
+                            <CollectionView.Header>
+                                <StackLayout>
+                                    <ffimageloading:CachedImage Aspect="AspectFill"
                                             Source="https://pasabuy.app/wp-content/uploads/2020/11/PasaMall-Banner.jpg"
 			                                DownsampleToViewSize="True" 
                                             FadeAnimationEnabled="True">
-                        </ffimageloading:CachedImage>
+                                    </ffimageloading:CachedImage>
 
+                                    <StackLayout Margin="16,25,16,0"
+                                                 Orientation="Horizontal"
+                                                 Spacing="0">
 
-                        <StackLayout
-                    Margin="16,25,16,0"
-                    Orientation="Horizontal"
-                    Spacing="0">
-
-                            <Label
-                        Margin="0,5,0,10"
-                        FontFamily="{StaticResource Montserrat-SemiBold}"
-                        FontSize="12"
-                        HorizontalOptions="StartAndExpand"
-                        LineHeight="{OnPlatform Android=1.25,
-                                                Default=-1}"
-                        Text="STORE CATEGORIES"
-                        TextColor="{DynamicResource Gray-800}"
-                        VerticalOptions="Center" />
-
-                        <!--<buttons:SfButton
-                        Margin="0"
-                        Padding="0"
-                        BackgroundColor="{DynamicResource Gray-White}"
-                        CornerRadius="4"
-                        FontFamily="{StaticResource Montserrat-SemiBold}"
-                        FontSize="12"
-                        HorizontalOptions="End"
-                        Text="VIEW ALL"
-                        TextColor="{DynamicResource Blue}" />-->
-
-                        </StackLayout>
-
-                        <listView:SfListView
-                    Margin="8,0"
-                    Padding="0"
-                    AutoFitMode="Height"
-                    ColumnSpacing="0"
-                    FocusBorderColor="Transparent"
-                    HorizontalOptions="FillAndExpand"
-                    IsStickyHeader="True"
-                    ItemsSource="{Binding ItemCategories}"
-                    RowSpacing="0"
-                    SelectionBackgroundColor="Transparent"
-                    TapCommand="{Binding ItemSelectedCommand}">
-
-                            <listView:SfListView.ItemTemplate>
-
+                                        <Label Margin="0,5,0,10"
+                                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                FontSize="12"
+                                                HorizontalOptions="StartAndExpand"
+                                                LineHeight="{OnPlatform Android=1.25, Default=-1}"
+                                                Text="STORE CATEGORIES"
+                                                TextColor="{DynamicResource Gray-800}"
+                                                VerticalOptions="Center" />
+                                    </StackLayout>
+                                </StackLayout>
+                                
+                            </CollectionView.Header>
+                            <CollectionView.ItemTemplate>
                                 <DataTemplate>
-
-                                    <!--  Frame to have rounded corners  -->
                                     <controls:CustomShadowFrame
-                                Margin="8"
-                                Padding="0"
-                                BackgroundColor="White"
-                                BorderColor="White"
-                                CornerRadius="4"
-                                HasShadow="true"
-                                HeightRequest="189"
-                                WidthRequest="165">
+                                        Margin="8"
+                                        Padding="0"
+                                        BackgroundColor="White"
+                                        BorderColor="White"
+                                        CornerRadius="4"
+                                        HasShadow="true"
+                                        HeightRequest="189"
+                                        WidthRequest="165">
                                         <StackLayout
-                                    Margin="0"
-                                    Padding="0"
-                                    HorizontalOptions="CenterAndExpand"
-                                    Spacing="0"
-                                    VerticalOptions="CenterAndExpand">
+                                            Margin="0"
+                                            Padding="0"
+                                            HorizontalOptions="CenterAndExpand"
+                                            Spacing="0"
+                                            VerticalOptions="CenterAndExpand">
                                             <!--  Product image  -->
                                             <Image
-                                        Margin="0,0,0,8"
-                                        Aspect="AspectFill"
-                                        BackgroundColor="{DynamicResource Gray-200}"
-                                        HeightRequest="150"
-                                        HorizontalOptions="Center"
-                                        Source="{Binding Avatar}"
-                                        VerticalOptions="Center"
-                                        WidthRequest="165" />
+                                                Margin="0,0,0,8"
+                                                Aspect="AspectFill"
+                                                BackgroundColor="{DynamicResource Gray-200}"
+                                                HeightRequest="150"
+                                                HorizontalOptions="Center"
+                                                Source="{Binding Avatar}"
+                                                VerticalOptions="Center"
+                                                WidthRequest="165" />
                                             <!--  Product name  -->
                                             <Label
-                                        Margin="0,0,0,8"
-                                        FontFamily="{StaticResource Montserrat-Medium}"
-                                        FontSize="16"
-                                        HorizontalOptions="Center"
-                                        LineHeight="1.25"
-                                        Text="{Binding Title}"
-                                        TextColor="{DynamicResource Gray-900}" />
+                                                Margin="0,0,0,8"
+                                                FontFamily="{StaticResource Montserrat-Medium}"
+                                                FontSize="16"
+                                                HorizontalOptions="Center"
+                                                LineHeight="1.25"
+                                                Text="{Binding Title}"
+                                                TextColor="{DynamicResource Gray-900}" />
                                         </StackLayout>
+                                        <controls:CustomShadowFrame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding BindingContext.ItemTappedCommand,Source={x:Reference CategoryList}}" 
+                                                                  CommandParameter="{Binding .}"/>
+                                        </controls:CustomShadowFrame.GestureRecognizers>
                                     </controls:CustomShadowFrame>
                                 </DataTemplate>
-                            </listView:SfListView.ItemTemplate>
-
-                            <listView:SfListView.Behaviors>
-                                <behavior1:SfListViewExtendHeightBehavior />
-                            </listView:SfListView.Behaviors>
-
-                            <!--  Layout to customize number of columns in SfListView  -->
-                            <listView:SfListView.LayoutManager>
-                                <listView:GridLayout SpanCount="{core:OnPlatformOrientationIntValue Desktop=4, PhonePortrait=2, PhoneLandscape=4, TabletPortrait=4, TabletLandscape=5}" />
-                            </listView:SfListView.LayoutManager>
-                        </listView:SfListView>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
 
                     </StackLayout>
                 </ScrollView>

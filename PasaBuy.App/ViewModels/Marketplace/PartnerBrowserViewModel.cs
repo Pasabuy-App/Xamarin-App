@@ -110,6 +110,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public PartnerBrowserViewModel()
         {
+            ItemTappedCommand = new Command<object>(NavigateToNextPage);
             _bestSellers = new ObservableCollection<FeaturedStoreModel>();
             RefreshCommand = new Command<string>((key) =>
             {
@@ -277,25 +278,16 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-        private Command<object> itemTappedCommand;
-        public Command<object> ItemTappedCommand
-        {
-            get
-            {
-                return this.itemTappedCommand ?? (this.itemTappedCommand = new Command<object>(this.NavigateToNextPage));
-            }
-        }
+        public Command<object> ItemTappedCommand { get; set; }
 
-        private async void NavigateToNextPage(object selectedItem)
+        private async void NavigateToNextPage(object obj)
         {
             if (!IsRunning)
             {
                 IsRunning = true;
-                StoreDetailsViewModel.store_id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Store).Id;
-
-                await Task.Delay(300);
+                var store = obj as Store;
+                StoreDetailsViewModel.store_id = store.Id;
                 await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
-                await Task.Delay(300);
                 IsRunning = false;
             }
         }

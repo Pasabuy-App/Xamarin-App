@@ -112,11 +112,19 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             try
             {
-                Http.TindaFeature.Instance.FeaturedList("active", (bool success, string data) =>
+                Http.TindaFeature.Instance.FeaturedList("active", "market", (bool success, string data) =>
                 {
                     if (success)
                     {
                         FeaturedStoreModel datas = JsonConvert.DeserializeObject<FeaturedStoreModel>(data);
+                        if (datas.data.Length > 0)
+                        {
+                            HeaderSize = "280";
+                        }
+                        else
+                        {
+                            HeaderSize = "0";
+                        }
                         for (int i = 0; i < datas.data.Length; i++)
                         {
                             _bestSellers.Add(new FeaturedStoreModel()

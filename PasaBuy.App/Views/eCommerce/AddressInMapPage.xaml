@@ -68,11 +68,21 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
+
+                            <Label  Grid.Row="0"
+                                    FontFamily="{StaticResource Montserrat-Medium}"
+                                    FontSize="{DynamicResource SmallerSize}"
+                                    HorizontalOptions="Start"
+                                    Text="Hold map pin to change location"
+                                    Margin="0,0,0,8"
+                                    TextColor="{DynamicResource Green}"
+                                    VerticalOptions="Center" />
                             
                             <border:SfBorder BorderColor="{Binding Source={x:Reference StreetEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
                                              Style="{StaticResource BusinessFormBorderStyle}"
-                                             Grid.Row="0">
+                                             Grid.Row="1">
                                 <controls:BorderlessEntry
                                     x:Name="StreetEntry"
                                     Placeholder="(Optional) Street"
@@ -82,9 +92,9 @@
                                     Style="{StaticResource EntryTextBoxStyle}" />
                             </border:SfBorder>
 
-
-                            <button:SfButton Grid.Row="1"
+                            <button:SfButton Grid.Row="2"
                                      Margin="0,15,0,0"
+                                     CornerRadius="5"
                                      HorizontalOptions="FillAndExpand"
                                      Command="{Binding ConfirmAddress}"
                                      Style="{StaticResource SfGradientButtonStyle}"
