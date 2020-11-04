@@ -106,8 +106,8 @@
 
     <!--  Common style for borders  -->
     <Style x:Key="SfBorderStyle" TargetType="border:SfBorder">
-        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-200}" />
-        <Setter Property="BorderColor" Value="{DynamicResource Gray-700}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="BorderColor" Value="{DynamicResource Gray-200}" />
         <Setter Property="CornerRadius" Value="12" />
         <Setter Property="BorderWidth" Value="1" />
     </Style>
