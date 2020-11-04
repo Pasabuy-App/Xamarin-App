@@ -28,6 +28,10 @@ namespace PasaBuy.App.Views.Feeds
         public HomePage()
         {
             InitializeComponent();
+            listView.ItemsLayout = new LinearItemsLayout(ItemsLayoutOrientation.Vertical)
+            {
+                ItemSpacing = 15
+            };
             //VisualContainer visualContainer = listView.GetType().GetRuntimeProperties().First(p => p.Name == "VisualContainer").GetValue(listView) as VisualContainer;
             //scrollRows = visualContainer.GetType().GetRuntimeProperties().First(p => p.Name == "ScrollRows").GetValue(visualContainer) as ScrollAxisBase;
             //scrollRows.Changed += ScrollRows_Changed;

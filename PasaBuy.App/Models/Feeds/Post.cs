@@ -31,9 +31,10 @@ namespace PasaBuy.App.Models.Feeds
         private string vehicle = string.Empty;
         private string pickup = string.Empty;
         private string do_price = string.Empty;
+        private string with_image = string.Empty;
 
         public Post(string photo, string author, string types, string date, string seen, string title, string description, string images, string image_height,
-            string last_id, string post_link, string post_author, string pickup, string vehicle, string do_price)
+            string last_id, string post_link, string post_author, string pickup, string vehicle, string do_price, string with_image)
         {
             this.last_id = last_id;
             this.photo = photo;
@@ -45,6 +46,7 @@ namespace PasaBuy.App.Models.Feeds
             this.title = title;
             this.description = description;
             this.images = images;
+            this.with_image = with_image;
             this.linkpost = post_link;
             this.post_author = post_author;
             this.pickup = "<b>" + pickup + "</b>";
@@ -143,6 +145,17 @@ namespace PasaBuy.App.Models.Feeds
                 OnPropertyChanged("Vehicle");
             }
         }
+
+        public string WithImage
+        {
+            get { return with_image; }
+            set
+            {
+                with_image = value;
+                OnPropertyChanged("WithImage");
+            }
+        }
+
         public string PickUp
         {
             get { return pickup; }

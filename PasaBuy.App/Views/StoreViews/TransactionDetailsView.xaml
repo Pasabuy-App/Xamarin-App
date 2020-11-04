@@ -199,8 +199,8 @@
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="70*" />
+                                                    <ColumnDefinition Width="30*" />
                                                 </Grid.ColumnDefinitions>
 
                                                 <Label Text="{Binding Product}"
@@ -220,12 +220,12 @@
                                                     TextColor="{DynamicResource Gray-900}">
                                                 </Label>
 
-                                                <Label Text="{Binding Price}"
-                                                   Grid.Row="0"
-                                                   Grid.Column="2"
-                                                   HorizontalOptions="EndAndExpand"
-                                                   FontFamily="{StaticResource Montserrat-SemiBold}"
-                                                   TextColor="{DynamicResource Gray-900}">
+                                                <Label Text="{Binding Price, StringFormat='₱ {0:F2}'}" 
+                                                       Grid.Row="0"
+                                                       Grid.Column="1"
+                                                       HorizontalOptions="EndAndExpand"
+                                                       FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                       TextColor="{DynamicResource Gray-900}">
                                                 </Label>
                                             </Grid>
                                         </Grid>

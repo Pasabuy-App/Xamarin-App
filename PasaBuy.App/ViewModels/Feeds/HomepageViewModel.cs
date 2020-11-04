@@ -8,6 +8,7 @@ using PasaBuy.App.ViewModels.Menu;
 using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -60,6 +61,38 @@ namespace PasaBuy.App.ViewModels.Feeds
                 this.NotifyPropertyChanged();
             }
         }
+
+        public string _imageHeight = string.Empty;
+
+        public string ImageHeight
+        {
+            get
+            {
+                return _imageHeight;
+            }
+            set
+            {
+                _imageHeight = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        public bool _withImage;
+
+        public bool WithImage
+        {
+            get
+            {
+                return _withImage;
+            }
+            set
+            {
+                _withImage = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+
 
         #endregion
 
@@ -219,6 +252,7 @@ namespace PasaBuy.App.ViewModels.Feeds
         /// </summary>
         public static void LoadData(string lastid)
         {
+           
             try
             {
                 SocioPress.Feeds.Instance.Home(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, lastid, (bool success, string data) =>
@@ -226,12 +260,16 @@ namespace PasaBuy.App.ViewModels.Feeds
                     if (success)
                     {
                         PostListData post = JsonConvert.DeserializeObject<PostListData>(data);
+                        
                         for (int i = 0; i < post.data.Length; i++)
                         {
+
                             string image_height = "-1";
-                            if (post.data[i].item_image != "")
+                            string with_image = "false";
+                            if (post.data[i].item_image != "" )
                             {
-                                image_height = "400";
+                                image_height = "450";
+                                with_image = "true";
                             }
                             string post_author = post.data[i].post_author; //user id
                             string id = post.data[i].id;
@@ -282,7 +320,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                             }
 
                             homePostList.Add(new Post(PSAProc.GetUrl(author),
-                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link, post_author, pickup_location, vehicle_type, do_price));
+                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link, post_author, pickup_location, vehicle_type, do_price, with_image));
                         }
                     }
                     else
@@ -312,9 +350,12 @@ namespace PasaBuy.App.ViewModels.Feeds
                         for (int i = 0; i < post.data.Length; i++)
                         {
                             string image_height = "-1";
+                            string with_image = "false";
                             if (post.data[i].item_image != "")
                             {
-                                image_height = "400";
+
+                                image_height = "450";
+                                with_image = "true";
                             }
                             string post_author = post.data[i].post_author; //user id
                             string id = post.data[i].id;
@@ -365,7 +406,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                             }
 
                             homePostList.Add(new Post(PSAProc.GetUrl(author),
-                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link, post_author, pickup_location, vehicle_type, do_price));
+                                name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link, post_author, pickup_location, vehicle_type, do_price, with_image));
                         }
                     }
                     else
