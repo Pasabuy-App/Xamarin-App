@@ -42,9 +42,9 @@ namespace PasaBuy.App.Views.Navigation
             get { return _logobanner; }
             set { _logobanner = value; OnPropertyChanged("LogoBanner"); }
         }
-        public static ObservableCollection<Operations> _switchlist;
+        public static ObservableCollection<Models.POSFeature.OperationModel> _switchlist;
 
-        public ObservableCollection<Operations> SwitchList
+        public ObservableCollection<Models.POSFeature.OperationModel> SwitchList
         {
             get { return _switchlist; }
             set { _switchlist = value; OnPropertyChanged("SwitchList"); }
@@ -96,7 +96,7 @@ namespace PasaBuy.App.Views.Navigation
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Schedules"), Icon = "https://pasabuy.app/wp-content/uploads/2020/10/management-schedule.png", TargetType = typeof(DriverScheduleView) });
 
             }
-            _switchlist = new ObservableCollection<Operations>();
+            _switchlist = new ObservableCollection<Models.POSFeature.OperationModel>();
             _switchlist.CollectionChanged += SwitchChanges;
             PopupGoOnline._switch = "false";
             isTapped = false;

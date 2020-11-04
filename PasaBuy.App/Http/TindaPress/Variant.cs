@@ -78,7 +78,7 @@ namespace PasaBuy.App.Http.TindaPress
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2VRT-L1." + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2VRT-L1.", "OK");
             }
         }
 

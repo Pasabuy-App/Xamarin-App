@@ -7,20 +7,20 @@ using System.Net.Http;
 
 namespace PasaBuy.App.Http.MobilePOS
 {
-    public class Wallet
+    class Schedule
     {
         #region Fields
 
         /// <summary>
-        /// Instance of store wallet.
+        /// Instance of store schedule.
         /// </summary>
-        private static Wallet instance;
-        public static Wallet Instance
+        private static Schedule instance;
+        public static Schedule Instance
         {
             get
             {
                 if (instance == null)
-                    instance = new Wallet();
+                    instance = new Schedule();
                 return instance;
             }
         }
@@ -33,7 +33,7 @@ namespace PasaBuy.App.Http.MobilePOS
         /// Web service for communication to our Backend.
         /// </summary>
         HttpClient client;
-        public Wallet()
+        public Schedule()
         {
             client = new HttpClient();
         }
@@ -43,44 +43,9 @@ namespace PasaBuy.App.Http.MobilePOS
         #region Method
 
         /// <summary>
-        /// Listing of store wallet data and list transactions.
+        /// Listing of store schedule.
         /// </summary>
-        public async void Info(Action<bool, string> callback)
-        {
-            try
-            {
-                var dict = new Dictionary<string, string>();
-                    dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
-                    dict.Add("snky", PSACache.Instance.UserInfo.snky);
-                var content = new FormUrlEncodedContent(dict);
-
-                var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/mobilepos/v2/personnels/role/access/list", content);
-                response.EnsureSuccessStatusCode();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    string result = await response.Content.ReadAsStringAsync();
-                    Token token = JsonConvert.DeserializeObject<Token>(result);
-
-                    bool success = token.status == "success" ? true : false;
-                    string data = token.status == "success" ? result : token.message;
-                    callback(success, data);
-                }
-                else
-                {
-                    callback(false, "Network Error! Check your connection.");
-                }
-            }
-            catch (Exception e)
-            {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2WLT-I1.", "OK");
-            }
-        }
-
-        /// <summary>
-        /// Create store wallet.
-        /// </summary>
-        public async void CreateWallet(string user_id, Action<bool, string> callback)
+        public async void Listing(Action<bool, string> callback)
         {
             try
             {
@@ -88,10 +53,9 @@ namespace PasaBuy.App.Http.MobilePOS
                     dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
                     dict.Add("snky", PSACache.Instance.UserInfo.snky);
                     dict.Add("stid", PSACache.Instance.UserInfo.stid);
-                    dict.Add("user_id", user_id);
                 var content = new FormUrlEncodedContent(dict);
 
-                var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/mobilepos/v2/wallets/insert", content);
+                var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/mobilepos/v2/schedule/list", content);
                 response.EnsureSuccessStatusCode();
 
                 if (response.IsSuccessStatusCode)
@@ -110,7 +74,46 @@ namespace PasaBuy.App.Http.MobilePOS
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2WLT-C1.", "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2SCH-L1.", "OK");
+            }
+        }
+
+        /// <summary>
+        /// Insert of store schedule.
+        /// </summary>
+        public async void Insert(string type, string started, string ended, Action<bool, string> callback)
+        {
+            try
+            {
+                var dict = new Dictionary<string, string>();
+                    dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
+                    dict.Add("snky", PSACache.Instance.UserInfo.snky);
+                    dict.Add("stid", PSACache.Instance.UserInfo.stid);
+                    dict.Add("type", type);
+                    dict.Add("started", started);
+                    dict.Add("ended", ended);
+                var content = new FormUrlEncodedContent(dict);
+
+                var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/mobilepos/v2/schedule/insert", content);
+                response.EnsureSuccessStatusCode();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string result = await response.Content.ReadAsStringAsync();
+                    Token token = JsonConvert.DeserializeObject<Token>(result);
+
+                    bool success = token.status == "success" ? true : false;
+                    string data = token.status == "success" ? result : token.message;
+                    callback(success, data);
+                }
+                else
+                {
+                    callback(false, "Network Error! Check your connection.");
+                }
+            }
+            catch (Exception e)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2SCH-I1.", "OK");
             }
         }
 

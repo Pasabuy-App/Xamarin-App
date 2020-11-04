@@ -15,9 +15,9 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 {
     public class OperationsViewModel : BaseViewModel
     {
-        public static ObservableCollection<Operations> _daysOfTheWeek;
+        public static ObservableCollection<Models.POSFeature.OperationModel> _daysOfTheWeek;
 
-        public static ObservableCollection<Operations> _operationsList;
+        public static ObservableCollection<Models.POSFeature.OperationModel> _operationsList;
 
         //public bool is_online;
 
@@ -49,7 +49,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
         }*/
 
-        public ObservableCollection<Operations> DaysOfTheWeek
+        public ObservableCollection<Models.POSFeature.OperationModel> DaysOfTheWeek
         {
             get
             {
@@ -62,7 +62,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
         }
 
-        public ObservableCollection<Operations> OperationsList
+        public ObservableCollection<Models.POSFeature.OperationModel> OperationsList
         {
             get
             {
@@ -107,7 +107,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         {
             //this.IsOnline = true;
 
-            _operationsList = new ObservableCollection<Operations>();
+            _operationsList = new ObservableCollection<Models.POSFeature.OperationModel>();
             LoadOperation("");
             if (Local.PSACache.Instance.UserInfo.store_operation)
             {
@@ -129,12 +129,12 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                     if (success)
                     {
                         CultureInfo provider = new CultureInfo("fr-FR");
-                        Operations datas = JsonConvert.DeserializeObject<Operations>(data);
+                        Models.POSFeature.OperationModel datas = JsonConvert.DeserializeObject<Models.POSFeature.OperationModel>(data);
                         for (int i = 0; i < datas.data.Length; i++)
                         {
                             string dates = string.IsNullOrEmpty(datas.data[i].date) ? "0000-00-00 00:00:00" : datas.data[i].date;
                             DateTime date = DateTime.ParseExact(dates, "yyyy-MM-dd HH:mm:ss", provider);
-                            _operationsList.Add(new Operations()
+                            _operationsList.Add(new Models.POSFeature.OperationModel()
                             {
                                 Id = datas.data[i].ID,
                                 Date = "Date: " + date.ToString("MMMM dd, yyyy"),

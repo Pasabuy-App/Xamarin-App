@@ -7,6 +7,7 @@ using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -35,11 +36,17 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 return new Command<string>((x) => Submit());
             }
         }
-        private void Submit()
+        private async void Submit()
         {
-            GetStarted = false;
-            Local.PSACache.Instance.UserInfo.store_schedule = true;
-            Local.PSACache.Instance.SaveUserData();
+            if (!IsRunning)
+            {
+                IsRunning = true;
+                GetStarted = false;
+                Local.PSACache.Instance.UserInfo.store_schedule = true;
+                Local.PSACache.Instance.SaveUserData();
+                await Task.Delay(300);
+                IsRunning = false;
+            }
         }
 
         public ICommand EditScheduleCommand
@@ -52,13 +59,34 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
         private async void EditSchedule(string day)
         {
-            //new Alert("ok", day, "ok");
-            PopupEditSchedule.day = day;
-            await PopupNavigation.Instance.PushAsync(new PopupEditSchedule());
+            if (!IsRunning)
+            {
+                IsRunning = true;
+                PopupEditSchedule.day = day;
+                await PopupNavigation.Instance.PushAsync(new PopupEditSchedule());
+                IsRunning = false;
+            }
         }
 
-        public static ObservableCollection<Operations> _scheduleList;
-        public ObservableCollection<Operations> ScheduleList
+        public bool _IsRunning = false;
+        public bool IsRunning
+        {
+            get
+            {
+                return _IsRunning;
+            }
+            set
+            {
+                if (_IsRunning != value)
+                {
+                    _IsRunning = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+
+        public static ObservableCollection<Models.POSFeature.OperationModel> _scheduleList;
+        public ObservableCollection<Models.POSFeature.OperationModel> ScheduleList
         {
             get
             {
@@ -70,10 +98,12 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 this.NotifyPropertyChanged();
             }
         }
+
         public ScheduleViewModel()
         {
-            _scheduleList = new ObservableCollection<Operations>();
+            _scheduleList = new ObservableCollection<Models.POSFeature.OperationModel>();
             LoadSchedule();
+
             if (Local.PSACache.Instance.UserInfo.store_schedule)
             {
                 GetStarted = false;
@@ -83,12 +113,123 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 GetStarted = true;
             }
         }
-        public static void LoadSchedule()
+
+        public void LoadSchedule()
+        {
+            try
+            {
+                if (!IsRunning)
+                {
+                    IsRunning = true;
+                    _scheduleList.Clear();
+                    Http.MobilePOS.Schedule.Instance.Listing((bool success, string data) =>
+                    {
+                        if (success)
+                        {
+                            CultureInfo provider = new CultureInfo("fr-FR");
+                            string mon = string.Empty;
+                            string tue = string.Empty;
+                            string wed = string.Empty;
+                            string thu = string.Empty;
+                            string fri = string.Empty;
+                            string sat = string.Empty;
+                            string sun = string.Empty;
+
+                            Models.POSFeature.OperationModel datas = JsonConvert.DeserializeObject<Models.POSFeature.OperationModel>(data);
+
+                            for (int i = 0; i < datas.data.Length; i++)
+                            {
+                                string open_time = string.IsNullOrEmpty(datas.data[i].started) ? "00:00:00" : datas.data[i].started;
+                                string close_time = string.IsNullOrEmpty(datas.data[i].ended) ? "00:00:00" : datas.data[i].ended;
+                                DateTime open = DateTime.ParseExact(open_time, "HH:mm:ss", provider);
+                                DateTime close = DateTime.ParseExact(close_time, "HH:mm:ss", provider);
+                                if (datas.data[i].types == "mon")
+                                {
+                                    mon = open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
+                                }
+                                if (datas.data[i].types == "tue")
+                                {
+                                    tue = open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
+                                }
+                                if (datas.data[i].types == "wed")
+                                {
+                                    wed = open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
+                                }
+                                if (datas.data[i].types == "thu")
+                                {
+                                    thu = open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
+                                }
+                                if (datas.data[i].types == "fri")
+                                {
+                                    fri = open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
+                                }
+                                if (datas.data[i].types == "sat")
+                                {
+                                    sat = open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
+                                }
+                                if (datas.data[i].types == "sun")
+                                {
+                                    sun = open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
+                                }
+                            }
+                            _scheduleList.Add(new Models.POSFeature.OperationModel()
+                            {
+                                Day = "Monday",
+                                FullSchedule = mon
+                            });
+                            _scheduleList.Add(new Models.POSFeature.OperationModel()
+                            {
+                                Day = "Tuesday",
+                                FullSchedule = tue
+                            });
+                            _scheduleList.Add(new Models.POSFeature.OperationModel()
+                            {
+                                Day = "Wednesday",
+                                FullSchedule = wed
+                            });
+                            _scheduleList.Add(new Models.POSFeature.OperationModel()
+                            {
+                                Day = "Thursday",
+                                FullSchedule = thu
+                            });
+                            _scheduleList.Add(new Models.POSFeature.OperationModel()
+                            {
+                                Day = "Friday",
+                                FullSchedule = fri
+                            });
+                            _scheduleList.Add(new Models.POSFeature.OperationModel()
+                            {
+                                Day = "Saturday",
+                                FullSchedule = sat
+                            });
+                            _scheduleList.Add(new Models.POSFeature.OperationModel()
+                            {
+                                Day = "Sunday",
+                                FullSchedule = sun
+                            });
+                            IsRunning = false;
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsRunning = false;
+                        }
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2SCH-L1SVM.", "OK");
+                IsRunning = false;
+            }
+        }
+
+        public static void RefreshSchedule()
         {
             try
             {
                 _scheduleList.Clear();
-                TindaPress.Schedule.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, (bool success, string data) =>
+                Http.MobilePOS.Schedule.Instance.Listing((bool success, string data) =>
                 {
                     if (success)
                     {
@@ -101,79 +242,74 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                         string sat = string.Empty;
                         string sun = string.Empty;
 
-                        Operations datas = JsonConvert.DeserializeObject<Operations>(data);
+                        Models.POSFeature.OperationModel datas = JsonConvert.DeserializeObject<Models.POSFeature.OperationModel>(data);
 
                         for (int i = 0; i < datas.data.Length; i++)
                         {
-                            string open_time = string.IsNullOrEmpty(datas.data[i].open) ? "00:00:00" : datas.data[i].open;
-                            string close_time = string.IsNullOrEmpty(datas.data[i].close) ? "00:00:00" : datas.data[i].close;
+                            string open_time = string.IsNullOrEmpty(datas.data[i].started) ? "00:00:00" : datas.data[i].started;
+                            string close_time = string.IsNullOrEmpty(datas.data[i].ended) ? "00:00:00" : datas.data[i].ended;
                             DateTime open = DateTime.ParseExact(open_time, "HH:mm:ss", provider);
                             DateTime close = DateTime.ParseExact(close_time, "HH:mm:ss", provider);
-                            if (datas.data[i].type == "mon")
+                            if (datas.data[i].types == "mon")
                             {
                                 mon = open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
                             }
-                            if (datas.data[i].type == "tue")
+                            if (datas.data[i].types == "tue")
                             {
                                 tue = open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
                             }
-                            if (datas.data[i].type == "wed")
+                            if (datas.data[i].types == "wed")
                             {
                                 wed = open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
-                                //wed = datas.data[i].open + " AM " + datas.data[i].close + " PM";
                             }
-                            if (datas.data[i].type == "thu")
+                            if (datas.data[i].types == "thu")
                             {
                                 thu = open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
-                                //thu = datas.data[i].open + " AM " + datas.data[i].close + " PM";
                             }
-                            if (datas.data[i].type == "fri")
+                            if (datas.data[i].types == "fri")
                             {
                                 fri = open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
-                                //fri = datas.data[i].open + " AM " + datas.data[i].close + " PM";
                             }
-                            if (datas.data[i].type == "sat")
+                            if (datas.data[i].types == "sat")
                             {
                                 sat = open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
-                                //sat = datas.data[i].open + " AM " + datas.data[i].close + " PM";
                             }
-                            if (datas.data[i].type == "sun")
+                            if (datas.data[i].types == "sun")
                             {
                                 sun = open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
-                                //sun = datas.data[i].open + " AM " + datas.data[i].close + " PM";
                             }
                         }
-                        _scheduleList.Add(new Operations()
+                        _scheduleList.Add(new Models.POSFeature.OperationModel()
                         {
                             Day = "Monday",
                             FullSchedule = mon
                         });
-                        _scheduleList.Add(new Operations()
+                        _scheduleList.Add(new Models.POSFeature.OperationModel()
                         {
                             Day = "Tuesday",
                             FullSchedule = tue
                         });
-                        _scheduleList.Add(new Operations()
+                        _scheduleList.Add(new Models.POSFeature.OperationModel()
                         {
                             Day = "Wednesday",
                             FullSchedule = wed
                         });
-                        _scheduleList.Add(new Operations()
+                        _scheduleList.Add(new Models.POSFeature.OperationModel()
                         {
                             Day = "Thursday",
                             FullSchedule = thu
                         });
-                        _scheduleList.Add(new Operations()
+                        _scheduleList.Add(new Models.POSFeature.OperationModel()
                         {
                             Day = "Friday",
                             FullSchedule = fri
                         });
-                        _scheduleList.Add(new Operations()
+                        _scheduleList.Add(new Models.POSFeature.OperationModel()
                         {
                             Day = "Saturday",
                             FullSchedule = sat
                         });
-                        _scheduleList.Add(new Operations()
+                        _scheduleList.Add(new Models.POSFeature.OperationModel()
                         {
                             Day = "Sunday",
                             FullSchedule = sun
@@ -187,7 +323,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2SCH-L2SVM.", "OK");
             }
         }
     }

@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel;
 
-namespace PasaBuy.App.Models.MobilePOS
+namespace PasaBuy.App.Models.POSFeature
 {
-    public class Operations
+    public class OperationModel : INotifyPropertyChanged
     {
+        public OperationsData[] data;
+
         private string day = string.Empty;
         private string id = string.Empty;
         private string opening = string.Empty;
@@ -14,19 +16,6 @@ namespace PasaBuy.App.Models.MobilePOS
         private string date_time = string.Empty;
 
         private bool is_online;
-
-        public OperationsData[] data;
-        public class OperationsData
-        {
-            public string ID = string.Empty;
-            public string type = string.Empty;
-            public string open = string.Empty;
-            public string close = string.Empty;
-            public string total_sale = string.Empty;
-            public string date = string.Empty;
-            public string date_open = string.Empty;
-            public string date_close = string.Empty;
-        }
 
         public string Date_Time
         {
@@ -149,5 +138,17 @@ namespace PasaBuy.App.Models.MobilePOS
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
+    }
+
+    public class OperationsData
+    {
+        public string ID = string.Empty;
+        public string types = string.Empty;
+        public string started = string.Empty;
+        public string ended = string.Empty;
+        public string total_sale = string.Empty;
+        public string date = string.Empty;
+        public string date_open = string.Empty;
+        public string date_close = string.Empty;
     }
 }

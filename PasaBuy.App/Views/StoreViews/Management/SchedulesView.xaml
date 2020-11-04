@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:view="clr-namespace:PasaBuy.App.Views.Templates" 
              xmlns:syncListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
-             xmlns:converter="clr-namespace:PasaBuy.App.Converters" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:converter="clr-namespace:PasaBuy.App.Converters" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:local="clr-namespace:PasaBuy.App.UserControls"
              x:Class="PasaBuy.App.Views.StoreViews.Management.SchedulesView"
              BackgroundColor="{DynamicResource Gray-White}"
              x:Name="schedulePage"
@@ -75,18 +75,20 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout CompressedLayout.IsHeadless="True">
-            <StackLayout Padding="10"
+        <Grid>
+
+            <StackLayout CompressedLayout.IsHeadless="True">
+                <StackLayout Padding="10"
                          Margin="0,0,0,5"
                          VerticalOptions="FillAndExpand"
                          IsVisible="{Binding GetStarted}">
-                <view:GetStartedTemplate/>
-            </StackLayout>
-            <BoxView  Margin="0,8,0,0" Style="{DynamicResource SeparatorStyle}" />
-            <StackLayout VerticalOptions="FillAndExpand"
+                    <view:GetStartedTemplate/>
+                </StackLayout>
+                <BoxView  Margin="0,8,0,0" Style="{DynamicResource SeparatorStyle}" />
+                <StackLayout VerticalOptions="FillAndExpand"
                          Margin="0,10,0,15"
                          HorizontalOptions="FillAndExpand">
-                <syncListView:SfListView x:Name="listView"
+                    <syncListView:SfListView x:Name="listView"
                                          FocusBorderThickness="0"
                                          IsScrollBarVisible="False"
                                          IsStickyHeader="True"
@@ -96,10 +98,17 @@
                                          ItemsSource="{Binding ScheduleList}"
                                          ItemTemplate="{StaticResource ScheduleTemplate}"
                                          SelectionMode="None">
-                  
-                </syncListView:SfListView>
-   
+
+                    </syncListView:SfListView>
+
+                </StackLayout>
             </StackLayout>
-        </StackLayout>
+
+            <local:LoadingIndicator
+                    x:Name="IsRunning"
+                    HorizontalOptions="Fill"
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}"
+                    VerticalOptions="Fill" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
