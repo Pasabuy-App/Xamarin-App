@@ -44,7 +44,7 @@ namespace PasaBuy.App.Http.TindaPress
         #region Method
 
         /// <summary>
-        /// Listing category.
+        /// Listing product.
         /// </summary>
         public async void Listing(string ID, string title, string status, Action<bool, string> callback)
         {

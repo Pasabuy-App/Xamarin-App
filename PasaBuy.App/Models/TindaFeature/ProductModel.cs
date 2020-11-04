@@ -86,6 +86,28 @@ namespace PasaBuy.App.Models.TindaFeature
             }
         }
 
+        private string pcid = string.Empty;
+        public string Category_ID
+        {
+            get { return pcid; }
+            set
+            {
+                pcid = value;
+                OnPropertyChanged("Category_ID");
+            }
+        }
+
+        private string inventory = string.Empty;
+        public string Inventory
+        {
+            get { return inventory; }
+            set
+            {
+                inventory = value;
+                OnPropertyChanged("Inventory");
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged(string name)
@@ -102,6 +124,8 @@ namespace PasaBuy.App.Models.TindaFeature
         public string avatar = string.Empty;
         public string price = string.Empty;
         public string category_name = string.Empty;
+        public string pcid = string.Empty;
+        public string inventory = string.Empty;
         public string discount = string.Empty;
     }
 }

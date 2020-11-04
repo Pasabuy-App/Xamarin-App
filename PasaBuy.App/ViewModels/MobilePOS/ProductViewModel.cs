@@ -15,28 +15,8 @@ namespace PasaBuy.App.ViewModels.MobilePOS
     public class ProductViewModel : BaseViewModel
     {
         #region Fields
-        public static ObservableCollection<Models.TindaFeature.ProductModel> productsList;
 
-        public ICommand ShowVariantsCommand
-        {
-            get
-            {
-                return new Command<string>((x) => ShowVariantsClicked(x));
-            }
-        }
-        public bool isClicked = false;
-        private async void ShowVariantsClicked(string id)
-        {
-            if (!isClicked)
-            {
-                isClicked = true;
-                await Application.Current.MainPage.Navigation.PushModalAsync(new ProductVariants()); ;
-                VariantsViewModel.LoadVariants(id);
-                ProductVariants.product_id = id;
-                await Task.Delay(200);
-                isClicked = false;
-            }
-        }
+        public static ObservableCollection<Models.TindaFeature.ProductModel> productsList;
 
         public ObservableCollection<Models.TindaFeature.ProductModel> ProductsList
         {
@@ -90,16 +70,36 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         #endregion
         public ProductViewModel()
         {
-            productsList = new ObservableCollection<Models.TindaFeature.ProductModel>();
+            this.ProductsList = new ObservableCollection<Models.TindaFeature.ProductModel>();
             LoadProduct();
+
+            productsList = new ObservableCollection<Models.TindaFeature.ProductModel>();
+
+            DeleteCommand = new Command<object>(DeleteClicked);
             UpdateCommand = new Command<object>(UpdateClicked);
             AddCommand = new Command<object>(AddClicked);
+            ShowVariantsCommand = new Command<object>(VariantClicked);
 
             RefreshCommand = new Command<string>((key) =>
             {
                 LoadProduct();
                 IsRefreshing = false;
             });
+        }
+        public Command<object> ShowVariantsCommand { get; set; }
+
+        private async void VariantClicked(object obj)
+        {
+            if (!IsRunning)
+            {
+                IsRunning = true;
+                var product = obj as Models.TindaFeature.ProductModel;
+                VariantsViewModel.product_id = product.ID;
+                ProductVariants.product_id = product.ID;
+                ProductVariants.product_name = product.Product_name;
+                await Application.Current.MainPage.Navigation.PushModalAsync(new ProductVariants());
+                IsRunning = false;
+            }
         }
         public Command<object> AddCommand { get; set; }
 
@@ -122,6 +122,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             {
                 IsRunning = true;
                 var product = obj as Models.TindaFeature.ProductModel;
+                AddProductView.pcid = product.Category_ID;
                 AddProductView.pdid = product.ID;
                 AddProductView.name = product.Product_name;
                 AddProductView.info = product.Short_info;
@@ -129,7 +130,48 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 AddProductView.discount = product.Discount;
                 AddProductView.avatar = product.Preview;
                 AddProductView.category_name = product.Category_Name;
+                AddProductView.inventory = product.Inventory;
                 await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new AddProductView()));
+                IsRunning = false;
+            }
+        }
+
+        public Command<object> DeleteCommand { get; set; }
+
+        private async void DeleteClicked(object obj)
+        {
+            try
+            {
+                if (!IsRunning)
+                {
+                    IsRunning = true;
+                    bool answer = await Application.Current.MainPage.DisplayAlert("Delete Product?", "Are you sure to delete this?", "Yes", "No");
+                    if (answer)
+                    {
+                        var product = obj as Models.TindaFeature.ProductModel;
+                        Http.TindaPress.Product.Instance.Delete(product.ID, (bool success, string data) =>
+                        {
+                            if (success)
+                            {
+                                RefreshProduct("");
+                                IsRunning = false;
+                            }
+                            else
+                            {
+                                new Controllers.Notice.Alert("Notice to User", Local.HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                IsRunning = false;
+                            }
+                        });
+                    }
+                    else
+                    {
+                        IsRunning = false;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2PDT-D1PVM.", "OK");
                 IsRunning = false;
             }
         }
@@ -141,7 +183,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    productsList.Clear();
+                    this.ProductsList.Clear();
                     Http.TindaPress.Product.Instance.Listing("", "", "active", (bool success, string data) =>
                     {
                         if (success)
@@ -149,7 +191,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                             Models.TindaFeature.ProductModel product = JsonConvert.DeserializeObject<Models.TindaFeature.ProductModel>(data);
                             for (int i = 0; i < product.data.Length; i++)
                             {
-                                productsList.Add(new Models.TindaFeature.ProductModel()
+                                this.ProductsList.Add(new Models.TindaFeature.ProductModel()
                                 {
                                     ID = product.data[i].ID,
                                     Product_name = product.data[i].title,
@@ -157,6 +199,8 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                     Price = Convert.ToDouble(product.data[i].price),
                                     Discount = product.data[i].discount,
                                     Category_Name = product.data[i].category_name,
+                                    Category_ID = product.data[i].pcid,
+                                    Inventory = product.data[i].inventory,
                                     Preview = PSAProc.GetUrl(product.data[i].avatar)
                                 });
                             }
@@ -182,7 +226,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             try
             {
                 productsList.Clear();
-                Http.TindaPress.Product.Instance.Listing("", search, "", (bool success, string data) =>
+                Http.TindaPress.Product.Instance.Listing("", search, "active", (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -197,6 +241,8 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                 Price = Convert.ToDouble(product.data[i].price),
                                 Discount = product.data[i].discount,
                                 Category_Name = product.data[i].category_name,
+                                Category_ID = product.data[i].pcid,
+                                Inventory = product.data[i].inventory,
                                 Preview = PSAProc.GetUrl(product.data[i].avatar)
                             });
                         }

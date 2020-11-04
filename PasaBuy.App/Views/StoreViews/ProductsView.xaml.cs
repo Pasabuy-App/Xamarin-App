@@ -61,42 +61,5 @@ namespace PasaBuy.App.Views.StoreViews
                 }
             }*/
         }
-
-        private async void Delete_Tapped(object sender, EventArgs e)
-        {
-            try
-            {
-                bool answer = await DisplayAlert("Delete Product", "Are you sure to delete this?", "Yes", "No");
-                if (answer)
-                {
-                    var btn = sender as Grid;
-                    if (!IsRunning.IsRunning)
-                    {
-                        IsRunning.IsRunning = true;
-                        Http.TindaPress.Product.Instance.Delete(btn.ClassId, (bool success, string data) =>
-                        {
-                            if (success)
-                            {
-                                LastIndex = 11;
-                                isFirstLoad = false;
-                                Offset = 0;
-                                ProductViewModel.RefreshProduct("");
-                                IsRunning.IsRunning = false;
-                            }
-                            else
-                            {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                                IsRunning.IsRunning = false;
-                            }
-                        });
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2PDT-D1", "OK");
-                IsRunning.IsRunning = false;
-            }
-        }
     }
 }
