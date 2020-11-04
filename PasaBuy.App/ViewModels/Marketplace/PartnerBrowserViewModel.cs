@@ -261,15 +261,15 @@ namespace PasaBuy.App.ViewModels.Marketplace
             {
                 partnerStoresRotator.Add(new PartnerStore()
                 {
-                    Image = "https://pasabuy.app/wp-content/uploads/2020/10/Rob1.jpg"
+                    Image = "https://pasabuy.app/wp-content/uploads/2020/11/RobinsonGalleriaSouth-Entrance.jpg"
                 });
                 partnerStoresRotator.Add(new PartnerStore()
                 {
-                    Image = "https://pasabuy.app/wp-content/uploads/2020/10/rob2.jpg"
+                    Image = "https://pasabuy.app/wp-content/uploads/2020/11/RobinsonGalleriaSouth-Outdoor.jpg"
                 });
                 partnerStoresRotator.Add(new PartnerStore()
                 {
-                    Image = "https://pasabuy.app/wp-content/uploads/2020/10/DeliveryVan.png"
+                    Image = "https://pasabuy.app/wp-content/uploads/2020/11/RobinsonGalleriaSouth-Supermarket.jpg"
                 });
             }
             catch (Exception e)
