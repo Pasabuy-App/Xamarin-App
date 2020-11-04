@@ -18,11 +18,24 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         public static string product_name;
         public static double product_price;
 
-        public static ObservableCollection<Variants> _variantsList;
+        public static ObservableCollection<Models.TindaFeature.OptionModel> _addonList;
 
-        public static ObservableCollection<Options> _optionsList;
+        public ObservableCollection<Models.TindaFeature.OptionModel> AddonList
+        {
+            get
+            {
+                return _addonList;
+            }
+            set
+            {
+                _addonList = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
-        public ObservableCollection<Options> OptionsList
+        public static ObservableCollection<Models.TindaFeature.OptionModel> _optionsList;
+
+        public ObservableCollection<Models.TindaFeature.OptionModel> OptionsList
         {
             get
             {
@@ -35,7 +48,9 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
         }
 
-        public ObservableCollection<Variants> VariantsList
+        public static ObservableCollection<Models.TindaFeature.VariantModel> _variantsList;
+
+        public ObservableCollection<Models.TindaFeature.VariantModel> VariantsList
         {
             get
             {
@@ -67,69 +82,90 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         }
         public POSVariantViewModel()
         {
-            _variantsList = new ObservableCollection<Variants>();
+            _variantsList = new ObservableCollection<Models.TindaFeature.VariantModel>();
             this.Product_Name = product_name;
+
+            LoadVariants();
         }
 
-        public static void LoadVariants(string product_id)
+        public void LoadVariants()
         {
             try
             {
-                Http.TindaFeature.Instance.VariantList_Options(product_id, "active", (bool success, string data) =>
+                if (!IsBusy)
                 {
-                    if (success)
+                    IsBusy = true;
+                    Http.TindaPress.Variant.Instance.Listing(product_id, "", "", "active", (bool success, string data) =>
                     {
-                        Variants var = JsonConvert.DeserializeObject<Variants>(data);
-
-                        for (int i = 0; i < var.data.Length; i++)
+                        if (success)
                         {
-                            if (var.data[i].options.Count != 0)
+                            Models.TindaFeature.VariantModel var = JsonConvert.DeserializeObject<Models.TindaFeature.VariantModel>(data);
+
+                            for (int i = 0; i < var.data.Length; i++)
                             {
-                                _optionsList = new ObservableCollection<Options>();
-                                _optionsList.Clear();
-                                for (int j = 0; j < var.data[i].options.Count; j++)
+                                if (var.data[i].options.Count != 0)
                                 {
-                                    _optionsList.Add(new Options()
+                                    if (var.data[i].required == "true")
                                     {
-                                        Vrid = var.data[i].ID,
-                                        Id = var.data[i].options[j].ID,
-                                        Name = var.data[i].options[j].name,
-                                        Price = Convert.ToDouble(var.data[i].options[j].price)
-                                    });
+                                        _optionsList = new ObservableCollection<Models.TindaFeature.OptionModel>();
+                                        _optionsList.Clear();
+                                        for (int j = 0; j < var.data[i].options.Count; j++)
+                                        {
+                                            _optionsList.Add(new Models.TindaFeature.OptionModel()
+                                            {
+                                                Vrid = var.data[i].ID,
+                                                Id = var.data[i].options[j].ID,
+                                                Name = var.data[i].options[j].name,
+                                                Price = Convert.ToDouble(var.data[i].options[j].price)
+                                            });
+                                        }
+                                        _variantsList.Add(new Models.TindaFeature.VariantModel()
+                                        {
+                                            ID = var.data[i].ID,
+                                            Title = var.data[i].title,
+                                            Required = "Required: Yes",
+                                            options = _optionsList
+                                        });
+                                    }
+                                    else
+                                    {
+                                        _addonList = new ObservableCollection<Models.TindaFeature.OptionModel>();
+                                        _addonList.Clear();
+                                        for (int j = 0; j < var.data[i].options.Count; j++)
+                                        {
+                                            _addonList.Add(new Models.TindaFeature.OptionModel()
+                                            {
+                                                Vrid = var.data[i].ID,
+                                                Id = var.data[i].options[j].ID,
+                                                Name = var.data[i].options[j].name,
+                                                Price = Convert.ToDouble(var.data[i].options[j].price)
+                                            });
+                                        }
+                                        _variantsList.Add(new Models.TindaFeature.VariantModel()
+                                        {
+                                            ID = var.data[i].ID,
+                                            Title = var.data[i].title,
+                                            Required = "Required: No",
+                                            addons = _addonList
+                                        });
+                                    }
+                                    IsBusy = false;
                                 }
-                                _variantsList.Add(new Variants()
-                                {
-                                    ID = var.data[i].ID,
-                                    Title = var.data[i].title,
-                                    options = _optionsList
-                                });
                             }
                         }
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                });
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsBusy = false;
+                        }
+                    });
+                }
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2VRT-L1POS.", "OK");
+                IsBusy = false;
             }
-
-
-            /*ObservableCollection<Options> size_options = new ObservableCollection<Options>();
-            size_options.Add(new Options() { Name = "Medium", Price = +25.00 });
-            size_options.Add(new Options() { Name = "Large", Price = +45.00 });
-            size_options.Add(new Options() { Name = "Grande", Price = +65.00 });
-            ObservableCollection<Options> sweetness_options = new ObservableCollection<Options>();
-            sweetness_options.Add(new Options() { Name = "25%", Price = +0.00 });
-            sweetness_options.Add(new Options() { Name = "50%", Price = +0.00 });
-            sweetness_options.Add(new Options() { Name = "75%", Price = +0.00 });
-            sweetness_options.Add(new Options() { Name = "100%", Price = +0.00 });
-
-            _variantsList.Add(new Variants() { Name = "Size", options = size_options });
-            _variantsList.Add(new Variants() { Name = "Sweetness Level", options = sweetness_options });*/
         }
 
         private ICommand _addToOrder;
@@ -141,8 +177,8 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             if (!IsBusy)
             {
                 IsBusy = true;
-                await PopupNavigation.Instance.PopAsync();
                 POSViewModel.InsertData(product_id, product_name, product_price, 1);
+                PopupNavigation.Instance.PopAsync();
                 await Application.Current.MainPage.Navigation.PopModalAsync();
                 IsBusy = false;
             }
