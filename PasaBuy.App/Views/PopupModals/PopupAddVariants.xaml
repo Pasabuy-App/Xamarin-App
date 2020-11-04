@@ -80,13 +80,13 @@
                             PlaceholderColor="{DynamicResource Gray-900}"
                             VerticalOptions="EndAndExpand" />
                     <button:SfCheckBox x:Name="checkBox"
-                                       IsChecked="True"
+                                       IsChecked="False"
                                        StateChanged="checkBox_StateChanged"
                                        Margin="0,10,0,10"
                                        FontFamily="{StaticResource Montserrat-Regular}"
                                        Grid.Row="2"
                                        CheckedColor="{DynamicResource PrimaryColor}"
-                                       Text="Is Base Price?"/>
+                                       Text="Is Required?"/>
                     
                     <button:SfButton
                             Grid.Row="3"

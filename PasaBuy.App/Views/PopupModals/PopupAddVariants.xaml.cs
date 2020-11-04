@@ -12,15 +12,16 @@ namespace PasaBuy.App.Views.PopupModals
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PopupAddVariants : PopupPage
     {
-        public int isBase = 1;
+        public string isBase = "false";
+        public bool isTapped = false;
         public PopupAddVariants()
         {
             InitializeComponent();
         }
 
-        private void CancelModal(object sender, EventArgs e)
+        private async void CancelModal(object sender, EventArgs e)
         {
-            PopupNavigation.Instance.PopAsync();
+            await PopupNavigation.Instance.PopAsync();
         }
 
         private void OKModal(object sender, EventArgs e)
@@ -29,18 +30,24 @@ namespace PasaBuy.App.Views.PopupModals
             {
                 if (!string.IsNullOrWhiteSpace(Name.Text))
                 {
-                    TindaPress.Variant.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "0", ProductVariants.product_id, isBase.ToString(), "", Name.Text, Description.Text, (bool success, string data) =>
+                    if (!isTapped)
                     {
-                        if (success)
+                        isTapped = true;
+                        Http.TindaPress.Variant.Instance.Insert(ProductVariants.product_id, "", Name.Text, Description.Text, isBase, "0.00", async (bool success, string data) =>
                         {
-                            VariantsViewModel.LoadVariants(ProductVariants.product_id);
-                            PopupNavigation.Instance.PopAsync();
-                        }
-                        else
-                        {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                        }
-                    });
+                            if (success)
+                            {
+                                VariantsViewModel.RefreshVariants();
+                                await PopupNavigation.Instance.PopAsync();
+                                isTapped = false;
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                isTapped = false;
+                            }
+                        });
+                    }
                 }
             }
             catch (Exception ex)
@@ -53,13 +60,11 @@ namespace PasaBuy.App.Views.PopupModals
         {
             if (e.IsChecked.HasValue && e.IsChecked.Value)
             {
-                //checkBox.Text = "Checked State";
-                isBase = 1;
+                isBase = "true";
             }
             else if (e.IsChecked.HasValue && !e.IsChecked.Value)
             {
-                //checkBox.Text = "Unchecked State";
-                isBase = 0;
+                isBase = "false";
             }
         }
     }

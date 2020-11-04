@@ -15,43 +15,24 @@ namespace PasaBuy.App.Views.PopupModals
     public partial class PopupEditVariants : PopupPage
     {
         public static string variant_id;
+        public static string variant_name;
+        public static string variant_info;
+        public static string variant_required;
         public int isBase = 0;
         public PopupEditVariants()
         {
             InitializeComponent();
-            try
+            if (!string.IsNullOrEmpty(variant_id))
             {
-                if (!string.IsNullOrEmpty(variant_id))
-                {
-                    TindaPress.Variant.Instance.Listing(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, ProductVariants.product_id, "0", "1", variant_id, (bool success, string data) =>
-                    {
-                        if (success)
-                        {
-                            Variants variants = JsonConvert.DeserializeObject<Variants>(data);
-                            for (int i = 0; i < variants.data.Length; i++)
-                            {
-                                Name.Text = variants.data[i].title;
-                                Description.Text = variants.data[i].info;
-                                checkBox.IsChecked = variants.data[i].required == "true" ? true : false;
-                            }
-                        }
-                        else
-                        {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-
-                        }
-                    });
-                }
-            }
-            catch (Exception e)
-            {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                Name.Text = variant_name;
+                Description.Text = variant_info;
+                checkBox.IsChecked = variant_required == "true" ? true : false;
             }
         }
 
-        private void CancelModal(object sender, EventArgs e)
+        private async void CancelModal(object sender, EventArgs e)
         {
-            PopupNavigation.Instance.PopAsync();
+            await Navigation.PopModalAsync();
         }
 
         private void OKModal(object sender, EventArgs e)
@@ -60,14 +41,13 @@ namespace PasaBuy.App.Views.PopupModals
             {
                 if (!string.IsNullOrWhiteSpace(Name.Text))
                 {
-                    //new Alert("Yes", "OK: " + isBase, "OK");
-                    TindaPress.Variant.Instance.Update(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, variant_id, ProductVariants.product_id, isBase.ToString(), "", Name.Text, Description.Text, (bool success, string data) =>
+                    TindaPress.Variant.Instance.Update(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, variant_id, ProductVariants.product_id, isBase.ToString(), "", Name.Text, Description.Text, async (bool success, string data) =>
                     {
                         if (success)
                         {
                             variant_id = string.Empty;
-                            VariantsViewModel.LoadVariants(ProductVariants.product_id);
-                            PopupNavigation.Instance.PopAsync();
+                            VariantsViewModel.RefreshVariants();
+                            await Navigation.PopModalAsync();
                         }
                         else
                         {
@@ -86,12 +66,10 @@ namespace PasaBuy.App.Views.PopupModals
         {
             if (e.IsChecked.HasValue && e.IsChecked.Value)
             {
-                //checkBox.Text = "Checked State";
                 isBase = 1;
             }
             else if (e.IsChecked.HasValue && !e.IsChecked.Value)
             {
-                //checkBox.Text = "Unchecked State";
                 isBase = 0;
             }
         }
