@@ -10,29 +10,31 @@
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
     xmlns:behavior1="clr-namespace:PasaBuy.App.Behaviors" 
     xmlns:controls="clr-namespace:PasaBuy.App.Controls"
-    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms" xmlns:templateSelector="clr-namespace:PasaBuy.App.Helpers">
-    <pages:PopupPage.Resources>
-        <ResourceDictionary>
-            <Style x:Key="PopupItemHeaderStyle" TargetType="{x:Type Label}">
-                <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
-                <Setter Property="FontSize" Value="18" />
-                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
-                <Setter Property="HorizontalTextAlignment" Value="Start" />
-                <Setter Property="VerticalTextAlignment" Value="Center" />
-                <Setter Property="Margin" Value="0,0,0,0" />
-            </Style>
+    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms" 
+    xmlns:templateSelector="clr-namespace:PasaBuy.App.Helpers" xmlns:loading="clr-namespace:PasaBuy.App.UserControls">
 
-            <Style x:Key="PopupLabelStyle" TargetType="{x:Type Label}">
-                <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
-                <Setter Property="FontSize" Value="18" />
-                <Setter Property="TextColor" Value="Black" />
-                <Setter Property="HorizontalOptions" Value="Start" />
-                <Setter Property="VerticalOptions" Value="End" />
-                <Setter Property="Margin" Value="10,0,0,12" />
-            </Style>
+        <pages:PopupPage.Resources>
+            <ResourceDictionary>
+                <Style x:Key="PopupItemHeaderStyle" TargetType="{x:Type Label}">
+                    <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+                    <Setter Property="FontSize" Value="18" />
+                    <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                    <Setter Property="HorizontalTextAlignment" Value="Start" />
+                    <Setter Property="VerticalTextAlignment" Value="Center" />
+                    <Setter Property="Margin" Value="0,0,0,0" />
+                </Style>
 
-            <DataTemplate x:Key="radioTemplate">
-                <button:SfRadioButton  Grid.Column="0"
+                <Style x:Key="PopupLabelStyle" TargetType="{x:Type Label}">
+                    <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+                    <Setter Property="FontSize" Value="18" />
+                    <Setter Property="TextColor" Value="Black" />
+                    <Setter Property="HorizontalOptions" Value="Start" />
+                    <Setter Property="VerticalOptions" Value="End" />
+                    <Setter Property="Margin" Value="10,0,0,12" />
+                </Style>
+
+                <DataTemplate x:Key="radioTemplate">
+                    <button:SfRadioButton  Grid.Column="0"
                                             x:Name="Options"
                                             Margin="8,12,8,0"
                                             HorizontalOptions="FillAndExpand"
@@ -42,10 +44,10 @@
                                             CheckedColor="{DynamicResource PrimaryColor}"
                                             ClassId="{Binding Vrid}"
                                             Text="{Binding Name}" />
-            </DataTemplate>
+                </DataTemplate>
 
-            <DataTemplate x:Key="checkboxTemplate">
-                <button:SfCheckBox x:Name="checkBox" 
+                <DataTemplate x:Key="checkboxTemplate">
+                    <button:SfCheckBox x:Name="checkBox" 
                                     Margin="8,8,0,0"
                                     CheckedColor="{DynamicResource PrimaryColor}"
                                     FontSize="{DynamicResource MediumSize}" 
@@ -53,52 +55,52 @@
                                     TextColor="{DynamicResource Gray-900}"
                                     ClassId="{Binding Vrid}"
                                     Text="{Binding Name}"/>
-            </DataTemplate>
+                </DataTemplate>
 
-            <DataTemplate x:Key="variantsTemplate">
-                <Frame HasShadow="True" BackgroundColor="{DynamicResource Gray-100}">
-                    <StackLayout>
-                        <Grid CompressedLayout.IsHeadless="True">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+                <DataTemplate x:Key="variantsTemplate">
+                    <Frame HasShadow="True" BackgroundColor="{DynamicResource Gray-100}">
+                        <StackLayout>
+                            <Grid CompressedLayout.IsHeadless="True">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label FontFamily="{StaticResource Montserrat-SemiBold}"
                                Padding="5,0,0,0"
                                Grid.Column="0"
                                HorizontalTextAlignment="Start"
                                FontSize="{DynamicResource MediumSize}"
-                               Text="{Binding Name}"
+                               Text="{Binding Title}"
                                TextColor="{DynamicResource Gray-900}" />
-                            <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+                                <Label FontFamily="{StaticResource Montserrat-SemiBold}"
                                Padding="5,0,0,0"
                                Grid.Column="1"
                                HorizontalTextAlignment="End"
                                FontSize="{DynamicResource MediumSize}"
-                               Text="{Binding Base}"
+                               Text="{Binding Required}"
                                TextColor="{DynamicResource Gray-900}" />
-                        </Grid>
+                            </Grid>
 
-                        <Grid ColumnSpacing="0" RowSpacing="0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <button:SfRadioGroup BindableLayout.ItemsSource="{Binding options}" 
+                            <Grid ColumnSpacing="0" RowSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <button:SfRadioGroup BindableLayout.ItemsSource="{Binding options}" 
                                                   Spacing="0" 
                                                   Grid.Column="0">
-                                <BindableLayout.ItemTemplateSelector>
-                                    <templateSelector:VariantsTemplateSelecteior VariantsTemplate="{StaticResource radioTemplate}" />
-                                </BindableLayout.ItemTemplateSelector>
-                            </button:SfRadioGroup>
+                                    <BindableLayout.ItemTemplateSelector>
+                                        <templateSelector:VariantsTemplateSelecteior VariantsTemplate="{StaticResource radioTemplate}" />
+                                    </BindableLayout.ItemTemplateSelector>
+                                </button:SfRadioGroup>
 
-                            <StackLayout Grid.Column="1"
+                                <StackLayout Grid.Column="1"
                                          Spacing="0" 
                                          HorizontalOptions="End"
                                          BindableLayout.ItemsSource="{Binding options}">
-                                <BindableLayout.ItemTemplate>
-                                    <DataTemplate>
-                                        <Label  HorizontalOptions="End" 
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label  HorizontalOptions="End" 
                                                 VerticalOptions="Center" 
                                                 Padding="0,10,0,2"
                                                 Margin="8,8,8,0"
@@ -107,32 +109,32 @@
                                                 FontFamily="{StaticResource Montserrat-Medium}" 
                                                 TextColor="{DynamicResource Gray-900}"
                                                 LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
-                                    </DataTemplate>
-                                </BindableLayout.ItemTemplate>
-                            </StackLayout>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </StackLayout>
 
-                        </Grid>
+                            </Grid>
 
-                        <Grid ColumnSpacing="0" RowSpacing="0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <button:SfRadioGroup BindableLayout.ItemsSource="{Binding addons}" 
+                            <Grid ColumnSpacing="0" RowSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <button:SfRadioGroup BindableLayout.ItemsSource="{Binding addons}" 
                                                   Spacing="0" 
                                                   Grid.Column="0">
-                                <BindableLayout.ItemTemplateSelector>
-                                    <templateSelector:AddonTemplateSelector AddonTemplate="{StaticResource checkboxTemplate}" />
-                                </BindableLayout.ItemTemplateSelector>
-                            </button:SfRadioGroup>
+                                    <BindableLayout.ItemTemplateSelector>
+                                        <templateSelector:AddonTemplateSelector AddonTemplate="{StaticResource checkboxTemplate}" />
+                                    </BindableLayout.ItemTemplateSelector>
+                                </button:SfRadioGroup>
 
-                            <StackLayout Grid.Column="1"
+                                <StackLayout Grid.Column="1"
                                          Spacing="0" 
                                          HorizontalOptions="End"
                                          BindableLayout.ItemsSource="{Binding addons}">
-                                <BindableLayout.ItemTemplate>
-                                    <DataTemplate>
-                                        <Label  HorizontalOptions="End" 
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label  HorizontalOptions="End" 
                                                 VerticalOptions="Center" 
                                                 Padding="0,10,0,2"
                                                 Margin="8,8,8,0"
@@ -141,57 +143,60 @@
                                                 FontFamily="{StaticResource Montserrat-Medium}" 
                                                 TextColor="{DynamicResource Gray-900}"
                                                 LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
-                                    </DataTemplate>
-                                </BindableLayout.ItemTemplate>
-                            </StackLayout>
-                        </Grid>
-                    </StackLayout>
-                </Frame>
-            </DataTemplate>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </StackLayout>
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
 
-        </ResourceDictionary>
-    </pages:PopupPage.Resources>
-    <pages:PopupPage.Animation>
-        <animations:ScaleAnimation
+            </ResourceDictionary>
+        </pages:PopupPage.Resources>
+
+        <pages:PopupPage.Animation>
+            <animations:ScaleAnimation
             DurationIn="500"
             EasingIn="SpringOut"
             PositionIn="Bottom"
             PositionOut="Center"
             ScaleIn="1"
             ScaleOut="0.7" />
-    </pages:PopupPage.Animation>
-    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-        <Frame
+        </pages:PopupPage.Animation>
+
+    <Grid>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <Frame
             x:Name="FrameContainer"
             Margin="15"
             Padding="15,15,15,15"
             BackgroundColor="White"
             CornerRadius="6"
             HorizontalOptions="Center">
-            <StackLayout
+                <StackLayout
                 Padding="10,5"
                 IsClippedToBounds="True"
                 Spacing="3">
-                <Grid RowSpacing="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
+                    <Grid RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                    <Grid
+                        <Grid
                         Grid.Row="1"
                         ColumnSpacing="8"
                         RowSpacing="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="60" />
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="60" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.5*" />
-                            <ColumnDefinition Width="0.5*" />
-                        </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="60" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.5*" />
+                                <ColumnDefinition Width="0.5*" />
+                            </Grid.ColumnDefinitions>
 
-                        <Label  HorizontalOptions="Start" 
+                            <Label  HorizontalOptions="Start" 
                                 VerticalOptions="Center" 
                                 Grid.Row="0"
                                 Padding="0,5,0,2"
@@ -202,10 +207,10 @@
                                 TextColor="{DynamicResource Gray-900}"
                                 LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
 
-                        <StackLayout Grid.Row="1"
+                            <StackLayout Grid.Row="1"
                                      Grid.ColumnSpan="2"
                                      CompressedLayout.IsHeadless="True">
-                            <listView:SfListView Margin="0,0"
+                                <listView:SfListView Margin="0,0"
                                                 Padding="0"
                                                 AutoFitMode="Height"
                                                 ColumnSpacing="0"
@@ -218,10 +223,10 @@
                                                 SelectionBackgroundColor="Transparent"
                                                 ItemTemplate="{StaticResource variantsTemplate}"
                                                 TapCommand="{Binding ItemSelectedCommand}">
-                            </listView:SfListView>
-                        </StackLayout>
+                                </listView:SfListView>
+                            </StackLayout>
 
-                        <button:SfButton
+                            <button:SfButton
                             Grid.Row="2"
                             Grid.Column="0"
                             BackgroundColor="Green"
@@ -234,7 +239,7 @@
                             Text="OK"
                             TextColor="White"
                             VerticalOptions="Center" />
-                        <button:SfButton
+                            <button:SfButton
                             Grid.Row="2"
                             Grid.Column="1"
                             BackgroundColor="Red"
@@ -247,9 +252,16 @@
                             Text="{texts:Translate Cancel}"
                             TextColor="White"
                             VerticalOptions="Center" />
+                        </Grid>
                     </Grid>
-                </Grid>
-            </StackLayout>
-        </Frame>
-    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+        <loading:LoadingIndicator
+                HorizontalOptions="Fill"
+                IsRunning="{Binding IsBusy, Mode=TwoWay}"
+                VerticalOptions="Fill" />
+
+    </Grid>
+    
 </pages:PopupPage>

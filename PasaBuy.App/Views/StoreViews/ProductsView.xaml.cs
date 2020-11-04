@@ -40,26 +40,5 @@ namespace PasaBuy.App.Views.StoreViews
         {
             Navigation.PopAsync();
         }
-
-        private void listView_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
-        {
-            /*var item = e.ItemData as Models.TindaFeature.ProductModel;
-            if (ProductViewModel.productsList.Last() == item && ProductViewModel.productsList.Count() != 1)
-            {
-                if (ProductViewModel.productsList.IndexOf(item) >= LastIndex)
-                {
-                    if (isFirstLoad)
-                    {
-                        Offset += 7;
-                    }
-                    else
-                    {
-                        isFirstLoad = true;
-                    }
-                    LastIndex += 6;
-                    ProductViewModel.LoadData(Offset.ToString());
-                }
-            }*/
-        }
     }
 }
