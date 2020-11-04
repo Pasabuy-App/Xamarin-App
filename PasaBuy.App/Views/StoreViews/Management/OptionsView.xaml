@@ -65,6 +65,13 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
+        
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"   
+                     x:Name="rv"
+                     Command="{Binding RefreshCommand}">
+
+            <ScrollView VerticalScrollBarVisibility="Never" Padding="0, 0, 0, -10">
+                
         <Grid>
             <Grid>
                 <Grid RowSpacing="0">
@@ -135,27 +142,7 @@
                             <Grid Padding="0,0"
                                   Grid.Row="1"
                                   VerticalOptions="FillAndExpand">
-                                <pulltoRefresh:SfPullToRefresh
-                                    x:Name="pullToRefresh"
-                                    IsRefreshing="False"
-                                    PullingThreshold="150"
-                                    RefreshContentHeight="50"
-                                    RefreshContentWidth="50"
-                                    TransitionMode="Push">
-                                    <pulltoRefresh:SfPullToRefresh.ProgressStrokeWidth>
-                                        <OnPlatform x:TypeArguments="x:Double">
-                                            <On Platform="Android">
-                                                <OnIdiom
-                                                    x:TypeArguments="x:Double"
-                                                    Phone="6"
-                                                    Tablet="3" />
-                                            </On>
-                                            <On Platform="UWP" Value="2" />
-                                            <On Platform="iOS,macOS" Value="2" />
-                                        </OnPlatform>
-                                    </pulltoRefresh:SfPullToRefresh.ProgressStrokeWidth>
-                                    <pulltoRefresh:SfPullToRefresh.PullableContent>
-                                        <syncListView:SfListView
+                                <syncListView:SfListView
                                             x:Name="listView"
                                             AllowSwiping="True"
                                             FocusBorderThickness="0"
@@ -164,35 +151,35 @@
                                             ItemSize="80"
                                             ItemsSource="{Binding OptionsList}"
                                             SelectionMode="None">
-                                            <!--SwipeEnded="Handle_SwipeEnded"
+                                    <!--SwipeEnded="Handle_SwipeEnded"
                                             SwipeStarted="Handle_SwipeStarted"-->
-                                            <syncListView:SfListView.ItemTemplate>
-                                                <DataTemplate>
-                                                    <Frame x:Name="frame" 
+                                    <syncListView:SfListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Frame x:Name="frame" 
                                                            HasShadow="True" 
                                                            Padding="2" 
                                                            Margin="2">
-                                                        <Grid ColumnSpacing="0" 
+                                                <Grid ColumnSpacing="0" 
                                                               Padding="10"
                                                               RowSpacing="2">
-                                                            <Grid.RowDefinitions>
-                                                                <RowDefinition Height="auto" />
-                                                                <RowDefinition Height="auto" />
-                                                            </Grid.RowDefinitions>
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="*" />
-                                                                <ColumnDefinition Width="*" />
-                                                            </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="auto" />
+                                                        <RowDefinition Height="auto" />
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
 
-                                                            <Label LineBreakMode="TailTruncation"
+                                                    <Label LineBreakMode="TailTruncation"
                                                                    Grid.Row="0"
                                                                    Grid.Column="0"
                                                                    FontFamily="{StaticResource Montserrat-SemiBold}"
                                                                    FontSize="{DynamicResource SmallSize}"
                                                                    TextColor="{DynamicResource Gray-900}"
-                                                                   Text="{Binding Name}" />
+                                                                   Text="{Binding Title}" />
 
-                                                            <Label LineBreakMode="TailTruncation"
+                                                    <Label LineBreakMode="TailTruncation"
                                                                    Grid.Row="1"
                                                                    Grid.Column="0"
                                                                    Grid.ColumnSpan="2"
@@ -201,14 +188,14 @@
                                                                    TextColor="{DynamicResource Gray-900}"
                                                                    Text="{Binding Info}" />
 
-                                                            <!--<Label Grid.Row="0"
+                                                    <!--<Label Grid.Row="0"
                                                                    Grid.Column="1"
                                                                    HorizontalOptions="EndAndExpand"
                                                                    Style="{StaticResource ProductNameTitleStyle}"
                                                                    FontFamily="{StaticResource Montserrat-Medium}"
                                                                    Text="" />-->
 
-                                                            <Label Grid.Row="0"
+                                                    <Label Grid.Row="0"
                                                                    Grid.Column="1"
                                                                    HorizontalOptions="EndAndExpand"
                                                                     FontFamily="{StaticResource Montserrat-Medium}"
@@ -217,61 +204,58 @@
                                                                                             Default=-1}"
                                                                     Text="{Binding Price, StringFormat='₱ {0:F2}'}"
                                                                     TextColor="{DynamicResource Gray-900}" />
-                                                        </Grid>
-                                                    </Frame>
-                                                </DataTemplate>
-                                            </syncListView:SfListView.ItemTemplate>
-                                            <syncListView:SfListView.RightSwipeTemplate>
-                                                <DataTemplate x:Name="RightSwipeTemplate">
-                                                    <Grid Padding="5,15,5,15"
+                                                </Grid>
+                                            </Frame>
+                                        </DataTemplate>
+                                    </syncListView:SfListView.ItemTemplate>
+                                    <syncListView:SfListView.RightSwipeTemplate>
+                                        <DataTemplate x:Name="RightSwipeTemplate">
+                                            <Grid Padding="5,15,5,15"
                                                           CompressedLayout.IsHeadless="True">
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="*" />
-                                                            <ColumnDefinition Width="*" />
-                                                        </Grid.ColumnDefinitions>
-                                                        <Grid ClassId="{Binding Id}"
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid
                                                             Grid.Column="0"
                                                             BackgroundColor="{DynamicResource PrimaryColor}"
                                                             HorizontalOptions="Fill"
                                                             VerticalOptions="Fill">
                                                             <Grid.GestureRecognizers>
-                                                                <TapGestureRecognizer x:Name="Update" Tapped="Update_Tapped"/>
+                                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.UpdateCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"/>
                                                             </Grid.GestureRecognizers>
-                                                            <Grid HorizontalOptions="Center" VerticalOptions="Center">
-                                                                <Image
+                                                    <Grid HorizontalOptions="Center" VerticalOptions="Center">
+                                                        <Image
                                                                     Grid.Row="0"
                                                                     Grid.Column="0"
                                                                     BackgroundColor="Transparent"
                                                                     HeightRequest="28"
                                                                     Source="edit_white.png"
                                                                     WidthRequest="28" />
-                                                            </Grid>
-                                                        </Grid>
-                                                        <Grid ClassId="{Binding Id}"
+                                                    </Grid>
+                                                </Grid>
+                                                <Grid
                                                             Grid.Column="1"
                                                             BackgroundColor="Red"
                                                             HorizontalOptions="Fill"
                                                             VerticalOptions="Fill">
                                                             <Grid.GestureRecognizers>
-
-                                                                <TapGestureRecognizer  x:Name="Delete" Tapped="Delete_Tapped" />
+                                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"/>
                                                             </Grid.GestureRecognizers>
-                                                            <Grid HorizontalOptions="Center" VerticalOptions="Center">
-                                                                <Image
+                                                    <Grid HorizontalOptions="Center" VerticalOptions="Center">
+                                                        <Image
                                                                     Grid.Row="0"
                                                                     Grid.Column="0"
                                                                     BackgroundColor="Transparent"
                                                                     HeightRequest="28"
                                                                     Source="Delete.png"
                                                                     WidthRequest="28" />
-                                                            </Grid>
-                                                        </Grid>
                                                     </Grid>
-                                                </DataTemplate>
-                                            </syncListView:SfListView.RightSwipeTemplate>
-                                        </syncListView:SfListView>
-                                    </pulltoRefresh:SfPullToRefresh.PullableContent>
-                                </pulltoRefresh:SfPullToRefresh>
+                                                </Grid>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </syncListView:SfListView.RightSwipeTemplate>
+                                </syncListView:SfListView>
                             </Grid>
                         </Grid>
                     </yummy:PancakeView>
@@ -281,11 +265,14 @@
 
             </Grid>
             <local:LoadingIndicator
-                Grid.Row="0"
-                IsVisible="False"
+                IsRunning="{Binding IsRunning, Mode=TwoWay}"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill" />
         </Grid>
+        </ScrollView>
+
+        </RefreshView>
+
     </ContentPage.Content>
 
 </ContentPage>

@@ -21,48 +21,12 @@ namespace PasaBuy.App.Views.StoreViews.Management
         public static int Offset = 0;
         public static bool isFirstLoad = false;
         public int count = 0;
+        public static string title;
         public OptionsView()
         {
             InitializeComponent();
             this.BindingContext = new OptionsViewModel();
-
-            pullToRefresh.Refreshing += PullToRefresh_Refreshing;
-            try
-            {
-                if (!string.IsNullOrEmpty(OptionsViewModel.variant_id))
-                {
-                    TindaPress.Variant.Instance.Listing(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, ProductVariants.product_id, "0", "1", OptionsViewModel.variant_id, (bool success, string data) =>
-                    {
-                        if (success)
-                        {
-                            Variants variants = JsonConvert.DeserializeObject<Variants>(data);
-                            TitleName.Text = variants.data[0].title;
-                        }
-                        else
-                        {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-
-                        }
-                    });
-                }
-            }
-            catch (Exception e)
-            {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
-            }
-        }
-
-        private async void PullToRefresh_Refreshing(object sender, EventArgs args)
-        {
-            pullToRefresh.IsRefreshing = true;
-            await Task.Delay(100);
-            LastIndex = 11;
-            isFirstLoad = false;
-            Offset = 0;
-            //OptionsViewModel._optionsList.Clear();
-            OptionsViewModel.LoadOptions(ProductVariants.product_id, OptionsViewModel.variant_id);
-            pullToRefresh.IsRefreshing = false;
-            //new Alert("Variants to Options", " Click Add Model " + PopupAddVariants.type + " " + ProductVariants.product_id, "OK");*/
+            TitleName.Text = title;
         }
 
         public void BackButtonClicked(object sender, EventArgs e)
@@ -74,7 +38,7 @@ namespace PasaBuy.App.Views.StoreViews.Management
             return base.OnBackButtonPressed();
         }
 
-        private async void Delete_Tapped(object sender, EventArgs e)
+        /*private async void Delete_Tapped(object sender, EventArgs e)
         {
             try
             {
@@ -89,7 +53,7 @@ namespace PasaBuy.App.Views.StoreViews.Management
                         {
                             if (success)
                             {
-                                OptionsViewModel.LoadOptions(ProductVariants.product_id, OptionsViewModel.variant_id);
+                                //OptionsViewModel.LoadOptions(ProductVariants.product_id, OptionsViewModel.variant_id);
                             }
                             else
                             {
@@ -115,14 +79,14 @@ namespace PasaBuy.App.Views.StoreViews.Management
                 count = 1;
                 var btn = sender as Grid;
                 //new Alert("Notice to User", btn.ClassId, "Try Again");
-                /*PopupAddVariants.type = "options";
-                PopupAddVariants.variant_id = variant_id;*/
+                *//*PopupAddVariants.type = "options";
+                PopupAddVariants.variant_id = variant_id;*//*
                 PopupEditOptions.option_id = btn.ClassId;
                 await PopupNavigation.Instance.PushAsync(new PopupEditOptions());
                 await Task.Delay(200);
                 count = 0;
                 //new Alert("Variants to Options", " Click Add Model " + btn.ClassId + " " + ProductVariants.product_id, "OK");
             }
-        }
+        }*/
     }
 }
