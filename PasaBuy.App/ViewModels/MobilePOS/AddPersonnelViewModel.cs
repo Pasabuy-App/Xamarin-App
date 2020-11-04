@@ -129,7 +129,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-SU1APVM.", "OK");
                 IsRunning = false;
             }
         }
@@ -169,7 +169,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-SU2APVM.", "OK");
             }
         }
     }

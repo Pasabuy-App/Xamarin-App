@@ -64,7 +64,7 @@ namespace PasaBuy.App.Views
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-VU1MT.", "OK");
             }
         }
         private async void TabView_TabItemTapped(object sender, Syncfusion.XForms.TabView.TabItemTappedEventArgs e)
