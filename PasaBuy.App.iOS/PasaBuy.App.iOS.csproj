@@ -318,9 +318,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\LoginBackground.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\ChatMessageBackground.png" />
   </ItemGroup>
   <ItemGroup>
