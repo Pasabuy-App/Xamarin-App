@@ -14,36 +14,27 @@ namespace PasaBuy.App.Views.PopupModals
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PopupEditOptions : PopupPage
     {
+        public static string variant_id;
+        public static string product_id;
         public static string option_id;
+        public static string option_name;
+        public static string option_info;
+        public static string option_price;
+        public bool isTapped = false;
         public PopupEditOptions()
         {
             InitializeComponent();
             if (!string.IsNullOrWhiteSpace(option_id))
             {
-                TindaPress.Variant.Instance.Listing(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, ProductVariants.product_id, OptionsViewModel.variant_id, "1", option_id, (bool success, string data) =>
-                {
-                    if (success)
-                    {
-                        Options options = JsonConvert.DeserializeObject<Options>(data);
-                        for (int i = 0; i < options.data.Length; i++)
-                        {
-                            Name.Text = options.data[i].name;
-                            Description.Text = options.data[i].info;
-                            Price.Text = options.data[i].price;
-                        }
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-
-                    }
-                });
+                Name.Text = option_name;
+                Description.Text = option_info;
+                Price.Text = option_price;
             }
         }
 
-        private void CancelModal(object sender, EventArgs e)
+        private async void CancelModal(object sender, EventArgs e)
         {
-            PopupNavigation.Instance.PopAsync();
+            await PopupNavigation.Instance.PopAsync();
         }
 
         private void OkModal(object sender, EventArgs e)
@@ -55,43 +46,55 @@ namespace PasaBuy.App.Views.PopupModals
                 {
                     if (!string.IsNullOrWhiteSpace(option_id))
                     {
-                        TindaPress.Variant.Instance.Update(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, option_id, ProductVariants.product_id, "", Price.Text, Name.Text, Description.Text, (bool success, string data) =>
+                        if (!isTapped)
                         {
-                            if (success)
+                            isTapped = true;
+                            Http.TindaPress.Variant.Instance.Update(ProductVariants.product_id, option_id, Name.Text, Description.Text, "false", Price.Text, async (bool success, string data) =>
                             {
-                                //new Alert("option_id", "option_id: " + option_id, "OK");
-                                option_id = string.Empty;
-                                //OptionsViewModel._optionsList.Clear();
-                                OptionsViewModel.LoadOptions(ProductVariants.product_id, OptionsViewModel.variant_id);
-                                PopupNavigation.Instance.PopAsync();
-                            }
-                            else
-                            {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                            }
-                        });
+                                if (success)
+                                {
+                                    option_id = string.Empty;
+                                    Name.Text = string.Empty;
+                                    Description.Text = string.Empty;
+                                    Price.Text = string.Empty;
+                                    OptionsViewModel.RefreshOptions();
+                                    await PopupNavigation.Instance.PopAsync();
+                                    isTapped = false;
+                                }
+                                else
+                                {
+                                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                    isTapped = false;
+                                }
+                            });
+                        }
                     }
                     else
                     {
-                        TindaPress.Variant.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, OptionsViewModel.variant_id, ProductVariants.product_id, "0", Price.Text, Name.Text, Description.Text, (bool success, string data) =>
+                        if (!isTapped)
                         {
-                            if (success)
+                            isTapped = true;
+                            Http.TindaPress.Variant.Instance.Insert(ProductVariants.product_id, OptionsViewModel.variant_id, Name.Text, Description.Text, "false", Price.Text, async (bool success, string data) =>
                             {
-                                //OptionsViewModel._optionsList.Clear();
-                                OptionsViewModel.LoadOptions(ProductVariants.product_id, OptionsViewModel.variant_id);
-                                PopupNavigation.Instance.PopAsync();
-                            }
-                            else
-                            {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                            }
-                        });
+                                if (success)
+                                {
+                                    OptionsViewModel.RefreshOptions();
+                                    await PopupNavigation.Instance.PopAsync();
+                                    isTapped = false;
+                                }
+                                else
+                                {
+                                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                    isTapped = false;
+                                }
+                            });
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
+                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2VRT-IU1EO.", "OK");
 
             }
         }
