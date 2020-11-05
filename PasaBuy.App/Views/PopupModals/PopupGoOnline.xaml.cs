@@ -96,11 +96,15 @@ namespace PasaBuy.App.Views.PopupModals
         {
             try
             {
-                Http.MobilePOS.Operation.Instance.Update( "", (bool success, string data) =>
+                Http.MobilePOS.Operation.Instance.Update(status, (bool success, string data) =>
                 {
                     if (!success)
                     {
                         new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        Views.Navigation.MasterView._switch = false;
+                        Views.Navigation.MasterView._switchlist.Clear();
+                        Local.PSACache.Instance.UserInfo.mover_status = Convert.ToBoolean(_switch);
+                        Local.PSACache.Instance.SaveUserData();
                     }
                 });
             }

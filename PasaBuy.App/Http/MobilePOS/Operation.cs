@@ -44,7 +44,7 @@ namespace PasaBuy.App.Http.MobilePOS
         #region Method
 
         /// <summary>
-        /// Update of store operation.
+        /// Update of store operation with status open or close.
         /// </summary>
         public async void Update(string status, Action<bool, string> callback)
         {
@@ -54,6 +54,7 @@ namespace PasaBuy.App.Http.MobilePOS
                     dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
                     dict.Add("snky", PSACache.Instance.UserInfo.snky);
                     dict.Add("stid", PSACache.Instance.UserInfo.stid);
+                    dict.Add("status", status);
                 var content = new FormUrlEncodedContent(dict);
 
                 var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/mobilepos/v2/schedule/operation/insert", content);
