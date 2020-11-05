@@ -62,8 +62,8 @@ namespace PasaBuy.App.ViewModels.eCommerce
         public CheckoutPageViewModel()
         {
             this.TotalPrice = totalprice;
-            this.DiscountPrice = discount;
-            this.DiscountPercent = coupon;
+            //this.DiscountPrice = discount;
+            //this.DiscountPercent = coupon;
             this.DeliveryFee = charges;
 
             this.EditCommand = new Command(this.EditClicked);
@@ -74,6 +74,31 @@ namespace PasaBuy.App.ViewModels.eCommerce
             this.IsBusy = true;
             PaymentMethod();
             //LoadCart();
+
+            deliveryAddress.CollectionChanged += CollectionChanges;
+        }
+
+        private void CollectionChanges(object sender, EventArgs e)
+        {
+            try
+            {
+                Http.HatidPress.Order.Instance.DeliveryFee(AddressInMapPage.lat.ToString(), AddressInMapPage.lon.ToString(), Marketplace.StoreDetailsViewModel.store_id, (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        Models.HatidFeature.Delivery fee = JsonConvert.DeserializeObject<Models.HatidFeature.Delivery>(data);
+                        this.DeliveryFee = "₱ " + fee.data.ToString();
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2DEL-I1CPVM.", "OK");
+            }
         }
 
         public static void LoadCart()
