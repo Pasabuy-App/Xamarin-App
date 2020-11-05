@@ -31,19 +31,6 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
         }
 
-        public ICommand ChangeWalletCommand
-        {
-            get
-            {
-                return new Command<string>((x) => ChangeWalletClicked(x));
-            }
-        }
-        private async void ChangeWalletClicked(string id)
-        {
-            new Alert("Test", id, "Personnel Id");
-            await App.Current.MainPage.Navigation.PopModalAsync();
-        }
-
         public ObservableCollection<Models.POSFeature.PersonnelModel> PersonnelsList
         {
             get
@@ -113,6 +100,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             _rolesList = new ObservableCollection<Models.POSFeature.RoleModel>();
 
             LoadRoleList();
+            ChangeWalletCommand = new Command<object>(ChangeWalletClicked);
             DeleteCommand = new Command<object>(DeleteClicked);
             ViewPersonnelCommand = new Command<object>(ViewPersonnelClicked);
             UpdateCommand = new Command<object>(UpdateClicked);
@@ -124,6 +112,46 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 IsRefreshing = false;
             });
         }
+        public Command<object> ChangeWalletCommand { get; set; }
+        private async void ChangeWalletClicked(object obj)
+        {
+            try
+            {
+                if (!IsRunning)
+                {
+                    IsRunning = true;
+                    bool answer = await Application.Current.MainPage.DisplayAlert("Change Wallet?", "Are you sure to change?", "Yes", "No");
+                    if (answer)
+                    {
+                        var person = obj as Models.POSFeature.PersonnelModel;
+                        Http.MobilePOS.Wallet.Instance.Change(Views.StoreViews.Management.SearchWalletPersonnel.key, person.User_id, async (bool success, string data) =>
+                        {
+                            if (success)
+                            {
+                                PaymentsViewModel._walletTransactions.Clear();
+                                await App.Current.MainPage.Navigation.PopModalAsync();
+                                IsRunning = false;
+                            }
+                            else
+                            {
+                                new Controllers.Notice.Alert("Notice to User", Local.HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                IsRunning = false;
+                            }
+                        });
+                    }
+                    else
+                    {
+                        IsRunning = false;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2WLT-C1PVM.", "OK");
+                IsRunning = false;
+            }
+        }
+
 
         public void LoadRoleList()
         {

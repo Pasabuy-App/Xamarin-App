@@ -13,6 +13,7 @@ namespace PasaBuy.App.Views.StoreViews.Management
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchWalletPersonnel : ContentPage
     {
+        public static string key;
         public SearchWalletPersonnel()
         {
             InitializeComponent();
