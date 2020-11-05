@@ -132,7 +132,7 @@
                             TextColor="White"
                             BackgroundColor="{DynamicResource PrimaryColor}"
                             Text="Change" />
-                    <buttons:SfButton
+                    <buttons:SfButton IsVisible="false"
                             Command="{Binding WithdrawCommand}"
                             CornerRadius="5"
                             Grid.Column="1"
