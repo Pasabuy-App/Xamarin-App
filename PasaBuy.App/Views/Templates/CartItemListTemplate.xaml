@@ -51,7 +51,7 @@
                 <UriImageSource
                     CacheValidity="14"
                     CachingEnabled="true"
-                    Uri="{Binding PreviewImage}" />
+                    Uri="{Binding Avatar}" />
             </Image.Source>
         </Image>
 
@@ -81,7 +81,7 @@
                                     Default=-1}"
             MaxLines="2"
             Style="{StaticResource CommonLabelStyle}"
-            Text="{Binding Summary}" />
+            Text="{Binding Variant_Name}" />
 
         <StackLayout
             Grid.Row="2"
@@ -97,7 +97,7 @@
                 FontSize="20"
                 HorizontalOptions="Start"
                 Style="{StaticResource CommonLabelStyle}"
-                Text="{Binding DiscountPrice, StringFormat='₱{0:0 }'}"
+                Text="{Binding ActualPrice, StringFormat='₱ {0:0.00}'}"
                 TextColor="{DynamicResource PrimaryColor}" />
 
             <Label
@@ -105,18 +105,17 @@
                 FontSize="12"
                 HorizontalOptions="Start"
                 Style="{StaticResource CommonLabelStyle}"
-                Text="{Binding ActualPrice, StringFormat='₱{0:0.00}'}"
-                TextDecorations="Strikethrough"
+                Text="{Binding Variantprice, StringFormat='+ ₱ {0:0.00}'}"
                 VerticalTextAlignment="Center" />
 
-            <Label
+            <!--<Label
                 FontFamily="{DynamicResource Montserrat-Medium}"
                 FontSize="12"
                 HorizontalOptions="Start"
                 Style="{StaticResource CommonLabelStyle}"
                 Text="{Binding DiscountPercent, StringFormat=' ({0}% OFF)'}"
                 TextColor="{DynamicResource PrimaryColor}"
-                VerticalTextAlignment="Center" />
+                VerticalTextAlignment="Center" />-->
 
         </StackLayout>
 
