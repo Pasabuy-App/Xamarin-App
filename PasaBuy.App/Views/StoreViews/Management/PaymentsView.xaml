@@ -6,7 +6,7 @@
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:converter="clr-namespace:PasaBuy.App.Converters" 
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
              x:Class="PasaBuy.App.Views.StoreViews.Management.PaymentsView"
              Title="Payments"
              BackgroundColor="{DynamicResource Gray-White}">
@@ -21,40 +21,42 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid RowSpacing="0" 
+        <Grid>
+
+            <Grid RowSpacing="0" 
               ColumnSpacing="0">
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
-            <Grid Grid.Row="0" 
-                      Padding="15,45,15,25"
-                      Margin="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+                <Grid Grid.Row="0" 
+                      Padding="15,45,15,25"
+                      Margin="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Label FontFamily="{StaticResource Montserrat-SemiBold}"
                            Grid.Row="0"
                            HorizontalOptions="Center"
                            VerticalOptions="Center"
                            TextColor="{DynamicResource PrimaryColor}"
                            FontSize="{DynamicResource ExtraBigSize}"
                            LineHeight="{OnPlatform Android=1.5, Default=-1}">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text=" ₱" />
-                            <Span Text="99.00" />
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text=" ₱" />
+                                <Span Text="{Binding Balance, StringFormat='{0:0.00}'}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
 
-                <Label 
+                    <Label 
                            Grid.Row="1"
                            HorizontalOptions="Center"
                            VerticalOptions="Center"
@@ -62,19 +64,19 @@
                            FontFamily="{StaticResource Montserrat-Medium}"
                            FontSize="{DynamicResource MediumSize}"
                            LineHeight="{OnPlatform Android=1.5, Default=-1}" />
-            </Grid>
+                </Grid>
 
-            <Grid Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <!--LEFT LABELS-->
-                <Label Grid.Row="0"
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--LEFT LABELS-->
+                    <Label Grid.Row="0"
                        Grid.Column="0"
                        Padding="15,0,0,0"
                        HorizontalOptions="Start"
@@ -83,7 +85,7 @@
                        FontFamily="{StaticResource Montserrat-Medium}"
                        FontSize="{DynamicResource MediumSize}"
                        LineHeight="{OnPlatform Android=1.5, Default=-1}" />
-                <Label Grid.Row="1"
+                    <Label Grid.Row="1"
                        Grid.Column="0"
                        Padding="15,0,0,0"
                        HorizontalOptions="Start"
@@ -93,36 +95,36 @@
                        FontSize="{DynamicResource MediumSize}"
                        LineHeight="{OnPlatform Android=1.5, Default=-1}" />
 
-                <!--RIGHT VALUES-->
-                <Label Grid.Row="0"
+                    <!--RIGHT VALUES-->
+                    <Label Grid.Row="0"
                        Grid.Column="1"
                        HorizontalOptions="End"
                        VerticalOptions="Center"
-                       Text="Lorenz Becislao"
+                       Text="{Binding AccountName}"
                        Padding="0,0,15,0"
                        FontFamily="{StaticResource Montserrat-Medium}"
                        FontSize="{DynamicResource MediumSize}"
                        LineHeight="{OnPlatform Android=1.5, Default=-1}" />
-                <Label Grid.Row="1"
+                    <Label Grid.Row="1"
                        Grid.Column="1"
                        HorizontalOptions="End"
                        VerticalOptions="Center"
                        Padding="0,0,15,0"
-                       Text="x35G42g3"
+                       Text="{Binding AccountID}"
                        FontFamily="{StaticResource Montserrat-Medium}"
                        FontSize="{DynamicResource MediumSize}"
                        LineHeight="{OnPlatform Android=1.5, Default=-1}" />
-            </Grid>
+                </Grid>
 
-            <Grid Grid.Row="2"
+                <Grid Grid.Row="2"
                       HorizontalOptions="FillAndExpand"
                       Padding="0,15,0,15"
                       BackgroundColor="{DynamicResource Transparent}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <buttons:SfButton
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <buttons:SfButton
                             Command="{Binding SetupCommand}"
                             CornerRadius="5"
                             Grid.Column="0"
@@ -130,7 +132,7 @@
                             TextColor="White"
                             BackgroundColor="{DynamicResource PrimaryColor}"
                             Text="Change" />
-                <buttons:SfButton
+                    <buttons:SfButton
                             Command="{Binding WithdrawCommand}"
                             CornerRadius="5"
                             Grid.Column="1"
@@ -138,31 +140,31 @@
                             TextColor="White"
                             BackgroundColor="{DynamicResource PrimaryColor}"
                             Text="Withdraw" />
-            </Grid>
+                </Grid>
 
-            <listView:SfListView Grid.Row="3" 
+                <listView:SfListView Grid.Row="3" 
                                  IsScrollBarVisible="False"
                                  ItemSpacing="0"
                                  ItemsSource="{Binding WalletTransactions}"
                                  SelectionBackgroundColor="{DynamicResource Gray-300}"
                                  AutoFitMode="Height">
-                <listView:SfListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid RowSpacing="0" ColumnSpacing="0">
+                    <listView:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid RowSpacing="0" ColumnSpacing="0">
 
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
 
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
 
-                            <!-- Profile Image -->
-                            <ffimageloading:CachedImage Aspect="Fill"
+                                <!-- Profile Image -->
+                                <ffimageloading:CachedImage Aspect="Fill"
                                                         Grid.Row="0"
                                                         Grid.RowSpan="3"
                                                         Margin="16"
@@ -172,22 +174,22 @@
                                                         Source="{Binding Avatar}"
 			                                            DownsampleToViewSize="true" 
                                                         FadeAnimationEnabled="True" >
-                                <ffimageloading:CachedImage.Transformations>
-                                    <transformations:CircleTransformation />
-                                </ffimageloading:CachedImage.Transformations>
-                            </ffimageloading:CachedImage>
+                                    <ffimageloading:CachedImage.Transformations>
+                                        <transformations:CircleTransformation />
+                                    </ffimageloading:CachedImage.Transformations>
+                                </ffimageloading:CachedImage>
 
 
-                            <!-- Name -->
-                            <Label Grid.Column="1"
+                                <!-- Name -->
+                                <Label Grid.Column="1"
                                        Margin="0,15,0,4"
                                        HorizontalOptions="Start"
                                        Text="{Binding TransactionName}"
                                        Style="{StaticResource LabelStyle}"
                                        LineHeight="{OnPlatform Android=1.5, Default=-1}" />
 
-                            <!-- Transaction Title -->
-                            <Label Grid.Row="1"
+                                <!-- Transaction Title -->
+                                <Label Grid.Row="1"
                                        Grid.Column="1"
                                        Margin="0,0,0,16"
                                        HorizontalOptions="Start"
@@ -197,41 +199,47 @@
                                        FontFamily="{DynamicResource Montserrat-Medium}"
                                        LineHeight="{OnPlatform Android=1.5, Default=-1}" />
 
-                            <!-- Amount -->
-                            <Label Grid.Column="1"
+                                <!-- Amount -->
+                                <Label Grid.Column="1"
                                        Margin="0,16,16,4"
                                        HorizontalOptions="End"
                                        TextColor="{Binding IsCredited, Converter={x:StaticResource BooleanToColorConverter}, ConverterParameter=5}"
                                        Style="{StaticResource LabelStyle}"
                                        LineHeight="{OnPlatform Android=1.5, Default=-1}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="{Binding IsCredited, Converter={StaticResource BoolToStringConverter}, ConverterParameter=2}" />
-                                        <Span Text=" $" />
-                                        <Span Text="{Binding Amount}" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding IsCredited, Converter={StaticResource BoolToStringConverter}, ConverterParameter=2}" />
+                                            <Span Text=" ₱ " />
+                                            <Span Text="{Binding Amount, StringFormat='{0:0.00}'}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
 
-                            <!-- Date -->
-                            <Label Grid.Row="1"
+                                <!-- Date -->
+                                <Label Grid.Row="1"
                                        Grid.Column="1"
                                        Margin="0,0,16,16"
                                        HorizontalOptions="End"
-                                       Text="{Binding TransactionDate, StringFormat='{}{0:dd MMM yyyy}'}"
+                                       Text="{Binding TransactionDate}"
                                        TextColor="{DynamicResource Gray-700}"
                                        FontSize="12"
                                        FontFamily="{DynamicResource Montserrat-Medium}"
                                        LineHeight="{OnPlatform Android=1.5, Default=-1}" />
 
-                            <!-- Seperator -->
-                            <BoxView Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource SeparatorStyle}" />
+                                <!-- Seperator -->
+                                <BoxView Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource SeparatorStyle}" />
 
-                        </Grid>
-                    </DataTemplate>
-                </listView:SfListView.ItemTemplate>
-            </listView:SfListView>
+                            </Grid>
+                        </DataTemplate>
+                    </listView:SfListView.ItemTemplate>
+                </listView:SfListView>
 
+            </Grid>
+            <loading:LoadingIndicator
+                        HorizontalOptions="Fill"
+                        IsRunning="{Binding isRunning, Mode=TwoWay}"
+                        VerticalOptions="Fill" />
         </Grid>
+        
     </ContentPage.Content>
 </ContentPage>
