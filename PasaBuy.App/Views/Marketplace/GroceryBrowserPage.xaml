@@ -203,7 +203,7 @@
                                                        LineBreakMode="TailTruncation"
                                                        VerticalTextAlignment="Center"
                                                        HorizontalTextAlignment="Start"
-                                                       Text="{Binding Street}"
+                                                       Text="{Binding Address}"
                                                        TextColor="{DynamicResource Gray-900}" />
 
                                                 <Grid  Grid.Row="2" 
@@ -247,7 +247,7 @@
                                                             <UriImageSource
                                                                     CacheValidity="14"
                                                                     CachingEnabled="true"
-                                                                    Uri="{Binding Logo}" />
+                                                                    Uri="{Binding Banner}" />
                                                         </Image.Source>
                                                     </Image>
                                                 </Grid>

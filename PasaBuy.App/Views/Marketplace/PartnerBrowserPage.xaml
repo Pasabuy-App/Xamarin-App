@@ -150,7 +150,7 @@
                                             <DataTemplate>
                                                 <ffimageloading:CachedImage Aspect="Fill"
                                                             BackgroundColor="{DynamicResource Gray-200}"
-                                                            Source="{Binding Image}"
+                                                            Source="{Binding Banner}"
 			                                                DownsampleToViewSize="True" 
                                                             FadeAnimationEnabled="True">
                                                 </ffimageloading:CachedImage>
@@ -202,7 +202,7 @@
                                                        AutoFit="Width"/>
 
                                                     <!--  Description of store  -->
-                                                    <Forms9Patch:Label Text="{Binding Description}"
+                                                    <Forms9Patch:Label Text="{Binding Info}"
                                                        FontFamily="{StaticResource Montserrat-Medium}"
                                                        FontSize="14"
                                                        LineHeight="{OnPlatform Android=1.25,
@@ -212,7 +212,7 @@
 
 
                                                     <!--  Store Address  -->
-                                                    <Forms9Patch:Label Text="{Binding Street}"
+                                                    <Forms9Patch:Label Text="{Binding Address}"
                                                        FontFamily="{StaticResource Montserrat-Medium}"
                                                        FontSize="14"
                                                        LineHeight="{OnPlatform Android=1.25,
@@ -231,7 +231,7 @@
                                                                  CornerRadius="4" 
                                                                  BorderColor="Transparent">
                                                     <Label  FontFamily="{StaticResource Montserrat-Medium}" 
-                                                            Text="{Binding ItemRating}"
+                                                            Text="{Binding Rating}"
                                                             HorizontalOptions="Center"
                                                             FontSize="12"
                                                             LineHeight="{OnPlatform Android=1.5, Default=-1}" 

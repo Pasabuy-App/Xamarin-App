@@ -13,15 +13,11 @@ namespace PasaBuy.App.ViewModels.Marketplace
 {
     public class PartnerBrowserViewModel : BaseViewModel
     {
-        public static ObservableCollection<PartnerStore> partnerStoresRotator;
+        #region Fields
 
-        public static ObservableCollection<FeaturedStoreModel> _bestSellers;
+        public static ObservableCollection<Models.TindaFeature.StoreModel> storeList;
 
-        public static ObservableCollection<Store> storeList;
-
-        public static ObservableCollection<Categories> itemCategories;
-
-        public ObservableCollection<Store> StoreList
+        public ObservableCollection<Models.TindaFeature.StoreModel> StoreList
         {
             get
             {
@@ -34,7 +30,9 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-        public ObservableCollection<FeaturedStoreModel> BestSellers
+        public static ObservableCollection<Models.TindaFeature.StoreModel> _bestSellers;
+
+        public ObservableCollection<Models.TindaFeature.StoreModel> BestSellers
         {
             get
             {
@@ -46,6 +44,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 this.NotifyPropertyChanged();
             }
         }
+
+        public static ObservableCollection<Categories> itemCategories;
 
         public ObservableCollection<Categories> ItemCategories
         {
@@ -59,8 +59,9 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 this.NotifyPropertyChanged();
             }
         }
+        public static ObservableCollection<Models.TindaFeature.StoreModel> partnerStoresRotator;
 
-        public ObservableCollection<PartnerStore> PartnerStoresRotator
+        public ObservableCollection<Models.TindaFeature.StoreModel> PartnerStoresRotator
         {
             get
             {
@@ -106,24 +107,25 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-        public ICommand RefreshCommand { protected set; get; }
+        #endregion
+
+        #region Constructor
 
         public PartnerBrowserViewModel()
         {
             ItemTappedCommand = new Command<object>(NavigateToNextPage);
-            _bestSellers = new ObservableCollection<FeaturedStoreModel>();
+            storeList = new ObservableCollection<Models.TindaFeature.StoreModel>();
+            storeList.Clear();
+            partnerStoresRotator = new ObservableCollection<Models.TindaFeature.StoreModel>();
+            partnerStoresRotator.Clear();
+            _bestSellers = new ObservableCollection<Models.TindaFeature.StoreModel>();
+            _bestSellers.Clear();
             RefreshCommand = new Command<string>((key) =>
             {
-                storeList.Clear();
-                partnerStoresRotator.Clear();
                 LoadPartner();
                 LoadRotator();
                 IsRefreshing = false;
             });
-            storeList = new ObservableCollection<Store>();
-            storeList.Clear();
-            partnerStoresRotator = new ObservableCollection<PartnerStore>();
-            partnerStoresRotator.Clear();
             LoadPartner();
             LoadRotator();
         }
@@ -134,25 +136,26 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    Http.TindaFeature.Instance.StoreTypeList("robinson", "active", "", (bool success, string data) =>
+                    storeList.Clear();
+                    Http.TindaPress.Store.Instance.Listing("", "", "robinson", "", "", "active", (bool success, string data) =>
                     {
                         if (success)
                         {
-                            StoreListData datas = JsonConvert.DeserializeObject<StoreListData>(data);
+                            Models.TindaFeature.StoreModel store = JsonConvert.DeserializeObject<Models.TindaFeature.StoreModel>(data);
 
-                            if (datas.data.Length > 0)
+                            if (store.data.Length > 0)
                             {
-                                for (int i = 0; i < datas.data.Length; i++)
+                                for (int i = 0; i < store.data.Length; i++)
                                 {
-                                    storeList.Add(new Store()
+                                    storeList.Add(new Models.TindaFeature.StoreModel()
                                     {
-                                        Id = datas.data[i].hsid,
-                                        Title = datas.data[i].title,
-                                        Description = datas.data[i].short_info,
-                                        Logo = PSAProc.GetUrl(datas.data[i].avatar),
+                                        ID = store.data[i].hsid,
+                                        Title = store.data[i].title,
+                                        Info = store.data[i].info,
+                                        Logo = PSAProc.GetUrl(store.data[i].avatar),
                                         Offer = "50% off",
-                                        ItemRating = datas.data[i].rates == "No ratings yet" ? "N/A" : datas.data[i].rates,
-                                        Street = datas.data[i].brgy + ", " + datas.data[i].city
+                                        Rating = store.data[i].rates == "No ratings yet" || string.IsNullOrEmpty(store.data[i].rates) ? "0.0" : store.data[i].rates,
+                                        Address = store.data[i].brgy + ", " + store.data[i].city
                                     });
                                 }
                                 IsRunning = false;
@@ -172,35 +175,35 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2STR-L1PBVM.", "OK");
                 IsRunning = false;
             }
         }
 
-        
         public static void SearchStore(string search)
         {
             try
             {
+                storeList.Clear();
                 Http.TindaFeature.Instance.Store_Search(search, "robinson", (bool success, string data) =>
                 {
                     if (success)
                     {
-                        GroceriesStoreListData datas = JsonConvert.DeserializeObject<GroceriesStoreListData>(data);
-                        if (datas.data.Length > 0)
+                        Models.TindaFeature.StoreModel store = JsonConvert.DeserializeObject<Models.TindaFeature.StoreModel>(data);
+                        if (store.data.Length > 0)
                         {
                             storeList.Clear();
-                            for (int i = 0; i < datas.data.Length; i++)
+                            for (int i = 0; i < store.data.Length; i++)
                             {
-                                storeList.Add(new Store()
+                                storeList.Add(new Models.TindaFeature.StoreModel()
                                 {
-                                    Id = datas.data[i].hsid,
-                                    Title = datas.data[i].title,
-                                    Description = datas.data[i].short_info,
-                                    Logo = PSAProc.GetUrl(datas.data[i].avatar),
+                                    ID = store.data[i].hsid,
+                                    Title = store.data[i].title,
+                                    Info = store.data[i].info,
+                                    Logo = PSAProc.GetUrl(store.data[i].avatar),
                                     Offer = "50% off",
-                                    ItemRating = datas.data[i].rates == "No ratings yet" ? "N/A" : datas.data[i].rates,
-                                    Street = datas.data[i].brgy + ", " + datas.data[i].city
+                                    Rating = store.data[i].rates == "No ratings yet" || string.IsNullOrEmpty(store.data[i].rates) ? "0.0" : store.data[i].rates,
+                                    Address = store.data[i].brgy + ", " + store.data[i].city
                                 });
                             }
                         }
@@ -217,7 +220,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2STR-L2PBVM.", "OK");
             }
         }
 
@@ -229,15 +232,15 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 {
                     if (success)
                     {
-                        StoreListData datas = JsonConvert.DeserializeObject<StoreListData>(data);
+                        StoreListData store = JsonConvert.DeserializeObject<StoreListData>(data);
 
-                        for (int i = 0; i < datas.data.Length; i++)
+                        for (int i = 0; i < store.data.Length; i++)
                         {
                             itemCategories.Add(new Categories()
                             {
-                                Id = datas.data[i].ID,
-                                Title = datas.data[i].title,
-                                Avatar = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-product.png" : PSAProc.GetUrl(datas.data[i].avatar), //PSAProc.GetUrl(datas.data[i].avatar),
+                                Id = store.data[i].ID,
+                                Title = store.data[i].title,
+                                Avatar = store.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-product.png" : PSAProc.GetUrl(store.data[i].avatar), //PSAProc.GetUrl(store.data[i].avatar),
                                 Info = "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-product.png"
                             });
                         }
@@ -259,17 +262,18 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             try
             {
-                partnerStoresRotator.Add(new PartnerStore()
+                partnerStoresRotator.Clear();
+                partnerStoresRotator.Add(new Models.TindaFeature.StoreModel()
                 {
-                    Image = "https://pasabuy.app/wp-content/uploads/2020/11/RobinsonGalleriaSouth-Entrance.jpg"
+                    Banner = "https://pasabuy.app/wp-content/uploads/2020/11/RobinsonGalleriaSouth-Entrance.jpg"
                 });
-                partnerStoresRotator.Add(new PartnerStore()
+                partnerStoresRotator.Add(new Models.TindaFeature.StoreModel()
                 {
-                    Image = "https://pasabuy.app/wp-content/uploads/2020/11/RobinsonGalleriaSouth-Outdoor.jpg"
+                    Banner = "https://pasabuy.app/wp-content/uploads/2020/11/RobinsonGalleriaSouth-Outdoor.jpg"
                 });
-                partnerStoresRotator.Add(new PartnerStore()
+                partnerStoresRotator.Add(new Models.TindaFeature.StoreModel()
                 {
-                    Image = "https://pasabuy.app/wp-content/uploads/2020/11/RobinsonGalleriaSouth-Supermarket.jpg"
+                    Banner = "https://pasabuy.app/wp-content/uploads/2020/11/RobinsonGalleriaSouth-Supermarket.jpg"
                 });
             }
             catch (Exception e)
@@ -278,6 +282,16 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
+        #endregion
+
+        #region Properties
+
+        public ICommand RefreshCommand { protected set; get; }
+
+        #endregion
+
+        #region Method
+
         public Command<object> ItemTappedCommand { get; set; }
 
         private async void NavigateToNextPage(object obj)
@@ -285,11 +299,17 @@ namespace PasaBuy.App.ViewModels.Marketplace
             if (!IsRunning)
             {
                 IsRunning = true;
-                var store = obj as Store;
-                StoreDetailsViewModel.store_id = store.Id;
+                var item = obj as Models.TindaFeature.StoreModel;
+                StoreDetailsViewModel.store_id = item.ID;
+                StoreDetailsViewModel.title = item.Title;
+                StoreDetailsViewModel.info = item.Info;
+                StoreDetailsViewModel.banner = item.Banner;
+                StoreDetailsViewModel.address = item.Address;
                 await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
                 IsRunning = false;
             }
         }
+
+        #endregion
     }
 }
