@@ -166,7 +166,6 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                         TransactionDate = dates.ToString("dd MMM. yyyy"),
                                         Amount = Convert.ToDouble(wallet.data[i].transactions[ii].amount)
                                     });
-                                    Console.WriteLine("wallet.data[i].transactions.Count: " + wallet.data[i].transactions.Count);
                                 }
                                 isRunning = false;
                             }
