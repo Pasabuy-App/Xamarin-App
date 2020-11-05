@@ -37,7 +37,7 @@ namespace PasaBuy.App.Views.Onboarding
                                     new USNOptions(false, PSAConfig.USocketNetHostname, 10),
                                     new USNCreds(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky)
                                 );
-                    USNMessage.Instance.Connect();
+                    //USNMessage.Instance.Connect();
                 }
             }
 

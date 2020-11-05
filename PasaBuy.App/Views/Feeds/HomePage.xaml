@@ -25,6 +25,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
         </ResourceDictionary>
     </ContentView.Resources>
 
@@ -33,16 +34,18 @@
     </ContentView.BindingContext>
 
     <ContentView.Content>
-        
+
         <RefreshView IsRefreshing="{Binding IsRefreshing}"   
                      x:Name="rv"
                      Command="{Binding RefreshCommand}">
             <Grid>
                 <ScrollView VerticalScrollBarVisibility="Never" Padding="0, 0, 0, -10">
 
-                    <Grid RowSpacing="0" ColumnSpacing="0">
+                    <Grid RowSpacing="0"
+                          Padding="0,0,0,5"
+                          ColumnSpacing="0">
                         <CollectionView ItemsSource="{Binding HomePosts}"
-                                    x:Name="listView">
+                                        x:Name="listView">
                             <CollectionView.Header>
                                 <StackLayout Padding="0,0,0,-10">
                                     <local:InputEntry/>
@@ -50,11 +53,14 @@
                             </CollectionView.Header>
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid>
-                                        <controls:CustomShadowFrame 
-                                                Margin="0,8,5,5"
-                                                Padding="0,10,0,0"
-                                                BackgroundColor="{DynamicResource Gray-White}"
+                                    <Grid BackgroundColor="{DynamicResource Gray-500}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <controls:CustomShadowFrame Grid.Row="0"
+                                                Margin="0,8,0,5"
+                                                Padding="0,10,0,10"
+                                                BackgroundColor="{DynamicResource gray-500}"
                                                 BorderColor="{DynamicResource Gray-White}"
                                                 BorderWidth="1"
                                                 CornerRadius="4"
@@ -118,13 +124,15 @@
                                                                       BackgroundColor="Transparent"
                                                                       FontSize="15"
                                                                       CornerRadius="4" 
-                                                                      Command="{Binding Path=BindingContext.GoToProfileCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"
+                                                                       Command="{Binding Path=BindingContext.GoToProfileCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"
                                                                       HorizontalOptions="End">
 
+                                                                <!--<Label Text="{Binding Author}" 
+                                                               Style="{StaticResource PostAuthor}"
+                                                               x:Name="LabelAuthor"/>-->
                                                                 <Forms9Patch:Label Text="{Binding Author}"
                                                                        Style="{StaticResource PostAuthor}"
                                                                        x:Name="LabelAuthor"
-                                                                       Lines="1"
                                                                        AutoFit="Width"/>
 
                                                             </buttons:SfButton>
@@ -143,12 +151,9 @@
                                                               HeightRequest="20"
                                                               Grid.Column="2" 
                                                               HorizontalOptions="End">
-                                                            
-                                                            <Forms9Patch:Label Text="{Binding Types}" 
-                                                                               Style="{StaticResource PostType}"
-                                                                               x:Name="LabelTypes"
-                                                                               Lines="1"
-                                                                               AutoFit="Width"/>
+                                                            <Label Text="{Binding Types}" 
+                                                           Style="{StaticResource PostType}"
+                                                           x:Name="LabelTypes"/>
                                                         </Grid>
                                                         <Grid Grid.Row="1" 
                                                               HeightRequest="20"
@@ -159,183 +164,54 @@
                                                            x:Name="LabelSeen"/>
                                                         </Grid>
 
+                                                        <Grid Grid.Row="0" 
+                                                            WidthRequest="12"
+                                                            Grid.RowSpan="2"
+                                                            Grid.Column="3" 
+                                                            Margin="5, 0, 0, 0"
+                                                            HorizontalOptions="End">
+                                                            <Label Text=":" 
+                                                           Style="{StaticResource HeaderLabelStyle}"
+                                                           x:Name="LabelColon"/>
+                                                        </Grid>
 
                                                     </Grid>
                                                 </StackLayout>
 
                                                 <Grid Grid.Row="1" 
-                                                      Padding="20, 5, 30, 20"
+                                                      Padding="30, 5, 30, 25"
                                                       Grid.ColumnSpan="2">
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="Auto" />
-                                                        <RowDefinition Height="Auto" />
-                                                        <RowDefinition Height="Auto" />
-                                                    </Grid.RowDefinitions>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="40*" />
-                                                        <ColumnDefinition Width="60*" />
-                                                    </Grid.ColumnDefinitions>
-
-                                                    <StackLayout Grid.ColumnSpan="2"
-                                                                 Grid.Row="0">
-                                                        <Label Margin="0,5,0,0"
-                                                           FontFamily="{StaticResource Montserrat-SemiBold}"
-                                                           FontSize="{DynamicResource SmallSize}"
-                                                           HorizontalOptions="StartAndExpand"
-                                                           LineHeight="{OnPlatform Android=1.25, Default=-1}"
-                                                           Text="{Binding Title}"
-                                                           IsVisible="{Binding ShowTitle}"
-                                                           TextType="Html"
-                                                           TextColor="{DynamicResource PrimaryBlack}"
-                                                           VerticalOptions="Center" />
+                                                    <StackLayout>
+                                                        <Label Text="{Binding Title}" Style="{StaticResource PostTitle}" TextType="Html" x:Name="LabelTitle"/>
+                                                        <Label Text="{Binding Description}" Style="{StaticResource PostDescription}" IsVisible="{Binding isContent}" x:Name="LabelDescription"/>
+                                                        <Label Margin="0,-2,0,0" Text="{Binding Vehicle}" Style="{StaticResource PostDescription}" TextType="Html" IsVisible="{Binding isContent2}" x:Name="LabelVehicle"/>
+                                                        <Label Margin="0,-5,0,0" Text="{Binding PickUp}" Style="{StaticResource PostDescription}" TextType="Html" IsVisible="{Binding isContent2}" x:Name="LabelPickup"/>
+                                                        <Label Margin="0,-5,0,0" Text="{Binding DO_Price}" Style="{StaticResource PostDescription}" TextType="Html" IsVisible="{Binding isContent2}" x:Name="LabelPrice"/>
                                                     </StackLayout>
-                                                    
-                                                    <StackLayout Grid.Column="0"
-                                                                 Grid.Row="1">
-                                                        <Label Margin="0,5,0,0"
-                                                           FontFamily="{StaticResource Montserrat-Medium}"
-                                                           FontSize="{DynamicResource SmallSize}"
-                                                           HorizontalOptions="StartAndExpand"
-                                                           LineHeight="{OnPlatform Android=1.25, Default=-1}"
-                                                           Text="Item Name"
-                                                           TextType="Html"
-                                                           TextColor="{DynamicResource PrimaryBlack}"
-                                                           VerticalOptions="Center" />
-                                                        <Label Margin="0,5,0,0"
-                                                           FontFamily="{StaticResource Montserrat-Medium}"
-                                                           FontSize="{DynamicResource SmallSize}"
-                                                           HorizontalOptions="StartAndExpand"
-                                                           LineHeight="{OnPlatform Android=1.25, Default=-1}"
-                                                           Text="Item Category"
-                                                           TextType="Html"
-                                                           TextColor="{DynamicResource PrimaryBlack}"
-                                                           VerticalOptions="Center" />
-                                                   
-                                                        <Label Margin="0,5,0,0"
-                                                           FontFamily="{StaticResource Montserrat-Medium}"
-                                                           FontSize="{DynamicResource SmallSize}"
-                                                           HorizontalOptions="StartAndExpand"
-                                                           LineHeight="{OnPlatform Android=1.25, Default=-1}"
-                                                           Text="Vehicle Type"
-                                                           TextType="Html"
-                                                           TextColor="{DynamicResource PrimaryBlack}"
-                                                           VerticalOptions="Center" />
-
-                                                        <Label Margin="0,5,0,0"
-                                                           FontFamily="{StaticResource Montserrat-Medium}"
-                                                           FontSize="{DynamicResource SmallSize}"
-                                                           HorizontalOptions="StartAndExpand"
-                                                           LineHeight="{OnPlatform Android=1.25, Default=-1}"
-                                                           Text="Item Price"
-                                                           TextType="Html"
-                                                           TextColor="{DynamicResource PrimaryBlack}"
-                                                           VerticalOptions="Center" />
-
-                                                        <Label Margin="0,5,0,0"
-                                                           FontFamily="{StaticResource Montserrat-Medium}"
-                                                           FontSize="{DynamicResource SmallSize}"
-                                                           HorizontalOptions="StartAndExpand"
-                                                           LineHeight="{OnPlatform Android=1.25, Default=-1}"
-                                                           Text="Pickup Location"
-                                                           TextType="Html"
-                                                           TextColor="{DynamicResource PrimaryBlack}"
-                                                           VerticalOptions="Center" />
-
-                                                        <Label Margin="0,5,0,0"
-                                                           FontFamily="{StaticResource Montserrat-Medium}"
-                                                           FontSize="{DynamicResource SmallSize}"
-                                                           HorizontalOptions="StartAndExpand"
-                                                           LineHeight="{OnPlatform Android=1.25, Default=-1}"
-                                                           Text="Drop Off Location"
-                                                           IsVisible="{Binding ShowDropOff}"
-                                                           TextType="Html"
-                                                           TextColor="{DynamicResource PrimaryBlack}"
-                                                           VerticalOptions="Center" />
-
-                                                    </StackLayout>
-                                                    <StackLayout Grid.Column="1"
-                                                                 Grid.Row="1">
-                                                        
-                                                        <Label Text="{Binding Title}" 
-                                                               LineBreakMode="TailTruncation"
-                                                               HorizontalOptions="StartAndExpand"
-                                                               FontFamily="{StaticResource Montserrat-Medium}"
-                                                               VerticalOptions="Center"
-                                                               LineHeight="{OnPlatform Android=1.25, Default=-1}"
-                                                               TextColor="{DynamicResource PrimaryBlack}"
-                                                               Margin="0,7,0,0"/>
-
-                                                        <Label Text="{Binding ItemCategory}" 
-                                                               LineBreakMode="TailTruncation"
-                                                               HorizontalOptions="StartAndExpand"
-                                                               VerticalOptions="Center"
-                                                               LineHeight="{OnPlatform Android=1.25, Default=-1}"
-                                                               TextColor="{DynamicResource PrimaryBlack}"
-                                                               Margin="0,6,0,0"/>
-
-                                                        <Label Text="{Binding Vehicle}" 
-                                                               LineBreakMode="TailTruncation"
-                                                               HorizontalOptions="StartAndExpand"
-                                                               VerticalOptions="Center"
-                                                               LineHeight="{OnPlatform Android=1.25, Default=-1}"
-                                                               TextColor="{DynamicResource PrimaryBlack}"
-                                                               Margin="0,6,0,0"/>
-
-                                                        <Label Text="{Binding ItemPrice}" 
-                                                               LineBreakMode="TailTruncation"
-                                                               HorizontalOptions="StartAndExpand"
-                                                               VerticalOptions="Center"
-                                                               LineHeight="{OnPlatform Android=1.25, Default=-1}"
-                                                               TextColor="{DynamicResource PrimaryBlack}"
-                                                               Margin="0,6,0,0"/>
-
-                                                        <Label Text="{Binding PickUp}" 
-                                                               LineBreakMode="TailTruncation"
-                                                               HorizontalOptions="StartAndExpand"
-                                                               VerticalOptions="Center"
-                                                               LineHeight="{OnPlatform Android=1.25, Default=-1}"
-                                                               TextColor="{DynamicResource PrimaryBlack}"
-                                                               Margin="0,6,0,0"/>
-
-                                                        <Label Text="{Binding DropOff}" 
-                                                               LineBreakMode="TailTruncation"
-                                                               HorizontalOptions="StartAndExpand"
-                                                               IsVisible="{Binding ShowDropOff}"
-                                                               VerticalOptions="Center"
-                                                               LineHeight="{OnPlatform Android=1.25, Default=-1}"
-                                                               TextColor="{DynamicResource PrimaryBlack}"
-                                                               Margin="0,7,0,0"/>
-
-                                                    </StackLayout>
-                                            
-
                                                 </Grid>
 
-                                                <Grid Grid.Row="2" 
-                                                      Grid.ColumnSpan="2"
-                                                      HorizontalOptions="FillAndExpand"
-                                                      VerticalOptions="FillAndExpand"
-                                                      BackgroundColor="{DynamicResource Gray-500}">
+                                                <Grid Grid.Row="2" IsVisible="{Binding isImage}"
+                                                    Grid.ColumnSpan="2"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    VerticalOptions="FillAndExpand">
+
                                                     <ffimageloading:CachedImage 
-                                                            Aspect="AspectFit"
-			                                                DownsampleToViewSize="true"
-                                                            HeightRequest="{Binding ImageHeight}"
-                                                            IsVisible="{Binding WithImage}"
-                                                            HorizontalOptions="FillAndExpand"
-                                                            VerticalOptions="FillAndExpand"
-                                                            x:Name="HomeImages"
-                                                            LoadingPlaceholder="https://i2.wp.com/seds.org/wp-content/uploads/2020/06/placeholder.png?fit=1200%2C800&amp;ssl=1"
-                                                            BackgroundColor="{DynamicResource Transparent}"
-                                                            Source="{Binding Images}"
-                                                            CacheDuration="30.00:00:00">
+                                                        Aspect="AspectFit"
+			                                            DownsampleToViewSize="true"
+                                                        HeightRequest="{Binding ImageHeight}"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        VerticalOptions="FillAndExpand"
+                                                        x:Name="HomeImages"
+                                                        LoadingPlaceholder="https://i2.wp.com/seds.org/wp-content/uploads/2020/06/placeholder.png?fit=1200%2C800&amp;ssl=1"
+                                                        BackgroundColor="{DynamicResource Gray-500}"
+                                                        Source="{Binding Images}"
+                                                        CacheDuration="30.00:00:00">
                                                     </ffimageloading:CachedImage>
-
                                                 </Grid>
 
-                                                <Grid Grid.Row="3" 
-                                                      Grid.ColumnSpan="2" 
-                                                      ColumnSpacing="0"
-                                                      RowSpacing="0">
+                                                <Grid Grid.Row="3" Grid.ColumnSpan="2" 
+                                                  ColumnSpacing="0"
+                                                  RowSpacing="0">
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="Auto"/>
                                                         <RowDefinition Height="Auto"/>
@@ -370,6 +246,17 @@
                                     </Grid>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
+                            <CollectionView.Footer>
+                                <StackLayout Padding="0,15,0,15"
+                                           BackgroundColor="{DynamicResource Gray-200}">
+                                    <Label FontFamily="{DynamicResource Montserrat-Medium}"
+                                           FontSize="{DynamicResource MediumSize}"
+                                           HorizontalOptions="CenterAndExpand"
+                                           Text="No more post to see"
+                                           TextColor="{DynamicResource Gray-900}"
+                                           LineHeight="{OnPlatform Android=1.5, Default=-1}"/>
+                                </StackLayout>
+                            </CollectionView.Footer>
                         </CollectionView>
                     </Grid>
 
@@ -384,5 +271,5 @@
             </Grid>
         </RefreshView>
     </ContentView.Content>
-    
+
 </ContentView>
