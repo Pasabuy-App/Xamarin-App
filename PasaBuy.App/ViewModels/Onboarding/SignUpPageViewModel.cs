@@ -235,7 +235,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
                 if (!State)
                 {
                     State = true;
-                    Http.DataVice.Users.Instance.SignUp(Username, Email, Fname, Lname, Gender, BornDate, AddressVar.co, AddressVar.pr, AddressVar.ct, AddressVar.br, StreetEntry, (bool success, string data) =>
+                    Http.DataVice.Users.Instance.SignUp(Email, Fname, Lname, (bool success, string data) =>
                     {
                         if (success)
                         {

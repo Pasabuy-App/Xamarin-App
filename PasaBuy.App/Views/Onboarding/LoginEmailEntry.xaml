@@ -30,7 +30,7 @@
 
                     <control:BorderlessEntry
                         x:Name="EmailEntry"
-                        Placeholder="Username / Email"
+                        Placeholder="Email Address"
                         PlaceholderColor="{DynamicResource PlaceholderColor}"
                         Style="{StaticResource EntryStyle}"
                         Keyboard="Email"
