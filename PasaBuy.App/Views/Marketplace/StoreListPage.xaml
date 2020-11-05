@@ -211,14 +211,14 @@
                                                         <Label FontFamily="{StaticResource Montserrat-Medium}"
                                                                        FontSize="14"
                                                                        LineHeight="{OnPlatform Android=1.25,Default=-1}"
-                                                                       Text="{Binding Description}"
+                                                                       Text="{Binding Info}"
                                                                        TextColor="{DynamicResource Gray-800}" />
 
                                                         <!--  Label for Offer  -->
                                                         <Label  FontFamily="{StaticResource Montserrat-Medium}"
                                                                         FontSize="14"
                                                                         LineHeight="{OnPlatform Android=1.25, Default=-1}"
-                                                                        Text="{Binding Street}"
+                                                                        Text="{Binding Address}"
                                                                         LineBreakMode="TailTruncation"
                                                                         TextColor="{DynamicResource Gray-800}" />
                                                     </StackLayout>
@@ -231,7 +231,7 @@
                                                                              CornerRadius="4" 
                                                                              BorderColor="Transparent">
                                                         <Label  FontFamily="{StaticResource Montserrat-Medium}" 
-                                                                        Text="4.5" 
+                                                                        Text="{Binding Rating}" 
                                                                         HorizontalOptions="Center"
                                                                         FontSize="12" 
                                                                         LineHeight="{OnPlatform Android=1.5,Default=-1}" 
