@@ -22,8 +22,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
     {
         #region Fields
 
-        public static string store_id = string.Empty;
-
         private ObservableCollection<Categories> _storeData;
 
         private ObservableCollection<ProductList> productsList;
@@ -193,6 +191,13 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 }
             }
         }
+
+        public static string store_id = string.Empty;
+        public static string title = string.Empty;
+        public static string address = string.Empty;
+        public static string info = string.Empty;
+        public static string banner = string.Empty;
+
         #endregion
         public StoreDetailsViewModel()
         {
@@ -208,13 +213,17 @@ namespace PasaBuy.App.ViewModels.Marketplace
             //CartPageViewModel.cartDetails.CollectionChanged += CollectionChanges;
 
             Loadcategory(store_id);
-            LoadStoreDetails(store_id);
             AddToCartCommand = new Command<object>(AddToCartClicked);
 
+            this.StoreName = title;
+            this.StoreAddress = address;
+            this.AboutStore = !string.IsNullOrEmpty(info) ? info : "No information found.";
+            this.StoreBanner = banner;
+
         }
+
         public static void InsertCart(string id, string name, string summary, string image, double price, int quantity, ObservableCollection<Options> Variants)
         {
-            // TODO : ADD OBSERVABLE COLLECTION FOR VARIANTS
             cartDetails.Insert(0, new ProductList()
             {
                 Stid = store_id,
@@ -248,7 +257,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         private void CollectionChanges(object sender, EventArgs e)
         {
-            //this.CartItemCount = CartPageViewModel.cartDetails.Count;
             this.CartItemCount = cartDetails.Count;
         }
 
@@ -265,7 +273,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
         }
 
         public Command<object> AddToCartCommand { get; set; }
-
 
         private void AddToCartClicked(object obj)
         {
@@ -316,37 +323,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
         async Task NavigateToPage(Page page)
         {
             await Application.Current.MainPage.Navigation.PushModalAsync(page);
-        }
-
-        public void LoadStoreDetails(string stid)
-        {
-            try
-            {
-                Http.TindaFeature.Instance.GetStore(stid, (bool success, string data) =>
-                {
-                    if (success)
-                    {
-                        StoreDetailListData datas = JsonConvert.DeserializeObject<StoreDetailListData>(data);
-                    
-                        for (int i = 0; i < datas.data.Length; i++)
-                        {
-                            this.StoreName = datas.data[i].title;
-                            this.StoreAddress = datas.data[i].street + " " + datas.data[i].brgy + " " + datas.data[i].city + " " + datas.data[i].province;
-                            this.AboutStore = !string.IsNullOrEmpty(datas.data[i].short_info) ? datas.data[i].short_info : "No information found.";
-                            this.StoreBanner = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(datas.data[i].banner); // "https://pasabuy.app/wp-content/uploads/2020/10/Motorcycle.png";
-
-                        }
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                });
-            }
-            catch (Exception e)
-            {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
-            }
         }
 
         public void Loadcategory(string stid)
