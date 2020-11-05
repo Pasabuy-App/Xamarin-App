@@ -5,6 +5,7 @@ using PasaBuy.App.Models.Marketplace;
 using PasaBuy.App.Views.Marketplace;
 using System;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -13,26 +14,11 @@ namespace PasaBuy.App.ViewModels.Marketplace
 {
     public class FoodBrowserViewModel : BaseViewModel
     {
-        private Command<object> itemTappedCommand;
+        #region Fields
 
-        public static ObservableCollection<FoodStore> foodstorelist;
+        public static ObservableCollection<Models.TindaFeature.StoreModel> _bestSellers;
 
-        public static ObservableCollection<FeaturedStoreModel> _bestSellers;
-        private static FoodBrowserViewModel instance;
-        public static FoodBrowserViewModel Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new FoodBrowserViewModel();
-                }
-                return instance;
-            }
-
-        }
-
-        public ObservableCollection<FeaturedStoreModel> BestSellers
+        public ObservableCollection<Models.TindaFeature.StoreModel> BestSellers
         {
             get
             {
@@ -44,7 +30,9 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 this.NotifyPropertyChanged();
             }
         }
-        public ObservableCollection<FoodStore> FoodStorelist
+
+        public static ObservableCollection<Models.TindaFeature.StoreModel> foodstorelist;
+        public ObservableCollection<Models.TindaFeature.StoreModel> FoodStorelist
         {
             get
             {
@@ -56,6 +44,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 this.NotifyPropertyChanged();
             }
         }
+
         bool _isRefreshing = false;
         public bool IsRefreshing
         {
@@ -72,7 +61,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 }
             }
         }
-        public ICommand RefreshCommand { protected set; get; }
 
         bool _IsRunning = false;
         public bool IsRunning
@@ -92,36 +80,43 @@ namespace PasaBuy.App.ViewModels.Marketplace
         }
         public static bool isLoad;
 
+        #endregion
+
+        #region Constructor
         public FoodBrowserViewModel()
         {
-            ItemTappedCommand = new Command<object>(NavigateToNextPage);
-            foodstorelist = new ObservableCollection<FoodStore>();
-            _bestSellers = new ObservableCollection<FeaturedStoreModel>();
+            foodstorelist = new ObservableCollection<Models.TindaFeature.StoreModel>();
+            _bestSellers = new ObservableCollection<Models.TindaFeature.StoreModel>();
+
             RefreshCommand = new Command<string>((key) =>
             {
-                FoodBrowserPage.LastIndex = 11;
+                //FoodBrowserPage.LastIndex = 11;
                 _bestSellers.Clear();
                 foodstorelist.Clear();
                 LoadBestSeller();
                 LoadFood();
                 IsRefreshing = false;
             });
+
             isLoad = false;
 
             LoadBestSeller();
             LoadFood();
+
+            SelectStoreCommand = new Command<object>(DetailsClicked);
+            ItemTappedCommand = new Command<object>(NavigateToNextPage);
         }
 
         public void LoadBestSeller()
         {
             try
             {
-                Http.TindaFeature.Instance.FeaturedList("active", "Food/Drinks", (bool success, string data) =>
+                Http.TindaPress.Store.Instance.Featured("Food/Drinks", "active", (bool success, string data) =>
                 {
                     if (success)
                     {
-                        FeaturedStoreModel datas = JsonConvert.DeserializeObject<FeaturedStoreModel>(data);
-                        if (datas.data.Length > 0)
+                        Models.TindaFeature.StoreModel store = JsonConvert.DeserializeObject<Models.TindaFeature.StoreModel>(data);
+                        if (store.data.Length > 0)
                         {
                             HeaderSize = "280";
                         }
@@ -129,13 +124,16 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         {
                             HeaderSize = "0";
                         }
-                        for (int i = 0; i < datas.data.Length; i++)
+                        for (int i = 0; i < store.data.Length; i++)
                         {
-                            _bestSellers.Add(new FeaturedStoreModel()
+                            _bestSellers.Add(new Models.TindaFeature.StoreModel()
                             {
-                                ID = datas.data[i].stid,
-                                Title = datas.data[i].title,
-                                Logo = datas.data[i].banner == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg" : PSAProc.GetUrl(datas.data[i].banner)
+                                ID = store.data[i].hsid,
+                                Address = store.data[i].street + " " + store.data[i].brgy + " " + store.data[i].city + ", " + store.data[i].province,
+                                Title = store.data[i].title,
+                                Info = store.data[i].info,
+                                Logo = store.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(store.data[i].avatar),
+                                Banner = PSAProc.GetUrl(store.data[i].banner)
                             });
                         }
                     }
@@ -147,7 +145,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2STR-L1FBVM.", "OK");
             }
         }
 
@@ -158,22 +156,30 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    Http.TindaFeature.Instance.StoreTypeList("food/drinks", "active", "",(bool success, string data) =>
+                    Http.TindaPress.Store.Instance.Listing("", "", "food/drinks", "", "", "active", (bool success, string data) =>
                     {
                         if (success)
                         {
-                            FoodStoreListData datas = JsonConvert.DeserializeObject<FoodStoreListData>(data);
+                            Models.TindaFeature.StoreModel store = JsonConvert.DeserializeObject<Models.TindaFeature.StoreModel>(data);
 
-                            for (int i = 0; i < datas.data.Length; i++)
+                            CultureInfo provider = new CultureInfo("fr-FR");
+                            for (int i = 0; i < store.data.Length; i++)
                             {
-                                foodstorelist.Add(new FoodStore()
+                                string open_time = string.IsNullOrEmpty(store.data[i].opening) ? "00:00:00" : store.data[i].opening;
+                                string close_time = string.IsNullOrEmpty(store.data[i].closing) ? "00:00:00" : store.data[i].closing;
+                                DateTime open = DateTime.ParseExact(open_time, "HH:mm:ss", provider);
+                                DateTime close = DateTime.ParseExact(close_time, "HH:mm:ss", provider);
+                                foodstorelist.Add(new Models.TindaFeature.StoreModel()
                                 {
-                                    Id = datas.data[i].hsid,
-                                    Title = datas.data[i].title,
-                                    Description = datas.data[i].short_info,
-                                    Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(datas.data[i].avatar),
-                                    ItemRating = datas.data[i].rates == "No ratings yet" ? "N/A" : datas.data[i].rates,
-                                    Banner = datas.data[i].banner == "None" || datas.data[i].banner == "" ? "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg" : PSAProc.GetUrl(datas.data[i].banner)
+                                    ID = store.data[i].hsid,
+                                    Open_Close = !string.IsNullOrEmpty(store.data[i].opening) || !string.IsNullOrEmpty(store.data[i].closing) ? open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt") : "-",
+                                    Address = store.data[i].street + " " + store.data[i].brgy + " " + store.data[i].city + ", " + store.data[i].province,
+                                    City = store.data[i].city + ", " + store.data[i].province,
+                                    Title = store.data[i].title,
+                                    Info = store.data[i].info,
+                                    Logo = store.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(store.data[i].avatar),
+                                    Rating = store.data[i].rates == "No ratings yet" || string.IsNullOrEmpty(store.data[i].rates) ? "0.0" : store.data[i].rates,
+                                    Banner = store.data[i].banner == "None" || store.data[i].banner == "" ? "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg" : PSAProc.GetUrl(store.data[i].banner)
                                 });
                             }
                             IsRunning = false;
@@ -188,7 +194,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2STR-L2FBVM.", "OK");
                 IsRunning = false;
             }
         }
@@ -197,24 +203,32 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             try
             {
-                Http.TindaFeature.Instance.Store_Search(search, "food/drinks", (bool success, string data) =>
+                Http.TindaPress.Store.Instance.Listing("", search, "food/drinks", "", "", "active", (bool success, string data) =>
                 {
                     if (success)
                     {
-                        FoodStoreListData datas = JsonConvert.DeserializeObject<FoodStoreListData>(data);
-                        if (datas.data.Length > 0)
+                        CultureInfo provider = new CultureInfo("fr-FR");
+                        Models.TindaFeature.StoreModel store = JsonConvert.DeserializeObject<Models.TindaFeature.StoreModel>(data);
+                        if (store.data.Length > 0)
                         {
                             foodstorelist.Clear();
-                            for (int i = 0; i < datas.data.Length; i++)
+                            for (int i = 0; i < store.data.Length; i++)
                             {
-                                foodstorelist.Add(new FoodStore()
+                                string open_time = string.IsNullOrEmpty(store.data[i].opening) ? "00:00:00" : store.data[i].opening;
+                                string close_time = string.IsNullOrEmpty(store.data[i].closing) ? "00:00:00" : store.data[i].closing;
+                                DateTime open = DateTime.ParseExact(open_time, "HH:mm:ss", provider);
+                                DateTime close = DateTime.ParseExact(close_time, "HH:mm:ss", provider);
+                                foodstorelist.Add(new Models.TindaFeature.StoreModel()
                                 {
-                                    Id = datas.data[i].hsid,
-                                    Title = datas.data[i].title,
-                                    Description = datas.data[i].short_info,
-                                    Logo = datas.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(datas.data[i].avatar),
-                                    ItemRating = datas.data[i].rates == "No ratings yet" ? "N/A" : datas.data[i].rates,
-                                    Banner = datas.data[i].banner == "None" || datas.data[i].banner == "" ? "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg" : PSAProc.GetUrl(datas.data[i].banner)
+                                    ID = store.data[i].hsid,
+                                    Open_Close = !string.IsNullOrEmpty(store.data[i].opening) || !string.IsNullOrEmpty(store.data[i].closing) ? open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt") : "-",
+                                    Address = store.data[i].street + " " + store.data[i].brgy + " " + store.data[i].city + ", " + store.data[i].province,
+                                    City = store.data[i].city + ", " + store.data[i].province,
+                                    Title = store.data[i].title,
+                                    Info = store.data[i].info,
+                                    Logo = store.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(store.data[i].avatar),
+                                    Rating = store.data[i].rates == "No ratings yet" || string.IsNullOrEmpty(store.data[i].rates) ? "0.0" : store.data[i].rates,
+                                    Banner = store.data[i].banner == "None" || store.data[i].banner == "" ? "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg" : PSAProc.GetUrl(store.data[i].banner)
                                 });
                             }
                         }
@@ -231,11 +245,35 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2STR-L3FBVM.", "OK");
             }
         }
 
+        #endregion
 
+        #region Properties
+        public Command<object> SelectStoreCommand { get; set; }
+        public ICommand RefreshCommand { protected set; get; }
+
+        #endregion
+
+        #region Method
+
+        private async void DetailsClicked(object obj)
+        {
+            if (!IsRunning)
+            {
+                IsRunning = true;
+                var item = obj as Models.TindaFeature.StoreModel;
+                StoreDetailsViewModel.store_id = item.ID;
+                StoreDetailsViewModel.title = item.Title;
+                StoreDetailsViewModel.info = item.Info;
+                StoreDetailsViewModel.banner = item.Banner;
+                StoreDetailsViewModel.address = item.Address;
+                await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+                IsRunning = false;
+            }
+        }
         public Command<object> ItemTappedCommand { get; set; }
 
         private async void NavigateToNextPage(object obj)
@@ -243,32 +281,17 @@ namespace PasaBuy.App.ViewModels.Marketplace
             if (!IsRunning)
             {
                 IsRunning = true;
-                var product = obj as FeaturedStoreModel;
-                StoreDetailsViewModel.store_id = product.ID;
+                var item = obj as Models.TindaFeature.StoreModel;
+                StoreDetailsViewModel.store_id = item.ID;
+                StoreDetailsViewModel.title = item.Title;
+                StoreDetailsViewModel.info = item.Info;
+                StoreDetailsViewModel.banner = item.Banner;
+                StoreDetailsViewModel.address = item.Address;
                 await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
                 IsRunning = false;
             }
         }
 
-        public ICommand SelectStoreCommand
-        {
-            get
-            {
-                return new Command<string>((x) => LoadDetails(x));
-            }
-        }
-
-        public async void LoadDetails(string storeId)
-        {
-            if (!IsRunning)
-            {
-                IsRunning = true;
-                CanNavigate = false;
-                StoreDetailsViewModel.store_id = storeId;
-                await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
-                IsRunning = false;
-                CanNavigate = true;
-            }
-        }
+        #endregion
     }
 }

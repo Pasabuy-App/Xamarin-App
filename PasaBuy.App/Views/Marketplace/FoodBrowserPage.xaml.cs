@@ -14,7 +14,7 @@ namespace PasaBuy.App.Views.Marketplace
         public FoodBrowserPage()
         {
             InitializeComponent();
-            //this.BindingContext = FoodStoreDataService.Instance.RestaurantViewModel;
+            this.BindingContext = new FoodBrowserViewModel();
             SearchEntry.Completed += (sender, args) => SearchStore(sender, args);
             FoodBrowserViewModel.foodstorelist.CollectionChanged += CollectionChanges;
         }
