@@ -60,8 +60,8 @@
             <StackLayout x:Name="TitleView"
                 Padding="16,8"
                 Grid.Row="0"
-                HeightRequest="40"
-                BackgroundColor="{DynamicResource Gray-White}"
+                HeightRequest="50"
+                BackgroundColor="{DynamicResource PrimaryColor}"
                 HorizontalOptions="FillAndExpand"
                 Orientation="Horizontal"
                 Spacing="0">
@@ -82,7 +82,7 @@
                         HorizontalOptions="CenterAndExpand"
                         LineHeight="1.25"
                         Text="Grocery and Wet Market"
-                        TextColor="{DynamicResource Gray-900}"
+                        TextColor="{DynamicResource Gray-White}"
                         VerticalOptions="Center"
                         VerticalTextAlignment="Center" />
 
@@ -97,13 +97,15 @@
                     <!--  Back to title layout  -->
                     <buttons:SfButton x:Name="BackToTitle"
                         Clicked="BackToTitle_Clicked"
+                        TextColor="{DynamicResource Gray-White}"
                         Style="{StaticResource NavigationBarButtonStyle}"
-                        Text="{StaticResource Back}" />
+                        Text="{StaticResource ArrowRight}" />
 
                     <!--  Rounded Search Entry  -->
                     <border:SfBorder Style="{DynamicResource SfBorderStyle}">
 
                         <controls:BorderlessEntry x:Name="SearchEntry"
+                                                  Margin="15,0,0,0"
                                                   BindingContext="{x:Reference RestaurantList}"
                                                   HorizontalOptions="FillAndExpand"
                                                   Placeholder="Search here"
@@ -116,6 +118,7 @@
 
                 <!--  Search Button  -->
                 <buttons:SfButton x:Name="SearchButton"
+                                  TextColor="{DynamicResource Gray-White}"
                     IsVisible="True"
                     Clicked="SearchButton_Clicked"
                     Style="{StaticResource NavigationBarButtonStyle }"

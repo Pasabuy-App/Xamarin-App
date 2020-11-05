@@ -61,8 +61,8 @@
                 <StackLayout Grid.Row="0" 
                                         x:Name="TitleView"
                                         Padding="16,8"
-                                        HeightRequest="40"
-                                        BackgroundColor="{DynamicResource Gray-White}"
+                                        HeightRequest="50"
+                                        BackgroundColor="{DynamicResource PrimaryColor}"
                                         HorizontalOptions="FillAndExpand"
                                         Orientation="Horizontal"
                                         Spacing="0">
@@ -80,8 +80,8 @@
                                             FontSize="16"
                                             HorizontalOptions="CenterAndExpand"
                                             LineHeight="1.25"
-                                            Text="Search store"
-                                            TextColor="{DynamicResource Gray-900}"
+                                            Text="Partner Stores"
+                                            TextColor="{DynamicResource Gray-White}"
                                             VerticalOptions="Center"
                                             VerticalTextAlignment="Center" />
 
@@ -95,14 +95,16 @@
 
                         <!--  Back to title layout  -->
                         <buttons:SfButton x:Name="BackToTitle"
+                                          TextColor="{DynamicResource Gray-White}"
                                                       Clicked="BackToTitle_Clicked"
                                                       Style="{StaticResource NavigationBarButtonStyle}"
-                                                      Text="{StaticResource Back}" />
+                                                      Text="{StaticResource ArrowRight}" />
 
                         <!--  Rounded Search Entry  -->
                         <border:SfBorder Style="{DynamicResource SfBorderStyle}">
 
                             <controls:BorderlessEntry x:Name="SearchEntry"
+                                                      Margin="15,0,0,0"
                                                       HorizontalOptions="FillAndExpand"
                                                       Placeholder="Search here"
                                                       ReturnType="Search"
@@ -114,6 +116,7 @@
 
                     <!--  Search Button  -->
                     <buttons:SfButton x:Name="SearchButton"
+                                      TextColor="{DynamicResource Gray-White}"
                                                   IsVisible="True"
                                                   Clicked="SearchButton_Clicked"
                                                   Style="{StaticResource NavigationBarButtonStyle }"
