@@ -26,15 +26,15 @@ namespace PasaBuy.App.Views.eCommerce
                 method = (sender as Syncfusion.XForms.Buttons.SfRadioButton).Text;
                 if (method == "Cash on Delivery")
                 {
-                    method = "Cash";
+                    method = "cash";
                 }
                 if (method == "Savings Wallet")
                 {
-                    method = "Wallet";
+                    method = "savings";
                 }
                 /*if (method == "Card Payment")
                 {
-                    method = "Card";
+                    method = "card";
                 }*/
             }
 

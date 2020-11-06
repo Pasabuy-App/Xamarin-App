@@ -153,6 +153,20 @@ namespace PasaBuy.App.Models.TindaFeature
                 OnPropertyChanged("Rating");
             }
         }
+
+        private string operation = string.Empty;
+        public string Operation
+        {
+            get
+            {
+                return operation;
+            }
+            set
+            {
+                operation = value;
+                OnPropertyChanged("Operation");
+            }
+        }
     }
 
     public class StoresData
@@ -181,6 +195,7 @@ namespace PasaBuy.App.Models.TindaFeature
         public string rates = string.Empty;
         public string opening = string.Empty;
         public string closing = string.Empty;
+        public string operation_id = string.Empty;
     }
 
 }

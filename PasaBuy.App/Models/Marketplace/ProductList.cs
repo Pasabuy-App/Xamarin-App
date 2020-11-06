@@ -21,6 +21,44 @@ namespace PasaBuy.App.Models.Marketplace
             }
         }
 
+        public double _Variantprice;
+        public double Variantprice
+        {
+            get
+            {
+                double varprice = 0;
+                foreach (Options var in Variants)
+                {
+                    varprice += var.Price;
+                }
+                return _Variantprice = varprice;
+            }
+            set
+            {
+                _Variantprice = value;
+                OnPropertyChanged("Variantprice");
+            }
+        }
+
+        public string _Variant_Name = string.Empty;
+        public string Variant_Name
+        {
+            get
+            {
+                string var_name = "";
+                foreach (Options var in Variants)
+                {
+                    var_name += var.Name + " ";
+                }
+                return _Variant_Name = var_name;
+            }
+            set
+            {
+                _Variant_Name = value;
+                OnPropertyChanged("Variant_Name");
+            }
+        }
+
         public double totalprice;
         public double TotalPrice
         {
@@ -186,6 +224,21 @@ namespace PasaBuy.App.Models.Marketplace
             {
                 this.totalQuantity = value;
                 OnPropertyChanged("TotalQuantity");
+            }
+        }
+
+        private string remarks;
+        public string Remarks
+        {
+            get
+            {
+                return this.remarks;
+            }
+
+            set
+            {
+                this.remarks = value;
+                OnPropertyChanged("Remarks");
             }
         }
 

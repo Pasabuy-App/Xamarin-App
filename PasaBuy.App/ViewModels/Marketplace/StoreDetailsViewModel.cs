@@ -197,6 +197,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         public static string address = string.Empty;
         public static string info = string.Empty;
         public static string banner = string.Empty;
+        public static string operation_id = string.Empty;
 
         #endregion
         public StoreDetailsViewModel()
@@ -209,7 +210,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
             //CartPageViewModel.cartDetails = new ObservableCollection<ProductList>();
             //CartPageViewModel.Convert2List(store_id);
-            //this.CartItemCount = CartPageViewModel.cartDetails.Count;
+            //this.CartItemCount = CartPageViewModel.cartDetails.Count;Pr
             //CartPageViewModel.cartDetails.CollectionChanged += CollectionChanges;
 
             Loadcategory(store_id);
@@ -222,7 +223,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         }
 
-        public static void InsertCart(string id, string name, string summary, string image, double price, int quantity, ObservableCollection<Options> Variants)
+        public static void InsertCart(string id, string name, string summary, string image, double price, double discount, string remarks, int quantity, ObservableCollection<Options> Variants)
         {
             cartDetails.Insert(0, new ProductList()
             {
@@ -230,10 +231,12 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 ID = id,
                 Name = name,
                 Summary = summary,
-                Avatar = PSAProc.GetUrl(image),
+                Avatar = image,
                 ActualPrice = price,
                 TotalQuantity = quantity,
+                DiscountPercent = discount,
                 Quantity = quantity,
+                Remarks = remarks,
                 Variants = Variants
 
             });
@@ -276,28 +279,19 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         private void AddToCartClicked(object obj)
         {
-            try
+            if (!IsRunning)
             {
-                if (!IsRunning)
-                {
-                    IsRunning = true;
-                    CanNavigate = false;
-                    var product = obj as ProductList;
-                    ProductDetailViewModel.productid = product.ID;
-                    ProductDetailViewModel.productname = product.Name;
-                    ProductDetailViewModel.productimage = product.Avatar;
-                    ProductDetailViewModel.shortinfo = product.Description;
-                    ProductDetailViewModel.price = product.ActualPrice;
-                    Application.Current.MainPage.Navigation.PushModalAsync(new Views.Marketplace.ProductDetail());
-                    IsRunning = false;
-                }
-            }
-            catch (Exception e)
-            {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                IsRunning = true;
+                var product = obj as ProductList;
+                ProductDetailViewModel.productid = product.ID;
+                ProductDetailViewModel.productname = product.Name;
+                ProductDetailViewModel.productimage = product.Avatar;
+                ProductDetailViewModel.shortinfo = product.Description;
+                ProductDetailViewModel.price = product.ActualPrice;
+                ProductDetailViewModel.discount = product.DiscountPercent;
+                Application.Current.MainPage.Navigation.PushModalAsync(new Views.Marketplace.ProductDetail());
                 IsRunning = false;
             }
-                
         }
 
         async void GoToCartClicked(object obj)
@@ -350,7 +344,9 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                         ID = catRoot.data[i].products[j].ID,
                                         Avatar = PSAProc.GetUrl(catRoot.data[i].products[j].avatar) == "" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-product.png" : PSAProc.GetUrl(catRoot.data[i].products[j].avatar),
                                         Name = catRoot.data[i].products[j].title,
-                                        ActualPrice = Convert.ToDouble(catRoot.data[i].products[j].price)
+                                        ActualPrice = Convert.ToDouble(catRoot.data[i].products[j].price),
+                                        DiscountPercent = Convert.ToDouble(catRoot.data[i].products[j].discount),
+                                        Description = catRoot.data[i].products[j].info
                                     });
                                 }
 

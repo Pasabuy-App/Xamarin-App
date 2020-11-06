@@ -120,6 +120,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                             _bestSellers.Add(new Models.TindaFeature.StoreModel()
                             {
                                 ID = store.data[i].hsid,
+                                Operation = store.data[i].operation_id,
                                 Address = store.data[i].street + " " + store.data[i].brgy + " " + store.data[i].city + ", " + store.data[i].province,
                                 Title = store.data[i].title,
                                 Info = store.data[i].info,
@@ -158,6 +159,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 grocerystorelist.Add(new Models.TindaFeature.StoreModel()
                                 {
                                     ID = store.data[i].hsid,
+                                    Operation = store.data[i].operation_id,
                                     Title = store.data[i].title,
                                     Info = store.data[i].info,
                                     Banner = store.data[i].banner == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(store.data[i].banner), //https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png
@@ -198,6 +200,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 grocerystorelist.Add(new Models.TindaFeature.StoreModel()
                                 {
                                     ID = store.data[i].hsid,
+                                    Operation = store.data[i].operation_id,
                                     Title = store.data[i].title,
                                     Info = store.data[i].info,
                                     Banner = store.data[i].banner == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(store.data[i].banner), //https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png
@@ -247,6 +250,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 StoreDetailsViewModel.info = item.Info;
                 StoreDetailsViewModel.banner = item.Banner;
                 StoreDetailsViewModel.address = item.Address;
+                StoreDetailsViewModel.operation_id = item.Operation;
                 await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
                 IsRunning = false;
             }
@@ -263,6 +267,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 StoreDetailsViewModel.info = item.Info;
                 StoreDetailsViewModel.banner = item.Banner;
                 StoreDetailsViewModel.address = item.Address;
+                StoreDetailsViewModel.operation_id = item.Operation;
                 await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
                 IsRunning = false;
             }

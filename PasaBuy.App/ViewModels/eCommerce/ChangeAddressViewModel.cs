@@ -176,7 +176,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 {
                     isRunning = true;
                     var btn = obj as TapGestureRecognizer;
-                    Http.DataVice.Address.Instance.SelectByID( btn.ClassId, (bool success, string data) =>
+                    Http.DataVice.Address.Instance.SelectByID( btn.ClassId, async (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -194,11 +194,8 @@ namespace PasaBuy.App.ViewModels.eCommerce
                                 AddressInMapPage.lat = Convert.ToDouble(address.data[i].latitude);
                                 AddressInMapPage.lon = Convert.ToDouble(address.data[i].longitude);
                             }
-                            Device.BeginInvokeOnMainThread(async () =>
-                            {
-                                await Application.Current.MainPage.Navigation.PushModalAsync(new AddressInMapPage());
-                                isRunning = false;
-                            });
+                            await Application.Current.MainPage.Navigation.PushModalAsync(new AddressInMapPage());
+                            isRunning = false;
                         }
                         else
                         {
