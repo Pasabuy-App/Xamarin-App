@@ -87,7 +87,11 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     if (success)
                     {
                         Models.HatidFeature.Delivery fee = JsonConvert.DeserializeObject<Models.HatidFeature.Delivery>(data);
-                        this.DeliveryFee = "₱ " + fee.data.ToString();
+                        for (int i = 0; i < fee.data.Length; i++)
+                        {
+                            this.DeliveryFee = "₱ " + fee.data[i].price.ToString();
+                            charges = "₱ " + fee.data[i].price;
+                        }
                     }
                     else
                     {
