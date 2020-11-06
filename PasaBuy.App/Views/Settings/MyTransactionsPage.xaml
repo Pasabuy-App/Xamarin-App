@@ -100,7 +100,7 @@
                                                             HeightRequest="50"
                                                             WidthRequest="50"
                                                             DownsampleToViewSize="True"
-                                                            Source="{Binding Image}"
+                                                            Source="{Binding StoreLogo}"
                                                             FadeAnimationEnabled="True">
                                                 <ffimageloading:CachedImage.Transformations>
                                                     <transformations:CircleTransformation />
@@ -120,7 +120,7 @@
                                         FontFamily="{StaticResource Montserrat-SemiBold}"
                                         FontSize="14"
                                         HorizontalOptions="StartAndExpand"
-                                        Text="{Binding CustomerName}"
+                                        Text="{Binding StoreName}"
                                         TextColor="{DynamicResource Gray-900}" />
 
                                                 <Label
@@ -128,7 +128,7 @@
                                         FontSize="14"
                                         HorizontalOptions="End"
                                         HorizontalTextAlignment="End"
-                                        Text="{Binding TransactionAmount}"/>
+                                        Text="{Binding Total, StringFormat='₱ {0:F2}'}" />
                                             </StackLayout>
 
                                             <!--  Transaction description and date  -->
@@ -144,7 +144,7 @@
                                         FontFamily="{StaticResource Montserrat-Medium}"
                                         FontSize="12"
                                         HorizontalOptions="StartAndExpand"
-                                        Text="{Binding TransactionDescription}"
+                                        Text="{Binding Pubkey}"
                                         TextColor="{DynamicResource Gray-700}" />
 
                                                 <Label
@@ -152,18 +152,37 @@
                                         FontSize="12"
                                         HorizontalOptions="End"
                                         HorizontalTextAlignment="End"
-                                        Text="{Binding Date}"
+                                        Text="{Binding DateCreated}"
                                         TextColor="{DynamicResource Gray-700}" />
                                             </StackLayout>
 
-                                            <Label FontFamily="{StaticResource Montserrat-Medium}"
+                                            <Label FontFamily="{StaticResource Montserrat-Medium}" IsVisible="{Binding isOngoing}"
                                        Grid.Row="2"
                                        helper:RTLHelper.Margin="8,0,16,0"
                                        Grid.Column="1"
                                        HorizontalOptions="End"
                                        HorizontalTextAlignment="End"
-                                        Text="{Binding Status}"
+                                        Text="{Binding Stages}"
                                        TextColor="{DynamicResource Green}"/>
+
+                                            <Label FontFamily="{StaticResource Montserrat-Medium}" IsVisible="{Binding isCompleted}"
+                                       Grid.Row="2"
+                                       helper:RTLHelper.Margin="8,0,16,0"
+                                       Grid.Column="1"
+                                       HorizontalOptions="End"
+                                       HorizontalTextAlignment="End"
+                                        Text="{Binding Stages}"
+                                       TextColor="{DynamicResource Orange}"/>
+
+                                            <Label FontFamily="{StaticResource Montserrat-Medium}" IsVisible="{Binding isCancelled}"
+                                       Grid.Row="2"
+                                       helper:RTLHelper.Margin="8,0,16,0"
+                                       Grid.Column="1"
+                                       HorizontalOptions="End"
+                                       HorizontalTextAlignment="End"
+                                        Text="{Binding Stages}"
+                                       TextColor="{DynamicResource Red}"/>
+                                            
                                             
 
                                         </Grid>

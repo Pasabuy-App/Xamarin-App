@@ -97,7 +97,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 var item = (selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Models.POSFeature.OrderModel;
                 OrderDetailsViewModel.avatar = item.Avatar;
                 OrderDetailsViewModel.order_id = item.ID;
-                OrderDetailsViewModel.datecreated = item.DateTime;
+                OrderDetailsViewModel.datecreated = item.DateCreated;
                 OrderDetailsViewModel.totalprice = item.TotalPrice;
                 OrderDetailsViewModel.stages = item.Stages;
                 OrderDetailsViewModel.customer = item.CustomerName; 
@@ -130,7 +130,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                     ID = order.data[i].pubkey,
                                     Pubkey = "Order ID: #" + order.data[i].pubkey,
                                     StoreName = order.data[i].store_name,
-                                    DateTime = date.ToString("MMM. dd, yyyy hh:mm tt"),
+                                    DateCreated = date.ToString("MMM. dd, yyyy hh:mm tt"),
                                     TotalPrice = Convert.ToDouble(order.data[i].total_price),
                                     Method =  order.data[i].method,
                                     StoreAddress = order.data[i].store_address,
@@ -177,7 +177,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                 ID = order.data[i].pubkey,
                                 Pubkey = "Order ID: #" + order.data[i].pubkey,
                                 StoreName = order.data[i].store_name,
-                                DateTime = date.ToString("MMM. dd, yyyy hh:mm tt"),
+                                DateCreated = date.ToString("MMM. dd, yyyy hh:mm tt"),
                                 TotalPrice = Convert.ToDouble(order.data[i].total_price),
                                 Method = order.data[i].method,
                                 StoreAddress = order.data[i].store_address,

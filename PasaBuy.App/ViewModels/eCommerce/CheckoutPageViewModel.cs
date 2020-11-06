@@ -515,6 +515,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                             {
                                 if (success)
                                 {
+                                    fees = string.Empty;
                                     await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new PaymentSuccessPage()));
                                     isRunning = false;
                                 }

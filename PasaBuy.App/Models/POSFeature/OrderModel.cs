@@ -23,6 +23,7 @@ namespace PasaBuy.App.Models.POSFeature
         public string date_created = string.Empty;
         public string stages = string.Empty;
         public string method = string.Empty;
+        public string delivery_charges = string.Empty;
         public ObservableCollection<OrderDetailsModel> products;
     }
     public class OrderModel : INotifyPropertyChanged
@@ -39,6 +40,17 @@ namespace PasaBuy.App.Models.POSFeature
             {
                 productList = value;
                 OnPropertyChanged("OrderList");
+            }
+        }
+
+        private string delivery_charges = string.Empty;
+        public string Delivery_Charges
+        {
+            get { return delivery_charges; }
+            set
+            {
+                delivery_charges = value;
+                OnPropertyChanged("Stages");
             }
         }
 
@@ -130,8 +142,19 @@ namespace PasaBuy.App.Models.POSFeature
             }
         }
 
+        private double total = 0.00;
+        public double Total
+        {
+            get { return total; }
+            set
+            {
+                total = value;
+                OnPropertyChanged("Total");
+            }
+        }
+
         private string date_created = string.Empty;
-        public string DateTime
+        public string DateCreated
         {
             get { return date_created; }
             set
@@ -171,6 +194,39 @@ namespace PasaBuy.App.Models.POSFeature
             {
                 pubkey = value;
                 OnPropertyChanged("Pubkey");
+            }
+        }
+
+        private bool _isOngoing;
+        public bool isOngoing
+        {
+            get { return _isOngoing; }
+            set
+            {
+                _isOngoing = value;
+                OnPropertyChanged("isOngoing");
+            }
+        }
+
+        private bool _isCompleted;
+        public bool isCompleted
+        {
+            get { return _isCompleted; }
+            set
+            {
+                _isCompleted = value;
+                OnPropertyChanged("isCompleted");
+            }
+        }
+
+        private bool _isCancelled;
+        public bool isCancelled
+        {
+            get { return _isCancelled; }
+            set
+            {
+                _isCancelled = value;
+                OnPropertyChanged("isCancelled");
             }
         }
 

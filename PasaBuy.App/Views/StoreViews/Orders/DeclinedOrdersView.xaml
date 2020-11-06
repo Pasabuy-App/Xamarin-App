@@ -104,7 +104,7 @@
                                                        HorizontalOptions="StartAndExpand"
                                                        TextColor="{DynamicResource Gray-800}">
                                 </Label>
-                                <Label Text="{Binding DateTime}"
+                                <Label Text="{Binding DateCreated}"
                                                        Grid.Row="2"
                                                        Grid.Column="1"
                                                        HorizontalOptions="StartAndExpand"

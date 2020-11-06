@@ -20,8 +20,8 @@ namespace PasaBuy.App.ViewModels.eCommerce
     [Preserve(AllMembers = true)]
     public class TransactionHistoryViewModel : BaseViewModel
     {
-        public static ObservableCollection<Transactions> transactionDetails;
-        public ObservableCollection<Transactions> TransactionDetails
+        public static ObservableCollection<Models.POSFeature.OrderModel> transactionDetails;
+        public ObservableCollection<Models.POSFeature.OrderModel> TransactionDetails
         {
             get { return transactionDetails; }
             set { transactionDetails = value; this.NotifyPropertyChanged(); }
@@ -62,61 +62,66 @@ namespace PasaBuy.App.ViewModels.eCommerce
         #region Constructor
         public TransactionHistoryViewModel()
         {
-            transactionDetails = new ObservableCollection<Transactions>();
+            transactionDetails = new ObservableCollection<Models.POSFeature.OrderModel>();
             RefreshCommand = new Command<string>((key) =>
             {
                 transactionDetails.Clear();
-                LoadData("");
+                LoadData();
                 IsRefreshing = false;
             });
-            LoadData("");
-            IsRunning = false;
+            LoadData();
         }
-        public void LoadData(string offset)
+        public void LoadData()
         {
             try
             {
-                IsRunning = true;
-                Customers.Instance.OrderList(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", "", (bool success, string data) =>
+                if (!IsRunning)
                 {
-                    if (success)
+                    IsRunning = true;
+                    Http.MobilePOS.Order.Instance.Listing("", "", "", (bool success, string data) =>
                     {
-                        CultureInfo provider = new CultureInfo("fr-FR");
-                        Transactions order = JsonConvert.DeserializeObject<Transactions>(data);
-                        if (order.data.Length != 0)
+                        if (success)
                         {
+                            CultureInfo provider = new CultureInfo("fr-FR");
+                            Models.POSFeature.OrderModel order = JsonConvert.DeserializeObject<Models.POSFeature.OrderModel>(data);
+
                             for (int i = 0; i < order.data.Length; i++)
                             {
                                 DateTime mydate = DateTime.ParseExact(order.data[i].date_created, "yyyy-MM-dd HH:mm:ss", provider);
-                                string _status = order.data[i].stage != "cancelled" ? order.data[i].stage == "completed" ? "Delivered" : "On-Going" : "Cancelled";
-                                transactionDetails.Add(new Transactions()
+                                string _status = order.data[i].stages != "Cancelled" ? order.data[i].stages == "Completed" ? "Delivered" : "On-Going" : "Cancelled";
+                                transactionDetails.Add(new Models.POSFeature.OrderModel()
                                 {
-                                    ID = order.data[i].ID,
-                                    CustomerName = order.data[i].store_name,
-                                    TransactionDescription = "Order ID " + order.data[i].ID.GetHashCode().ToString(),
-                                    Image = string.IsNullOrEmpty(order.data[i].store_logo) || order.data[i].store_logo == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(order.data[i].store_logo),
-                                    TransactionAmount = "₱ " + Convert.ToDouble(order.data[i].totalprice).ToString(),
-                                    Date = mydate.ToString("MMM. dd, yyyy hh:mm tt"),
-                                    Store_Address = order.data[i].store_street + " " + order.data[i].store_brgy + ", " + order.data[i].store_city + " " + order.data[i].store_province + ", " + order.data[i].store_country,
-                                    My_Address = order.data[i].my_street + " " + order.data[i].my_brgy + ", " + order.data[i].my_city + " " + order.data[i].my_province + ", " + order.data[i].my_country,
-                                    Method = order.data[i].store_name,
-                                    Status = _status
+                                    ID = order.data[i].pubkey,
+                                    StoreName = order.data[i].store_name,
+                                    Pubkey = "Order ID: #" + order.data[i].pubkey,
+                                    StoreLogo = string.IsNullOrEmpty(order.data[i].store_logo) || order.data[i].store_logo == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg" : PSAProc.GetUrl(order.data[i].store_logo),
+                                    TotalPrice = Convert.ToDouble(order.data[i].total_price),
+                                    Total = Convert.ToDouble(order.data[i].total_price) + Convert.ToDouble(order.data[i].delivery_charges),
+                                    StoreAddress = order.data[i].store_address,
+                                    CustomerAddress = order.data[i].cutomer_address,
+                                    Method = order.data[i].method,
+                                    Stages = _status,
+                                    Delivery_Charges = order.data[i].delivery_charges,
+                                    DateCreated = mydate.ToString("MMM. dd, yyyy hh:mm tt"),
+                                    isOngoing = _status == "On-Going" ? true : false,
+                                    isCompleted = _status == "Completed" ? true : false,
+                                    isCancelled = _status == "Cancelled" ? true : false,
                                 });
                             }
                             IsRunning = false;
                         }
-                    }
-                    else
-                    {
-                        IsRunning = false;
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                });
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsRunning = false;
+                        }
+                    });
+                }
             }
             catch (Exception e)
             {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ODR-L1THVM.", "OK");
                 IsRunning = false;
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
         }
         public void SampleData()
@@ -186,30 +191,31 @@ namespace PasaBuy.App.ViewModels.eCommerce
             if (!IsRunning)
             {
                 IsRunning = true;
-                CanNavigate = false;
-                var item = (selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Transactions;
+                var item = (selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Models.POSFeature.OrderModel;
                 await Task.Delay(300);
-                if (item.Status == "On-Going")
+                if (item.Stages == "On-Going")
                 {
+                    ViewModels.Marketplace.OrderStatusViewModel._subtotal = item.TotalPrice;
+                    ViewModels.Marketplace.OrderStatusViewModel._fee = Convert.ToDouble(item.Delivery_Charges);
+                    ViewModels.Marketplace.OrderStatusViewModel._total = item.Total;
                     await App.Current.MainPage.Navigation.PushModalAsync(new PasaBuy.App.Views.Marketplace.OrderStatusPage());
                 }
                 else
                 {
                     ViewModels.Settings.MyTransactionDetailsViewModel._id = item.ID;
-                    ViewModels.Settings.MyTransactionDetailsViewModel._image = item.Image;
-                    ViewModels.Settings.MyTransactionDetailsViewModel._name = item.CustomerName;
-                    ViewModels.Settings.MyTransactionDetailsViewModel._orderid = item.TransactionDescription;
-                    ViewModels.Settings.MyTransactionDetailsViewModel._storeaddress = item.Store_Address;
-                    ViewModels.Settings.MyTransactionDetailsViewModel._myadress = item.My_Address;
-                    ViewModels.Settings.MyTransactionDetailsViewModel._subtotal = item.TransactionAmount;
-                    ViewModels.Settings.MyTransactionDetailsViewModel._fee = "Free";
-                    ViewModels.Settings.MyTransactionDetailsViewModel._total = item.TransactionAmount;
-                    ViewModels.Settings.MyTransactionDetailsViewModel._date_created = item.Date;
+                    ViewModels.Settings.MyTransactionDetailsViewModel._image = item.StoreLogo;
+                    ViewModels.Settings.MyTransactionDetailsViewModel._name = item.StoreName;
+                    ViewModels.Settings.MyTransactionDetailsViewModel._orderid = item.Pubkey;
+                    ViewModels.Settings.MyTransactionDetailsViewModel._storeaddress = item.StoreAddress;
+                    ViewModels.Settings.MyTransactionDetailsViewModel._myadress = item.CustomerAddress;
+                    ViewModels.Settings.MyTransactionDetailsViewModel._subtotal = item.TotalPrice;
+                    ViewModels.Settings.MyTransactionDetailsViewModel._fee = Convert.ToDouble(item.Delivery_Charges);
+                    ViewModels.Settings.MyTransactionDetailsViewModel._total = item.Total;
+                    ViewModels.Settings.MyTransactionDetailsViewModel._date_created = item.DateCreated;
                     ViewModels.Settings.MyTransactionDetailsViewModel._method = item.Method;
                     await App.Current.MainPage.Navigation.PushModalAsync(new MyTransactionDetails());
                 }
                 IsRunning = false;
-                CanNavigate = true;
             }
         }
 
