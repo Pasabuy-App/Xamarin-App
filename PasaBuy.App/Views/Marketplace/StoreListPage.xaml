@@ -124,7 +124,7 @@
                                 <buttons:SfButton x:Name="BackToTitle"
                                         Clicked="BackToTitle_Clicked"
                                         Style="{StaticResource NavigationBarButtonStyle}"
-                                        Text="{StaticResource Back}" />
+                                        Text="{StaticResource ArrowRight}" />
 
                                 <!--  Rounded Search Entry  -->
                                 <border:SfBorder Style="{DynamicResource SfBorderStyle}">

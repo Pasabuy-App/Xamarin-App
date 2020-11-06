@@ -5,12 +5,8 @@
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
              xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
-             xmlns:template="clr-namespace:PasaBuy.App.Views.Templates" 
-             xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms" 
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
-             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms" 
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
-             xmlns:behavior1="clr-namespace:PasaBuy.App.Behaviors" 
              xmlns:loading="clr-namespace:PasaBuy.App.UserControls" 
              xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch" 
              BackgroundColor="{DynamicResource Gray-White}"
@@ -46,7 +42,6 @@
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
             </DataTemplate>
-            
         </ResourceDictionary>
     </ContentView.Resources>
 
@@ -62,11 +57,11 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <StackLayout x:Name="TitleView"
+                <StackLayout x:Name="TitleView" 
                     Padding="16,8"
                     Grid.Row="0" 
-                    HeightRequest="40"
-                    BackgroundColor="{DynamicResource Gray-White}"
+                    HeightRequest="50"
+                    BackgroundColor="{DynamicResource PrimaryColor}"
                     HorizontalOptions="FillAndExpand"
                     Orientation="Horizontal"
                     Spacing="0">
@@ -84,7 +79,7 @@
                             HorizontalOptions="CenterAndExpand"
                             LineHeight="1.25"
                             Text="Food and Drinks"
-                            TextColor="{DynamicResource Gray-900}"
+                            TextColor="{DynamicResource Gray-White}"
                             VerticalOptions="Center"
                             VerticalTextAlignment="Center" />
                     </StackLayout>
@@ -96,9 +91,11 @@
                         <buttons:SfButton x:Name="BackToTitle"
                             Clicked="BackToTitle_Clicked"
                             Style="{StaticResource NavigationBarButtonStyle}"
-                            Text="{StaticResource Back}" />
+                            TextColor="{DynamicResource Gray-White}"
+                            Text="{StaticResource ArrowRight}" />
                         <border:SfBorder Style="{DynamicResource SfBorderStyle}">
                             <controls:BorderlessEntry x:Name="SearchEntry"
+                                                      Margin="15,0,0,0"
                                                       HorizontalOptions="FillAndExpand"
                                                       Placeholder="Search here"
                                                       ReturnType="Search"
@@ -111,6 +108,7 @@
                         IsVisible="True"
                         Clicked="SearchButton_Clicked"
                         Style="{StaticResource NavigationBarButtonStyle }"
+                        TextColor="{DynamicResource Gray-White}"
                         Text="{StaticResource Search}" />
                 </StackLayout>
 
