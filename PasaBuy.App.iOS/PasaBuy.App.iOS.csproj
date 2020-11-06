@@ -374,4 +374,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\plusofficial.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\arrow_left.png" />
+  </ItemGroup>
 </Project>
