@@ -53,7 +53,7 @@ namespace PasaBuy.App.Views.Driver
 
         public static void PushOrder(string odid)
         {
-            GetOrderDetails("qlnv1bb");
+            /*GetOrderDetails("qlnv1bb");
             Device.StartTimer(TimeSpan.FromSeconds(15), doitt);
             bool doitt()
             {
@@ -66,7 +66,7 @@ namespace PasaBuy.App.Views.Driver
                 {
                     return false;
                 }
-            }
+            }*/
         }
 
         public static void GetOrderDetails(string odid)
