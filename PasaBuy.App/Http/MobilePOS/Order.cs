@@ -45,7 +45,7 @@ namespace PasaBuy.App.Http.MobilePOS
         /// <summary>
         /// Customer create order using stid method, addid, msg and list.
         /// </summary>
-        public async void Create(string stid, string method, string addid, string msg, System.Collections.ObjectModel.ObservableCollection<Models.MobilePOS.OrderModel> List, Action<bool, string> callback)
+        public async void Create(string stid, string opid, string adid, string dlfee, string method, System.Collections.ObjectModel.ObservableCollection<Models.MobilePOS.OrderModel> List, Action<bool, string> callback)
         {
             try
             {
@@ -53,16 +53,20 @@ namespace PasaBuy.App.Http.MobilePOS
                     dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
                     dict.Add("snky", PSACache.Instance.UserInfo.snky);
                     dict.Add("stid", stid);
-                    dict.Add("addid", addid);
-                    dict.Add("method", method);
-                    dict.Add("msg", msg);
+                    dict.Add("adid", adid);
+                    dict.Add("opid", opid);
+                    dict.Add("dlfee", dlfee);
+
 
                     int i = 0;
                     foreach (var order in List)
                     {
                         dict.Add("data[items][" + i + "][pdid]", order.ID.ToString());
                         dict.Add("data[items][" + i + "][qty]", order.TotalQuantity.ToString());
-                        int ii = 0;
+                        dict.Add("data[items][" + i + "][remarks]", order.Remarks.ToString());
+
+
+                        int ii = 1;
                         foreach (var var in order.Variants)
                         {
                             dict.Add("data[items][" + i + "][variants][varid" + ii + "]", var.ID.ToString());
@@ -71,9 +75,12 @@ namespace PasaBuy.App.Http.MobilePOS
                         i++;
                     }
 
+                    dict.Add("data[payments][0][method]", method);
+                    dict.Add("data[payments][0][value]", "");
+
                 var content = new FormUrlEncodedContent(dict);
 
-                var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/mobilepos/v1/customer/order/insert", content);
+                var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/mobilepos/v2/orders/insert", content);
                 response.EnsureSuccessStatusCode();
 
                 if (response.IsSuccessStatusCode)
@@ -92,7 +99,7 @@ namespace PasaBuy.App.Http.MobilePOS
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ODR-I1.", "OK");
             }
         }
 

@@ -11,7 +11,8 @@ namespace PasaBuy.App.Models.HatidFeature
     }
     public class DelvieryData
     {
-        public int price;
+        public double meters;
+        public double price;
         public string distance;
         public string duration;
     }
