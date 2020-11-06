@@ -18,6 +18,13 @@ namespace PasaBuy.App.Models.MobilePOS
             set { qty = value; }
         }
 
+        private string remarks { get; set; }
+        public string Remarks
+        {
+            get { return remarks; }
+            set { remarks = value; }
+        }
+
         private ObservableCollection<VariantModel> variants = new ObservableCollection<VariantModel>();
         public ObservableCollection<VariantModel> Variants
         {
@@ -28,6 +35,19 @@ namespace PasaBuy.App.Models.MobilePOS
             set
             {
                 this.variants = value;
+            }
+        }
+
+        private ObservableCollection<VariantModel> payments = new ObservableCollection<VariantModel>();
+        public ObservableCollection<VariantModel> Payments
+        {
+            get
+            {
+                return this.payments;
+            }
+            set
+            {
+                this.payments = value;
             }
         }
     }

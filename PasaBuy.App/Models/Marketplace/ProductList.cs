@@ -227,6 +227,21 @@ namespace PasaBuy.App.Models.Marketplace
             }
         }
 
+        private string remarks;
+        public string Remarks
+        {
+            get
+            {
+                return this.remarks;
+            }
+
+            set
+            {
+                this.remarks = value;
+                OnPropertyChanged("Remarks");
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged(string name)

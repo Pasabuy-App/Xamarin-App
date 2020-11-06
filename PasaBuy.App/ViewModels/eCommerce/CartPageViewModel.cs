@@ -397,9 +397,9 @@ namespace PasaBuy.App.ViewModels.eCommerce
                         CheckoutPageViewModel.charges = this.DeliveryFee;
                     }
                     Marketplace.StoreDetailsViewModel.Convert2List(Marketplace.StoreDetailsViewModel.store_id);
-                    CheckoutPageViewModel.LoadCart();
+                    //CheckoutPageViewModel.LoadCart();
                     PaymentView.method = string.Empty;
-                    await Task.Delay(200);
+                    await Task.Delay(300);
                     await Application.Current.MainPage.Navigation.PushModalAsync(new CheckoutPage());
                     isRunning = false;
                 }
