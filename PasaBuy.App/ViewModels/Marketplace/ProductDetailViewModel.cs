@@ -480,7 +480,10 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         if (success)
                         {
                             Variants var = JsonConvert.DeserializeObject<Variants>(data);
-
+                            if (var.data.Length == 0)
+                            {
+                                isRunning = false;
+                            }
                             for (int i = 0; i < var.data.Length; i++)
                             {
                                 if (var.data[i].options.Count != 0)
