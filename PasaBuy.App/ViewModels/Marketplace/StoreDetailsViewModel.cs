@@ -197,6 +197,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         public static string address = string.Empty;
         public static string info = string.Empty;
         public static string banner = string.Empty;
+        public static string operation_id = string.Empty;
 
         #endregion
         public StoreDetailsViewModel()
