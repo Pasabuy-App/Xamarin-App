@@ -10,8 +10,8 @@ namespace PasaBuy.App.ViewModels.Settings
 {
     public class MyTransactionDetailsViewModel : BaseViewModel
     {
-        public ObservableCollection<TransactListData> _transactionDetails;
-        public ObservableCollection<TransactListData> TransactionDetails
+        public ObservableCollection<Models.POSFeature.OrderDetailsModel> _transactionDetails;
+        public ObservableCollection<Models.POSFeature.OrderDetailsModel> TransactionDetails
         {
             get
             {
@@ -80,8 +80,8 @@ namespace PasaBuy.App.ViewModels.Settings
             }
         }
 
-        public string subTotal;
-        public string SubTotal
+        public double subTotal;
+        public double SubTotal
         {
             get
             {
@@ -94,8 +94,8 @@ namespace PasaBuy.App.ViewModels.Settings
             }
         }
 
-        public string fee;
-        public string Fee
+        public double fee;
+        public double Fee
         {
             get
             {
@@ -108,8 +108,8 @@ namespace PasaBuy.App.ViewModels.Settings
             }
         }
 
-        public string total;
-        public string Total
+        public double total;
+        public double Total
         {
             get
             {
@@ -141,9 +141,9 @@ namespace PasaBuy.App.ViewModels.Settings
         public static string _orderid;
         public static string _storeaddress;
         public static string _myadress;
-        public static string _subtotal;
-        public static string _fee;
-        public static string _total;
+        public static double _subtotal;
+        public static double _fee;
+        public static double _total;
         public static string _method;
         public static string _date_created;
         public MyTransactionDetailsViewModel()
@@ -154,43 +154,54 @@ namespace PasaBuy.App.ViewModels.Settings
             this.StoreAddress = _storeaddress;
             this.MyAddress = _myadress;
             this.OrderID = _orderid;
+
             this.Fee = _fee;
             this.Total = _total;
             this.SubTotal = _subtotal;
-            _transactionDetails = new ObservableCollection<TransactListData>();
+
+            _transactionDetails = new ObservableCollection<Models.POSFeature.OrderDetailsModel>();
             LoadData(_id);
         }
         public void LoadData(string odid)
         {
             try
             {
-                Customers.Instance.OrderList(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", odid, (bool success, string data) =>
+                if (!IsBusy)
                 {
-                    if (success)
+                    IsBusy = true;
+                    Http.MobilePOS.Order.Instance.Listing("", odid, "", (bool success, string data) =>
                     {
-                        TransactListData order = JsonConvert.DeserializeObject<TransactListData>(data);
-                        if (order.data.Length != 0)
+                        if (success)
                         {
-                            for (int i = 0; i < order.data.Length; i++)
+                            Models.POSFeature.OrderModel product = JsonConvert.DeserializeObject<Models.POSFeature.OrderModel>(data);
+
+                            for (int i = 0; i < 1; i++)
                             {
-                                _transactionDetails.Add(new TransactListData()
+                                for (int ii = 0; ii < product.data[i].products.Count; ii++)
                                 {
-                                    Product = order.data[i].product_name,
-                                    Quantity = order.data[i].qty,
-                                    Price = Convert.ToDouble(order.data[i].price)
-                                });
+                                    double totalrpice = (Convert.ToDouble(product.data[i].products[ii].price) + product.data[i].products[ii].variants_price) * Convert.ToInt32(product.data[i].products[ii].quantity);
+                                    _transactionDetails.Add(new Models.POSFeature.OrderDetailsModel()
+                                    {
+                                        Price = totalrpice,
+                                        Product = product.data[i].products[ii].product_name,
+                                        Quantity = product.data[i].products[ii].quantity + " " + " x ( " + product.data[i].products[ii].price + " + " + product.data[i].products[ii].variants_price + " )"
+                                    });
+                                }
                             }
+                            IsBusy = false;
                         }
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                });
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsBusy = false;
+                        }
+                    });
+                }
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ODR-L1MTDVM.", "OK");
+                IsBusy = false;
             }
         }
     }

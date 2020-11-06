@@ -286,7 +286,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                             {
                                 for (int ii = 0; ii < product.data[i].products.Count; ii++)
                                 {
-                                    double totalrpice = (Convert.ToDouble(product.data[i].products[ii].price) + Convert.ToDouble(product.data[i].products[ii].variants_price)) * Convert.ToInt32(product.data[i].products[ii].quantity);
+                                    double totalrpice = (Convert.ToDouble(product.data[i].products[ii].price) + product.data[i].products[ii].variants_price) * Convert.ToInt32(product.data[i].products[ii].quantity);
                                     this.ProductList.Add(new Models.POSFeature.OrderDetailsModel()
                                     {
                                         Price = totalrpice,
