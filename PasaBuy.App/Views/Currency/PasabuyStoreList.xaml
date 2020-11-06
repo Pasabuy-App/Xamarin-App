@@ -5,7 +5,8 @@
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
-             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
+             xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False"
              x:Class="PasaBuy.App.Views.Currency.PasabuyStoreList">
@@ -50,69 +51,73 @@
             </Grid.RowDefinitions>
 
             <StackLayout x:Name="TitleView"
-                                    Padding="16,8"
-                                    Grid.Row="0" 
-                                    BackgroundColor="{DynamicResource PrimaryColor}"
-                                    HeightRequest="45"
-                                    HorizontalOptions="FillAndExpand"
-                                    Orientation="Horizontal"
-                                    Spacing="0">
+                         Padding="16,8"
+                         Grid.Row="0" 
+                         BackgroundColor="{DynamicResource PrimaryColor}"
+                         HeightRequest="45"
+                         HorizontalOptions="FillAndExpand"
+                         Orientation="Horizontal"
+                         Spacing="0">
 
                 <StackLayout  x:Name="Title"
-                                        HorizontalOptions="FillAndExpand"
-                                        IsVisible="True"
-                                        Orientation="Horizontal"
-                                        Spacing="0"
-                                        VerticalOptions="FillAndExpand">
+                              HorizontalOptions="FillAndExpand"
+                              IsVisible="True"
+                              Orientation="Horizontal"
+                              Spacing="0"
+                              VerticalOptions="FillAndExpand">
 
                     <buttons:SfButton x:Name="backButton"
-                                            IsVisible="True"
-                                            Clicked="backButton_Clicked"
-                                            TextColor="{DynamicResource Gray-White}"
-                                            Style="{StaticResource NavigationBarButtonStyle }"
-                                            Text="{StaticResource Back}" />
+                                      IsVisible="True"
+                                      Clicked="backButton_Clicked"
+                                      TextColor="{DynamicResource Gray-White}"
+                                      Style="{StaticResource NavigationBarButtonStyle }"
+                                      Text="{StaticResource Back}" />
 
                     <Label Margin="16,0"
-                                        HeightRequest="24"
-                                        FontFamily="{StaticResource Montserrat-Medium}"
-                                        FontSize="16"
-                                        HorizontalOptions="CenterAndExpand"
-                                        LineHeight="1.25"
-                                        Text="P-PLUS Partner Store"
-                                        TextColor="{DynamicResource Gray-White}"
-                                        VerticalOptions="Center"
-                                        VerticalTextAlignment="Center" />
+                           HeightRequest="24"
+                           FontFamily="{StaticResource Montserrat-Medium}"
+                           FontSize="16"
+                           HorizontalOptions="CenterAndExpand"
+                           LineHeight="1.25"
+                           Text="P-PLUS Partner Store"
+                           TextColor="{DynamicResource Gray-White}"
+                           VerticalOptions="Center"
+                           VerticalTextAlignment="Center" />
                 </StackLayout>
 
                 <StackLayout x:Name="Search"
-                                        HorizontalOptions="EndAndExpand"
-                                        IsVisible="False"
-                                        Orientation="Horizontal"
-                                        Spacing="0">
+                             HorizontalOptions="EndAndExpand"
+                             IsVisible="False"
+                             Orientation="Horizontal"
+                             Spacing="0">
                     <buttons:SfButton x:Name="BackToTitle"
-                                                Clicked="BackToTitle_Clicked"
-                                                Style="{StaticResource NavigationBarButtonStyle}"
-                                                Text="{StaticResource ArrowRight}" />
+                                      Clicked="BackToTitle_Clicked"
+                                      TextColor="White"
+                                      FontSize="22"
+                                      Style="{StaticResource NavigationBarButtonStyle}"
+                                      Text="{StaticResource ArrowRight}" />
                     <border:SfBorder Style="{DynamicResource SfBorderStyle}"
-                                                 Padding="15,0,0,0">
+                                     Padding="15,0,0,0">
                         <controls:BorderlessEntry x:Name="SearchEntry"
-                                                                HorizontalOptions="FillAndExpand"
-                                                                Placeholder="Search here..."
-                                                                Text="{Binding SearchText, Mode=TwoWay}"
-                                                                Style="{StaticResource SearchEntryStyle}"/>
+                                                  HorizontalOptions="FillAndExpand"
+                                                  Placeholder="Search here..."
+                                                  ReturnType="Search"
+                                                  Text="{Binding SearchText, Mode=TwoWay}"
+                                                  Style="{StaticResource SearchEntryStyle}"/>
                     </border:SfBorder>
                 </StackLayout>
 
                 <!--  Search Button  -->
                 <buttons:SfButton x:Name="SearchButton"
-                                            IsVisible="True"
-                                            Clicked="SearchButton_Clicked"
-                                              TextColor="{DynamicResource Gray-White}"
-                                            Style="{StaticResource NavigationBarButtonStyle }"
-                                            Text="{StaticResource Search}" />
+                                  IsVisible="True"
+                                  Clicked="SearchButton_Clicked"
+                                  TextColor="{DynamicResource Gray-White}"
+                                  Style="{StaticResource NavigationBarButtonStyle }"
+                                  Text="{StaticResource Search}" />
             </StackLayout>
 
-            <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}" />
+            <BoxView Grid.Row="1" 
+                     Style="{StaticResource SeparatorStyle}" />
 
             <StackLayout Grid.Row="2"
                          VerticalOptions="FillAndExpand">
@@ -132,15 +137,16 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <controls:CustomShadowFrame Grid.Row="0"
-                                                Margin="0,8,5,12"
-                                                Padding="0,5,0,5"
-                                                BackgroundColor="{DynamicResource Gray-White}"
-                                                BorderColor="{DynamicResource Gray-300}"
-                                                BorderWidth="1"
-                                                CornerRadius="4"
-                                                HasShadow="True">
+                                                        Margin="0,8,5,12"
+                                                        Padding="0,5,0,5"
+                                                        BackgroundColor="{DynamicResource Gray-White}"
+                                                        BorderColor="{DynamicResource Gray-300}"
+                                                        BorderWidth="1"
+                                                        CornerRadius="4"
+                                                        HasShadow="True">
                                 <Grid>
-                                    <Grid ColumnSpacing="0" RowSpacing="0">
+                                    <Grid ColumnSpacing="0" 
+                                          RowSpacing="0">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition Height="Auto" />
@@ -169,34 +175,32 @@
                                                      VerticalOptions="FillAndExpand">
 
                                             <Label FontFamily="{StaticResource Montserrat-SemiBold}"
-                                                            FontSize="16"
-                                                            LineHeight="{OnPlatform Android=1.5,
-                                                                                    Default=-1}"
-                                                            Text="{Binding Title}"
-                                                            TextColor="{DynamicResource Gray-900}" />
+                                                   FontSize="16"
+                                                   LineHeight="{OnPlatform Android=1.5, Default=-1}"
+                                                   Text="{Binding Title}"
+                                                   TextColor="{DynamicResource Gray-900}" />
 
-                                            <Label  LineBreakMode="TailTruncation"
-                                                            Margin="0,4,0,0"
-                                                            FontFamily="{StaticResource Montserrat-Medium}"
-                                                            FontSize="{DynamicResource SmallerSize}"
-                                                            LineHeight="{OnPlatform Android=1.2,
-                                                                                    Default=-1}"
-                                                            Text="{Binding Street}" />
+                                            <Label LineBreakMode="TailTruncation"
+                                                   Margin="0,4,0,0"
+                                                   FontFamily="{StaticResource Montserrat-Medium}"
+                                                   FontSize="{DynamicResource SmallerSize}"
+                                                   LineHeight="{OnPlatform Android=1.2,Default=-1}"
+                                                   Text="{Binding Street}" />
 
-                                            <Label  LineBreakMode="TailTruncation"
-                                                            Margin="0,4,0,0"
-                                                            FontFamily="{StaticResource Montserrat-Medium}"
-                                                            FontSize="{DynamicResource SmallerSize}"
-                                                            LineHeight="{OnPlatform Android=1.25,
-                                                                                    Default=-1}"
-                                                            Text="{Binding TodayScheds}" />
+                                            <Label LineBreakMode="TailTruncation"
+                                                   Margin="0,4,0,0"
+                                                   FontFamily="{StaticResource Montserrat-Medium}"
+                                                   FontSize="{DynamicResource SmallerSize}"
+                                                   LineHeight="{OnPlatform Android=1.25,Default=-1}"
+                                                   Text="{Binding TodayScheds}" />
 
                                           
                                         </StackLayout>
                                     </Grid>
                                 </Grid>
                                 <controls:CustomShadowFrame.GestureRecognizers>
-                                    <TapGestureRecognizer  Command="{Binding Path=BindingContext.ItemTappedCommand ,Source={x:Reference StoreList}}" CommandParameter="{Binding .}" />
+                                    <TapGestureRecognizer  Command="{Binding Path=BindingContext.ItemTappedCommand ,Source={x:Reference StoreList}}" 
+                                                           CommandParameter="{Binding .}" />
                                 </controls:CustomShadowFrame.GestureRecognizers>
                             </controls:CustomShadowFrame>
                         </DataTemplate>

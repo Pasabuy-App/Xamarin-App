@@ -1,14 +1,14 @@
-﻿using Newtonsoft.Json;
-using PasaBuy.App.Controllers.Notice;
+﻿using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
-using PasaBuy.App.Models.MobilePOS;
 using PasaBuy.App.ViewModels.MobilePOS;
-using PasaBuy.App.Views.Navigation;
 using Plugin.Media;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -16,14 +16,54 @@ using Xamarin.Forms.Xaml;
 namespace PasaBuy.App.Views.PopupModals
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PopupAddDocument : PopupPage
+    public partial class PopupEditDocumentStore : PopupPage
     {
         private string filepath = string.Empty;
         private string hash_id = string.Empty;
-        public PopupAddDocument()
+
+        public static string image = string.Empty;
+        public static string doctype = string.Empty;
+        public static string docid = string.Empty;
+
+        public PopupEditDocumentStore()
         {
             InitializeComponent();
             this.BindingContext = new AddDocumentViewModel();
+            DocumentImage.Source = image;
+        }
+
+        private void CancelModal(object sender, EventArgs e)
+        {
+            PopupNavigation.Instance.PopAsync();
+        }
+
+        private void OKModal_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                if (filepath != string.Empty && hash_id != string.Empty)
+                {
+
+                    Http.TindaFeature.Instance.DocumentUpdate(filepath, docid, hash_id, (bool success, string data) =>
+                    {
+                        if (success)
+                        {
+                            DocumentViewModel.RefreshData();
+                            PopupNavigation.Instance.PopAsync();
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        }
+                    });
+
+                }
+            }
+            catch (Exception ex)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: TPV2STR-DOCINSRT", "OK");
+            }
+
         }
 
         void RemoveDocumentImage(object sender, EventArgs args)
@@ -87,41 +127,6 @@ namespace PasaBuy.App.Views.PopupModals
             DocumentImage.Source = imageSource;
             filepath = file.Path;
 
-        }
-
-        private void CancelModal(object sender, EventArgs e)
-        {
-            PopupNavigation.Instance.PopAsync();
-        }
-
-        private void OKModal_Clicked(object sender, EventArgs e)
-        {
-            //new Alert(DocumentTypePicker.Text, "Path: " + filepath, "OK");
-            try
-            {
-                if (filepath != string.Empty && hash_id != string.Empty)
-                {
-
-
-                    Http.TindaFeature.Instance.InsertDocument(filepath, PSACache.Instance.UserInfo.stid, "", hash_id, (bool success, string data) =>
-                    {
-                        if (success)
-                        {
-                            DocumentViewModel.RefreshData();
-                            PopupNavigation.Instance.PopAsync();
-                        }
-                        else
-                        {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                        }
-                    });
-
-                }
-            }
-            catch (Exception ex)
-            {
-                new Alert("Something went Wrong", "Please contact administrator. Error: TPV2STR-DOCINSRT", "OK");
-            }
         }
 
         private void DocumentTypePicker_SelectionChanged(object sender, Syncfusion.XForms.ComboBox.SelectionChangedEventArgs e)

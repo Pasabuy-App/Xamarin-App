@@ -6,7 +6,7 @@
              xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
              xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl" 
-             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.MobilePOS"
+             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.MobilePOS" xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
              Title="Documents"
              BackgroundColor="{DynamicResource Gray-White}">
 
@@ -35,7 +35,7 @@
         <Grid>
             <StackLayout Spacing="0" VerticalOptions="FillAndExpand">
                 <sync:SfListView
-                        x:Name="ManagementItem"
+                        x:Name="DocumentList"
                         AllowSwiping="True"
                         AutoFitMode="Height"
                         FocusBorderThickness="0"
@@ -48,7 +48,9 @@
 
                 <sync:SfListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid RowSpacing="0" ColumnSpacing="0" HeightRequest="72">
+                        <Grid RowSpacing="0"
+                              ColumnSpacing="0" 
+                              Padding="5,10,5,10">
 
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -58,15 +60,14 @@
 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                             </Grid.ColumnDefinitions>
 
                             <!-- Image Icon -->
                             <Label Grid.RowSpan="3" 
-                                                   Margin="17,0"
-                                                   TextColor="{DynamicResource Gray-600}"
+                                   Margin="17,0,17,0"
+                                   TextColor="{DynamicResource Gray-600}"
                                                    VerticalOptions="CenterAndExpand"
                                                    Text="{StaticResource Photos}"
                                                    FontSize="18"
@@ -74,91 +75,96 @@
 
                             <!-- Document Name -->
                             <Label Grid.Column="1"
-                                                   Grid.ColumnSpan="3"
-                                                   Margin="0,13,0,0"
-                                                   Text="{Binding Name}"
-                                                   TextColor="{DynamicResource Gray-900}"
-                                                   FontSize="16"
-                                                   FontFamily="{StaticResource Montserrat-Medium}"
-                                                   HeightRequest="24" />
+                                   Grid.ColumnSpan="3"
+                                   Text="{Binding Title}"
+                                   Margin="0,8,0,0"
+                                   TextColor="{DynamicResource Gray-900}"
+                                   FontSize="16"
+                                   FontFamily="{StaticResource Montserrat-Medium}"
+                                   HeightRequest="24" />
 
-                            <!-- Document Type -->
                             <Label Grid.Row="1"
-                                                   Grid.Column="1"
-                                                   Margin="0,0,0,14"
-                                                   Text="{Binding Type}"
+                                   Grid.Column="1"
+                                   Text="{Binding Date, StringFormat='{0:MMMM dd, yyyy hh:mm tt}'}"
                                                    TextColor="{DynamicResource Gray-700}"
                                                    FontSize="14"
                                                    FontFamily="{StaticResource Montserrat-Medium}"
                                                    HeightRequest="21" />
 
-                            <!-- Document Size -->
-                            <Label Grid.Row="1"
-                                                   Grid.Column="2"
-                                                   Margin="24,0,0,14"
-                                                   Text="{Binding Date}"
-                                                   TextColor="{DynamicResource Gray-700}"
-                                                   FontSize="14"
-                                                   FontFamily="{StaticResource Montserrat-Medium}"
-                                                   HeightRequest="21" />
-
-                            <!-- Status -->
                                 <buttons:SfButton Grid.Column="3" IsVisible="{Binding isGreen}"
-                                                              Grid.RowSpan="3" 
-                                                              Margin="15,0,15,0"
-                                                              TextColor="{DynamicResource Green}"
-                                                              BackgroundColor="{DynamicResource Transparent}"
+                                                  Grid.RowSpan="3" 
+                                                  Margin="15,0,15,0"
+                                                  IsEnabled="False"
+                                                  TextColor="{DynamicResource Green}"
+                                                   BackgroundColor="{DynamicResource Transparent}"
                                                               HorizontalOptions="End"
                                                               HorizontalTextAlignment="End"
-                                                              VerticalOptions="Center"
+                                                              VerticalOptions="Start"
                                                               Text="{Binding Status}"
                                                               FontSize="16"
                                                               HeightRequest="40"
                                                               FontFamily="{StaticResource FontIcons}" />
 
-                                <buttons:SfButton Grid.Column="3" IsVisible="{Binding isRed}"
+                                <buttons:SfButton Grid.Column="3" 
+                                                  IsVisible="{Binding isRed}"
+                                                  IsEnabled="False"
                                                               Grid.RowSpan="3" 
                                                               Margin="15,0,15,0"
                                                               TextColor="{DynamicResource Red}"
                                                               BackgroundColor="{DynamicResource Transparent}"
                                                               HorizontalOptions="End"
                                                               HorizontalTextAlignment="End"
-                                                              VerticalOptions="Center"
+                                                              VerticalOptions="Start"
                                                               Text="{Binding Status}"
                                                               FontSize="16"
                                                               HeightRequest="40"
                                                               FontFamily="{StaticResource FontIcons}" />
 
                                 <!-- Seperator -->
-                            <BoxView Grid.Row="2" Grid.ColumnSpan="4" Style="{DynamicResource SeparatorStyle}" />
+                            <BoxView Grid.Row="2" Grid.ColumnSpan="4" Margin="0,15,0,0" Style="{DynamicResource SeparatorStyle}" />
 
                         </Grid>
                     </DataTemplate>
                 </sync:SfListView.ItemTemplate>
                     <sync:SfListView.RightSwipeTemplate>
                         <DataTemplate x:Name="RightSwipeTemplate">
-                            <Grid>
+                            <Grid Margin="0,10,0,10" Padding="5,10,5,10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Grid ClassId="{Binding ID}"
-                                                            Grid.Column="1"
-                                                            BackgroundColor="Red"
-                                                            HorizontalOptions="Fill"
-                                                            VerticalOptions="Fill">
+                                <Grid Grid.Column="0"
+                                      BackgroundColor="{DynamicResource PrimaryColor}"
+                                      HorizontalOptions="Fill"
+                                      VerticalOptions="Fill">
                                     <Grid.GestureRecognizers>
-
-                                        <TapGestureRecognizer  x:Name="Delete" Tapped="Delete_Tapped"/>
+                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.UpdateCommand, Source={x:Reference DocumentList}}" CommandParameter="{Binding .}"/>
                                     </Grid.GestureRecognizers>
-                                    <Grid HorizontalOptions="Center" VerticalOptions="Center">
-                                        <Image
-                                                                    Grid.Row="0"
-                                                                    Grid.Column="0"
-                                                                    BackgroundColor="Transparent"
-                                                                    HeightRequest="28"
-                                                                    Source="Delete.png"
-                                                                    WidthRequest="28" />
+                                    <Grid HorizontalOptions="Center" 
+                                          VerticalOptions="Center">
+                                        <Image Grid.Row="0"
+                                               Grid.Column="0"
+                                               BackgroundColor="Transparent"
+                                               HeightRequest="28"
+                                               Source="edit_white.png"
+                                               WidthRequest="28" />
+                                    </Grid>
+                                </Grid>
+                                <Grid Grid.Column="1"
+                                      BackgroundColor="Red"
+                                      HorizontalOptions="Fill"
+                                      VerticalOptions="Fill">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference DocumentList}}" CommandParameter="{Binding .}"/>
+                                    </Grid.GestureRecognizers>
+                                    <Grid HorizontalOptions="Center" 
+                                          VerticalOptions="Center">
+                                        <Image Grid.Row="0"
+                                               Grid.Column="0"
+                                               BackgroundColor="Transparent"
+                                               HeightRequest="28"
+                                               Source="Delete.png"
+                                               WidthRequest="28" />
                                     </Grid>
                                 </Grid>
                             </Grid>
@@ -166,7 +172,11 @@
                     </sync:SfListView.RightSwipeTemplate>
                 </sync:SfListView>
             </StackLayout>
-
+            <loading:LoadingIndicator
+                    Grid.RowSpan="3"
+                    HorizontalOptions="Fill"
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}"
+                    VerticalOptions="Fill" />
         </Grid>
         
     </ContentPage.Content>
