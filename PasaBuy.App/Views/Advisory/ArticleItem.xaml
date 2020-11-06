@@ -38,7 +38,7 @@
                                      HeightRequest="25"
                                      WidthRequest="25"
                                      BackgroundColor="Transparent"
-                                    Clicked="BackButtonClicked" />
+                                     Clicked="BackButtonClicked" />
                     </controls:TitleView.LeadingView>
                     <controls:TitleView.TrailingView>
                         <StackLayout Orientation="Horizontal">

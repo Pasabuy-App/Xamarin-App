@@ -424,7 +424,7 @@ namespace PasaBuy.App.Http
             }
         }
 
-        public async void DocumentList(string status, Action<bool, string> callback)
+        public async void DocumentList(string stid, string status, Action<bool, string> callback)
         {
             try
             {
@@ -432,6 +432,7 @@ namespace PasaBuy.App.Http
                 dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
                 dict.Add("snky", PSACache.Instance.UserInfo.snky);
                 dict.Add("status", status);
+                dict.Add("stid", stid);
 
                 var content = new FormUrlEncodedContent(dict);
 
