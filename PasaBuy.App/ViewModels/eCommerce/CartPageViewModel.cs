@@ -1,4 +1,4 @@
-using PasaBuy.App.Commands;
+﻿using PasaBuy.App.Commands;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Marketplace;
@@ -102,7 +102,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
             this.TotalPrice = totalprice;
             //this.DiscountPrice = totalprice;
 
-            this.DeliveryFee = "0";
+            this.DeliveryFee = "₱ 0";
             Marketplace.StoreDetailsViewModel.Convert2String(Marketplace.StoreDetailsViewModel.store_id);
         }
 
@@ -392,11 +392,14 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     //CheckoutPageViewModel.coupon = this.DiscountPercent;
                     //CheckoutPageViewModel.discount = this.DiscountPrice;
                     CheckoutPageViewModel.totalprice = this.TotalPrice;
-                    CheckoutPageViewModel.charges = this.DeliveryFee;
+                    if (string.IsNullOrEmpty(CheckoutPageViewModel.charges))
+                    {
+                        CheckoutPageViewModel.charges = this.DeliveryFee;
+                    }
                     Marketplace.StoreDetailsViewModel.Convert2List(Marketplace.StoreDetailsViewModel.store_id);
-                    CheckoutPageViewModel.LoadCart();
+                    //CheckoutPageViewModel.LoadCart();
                     PaymentView.method = string.Empty;
-                    await Task.Delay(200);
+                    await Task.Delay(300);
                     await Application.Current.MainPage.Navigation.PushModalAsync(new CheckoutPage());
                     isRunning = false;
                 }

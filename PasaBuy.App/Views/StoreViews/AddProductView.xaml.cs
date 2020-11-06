@@ -179,6 +179,7 @@ namespace PasaBuy.App.Views.StoreViews
                         IsRunning.IsRunning = true;
                         if (pdid == "0")
                         {
+                            filepath = !string.IsNullOrEmpty(filepath) ? filepath : "";
                             Http.TindaPress.Product.Instance.Insert(filepath, catid, ProductNames.Text, Shorts.Text, Prices.Text, Discount.Text, inventories, async (bool success, string data) =>
                             {
                                 if (success)
@@ -199,6 +200,7 @@ namespace PasaBuy.App.Views.StoreViews
                         }
                         else
                         {
+                            filepath = !string.IsNullOrEmpty(filepath) ? filepath : "";
                             Http.TindaPress.Product.Instance.Update(filepath, pdid, catid, ProductNames.Text, Shorts.Text, Prices.Text, Discount.Text, inventories, async (bool success, string data) =>
                             {
                                 if (success)

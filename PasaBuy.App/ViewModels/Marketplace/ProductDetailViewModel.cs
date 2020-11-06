@@ -454,14 +454,14 @@ namespace PasaBuy.App.ViewModels.Marketplace
                             }
                         }
 
-                        StoreDetailsViewModel.InsertCart(productid, this.ProductName, this.Short_Info, this.ProductImage, this.Price, discount, this.Quantity, _AllVariants);
+                        StoreDetailsViewModel.InsertCart(productid, this.ProductName, this.Short_Info, this.ProductImage, this.Price, discount, this.SpecialInstructions, this.Quantity, _AllVariants);
                         await Application.Current.MainPage.Navigation.PopModalAsync();
                         isRunning = false;
                     }
                 }
                 else
                 {
-                    StoreDetailsViewModel.InsertCart(productid, this.ProductName, this.Short_Info, this.ProductImage, this.Price, discount, this.Quantity, _AllVariants);
+                    StoreDetailsViewModel.InsertCart(productid, this.ProductName, this.Short_Info, this.ProductImage, this.Price, discount, this.SpecialInstructions, this.Quantity, _AllVariants);
                     await Application.Current.MainPage.Navigation.PopModalAsync();
                     isRunning = false;
                 }
@@ -480,7 +480,10 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         if (success)
                         {
                             Variants var = JsonConvert.DeserializeObject<Variants>(data);
-
+                            if (var.data.Length == 0)
+                            {
+                                isRunning = false;
+                            }
                             for (int i = 0; i < var.data.Length; i++)
                             {
                                 if (var.data[i].options.Count != 0)

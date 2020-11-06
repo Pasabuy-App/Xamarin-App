@@ -150,6 +150,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                     storeList.Add(new Models.TindaFeature.StoreModel()
                                     {
                                         ID = store.data[i].hsid,
+                                        Operation = store.data[i].operation_id,
                                         Title = store.data[i].title,
                                         Info = store.data[i].info,
                                         Logo = PSAProc.GetUrl(store.data[i].avatar),
@@ -198,6 +199,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 storeList.Add(new Models.TindaFeature.StoreModel()
                                 {
                                     ID = store.data[i].hsid,
+                                    Operation = store.data[i].operation_id,
                                     Title = store.data[i].title,
                                     Info = store.data[i].info,
                                     Logo = PSAProc.GetUrl(store.data[i].avatar),
@@ -305,6 +307,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 StoreDetailsViewModel.info = item.Info;
                 StoreDetailsViewModel.banner = item.Banner;
                 StoreDetailsViewModel.address = item.Address;
+                StoreDetailsViewModel.operation_id = item.Operation;
                 await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
                 IsRunning = false;
             }

@@ -19,6 +19,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
     public class CheckoutPageViewModel : BaseViewModel
     {
         #region Fields
+        public static string fees = string.Empty;
         public static string charges = string.Empty;
         public static double totalprice;
         public static double discount;
@@ -73,7 +74,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
             this.ApplyCouponCommand = new Command(this.ApplyCouponClicked);
             this.IsBusy = true;
             PaymentMethod();
-            //LoadCart();
+            LoadCart();
 
             deliveryAddress.CollectionChanged += CollectionChanges;
         }
@@ -87,7 +88,12 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     if (success)
                     {
                         Models.HatidFeature.Delivery fee = JsonConvert.DeserializeObject<Models.HatidFeature.Delivery>(data);
-                        this.DeliveryFee = "₱ " + fee.data.ToString();
+                        for (int i = 0; i < fee.data.Length; i++)
+                        {
+                            this.DeliveryFee = "₱ " + fee.data[i].price.ToString();
+                            charges = "₱ " + fee.data[i].price.ToString();
+                            fees = fee.data[i].price.ToString();
+                        }
                     }
                     else
                     {
@@ -106,6 +112,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
             // TODO : REVISE WITH VARIANTS
             _ListOrder = new ObservableCollection<Models.MobilePOS.OrderModel>();
             _VariantList = new ObservableCollection<Models.MobilePOS.VariantModel>();
+            _PaymentsList = new ObservableCollection<Models.MobilePOS.VariantModel>();
 
             foreach (var car in CartPageViewModel.cartDetails)
             {
@@ -116,11 +123,21 @@ namespace PasaBuy.App.ViewModels.eCommerce
                         ID = vars.Id,
                     });
                 }
+                foreach (var vars in car.Variants)
+                {
+                    _PaymentsList.Add(new Models.MobilePOS.VariantModel()
+                    {
+                        Method = "cash"
+                    });
+                }
+
                 _ListOrder.Add(new Models.MobilePOS.OrderModel()
                 {
                     ID = car.ID.ToString(),
                     TotalQuantity = Convert.ToInt32(car.Quantity),
-                    Variants = _VariantList
+                    Remarks = !string.IsNullOrEmpty(car.Remarks) || !string.IsNullOrWhiteSpace(car.Remarks) ? car.Remarks : "",
+                    Variants = _VariantList,
+                    Payments = _PaymentsList
                 });
             }
         }
@@ -215,6 +232,25 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 }
 
                 _VariantList = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        public static ObservableCollection<Models.MobilePOS.VariantModel> _PaymentsList;
+        public ObservableCollection<Models.MobilePOS.VariantModel> PaymentsList
+        {
+            get
+            {
+                return _PaymentsList;
+            }
+            set
+            {
+                if (_PaymentsList == value)
+                {
+                    return;
+                }
+
+                _PaymentsList = value;
                 this.NotifyPropertyChanged();
             }
         }
@@ -440,6 +476,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
         {
             // Do something
         }
+
         /// <summary>
         /// Invoked when the Place order button is clicked.
         /// </summary>
@@ -460,19 +497,34 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     {
                         var btn = obj as Syncfusion.XForms.Buttons.SfButton;
 
-                        Http.MobilePOS.Order.Instance.Create(Marketplace.StoreDetailsViewModel.store_id, PaymentView.method, address_id.ToString(), "", ListOrder, (bool success, string data) =>
+                        /*foreach (var order in ListOrder)
                         {
-                            if (success)
+                            _PaymentsList.Add(new Models.MobilePOS.VariantModel()
                             {
-                                (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new PaymentSuccessPage()));
-                            }
-                            else
+                                Method = PaymentView.method,
+                            });
+
+                            _ListOrder.Add(new Models.MobilePOS.OrderModel()
                             {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                                isRunning = false;
-                            }
-                        });
-                    }
+                                Payments = _PaymentsList
+                            });
+                            break;
+                        }*/
+                            
+                            Http.MobilePOS.Order.Instance.Create(Marketplace.StoreDetailsViewModel.store_id, Marketplace.StoreDetailsViewModel.operation_id, address_id.ToString(), fees, PaymentView.method, ListOrder, async (bool success, string data) =>
+                            {
+                                if (success)
+                                {
+                                    await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new PaymentSuccessPage()));
+                                    isRunning = false;
+                                }
+                                else
+                                {
+                                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                    isRunning = false;
+                                }
+                            });
+                        }
                     else
                     {
                         new Alert("Notice to User", "Please select payment method.", "Try Again");

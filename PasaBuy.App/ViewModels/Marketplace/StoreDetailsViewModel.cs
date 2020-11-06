@@ -197,6 +197,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         public static string address = string.Empty;
         public static string info = string.Empty;
         public static string banner = string.Empty;
+        public static string operation_id = string.Empty;
 
         #endregion
         public StoreDetailsViewModel()
@@ -222,7 +223,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         }
 
-        public static void InsertCart(string id, string name, string summary, string image, double price, double discount, int quantity, ObservableCollection<Options> Variants)
+        public static void InsertCart(string id, string name, string summary, string image, double price, double discount, string remarks, int quantity, ObservableCollection<Options> Variants)
         {
             cartDetails.Insert(0, new ProductList()
             {
@@ -235,6 +236,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 TotalQuantity = quantity,
                 DiscountPercent = discount,
                 Quantity = quantity,
+                Remarks = remarks,
                 Variants = Variants
 
             });

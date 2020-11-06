@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <pages:PopupPage
-    x:Class="PasaBuy.App.Views.PopupModals.PopupAddDocument"
+    x:Class="PasaBuy.App.Views.PopupModals.PopupEditDocumentStore"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
@@ -98,11 +98,10 @@
 			                                DownsampleToViewSize="true" FadeAnimationEnabled="True" >
                         </ffimageloading:CachedImage>
                     </border:SfBorder>
-                    
-                    <Image
-                                Grid.Column="0"
-                                Grid.Row="1"
-                                Margin="0,15,30,0"
+
+                    <Image Grid.Column="0"
+                           Grid.Row="1"
+                           Margin="0,15,30,0"
                                 HeightRequest="32"
                                 HorizontalOptions="End"
                                 Source="photo_camera.png"
@@ -175,11 +174,11 @@
                     </border:SfBorder>
                 </Grid>
                 <Grid Margin="0, 15, 0, 0" Padding="15, 0, 15, 0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <button:SfButton
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <button:SfButton
                             Grid.Column="0"
                             BackgroundColor="Green"
                             BorderColor="{DynamicResource BlackColor}"
@@ -192,7 +191,7 @@
                             Text="OK"
                             TextColor="White"
                             VerticalOptions="Center" />
-                        <button:SfButton
+                    <button:SfButton
                             Grid.Column="1"
                             BackgroundColor="Red"
                             BorderColor="{StaticResource BlackColor}"
@@ -204,9 +203,9 @@
                             Text="{texts:Translate Cancel}"
                             TextColor="White"
                             VerticalOptions="Center" />
-                 </Grid>
+                </Grid>
 
-                
+
             </StackLayout>
         </Frame>
     </StackLayout>

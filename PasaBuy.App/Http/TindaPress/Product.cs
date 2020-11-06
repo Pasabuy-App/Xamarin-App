@@ -135,8 +135,12 @@ namespace PasaBuy.App.Http.TindaPress
                     multiForm.Add(new StringContent(price), "price");
                     multiForm.Add(new StringContent(discount), "discount");
                     multiForm.Add(new StringContent(inventory), "inventory");
-                    FileStream fs = File.OpenRead(avatar);
-                    multiForm.Add(new StreamContent(fs), "avatar", Path.GetFileName(avatar));
+
+                    if (!string.IsNullOrEmpty(avatar))
+                    {
+                        FileStream fs = File.OpenRead(avatar);
+                        multiForm.Add(new StreamContent(fs), "avatar", Path.GetFileName(avatar));
+                    }
 
                 var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/tindapress/v2/product/insert", multiForm);
                 response.EnsureSuccessStatusCode();
@@ -178,8 +182,11 @@ namespace PasaBuy.App.Http.TindaPress
                     multiForm.Add(new StringContent(price), "price");
                     multiForm.Add(new StringContent(discount), "discount");
                     multiForm.Add(new StringContent(inventory), "inventory");
-                FileStream fs = File.OpenRead(avatar);
-                    multiForm.Add(new StreamContent(fs), "avatar", Path.GetFileName(avatar));
+                    if (!string.IsNullOrEmpty(avatar))
+                    {
+                        FileStream fs = File.OpenRead(avatar);
+                        multiForm.Add(new StreamContent(fs), "avatar", Path.GetFileName(avatar));
+                    }
 
                 var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/tindapress/v2/product/update", multiForm);
                 response.EnsureSuccessStatusCode();
@@ -200,7 +207,7 @@ namespace PasaBuy.App.Http.TindaPress
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: TPV2PDT-U1.", "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: TPV2PDT-U1." + e, "OK");
             }
         }
 

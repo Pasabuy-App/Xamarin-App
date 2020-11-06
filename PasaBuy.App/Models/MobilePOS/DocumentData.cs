@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
 namespace PasaBuy.App.Models.MobilePOS
 {
@@ -22,6 +23,18 @@ namespace PasaBuy.App.Models.MobilePOS
                 OnPropertyChanged("ID");
             }
         }
+
+        private string title = string.Empty;
+        public string Title
+        {
+            get { return title; }
+            set
+            {
+                title = value;
+                OnPropertyChanged("Title");
+            }
+        }
+
         private string name = string.Empty;
         public string Name
         {
@@ -42,8 +55,8 @@ namespace PasaBuy.App.Models.MobilePOS
                 OnPropertyChanged("Type");
             }
         }
-        private string date = string.Empty;
-        public string Date
+        private DateTime date;
+        public DateTime Date
         {
             get { return date; }
             set
@@ -110,13 +123,39 @@ namespace PasaBuy.App.Models.MobilePOS
                 }
             }
         }
+
+        private string hsid = string.Empty;
+        public string HashId
+        {
+            get { return hsid; }
+            set
+            {
+                hsid = value;
+                OnPropertyChanged("HashId");
+            }
+        }
+
+        private string preview = string.Empty;
+        public string Preview
+        {
+            get { return preview; }
+            set
+            {
+                preview = value;
+                OnPropertyChanged("Preview");
+            }
+        }
         public DocumentsData[] data;
         public class DocumentsData
         {
             public string ID = string.Empty;
+            public string preview = string.Empty;
+            public string hsid = string.Empty;
+            public string title = string.Empty;
             public string doctype = string.Empty;
             public string approved = string.Empty;
-            public string date_created = string.Empty;
+            public string status = string.Empty;
+            public DateTime date_created;
         }
     }
 }
