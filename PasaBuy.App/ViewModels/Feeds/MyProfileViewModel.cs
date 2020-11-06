@@ -63,7 +63,7 @@ namespace PasaBuy.App.ViewModels.Feeds
             try
             {
                 MyProfile.LastIndex = 11;
-                SocioPress.Feeds.Instance.Profile(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", uid, (bool success, string data) =>
+                Http.SocioFeature.Instance.ProfileFeeds( uid, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -296,7 +296,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                 if (!string.IsNullOrEmpty(PSACache.Instance.UserInfo.city))
                 {
                     isCity = true;
-                    this.City = "(ic) Lives in " + city;
+                    this.City = "Lives in " + PSACache.Instance.UserInfo.city;
                 }
                 this.Joined = "Joined at " + date.ToString("MMMM yyyy");
                 isRefered = false;
@@ -318,10 +318,10 @@ namespace PasaBuy.App.ViewModels.Feeds
                 if (!string.IsNullOrEmpty(city))
                 {
                     isCity = true;
-                    this.City = "(ic) Lives in " + city;
+                    this.City = "Lives in " + city;
                 }
                 //this.Joined = "(ic) Joined at " + DateTime.Now.ToString("MMMM yyyy");
-                this.Joined = "(ic) Joined at " + joined;
+                this.Joined = "Joined at " + joined;
                 this.Transacts = transactcount;
                 this.PostsCount = postcount;
                 this.Ratings = ratingscount;
@@ -330,11 +330,11 @@ namespace PasaBuy.App.ViewModels.Feeds
             RefreshCommand = new Command<string>((key) =>
             {
                 profilePostList.Clear();
-                //LoadData(userid);
+                LoadData(userid);
                 IsRefreshing = false;
             });
             profilePostList = new ObservableCollection<Post>();
-            //LoadData(userid);
+            LoadData(userid);
             profilePostList.CollectionChanged += CollectionChanges;
         }
 

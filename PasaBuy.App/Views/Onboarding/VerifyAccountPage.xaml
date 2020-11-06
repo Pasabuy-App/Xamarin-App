@@ -30,88 +30,73 @@
         <viewModel:VerifyAccountViewModel />
     </ContentPage.BindingContext>
 
-    <ContentPage.ControlTemplate>
-        <ControlTemplate>
-            <StackLayout Spacing="0" >
-                <controls:TitleView Title="Activation" FontSize="15"
-                                    BackgroundColor="{DynamicResource PrimaryColor}" >
-                    <controls:TitleView.LeadingView >
-                        <buttons:SfButton
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0"
+                  Padding="15,5,15,5"
+                  BackgroundColor="{StaticResource PrimaryColor}"
+                  HeightRequest="{OnPlatform Android='46',
+                                                   iOS='56'}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <buttons:SfButton
                             x:Name="backButton"
-                            CornerRadius="4"
                             Clicked="backButton_Clicked"
+                            Grid.Column="0"
+                            CornerRadius="4"
                             BackgroundColor="Transparent"
-                            TextColor="White"
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
-                    </controls:TitleView.LeadingView>
+                <Label Grid.Column="1" 
+                       x:Name="TitleName"
+                       Text="Activate your Account"
+                       FontFamily="{StaticResource Montserrat-Medium}"
+                       FontSize="{StaticResource LargeSize}"
+                       HorizontalOptions="Start"
+                       TextColor="{DynamicResource Gray-White}"
+                       VerticalOptions="Center" />
+            </Grid>
+            <Grid RowSpacing="10" 
+                  Padding="10,0,10,0"
+                  Grid.Row="1"
+                  VerticalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0"
+                       FontFamily="{StaticResource Montserrat-SemiBold}"
+                       FontSize="{DynamicResource LargerSize}"
+                       HorizontalOptions="Center"
+                       Style="{StaticResource LabelStyle}"
+                       TextColor="{DynamicResource Gray-900}"
+                       Text="Activate Account"
+                       Margin="0,0,0,15"
+                       VerticalOptions="Center" />
+                <Label Grid.Row="1"
+                       Margin="0,-16,0,8"
+                       FontFamily="{StaticResource Montserrat-Medium}"
+                       HorizontalTextAlignment="Center"
+                       TextColor="{DynamicResource Gray-900}"
+                       Style="{StaticResource LabelStyle}"
+                       Text="Enter email and activation key" />
 
-                </controls:TitleView>
-                <ContentPresenter />
-            </StackLayout>
-        </ControlTemplate>
-    </ContentPage.ControlTemplate>
-
-    <ContentPage.Content>
-            <Grid>
-                <StackLayout
-                    Padding="0, 50, 0, 50"
-                    Margin="{core:OnPlatformOrientationThickness PhonePortrait='20,32',
-                                                                 PhoneLandscape='150,32',
-                                                                 TabletPortrait='200,50',
-                                                                 TabletLandscape='300,50',
-                                                                 Desktop='30'}"
-                    Spacing="0"
-                    VerticalOptions="FillAndExpand"
-                    WidthRequest="{OnPlatform Default='-1',
-                                              UWP='350'}">
-
-                    <Grid RowSpacing="24" VerticalOptions="CenterAndExpand">
-
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-
-                            <RowDefinition Height="Auto" />
-
-                        </Grid.RowDefinitions>
-
-                        <!--  Label to display the title of this page  -->
-                        <Label
-                            Grid.Row="0"
-                            FontFamily="{StaticResource Montserrat-SemiBold}"
-                            FontSize="20"
-                            HorizontalOptions="Center"
-                            Style="{StaticResource LabelStyle}"
-                            TextColor="{DynamicResource Gray-900}"
-                            Text="Activate Account"
-                            VerticalOptions="Center" />
-
-                        <!--  Label to display the description of this page  -->
-                        <Label
-                            Grid.Row="1"
-                            Margin="0,-16,0,8"
-                            FontFamily="{StaticResource Montserrat-Medium}"
-                            HorizontalTextAlignment="Center"
-                            TextColor="{DynamicResource Gray-900}"
-                            Style="{StaticResource LabelStyle}"
-                            Text="Enter username and activation key" />
-
-                        <!--  Entry to get new password from user  -->
-                        <border:SfBorder
-                            Grid.Row="2"
-                            Padding="15,0,0,0"
-                            BorderColor="Black"
-                            Style="{StaticResource FormBorderStyle}">
-                            <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-900}" 
-                                                      Placeholder="Username" 
+                <border:SfBorder Padding="15,0,0,0"
+                                 Grid.Row="2"
+                                 BorderColor="Black"
+                                 Style="{StaticResource FormBorderStyle}">
+                    <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-900}" 
+                                                      Placeholder="Email Address" 
                                                       x:Name="Username" 
                                                       TextColor="Black"
                                                       ReturnType="Next"
@@ -119,16 +104,14 @@
                                                       HeightRequest="40"  
                                                       Style="{StaticResource EntryTextStyle}" />
 
-                        </border:SfBorder>
+                </border:SfBorder>
 
-                        <!--  Entry to get confirm password from user  -->
-                        <border:SfBorder
-                            Grid.Row="3"
-                            Padding="15,0,0,0"
-                            BorderColor="Black"
-                            Style="{StaticResource FormBorderStyle}">
-                            <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-900}" 
-                                                      Placeholder="Activation key"
+                <border:SfBorder Grid.Row="3"
+                                Padding="15,0,0,0"
+                                BorderColor="Black"
+                                Style="{StaticResource FormBorderStyle}">
+                    <controls:BorderlessEntry PlaceholderColor="{DynamicResource Gray-900}" 
+                                              Placeholder="Activation key"
                                                       x:Name="ActivationKey" 
                                                       Text="{Binding ActivationKey}"
                                                       HeightRequest="40"  
@@ -136,11 +119,9 @@
                                                       ReturnType="Next"
                                                       Style="{StaticResource EntryTextStyle}" />
 
-                        </border:SfBorder>
+                </border:SfBorder>
 
-                        <!--  Submit button  -->
-                        <buttons:SfButton
-                            Grid.Row="4"
+                <buttons:SfButton Grid.Row="4"
                             Margin="0, 20, 0, 20"
                             Command="{Binding SubmitCommand}"
                             CornerRadius="5"
@@ -148,18 +129,15 @@
                             BackgroundColor="{DynamicResource PrimaryColor}"
                             Text="SUBMIT"
                             Style="{StaticResource SfButtonStyle}" />
-
-                    </Grid>
-
-                </StackLayout>
-                <loading:LoadingIndicator
-                    Grid.Row="0"
+            </Grid>
+            <loading:LoadingIndicator
+                    Grid.RowSpan="2"
                     HorizontalOptions="Fill"
                     x:Name="Loader"
                     IsRunning="{Binding State, Mode=TwoWay}"
                     VerticalOptions="Fill" />
-            </Grid>
-      
+
+        </Grid>
     </ContentPage.Content>
     
 </ContentPage>

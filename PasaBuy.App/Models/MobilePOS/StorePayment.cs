@@ -11,36 +11,42 @@ namespace PasaBuy.App.Models.MobilePOS
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
+        public string ID;
+        public string avatar;
+        public string amount;
+        public string name;
+        public string info;
+        public string date_created;
 
-        private string Id = string.Empty;
-        public string ID
+        private string _Id = string.Empty;
+        public string Id
         {
-            get { return Id; }
+            get { return _Id; }
             set
             {
-                Id = value;
-                OnPropertyChanged("ID");
+                _Id = value;
+                OnPropertyChanged("Id");
             }
         }
 
-        private string avatar = string.Empty;
+        private string _Avatar = string.Empty;
         public string Avatar
         {
-            get { return avatar; }
+            get { return _Avatar; }
             set
             {
-                avatar = value;
+                _Avatar = value;
                 OnPropertyChanged("Avatar");
             }
         }
 
-        private string transaction_name = string.Empty;
+        private string _TransactionName = string.Empty;
         public string TransactionName
         {
-            get { return transaction_name; }
+            get { return _TransactionName; }
             set
             {
-                transaction_name = value;
+                _TransactionName = value;
                 OnPropertyChanged("TransactionName");
             }
         }
@@ -56,13 +62,13 @@ namespace PasaBuy.App.Models.MobilePOS
             }
         }
 
-        private float amount;
-        public float Amount
+        private double _Amount = 0.00;
+        public double Amount
         {
-            get { return amount; }
+            get { return _Amount; }
             set
             {
-                amount = value;
+                _Amount = value;
                 OnPropertyChanged("Amount");
             }
         }
@@ -77,7 +83,6 @@ namespace PasaBuy.App.Models.MobilePOS
                 OnPropertyChanged("TransactionDate");
             }
         }
-
 
     }
 }

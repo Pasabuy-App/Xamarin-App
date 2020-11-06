@@ -100,9 +100,9 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 totalprice += prod.Quantity * (prod.ActualPrice + varprice);
             }
             this.TotalPrice = totalprice;
-            this.DiscountPrice = totalprice;
+            //this.DiscountPrice = totalprice;
 
-            this.DeliveryFee = "Free";
+            this.DeliveryFee = "0";
             Marketplace.StoreDetailsViewModel.Convert2String(Marketplace.StoreDetailsViewModel.store_id);
         }
 
@@ -389,8 +389,8 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 if (!isRunning)
                 {
                     isRunning = true;
-                    CheckoutPageViewModel.coupon = this.DiscountPercent;
-                    CheckoutPageViewModel.discount = this.DiscountPrice;
+                    //CheckoutPageViewModel.coupon = this.DiscountPercent;
+                    //CheckoutPageViewModel.discount = this.DiscountPrice;
                     CheckoutPageViewModel.totalprice = this.TotalPrice;
                     CheckoutPageViewModel.charges = this.DeliveryFee;
                     Marketplace.StoreDetailsViewModel.Convert2List(Marketplace.StoreDetailsViewModel.store_id);
@@ -507,10 +507,10 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     if (cartDetail.TotalQuantity == 0)
                         cartDetail.TotalQuantity = 1;
                     this.TotalPrice += (cartDetail.ActualPrice * cartDetail.TotalQuantity);
-                    this.DiscountPrice += (cartDetail.DiscountPrice * cartDetail.TotalQuantity);
-                    this.percent += cartDetail.DiscountPercent;
+                    //this.DiscountPrice += (cartDetail.DiscountPrice * cartDetail.TotalQuantity);
+                    //this.percent += cartDetail.DiscountPercent;
                 }
-                this.DiscountPercent = this.percent > 0 ? this.percent / this.CartDetails.Count : 0;
+                //this.DiscountPercent = this.percent > 0 ? this.percent / this.CartDetails.Count : 0;
             }
         }
 
@@ -520,9 +520,9 @@ namespace PasaBuy.App.ViewModels.eCommerce
         private void ResetPriceValue()
         {
             this.TotalPrice = 0;
-            this.DiscountPercent = 0;
-            this.DiscountPrice = 0;
-            this.percent = 0;
+            //this.DiscountPercent = 0;
+            //this.DiscountPrice = 0;
+            //this.percent = 0;
         }
 
         #endregion

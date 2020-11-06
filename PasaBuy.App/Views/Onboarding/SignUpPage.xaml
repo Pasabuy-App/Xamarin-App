@@ -30,55 +30,55 @@
         <viewModel:SignUpPageViewModel />
     </ContentPage.BindingContext>
     
-    <ContentPage.ControlTemplate>
-        <ControlTemplate>
-            <StackLayout Spacing="0" >
-                <control:TitleView Title="Create Account " FontSize="14"
-                                    BackgroundColor="{DynamicResource PrimaryColor}" >
-                    <control:TitleView.LeadingView >
-                        <buttons:SfButton
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0"
+                  Padding="15,5,15,5"
+                  BackgroundColor="{StaticResource PrimaryColor}"
+                  HeightRequest="{OnPlatform Android='46',
+                                                   iOS='56'}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <buttons:SfButton
                             x:Name="backButton"
                             Clicked="backButton_Clicked"
+                            Grid.Column="0"
                             CornerRadius="4"
                             BackgroundColor="Transparent"
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
-                    </control:TitleView.LeadingView>
-
-                </control:TitleView>
-                <ContentPresenter />
-            </StackLayout>
-        </ControlTemplate>
-    </ContentPage.ControlTemplate>
-
-    <ContentPage.Content>
-        <Grid>
-            <ScrollView HorizontalOptions="Center">
-                <StackLayout
-                    Margin="{core:OnPlatformOrientationThickness PhonePortrait='20,32',
-                                                                 PhoneLandscape='150,32',
-                                                                 TabletPortrait='200,50',
-                                                                 TabletLandscape='300,50',
-                                                                 Desktop='30'}"
-                    Spacing="0"
-                    VerticalOptions="FillAndExpand"
-                    WidthRequest="{OnPlatform Default='-1',
-                                              UWP='350'}">
-                    <StackLayout
+                <Label Grid.Column="1" 
+                       x:Name="TitleName"
+                       Text="Create Account"
+                       FontFamily="{StaticResource Montserrat-Medium}"
+                       FontSize="{StaticResource LargeSize}"
+                       HorizontalOptions="Start"
+                       TextColor="{DynamicResource Gray-White}"
+                       VerticalOptions="Center" />
+            </Grid>
+            <StackLayout Grid.Row="1"
                         HorizontalOptions="Center"
                         Spacing="24"
+                        Padding="10,15,10,15"
                         VerticalOptions="CenterAndExpand">
 
-                        <!--  Label to display the title of this page  -->
-                        <Label
+                <!--  Label to display the title of this page  -->
+                <Label
                             FontFamily="{StaticResource Montserrat-SemiBold}"
                             FontSize="25"
                             HorizontalOptions="Center"
                             Style="{StaticResource TitleStyle}"
                             Text="REGISTRATION" />
 
-                        <!--  Label to display the description of this page  -->
-                        <Label
+                <!--  Label to display the description of this page  -->
+                <Label
                             Margin="0,-16,0,8"
                             FontFamily="{StaticResource Montserrat-Medium}"
                             HorizontalTextAlignment="Center"
@@ -86,23 +86,10 @@
                             TextColor="{StaticResource Gray-900}"
                             Text="Join the Community!" />
 
-                        <!--  Entry to get username from user  -->
-                        <border:SfBorder BorderColor="Black"
+                <!--  Entry to get email ID from user  -->
+                <border:SfBorder BorderColor="Black"
                                  Style="{StaticResource SfBorderStyle}">
-                            <control:BorderlessEntry
-                            x:Name="UserNameEntry"
-                            Placeholder="Username"
-                            ReturnType="Next"
-                                TextColor="Black"
-                            Text="{Binding Username}"
-                            PlaceholderColor="{DynamicResource Gray-900}"
-                            Style="{StaticResource EntryTextBoxStyle}" />
-                        </border:SfBorder>
-
-                        <!--  Entry to get email ID from user  -->
-                        <border:SfBorder BorderColor="Black"
-                                 Style="{StaticResource SfBorderStyle}">
-                            <control:BorderlessEntry
+                    <control:BorderlessEntry
                             x:Name="EmailEntry"
                             ReturnType="Next"
                                 TextColor="Black"
@@ -110,25 +97,12 @@
                             Text="{Binding Email}"
                             PlaceholderColor="{DynamicResource Gray-900}"
                             Style="{StaticResource EntryTextBoxStyle}" />
-                        </border:SfBorder>
+                </border:SfBorder>
 
-                        <!--  Entry to get last name from user  -->
-                        <border:SfBorder BorderColor="Black"
+                <!--  Entry to get first name from user  -->
+                <border:SfBorder BorderColor="Black"
                                  Style="{StaticResource SfBorderStyle}">
-                            <control:BorderlessEntry
-                            x:Name="LnameEntry"
-                            Placeholder="Last Name"
-                                TextColor="Black"
-                            ReturnType="Next"
-                            Text="{Binding Lname}"
-                            PlaceholderColor="{DynamicResource Gray-900}"
-                            Style="{StaticResource EntryTextBoxStyle}" />
-                        </border:SfBorder>
-
-                        <!--  Entry to get first name from user  -->
-                        <border:SfBorder BorderColor="Black"
-                                 Style="{StaticResource SfBorderStyle}">
-                            <control:BorderlessEntry
+                    <control:BorderlessEntry
                             x:Name="FnameEntry"
                             Placeholder="First Name"
                                 ReturnType="Next"
@@ -136,207 +110,22 @@
                             PlaceholderColor="{DynamicResource Gray-900}"
                             TextColor="{DynamicResource BlackColor}"
                             Style="{StaticResource EntryTextBoxStyle}" />
-                        </border:SfBorder>
-                        
-                        <border:SfBorder
-                        BorderColor="Black"
-                        HeightRequest="40"
-                        Style="{StaticResource SfBorderStyle}">
-                            <control:CalenderDatePicker Date="{Binding BirthDay}" 
-                                x:Name="BirthdayPicker"
-                                Style="{StaticResource SfBorderStyle}"
-                                FontFamily="{StaticResource Montserrat-Regular}"
-                                FontSize="16"
-                                
-                                Format="yyyy-MM-dd"
-                                TextColor="Black"
-                                PlaceHolderText="Date of Birth"/>
-                        </border:SfBorder>
+                </border:SfBorder>
 
-                        <border:SfBorder
-                        BorderColor="Black"
-                        Style="{StaticResource SfBorderStyle}">
-                            <combobox:SfComboBox
-                                x:Name="GenderPicker"
-                                SelectedValue="{Binding Gender, Mode=TwoWay}"
-                                Style="{StaticResource ComboBoxStyle}"
-                                Watermark="Gender"
-              
-                                TextColor="Black"
-                                WatermarkColor="{DynamicResource Gray-900}"
-                                VerticalOptions="CenterAndExpand">
-                                <combobox:SfComboBox.ComboBoxSource>
-                                    <ListCollection:List x:TypeArguments="x:String">
-                                        <x:String>Male</x:String>
-                                        <x:String>Female</x:String>
-                                    </ListCollection:List>
-                                </combobox:SfComboBox.ComboBoxSource>
-                                <combobox:SfComboBox.DropDownButtonSettings>
-                                    <combobox:DropDownButtonSettings>
-                                        <combobox:DropDownButtonSettings.View>
-                                            <Label
-                                                    FontFamily="{StaticResource FontIcons}"
-                                                    FontSize="25"
-                                                    HorizontalTextAlignment="Center"
-                                                    Text="{StaticResource DropDownButtonIcon}"
-                                                    TextColor="{DynamicResource Gray-900}"
-                                                    VerticalTextAlignment="Center" />
-                                        </combobox:DropDownButtonSettings.View>
-                                    </combobox:DropDownButtonSettings>
-                                </combobox:SfComboBox.DropDownButtonSettings>
-                            </combobox:SfComboBox>
-                        </border:SfBorder>
-
-                        
-                        <border:SfBorder
-                        BorderColor="Black"
-                        Style="{StaticResource SfBorderStyle}">
-                            <combobox:SfComboBox
-                                x:Name="CountryPicker"
-                                Style="{StaticResource ComboBoxStyle}"
-                                Watermark="Country"
-                                TextColor="Black"
-                          
-                                WatermarkColor="{DynamicResource Gray-900}"
-                                SelectionChanged="CountryPicker_SelectionChanged"
-                                SelectedValuePath="CountryCode"
-                                VerticalOptions="CenterAndExpand">
-                                <combobox:SfComboBox.ComboBoxSource>
-                                    <ListCollection:List x:TypeArguments="x:String">
-                                        <x:String></x:String>
-                                    </ListCollection:List>
-                                </combobox:SfComboBox.ComboBoxSource>
-                                <combobox:SfComboBox.DropDownButtonSettings>
-                                    <combobox:DropDownButtonSettings>
-                                        <combobox:DropDownButtonSettings.View>
-                                            <Label
-                                                    FontFamily="{StaticResource FontIcons}"
-                                                    FontSize="25"
-                                                    HorizontalTextAlignment="Center"
-                                                    Text="{StaticResource DropDownButtonIcon}"
-                                                    TextColor="{DynamicResource Gray-600}"
-                                                    VerticalTextAlignment="Center" />
-                                        </combobox:DropDownButtonSettings.View>
-                                    </combobox:DropDownButtonSettings>
-                                </combobox:SfComboBox.DropDownButtonSettings>
-                            </combobox:SfComboBox>
-                        </border:SfBorder>
-                        
-                        <border:SfBorder
-                        BorderColor="Black"
-                        Style="{StaticResource SfBorderStyle}">
-                            <combobox:SfComboBox
-                                x:Name="ProvincePicker"
-                                Style="{StaticResource ComboBoxStyle}"
-                                Watermark="Province"
-                                TextColor="Black"
-                                WatermarkColor="{DynamicResource Gray-900}"
-                                SelectedValuePath="ProvinceCode"
-                                SelectionChanged="ProvincePicker_SelectionChanged"
-                                VerticalOptions="CenterAndExpand">
-                                <combobox:SfComboBox.ComboBoxSource>
-                                    <ListCollection:List x:TypeArguments="x:String">
-                                        <x:String>Select Country First</x:String>
-                                    </ListCollection:List>
-                                </combobox:SfComboBox.ComboBoxSource>
-                                <combobox:SfComboBox.DropDownButtonSettings>
-                                    <combobox:DropDownButtonSettings>
-                                        <combobox:DropDownButtonSettings.View>
-                                            <Label
-                                                    FontFamily="{StaticResource FontIcons}"
-                                                    FontSize="25"
-                                                    HorizontalTextAlignment="Center"
-                                                    Text="{StaticResource DropDownButtonIcon}"
-                                                    TextColor="{DynamicResource Gray-600}"
-                                                    VerticalTextAlignment="Center" />
-                                        </combobox:DropDownButtonSettings.View>
-                                    </combobox:DropDownButtonSettings>
-                                </combobox:SfComboBox.DropDownButtonSettings>
-                            </combobox:SfComboBox>
-                        </border:SfBorder>
-
-                        <border:SfBorder
-                        BorderColor="Black"
-                        Style="{StaticResource SfBorderStyle}">
-                            <combobox:SfComboBox
-                                x:Name="CityPicker"
-                                SelectedValuePath="CityCode"
-                                SelectionChanged="CityPicker_SelectionChanged"
-                                Style="{StaticResource ComboBoxStyle}"
-                                Watermark="City"
-                                TextColor="Black"
-                                WatermarkColor="{DynamicResource Gray-900}"
-                                VerticalOptions="CenterAndExpand">
-                                <combobox:SfComboBox.ComboBoxSource>
-                                    <ListCollection:List x:TypeArguments="x:String">
-                                        <x:String>Select Province First</x:String>
-                                    </ListCollection:List>
-                                </combobox:SfComboBox.ComboBoxSource>
-                                <combobox:SfComboBox.DropDownButtonSettings>
-                                    <combobox:DropDownButtonSettings>
-                                        <combobox:DropDownButtonSettings.View>
-                                            <Label
-                                                    FontFamily="{StaticResource FontIcons}"
-                                                    FontSize="25"
-                                                    HorizontalTextAlignment="Center"
-                                                    Text="{StaticResource DropDownButtonIcon}"
-                                                    TextColor="{DynamicResource Gray-600}"
-                                                    VerticalTextAlignment="Center" />
-                                        </combobox:DropDownButtonSettings.View>
-                                    </combobox:DropDownButtonSettings>
-                                </combobox:SfComboBox.DropDownButtonSettings>
-                            </combobox:SfComboBox>
-                        </border:SfBorder>
-
-                        <border:SfBorder
-                        BorderColor="Black"
-                        Style="{StaticResource SfBorderStyle}">
-                            <combobox:SfComboBox
-                                x:Name="BarangayPicker"
-                                SelectedValuePath="BrgyCode"
-                                SelectionChanged="BarangayPicker_SelectionChanged"
-                                Style="{StaticResource ComboBoxStyle}"
-                                Watermark="Barangay"
-                                TextColor="Black"
-                                WatermarkColor="{DynamicResource Gray-900}"
-                                VerticalOptions="CenterAndExpand">
-                                <combobox:SfComboBox.ComboBoxSource>
-                                    <ListCollection:List x:TypeArguments="x:String">
-                                        <x:String>Select City First</x:String>
-                                    </ListCollection:List>
-                                </combobox:SfComboBox.ComboBoxSource>
-                                <combobox:SfComboBox.DropDownButtonSettings>
-                                    <combobox:DropDownButtonSettings>
-                                        <combobox:DropDownButtonSettings.View>
-                                            <Label
-                                                    FontFamily="{StaticResource FontIcons}"
-                                                    FontSize="25"
-                                                    HorizontalTextAlignment="Center"
-                                                    Text="{StaticResource DropDownButtonIcon}"
-                                                    TextColor="{DynamicResource Gray-600}"
-                                                    VerticalTextAlignment="Center" />
-                                        </combobox:DropDownButtonSettings.View>
-                                    </combobox:DropDownButtonSettings>
-                                </combobox:SfComboBox.DropDownButtonSettings>
-                            </combobox:SfComboBox>
-                        </border:SfBorder>
-
-                        <!--  Entry to get street address from user  -->
-                        <border:SfBorder BorderColor="Black" 
+                <!--  Entry to get last name from user  -->
+                <border:SfBorder BorderColor="Black"
                                  Style="{StaticResource SfBorderStyle}">
-                            <control:BorderlessEntry
-                            x:Name="StreetEntry"
-                            TextColor="Black"
+                    <control:BorderlessEntry
+                            x:Name="LnameEntry"
+                            Placeholder="Last Name"
+                                TextColor="Black"
                             ReturnType="Next"
+                            Text="{Binding Lname}"
                             PlaceholderColor="{DynamicResource Gray-900}"
-                            Placeholder="Street/Unit/Flr/Bldg"
-                            Text="{Binding StreetEntry}"
                             Style="{StaticResource EntryTextBoxStyle}" />
-                        </border:SfBorder>
-
-
-                        <!--  Sign-up button  -->
-                        <buttons:SfButton
+                </border:SfBorder>
+                <!--  Sign-up button  -->
+                <buttons:SfButton
                             Command="{Binding SignUpCommand}"
                             CornerRadius="5"
                             BackgroundColor="{DynamicResource PrimaryColor}"
@@ -344,40 +133,40 @@
                             FontFamily="{StaticResource Montserrat-SemiBold}"
                             Style="{StaticResource SfButtonStyle}"
                             Text="REGISTER" />
-                    </StackLayout>
 
-                    <StackLayout
-                        HorizontalOptions="Center"
-                        Orientation="Horizontal"
-                        Padding="0,15,0,15"
-                        Spacing="1"
-                        VerticalOptions="Center">
+                <StackLayout
+                            HorizontalOptions="Center"
+                            Orientation="Horizontal"
+                            Padding="0,15,0,15"
+                            Spacing="1"
+                            VerticalOptions="Center">
 
-                        <Label
-                            FontFamily="{StaticResource Montserrat-Medium}"
-                            HorizontalOptions="CenterAndExpand"
-                            HorizontalTextAlignment="Center"
-                            TextColor="Black"
-                            Style="{StaticResource LabelStyle}"
-                            Text="Already have an account?"
-                            VerticalTextAlignment="Center" />
+                    <Label
+                                FontFamily="{StaticResource Montserrat-Medium}"
+                                HorizontalOptions="CenterAndExpand"
+                                HorizontalTextAlignment="Center"
+                                TextColor="Black"
+                                Style="{StaticResource LabelStyle}"
+                                Text="Already have an account?"
+                                VerticalTextAlignment="Center" />
 
-                        <buttons:SfButton
-                            Command="{Binding LoginCommand}"
-                            Style="{StaticResource SfFlatButtonStyle}"
-                            TextColor="{DynamicResource PrimaryColor}"
-                            Text="LOGIN" />
+                    <buttons:SfButton
+                                Command="{Binding LoginCommand}"
+                                Style="{StaticResource SfFlatButtonStyle}"
+                                TextColor="{DynamicResource PrimaryColor}"
+                                Text="LOGIN" />
 
-                    </StackLayout>
                 </StackLayout>
-            </ScrollView>
+            </StackLayout>
             <loading:LoadingIndicator
-                Grid.Row="0"
+                Grid.RowSpan="2"
                 HorizontalOptions="Fill"
                 IsRunning="{Binding State, Mode=TwoWay}"
                 VerticalOptions="Fill" />
+
+                
         </Grid>
-        
+
     </ContentPage.Content>
 </ContentPage>
 

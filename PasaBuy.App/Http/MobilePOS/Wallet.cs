@@ -43,18 +43,19 @@ namespace PasaBuy.App.Http.MobilePOS
         #region Method
 
         /// <summary>
-        /// Listing of store wallet data and list transactions.
+        /// Store wallet info and transactions list.
         /// </summary>
         public async void Info(Action<bool, string> callback)
         {
             try
             {
                 var dict = new Dictionary<string, string>();
-                    dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
-                    dict.Add("snky", PSACache.Instance.UserInfo.snky);
+                dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
+                dict.Add("snky", PSACache.Instance.UserInfo.snky);
+                dict.Add("stid", PSACache.Instance.UserInfo.stid);
                 var content = new FormUrlEncodedContent(dict);
 
-                var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/mobilepos/v2/personnels/role/access/list", content);
+                var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/mobilepos/v2/wallets/info", content);
                 response.EnsureSuccessStatusCode();
 
                 if (response.IsSuccessStatusCode)
@@ -78,20 +79,20 @@ namespace PasaBuy.App.Http.MobilePOS
         }
 
         /// <summary>
-        /// Create store wallet.
+        /// Listing of store wallet info and transactions list.
         /// </summary>
-        public async void CreateWallet(string user_id, Action<bool, string> callback)
+        public async void Change(string key, string user_id, Action<bool, string> callback)
         {
             try
             {
                 var dict = new Dictionary<string, string>();
                     dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
                     dict.Add("snky", PSACache.Instance.UserInfo.snky);
-                    dict.Add("stid", PSACache.Instance.UserInfo.stid);
+                    dict.Add("key", key);
                     dict.Add("user_id", user_id);
                 var content = new FormUrlEncodedContent(dict);
 
-                var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/mobilepos/v2/wallets/insert", content);
+                var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/mobilepos/v2/wallets/change", content);
                 response.EnsureSuccessStatusCode();
 
                 if (response.IsSuccessStatusCode)
