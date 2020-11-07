@@ -155,6 +155,28 @@
                             Text="LOGIN" />
 
                         </StackLayout>
+                        <StackLayout
+                            HorizontalOptions="Center"
+                            Orientation="Horizontal"
+                            Spacing="1"
+                            Margin="0,5,0,0"
+                            VerticalOptions="End">
+
+                            <Label
+                            FontFamily="{StaticResource Montserrat-Medium}"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            Style="{StaticResource TitleStyle}"
+                            Text="Haven't activated your account?"
+                            VerticalTextAlignment="Center" />
+
+                            <buttons:SfButton
+                            Command="{Binding ActivateNowCommand}"
+                            Style="{StaticResource SfFlatButtonStyle}"
+                            TextColor="{StaticResource Blue}"
+                            Text="Activate Now" />
+
+                        </StackLayout>
                     </StackLayout>
                 </Grid>
                 </Grid>
