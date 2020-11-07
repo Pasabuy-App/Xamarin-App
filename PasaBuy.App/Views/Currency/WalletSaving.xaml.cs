@@ -48,11 +48,11 @@ namespace PasaBuy.App.Views.Currency
             //await SendImage.FadeTo(0.3, 200);
             //await SendImage.FadeTo(1, 200);
             //Views.Currency.SendWalletSavings.currency_id = currency_id;
-            if (!isTapped)
+            if (IsRunning.IsRunning == false)
             {
-                isTapped = true;
+                IsRunning.IsRunning = true;
                 await App.Current.MainPage.Navigation.PushModalAsync(new SendWalletSavings());
-                isTapped = false;
+                IsRunning.IsRunning = false;
             }
         }
 
@@ -60,11 +60,11 @@ namespace PasaBuy.App.Views.Currency
         {
             //await ReceiveImage.FadeTo(0.3, 200);
             //await ReceiveImage.FadeTo(1, 200);
-            if (!isTapped)
+            if (IsRunning.IsRunning == false)
             {
-                isTapped = true;
+                IsRunning.IsRunning = true;
                 await PopupNavigation.Instance.PushAsync(new PopupShowWalletSavings());
-                isTapped = false;
+                IsRunning.IsRunning = false;
             }
         }
     }

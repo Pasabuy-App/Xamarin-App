@@ -415,6 +415,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
             if (!isRunning)
             {
                 isRunning = true;
+                await Task.Delay(500);
                 if (obj is ProductList product)
                 {
                     this.CartDetails.Remove(product);

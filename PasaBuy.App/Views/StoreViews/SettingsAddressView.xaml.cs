@@ -22,7 +22,6 @@ namespace PasaBuy.App.Views.StoreViews
         }
         private void CollectionChanges(object sender, EventArgs e)
         {
-            Console.WriteLine("Count: " + SettingsAddressViewModel.addressList.Count());
             if (SettingsAddressViewModel.addressList.Count() >= 0)
             {
                 //AddAddressButton.IsVisible = false;

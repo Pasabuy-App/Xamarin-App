@@ -141,6 +141,7 @@
             </Grid>
             <loading:LoadingIndicator
                     Grid.Row="0"
+                    x:Name="IsRunning"
                     HorizontalOptions="Fill"
                     IsRunning="{Binding IsRunning, Mode=TwoWay}"
                     VerticalOptions="Fill" />

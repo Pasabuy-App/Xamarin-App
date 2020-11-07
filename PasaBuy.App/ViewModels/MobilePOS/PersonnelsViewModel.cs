@@ -204,25 +204,23 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                     if (success)
                     {
                         Models.POSFeature.PersonnelModel personnel = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.POSFeature.PersonnelModel>(data);
-                        if (personnel.data.Length > 0)
-                        {
-                            for (int i = 0; i < personnel.data.Length; i++)
-                            {
-                                string date_created = personnel.data[i].date_created; // "2020-10-11 11:05:07";
-                                DateTime datecustom = new DateTime(Convert.ToInt32(date_created.Substring(0, 4)), Convert.ToInt32(date_created.Substring(5, 2)), Convert.ToInt32(date_created.Substring(8, 2)));
 
-                                _personnelsList.Add(new Models.POSFeature.PersonnelModel
-                                {
-                                    Id = personnel.data[i].ID,
-                                    User_id = personnel.data[i].wpid,
-                                    Avatar = PSAProc.GetUrl(personnel.data[i].avatar),
-                                    FullName = personnel.data[i].display_name,
-                                    Position = personnel.data[i].position,
-                                    Status = personnel.data[i].status,
-                                    Activated = personnel.data[i].activated,
-                                    DateCreated = datecustom.ToString("MMM. dd, yyyy")  // Date format - Oct. 11, 2020
-                                });
-                            }
+                        for (int i = 0; i < personnel.data.Length; i++)
+                        {
+                            string date_created = personnel.data[i].date_created; // "2020-10-11 11:05:07";
+                            DateTime datecustom = new DateTime(Convert.ToInt32(date_created.Substring(0, 4)), Convert.ToInt32(date_created.Substring(5, 2)), Convert.ToInt32(date_created.Substring(8, 2)));
+
+                            _personnelsList.Add(new Models.POSFeature.PersonnelModel
+                            {
+                                Id = personnel.data[i].ID,
+                                User_id = personnel.data[i].wpid,
+                                Avatar = PSAProc.GetUrl(personnel.data[i].avatar),
+                                FullName = personnel.data[i].display_name,
+                                Position = personnel.data[i].position,
+                                Status = personnel.data[i].status,
+                                Activated = personnel.data[i].activated,
+                                DateCreated = datecustom.ToString("MMM. dd, yyyy")  // Date format - Oct. 11, 2020
+                            });
                         }
                     }
                     else
@@ -251,27 +249,25 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                         if (success)
                         {
                             Models.POSFeature.PersonnelModel personnel = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.POSFeature.PersonnelModel>(data);
-                            if (personnel.data.Length > 0)
-                            {
-                                for (int i = 0; i < personnel.data.Length; i++)
-                                {
-                                    string date_created = personnel.data[i].date_created; // "2020-10-11 11:05:07";
-                                    DateTime datecustom = new DateTime(Convert.ToInt32(date_created.Substring(0, 4)), Convert.ToInt32(date_created.Substring(5, 2)), Convert.ToInt32(date_created.Substring(8, 2)));
 
-                                    this.PersonnelsList.Add(new Models.POSFeature.PersonnelModel
-                                    {
-                                        Id = personnel.data[i].ID,
-                                        User_id = personnel.data[i].wpid,
-                                        Avatar = PSAProc.GetUrl(personnel.data[i].avatar),
-                                        FullName = personnel.data[i].display_name,
-                                        Position = personnel.data[i].position,
-                                        Status = personnel.data[i].status,
-                                        Activated = personnel.data[i].activated,
-                                        DateCreated = datecustom.ToString("MMM. dd, yyyy")  // Date format - Oct. 11, 2020
-                                    });
-                                }
-                                IsRunning = false;
+                            for (int i = 0; i < personnel.data.Length; i++)
+                            {
+                                string date_created = personnel.data[i].date_created; // "2020-10-11 11:05:07";
+                                DateTime datecustom = new DateTime(Convert.ToInt32(date_created.Substring(0, 4)), Convert.ToInt32(date_created.Substring(5, 2)), Convert.ToInt32(date_created.Substring(8, 2)));
+
+                                this.PersonnelsList.Add(new Models.POSFeature.PersonnelModel
+                                {
+                                    Id = personnel.data[i].ID,
+                                    User_id = personnel.data[i].wpid,
+                                    Avatar = PSAProc.GetUrl(personnel.data[i].avatar),
+                                    FullName = personnel.data[i].display_name,
+                                    Position = personnel.data[i].position,
+                                    Status = personnel.data[i].status,
+                                    Activated = personnel.data[i].activated,
+                                    DateCreated = datecustom.ToString("MMM. dd, yyyy")  // Date format - Oct. 11, 2020
+                                });
                             }
+                            IsRunning = false;
                         }
                         else
                         {

@@ -174,7 +174,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 {
                                     ID = store.data[i].hsid,
                                     Operation = store.data[i].operation_id,
-                                    Open_Close = !string.IsNullOrEmpty(store.data[i].opening) || !string.IsNullOrEmpty(store.data[i].closing) ? open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt") : "-",
+                                    Open_Close = !string.IsNullOrEmpty(store.data[i].opening) || !string.IsNullOrEmpty(store.data[i].closing) ? open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt") : "Closed",
                                     Address = store.data[i].street + " " + store.data[i].brgy + " " + store.data[i].city + ", " + store.data[i].province,
                                     City = store.data[i].city + ", " + store.data[i].province,
                                     Title = store.data[i].title,

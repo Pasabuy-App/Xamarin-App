@@ -20,5 +20,15 @@ namespace PasaBuy.App.Views.Marketplace
         {
             Navigation.PopModalAsync();
         }
+
+        private void Mover_Clicked(object sender, EventArgs e)
+        {
+            new Controllers.Notice.Alert("Mover", "User message the mover.", "OK");
+        }
+
+        private void Store_Clicked(object sender, EventArgs e)
+        {
+            new Controllers.Notice.Alert("Store", "User message the store.", "OK");
+        }
     }
 }

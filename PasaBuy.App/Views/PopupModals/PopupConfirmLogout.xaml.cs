@@ -2,7 +2,7 @@
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -25,7 +25,7 @@ namespace PasaBuy.App.Views.PopupModals
         {
             await PopupNavigation.Instance.PopAsync(false);
             Application.Current.MainPage = new NavigationPage(new SignInPage());
-
+            Preferences.Remove("UserInfo");
 
         }
     }
