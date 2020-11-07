@@ -28,6 +28,7 @@
                             TabItemTapped="TabView_TabItemTapped"
                             TabHeaderPosition="Top"
                             VisibleHeaderCount="6" 
+                            TabHeight="60"
                             EnableSwiping="false" 
                             DisplayMode="ImageWithText">
 
@@ -44,7 +45,7 @@
                 
                 <!--HOME TAB-->
                 <tabView:SfTabItem Title="Home" 
-                                   TitleFontSize="11"
+                                   TitleFontSize="{DynamicResource SmallerSize}"
                                 ImageSource="home.png"
                                 TitleFontColor="{DynamicResource Gray-900}"
                                 SelectionColor="{DynamicResource PrimaryColor}">
@@ -56,6 +57,7 @@
                 <!--FOOD TAB-->
                 <tabView:SfTabItem Title="Food"
                                    ImageSource="food.png"
+                                   TitleFontSize="{DynamicResource SmallerSize}"
                                 TitleFontColor="{DynamicResource Gray-900}"
                                 SelectionColor="{DynamicResource PrimaryColor}">
                     <tabView:SfTabItem.Content>
@@ -65,7 +67,7 @@
 
                 <!--STORE TAB-->
                 <tabView:SfTabItem Title="Store"
-                                   TitleFontSize="11"
+                                   TitleFontSize="{DynamicResource SmallerSize}"
                                    ImageSource="store.png"
                                 TitleFontColor="{DynamicResource Gray-900}"
                                 SelectionColor="{DynamicResource PrimaryColor}">
@@ -76,7 +78,7 @@
 
                 <!--GROCERY TAB-->
                 <tabView:SfTabItem Title="Grocery"
-                                   TitleFontSize="11"
+                                   TitleFontSize="{DynamicResource SmallerSize}"
                                    ImageSource="grocery.png"
                                 TitleFontColor="{DynamicResource Gray-900}"
                                 SelectionColor="{DynamicResource PrimaryColor}">
@@ -87,7 +89,7 @@
 
                 <!--PARTNER TAB-->
                 <tabView:SfTabItem Title="Robisons"
-                                   TitleFontSize="11"
+                                   TitleFontSize="{DynamicResource SmallerSize}"
                                    ImageSource="partner.png"
                                TitleFontColor="{DynamicResource Gray-900}"
                                SelectionColor="{DynamicResource PrimaryColor}">
@@ -98,7 +100,7 @@
 
                 <!--BURGER TAB-->
                 <tabView:SfTabItem Title="Option"
-                                   TitleFontSize="11"
+                                   TitleFontSize="{DynamicResource SmallerSize}"
                                    ImageSource="option.png"
                                 TitleFontColor="{DynamicResource Gray-900}"
                                 SelectionColor="{DynamicResource PrimaryColor}">

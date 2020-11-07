@@ -46,14 +46,14 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="auto" />
                 </Grid.ColumnDefinitions>
-                <buttons:SfButton
+                <!--<buttons:SfButton
                             x:Name="backButton"
                             Clicked="backButton_Clicked"
                             Grid.Column="0"
                             CornerRadius="4"
                             BackgroundColor="Transparent"
                             Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Back}" />
+                            Text="{StaticResource Back}" />-->
                 <Label Grid.Column="1" 
                        x:Name="TitleName"
                        Text="Activate your Account"

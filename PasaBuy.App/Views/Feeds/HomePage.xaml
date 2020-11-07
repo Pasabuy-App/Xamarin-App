@@ -132,9 +132,10 @@
                                                                Style="{StaticResource PostAuthor}"
                                                                x:Name="LabelAuthor"/>-->
                                                                 <Forms9Patch:Label Text="{Binding Author}"
-                                                                       Style="{StaticResource PostAuthor}"
-                                                                       x:Name="LabelAuthor"
-                                                                       AutoFit="Width"/>
+                                                                                   Style="{StaticResource PostAuthor}"
+                                                                                   VerticalTextAlignment="Center"
+                                                                                   x:Name="LabelAuthor"
+                                                                                   AutoFit="Width"/>
 
                                                             </buttons:SfButton>
 
@@ -152,9 +153,11 @@
                                                               HeightRequest="18"
                                                               Grid.Column="2" 
                                                               HorizontalOptions="EndAndExpand">
-                                                            <Label Text="{Binding Types}" 
-                                                           Style="{StaticResource PostType}"
-                                                           x:Name="LabelTypes"/>
+                                                            <Forms9Patch:Label Text="{Binding Types}"
+                                                                               Style="{StaticResource PostType}"
+                                                                               VerticalTextAlignment="Center"
+                                                                               x:Name="LabelTypes"
+                                                                               AutoFit="Width"/>
                                                         </Grid>
                                                         <Grid Grid.Row="1" 
                                                               HeightRequest="20"
