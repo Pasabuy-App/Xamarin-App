@@ -17,6 +17,10 @@ namespace PasaBuy.App.Views.Settings
         {
             InitializeComponent();
         }
+        public void BackButtonClicked(object sender, EventArgs e)
+        {
+            Navigation.PopModalAsync();
+        }
 
         async void TakePhoto(object sender, EventArgs args)
         {

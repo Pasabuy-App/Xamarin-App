@@ -27,52 +27,53 @@
         <OnPlatform  x:TypeArguments="Thickness" iOS="0,20,0,0"  Default="0,0,0,0"/>
     </ContentPage.Padding>
 
-    <ContentPage.ControlTemplate>
-        <ControlTemplate>
-            <StackLayout Spacing="0" >
-                <controls:TitleView Title="Change Password" FontSize="14"
-                                    BackgroundColor="{DynamicResource PrimaryColor}" >
-                    <controls:TitleView.LeadingView >
-                        <buttons:SfButton
-                            x:Name="backButton"
-                            Clicked="BackButtonClicked"
-                            CornerRadius="4"
-                            Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Back}" />
-                    </controls:TitleView.LeadingView>
-
-                </controls:TitleView>
-                <ContentPresenter />
-            </StackLayout>
-        </ControlTemplate>
-    </ContentPage.ControlTemplate>
     <ContentPage.Content>
         <Grid>
-            <StackLayout
-                    Margin="{core:OnPlatformOrientationThickness PhonePortrait='20,32',
-                                                                 PhoneLandscape='150,32',
-                                                                 TabletPortrait='200,50',
-                                                                 TabletLandscape='300,50',
-                                                                 Desktop='30'}"
-                    Spacing="0"
-                    VerticalOptions="FillAndExpand"
-                    WidthRequest="{OnPlatform Default='-1',
-                                              UWP='350'}">
-
-                <Grid RowSpacing="24" VerticalOptions="CenterAndExpand">
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-
-                    </Grid.RowDefinitions>
-
-                    <!--  Label to display the title of this page  -->
-                    <Label
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0"
+                  Padding="15,5,15,5"
+                  BackgroundColor="{StaticResource PrimaryColor}"
+                  HeightRequest="{OnPlatform Android='46',
+                                                   iOS='56'}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <buttons:SfButton
+                            x:Name="backButton"
+                            Grid.Column="0"
+                            Clicked="BackButtonClicked"
+                            CornerRadius="4"
+                            BackgroundColor="Transparent"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                <Label Grid.Column="1" 
+                       x:Name="TitleName"
+                       Text="Change Password"
+                       FontFamily="{StaticResource Montserrat-Medium}"
+                       FontSize="{StaticResource LargeSize}"
+                       HorizontalOptions="Start"
+                       TextColor="{DynamicResource Gray-White}"
+                       VerticalOptions="Center" />
+            </Grid>
+            <Grid RowSpacing="15" 
+                  Padding="10,0,10,0"
+                  Grid.Row="1"
+                  VerticalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <!--  Label to display the title of this page  -->
+                <Label
                             Grid.Row="0"
                             FontFamily="{StaticResource Montserrat-SemiBold}"
                             FontSize="20"
@@ -81,8 +82,8 @@
                             Text="Reset Password"
                             VerticalOptions="Center" />
 
-                    <!--  Label to display the description of this page  -->
-                    <Label
+                <!--  Label to display the description of this page  -->
+                <Label
                             Grid.Row="1"
                             Margin="0,-16,0,8"
                             FontFamily="{StaticResource Montserrat-Medium}"
@@ -90,12 +91,12 @@
                             Style="{StaticResource LabelStyle}"
                             Text="Enter your new password to reset the old password" />
 
-                    <!--  Entry to get old password from user  -->
-                    <border:SfBorder
+                <!--  Entry to get old password from user  -->
+                <border:SfBorder
                             Grid.Row="2"
                             Padding="15,0,0,0"
                             Style="{StaticResource FormBorderStyle}">
-                        <controls:BorderlessEntry 
+                    <controls:BorderlessEntry 
                             x:Name="OldPassword"
                             IsPassword="True"
                             PlaceholderColor="{DynamicResource Gray-800}" 
@@ -103,14 +104,14 @@
                             HeightRequest="40"  
                             Style="{StaticResource EntryTextStyle}" />
 
-                    </border:SfBorder>
+                </border:SfBorder>
 
-                    <!--  Entry to get new password from user  -->
-                    <border:SfBorder
+                <!--  Entry to get new password from user  -->
+                <border:SfBorder
                             Grid.Row="3"
                             Padding="15,0,0,0"
                             Style="{StaticResource FormBorderStyle}">
-                        <controls:BorderlessEntry 
+                    <controls:BorderlessEntry 
                             x:Name="NewPassword"
                             IsPassword="True"
                             PlaceholderColor="{DynamicResource Gray-800}" 
@@ -118,14 +119,14 @@
                             HeightRequest="40"  
                             Style="{StaticResource EntryTextStyle}" />
 
-                    </border:SfBorder>
+                </border:SfBorder>
 
-                    <!--  Entry to get confirm password from user  -->
-                    <border:SfBorder
+                <!--  Entry to get confirm password from user  -->
+                <border:SfBorder
                             Grid.Row="4"
                             Padding="15,0,0,0"
                             Style="{StaticResource FormBorderStyle}">
-                        <controls:BorderlessEntry 
+                    <controls:BorderlessEntry 
                             x:Name="ConfirmNewPassword"
                             IsPassword="True"
                             PlaceholderColor="{DynamicResource Gray-800}" 
@@ -133,29 +134,29 @@
                             HeightRequest="40"  
                             Style="{StaticResource EntryTextStyle}" />
 
-                    </border:SfBorder>
+                </border:SfBorder>
 
-                    <!--  Submit button  -->
-                    <buttons:SfButton
+                <!--  Submit button  -->
+                <buttons:SfButton
                             Grid.Row="5"
                             Margin="0, 20, 0, 20"
                             Clicked="SaveButton_Clicked"
-                            CornerRadius="20"
+                            CornerRadius="6"
                             TextColor="White"
                             BackgroundColor="{DynamicResource PrimaryColor}"
                             Style="{StaticResource SfButtonStyle}"
                             Text="SUBMIT" />
 
-                </Grid>
-            </StackLayout>
+
+            </Grid>
             <loading:LoadingIndicator
-                    Grid.Row="0"
-                    Grid.RowSpan="4"
+                    Grid.RowSpan="2"
                     HorizontalOptions="Fill"
-                    IsRunning="{Binding IsBusy, Mode=TwoWay}"
+                    x:Name="Loader"
+                    IsRunning="{Binding State, Mode=TwoWay}"
                     VerticalOptions="Fill" />
+
         </Grid>
-       
     </ContentPage.Content>
 
 

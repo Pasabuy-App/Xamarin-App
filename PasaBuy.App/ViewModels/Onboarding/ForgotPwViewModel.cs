@@ -42,8 +42,11 @@ namespace PasaBuy.App.ViewModels.Onboarding
         {
             this.SignUpCommand = new Command(this.SignUpClicked);
             this.SendCommand = new Command(this.SendClicked);
+            this.ActivateNowCommand = new Command(this.ActivateNowClicked);
             State = false;
         }
+
+        
 
         #endregion
 
@@ -58,6 +61,8 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// Gets or sets the command that is executed when the Sign Up button is clicked.
         /// </summary>
         public Command SignUpCommand { get; set; }
+
+        public Command ActivateNowCommand { get; set; }
 
         #endregion
 
@@ -96,6 +101,12 @@ namespace PasaBuy.App.ViewModels.Onboarding
             }
         }
 
+        private void ActivateNowClicked(object obj)
+        {
+            State = true;
+            App.Current.MainPage.Navigation.PushModalAsync(new VerifyAccountPage());
+            State = false;
+        }
         /// <summary>
         /// Invoked when the Sign Up button is clicked.
         /// </summary>

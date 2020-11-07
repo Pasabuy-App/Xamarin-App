@@ -36,13 +36,12 @@
                         <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <buttons:SfButton
-                            x:Name="backButton"
-                            Clicked="BackButtonClicked"
-                            Grid.Column="0"
-                            CornerRadius="4"
-                            Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Back}" />
+                    <ImageButton Source="arrow_left.png"
+                                 Grid.Column="0"
+                                     HeightRequest="25"
+                                     WidthRequest="25"
+                                     BackgroundColor="Transparent"
+                                     Clicked="BackButtonClicked" />
                     <Label Grid.Column="1"
                                     FontFamily="{StaticResource Montserrat-Medium}"
                                     FontSize="17"
@@ -151,12 +150,12 @@
                                     <combobox:DropDownButtonSettings>
                                         <combobox:DropDownButtonSettings.View>
                                             <Label
-                                          FontFamily="{StaticResource FontIcons}"
-                                          FontSize="25"
-                                          HorizontalTextAlignment="Center"
-                                          Text="{StaticResource DropDownButtonIcon}"
-                                          TextColor="{DynamicResource Gray-600}"
-                                          VerticalTextAlignment="Center" />
+                                              FontFamily="{StaticResource FontIcons}"
+                                              FontSize="25"
+                                              HorizontalTextAlignment="Center"
+                                              Text="{StaticResource DropDownButtonIcon}"
+                                              TextColor="{DynamicResource Gray-600}"
+                                              VerticalTextAlignment="Center" />
                                         </combobox:DropDownButtonSettings.View>
                                     </combobox:DropDownButtonSettings>
                                 </combobox:SfComboBox.DropDownButtonSettings>

@@ -134,7 +134,7 @@
 
                     </StackLayout>
 
-                </StackLayout>
+            </StackLayout>
             <loading:LoadingIndicator
                 Grid.Row="0"
                 HorizontalOptions="Fill"

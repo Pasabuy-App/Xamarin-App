@@ -72,6 +72,7 @@
         <Frame
             x:Name="FrameContainer"
             Margin="15"
+            BorderColor="{DynamicResource PrimaryColor}"
             Padding="0"
             BackgroundColor="White"
             CornerRadius="6"
@@ -80,14 +81,15 @@
                 Padding="0"
                 IsClippedToBounds="True"
                 Spacing="0">
-                <Grid RowSpacing="0">
-                    <syncfusion:SfAccordion>
+                <Grid RowSpacing="0"
+                      Margin="2">
+                    <syncfusion:SfAccordion >
                         <syncfusion:SfAccordion.Items>
                             
                             <!-- PASABAY -->
-                            <syncfusion:AccordionItem>
+                            <syncfusion:AccordionItem >
                                 <syncfusion:AccordionItem.Header>
-                                    <Grid>
+                                    <Grid >
                                         <Label
                                             FontFamily="{StaticResource Montserrat-SemiBold}"
                                             Padding="10,0,0,0"

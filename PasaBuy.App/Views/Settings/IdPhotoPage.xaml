@@ -30,6 +30,14 @@
             <StackLayout Spacing="0" >
                 <controls:TitleView Title="Take ID Photo" 
                                     BackgroundColor="{DynamicResource PrimaryColor}" >
+                    <controls:TitleView.LeadingView >
+                        <buttons:SfButton
+                            x:Name="backButton"
+                            Clicked="BackButtonClicked"
+                            CornerRadius="4"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                    </controls:TitleView.LeadingView>
                 </controls:TitleView>
                 <ContentPresenter />
             </StackLayout>
@@ -56,8 +64,7 @@
                     Margin="16,10,0,10"
                     FontFamily="{StaticResource Montserrat-Bold}"
                     Grid.Row="0"
-                    FontSize="14"
-                    HeightRequest="35"
+                    FontSize="{DynamicResource SmallSize}"
                     HorizontalOptions="FillAndExpand"
                     Text="Take a photo of your id. Make sure that the image is not blurry and the contents are readable."
                     TextColor="{DynamicResource Gray-700}"
