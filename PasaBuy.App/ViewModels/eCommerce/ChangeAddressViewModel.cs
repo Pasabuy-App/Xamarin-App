@@ -128,7 +128,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 if (!isRunning)
                 {
                     isRunning = true;
-                    Http.DataVice.Address.Instance.Update(AddressInMapPage.address_id, "", "", "", "", StreetEntry, AddressInMapPage.lat.ToString(), AddressInMapPage.lon.ToString(), (bool success, string data) =>
+                    Http.DataVice.Address.Instance.Update(AddressInMapPage.address_id, StreetEntry, AddressInMapPage.lat.ToString(), AddressInMapPage.lon.ToString(), (bool success, string data) =>
                     {
                         if (success)
                         {
