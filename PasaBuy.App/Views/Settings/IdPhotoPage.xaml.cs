@@ -24,6 +24,7 @@ namespace PasaBuy.App.Views.Settings
 
         async void TakePhoto(object sender, EventArgs args)
         {
+            GC.Collect();
             await CrossMedia.Current.Initialize();
             if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
             {
