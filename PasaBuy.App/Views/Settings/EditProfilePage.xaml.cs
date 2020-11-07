@@ -20,12 +20,14 @@ namespace PasaBuy.App.Views.Settings
         public EditProfilePage()
         {
             InitializeComponent();
-
+            Avatar.IsEnabled = true;
+            Banner.IsEnabled = true;
             //Fname.Text = PSACache.Instance.UserInfo.fname;
             //Lname.Text = PSACache.Instance.UserInfo.lname;
             //Nname.Text = PSACache.Instance.UserInfo.dname;
             Avatar.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatar);
             Banner.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.banner);
+            
 
         }
 
@@ -151,6 +153,7 @@ namespace PasaBuy.App.Views.Settings
 
         async void AddAvatar(object sender, EventArgs args)
         {
+            Avatar.IsEnabled = false;
             await CrossMedia.Current.Initialize();
             if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
             {
@@ -178,6 +181,7 @@ namespace PasaBuy.App.Views.Settings
 
         async void AddBanner(object sender, EventArgs args)
         {
+            Banner.IsEnabled = false;
             await CrossMedia.Current.Initialize();
             if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
             {
@@ -201,6 +205,7 @@ namespace PasaBuy.App.Views.Settings
 
             Banner.Source = imageSource;
             bannerUrl = file.Path;
+
         }
     }
 }

@@ -102,6 +102,7 @@
                                                                      border:BorderColor="White" 
                                                                      BorderWidth="2">
                                                                 <ImageButton WidthRequest="40" HeightRequest="40" 
+                                                                             Aspect="AspectFill"
                                                                      Command="{Binding Path=BindingContext.GoToProfileCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"
                                                                      BackgroundColor="{DynamicResource Gray-400}">
                                                                     <ImageButton.Source>

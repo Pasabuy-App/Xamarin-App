@@ -253,6 +253,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
             catch (Exception e)
             {
                 new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-S1SPVM.", "OK");
+                State = false;
             }
         }
 

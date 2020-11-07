@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              NavigationPage.HasNavigationBar="False"
              xmlns:controls="clr-namespace:PasaBuy.App.Controls"
-             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
              BackgroundColor="{DynamicResource Gray-White}"
              x:Class="PasaBuy.App.Views.Settings.EditProfilePage">
 
@@ -20,60 +20,76 @@
     <ContentPage.Padding>
         <OnPlatform  x:TypeArguments="Thickness" iOS="0,20,0,0"  Default="0,0,0,0"/>
     </ContentPage.Padding>
-    
-    <ContentPage.ControlTemplate>
-        <ControlTemplate>
-            <StackLayout Spacing="0" >
-                <controls:TitleView Title="Edit Profile" 
-                                    BackgroundColor="{DynamicResource PrimaryColor}" >
-                    <controls:TitleView.LeadingView>
-                        <buttons:SfButton
-                            x:Name="backButton"
-                            Clicked="BackButtonClicked"
-                            CornerRadius="4"
-                            Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Back}" />
-                    </controls:TitleView.LeadingView>
-                </controls:TitleView>
-                <ContentPresenter />
-            </StackLayout>
-        </ControlTemplate>
-    </ContentPage.ControlTemplate>
 
     <ContentPage.Content>
-        <ScrollView>
-            <Grid RowSpacing="20" Padding="15">
+        <Grid>
+            <Grid RowSpacing="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
+                <Grid Grid.Row="0"
+                        Padding="15,5,15,5"
+                        BackgroundColor="{StaticResource PrimaryColor}"
+                        HeightRequest="{OnPlatform Android='46',
+                                                   iOS='56'}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ImageButton Source="arrow_left.png"
+                                  Grid.Column="0"
+                                     HeightRequest="25"
+                                     WidthRequest="25"
+                                     BackgroundColor="Transparent"
+                                     Clicked="BackButtonClicked" />
+                    <Label Grid.Column="1"
+                                    FontFamily="{StaticResource Montserrat-Medium}"
+                                    FontSize="17"
+                                    HorizontalOptions="Start"
+                                    Text="Change profile or banner"
+                                    TextColor="{DynamicResource Gray-White}"
+                                    VerticalOptions="Center" />
 
-                </Grid.ColumnDefinitions>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+         
+                    <Label Text="Tap to select image"
+                           Grid.Row="0"
+                           Grid.ColumnSpan="2"
+                           HorizontalTextAlignment="Center"
+                           Margin="15,15,0,15"
+                               FontSize="{DynamicResource LargeSize}"
+                               FontFamily="{StaticResource Montserrat-SemiBold}"
+                               />
 
-
-                <Button Grid.ColumnSpan="1" 
+                    <Button Grid.ColumnSpan="1" 
                         HorizontalOptions="Start"  
                         Grid.Column="0" 
+                        Grid.Row="1"
+                        FontFamily="{StaticResource Montserrat-Medium}"
                         BorderColor="Transparent"  
                         BackgroundColor="Transparent" 
                         BorderWidth="0" 
                         Text="Profile Image">
-                    
-                </Button>
-                <Button Grid.ColumnSpan="1" 
+
+                    </Button>
+                    <Button Grid.ColumnSpan="1" 
                         HorizontalOptions="End" 
+                            Grid.Row="1"
                         Grid.Column="1" 
                         CornerRadius="15"
                         BorderColor="{DynamicResource Gray-200}"  
@@ -81,51 +97,55 @@
                         BorderWidth="0" 
                         Clicked="SaveAvatar"
                         Text="Save">
-                    
-                </Button>
+                    </Button>
 
-                <border:SfBorder Grid.Row="1"
-                                             Grid.RowSpan="1"
-                                             border:BorderColor="White" 
-                                             BorderWidth="2"
-                                             CornerRadius="100"
-                                             Grid.ColumnSpan="2"
-                                             HorizontalOptions="Center"
-                                             VerticalOptions="Center"
-                                             IsClippedToBounds="True">
-                    <Image
-                        BackgroundColor="{DynamicResource Gray-400}"
-                        x:Name="Avatar"
-                        WidthRequest="200"
-                        HeightRequest="200"
-                        Aspect="AspectFill">
-                        <Image.Source>
-                            <UriImageSource
-                                  CacheValidity="14"
-                                  CachingEnabled="true"
-                                  Uri="{Binding ProfileImage}" />
-                        </Image.Source>
-                        <Image.GestureRecognizers>
+                    <badge:SfBadgeView  Grid.Row="2"
+                                        Grid.RowSpan="1"
+                                        Grid.ColumnSpan="2"
+                                        IsClippedToBounds="True"
+                                        HorizontalOptions="Center" 
+                                        VerticalOptions="Center">
+                        <badge:SfBadgeView.Content>
+                            <!--  Profile image  -->
+                            <ffimageloading:CachedImage  Grid.Column="0"
+                                                         Aspect="Fill"
+                                                         x:Name="Avatar"
+                                                         Margin="10,12,0,0"
+                                                         WidthRequest="200"
+                                                         HeightRequest="200"
+                                                         DownsampleToViewSize="True"
+                                                         FadeAnimationEnabled="True">
+                                <ffimageloading:CachedImage.Transformations>
+                                    <transformations:CircleTransformation />
+                                </ffimageloading:CachedImage.Transformations>
+                            </ffimageloading:CachedImage>
+
+                        </badge:SfBadgeView.Content>
+                        <badge:SfBadgeView.BadgeSettings>
+                            <badge:BadgeSetting BadgeType="Success" 
+                                                Offset="-18,-40"
+                                                BadgePosition="BottomRight" 
+                                                BadgeIcon="Add" />
+                        </badge:SfBadgeView.BadgeSettings>
+                        <badge:SfBadgeView.GestureRecognizers>
                             <TapGestureRecognizer
-                                Tapped="AddAvatar"
-                                NumberOfTapsRequired="1" />
-                        </Image.GestureRecognizers>
-                    </Image>
-                </border:SfBorder>
+                                    Tapped="AddAvatar"
+                                    NumberOfTapsRequired="1" />
+                        </badge:SfBadgeView.GestureRecognizers>
+                    </badge:SfBadgeView>
 
+                    <BoxView Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource SeparatorStyle}"/>
 
-                <!-- Seperator -->
-                <BoxView Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource SeparatorStyle}"/>
-
-                <Button Grid.Row="3" 
+                    <Button Grid.Row="4" 
                         Grid.ColumnSpan="1" 
                         HorizontalOptions="Start" 
                         Grid.Column="0" 
                         BorderColor="Transparent"  
                         BackgroundColor="Transparent" 
                         BorderWidth="1" 
+                            FontFamily="{StaticResource Montserrat-Medium}"
                         Text="Banner Image"></Button>
-                <Button Grid.Row="3" 
+                    <Button Grid.Row="4" 
                         Grid.ColumnSpan="1" 
                         HorizontalOptions="End" 
                         CornerRadius="15"
@@ -135,35 +155,41 @@
                         BorderWidth="1" 
                         Clicked="SaveBanner"
                         Text="Save"></Button>
-   
-                <border:SfBorder Grid.Row="4"
+
+                    <border:SfBorder Grid.Row="5"
                                  Grid.RowSpan="1"
                                  border:BorderColor="White" 
                                  BorderWidth="2"
                                  Grid.ColumnSpan="2"
                                  IsClippedToBounds="True">
-                    <Image
+                        <Image
                          BackgroundColor="{DynamicResource Gray-400}"
                          x:Name="Banner"
                          WidthRequest="200"
                          HeightRequest="200"
                          Aspect="AspectFill">
-                        <Image.Source>
-                            <UriImageSource
+                            <Image.Source>
+                                <UriImageSource
                                   CacheValidity="14"
                                   CachingEnabled="true"
                                   Uri="{Binding ProfileImage}" />
-                        </Image.Source>
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer
+                            </Image.Source>
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
                                 Tapped="AddBanner"
                                 NumberOfTapsRequired="1" />
-                        </Image.GestureRecognizers>
-                    </Image>
-                </border:SfBorder>
-                
-            </Grid>
-        </ScrollView>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </border:SfBorder>
 
+
+                </Grid>
+            </Grid>
+            <loading:LoadingIndicator
+                HorizontalOptions="Fill"
+                x:Name="Loader"
+                IsRunning="{Binding IsBusy, Mode=TwoWay}"
+                VerticalOptions="Fill" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -38,13 +38,12 @@
                                          border:BorderColor="White" 
                                          BorderWidth="2"
                                          CornerRadius="50">
-                    <Image
+                    <Image Aspect="AspectFill"
                                     BackgroundColor="{DynamicResource Gray-400}"
                                     HeightRequest="50"
                                     WidthRequest="50">
                         <Image.Source>
-                            <UriImageSource
-                                            CacheValidity="14"
+                            <UriImageSource CacheValidity="14"
                                             CachingEnabled="true"
                                             Uri="{Binding Photo}" />
                         </Image.Source>
