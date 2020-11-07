@@ -61,6 +61,7 @@
                     </Grid.RowDefinitions>
                     <map:Map x:Name="map" 
                              PinDragEnd="map_PinDragEnd" 
+                             CameraMoving="map_CameraMoving"
                              Grid.Row="0"/>
                     <StackLayout Grid.Row="1"
                          Padding="20">
