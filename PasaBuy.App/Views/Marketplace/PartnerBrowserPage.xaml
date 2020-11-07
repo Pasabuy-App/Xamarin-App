@@ -125,7 +125,7 @@
                 <BoxView   Grid.Row="1" Style="{StaticResource SeparatorStyle}" />
                 <ScrollView Grid.Row="2">
                      <CollectionView ItemsSource="{Binding StoreList}"
-                                        Margin="5,0,0,0"
+                                        Margin="0,0,0,0"
                                         x:Name="StoreList">
                             <CollectionView.Header>
                                 <Grid>
