@@ -466,7 +466,11 @@ namespace PasaBuy.App.ViewModels.Chat
                         {
                             if (success)
                             {
-                                USNMessage.Instance.SendMessage(user_id, this.NewMessage, null);
+                                if(USNMessage.Instance.IsConnected)
+                                {
+                                    USNMessage.Instance.SendMessage(user_id, this.NewMessage, null);
+                                }
+                                
                                 ChatList.Add(new ChatListItem("0", "", DateTime.Now.AddMinutes(0), this.NewMessage, false));
                                 this.NewMessage = null;
                                 count = 0;
