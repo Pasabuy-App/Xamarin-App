@@ -110,7 +110,7 @@ namespace PasaBuy.App.Http
                 dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
                 dict.Add("snky", PSACache.Instance.UserInfo.snky);
                 dict.Add("status", status);
-                dict.Add("category_groups", group);
+                dict.Add("groups", group);
 
                 var content = new FormUrlEncodedContent(dict);
 
