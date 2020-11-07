@@ -47,10 +47,11 @@
                              Orientation="Horizontal"  VerticalOptions="FillAndExpand"  Spacing="0">
 
                         <!--  Back button command  -->
-                        <buttons:SfButton  x:Name="backButton" 
-                                       Clicked="BackButtonClicked"
-                                       CornerRadius="4"
-                                       Style="{StaticResource IconButtonStyle}" Text="{StaticResource Back}"/>
+                        <ImageButton Source="arrow_left.png"
+                                     HeightRequest="25"
+                                     WidthRequest="25"
+                                     BackgroundColor="Transparent"
+                                     Clicked="BackButtonClicked" />
 
                         <!--   Icon Names List page Title  -->
                         <Label  Margin="16,0" FontFamily="{StaticResource Montserrat-Medium}" FontSize="16"

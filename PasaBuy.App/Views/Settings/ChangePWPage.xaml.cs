@@ -31,39 +31,50 @@ namespace PasaBuy.App.Views.Settings
         /// <param name="e">Event Args</param>
         private void SaveButton_Clicked(object sender, EventArgs e)
         {
+            Loader.IsRunning = true;
+            Loader.IsVisible = true;
             try
             {
                 if (String.IsNullOrEmpty(OldPassword.Text) || String.IsNullOrEmpty(NewPassword.Text) || String.IsNullOrEmpty(ConfirmNewPassword.Text))
                 {
                     new Alert("Failed", "Please complete all fields.", "Ok");
+                    Loader.IsRunning = false;
+                    Loader.IsVisible = false;
                 }
                 else
                 {
                     if (!isEnable)
                     {
                         isEnable = true;
+                       
                         Http.DataVice.Users.Instance.ChangePassword(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, OldPassword.Text, NewPassword.Text, ConfirmNewPassword.Text, (bool success, string data) =>
                         {
                             if (success)
                             {
+                                Loader.IsRunning = false;
+                                Loader.IsVisible = false;
+                                App.Current.MainPage.DisplayAlert("Success", "Password changed successfully!", "Ok");
                                 Navigation.PopModalAsync();
+                                
                             }
                             else
                             {
                                 new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                Loader.IsRunning = false;
+                                Loader.IsVisible = false;
                             }
                         });
-                        Device.BeginInvokeOnMainThread(async () =>
-                        {
-                            await Task.Delay(1000);
-                            isEnable = false;
-                        });
+                        isEnable = false;
+                        Loader.IsRunning = false;
+                        Loader.IsVisible = false;
+
                     }
                 }
             }
             catch (Exception ex)
             {
                 new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-CP1CPWP.", "OK");
+                Loader.IsRunning = false;
             }
         }
     }

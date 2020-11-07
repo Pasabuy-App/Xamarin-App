@@ -18,6 +18,7 @@ namespace PasaBuy.App.Views.Settings
             InitializeComponent();
         }
 
+
         async void TakePhoto(object sender, EventArgs args)
         {
             await CrossMedia.Current.Initialize();
@@ -28,11 +29,8 @@ namespace PasaBuy.App.Views.Settings
 
             var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
             {
-                Directory = "ID-Image",
                 DefaultCamera = Plugin.Media.Abstractions.CameraDevice.Front,
-                Name = "image-id.jpg",
-                CompressionQuality = 40,
-                AllowCropping = true
+                CompressionQuality = 40
             });
 
             if (file == null)
@@ -48,8 +46,8 @@ namespace PasaBuy.App.Views.Settings
             //var filePath = file.Path;
             filePath = file.Path;
 
-
         }
+
 
         async void SelectPhoto(object sender, EventArgs args)
         {

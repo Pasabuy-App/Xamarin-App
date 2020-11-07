@@ -102,6 +102,7 @@
                             PlaceholderColor="{DynamicResource Gray-800}" 
                             Placeholder="Old Password" 
                             HeightRequest="40"  
+                            ReturnType="Next"
                             Style="{StaticResource EntryTextStyle}" />
 
                 </border:SfBorder>
@@ -116,6 +117,7 @@
                             IsPassword="True"
                             PlaceholderColor="{DynamicResource Gray-800}" 
                             Placeholder="New Password" 
+                            ReturnType="Next"
                             HeightRequest="40"  
                             Style="{StaticResource EntryTextStyle}" />
 
@@ -132,6 +134,7 @@
                             PlaceholderColor="{DynamicResource Gray-800}" 
                             Placeholder="Confirm New Password" 
                             HeightRequest="40"  
+                            ReturnType="Next"
                             Style="{StaticResource EntryTextStyle}" />
 
                 </border:SfBorder>

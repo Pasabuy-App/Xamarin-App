@@ -2,7 +2,7 @@
 using Plugin.Media;
 using System;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -27,16 +27,13 @@ namespace PasaBuy.App.Views.Settings
             await CrossMedia.Current.Initialize();
             if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
             {
-                new Alert("Error", "No camera available", "Failed");
+               new Alert("Error", "No camera available", "Failed");
             }
 
             var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
-            {
-                Directory = "ID-Image",
-                Name = "image-id.jpg",
-                CompressionQuality = 40,
-                AllowCropping = true
-            });
+                {
+                    CompressionQuality = 40
+                });
 
             if (file == null)
                 return;
@@ -48,9 +45,7 @@ namespace PasaBuy.App.Views.Settings
             });
 
             ImageId.Source = imageSource;
-            //var filePath = file.Path;
             filePath = file.Path;
-
 
         }
 
