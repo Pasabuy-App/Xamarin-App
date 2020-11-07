@@ -7,18 +7,63 @@ namespace PasaBuy.App.ViewModels.Marketplace
     public class OrderStatusViewModel : BaseViewModel
     {
         public bool IsCurrentStatus { get; set; }
+        public static double _fee;
+        public static double _total;
+        public static double _subtotal;
+
+        public double fee;
+        public double Fee
+        {
+            get
+            {
+                return fee;
+            }
+            set
+            {
+                fee = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        public double total;
+        public double Total
+        {
+            get
+            {
+                return total;
+            }
+            set
+            {
+                total = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        public double subTotal;
+        public double SubTotal
+        {
+            get
+            {
+                return subTotal;
+            }
+            set
+            {
+                subTotal = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
         public List<ITransformation> TurnGreyScale { get; set; }
 
         public OrderStatusViewModel()
         {
+            this.Fee = _fee;
+            this.Total = _total;
+            this.SubTotal = _subtotal;
             TurnGreyScale = new List<ITransformation>()
             {
                 new CustomTransformationSelector(),
             };
-
-
-
         }
 
 

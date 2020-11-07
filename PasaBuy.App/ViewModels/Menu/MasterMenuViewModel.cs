@@ -129,8 +129,8 @@ namespace PasaBuy.App.ViewModels.Menu
 
             //isDriver = true;
             CheckMover();
+            CheckStore();
 
-            isStore = true;
             IsBusy = false;
             //isDriver = UserEnabledFeature.Instance.isMover;
             //isStore = UserEnabledFeature.Instance.isStore;
@@ -185,6 +185,36 @@ namespace PasaBuy.App.ViewModels.Menu
                     else
                     {
                         isDriver = false;
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+            }
+        }
+
+        public void CheckStore()
+        {
+            try
+            {
+                Http.MobilePOS.Personnel.Instance.Store_List("active", (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        Models.Marketplace.StoreListData datas = JsonConvert.DeserializeObject<Models.Marketplace.StoreListData>(data);
+                        if (datas.data.Length > 0)
+                        {
+                            isStore = true;
+                        }
+                        else
+                        {
+                            isStore = false;
+                        }
+                    }
+                    else
+                    {
+                        isStore = false;
                     }
                 });
             }

@@ -16,17 +16,17 @@ namespace PasaBuy.App.Local
         /// <summary>
         /// Does the current RestURL used SSL.
         /// </summary>
-        public static bool onSSL { get; } = false;
+        public static bool onSSL { get; } = true;
 
         /// <summary>
         /// Development url.
         /// </summary>
-        public static string devBaseUrl { get; } = "10.12.91.198";
+        public static string devBaseUrl { get; } = "dev.pasabuy.app";
 
         /// <summary>
         /// WordPress media host url.
         /// </summary>
-        public static string devMediaUrl { get; } = "10.12.91.198";
+        public static string devMediaUrl { get; } = "dev.pasabuy.app";
 
         /// <summary>
         /// RestAPI Root url c/o WordPress.

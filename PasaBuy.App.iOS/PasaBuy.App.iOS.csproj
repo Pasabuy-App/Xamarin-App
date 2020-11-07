@@ -391,5 +391,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\partner.png" />
+    <BundleResource Include="Resources\arrow_left.png" />
   </ItemGroup>
 </Project>

@@ -111,7 +111,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 {
                     IsRunning = true;
                     this.DocumentList.Clear();
-                    Http.TindaFeature.Instance.DocumentList("active", (bool success, string data) =>
+                    Http.TindaFeature.Instance.DocumentList(PSACache.Instance.UserInfo.stid ,"active", (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -152,7 +152,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             try
             {
                 documentList.Clear();
-                Http.TindaFeature.Instance.DocumentList("active", (bool success, string data) =>
+                Http.TindaFeature.Instance.DocumentList(PSACache.Instance.UserInfo.stid, "active", (bool success, string data) =>
                     {
                         if (success)
                         {

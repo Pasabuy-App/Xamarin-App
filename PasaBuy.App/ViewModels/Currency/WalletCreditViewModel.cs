@@ -146,7 +146,7 @@ namespace PasaBuy.App.ViewModels.Currency
         {
             try
             {
-                CoinPress.Wallet.Instance.Create(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "CTC", async (bool success, string data) =>
+                CoinPress.Wallet.Instance.Create(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "CDT", async (bool success, string data) =>
                 {
                     if (success)
                     {
