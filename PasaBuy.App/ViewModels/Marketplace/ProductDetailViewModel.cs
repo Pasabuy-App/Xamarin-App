@@ -410,6 +410,12 @@ namespace PasaBuy.App.ViewModels.Marketplace
             if (!isRunning)
             {
                 isRunning = true;
+                /*if (string.IsNullOrEmpty(StoreDetailsViewModel.operation_id))
+                {
+                    new Alert("Notice to User", "This store is closed. You can't order right now.", "OK");
+                    isRunning = false;
+                    return;
+                }*/
                 if (_variantsList.Count > 0)
                 {
                     int count = 0;

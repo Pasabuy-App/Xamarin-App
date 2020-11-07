@@ -48,25 +48,25 @@ namespace PasaBuy.App.Views.Currency
             //await SendImage.FadeTo(0.3, 200);
             //await SendImage.FadeTo(1, 200);
             //Views.Currency.SendWalletCredits.currency_id = currency_id;
-            if (!isTapped)
+            if (IsRunning.IsRunning == false)
             {
-                isTapped = true;
+                IsRunning.IsRunning = true;
                 await App.Current.MainPage.Navigation.PushModalAsync(new SendWalletCredits());
-                isTapped = false;
+                IsRunning.IsRunning = false;
             }
         }
-
+        
         private async void ReceiveMoney_Tapped(object sender, EventArgs e)
         {
             //await ReceiveImage.FadeTo(0.3, 200);
             //await ReceiveImage.FadeTo(1, 200);
-            if (!isTapped)
+            if (IsRunning.IsRunning == false)
             {
-                isTapped = true;
+                IsRunning.IsRunning = true;
                 PopupShowWalletCredit.wallet_title = "Credits Wallet ID";
                 PopupShowWalletCredit.wallet_id = WalletCreditViewModel.wallet_id;
                 await PopupNavigation.Instance.PushAsync(new PopupShowWalletCredit());
-                isTapped = false;
+                IsRunning.IsRunning = false;
             }
         }
     }

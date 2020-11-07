@@ -366,7 +366,7 @@
             <loading:LoadingIndicator
                     Grid.Row="0"
                     x:Name="Loading"
-                    IsRunning="{Binding IsBusy}"
+                    IsRunning="{Binding Status, Mode=TwoWay}"
                     HorizontalOptions="Fill"
                     VerticalOptions="Fill" />
         </Grid>

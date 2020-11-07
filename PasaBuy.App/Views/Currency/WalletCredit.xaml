@@ -9,7 +9,7 @@
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-             xmlns:template="clr-namespace:PasaBuy.App.Views.Templates"
+             xmlns:template="clr-namespace:PasaBuy.App.Views.Templates" xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
              x:Class="PasaBuy.App.Views.Currency.WalletCredit"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
@@ -30,26 +30,28 @@
     </ContentView.BindingContext>
 
     <ContentView.Content>
-        <ScrollView>
-            <Grid RowSpacing="0" ColumnSpacing="0">
+        <Grid>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
+            <ScrollView>
+                <Grid RowSpacing="0" ColumnSpacing="0">
 
-                <Grid Grid.Row="0" 
-                      Padding="15,45,15,25"
-                      Margin="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <!-- Amount -->
-                    <Label 
+                    <Grid Grid.Row="0" 
+                      Padding="15,45,15,25"
+                      Margin="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Amount -->
+                        <Label 
                            Grid.Row="0"
                            HorizontalOptions="Center"
                            VerticalOptions="Center"
@@ -57,16 +59,16 @@
                            Style="{StaticResource LabelStyle}"
                            FontSize="{DynamicResource ExtraBigSize}"
                            LineHeight="{OnPlatform Android=1.5, Default=-1}">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text=" ₱" />
-                                <Span Text="{Binding Amount}" />
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text=" ₱" />
+                                    <Span Text="{Binding Amount}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
 
-                    <!-- Name -->
-                    <Label 
+                        <!-- Name -->
+                        <Label 
                            Grid.Row="1"
                            HorizontalOptions="Center"
                            VerticalOptions="Center"
@@ -74,21 +76,21 @@
                            FontSize="{DynamicResource MediumSize}"
                            Style="{StaticResource LabelStyle}"
                            LineHeight="{OnPlatform Android=1.5, Default=-1}" />
-                </Grid>
+                    </Grid>
 
-                <Grid Grid.Row="1"
+                    <Grid Grid.Row="1"
                       HorizontalOptions="FillAndExpand"
                       Padding="0,15,0,15"
                       BackgroundColor="{DynamicResource Transparent}">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <buttons:SfButton
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <buttons:SfButton
                             Command="{Binding SubmitCommand}"
                             CornerRadius="5"
                             Grid.Column="0"
@@ -98,7 +100,7 @@
                             TextColor="White"
                             BackgroundColor="{DynamicResource PrimaryColor}"
                             Text="Send Money" />
-                    <buttons:SfButton
+                        <buttons:SfButton
                             Command="{Binding SubmitCommand}"
                             CornerRadius="5"
                             Grid.Column="1"
@@ -108,12 +110,12 @@
                             TextColor="White"
                             BackgroundColor="{DynamicResource PrimaryColor}"
                             Text="Receive Money" />
-                </Grid>
+                    </Grid>
 
-                <Grid Grid.Row="2"
+                    <Grid Grid.Row="2"
                       Padding="0,15,0,10">
 
-                    <Label Margin="16,0,16,0"
+                        <Label Margin="16,0,16,0"
                            Text="TRANSACTIONS"
                            TextColor="{DynamicResource Gray-800}"
                            FontSize="12"
@@ -121,7 +123,7 @@
                            FontFamily="{DynamicResource Montserrat-SemiBold}"
                            HorizontalOptions="Start" />
 
-                    <buttons:SfButton Margin="11,26,11,16"
+                        <buttons:SfButton Margin="11,26,11,16"
                                       BorderWidth="0"
                                       TextColor="{DynamicResource Gray-600}"
                                       BackgroundColor="{DynamicResource Transparent}"
@@ -129,66 +131,66 @@
                                       HeightRequest="18"
                                       CornerRadius="4"
                                       HorizontalOptions="End">
-                        <!--<Label Text="VIEW ALL"
+                            <!--<Label Text="VIEW ALL"
                                TextColor="{DynamicResource Link}"
                                FontSize="12"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center"
                                LineHeight="{OnPlatform Android=1.5, Default=-1}"
                                FontFamily="{DynamicResource Montserrat-SemiBold}" />-->
-                    </buttons:SfButton>
+                        </buttons:SfButton>
 
-                </Grid>
+                    </Grid>
 
-                <listView:SfListView Grid.Row="3" 
+                    <listView:SfListView Grid.Row="3" 
                                      IsScrollBarVisible="False"
                                      ItemSpacing="0"
                                      ItemsSource="{Binding CreditsList}" ItemAppearing="SfListView_ItemAppearing"
                                      SelectionBackgroundColor="{DynamicResource TappedBackgroundColor}"
                                      TapCommand="{Binding ItemTappedCommand}"
                                      AutoFitMode="Height">
-                    <listView:SfListView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid RowSpacing="0" ColumnSpacing="0">
+                        <listView:SfListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid RowSpacing="0" ColumnSpacing="0">
 
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
 
-                                <!-- Profile Image -->
-                                <border:SfBorder Grid.RowSpan="3"
+                                    <!-- Profile Image -->
+                                    <border:SfBorder Grid.RowSpan="3"
                                                  Margin="16"
                                                  WidthRequest="40"
                                                  HeightRequest="40"
                                                  CornerRadius="20"
                                                  BorderWidth="0"
                                                  VerticalOptions="Center">
-                                    <Image Aspect="Fill">
-                                        <Image.Source>
-                                            <UriImageSource Uri="{Binding ProfileImage}" 
+                                        <Image Aspect="Fill">
+                                            <Image.Source>
+                                                <UriImageSource Uri="{Binding ProfileImage}" 
 			                                                CacheValidity="14" 
 			                                                CachingEnabled="True" />
-                                        </Image.Source>
-                                    </Image>
-                                </border:SfBorder>
+                                            </Image.Source>
+                                        </Image>
+                                    </border:SfBorder>
 
-                                <!-- Name -->
-                                <Label Grid.Column="1"
+                                    <!-- Name -->
+                                    <Label Grid.Column="1"
                                        Margin="0,15,0,4"
                                        HorizontalOptions="Start"
                                        Text="{Binding Name}"
                                        Style="{StaticResource LabelStyle}"
                                        LineHeight="{OnPlatform Android=1.5, Default=-1}" />
 
-                                <!-- Transaction Title -->
-                                <Label Grid.Row="1"
+                                    <!-- Transaction Title -->
+                                    <Label Grid.Row="1"
                                        Grid.Column="1"
                                        Margin="0,0,0,16"
                                        HorizontalOptions="Start"
@@ -198,24 +200,24 @@
                                        FontFamily="{DynamicResource Montserrat-Medium}"
                                        LineHeight="{OnPlatform Android=1.5, Default=-1}" />
 
-                                <!-- Amount -->
-                                <Label Grid.Column="1"
+                                    <!-- Amount -->
+                                    <Label Grid.Column="1"
                                        Margin="0,16,16,4"
                                        HorizontalOptions="End"
                                        TextColor="{Binding IsCredited, Converter={x:StaticResource BooleanToColorConverter}, ConverterParameter=5}"
                                        Style="{StaticResource LabelStyle}"
                                        LineHeight="{OnPlatform Android=1.5, Default=-1}">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="{Binding IsCredited, Converter={StaticResource BoolToStringConverter}, ConverterParameter=2}" />
-                                            <Span Text=" ₱" />
-                                            <Span Text="{Binding Amount}" />
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding IsCredited, Converter={StaticResource BoolToStringConverter}, ConverterParameter=2}" />
+                                                <Span Text=" ₱" />
+                                                <Span Text="{Binding Amount}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
 
-                                <!-- Date -->
-                                <Label Grid.Row="1"
+                                    <!-- Date -->
+                                    <Label Grid.Row="1"
                                        Grid.Column="1"
                                        Margin="0,0,16,16"
                                        HorizontalOptions="End"
@@ -225,15 +227,24 @@
                                        FontFamily="{DynamicResource Montserrat-Medium}"
                                        LineHeight="{OnPlatform Android=1.5, Default=-1}" />
 
-                                <!-- Seperator -->
-                                <BoxView Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource SeparatorStyle}" />
+                                    <!-- Seperator -->
+                                    <BoxView Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource SeparatorStyle}" />
 
-                            </Grid>
-                        </DataTemplate>
-                    </listView:SfListView.ItemTemplate>
-                </listView:SfListView>
+                                </Grid>
+                            </DataTemplate>
+                        </listView:SfListView.ItemTemplate>
+                    </listView:SfListView>
 
-            </Grid>
-        </ScrollView>
+                </Grid>
+            </ScrollView>
+
+            <loading:LoadingIndicator
+                    Grid.Row="0"
+                    x:Name="IsRunning"
+                    HorizontalOptions="Fill"
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}"
+                    VerticalOptions="Fill" />
+        </Grid>
+        
     </ContentView.Content>
 </ContentView>

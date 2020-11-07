@@ -37,22 +37,19 @@ namespace PasaBuy.App.Views.Currency
         {
             WalletIds.HasError = !string.IsNullOrWhiteSpace(WalletId.Text) ? false : true;
             Amounts.HasError = !string.IsNullOrWhiteSpace(Amount.Text) ? false : true;
-            var btn = sender as SfButton;
-            if (btn.IsEnabled)
+            if (!WalletIds.HasError && !Amounts.HasError)
             {
-                btn.IsEnabled = false;
-                if (!WalletIds.HasError && !Amounts.HasError)
+                if (IsRunning.IsRunning == false)
                 {
+                    IsRunning.IsRunning = true;
                     PopupSendWalletSavings.currency_id = currency_id;
                     PopupSendWalletSavings.amount = Amount.Text;
                     PopupSendWalletSavings.walletid = WalletId.Text;
                     PopupSendWalletSavings.notes = Note.Text;
                     PopupSendWalletSavings.type = "savings";
-                    //Console.WriteLine("Example: " + Note.Text + Amount.Text + WalletId.Text);
                     await PopupNavigation.Instance.PushAsync(new PopupSendWalletSavings());
+                    IsRunning.IsRunning = false;
                 }
-                await Task.Delay(200);
-                btn.IsEnabled = true;
             }
         }
     }

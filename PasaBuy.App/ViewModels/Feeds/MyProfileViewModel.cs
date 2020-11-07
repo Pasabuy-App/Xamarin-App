@@ -51,6 +51,21 @@ namespace PasaBuy.App.ViewModels.Feeds
         public bool _isRefreshing = false;
         public int countpost;
 
+        public bool isRunning = false;
+
+        public bool IsRunning
+        {
+            get
+            {
+                return isRunning;
+            }
+            set
+            {
+                isRunning = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region Constructor
@@ -144,6 +159,103 @@ namespace PasaBuy.App.ViewModels.Feeds
             catch (Exception e)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+            }
+        }
+
+        public void LoadFeeds(string uid)
+        {
+            try
+            {
+                if (!IsRunning)
+                {
+                    IsRunning = true;
+                    MyProfile.LastIndex = 11;
+                    Http.SocioFeature.Instance.ProfileFeeds(uid, (bool success, string data) =>
+                    {
+                        if (success)
+                        {
+                            PostListData post = JsonConvert.DeserializeObject<PostListData>(data);
+                            if (post.data.Length == 0)
+                            {
+                                profilePostList.Add(new Post(PSAProc.GetUrl("https://pasabuy.app/wp-content/plugins/SocioPress-WP-Plugin/assets/default-avatar.png"), // PasaBuy.App avatar
+                                    "Pasabuy.App", "Status", new DateTime().ToString(), "0", "Welcome to Pasabuy.App!", "", "", "-1", "", "", "", "", "", ""));
+                                IsRunning = false;
+                            }
+                            else
+                            {
+                                for (int i = 0; i < post.data.Length; i++)
+                                {
+                                    string image_height = "-1";
+                                    if (post.data[i].item_image != "")
+                                    {
+                                        image_height = "400";
+                                    }
+                                    string post_author = post.data[i].post_author;
+                                    string id = post.data[i].id;
+                                    string content = post.data[i].content;
+                                    string title = post.data[i].title;
+                                    string date_post = post.data[i].date_post == string.Empty ? new DateTime().ToString() : post.data[i].date_post;
+                                    string type = post.data[i].type;
+                                    string item_image = post.data[i].item_image;
+                                    string author = post.data[i].author;
+                                    string name = post.data[i].name;
+                                    string views = post.data[i].views;
+                                    string post_link = post.data[i].post_link;
+                                    string category = post.data[i].item_category;
+                                    string vehicle_type = post.data[i].vehicle_date;
+                                    string pickup_location = post.data[i].pickup_location;
+                                    string do_price = "Drop-off: " + post.data[i].drop_off_location;
+                                    if (type == "Selling")
+                                    {
+                                        title = category + " : " + title;
+                                        content = post.data[i].content;
+                                        vehicle_type = "Vehicle: " + post.data[i].vehicle_date;
+                                        pickup_location = "Pick-up: " + post.data[i].pickup_location;
+                                        do_price = "Price: " + post.data[i].time_price;
+                                    }
+                                    if (type == "Pasabay")
+                                    {
+                                        //title = "Pasabuy - Hide";
+                                        title = "<b> Destination: " + post.data[i].pickup_location + " </b>";
+                                        pickup_location = "Date: " + post.data[i].vehicle_date;
+                                        vehicle_type = "Return Place: " + post.data[i].drop_off_location;
+                                        do_price = "Time: " + post.data[i].time_price;
+                                    }
+                                    if (type == "Pahatid")
+                                    {
+                                        //title = "Pasabuy - Hide";
+                                        title = "<b> Pick-up: " + post.data[i].pickup_location + " </b>";
+                                        pickup_location = "Date: " + post.data[i].vehicle_date;
+                                        vehicle_type = "Drop-off: " + post.data[i].drop_off_location;
+                                        do_price = "Time: " + post.data[i].time_price;
+                                    }
+                                    if (type == "Pabili")
+                                    {
+                                        title = "Item Name: " + post.data[i].title;
+                                        content = "Description: " + post.data[i].content;
+                                        pickup_location = "Date: " + post.data[i].vehicle_date;
+                                        vehicle_type = "Location: " + post.data[i].pickup_location;
+                                        do_price = "Time: " + post.data[i].time_price;
+                                    }
+
+                                    profilePostList.Add(new Post(PSAProc.GetUrl(author),
+                                        name, type, date_post, views, title, content, PSAProc.GetUrl(item_image), image_height, id, post_link, "", pickup_location, vehicle_type, do_price));
+                                }
+                                IsRunning = false;
+                            }
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsRunning = false;
+                        }
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                IsRunning = false;
             }
         }
 
@@ -298,6 +410,11 @@ namespace PasaBuy.App.ViewModels.Feeds
                     isCity = true;
                     this.City = "Lives in " + PSACache.Instance.UserInfo.city;
                 }
+                else
+                {
+                    isCity = true;
+                    this.City = "No address.";
+                }
                 this.Joined = "Joined at " + date.ToString("MMMM yyyy");
                 isRefered = false;
                 this.Refered = "";
@@ -320,6 +437,11 @@ namespace PasaBuy.App.ViewModels.Feeds
                     isCity = true;
                     this.City = "Lives in " + city;
                 }
+                else
+                {
+                    isCity = true;
+                    this.City = "No address.";
+                }
                 //this.Joined = "(ic) Joined at " + DateTime.Now.ToString("MMMM yyyy");
                 this.Joined = "Joined at " + joined;
                 this.Transacts = transactcount;
@@ -330,11 +452,11 @@ namespace PasaBuy.App.ViewModels.Feeds
             RefreshCommand = new Command<string>((key) =>
             {
                 profilePostList.Clear();
-                LoadData(userid);
+                LoadFeeds(userid);
                 IsRefreshing = false;
             });
             profilePostList = new ObservableCollection<Post>();
-            LoadData(userid);
+            LoadFeeds(userid);
             profilePostList.CollectionChanged += CollectionChanges;
         }
 
@@ -547,24 +669,19 @@ namespace PasaBuy.App.ViewModels.Feeds
 
         #region Methods
 
-        private void MessageClicked(object obj)
+        private async void MessageClicked(object obj)
         {
-            if (!isEnable)
+            if (!IsRunning)
             {
-                isEnable = true;
+                IsRunning = true;
                 //ChatMessageViewModel.LoadMessage(user_id, "");
                 ChatMessageViewModel.myPage = "profile";
                 ChatMessageViewModel.refresh = 0;
                 ChatMessageViewModel.ProfileNames = displayNames;
                 ChatMessageViewModel.ProfileImages = profileImages;
                 ChatMessageViewModel.user_id = user_id;
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    await Task.Delay(300);
-                    await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ChatMessagePage()));
-                    //new Alert("Title", "Example", "OK");
-                    isEnable = false;
-                });
+                await(App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ChatMessagePage()));
+                IsRunning = false;
             }
         }
         #endregion

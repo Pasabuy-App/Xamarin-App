@@ -65,6 +65,20 @@ namespace PasaBuy.App.ViewModels.Currency
                 this.NotifyPropertyChanged();
             }
         }
+        public bool isRunning = false;
+
+        public bool IsRunning
+        {
+            get
+            {
+                return isRunning;
+            }
+            set
+            {
+                isRunning = value;
+                this.NotifyPropertyChanged();
+            }
+        }
         #endregion
 
         #region Constructor
@@ -158,32 +172,38 @@ namespace PasaBuy.App.ViewModels.Currency
         {
             try
             {
-                CoinPress.Wallet.Instance.Create(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "SVS", async (bool success, string data) =>
+                if (!IsRunning)
                 {
-                    if (success)
+                    IsRunning = true;
+                    CoinPress.Wallet.Instance.Create(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "SVS", async (bool success, string data) =>
                     {
-                        WalletSavingsModel wallet = JsonConvert.DeserializeObject<WalletSavingsModel>(data);
-                        for (int i = 0; i < wallet.data.Length; i++)
+                        if (success)
                         {
-                            this.WalletID = wallet.data[i].public_key;
-                            currency_id = wallet.data[i].currency_id;
-                            wallet_id = wallet.data[i].public_key;
-                            SendWalletSavings.currency_id = currency_id;
-                            LoadBalance();
-                            await Task.Delay(500);
-                            LoadData(wallet.data[i].currency_id, "");
-                            Console.WriteLine("Currency Savings: " + currency_id);
+                            WalletSavingsModel wallet = JsonConvert.DeserializeObject<WalletSavingsModel>(data);
+                            for (int i = 0; i < wallet.data.Length; i++)
+                            {
+                                this.WalletID = wallet.data[i].public_key;
+                                currency_id = wallet.data[i].currency_id;
+                                wallet_id = wallet.data[i].public_key;
+                                SendWalletSavings.currency_id = currency_id;
+                                LoadBalance();
+                                await Task.Delay(500);
+                                LoadData(wallet.data[i].currency_id, "");
+                            }
+                            IsRunning = false;
                         }
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                });
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsRunning = false;
+                        }
+                    });
+                }
             }
             catch (Exception e)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                IsRunning = false;
             }
         }
         public void LoadBalance()

@@ -170,7 +170,7 @@ namespace PasaBuy.App.Http.DataVice
         /// <summary>
         /// Update address.
         /// </summary>
-        public async void Update(string id, string co, string pv, string ct, string bg, string st, string lat, string lon, Action<bool, string> callback)
+        public async void Update(string id, string st, string lat, string lon, Action<bool, string> callback)
         {
             try
             {
@@ -178,10 +178,6 @@ namespace PasaBuy.App.Http.DataVice
                     dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
                     dict.Add("snky", PSACache.Instance.UserInfo.snky);
                     dict.Add("id", id);
-                    dict.Add("co", co);
-                    dict.Add("pv", pv);
-                    dict.Add("ct", ct);
-                    dict.Add("bg", bg);
                     dict.Add("st", st);
                     dict.Add("lat", lat);
                     dict.Add("long", lon);

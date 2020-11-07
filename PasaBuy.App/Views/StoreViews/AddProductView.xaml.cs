@@ -208,7 +208,18 @@ namespace PasaBuy.App.Views.StoreViews
                                     ProductsView.LastIndex = 11;
                                     ProductsView.isFirstLoad = false;
                                     ProductsView.Offset = 0;
+                                    filePath = string.Empty;
+                                    catid = string.Empty;
                                     pdid = "0";
+                                    pcid = "0";
+                                    name = string.Empty;
+                                    info = string.Empty;
+                                    price = string.Empty;
+                                    discount = string.Empty;
+                                    avatar = string.Empty;
+                                    category_name = string.Empty;
+                                    inventory = string.Empty;
+                                    inventories = string.Empty;
                                     ProductViewModel.RefreshProduct("");
                                     await Navigation.PopModalAsync();
                                     IsRunning.IsRunning = false;

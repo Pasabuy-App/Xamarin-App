@@ -30,6 +30,8 @@
     </ContentView.BindingContext>
 
     <ContentView.Content>
+        <Grid>
+
             <ScrollView>
                 <Grid RowSpacing="0" ColumnSpacing="0">
 
@@ -238,5 +240,13 @@
                 </Grid>
 
             </ScrollView>
+
+            <loading:LoadingIndicator
+                    Grid.Row="0"
+                    x:Name="IsRunning"
+                    HorizontalOptions="Fill"
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}"
+                    VerticalOptions="Fill" />
+        </Grid>
     </ContentView.Content>
 </ContentView>

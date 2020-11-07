@@ -30,27 +30,34 @@ namespace PasaBuy.App.Views.PopupModals
         {
             try
             {
-                CoinPress.Wallet.Instance.Verify(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, walletid, (bool success, string data) =>
+                if (IsRunning.IsRunning == false)
                 {
-                    if (success)
+                    IsRunning.IsRunning = true;
+                    CoinPress.Wallet.Instance.Verify(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, walletid, (bool success, string data) =>
                     {
-                        WalletSavingsModel wallet = JsonConvert.DeserializeObject<WalletSavingsModel>(data);
-                        for (int i = 0; i < wallet.data.Length; i++)
+                        if (success)
                         {
-                            Message.Text = "Do you really want to send ₱" + amount + " to " + wallet.data[i].name + " with wallet ID of " + walletid + "?";
-                            Recipient.Text = wallet.data[i].name;
-                            ImageId.Source = PSAProc.GetUrl(wallet.data[i].avatar);
+                            WalletSavingsModel wallet = JsonConvert.DeserializeObject<WalletSavingsModel>(data);
+                            for (int i = 0; i < wallet.data.Length; i++)
+                            {
+                                Message.Text = "Do you really want to send ₱" + amount + " to " + wallet.data[i].name + " with wallet ID of " + walletid + "?";
+                                Recipient.Text = wallet.data[i].name;
+                                ImageId.Source = PSAProc.GetUrl(wallet.data[i].avatar);
+                            }
+                            IsRunning.IsRunning = false;
                         }
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                });
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsRunning.IsRunning = false;
+                        }
+                    });
+                }
             }
             catch (Exception e)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                IsRunning.IsRunning = false;
             }
         }
         private void CancelModal(object sender, EventArgs e)
@@ -62,35 +69,42 @@ namespace PasaBuy.App.Views.PopupModals
         {
             try
             {
-                //Console.WriteLine("wallet id: " + walletid + " amount: " + amount + " currency: " + currency_id);
-                CoinPress.Wallet.Instance.Send(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, walletid, amount, currency_id, notes, (bool success, string data) =>
+                if (IsRunning.IsRunning == false)
                 {
-                    if (success)
+                    IsRunning.IsRunning = true;
+                    //Console.WriteLine("wallet id: " + walletid + " amount: " + amount + " currency: " + currency_id);
+                    CoinPress.Wallet.Instance.Send(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, walletid, amount, currency_id, notes, (bool success, string data) =>
                     {
-                        if (type == "savings")
+                        if (success)
                         {
-                            WalletSavingViewModel._SavingsList.Clear();
-                            WalletSavingViewModel.LoadData(WalletSavingViewModel.currency_id, "");
-                            Currency.WalletSaving.LastIndex = 11;
+                            if (type == "savings")
+                            {
+                                WalletSavingViewModel._SavingsList.Clear();
+                                WalletSavingViewModel.LoadData(WalletSavingViewModel.currency_id, "");
+                                Currency.WalletSaving.LastIndex = 11;
+                            }
+                            if (type == "credits")
+                            {
+                                WalletCreditViewModel._CreditsList.Clear();
+                                WalletCreditViewModel.LoadData(WalletCreditViewModel.currency_id, "");
+                                Currency.WalletCredit.LastIndex = 11;
+                            }
+                            new Alert("Send Money", "Send money successfully.", "OK");
+                            PopupNavigation.Instance.PopAsync();
+                            IsRunning.IsRunning = false;
                         }
-                        if (type == "credits")
+                        else
                         {
-                            WalletCreditViewModel._CreditsList.Clear();
-                            WalletCreditViewModel.LoadData(WalletCreditViewModel.currency_id, "");
-                            Currency.WalletCredit.LastIndex = 11;
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsRunning.IsRunning = false;
                         }
-                        new Alert("Send Money", "Send money successfully.", "OK");
-                        PopupNavigation.Instance.PopAsync();
-                    }
-                    else
-                    {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                    }
-                });
+                    });
+                }
             }
             catch (Exception ex)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
+                IsRunning.IsRunning = false;
             }
         }
     }

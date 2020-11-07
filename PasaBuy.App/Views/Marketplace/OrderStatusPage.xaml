@@ -4,7 +4,9 @@
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-             xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms" xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms" 
+             xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch" 
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="PasaBuy.App.Views.Marketplace.OrderStatusPage"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
@@ -109,11 +111,11 @@
                     <Grid Grid.Row="1"
                           Grid.ColumnSpan="5">
                         <progressBar:SfStepProgressBar HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                            <progressBar:StepView PrimaryText="Driver found" />
-                            <progressBar:StepView PrimaryText="Driver is on the way to the store" />
-                            <progressBar:StepView PrimaryText="Preparing your order" Status="InProgress" />
-                            <progressBar:StepView PrimaryText="Driver is on the way to you" />
-                            <progressBar:StepView PrimaryText="Confirm your order" />
+                            <progressBar:StepView PrimaryText="Driver found"  Status="{Binding isMoverFound}"/>
+                            <progressBar:StepView PrimaryText="Driver is on the way to the store" Status="{Binding isMoverOngoing}"/>
+                            <progressBar:StepView PrimaryText="Preparing your order" Status="{Binding isOrderPreparing}"/>
+                            <progressBar:StepView PrimaryText="Driver is on the way to you" Status="{Binding isOrderShiping}"/>
+                                <progressBar:StepView PrimaryText="Confirm your order" Status="{Binding isOrderCompleted}" />
                         </progressBar:SfStepProgressBar>
                     </Grid>
                 </Grid>
@@ -130,14 +132,14 @@
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Forms9Patch:Label Grid.Row="0"
-                                           Text="26 minutes"
+                                           Text="{Binding stopWatch}"
                                            FontFamily="{StaticResource Montserrat-SemiBold}"
                                            FontSize="{DynamicResource BigSize}"
                                            TextColor="{DynamicResource Gray-900}"
                                            HorizontalTextAlignment="Center"
                                            AutoFit="Width"/>
                         <Forms9Patch:Label Grid.Row="1"
-                                           Text="Estimated Time of Arrival"
+                                           Text="{Binding timeStatus}"
                                            Margin="0,0,0,10"
                                            FontFamily="{StaticResource Montserrat-SemiBold}"
                                            FontSize="{DynamicResource LargeSize}"
@@ -150,15 +152,15 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-            
-                            <buttons:SfButton BackgroundColor="{DynamicResource WhiteColor}"
+
+                            <buttons:SfButton BackgroundColor="{DynamicResource WhiteColor}" IsEnabled="{Binding isStore}" Clicked="Store_Clicked"
                                               TextColor="{DynamicResource Gray-900}"
                                               Grid.Column="0" 
                                               Text="Message Store" 
                                               PressedBackgroundColor="{DynamicResource PrimaryColor}"
                                               ShowIcon="True" 
                                               ImageSource="https://www.clipartkey.com/mpngs/m/244-2444890_chat-bubble-messages-free-messages-icon-png.png"/>
-                            <buttons:SfButton Grid.Column="1"
+                            <buttons:SfButton Grid.Column="1" IsEnabled="{Binding isMover}" Clicked="Mover_Clicked"
                                               BackgroundColor="{DynamicResource WhiteColor}"
                                               TextColor="{DynamicResource Gray-900}"
                                               Text="Message Driver" 

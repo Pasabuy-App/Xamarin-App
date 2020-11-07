@@ -131,7 +131,6 @@ namespace PasaBuy.App.ViewModels.Menu
             CheckMover();
             CheckStore();
 
-            IsBusy = false;
             //isDriver = UserEnabledFeature.Instance.isMover;
             //isStore = UserEnabledFeature.Instance.isStore;
 
@@ -364,7 +363,7 @@ namespace PasaBuy.App.ViewModels.Menu
         /// Invoked when the profile button is clicked.
         /// </summary>
         /// <param name="obj">The object</param>
-        private void TransactionButtonClicked(object obj)
+        private async void TransactionButtonClicked(object obj)
         {
             if (!Status)
             {
@@ -373,24 +372,18 @@ namespace PasaBuy.App.ViewModels.Menu
                 MyProfileViewModel.user_id = string.Empty;*/
 
                 Status = true;
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyTransactionsPage()));
-                    Status = false;
-                });
+                await(App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyTransactionsPage()));
+                Status = false;
             }
         }
 
-        private void PasabuyPlusClicked(object obj)
+        private async void PasabuyPlusClicked(object obj)
         {
             if (!Status)
             {
                 Status = true;
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new PasabuyPlusPage()));
-                    Status = false;
-                });
+                await(App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new PasabuyPlusPage()));
+                Status = false;
             }
         }
 
@@ -398,20 +391,16 @@ namespace PasaBuy.App.ViewModels.Menu
         /// Invoked when the profile button is clicked.
         /// </summary>
         /// <param name="obj">The object</param>
-        private void ProfileButtonClicked(object obj)
+        private async void ProfileButtonClicked(object obj)
         {
             if (!Status)
             {
+                Status = true;
                 postbutton = "Profile";
                 MyProfileViewModel.LoadTotal(PSACache.Instance.UserInfo.wpid);
                 MyProfileViewModel.user_id = string.Empty;
-
-                Status = true;
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
-                    Status = false;
-                });
+                await(App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyProfile()));
+                Status = false;
             }
         }
 
@@ -419,7 +408,7 @@ namespace PasaBuy.App.ViewModels.Menu
         /// Invoked when the message button is clicked.
         /// </summary>
         /// <param name="obj">The object</param>
-        private void MessageButtonClicked(object obj)
+        private async void MessageButtonClicked(object obj)
         {
             if (!Status)
             {
@@ -428,12 +417,9 @@ namespace PasaBuy.App.ViewModels.Menu
                 MessagePage.isFirstID = false;
                 MessagePage.ids = 0;
                 //RecentChatViewModel.chatItems.Clear();
-                RecentChatViewModel.LoadMesssage("");
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new PasaBuy.App.Views.Chat.MessagePage()));
-                    Status = false;
-                });
+                //RecentChatViewModel.LoadMesssage("");
+                await(App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new PasaBuy.App.Views.Chat.MessagePage()));
+                Status = false;
             }
         }
 
@@ -441,16 +427,13 @@ namespace PasaBuy.App.ViewModels.Menu
         /// Invoked when the wallet button is clicked.
         /// </summary>
         /// <param name="obj">The object</param>
-        private void WalletButtonClicked(object obj)
+        private async void WalletButtonClicked(object obj)
         {
             if (!Status)
             {
                 Status = true;
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new WalletPage()));
-                    Status = false;
-                });
+                await(App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new WalletPage()));
+                Status = false;
             }
         }
 
@@ -458,16 +441,13 @@ namespace PasaBuy.App.ViewModels.Menu
         /// Invoked when the notification button is clicked.
         /// </summary>
         /// <param name="obj">The object</param>
-        private void NotificationButtonClicked(object obj)
+        private async void NotificationButtonClicked(object obj)
         {
             if (!Status)
             {
                 Status = true;
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new NotificationPage()));
-                    Status = false;
-                });
+                await(App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new NotificationPage()));
+                Status = false;
             }
         }
 
@@ -475,18 +455,13 @@ namespace PasaBuy.App.ViewModels.Menu
         /// Invoked when the request button is clicked.
         /// </summary>
         /// <param name="obj">The object</param>
-        private void AdvisoryButtonClicked(object obj)
+        private async void AdvisoryButtonClicked(object obj)
         {
             if (!Status)
             {
                 Status = true;
-                //IsBusy = true;
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ArticleList()));
-                    Status = false;
-                    //IsBusy = false;
-                });
+                await(App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ArticleList()));
+                Status = false;
             }
         }
 
@@ -500,13 +475,10 @@ namespace PasaBuy.App.ViewModels.Menu
                 if (!Status)
                 {
                     Status = true;
-                    Device.BeginInvokeOnMainThread(async () =>
-                    {
-                        MasterView.MyType = "mover";
-                        await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new VehicleListPage()));
-                        Status = false;
-                    });
-                }
+                MasterView.MyType = "mover";
+                await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new VehicleListPage()));
+                Status = false;
+            }
             
         }
 
@@ -514,7 +486,7 @@ namespace PasaBuy.App.ViewModels.Menu
         /// Invoked when the store button is clicked.
         /// </summary>
         /// <param name="obj">The object</param>
-        private void StoreButtonClicked(object obj)
+        private async void StoreButtonClicked(object obj)
         {
             if (!Status)
             {
@@ -522,11 +494,8 @@ namespace PasaBuy.App.ViewModels.Menu
                 Status = true;
                 //IsBusy = true;
                 MasterView.MyType = "store";
-                Device.BeginInvokeOnMainThread(async () =>
-               {
-                   await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyStoresList()));
-                   Status = false;
-               });
+                await(App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new MyStoresList()));
+                Status = false;
             }
         }
 
@@ -534,16 +503,13 @@ namespace PasaBuy.App.ViewModels.Menu
         /// Invoked when the setting button is clicked.
         /// </summary>
         /// <param name="obj">The object</param>
-        private void SettingButtonClicked(object obj)
+        private async void SettingButtonClicked(object obj)
         {
             if (!Status)
             {
                 Status = true;
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new SettingPage()));
-                    Status = false;
-                });
+                await(App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new SettingPage()));
+                Status = false;
             }
         }
         #endregion
