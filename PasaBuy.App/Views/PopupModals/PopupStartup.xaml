@@ -55,6 +55,12 @@
             ScaleOut="0.7" />
     </pages:PopupPage.Animation>
     <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <StackLayout.Padding>
+            <OnIdiom x:TypeArguments="Thickness">
+                <OnIdiom.Phone>0,5,0,0</OnIdiom.Phone>
+                <OnIdiom.Tablet>50,0,50,0</OnIdiom.Tablet>
+            </OnIdiom>
+        </StackLayout.Padding>
         <Frame
             x:Name="FrameContainer"
             Margin="15"
@@ -62,6 +68,7 @@
             BackgroundColor="{DynamicResource Gray-100}"
             CornerRadius="6"
             HorizontalOptions="Center">
+            
             <StackLayout
                 Padding="0"
                 IsClippedToBounds="True"

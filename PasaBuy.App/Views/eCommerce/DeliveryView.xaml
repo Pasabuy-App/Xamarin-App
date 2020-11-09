@@ -136,7 +136,7 @@
                             helper:RTLHelper.Margin="{OnIdiom Default='0,16,0,0',
                                                               Phone='10,2,0,2'}"
                             FontFamily="{StaticResource Montserrat-Medium}"
-                            FontSize="14"
+                            FontSize="{DynamicResource SmallSize}"
                             HorizontalOptions="StartAndExpand"
                             Style="{StaticResource CommonLabelStyle}">
                             <Label.FormattedText>
@@ -177,10 +177,11 @@
                         <Label
                             Grid.Row="1"
                             Grid.Column="1"
+                            Grid.ColumnSpan="3"
                             helper:RTLHelper.Margin="{OnIdiom Default='0',
                                                               Phone='10,0,0,0'}"
                             FontFamily="{StaticResource Montserrat-Medium}"
-                            FontSize="12"
+                            FontSize="{DynamicResource SmallerSize}"
                             LineHeight="{OnPlatform Android=1.25,
                                                     Default=-1}"
                             Style="{StaticResource CommonLabelStyle}"
@@ -191,10 +192,9 @@
                         <Label
                             Grid.Row="2"
                             Grid.Column="1"
-                            helper:RTLHelper.Margin="{OnIdiom Default='0',
-                                                              Phone='10,8,0,16'}"
+                            helper:RTLHelper.Margin="{OnIdiom Default='0',Tablet='0,0,0,15',Phone='10,8,0,16'}"
                             FontFamily="{StaticResource Montserrat-Medium}"
-                            FontSize="12"
+                            FontSize="{DynamicResource SmallerSize}"
                             HorizontalOptions="StartAndExpand"
                             Style="{StaticResource CommonLabelStyle}">
                             <Label.FormattedText>
@@ -218,7 +218,7 @@
         </buttons:SfRadioGroup>
 
         <!--  Add New Address Button  -->
-        <buttons:SfButton
+        <!--<buttons:SfButton
             Margin="{OnIdiom Default=16,
                              Phone=0}"
             Padding="{OnIdiom Default='20,10',
@@ -231,7 +231,7 @@
             Style="{StaticResource MagentaButtonStyle}"
             Text="ADD NEW ADDRESS"
             WidthRequest="{OnIdiom Default=240,
-                                   Phone=0}" />
+                                   Phone=0}" />-->
 
     </StackLayout>
 

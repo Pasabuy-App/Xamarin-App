@@ -108,17 +108,15 @@
                                                 </Label.Effects>
                                             </Label>
 
-                                            <buttons:SfButton
-                                                        Grid.Row="0"
-                                                        Grid.RowSpan="2"
-                                                        Grid.Column="2"
-                                                        CornerRadius="4"
-                                                        TextColor="{DynamicResource PrimaryColor}"
-                                                        Command="{Binding Source={x:Reference Name=listView}, Path=BindingContext.AddToCartCommand}"
-                                                        CommandParameter="{Binding .}"
-                                                        FontSize="22"
-                                                        Style="{StaticResource IconButtonStyle}"
-                                                        Text="{StaticResource Add}" />
+                                            <ImageButton Source="add.png"
+                                                         HeightRequest="25"
+                                                         Command="{Binding Source={x:Reference Name=listView}, Path=BindingContext.AddToCartCommand}"
+                                                         CommandParameter="{Binding .}"
+                                                         Grid.Row="0"
+                                                         BackgroundColor="Transparent"
+                                                         Grid.RowSpan="2"
+                                                         Grid.Column="2"
+                                                         WidthRequest="25"/>
 
                                         </Grid>
                                     </Frame>
@@ -138,6 +136,10 @@
         <converter:IntToThicknessConverter x:Key="intToThicknessConverter" />
     </ContentPage.Resources>
 
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" Default="0, 0, 0, 0" />
+    </ContentPage.Padding>
+
     <ContentPage.ControlTemplate>
         <ControlTemplate >
             <StackLayout Spacing="0" >
@@ -145,42 +147,39 @@
                                     FontSize="14"
                                     BackgroundColor="{DynamicResource PrimaryColor}" >
                     <controls:TitleView.LeadingView >
-                        <buttons:SfButton
-                            x:Name="backButton"
-                            Clicked="BackButtonClicked"
-                            CornerRadius="4"
-                            TextColor="White"
-                            Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Back}" />
+                        <ImageButton Source="arrow_left.png"
+                                     HeightRequest="25"
+                                     WidthRequest="25"
+                                     BackgroundColor="Transparent"
+                                     Clicked="BackButtonClicked" />
                     </controls:TitleView.LeadingView>
                     <controls:TitleView.TrailingView>
                         <badge:SfBadgeView
                             Margin="{Binding Path=BindingContext.CartItemCount, Converter={x:StaticResource intToThicknessConverter}}"
                             Padding="0"
                             BadgeText="{Binding Source={x:Reference Name=storeDetails}, Path=BindingContext.CartItemCount}"
-                            HeightRequest="42"
+                            HeightRequest="45"
                             HorizontalOptions="End"
                             VerticalOptions="Center"
-                            WidthRequest="40">
+                            WidthRequest="70">
                             <badge:SfBadgeView.Content>
-                                <buttons:SfButton
-                                    CornerRadius="4"
-                                    HorizontalOptions="End"
-                                    IsEnabled="{Binding Source={x:Reference Name=storeDetails}, Path=BindingContext.IsBusy}"
-                                    Command="{Binding Source={x:Reference Name=storeDetails}, Path=BindingContext.GoToCartCommand}"
-                                    Style="{StaticResource IconButtonStyle}"
-                                    TextColor="{DynamicResource WhiteColor}"
-                                    Text="{StaticResource Cart}" />
+                                <ImageButton Source="cart.png"
+                                             HeightRequest="100"
+                                             WidthRequest="100"
+                                             IsEnabled="{Binding Source={x:Reference Name=storeDetails}, Path=BindingContext.IsBusy}"
+                                             Command="{Binding Source={x:Reference Name=storeDetails}, Path=BindingContext.GoToCartCommand}"
+                                             HorizontalOptions="End"
+                                             BackgroundColor="Transparent" />
                             </badge:SfBadgeView.Content>
                             <badge:SfBadgeView.BadgeSettings>
                                 <badge:BadgeSetting
                                     BackgroundColor="{DynamicResource Green}"
                                     BadgeAnimation="None"
                                     BadgeType="None"
-                                    FontSize="10"
+                                    FontSize="12"
                                     Stroke="{DynamicResource Gray-White}"
                                     StrokeWidth="1"
-                                    Offset="-10,10" />
+                                    Offset="-10,8" />
                             </badge:SfBadgeView.BadgeSettings>
                         </badge:SfBadgeView>
                     </controls:TitleView.TrailingView>
@@ -192,6 +191,12 @@
 
     <ContentPage.Content>
         <Grid>
+            <Grid.Padding>
+                <OnIdiom x:TypeArguments="Thickness">
+                    <OnIdiom.Phone>0,5,0,0</OnIdiom.Phone>
+                    <OnIdiom.Tablet>50,0,50,0</OnIdiom.Tablet>
+                </OnIdiom>
+            </Grid.Padding>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -258,6 +263,7 @@
                                         <Label Text="{Binding StoreAddress}"
                                                FontSize="{DynamicResource SmallerSize}"
                                                FontFamily="{StaticResource Montserrat-Medium}" 
+                                               TextColor="{DynamicResource Gray-900}"
                                                Grid.Row="1"
                                                x:Name="StoreAddress"
                                                MaxLines="3"

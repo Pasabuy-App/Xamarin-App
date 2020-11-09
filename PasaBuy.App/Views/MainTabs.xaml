@@ -92,7 +92,7 @@
                 </tabView:SfTabItem>
 
                 <!--PARTNER TAB-->
-                <tabView:SfTabItem Title="Robisons"
+                <tabView:SfTabItem Title="Robinsons"
                                    TitleFontSize="{DynamicResource SmallerSize}"
                                    ImageSource="partner.png"
                                TitleFontColor="{DynamicResource Gray-900}"

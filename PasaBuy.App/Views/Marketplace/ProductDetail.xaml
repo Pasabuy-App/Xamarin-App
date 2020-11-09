@@ -152,22 +152,29 @@
                                     FontSize="14"
                                     BackgroundColor="{DynamicResource PrimaryColor}" >
                     <controls:TitleView.LeadingView >
-                        <buttons:SfButton
-                            x:Name="backButton"
-                            Clicked="BackButtonClicked"
-                            CornerRadius="4"
-                            Style="{StaticResource IconButtonStyle}"
-                            TextColor="{DynamicResource Gray-White}"
-                            Text="{StaticResource Back}" />
+                        <ImageButton Source="arrow_left.png"
+                                     HeightRequest="25"
+                                     WidthRequest="25"
+                                     BackgroundColor="Transparent"
+                                     Clicked="BackButtonClicked" />
                     </controls:TitleView.LeadingView>
                 </controls:TitleView>
                 <ContentPresenter />
             </StackLayout>
         </ControlTemplate>
     </ContentPage.ControlTemplate>
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" Default="0, 0, 0, 0" />
+    </ContentPage.Padding>
     <ContentPage.Content>
             <Grid>
-                <StackLayout Spacing="0" 
+            <Grid.Padding>
+                <OnIdiom x:TypeArguments="Thickness">
+                    <OnIdiom.Phone>0,5,0,0</OnIdiom.Phone>
+                    <OnIdiom.Tablet>50,0,50,0</OnIdiom.Tablet>
+                </OnIdiom>
+            </Grid.Padding>
+            <StackLayout Spacing="0" 
                              Padding="0,0,0,0">
                 <syncListView:SfListView
                             Margin="0,0,0,0"
@@ -278,7 +285,7 @@
                                         Text="Special Instructions :"
                                         Margin="5,5,0,0"
                                         Grid.Row="1"
-                                        FontSize="{DynamicResource MediumSize}" 
+                                        FontSize="{DynamicResource SmallSize}" 
                                         FontFamily="{StaticResource Montserrat-Medium}" 
                                         TextColor="{DynamicResource Gray-900}"
                                         LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
@@ -287,7 +294,7 @@
                                         Text="Specify special requests or instructions for this product."
                                         Margin="5,5,0,0"
                                         Grid.Row="2"
-                                        FontSize="{DynamicResource SmallSize}" 
+                                        FontSize="{DynamicResource SmallerSize}" 
                                         FontFamily="{StaticResource Montserrat-Medium}" 
                                         TextColor="{DynamicResource Gray-900}"
                                         LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
@@ -332,6 +339,12 @@
                              HeightRequest="60"
                              BackgroundColor="{DynamicResource PrimaryColor}"
                              Grid.RowSpan="2">
+                    <StackLayout.Padding>
+                        <OnIdiom x:TypeArguments="Thickness">
+                            <OnIdiom.Phone>0,5,0,0</OnIdiom.Phone>
+                            <OnIdiom.Tablet>0,10,0,0</OnIdiom.Tablet>
+                        </OnIdiom>
+                    </StackLayout.Padding>
                     <Grid BackgroundColor="{DynamicResource PrimaryColor}"
                           x:Name="CartGrid">
                         <Grid.ColumnDefinitions>
@@ -351,15 +364,14 @@
                                TextColor="{DynamicResource WhiteColor}"
                                LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
                        
-                        <Label HorizontalOptions="StartAndExpand" 
+                        <Label HorizontalOptions="Center" 
                                VerticalOptions="CenterAndExpand"
                                Padding="18,8,0,5"
                                Text="Add to Cart" 
                                Grid.Column="1" 
                                FontSize="16" 
                                FontFamily="{StaticResource Montserrat-Bold}" 
-                               TextColor="{DynamicResource WhiteColor}"
-                               LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
+                               TextColor="{DynamicResource WhiteColor}"/>
 
                         <!--Text="{Binding ActualPrice, StringFormat='₱ {0:F2}'}"-->
                         <Label HorizontalOptions="EndAndExpand" 

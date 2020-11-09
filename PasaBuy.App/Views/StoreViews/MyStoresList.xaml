@@ -43,14 +43,12 @@
                                 <ColumnDefinition Width="auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <buttons:SfButton
-                            x:Name="backButton"
-                            Clicked="backButton_Clicked"
-                            Grid.Column="0"
-                            CornerRadius="4"
-                            Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Back}" />
-                            <Label Grid.Column="1"
+                                <ImageButton Source="arrow_left.png"
+                                     HeightRequest="25"
+                                     WidthRequest="25"
+                                     BackgroundColor="Transparent"
+                                     Clicked="backButton_Clicked" />
+                                <Label Grid.Column="1"
                                     FontFamily="{StaticResource Montserrat-Medium}"
                                     FontSize="17"
                                     HorizontalOptions="Start"
