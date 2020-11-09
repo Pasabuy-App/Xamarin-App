@@ -12,8 +12,7 @@
              x:Class="PasaBuy.App.Views.Marketplace.StoreDetailsPage"
              xmlns:loading="clr-namespace:PasaBuy.App.UserControls" 
              xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms" 
-             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-             xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" xmlns:effects="clr-namespace:Xamarin.Toolkit.Effects;assembly=Xamarin.Toolkit.Effects"
              x:Name="storeDetails"
              BackgroundColor="{DynamicResource Gray-200}"
              NavigationPage.HasNavigationBar="False"
@@ -28,25 +27,30 @@
                     <StackLayout Padding="0,15,0,0">
                         <StackLayout BackgroundColor="{DynamicResource WhiteColor}" Padding="0">
                             <StackLayout Orientation="Vertical" BackgroundColor="{DynamicResource Gray-600}" Padding="15">
-                                <Forms9Patch:Label Text="{Binding Title}"
-                                                                Lines="0"
-                                                                MinFontSize="14"
-                                                                FontSize="18"
-                                                                FontFamily="{StaticResource Montserrat-Bold}" 
-                                                                HorizontalOptions="Start" 
-                                                                TextColor="{DynamicResource WhiteColor}"
-                                                                LineHeight="{OnPlatform Default=-1,Android=1.25}"
-                                                                AutoFit="Width"/>
-                                <Forms9Patch:Label  Text="{Binding Info}"
-                                                            Lines="0"
-                                                            MinFontSize="10"
-                                                            FontSize="16"
-                                                            FontFamily="{StaticResource Montserrat-Bold}" 
-                                                            HorizontalOptions="Start" 
-                                                            TextColor="{DynamicResource WhiteColor}"
-                                                            LineHeight="{OnPlatform Default=-1,Android=1.25}"
-                                                            AutoFit="Width"/>
-                            </StackLayout>
+
+                            <Label Text="{Binding Title}"
+                                   FontSize="{DynamicResource LargeSize}"
+                                   FontFamily="{StaticResource Montserrat-Bold}" 
+                                   HorizontalOptions="Start" 
+                                   LineHeight="{OnPlatform Default=-1,Android=1.25}"
+                                   TextColor="{DynamicResource WhiteColor}">
+                                <Label.Effects>
+                                    <effects:LabelSizeFontToFit />
+                                </Label.Effects>
+                            </Label>
+
+                            <Label Text="{Binding Info}"
+                                   FontSize="{DynamicResource MediumSize}"
+                                   FontFamily="{StaticResource Montserrat-Bold}" 
+                                   HorizontalOptions="Start" 
+                                   LineHeight="{OnPlatform Default=-1,Android=1.25}"
+                                   TextColor="{DynamicResource WhiteColor}">
+                                <Label.Effects>
+                                    <effects:LabelSizeFontToFit />
+                                </Label.Effects>
+                            </Label>
+
+                        </StackLayout>
 
                         <StackLayout Grid.Row="2"
                                      BindableLayout.ItemsSource="{Binding Prods}" 
@@ -75,31 +79,34 @@
                                                                              FadeAnimationEnabled="True">
                                             </ffimageloading:CachedImage>
 
-                                            <Forms9Patch:Label  Text="{Binding Name}"
-                                                                    Margin="0,10,0,0"
-                                                                    Grid.Column="1"
-                                                                    Grid.Row="0"
-                                                                    Lines="0"
-                                                                    MinFontSize="10"
-                                                                    FontSize="16"
-                                                                    FontFamily="{StaticResource Montserrat-Bold}" 
-                                                                    HorizontalOptions="Start" 
-                                                                    TextColor="{DynamicResource Gray-900}"
-                                                                    LineHeight="{OnPlatform Default=-1,Android=1.25}"
-                                                                    AutoFit="Width"/>
+       
+                                            <Label Text="{Binding Name}"
+                                                   FontSize="{DynamicResource SmallSize}"
+                                                   FontFamily="{StaticResource Montserrat-Bold}" 
+                                                   Margin="0,10,0,0"
+                                                   Grid.Column="1"
+                                                   Grid.Row="0"
+                                                   HorizontalOptions="Start" 
+                                                   LineHeight="{OnPlatform Default=-1,Android=1.25}"
+                                                   TextColor="{DynamicResource Gray-900}">
+                                                <Label.Effects>
+                                                    <effects:LabelSizeFontToFit />
+                                                </Label.Effects>
+                                            </Label>
 
-                                            <Forms9Patch:Label  Text="{Binding ActualPrice, StringFormat='₱ {0:F2}'}"
-                                                                    Margin="0,-5,0,0"
-                                                                    Grid.Column="1"
-                                                                    Grid.Row="1"
-                                                                    Lines="0"
-                                                                    MinFontSize="10"
-                                                                    FontSize="16"
-                                                                    FontFamily="{StaticResource Montserrat-Bold}" 
-                                                                    HorizontalOptions="Start" 
-                                                                    TextColor="{DynamicResource Gray-900}"
-                                                                    LineHeight="{OnPlatform Default=-1,Android=1.25}"
-                                                                    AutoFit="Width"/>
+                                            <Label Text="{Binding ActualPrice, StringFormat='₱ {0:F2}'}"
+                                                   FontSize="{DynamicResource SmallSize}"
+                                                   FontFamily="{StaticResource Montserrat-Bold}" 
+                                                   Margin="0,-5,0,0"
+                                                   Grid.Column="1"
+                                                   Grid.Row="1"
+                                                   HorizontalOptions="Start" 
+                                                   LineHeight="{OnPlatform Default=-1,Android=1.25}"
+                                                   TextColor="{DynamicResource Gray-900}">
+                                                <Label.Effects>
+                                                    <effects:LabelSizeFontToFit />
+                                                </Label.Effects>
+                                            </Label>
 
                                             <buttons:SfButton
                                                         Grid.Row="0"
@@ -233,29 +240,32 @@
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
-                                        <Forms9Patch:Label Grid.Row="0"
-                                                       Text="{Binding StoreName}"
-                                                       x:Name="StoreName"
-                                                       Lines="0"
-                                                       MinFontSize="14"
-                                                       FontSize="20"
-                                                       FontFamily="{StaticResource Montserrat-Bold}" 
-                                                       HorizontalOptions="Start" 
-                                                       TextColor="{DynamicResource Gray-900}"
-                                                       LineHeight="{OnPlatform Default=-1,Android=1.25}"
-                                                       AutoFit="Width"/>
 
-                                        <Forms9Patch:Label Grid.Row="1"
-                                                       Text="{Binding StoreAddress}"
-                                                       x:Name="StoreAddress"
-                                                       Lines="0"
-                                                       MinFontSize="12"
-                                                       FontSize="15"
-                                                       FontFamily="{StaticResource Montserrat-Bold}" 
-                                                       HorizontalOptions="Start" 
-                                                       TextColor="{DynamicResource Gray-900}"
-                                                       LineHeight="{OnPlatform Default=-1,Android=1.25}"
-                                                       AutoFit="Width"/>
+
+                                        <Label Text="{Binding StoreName}"
+                                               FontSize="{DynamicResource LargeSize}"
+                                               FontFamily="{StaticResource Montserrat-Bold}" 
+                                               Grid.Row="0"
+                                               x:Name="StoreName"
+                                               HorizontalOptions="Start" 
+                                               LineHeight="{OnPlatform Default=-1,Android=1.25}"
+                                               TextColor="{DynamicResource Gray-900}">
+                                            <Label.Effects>
+                                                <effects:LabelSizeFontToFit />
+                                            </Label.Effects>
+                                        </Label>
+
+                                        <Label Text="{Binding StoreAddress}"
+                                               FontSize="{DynamicResource SmallerSize}"
+                                               FontFamily="{StaticResource Montserrat-Medium}" 
+                                               Grid.Row="1"
+                                               x:Name="StoreAddress"
+                                               MaxLines="3"
+                                               LineBreakMode="TailTruncation"
+                                               HorizontalOptions="Start" 
+                                               LineHeight="{OnPlatform Default=-1,Android=1.25}">
+
+                                        </Label>
 
                                         <controls:CustomShadowFrame  Grid.Row="2"
                                             Margin="0,3,0,8"
@@ -271,28 +281,31 @@
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
 
-                                                <Forms9Patch:Label Grid.Row="0"
-                                                               Text="About the Store" 
-                                                               Lines="0"
-                                                               MinFontSize="14"
-                                                               FontSize="18"
-                                                               FontFamily="{StaticResource Montserrat-Bold}" 
-                                                               HorizontalOptions="CenterAndExpand" 
-                                                               TextColor="{DynamicResource Gray-900}"
-                                                               LineHeight="{OnPlatform Default=-1,Android=1.25}"
-                                                               AutoFit="Width"/>
+                                                <Label Text="About the Store" 
+                                                       FontSize="{DynamicResource MediumSize}"
+                                                       FontFamily="{StaticResource Montserrat-Bold}" 
+                                                       Grid.Row="0"
+                                                       HorizontalOptions="CenterAndExpand" 
+                                                       LineHeight="{OnPlatform Default=-1,Android=1.25}"
+                                                       TextColor="{DynamicResource Gray-900}">
+                                                    <Label.Effects>
+                                                        <effects:LabelSizeFontToFit />
+                                                    </Label.Effects>
+                                                </Label>
 
-                                                <Forms9Patch:Label Grid.Row="1"
-                                                               Text="{Binding AboutStore}" 
-                                                               x:Name="StoreDescription"
-                                                               Lines="0"
-                                                               MinFontSize="10"
-                                                               FontSize="15"
-                                                               FontFamily="{StaticResource Montserrat-Bold}" 
-                                                               HorizontalOptions="Center" 
-                                                               TextColor="{DynamicResource Gray-900}"
-                                                               LineHeight="{OnPlatform Default=-1,Android=1.25}"
-                                                               AutoFit="Width"/>
+                                                <Label Text="{Binding AboutStore}" 
+                                                       x:Name="StoreDescription"
+                                                       FontSize="{DynamicResource SmallSize}"
+                                                       FontFamily="{StaticResource Montserrat-Medium}" 
+                                                       Grid.Row="1"
+                                                       HorizontalOptions="CenterAndExpand" 
+                                                       LineHeight="{OnPlatform Default=-1,Android=1.25}"
+                                                       TextColor="{DynamicResource Gray-900}">
+                                                    <Label.Effects>
+                                                        <effects:LabelSizeFontToFit />
+                                                    </Label.Effects>
+                                                </Label>
+
                                             </Grid>
 
                                         </controls:CustomShadowFrame>

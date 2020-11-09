@@ -8,7 +8,7 @@
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App" 
     xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Accordion;assembly=Syncfusion.Expander.XForms" 
-    xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms" xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch">
+    xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms" xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch" xmlns:effects="clr-namespace:Xamarin.Toolkit.Effects;assembly=Xamarin.Toolkit.Effects">
     <pages:PopupPage.Resources>
         <ResourceDictionary>
             <Style x:Key="PopupItemHeaderStyle" TargetType="{x:Type Label}">
@@ -75,46 +75,48 @@
                     <StackLayout Grid.Row="0"
                                  Padding="15"
                                  HorizontalOptions="FillAndExpand">
-                        <Forms9Patch:Label AutoFit="Width"
-                                           FontSize="20"
-                                           LineHeight="3"
-                                           FontFamily="{StaticResource Montserrat-Medium}"
-                                           Text="Do you want to verify your account to enjoy all the services of PasaBuy.App?"
-                                           Grid.ColumnSpan="2"
-                                           TextColor="{DynamicResource Gray-Black}"/>
+                        <Label Text="Do you want to verify your account to enjoy all the services of PasaBuy.App?"
+                               FontSize="{DynamicResource MediumSize}"
+                               FontFamily="{StaticResource Montserrat-SemiBold}"
+                               MaxLines="3"
+                               TextColor="{DynamicResource Gray-900}"
+                               VerticalTextAlignment="Center">
+                        </Label>
                     </StackLayout>
                     
                     <Grid Grid.Row="1"
                           Padding="15">
                         <StackLayout Orientation="Horizontal"
                                      HorizontalOptions="EndAndExpand">
-                            <Forms9Patch:Label AutoFit="Width"
-                                           FontSize="14"
-                                           Margin="10,0,15,0"
-                                           FontFamily="{StaticResource Montserrat-Medium}"
-                                           Text="Skip"
-                                           Grid.ColumnSpan="2"
-                                           HorizontalTextAlignment="End"
-                                           VerticalTextAlignment="Center"
-                                           TextDecorations="Underline"
-                                           TextColor="{DynamicResource Gray-Black}">
-                                <Forms9Patch:Label.GestureRecognizers>
+                            <Label Text="Skip"
+                                   FontSize="{DynamicResource SmallSize}"
+                                   FontFamily="{StaticResource Montserrat-Medium}"
+                                   MaxLines="3"
+                                   Margin="10,0,15,0"
+                                   Grid.ColumnSpan="2"
+                                   TextDecorations="Underline"
+                                   HorizontalTextAlignment="End"
+                                   VerticalTextAlignment="Center"
+                                   TextColor="{DynamicResource Gray-900}">
+                                <Label.Effects>
+                                    <effects:LabelSizeFontToFit />
+                                </Label.Effects>
+                                <Label.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="SkipVerify" NumberOfTapsRequired="1"/>
-                                </Forms9Patch:Label.GestureRecognizers>
-                            </Forms9Patch:Label>
+                                </Label.GestureRecognizers>
+                            </Label>
                             <buttons:SfButton
-                            CornerRadius="5"
-                            TextColor="White"
-                            Clicked="VerifyNow"
-                            BackgroundColor="{DynamicResource PrimaryColor}"
-                            Style="{StaticResource SfButtonStyle}"
-                            Text="Verify Now" />
+                                CornerRadius="5"
+                                TextColor="White"
+                                Clicked="VerifyNow"
+                                BackgroundColor="{DynamicResource PrimaryColor}"
+                                Style="{StaticResource SfButtonStyle}"
+                                Text="Verify Now" />
                          
                         </StackLayout>
                         
                     </Grid>
                 </Grid>
-        
                     
             </StackLayout>
         </Frame>

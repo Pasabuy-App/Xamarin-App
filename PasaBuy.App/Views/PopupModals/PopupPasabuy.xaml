@@ -83,22 +83,24 @@
                 Spacing="0">
                 <Grid RowSpacing="0"
                       Margin="2">
-                    <syncfusion:SfAccordion >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Text=" "/>
+                    <syncfusion:SfAccordion Grid.Row="1">
                         <syncfusion:SfAccordion.Items>
-                            
+
                             <!-- PASABAY -->
                             <syncfusion:AccordionItem >
                                 <syncfusion:AccordionItem.Header>
-                                    <Grid >
-                                        <Label
-                                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                                        <Label FontFamily="{StaticResource Montserrat-SemiBold}"
                                             Padding="10,0,0,0"
                                             HeightRequest="60" 
                                             FontSize="18"
                                             VerticalTextAlignment="Center"
                                             Text="Pasabay"
                                             TextColor="{DynamicResource Gray-900}" />
-                                    </Grid>
                                 </syncfusion:AccordionItem.Header>
                                 <syncfusion:AccordionItem.Content>
                                     <StackLayout HorizontalOptions="FillAndExpand" Padding="0, 5, 0, 5" Spacing="0">
@@ -125,21 +127,21 @@
                                                          Padding="15,5,15,5"
                                                          Orientation="Horizontal"
                                                          HorizontalOptions="End">
-         
+
                                                 <buttons:SfButton Clicked="GoToPasabuy"
                                                                     CornerRadius="5"
                                                                   Padding="15,5,15,5"
                                                                     TextColor="White"
                                                                     BackgroundColor="{DynamicResource PrimaryColor}"
                                                                     Style="{StaticResource SfButtonStyle}"
-                                                                    Text="Proceed" />        
-                                      
+                                                                    Text="Proceed" />
+
                                             </StackLayout>
                                         </Grid>
                                     </StackLayout>
                                 </syncfusion:AccordionItem.Content>
                             </syncfusion:AccordionItem>
-                            
+
                             <!-- PABILI -->
                             <syncfusion:AccordionItem>
                                 <syncfusion:AccordionItem.Header>
@@ -193,7 +195,7 @@
                                     </StackLayout>
                                 </syncfusion:AccordionItem.Content>
                             </syncfusion:AccordionItem>
-                            
+
                             <!-- PAHATID -->
                             <syncfusion:AccordionItem>
                                 <syncfusion:AccordionItem.Header>
@@ -247,7 +249,7 @@
                                     </StackLayout>
                                 </syncfusion:AccordionItem.Content>
                             </syncfusion:AccordionItem>
-                            
+
                             <!-- PASAKAY -->
                             <syncfusion:AccordionItem>
                                 <syncfusion:AccordionItem.Header>
@@ -281,7 +283,7 @@
                                     </StackLayout>
                                 </syncfusion:AccordionItem.Content>
                             </syncfusion:AccordionItem>
-                        
+
                         </syncfusion:SfAccordion.Items>
                     </syncfusion:SfAccordion>
                 </Grid>

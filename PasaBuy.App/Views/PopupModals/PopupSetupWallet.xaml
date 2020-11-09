@@ -14,7 +14,7 @@
     xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    xmlns:converter="clr-namespace:PasaBuy.App.Converters" xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch">
+    xmlns:converter="clr-namespace:PasaBuy.App.Converters" xmlns:effects="clr-namespace:Xamarin.Toolkit.Effects;assembly=Xamarin.Toolkit.Effects">
     <pages:PopupPage.Resources>
         <ResourceDictionary>
             <converter:BooleanToColorConverter x:Key="BooleanToColorConverter" />
@@ -227,15 +227,18 @@
                                     </ffimageloading:CachedImage>
 
                                     <!-- Name -->
-                                    <Forms9Patch:Label Text="{Binding FullName}"
-                                                       FontSize="{DynamicResource SmallSize}" 
-                                                       FontFamily="{StaticResource Montserrat-SemiBold}"
-                                                       TextColor="{DynamicResource Gray-900}"
-                                                       Margin="0,15,0,4"
-                                                       Grid.Column="1"
-                                                       Lines="1"
-                                                       HorizontalOptions="Start"
-                                                       AutoFit="Width"/>
+                                    <Label Text="{Binding FullName}"
+                                           FontSize="{DynamicResource SmallSize}"
+                                           Margin="0,15,0,4"
+                                           FontFamily="{StaticResource Montserrat-SemiBold}"
+                                           TextColor="{DynamicResource Gray-900}"
+                                           Grid.Column="1"
+                                           HorizontalOptions="Start"
+                                           VerticalTextAlignment="Center">
+                                        <Label.Effects>
+                                            <effects:LabelSizeFontToFit />
+                                        </Label.Effects>
+                                    </Label>
 
                                     <!-- Transaction Title -->
                                     <Label Grid.Row="1"
@@ -247,16 +250,18 @@
                                        TextColor="{DynamicResource Gray-900}"
                                        LineHeight="{OnPlatform Android=1.5, Default=-1}" />
 
-
-                                    <Forms9Patch:Label Text="{Binding DateCreated, StringFormat='{}{0:dd MMM yyyy}'}"
-                                                       FontSize="{DynamicResource SmallSize}" 
-                                                       FontFamily="{StaticResource Montserrat-SemiBold}"
-                                                       TextColor="{DynamicResource Gray-900}"
-                                                       Margin="0,16,16,4"
-                                                       Grid.Column="1"
-                                                       Lines="1"
-                                                       HorizontalOptions="End"
-                                                       AutoFit="Width"/>
+                                    <Label Text="{Binding DateCreated, StringFormat='{}{0:dd MMM yyyy}'}"
+                                           FontSize="{DynamicResource SmallSize}"
+                                           Margin="0,16,16,4"
+                                           Grid.Column="1"
+                                           FontFamily="{StaticResource Montserrat-SemiBold}"
+                                           TextColor="{DynamicResource Gray-900}"
+                                           HorizontalOptions="End"
+                                           VerticalTextAlignment="Center">
+                                        <Label.Effects>
+                                            <effects:LabelSizeFontToFit />
+                                        </Label.Effects>
+                                    </Label>
 
                                     <!-- Seperator -->
                                     <BoxView Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource SeparatorStyle}" />

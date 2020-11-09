@@ -1,5 +1,4 @@
-﻿using Forms9Patch;
-using PasaBuy.App.Local;
+﻿using PasaBuy.App.Local;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;

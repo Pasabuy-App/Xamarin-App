@@ -8,7 +8,8 @@
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
-             xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch" xmlns:local="clr-namespace:PasaBuy.App.UserControls"
+             xmlns:local="clr-namespace:PasaBuy.App.UserControls" 
+             xmlns:effects="clr-namespace:Xamarin.Toolkit.Effects;assembly=Xamarin.Toolkit.Effects"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False"
              x:Class="PasaBuy.App.Views.StoreViews.Management.SearchWalletPersonnel">
@@ -22,7 +23,6 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <Grid>
-
             <Grid CompressedLayout.IsHeadless="True">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -63,36 +63,36 @@
                     </Grid.RowDefinitions>
 
                     <StackLayout x:Name="TitleView"
-                    Padding="16,8"
-                    Grid.Row="0" 
-                    HeightRequest="40"
-                    BackgroundColor="{DynamicResource Gray-White}"
-                    HorizontalOptions="FillAndExpand"
-                    Orientation="Horizontal"
-                    Spacing="0">
+                                Padding="16,8"
+                                Grid.Row="0" 
+                                HeightRequest="40"
+                                BackgroundColor="{DynamicResource Gray-White}"
+                                HorizontalOptions="FillAndExpand"
+                                Orientation="Horizontal"
+                                Spacing="0">
                         <StackLayout  x:Name="Title"
-                        HorizontalOptions="FillAndExpand"
-                        IsVisible="True"
-                        Orientation="Horizontal"
-                        Spacing="0"
-                        Margin="20,0,0,0"
-                        VerticalOptions="FillAndExpand">
+                                    HorizontalOptions="FillAndExpand"
+                                    IsVisible="True"
+                                    Orientation="Horizontal"
+                                    Spacing="0"
+                                    Margin="20,0,0,0"
+                                    VerticalOptions="FillAndExpand">
                             <Label Margin="16,0"
-                            HeightRequest="24"
-                            FontFamily="{StaticResource Montserrat-Medium}"
-                            FontSize="16"
-                            HorizontalOptions="CenterAndExpand"
-                            LineHeight="1.25"
-                            Text="Search store personnel"
-                            TextColor="{DynamicResource Gray-900}"
-                            VerticalOptions="Center"
-                            VerticalTextAlignment="Center" />
+                                    HeightRequest="24"
+                                    FontFamily="{StaticResource Montserrat-Medium}"
+                                    FontSize="16"
+                                    HorizontalOptions="CenterAndExpand"
+                                    LineHeight="1.25"
+                                    Text="Search store personnel"
+                                    TextColor="{DynamicResource Gray-900}"
+                                    VerticalOptions="Center"
+                                    VerticalTextAlignment="Center" />
                         </StackLayout>
                         <StackLayout x:Name="Search"
-                        HorizontalOptions="EndAndExpand"
-                        IsVisible="False"
-                        Orientation="Horizontal"
-                        Spacing="0">
+                                    HorizontalOptions="EndAndExpand"
+                                    IsVisible="False"
+                                    Orientation="Horizontal"
+                                    Spacing="0">
                             <buttons:SfButton x:Name="BackToTitle"
                             Clicked="BackToTitle_Clicked"
                             TextColor="{DynamicResource Gray-900}"
@@ -159,15 +159,18 @@
                                     </ffimageloading:CachedImage>
 
                                     <!-- Name -->
-                                    <Forms9Patch:Label Text="{Binding FullName}"
-                                                       FontSize="{DynamicResource SmallSize}" 
-                                                       FontFamily="{StaticResource Montserrat-SemiBold}"
-                                                       TextColor="{DynamicResource Gray-900}"
-                                                       Margin="0,15,0,4"
-                                                       Grid.Column="1"
-                                                       Lines="1"
-                                                       HorizontalOptions="Start"
-                                                       AutoFit="Width"/>
+                                    <Label Text="{Binding FullName}"
+                                           Margin="0,15,0,4"
+                                           Grid.Column="1"
+                                           FontSize="{DynamicResource SmallSize}"
+                                           FontFamily="{StaticResource Montserrat-SemiBold}"
+                                           TextColor="{DynamicResource Gray-900}"
+                                           HorizontalOptions="Start"
+                                           VerticalTextAlignment="Center">
+                                        <Label.Effects>
+                                            <effects:LabelSizeFontToFit />
+                                        </Label.Effects>
+                                    </Label>
 
                                     <!-- Transaction Title -->
                                     <Label Grid.Row="1"
@@ -179,16 +182,18 @@
                                        TextColor="{DynamicResource Gray-900}"
                                        LineHeight="{OnPlatform Android=1.5, Default=-1}" />
 
-
-                                    <Forms9Patch:Label Text="{Binding DateCreated, StringFormat='{}{0:dd MMM yyyy}'}"
-                                                       FontSize="{DynamicResource SmallSize}" 
-                                                       FontFamily="{StaticResource Montserrat-SemiBold}"
-                                                       TextColor="{DynamicResource Gray-900}"
-                                                       Margin="0,16,16,4"
-                                                       Grid.Column="1"
-                                                       Lines="1"
-                                                       HorizontalOptions="End"
-                                                       AutoFit="Width"/>
+                                    <Label Text="{Binding DateCreated, StringFormat='{}{0:dd MMM yyyy}'}"
+                                           Margin="0,16,16,4"
+                                           Grid.Column="1"
+                                           FontSize="{DynamicResource SmallSize}"
+                                           FontFamily="{StaticResource Montserrat-SemiBold}"
+                                           TextColor="{DynamicResource Gray-900}"
+                                           HorizontalOptions="End"
+                                           VerticalTextAlignment="Center">
+                                        <Label.Effects>
+                                            <effects:LabelSizeFontToFit />
+                                        </Label.Effects>
+                                    </Label>
 
                                     <!-- Seperator -->
                                     <BoxView Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource SeparatorStyle}" />

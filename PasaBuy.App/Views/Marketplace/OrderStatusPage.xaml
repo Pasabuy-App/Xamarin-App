@@ -5,8 +5,7 @@
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms" 
-             xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch" 
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:effects="clr-namespace:Xamarin.Toolkit.Effects;assembly=Xamarin.Toolkit.Effects"
              x:Class="PasaBuy.App.Views.Marketplace.OrderStatusPage"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
@@ -131,21 +130,29 @@
                             <RowDefinition Height="0.5" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Forms9Patch:Label Grid.Row="0"
-                                           Text="{Binding stopWatch}"
-                                           FontFamily="{StaticResource Montserrat-SemiBold}"
-                                           FontSize="{DynamicResource BigSize}"
-                                           TextColor="{DynamicResource Gray-900}"
-                                           HorizontalTextAlignment="Center"
-                                           AutoFit="Width"/>
-                        <Forms9Patch:Label Grid.Row="1"
-                                           Text="{Binding timeStatus}"
-                                           Margin="0,0,0,10"
-                                           FontFamily="{StaticResource Montserrat-SemiBold}"
-                                           FontSize="{DynamicResource LargeSize}"
-                                           TextColor="{DynamicResource Gray-900}"
-                                           HorizontalTextAlignment="Center"
-                                           AutoFit="Width"/>
+
+                        <Label Text="{Binding stopWatch}"
+                               Grid.Row="0"
+                               FontFamily="{StaticResource Montserrat-SemiBold}"
+                               FontSize="{DynamicResource BigSize}"
+                               TextColor="{DynamicResource Gray-900}"
+                               HorizontalTextAlignment="Center">
+                            <Label.Effects>
+                                <effects:LabelSizeFontToFit />
+                            </Label.Effects>
+                        </Label>
+
+                        <Label Text="{Binding timeStatus}"
+                               Grid.Row="1"
+                               FontFamily="{StaticResource Montserrat-SemiBold}"
+                               FontSize="{DynamicResource LargeSize}"
+                               TextColor="{DynamicResource Gray-900}"
+                               HorizontalTextAlignment="Center">
+                            <Label.Effects>
+                                <effects:LabelSizeFontToFit />
+                            </Label.Effects>
+                        </Label>
+
                         <BoxView Grid.Row="2" Style="{StaticResource SeparatorStyle}" />
                         <Grid Grid.Row="3" >
                             <Grid.ColumnDefinitions>
@@ -188,23 +195,32 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <!--Left Labels-->
-                        <Forms9Patch:Label Grid.Row="0"
-                                           Grid.Column="0"
-                                           Text="Subtotal"
-                                           FontFamily="{StaticResource Montserrat-SemiBold}"
-                                           FontSize="{DynamicResource LargeSize}"
-                                           TextColor="{DynamicResource Gray-900}"
-                                           HorizontalTextAlignment="Start"
-                                           AutoFit="Width"/>
-                        <Forms9Patch:Label Grid.Row="1"
-                                           Grid.Column="0"
-                                           Text="Delivery fee"
-                                           FontFamily="{StaticResource Montserrat-SemiBold}"
-                                           FontSize="{DynamicResource LargeSize}"
-                                           TextColor="{DynamicResource Gray-900}"
-                                           HorizontalTextAlignment="Start"
-                                           AutoFit="Width"/>
-         
+                        <Label Text="Subtotal"
+                               Grid.Row="0"
+                               Grid.Column="0"
+                               FontFamily="{StaticResource Montserrat-SemiBold}"
+                               TextColor="{DynamicResource Gray-900}"
+                               HorizontalTextAlignment="Start"
+                               FontSize="{DynamicResource SmallSize}"
+                               VerticalTextAlignment="Center">
+                            <Label.Effects>
+                                <effects:LabelSizeFontToFit />
+                            </Label.Effects>
+                        </Label>
+
+                        <Label Text="Delivery fee"
+                               Grid.Row="1"
+                               Grid.Column="0"
+                               FontFamily="{StaticResource Montserrat-SemiBold}"
+                               TextColor="{DynamicResource Gray-900}"
+                               HorizontalTextAlignment="Start"
+                               FontSize="{DynamicResource SmallSize}"
+                               VerticalTextAlignment="Center">
+                            <Label.Effects>
+                                <effects:LabelSizeFontToFit />
+                            </Label.Effects>
+                        </Label>
+
                         <Label Grid.Row="2"
                                Grid.Column="0"
                                Margin="0,10,0,0"
@@ -215,38 +231,44 @@
                                HorizontalTextAlignment="Start"/>
 
                         <!--Right Values-->
-                        <Forms9Patch:Label Grid.Row="0"
-                                           Grid.Column="1"
-                                           Text="{Binding SubTotal, StringFormat='₱ {0:F2}'}"
-                                           FontFamily="{StaticResource Montserrat-SemiBold}"
-                                           FontSize="{DynamicResource LargeSize}"
-                                           TextColor="{DynamicResource Gray-900}"
-                                           HorizontalTextAlignment="End"
-                                           AutoFit="Width"/>
-                        <Forms9Patch:Label Grid.Row="1"
-                                           Grid.Column="1"
-                                           Text="{Binding Fee, StringFormat='₱ {0:F2}'}"
-                                           FontFamily="{StaticResource Montserrat-SemiBold}"
-                                           FontSize="{DynamicResource LargeSize}"
-                                           TextColor="{DynamicResource Gray-900}"
-                                           HorizontalTextAlignment="End"
-                                           AutoFit="Width"/>
-
-                        <Label Grid.Row="2"
+                        <Label Text="{Binding SubTotal, StringFormat='₱ {0:F2}'}"
+                               Grid.Row="0"
                                Grid.Column="1"
-                               Margin="0,10,0,0"
-                               Text="{Binding Total, StringFormat='₱ {0:F2}'}"
                                FontFamily="{StaticResource Montserrat-SemiBold}"
                                FontSize="{DynamicResource LargeSize}"
                                TextColor="{DynamicResource Gray-900}"
-                               HorizontalTextAlignment="End"/>
+                               HorizontalTextAlignment="End">
+                            <Label.Effects>
+                                <effects:LabelSizeFontToFit />
+                            </Label.Effects>
+                        </Label>
+
+                        <Label Text="{Binding Fee, StringFormat='₱ {0:F2}'}"
+                               Grid.Row="1"
+                               Grid.Column="1"
+                               FontFamily="{StaticResource Montserrat-SemiBold}"
+                               FontSize="{DynamicResource LargeSize}"
+                               TextColor="{DynamicResource Gray-900}"
+                               HorizontalTextAlignment="End">
+                            <Label.Effects>
+                                <effects:LabelSizeFontToFit />
+                            </Label.Effects>
+                        </Label>
+
+                        <Label Text="{Binding Total, StringFormat='₱ {0:F2}'}"
+                               Grid.Row="2"
+                               Grid.Column="1"
+                               Margin="0,10,0,0"
+                               FontFamily="{StaticResource Montserrat-SemiBold}"
+                               FontSize="{DynamicResource LargeSize}"
+                               TextColor="{DynamicResource Gray-900}"
+                               HorizontalTextAlignment="End">
+                            <Label.Effects>
+                                <effects:LabelSizeFontToFit />
+                            </Label.Effects>
+                        </Label>
                     </Grid>
                 </Frame>
-                
-
-
-
-
             </Grid>
         </Grid>
     </ContentPage.Content>

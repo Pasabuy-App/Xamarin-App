@@ -21,20 +21,24 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" Default="0, 0, 0, 0" />
+    </ContentPage.Padding>
 
     <ContentPage.Content>
-        <Grid>
+        <Grid >
             <tabView:SfTabView BackgroundColor="{DynamicResource Gray-White}" 
                             TabItemTapped="TabView_TabItemTapped"
                             TabHeaderPosition="Top"
                             VisibleHeaderCount="6" 
-                            TabHeight="60"
+                            TabHeight="{OnIdiom Default=60, Tablet=70}"
                             EnableSwiping="false" 
                             DisplayMode="ImageWithText">
 
                 <!--TABS CONFIGS-->
                 <tabView:SfTabView.SelectionIndicatorSettings>
                     <tabView:SelectionIndicatorSettings
+                    
                     AnimationDuration="200"
                     Color="{DynamicResource PrimaryColor}" 
                     Position="Bottom" 

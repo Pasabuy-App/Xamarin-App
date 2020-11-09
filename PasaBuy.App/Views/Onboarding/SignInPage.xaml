@@ -10,7 +10,7 @@
              xmlns:local="clr-namespace:PasaBuy.App.Views.Onboarding"
              xmlns:template="clr-namespace:PasaBuy.App.Views.Templates"
              xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms" 
-             xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
+             xmlns:loading="clr-namespace:PasaBuy.App.UserControls" xmlns:effects="clr-namespace:Xamarin.Toolkit.Effects;assembly=Xamarin.Toolkit.Effects"
              NavigationPage.HasNavigationBar="False" 
              BackgroundColor="{DynamicResource Gray-White}"
              x:Class="PasaBuy.App.Views.Onboarding.SignInPage" >
@@ -34,13 +34,12 @@
             <!--<gradient:SfGradientView Style="{StaticResource SfGradientStyle}" />-->
 
             <StackLayout  Spacing="0"
-                              Padding="20,0,20,0"
-                              VerticalOptions="FillAndExpand">
+                          Padding="20,0,20,0"
+                          VerticalOptions="FillAndExpand">
 
                     <Grid RowSpacing="0" VerticalOptions="CenterAndExpand">
 
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -104,36 +103,44 @@
                             Command="{Binding ForgotPasswordCommand}"
                             Style="{StaticResource SfFlatButtonStyle}"
                             Text="FORGOT PASSWORD?" />
-                        
 
-                    </Grid>
+                        <Grid Grid.Row="6">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*" />
+                                <ColumnDefinition Width="50*" />
+                            </Grid.ColumnDefinitions>
 
-                    <StackLayout HorizontalOptions="Center"
-                                 Orientation="Horizontal"
-                                 Spacing="1"
-                                 Margin="0,0,0,15"
-                                 VerticalOptions="End">
+                            <Label Text="Don't have an account?"
+                                   Grid.Column="0"
+                                   HorizontalOptions="EndAndExpand"
+                                   HorizontalTextAlignment="End"
+                                   FontSize="{DynamicResource SmallSize}"
+                                   FontFamily="{StaticResource Montserrat-SemiBold}"
+                                   TextColor="{DynamicResource Gray-900}"
+                                   VerticalTextAlignment="Center">
+                                <Label.Effects>
+                                    <effects:LabelSizeFontToFit />
+                                </Label.Effects>
+                            </Label>
 
-                        <Label
-                        FontFamily="{StaticResource Montserrat-Medium}"
-                        HorizontalOptions="CenterAndExpand"
-                        HorizontalTextAlignment="Center"
-                        Style="{StaticResource LabelStyle}"
-                        Text="Don't have an account?"
-                        TextColor="{DynamicResource Gray-900}"
-                        VerticalTextAlignment="Center" />
+                        <buttons:SfButton Grid.Column="1"
+                                        x:Name="SignupButton"
+                                        Clicked="SignUpClicked"
+                                        HorizontalOptions="End"
+                                        Margin="10,0,0,0"
+                                        HorizontalTextAlignment="End"
+                                        CornerRadius="4"
+                                        Style="{StaticResource SfFlatButtonStyle}"
+                                        TextColor="{DynamicResource PrimaryColor}"
+                                        Text="REGISTER" />
 
-                        <!--  Sign-up button  -->
-                        <buttons:SfButton
-                            x:Name="SignupButton"
-                            Clicked="SignUpClicked"
-                            CornerRadius="4"
-                            Style="{StaticResource SfFlatButtonStyle}"
-                            TextColor="{DynamicResource PrimaryColor}"
-                            Text="REGISTER" />
+                        </Grid>
 
-                    </StackLayout>
 
+                </Grid>
+
+                
+                    
             </StackLayout>
             <loading:LoadingIndicator
                 Grid.Row="0"

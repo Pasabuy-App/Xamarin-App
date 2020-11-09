@@ -1,9 +1,11 @@
 using Foundation;
 using PasaBuy.App.Local;
 using Syncfusion.ListView.XForms.iOS;
+using Syncfusion.SfBusyIndicator.XForms.iOS;
 using Syncfusion.SfChart.XForms.iOS.Renderers;
 using Syncfusion.SfRating.XForms.iOS;
 using Syncfusion.SfRotator.XForms.iOS;
+using Syncfusion.XForms.iOS.Accordion;
 using Syncfusion.XForms.iOS.BadgeView;
 using Syncfusion.XForms.iOS.Border;
 using Syncfusion.XForms.iOS.Buttons;
@@ -55,8 +57,9 @@ namespace PasaBuy.App.iOS
             SfComboBoxRenderer.Init();
             SfBorderRenderer.Init();
             SfButtonRenderer.Init();
+            new SfBusyIndicatorRenderer();
+            new SfAccordionRenderer();
             Rg.Plugins.Popup.Popup.Init();
-            Forms9Patch.iOS.Settings.Initialize(this);
             Plugin.LocalNotification.NotificationCenter.AskPermission();
             LoadApplication(new App());
 

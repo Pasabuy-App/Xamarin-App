@@ -7,8 +7,7 @@
              xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
-             xmlns:loading="clr-namespace:PasaBuy.App.UserControls" 
-             xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch" 
+             xmlns:loading="clr-namespace:PasaBuy.App.UserControls" xmlns:effects="clr-namespace:Xamarin.Toolkit.Effects;assembly=Xamarin.Toolkit.Effects"
              BackgroundColor="{DynamicResource Gray-White}"
              x:Class="PasaBuy.App.Views.Marketplace.FoodBrowserPage">
     
@@ -21,9 +20,9 @@
                 <StackLayout Spacing="8">
                     <border:SfBorder CornerRadius="8" BorderWidth="0">
 
-                        <ffimageloading:CachedImage Aspect="AspectFill"
-                                                    HeightRequest="220"
-                                                    WidthRequest="150"
+                        <ffimageloading:CachedImage Aspect="Fill"
+                                                    HeightRequest="{OnIdiom Default=220, Tablet=350}"
+                                                    WidthRequest="{OnIdiom Default=150, Tablet=220}"
                                                     BackgroundColor="{DynamicResource Gray-200}"
                                                     Source="{Binding Logo}"
 			                                        DownsampleToViewSize="True" 
@@ -51,11 +50,17 @@
                      Command="{Binding RefreshCommand}">
             <ScrollView>
                 <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
+                    <Grid.Padding>
+                        <OnIdiom x:TypeArguments="Thickness">
+                            <OnIdiom.Phone>0,5,0,0</OnIdiom.Phone>
+                            <OnIdiom.Tablet>50,0,50,0</OnIdiom.Tablet>
+                        </OnIdiom>
+                    </Grid.Padding>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
 
                 <StackLayout x:Name="TitleView" 
                     Padding="16,8"
@@ -75,7 +80,7 @@
                         <Label Margin="16,0"
                             HeightRequest="24"
                             FontFamily="{StaticResource Montserrat-Medium}"
-                            FontSize="16"
+                            FontSize="{OnIdiom Default=16, Tablet=20}"
                             HorizontalOptions="CenterAndExpand"
                             LineHeight="1.25"
                             Text="Food and Drinks"
@@ -88,29 +93,30 @@
                         IsVisible="False"
                         Orientation="Horizontal"
                         Spacing="0">
-                        <buttons:SfButton x:Name="BackToTitle"
-                            Clicked="BackToTitle_Clicked"
-                            Style="{StaticResource NavigationBarButtonStyle}"
-                            TextColor="{DynamicResource Gray-White}"
-                            Text="{StaticResource ArrowRight}" />
-                        <border:SfBorder Style="{DynamicResource SfBorderStyle}">
-                            <controls:BorderlessEntry x:Name="SearchEntry"
-                                                      Margin="15,0,0,0"
-                                                      HorizontalOptions="FillAndExpand"
-                                                      Placeholder="Search here"
-                                                      ReturnType="Search"
-                                                      Text="{Binding SearchText, Mode=TwoWay}"
-                                                      Style="{StaticResource SearchEntryStyle}"/>
-                        </border:SfBorder>
+                            <ImageButton Source="arrow_left.png"
+                                     HeightRequest="25"
+                                     x:Name="BackToTitle"
+                                     WidthRequest="25"
+                                     BackgroundColor="Transparent"
+                                     Clicked="BackToTitle_Clicked" />
+                            <border:SfBorder Style="{DynamicResource SfBorderStyle}">
+                                <controls:BorderlessEntry x:Name="SearchEntry"
+                                                          Margin="15,0,0,0"
+                                                          HorizontalOptions="FillAndExpand"
+                                                          Placeholder="Search here"
+                                                          ReturnType="Search"
+                                                          Text="{Binding SearchText, Mode=TwoWay}"
+                                                          Style="{StaticResource SearchEntryStyle}"/>
+                            </border:SfBorder>
                     </StackLayout>
-                    <!--  Search Button  -->
-                    <buttons:SfButton x:Name="SearchButton"
-                        IsVisible="True"
-                        Clicked="SearchButton_Clicked"
-                        Style="{StaticResource NavigationBarButtonStyle }"
-                        TextColor="{DynamicResource Gray-White}"
-                        Text="{StaticResource Search}" />
-                </StackLayout>
+                        <ImageButton Source="search.png"
+                                     HeightRequest="25"
+                                     x:Name="SearchButton"
+                                      IsVisible="True"
+                                     WidthRequest="25"
+                                     BackgroundColor="Transparent"
+                                     Clicked="SearchButton_Clicked" />
+                    </StackLayout>
 
                 <!--  Separator  -->
                 <BoxView   Grid.Row="1" Style="{StaticResource SeparatorStyle}" />
@@ -120,8 +126,8 @@
                                     x:Name="StoreListStack">
                         <CollectionView.Header>
                              <listView:SfListView SelectionMode="None" 
-                                                 HeightRequest="{Binding HeaderSize}" 
-                                                 ItemSize="150"
+                                                 HeightRequest="{OnIdiom Default=280, Tablet=420}" 
+                                                 ItemSize="{OnIdiom Default=180, Tablet=300}"
                                                  x:Name="featuredListView"
                                                  Orientation="Horizontal" 
                                                  ItemsSource="{Binding BestSellers}" 
@@ -153,7 +159,7 @@
                                             <ffimageloading:CachedImage Aspect="Fill"
                                                                         Grid.Column="0"
                                                                         Grid.Row="0"
-                                                                        HeightRequest="230"
+                                                                        HeightRequest="{OnIdiom Tablet=340, Default=230}"
                                                                         Source="{Binding Banner}"
 			                                                            DownsampleToViewSize="True" 
                                                                         FadeAnimationEnabled="True">
@@ -182,27 +188,32 @@
 
                                                 <StackLayout Margin="8,0,0,0" Grid.Column="1" Spacing="1" >
 
-                                                    <Forms9Patch:Label  Text="{Binding Title}"  
-                                                                                        FontFamily="{StaticResource Montserrat-SemiBold}" 
-                                                                                        HorizontalOptions="Start" 
-                                                                                        x:Name="StoreName"
-                                                                                        TextColor="{DynamicResource Gray-900}" 
-                                                                                        Lines="1"
-                                                                                        AutoFit="Width"/>
+            
+                                                        <Label Text="{Binding Title}"
+                                                               FontSize="{DynamicResource SmallSize}"
+                                                               HorizontalOptions="Start" 
+                                                               x:Name="StoreName"
+                                                               TextColor="{DynamicResource Gray-900}" 
+                                                               FontFamily="{StaticResource Montserrat-SemiBold}" 
+                                                               VerticalTextAlignment="Center">
+                                                            <Label.Effects>
+                                                                <effects:LabelSizeFontToFit />
+                                                            </Label.Effects>
+                                                        </Label>
 
-                                                    <!--  Store operational hours label  -->
+                                                        <!--  Store operational hours label  -->
                                                         <Label  Text="{Binding Open_Close}" 
-                                                                            FontSize="12" 
-                                                                            FontFamily="{StaticResource Montserrat-Medium}" 
-                                                                            HorizontalOptions="Start" 
-                                                                            TextColor="{DynamicResource Gray-700}"/>
+                                                                FontSize="12" 
+                                                                FontFamily="{StaticResource Montserrat-Medium}" 
+                                                                HorizontalOptions="Start" 
+                                                                TextColor="{DynamicResource Gray-700}"/>
 
                                                     <!--  Distance label  -->
                                                         <Label  Text="{Binding City}"  
-                                                                         FontSize="12" 
-                                                                         FontFamily="{StaticResource Montserrat-Medium}" 
-                                                                         HorizontalOptions="Start" 
-                                                                         TextColor="{DynamicResource Gray-700}"/>
+                                                                FontSize="12" 
+                                                                FontFamily="{StaticResource Montserrat-Medium}" 
+                                                                HorizontalOptions="Start" 
+                                                                TextColor="{DynamicResource Gray-700}"/>
 
                                                 </StackLayout>
 
