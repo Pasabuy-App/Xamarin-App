@@ -36,7 +36,7 @@ namespace PasaBuy.App.Views.Posts
                     Locations.HasError = string.IsNullOrEmpty(Location.Text) || string.IsNullOrWhiteSpace(Location.Text) ? true : false;
                     if (Descriptions.HasError == false && ItemNames.HasError == false && Locations.HasError == false)
                     {
-                        Http.SocioFeature.Instance.Post_Insert(ItemName.Text, Description.Text, "pabili", "", "", TimePicker.Time.ToString(), Location.Text, "", DatePicker.Date.ToString(), (bool success, string data) =>
+                        Http.SocioPress.Post.Instance.Insert(ItemName.Text, Description.Text, "pabili", "", "", TimePicker.Time.ToString(), Location.Text, "", DatePicker.Date.ToString(), (bool success, string data) =>
                         {
                             if (success)
                             {

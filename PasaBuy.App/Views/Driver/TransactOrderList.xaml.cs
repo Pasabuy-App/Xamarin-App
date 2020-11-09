@@ -30,7 +30,7 @@ namespace PasaBuy.App.Views.Driver
 
             try
             {
-                HatidPress.Deliveries.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", id, "", "", "pending", (bool success, string data) =>
+                /*HatidPress.Deliveries.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", id, "", "", "pending", (bool success, string data) =>
                 {
                     //new Alert("", data, "ok");
                     if (success)
@@ -66,7 +66,7 @@ namespace PasaBuy.App.Views.Driver
                         new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                     }
 
-                });
+                });*/
 
             }
             catch (FeatureNotSupportedException fnsEx)

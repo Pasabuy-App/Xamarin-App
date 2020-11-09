@@ -19,22 +19,12 @@ namespace PasaBuy.App.ViewModels.Market
         {
             productList = new ObservableCollection<ProductList>();
             LoadData("");
-
-            /*productList.Add(new ProductList()
-            {
-                PreviewImage = "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-product.png",
-                Name = "Example name",
-                Summary = "Summary",
-                Description = "Description",
-                ActualPrice = 220,
-                DiscountPercent = 0
-            });*/
         }
         public void LoadData(string lastid)
         {
             try
             {
-                TindaPress.Product.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", "", "", lastid, (bool success, string data) =>
+                /*TindaPress.Product.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", "", "", lastid, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -60,7 +50,7 @@ namespace PasaBuy.App.ViewModels.Market
                             });
                         }
                     }
-                });
+                });*/
             }
             catch (Exception)
             {

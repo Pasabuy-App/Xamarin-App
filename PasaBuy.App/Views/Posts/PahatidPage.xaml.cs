@@ -34,7 +34,7 @@ namespace PasaBuy.App.Views.Posts
 
                     if (PickUps.HasError == false && DropOffs.HasError == false)
                     {
-                        Http.SocioFeature.Instance.Post_Insert("Pahatid", "content", "pahatid", "", "", TimePicker.Time.ToString(), PickUp.Text, DropOff.Text, DatePicker.Date.ToString(), (bool success, string data) =>
+                        Http.SocioPress.Post.Instance.Insert("Pahatid", "content", "pahatid", "", "", TimePicker.Time.ToString(), PickUp.Text, DropOff.Text, DatePicker.Date.ToString(), (bool success, string data) =>
                         {
                             if (success)
                             {

@@ -27,7 +27,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         {
             try
             {
-                SocioPress.Message.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "2", PSACache.Instance.UserInfo.stid, offset, (bool success, string data) =>
+                Http.SocioPress.Message.Instance.Listing( "2", PSACache.Instance.UserInfo.stid, offset, (bool success, string data) =>
                 {
                     if (success)
                     {

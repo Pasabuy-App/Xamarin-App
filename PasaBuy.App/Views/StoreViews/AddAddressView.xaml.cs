@@ -38,7 +38,7 @@ namespace PasaBuy.App.Views.StoreViews
                 try
                 {
                     Title = "Edit Address";
-                    TindaPress.Address.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, "", adid, "1", (bool success, string data) =>
+                    /*TindaPress.Address.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, "", adid, "1", (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -58,7 +58,7 @@ namespace PasaBuy.App.Views.StoreViews
                             new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
 
                         }
-                    });
+                    });*/
                 }
                 catch (Exception ex)
                 {
@@ -88,7 +88,7 @@ namespace PasaBuy.App.Views.StoreViews
                     if (AddressTypes.Text == "Office") { type = "office"; }*/
                     if (adid == "0")
                     {
-                        TindaPress.Address.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, "business", AddressStreets.Text, AddressVar.br, AddressVar.ct, AddressVar.pr, AddressVar.co, "", "", (bool success, string data) =>
+                        /*TindaPress.Address.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, "business", AddressStreets.Text, AddressVar.br, AddressVar.ct, AddressVar.pr, AddressVar.co, "", "", (bool success, string data) =>
                         {
                             if (success)
                             {
@@ -100,11 +100,11 @@ namespace PasaBuy.App.Views.StoreViews
                             {
                                 new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                             }
-                        });
+                        });*/
                     }
                     else
                     {
-                        TindaPress.Address.Instance.Update(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, adid, AddressStreets.Text, AddressVar.br, AddressVar.ct, AddressVar.pr, AddressVar.co, (bool success, string data) =>
+                        /*TindaPress.Address.Instance.Update(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, adid, AddressStreets.Text, AddressVar.br, AddressVar.ct, AddressVar.pr, AddressVar.co, (bool success, string data) =>
                         {
                             if (success)
                             {
@@ -117,7 +117,7 @@ namespace PasaBuy.App.Views.StoreViews
                             {
                                 new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                             }
-                        });
+                        });*/
                     }
                 }
             }

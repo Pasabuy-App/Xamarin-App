@@ -50,7 +50,7 @@ namespace PasaBuy.App.ViewModels.Notification
         {
             try
             {
-                SocioPress.Activity.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", "", lastid, (bool success, string data) =>
+                /*SocioPress.Activity.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", "", lastid, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -87,7 +87,7 @@ namespace PasaBuy.App.ViewModels.Notification
                             count = 1;
                         }
                     }
-                });
+                });*/
                 if (count == 0)
                 {
                     taskNotificationList.Add(new TaskNotification()
@@ -163,11 +163,11 @@ namespace PasaBuy.App.ViewModels.Notification
                 string id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as TaskNotification).ID;
                 if (id != "0")
                 {
-                    SocioPress.Activity.Instance.Open(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, id, "", (bool success, string data) =>
+                   /* SocioPress.Activity.Instance.Open(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, id, "", (bool success, string data) =>
                     {
                         taskNotificationList.Clear();
                         LoadData("");
-                    });
+                    });*/
                 }
             }
             catch (Exception e)
@@ -186,11 +186,11 @@ namespace PasaBuy.App.ViewModels.Notification
         {
             try
             {
-                SocioPress.Activity.Instance.MarkAll(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, (bool success, string data) =>
+               /* SocioPress.Activity.Instance.MarkAll(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, (bool success, string data) =>
                 {
                     taskNotificationList.Clear();
                     LoadData("");
-                });
+                });*/
             }
             catch (Exception e)
             {

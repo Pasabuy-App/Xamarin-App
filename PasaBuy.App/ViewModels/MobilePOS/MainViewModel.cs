@@ -1,5 +1,4 @@
-﻿using MobilePOS;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.MobilePOS;
@@ -51,7 +50,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
         public static void LoadOrder(string stage, string odid)
         {
-            try
+            /*try
             {
                 orderList.Clear();
                 Customers.Instance.OrderList(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, stage, PSACache.Instance.UserInfo.stid, odid, (bool success, string data) =>
@@ -87,7 +86,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             catch (Exception e)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
-            }
+            }*/
 
         }
 

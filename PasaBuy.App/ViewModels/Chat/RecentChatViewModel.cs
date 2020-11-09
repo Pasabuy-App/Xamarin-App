@@ -58,7 +58,7 @@ namespace PasaBuy.App.ViewModels.Chat
             try
             {
                 string user_mess = PSACache.Instance.UserInfo.user_type != "User" && (PSACache.Instance.UserInfo.stid == "0" || string.IsNullOrEmpty(PSACache.Instance.UserInfo.stid)) ? "3" : "4";
-                SocioPress.Message.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "0", "", offset, (bool success, string data) =>
+                Http.SocioPress.Message.Instance.Listing("0", "", offset, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -141,7 +141,7 @@ namespace PasaBuy.App.ViewModels.Chat
                 {
                     IsRunning = true;
                     string user_mess = PSACache.Instance.UserInfo.user_type != "User" && (PSACache.Instance.UserInfo.stid == "0" || string.IsNullOrEmpty(PSACache.Instance.UserInfo.stid)) ? "3" : "4";
-                    SocioPress.Message.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "0", "", offset, (bool success, string data) =>
+                    Http.SocioPress.Message.Instance.Listing( "0", "", offset, (bool success, string data) =>
                     {
                         if (success)
                         {

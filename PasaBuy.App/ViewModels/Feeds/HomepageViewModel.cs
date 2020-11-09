@@ -99,7 +99,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    SocioPress.Profile.Instance.GetData(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, uid, async (bool success, string data) =>
+                    Http.SocioPress.Profile.Instance.Data( uid, async (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -134,7 +134,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    SocioPress.Profile.Instance.GetData(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, uid, async (bool success2, string data2) =>
+                    Http.SocioPress.Profile.Instance.Data( uid, async (bool success2, string data2) =>
                     {
                         if (success2)
                         {
@@ -221,7 +221,7 @@ namespace PasaBuy.App.ViewModels.Feeds
         {
             try
             {
-                SocioPress.Feeds.Instance.Home(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, lastid, (bool success, string data) =>
+                Http.SocioPress.Post.Instance.Home(lastid, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -302,7 +302,7 @@ namespace PasaBuy.App.ViewModels.Feeds
             try
             {
                 IsRunning = true;
-                SocioPress.Feeds.Instance.Home(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", (bool success, string data) =>
+                Http.SocioPress.Post.Instance.Home("", (bool success, string data) =>
                 {
                     if (success)
                     {

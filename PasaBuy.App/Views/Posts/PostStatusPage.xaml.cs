@@ -130,7 +130,7 @@ namespace PasaBuy.App.Views.Posts
                     if (!Loader.IsRunning)
                     {
                         Loader.IsRunning = true;
-                        Http.SocioFeature.Instance.Post_Insert(StatusEditor.Text, "", "status", filePath, "", "", "", "", "", (bool success, string data) =>
+                        Http.SocioPress.Post.Instance.Insert(StatusEditor.Text, "", "status", filePath, "", "", "", "", "", (bool success, string data) =>
                         {
                             if (success)
                             {

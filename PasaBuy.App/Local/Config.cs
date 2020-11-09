@@ -11,7 +11,7 @@ namespace PasaBuy.App.Local
         /// Rest API base url using WP PLugins.
         /// </summary>
         /// 
-        public static bool onProduction { get; } = false;
+        public static bool onProduction { get; } = true;
 
         /// <summary>
         /// Does the current RestURL used SSL.
@@ -31,7 +31,7 @@ namespace PasaBuy.App.Local
         /// <summary>
         /// RestAPI Root url c/o WordPress.
         /// </summary>
-        public static string baseRestUrl { get; } = "pasabuy.app";
+        public static string baseRestUrl { get; } = "dev.pasabuy.app";
 
         /// <summary>
         /// Realtime USN hostname
@@ -49,11 +49,11 @@ namespace PasaBuy.App.Local
 
                 if (PSAConfig.onProduction)
                 {
-                    Console.WriteLine(returning + baseRestUrl);
+                    //Console.WriteLine(returning + baseRestUrl);
                     return returning + baseRestUrl;
                 }
 
-                Console.WriteLine(returning + devBaseUrl);
+                //Console.WriteLine(returning + devBaseUrl);
 
                 return returning + devBaseUrl;
             }

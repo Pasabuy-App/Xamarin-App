@@ -903,21 +903,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="CoinPress-PCL">
-      <HintPath>Resources\CoinPress-PCL.dll</HintPath>
-    </Reference>
-    <Reference Include="HatidPress-PCL">
-      <HintPath>Resources\HatidPress-PCL.dll</HintPath>
-    </Reference>
-    <Reference Include="MobilePOS-PCL">
-      <HintPath>Resources\MobilePOS-PCL.dll</HintPath>
-    </Reference>
-    <Reference Include="SocioPress-PCL">
-      <HintPath>Resources\SocioPress-PCL.dll</HintPath>
-    </Reference>
-    <Reference Include="TindaPress-PCL">
-      <HintPath>Resources\TindaPress-PCL.dll</HintPath>
-    </Reference>
     <Reference Include="USocketNet">
       <HintPath>Dependencies\USocketNet.dll</HintPath>
     </Reference>
