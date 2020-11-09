@@ -20,19 +20,12 @@ namespace PasaBuy.App
             InitializeComponent();
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(PSAConfig.sfApiKey);
 
-            //Initialized all PCL required by PasaBuy.App
-            SocioPress.SPHost.Instance.Initialized(PSAConfig.CurrentRestUrl);
-            TindaPress.TPHost.Instance.Initialized(PSAConfig.CurrentRestUrl);
-            HatidPress.HPHost.Instance.Initialized(PSAConfig.CurrentRestUrl);
-            MobilePOS.MPHost.Instance.Initialized(PSAConfig.CurrentRestUrl);
-            CoinPress.CPHost.Instance.Initialized(PSAConfig.CurrentRestUrl);
-
             PSACache.Instance.Initialize();
 
             //commit
             MainPage = new NavigationPage(new SplashPage());
 
-            LocalNotif.Instance.Show("Test Notification", "Elon Musk partnered with PasaBuy.App to deliver package to Mars.", "Its now done!", DateTime.Now.AddSeconds(60));
+            //LocalNotif.Instance.Show("Test Notification", "Elon Musk partnered with PasaBuy.App to deliver package to Mars.", "Its now done!", DateTime.Now.AddSeconds(60));
         }
 
         protected override void OnStart()

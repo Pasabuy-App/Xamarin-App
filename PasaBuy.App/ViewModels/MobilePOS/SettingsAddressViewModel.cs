@@ -27,7 +27,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         {
             try
             {
-                TindaPress.Address.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, "", "", "1", (bool success, string data) =>
+                /*TindaPress.Address.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, "", "", "1", (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -54,7 +54,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                         new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
 
                     }
-                });
+                });*/
             }
             catch (Exception e)
             {

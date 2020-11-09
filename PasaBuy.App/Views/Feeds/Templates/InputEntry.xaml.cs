@@ -29,7 +29,7 @@ namespace PasaBuy.App.Views.Feeds.Templates
             {
                 try
                 {
-                    Http.SocioFeature.Instance.Post_Insert(PostEntry.Text, "", "status", "", "", "", "", "", "", (bool success, string data) =>
+                    Http.SocioPress.Post.Instance.Insert(PostEntry.Text, "", "status", "", "", "", "", "", "", (bool success, string data) =>
                     {
                         if (success)
                         {

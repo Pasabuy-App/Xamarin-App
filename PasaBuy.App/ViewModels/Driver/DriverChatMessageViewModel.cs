@@ -144,8 +144,7 @@ namespace PasaBuy.App.ViewModels.Driver
         {
             try
             {
-                //string user_types = type == "2" ? "3" : type;
-                SocioPress.Message.Instance.GetByRecepient(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, recipient, offset, "3", "", lastid, (bool success, string data) =>
+                Http.SocioPress.Message.Instance.GetByRecepient( recipient, offset, "3", "", lastid, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -361,7 +360,7 @@ namespace PasaBuy.App.ViewModels.Driver
                     {
                         count = 1;
                         await Task.Delay(200);
-                        SocioPress.Message.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, this.NewMessage, user_id, "3", "0", (bool success, string data) =>
+                        Http.SocioPress.Message.Instance.Insert(this.NewMessage, user_id, "3", "0", (bool success, string data) =>
                         {
                             if (success)
                             {

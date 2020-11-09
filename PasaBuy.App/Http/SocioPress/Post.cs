@@ -38,7 +38,7 @@ namespace PasaBuy.App.Http.SocioPress
         #endregion
 
         #region Method
-        public async void Post_Insert(string title, string content, string type, string img,
+        public async void Insert(string title, string content, string type, string img,
             string item_cat, string time_price, string pic_loc, string dp_loc, string vhl_date, Action<bool, string> callback)
         {
             try

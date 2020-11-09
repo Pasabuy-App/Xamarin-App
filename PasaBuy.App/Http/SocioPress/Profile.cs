@@ -137,7 +137,7 @@ namespace PasaBuy.App.Http.SocioPress
             }
         }
 
-        public async void Trnasction(string user_id, Action<bool, string> callback)
+        public async void Transaction(string user_id, Action<bool, string> callback)
         {
             try
             {

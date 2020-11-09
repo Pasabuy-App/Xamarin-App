@@ -1,5 +1,4 @@
-﻿using MobilePOS;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.MobilePOS;

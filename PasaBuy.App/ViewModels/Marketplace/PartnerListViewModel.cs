@@ -61,7 +61,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             try
             {
-                TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, "", "1", lastid, (bool success, string data) =>
+                /*TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, "", "1", lastid, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -89,7 +89,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                     {
                         new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                     }
-                });
+                });*/
             }
             catch (Exception e)
             {
@@ -100,7 +100,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             try
             {
-                TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, "", "1", lastid, (bool success, string data) =>
+                /*TindaPress.Store.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, catid, "", "1", lastid, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -132,7 +132,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                     {
                         new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                     }
-                });
+                });*/
             }
             catch (Exception e)
             {

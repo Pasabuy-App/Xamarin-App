@@ -114,7 +114,7 @@ namespace PasaBuy.App.ViewModels.Chat
         {
             try
             {
-                SocioPress.Message.Instance.GetByRecepient(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, recipient, offset, "1", storeid, lastid, (bool success, string data) =>
+                Http.SocioPress.Message.Instance.GetByRecepient(recipient, offset, "1", storeid, lastid, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -382,7 +382,7 @@ namespace PasaBuy.App.ViewModels.Chat
                     {
                         count = 1;
                         await Task.Delay(200);
-                        SocioPress.Message.Instance.Insert(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, this.NewMessage, user_id, "2", storeid, (bool success, string data) =>
+                        Http.SocioPress.Message.Instance.Insert(this.NewMessage, user_id, "2", storeid, (bool success, string data) =>
                         {
                             if (success)
                             {

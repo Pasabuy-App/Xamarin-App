@@ -1,5 +1,4 @@
-﻿using MobilePOS;
-using PasaBuy.App.Local;
+﻿using PasaBuy.App.Local;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -116,7 +115,7 @@ namespace PasaBuy.App.Views.PopupModals
 
         public void UpdateAttendance(string status)
         {
-            try
+            /*try
             {
                 HatidPress.Rider.Instance.UpdateAttendance(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, status, "", (bool success, string data) =>
                 {
@@ -126,7 +125,7 @@ namespace PasaBuy.App.Views.PopupModals
             catch (Exception e)
             {
                 new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
-            }
+            }*/
         }
 
         public void UploadLocation()

@@ -62,7 +62,7 @@ namespace PasaBuy.App.Views.StoreViews
                     if (answer)
                     {
                         var btn = sender as Grid;
-                        TindaPress.Address.Instance.Delete(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, btn.ClassId, (bool success, string data) =>
+                        /*TindaPress.Address.Instance.Delete(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, btn.ClassId, (bool success, string data) =>
                         {
                             if (success)
                             {
@@ -74,7 +74,7 @@ namespace PasaBuy.App.Views.StoreViews
                             {
                                 new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                             }
-                        });
+                        });*/
                     }
                     await Task.Delay(200);
                     count = 0;

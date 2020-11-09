@@ -355,7 +355,7 @@ namespace PasaBuy.App.ViewModels.Feeds
         {
             try
             {
-                SocioPress.Posts.Instance.Count(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, userid, (bool success, string data) =>
+                Http.SocioPress.Profile.Instance.Count(userid, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -363,7 +363,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                         postcount = getdata.data.count;
                     }
                 });
-                SocioPress.Reviews.Instance.Get(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, userid, (bool success, string data) =>
+                Http.SocioPress.Profile.Instance.Review(userid, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -371,7 +371,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                         ratingscount = getdata.data.ave_rating;
                     }
                 });
-                SocioPress.Transaction.Instance.GetTotal(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, (bool success, string data) =>
+                Http.SocioPress.Profile.Instance.Transaction(userid, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -382,7 +382,7 @@ namespace PasaBuy.App.ViewModels.Feeds
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1PFL-CRT1MPVM.", "OK");
             }
         }
 

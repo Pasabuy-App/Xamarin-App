@@ -35,7 +35,7 @@ namespace PasaBuy.App.Views.Posts
                     if (btn == false)
                     {
                         btn = true;
-                        Http.SocioFeature.Instance.Post_Insert(ItemName.Text, ItemDescription.Text, "sell", filePath, ItemCategory.Text, ItemPrice.Text, PickUpLocation.Text, "", VehicleType.Text, (bool success, string data) =>
+                        Http.SocioPress.Post.Instance.Insert(ItemName.Text, ItemDescription.Text, "sell", filePath, ItemCategory.Text, ItemPrice.Text, PickUpLocation.Text, "", VehicleType.Text, (bool success, string data) =>
                         {
                             if (success)
                             {

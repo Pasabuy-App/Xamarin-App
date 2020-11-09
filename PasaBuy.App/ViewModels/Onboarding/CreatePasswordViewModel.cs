@@ -147,7 +147,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
                                     PSACache.Instance.SaveUserData();
 
                                     //Reuqest user token after device received token.
-                                    SocioPress.Profile.Instance.GetData(token.data.wpid, token.data.snky, token.data.wpid, (bool success2, string data2) =>
+                                    Http.SocioPress.Profile.Instance.Data( token.data.wpid, (bool success2, string data2) =>
                                     {
                                         if (success2)
                                         {

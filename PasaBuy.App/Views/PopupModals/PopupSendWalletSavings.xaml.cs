@@ -33,8 +33,8 @@ namespace PasaBuy.App.Views.PopupModals
                 if (IsRunning.IsRunning == false)
                 {
                     IsRunning.IsRunning = true;
-                    CoinPress.Wallet.Instance.Verify(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, walletid, (bool success, string data) =>
-                    {
+                    Http.CoinPress.Wallet.Instance.Verify( walletid, (bool success, string data) =>
+                        {
                         if (success)
                         {
                             WalletSavingsModel wallet = JsonConvert.DeserializeObject<WalletSavingsModel>(data);
@@ -72,8 +72,7 @@ namespace PasaBuy.App.Views.PopupModals
                 if (IsRunning.IsRunning == false)
                 {
                     IsRunning.IsRunning = true;
-                    //Console.WriteLine("wallet id: " + walletid + " amount: " + amount + " currency: " + currency_id);
-                    CoinPress.Wallet.Instance.Send(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, walletid, amount, currency_id, notes, (bool success, string data) =>
+                    Http.CoinPress.Wallet.Instance.Send(walletid, amount, currency_id, notes, (bool success, string data) =>
                     {
                         if (success)
                         {

@@ -67,7 +67,7 @@ namespace PasaBuy.App.ViewModels.Currency
         {
             try
             {
-                CoinPress.Wallet.Instance.Transactions(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "", "", currency, offset, (bool success, string data) =>
+                Http.CoinPress.Wallet.Instance.Transactions("", "", currency, offset, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -104,7 +104,7 @@ namespace PasaBuy.App.ViewModels.Currency
         {
             try
             {
-                CoinPress.Wallet.Instance.Create(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "PLS", async (bool success, string data) =>
+                Http.CoinPress.Wallet.Instance.Create("PLS", async (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -133,7 +133,7 @@ namespace PasaBuy.App.ViewModels.Currency
         {
             try
             {
-                CoinPress.Wallet.Instance.Balance(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "PLS", (bool success, string data) =>
+                Http.CoinPress.Wallet.Instance.Balance( "PLS", (bool success, string data) =>
                 {
                     if (success)
                     {

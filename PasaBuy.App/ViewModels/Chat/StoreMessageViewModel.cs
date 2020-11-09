@@ -48,7 +48,7 @@ namespace PasaBuy.App.ViewModels.Chat
             {
                 if (MasterView.MyType == "store")
                 {
-                    SocioPress.Message.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "2", PSACache.Instance.UserInfo.stid, offset, (bool success, string data) =>
+                    Http.SocioPress.Message.Instance.Listing("2", PSACache.Instance.UserInfo.stid, offset, (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -106,7 +106,7 @@ namespace PasaBuy.App.ViewModels.Chat
                 }
                 if (MasterView.MyType == "mover")
                 {
-                    SocioPress.Message.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, "1", "0", offset, (bool success, string data) =>
+                    Http.SocioPress.Message.Instance.Listing( "1", "0", offset, (bool success, string data) =>
                     {
                         if (success)
                         {
