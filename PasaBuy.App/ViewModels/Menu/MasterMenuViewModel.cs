@@ -124,15 +124,8 @@ namespace PasaBuy.App.ViewModels.Menu
         /// </summary>
         public MasterMenuViewModel()
         {
-            /*isDriver = true;
-            isStore = true;*/
-
-            //isDriver = true;
             CheckMover();
             CheckStore();
-
-            //isDriver = UserEnabledFeature.Instance.isMover;
-            //isStore = UserEnabledFeature.Instance.isStore;
 
             this.profileName = PSACache.Instance.UserInfo.dname;
             this.UserPhoto = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
@@ -189,7 +182,7 @@ namespace PasaBuy.App.ViewModels.Menu
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2MVR-P1MMVM.", "OK");
             }
         }
 
@@ -219,7 +212,7 @@ namespace PasaBuy.App.ViewModels.Menu
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2PNL-LS1MMVM.", "OK");
             }
         }
 

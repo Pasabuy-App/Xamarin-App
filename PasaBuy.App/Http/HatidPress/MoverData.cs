@@ -73,7 +73,7 @@ namespace PasaBuy.App.Http.HatidPress
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2MVR-P1.", "OK");
             }
         }
 
