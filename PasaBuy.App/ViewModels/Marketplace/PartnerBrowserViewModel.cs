@@ -186,7 +186,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
             try
             {
                 storeList.Clear();
-                Http.TindaFeature.Instance.Store_Search(search, "robinson", (bool success, string data) =>
+                Http.TindaPress.Store.Instance.Listing("", search, "robinson", "", "" , "active", (bool success, string data) =>
                 {
                     if (success)
                     {

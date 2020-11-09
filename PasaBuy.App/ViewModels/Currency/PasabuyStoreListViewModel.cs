@@ -82,7 +82,7 @@ namespace PasaBuy.App.ViewModels.Currency
         {
             try
             {
-                Http.TindaFeature.Instance.StoreTypeList("pasaplus", "active", "", async (bool success, string data) =>
+                Http.TindaPress.Store.Instance.Listing("", "", "pasaplus", "", "", "active", async (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -118,7 +118,7 @@ namespace PasaBuy.App.ViewModels.Currency
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2STR-L1PSLVM.", "OK");
             }
         }
 

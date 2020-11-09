@@ -43,8 +43,7 @@ namespace PasaBuy.App.Views.PopupModals
             {
                 if (filepath != string.Empty && hash_id != string.Empty)
                 {
-
-                    Http.TindaFeature.Instance.DocumentUpdate(filepath, docid, hash_id, (bool success, string data) =>
+                    Http.TindaPress.Document.Instance.Update(filepath, docid, hash_id, (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -61,7 +60,7 @@ namespace PasaBuy.App.Views.PopupModals
             }
             catch (Exception ex)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: TPV2STR-DOCINSRT", "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2DOC-U1PUEDS.", "OK");
             }
 
         }

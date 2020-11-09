@@ -481,7 +481,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 if (!isRunning)
                 {
                     isRunning = true;
-                    Http.TindaFeature.Instance.VariantList_Options(product_id, "active", (bool success, string data) =>
+                    Http.TindaPress.Variant.Instance.Listing(product_id, "", "", "active", (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -556,7 +556,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2VRT-L1PDVM.", "OK");
             }
         }
 

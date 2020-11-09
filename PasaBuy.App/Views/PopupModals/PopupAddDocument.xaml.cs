@@ -101,9 +101,7 @@ namespace PasaBuy.App.Views.PopupModals
             {
                 if (filepath != string.Empty && hash_id != string.Empty)
                 {
-
-
-                    Http.TindaFeature.Instance.InsertDocument(filepath, PSACache.Instance.UserInfo.stid, "", hash_id, (bool success, string data) =>
+                    Http.TindaPress.Document.Instance.Insert(filepath, PSACache.Instance.UserInfo.stid, "", hash_id, (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -120,7 +118,7 @@ namespace PasaBuy.App.Views.PopupModals
             }
             catch (Exception ex)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: TPV2STR-DOCINSRT", "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2DOC-I1PUAD.", "OK");
             }
         }
 

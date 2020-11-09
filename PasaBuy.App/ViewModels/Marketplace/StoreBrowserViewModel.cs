@@ -75,7 +75,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    Http.TindaFeature.Instance.StoreCategoryList("active", "pasamall", (bool success, string data) =>
+                    Http.TindaPress.Category.Instance.StoreCategoryListing("active", "pasamall", (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -102,7 +102,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2CAT-SL1SBVM.", "OK");
                 IsRunning = false;
             }
         }

@@ -111,7 +111,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 {
                     IsRunning = true;
                     this.DocumentList.Clear();
-                    Http.TindaFeature.Instance.DocumentList(PSACache.Instance.UserInfo.stid ,"active", (bool success, string data) =>
+                    Http.TindaPress.Document.Instance.Listing(PSACache.Instance.UserInfo.stid, "active", (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -142,7 +142,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: TPV2DOCS-LST" , "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2DOC-L1DVM.", "OK");
             }
         }
 
@@ -152,14 +152,13 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             try
             {
                 documentList.Clear();
-                Http.TindaFeature.Instance.DocumentList(PSACache.Instance.UserInfo.stid, "active", (bool success, string data) =>
-                    {
+                Http.TindaPress.Document.Instance.Listing(PSACache.Instance.UserInfo.stid, "active", (bool success, string data) =>
+                {
                         if (success)
                         {
                             DocumentData datas = JsonConvert.DeserializeObject<DocumentData>(data);
                             for (int i = 0; i < datas.data.Length; i++)
                             {
-
                                 documentList.Add(new DocumentData()
                                 {
                                     ID = datas.data[i].ID,
@@ -179,7 +178,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: TPV2DOCS-LST", "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2DOC-L2DVM.", "OK");
             }
         }
     }

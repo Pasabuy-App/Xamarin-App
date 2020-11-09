@@ -61,7 +61,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         {
             try
             {
-                Http.TindaFeature.Instance.GetDocumentTypes("active", (bool success, string data) =>
+                Http.TindaPress.Document.Instance.TypeListing("active", (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -84,7 +84,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2STR-L1FBVM.", "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2DOC-U1ADVM.", "OK");
             }
         }
     }

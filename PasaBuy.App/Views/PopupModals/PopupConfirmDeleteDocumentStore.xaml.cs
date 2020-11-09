@@ -32,7 +32,7 @@ namespace PasaBuy.App.Views.PopupModals
         {
             try
             {
-                Http.TindaFeature.Instance.DocumentDelete(hash_id,  (bool success, string data) =>
+                Http.TindaPress.Document.Instance.Delete(hash_id, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -49,7 +49,7 @@ namespace PasaBuy.App.Views.PopupModals
             }
             catch (Exception ex)
             {
-                App.Current.MainPage.DisplayAlert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2DOC-D1PUCDTPV2DOC-D1PUCD.", "OK");
             }
 
         }

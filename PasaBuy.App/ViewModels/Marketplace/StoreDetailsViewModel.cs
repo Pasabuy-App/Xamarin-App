@@ -324,7 +324,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
             try
             {
                 IsRunning = true;
-                Http.TindaFeature.Instance.ProductsByCategoryList(stid, (bool success, string data) =>
+                Http.TindaPress.Category.Instance.ProductPerCategory(stid, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -371,7 +371,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: TPV2CAT-PPC1SDVM.", "OK");
                 IsRunning = false;
             }
         }
