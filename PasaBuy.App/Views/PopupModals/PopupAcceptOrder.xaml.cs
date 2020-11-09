@@ -176,8 +176,9 @@ namespace PasaBuy.App.Views.PopupModals
                 }
                 catch (Exception e)
                 {
-                    new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
-                    IsRunning.IsRunning = false;
+                    {
+                        new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2ODR-A1PUAC.", "OK");
+                        IsRunning.IsRunning = false;
                 }
             } 
            

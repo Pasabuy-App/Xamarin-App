@@ -125,7 +125,7 @@ namespace PasaBuy.App.Views.Driver
             }
             catch (Exception ex)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2DOC-I1ADP.", "OK");
                 isRunning.IsRunning = false;
             }
         }

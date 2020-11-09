@@ -103,7 +103,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
             }
             catch (Exception ex)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2DEL-I1CPVM.", "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2ODR-F1CPVM.", "OK");
             }
         }
 

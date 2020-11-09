@@ -76,7 +76,7 @@ namespace PasaBuy.App.Http.HatidPress
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2DOC-L1.", "OK");
             }
         }
 
@@ -116,7 +116,7 @@ namespace PasaBuy.App.Http.HatidPress
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2DOC-I1.", "OK");
             }
         }
 
@@ -151,7 +151,7 @@ namespace PasaBuy.App.Http.HatidPress
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2DOC-LT1.", "OK");
             }
         }
 
