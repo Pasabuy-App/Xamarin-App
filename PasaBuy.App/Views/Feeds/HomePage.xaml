@@ -15,7 +15,8 @@
              xmlns:local="clr-namespace:PasaBuy.App.Views.Feeds.Templates" 
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
              xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
-             xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch" xmlns:controls="clr-namespace:PasaBuy.App.Controls"
+             xmlns:controls="clr-namespace:PasaBuy.App.Controls"
+             xmlns:effects="clr-namespace:Xamarin.Toolkit.Effects;assembly=Xamarin.Toolkit.Effects"
              x:Name="homePage"
              NavigationPage.TitleIconImageSource="LogoHeader.png">
 
@@ -40,11 +41,18 @@
                      Command="{Binding RefreshCommand}">
             <Grid>
                 <ScrollView VerticalScrollBarVisibility="Never" Padding="0, 0, 0, -10">
-
+                
                     <Grid RowSpacing="0"
-                          Padding="0,0,0,5"
+                          Margin="{DynamicResource PageSpacing}"
                           ColumnSpacing="0">
+                        <Grid.Padding>
+                            <OnIdiom x:TypeArguments="Thickness">
+                                <OnIdiom.Phone>0,5,0,0</OnIdiom.Phone>
+                                <OnIdiom.Tablet>50,0,50,0</OnIdiom.Tablet>
+                            </OnIdiom>
+                        </Grid.Padding>
                         <CollectionView ItemsSource="{Binding HomePosts}"
+                                        VerticalScrollBarVisibility="Never"
                                         x:Name="listView">
                             <CollectionView.Header>
                                 <StackLayout Padding="0,0,0,-10">
@@ -79,8 +87,9 @@
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
 
-                                                <StackLayout Grid.Row="0" Grid.ColumnSpan="2">
-                                                    <Grid Padding="20,20,20,5">
+                                                <StackLayout Grid.Row="0" 
+                                                             Grid.ColumnSpan="2">
+                                                    <Grid Padding="10,10,5,5">
 
                                                         <Grid.RowDefinitions>
                                                             <RowDefinition Height="Auto"/>
@@ -89,8 +98,8 @@
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition Width="Auto"/>
                                                             <ColumnDefinition Width="Auto"/>
-                                                            <ColumnDefinition Width="*"/>
-                                                            <ColumnDefinition Width="15"/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="Auto"/>
                                                         </Grid.ColumnDefinitions>
 
                                                         <Grid Grid.Row="0" 
@@ -120,7 +129,7 @@
                                                               Grid.Column="1">
 
                                                             <buttons:SfButton BorderWidth="0" 
-                                                                      WidthRequest="210" 
+                                                                      WidthRequest="250" 
                                                                       HeightRequest="40"
                                                                       BackgroundColor="Transparent"
                                                                       FontSize="15"
@@ -128,15 +137,13 @@
                                                                        Command="{Binding Path=BindingContext.GoToProfileCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"
                                                                       HorizontalOptions="End">
 
-                                                                <!--<Label Text="{Binding Author}" 
-                                                               Style="{StaticResource PostAuthor}"
-                                                               x:Name="LabelAuthor"/>-->
-                                                                <Forms9Patch:Label Text="{Binding Author}"
-                                                                                   Style="{StaticResource PostAuthor}"
-                                                                                   VerticalTextAlignment="Center"
-                                                                                   x:Name="LabelAuthor"
-                                                                                   AutoFit="Width"/>
-
+                                                                <Label Text="{Binding Author}"
+                                                                       FontSize="{DynamicResource SmallSize}"
+                                                                       VerticalTextAlignment="Center">
+                                                                    <Label.Effects>
+                                                                        <effects:LabelSizeFontToFit />
+                                                                    </Label.Effects>
+                                                                </Label>
                                                             </buttons:SfButton>
 
                                                         </Grid>
@@ -151,17 +158,17 @@
 
                                                         <Grid Grid.Row="0" 
                                                               HeightRequest="18"
-                                                              Grid.Column="2" 
+                                                              Grid.Column="4" 
                                                               HorizontalOptions="EndAndExpand">
-                                                            <Forms9Patch:Label Text="{Binding Types}"
-                                                                               Style="{StaticResource PostType}"
-                                                                               VerticalTextAlignment="Center"
-                                                                               x:Name="LabelTypes"
-                                                                               AutoFit="Width"/>
+                                                            <Label Text="{Binding Types}"
+                                                                   FontSize="{DynamicResource SmallerSize}"
+                                                                   VerticalTextAlignment="Center">
+                                                                
+                                                            </Label>
                                                         </Grid>
                                                         <Grid Grid.Row="1" 
                                                               HeightRequest="20"
-                                                              Grid.Column="2"
+                                                              Grid.Column="4"
                                                               HorizontalOptions="End">
                                                             <Label Text="{Binding Seen}" 
                                                            Style="{StaticResource PostSeen}"
