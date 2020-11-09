@@ -78,7 +78,7 @@ namespace PasaBuy.App.ViewModels.Feeds
             try
             {
                 MyProfile.LastIndex = 11;
-                Http.SocioFeature.Instance.ProfileFeeds( uid, (bool success, string data) =>
+                Http.SocioPress.Post.Instance.Profile(uid, "", (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -158,7 +158,7 @@ namespace PasaBuy.App.ViewModels.Feeds
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1PST-P1MPVM.", "OK");
             }
         }
 
@@ -170,7 +170,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                 {
                     IsRunning = true;
                     MyProfile.LastIndex = 11;
-                    Http.SocioFeature.Instance.ProfileFeeds(uid, (bool success, string data) =>
+                    Http.SocioPress.Post.Instance.Profile(uid, "", (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -254,7 +254,7 @@ namespace PasaBuy.App.ViewModels.Feeds
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1PST-P2MPVM.", "OK");
                 IsRunning = false;
             }
         }
@@ -270,7 +270,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                 {
                     user_id = PSACache.Instance.UserInfo.wpid;
                 }
-                SocioPress.Feeds.Instance.Profile(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, lastid, user_id, (bool success, string data) =>
+                Http.SocioPress.Post.Instance.Profile(user_id, lastid, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -344,7 +344,7 @@ namespace PasaBuy.App.ViewModels.Feeds
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1PST-P3MPVM.", "OK");
             }
         }
 
