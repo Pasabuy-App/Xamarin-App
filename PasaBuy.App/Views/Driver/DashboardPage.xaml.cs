@@ -11,6 +11,7 @@ using Rg.Plugins.Popup.Services;
 using System.Linq;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Models.MobilePOS;
+using System.Threading.Tasks;
 
 namespace PasaBuy.App.Views.Driver
 {
@@ -37,39 +38,60 @@ namespace PasaBuy.App.Views.Driver
         {
             this.PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
         }
-
+        public static string order_id;
+        public static string stages;
         public DashboardPage()
         {
             InitializeComponent();
             DisplayCurloc();
             map.IsTrafficEnabled = true;
-            //fetch_order(0);
-            time = true;
-            PushOrder("");
-            Pending_Order.IsVisible = false;
+            CheckDeliveries();
+
             _OrderList = new System.Collections.ObjectModel.ObservableCollection<Models.eCommerce.Transactions>();
             _OrderList.CollectionChanged += CollectionChages;
         }
 
-        public static void PushOrder(string odid)
+        private void CollectionChages(object sender, EventArgs e)
         {
-            /*GetOrderDetails("qlnv1bb");
-            Device.StartTimer(TimeSpan.FromSeconds(15), doitt);
-            bool doitt()
-            {
-                if (time)
-                {
-                    PopupNavigation.Instance.PushAsync(new PopupAcceptOrder());
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }*/
+            Refresh.IsEnabled = true;
+            Pending_Order.IsVisible = false;
         }
 
-        public static void GetOrderDetails(string odid)
+        public void CheckDeliveries()
+        {
+            try
+            {
+                Http.HatidPress.Order.Instance.Verify( (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        OrderDetailsModel order = JsonConvert.DeserializeObject<OrderDetailsModel>(data);
+                        for (int i = 0; i < order.data.Length; i++)
+                        {
+                            GetOrderDetails(order.data[i].order_id, 0);
+                            order_id = order.data[i].order_id;
+                            Refresh.IsEnabled = false;
+                            Pending_Order.IsVisible = true;
+                        }
+                    }
+                    else
+                    {
+                        Refresh.IsEnabled = true;
+                        Pending_Order.IsVisible = false;
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2ODR-V1DP.", "OK");
+                Refresh.IsEnabled = true;
+                Pending_Order.IsVisible = false;
+            }
+            //Check if have ongoing deliveries then set to visible the pending order and  set to false the visibility of refresh. ongoing, preparing and shipping status
+            //If not, set the visiblity of pending order to false then set the visiblity of refresh to true.
+        }
+
+        public static void GetOrderDetails(string odid, int timer)
         {
             try
             {
@@ -78,19 +100,43 @@ namespace PasaBuy.App.Views.Driver
                     if (success)
                     {
                         OrderDetailsModel order = JsonConvert.DeserializeObject<OrderDetailsModel>(data);
-                        for (int i = 0; i < order.data.Length; i++)
+                        if (timer > 0)
                         {
-                            PopupAcceptOrder.store_logo = order.data[i].store_logo == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg" : PSAProc.GetUrl(order.data[i].store_logo);
-                            PopupAcceptOrder.storeName = order.data[i].store_name;
-                            PopupAcceptOrder.store_lat = order.data[i].store_lat;
-                            PopupAcceptOrder.store_long = order.data[i].store_long;
-                            PopupAcceptOrder.waypointAddress = order.data[i].store_address;
+                            for (int i = 0; i < order.data.Length; i++)
+                            {
+                                PopupAcceptOrder.store_logo = order.data[i].store_logo == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg" : PSAProc.GetUrl(order.data[i].store_logo);
+                                PopupAcceptOrder.storeName = order.data[i].store_name;
+                                PopupAcceptOrder.store_lat = order.data[i].store_lat;
+                                PopupAcceptOrder.store_long = order.data[i].store_long;
+                                PopupAcceptOrder.waypointAddress = order.data[i].store_address;
 
-                            PopupAcceptOrder.item_id = order.data[i].pubkey;
-                            PopupAcceptOrder.orderName = "#" + order.data[i].pubkey;
-                            PopupAcceptOrder.destinationAddress = order.data[i].cutomer_address;
-                            PopupAcceptOrder.user_lat = order.data[i].cutomer_lat;
-                            PopupAcceptOrder.user_long = order.data[i].cutomer_long;
+                                PopupAcceptOrder.item_id = order.data[i].pubkey;
+                                PopupAcceptOrder.orderName = "#" + order.data[i].pubkey;
+                                PopupAcceptOrder.destinationAddress = order.data[i].cutomer_address;
+                                PopupAcceptOrder.user_lat = order.data[i].cutomer_lat;
+                                PopupAcceptOrder.user_long = order.data[i].cutomer_long;
+                                PopupAcceptOrder.countdown = timer;
+                            }
+                            await Task.Delay(500);
+                            PopupNavigation.Instance.PushAsync(new PopupAcceptOrder());
+                        }
+                        else
+                        {
+                            for (int i = 0; i < order.data.Length; i++)
+                            {
+                                StartDeliveryPage.item_id = order.data[i].pubkey;
+                                StartDeliveryPage.storeName = order.data[i].store_name;
+                                StartDeliveryPage.orderName = "#" + order.data[i].pubkey;
+                                StartDeliveryPage.waypointAddress = order.data[i].store_address;
+                                StartDeliveryPage.destinationAddress = order.data[i].cutomer_address;
+
+                                StartDeliveryPage.StoreLatittude = order.data[i].store_lat;
+                                StartDeliveryPage.StoreLongitude = order.data[i].store_long;
+
+                                StartDeliveryPage.UserLatitude = order.data[i].cutomer_lat;
+                                StartDeliveryPage.userLongitude = order.data[i].cutomer_long;
+                                StartDeliveryPage.order_status = order.data[i].stages;
+                            }
                         }
                     }
                     else
@@ -102,22 +148,6 @@ namespace PasaBuy.App.Views.Driver
             catch (Exception e)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
-            }
-        }
-
-        private void CollectionChages(object sender, EventArgs e)
-        {
-            if (_OrderList.Count > 0)
-            {
-                Pending_Order.IsVisible = true; // Show the Ongoing deliveries button.
-                // If the order is accepted by the mover, add the item to observable collection.
-            }
-            else
-            {
-                time = true;
-                PushOrder("");
-                Pending_Order.IsVisible = false; // Hide the Ongoing deliveries button.
-                // If the status of the order is shipped or completed or cancelled, clear the observable collection.
             }
         }
 
@@ -163,6 +193,42 @@ namespace PasaBuy.App.Views.Driver
         private async void ShowAvailableDeliveries(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new StartDeliveryPage());
+        }
+
+        private void RefreshClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                if (IsRunning.IsRunning == false)
+                {
+                    IsRunning.IsRunning = true;
+                    Http.HatidPress.Order.Instance.Queuing((bool success, string data) =>
+                    {
+                        if (success)
+                        {
+                            OrderDetailsModel order = JsonConvert.DeserializeObject<OrderDetailsModel>(data);
+                            for (int i = 0; i < order.data.Length; i++)
+                            {
+                                GetOrderDetails(order.data[i].order_id, Convert.ToInt32(order.data[i].countdown));
+                            }
+                            Refresh.IsEnabled = false;
+                            Pending_Order.IsVisible = true;
+                            IsRunning.IsRunning = false;
+                        }
+                        else
+                        {
+                            Refresh.IsEnabled = true;
+                            Pending_Order.IsVisible = false;
+                            IsRunning.IsRunning = false;
+                        }
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2ODR-Q1DP.", "OK");
+                IsRunning.IsRunning = false;
+            }
         }
     }
 }
