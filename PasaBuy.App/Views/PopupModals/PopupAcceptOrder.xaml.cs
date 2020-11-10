@@ -29,7 +29,7 @@ namespace PasaBuy.App.Views.PopupModals
         public static string waypointAddress;// = "National Road San Galing, San Pedro Laguna, Philippines";// string.Empty;
         public static string destinationAddress;// = "BLock 10 Lot 18 Narra St. San Francisco, Biñan Laguna, Philippines"; // string.Empty;
         public static string orderTime;//= "08:30 AM"; //string.Empty;
-
+        public static int countdown;
 
         Stopwatch stopwatch = new Stopwatch();
 
@@ -41,14 +41,14 @@ namespace PasaBuy.App.Views.PopupModals
             Order.Text = orderName;// + " | " + orderTime;
             WaypointAddress.Text = waypointAddress;
             OriginAddress.Text = destinationAddress;
-            OrderTime.Text = "30";
+            OrderTime.Text = countdown.ToString();
             OrderTimer(true);
-            DashboardPage.time = false;// remove this if you want to remove the timer
+            //DashboardPage.time = false;// remove this if you want to remove the timer
         }
 
         public void OrderTimer(Boolean flag)
         {
-            int TimeLimit = 30;
+            int TimeLimit = countdown;
             if (flag == true)
             {
                 stopwatch.Start();
@@ -58,8 +58,6 @@ namespace PasaBuy.App.Views.PopupModals
                     OrderTime.Text = countdown.ToString();
                     if (countdown == 1)
                     {
-                        DashboardPage.time = true;// remove this if you want to remove the timer
-                        DashboardPage.PushOrder("");
                         PopupNavigation.Instance.PopAsync();
                         return false;
                     }
@@ -77,16 +75,12 @@ namespace PasaBuy.App.Views.PopupModals
         {
             PopupNavigation.Instance.PopAsync();
             OrderTimer(false);
-            DashboardPage.time = true;// remove this if you want to remove the timer
-            DashboardPage.PushOrder("");
         }
 
         protected override bool OnBackButtonPressed()
         {
             PopupNavigation.Instance.PopAsync();
             OrderTimer(false);
-            DashboardPage.time = true;// remove this if you want to remove the timer
-            DashboardPage.PushOrder("");
             return base.OnBackButtonPressed();
         }
 
@@ -159,7 +153,7 @@ namespace PasaBuy.App.Views.PopupModals
 
                                 OrderTimer(false);
                                 DashboardPage.time = false;// remove this if you want to remove the timer
-                                DashboardPage._OrderList.Add(new Models.eCommerce.Transactions() { ID = item_id }); // Add orderid to observable collection.
+                                //DashboardPage._OrderList.Add(new Models.eCommerce.Transactions() { ID = item_id }); // Add orderid to observable collection.
                                 StartDeliveryPage.order_status = "preparing";
 
                                 PopupNavigation.Instance.PopAsync();
@@ -181,10 +175,6 @@ namespace PasaBuy.App.Views.PopupModals
                         IsRunning.IsRunning = false;
                     }
                 }
-
-
-
-
             }
         }
     }

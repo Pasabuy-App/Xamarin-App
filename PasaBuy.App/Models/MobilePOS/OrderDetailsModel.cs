@@ -25,6 +25,8 @@ namespace PasaBuy.App.Models.MobilePOS
             public int total_price;
             public string date_created = string.Empty;
             public string stages = string.Empty;
+            public string countdown = string.Empty;
+            public string order_id = string.Empty;
         }
     }
 }

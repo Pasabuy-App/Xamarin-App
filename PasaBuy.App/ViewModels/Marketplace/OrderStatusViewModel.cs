@@ -1,9 +1,12 @@
-﻿using FFImageLoading.Transformations;
+﻿
+
+using FFImageLoading.Transformations;
 using FFImageLoading.Work;
 using Syncfusion.XForms.ProgressBar;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Security;
 
 namespace PasaBuy.App.ViewModels.Marketplace
 {
@@ -213,8 +216,42 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public static string store_id;
 
-        public List<ITransformation> TurnGreyScale { get; set; }
+        public static string order_id;
 
+        public List<ITransformation> TurnGreyScale { get; set; }
+        public bool isRunning = false;
+
+        public bool IsRunning
+        {
+            get
+            {
+                return isRunning;
+            }
+            set
+            {
+                isRunning = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        bool _isRefreshing = false;
+        public bool IsRefreshing
+        {
+            get
+            {
+                return _isRefreshing;
+            }
+            set
+            {
+                if (_isRefreshing != value)
+                {
+                    _isRefreshing = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        public System.Windows.Input.ICommand RefreshCommand { protected set; get; }
+        public int TimeLimit = 60;
         public OrderStatusViewModel()
         {
             this.Fee = _fee;
@@ -224,72 +261,104 @@ namespace PasaBuy.App.ViewModels.Marketplace
             {
                 new CustomTransformationSelector(),
             };
-
+            CheckingOrder(order_id);
             OrderTimer(true);
+            RefreshCommand = new Xamarin.Forms.Command<string>((key) =>
+            {
+                CheckingOrder(order_id);
+                IsRefreshing = false;
+            });
         }
 
         Stopwatch stopwatch = new Stopwatch();
         public void OrderTimer(Boolean flag)
         {
-            int TimeLimit = 60;
             if (flag)
             {
-                this.timeStatus = "Estimated Time of Accepting by store. If not, your order will be automatically cancel.";
                 stopwatch.Start();
                 Xamarin.Forms.Device.StartTimer(TimeSpan.FromSeconds(1), () =>
                 {
                     int countdown = TimeLimit - stopwatch.Elapsed.Seconds;
+
                     this.stopWatch = countdown.ToString() + "seconds";
-                    if (countdown == 55)
-                    {
-                        AcceptedByStore("0");
-                    }
-                    if (countdown == 45)
-                    {
-                        MoverFound("0");
-                    }
-                    if (countdown == 35)
-                    {
-                        MoverOnGoing();
-                    }
-                    if (countdown == 30)
-                    {
-                        StorePreparing();
-                    }
-                    if (countdown == 25)
-                    {
-                        OrderShipping();
-                    }
-                    if (countdown == 15)
-                    {
-                        OrderCompleted();
-                    }
-                    if (countdown == 5)
-                    {
-                        OrderConfirm();
-                    }
+
                     if (countdown == 1)
                     {
                         this.timeStatus = "Thank you.";
-                        //App.Current.MainPage.Navigation.PopModalAsync();
+                        App.Current.MainPage.Navigation.PopModalAsync();
                         flag = false;
-                        stopwatch.Stop();
                         return false;
                     }
 
                     return true;
                 });
-
             }
             else
             {
                 stopwatch.Stop();
             }
         }
+
+        public void CheckingOrder(string odid)
+        {
+            try
+            {
+                if (!IsRunning)
+                {
+                    IsRunning = true;
+                    this.timeStatus = "Estimated Time of Accepting by Store. If not, your order will be automatically cancelled.";
+                    Http.MobilePOS.Order.Instance.Listing("", odid, "", (bool success, string data) =>
+                    {
+                        if (success)
+                        {
+                            Models.POSFeature.OrderModel order = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.POSFeature.OrderModel>(data);
+
+                            for (int i = 0; i < order.data.Length; i++)
+                            {
+                                string stages = order.data[i].stages;
+                                if (stages == "Accepted")
+                                {
+                                    AcceptedByStore(order.data[i].stid);
+                                }
+                                if (stages == "Ongoing")
+                                {
+                                    MoverFound(order.data[i].mvid);
+                                }
+                                if (stages == "Preparing")
+                                {
+                                    StorePreparing();
+                                }
+                                if (stages == "Shipping")
+                                {
+                                    OrderShipping();
+                                }
+                                if (stages == "Completed" || stages == "Cancelled")
+                                {
+                                    OrderCompleted();
+                                }
+                            }
+                            IsRunning = false;
+                        }
+                        else
+                        {
+                            new Controllers.Notice.Alert("Notice to User", Local.HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsRunning = false;
+                        }
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ODR-L1OSVM.", "OK");
+                IsRunning = false;
+            }
+        }
+
         public void AcceptedByStore(string stid)
         {
             store_id = stid;
             isStore = true;
+            this.timeStatus = "Estimated Time of Accepting by Mover. If not, your order will be automatically cancelled.";
         }
         public void OrderConfirm()
         {

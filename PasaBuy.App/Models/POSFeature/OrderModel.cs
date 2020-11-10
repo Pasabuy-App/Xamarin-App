@@ -8,6 +8,7 @@ namespace PasaBuy.App.Models.POSFeature
     {
         public string pubkey = string.Empty;
         public string stid = string.Empty;
+        public string mvid = string.Empty;
         public string customer = string.Empty;
         public string avatar = string.Empty;
         public string cutomer_address = string.Empty;

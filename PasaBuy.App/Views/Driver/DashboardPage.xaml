@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:PasaBuy.App.Models.Driver"
              xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
-             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
              x:Class="PasaBuy.App.Views.Driver.DashboardPage"
              Title="Dashboard">
     <ContentPage.Resources>
@@ -17,33 +17,51 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Order="Primary"
+            Clicked="RefreshClicked"
+            x:Name="Refresh"
+            Priority="1"
+            Text="">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android" Value="add_24.png" />
+                    <On Platform="IOS" Value="add_24.png" />
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <Grid RowSpacing="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <maps:Map x:Name="map" MyLocationEnabled="True" Grid.Row="0" />
+        <Grid>
 
-            <yummy:PancakeView
+            <Grid RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <maps:Map x:Name="map" MyLocationEnabled="True" Grid.Row="0" />
+
+                <yummy:PancakeView
                     Grid.Row="1"
                     Margin="8,8,8,8"
                     BackgroundColor="{DynamicResource Gray-200}"
                     CornerRadius="0,0,0,0"
                     x:Name="Pending_Order"
                     VerticalOptions="FillAndExpand">
-                <Grid Padding="15,20,15,20">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="70*" />
-                        <ColumnDefinition Width="15*" />
-                        <ColumnDefinition Width="15*" />
-                    </Grid.ColumnDefinitions>
-                    <Label FontFamily="{StaticResource Montserrat-Medium}"
+                    <Grid Padding="15,20,15,20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70*" />
+                            <ColumnDefinition Width="15*" />
+                            <ColumnDefinition Width="15*" />
+                        </Grid.ColumnDefinitions>
+                        <Label FontFamily="{StaticResource Montserrat-Medium}"
                            Padding="10,0,0,0"
                            Grid.Row="0"
                            Grid.Column="0"
@@ -52,7 +70,7 @@
                            HorizontalTextAlignment="Start"
                            Text="Ongoing deliveries"
                            TextColor="{DynamicResource BlackColor}" />
-                    <Label FontFamily="{StaticResource Montserrat-Medium}"
+                        <Label FontFamily="{StaticResource Montserrat-Medium}"
                            Padding="10,0,0,0"
                            Grid.Row="0"
                            Grid.Column="1"
@@ -62,7 +80,7 @@
                            Text="Go"
                            TextColor="{DynamicResource BlackColor}" />
 
-                    <Label Margin="0,0,0,0"
+                        <Label Margin="0,0,0,0"
                            Grid.Row="0" 
                            Grid.Column="2"
                            FontFamily="{StaticResource FontIcons}"
@@ -71,11 +89,16 @@
                            Text="{StaticResource ArrowRight}"
                            TextColor="{DynamicResource BlackColor}"
                            VerticalTextAlignment="Center" />
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="ShowAvailableDeliveries" NumberOfTapsRequired="1"/>
-                    </Grid.GestureRecognizers>
-                </Grid>
-            </yummy:PancakeView>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ShowAvailableDeliveries" NumberOfTapsRequired="1"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </yummy:PancakeView>
+            </Grid>
+            <loading:LoadingIndicator
+                x:Name="IsRunning"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill" />
         </Grid>
     </ContentPage.Content>
 

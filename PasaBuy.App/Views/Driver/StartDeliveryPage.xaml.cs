@@ -311,7 +311,7 @@ namespace PasaBuy.App.Views.Driver
         #region page Method
         async void Handle_SlideCompleted(object sender, System.EventArgs e)
         {
-            if (order_status == "shipping")
+            if (order_status == "Shipping")
             {
                 if (Device.RuntimePlatform == Device.iOS)
                 {
@@ -330,7 +330,7 @@ namespace PasaBuy.App.Views.Driver
                 }
             }
 
-            if (order_status == "preparing")
+            if (order_status == "Preparing")
             {
                 if (Device.RuntimePlatform == Device.iOS)
                 {
