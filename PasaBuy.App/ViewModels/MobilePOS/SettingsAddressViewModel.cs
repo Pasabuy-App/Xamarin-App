@@ -27,25 +27,18 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         {
             try
             {
-                /*TindaPress.Address.Instance.List(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, PSACache.Instance.UserInfo.stid, "", "", "1", (bool success, string data) =>
+                Http.TindaPress.Store.Instance.Address((bool success, string data) =>
                 {
                     if (success)
                     {
                         SettingsAddressData add = JsonConvert.DeserializeObject<SettingsAddressData>(data);
                         for (int i = 0; i < add.data.Length; i++)
                         {
-                            string id = add.data[i].ID;
-                            string street = add.data[i].street;
-                            string brgy = add.data[i].brgy;
-                            string city = add.data[i].city;
-                            string province = add.data[i].province;
-                            string country = add.data[i].country;
-                            string type = add.data[i].type;
                             addressList.Add(new SettingsAddressData()
                             {
-                                ID = id,
-                                Street = street + " " + brgy + " " + city + " " + province + ", " + country,
-                                Type = type,
+                                ID = add.data[i].ID,
+                                Street = add.data[i].street + " " + add.data[i].brgy + " " + add.data[i].city + " " + add.data[i].province + ", " + add.data[i].country,
+                                Type = add.data[i].type,
                             });
                         }
                     }
@@ -54,11 +47,11 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                         new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
 
                     }
-                });*/
+                });
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2STR-A1SAVM.", "OK");
             }
         }
     }

@@ -168,6 +168,42 @@ namespace PasaBuy.App.Http.TindaPress
             }
         }
 
+        /// <summary>
+        /// Listing of store address.
+        /// </summary>
+        public async void Address( Action<bool, string> callback)
+        {
+            try
+            {
+                var dict = new Dictionary<string, string>();
+                dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
+                dict.Add("snky", PSACache.Instance.UserInfo.snky);
+                dict.Add("stid", PSACache.Instance.UserInfo.stid);
+                var content = new FormUrlEncodedContent(dict);
+
+                var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/tindapress/v2/store/address/list", content);
+                response.EnsureSuccessStatusCode();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string result = await response.Content.ReadAsStringAsync();
+                    Models.Token token = JsonConvert.DeserializeObject<Models.Token>(result);
+
+                    bool success = token.status == "success" ? true : false;
+                    string data = token.status == "success" ? result : token.message;
+                    callback(success, data);
+                }
+                else
+                {
+                    callback(false, "Network Error! Check your connection.");
+                }
+            }
+            catch (Exception e)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2STR-A1.", "OK");
+            }
+        }
+
         #endregion
     }
 }
