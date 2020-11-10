@@ -128,20 +128,17 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 if (!isRunning)
                 {
                     isRunning = true;
-                    Http.DataVice.Address.Instance.Update(AddressInMapPage.address_id, StreetEntry, AddressInMapPage.lat.ToString(), AddressInMapPage.lon.ToString(), (bool success, string data) =>
+                    Http.DataVice.Address.Instance.Update(AddressInMapPage.address_id, StreetEntry, AddressInMapPage.lat.ToString(), AddressInMapPage.lon.ToString(), async (bool success, string data) =>
                     {
                         if (success)
                         {
-                            Device.BeginInvokeOnMainThread(async () =>
+                            CheckoutPageViewModel.InsertAddress(AddressInMapPage.address_id, AddressInMapPage.person, AddressInMapPage.type, AddressInMapPage.full_address, AddressInMapPage.contact);
+                            int numModals = Application.Current.MainPage.Navigation.ModalStack.Count;
+                            for (int currModal = 0; currModal < numModals - 3; currModal++)
                             {
-                                CheckoutPageViewModel.InsertAddress(AddressInMapPage.address_id, AddressInMapPage.person, AddressInMapPage.type, AddressInMapPage.full_address, AddressInMapPage.contact);
-                                int numModals = Application.Current.MainPage.Navigation.ModalStack.Count;
-                                for (int currModal = 0; currModal < numModals - 3; currModal++)
-                                {
-                                    await Application.Current.MainPage.Navigation.PopModalAsync(false);
-                                }
-                                isRunning = false;
-                            });
+                                await Application.Current.MainPage.Navigation.PopModalAsync(false);
+                            }
+                            isRunning = false;
                         }
                         else
                         {
