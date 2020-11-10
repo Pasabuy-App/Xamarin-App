@@ -13,7 +13,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
     {
 
         #region Fields
-
+        public static string user_name;
         private string ak;
 
         private string un;
@@ -123,13 +123,13 @@ namespace PasaBuy.App.ViewModels.Onboarding
                 if (!State)
                 {
                     State = true;
-                    Http.DataVice.Users.Instance.Activate(ActivationKey, Username, (bool success, string data) =>
+                    Http.DataVice.Users.Instance.Activate(ActivationKey, user_name, (bool success, string data) =>
                     {
                         if (success)
                         {
                             VerifyAccountData akey = JsonConvert.DeserializeObject<VerifyAccountData>(data);
                             State = false;
-                            VerifyAccountVar.un = Username;
+                            VerifyAccountVar.un = user_name;
                             VerifyAccountVar.ak = akey.key;
                             Application.Current.MainPage = new CreatePassword();
                         }

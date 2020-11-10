@@ -240,6 +240,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
                         if (success)
                         {
                             State = false;
+                            VerifyAccountViewModel.user_name = Email;
                             Application.Current.MainPage = new VerifyAccountPage();
                         }
                         else
