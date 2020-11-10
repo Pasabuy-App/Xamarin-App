@@ -119,26 +119,65 @@ namespace PasaBuy.App.ViewModels.Driver
         }
         public ICommand RefreshCommand { protected set; get; }
         public Command SubmitCommand { get; set; }
+        private bool _isGpsEnable;
+
+        public bool IsGpsEnable
+        {
+            get
+            {
+                return _isGpsEnable;
+            }
+            set
+            {
+                _isGpsEnable = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
         public static string status;
         public static string expiry;
         public static int rating;
         public VehicleListViewModel()
         {
-            this.Rating = rating;
-            this.Status = status;
-            this.Expiry = expiry;
-            this.Avatar = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatar);
-            this.Name = PSACache.Instance.UserInfo.dname;
-            this.SubmitCommand = new Command(this.SubmitClicked);
-            this.ItemTappedCommand = new Command<object>(ItemClicked);
-            _vehicleList = new ObservableCollection<VehicleList>();
-            LoadVehicle();
-            RefreshCommand = new Command<string>((key) =>
+            Checkloaction();
+        }
+        public async void Checkloaction()
+        {
+            try
             {
+                var request = new Xamarin.Essentials.GeolocationRequest(Xamarin.Essentials.GeolocationAccuracy.Medium);
+                var location = await Xamarin.Essentials.Geolocation.GetLocationAsync(request);
+            }
+            catch (Xamarin.Essentials.FeatureNotEnabledException featureNotEnabledException)
+            {
+                await Application.Current.MainPage.DisplayAlert("Notice to User", "Please enable your location first.", "OK");
+                Xamarin.Forms.DependencyService.Get<PasaBuy.App.Library.IGpsDependencyService>().OpenSettings();
+
+            }
+
+            IsGpsEnable = Xamarin.Forms.DependencyService.Get<PasaBuy.App.Library.IGpsDependencyService>().IsGpsEnable();
+
+            if (IsGpsEnable)
+            {
+                this.Rating = rating;
+                this.Status = status;
+                this.Expiry = expiry;
+                this.Avatar = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatar);
+                this.Name = PSACache.Instance.UserInfo.dname;
+                this.SubmitCommand = new Command(this.SubmitClicked);
+                this.ItemTappedCommand = new Command<object>(ItemClicked);
+                _vehicleList = new ObservableCollection<VehicleList>();
                 LoadVehicle();
-                IsRefreshing = false;
-            });
+                RefreshCommand = new Command<string>((key) =>
+                {
+                    LoadVehicle();
+                    IsRefreshing = false;
+                });
+            }
+            else
+            {
+                await App.Current.MainPage.Navigation.PopModalAsync();
+            }
         }
 
 
