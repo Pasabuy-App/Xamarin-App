@@ -394,9 +394,6 @@
     <BundleResource Include="Resources\arrow_left.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\search.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\cart.png" />
   </ItemGroup>
   <ItemGroup>
@@ -419,5 +416,47 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\mover_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\search_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\arrow_left_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\address_book.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\next.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\next_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\address_book_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\question.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\list.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\question_mark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\secret.png" />
   </ItemGroup>
 </Project>

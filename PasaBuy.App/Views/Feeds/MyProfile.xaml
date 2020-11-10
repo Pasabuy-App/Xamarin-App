@@ -46,12 +46,22 @@
         <viewModel:MyProfileViewModel />
     </ContentPage.BindingContext>
 
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" Default="0, 0, 0, 0" />
+    </ContentPage.Padding>
+
     <ContentPage.Content>
         
         <RefreshView IsRefreshing="{Binding IsRefreshing}"   
                      x:Name="rv"
                      Command="{Binding RefreshCommand}">
             <Grid>
+                <Grid.Padding>
+                    <OnIdiom x:TypeArguments="Thickness">
+                        <OnIdiom.Phone>0,5,0,0</OnIdiom.Phone>
+                        <OnIdiom.Tablet>50,0,50,0</OnIdiom.Tablet>
+                    </OnIdiom>
+                </Grid.Padding>
 
                 <ScrollView>
                     <Grid RowSpacing="10" ColumnSpacing="0" TranslationY="-10" >
@@ -73,7 +83,7 @@
                                             <!--  UserBanner  -->
                                             <Image Grid.RowSpan="3" 
                                                        Aspect="AspectFill" 
-                                                       HeightRequest="170" 
+                                                       HeightRequest="{OnIdiom Default=170, Tablet=300}"
                                                        BackgroundColor="{DynamicResource Gray-300}">
                                                 <Image.Source>
                                                     <UriImageSource Uri="{Binding BannerImage}" 
@@ -179,14 +189,8 @@
                                                              Padding="50, 0, 50, 15">
                                                 <!--Address Stack-->
                                                 <StackLayout Orientation="Horizontal">
-                                                    <Label
-                                                               HeightRequest="32"
-                                                               Style="{StaticResource ProfileIconLabelStyle}"
-                                                               TextColor="{DynamicResource PrimaryColor}"
-                                                               HorizontalTextAlignment="End"
-                                                               VerticalTextAlignment="Center"
-                                                               Margin="3,5"
-                                                               Text="&#xf965;" />
+                                                    <Image Source="address_book.png"
+                                                           HeightRequest="22"/>
                                                     <Label Text="{Binding City}" 
                                                                Margin="0,12"
                                                                IsVisible="{Binding isCity}"/>
@@ -194,15 +198,10 @@
 
                                                 <!--Joined Date Stack-->
                                                 <StackLayout Orientation="Horizontal">
-                                                    <Label HeightRequest="32"
-                                                               Style="{StaticResource ProfileIconLabelStyle}"
-                                                               TextColor="{DynamicResource PrimaryColor}"
-                                                               HorizontalTextAlignment="End"
-                                                               VerticalTextAlignment="Center"
-                                                               Margin="5,5"
-                                                               Text="&#xf274;" />
+                                                    <Image Source="calendar.png"
+                                                           HeightRequest="28"/>
                                                     <Label Text="{Binding Joined}"
-                                                               Margin="0,12"/>
+                                                           Margin="0,12"/>
                                                 </StackLayout>
 
                                                 <!--Referrals Count Stack-->

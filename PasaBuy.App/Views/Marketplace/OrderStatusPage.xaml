@@ -16,8 +16,17 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" Default="0, 0, 0, 0" />
+    </ContentPage.Padding>
     <ContentPage.Content>
         <Grid>
+            <Grid.Padding>
+                <OnIdiom x:TypeArguments="Thickness">
+                    <OnIdiom.Phone>0,5,0,0</OnIdiom.Phone>
+                    <OnIdiom.Tablet>50,0,50,0</OnIdiom.Tablet>
+                </OnIdiom>
+            </Grid.Padding>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -26,19 +35,19 @@
                   Padding="15,8,15,8"
                   BackgroundColor="{StaticResource PrimaryColor}"
                   HeightRequest="{OnPlatform Android='46',
-                                                   iOS='56'}">
+                                                   iOS='46'}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <buttons:SfButton
-                            x:Name="backButton"
-                            Clicked="backButton_Clicked"
-                            Grid.Column="0"
-                            CornerRadius="4"
-                            TextColor="White"
-                            Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Back}" />
+
+                <ImageButton Source="arrow_left.png"
+                             x:Name="backButton"
+                             HeightRequest="25"
+                             WidthRequest="25"
+                             BackgroundColor="Transparent"
+                             Clicked="backButton_Clicked" />
+                
                 <Label Grid.Column="1" 
                        x:Name="TitleName"
                        Text="Order Status"
@@ -181,7 +190,7 @@
                 </Frame>
                 <Frame Grid.Row="2"
                        Margin="10,-10,10,0"
-                       Padding="30,0,20,0"
+                       Padding="30,15,20,0"
                        HasShadow="True"
                        VerticalOptions="FillAndExpand">
                     <Grid >

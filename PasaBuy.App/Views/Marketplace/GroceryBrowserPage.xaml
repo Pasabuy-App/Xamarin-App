@@ -81,16 +81,16 @@
                     VerticalOptions="FillAndExpand">
 
                     <!--  Restaurant page Title  -->
-                    <Label Margin="0,0"
-                        HeightRequest="24"
-                        FontFamily="{StaticResource Montserrat-Medium}"
-                        FontSize="16"
-                        HorizontalOptions="CenterAndExpand"
-                        LineHeight="1.25"
-                        Text="Grocery and Wet Market"
-                        TextColor="{DynamicResource Gray-White}"
-                        VerticalOptions="Center"
-                        VerticalTextAlignment="Center" />
+                    <Label Margin="16,0"
+                            HeightRequest="24"
+                            FontFamily="{StaticResource Montserrat-Medium}"
+                            FontSize="{OnIdiom Default=16, Tablet=20}"
+                            HorizontalOptions="CenterAndExpand"
+                            LineHeight="1.25"
+                            Text="Grocery and Wet Market"
+                            TextColor="{DynamicResource Gray-White}"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center" />
 
                 </StackLayout>
 
@@ -101,11 +101,13 @@
                     Spacing="0">
 
                     <!--  Back to title layout  -->
-                    <buttons:SfButton x:Name="BackToTitle"
-                        Clicked="BackToTitle_Clicked"
-                        TextColor="{DynamicResource Gray-White}"
-                        Style="{StaticResource NavigationBarButtonStyle}"
-                        Text="{StaticResource ArrowRight}" />
+                    <ImageButton Source="arrow_left.png"
+                                     HeightRequest="25"
+                                     Margin="0,0,8,0"
+                                     x:Name="BackToTitle"
+                                     WidthRequest="20"
+                                     BackgroundColor="Transparent"
+                                     Clicked="BackToTitle_Clicked" />
 
                     <!--  Rounded Search Entry  -->
                     <border:SfBorder Style="{DynamicResource SfBorderStyle}">
@@ -123,12 +125,13 @@
                 </StackLayout>
 
                 <!--  Search Button  -->
-                <buttons:SfButton x:Name="SearchButton"
-                                  TextColor="{DynamicResource Gray-White}"
-                    IsVisible="True"
-                    Clicked="SearchButton_Clicked"
-                    Style="{StaticResource NavigationBarButtonStyle }"
-                    Text="{StaticResource Search}" />
+                <ImageButton Source="search.png"
+                                     HeightRequest="25"
+                                     x:Name="SearchButton"
+                                     IsVisible="True"
+                                     WidthRequest="25"
+                                     BackgroundColor="Transparent"
+                                     Clicked="SearchButton_Clicked" />
 
             </StackLayout>
 

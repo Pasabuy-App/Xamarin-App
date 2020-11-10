@@ -47,6 +47,12 @@
                      x:Name="rv"
                      Command="{Binding RefreshCommand}">
             <Grid>
+                <Grid.Padding>
+                    <OnIdiom x:TypeArguments="Thickness">
+                        <OnIdiom.Phone>0,5,0,0</OnIdiom.Phone>
+                        <OnIdiom.Tablet>50,0,50,0</OnIdiom.Tablet>
+                    </OnIdiom>
+                </Grid.Padding>
                 <ScrollView>
                     <Grid>
                         <Grid.RowDefinitions>
@@ -60,19 +66,17 @@
                             Padding="15,5,15,5"
                             BackgroundColor="{StaticResource PrimaryColor}"
                             HeightRequest="{OnPlatform Android='46',
-                                                   iOS='56'}">
+                                                   iOS='46'}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <buttons:SfButton
-                            x:Name="backButton"
-                            Clicked="BackButtonClicked"
-                            TextColor="White"
-                            Grid.Column="0"
-                            CornerRadius="4"
-                            Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Back}" />
+                            <ImageButton Source="arrow_left.png"
+                                     HeightRequest="25"
+                                     Margin="0,0,8,0"
+                                     WidthRequest="20"
+                                     BackgroundColor="Transparent"
+                                     Clicked="BackButtonClicked" />
                             <Label Grid.Column="1"
                                FontFamily="{StaticResource Montserrat-Medium}"
                                FontSize="17"
@@ -121,10 +125,13 @@
                                     Spacing="0">
 
                                 <!--  Back to title layout  -->
-                                <buttons:SfButton x:Name="BackToTitle"
-                                        Clicked="BackToTitle_Clicked"
-                                        Style="{StaticResource NavigationBarButtonStyle}"
-                                        Text="{StaticResource ArrowRight}" />
+                                <ImageButton Source="arrow_left_black.png"
+                                     HeightRequest="25"
+                                     Margin="0,0,8,0"
+                                     x:Name="BackToTitle"
+                                     WidthRequest="20"
+                                     BackgroundColor="Transparent"
+                                     Clicked="BackToTitle_Clicked" />
 
                                 <!--  Rounded Search Entry  -->
                                 <border:SfBorder Style="{DynamicResource SfBorderStyle}">
@@ -138,13 +145,14 @@
                                 </border:SfBorder>
 
                             </StackLayout>
-
                             <!--  Search Button  -->
-                            <buttons:SfButton x:Name="SearchButton"
-                                    IsVisible="True"
-                                    Clicked="SearchButton_Clicked"
-                                    Style="{StaticResource NavigationBarButtonStyle }"
-                                    Text="{StaticResource Search}" />
+                            <ImageButton Source="search_black.png"
+                                     HeightRequest="25"
+                                     x:Name="SearchButton"
+                                     IsVisible="True"
+                                     WidthRequest="25"
+                                     BackgroundColor="Transparent"
+                                     Clicked="SearchButton_Clicked" />
 
                         </StackLayout>
 
@@ -168,6 +176,7 @@
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
                                         <Frame Padding="0"
+                                               Margin="10,0,10,0"
                                                        BackgroundColor="{DynamicResource Gray-White}"
                                                        BorderColor="{DynamicResource Gray-White}"
                                                        CornerRadius="8"

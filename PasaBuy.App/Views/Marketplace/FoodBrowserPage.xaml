@@ -7,7 +7,8 @@
              xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
-             xmlns:loading="clr-namespace:PasaBuy.App.UserControls" xmlns:effects="clr-namespace:Xamarin.Toolkit.Effects;assembly=Xamarin.Toolkit.Effects"
+             xmlns:loading="clr-namespace:PasaBuy.App.UserControls" 
+             xmlns:effects="clr-namespace:Xamarin.Toolkit.Effects;assembly=Xamarin.Toolkit.Effects"
              BackgroundColor="{DynamicResource Gray-White}"
              x:Class="PasaBuy.App.Views.Marketplace.FoodBrowserPage">
     
@@ -95,8 +96,9 @@
                         Spacing="0">
                             <ImageButton Source="arrow_left.png"
                                      HeightRequest="25"
+                                     Margin="0,0,8,0"
                                      x:Name="BackToTitle"
-                                     WidthRequest="25"
+                                     WidthRequest="20"
                                      BackgroundColor="Transparent"
                                      Clicked="BackToTitle_Clicked" />
                             <border:SfBorder Style="{DynamicResource SfBorderStyle}">
@@ -112,7 +114,7 @@
                         <ImageButton Source="search.png"
                                      HeightRequest="25"
                                      x:Name="SearchButton"
-                                      IsVisible="True"
+                                     IsVisible="True"
                                      WidthRequest="25"
                                      BackgroundColor="Transparent"
                                      Clicked="SearchButton_Clicked" />

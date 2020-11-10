@@ -34,23 +34,32 @@
                 <controls:TitleView Title="Conversation" 
                                     BackgroundColor="{DynamicResource PrimaryColor}" >
                     <controls:TitleView.LeadingView>
-                        <buttons:SfButton
-                            x:Name="backButton"
-                            Clicked="BackButtonClicked"
-                            CornerRadius="4"
-                            Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Back}" />
+                        <ImageButton Source="arrow_left.png"
+                                     HeightRequest="25"
+                                     WidthRequest="25"
+                                     BackgroundColor="Transparent"
+                                     Clicked="BackButtonClicked" />
                     </controls:TitleView.LeadingView>
                 </controls:TitleView>
                 <ContentPresenter />
             </StackLayout>
         </ControlTemplate>
     </ContentPage.ControlTemplate>
+
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" Default="0, 0, 0, 0" />
+    </ContentPage.Padding>
     <ContentPage.Content>
         <RefreshView IsRefreshing="{Binding IsRefreshing}"     
                      x:Name="rv"
                      Command="{Binding RefreshCommand}">
             <Grid>
+                <Grid.Padding>
+                    <OnIdiom x:TypeArguments="Thickness">
+                        <OnIdiom.Phone>0,5,0,0</OnIdiom.Phone>
+                        <OnIdiom.Tablet>50,0,50,0</OnIdiom.Tablet>
+                    </OnIdiom>
+                </Grid.Padding>
 
                 <ScrollView>
                     <StackLayout Spacing="0" >
@@ -98,11 +107,14 @@
                                     Orientation="Horizontal"
                                     Spacing="0">
 
-                                <buttons:SfButton
-                                x:Name="BackButton"
-                                Clicked="BackButton_Clicked"
-                                Style="{StaticResource NavigationBarButtonStyle}"
-                                Text="{StaticResource Next}" />
+                                <ImageButton Source="arrow_left_black.png"
+                                             x:Name="BackButton"
+                                             HeightRequest="25"
+                                             WidthRequest="25"
+                                             BackgroundColor="Transparent"
+                                             Clicked="BackButton_Clicked" />
+
+
 
                                 <!--  Rounded Search Entry  -->
                                 <border:SfBorder Style="{DynamicResource SfBorderStyle}">
@@ -120,13 +132,15 @@
                             </StackLayout>
 
                             <!--  Search Button  -->
-                            <buttons:SfButton
-                            x:Name="SearchButton"
-                            BindingContext="{x:Reference ProfileView}"
-                            Clicked="SearchButton_Clicked"
-                            IsVisible="{Binding Path=IsVisible}"
-                            Style="{StaticResource NavigationBarButtonStyle}"
-                            Text="{StaticResource Search}" />
+      
+                            <ImageButton Source="search_black.png"
+                                         IsVisible="{Binding Path=IsVisible}"
+                                         BindingContext="{x:Reference ProfileView}"
+                                         HeightRequest="25"
+                                         x:Name="SearchButton"
+                                         WidthRequest="25"
+                                         BackgroundColor="Transparent"
+                                         Clicked="SearchButton_Clicked" />
 
                         </StackLayout>
 
