@@ -29,6 +29,7 @@ namespace PasaBuy.App.Models.Onboarding
         public bool store_status = false;
         public bool store_schedule = false;
         public bool store_operation = false;
+        public string store_info = string.Empty;
 
         public string mvid = string.Empty;
         public string vhid = string.Empty;

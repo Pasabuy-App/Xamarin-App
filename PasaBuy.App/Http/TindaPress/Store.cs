@@ -3,6 +3,7 @@ using PasaBuy.App.Local;
 using PasaBuy.App.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 
 namespace PasaBuy.App.Http.TindaPress
@@ -117,6 +118,53 @@ namespace PasaBuy.App.Http.TindaPress
             catch (Exception e)
             {
                 new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2STR-F1.", "OK");
+            }
+        }
+
+        /// <summary>
+        /// Update logo, banner and info of store.
+        /// </summary>
+        public async void Update(string info, string avatar, string banner, Action<bool, string> callback)
+        {
+            try
+            {
+                var multiForm = new MultipartFormDataContent();
+                multiForm.Add(new StringContent(PSACache.Instance.UserInfo.wpid), "wpid");
+                multiForm.Add(new StringContent(PSACache.Instance.UserInfo.snky), "snky");
+                multiForm.Add(new StringContent(PSACache.Instance.UserInfo.stid), "stid");
+                multiForm.Add(new StringContent(info), "info");
+
+                if (!string.IsNullOrEmpty(avatar))
+                {
+                    FileStream fs = File.OpenRead(avatar);
+                    multiForm.Add(new StreamContent(fs), "avatar", Path.GetFileName(avatar));
+                }
+                if (!string.IsNullOrEmpty(banner))
+                {
+                    FileStream fs = File.OpenRead(banner);
+                    multiForm.Add(new StreamContent(fs), "banner", Path.GetFileName(banner));
+                }
+
+                var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/tindapress/v2/store/update", multiForm);
+                response.EnsureSuccessStatusCode();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string result = await response.Content.ReadAsStringAsync();
+                    Models.Token token = JsonConvert.DeserializeObject<Models.Token>(result);
+
+                    bool success = token.status == "success" ? true : false;
+                    string data = token.status == "success" ? result : token.message;
+                    callback(success, data);
+                }
+                else
+                {
+                    callback(false, "Network Error! Check your connection.");
+                }
+            }
+            catch (Exception e)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2STR-U1.", "OK");
             }
         }
 
