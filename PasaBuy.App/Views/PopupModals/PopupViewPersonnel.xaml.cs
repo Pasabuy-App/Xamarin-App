@@ -24,7 +24,7 @@ namespace PasaBuy.App.Views.PopupModals
             xPostition.Text = position;
             xDate.Text = date;
             xStatus.Text = status;
-            xActivate.Text = activated == "true" ? "Deactivate" : "Activate";
+            /*xActivate.Text = activated == "true" ? "Deactivate" : "Activate";
             if (status == "Active")
             {
                 xActivate.IsVisible = true;
@@ -32,7 +32,7 @@ namespace PasaBuy.App.Views.PopupModals
             else
             {
                 xActivate.IsVisible = false;
-            }
+            }*/
         }
 
         private async void CloseModal(object sender, EventArgs e)
@@ -40,7 +40,7 @@ namespace PasaBuy.App.Views.PopupModals
             await PopupNavigation.Instance.PopAsync();
         }
 
-        private async void xActivate_Clicked(object sender, EventArgs e)
+        /*private async void xActivate_Clicked(object sender, EventArgs e)
         {
             try
             {
@@ -59,6 +59,6 @@ namespace PasaBuy.App.Views.PopupModals
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
             }
-        }
+        }*/
     }
 }

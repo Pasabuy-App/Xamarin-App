@@ -134,6 +134,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 //PSACache.Instance.UserInfo.roid = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Store).roid;
                 PSACache.Instance.UserInfo.store_logo = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Store).Logo;
                 PSACache.Instance.UserInfo.store_banner = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Store).Banner;
+                PSACache.Instance.UserInfo.store_info = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as Store).Description;
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     await Task.Delay(300);

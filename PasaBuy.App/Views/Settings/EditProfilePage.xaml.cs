@@ -48,7 +48,7 @@ namespace PasaBuy.App.Views.Settings
                     IsRunning.IsRunning = true;
                     if (avatarUrl == null)
                     {
-                        new Alert("Failed", "Please select an image for avatar first", "Ok");
+                        new Alert("Failed", "Please select an image for avatar first.", "OK");
                         IsRunning.IsRunning = false;
                         return;
                     }
@@ -58,7 +58,7 @@ namespace PasaBuy.App.Views.Settings
                         {
                             if (success)
                             {
-                                new Alert("Success", "Avatar successfully updated", "Ok");
+                                new Alert("Success", "Avatar successfully updated.", "OK");
                                 EditProfile datas = JsonConvert.DeserializeObject<EditProfile>(data);
                                 PSACache.Instance.UserInfo.avatar = datas.data;
                                 PSACache.Instance.SaveUserData();
@@ -91,7 +91,7 @@ namespace PasaBuy.App.Views.Settings
                     IsRunning.IsRunning = true;
                     if (bannerUrl == null)
                     {
-                        new Alert("Failed", "Please select an image for banner first", "Ok");
+                        new Alert("Failed", "Please select an image for banner first.", "OK");
                         IsRunning.IsRunning = false;
                         return;
                     }
@@ -101,7 +101,7 @@ namespace PasaBuy.App.Views.Settings
                         {
                             if (success)
                             {
-                                new Alert("Success", "Banner successfully updated", "Ok");
+                                new Alert("Success", "Banner successfully updated,", "OK");
                                 EditProfile datas = JsonConvert.DeserializeObject<EditProfile>(data);
                                 PSACache.Instance.UserInfo.banner = datas.data;
                                 PSACache.Instance.SaveUserData();

@@ -161,11 +161,9 @@
                             HeightRequest="45"
                             HorizontalOptions="End"
                             VerticalOptions="Center"
-                            WidthRequest="70">
+                            WidthRequest="45">
                             <badge:SfBadgeView.Content>
                                 <ImageButton Source="cart.png"
-                                             HeightRequest="100"
-                                             WidthRequest="100"
                                              IsEnabled="{Binding Source={x:Reference Name=storeDetails}, Path=BindingContext.IsBusy}"
                                              Command="{Binding Source={x:Reference Name=storeDetails}, Path=BindingContext.GoToCartCommand}"
                                              HorizontalOptions="End"
@@ -176,10 +174,10 @@
                                     BackgroundColor="{DynamicResource Green}"
                                     BadgeAnimation="None"
                                     BadgeType="None"
-                                    FontSize="12"
+                                    FontSize="11"
                                     Stroke="{DynamicResource Gray-White}"
                                     StrokeWidth="1"
-                                    Offset="-10,8" />
+                                    Offset="4,3" />
                             </badge:SfBadgeView.BadgeSettings>
                         </badge:SfBadgeView>
                     </controls:TitleView.TrailingView>
