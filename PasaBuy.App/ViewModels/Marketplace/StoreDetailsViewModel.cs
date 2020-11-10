@@ -212,15 +212,40 @@ namespace PasaBuy.App.ViewModels.Marketplace
             //CartPageViewModel.Convert2List(store_id);
             //this.CartItemCount = CartPageViewModel.cartDetails.Count;Pr
             //CartPageViewModel.cartDetails.CollectionChanged += CollectionChanges;
-
+            LoadDetails(store_id);
             Loadcategory(store_id);
             AddToCartCommand = new Command<object>(AddToCartClicked);
 
-            this.StoreName = title;
-            this.StoreAddress = address;
-            this.AboutStore = !string.IsNullOrEmpty(info) ? info : "No information found.";
-            this.StoreBanner = banner;
+        }
+        public void LoadDetails(string stid)
+        {
+            try
+            {
+                Http.TindaPress.Store.Instance.Listing(stid, "", "", "", "", "", (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        Models.TindaFeature.StoreModel store = JsonConvert.DeserializeObject<Models.TindaFeature.StoreModel>(data);
 
+                        for (int i = 0; i < store.data.Length; i++)
+                        {
+                            this.StoreName = store.data[i].title;
+                            this.StoreAddress = store.data[i].street + " " + store.data[i].brgy + " " + store.data[i].city + ", " + store.data[i].province;
+                            this.AboutStore = !string.IsNullOrEmpty(store.data[i].info) ? store.data[i].info : "No information found.";
+                            this.StoreBanner = store.data[i].banner == "None" || store.data[i].banner == "" ? "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg" : PSAProc.GetUrl(store.data[i].banner);
+                        }
+                        IsRunning = false;
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2STR-L2SDVM.", "OK");
+            }
         }
 
         public static void InsertCart(string id, string name, string summary, string image, double price, double discount, string remarks, int quantity, ObservableCollection<Options> Variants)
