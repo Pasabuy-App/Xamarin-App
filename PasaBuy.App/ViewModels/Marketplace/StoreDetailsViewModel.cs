@@ -367,7 +367,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                     productsList.Add(new ProductList()
                                     {
                                         ID = catRoot.data[i].products[j].ID,
-                                        Avatar = "https://dev.pasabuy.app/wp-content/uploads/2020/11/5e6cdd217be5b4824fcc1bc4d0f3c758ed36b2cc-turtle-burger-2659388-300x265.png", //PSAProc.GetUrl(catRoot.data[i].products[j].avatar),
+                                        Avatar = PSAProc.GetUrl(catRoot.data[i].products[j].avatar),
                                         Name = catRoot.data[i].products[j].title,
                                         ActualPrice = Convert.ToDouble(catRoot.data[i].products[j].price),
                                         DiscountPercent = Convert.ToDouble(catRoot.data[i].products[j].discount),

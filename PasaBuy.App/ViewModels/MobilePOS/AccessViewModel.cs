@@ -4,6 +4,7 @@ using PasaBuy.App.Models.MobilePOS;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 
 namespace PasaBuy.App.ViewModels.MobilePOS
@@ -13,7 +14,20 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         private ObservableCollection<Models.POSFeature.AccessGroup> _accessGroup;
         public static ObservableCollection<Models.POSFeature.AccessModel> _accessList;
         public static ObservableCollection<Models.POSFeature.AccessModel> _myAccessList;
+        public static ObservableCollection<Models.POSFeature.AccessModel> _AccessList;
 
+        public ObservableCollection<Models.POSFeature.AccessModel> _MyAccessList
+        {
+            get
+            {
+                return _AccessList;
+            }
+            set
+            {
+                _AccessList = value;
+                this.NotifyPropertyChanged();
+            }
+        }
         public ObservableCollection<Models.POSFeature.AccessGroup> AccessGroup
         {
             get
@@ -94,6 +108,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         {
             _accessGroup = new ObservableCollection<Models.POSFeature.AccessGroup>();
             _myAccessList = new ObservableCollection<Models.POSFeature.AccessModel>();
+            _AccessList = new ObservableCollection<Models.POSFeature.AccessModel>();
             if (role_id == "0")
             {
                 LoadAccess();
@@ -119,7 +134,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                         for (int i = 0; i < role.data[0].permission.Count; i++)
                         {
                             bool status = role.data[0].permission[i].status == "active" ? true : false;
-                            _myAccessList.Add(new Models.POSFeature.AccessModel()
+                            _AccessList.Add(new Models.POSFeature.AccessModel()
                             {
                                 ID = role.data[0].permission[i].access,
                                 Status = status
@@ -156,7 +171,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                 for (int j = 0; j < access.data[i].access.Count; j++)
                                 {
                                     bool status = false;
-                                    if (_myAccessList.Any(p => p.ID == access.data[i].access[j].ID))
+                                    if (_AccessList.Any(p => p.ID == access.data[i].access[j].ID))
                                     {
                                         status = true;
                                     }
@@ -179,6 +194,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                     GroupName = access.data[i].name,
                                     AccessList = _accessList
                                 });
+
                                 for (int j = 0; j < AccessList.Count; j++)
                                 {
                                     _myAccessList.Add(new Models.POSFeature.AccessModel()
@@ -217,7 +233,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                         new Alert("Notice to User", "Please input title, description or add an access.", "Try Again");
                         IsRunning = false;
                     }
-                    else
+                    else 
                     {
                         Http.MobilePOS.Role.Instance.Update(role_id, this.Name, this.Description, _myAccessList, (bool success, string data) =>
                         {
@@ -245,7 +261,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
             /*foreach (Models.POSFeature.AccessModel var in _myAccessList)
             {
-                Console.WriteLine("var.Status: " + var.Status + ". ." + var.AccessName + ". ." + var.AccessId);
+                Debug.WriteLine("var.Status: " + var.Status + ". ." + var.AccessName );
             }*/
         }
         private void InsertRoleClicked(object obj)

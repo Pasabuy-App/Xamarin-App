@@ -22,5 +22,19 @@ namespace PasaBuy.App.Views.PopupModals
         {
             PopupNavigation.Instance.PopAsync();
         }
+
+        private void Access_StateChanged(object sender, Syncfusion.XForms.Buttons.StateChangedEventArgs e)
+        {
+            if (e.IsChecked.HasValue && e.IsChecked.Value)
+            {
+                // Insert
+                AccessViewModel.Insert((sender as Syncfusion.XForms.Buttons.SfCheckBox).ClassId);
+            }
+            else
+            {
+                // Remove
+                AccessViewModel.Remove((sender as Syncfusion.XForms.Buttons.SfCheckBox).ClassId);
+            }
+        }
     }
 }
