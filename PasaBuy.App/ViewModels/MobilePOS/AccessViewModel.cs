@@ -4,6 +4,7 @@ using PasaBuy.App.Models.MobilePOS;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace PasaBuy.App.ViewModels.MobilePOS
 {
@@ -88,13 +89,164 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 }
             }
         }
-
+        public static string role_id = "0";
         public AccessViewModel()
         {
             _accessGroup = new ObservableCollection<Models.POSFeature.AccessGroup>();
             _myAccessList = new ObservableCollection<Models.POSFeature.AccessModel>();
-            LoadAccess();
+            if (role_id == "0")
+            {
+                LoadAccess();
+            }
+            else
+            {
+                LoadRoleList();
+            }
             this.InsertRoleCommand = new DelegateCommand(InsertRoleClicked);
+            this.UpdateRoleCommand = new DelegateCommand(UpdateRoleClicked);
+        }
+        public void LoadRoleList()
+        {
+
+            try
+            {
+                Http.MobilePOS.Role.Instance.Listing(role_id, "active", (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        Models.POSFeature.RoleModel role = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.POSFeature.RoleModel>(data);
+
+                        for (int i = 0; i < role.data[0].permission.Count; i++)
+                        {
+                            bool status = role.data[0].permission[i].status == "active" ? true : false;
+                            _myAccessList.Add(new Models.POSFeature.AccessModel()
+                            {
+                                ID = role.data[0].permission[i].access,
+                                Status = status
+                            });
+                        }
+                        LoadAccess2();
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", Local.HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ROL-L1AVM.", "OK");
+            }
+        }
+        public void LoadAccess2()
+        {
+            try
+            {
+                if (!IsRunning)
+                {
+                    IsRunning = true;
+                    Http.MobilePOS.Role.Instance.AccessList((bool success, string data) =>
+                    {
+                        if (success)
+                        {
+                            Models.POSFeature.AccessGroup access = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.POSFeature.AccessGroup>(data);
+                            for (int i = 0; i < access.data.Length; i++)
+                            {
+                                _accessList = new ObservableCollection<Models.POSFeature.AccessModel>();
+                                for (int j = 0; j < access.data[i].access.Count; j++)
+                                {
+                                    bool status = false;
+                                    if (_myAccessList.Any(p => p.ID == access.data[i].access[j].ID))
+                                    {
+                                        status = true;
+                                    }
+                                    /*foreach (Models.POSFeature.AccessModel var in _myAccessList)
+                                    {
+                                        if (var.ID == access.data[i].access[j].ID)
+                                        {
+                                            status = true;
+                                        }
+                                    }*/
+                                    _accessList.Add(new Models.POSFeature.AccessModel()
+                                    {
+                                        ID = access.data[i].access[j].ID,
+                                        AccessName = access.data[i].access[j].AccessName,
+                                        Status = status
+                                    });
+                                }
+                                _accessGroup.Add(new Models.POSFeature.AccessGroup()
+                                {
+                                    GroupName = access.data[i].name,
+                                    AccessList = _accessList
+                                });
+                                for (int j = 0; j < AccessList.Count; j++)
+                                {
+                                    _myAccessList.Add(new Models.POSFeature.AccessModel()
+                                    {
+                                        ID = AccessList[j].ID,
+                                        AccessName = AccessList[j].AccessName,
+                                        Status = AccessList[j].Status
+                                    });
+                                }
+                            }
+                            IsRunning = false;
+                        }
+                        else
+                        {
+                            new Controllers.Notice.Alert("Notice to User", Local.HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsRunning = false;
+                        }
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2RAL-L1AVM.", "OK");
+                IsRunning = false;
+            }
+        }
+        private void UpdateRoleClicked(object obj)
+        {
+            try
+            {
+                if (!IsRunning)
+                {
+                    IsRunning = true;
+                    if (string.IsNullOrEmpty(this.Description) || string.IsNullOrEmpty(this.Name) || _myAccessList.Count == 0)
+                    {
+                        new Alert("Notice to User", "Please input title, description or add an access.", "Try Again");
+                        IsRunning = false;
+                    }
+                    else
+                    {
+                        Http.MobilePOS.Role.Instance.Update(role_id, this.Name, this.Description, _myAccessList, (bool success, string data) =>
+                        {
+                            if (success)
+                            {
+                                role_id = "0";
+                                RolesViewModel.LoadRoleList();
+                                PopupNavigation.Instance.PopAsync();
+                                IsRunning = false;
+                            }
+                            else
+                            {
+                                new Controllers.Notice.Alert("Notice to User", Local.HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                IsRunning = false;
+                            }
+                        });
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ROL-U1AVM.", "OK");
+                IsRunning = false;
+            }
+
+            /*foreach (Models.POSFeature.AccessModel var in _myAccessList)
+            {
+                Console.WriteLine("var.Status: " + var.Status + ". ." + var.AccessName + ". ." + var.AccessId);
+            }*/
         }
         private void InsertRoleClicked(object obj)
         {
@@ -132,6 +284,11 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ROL-I1AVM.", "OK");
                 IsRunning = false;
             }
+
+            /*foreach (Models.POSFeature.AccessModel var in _myAccessList)
+            {
+                Console.WriteLine("var.Status: ." + var.Status + ". ." + var.AccessId);
+            }*/
         }
         public void LoadAccess()
         {
@@ -152,6 +309,14 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                     GroupName = access.data[i].name,
                                     AccessList = access.data[i].access
                                 });
+                                for (int j = 0; j < access.data[i].access.Count; j++)
+                                {
+                                    _myAccessList.Add(new Models.POSFeature.AccessModel()
+                                    {
+                                        ID = access.data[i].access[j].ID,
+                                        Status = false
+                                    });
+                                }
                             }
                             IsRunning = false;
                         }
@@ -172,10 +337,18 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
         public static void Insert(string access_id)
         {
-            _myAccessList.Add(new Models.POSFeature.AccessModel()
+            foreach (Models.POSFeature.AccessModel var in _myAccessList)
+            {
+                if (var.ID == access_id)
+                {
+                    var.Status = true;
+                    break;
+                }
+            }
+            /*_myAccessList.Add(new Models.POSFeature.AccessModel()
             {
                 ID = access_id
-            });
+            });*/
         }
 
         public static void Remove(string access_id)
@@ -184,12 +357,14 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             {
                 if (var.ID == access_id)
                 {
-                    _myAccessList.Remove(var);
+                    var.Status = false;
+                    //_myAccessList.Remove(var);
                     break;
                 }
             }
         }
 
         public DelegateCommand InsertRoleCommand { get; set; }
+        public DelegateCommand UpdateRoleCommand { get; set; }
     }
 }

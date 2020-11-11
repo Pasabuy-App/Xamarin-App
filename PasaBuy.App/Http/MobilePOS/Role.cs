@@ -95,9 +95,12 @@ namespace PasaBuy.App.Http.MobilePOS
                     dict.Add("info", info);
 
                     int i = 0;
+                    string status;
                     foreach (var access in List)
                     {
+                        status = access.Status == true ? "active" : "inactive";
                         dict.Add("data[access][" + i + "][value]", access.ID.ToString());
+                        dict.Add("data[access][" + i + "][status]", status);
                         i++;
                     }
 
@@ -123,6 +126,56 @@ namespace PasaBuy.App.Http.MobilePOS
             catch (Exception e)
             {
                 new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ROL-I1.", "OK");
+            }
+        }
+
+        /// <summary>
+        /// Update of role using wpid, snky, stid, title, info and access.
+        /// </summary>
+        public async void Update(string roid, string title, string info, System.Collections.ObjectModel.ObservableCollection<Models.POSFeature.AccessModel> List, Action<bool, string> callback)
+        {
+            try
+            {
+                var dict = new Dictionary<string, string>();
+                    dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
+                    dict.Add("snky", PSACache.Instance.UserInfo.snky);
+                    dict.Add("stid", PSACache.Instance.UserInfo.stid);
+                    dict.Add("role_id", roid);
+                    dict.Add("title", title);
+                    dict.Add("info", info);
+
+                    int i = 0;
+                    string status;
+                    foreach (var access in List)
+                    {
+                        status = access.Status == true ? "active" : "inactive";
+                        dict.Add("data[access][" + i + "][value]", access.ID.ToString());
+                        dict.Add("data[access][" + i + "][status]", status);
+                        i++;
+                    }
+
+                var content = new FormUrlEncodedContent(dict);
+
+                var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/mobilepos/v2/personnels/role/update", content);
+                response.EnsureSuccessStatusCode();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string result = await response.Content.ReadAsStringAsync();
+                    Token token = JsonConvert.DeserializeObject<Token>(result);
+
+                    bool success = token.status == "success" ? true : false;
+                    string data = token.status == "success" ? result : token.message;
+                    callback(success, data);
+                }
+                else
+                {
+                    callback(false, "Network Error! Check your connection.");
+                }
+            }
+            catch (Exception e)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ROL-U1.", "OK");
             }
         }
 

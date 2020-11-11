@@ -281,6 +281,10 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             if (!IsRunning)
             {
                 IsRunning = true;
+                var role = obj as Models.POSFeature.RoleModel;
+                AccessViewModel.role_id = role.Id;
+                PopupEditRole.title = role.RoleTitle;
+                PopupEditRole.description = role.RoleInfo;
                 await PopupNavigation.Instance.PushAsync(new PopupEditRole());
                 IsRunning = false;
             }
