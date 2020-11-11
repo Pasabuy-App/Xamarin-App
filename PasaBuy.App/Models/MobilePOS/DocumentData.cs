@@ -145,6 +145,17 @@ namespace PasaBuy.App.Models.MobilePOS
                 OnPropertyChanged("Preview");
             }
         }
+
+        private string typeid = string.Empty;
+        public string TypeID
+        {
+            get { return typeid; }
+            set
+            {
+                typeid = value;
+                OnPropertyChanged("TypeID");
+            }
+        }
         public DocumentsData[] data;
         public class DocumentsData
         {
@@ -155,6 +166,7 @@ namespace PasaBuy.App.Models.MobilePOS
             public string doctype = string.Empty;
             public string approved = string.Empty;
             public string status = string.Empty;
+            public string type_id = string.Empty;
             public DateTime date_created;
         }
     }
