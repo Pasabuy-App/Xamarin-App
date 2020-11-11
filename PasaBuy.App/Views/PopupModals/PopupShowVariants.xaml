@@ -11,7 +11,8 @@
     xmlns:behavior1="clr-namespace:PasaBuy.App.Behaviors" 
     xmlns:controls="clr-namespace:PasaBuy.App.Controls"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms" 
-    xmlns:templateSelector="clr-namespace:PasaBuy.App.Helpers" xmlns:loading="clr-namespace:PasaBuy.App.UserControls">
+    xmlns:templateSelector="clr-namespace:PasaBuy.App.Helpers" 
+    xmlns:loading="clr-namespace:PasaBuy.App.UserControls">
 
         <pages:PopupPage.Resources>
             <ResourceDictionary>

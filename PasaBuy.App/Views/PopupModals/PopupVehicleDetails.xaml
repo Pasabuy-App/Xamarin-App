@@ -8,7 +8,7 @@
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-    xmlns:converter="clr-namespace:PasaBuy.App.Converters" xmlns:Forms9Patch="clr-namespace:Forms9Patch;assembly=Forms9Patch" 
+    xmlns:converter="clr-namespace:PasaBuy.App.Converters"
      xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
     xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms">
     <pages:PopupPage.Resources>

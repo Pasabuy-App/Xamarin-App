@@ -16,7 +16,8 @@ namespace PasaBuy.App.Views
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            await PopupNavigation.Instance.PushAsync(new PopupSelectSchedule());
+            await PopupNavigation.Instance.PushAsync(new PopupRateDriver());
+
         }
     }
 }
