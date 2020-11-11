@@ -2,6 +2,8 @@
 
 using FFImageLoading.Transformations;
 using FFImageLoading.Work;
+using PasaBuy.App.Views.PopupModals;
+using Rg.Plugins.Popup.Services;
 using Syncfusion.XForms.ProgressBar;
 using System;
 using System.Collections.Generic;
@@ -251,7 +253,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
         public System.Windows.Input.ICommand RefreshCommand { protected set; get; }
-        public int TimeLimit = 60;
+        public int TimeLimit = 30;
         public OrderStatusViewModel()
         {
             this.Fee = _fee;
@@ -285,7 +287,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                     if (countdown == 1)
                     {
                         this.timeStatus = "Thank you.";
-                        App.Current.MainPage.Navigation.PopModalAsync();
+                        Popup();
                         flag = false;
                         return false;
                     }
@@ -297,6 +299,11 @@ namespace PasaBuy.App.ViewModels.Marketplace
             {
                 stopwatch.Stop();
             }
+        }
+        public async void Popup()
+        {
+            App.Current.MainPage.Navigation.PopModalAsync();
+            await PopupNavigation.PushAsync(new PopupRateDriver());
         }
 
         public void CheckingOrder(string odid)
