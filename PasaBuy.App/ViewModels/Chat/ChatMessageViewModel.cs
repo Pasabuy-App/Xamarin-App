@@ -27,7 +27,7 @@ namespace PasaBuy.App.ViewModels.Chat
         /// <summary>
         /// ids for index of loadmore.
         /// </summary>
-        public int ids = 0;
+        public int ids;
 
         /// <summary>
         /// For double clicked in send message clicked.
@@ -158,26 +158,7 @@ namespace PasaBuy.App.ViewModels.Chat
         {
             ChatMessageListViewBehavior.isFirstLoad = false;
             await Task.Delay(100);
-            LoadMessage(user_id, "", "");
-
-            /*Device.StartTimer(TimeSpan.FromSeconds(1), doitt);
-            bool doitt()
-            {
-                if (refresh == 0)
-                {
-                    if (myPage != "profile")
-                    {
-                        RecentChatViewModel.chatItems.Clear();
-                        RecentChatViewModel.LoadMesssage("");
-                    }
-                    PopupMessagePopupMessage();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }*/
+            LoadMessage(user_id, "0");
 
         }
 
@@ -194,41 +175,27 @@ namespace PasaBuy.App.ViewModels.Chat
         /// <summary>
         /// Load 12 Message then used for load more.
         /// </summary>
-        public void LoadMessage(string recipient, string offset, string lastid)
+        public void LoadMessage(string recipient, string offset)
         {
             try
             {
-                Http.SocioPress.Message.Instance.GetByRecepient(recipient, offset, type, storeid, lastid, (bool success, string data) =>
+                Http.SocioPress.Message.Instance.GetByRecepient(recipient, PSACache.Instance.UserInfo.wpid, offset, "user", (bool success, string data) =>
                 {
                     if (success)
                     {
                         ChatData chat = JsonConvert.DeserializeObject<ChatData>(data);
-                        if (lastid == "")
-                        {
-                            int len = offset != string.Empty ? 7 : 12;
-                            isLoad = chat.data.Length < len ? false : true;
-                        }
+                        isLoad = chat.data.Length < 7 ? false : true;
                         for (int i = 0; i < chat.data.Length; i++)
                         {
-                            string id = chat.data[i].id;
-                            string senders = chat.data[i].sender;
-                            string content = chat.data[i].content;
-                            string date_created = chat.data[i].date_created;
-                            bool isreceived = senders != PSACache.Instance.UserInfo.wpid ? true : false;
+                            bool isreceived = chat.data[i].sender != PSACache.Instance.UserInfo.wpid ? true : false;
                             CultureInfo provider = new CultureInfo("fr-FR");
                             DateTime datenow = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "yyyy-MM-dd HH:mm:ss", provider);
-                            DateTime datedb = DateTime.ParseExact(date_created, "yyyy-MM-dd HH:mm:ss", provider);
+                            DateTime datedb = DateTime.ParseExact(chat.data[i].date_created, "yyyy-MM-dd HH:mm:ss", provider);
                             TimeSpan ts = datedb - datenow;
                             var currentTime = DateTime.Now;
 
-                            if (lastid == "")
-                            {
-                                ChatList.Insert(0, new ChatListItem(id, "", currentTime.AddMinutes(ts.TotalMinutes), content, isreceived));
-                            }
-                            else
-                            {
-                                ChatList.Add(new ChatListItem(id, "", currentTime.AddMinutes(ts.TotalMinutes), content, isreceived));
-                            }
+                            ChatList.Insert(0, new ChatListItem(chat.data[i].id, "", currentTime.AddMinutes(ts.TotalMinutes), chat.data[i].content, isreceived)); // 9 - 20 desc in rest
+
                         }
                     }
                     else
@@ -239,7 +206,7 @@ namespace PasaBuy.App.ViewModels.Chat
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1MSG-GBR1CHVM.", "OK");
             }
         }
 
@@ -460,17 +427,16 @@ namespace PasaBuy.App.ViewModels.Chat
                     if (count == 0)
                     {
                         ChatMessageListViewBehavior.isFirstLoad = false;
-                        string types = type == "2" ? "4" : type;
                         count = 1;
-                        Http.SocioPress.Message.Instance.Insert(this.NewMessage, user_id, types, storeid, (bool success, string data) =>
+                        Http.SocioPress.Message.Instance.Insert(this.NewMessage, user_id, PSACache.Instance.UserInfo.wpid, "user", (bool success, string data) =>
                         {
                             if (success)
                             {
-                                if(USNMessage.Instance.IsConnected)
+                                if (USNMessage.Instance.IsConnected)
                                 {
                                     USNMessage.Instance.SendMessage(user_id, this.NewMessage, null);
                                 }
-                                
+
                                 ChatList.Add(new ChatListItem("0", "", DateTime.Now.AddMinutes(0), this.NewMessage, false));
                                 this.NewMessage = null;
                                 count = 0;
@@ -490,18 +456,6 @@ namespace PasaBuy.App.ViewModels.Chat
             }
         }
 
-        /* public void PopupMessage()
-         {
-             if (ChatList.Count != 0)
-             {
-                 LoadMessage(user_id, "", ChatList.Last().ID);
-             }
-             else
-             {
-                 LoadMessage(user_id, "", "");
-             }
-         }*/
-
         /// <summary>
         /// Invoked when the back button is clicked.
         /// </summary>
@@ -519,7 +473,6 @@ namespace PasaBuy.App.ViewModels.Chat
             // Do something
         }
 
-
         /// <summary>
         /// Invoked when the LoadMore Button is clicked.
         /// </summary>
@@ -536,9 +489,10 @@ namespace PasaBuy.App.ViewModels.Chat
                 }
                 else
                 {
+                    ids = 12;
                     isFirstID = true;
                 }
-                LoadMessage(user_id, ids.ToString(), "");
+                LoadMessage(user_id, ids.ToString());
             }
             catch (Exception e)
             {

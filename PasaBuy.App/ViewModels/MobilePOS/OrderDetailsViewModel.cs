@@ -235,13 +235,42 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             this.DateCreated = datecreated;
             this.TotalPrice = totalprice;
             this.Method = method;
-            this.isMessage = stages == "Preparing" ? true : false;
-            this.isAccept = stages == "Pending" || stages == "Preparing" || stages == "Ongoing" ? true : false;
-            this.txtAcceptPreparingShipping = stages != "Pending" ? stages != "Ongoing" ? "Ready for Shipping" : "Prepare Now" : "Accept";
-            this.isDeclined = stages == "Pending" ? true : false;
+
+            CheckPermission();
+
             DeclinedCommand = new Command<object>(DeclinedClicked);
             AcceptedPreparingShippingCommand = new Command<object>(AcceptedPreparingShippingClicked);
             MessageCustomerCommand = new Command<object>(MessageCustomerClicked);
+        }
+        public void CheckPermission()
+        {
+            foreach (var per in ViewModels.MobilePOS.MyStoreListViewModel.permissions)
+            {
+                if (per.action == "decline_order")
+                {
+                    this.isDeclined = stages == "Pending" ? true : false;
+                    break;
+                }
+            }
+
+            foreach (var per in ViewModels.MobilePOS.MyStoreListViewModel.permissions)
+            {
+                if (per.action == "accept_order" || per.action == "prepare_order" || per.action == "ship_order")
+                {
+                    this.isAccept = stages == "Pending" || stages == "Preparing" || stages == "Ongoing" ? true : false;
+                    this.txtAcceptPreparingShipping = stages != "Pending" ? stages != "Ongoing" ? "Ready for Shipping" : "Prepare Now" : "Accept";
+                    break;
+                }
+            }
+
+            foreach (var per in ViewModels.MobilePOS.MyStoreListViewModel.permissions)
+            {
+                if (per.action == "message_user")
+                {
+                    this.isMessage = stages == "Preparing" ? true : false;
+                    break;
+                }
+            }
         }
         public Command<object> MessageCustomerCommand { get; set; }
         public Command<object> AcceptedPreparingShippingCommand { get; set; }
