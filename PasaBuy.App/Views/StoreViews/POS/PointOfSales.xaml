@@ -115,7 +115,7 @@
                                             x:Name="backButton"
                                             WidthRequest="35"
                                             CornerRadius="4"
-                                            CommandParameter="{Binding ID}"
+                                            CommandParameter="{Binding Id}"
                                             BackgroundColor="{DynamicResource PrimaryColor}"
                                             TextColor="White"
                                             Style="{StaticResource SfButtonStyle}"
@@ -205,7 +205,7 @@
 
                     <sync:SfListView.RightSwipeTemplate>
                         <DataTemplate x:Name="RightSwipeTemplate">
-                            <Grid ClassId="{Binding ID}"
+                            <Grid 
                                   Grid.Column="1"
                                   Margin="15,10,15,10"
                                   BackgroundColor="Red"

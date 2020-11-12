@@ -18,5 +18,23 @@ namespace PasaBuy.App.Views.PopupModals
         {
             PopupNavigation.Instance.PopAsync();
         }
+        private void Options_StateChanged(object sender, Syncfusion.XForms.Buttons.StateChangedEventArgs e)
+        {
+            if (e.IsChecked.HasValue && e.IsChecked.Value)
+            {
+                ViewModels.MobilePOS.POSVariantViewModel.InsertVariants((sender as Syncfusion.XForms.Buttons.SfRadioButton).ClassId, (sender as Syncfusion.XForms.Buttons.SfRadioButton).Text);
+            }
+        }
+        private void checkBox_StateChanged(object sender, Syncfusion.XForms.Buttons.StateChangedEventArgs e)
+        {
+            if (e.IsChecked.HasValue && e.IsChecked.Value)
+            {
+                ViewModels.MobilePOS.POSVariantViewModel.InsertAddOns((sender as Syncfusion.XForms.Buttons.SfCheckBox).ClassId, (sender as Syncfusion.XForms.Buttons.SfCheckBox).Text);
+            }
+            else
+            {
+                ViewModels.MobilePOS.POSVariantViewModel.RemoveAddOns((sender as Syncfusion.XForms.Buttons.SfCheckBox).ClassId, (sender as Syncfusion.XForms.Buttons.SfCheckBox).Text);
+            }
+        }
     }
 }

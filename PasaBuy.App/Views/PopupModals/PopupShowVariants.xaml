@@ -37,6 +37,7 @@
                 <DataTemplate x:Key="radioTemplate">
                     <button:SfRadioButton  Grid.Column="0"
                                             x:Name="Options"
+                                            StateChanged="Options_StateChanged"
                                             Margin="8,12,8,0"
                                             HorizontalOptions="FillAndExpand"
                                             FontSize="{DynamicResource MediumSize}" 
@@ -49,6 +50,7 @@
 
                 <DataTemplate x:Key="checkboxTemplate">
                     <button:SfCheckBox x:Name="checkBox" 
+                                    StateChanged="checkBox_StateChanged"
                                     Margin="8,8,0,0"
                                     CheckedColor="{DynamicResource PrimaryColor}"
                                     FontSize="{DynamicResource MediumSize}" 

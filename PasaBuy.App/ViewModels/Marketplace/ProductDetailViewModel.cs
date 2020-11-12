@@ -14,11 +14,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
     public class ProductDetailViewModel : BaseViewModel
     {
         #region Fields
-        public static ObservableCollection<Variants> _variantsList;
-        public static ObservableCollection<Options> _optionsList;
-        private ObservableCollection<Options> _addonsList;
-        public static ObservableCollection<Options> _AddOnsList;
-        public static ObservableCollection<Options> _OptionsList;
         public static ObservableCollection<Options> _AllVariants;
         public ObservableCollection<Options> AllVariants
         {
@@ -32,6 +27,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 this.NotifyPropertyChanged();
             }
         }
+        public static ObservableCollection<Options> _OptionsList;
         public ObservableCollection<Options> OptionList
         {
             get
@@ -44,6 +40,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 this.NotifyPropertyChanged();
             }
         }
+        public static ObservableCollection<Options> _AddOnsList;
         public ObservableCollection<Options> AddOnsList
         {
             get
@@ -56,6 +53,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 this.NotifyPropertyChanged();
             }
         }
+        private ObservableCollection<Options> _addonsList;
         public ObservableCollection<Options> AddonsList
         {
             get
@@ -82,6 +80,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
+        public static ObservableCollection<Options> _optionsList;
         public ObservableCollection<Options> OptionsList
         {
             get
@@ -103,6 +102,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 this.NotifyPropertyChanged();
             }
         }
+        public static ObservableCollection<Variants> _variantsList;
 
         public ObservableCollection<Variants> VariantsList
         {

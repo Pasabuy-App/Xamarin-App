@@ -32,6 +32,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         public POSProductViewModel()
         {
             productsList = new ObservableCollection<Models.TindaFeature.ProductModel>();
+            _AllVariants = new ObservableCollection<Models.TindaFeature.OptionModel>();
             LoadProduct();
         }
         private void LoadProduct()
@@ -107,7 +108,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                     }
                                     else
                                     {
-                                        POSViewModel.InsertData(product_id, product_name, product_price, 1);
+                                        POSViewModel.InsertData(product_id, product_name, product_price, 1, _AllVariants);
                                         await Application.Current.MainPage.Navigation.PopModalAsync();
                                         IsBusy = false;
                                         break;
@@ -116,7 +117,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                             }
                             else
                             {
-                                POSViewModel.InsertData(product_id, product_name, product_price, 1);
+                                POSViewModel.InsertData(product_id, product_name, product_price, 1, _AllVariants);
                                 await Application.Current.MainPage.Navigation.PopModalAsync();
                                 IsBusy = false;
                             }
@@ -133,6 +134,19 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2VRT-L2POS.", "OK");
                 IsBusy = false;
+            }
+        }
+        public static ObservableCollection<Models.TindaFeature.OptionModel> _AllVariants;
+        public ObservableCollection<Models.TindaFeature.OptionModel> AllVariants
+        {
+            get
+            {
+                return _AllVariants;
+            }
+            set
+            {
+                _AllVariants = value;
+                this.NotifyPropertyChanged();
             }
         }
     }
