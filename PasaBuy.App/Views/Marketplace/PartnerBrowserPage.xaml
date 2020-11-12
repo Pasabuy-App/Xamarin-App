@@ -145,7 +145,7 @@
                                                            DotsBorderColor="Transparent"
                                                            HeightRequest="240"
                                                            HorizontalOptions="StartAndExpand"
-                                                           ItemsSource="{Binding PartnerStoresRotator}"
+                                                           ItemsSource="{Binding BestSellers}"
                                                            NavigationDirection="Horizontal"
                                                            NavigationStripMode="Dots"
                                                            SelectedDotColor="{DynamicResource PrimaryColor}"
@@ -157,7 +157,7 @@
                                             <DataTemplate>
                                                 <ffimageloading:CachedImage Aspect="Fill"
                                                             BackgroundColor="{DynamicResource Gray-200}"
-                                                            Source="{Binding Banner}"
+                                                            Source="{Binding Logo}"
 			                                                DownsampleToViewSize="True" 
                                                             FadeAnimationEnabled="True">
                                                 </ffimageloading:CachedImage>
