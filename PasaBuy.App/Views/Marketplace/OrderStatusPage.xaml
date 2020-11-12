@@ -23,7 +23,7 @@
         <Grid>
             <Grid.Padding>
                 <OnIdiom x:TypeArguments="Thickness">
-                    <OnIdiom.Phone>0,5,0,0</OnIdiom.Phone>
+                    <OnIdiom.Phone>0,0,0,0</OnIdiom.Phone>
                     <OnIdiom.Tablet>50,0,50,0</OnIdiom.Tablet>
                 </OnIdiom>
             </Grid.Padding>
@@ -145,21 +145,15 @@
                                FontFamily="{StaticResource Montserrat-SemiBold}"
                                FontSize="{DynamicResource BigSize}"
                                TextColor="{DynamicResource Gray-900}"
-                               HorizontalTextAlignment="Center">
-                            <Label.Effects>
-                                <effects:LabelSizeFontToFit />
-                            </Label.Effects>
+                               HorizontalOptions="Center">
                         </Label>
 
                         <Label Text="{Binding timeStatus}"
                                Grid.Row="1"
                                FontFamily="{StaticResource Montserrat-SemiBold}"
-                               FontSize="{DynamicResource LargeSize}"
+                               FontSize="{DynamicResource SmallerSize}"
                                TextColor="{DynamicResource Gray-900}"
-                               HorizontalTextAlignment="Center">
-                            <Label.Effects>
-                                <effects:LabelSizeFontToFit />
-                            </Label.Effects>
+                               HorizontalOptions="Center">
                         </Label>
 
                         <BoxView Grid.Row="2" Style="{StaticResource SeparatorStyle}" />

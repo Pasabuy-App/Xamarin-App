@@ -24,6 +24,8 @@ namespace PasaBuy.App.Models.POSFeature
         public string date_created = string.Empty;
         public string stages = string.Empty;
         public string method = string.Empty;
+        public string driver_name = string.Empty;
+        public string driver_avatar = string.Empty;
         public string delivery_charges = string.Empty;
         public ObservableCollection<OrderDetailsModel> products;
     }

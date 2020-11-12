@@ -322,6 +322,11 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
                             for (int i = 0; i < order.data.Length; i++)
                             {
+                                PopupRateDriver.order_id = order.data[i].pubkey == "" ? "" : order.data[i].pubkey;
+                                PopupRateDriver.avatar = order.data[i].driver_avatar == "" ? "Avatar.png" : order.data[i].driver_avatar;
+                                PopupRateDriver.mover_name = order.data[i].driver_name == "" ? "Lorz Becislao" : order.data[i].driver_name;
+                                PopupRateDriver.mover_id = order.data[i].mvid == "" ? "6" : order.data[i].mvid;
+
                                 string stages = order.data[i].stages;
                                 if (stages == "Accepted")
                                 {

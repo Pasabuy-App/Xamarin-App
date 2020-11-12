@@ -216,9 +216,7 @@
                             </rating:SfRating>
                         </StackLayout>
 
-
                     </Grid>
-
 
                     <buttons:SfButton Grid.Row="2"
                             CornerRadius="4"
