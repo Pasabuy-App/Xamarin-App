@@ -161,7 +161,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
         public Command<object> DeleteCommand { get; set; }
 
-        private async void OnTapped(object obj)
+        private void OnTapped(object obj)
         {
             if (obj is Models.MobilePOS.PointOfSales pos)
             {
