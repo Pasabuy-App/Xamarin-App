@@ -115,7 +115,7 @@
                                     <Grid.GestureRecognizers>
                                         <TapGestureRecognizer x:Name="Update"
                                                               NumberOfTapsRequired="1"
-                                                               Command="{Binding Path = BindingContext.UpdateRoleCommand,Source={x:Reference ListView}}" 
+                                                              Command="{Binding Path = BindingContext.UpdateRoleCommand, Source={x:Reference ListView}}" 
                                                               CommandParameter="{Binding .}" />
                                     </Grid.GestureRecognizers>
                                     <Grid HorizontalOptions="Center" 

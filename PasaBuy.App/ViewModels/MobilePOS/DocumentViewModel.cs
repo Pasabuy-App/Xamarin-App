@@ -80,22 +80,29 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
         private async void DeleteClicked(object obj)
         {
-            IsBusy = true;
-            var doc = obj as DocumentData;
-            PopupConfirmDeleteDocumentStore.hash_id = doc.ID;
-            await PopupNavigation.Instance.PushAsync(new PopupConfirmDeleteDocumentStore());
-            IsBusy = false;
+            if (!IsRunning)
+            {
+                IsRunning = true;
+                var doc = obj as DocumentData;
+                PopupConfirmDeleteDocumentStore.hash_id = doc.ID;
+                await PopupNavigation.Instance.PushAsync(new PopupConfirmDeleteDocumentStore());
+                IsRunning = false;
+            }
         }
 
         private async void UpdateClicked(object obj)
         {
-            IsBusy = true;
-            var doc = obj as DocumentData;
-            PopupEditDocumentStore.doctype = doc.Title;
-            PopupEditDocumentStore.image = doc.Preview;
-            PopupEditDocumentStore.docid = doc.ID;
-            await PopupNavigation.Instance.PushAsync(new PopupEditDocumentStore());
-            IsBusy = false;
+            if (!IsRunning)
+            {
+                IsRunning = true;
+                var doc = obj as DocumentData;
+                PopupEditDocumentStore.doctype = doc.Title;
+                PopupEditDocumentStore.image = doc.Preview;
+                PopupEditDocumentStore.docid = doc.ID;
+                PopupEditDocumentStore.hash_id = doc.TypeID;
+                await PopupNavigation.Instance.PushAsync(new PopupEditDocumentStore());
+                IsRunning = false;
+            }
 
         }
 
@@ -125,7 +132,8 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                     Title = datas.data[i].doctype,
                                     Date = datas.data[i].date_created,
                                     Status = datas.data[i].status,
-                                    Preview = datas.data[i].preview
+                                    Preview = datas.data[i].preview,
+                                    TypeID = datas.data[i].type_id
                                 });
                             }
                             IsRunning = false;
@@ -165,7 +173,8 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                     Title = datas.data[i].doctype,
                                     Date = datas.data[i].date_created,
                                     Status = datas.data[i].status,
-                                    Preview = datas.data[i].preview
+                                    Preview = datas.data[i].preview,
+                                    TypeID = datas.data[i].type_id
                                 });
                             }
                         }

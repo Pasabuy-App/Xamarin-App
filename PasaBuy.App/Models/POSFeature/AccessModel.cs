@@ -10,6 +10,7 @@ namespace PasaBuy.App.Models.POSFeature
         public string title = string.Empty;
         public string actions = string.Empty;
         public string groups = string.Empty;
+        public bool status;
 
         public string AccessActions
         {
@@ -46,6 +47,19 @@ namespace PasaBuy.App.Models.POSFeature
             {
                 ID = value;
                 OnPropertyChanged("AccessId");
+            }
+        }
+
+        public bool Status
+        {
+            get
+            {
+                return status;
+            }
+            set
+            {
+                status = value;
+                OnPropertyChanged("Status");
             }
         }
 

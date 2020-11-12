@@ -38,7 +38,6 @@
                 <!--TABS CONFIGS-->
                 <tabView:SfTabView.SelectionIndicatorSettings>
                     <tabView:SelectionIndicatorSettings
-                    
                     AnimationDuration="200"
                     Color="{DynamicResource PrimaryColor}" 
                     Position="Bottom" 

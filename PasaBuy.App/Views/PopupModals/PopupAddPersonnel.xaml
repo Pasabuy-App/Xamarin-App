@@ -9,7 +9,8 @@
     xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App" 
     xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
     xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms" 
-    xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Pickers;assembly=Syncfusion.SfPicker.XForms" xmlns:control="clr-namespace:PasaBuy.App.Controls">
+    xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Pickers;assembly=Syncfusion.SfPicker.XForms" 
+    xmlns:control="clr-namespace:PasaBuy.App.Controls">
     
     <pages:PopupPage.Resources>
         <ResourceDictionary>

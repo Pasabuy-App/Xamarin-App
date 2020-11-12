@@ -10,7 +10,10 @@
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
     xmlns:behavior1="clr-namespace:PasaBuy.App.Behaviors" 
     xmlns:controls="clr-namespace:PasaBuy.App.Controls"
-    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms" xmlns:templateSelector="clr-namespace:PasaBuy.App.Helpers" xmlns:local="clr-namespace:PasaBuy.App.UserControls">
+    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms" 
+    xmlns:templateSelector="clr-namespace:PasaBuy.App.Helpers" 
+    xmlns:local="clr-namespace:PasaBuy.App.UserControls">
+    
     <pages:PopupPage.Resources>
         <ResourceDictionary>
             <Style x:Key="PopupItemHeaderStyle" TargetType="{x:Type Label}">
@@ -35,18 +38,20 @@
             <DataTemplate x:Key="checkboxTemplate">
                 <button:SfCheckBox  Grid.Column="0"
                                     x:Name="Access"
+                                    StateChanged="Access_StateChanged"
                                     Grid.ColumnSpan="2"
                                     Margin="8,12,8,0"
                                     CheckedColor="{DynamicResource PrimaryColor}"
                                     HorizontalOptions="FillAndExpand"
                                     FontSize="{DynamicResource SmallSize}" 
                                     FontFamily="{StaticResource Montserrat-Medium}" 
-                                    ClassId="{Binding AccessId}"
+                                    ClassId="{Binding AccessId}" IsChecked="{Binding Status}"
                                     Text="{Binding AccessName}" />
             </DataTemplate>
 
         </ResourceDictionary>
     </pages:PopupPage.Resources>
+    
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation
             DurationIn="500"
@@ -147,7 +152,7 @@
                             FontFamily="{StaticResource Montserrat-Regular}"
                             HorizontalOptions="FillAndExpand"
                             Text="OK"
-                            Command="{Binding InsertRoleCommand}"
+                            Command="{Binding UpdateRoleCommand}"
                             TextColor="White"
                             VerticalOptions="Center" />
                             <button:SfButton

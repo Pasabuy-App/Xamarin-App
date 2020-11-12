@@ -11,7 +11,7 @@
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" 
     xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
-    xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms">
+    xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms" xmlns:local="clr-namespace:PasaBuy.App.UserControls">
     <pages:PopupPage.Resources>
         <ResourceDictionary>
             <Style x:Key="PopupItemHeaderStyle" TargetType="{x:Type Label}">
@@ -60,31 +60,33 @@
             ScaleOut="0.7" />
     </pages:PopupPage.Animation>
     <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-        <Frame
+        <Grid>
+
+            <Frame
             x:Name="FrameContainer"
             Margin="15"
             Padding="15,15,15,15"
             BackgroundColor="White"
             CornerRadius="6"
             HorizontalOptions="Center">
-            <StackLayout
+                <StackLayout
                 Padding="10,5"
                 IsClippedToBounds="True"
                 Spacing="3">
-                <Grid RowSpacing="0" Padding="15">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
+                    <Grid RowSpacing="0" Padding="15">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
 
-                    </Grid.ColumnDefinitions>
-                    <border:SfBorder Padding="0, 0, 0, 0"
+                        </Grid.ColumnDefinitions>
+                        <border:SfBorder Padding="0, 0, 0, 0"
                                  Grid.Row="0"
                                  Margin="0, 0, 0, 0"
                                  Grid.ColumnSpan="3"
@@ -92,14 +94,14 @@
                                  HeightRequest="175"
                                  BackgroundColor="{DynamicResource Gray-200}"
                                  Style="{StaticResource SfBorderStyle}">
-                        <ffimageloading:CachedImage Aspect="AspectFill"
+                            <ffimageloading:CachedImage Aspect="AspectFill"
                                             x:Name="DocumentImage"
                                             Source="document.png"
 			                                DownsampleToViewSize="true" FadeAnimationEnabled="True" >
-                        </ffimageloading:CachedImage>
-                    </border:SfBorder>
+                            </ffimageloading:CachedImage>
+                        </border:SfBorder>
 
-                    <Image Grid.Column="0"
+                        <Image Grid.Column="0"
                            Grid.Row="1"
                            Margin="0,15,30,0"
                                 HeightRequest="32"
@@ -107,12 +109,12 @@
                                 Source="photo_camera.png"
                                 VerticalOptions="Center"
                                 WidthRequest="32">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OpenCameraCommand" NumberOfTapsRequired="1"/>
-                        </Image.GestureRecognizers>
-                    </Image>
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OpenCameraCommand" NumberOfTapsRequired="1"/>
+                            </Image.GestureRecognizers>
+                        </Image>
 
-                    <Image
+                        <Image
                                 Grid.Column="1"
                                 Grid.Row="1"
                                 Margin="0,15,0,0"
@@ -121,12 +123,12 @@
                                 Source="picture_black.png"
                                 VerticalOptions="Center"
                                 WidthRequest="32">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="BrowseGalleryCommand" NumberOfTapsRequired="1" />
-                        </Image.GestureRecognizers>
-                    </Image>
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="BrowseGalleryCommand" NumberOfTapsRequired="1" />
+                            </Image.GestureRecognizers>
+                        </Image>
 
-                    <Image
+                        <Image
                                 Grid.Column="2"
                                 Grid.Row="1"
                                 Margin="0,15,0,0"
@@ -135,18 +137,18 @@
                                 Source="remove_512.png"
                                 VerticalOptions="Center"
                                 WidthRequest="32">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="RemoveDocumentImage" NumberOfTapsRequired="1" />
-                        </Image.GestureRecognizers>
-                    </Image>
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="RemoveDocumentImage" NumberOfTapsRequired="1" />
+                            </Image.GestureRecognizers>
+                        </Image>
 
-                    <border:SfBorder
+                        <border:SfBorder
                         Margin="0, 15, 0, 0"
                         Grid.Row="2"
                         Grid.ColumnSpan="3"
                         CornerRadius="5"
                         Style="{StaticResource SfBorderStyle}">
-                        <combobox:SfComboBox
+                            <combobox:SfComboBox
                                 x:Name="DocumentTypePicker"
                                 SelectedValue="{Binding DocumentType, Mode=TwoWay}"
                                 Style="{StaticResource ComboBoxStyle}"
@@ -158,27 +160,27 @@
                                 SelectionChanged="DocumentTypePicker_SelectionChanged"
                                 VerticalOptions="CenterAndExpand">
 
-                            <combobox:SfComboBox.DropDownButtonSettings>
-                                <combobox:DropDownButtonSettings>
-                                    <combobox:DropDownButtonSettings.View>
-                                        <Label FontFamily="{StaticResource FontIcons}"
+                                <combobox:SfComboBox.DropDownButtonSettings>
+                                    <combobox:DropDownButtonSettings>
+                                        <combobox:DropDownButtonSettings.View>
+                                            <Label FontFamily="{StaticResource FontIcons}"
                                                FontSize="25"
                                                HorizontalTextAlignment="Center"
                                                Text="{StaticResource DropDownButtonIcon}"
                                                TextColor="{DynamicResource Gray-600}"
                                                VerticalTextAlignment="Center" />
-                                    </combobox:DropDownButtonSettings.View>
-                                </combobox:DropDownButtonSettings>
-                            </combobox:SfComboBox.DropDownButtonSettings>
-                        </combobox:SfComboBox>
-                    </border:SfBorder>
-                </Grid>
-                <Grid Margin="0, 15, 0, 0" Padding="15, 0, 15, 0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <button:SfButton
+                                        </combobox:DropDownButtonSettings.View>
+                                    </combobox:DropDownButtonSettings>
+                                </combobox:SfComboBox.DropDownButtonSettings>
+                            </combobox:SfComboBox>
+                        </border:SfBorder>
+                    </Grid>
+                    <Grid Margin="0, 15, 0, 0" Padding="15, 0, 15, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <button:SfButton
                             Grid.Column="0"
                             BackgroundColor="Green"
                             BorderColor="{DynamicResource BlackColor}"
@@ -191,7 +193,7 @@
                             Text="OK"
                             TextColor="White"
                             VerticalOptions="Center" />
-                    <button:SfButton
+                        <button:SfButton
                             Grid.Column="1"
                             BackgroundColor="Red"
                             BorderColor="{StaticResource BlackColor}"
@@ -203,10 +205,16 @@
                             Text="{texts:Translate Cancel}"
                             TextColor="White"
                             VerticalOptions="Center" />
-                </Grid>
+                    </Grid>
 
 
-            </StackLayout>
-        </Frame>
+                </StackLayout>
+            </Frame>
+            <local:LoadingIndicator
+                    x:Name="IsRunning"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Fill" />
+        </Grid>
+        
     </StackLayout>
 </pages:PopupPage>

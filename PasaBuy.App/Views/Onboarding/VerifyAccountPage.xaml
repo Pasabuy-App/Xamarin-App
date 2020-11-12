@@ -89,9 +89,9 @@
                        HorizontalTextAlignment="Center"
                        TextColor="{DynamicResource Gray-900}"
                        Style="{StaticResource LabelStyle}"
-                       Text="Enter email and activation key" />
+                       Text="Enter activation key" />
 
-                <border:SfBorder Padding="15,0,0,0"
+                <border:SfBorder Padding="15,0,0,0" IsVisible="false"
                                  Grid.Row="2"
                                  BorderColor="Black"
                                  Style="{StaticResource FormBorderStyle}">

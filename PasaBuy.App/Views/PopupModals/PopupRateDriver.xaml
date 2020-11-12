@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="PasaBuy.App.Views.PopupModals.PopupRateDriver"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:converter="clr-namespace:PasaBuy.App.Converters"
+    xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
+    xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms" xmlns:effects="clr-namespace:Xamarin.Toolkit.Effects;assembly=Xamarin.Toolkit.Effects" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms">
+    <pages:PopupPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="BooleanToColorConverter" />
+            <converter:BooleanToStringConverter x:Key="BoolToStringConverter" />
+
+            <Style x:Key="IconButtonStyle" TargetType="buttons:SfButton">
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="WidthRequest" Value="40" />
+            </Style>
+
+            <Style x:Key="NavigationBarButtonStyle" TargetType="buttons:SfButton">
+                <Setter Property="TextColor" Value="{DynamicResource Gray-Black}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="BorderWidth" Value="0" />
+                <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+            </Style>
+
+            <Style x:Key="SearchEntryStyle" TargetType="controls:BorderlessEntry">
+                <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-700}" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="{DynamicResource Gray-Black}" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="ReturnType" Value="Done" />
+            </Style>
+
+            <!--  Common style for borders  -->
+            <Style x:Key="SfBorderStyle" TargetType="border:SfBorder">
+                <Setter Property="BackgroundColor" Value="{DynamicResource Gray-200}" />
+                <Setter Property="BorderColor" Value="{DynamicResource Gray-700}" />
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="BorderWidth" Value="1" />
+            </Style>
+
+            <!--  Common style for separator BoxView  -->
+            <Style x:Key="SeparatorStyle" TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="1" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource Gray-500}" />
+            </Style>
+
+            <Style x:Key="ComboBoxStyle" TargetType="combobox:SfComboBox">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}"/>
+                <Setter Property="TextSize" Value="16"/>
+                <Setter Property="TextColor" Value="{DynamicResource Gray-900}"/>
+                <Setter Property="ShowBorder" Value="False"/>
+                <Setter Property="WatermarkColor" Value="{DynamicResource Gray-600}"/>
+                <Setter Property="Margin" Value="0,0,0,0"/>
+                <Setter Property="HeightRequest" Value="40"/>
+            </Style>
+
+            <!--  Common style for flat buttons  -->
+            <Style x:Key="SfFlatButtonStyle" TargetType="buttons:SfButton">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="EntryTextBoxStyle" TargetType="controls:BorderlessEntry">
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="TextColor" Value="{DynamicResource Gray-900}"/>
+                <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-600}"/>
+                <Setter Property="Margin" Value="0,0"/>
+                <Setter Property="HeightRequest" Value="40"/>
+            </Style>
+
+            <x:String x:Key="ArrowRight">&#xe728;</x:String>
+            <x:String x:Key="Home">&#xe706;</x:String>
+            <x:String x:Key="Lunch">&#xe74e;</x:String>
+            <x:String x:Key="Back">&#xe709;</x:String>
+            <x:String x:Key="Search">&#xe705;</x:String>
+            <x:String x:Key="DropDownButtonIcon">&#xe70b;</x:String>
+
+        </ResourceDictionary>
+    </pages:PopupPage.Resources>
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            DurationIn="500"
+            EasingIn="SpringOut"
+            PositionIn="Bottom"
+            PositionOut="Center"
+            ScaleIn="1"
+            ScaleOut="0.7" />
+    </pages:PopupPage.Animation>
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <Frame
+            x:Name="FrameContainer"
+            Margin="20,15,20,15"
+            Padding="0,0,0,5"
+            BackgroundColor="{DynamicResource Gray-White}"
+            CornerRadius="6"
+            HorizontalOptions="Center">
+            <StackLayout
+                Padding="0"
+                IsClippedToBounds="True"
+                Spacing="0">
+                <Grid RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0"
+                          HorizontalOptions="End" 
+                          VerticalOptions="Start">
+                        <Image
+                              Grid.Row="0"
+                              Grid.Column="0"
+                              HeightRequest="30"
+                              Source="cross_512.png"
+                              WidthRequest="30">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="CloseModal" NumberOfTapsRequired="1"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1"
+                      Padding="10,5,10,5"
+                      RowSpacing="8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0"
+                          HorizontalOptions="CenterAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+                               Grid.Row="0"
+                               FontSize="{DynamicResource BigSize}"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center"
+                               Text="Transaction Completed"
+                               TextColor="{DynamicResource Green}" />
+                        <StackLayout HorizontalOptions="Center"
+                                     Grid.Row="1"
+                                     Orientation="Horizontal">
+                            <Label FontFamily="{StaticResource Montserrat-Medium}"
+                               FontSize="{DynamicResource LargeSize}"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center"
+                               Text="Order ID : "
+                               TextColor="{DynamicResource Gray-900}" />
+                            <Label FontFamily="{StaticResource Montserrat-Medium}"
+                               x:Name="OrderID"
+                               FontSize="{DynamicResource LargeSize}"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center"
+                               Text="Order ID : dF23aB"
+                               TextColor="{DynamicResource Gray-900}" />
+                        </StackLayout>
+
+                        
+                        <StackLayout HorizontalOptions="Center"
+                                     Grid.Row="2">
+                            <ffimageloading:CachedImage Aspect="AspectFill"
+                                                    Source="Avatar.png"
+                                                    x:Name="Avatar"
+                                                    WidthRequest="120"
+                                                    HeightRequest="120"
+			                                        DownsampleToViewSize="true" 
+                                                    FadeAnimationEnabled="True" >
+                                <ffimageloading:CachedImage.Transformations>
+                                    <transformations:CircleTransformation />
+                                </ffimageloading:CachedImage.Transformations>
+                            </ffimageloading:CachedImage>
+                        </StackLayout>
+
+                        <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+                               Grid.Row="3"
+                               FontSize="{DynamicResource LargeSize}"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center"
+                               x:Name="MoverName"
+                               Text="Juan Dela Cruz"
+                               TextColor="{DynamicResource Gray-900}">
+                            <Label.Effects>
+                                <effects:LabelSizeFontToFit />
+                            </Label.Effects>
+                        </Label>
+
+                        <Label FontFamily="{StaticResource Montserrat-Medium}"
+                               Grid.Row="4"
+                               FontSize="{DynamicResource LargeSize}"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center"
+                               Text="Please rate my service"
+                               TextColor="{DynamicResource Gray-900}" />
+
+                        <StackLayout HorizontalOptions="Center"
+                                     Grid.Row="5">
+                            <rating:SfRating Value="{Binding Rating}"
+                                             HorizontalOptions="Center"
+                                             ItemSize="{OnIdiom Default=35,Tablet=50}">
+                                <rating:SfRating.RatingSettings>
+                                    <rating:SfRatingSettings RatedFill="{DynamicResource PrimaryColor}"
+                                                             UnRatedFill="{DynamicResource Gray-200}"  />
+                                </rating:SfRating.RatingSettings>
+                            </rating:SfRating>
+                        </StackLayout>
+
+                        <inputLayout:SfTextInputLayout
+                                        Margin="0,15,0,15"
+                                        Grid.Row="6"
+                                        ContainerBackgroundColor="Transparent"
+                                        ContainerType="Outlined"
+                                        FocusedColor="{DynamicResource Gray-900}"
+                                        Hint="Tell us how you feel"
+                                        HorizontalOptions="Fill"
+                                        LeadingViewPosition="Inside">
+                            <Editor HeightRequest="80"
+                                        Text="{Binding Remarks}"
+                                        MaxLength="250" />
+                        </inputLayout:SfTextInputLayout>
+
+                    </Grid>
+        
+
+                    <buttons:SfButton Grid.Row="2"
+                            CornerRadius="4"
+                            Margin="0,15,0,15"
+                            Padding="0,8,0,8"
+                            Style="{StaticResource SfFlatButtonStyle}"
+                            TextColor="{DynamicResource Gray-White}"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            Text="Submit" />
+                </Grid>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</pages:PopupPage>

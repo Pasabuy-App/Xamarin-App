@@ -164,7 +164,7 @@
                                                             DownsampleToViewSize="True"
                                                             HeightRequest="70"
                                                             HorizontalOptions="Center"
-                                                            Source="{Binding Logo}"
+                                                            Source="{Binding Banner}"
                                                             TransformPlaceholders="True"
                                                             WidthRequest="70">
                                         </ffimageloading:CachedImage>

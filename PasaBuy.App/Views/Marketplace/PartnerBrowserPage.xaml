@@ -145,7 +145,7 @@
                                                            DotsBorderColor="Transparent"
                                                            HeightRequest="240"
                                                            HorizontalOptions="StartAndExpand"
-                                                           ItemsSource="{Binding PartnerStoresRotator}"
+                                                           ItemsSource="{Binding BestSellers}"
                                                            NavigationDirection="Horizontal"
                                                            NavigationStripMode="Dots"
                                                            SelectedDotColor="{DynamicResource PrimaryColor}"
@@ -157,7 +157,7 @@
                                             <DataTemplate>
                                                 <ffimageloading:CachedImage Aspect="Fill"
                                                             BackgroundColor="{DynamicResource Gray-200}"
-                                                            Source="{Binding Banner}"
+                                                            Source="{Binding Logo}"
 			                                                DownsampleToViewSize="True" 
                                                             FadeAnimationEnabled="True">
                                                 </ffimageloading:CachedImage>
@@ -204,6 +204,7 @@
                                                        FontSize="{DynamicResource SmallSize}"
                                                        LineHeight="{OnPlatform Android=1.25,Default=-1}"
                                                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                       LineBreakMode="TailTruncation"
                                                        VerticalTextAlignment="Center">
                                                     <Label.Effects>
                                                         <effects:LabelSizeFontToFit />
@@ -214,7 +215,8 @@
                                                  <Label Text="{Binding Info}"
                                                            FontSize="{DynamicResource SmallSize}"
                                                            LineHeight="{OnPlatform Android=1.25,Default=-1}"
-                                                           FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                           FontFamily="{StaticResource Montserrat-Medium}"
+                                                           LineBreakMode="TailTruncation"
                                                            VerticalTextAlignment="Center">
                                                         <Label.Effects>
                                                             <effects:LabelSizeFontToFit />
@@ -225,9 +227,10 @@
                                                 <!--  Store Address  -->
                                                 <Label Text="{Binding Address}"
                                                        FontSize="{DynamicResource SmallSize}"
-                                                       MaxLines="2"
+                                                       MaxLines="3"
+                                                       LineBreakMode="TailTruncation"
                                                        LineHeight="{OnPlatform Android=1.25,Default=-1}"
-                                                       FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                       FontFamily="{StaticResource Montserrat-Medium}"
                                                        VerticalTextAlignment="Center">
                                                     <Label.Effects>
                                                         <effects:LabelSizeFontToFit />

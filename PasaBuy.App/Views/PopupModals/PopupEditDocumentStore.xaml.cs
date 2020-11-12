@@ -19,7 +19,7 @@ namespace PasaBuy.App.Views.PopupModals
     public partial class PopupEditDocumentStore : PopupPage
     {
         private string filepath = string.Empty;
-        private string hash_id = string.Empty;
+        public static string hash_id = string.Empty;
 
         public static string image = string.Empty;
         public static string doctype = string.Empty;
@@ -30,6 +30,7 @@ namespace PasaBuy.App.Views.PopupModals
             InitializeComponent();
             this.BindingContext = new AddDocumentViewModel();
             DocumentImage.Source = image;
+            DocumentTypePicker.Text = doctype;
         }
 
         private void CancelModal(object sender, EventArgs e)
@@ -43,24 +44,30 @@ namespace PasaBuy.App.Views.PopupModals
             {
                 if (filepath != string.Empty && hash_id != string.Empty)
                 {
-                    Http.TindaPress.Document.Instance.Update(filepath, docid, hash_id, (bool success, string data) =>
+                    if (IsRunning.IsRunning == false)
                     {
-                        if (success)
+                        IsRunning.IsRunning = true;
+                        Http.TindaPress.Document.Instance.Update(filepath, docid, hash_id, (bool success, string data) =>
                         {
-                            DocumentViewModel.RefreshData();
-                            PopupNavigation.Instance.PopAsync();
-                        }
-                        else
-                        {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                        }
-                    });
-
+                            if (success)
+                            {
+                                DocumentViewModel.RefreshData();
+                                PopupNavigation.Instance.PopAsync();
+                                IsRunning.IsRunning = false;
+                            }
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                IsRunning.IsRunning = false;
+                            }
+                        });
+                    }
                 }
             }
             catch (Exception ex)
             {
                 new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2DOC-U1PUEDS.", "OK");
+                IsRunning.IsRunning = false;
             }
 
         }
@@ -72,59 +79,79 @@ namespace PasaBuy.App.Views.PopupModals
 
         async void OpenCameraCommand(object sender, EventArgs args)
         {
-            await CrossMedia.Current.Initialize();
-            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            if (IsRunning.IsRunning == false)
             {
-                new Alert("Error", "No camera available", "Failed");
+                IsRunning.IsRunning = true;
+                await CrossMedia.Current.Initialize();
+                if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+                {
+                    new Alert("Error", "No camera available.", "Failed");
+                    IsRunning.IsRunning = false;
+                }
+
+                var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+                {
+                    CompressionQuality = 40
+                });
+
+                if (file == null)
+                {
+                    IsRunning.IsRunning = false;
+                    return;
+                }
+
+                ImageSource imageSource = ImageSource.FromStream(() =>
+                {
+                    var stream = file.GetStream();
+                    IsRunning.IsRunning = false;
+                    return stream;
+                });
+
+                DocumentImage.Source = imageSource;
+                //var filePath = file.Path;
+                filepath = file.Path;
+                IsRunning.IsRunning = false;
             }
-
-            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
-            {
-                CompressionQuality = 40
-            });
-
-            if (file == null)
-                return;
-
-            ImageSource imageSource = ImageSource.FromStream(() =>
-            {
-                var stream = file.GetStream();
-                return stream;
-            });
-
-            DocumentImage.Source = imageSource;
-            //var filePath = file.Path;
-            filepath = file.Path;
 
         }
 
         async void BrowseGalleryCommand(object sender, EventArgs args)
         {
-            await CrossMedia.Current.Initialize();
-            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            if (IsRunning.IsRunning == false)
             {
-                new Alert("Error", "No camera available", "Ok");
+                IsRunning.IsRunning = true;
+                await CrossMedia.Current.Initialize();
+                if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+                {
+                    new Alert("Error", "No camera available.", "Failed");
+                    IsRunning.IsRunning = false;
+                }
+
+                var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+                {
+                    SaveMetaData = false,
+                    CompressionQuality = 30,
+                    MaxWidthHeight = 1024
+                });
+
+
+                if (file == null)
+                {
+                    IsRunning.IsRunning = false;
+                    return;
+                }
+
+                ImageSource imageSource = ImageSource.FromStream(() =>
+                {
+                    var stream = file.GetStream();
+                    IsRunning.IsRunning = false;
+                    return stream;
+                });
+
+                DocumentImage.Source = imageSource;
+                filepath = file.Path;
+                IsRunning.IsRunning = false;
             }
-
-            var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
-            {
-                SaveMetaData = false,
-                CompressionQuality = 30,
-                MaxWidthHeight = 1024
-            });
-
-
-            if (file == null)
-                return;
-
-            ImageSource imageSource = ImageSource.FromStream(() =>
-            {
-                var stream = file.GetStream();
-                return stream;
-            });
-
-            DocumentImage.Source = imageSource;
-            filepath = file.Path;
 
         }
 

@@ -2,6 +2,8 @@
 
 using FFImageLoading.Transformations;
 using FFImageLoading.Work;
+using PasaBuy.App.Views.PopupModals;
+using Rg.Plugins.Popup.Services;
 using Syncfusion.XForms.ProgressBar;
 using System;
 using System.Collections.Generic;
@@ -251,7 +253,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
         public System.Windows.Input.ICommand RefreshCommand { protected set; get; }
-        public int TimeLimit = 60;
+        public int TimeLimit = 30;
         public OrderStatusViewModel()
         {
             this.Fee = _fee;
@@ -285,7 +287,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                     if (countdown == 1)
                     {
                         this.timeStatus = "Thank you.";
-                        App.Current.MainPage.Navigation.PopModalAsync();
+                        Popup();
                         flag = false;
                         return false;
                     }
@@ -297,6 +299,11 @@ namespace PasaBuy.App.ViewModels.Marketplace
             {
                 stopwatch.Stop();
             }
+        }
+        public async void Popup()
+        {
+            App.Current.MainPage.Navigation.PopModalAsync();
+            await PopupNavigation.PushAsync(new PopupRateDriver());
         }
 
         public void CheckingOrder(string odid)
@@ -315,6 +322,11 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
                             for (int i = 0; i < order.data.Length; i++)
                             {
+                                PopupRateDriver.order_id = order.data[i].pubkey == "" ? "" : order.data[i].pubkey;
+                                PopupRateDriver.avatar = order.data[i].driver_avatar == "" ? "Avatar.png" : order.data[i].driver_avatar;
+                                PopupRateDriver.mover_name = order.data[i].driver_name == "" ? "Lorz Becislao" : order.data[i].driver_name;
+                                PopupRateDriver.mover_id = order.data[i].mvid == "" ? "6" : order.data[i].mvid;
+
                                 string stages = order.data[i].stages;
                                 if (stages == "Accepted")
                                 {

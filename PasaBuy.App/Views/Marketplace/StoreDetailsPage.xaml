@@ -158,16 +158,20 @@
                             Margin="{Binding Path=BindingContext.CartItemCount, Converter={x:StaticResource intToThicknessConverter}}"
                             Padding="0"
                             BadgeText="{Binding Source={x:Reference Name=storeDetails}, Path=BindingContext.CartItemCount}"
-                            HeightRequest="45"
+                            HeightRequest="40"
                             HorizontalOptions="End"
                             VerticalOptions="Center"
-                            WidthRequest="45">
+                            WidthRequest="50">
                             <badge:SfBadgeView.Content>
-                                <ImageButton Source="cart.png"
+                                <StackLayout Padding="5,0,0,0">
+                                    <ImageButton Source="cart.png"
                                              IsEnabled="{Binding Source={x:Reference Name=storeDetails}, Path=BindingContext.IsBusy}"
-                                             Command="{Binding Source={x:Reference Name=storeDetails}, Path=BindingContext.GoToCartCommand}"
                                              HorizontalOptions="End"
                                              BackgroundColor="Transparent" />
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={x:Reference Name=storeDetails}, Path=BindingContext.GoToCartCommand}" />
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
                             </badge:SfBadgeView.Content>
                             <badge:SfBadgeView.BadgeSettings>
                                 <badge:BadgeSetting
@@ -177,7 +181,7 @@
                                     FontSize="11"
                                     Stroke="{DynamicResource Gray-White}"
                                     StrokeWidth="1"
-                                    Offset="4,3" />
+                                    Offset="0,3" />
                             </badge:SfBadgeView.BadgeSettings>
                         </badge:SfBadgeView>
                     </controls:TitleView.TrailingView>

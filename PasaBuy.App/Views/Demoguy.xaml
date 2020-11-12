@@ -15,8 +15,8 @@
                VerticalOptions="Start" />
             <Button Text="Create Notification"
                     Clicked="Button_Clicked"
-                HorizontalOptions="Center"
-                VerticalOptions="Start"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Start"
                 /> 
         </StackLayout>
 </ContentPage>

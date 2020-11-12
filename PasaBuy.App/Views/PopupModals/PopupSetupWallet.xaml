@@ -14,7 +14,8 @@
     xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    xmlns:converter="clr-namespace:PasaBuy.App.Converters" xmlns:effects="clr-namespace:Xamarin.Toolkit.Effects;assembly=Xamarin.Toolkit.Effects">
+    xmlns:converter="clr-namespace:PasaBuy.App.Converters"
+    xmlns:effects="clr-namespace:Xamarin.Toolkit.Effects;assembly=Xamarin.Toolkit.Effects">
     <pages:PopupPage.Resources>
         <ResourceDictionary>
             <converter:BooleanToColorConverter x:Key="BooleanToColorConverter" />

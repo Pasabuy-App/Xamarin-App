@@ -14,8 +14,8 @@ namespace PasaBuy.App.Models.MobilePOS
         private double price;
         private int quantity;
 
-        private ObservableCollection<Options> vars = new ObservableCollection<Options>();
-        public ObservableCollection<Options> Variants
+        public ObservableCollection<TindaFeature.OptionModel> vars = new ObservableCollection<TindaFeature.OptionModel>();
+        public ObservableCollection<TindaFeature.OptionModel> Variants
         {
 
             get

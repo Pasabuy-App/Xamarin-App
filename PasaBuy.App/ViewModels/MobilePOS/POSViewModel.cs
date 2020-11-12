@@ -122,7 +122,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 IsBusy = true;
                 double totalprice = 0;
                 foreach (Models.MobilePOS.PointOfSales pos in _currentOrder)
-                {
+                { 
                     totalprice += (pos.Price * pos.Quantity);
                 }
                 this.Tax = "₱ 0.00";
@@ -133,28 +133,40 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
         }
 
-        public static void InsertData(string product_id, string product_name, double price, int quantity)
+        public static void InsertData(string product_id, string product_name, double price, int quantity, ObservableCollection<Models.TindaFeature.OptionModel> Variants)
         {
+            double totalprice = 0;
+            if (Variants.Count > 0)
+            {
+                double var_price = 0;
+                foreach (var variants in Variants)
+                {
+                    var_price += variants.Price;
+                }
+                totalprice += (Convert.ToSingle(price) + var_price);
+            }
+            else
+            {
+                totalprice = Convert.ToSingle(price);
+            }
             _currentOrder.Add(new Models.MobilePOS.PointOfSales()
             {
                 Id = product_id,
                 Name = product_name,
-                Price = Convert.ToSingle(price),
-                Quantity = quantity
+                Price = totalprice,
+                Quantity = quantity,
+                Variants = Variants
             });
         }
 
         public Command<object> DeleteCommand { get; set; }
 
-        private async void OnTapped(object obj)
+        private void OnTapped(object obj)
         {
-            if (!IsBusy)
+            if (obj is Models.MobilePOS.PointOfSales pos)
             {
-                IsBusy = true;
-                var pos = obj as Models.MobilePOS.PointOfSales;
                 _currentOrder.Remove(pos);
-                await Task.Delay(300);
-                IsBusy = false;
+                UpdatePrice();
             }
         }
 

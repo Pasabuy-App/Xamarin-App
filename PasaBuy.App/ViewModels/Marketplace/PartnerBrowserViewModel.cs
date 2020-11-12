@@ -123,11 +123,10 @@ namespace PasaBuy.App.ViewModels.Marketplace
             RefreshCommand = new Command<string>((key) =>
             {
                 LoadPartner();
-                LoadRotator();
                 IsRefreshing = false;
             });
             LoadPartner();
-            LoadRotator();
+            LoadBestSeller();
         }
         public void LoadPartner()
         {
@@ -260,27 +259,45 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-        public static void LoadRotator()
+        public void LoadBestSeller()
         {
             try
             {
-                partnerStoresRotator.Clear();
-                partnerStoresRotator.Add(new Models.TindaFeature.StoreModel()
+                Http.TindaPress.Store.Instance.Featured("Robinson", "active", (bool success, string data) =>
                 {
-                    Banner = "https://pasabuy.app/wp-content/uploads/2020/11/RobinsonGalleriaSouth-Entrance.jpg"
-                });
-                partnerStoresRotator.Add(new Models.TindaFeature.StoreModel()
-                {
-                    Banner = "https://pasabuy.app/wp-content/uploads/2020/11/RobinsonGalleriaSouth-Outdoor.jpg"
-                });
-                partnerStoresRotator.Add(new Models.TindaFeature.StoreModel()
-                {
-                    Banner = "https://pasabuy.app/wp-content/uploads/2020/11/RobinsonGalleriaSouth-Supermarket.jpg"
+                    if (success)
+                    {
+                        Models.TindaFeature.StoreModel store = JsonConvert.DeserializeObject<Models.TindaFeature.StoreModel>(data);
+                       
+                        if (store.data.Length > 0)
+                        {
+                            HeaderSize = "280";
+                        }
+                        else
+                        {
+                            HeaderSize = "0";
+                        }
+                        for (int i = 0; i < store.data.Length; i++)
+                        {
+                            _bestSellers.Add(new Models.TindaFeature.StoreModel()
+                            {
+                                ID = store.data[i].hsid,
+                                Title = store.data[i].title,
+                                Info = store.data[i].info,
+                                Logo = store.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(store.data[i].avatar),
+                                Banner = PSAProc.GetUrl(store.data[i].banner)
+                            });
+                        }
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
                 });
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2STR-L1FBVM.", "OK");
             }
         }
 

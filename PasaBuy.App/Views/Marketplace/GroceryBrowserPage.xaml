@@ -189,7 +189,7 @@
 
                                                 <Label FontFamily="{StaticResource Montserrat-SemiBold}"
                                                        Padding="10,5,0,0"
-                                                       FontSize="13"
+                                                       FontSize="{DynamicResource MediumSize}"
                                                        Grid.Row="0"
                                                        Grid.Column="1"
                                                        Grid.ColumnSpan="2"

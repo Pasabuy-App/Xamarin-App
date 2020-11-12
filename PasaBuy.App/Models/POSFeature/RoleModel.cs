@@ -12,6 +12,7 @@ namespace PasaBuy.App.Models.POSFeature
         public string status = string.Empty;
         public string created_by = string.Empty;
         public string date_created = string.Empty;
+        public ObservableCollection<PermissionModel> permission { get; set; }
     }
     public class RoleModel : INotifyPropertyChanged
     {
@@ -25,6 +26,7 @@ namespace PasaBuy.App.Models.POSFeature
         private string access_id = string.Empty;
 
 
+        public ObservableCollection<PermissionModel> Permission { get; set; }
         public ObservableCollection<AccessModel> Access { get; set; }
 
 
