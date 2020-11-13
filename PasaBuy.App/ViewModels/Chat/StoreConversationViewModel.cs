@@ -114,7 +114,7 @@ namespace PasaBuy.App.ViewModels.Chat
         {
             try
             {
-                Http.SocioPress.Message.Instance.GetByRecepient(recipient, offset, "1", storeid, lastid, (bool success, string data) =>
+                /*Http.SocioPress.Message.Instance.GetByRecepient(recipient, offset, "1", storeid, lastid, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -152,7 +152,7 @@ namespace PasaBuy.App.ViewModels.Chat
                     {
                         new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                     }
-                });
+                });*/
             }
             catch (Exception e)
             {

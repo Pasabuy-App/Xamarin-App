@@ -48,7 +48,7 @@ namespace PasaBuy.App.ViewModels.Chat
             {
                 if (MasterView.MyType == "store")
                 {
-                    Http.SocioPress.Message.Instance.Listing("2", PSACache.Instance.UserInfo.stid, offset, (bool success, string data) =>
+                    /*Http.SocioPress.Message.Instance.Listing("2", PSACache.Instance.UserInfo.stid, offset, (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -102,11 +102,11 @@ namespace PasaBuy.App.ViewModels.Chat
                         {
                             new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                         }
-                    });
+                    });*/
                 }
                 if (MasterView.MyType == "mover")
                 {
-                    Http.SocioPress.Message.Instance.Listing( "1", "0", offset, (bool success, string data) =>
+                    /*Http.SocioPress.Message.Instance.Listing( "1", "0", offset, (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -160,7 +160,7 @@ namespace PasaBuy.App.ViewModels.Chat
                         {
                             new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                         }
-                    });
+                    });*/
                 }
             }
             catch (Exception e)
@@ -256,14 +256,14 @@ namespace PasaBuy.App.ViewModels.Chat
         /// </summary>
         private void ItemSelected(object selectedItem)
         {
-            if (MasterView.MyType == "store")
+            /*if (MasterView.MyType == "store")
             {
                 StoreConversationViewModel.refresh = 0;
                 StoreConversationViewModel.ProfileNames = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).SenderName;
                 StoreConversationViewModel.ProfileImages = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).ImagePath;
                 StoreConversationViewModel.user_id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).ID;
                 StoreConversationViewModel.storeid = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).Store_id;
-                StoreConversationViewModel.type = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).Types;
+                //StoreConversationViewModel.type = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).Types;
                 ((App.Current.MainPage as MasterDetailPage).Detail as NavigationPage).Navigation.PushModalAsync(new StoreConversationPage());
             }
             if (MasterView.MyType == "mover")
@@ -272,9 +272,9 @@ namespace PasaBuy.App.ViewModels.Chat
                 DriverChatMessageViewModel.ProfileNames = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).SenderName;
                 DriverChatMessageViewModel.ProfileImages = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).ImagePath;
                 DriverChatMessageViewModel.user_id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).ID;
-                DriverChatMessageViewModel.type = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).Types;
+                //DriverChatMessageViewModel.type = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).Types;
                 ((App.Current.MainPage as MasterDetailPage).Detail as NavigationPage).Navigation.PushModalAsync(new DriverChatMessagePage());
-            }
+            }*/
         }
 
         /// <summary>

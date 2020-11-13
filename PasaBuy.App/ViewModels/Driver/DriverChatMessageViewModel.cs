@@ -144,7 +144,7 @@ namespace PasaBuy.App.ViewModels.Driver
         {
             try
             {
-                Http.SocioPress.Message.Instance.GetByRecepient( recipient, offset, "3", "", lastid, (bool success, string data) =>
+                /*Http.SocioPress.Message.Instance.GetByRecepient( recipient, offset, "3", "", lastid, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -183,7 +183,7 @@ namespace PasaBuy.App.ViewModels.Driver
                     {
                         new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                     }
-                });
+                });*/
             }
             catch (Exception e)
             {

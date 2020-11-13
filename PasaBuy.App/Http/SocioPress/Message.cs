@@ -38,7 +38,7 @@ namespace PasaBuy.App.Http.SocioPress
 
         #region Method
 
-        public async void Insert(string contents, string recepient, string type, string stid, Action<bool, string> callback)
+        public async void Insert(string contents, string recepient, string sender, string type, Action<bool, string> callback)
         {
             try
             {
@@ -46,9 +46,9 @@ namespace PasaBuy.App.Http.SocioPress
                 dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
                 dict.Add("snky", PSACache.Instance.UserInfo.snky);
                 dict.Add("content", contents);
+                dict.Add("sender", sender);
                 dict.Add("recepient", recepient);
                 dict.Add("type", type);
-                dict.Add("stid", stid);
                 var content = new FormUrlEncodedContent(dict);
 
                 var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/sociopress/v1/messages/insert", content);
@@ -74,54 +74,20 @@ namespace PasaBuy.App.Http.SocioPress
             }
         }
 
-        public async void Seen(string mess_id, Action<bool, string> callback)
+        public async void GetByRecepient(string recipient, string sender, string offset, string type, Action<bool, string> callback)
         {
             try
             {
                 var dict = new Dictionary<string, string>();
                 dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
                 dict.Add("snky", PSACache.Instance.UserInfo.snky);
-                dict.Add("mess_id", mess_id);
-                var content = new FormUrlEncodedContent(dict);
-
-                var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/sociopress/v1/messages/seen", content);
-                response.EnsureSuccessStatusCode();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    string result = await response.Content.ReadAsStringAsync();
-                    Token token = JsonConvert.DeserializeObject<Token>(result);
-
-                    bool success = token.status == "success" ? true : false;
-                    string data = token.status == "success" ? result : token.message;
-                    callback(success, data);
-                }
-                else
-                {
-                    callback(false, "Network Error! Check your connection.");
-                }
-            }
-            catch (Exception e)
-            {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1MSG-S1.", "OK");
-            }
-        }
-
-        public async void GetByRecepient(string recepient, string offset, string type, string stid, string last_id, Action<bool, string> callback)
-        {
-            try
-            {
-                var dict = new Dictionary<string, string>();
-                dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
-                dict.Add("snky", PSACache.Instance.UserInfo.snky);
-                dict.Add("recepient", recepient);
+                dict.Add("recipient", recipient);
+                dict.Add("sender", sender);
                 dict.Add("type", type);
-                dict.Add("stid", stid);
-                if (offset != "") { dict.Add("offset", offset); }
-                if (last_id != "") { dict.Add("lid", last_id); }
+                dict.Add("offset", offset);
                 var content = new FormUrlEncodedContent(dict);
 
-                var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/sociopress/v1/get/recepient", content);
+                var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/sociopress/v1/messages/get/recepient", content);
                 response.EnsureSuccessStatusCode();
 
                 if (response.IsSuccessStatusCode)
@@ -144,7 +110,7 @@ namespace PasaBuy.App.Http.SocioPress
             }
         }
 
-        public async void Listing(string type, string stid, string lastid, Action<bool, string> callback)
+        public async void Listing(string type, string user_id, string offset, string lastid, Action<bool, string> callback)
         {
             try
             {
@@ -152,7 +118,8 @@ namespace PasaBuy.App.Http.SocioPress
                 dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
                 dict.Add("snky", PSACache.Instance.UserInfo.snky);
                 dict.Add("type", type);
-                dict.Add("stid", stid);
+                dict.Add("user_id", user_id);
+                dict.Add("offset", offset);
                 if (lastid != "") { dict.Add("lid", lastid); }
                 var content = new FormUrlEncodedContent(dict);
 

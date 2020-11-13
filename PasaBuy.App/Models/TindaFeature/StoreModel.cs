@@ -167,6 +167,21 @@ namespace PasaBuy.App.Models.TindaFeature
                 OnPropertyChanged("Operation");
             }
         }
+
+        public System.Collections.ObjectModel.ObservableCollection<PermissionModel> permissions;
+
+        public System.Collections.ObjectModel.ObservableCollection<PermissionModel> Permissions
+        {
+            get
+            {
+                return permissions;
+            }
+            set
+            {
+                permissions = value;
+                OnPropertyChanged("Permission");
+            }
+        }
     }
 
     public class StoresData
@@ -196,6 +211,8 @@ namespace PasaBuy.App.Models.TindaFeature
         public string opening = string.Empty;
         public string closing = string.Empty;
         public string operation_id = string.Empty;
+
+        public System.Collections.ObjectModel.ObservableCollection<PermissionModel> permissions;
     }
 
 }

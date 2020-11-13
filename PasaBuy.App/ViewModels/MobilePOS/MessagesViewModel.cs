@@ -21,13 +21,13 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         {
             storeChatList = new ObservableCollection<ChatDetail>();
             storeChatList.Clear();
-            LoadMesssage("");
+            //LoadMesssage("");
         }
         public static void LoadMesssage(string offset)
         {
             try
             {
-                Http.SocioPress.Message.Instance.Listing( "2", PSACache.Instance.UserInfo.stid, offset, (bool success, string data) =>
+                /*Http.SocioPress.Message.Instance.Listing( "2", PSACache.Instance.UserInfo.stid, offset, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -83,7 +83,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                     {
                         new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                     }
-                });
+                });*/
             }
             catch (Exception e)
             {
