@@ -6,9 +6,10 @@ namespace PasaBuy.App.Models.POSFeature
 {
     public class OrderData
     {
+        public string order_by = string.Empty;
         public string pubkey = string.Empty;
         public string stid = string.Empty;
-        public string mvid = string.Empty;
+        public string mover_id = string.Empty;
         public string customer = string.Empty;
         public string avatar = string.Empty;
         public string cutomer_address = string.Empty;
@@ -46,6 +47,17 @@ namespace PasaBuy.App.Models.POSFeature
             }
         }
 
+        private string _order_by = string.Empty;
+        public string Order_By
+        {
+            get { return _order_by; }
+            set
+            {
+                _order_by = value;
+                OnPropertyChanged("Order_By");
+            }
+        }
+
         private string delivery_charges = string.Empty;
         public string Delivery_Charges
         {
@@ -53,7 +65,7 @@ namespace PasaBuy.App.Models.POSFeature
             set
             {
                 delivery_charges = value;
-                OnPropertyChanged("Stages");
+                OnPropertyChanged("Delivery_Charges");
             }
         }
 

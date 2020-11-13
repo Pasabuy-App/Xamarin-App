@@ -99,8 +99,9 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 OrderDetailsViewModel.datecreated = item.DateCreated;
                 OrderDetailsViewModel.totalprice = item.TotalPrice;
                 OrderDetailsViewModel.stages = item.Stages;
-                OrderDetailsViewModel.customer = item.CustomerName; 
+                OrderDetailsViewModel.customer = item.CustomerName;
                 OrderDetailsViewModel.method = item.Method;
+                OrderDetailsViewModel.user_id = item.Order_By;
                 await App.Current.MainPage.Navigation.PushModalAsync(new Views.StoreViews.TransactionDetailsView());
                 IsRunning = false;
             }
@@ -126,6 +127,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                 DateTime date = DateTime.ParseExact(dates, "yyyy-MM-dd HH:mm:ss", provider);
                                 orderList.Add(new Models.POSFeature.OrderModel()
                                 {
+                                    Order_By = order.data[i].order_by,
                                     ID = order.data[i].pubkey,
                                     Pubkey = "Order ID: #" + order.data[i].pubkey,
                                     StoreName = order.data[i].store_name,
@@ -173,6 +175,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                             DateTime date = DateTime.ParseExact(dates, "yyyy-MM-dd HH:mm:ss", provider);
                             orderList.Add(new Models.POSFeature.OrderModel()
                             {
+                                Order_By = order.data[i].order_by,
                                 ID = order.data[i].pubkey,
                                 Pubkey = "Order ID: #" + order.data[i].pubkey,
                                 StoreName = order.data[i].store_name,
