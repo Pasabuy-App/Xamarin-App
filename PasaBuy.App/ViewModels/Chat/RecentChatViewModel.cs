@@ -343,6 +343,8 @@ namespace PasaBuy.App.ViewModels.Chat
                 IsRunning = true;
                 ChatMessageViewModel.refresh = 0;
                 ChatMessageViewModel.myPage = "user";
+                ViewModels.Chat.ChatMessageViewModel.odid = string.Empty;
+                ViewModels.Chat.ChatMessageViewModel.type = "user";
                 ChatMessageViewModel.ProfileNames = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).SenderName;
                 ChatMessageViewModel.ProfileImages = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).ImagePath;
                 ChatMessageViewModel.user_id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ChatDetail).ID;
