@@ -4,6 +4,7 @@ using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -106,12 +107,25 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                         {
                             for (int i = 0; i < role.data.Length; i++)
                             {
+                                bool update = false;
+                                bool delete = false;
+                                if (ViewModels.MobilePOS.MyStoreListViewModel.permissions.Any(p => p.action == "edit_role"))
+                                {
+                                    update = true;
+                                }
+                                if (ViewModels.MobilePOS.MyStoreListViewModel.permissions.Any(p => p.action == "delete_role"))
+                                {
+                                    delete = true;
+                                }
                                 _rolesList.Add(new Models.POSFeature.RoleModel()
                                 {
                                     Id = role.data[i].ID,
                                     RoleTitle = role.data[i].title,
                                     RoleInfo = role.data[i].info,
                                     RoleStatus = role.data[i].status == "active" ? "Active" : "Inactive",
+                                    isUpdate = update,
+                                    isDelete = delete,
+                                    isDeleteCol = update == true ? 1 : 0
                                 });
                             }
                         }
@@ -144,12 +158,25 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
                             for (int i = 0; i < role.data.Length; i++)
                             {
+                                bool update = false;
+                                bool delete = false;
+                                if (ViewModels.MobilePOS.MyStoreListViewModel.permissions.Any(p => p.action == "edit_role"))
+                                {
+                                    update = true;
+                                }
+                                if (ViewModels.MobilePOS.MyStoreListViewModel.permissions.Any(p => p.action == "delete_role"))
+                                {
+                                    delete = true;
+                                }
                                 this.RolesList.Add(new Models.POSFeature.RoleModel()
                                 {
                                     Id = role.data[i].ID,
                                     RoleTitle = role.data[i].title,
                                     RoleInfo = role.data[i].info,
                                     RoleStatus = role.data[i].status == "active" ? "Active" : "Inactive",
+                                    isUpdate = update,
+                                    isDelete = delete,
+                                    isDeleteCol = update == true ? 1 : 0
                                 });
                             }
                             IsRunning = false;
