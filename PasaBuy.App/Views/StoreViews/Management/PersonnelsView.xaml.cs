@@ -3,6 +3,7 @@ using PasaBuy.App.ViewModels.MobilePOS;
 using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -18,6 +19,33 @@ namespace PasaBuy.App.Views.StoreViews.Management
         {
             InitializeComponent();
             this.BindingContext = new PersonnelsViewModel();
+            AddButton.IsEnabled = false;
+            CheckPermission();
+        }
+
+        public void CheckPermission()
+        {
+            bool edit = false;
+            bool delete = false;
+            foreach (var per in ViewModels.MobilePOS.MyStoreListViewModel.permissions)
+            {
+                if (per.action == "edit_personnel")
+                {
+                    edit = true;
+                }
+                if (per.action == "delete_personnel")
+                {
+                    delete = true;
+                }
+            }
+            if (!delete && !edit)
+            {
+                listView.AllowSwiping = false;
+            }
+            if (ViewModels.MobilePOS.MyStoreListViewModel.permissions.Any(p => p.action == "add_personnel"))
+            {
+                AddButton.IsEnabled = true;
+            }
         }
 
         private void backButton_Clicked(object sender, EventArgs e)

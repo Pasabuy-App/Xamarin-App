@@ -25,7 +25,35 @@ namespace PasaBuy.App.Views.StoreViews
             InitializeComponent();
             this.BindingContext = new ProductViewModel();
             SearchText.SearchButtonPressed += SearchButtonPress;
+            xAdd.IsEnabled = false;
+            CheckPermission();
         }
+
+        public void CheckPermission()
+        {
+            bool edit = false;
+            bool delete = false;
+            foreach (var per in ViewModels.MobilePOS.MyStoreListViewModel.permissions)
+            {
+                if (per.action == "edit_products")
+                {
+                    edit = true;
+                }
+                if (per.action == "delete_products")
+                {
+                    delete = true;
+                }
+            }
+            if (!delete && !edit)
+            {
+                listView.AllowSwiping = false;
+            }
+            if (ViewModels.MobilePOS.MyStoreListViewModel.permissions.Any(p => p.action == "add_products"))
+            {
+                xAdd.IsEnabled = true;
+            }
+        }
+
 
         void SearchButtonPress(object sender, EventArgs e)
         {
