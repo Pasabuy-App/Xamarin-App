@@ -11,6 +11,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace PasaBuy.App.ViewModels.MobilePOS
 {
@@ -183,13 +184,26 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
                             for (int i = 0; i < variants.data.Length; i++)
                             {
+                                bool update = false;
+                                bool delete = false;
+                                if (ViewModels.MobilePOS.MyStoreListViewModel.permissions.Any(p => p.action == "edit_variant"))
+                                {
+                                    update = true;
+                                }
+                                if (ViewModels.MobilePOS.MyStoreListViewModel.permissions.Any(p => p.action == "delete_variant"))
+                                {
+                                    delete = true;
+                                }
                                 string required = variants.data[i].required == "true" ? "Yes" : "No";
                                 _variantsList.Add(new Models.TindaFeature.VariantModel()
                                 {
                                     ID = variants.data[i].ID,
                                     Title = variants.data[i].title,
                                     Info = variants.data[i].info,
-                                    Required = "Required: " + required
+                                    Required = "Required: " + required,
+                                    isUpdate = update,
+                                    isDelete = delete,
+                                    isDeleteCol = update == true ? 1 : 0
                                 });
                             }
                             IsRunning = false;
@@ -222,13 +236,26 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
                         for (int i = 0; i < variants.data.Length; i++)
                         {
+                            bool update = false;
+                            bool delete = false;
+                            if (ViewModels.MobilePOS.MyStoreListViewModel.permissions.Any(p => p.action == "edit_variant"))
+                            {
+                                update = true;
+                            }
+                            if (ViewModels.MobilePOS.MyStoreListViewModel.permissions.Any(p => p.action == "delete_variant"))
+                            {
+                                delete = true;
+                            }
                             string required = variants.data[i].required == "true" ? "Yes" : "No";
                             _variantsList.Add(new Models.TindaFeature.VariantModel()
                             {
                                 ID = variants.data[i].ID,
                                 Title = variants.data[i].title,
                                 Info = variants.data[i].info,
-                                Required = "Required: " + required
+                                Required = "Required: " + required,
+                                isUpdate = update,
+                                isDelete = delete,
+                                isDeleteCol = update == true ? 1 : 0
                             });
                         }
                     }
