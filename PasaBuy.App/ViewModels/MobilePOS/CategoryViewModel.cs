@@ -5,6 +5,7 @@ using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -17,12 +18,12 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         public static ObservableCollection<Models.TindaFeature.CategoryModel> categoriesList;
         public ObservableCollection<Models.TindaFeature.CategoryModel> CategoriesList
         {
-            get 
-            { 
-                return categoriesList; 
+            get
+            {
+                return categoriesList;
             }
-            set 
-            { 
+            set
+            {
                 if (categoriesList != value)
                 {
                     categoriesList = value;
@@ -122,11 +123,24 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                             Models.TindaFeature.CategoryModel category = JsonConvert.DeserializeObject<Models.TindaFeature.CategoryModel>(data);
                             for (int i = 0; i < category.data.Length; i++)
                             {
+                                bool update = false;
+                                bool delete = false;
+                                if (ViewModels.MobilePOS.MyStoreListViewModel.permissions.Any(p => p.action == "edit_category"))
+                                {
+                                    update = true;
+                                }
+                                if (ViewModels.MobilePOS.MyStoreListViewModel.permissions.Any(p => p.action == "delete_category"))
+                                {
+                                    delete = true;
+                                }
                                 categoriesList.Add(new Models.TindaFeature.CategoryModel()
                                 {
                                     ID = category.data[i].ID,
                                     Title = category.data[i].title,
-                                    Info = category.data[i].info
+                                    Info = category.data[i].info,
+                                    isUpdate = update,
+                                    isDelete = delete,
+                                    isDeleteCol = update == true ? 1 : 0
                                 });
                             }
                             IsRunning = false;
@@ -158,11 +172,24 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                         Models.TindaFeature.CategoryModel category = JsonConvert.DeserializeObject<Models.TindaFeature.CategoryModel>(data);
                         for (int i = 0; i < category.data.Length; i++)
                         {
+                            bool update = false;
+                            bool delete = false;
+                            if (ViewModels.MobilePOS.MyStoreListViewModel.permissions.Any(p => p.action == "edit_category"))
+                            {
+                                update = true;
+                            }
+                            if (ViewModels.MobilePOS.MyStoreListViewModel.permissions.Any(p => p.action == "delete_category"))
+                            {
+                                delete = true;
+                            }
                             categoriesList.Add(new Models.TindaFeature.CategoryModel()
                             {
                                 ID = category.data[i].ID,
                                 Title = category.data[i].title,
-                                Info = category.data[i].info
+                                Info = category.data[i].info,
+                                isUpdate = update,
+                                isDelete = delete,
+                                isDeleteCol = update == true ? 1 : 0
                             });
                         }
                     }
