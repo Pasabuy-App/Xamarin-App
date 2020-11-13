@@ -6,6 +6,7 @@ using PasaBuy.App.Views.StoreViews;
 using PasaBuy.App.Views.StoreViews.Management;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -191,6 +192,16 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                             Models.TindaFeature.ProductModel product = JsonConvert.DeserializeObject<Models.TindaFeature.ProductModel>(data);
                             for (int i = 0; i < product.data.Length; i++)
                             {
+                                bool update = false;
+                                bool delete = false;
+                                if (ViewModels.MobilePOS.MyStoreListViewModel.permissions.Any(p => p.action == "edit_products"))
+                                {
+                                    update = true;
+                                }
+                                if (ViewModels.MobilePOS.MyStoreListViewModel.permissions.Any(p => p.action == "delete_products"))
+                                {
+                                    delete = true;
+                                }
                                 this.ProductsList.Add(new Models.TindaFeature.ProductModel()
                                 {
                                     ID = product.data[i].ID,
@@ -201,7 +212,10 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                     Category_Name = product.data[i].category_name,
                                     Category_ID = product.data[i].pcid,
                                     Inventory = product.data[i].inventory,
-                                    Preview = PSAProc.GetUrl(product.data[i].avatar)
+                                    Preview = PSAProc.GetUrl(product.data[i].avatar),
+                                    isUpdate = update,
+                                    isDelete = delete,
+                                    isDeleteCol = update == true ? 1 : 0
                                 });
                             }
                             IsRunning = false;
@@ -233,6 +247,16 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                         Models.TindaFeature.ProductModel product = JsonConvert.DeserializeObject<Models.TindaFeature.ProductModel>(data);
                         for (int i = 0; i < product.data.Length; i++)
                         {
+                            bool update = false;
+                            bool delete = false;
+                            if (ViewModels.MobilePOS.MyStoreListViewModel.permissions.Any(p => p.action == "edit_products"))
+                            {
+                                update = true;
+                            }
+                            if (ViewModels.MobilePOS.MyStoreListViewModel.permissions.Any(p => p.action == "delete_products"))
+                            {
+                                delete = true;
+                            }
                             productsList.Add(new Models.TindaFeature.ProductModel()
                             {
                                 ID = product.data[i].ID,
@@ -243,7 +267,10 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                 Category_Name = product.data[i].category_name,
                                 Category_ID = product.data[i].pcid,
                                 Inventory = product.data[i].inventory,
-                                Preview = PSAProc.GetUrl(product.data[i].avatar)
+                                Preview = PSAProc.GetUrl(product.data[i].avatar),
+                                isUpdate = update,
+                                isDelete = delete,
+                                isDeleteCol = update == true ? 1 : 0
                             });
                         }
                     }
