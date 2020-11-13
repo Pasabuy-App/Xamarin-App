@@ -82,7 +82,7 @@ namespace PasaBuy.App.ViewModels.Driver
         public int ids = 0;
         public static string myPage = string.Empty;
 
-        //public static bool isFirstLoad = false;
+        public static string odid = string.Empty;
         #endregion
 
         #region Constructor
@@ -91,6 +91,13 @@ namespace PasaBuy.App.ViewModels.Driver
         /// </summary>
         public DriverChatMessageViewModel()
         {
+            List<ChatListDetails> list = new List<ChatListDetails>();
+            ChatList = new ChatList(list);
+            FirstLoad();
+            isFirstID = false;
+            ChatMessageListViewBehavior.isFirstLoad = false;
+            ids = 0;
+
             this.MakeVoiceCall = new Command(this.VoiceCallClicked);
             this.MakeVideoCall = new Command(this.VideoCallClicked);
             this.MenuCommand = new Command(this.MenuClicked);
@@ -100,39 +107,25 @@ namespace PasaBuy.App.ViewModels.Driver
             this.BackCommand = new Command(this.BackButtonClicked);
             this.ProfileCommand = new Command(this.ProfileClicked);
             LoadMoreItemsCommand = new Command<object>(LoadMoreItems, CanLoadMoreItems);
+            USocketNet.USNMessage.Instance.OnMessage = OnMessage;
+        }
+        private void OnMessage(USocketNet.Model.Message msg)
+        {
+            if (msg.s == PSACache.Instance.UserInfo.mvid)
+            {
+                ChatList.Add(new ChatListItem("0", "", DateTime.Now.AddMinutes(0), msg.m, false));
+            }
 
-            List<ChatListDetails> list = new List<ChatListDetails>();
-            ChatList = new ChatList(list);
-            FirstLoad();
-            isFirstID = false;
-            ids = 0;
-            ChatMessageListViewBehavior.isFirstLoad = false;
+            if (msg.s == user_id)
+            {
+                ChatList.Add(new ChatListItem("0", "", DateTime.Now.AddMinutes(0), msg.m, true));
+            }
         }
         public async void FirstLoad()
         {
             ChatMessageListViewBehavior.isFirstLoad = false;
             await Task.Delay(100);
-            LoadMessage(user_id, "", "");
-
-            Device.StartTimer(TimeSpan.FromSeconds(1), doitt);
-            bool doitt()
-            {
-                if (refresh == 0)
-                {
-                    if (myPage != "home")
-                    {
-                        StoreMessageViewModel.storeChatList.Clear();
-                        StoreMessageViewModel.LoadMesssage("");
-                    }
-                    PopupMessage();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-;
-            }
+            LoadMessage("");
         }
 
         private bool CanLoadMoreItems(object obj)
@@ -140,54 +133,38 @@ namespace PasaBuy.App.ViewModels.Driver
             return isLoad;
         }
 
-        public void LoadMessage(string recipient, string offset, string lastid)
+        public void LoadMessage(string offset)
         {
             try
             {
-                /*Http.SocioPress.Message.Instance.GetByRecepient( recipient, offset, "3", "", lastid, (bool success, string data) =>
+                Http.SocioPress.Message.Instance.GetByRecepient(user_id, PSACache.Instance.UserInfo.mvid, offset, "mover", odid, (bool success, string data) =>
                 {
                     if (success)
                     {
                         ChatData chat = JsonConvert.DeserializeObject<ChatData>(data);
-                        if (lastid == "")
-                        {
-                            int len = offset != string.Empty ? 7 : 12;
-                            isLoad = chat.data.Length < len ? false : true;
-                        }
-
+                        isLoad = chat.data.Length < 7 ? false : true;
                         for (int i = 0; i < chat.data.Length; i++)
                         {
-                            string id = chat.data[i].id;
-                            string senders = chat.data[i].sender;
-                            string content = chat.data[i].content;
-                            string date_created = chat.data[i].date_created;
-                            bool isreceived = senders != PSACache.Instance.UserInfo.wpid ? true : false;
-
+                            bool isreceived = chat.data[i].sender != PSACache.Instance.UserInfo.mvid ? true : false;
                             CultureInfo provider = new CultureInfo("fr-FR");
                             DateTime datenow = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "yyyy-MM-dd HH:mm:ss", provider);
-                            DateTime datedb = DateTime.ParseExact(date_created, "yyyy-MM-dd HH:mm:ss", provider);
+                            DateTime datedb = DateTime.ParseExact(chat.data[i].date_created, "yyyy-MM-dd HH:mm:ss", provider);
                             TimeSpan ts = datedb - datenow;
                             var currentTime = DateTime.Now;
 
-                            if (lastid == "")
-                            {
-                                ChatList.Insert(0, new ChatListItem(id, "", currentTime.AddMinutes(ts.TotalMinutes), content, isreceived));
-                            }
-                            else
-                            {
-                                ChatList.Add(new ChatListItem(id, "", currentTime.AddMinutes(ts.TotalMinutes), content, isreceived));
-                            }
+                            ChatList.Insert(0, new ChatListItem(chat.data[i].id, "", currentTime.AddMinutes(ts.TotalMinutes), chat.data[i].content, isreceived));
+
                         }
                     }
                     else
                     {
                         new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                     }
-                });*/
+                });
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1MSG-GBR1DCMVM.", "OK");
             }
         }
 
@@ -360,11 +337,17 @@ namespace PasaBuy.App.ViewModels.Driver
                     {
                         count = 1;
                         await Task.Delay(200);
-                        Http.SocioPress.Message.Instance.Insert(this.NewMessage, user_id, "3", "0", (bool success, string data) =>
+                        Http.SocioPress.Message.Instance.Insert(this.NewMessage, user_id, PSACache.Instance.UserInfo.mvid, "mover", odid, (bool success, string data) =>
                         {
                             if (success)
                             {
+                                if (USocketNet.USNMessage.Instance.IsConnected)
+                                {
+                                    USocketNet.USNMessage.Instance.SendMessage(user_id, this.NewMessage, null);
+                                }
+                                ChatList.Add(new ChatListItem("0", "", DateTime.Now.AddMinutes(0), this.NewMessage, false));
                                 this.NewMessage = null;
+                                count = 0;
                             }
                             else
                             {
@@ -376,22 +359,10 @@ namespace PasaBuy.App.ViewModels.Driver
                 }
                 catch (Exception e)
                 {
-                    new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1MSG-I1DCMVM.", "OK");
                 }
             }
 
-        }
-        public void PopupMessage()
-        {
-            //await Task.Delay(500);
-            if (ChatList.Count != 0)
-            {
-                LoadMessage(user_id, "", ChatList.Last().ID);
-            }
-            else
-            {
-                LoadMessage(user_id, "", "");
-            }
         }
 
         /// <summary>
@@ -424,14 +395,14 @@ namespace PasaBuy.App.ViewModels.Driver
                 }
                 else
                 {
+                    ids = 12;
                     isFirstID = true;
                 }
-                LoadMessage(user_id, ids.ToString(), "");
-                //Console.WriteLine("Behavior: Driver");
+                LoadMessage(ids.ToString());
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1MSG-GBR1DCMVM.", "OK");
             }
             finally
             {
