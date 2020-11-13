@@ -29,7 +29,7 @@
                     VerticalTextAlignment="Center" />
 
                 <!--  Grid for edit profile label and navigation bar icon  -->
-                <controls:TapAnimationGrid
+                <controls:TapAnimationGrid x:Name="isEditProfile"
                     BackgroundColor="{DynamicResource Gray-White}"
                     ColumnSpacing="0"
                     RowSpacing="0"
@@ -60,7 +60,7 @@
                     </controls:TapAnimationGrid.GestureRecognizers>
                 </controls:TapAnimationGrid>
 
-                <BoxView Style="{StaticResource SeparatorStyle}" />
+                <BoxView Style="{StaticResource SeparatorStyle}" x:Name="isEditProfileBar"/>
                 
                 <!--  Grid for my address label and navigation bar icon  -->
                     <controls:TapAnimationGrid
