@@ -42,7 +42,6 @@
                     FocusBorderThickness="0"
                     ItemSpacing="0,1,0,0"
                     ItemTapped="Management_ItemTapped"
-                    ItemsSource="{x:Static model:Management.All}"
                     SelectionMode="None">
                     <sync:SfListView.ItemTemplate>
                         <DataTemplate>

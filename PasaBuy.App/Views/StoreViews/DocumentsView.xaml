@@ -19,7 +19,7 @@
     </ContentPage.Resources>
     
     <ContentPage.ToolbarItems>
-        <ToolbarItem
+        <ToolbarItem x:Name="xAdd"
             Order="Primary"
             Clicked="AddDocumentClicked"
             Priority="1"
@@ -141,7 +141,7 @@
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
-                                        <Grid Grid.Column="0"
+                                        <Grid Grid.Column="0"  IsVisible="{Binding isUpdate}"
                                       BackgroundColor="{DynamicResource PrimaryColor}"
                                       HorizontalOptions="Fill"
                                       VerticalOptions="Fill">
@@ -158,7 +158,8 @@
                                                WidthRequest="28" />
                                             </Grid>
                                         </Grid>
-                                        <Grid Grid.Column="1"
+                                        <Grid IsVisible="{Binding isDelete}"
+                                                            Grid.Column="{Binding isDeleteCol}"
                                       BackgroundColor="Red"
                                       HorizontalOptions="Fill"
                                       VerticalOptions="Fill">

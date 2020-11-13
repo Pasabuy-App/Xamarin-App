@@ -8,6 +8,7 @@ using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -125,7 +126,16 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                             DocumentData datas = JsonConvert.DeserializeObject<DocumentData>(data);
                             for (int i = 0; i < datas.data.Length; i++)
                             {
-
+                                bool update = false;
+                                bool delete = false;
+                                if (ViewModels.MobilePOS.MyStoreListViewModel.permissions.Any(p => p.action == "edit_document"))
+                                {
+                                    update = true;
+                                }
+                                if (ViewModels.MobilePOS.MyStoreListViewModel.permissions.Any(p => p.action == "delete_document"))
+                                {
+                                    delete = true;
+                                }
                                 this.DocumentList.Add(new DocumentData()
                                 {
                                     ID = datas.data[i].ID,
@@ -133,7 +143,10 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                     Date = datas.data[i].date_created,
                                     Status = datas.data[i].status,
                                     Preview = datas.data[i].preview,
-                                    TypeID = datas.data[i].type_id
+                                    TypeID = datas.data[i].type_id,
+                                    isUpdate = update,
+                                    isDelete = delete,
+                                    isDeleteCol = update == true ? 1 : 0
                                 });
                             }
                             IsRunning = false;
@@ -167,6 +180,16 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                             DocumentData datas = JsonConvert.DeserializeObject<DocumentData>(data);
                             for (int i = 0; i < datas.data.Length; i++)
                             {
+                                bool update = false;
+                                bool delete = false;
+                                if (ViewModels.MobilePOS.MyStoreListViewModel.permissions.Any(p => p.action == "edit_document"))
+                                {
+                                    update = true;
+                                }
+                                if (ViewModels.MobilePOS.MyStoreListViewModel.permissions.Any(p => p.action == "delete_document"))
+                                {
+                                    delete = true;
+                                }
                                 documentList.Add(new DocumentData()
                                 {
                                     ID = datas.data[i].ID,
@@ -174,7 +197,10 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                     Date = datas.data[i].date_created,
                                     Status = datas.data[i].status,
                                     Preview = datas.data[i].preview,
-                                    TypeID = datas.data[i].type_id
+                                    TypeID = datas.data[i].type_id,
+                                    isUpdate = update,
+                                    isDelete = delete,
+                                    isDeleteCol = update == true ? 1 : 0
                                 });
                             }
                         }

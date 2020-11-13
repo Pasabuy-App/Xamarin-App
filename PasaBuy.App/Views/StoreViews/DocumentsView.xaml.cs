@@ -5,6 +5,7 @@ using PasaBuy.App.Views.Navigation;
 using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -20,6 +21,33 @@ namespace PasaBuy.App.Views.StoreViews
         {
             InitializeComponent();
             this.BindingContext = new DocumentViewModel();
+            xAdd.IsEnabled = false;
+            CheckPermission();
+        }
+
+        public void CheckPermission()
+        {
+            bool edit = false;
+            bool delete = false;
+            foreach (var per in ViewModels.MobilePOS.MyStoreListViewModel.permissions)
+            {
+                if (per.action == "edit_document")
+                {
+                    edit = true;
+                }
+                if (per.action == "delete_document")
+                {
+                    delete = true;
+                }
+            }
+            if (!delete && !edit)
+            {
+                DocumentList.AllowSwiping = false;
+            }
+            if (ViewModels.MobilePOS.MyStoreListViewModel.permissions.Any(p => p.action == "add_document"))
+            {
+                xAdd.IsEnabled = true;
+            }
         }
 
         private async void AddDocumentClicked(object sender, EventArgs e)
