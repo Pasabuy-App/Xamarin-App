@@ -82,6 +82,7 @@
     <Compile Include="Renderers\CalendarDatePickerRenderer.cs" />
     <Compile Include="Renderers\CustomNumericUpDownRenderer.cs" />
     <Compile Include="Renderers\FrameShadowRenderer.cs" />
+    <Compile Include="Renderers\JustifiedLabelRenderer.cs" />
     <Compile Include="Renderers\RoundedEntryRendererIos.cs" />
     <Compile Include="Renderers\RoundedPickerRendererIos.cs" />
     <None Include="Entitlements.plist" />
@@ -458,5 +459,17 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\secret.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\close_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Logo_cropped.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Philippines.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\content.png" />
   </ItemGroup>
 </Project>

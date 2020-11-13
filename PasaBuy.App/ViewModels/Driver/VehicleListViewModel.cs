@@ -139,7 +139,7 @@ namespace PasaBuy.App.ViewModels.Driver
         public static int rating;
         public VehicleListViewModel()
         {
-            Checkloaction();
+            Checkloaction();                                                                                                                                                                                                                                                                                                 
         }
         public async void Checkloaction()
         {

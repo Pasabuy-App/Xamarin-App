@@ -44,7 +44,7 @@
                                    Command="{Binding SubmitCommand}"
                                    CornerRadius="5"
                                    Grid.Column="1"
-                                   TextColor="{DynamicResource PrimaryColor}"
+                                   TextColor="{DynamicResource Gray-900}"
                                    FontFamily="{StaticResource Montserrat-Medium}"
                                    BackgroundColor="{DynamicResource WhiteColor}"
                                    Style="{StaticResource SfButtonStyle}"

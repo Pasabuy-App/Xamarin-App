@@ -432,6 +432,9 @@
     <EmbeddedResource Update="Views\Navigation\NavigationView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\NoticePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Notice\EmptyCartPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

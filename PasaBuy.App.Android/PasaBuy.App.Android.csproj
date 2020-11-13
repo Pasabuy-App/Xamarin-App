@@ -253,6 +253,7 @@
     <Compile Include="Renderers\BorderlessPickerRendererAndroid.cs" />
     <Compile Include="Renderers\BorderlessTimePickerRenderer.cs" />
     <Compile Include="Renderers\CalendarDatePickerRenderer.cs" />
+    <Compile Include="Renderers\JustifiedLabelRenderer.cs" />
     <Compile Include="Renderers\RoundedEntryRendererAndroid.cs" />
     <Compile Include="Renderers\RoundedPickerRendererAndroid.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -512,6 +513,18 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\secret.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\close_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Logo_cropped.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Philippines.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\content.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
