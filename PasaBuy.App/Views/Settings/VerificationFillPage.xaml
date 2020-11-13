@@ -17,21 +17,44 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ContentPage.ControlTemplate>
-        <ControlTemplate>
-            <StackLayout Spacing="0" >
-                <controls:TitleView Title="Fill up Information"
-                                    FontSize="13"
-                                    BackgroundColor="{DynamicResource PrimaryColor}" >
-                </controls:TitleView>
-                <ContentPresenter />
-            </StackLayout>
-        </ControlTemplate>
-    </ContentPage.ControlTemplate>
-    <ContentPage.Content>
-        <Grid>
 
-            <ScrollView>
+    <ContentPage.Content>
+      <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0"
+                  Padding="15,5,15,5"
+                  BackgroundColor="{StaticResource PrimaryColor}"
+                  HeightRequest="{OnPlatform Android='46',
+                                                   iOS='56'}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <buttons:SfButton
+                            x:Name="backButton"
+                            Grid.Column="0"
+                            Clicked="BackButtonClicked"
+                            CornerRadius="4"
+                            BackgroundColor="Transparent"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                <Label Grid.Column="1" 
+                       x:Name="TitleName"
+                       Text="Fill up information"
+                       FontFamily="{StaticResource Montserrat-Medium}"
+                       FontSize="{StaticResource LargeSize}"
+                       HorizontalOptions="Start"
+                       TextColor="{DynamicResource Gray-White}"
+                       VerticalOptions="Center" />
+            </Grid>
+            <Grid RowSpacing="15" 
+                  Padding="10,0,10,0"
+                  Grid.Row="1"
+                  VerticalOptions="CenterAndExpand">
                 <StackLayout BackgroundColor="{DynamicResource Transparent}" Spacing="0" Padding="16,24">
 
                     <Label
@@ -136,8 +159,8 @@
                     </border:SfBorder>
 
                     <buttons:SfButton 
-                                Margin="10, 40, 10, 20"
-                                CornerRadius="20"
+                                Margin="0, 20, 0, 20"
+                                CornerRadius="6"
                                 Clicked="NextButtonClicked"
                                 TextColor="White"
                                 BackgroundColor="{DynamicResource PrimaryColor}"
@@ -145,14 +168,16 @@
                                 Text="Next" />
 
                 </StackLayout>
-            </ScrollView>
 
+
+            </Grid>
             <loading:LoadingIndicator
-                Grid.Row="0"
-                HorizontalOptions="Fill"
-                x:Name="Loader"
-                IsRunning="true"
-                VerticalOptions="Fill" />
+                    Grid.RowSpan="2"
+                    HorizontalOptions="Fill"
+                    x:Name="Loader"
+                    IsRunning="{Binding State, Mode=TwoWay}"
+                    VerticalOptions="Fill" />
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>

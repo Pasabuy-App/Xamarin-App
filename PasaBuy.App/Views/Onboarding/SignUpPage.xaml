@@ -124,6 +124,32 @@
                             PlaceholderColor="{DynamicResource Gray-900}"
                             Style="{StaticResource EntryTextBoxStyle}" />
                 </border:SfBorder>
+
+                <StackLayout Orientation="Horizontal">
+                    <buttons:SfCheckBox CheckedColor="{DynamicResource PrimaryColor}"
+                                        Padding="0"
+                                        HorizontalOptions="Start"/>
+                    <Label VerticalTextAlignment="Center"
+                           FontSize="{DynamicResource MediumSize}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="I agree to the PasaBuy.App "/>
+                                <Span Text="Terms of Service "  TextDecorations="Underline" TextColor="{DynamicResource PrimaryColor}">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer x:Name="Terms" NumberOfTapsRequired="1" Tapped="Terms_Tapped"/>
+                                    </Span.GestureRecognizers>
+                                </Span>
+                                <Span Text="and "/>
+                                <Span Text="Privacy Policy" TextDecorations="Underline" TextColor="{DynamicResource PrimaryColor}">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer x:Name="Privacy" NumberOfTapsRequired="1" Tapped="Privacy_Tapped"/>
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+
                 <!--  Sign-up button  -->
                 <buttons:SfButton
                             Command="{Binding SignUpCommand}"
