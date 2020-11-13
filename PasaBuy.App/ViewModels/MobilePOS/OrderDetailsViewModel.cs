@@ -255,10 +255,20 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
             foreach (var per in ViewModels.MobilePOS.MyStoreListViewModel.permissions)
             {
-                if (per.action == "accept_order" || per.action == "prepare_order" || per.action == "ship_order")
+                if (per.action == "accept_order")
                 {
-                    this.isAccept = stages == "Pending" || stages == "Preparing" || stages == "Ongoing" ? true : false;
-                    this.txtAcceptPreparingShipping = stages != "Pending" ? stages != "Ongoing" ? "Ready for Shipping" : "Prepare Now" : "Accept";
+                    this.isAccept = stages == "Pending" ? true : false;
+                    this.txtAcceptPreparingShipping = "Accept";
+                    break;
+                }
+            }
+
+            foreach (var per in ViewModels.MobilePOS.MyStoreListViewModel.permissions)
+            {
+                if (per.action == "prepare_order" || per.action == "ship_order")
+                {
+                    this.isAccept = stages == "Preparing" || stages == "Ongoing" ? true : false;
+                    this.txtAcceptPreparingShipping = stages != "Ongoing" ? "Ready for Shipping" : "Prepare Now";
                     break;
                 }
             }
