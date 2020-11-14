@@ -33,6 +33,16 @@ namespace PasaBuy.App.Models.Driver
         private string date_created = string.Empty;
         private string date_ordered = string.Empty;
 
+        private string methods = string.Empty;
+        public string Method
+        {
+            get { return methods; }
+            set
+            {
+                methods = value;
+                OnPropertyChanged("Method");
+            }
+        }
         public string Store_logo
         {
             get { return store_logo; }
@@ -234,6 +244,7 @@ namespace PasaBuy.App.Models.Driver
             public string ID = string.Empty;
             public string order_id = string.Empty;
             public string total_price = string.Empty;
+            public string method = string.Empty;
             public string customer_name = string.Empty;
             public string customer_avatar = string.Empty;
             public string stages = string.Empty;
