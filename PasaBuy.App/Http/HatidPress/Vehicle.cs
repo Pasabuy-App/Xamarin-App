@@ -79,7 +79,7 @@ namespace PasaBuy.App.Http.HatidPress
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2VHE-IV1.", "OK");
             }
         }
 
@@ -122,7 +122,7 @@ namespace PasaBuy.App.Http.HatidPress
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2VHE-LV1.", "OK");
             }
         }
 
@@ -160,7 +160,7 @@ namespace PasaBuy.App.Http.HatidPress
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2VHE-TV1.", "OK");
             }
         }
 
@@ -198,7 +198,7 @@ namespace PasaBuy.App.Http.HatidPress
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2VHE-MV1.", "OK");
             }
         }
 
@@ -237,7 +237,7 @@ namespace PasaBuy.App.Http.HatidPress
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2VHE-MV2.", "OK");
             }
         }
 
