@@ -74,8 +74,7 @@
                                                 CornerRadius="4"
                                                 HasShadow="True">
                                             <Grid RowSpacing="0"  
-                                                  Margin="0,10,0,0"
-                                                  BackgroundColor="{DynamicResource Gray-White}">
+                                                  Margin="0,0,0,0">
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="Auto"/>
                                                     <RowDefinition Height="Auto"/>
@@ -138,6 +137,7 @@
                                                                       HorizontalOptions="End">
 
                                                                 <Label Text="{Binding Author}"
+                                                                       TextColor="{DynamicResource Gray-Black}"
                                                                        FontSize="{DynamicResource SmallSize}"
                                                                        VerticalTextAlignment="Center">
                                                                     <Label.Effects>
@@ -161,6 +161,7 @@
                                                               Grid.Column="4" 
                                                               HorizontalOptions="EndAndExpand">
                                                             <Label Text="{Binding Types}"
+                                                                   TextColor="{DynamicResource Gray-Black}"
                                                                    FontSize="{DynamicResource SmallerSize}"
                                                                    VerticalTextAlignment="Center">
                                                                 
