@@ -80,6 +80,7 @@ namespace PasaBuy.App.ViewModels.Driver
                                     Hash_id = "Order #"+ order.data[i].order_id,
                                     Date_created = date.ToString("MMMM dd, yyyy"),
                                     Price = Convert.ToDouble(order.data[i].total_price),
+                                    Method = order.data[i].method,
                                     Status = order.data[i].stages == "completed" ? "Completed" : "Cancelled"
                                 });
                             }
@@ -121,7 +122,7 @@ namespace PasaBuy.App.ViewModels.Driver
                 MobilePOS.OrderDetailsViewModel.datecreated = item.Date_created;
                 MobilePOS.OrderDetailsViewModel.totalprice = item.Price;
                 MobilePOS.OrderDetailsViewModel.stages = item.Status;
-                MobilePOS.OrderDetailsViewModel.method = "No method.";
+                MobilePOS.OrderDetailsViewModel.method = item.Method;
                 await Application.Current.MainPage.Navigation.PushModalAsync(new Views.StoreViews.TransactionDetailsView());
                 IsBusy = false;
             }

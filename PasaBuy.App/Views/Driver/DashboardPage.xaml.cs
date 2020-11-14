@@ -70,8 +70,6 @@ namespace PasaBuy.App.Views.Driver
                         {
                             GetOrderDetails(order.data[i].order_id, 0);
                             order_id = order.data[i].order_id;
-                            Refresh.IsEnabled = false;
-                            Pending_Order.IsVisible = true;
                         }
                     }
                     else
@@ -91,7 +89,7 @@ namespace PasaBuy.App.Views.Driver
             //If not, set the visiblity of pending order to false then set the visiblity of refresh to true.
         }
 
-        public static void GetOrderDetails(string odid, int timer)
+        public void GetOrderDetails(string odid, int timer)
         {
             try
             {
@@ -104,7 +102,7 @@ namespace PasaBuy.App.Views.Driver
                         {
                             for (int i = 0; i < order.data.Length; i++)
                             {
-                                PopupAcceptOrder.store_logo = order.data[i].store_logo == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg" : PSAProc.GetUrl(order.data[i].store_logo);
+                                PopupAcceptOrder.store_logo = order.data[i].store_logo == "None" || string.IsNullOrEmpty(order.data[i].store_logo) ? "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg" : PSAProc.GetUrl(order.data[i].store_logo);
                                 PopupAcceptOrder.storeName = order.data[i].store_name;
                                 PopupAcceptOrder.store_lat = order.data[i].store_lat;
                                 PopupAcceptOrder.store_long = order.data[i].store_long;
@@ -125,7 +123,9 @@ namespace PasaBuy.App.Views.Driver
                             for (int i = 0; i < order.data.Length; i++)
                             {
                                 StartDeliveryPage.item_id = order.data[i].pubkey;
-                                StartDeliveryPage.storeName = order.data[i].store_name;
+                                StartDeliveryPage.store_name = order.data[i].store_name;
+                                StartDeliveryPage.customer_name = order.data[i].customer;
+                                StartDeliveryPage.customer_id = order.data[i].order_by;
                                 StartDeliveryPage.orderName = "#" + order.data[i].pubkey;
                                 StartDeliveryPage.waypointAddress = order.data[i].store_address;
                                 StartDeliveryPage.destinationAddress = order.data[i].cutomer_address;
@@ -135,6 +135,7 @@ namespace PasaBuy.App.Views.Driver
 
                                 StartDeliveryPage.UserLatitude = order.data[i].cutomer_lat;
                                 StartDeliveryPage.userLongitude = order.data[i].cutomer_long;
+
                                 StartDeliveryPage.order_status = order.data[i].stages;
                             }
                         }
@@ -147,7 +148,7 @@ namespace PasaBuy.App.Views.Driver
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ODR-L1DP.", "OK");
             }
         }
 
@@ -165,7 +166,7 @@ namespace PasaBuy.App.Views.Driver
                     MapSpan mapSpan = MapSpan.FromCenterAndRadius(p, Distance.FromKilometers(.444));
                     map.MoveToRegion(mapSpan);
                     //await GetLocationName(p);
-                    Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
+                    //Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
                 }
             }
             catch (FeatureNotSupportedException fnsEx)
@@ -192,7 +193,12 @@ namespace PasaBuy.App.Views.Driver
 
         private async void ShowAvailableDeliveries(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new StartDeliveryPage());
+            if (IsRunning.IsRunning == false)
+            {
+                IsRunning.IsRunning = true;
+                await Navigation.PushModalAsync(new StartDeliveryPage());
+                IsRunning.IsRunning = false;
+            }
         }
 
         private void RefreshClicked(object sender, EventArgs e)

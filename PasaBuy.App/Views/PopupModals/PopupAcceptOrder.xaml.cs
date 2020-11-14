@@ -30,6 +30,9 @@ namespace PasaBuy.App.Views.PopupModals
         public static string destinationAddress;// = "BLock 10 Lot 18 Narra St. San Francisco, Biñan Laguna, Philippines"; // string.Empty;
         public static string orderTime;//= "08:30 AM"; //string.Empty;
         public static int countdown;
+        public static string user_id;
+        public static string user_name;
+        public static string user_avatar;
 
         Stopwatch stopwatch = new Stopwatch();
 
@@ -139,7 +142,10 @@ namespace PasaBuy.App.Views.PopupModals
                             {
 
                                 StartDeliveryPage.item_id = item_id;
-                                StartDeliveryPage.storeName = storeName;
+                                StartDeliveryPage.store_name = storeName;
+                                StartDeliveryPage.customer_name = user_name;
+                                StartDeliveryPage.customer_id = user_id;
+                                StartDeliveryPage.customer_avatar = user_avatar;
                                 StartDeliveryPage.orderName = orderName;
                                 StartDeliveryPage.orderTime = orderTime;
                                 StartDeliveryPage.waypointAddress = waypointAddress;

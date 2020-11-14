@@ -23,7 +23,10 @@ namespace PasaBuy.App.Views.Driver
         public string deliveryStatus;
         public static string carItem = string.Empty;
         public static string item_id = string.Empty;
-        public static string storeName = string.Empty;
+        public static string store_name = string.Empty;
+        public static string customer_id = string.Empty;
+        public static string customer_name = string.Empty;
+        public static string customer_avatar = string.Empty;
         public static string orderName = string.Empty;
         public static string waypointAddress = string.Empty;
         public static string destinationAddress = string.Empty;
@@ -39,7 +42,6 @@ namespace PasaBuy.App.Views.Driver
         public static string order_status;
 
         #endregion
-
 
         ILocationUpdateService loc;
         MapPageViewModel mapPageViewModel;
@@ -71,16 +73,16 @@ namespace PasaBuy.App.Views.Driver
 
             pinLocation();
             DisplayCurloc();
-            StoreName.Text = storeName;
+            xName.Text = order_status == "Shipping" ? customer_name : store_name;
             StoreAddress.Text = waypointAddress;
             ClientAddress.Text = destinationAddress;
             OrderIDandOrderTime.Text = orderName;
-            //UpdateStatus();
+            UpdateStatus();
         }
 
         public void UpdateStatus()
         {
-            if (order_status == "shipping")
+            if (order_status == "Shipping")
             {
                 Accept_Cancel.IsVisible = true;
                 Accept_Cancel_BoxView.IsVisible = true;
@@ -347,10 +349,11 @@ namespace PasaBuy.App.Views.Driver
                     var options = new MapLaunchOptions { NavigationMode = NavigationMode.Driving };
 
                     await Xamarin.Essentials.Map.OpenAsync(location);
-
                 }
                 //order_status = "shipping";
             }
+            Compass.Stop();
+            Navigation.PopModalAsync();
         }
 
         public void pinLocation()
@@ -358,7 +361,7 @@ namespace PasaBuy.App.Views.Driver
             Pin pin1 = new Pin()
             {
                 Type = PinType.Place,
-                Label = storeName,
+                Label = store_name,
                 Address = waypointAddress,
                 Position = new Position(Convert.ToDouble(StoreLatittude), Convert.ToDouble(StoreLongitude)),
                 Rotation = 0,
@@ -371,7 +374,7 @@ namespace PasaBuy.App.Views.Driver
             Pin pin2 = new Pin()
             {
                 Type = PinType.Place,
-                Label = "Customer",
+                Label = customer_name,
                 Address = destinationAddress,
                 Position = new Position(Convert.ToDouble(UserLatitude), Convert.ToDouble(userLongitude)),
                 Rotation = 0,
@@ -397,6 +400,20 @@ namespace PasaBuy.App.Views.Driver
         public static async void OpenMapApp()
         {
 
+        }
+
+        private async void MessageButton(object sender, EventArgs e)
+        {
+            if (IsRunning.IsRunning == false)
+            {
+                IsRunning.IsRunning = true;
+                ViewModels.Driver.DriverChatMessageViewModel.odid = item_id;
+                ViewModels.Driver.DriverChatMessageViewModel.user_id = customer_id;
+                ViewModels.Driver.DriverChatMessageViewModel.ProfileNames = customer_name;
+                ViewModels.Driver.DriverChatMessageViewModel.ProfileImages = customer_avatar;
+                await(App.Current.MainPage).Navigation.PushModalAsync(new Xamarin.Forms.NavigationPage(new DriverChatMessagePage()));
+                IsRunning.IsRunning = false;
+            }
         }
     }
 }

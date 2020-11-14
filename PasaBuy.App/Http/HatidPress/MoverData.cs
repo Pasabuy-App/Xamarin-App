@@ -116,14 +116,14 @@ namespace PasaBuy.App.Http.HatidPress
         /// <summary>
         /// Insert rating of user to mover.
         /// </summary>
-        public async void Rating(string rates, string comments, Action<bool, string> callback)
+        public async void Rating(string mvid, string rates, string comments, Action<bool, string> callback)
         {
             try
             {
                 var dict = new Dictionary<string, string>();
                 dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
                 dict.Add("snky", PSACache.Instance.UserInfo.snky);
-                dict.Add("mvid", PSACache.Instance.UserInfo.mvid);
+                dict.Add("mvid", mvid);
                 dict.Add("rates", rates);
                 dict.Add("comments", comments);
                 var content = new FormUrlEncodedContent(dict);
