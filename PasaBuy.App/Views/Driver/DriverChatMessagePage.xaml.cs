@@ -20,7 +20,7 @@ namespace PasaBuy.App.Views.Driver
                 //MessagesViewModel.storeChatList.Clear();
                 MessagesViewModel.LoadMesssage("");
             }*/
-            DriverChatMessageViewModel.refresh = 1;
+            //DriverChatMessageViewModel.refresh = 1;
             return base.OnBackButtonPressed();
         }
 
@@ -31,7 +31,7 @@ namespace PasaBuy.App.Views.Driver
                 MessagesViewModel.storeChatList.Clear();
                 MessagesViewModel.LoadMesssage("");
             }*/
-            DriverChatMessageViewModel.refresh = 1;
+            //DriverChatMessageViewModel.refresh = 1;
             Navigation.PopModalAsync();
         }
     }
