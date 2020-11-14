@@ -39,7 +39,7 @@ namespace PasaBuy.App.Views.PopupModals
             {
                 try
                 {
-                    Http.HatidPress.Schedule.Instance.Insert_Schedule(days, Open.Time.ToString(), Close.Time.ToString(), (bool success, string data) =>
+                    Http.HatidPress.Schedule.Instance.Insert(days, Open.Time.ToString(), Close.Time.ToString(), (bool success, string data) =>
                     {
                         if (success)
                         {
