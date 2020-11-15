@@ -9,7 +9,7 @@
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
-             xmlns:converter="clr-namespace:PasaBuy.App.Converters"
+             xmlns:converter="clr-namespace:PasaBuy.App.Converters" xmlns:justified="clr-namespace:PasaBuy.App.CustomRenderers"
              x:Class="PasaBuy.App.Views.Settings.IdPhotoPage"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="{StaticResource Gray-White}"
@@ -60,17 +60,14 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Label  Grid.ColumnSpan="2"
-                    Margin="16,10,0,10"
-                    FontFamily="{StaticResource Montserrat-Bold}"
-                    Grid.Row="0"
-                    FontSize="{DynamicResource SmallSize}"
-                    HorizontalOptions="FillAndExpand"
-                    Text="Take a photo of your id. Make sure that the image is not blurry and the contents are readable."
-                    TextColor="{DynamicResource Gray-700}"
-                    VerticalOptions="Center"
-                    VerticalTextAlignment="Center" />
-
+            <justified:JustifiedLabel Grid.ColumnSpan="2"
+                                      Grid.Row="0"
+                                      Margin="16,10,16,10"
+                                      TextColor="{DynamicResource Gray-800}"
+                                      Text="Take a photo of your id. Make sure that the image is not blurry and the contents are readable."
+                                      HorizontalOptions="FillAndExpand"
+                                      FontSize="{DynamicResource SmallSize}"
+                                      FontFamily="{StaticResource Montserrat-Bold}"/>
 
             <border:SfBorder Padding="0, 0, 0, 0"
                              Grid.Row="1"
@@ -117,6 +114,7 @@
                                  Style="{StaticResource BusinessFormBorderStyle}">
                 <controls:BorderlessEntry
                             x:Name="IDNumberEntry"
+                            ReturnType="Next"
                             Placeholder="Enter your id number here"
                             Text="{Binding IDNumberEntry}"
                             Style="{StaticResource EntryTextBoxStyle}" />

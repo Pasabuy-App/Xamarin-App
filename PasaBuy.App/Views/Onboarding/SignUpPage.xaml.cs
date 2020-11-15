@@ -1,5 +1,6 @@
 ﻿using PasaBuy.App.Models.Onboarding;
 using PasaBuy.App.ViewModels.Onboarding;
+using PasaBuy.App.Views.Settings;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
@@ -26,5 +27,14 @@ namespace PasaBuy.App.Views.Onboarding
             Navigation.PopModalAsync();
         }
 
+        private void Terms_Tapped(object sender, System.EventArgs e)
+        {
+            Navigation.PushModalAsync(new TermsPage());
+        }
+
+        private void Privacy_Tapped(object sender, System.EventArgs e)
+        {
+            Navigation.PushModalAsync(new PrivacyPage());
+        }
     }
 }

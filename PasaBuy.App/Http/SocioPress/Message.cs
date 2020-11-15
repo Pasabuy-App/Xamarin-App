@@ -38,7 +38,7 @@ namespace PasaBuy.App.Http.SocioPress
 
         #region Method
 
-        public async void Insert(string contents, string recepient, string sender, string type, Action<bool, string> callback)
+        public async void Insert(string contents, string recepient, string sender, string type, string odid, Action<bool, string> callback)
         {
             try
             {
@@ -48,6 +48,7 @@ namespace PasaBuy.App.Http.SocioPress
                 dict.Add("content", contents);
                 dict.Add("sender", sender);
                 dict.Add("recepient", recepient);
+                dict.Add("odid", odid);
                 dict.Add("type", type);
                 var content = new FormUrlEncodedContent(dict);
 
@@ -74,7 +75,7 @@ namespace PasaBuy.App.Http.SocioPress
             }
         }
 
-        public async void GetByRecepient(string recipient, string sender, string offset, string type, Action<bool, string> callback)
+        public async void GetByRecepient(string recipient, string sender, string offset, string type, string odid, Action<bool, string> callback)
         {
             try
             {
@@ -84,6 +85,7 @@ namespace PasaBuy.App.Http.SocioPress
                 dict.Add("recipient", recipient);
                 dict.Add("sender", sender);
                 dict.Add("type", type);
+                dict.Add("odid", odid);
                 dict.Add("offset", offset);
                 var content = new FormUrlEncodedContent(dict);
 

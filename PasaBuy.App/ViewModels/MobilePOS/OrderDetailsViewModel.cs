@@ -221,6 +221,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         public static double totalprice;
         public static string stages;
         public static string customer;
+        public static string user_id;
         public static string method;
 
         #endregion
@@ -255,10 +256,20 @@ namespace PasaBuy.App.ViewModels.MobilePOS
 
             foreach (var per in ViewModels.MobilePOS.MyStoreListViewModel.permissions)
             {
-                if (per.action == "accept_order" || per.action == "prepare_order" || per.action == "ship_order")
+                if (per.action == "accept_order")
                 {
-                    this.isAccept = stages == "Pending" || stages == "Preparing" || stages == "Ongoing" ? true : false;
-                    this.txtAcceptPreparingShipping = stages != "Pending" ? stages != "Ongoing" ? "Ready for Shipping" : "Prepare Now" : "Accept";
+                    this.isAccept = stages == "Pending" ? true : false;
+                    this.txtAcceptPreparingShipping = "Accept";
+                    break;
+                }
+            }
+
+            foreach (var per in ViewModels.MobilePOS.MyStoreListViewModel.permissions)
+            {
+                if (per.action == "prepare_order" || per.action == "ship_order")
+                {
+                    this.isAccept = stages == "Preparing" || stages == "Ongoing" ? true : false;
+                    this.txtAcceptPreparingShipping = stages != "Ongoing" ? "Ready for Shipping" : "Prepare Now";
                     break;
                 }
             }
@@ -276,12 +287,17 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         public Command<object> AcceptedPreparingShippingCommand { get; set; }
         public Command<object> DeclinedCommand { get; set; }
 
-        private void MessageCustomerClicked(object obj)
+        private async void MessageCustomerClicked(object obj)
         {
             if (!IsRunning)
             {
-                IsRunning = true;
-                //await PopupNavigation.Instance.PushAsync(new PopupChooseRole());
+                IsRunning = true; // order_id // PSACache.Instance.UserInfo.stid // user_id
+                // get the user id, stid and odid
+                ViewModels.Chat.StoreConversationViewModel.odid = order_id;
+                ViewModels.Chat.StoreConversationViewModel.user_id = user_id;
+                ViewModels.Chat.StoreConversationViewModel.ProfileNames = customer;
+                ViewModels.Chat.StoreConversationViewModel.ProfileImages = avatar;
+                await(App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new Views.Chat.StoreConversationPage()));
                 IsRunning = false;
             }
         }

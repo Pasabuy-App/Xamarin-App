@@ -38,6 +38,14 @@
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
                     </controls:TitleView.LeadingView>
+                    <controls:TitleView.TrailingView>
+                        <ImageButton Source="cart.png" 
+                                     Clicked="MessageButton"
+                                     HorizontalOptions="End"
+                                     HeightRequest="24"
+                                     WidthRequest="24"
+                                     BackgroundColor="Transparent" />
+                    </controls:TitleView.TrailingView>
                 </controls:TitleView>
                 <ContentPresenter />
             </StackLayout>
@@ -148,8 +156,11 @@
                         </Grid>
                     </StackLayout>-->
 
-                                <StackLayout Grid.Row="2" x:Name="Accept_Cancel" IsVisible="{Binding isVisible}"
-                                 Margin="8,-2,8,-2">
+                                <StackLayout Grid.Row="2"
+                                             x:Name="Accept_Cancel" 
+                                             IsVisible="{Binding isVisible}"
+                                             Padding="0,10,0,10"
+                                             Margin="8,-2,8,-2">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
@@ -158,26 +169,26 @@
 
 
                                         <buttons:SfButton 
-                               FontFamily="{StaticResource Montserrat-Medium}"
-                               BackgroundColor="Red"
-                               Grid.Column="1"
-                               FontSize="13"
-                               VerticalTextAlignment="Center"
-                               HorizontalTextAlignment="Center"
-                               Text="Cancel"
-                               Command="{Binding CancelCommand}"
-                               TextColor="{DynamicResource WhiteColor}"/>
+                                               FontFamily="{StaticResource Montserrat-Medium}"
+                                               BackgroundColor="Red"
+                                               Grid.Column="1"
+                                               FontSize="13"
+                                               VerticalTextAlignment="Center"
+                                               HorizontalTextAlignment="Center"
+                                               Text="Cancel"
+                                               Command="{Binding CancelCommand}"
+                                               TextColor="{DynamicResource WhiteColor}"/>
 
                                         <buttons:SfButton 
-                               FontFamily="{StaticResource Montserrat-Medium}"
-                               BackgroundColor="Orange"
-                               Command="{Binding CompleteCommand}"
-                               Grid.Column="0"
-                               FontSize="13"
-                               VerticalTextAlignment="Center"
-                               HorizontalTextAlignment="Center"
-                               Text="Complete"
-                               TextColor="{DynamicResource WhiteColor}"/>
+                                           FontFamily="{StaticResource Montserrat-Medium}"
+                                           BackgroundColor="Orange"
+                                           Command="{Binding CompleteCommand}"
+                                           Grid.Column="0"
+                                           FontSize="13"
+                                           VerticalTextAlignment="Center"
+                                           HorizontalTextAlignment="Center"
+                                           Text="Complete"
+                                           TextColor="{DynamicResource WhiteColor}"/>
 
 
                                         <!--<Label FontFamily="{StaticResource Montserrat-Medium}"
@@ -228,7 +239,7 @@
                                FontSize="14"
                                VerticalTextAlignment="Center"
                                HorizontalTextAlignment="Start"
-                               x:Name="StoreName"
+                               x:Name="xName"
                                TextColor="{DynamicResource Gray-900}" />
 
                                     <Label Grid.Row="1"
@@ -293,6 +304,7 @@
                     </Grid>
 
                     <local1:LoadingIndicator
+                        x:Name="IsRunning"
                     HorizontalOptions="Fill"
                     IsRunning="{Binding IsBusy, Mode=TwoWay}"
                     VerticalOptions="Fill" />

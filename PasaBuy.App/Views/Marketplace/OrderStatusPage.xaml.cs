@@ -21,7 +21,7 @@ namespace PasaBuy.App.Views.Marketplace
             Navigation.PopModalAsync();
         }
 
-        private void Mover_Clicked(object sender, EventArgs e)
+        /*private void Mover_Clicked(object sender, EventArgs e)
         {
             new Controllers.Notice.Alert("Mover", "User message the mover.", "OK");
         }
@@ -29,6 +29,6 @@ namespace PasaBuy.App.Views.Marketplace
         private void Store_Clicked(object sender, EventArgs e)
         {
             new Controllers.Notice.Alert("Store", "User message the store.", "OK");
-        }
+        }*/
     }
 }

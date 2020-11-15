@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -88,7 +88,14 @@ namespace PasaBuy.App.Views.PopupModals
                             {
                                 VehicleListViewModel.RefreshVehicle();
                                 await PopupNavigation.Instance.PopAsync();
+                                await Clipboard.SetTextAsync("Vehicle successfully added");
+                                if (Clipboard.HasText)
+                                {
+                                    var text = await Clipboard.GetTextAsync();
+                                    Plugin.Toast.CrossToastPopUp.Current.ShowToastMessage(text);
+                                }
                                 isClicked = false;
+                                
                             }
                             else
                             {

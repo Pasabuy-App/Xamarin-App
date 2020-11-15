@@ -8,6 +8,7 @@ using PasaBuy.App.Views.StoreViews.Management;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -167,12 +168,25 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                             {
                                 for (int ii = 0; ii < variants.data[i].options.Count; ii++)
                                 {
+                                    bool update = false;
+                                    bool delete = false;
+                                    if (ViewModels.MobilePOS.MyStoreListViewModel.permissions.Any(p => p.action == "edit_variant"))
+                                    {
+                                        update = true;
+                                    }
+                                    if (ViewModels.MobilePOS.MyStoreListViewModel.permissions.Any(p => p.action == "delete_variant"))
+                                    {
+                                        delete = true;
+                                    }
                                     _optionsList.Add(new Models.TindaFeature.VariantModel()
                                     {
                                         ID = variants.data[i].options[ii].ID,
                                         Title = variants.data[i].options[ii].name,
                                         Info = variants.data[i].options[ii].info,
-                                        Price = Convert.ToDouble(variants.data[i].options[ii].price)
+                                        Price = Convert.ToDouble(variants.data[i].options[ii].price),
+                                        isUpdate = update,
+                                        isDelete = delete,
+                                        isDeleteCol = update == true ? 1 : 0
                                     });
                                 }
                             }
@@ -208,12 +222,25 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                         {
                             for (int ii = 0; ii < variants.data[i].options.Count; ii++)
                             {
+                                bool update = false;
+                                bool delete = false;
+                                if (ViewModels.MobilePOS.MyStoreListViewModel.permissions.Any(p => p.action == "edit_variant"))
+                                {
+                                    update = true;
+                                }
+                                if (ViewModels.MobilePOS.MyStoreListViewModel.permissions.Any(p => p.action == "delete_variant"))
+                                {
+                                    delete = true;
+                                }
                                 _optionsList.Add(new Models.TindaFeature.VariantModel()
                                 {
                                     ID = variants.data[i].options[ii].ID,
                                     Title = variants.data[i].options[ii].name,
                                     Info = variants.data[i].options[ii].info,
-                                    Price = Convert.ToDouble(variants.data[i].options[ii].price)
+                                    Price = Convert.ToDouble(variants.data[i].options[ii].price),
+                                    isUpdate = update,
+                                    isDelete = delete,
+                                    isDeleteCol = update == true ? 1 : 0
                                 });
                             }
                         }

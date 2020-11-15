@@ -75,7 +75,7 @@ namespace PasaBuy.App.Views.PopupModals
                 {
                     Views.Navigation.MasterView._switch = true;
                     Views.Navigation.MasterView._switchlist.Clear();
-                    //UpdateAttendance("open");
+                    UpdateAttendance();
                 }
                 else // mover is close
                 {
@@ -84,8 +84,8 @@ namespace PasaBuy.App.Views.PopupModals
                     //UpdateAttendance("close");
                     //save to cache then load it to set the switch to true then insert open to database.
                 }
-                Local.PSACache.Instance.UserInfo.mover_status = Convert.ToBoolean(_switch);
-                Local.PSACache.Instance.SaveUserData();
+                //Local.PSACache.Instance.UserInfo.mover_status = Convert.ToBoolean(_switch);
+                //Local.PSACache.Instance.SaveUserData();
             }
 
             PopupNavigation.Instance.PopAsync();
@@ -102,8 +102,8 @@ namespace PasaBuy.App.Views.PopupModals
                         new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                         Views.Navigation.MasterView._switch = false;
                         Views.Navigation.MasterView._switchlist.Clear();
-                        Local.PSACache.Instance.UserInfo.mover_status = Convert.ToBoolean(_switch);
-                        Local.PSACache.Instance.SaveUserData();
+                        //Local.PSACache.Instance.UserInfo.mover_status = Convert.ToBoolean(_switch);
+                        //Local.PSACache.Instance.SaveUserData();
                     }
                 });
             }
@@ -113,24 +113,24 @@ namespace PasaBuy.App.Views.PopupModals
             }
         }
 
-        public void UpdateAttendance(string status)
+        public void UpdateAttendance()
         {
-            /*try
+            try
             {
-                HatidPress.Rider.Instance.UpdateAttendance(PSACache.Instance.UserInfo.wpid, PSACache.Instance.UserInfo.snky, status, "", (bool success, string data) =>
+                Http.HatidPress.MoverData.Instance.Attendance((bool success, string data) =>
                 {
-
+                    if (!success)
+                    {
+                        new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        Views.Navigation.MasterView._switch = false;
+                        Views.Navigation.MasterView._switchlist.Clear();
+                    }
                 });
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
-            }*/
-        }
-
-        public void UploadLocation()
-        {
-
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2MVR-A1GO.", "OK");
+            }
         }
     }
 }

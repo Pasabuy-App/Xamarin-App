@@ -117,6 +117,23 @@ namespace PasaBuy.App.ViewModels.Driver
                 }
             }
         }
+
+        bool _IsRunning = false;
+        public bool IsRunning
+        {
+            get
+            {
+                return _IsRunning;
+            }
+            set
+            {
+                if (_IsRunning != value)
+                {
+                    _IsRunning = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
         public ICommand RefreshCommand { protected set; get; }
         public Command SubmitCommand { get; set; }
         private bool _isGpsEnable;
@@ -139,10 +156,30 @@ namespace PasaBuy.App.ViewModels.Driver
         public static int rating;
         public VehicleListViewModel()
         {
-            Checkloaction();
+            CheckLocation();
+
+            this.Rating = rating;
+            this.Status = status;
+            this.Expiry = expiry;
+            this.Avatar = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatar);
+            this.Name = PSACache.Instance.UserInfo.dname;
+
+            this.SubmitCommand = new Command(this.SubmitClicked);
+            this.ItemTappedCommand = new Command<object>(ItemClicked);
+
+            _vehicleList = new ObservableCollection<VehicleList>();
+            LoadVehicle();
+
+            RefreshCommand = new Command<string>((key) =>
+            {
+                LoadVehicle();
+                IsRefreshing = false;
+            });
+                                                                                                                                                                                                                                                                                                 
         }
-        public async void Checkloaction()
+        public async void CheckLocation()
         {
+
             try
             {
                 var request = new Xamarin.Essentials.GeolocationRequest(Xamarin.Essentials.GeolocationAccuracy.Medium);
@@ -157,24 +194,7 @@ namespace PasaBuy.App.ViewModels.Driver
 
             IsGpsEnable = Xamarin.Forms.DependencyService.Get<PasaBuy.App.Library.IGpsDependencyService>().IsGpsEnable();
 
-            if (IsGpsEnable)
-            {
-                this.Rating = rating;
-                this.Status = status;
-                this.Expiry = expiry;
-                this.Avatar = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatar);
-                this.Name = PSACache.Instance.UserInfo.dname;
-                this.SubmitCommand = new Command(this.SubmitClicked);
-                this.ItemTappedCommand = new Command<object>(ItemClicked);
-                _vehicleList = new ObservableCollection<VehicleList>();
-                LoadVehicle();
-                RefreshCommand = new Command<string>((key) =>
-                {
-                    LoadVehicle();
-                    IsRefreshing = false;
-                });
-            }
-            else
+            if (!IsGpsEnable)
             {
                 await App.Current.MainPage.Navigation.PopModalAsync();
             }
@@ -185,9 +205,9 @@ namespace PasaBuy.App.ViewModels.Driver
         {
             try
             {
-                if (!IsBusy)
+                if (!IsRunning)
                 {
-                    IsBusy = true;
+                    IsRunning = true;
                     _vehicleList.Clear();
                     Http.HatidPress.Vehicle.Instance.Listing_Vehicle( "", "", "", "", "", "", (bool success, string data) =>
                     {
@@ -204,12 +224,12 @@ namespace PasaBuy.App.ViewModels.Driver
                                     Status = vehicle.data[i].status.ToUpper()
                                 });
                             }
-                            IsBusy = false;
+                            IsRunning = false;
                         }
                         else
                         {
                             new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                            IsBusy = false;
+                            IsRunning = false;
                         }
                     });
                 }
@@ -217,7 +237,7 @@ namespace PasaBuy.App.ViewModels.Driver
             catch (Exception e)
             {
                 new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
-                IsBusy = false;
+                IsRunning = false;
             }
         }
         public static void RefreshVehicle()
@@ -259,34 +279,28 @@ namespace PasaBuy.App.ViewModels.Driver
 
         private async void ItemClicked(object selectedItem)
         {
-            try
+            if (!IsRunning)
             {
-                if (!IsBusy)
+                IsRunning = true;
+                //new Alert("Agik", "asdasda", "OK");
+                //string id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as VehicleList).Identification;
+                //string status = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as VehicleList).Status;
+                var vehicle = selectedItem as VehicleList;
+                string id = vehicle.Identification;
+                string status = vehicle.Status;
+                PSACache.Instance.UserInfo.vhid = id;
+                if (status == "ACTIVATED")
                 {
-                    IsBusy = true;
-                    var vehicle = selectedItem as VehicleList;
-                    //string id = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as VehicleList).Identification;
-                    //string status = ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as VehicleList).Status;
-                    string id = vehicle.Identification;
-                    string status = vehicle.Status;
-                    PSACache.Instance.UserInfo.vhid = id;
-                    if (status == "ACTIVATED")
-                    {
-                        MasterView.MyType = "mover";
-                        App.Current.MainPage = new NavigationView();
-                        IsBusy = false;
-                    }
-                    else
-                    {
-                        await App.Current.MainPage.Navigation.PushModalAsync(new Views.Driver.DriverDocuments());
-                        IsBusy = false;
-                    }
+                    MasterView.MyType = "mover";
+                    await System.Threading.Tasks.Task.Delay(300); 
+                    App.Current.MainPage = new NavigationView();
+                    IsRunning = false;
                 }
-            }
-            catch (Exception e)
-            {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
-                IsBusy = false;
+                else
+                {
+                    await App.Current.MainPage.Navigation.PushModalAsync(new Views.Driver.DriverDocuments());
+                    IsRunning = false;
+                }
             }
         }
 

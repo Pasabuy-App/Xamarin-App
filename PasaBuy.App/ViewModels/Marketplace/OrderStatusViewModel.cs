@@ -270,8 +270,49 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 CheckingOrder(order_id);
                 IsRefreshing = false;
             });
+            this.StoreMessage = new Xamarin.Forms.Command<object>(StoreMessageClicked);
+            this.MoverMessage = new Xamarin.Forms.Command<object>(MoverMessageClicked);
         }
-
+        public string store_name;
+        public string mover_name;
+        public string store_logo;
+        public string mover_avatar;
+        public Xamarin.Forms.Command<object> StoreMessage { get; set; }
+        private async void StoreMessageClicked(object obj)
+        {
+            if (!string.IsNullOrEmpty(store_id))
+            {
+                if (!IsRunning)
+                {
+                    IsRunning = true;
+                    ViewModels.Chat.ChatMessageViewModel.odid = order_id;
+                    ViewModels.Chat.ChatMessageViewModel.type = "store";
+                    ViewModels.Chat.ChatMessageViewModel.user_id = store_id;
+                    ViewModels.Chat.ChatMessageViewModel.ProfileNames = store_name;
+                    ViewModels.Chat.ChatMessageViewModel.ProfileImages = store_logo;
+                    await (App.Current.MainPage).Navigation.PushModalAsync(new Xamarin.Forms.NavigationPage(new Views.Chat.ChatMessagePage()));
+                    IsRunning = false;
+                }
+            }
+        }
+        public Xamarin.Forms.Command<object> MoverMessage { get; set; }
+        private async void MoverMessageClicked(object obj)
+        {
+            if (!string.IsNullOrEmpty(mover_id))
+            {
+                if (!IsRunning)
+                {
+                    IsRunning = true;
+                    ViewModels.Chat.ChatMessageViewModel.odid = order_id;
+                    ViewModels.Chat.ChatMessageViewModel.type = "mover";
+                    ViewModels.Chat.ChatMessageViewModel.user_id = mover_id;
+                    ViewModels.Chat.ChatMessageViewModel.ProfileNames = mover_name;
+                    ViewModels.Chat.ChatMessageViewModel.ProfileImages = mover_avatar;
+                    await (App.Current.MainPage).Navigation.PushModalAsync(new Xamarin.Forms.NavigationPage(new Views.Chat.ChatMessagePage()));
+                    IsRunning = false;
+                }
+            }
+        }
         Stopwatch stopwatch = new Stopwatch();
         public void OrderTimer(Boolean flag)
         {
@@ -282,7 +323,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 {
                     int countdown = TimeLimit - stopwatch.Elapsed.Seconds;
 
-                    this.stopWatch = countdown.ToString() + "seconds";
+                    this.stopWatch = countdown.ToString() + " seconds";
 
                     if (countdown == 1)
                     {
@@ -325,16 +366,17 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 PopupRateDriver.order_id = order.data[i].pubkey == "" ? "" : order.data[i].pubkey;
                                 PopupRateDriver.avatar = order.data[i].driver_avatar == "" ? "Avatar.png" : order.data[i].driver_avatar;
                                 PopupRateDriver.mover_name = order.data[i].driver_name == "" ? "Lorz Becislao" : order.data[i].driver_name;
-                                PopupRateDriver.mover_id = order.data[i].mvid == "" ? "6" : order.data[i].mvid;
+                                PopupRateDriver.mover_id = order.data[i].mover_id == "" ? "6" : order.data[i].mover_id;
 
                                 string stages = order.data[i].stages;
                                 if (stages == "Accepted")
                                 {
-                                    AcceptedByStore(order.data[i].stid);
+                                    string logo = !string.IsNullOrEmpty(order.data[i].store_logo) ? order.data[i].store_logo : "";
+                                    AcceptedByStore(order.data[i].stid, order.data[i].store_name, logo);
                                 }
                                 if (stages == "Ongoing")
                                 {
-                                    MoverFound(order.data[i].mvid);
+                                    MoverFound(order.data[i].mover_id, order.data[i].driver_name, order.data[i].driver_avatar);
                                 }
                                 if (stages == "Preparing")
                                 {
@@ -366,9 +408,21 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-        public void AcceptedByStore(string stid)
+        public void MoverFound(string moverid, string movername, string moveravatar)
+        {
+            mover_id = moverid;
+            mover_name = movername;
+            mover_avatar = moveravatar;
+            isMover = true;
+            this.isMoverFound = StepStatus.InProgress;
+            this.timeStatus = "Estimated Time of Arrival.";
+        }
+
+        public void AcceptedByStore(string stid, string storename, string store_avatar)
         {
             store_id = stid;
+            store_name = storename;
+            store_logo = store_avatar;
             isStore = true;
             this.timeStatus = "Estimated Time of Accepting by Mover. If not, your order will be automatically cancelled.";
         }
@@ -396,14 +450,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             this.isMoverOngoing = StepStatus.InProgress;
             this.isMoverFound = StepStatus.Completed;
-        }
-
-        public void MoverFound(string moverid)
-        {
-            mover_id = moverid;
-            isMover = true;
-            this.isMoverFound = StepStatus.InProgress;
-            this.timeStatus = "Estimated Time of Arrival.";
         }
 
 

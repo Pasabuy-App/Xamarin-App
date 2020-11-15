@@ -24,7 +24,7 @@ namespace PasaBuy.App.Models.MobilePOS
 
         public string Description { private set; get; }
 
-        static Management()
+        /*static Management()
         {
             All = new List<Management>
             {
@@ -62,6 +62,6 @@ namespace PasaBuy.App.Models.MobilePOS
             };
         }
 
-        public static IList<Management> All { private set; get; }
+        public static IList<Management> All { private set; get; }*/
     }
 }

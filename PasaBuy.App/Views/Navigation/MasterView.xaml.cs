@@ -66,8 +66,27 @@ namespace PasaBuy.App.Views.Navigation
                 Store_name.Text = PSACache.Instance.UserInfo.store_name;
                 Logo.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.store_logo);
                 Banner.Source = PSAProc.GetUrl(PSACache.Instance.UserInfo.store_banner);
-                Email.Text = "";
-                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Point of Sales"), Icon = "https://pasabuy.app/wp-content/uploads/2020/10/pos.png", TargetType = typeof(StoreViews.POS.PointOfSales) });
+                Email.Text = PSACache.Instance.UserInfo.store_info;
+
+                Switch.IsVisible = false;
+                foreach (var per in ViewModels.MobilePOS.MyStoreListViewModel.permissions)
+                {
+                    if (per.action == "online_offline_store")
+                    {
+                        Switch.IsVisible = true;
+                        break;
+                    }
+                }
+
+                foreach (var per in ViewModels.MobilePOS.MyStoreListViewModel.permissions)
+                {
+                    if (per.action == "check_product")
+                    {
+                        menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Point of Sales"), Icon = "https://pasabuy.app/wp-content/uploads/2020/10/pos.png", TargetType = typeof(StoreViews.POS.PointOfSales) });
+                        break;
+                    }
+                }
+
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Management"), Icon = "https://pasabuy.app/wp-content/uploads/2020/10/management.png", TargetType = typeof(ManagementView) });
                 //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Categories"), Icon = "Idcard.png", TargetType = typeof(CategoryView) });
                 //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Transactions"), Icon = "Idcard.png", TargetType = typeof(TransactionsView) });
@@ -83,6 +102,7 @@ namespace PasaBuy.App.Views.Navigation
             }
             if (MyType == "mover")
             {
+                Switch.IsVisible = true;
                 //Views.Driver.Navigation.StoreAddress = string.Empty;
                 //Views.Driver.Navigation.UserAddress = string.Empty;
                 Store_name.Text = PSACache.Instance.UserInfo.dname;
@@ -94,14 +114,13 @@ namespace PasaBuy.App.Views.Navigation
                 //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Messages"), Icon = "Idcard.png", TargetType = typeof(MessagesView) });
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Documents"), Icon = "https://pasabuy.app/wp-content/uploads/2020/10/management-documents.jpg", TargetType = typeof(DriverDocumentView) });
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Schedules"), Icon = "https://pasabuy.app/wp-content/uploads/2020/10/management-schedule.png", TargetType = typeof(DriverScheduleView) });
-
+                
             }
             _switchlist = new ObservableCollection<Models.POSFeature.OperationModel>();
             _switchlist.CollectionChanged += SwitchChanges;
             PopupGoOnline._switch = "false";
             isTapped = false;
             _switch = false;
-            ValidateStatus();
 
             menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Homepage"), Icon = "https://pasabuy.app/wp-content/uploads/2020/10/home.jpg", TargetType = typeof(MainTabs) });
             navigationDrawerList.ItemsSource = menuList;
@@ -118,7 +137,6 @@ namespace PasaBuy.App.Views.Navigation
                 isActiveSwitch.IsOn = true;
                 Status.Text = "Online";
                 isTapped = false;
-                //_switch = false;
             }
             else
             {
@@ -126,11 +144,10 @@ namespace PasaBuy.App.Views.Navigation
                 isActiveSwitch.IsOn = false;
                 Status.Text = "Offline";
                 isTapped = false;
-                //_switch = true;
             }
         }
 
-        public void ValidateStatus()
+        public void ValidateStatus() // no need, save status of store or mover in cache
         {
             if (MyType == "store")
             {

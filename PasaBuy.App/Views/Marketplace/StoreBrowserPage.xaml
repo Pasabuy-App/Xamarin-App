@@ -51,7 +51,7 @@
                     </OnIdiom>
                 </Grid.Padding>
                 <ScrollView>
-                    <StackLayout Spacing="0" Padding="0,0,0,20">
+                    <StackLayout Spacing="0" Padding="0,0,0,0">
                         
 
                         <CollectionView ItemsSource="{Binding ItemCategories}"

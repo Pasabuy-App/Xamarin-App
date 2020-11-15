@@ -278,7 +278,7 @@
                 </RefreshView>
             </Grid>
             <local:LoadingIndicator
-                IsRunning="{Binding IsBusy, Mode=TwoWay}"
+                IsRunning="{Binding IsRunning, Mode=TwoWay}"
                 Grid.Row="0"
                 x:Name="Loader"
                 HorizontalOptions="Fill"

@@ -4,6 +4,7 @@ using PasaBuy.App.DataService;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Navigation;
 using PasaBuy.App.Services;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,7 +70,7 @@ namespace PasaBuy.App.ViewModels
                             for (int i = 0; i < order.data.Length; i++)
                             {
                                 Views.Driver.StartDeliveryPage.order_status = order.data[i].stages;
-                                if (order.data[i].stages == "shipping")
+                                if (order.data[i].stages == "Shipping")
                                 {
                                     isVisible = true;
                                 }
@@ -94,10 +95,17 @@ namespace PasaBuy.App.ViewModels
                 IsBusy = false;
             }
         }
+        public async void Popup()
+        {
+            Views.Driver.DashboardPage._OrderList.Clear();
+            App.Current.MainPage.Navigation.PopModalAsync();
+            await PopupNavigation.PushAsync(new Views.PopupModals.PopupRateDriver());
+        }
 
         private void CompleteClicked(object obj)
         {
             UpdateOrderStatus(Views.Driver.StartDeliveryPage.item_id, "completed");
+            //Popup();
         }
 
         private void CancelClicked(object obj)

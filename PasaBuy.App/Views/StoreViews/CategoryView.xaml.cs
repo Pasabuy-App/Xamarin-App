@@ -4,6 +4,7 @@ using PasaBuy.App.ViewModels.MobilePOS;
 using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -20,13 +21,38 @@ namespace PasaBuy.App.Views.StoreViews
             this.BindingContext = new CategoryViewModel();
             //SearchText.TextChanged += OnTextChanged;
             SearchText.SearchButtonPressed += SearchButtonPress;
+            xAdd.IsEnabled = false;
+            CheckPermission();
+        }
+
+        public void CheckPermission()
+        {
+            bool edit = false;
+            bool delete = false;
+            foreach (var per in ViewModels.MobilePOS.MyStoreListViewModel.permissions)
+            {
+                if (per.action == "edit_category")
+                {
+                    edit = true;
+                }
+                if (per.action == "delete_category")
+                {
+                    delete = true;
+                }
+            }
+            if (!delete && !edit)
+            {
+                listView.AllowSwiping = false;
+            }
+            if (ViewModels.MobilePOS.MyStoreListViewModel.permissions.Any(p => p.action == "add_category"))
+            {
+                xAdd.IsEnabled = true;
+            }
         }
 
         void OnTextChanged(object sender, EventArgs e)
         {
             SearchBar searchBar = (SearchBar)sender;
-            //CategoryViewModel.RefreshCategory(searchBar.Text);
-            //searchResults.ItemsSource = DataService.GetSearchResults(searchBar.Text);
         }
 
         void SearchButtonPress(object sender, EventArgs e)

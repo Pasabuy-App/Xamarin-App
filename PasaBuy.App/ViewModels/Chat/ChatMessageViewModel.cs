@@ -44,7 +44,7 @@ namespace PasaBuy.App.ViewModels.Chat
         /// <summary>
         /// Type for user, move and store.
         /// </summary>
-        public static string type = "0";
+        public static string type;
 
         /// <summary>
         /// For loading indicator.
@@ -100,6 +100,8 @@ namespace PasaBuy.App.ViewModels.Chat
         /// For observable collection list.
         /// </summary>
         ChatList _chatHistoryList = null;
+
+        public static string odid = string.Empty;
 
         #endregion
 
@@ -158,7 +160,7 @@ namespace PasaBuy.App.ViewModels.Chat
         {
             ChatMessageListViewBehavior.isFirstLoad = false;
             await Task.Delay(100);
-            LoadMessage(user_id, "0");
+            LoadMessage("0");
 
         }
 
@@ -175,11 +177,11 @@ namespace PasaBuy.App.ViewModels.Chat
         /// <summary>
         /// Load 12 Message then used for load more.
         /// </summary>
-        public void LoadMessage(string recipient, string offset)
+        public void LoadMessage(string offset)
         {
             try
             {
-                Http.SocioPress.Message.Instance.GetByRecepient(recipient, PSACache.Instance.UserInfo.wpid, offset, "user", (bool success, string data) =>
+                Http.SocioPress.Message.Instance.GetByRecepient(user_id, PSACache.Instance.UserInfo.wpid, offset, type, odid, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -194,7 +196,7 @@ namespace PasaBuy.App.ViewModels.Chat
                             TimeSpan ts = datedb - datenow;
                             var currentTime = DateTime.Now;
 
-                            ChatList.Insert(0, new ChatListItem(chat.data[i].id, "", currentTime.AddMinutes(ts.TotalMinutes), chat.data[i].content, isreceived)); // 9 - 20 desc in rest
+                            ChatList.Insert(0, new ChatListItem(chat.data[i].id, "", currentTime.AddMinutes(ts.TotalMinutes), chat.data[i].content, isreceived)); 
 
                         }
                     }
@@ -428,7 +430,7 @@ namespace PasaBuy.App.ViewModels.Chat
                     {
                         ChatMessageListViewBehavior.isFirstLoad = false;
                         count = 1;
-                        Http.SocioPress.Message.Instance.Insert(this.NewMessage, user_id, PSACache.Instance.UserInfo.wpid, "user", (bool success, string data) =>
+                        Http.SocioPress.Message.Instance.Insert(this.NewMessage, user_id, PSACache.Instance.UserInfo.wpid, type, "", (bool success, string data) =>
                         {
                             if (success)
                             {
@@ -452,7 +454,7 @@ namespace PasaBuy.App.ViewModels.Chat
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1MSG-I1CMVM.", "OK");
             }
         }
 
@@ -492,11 +494,11 @@ namespace PasaBuy.App.ViewModels.Chat
                     ids = 12;
                     isFirstID = true;
                 }
-                LoadMessage(user_id, ids.ToString());
+                LoadMessage(ids.ToString());
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1MSG-GBR1CHVM.", "OK");
             }
             finally
             {

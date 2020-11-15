@@ -2,6 +2,7 @@
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Linq;
 
 namespace PasaBuy.App.Views.StoreViews
 {
@@ -11,6 +12,21 @@ namespace PasaBuy.App.Views.StoreViews
         public SettingsView()
         {
             InitializeComponent();
+
+            foreach (var per in ViewModels.MobilePOS.MyStoreListViewModel.permissions)
+            {
+                if (per.action == "edit_profile")
+                {
+                    isEditProfile.IsVisible = true;
+                    isEditProfileBar.IsVisible = true;
+                    break;
+                }
+                else
+                {
+                    isEditProfile.IsVisible = false;
+                    isEditProfileBar.IsVisible = false;
+                }
+            }
         }
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)

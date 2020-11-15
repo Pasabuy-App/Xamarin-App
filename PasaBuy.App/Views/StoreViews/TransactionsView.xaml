@@ -26,7 +26,6 @@
                     FocusBorderThickness="0"
                     ItemSpacing="0,1,0,0"
                     ItemTapped="Transactions_ItemTapped"
-                    ItemsSource="{x:Static model:Management.All}"
                     SelectionMode="None">
                     <!--Item Source is for testing purposes only. Kindly bind into specific viewmodels-->
                     

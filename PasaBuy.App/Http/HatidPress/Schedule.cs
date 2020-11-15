@@ -44,7 +44,7 @@ namespace PasaBuy.App.Http.HatidPress
         /// <summary>
         /// Listing of schedule of mover.
         /// </summary>
-        public async void Listing_Schedule(Action<bool, string> callback)
+        public async void Listing(Action<bool, string> callback)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace PasaBuy.App.Http.HatidPress
         /// <summary>
         /// Accept the order of customer that will show.
         /// </summary>
-        public async void Insert_Schedule(string type, string started, string ended, Action<bool, string> callback)
+        public async void Insert(string type, string started, string ended, Action<bool, string> callback)
         {
             try
             {
@@ -111,7 +111,7 @@ namespace PasaBuy.App.Http.HatidPress
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2SCH-I1.", "OK");
             }
         }
 

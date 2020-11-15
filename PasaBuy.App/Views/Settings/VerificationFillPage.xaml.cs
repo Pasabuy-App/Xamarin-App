@@ -23,6 +23,12 @@ namespace PasaBuy.App.Views.Settings
             IdTypeEntry.Text = idType;
             IDNumberEntry.Text = idnumber;
         }
+
+        public void BackButtonClicked(object sender, EventArgs e)
+        {
+            Navigation.PopModalAsync();
+        }
+
         private void NextButtonClicked(object sender, EventArgs e)
         {
             try

@@ -16,6 +16,48 @@ namespace PasaBuy.App.Models.POSFeature
         private string date_created = string.Empty;
         private string user_id = string.Empty;
 
+
+        private int _isDeleteCol = 0;
+        public int isDeleteCol
+        {
+            get
+            {
+                return _isDeleteCol;
+            }
+            set
+            {
+                _isDeleteCol = value;
+                OnPropertyChanged("isDeleteCol");
+            }
+        }
+
+        private bool _isDelete = false;
+        public bool isDelete
+        {
+            get
+            {
+                return _isDelete;
+            }
+            set
+            {
+                _isDelete = value;
+                OnPropertyChanged("isDelete");
+            }
+        }
+
+        private bool _isUpdate = false;
+        public bool isUpdate
+        {
+            get
+            {
+                return _isUpdate;
+            }
+            set
+            {
+                _isUpdate = value;
+                OnPropertyChanged("isUpdate");
+            }
+        }
         public string User_id
         {
             get

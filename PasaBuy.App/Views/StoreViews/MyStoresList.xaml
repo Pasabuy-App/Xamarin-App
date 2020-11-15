@@ -22,27 +22,27 @@
         <RefreshView IsRefreshing="{Binding IsRefreshing}"   
                      x:Name="rv"
                      Command="{Binding RefreshCommand}">
-        <Grid>
-            
             <Grid>
-                <ScrollView>
 
-                    <Grid RowSpacing="0"
+                <Grid>
+                    <ScrollView>
+
+                        <Grid RowSpacing="0"
                       CompressedLayout.IsHeadless="True">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Grid
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid
                         Grid.Row="0"
                         Padding="15,5,15,5"
                         BackgroundColor="{StaticResource PrimaryColor}"
                         HeightRequest="{OnPlatform Android='46',
                                                    iOS='56'}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
                                 <ImageButton Source="arrow_left.png"
                                      HeightRequest="25"
                                      WidthRequest="25"
@@ -56,12 +56,12 @@
                                     TextColor="{DynamicResource Gray-White}"
                                     VerticalOptions="Center" />
 
-                        </Grid>
-                        <StackLayout Grid.Row="1" 
+                            </Grid>
+                            <StackLayout Grid.Row="1" 
                                  CompressedLayout.IsHeadless="True"
                                  Spacing="0">
 
-                            <listView:SfListView
+                                <listView:SfListView
                                 Padding="15,0,10,10"
                                 AutoFitMode="Height"
                                 IsScrollBarVisible="false"
@@ -70,11 +70,11 @@
                                 SelectionBackgroundColor="Transparent"
                                 TapCommand="{Binding ItemTappedCommand}"
                                 VerticalOptions="FillAndExpand">
-                                <listView:SfListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <ViewCell>
-                                            <!--  View of each card item  -->
-                                            <controls:CustomShadowFrame
+                                    <listView:SfListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <!--  View of each card item  -->
+                                                <controls:CustomShadowFrame
                                                 Margin="0,2,5,5"
                                                 Padding="0,0,0,15"
                                                 BackgroundColor="{DynamicResource Gray-White}"
@@ -84,17 +84,17 @@
                                                 HasShadow="True"
                                                 HorizontalOptions="FillAndExpand"
                                                 VerticalOptions="FillAndExpand">
-                                                <Grid>
-                                                    <Grid ColumnSpacing="0"
+                                                    <Grid>
+                                                        <Grid ColumnSpacing="0"
                                                       CompressedLayout.IsHeadless="True"
                                                       RowSpacing="0">
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="120" />
-                                                            <ColumnDefinition Width="*" />
-                                                        </Grid.ColumnDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="120" />
+                                                                <ColumnDefinition Width="*" />
+                                                            </Grid.ColumnDefinitions>
 
-                                                        <!--  Image to display the Item  -->
-                                                        <ffimageloading:CachedImage
+                                                            <!--  Image to display the Item  -->
+                                                            <ffimageloading:CachedImage
                                                             Grid.Row="0"
                                                             Grid.Column="0"
                                                             Aspect="Fill"
@@ -105,8 +105,8 @@
                                                             Source="{Binding Logo}"
                                                             FadeAnimationEnabled="True"
                                                             WidthRequest="130">
-                                                        </ffimageloading:CachedImage>
-                                                        <StackLayout
+                                                            </ffimageloading:CachedImage>
+                                                            <StackLayout
                                                             Grid.Column="1"
                                                             CompressedLayout.IsHeadless="True"
                                                             Padding="16"
@@ -114,8 +114,8 @@
                                                             Spacing="0"
                                                             VerticalOptions="FillAndExpand">
 
-                                                            <!--  Name of the item  -->
-                                                            <Label
+                                                                <!--  Name of the item  -->
+                                                                <Label
                                                             FontFamily="{StaticResource Montserrat-SemiBold}"
                                                             FontSize="16"
                                                             LineHeight="{OnPlatform Android=1.5,
@@ -123,28 +123,28 @@
                                                             Text="{Binding Title}"
                                                             TextColor="{DynamicResource Gray-900}" />
 
-                                                            <!--  Description about the item  -->
-                                                            <Label
+                                                                <!--  Description about the item  -->
+                                                                <Label
                                                             Margin="0,4,0,8"
                                                             FontFamily="{StaticResource Montserrat-Medium}"
                                                             FontSize="12"
                                                             LineHeight="{OnPlatform Android=1.25,
                                                                                     Default=-1}"
-                                                            Text="{Binding Description}"
+                                                            Text="{Binding Info}"
                                                             TextColor="{DynamicResource Gray-700}" />
 
-                                                            <!--  Average rating from the overall rating  -->
-                                                            <StackLayout
+                                                                <!--  Average rating from the overall rating  -->
+                                                                <StackLayout
                                                             HorizontalOptions="FillAndExpand"
                                                             Orientation="Horizontal"
                                                             CompressedLayout.IsHeadless="True"
                                                             Spacing="0"
                                                             VerticalOptions="EndAndExpand">
-                                                                <Label
+                                                                    <Label
                                                                 Margin="0,0,4,0"
                                                                 Style="{StaticResource RatingLabelStyle}"
                                                                 WidthRequest="16" />
-                                                                <Label
+                                                                    <Label
                                                                 FontFamily="{StaticResource Montserrat-Regular}"
                                                                 FontSize="12"
                                                                 LineHeight="{OnPlatform Android=1.5,
@@ -152,37 +152,37 @@
                                                                 Text="5"
                                                                 TextColor="{DynamicResource Gray-700}"
                                                                 VerticalOptions="Center">
-                                                                </Label>
+                                                                    </Label>
 
-                                                                <!--  Navigation icon  -->
-                                                                <Label
+                                                                    <!--  Navigation icon  -->
+                                                                    <Label
                                                                 HorizontalOptions="EndAndExpand"
                                                                 FontSize="20"
                                                                 TextColor="{DynamicResource PrimaryColor}"
                                                                 Style="{StaticResource RightArrowLabelStyle}" />
+                                                                </StackLayout>
                                                             </StackLayout>
-                                                        </StackLayout>
+                                                        </Grid>
                                                     </Grid>
-                                                </Grid>
-                                            </controls:CustomShadowFrame>
-                                        </ViewCell>
-                                    </DataTemplate>
-                                </listView:SfListView.ItemTemplate>
-                            </listView:SfListView>
-                        </StackLayout>
+                                                </controls:CustomShadowFrame>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </listView:SfListView.ItemTemplate>
+                                </listView:SfListView>
+                            </StackLayout>
 
-                    </Grid>
+                        </Grid>
 
-                </ScrollView>
+                    </ScrollView>
 
-            </Grid>
-            
-            <local:LoadingIndicator
+                </Grid>
+
+                <local:LoadingIndicator
                 Grid.Row="0"
                 IsRunning="{Binding IsRunning, Mode=TwoWay}"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill" />
-        </Grid>
+            </Grid>
         </RefreshView>
     </ContentPage.Content>
 </ContentPage>

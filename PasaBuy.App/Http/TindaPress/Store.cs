@@ -204,6 +204,44 @@ namespace PasaBuy.App.Http.TindaPress
             }
         }
 
+        /// <summary>
+        /// Insert the rating of user to store.
+        /// </summary>
+        public async void Rating(string stid, string rates, string comments, Action<bool, string> callback)
+        {
+            try
+            {
+                var dict = new Dictionary<string, string>();
+                dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
+                dict.Add("snky", PSACache.Instance.UserInfo.snky);
+                dict.Add("stid", stid);
+                dict.Add("rates", rates);
+                dict.Add("comments", comments);
+                var content = new FormUrlEncodedContent(dict);
+
+                var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/tindapress/v2/store/rates/insert", content);
+                response.EnsureSuccessStatusCode();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string result = await response.Content.ReadAsStringAsync();
+                    Models.Token token = JsonConvert.DeserializeObject<Models.Token>(result);
+
+                    bool success = token.status == "success" ? true : false;
+                    string data = token.status == "success" ? result : token.message;
+                    callback(success, data);
+                }
+                else
+                {
+                    callback(false, "Network Error! Check your connection.");
+                }
+            }
+            catch (Exception e)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2STR-R1.", "OK");
+            }
+        }
+
         #endregion
     }
 }

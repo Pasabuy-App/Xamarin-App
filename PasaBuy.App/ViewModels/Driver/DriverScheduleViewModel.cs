@@ -56,7 +56,7 @@ namespace PasaBuy.App.ViewModels.Driver
             try
             {
                 _scheduleList.Clear();
-                Http.HatidPress.Schedule.Instance.Listing_Schedule((bool success, string data) =>
+                Http.HatidPress.Schedule.Instance.Listing((bool success, string data) =>
                 {
                     if (success)
                     {

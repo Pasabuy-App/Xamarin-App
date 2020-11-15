@@ -194,6 +194,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 await Task.Delay(300);
                 if (item.Stages == "On-Going")
                 {
+                    ViewModels.Marketplace.OrderStatusViewModel.order_id = item.ID;
                     ViewModels.Marketplace.OrderStatusViewModel._subtotal = item.TotalPrice;
                     ViewModels.Marketplace.OrderStatusViewModel._fee = Convert.ToDouble(item.Delivery_Charges);
                     ViewModels.Marketplace.OrderStatusViewModel._total = item.Total;
