@@ -129,6 +129,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
                         {
                             VerifyAccountData akey = JsonConvert.DeserializeObject<VerifyAccountData>(data);
                             State = false;
+
                             VerifyAccountVar.un = user_name;
                             VerifyAccountVar.ak = akey.key;
                             Application.Current.MainPage = new CreatePassword();

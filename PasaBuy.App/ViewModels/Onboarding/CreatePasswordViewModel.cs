@@ -15,6 +15,8 @@ namespace PasaBuy.App.ViewModels.Onboarding
 
         #region Fields
 
+        private string act_key;
+
         private string new_pw;
 
         private string confirm_pw;
@@ -39,6 +41,23 @@ namespace PasaBuy.App.ViewModels.Onboarding
         #region Property
 
         /// <summary>
+        /// Activation Key for User Verification.
+        /// </summary>
+        public string ActKey
+        {
+            get
+            {
+                return this.act_key;
+            }
+
+            set
+            {
+                this.act_key = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the property that bounds with an entry that gets the activation key from users in Verify Reset page.
         /// </summary>
         public string Password
@@ -50,11 +69,6 @@ namespace PasaBuy.App.ViewModels.Onboarding
 
             set
             {
-                if (this.new_pw == value)
-                {
-                    return;
-                }
-
                 this.new_pw = value;
                 this.NotifyPropertyChanged();
             }
@@ -72,11 +86,6 @@ namespace PasaBuy.App.ViewModels.Onboarding
 
             set
             {
-                if (this.confirm_pw == value)
-                {
-                    return;
-                }
-
                 this.confirm_pw = value;
                 this.NotifyPropertyChanged();
             }
@@ -124,91 +133,24 @@ namespace PasaBuy.App.ViewModels.Onboarding
                 if (!State)
                 {
                     State = true;
-                    Http.DataVice.Users.Instance.NewPassword(VerifyAccountVar.ak, VerifyAccountVar.un, Password, ConfirmPassowrd, (bool success1, string data1) =>
+                    Http.DataVice.Users.Instance.NewPassword(ActKey, Password, ConfirmPassowrd, async(bool success1, string data1) =>
                     {
                         if (success1)
                         {
-                            Http.DataVice.Users.Instance.Auth(VerifyAccountVar.un, Password, async (bool success, string data) =>
+                            App.Current.MainPage = new SignInPage();
+
+                            bool answer = await Application.Current.MainPage.DisplayAlert(
+                                "Verify Account?", "Congratulations! Thank you for downloading PasaBuy.App. " +
+                                "Ikaw ay makakatanggap ng Php500 sa iyong E-wallet. Sa ngayon ay " +
+                                "hindi pa magagamit ang App ngunit maaari ka ng mag-verify ng account. " +
+                                "Verify mo lang ang account mo at makakatanggap ka pa ng dagdag na Php300.", 
+                                "Confirm", "No, Later");
+
+                            if (answer)
                             {
-                                if (success)
-                                {
-                                    Token token = JsonConvert.DeserializeObject<Token>(data);
-
-                                    if (!token.isSuccess)
-                                    {
-                                        new Alert("Something went Wrong", HtmlUtils.ConvertToPlainText(token.message), "OK");
-                                        return;
-                                    }
-
-                                    //Initialized the class first.
-                                    PSACache.Instance.UserInfo = new UserInfo();
-
-                                    //Store User token on Cache
-                                    PSACache.Instance.UserInfo.wpid = token.data.wpid;
-                                    PSACache.Instance.UserInfo.snky = token.data.snky;
-
-                                    //TODO: Temporary
-                                    App.Current.MainPage = new SignInPage();
-                                    bool answer = await Application.Current.MainPage.DisplayAlert(
-                                        "Verify Account?",
-                                        "Congratulations! Thank you for downloading PasaBuy.App. Ikaw ay makakatanggap ng Php500 sa iyong E-wallet. Sa ngayon ay hindi pa magagamit ang App ngunit maaari ka ng mag-verify ng account. Verify mo lang ang account mo at makakatanggap ka pa ng dagdag na Php300.", "Confirm", "No, Later");
-
-                                    if(answer)
-                                    {
-                                        //Check if user is Verified or Not.
-                                        await PopupNavigation.Instance.PushAsync(new PopupStartup());
-                                    } 
-
-                                    return;
-
-                                    PSACache.Instance.SaveUserData();
-
-                                    //Reuqest user token after device received token.
-                                    Http.SocioPress.Profile.Instance.Data( token.data.wpid, (bool success2, string data2) =>
-                                    {
-                                        if (success2)
-                                        {
-                                            UserInfo uinfo = JsonConvert.DeserializeObject<UserInfo>(data2);
-
-                                            if (uinfo.Succeed)
-                                            {
-
-                                                PSACache.Instance.UserInfo.dname = uinfo.data.dname;
-                                                PSACache.Instance.UserInfo.uname = uinfo.data.uname;
-                                                PSACache.Instance.UserInfo.email = uinfo.data.email;
-                                                PSACache.Instance.UserInfo.lname = uinfo.data.lname;
-                                                PSACache.Instance.UserInfo.fname = uinfo.data.fname;
-                                                PSACache.Instance.UserInfo.city = uinfo.data.city;
-                                                PSACache.Instance.UserInfo.date_registered = uinfo.data.date_registered;
-                                                PSACache.Instance.UserInfo.avatar = uinfo.data.avatar;
-                                                PSACache.Instance.UserInfo.banner = uinfo.data.banner;
-                                                PSACache.Instance.UserInfo.verify = uinfo.data.verify;
-
-                                                State = false;
-                                                Application.Current.MainPage = new Views.MainTabs();
-                                                PSACache.Instance.SaveUserData();
-                                            }
-
-                                            else
-                                            {
-                                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data2), "Try Again");
-                                                State = false;
-                                            }
-                                        }
-
-                                        else
-                                        {
-                                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                                            State = false;
-                                        }
-                                    });
-                                }
-                                else
-                                {
-                                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                                    State = false;
-                                }
-                            });
+                                //Check if user is Verified or Not.
+                                await PopupNavigation.Instance.PushAsync(new PopupStartup());
+                            }
                         }
                         else
                         {
