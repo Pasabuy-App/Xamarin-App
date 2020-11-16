@@ -113,7 +113,7 @@ namespace PasaBuy.App.Views.PopupModals
             }
             catch (Exception ex)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2VHE-IV1PUVD.", "OK");
                 isClicked = false;
             }
         }
