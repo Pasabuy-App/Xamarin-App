@@ -258,8 +258,9 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             {
                 if (per.action == "accept_order")
                 {
-                    this.isAccept = stages == "Pending" ? true : false;
-                    this.txtAcceptPreparingShipping = "Accept";
+                    //this.isAccept = stages == "Pending" ? true : false;
+                    this.isAccept = true;
+                    this.txtAcceptPreparingShipping = stages != "Pending" ? stages != "Ongoing" ? "Ready for Shipping" : "Prepare Now" : "Accept";
                     break;
                 }
             }
@@ -268,8 +269,10 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             {
                 if (per.action == "prepare_order" || per.action == "ship_order")
                 {
-                    this.isAccept = stages == "Preparing" || stages == "Ongoing" ? true : false;
-                    this.txtAcceptPreparingShipping = stages != "Ongoing" ? "Ready for Shipping" : "Prepare Now";
+                    //this.isAccept = stages == "Preparing" || stages == "Ongoing" ? true : false;
+                    this.isAccept = true;
+                    //this.txtAcceptPreparingShipping = stages != "Ongoing" ? "Ready for Shipping" : "Prepare Now";
+                    this.txtAcceptPreparingShipping = stages != "Pending" ? stages != "Ongoing" ? "Ready for Shipping" : "Prepare Now" : "Accept";
                     break;
                 }
             }
