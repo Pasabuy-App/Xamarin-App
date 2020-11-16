@@ -7,6 +7,7 @@ using PasaBuy.App.Views.eCommerce;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace PasaBuy.App.ViewModels.eCommerce
@@ -31,11 +32,35 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 this.NotifyPropertyChanged();
             }
         }
+
+        bool _isRefreshing = false;
+        public bool IsRefreshing
+        {
+            get
+            {
+                return _isRefreshing;
+            }
+            set
+            {
+                if (_isRefreshing != value)
+                {
+                    _isRefreshing = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        public ICommand RefreshCommand { protected set; get; }
         public ChangeAddressViewModel()
         {
             _addressList = new ObservableCollection<AddressData>();
             _addressList.Clear();
             LoadData();
+            RefreshCommand = new Command<string>((key) =>
+            {
+                _addressList.Clear();
+                LoadData();
+                IsRefreshing = false;
+            });
         }
         public void LoadData()
         {
