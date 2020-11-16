@@ -41,7 +41,7 @@
                      Command="{Binding RefreshCommand}">
             <Grid>
                 <ScrollView VerticalScrollBarVisibility="Never" Padding="0, 0, 0, -10">
-
+                
                     <Grid RowSpacing="0"
                           Margin="{DynamicResource PageSpacing}"
                           ColumnSpacing="0">
@@ -101,8 +101,8 @@
                                                         </Grid.ColumnDefinitions>
 
                                                         <Grid Grid.Row="0" 
-                                                              Grid.RowSpan="2"
                                                               Grid.Column="0"
+                                                              Grid.RowSpan="2"
                                                               Margin="0, 0, 5, 0"
                                                               VerticalOptions="StartAndExpand">
 
@@ -158,18 +158,18 @@
 
                                                         <Grid Grid.Row="0" 
                                                               HeightRequest="18"
-                                                              Grid.Column="2" 
+                                                              Grid.Column="4" 
                                                               HorizontalOptions="EndAndExpand">
                                                             <Label Text="{Binding Types}"
                                                                    TextColor="{DynamicResource Gray-Black}"
                                                                    FontSize="{DynamicResource SmallerSize}"
                                                                    VerticalTextAlignment="Center">
-
+                                                                
                                                             </Label>
                                                         </Grid>
                                                         <Grid Grid.Row="1" 
                                                               HeightRequest="20"
-                                                              Grid.Column="2"
+                                                              Grid.Column="4"
                                                               HorizontalOptions="End">
                                                             <Label Text="{Binding Seen}" 
                                                            Style="{StaticResource PostSeen}"

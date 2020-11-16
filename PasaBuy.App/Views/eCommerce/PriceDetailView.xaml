@@ -69,7 +69,7 @@
                 HorizontalOptions="EndAndExpand"
                 HorizontalTextAlignment="End"
                 Style="{StaticResource PriceLabelStyle}"
-                Text="{Binding TotalPrice, StringFormat='₱ {0}'}" />
+                Text="{Binding TotalSrp, StringFormat='₱ {0}'}" />
             <!--  Discount Percent  -->
             <Label IsVisible="false"
                 Grid.Row="3"

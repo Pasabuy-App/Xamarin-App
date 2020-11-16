@@ -33,6 +33,9 @@ namespace PasaBuy.App.ViewModels.eCommerce
 
         private double totalPrice;
 
+
+        private double _totalSrp;
+
         private double discountPrice;
 
         private double discountPercent;
@@ -66,6 +69,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
             //this.DiscountPrice = discount;
             //this.DiscountPercent = coupon;
             this.DeliveryFee = charges;
+            this.TotalSrp = totalprice;
 
             this.EditCommand = new Command(this.EditClicked);
             this.AddAddressCommand = new Command(this.AddAddressClicked);
@@ -93,6 +97,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                             this.DeliveryFee = "₱ " + fee.data[i].price.ToString();
                             charges = "₱ " + fee.data[i].price.ToString();
                             fees = fee.data[i].price.ToString();
+                            this.TotalPrice = totalprice + fee.data[i].price;
                         }
                     }
                     else
@@ -357,6 +362,24 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 this.NotifyPropertyChanged();
             }
         }
+
+        public double TotalSrp
+        {
+            get { return this._totalSrp; }
+
+            set
+            {
+                if (this._totalSrp == value)
+                {
+                    return;
+                }
+
+                this._totalSrp = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+
         public string DeliveryFee
         {
             get { return this.deliveryFee; }
