@@ -54,7 +54,7 @@ namespace PasaBuy.App.Views.PopupModals
                 }
                 catch (Exception ex)
                 {
-                    new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2SCH-I1PUDES.", "OK");
                 }
             }
         }

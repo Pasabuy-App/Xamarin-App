@@ -56,13 +56,12 @@ namespace PasaBuy.App.Views.PopupModals
                 {
                     Views.Navigation.MasterView._switch = true;
                     Views.Navigation.MasterView._switchlist.Clear();
-                    UpdateOperations("open");
+                    UpdateOperations();
                 }
                 else // store is close
                 {
                     Views.Navigation.MasterView._switch = false;
                     Views.Navigation.MasterView._switchlist.Clear();
-                    UpdateOperations("close");
                     //save to cache then load it to set the switch to true then insert open to database.
                 }
                 Local.PSACache.Instance.UserInfo.store_status = Convert.ToBoolean(_switch);
@@ -91,11 +90,11 @@ namespace PasaBuy.App.Views.PopupModals
             PopupNavigation.Instance.PopAsync();
         }
 
-        public void UpdateOperations(string status) // status = open or close
+        public void UpdateOperations()
         {
             try
             {
-                Http.MobilePOS.Operation.Instance.Update(status, (bool success, string data) =>
+                Http.MobilePOS.Operation.Instance.Update((bool success, string data) =>
                 {
                     if (!success)
                     {
