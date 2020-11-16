@@ -86,15 +86,15 @@ namespace PasaBuy.App.Http.HatidPress
         /// <summary>
         /// List of vehicle.
         /// </summary>
-        public async void Listing_Vehicle(string vehicle_type, string plate, string maker, string model, string owner, string status, Action<bool, string> callback)
+        public async void Listing_Vehicle(string vhid, string vehicle_type, string plate, string maker, string model, string owner, string status, Action<bool, string> callback)
         {
             try
             {
                 var dict = new Dictionary<string, string>();
                     dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
                     dict.Add("snky", PSACache.Instance.UserInfo.snky);
-                    dict.Add("vid", PSACache.Instance.UserInfo.vhid);
-                    dict.Add("mvid", PSACache.Instance.UserInfo.mvid);
+                    //dict.Add("mvid", PSACache.Instance.UserInfo.mvid);
+                    dict.Add("vid", vhid);
                     dict.Add("types", vehicle_type);
                     dict.Add("plate", plate);
                     dict.Add("maker", maker);
