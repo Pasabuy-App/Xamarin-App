@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PasaBuy.App.Controllers.Notice;
+using System;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -15,12 +16,20 @@ namespace PasaBuy.App.Views.Settings
 
         private void BackToHome(object sender, EventArgs e)
         {
-            App.Current.MainPage = new MainTabs();
+            Continue();
         }
+
         protected override bool OnBackButtonPressed()
         {
-            App.Current.MainPage = new MainTabs();
+            Continue();
             return base.OnBackButtonPressed();
+        }
+
+        private async void Continue()
+        {
+            await Application.Current.MainPage.DisplayAlert(
+                "asdsads", "Ikaw na ay isang verified user ng PasaBuy.App! Makakatanggap ka ng Php300 sa E-wallet mo na magagamit mo sa PasaBuy Plus Promo. Maghintay lang ng updates mula sa amin upang malaman kung kailan niyo magagamit ang app.", "Continue", "");
+            //App.Current.MainPage = new MainTabs();
         }
     }
 }
