@@ -84,7 +84,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
                         if (success)
                         {
                             State = false;
-                            Application.Current.MainPage = new VerifyResetPage();
+                            Application.Current.MainPage = new CreatePassword();
                             VerifyAccountVar.un = Email;
                         }
                         else

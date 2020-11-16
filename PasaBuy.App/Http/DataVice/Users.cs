@@ -263,13 +263,12 @@ namespace PasaBuy.App.Http.DataVice
         /// <summary>
         /// Create new password.
         /// </summary>
-        public async void NewPassword(string ak, string un, string npas, string cpas, Action<bool, string> callback)
+        public async void NewPassword(string ak, string npas, string cpas, Action<bool, string> callback)
         {
             try
             {
                 var dict = new Dictionary<string, string>();
                     dict.Add("ak", ak);
-                    dict.Add("un", un);
                     dict.Add("npas", npas);
                     dict.Add("cpas", cpas);
                 var content = new FormUrlEncodedContent(dict);
