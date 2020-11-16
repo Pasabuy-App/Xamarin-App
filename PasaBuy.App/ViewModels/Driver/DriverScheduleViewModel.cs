@@ -150,7 +150,7 @@ namespace PasaBuy.App.ViewModels.Driver
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2SCH-L1DSVM.", "OK");
             }
         }
     }
