@@ -6,12 +6,11 @@ using PasaBuy.App.Local;
 using System;
 using Android.App;
 using Android.Runtime;
-
-//[Application(Debuggable = true)]
-[Application(UsesCleartextTraffic =true)]
 #else
 [Application(Debuggable = false)]
 #endif
+
+[Application(UsesCleartextTraffic = true, Debuggable = false)]
 [MetaData("com.google.android.maps.v2.API_KEY",
               Value = PSAConfig.googleApiKey)]
 
