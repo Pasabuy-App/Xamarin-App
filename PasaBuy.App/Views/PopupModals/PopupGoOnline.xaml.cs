@@ -37,11 +37,13 @@ namespace PasaBuy.App.Views.PopupModals
                 {
                     Views.Navigation.MasterView._switch = false;
                     Views.Navigation.MasterView._switchlist.Clear();
+                    Views.Driver.DashboardPage.locs = false;
                 }
                 else
                 {
                     Views.Navigation.MasterView._switch = true;
                     Views.Navigation.MasterView._switchlist.Clear();
+                    Views.Driver.DashboardPage.locs = true;
                 }
             }
 

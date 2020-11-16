@@ -40,6 +40,7 @@ namespace PasaBuy.App.Views.Driver
         }
         public static string order_id;
         public static string stages;
+        public static bool locs = true;
         public DashboardPage()
         {
             InitializeComponent();
@@ -152,6 +153,24 @@ namespace PasaBuy.App.Views.Driver
             }
         }
 
+        public void SendLocation(string lat, string lon)
+        {
+            try
+            {
+                Http.HatidPress.MoverData.Instance.Location(lat, lon, (bool success, string data) =>
+                {
+                    if (!success)
+                    {
+                        new Controllers.Notice.Alert("Notice to User", Local.HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2MVR-L1DP.", "OK");
+            }
+        }
+
         // Display Current Location of User
         public async void DisplayCurloc()
         {
@@ -165,6 +184,20 @@ namespace PasaBuy.App.Views.Driver
                     Xamarin.Forms.GoogleMaps.Position p = new Xamarin.Forms.GoogleMaps.Position(location.Latitude, location.Longitude);
                     MapSpan mapSpan = MapSpan.FromCenterAndRadius(p, Distance.FromKilometers(.444));
                     map.MoveToRegion(mapSpan);
+
+                    Xamarin.Forms.Device.StartTimer(TimeSpan.FromSeconds(7), () =>
+                    {
+                        if (locs)
+                        {
+                            SendLocation(location.Latitude.ToString(), location.Longitude.ToString());
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    });
+
                     //await GetLocationName(p);
                     //Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
                 }
