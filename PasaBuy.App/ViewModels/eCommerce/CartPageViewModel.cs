@@ -72,6 +72,22 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 this.NotifyPropertyChanged();
             }
         }
+        private double _totalSrp;
+        public double TotalSrp
+        {
+            get { return this._totalSrp; }
+
+            set
+            {
+                if (this._totalSrp == value)
+                {
+                    return;
+                }
+
+                this._totalSrp = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
         #endregion
 
@@ -100,6 +116,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 totalprice += prod.Quantity * (prod.ActualPrice + varprice);
             }
             this.TotalPrice = totalprice;
+            this.TotalSrp = totalprice;
             //this.DiscountPrice = totalprice;
 
             this.DeliveryFee = "₱ 0";

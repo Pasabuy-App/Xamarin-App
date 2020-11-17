@@ -308,8 +308,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         {
             if (!IsRunning)
             {
-                IsRunning = true; // order_id // PSACache.Instance.UserInfo.stid // user_id
-                // get the user id, stid and odid
+                IsRunning = true;
                 ViewModels.Chat.StoreConversationViewModel.odid = order_id;
                 ViewModels.Chat.StoreConversationViewModel.user_id = user_id;
                 ViewModels.Chat.StoreConversationViewModel.ProfileNames = customer;

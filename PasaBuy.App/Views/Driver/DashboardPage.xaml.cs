@@ -126,7 +126,8 @@ namespace PasaBuy.App.Views.Driver
                                 PopupAcceptOrder.destinationAddress = order.data[i].cutomer_address;
                                 PopupAcceptOrder.user_lat = order.data[i].cutomer_lat;
                                 PopupAcceptOrder.user_long = order.data[i].cutomer_long;
-                                PopupAcceptOrder.user_name = order.data[i].cutomer_address;
+                                PopupAcceptOrder.user_name = order.data[i].customer;
+                                PopupAcceptOrder.user_id = order.data[i].order_by;
                                 PopupAcceptOrder.countdown = timer;
                             }
                             await Task.Delay(500);
