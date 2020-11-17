@@ -18,17 +18,16 @@ namespace PasaBuy.App.Views.Marketplace
 
         private void backButton_Clicked(object sender, EventArgs e)
         {
+            OrderStatusViewModel.isTimer = false;
+            OrderStatusViewModel.myTimer = false;
             Navigation.PopModalAsync();
         }
-
-        /*private void Mover_Clicked(object sender, EventArgs e)
+        protected override bool OnBackButtonPressed()
         {
-            new Controllers.Notice.Alert("Mover", "User message the mover.", "OK");
+            OrderStatusViewModel.isTimer = false;
+            OrderStatusViewModel.myTimer = false;
+            return base.OnBackButtonPressed();
         }
 
-        private void Store_Clicked(object sender, EventArgs e)
-        {
-            new Controllers.Notice.Alert("Store", "User message the store.", "OK");
-        }*/
     }
 }
