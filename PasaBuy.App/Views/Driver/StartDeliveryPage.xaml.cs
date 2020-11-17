@@ -264,7 +264,6 @@ namespace PasaBuy.App.Views.Driver
 
         #endregion
 
-
         public async void StartDelivery_Clicked(System.Object sender, System.EventArgs e)
         {
             Compass.Start(SensorSpeed.UI, applyLowPassFilter: true);
@@ -309,7 +308,6 @@ namespace PasaBuy.App.Views.Driver
 
         }
 
-
         #region page Method
         async void Handle_SlideCompleted(object sender, System.EventArgs e)
         {
@@ -330,9 +328,11 @@ namespace PasaBuy.App.Views.Driver
                     await Xamarin.Essentials.Map.OpenAsync(location2);
 
                 }
+                Compass.Stop();
+                Navigation.PopModalAsync();
             }
 
-            if (order_status == "Preparing")
+            if (order_status == "Preparing" || order_status == "Ongoing")
             {
                 if (Device.RuntimePlatform == Device.iOS)
                 {
@@ -351,9 +351,9 @@ namespace PasaBuy.App.Views.Driver
                     await Xamarin.Essentials.Map.OpenAsync(location);
                 }
                 //order_status = "shipping";
+                Compass.Stop();
+                Navigation.PopModalAsync();
             }
-            Compass.Stop();
-            Navigation.PopModalAsync();
         }
 
         public void pinLocation()
