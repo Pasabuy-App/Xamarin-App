@@ -54,8 +54,16 @@ namespace PasaBuy.App.Views.Driver
 
         private void CollectionChages(object sender, EventArgs e)
         {
-            Refresh.IsEnabled = true;
-            Pending_Order.IsVisible = false;
+            if (_OrderList.Count > 0)
+            {
+                Refresh.IsEnabled = false;
+                Pending_Order.IsVisible = true;
+            }
+            else
+            {
+                Refresh.IsEnabled = true;
+                Pending_Order.IsVisible = false;
+            }
         }
 
         public void CheckDeliveries()
@@ -71,6 +79,10 @@ namespace PasaBuy.App.Views.Driver
                         {
                             GetOrderDetails(order.data[i].order_id, 0);
                             order_id = order.data[i].order_id;
+                            _OrderList.Add(new Models.eCommerce.Transactions()
+                            {
+                                ID = order.data[i].order_id
+                            }); ;
                         }
                     }
                     else
@@ -114,6 +126,7 @@ namespace PasaBuy.App.Views.Driver
                                 PopupAcceptOrder.destinationAddress = order.data[i].cutomer_address;
                                 PopupAcceptOrder.user_lat = order.data[i].cutomer_lat;
                                 PopupAcceptOrder.user_long = order.data[i].cutomer_long;
+                                PopupAcceptOrder.user_name = order.data[i].cutomer_address;
                                 PopupAcceptOrder.countdown = timer;
                             }
                             await Task.Delay(500);
@@ -140,6 +153,7 @@ namespace PasaBuy.App.Views.Driver
                                 StartDeliveryPage.order_status = order.data[i].stages;
                             }
                         }
+                        IsRunning.IsRunning = false;
                     }
                     else
                     {
@@ -250,14 +264,14 @@ namespace PasaBuy.App.Views.Driver
                             {
                                 GetOrderDetails(order.data[i].order_id, Convert.ToInt32(order.data[i].countdown));
                             }
-                            Refresh.IsEnabled = false;
-                            Pending_Order.IsVisible = true;
-                            IsRunning.IsRunning = false;
+                            //Refresh.IsEnabled = false;
+                            //Pending_Order.IsVisible = true;
                         }
                         else
                         {
-                            Refresh.IsEnabled = true;
-                            Pending_Order.IsVisible = false;
+                            //Refresh.IsEnabled = true;
+                            //Pending_Order.IsVisible = false;
+                            //new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                             IsRunning.IsRunning = false;
                         }
                     });
