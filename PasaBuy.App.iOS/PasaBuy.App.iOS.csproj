@@ -472,4 +472,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\content.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\refresh_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\chat_white.png" />
+  </ItemGroup>
 </Project>

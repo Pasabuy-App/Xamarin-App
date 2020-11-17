@@ -9,7 +9,7 @@
              xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
               xmlns:model="clr-namespace:PasaBuy.App.Models.MobilePOS" 
-             xmlns:controls="clr-namespace:PasaBuy.App.Controls" xmlns:local="clr-namespace:PasaBuy.App.UserControls"
+             xmlns:controls="clr-namespace:PasaBuy.App.Controls" xmlns:local="clr-namespace:PasaBuy.App.UserControls" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
              x:Class="PasaBuy.App.Views.StoreViews.TransactionDetailsView"
              Title="Transaction Details"
              BackgroundColor="{DynamicResource Gray-White}">
@@ -19,6 +19,66 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <DataTemplate x:Key="itemTemplate">
+                    <Grid Margin="0"
+                          Padding="8,12,8,0"
+                          BackgroundColor="{DynamicResource Transparent}"
+                          ColumnSpacing="0"
+                          RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid Padding="0,0,8,10" RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70*" />
+                                <ColumnDefinition Width="30*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding Product}"
+                                   Grid.Row="0"
+                                   Grid.Column="0"
+                                   HorizontalOptions="StartAndExpand"
+                                                   FontFamily="{StaticResource Montserrat-Medium}"
+                                                    TextColor="{DynamicResource Gray-900}">
+                            </Label>
+
+                            <Label Text="{Binding Quantity}"
+                                                   Grid.Row="1"
+                                                   Grid.Column="0"
+                                                   Margin="0,5,0,0"
+                                                   HorizontalOptions="StartAndExpand"
+                                                   FontFamily="{StaticResource Montserrat-Medium}"
+                                                    TextColor="{DynamicResource Gray-900}">
+                            </Label>
+
+                            <Label Text="{Binding Price, StringFormat='₱ {0:F2}'}" 
+                                                       Grid.Row="0"
+                                                       Grid.Column="1"
+                                                       HorizontalOptions="EndAndExpand"
+                                                       FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                       TextColor="{DynamicResource Gray-900}">
+                            </Label>
+
+                        <Label Text="{Binding Remarks}"
+                               Grid.Row="2"
+                               Grid.Column="0"
+                               Margin="0,5,0,0"
+                               HorizontalOptions="StartAndExpand"
+                               FontFamily="{StaticResource Montserrat-Medium}"
+                               TextColor="{DynamicResource Gray-900}">
+                        </Label>
+
+
+                    </Grid>
+                    </Grid>
+              
+            </DataTemplate>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.ControlTemplate>
@@ -116,26 +176,25 @@
                         <Label  x:Name="Method"
                                 Text="{Binding Method}"
                                 Margin="0,8,0,0"
-                                           Grid.Row="1"
-                                           Grid.Column="2"
-                                           HorizontalOptions="StartAndExpand"
-                                           FontFamily="{StaticResource Montserrat-Medium}"
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                HorizontalOptions="StartAndExpand"
+                                FontFamily="{StaticResource Montserrat-Medium}"
                                 TextColor="{DynamicResource Gray-900}">
                         </Label>
 
-                        <ffimageloading:CachedImage Aspect="AspectFit" x:Name="MessageButton" IsVisible="{Binding isMessage}"
-                                                Grid.Row="2"
-                                                HorizontalOptions="StartAndExpand"
-                                                Margin="0,5,0,0"
-                                                Grid.Column="2"
-                                                Source="https://pasabuy.app/wp-content/uploads/2020/10/messages.jpg"
-                                                HeightRequest="35"
-			                                    DownsampleToViewSize="true" 
-                                               FadeAnimationEnabled="True" >
-                            <ffimageloading:CachedImage.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding MessageCustomerCommand}" NumberOfTapsRequired="1"/>
-                            </ffimageloading:CachedImage.GestureRecognizers>
-                        </ffimageloading:CachedImage>
+
+                        <ImageButton Source="chat_white.png"
+                                     Grid.Row="2"
+                                     Grid.Column="2"
+                                     HorizontalOptions="StartAndExpand"
+                                     IsVisible="{Binding isMessage}"
+                                     Margin="0,5,0,0"
+                                     HeightRequest="25"
+                                     Command="{Binding MessageCustomerCommand}"
+                                     x:Name="MessageButton"
+                                     WidthRequest="25"
+                                     BackgroundColor="Transparent" />
 
 
 
@@ -181,56 +240,8 @@
                                 FocusBorderThickness="0"
                                 ItemSpacing="0,1,0,0"
                                 ItemsSource="{Binding ProductList}"
+                                ItemTemplate="{StaticResource itemTemplate}"
                                 SelectionMode="None">
-                                <sync:SfListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid
-                                            Margin="0"
-                                            Padding="8,12,8,0"
-                                            BackgroundColor="{DynamicResource Transparent}"
-                                            ColumnSpacing="0"
-                                            RowSpacing="0">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto" />
-                                            </Grid.RowDefinitions>
-                                            <Grid Padding="0,0,8,10" RowSpacing="0">
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                </Grid.RowDefinitions>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="70*" />
-                                                    <ColumnDefinition Width="30*" />
-                                                </Grid.ColumnDefinitions>
-
-                                                <Label Text="{Binding Product}"
-                                                   Grid.Row="0"
-                                                   Grid.Column="0"
-                                                   HorizontalOptions="StartAndExpand"
-                                                   FontFamily="{StaticResource Montserrat-Medium}"
-                                                    TextColor="{DynamicResource Gray-900}">
-                                                </Label>
-
-                                                <Label Text="{Binding Quantity}"
-                                                   Grid.Row="1"
-                                                   Grid.Column="0"
-                                                   Margin="0,5,0,0"
-                                                   HorizontalOptions="StartAndExpand"
-                                                   FontFamily="{StaticResource Montserrat-Medium}"
-                                                    TextColor="{DynamicResource Gray-900}">
-                                                </Label>
-
-                                                <Label Text="{Binding Price, StringFormat='₱ {0:F2}'}" 
-                                                       Grid.Row="0"
-                                                       Grid.Column="1"
-                                                       HorizontalOptions="EndAndExpand"
-                                                       FontFamily="{StaticResource Montserrat-SemiBold}"
-                                                       TextColor="{DynamicResource Gray-900}">
-                                                </Label>
-                                            </Grid>
-                                        </Grid>
-                                    </DataTemplate>
-                                </sync:SfListView.ItemTemplate>
                             </sync:SfListView>
                         </Grid>
 
@@ -283,7 +294,6 @@
                     HorizontalOptions="Fill"
                     IsRunning="{Binding IsRunning, Mode=TwoWay}"
                     VerticalOptions="Fill" />
-
 
         </Grid>
     </ContentPage.Content>

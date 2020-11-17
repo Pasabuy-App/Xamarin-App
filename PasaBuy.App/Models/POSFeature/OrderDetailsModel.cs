@@ -11,6 +11,8 @@ namespace PasaBuy.App.Models.POSFeature
         public string price { get; set; }
         public string quantity { get; set; }
         public string variants { get; set; }
+        public string remarks { get; set; }
+
         public double variants_price { get; set; }
 
 
@@ -32,6 +34,17 @@ namespace PasaBuy.App.Models.POSFeature
             {
                 product = value;
                 OnPropertyChanged("Product");
+            }
+        }
+
+        private string _remarks = string.Empty;
+        public string Remarks
+        {
+            get { return _remarks; }
+            set
+            {
+                _remarks = value;
+                OnPropertyChanged("Remarks");
             }
         }
 

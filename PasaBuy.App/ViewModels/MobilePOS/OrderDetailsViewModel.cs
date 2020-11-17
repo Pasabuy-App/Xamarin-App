@@ -45,6 +45,23 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
         }
 
+        public string _remarks;
+        public string Remarks
+        {
+            get
+            {
+                return _remarks;
+            }
+            set
+            {
+                if (_remarks != value)
+                {
+                    _remarks = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+
         public string _OrderID;
         public string OrderID
         {
@@ -335,7 +352,9 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                     {
                                         Price = totalrpice,
                                         Product = product.data[i].products[ii].product_name,
-                                        Quantity = product.data[i].products[ii].quantity  + " " + " x ( " + product.data[i].products[ii].price + " + " + product.data[i].products[ii].variants_price + " )"
+                                        Quantity = product.data[i].products[ii].quantity  + " " + " x ( " + product.data[i].products[ii].price + " + " + product.data[i].products[ii].variants_price + " )",
+                                        Remarks = product.data[i].products[ii].remarks == "" ? "" : "Note: " + product.data[i].products[ii].remarks
+
                                     });
                                 }
                                 IsRunning = false;

@@ -86,7 +86,8 @@
                                                 Source="{Binding Avatar}"
                                                 HeightRequest="50"
                                                 x:Name="ImageId"
-			                                    DownsampleToViewSize="true" FadeAnimationEnabled="True" >
+			                                    DownsampleToViewSize="true"
+                                                            FadeAnimationEnabled="True" >
                                     <ffimageloading:CachedImage.Transformations>
                                         <fftransformations:CircleTransformation />
                                     </ffimageloading:CachedImage.Transformations>

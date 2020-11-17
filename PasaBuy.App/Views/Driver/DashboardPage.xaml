@@ -27,8 +27,8 @@
             Text="">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="Android" Value="add_24.png" />
-                    <On Platform="IOS" Value="add_24.png" />
+                    <On Platform="Android" Value="refresh_white.png" />
+                    <On Platform="IOS" Value="refresh_white.png" />
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
