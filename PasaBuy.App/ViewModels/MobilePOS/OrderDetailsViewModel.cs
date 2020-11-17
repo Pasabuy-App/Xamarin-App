@@ -388,6 +388,8 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                             DashboardOrdersViewModel.stages = status;
                             DashboardOrdersViewModel.RefreshOrder(status);
                             await App.Current.MainPage.Navigation.PopModalAsync();
+
+                            ViewModels.MobilePOS.DashboardOrdersViewModel._starttimer = true;
                             IsRunning = false;
                         }
                         else

@@ -20,7 +20,14 @@ namespace PasaBuy.App.Views.StoreViews
         }
         public void BackButtonClicked(object sender, EventArgs e)
         {
+            ViewModels.MobilePOS.DashboardOrdersViewModel._starttimer = true;
             Navigation.PopModalAsync();
         }
+        protected override bool OnBackButtonPressed()
+        {
+            ViewModels.MobilePOS.DashboardOrdersViewModel._starttimer = true;
+            return base.OnBackButtonPressed();
+        }
+
     }
 }

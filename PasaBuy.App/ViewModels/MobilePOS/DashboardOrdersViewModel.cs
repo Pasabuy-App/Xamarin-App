@@ -77,7 +77,62 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 LoadOrder(stages);
                 IsRefreshing = false;
             });
+            _starttimer = true;
+            StartTimer();
+        }
 
+        public static bool _starttimer;
+        public void StartTimer()
+        {
+            Xamarin.Forms.Device.StartTimer(TimeSpan.FromSeconds(5), () =>
+            {
+                if (_starttimer)
+                {
+                    CheckPending();
+                }
+                /*else
+                {
+                    return false;
+                }*/
+                return true;
+            });
+        }
+        public void CheckPending()
+        {
+            try
+            {
+                Http.MobilePOS.Order.Instance.Listing(PSACache.Instance.UserInfo.stid, "", stages, "", async (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        Models.POSFeature.OrderModel order = JsonConvert.DeserializeObject<Models.POSFeature.OrderModel>(data);
+                        for (int i = 0; i < 1; i++)
+                        {
+                            if (order.data[i].stages == "Pending" || order.data[i].stages == "Ongoing")
+                            {
+                                CultureInfo provider = new CultureInfo("fr-FR");
+                                string dates = string.IsNullOrEmpty(order.data[i].date_created) ? "0000-00-00 00:00:00" : order.data[i].date_created;
+                                DateTime date = DateTime.ParseExact(dates, "yyyy-MM-dd HH:mm:ss", provider);
+
+                                OrderDetailsViewModel.avatar = PSAProc.GetUrl(order.data[i].avatar);
+                                OrderDetailsViewModel.order_id = order.data[i].pubkey;
+                                OrderDetailsViewModel.datecreated = date.ToString("MMM. dd, yyyy hh:mm tt");
+                                OrderDetailsViewModel.totalprice = Convert.ToDouble(order.data[i].total_price);
+                                OrderDetailsViewModel.stages = order.data[i].stages;
+                                OrderDetailsViewModel.customer = order.data[i].customer;
+                                OrderDetailsViewModel.method = order.data[i].method;
+                                OrderDetailsViewModel.user_id = order.data[i].order_by;
+                                await App.Current.MainPage.Navigation.PushModalAsync(new Views.StoreViews.TransactionDetailsView());
+                                _starttimer = false;
+                            }
+                        }
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ODR-L1DOVM.", "OK");
+            }
         }
         private Command<object> itemTappedCommand;
         public Command<object> ItemTappedCommand
@@ -103,6 +158,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 OrderDetailsViewModel.method = item.Method;
                 OrderDetailsViewModel.user_id = item.Order_By;
                 await App.Current.MainPage.Navigation.PushModalAsync(new Views.StoreViews.TransactionDetailsView());
+                _starttimer = false;
                 IsRunning = false;
             }
         }
