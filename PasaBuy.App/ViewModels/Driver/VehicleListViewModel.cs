@@ -209,11 +209,12 @@ namespace PasaBuy.App.ViewModels.Driver
                 {
                     IsRunning = true;
                     _vehicleList.Clear();
-                    Http.HatidPress.Vehicle.Instance.Listing_Vehicle( "", "", "", "", "", "", (bool success, string data) =>
+                    Http.HatidPress.Vehicle.Instance.Listing_Vehicle("", "", "", "", "", "", "active", (bool success, string data) =>
                     {
                         if (success)
                         {
                             VehicleList vehicle = JsonConvert.DeserializeObject<VehicleList>(data);
+                            System.Diagnostics.Debug.WriteLine("data: " + data);
                             for (int i = 0; i < vehicle.data.Length; i++)
                             {
                                 _vehicleList.Add(new VehicleList()
@@ -245,7 +246,7 @@ namespace PasaBuy.App.ViewModels.Driver
             try
             {
                 _vehicleList.Clear();
-                Http.HatidPress.Vehicle.Instance.Listing_Vehicle("", "", "", "", "", "", (bool success, string data) =>
+                Http.HatidPress.Vehicle.Instance.Listing_Vehicle("", "", "", "", "", "", "active", (bool success, string data) =>
                 {
                     if (success)
                     {

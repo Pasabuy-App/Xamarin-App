@@ -40,6 +40,7 @@ namespace PasaBuy.App.Views.Driver
         }
         public static string order_id;
         public static string stages;
+        public static bool locs = true;
         public DashboardPage()
         {
             InitializeComponent();
@@ -53,8 +54,16 @@ namespace PasaBuy.App.Views.Driver
 
         private void CollectionChages(object sender, EventArgs e)
         {
-            Refresh.IsEnabled = true;
-            Pending_Order.IsVisible = false;
+            if (_OrderList.Count > 0)
+            {
+                Refresh.IsEnabled = false;
+                Pending_Order.IsVisible = true;
+            }
+            else
+            {
+                Refresh.IsEnabled = true;
+                Pending_Order.IsVisible = false;
+            }
         }
 
         public void CheckDeliveries()
@@ -70,6 +79,10 @@ namespace PasaBuy.App.Views.Driver
                         {
                             GetOrderDetails(order.data[i].order_id, 0);
                             order_id = order.data[i].order_id;
+                            _OrderList.Add(new Models.eCommerce.Transactions()
+                            {
+                                ID = order.data[i].order_id
+                            }); ;
                         }
                     }
                     else
@@ -113,6 +126,7 @@ namespace PasaBuy.App.Views.Driver
                                 PopupAcceptOrder.destinationAddress = order.data[i].cutomer_address;
                                 PopupAcceptOrder.user_lat = order.data[i].cutomer_lat;
                                 PopupAcceptOrder.user_long = order.data[i].cutomer_long;
+                                PopupAcceptOrder.user_name = order.data[i].cutomer_address;
                                 PopupAcceptOrder.countdown = timer;
                             }
                             await Task.Delay(500);
@@ -139,6 +153,7 @@ namespace PasaBuy.App.Views.Driver
                                 StartDeliveryPage.order_status = order.data[i].stages;
                             }
                         }
+                        IsRunning.IsRunning = false;
                     }
                     else
                     {
@@ -149,6 +164,24 @@ namespace PasaBuy.App.Views.Driver
             catch (Exception e)
             {
                 new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ODR-L1DP.", "OK");
+            }
+        }
+
+        public void SendLocation(string lat, string lon)
+        {
+            try
+            {
+                Http.HatidPress.MoverData.Instance.Location(lat, lon, (bool success, string data) =>
+                {
+                    if (!success)
+                    {
+                        new Controllers.Notice.Alert("Notice to User", Local.HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2MVR-L1DP.", "OK");
             }
         }
 
@@ -165,6 +198,20 @@ namespace PasaBuy.App.Views.Driver
                     Xamarin.Forms.GoogleMaps.Position p = new Xamarin.Forms.GoogleMaps.Position(location.Latitude, location.Longitude);
                     MapSpan mapSpan = MapSpan.FromCenterAndRadius(p, Distance.FromKilometers(.444));
                     map.MoveToRegion(mapSpan);
+
+                    Xamarin.Forms.Device.StartTimer(TimeSpan.FromSeconds(7), () =>
+                    {
+                        if (locs)
+                        {
+                            SendLocation(location.Latitude.ToString(), location.Longitude.ToString());
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    });
+
                     //await GetLocationName(p);
                     //Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
                 }
@@ -217,14 +264,14 @@ namespace PasaBuy.App.Views.Driver
                             {
                                 GetOrderDetails(order.data[i].order_id, Convert.ToInt32(order.data[i].countdown));
                             }
-                            Refresh.IsEnabled = false;
-                            Pending_Order.IsVisible = true;
-                            IsRunning.IsRunning = false;
+                            //Refresh.IsEnabled = false;
+                            //Pending_Order.IsVisible = true;
                         }
                         else
                         {
-                            Refresh.IsEnabled = true;
-                            Pending_Order.IsVisible = false;
+                            //Refresh.IsEnabled = true;
+                            //Pending_Order.IsVisible = false;
+                            //new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                             IsRunning.IsRunning = false;
                         }
                     });

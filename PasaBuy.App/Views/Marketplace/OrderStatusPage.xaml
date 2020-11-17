@@ -7,7 +7,7 @@
              xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms" 
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
              xmlns:effects="clr-namespace:Xamarin.Toolkit.Effects;assembly=Xamarin.Toolkit.Effects" 
-             xmlns:localindicator="clr-namespace:PasaBuy.App.UserControls"
+             xmlns:localindicator="clr-namespace:PasaBuy.App.UserControls" xmlns:controls="clr-namespace:PasaBuy.App.Controls"
              x:Class="PasaBuy.App.Views.Marketplace.OrderStatusPage"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
@@ -22,264 +22,276 @@
         <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" Default="0, 0, 0, 0" />
     </ContentPage.Padding>
     <ContentPage.Content>
-        <Grid>
-            <Grid.Padding>
-                <OnIdiom x:TypeArguments="Thickness">
-                    <OnIdiom.Phone>0,0,0,0</OnIdiom.Phone>
-                    <OnIdiom.Tablet>50,0,50,0</OnIdiom.Tablet>
-                </OnIdiom>
-            </Grid.Padding>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0"
-                  Padding="15,8,15,8"
-                  BackgroundColor="{StaticResource PrimaryColor}"
-                  HeightRequest="{OnPlatform Android='46',
-                                                   iOS='46'}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <ImageButton Source="arrow_left.png"
-                             x:Name="backButton"
-                             HeightRequest="25"
-                             WidthRequest="25"
-                             BackgroundColor="Transparent"
-                             Clicked="backButton_Clicked" />
-                
-                <Label Grid.Column="1" 
-                       x:Name="TitleName"
-                       Text="Order Status"
-                       Margin="0,0,20,0"
-                       FontFamily="{StaticResource Montserrat-Medium}"
-                       FontSize="{StaticResource LargeSize}"
-                       HorizontalOptions="CenterAndExpand"
-                       TextColor="{DynamicResource Gray-White}"
-                       VerticalOptions="Center" />
-            </Grid>
-            <Grid Grid.Row="1" RowSpacing="10">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="40*" />
-                    <RowDefinition Height="30*" />
-                    <RowDefinition Height="30*" />
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0"
-                      Padding="10,20,10,20">
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"   
+                     x:Name="rv"
+                     Command="{Binding RefreshCommand}">
+            <ScrollView>
+                <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="25*" />
-                        <ColumnDefinition Width="13*" />
-                        <ColumnDefinition Width="25*" />
-                        <ColumnDefinition Width="12*" />
-                        <ColumnDefinition Width="25*" />
-                    </Grid.ColumnDefinitions>
-                    
-                    <ffimageloading:CachedImage Aspect="AspectFill"
-                                                Grid.Column="0"
-                                                Source="https://cdn4.iconfinder.com/data/icons/delivery-5/512/delivery-04-512.png"
-			                                    DownsampleToViewSize="true" 
-                                                Transformations="{Binding TurnGreyScale}"
-                                                FadeAnimationEnabled="False" >
-                    </ffimageloading:CachedImage>
-                    
-                    <ffimageloading:CachedImage Aspect="AspectFit"
-                                                Grid.Column="1"
-                                                Source="https://img.icons8.com/plasticine/2x/arrow.png"
-			                                    DownsampleToViewSize="true" 
-                                                Transformations="{Binding TurnGreyScale}"
-                                                FadeAnimationEnabled="False" >
-                    </ffimageloading:CachedImage>
+                    <Grid Grid.Row="0"
+                      Padding="15,8,15,8"
+                      BackgroundColor="{StaticResource PrimaryColor}"
+                      HeightRequest="{OnPlatform Android='46',
+                                                       iOS='46'}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
-                    <ffimageloading:CachedImage Aspect="AspectFit"
-                                                Grid.Column="2"
-                                                Source="https://www.clipartmax.com/png/middle/151-1515481_restaurant-icon-png-logo-for-hospitality-industry.png"
-			                                    DownsampleToViewSize="true" 
-                                                FadeAnimationEnabled="False" >
-                    </ffimageloading:CachedImage>
+                        <ImageButton Source="arrow_left.png"
+                                 x:Name="backButton"
+                                 HeightRequest="25"
+                                 WidthRequest="25"
+                                 BackgroundColor="Transparent"
+                                 Clicked="backButton_Clicked" />
 
-                    <ffimageloading:CachedImage Aspect="AspectFit"
-                                                Grid.Column="3"
-                                                Source="https://img.icons8.com/plasticine/2x/arrow.png"
-			                                    DownsampleToViewSize="true" 
-                                                Transformations="{Binding TurnGreyScale}"
-                                                FadeAnimationEnabled="False" >
-                    </ffimageloading:CachedImage>
-
-                    <ffimageloading:CachedImage Aspect="AspectFit"
-                                                Grid.Column="4"
-                                                Source="https://www.pikpng.com/pngl/b/243-2439658_customer-service-icon-png-transparent-customer-icon-png.png"
-			                                    DownsampleToViewSize="true" 
-                                                Transformations="{Binding TurnGreyScale}"
-                                                FadeAnimationEnabled="False" >
-                    </ffimageloading:CachedImage>
-                    <Grid Grid.Row="1"
-                          Grid.ColumnSpan="5">
-                        <progressBar:SfStepProgressBar HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                            <progressBar:StepView PrimaryText="Driver found"  Status="{Binding isMoverFound}"/>
-                            <progressBar:StepView PrimaryText="Driver is on the way to the store" Status="{Binding isMoverOngoing}"/>
-                            <progressBar:StepView PrimaryText="Preparing your order" Status="{Binding isOrderPreparing}"/>
-                            <progressBar:StepView PrimaryText="Driver is on the way to you" Status="{Binding isOrderShiping}"/>
-                                <progressBar:StepView PrimaryText="Confirm your order" Status="{Binding isOrderCompleted}" />
-                        </progressBar:SfStepProgressBar>
+                        <Label Grid.Column="1" 
+                           x:Name="TitleName"
+                           Text="Order Status"
+                           Margin="0,0,20,0"
+                           FontFamily="{StaticResource Montserrat-Medium}"
+                           FontSize="{StaticResource LargeSize}"
+                           HorizontalOptions="CenterAndExpand"
+                           TextColor="{DynamicResource Gray-White}"
+                           VerticalOptions="Center" />
                     </Grid>
-                </Grid>
 
-                <Frame Grid.Row="1"
-                       Margin="10,0,10,0"
-                       HasShadow="True"
-                       VerticalOptions="FillAndExpand">
-                    <Grid >
+                    <Grid Grid.Row="1" RowSpacing="10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="0.5" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-
-                        <Label Text="{Binding stopWatch}"
-                               Grid.Row="0"
-                               FontFamily="{StaticResource Montserrat-SemiBold}"
-                               FontSize="{DynamicResource BigSize}"
-                               TextColor="{DynamicResource Gray-900}"
-                               HorizontalOptions="Center">
-                        </Label>
-
-                        <Label Text="{Binding timeStatus}"
-                               Grid.Row="1"
-                               FontFamily="{StaticResource Montserrat-SemiBold}"
-                               FontSize="{DynamicResource SmallerSize}"
-                               TextColor="{DynamicResource Gray-900}"
-                               HorizontalOptions="Center">
-                        </Label>
-
-                        <BoxView Grid.Row="2" Style="{StaticResource SeparatorStyle}" />
-                        <Grid Grid.Row="3" >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-
-                            <buttons:SfButton BackgroundColor="{DynamicResource WhiteColor}" IsEnabled="{Binding isStore}" Command="{Binding StoreMessage}"
-                                              TextColor="{DynamicResource Gray-900}"
-                                              Grid.Column="0" 
-                                              Text="Message Store" 
-                                              PressedBackgroundColor="{DynamicResource PrimaryColor}"
-                                              ShowIcon="True" 
-                                              ImageSource="https://www.clipartkey.com/mpngs/m/244-2444890_chat-bubble-messages-free-messages-icon-png.png"/>
-                            <buttons:SfButton Grid.Column="1" IsEnabled="{Binding isMover}" Command="{Binding MoverMessage}"
-                                              BackgroundColor="{DynamicResource WhiteColor}"
-                                              TextColor="{DynamicResource Gray-900}"
-                                              Text="Message Driver" 
-                                              PressedBackgroundColor="{DynamicResource PrimaryColor}"
-                                              ShowIcon="True"
-                                              Padding="25"
-                                              ImageSource="https://www.clipartkey.com/mpngs/m/244-2444890_chat-bubble-messages-free-messages-icon-png.png"/>
-                        </Grid>
-
-                    </Grid>
-                </Frame>
-                <Frame Grid.Row="2"
-                       Margin="10,-10,10,0"
-                       Padding="30,15,20,0"
-                       HasShadow="True"
-                       VerticalOptions="FillAndExpand">
-                    <Grid >
-                        <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="25*" />
+                            <ColumnDefinition Width="13*" />
+                            <ColumnDefinition Width="25*" />
+                            <ColumnDefinition Width="12*" />
+                            <ColumnDefinition Width="25*" />
                         </Grid.ColumnDefinitions>
-                        <!--Left Labels-->
-                        <Label Text="Subtotal"
-                               Grid.Row="0"
-                               Grid.Column="0"
-                               FontFamily="{StaticResource Montserrat-SemiBold}"
-                               TextColor="{DynamicResource Gray-900}"
-                               HorizontalTextAlignment="Start"
-                               FontSize="{DynamicResource SmallSize}"
-                               VerticalTextAlignment="Center">
-                            <Label.Effects>
-                                <effects:LabelSizeFontToFit />
-                            </Label.Effects>
-                        </Label>
+                        <ffimageloading:CachedImage Aspect="AspectFill"
+                                                Grid.Column="0"
+                                                Source="https://cdn4.iconfinder.com/data/icons/delivery-5/512/delivery-04-512.png"
+			                                    DownsampleToViewSize="true" 
+                                                Transformations="{Binding TurnGreyScale}"
+                                                FadeAnimationEnabled="False" >
+                        </ffimageloading:CachedImage>
+                        <ffimageloading:CachedImage Aspect="AspectFit"
+                                                Grid.Column="1"
+                                                Source="https://img.icons8.com/plasticine/2x/arrow.png"
+			                                    DownsampleToViewSize="true" 
+                                                Transformations="{Binding TurnGreyScale}"
+                                                FadeAnimationEnabled="False" >
+                        </ffimageloading:CachedImage>
 
-                        <Label Text="Delivery fee"
-                               Grid.Row="1"
-                               Grid.Column="0"
-                               FontFamily="{StaticResource Montserrat-SemiBold}"
-                               TextColor="{DynamicResource Gray-900}"
-                               HorizontalTextAlignment="Start"
-                               FontSize="{DynamicResource SmallSize}"
-                               VerticalTextAlignment="Center">
-                            <Label.Effects>
-                                <effects:LabelSizeFontToFit />
-                            </Label.Effects>
-                        </Label>
+                        <ffimageloading:CachedImage Aspect="AspectFit"
+                                                Grid.Column="2"
+                                                Source="https://www.clipartmax.com/png/middle/151-1515481_restaurant-icon-png-logo-for-hospitality-industry.png"
+			                                    DownsampleToViewSize="true" 
+                                                FadeAnimationEnabled="False" >
+                        </ffimageloading:CachedImage>
 
-                        <Label Grid.Row="2"
-                               Grid.Column="0"
-                               Margin="0,10,0,0"
-                               Text="Total"
-                               FontFamily="{StaticResource Montserrat-SemiBold}"
-                               FontSize="{DynamicResource LargeSize}"
-                               TextColor="{DynamicResource Gray-900}"
-                               HorizontalTextAlignment="Start"/>
+                        <ffimageloading:CachedImage Aspect="AspectFit"
+                                                Grid.Column="3"
+                                                Source="https://img.icons8.com/plasticine/2x/arrow.png"
+			                                    DownsampleToViewSize="true" 
+                                                Transformations="{Binding TurnGreyScale}"
+                                                FadeAnimationEnabled="False" >
+                        </ffimageloading:CachedImage>
 
-                        <!--Right Values-->
-                        <Label Text="{Binding SubTotal, StringFormat='₱ {0:F2}'}"
-                               Grid.Row="0"
-                               Grid.Column="1"
-                               FontFamily="{StaticResource Montserrat-SemiBold}"
-                               FontSize="{DynamicResource LargeSize}"
-                               TextColor="{DynamicResource Gray-900}"
-                               HorizontalTextAlignment="End">
-                            <Label.Effects>
-                                <effects:LabelSizeFontToFit />
-                            </Label.Effects>
-                        </Label>
+                        <ffimageloading:CachedImage Aspect="AspectFit"
+                                                Grid.Column="4"
+                                                Source="https://www.pikpng.com/pngl/b/243-2439658_customer-service-icon-png-transparent-customer-icon-png.png"
+			                                    DownsampleToViewSize="true" 
+                                                Transformations="{Binding TurnGreyScale}"
+                                                FadeAnimationEnabled="False" >
+                        </ffimageloading:CachedImage>
+                        
+                        <Grid Grid.Row="1"
+                              Grid.ColumnSpan="5">
+                            <progressBar:SfStepProgressBar HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                <progressBar:StepView PrimaryText="Driver found"  Status="{Binding isMoverFound}"/>
+                                <progressBar:StepView PrimaryText="Driver is on the way to the store" Status="{Binding isMoverOngoing}"/>
+                                <progressBar:StepView PrimaryText="Preparing your order" Status="{Binding isOrderPreparing}"/>
+                                <progressBar:StepView PrimaryText="Driver is on the way to you" Status="{Binding isOrderShiping}"/>
+                                <progressBar:StepView PrimaryText="Confirm your order" Status="{Binding isOrderCompleted}" />
+                            </progressBar:SfStepProgressBar>
+                        </Grid>
 
-                        <Label Text="{Binding Fee, StringFormat='₱ {0:F2}'}"
-                               Grid.Row="1"
-                               Grid.Column="1"
-                               FontFamily="{StaticResource Montserrat-SemiBold}"
-                               FontSize="{DynamicResource LargeSize}"
-                               TextColor="{DynamicResource Gray-900}"
-                               HorizontalTextAlignment="End">
-                            <Label.Effects>
-                                <effects:LabelSizeFontToFit />
-                            </Label.Effects>
-                        </Label>
+                        <controls:CustomShadowFrame Grid.Row="2"
+                                                    Grid.ColumnSpan="5"
+                                                    Margin="0,8,5,12"
+                                                    Padding="12,10,12,10"
+                                                    BackgroundColor="{DynamicResource Gray-White}"
+                                                    BorderColor="{DynamicResource Gray-White}"
+                                                    BorderWidth="1"
+                                                    CornerRadius="4"
+                                                    HasShadow="True">
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="0.5" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
 
-                        <Label Text="{Binding Total, StringFormat='₱ {0:F2}'}"
-                               Grid.Row="2"
-                               Grid.Column="1"
-                               Margin="0,10,0,0"
-                               FontFamily="{StaticResource Montserrat-SemiBold}"
-                               FontSize="{DynamicResource LargeSize}"
-                               TextColor="{DynamicResource Gray-900}"
-                               HorizontalTextAlignment="End">
-                            <Label.Effects>
-                                <effects:LabelSizeFontToFit />
-                            </Label.Effects>
-                        </Label>
+                                <Label Text="{Binding stopWatch}"
+                                       Grid.Row="0"
+                                       FontFamily="{StaticResource Montserrat-SemiBold}"
+                                       FontSize="{DynamicResource BigSize}"
+                                       TextColor="{DynamicResource Gray-900}"
+                                       HorizontalOptions="Center">
+                                </Label>
+
+                                <Label Text="{Binding timeStatus}"
+                                       Grid.Row="1"
+                                       FontFamily="{StaticResource Montserrat-SemiBold}"
+                                       FontSize="{DynamicResource SmallerSize}"
+                                       TextColor="{DynamicResource Gray-900}"
+                                       HorizontalOptions="Center">
+                                </Label>
+
+                                <BoxView Grid.Row="2" Style="{StaticResource SeparatorStyle}" />
+                                
+                                <Grid Grid.Row="3" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <buttons:SfButton BackgroundColor="{DynamicResource Gray-White}" 
+                                                      IsEnabled="{Binding isStore}" 
+                                                      Command="{Binding StoreMessage}"
+                                                      TextColor="{DynamicResource Gray-900}"
+                                                      Grid.Column="0" 
+                                                      HeightRequest="40"
+                                                      Text="Message Store" 
+                                                      PressedBackgroundColor="{DynamicResource PrimaryColor}"
+                                                      ShowIcon="True" 
+                                                      ImageSource="https://www.clipartkey.com/mpngs/m/244-2444890_chat-bubble-messages-free-messages-icon-png.png"/>
+                                    <buttons:SfButton Grid.Column="1" IsEnabled="{Binding isMover}" 
+                                                      Command="{Binding MoverMessage}"
+                                                      BackgroundColor="{DynamicResource Gray-White}"
+                                                      TextColor="{DynamicResource Gray-900}"
+                                                      Text="Message Driver" 
+                                                      HeightRequest="40"
+                                                      PressedBackgroundColor="{DynamicResource PrimaryColor}"
+                                                      ShowIcon="True"
+                                                      Padding="25"
+                                                      ImageSource="https://www.clipartkey.com/mpngs/m/244-2444890_chat-bubble-messages-free-messages-icon-png.png"/>
+                                </Grid>
+
+                            </Grid>
+                        </controls:CustomShadowFrame>
+
+                        <controls:CustomShadowFrame Grid.Row="3"
+                                                    Grid.ColumnSpan="5"
+                                                    Margin="0,8,5,12"
+                                                    Padding="12,10,12,10"
+                                                    BackgroundColor="{DynamicResource Gray-White}"
+                                                    BorderColor="{DynamicResource Gray-White}"
+                                                    BorderWidth="1"
+                                                    CornerRadius="4"
+                                                    HasShadow="True">
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <!--Left Labels-->
+                                <Label Text="Subtotal"
+                                       Grid.Row="0"
+                                       Grid.Column="0"
+                                       FontFamily="{StaticResource Montserrat-SemiBold}"
+                                       TextColor="{DynamicResource Gray-900}"
+                                       HorizontalTextAlignment="Start"
+                                       FontSize="{DynamicResource SmallSize}"
+                                       VerticalTextAlignment="Center">
+                                    <Label.Effects>
+                                        <effects:LabelSizeFontToFit />
+                                    </Label.Effects>
+                                </Label>
+
+                                <Label Text="Delivery fee"
+                                       Grid.Row="1"
+                                       Grid.Column="0"
+                                       FontFamily="{StaticResource Montserrat-SemiBold}"
+                                       TextColor="{DynamicResource Gray-900}"
+                                       HorizontalTextAlignment="Start"
+                                       FontSize="{DynamicResource SmallSize}"
+                                       VerticalTextAlignment="Center">
+                                    <Label.Effects>
+                                        <effects:LabelSizeFontToFit />
+                                    </Label.Effects>
+                                </Label>
+
+                                <Label Grid.Row="2"
+                                       Grid.Column="0"
+                                       Margin="0,10,0,0"
+                                       Text="Total"
+                                       FontFamily="{StaticResource Montserrat-SemiBold}"
+                                       FontSize="{DynamicResource LargeSize}"
+                                       TextColor="{DynamicResource Gray-900}"
+                                       HorizontalTextAlignment="Start"/>
+
+                                <!--Right Values-->
+                                <Label Text="{Binding SubTotal, StringFormat='₱ {0:F2}'}"
+                                       Grid.Row="0"
+                                       Grid.Column="1"
+                                       FontFamily="{StaticResource Montserrat-SemiBold}"
+                                       FontSize="{DynamicResource LargeSize}"
+                                       TextColor="{DynamicResource Gray-900}"
+                                       HorizontalTextAlignment="End">
+                                    <Label.Effects>
+                                        <effects:LabelSizeFontToFit />
+                                    </Label.Effects>
+                                </Label>
+
+                                <Label Text="{Binding Fee, StringFormat='₱ {0:F2}'}"
+                                       Grid.Row="1"
+                                       Grid.Column="1"
+                                       FontFamily="{StaticResource Montserrat-SemiBold}"
+                                       FontSize="{DynamicResource LargeSize}"
+                                       TextColor="{DynamicResource Gray-900}"
+                                       HorizontalTextAlignment="End">
+                                    <Label.Effects>
+                                        <effects:LabelSizeFontToFit />
+                                    </Label.Effects>
+                                </Label>
+
+                                <Label Text="{Binding Total, StringFormat='₱ {0:F2}'}"
+                                       Grid.Row="2"
+                                       Grid.Column="1"
+                                       Margin="0,10,0,0"
+                                       FontFamily="{StaticResource Montserrat-SemiBold}"
+                                       FontSize="{DynamicResource LargeSize}"
+                                       TextColor="{DynamicResource Gray-900}"
+                                       HorizontalTextAlignment="End">
+                                    <Label.Effects>
+                                        <effects:LabelSizeFontToFit />
+                                    </Label.Effects>
+                                </Label>
+                            </Grid>
+                        </controls:CustomShadowFrame>
+
                     </Grid>
-                </Frame>
-            </Grid>
-            <localindicator:LoadingIndicator
-                IsRunning="{Binding IsRunning, Mode=TwoWay}"
-                Grid.RowSpan="2"
-                HorizontalOptions="Fill"
-                VerticalOptions="Fill" />
-        </Grid>
+                    <localindicator:LoadingIndicator
+                        IsRunning="{Binding IsRunning, Mode=TwoWay}"
+                        Grid.RowSpan="2"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill" />
+                </Grid>
+            </ScrollView>
+        </RefreshView>
+
     </ContentPage.Content>
 </ContentPage>

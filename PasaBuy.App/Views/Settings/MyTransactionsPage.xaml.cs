@@ -15,7 +15,13 @@ namespace PasaBuy.App.Views.Settings
 
         public void BackButtonClicked(object sender, EventArgs e)
         {
+            ViewModels.Marketplace.OrderStatusViewModel.isTimer = false;
             Navigation.PopModalAsync();
+        }
+        protected override bool OnBackButtonPressed()
+        {
+            ViewModels.Marketplace.OrderStatusViewModel.isTimer = false;
+            return base.OnBackButtonPressed();
         }
 
         private void transactionList_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)

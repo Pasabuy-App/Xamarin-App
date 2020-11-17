@@ -10,7 +10,12 @@
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:converter="clr-namespace:PasaBuy.App.Converters"
     xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
-    xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms" xmlns:effects="clr-namespace:Xamarin.Toolkit.Effects;assembly=Xamarin.Toolkit.Effects" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms">
+    xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms" 
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+    xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
+    xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms" 
+    xmlns:effects="clr-namespace:Xamarin.Toolkit.Effects;assembly=Xamarin.Toolkit.Effects" 
+    xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms">
     <pages:PopupPage.Resources>
         <ResourceDictionary>
             <converter:BooleanToColorConverter x:Key="BooleanToColorConverter" />
@@ -219,7 +224,7 @@
 
                         <StackLayout HorizontalOptions="Center"
                                      Grid.Row="5">
-                            <rating:SfRating Value="{Binding Rating}"
+                            <rating:SfRating Value="{Binding Rating}" x:Name="Rating"
                                              HorizontalOptions="Center"
                                              ItemSize="{OnIdiom Default=35,Tablet=50}">
                                 <rating:SfRating.RatingSettings>
@@ -238,7 +243,7 @@
                                         Hint="Tell us how you feel"
                                         HorizontalOptions="Fill"
                                         LeadingViewPosition="Inside">
-                            <Editor HeightRequest="80"
+                            <Editor HeightRequest="80" x:Name="Remarks"
                                         Text="{Binding Remarks}"
                                         MaxLength="250" />
                         </inputLayout:SfTextInputLayout>
@@ -253,6 +258,8 @@
                             Style="{StaticResource SfFlatButtonStyle}"
                             TextColor="{DynamicResource Gray-White}"
                             BackgroundColor="{DynamicResource PrimaryColor}"
+                            x:Name="Submit"
+                            Clicked="SubmitButton"
                             Text="Submit" />
                 </Grid>
             </StackLayout>

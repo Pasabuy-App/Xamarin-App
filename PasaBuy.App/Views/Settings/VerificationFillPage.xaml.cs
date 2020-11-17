@@ -34,7 +34,7 @@ namespace PasaBuy.App.Views.Settings
             try
             {
                 //TO DO :: Add validations
-                if (String.IsNullOrEmpty(IdTypeEntry.Text) || String.IsNullOrEmpty(IDNumberEntry.Text) || String.IsNullOrEmpty(NationalityEntry.Text) || String.IsNullOrEmpty(ContactEntry.Text))
+                if (String.IsNullOrEmpty(IdTypeEntry.Text) || String.IsNullOrEmpty(IDNumberEntry.Text) || String.IsNullOrEmpty(ContactEntry.Text))
                 {
                     new Alert("Failed", "Please complete all fields.", "Ok");
                 }
@@ -48,7 +48,7 @@ namespace PasaBuy.App.Views.Settings
                         {
                             if (success)
                             {
-                                Http.DataVice.Documents.Instance.Insert("face", "", selfiePath, ContactEntry.Text, NationalityEntry.Text, (bool success2, string data2) =>
+                                Http.DataVice.Documents.Instance.Insert("face", "", selfiePath, ContactEntry.Text, "", (bool success2, string data2) =>
                                 {
                                     if (success)
                                     {

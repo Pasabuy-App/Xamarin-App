@@ -33,7 +33,7 @@ namespace PasaBuy.App.Views.PopupModals
         public static string user_id;
         public static string user_name;
         public static string user_avatar;
-
+        public static bool isTimer = true;
         Stopwatch stopwatch = new Stopwatch();
 
         public PopupAcceptOrder()
@@ -44,27 +44,35 @@ namespace PasaBuy.App.Views.PopupModals
             Order.Text = orderName;// + " | " + orderTime;
             WaypointAddress.Text = waypointAddress;
             OriginAddress.Text = destinationAddress;
-            OrderTime.Text = countdown.ToString();
+            OrderTime.Text = "30";// countdown.ToString();
+            isTimer = true;
             OrderTimer(true);
             //DashboardPage.time = false;// remove this if you want to remove the timer
         }
 
         public void OrderTimer(Boolean flag)
         {
-            int TimeLimit = countdown;
+            int TimeLimit = 30;// countdown;
             if (flag == true)
             {
                 stopwatch.Start();
                 Device.StartTimer(TimeSpan.FromSeconds(1), () =>
                 {
-                    int countdown = TimeLimit - stopwatch.Elapsed.Seconds;
-                    OrderTime.Text = countdown.ToString();
-                    if (countdown == 1)
+                    if (isTimer)
                     {
-                        PopupNavigation.Instance.PopAsync();
+                        int countdown = TimeLimit - stopwatch.Elapsed.Seconds;
+                        OrderTime.Text = countdown.ToString();
+                        if (countdown == 1)
+                        {
+                            PopupNavigation.Instance.PopAsync();
+                            return false;
+                        }
+                        return true;
+                    }
+                    else
+                    {
                         return false;
                     }
-                    return true;
                 });
 
             }
@@ -89,6 +97,7 @@ namespace PasaBuy.App.Views.PopupModals
 
         private void AcceptOrder(object sender, EventArgs e)
         {
+
             Accept_Order(item_id);
         }
 
@@ -116,7 +125,7 @@ namespace PasaBuy.App.Views.PopupModals
 
         public async void Accept_Order(string odid)
         {
-            try
+            /*try
             {
                 var request = new GeolocationRequest(GeolocationAccuracy.Medium);
                 var location = await Geolocation.GetLocationAsync(request);
@@ -130,57 +139,62 @@ namespace PasaBuy.App.Views.PopupModals
 
             IsGpsEnable = Xamarin.Forms.DependencyService.Get<IGpsDependencyService>().IsGpsEnable();
 
-            if (IsGpsEnable)
+            if (!IsGpsEnable)
             {
-                try
+                return;
+            }*/
+
+            try
+            {
+                if (IsRunning.IsRunning == false)
                 {
-                    if (!IsRunning.IsRunning)
+                    IsRunning.IsRunning = true;
+                    Http.HatidPress.Order.Instance.Accept_Order(odid, async (bool success, string data) =>
                     {
-                        Http.HatidPress.Order.Instance.Accept_Order(odid, async (bool success, string data) =>
+                        if (success)
                         {
-                            if (success)
+
+                            StartDeliveryPage.item_id = item_id;
+                            StartDeliveryPage.store_name = storeName;
+                            StartDeliveryPage.customer_name = user_name;
+                            StartDeliveryPage.customer_id = user_id;
+                            StartDeliveryPage.customer_avatar = user_avatar;
+                            StartDeliveryPage.orderName = orderName;
+                            StartDeliveryPage.orderTime = orderTime;
+                            StartDeliveryPage.waypointAddress = waypointAddress;
+                            StartDeliveryPage.destinationAddress = destinationAddress;
+
+                            StartDeliveryPage.StoreLatittude = store_lat;
+                            StartDeliveryPage.StoreLongitude = store_long;
+
+                            StartDeliveryPage.UserLatitude = user_lat;
+                            StartDeliveryPage.userLongitude = user_long;
+
+                            OrderTimer(false);
+                            DashboardPage.time = false;// remove this if you want to remove the timer
+                                                       //DashboardPage._OrderList.Add(new Models.eCommerce.Transactions() { ID = item_id }); // Add orderid to observable collection.
+                            StartDeliveryPage.order_status = "Preparing";
+                            DashboardPage._OrderList.Add(new Models.eCommerce.Transactions()
                             {
-
-                                StartDeliveryPage.item_id = item_id;
-                                StartDeliveryPage.store_name = storeName;
-                                StartDeliveryPage.customer_name = user_name;
-                                StartDeliveryPage.customer_id = user_id;
-                                StartDeliveryPage.customer_avatar = user_avatar;
-                                StartDeliveryPage.orderName = orderName;
-                                StartDeliveryPage.orderTime = orderTime;
-                                StartDeliveryPage.waypointAddress = waypointAddress;
-                                StartDeliveryPage.destinationAddress = destinationAddress;
-
-                                StartDeliveryPage.StoreLatittude = store_lat;
-                                StartDeliveryPage.StoreLongitude = store_long;
-
-                                StartDeliveryPage.UserLatitude = user_lat;
-                                StartDeliveryPage.userLongitude = user_long;
-
-                                OrderTimer(false);
-                                DashboardPage.time = false;// remove this if you want to remove the timer
-                                //DashboardPage._OrderList.Add(new Models.eCommerce.Transactions() { ID = item_id }); // Add orderid to observable collection.
-                                StartDeliveryPage.order_status = "preparing";
-
-                                PopupNavigation.Instance.PopAsync();
-                                await Navigation.PushModalAsync(new StartDeliveryPage());
-                                IsRunning.IsRunning = false;
-                            }
-                            else
-                            {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                                IsRunning.IsRunning = false;
-                            }
-                        });
-                    }
+                                ID = item_id
+                            }); ;
+                            PopupNavigation.Instance.PopAsync();
+                            isTimer = false;
+                            await Navigation.PushModalAsync(new StartDeliveryPage());
+                            IsRunning.IsRunning = false;
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            IsRunning.IsRunning = false;
+                        }
+                    });
                 }
-                catch (Exception e)
-                {
-                    {
-                        new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2ODR-A1PUAC.", "OK");
-                        IsRunning.IsRunning = false;
-                    }
-                }
+            }
+            catch (Exception e)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2ODR-A1PUAC.", "OK");
+                IsRunning.IsRunning = false;
             }
         }
     }

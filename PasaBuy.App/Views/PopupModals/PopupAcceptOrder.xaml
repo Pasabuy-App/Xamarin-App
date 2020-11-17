@@ -237,7 +237,6 @@
 
         <local1:LoadingIndicator
                     x:Name="IsRunning"
-                    IsRunning="False"
                     HorizontalOptions="Fill"
                     VerticalOptions="Fill" />
     </Grid>

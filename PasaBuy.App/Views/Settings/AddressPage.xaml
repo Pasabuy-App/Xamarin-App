@@ -30,7 +30,12 @@
     </ContentPage.Padding>
 
     <ContentPage.Content>
-        <Grid>
+
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"   
+                     x:Name="rv"
+                     Command="{Binding RefreshCommand}">
+            <ScrollView VerticalScrollBarVisibility="Never" Padding="0, 0, 0, -10">
+                <Grid>
             <Grid RowSpacing="0" ColumnSpacing="0" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -220,9 +225,12 @@
             <loading:LoadingIndicator
                     Grid.Row="0"
                     HorizontalOptions="Fill"
-                    IsRunning="{Binding IsBusy, Mode=TwoWay}"
+                    IsRunning="{Binding isRunning, Mode=TwoWay}"
                     VerticalOptions="Fill" />
         </Grid>
-       
+            </ScrollView>
+
+        </RefreshView>
+
     </ContentPage.Content>
 </ContentPage>

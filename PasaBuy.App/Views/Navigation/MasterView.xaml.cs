@@ -217,6 +217,10 @@ namespace PasaBuy.App.Views.Navigation
             if (Device.RuntimePlatform == Device.Android || Device.RuntimePlatform == Device.iOS)
                 (Xamarin.Forms.Application.Current.MainPage as NavigationView).IsPresented = false;
             //}
+            if (item.TargetType == typeof(MainTabs))
+            {
+                DashboardPage.locs = false;
+            }
         }
 
         private async void isActive(object sender, Syncfusion.XForms.Buttons.SwitchStateChangedEventArgs e)

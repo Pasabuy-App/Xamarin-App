@@ -5,11 +5,7 @@
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
              x:Class="PasaBuy.App.Views.StoreViews.MessagesView"
-             xmlns:viewModelBase="clr-namespace:PasaBuy.App.ViewModels.MobilePOS.Base;assembly=PasaBuy.App"
              xmlns:converter="clr-namespace:PasaBuy.App.Converters" 
-             xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms" 
-             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-             viewModelBase:ViewModelLocator.AutoWireViewModel="true"
              Title="Messages">
 
     <ContentPage.Resources>

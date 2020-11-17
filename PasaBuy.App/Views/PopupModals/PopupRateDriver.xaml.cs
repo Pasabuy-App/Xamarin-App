@@ -31,5 +31,27 @@ namespace PasaBuy.App.Views.PopupModals
         {
             PopupNavigation.Instance.PopAsync();
         }
+
+        private void SubmitButton(object sender, EventArgs e)
+        {
+            try
+            {
+                Http.HatidPress.MoverData.Instance.Rating(mover_id, Rating.Value.ToString(), Remarks.Text, async (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        await PopupNavigation.Instance.PopAsync();
+                    }
+                    else
+                    {
+                        new Controllers.Notice.Alert("Notice to User", Local.HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2MVR-R1PURD.", "OK");
+            }
+        }
     }
 }

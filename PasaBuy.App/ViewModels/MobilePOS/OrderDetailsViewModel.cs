@@ -45,6 +45,23 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             }
         }
 
+        public string _remarks;
+        public string Remarks
+        {
+            get
+            {
+                return _remarks;
+            }
+            set
+            {
+                if (_remarks != value)
+                {
+                    _remarks = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+
         public string _OrderID;
         public string OrderID
         {
@@ -258,8 +275,8 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             {
                 if (per.action == "accept_order")
                 {
-                    this.isAccept = stages == "Pending" ? true : false;
-                    this.txtAcceptPreparingShipping = "Accept";
+                    this.isAccept = stages == "Pending" || stages == "Preparing" || stages == "Ongoing" ? true : false;
+                    this.txtAcceptPreparingShipping = stages != "Pending" ? stages != "Ongoing" ? "Ready for Shipping" : "Prepare Now" : "Accept";
                     break;
                 }
             }
@@ -268,8 +285,8 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             {
                 if (per.action == "prepare_order" || per.action == "ship_order")
                 {
-                    this.isAccept = stages == "Preparing" || stages == "Ongoing" ? true : false;
-                    this.txtAcceptPreparingShipping = stages != "Ongoing" ? "Ready for Shipping" : "Prepare Now";
+                    this.isAccept = stages == "Pending" || stages == "Preparing" || stages == "Ongoing" ? true : false;
+                    this.txtAcceptPreparingShipping = stages != "Pending" ? stages != "Ongoing" ? "Ready for Shipping" : "Prepare Now" : "Accept";
                     break;
                 }
             }
@@ -335,7 +352,9 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                     {
                                         Price = totalrpice,
                                         Product = product.data[i].products[ii].product_name,
-                                        Quantity = product.data[i].products[ii].quantity  + " " + " x ( " + product.data[i].products[ii].price + " + " + product.data[i].products[ii].variants_price + " )"
+                                        Quantity = product.data[i].products[ii].quantity  + " " + " x ( " + product.data[i].products[ii].price + " + " + product.data[i].products[ii].variants_price + " )",
+                                        Remarks = product.data[i].products[ii].remarks == "" ? "" : "Note: " + product.data[i].products[ii].remarks
+
                                     });
                                 }
                                 IsRunning = false;
