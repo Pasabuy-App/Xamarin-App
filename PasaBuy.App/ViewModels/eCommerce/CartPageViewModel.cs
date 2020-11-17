@@ -389,6 +389,13 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 if (!isRunning)
                 {
                     isRunning = true;
+
+                    if (string.IsNullOrEmpty(Marketplace.StoreDetailsViewModel.operation_id))
+                    {
+                        new Alert("Notice to User", "This store is closed. You can't order right now.", "OK");
+                        isRunning = false;
+                        return;
+                    }
                     //CheckoutPageViewModel.coupon = this.DiscountPercent;
                     //CheckoutPageViewModel.discount = this.DiscountPrice;
                     CheckoutPageViewModel.totalprice = this.TotalPrice;
