@@ -198,6 +198,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     ViewModels.Marketplace.OrderStatusViewModel._subtotal = item.TotalPrice;
                     ViewModels.Marketplace.OrderStatusViewModel._fee = Convert.ToDouble(item.Delivery_Charges);
                     ViewModels.Marketplace.OrderStatusViewModel._total = item.Total;
+                    ViewModels.Marketplace.OrderStatusViewModel.isTimer = true;
                     await App.Current.MainPage.Navigation.PushModalAsync(new PasaBuy.App.Views.Marketplace.OrderStatusPage());
                 }
                 else

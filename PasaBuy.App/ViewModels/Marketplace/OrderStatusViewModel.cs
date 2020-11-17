@@ -253,7 +253,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
         public System.Windows.Input.ICommand RefreshCommand { protected set; get; }
-        public int TimeLimit = 30;
+        //public int TimeLimit = 125;
+        public static bool isTimer;
         public OrderStatusViewModel()
         {
             this.Fee = _fee;
@@ -263,13 +264,16 @@ namespace PasaBuy.App.ViewModels.Marketplace
             {
                 new CustomTransformationSelector(),
             };
+
+            this.timeStatus = "Estimated Time of Accepting by Store. If not, your order will be automatically cancelled.";
             CheckingOrder(order_id);
-            OrderTimer(true);
+            OrderTimer(true, 1800);
             RefreshCommand = new Xamarin.Forms.Command<string>((key) =>
             {
                 CheckingOrder(order_id);
                 IsRefreshing = false;
             });
+
             this.StoreMessage = new Xamarin.Forms.Command<object>(StoreMessageClicked);
             this.MoverMessage = new Xamarin.Forms.Command<object>(MoverMessageClicked);
         }
@@ -314,26 +318,36 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
         Stopwatch stopwatch = new Stopwatch();
-        public void OrderTimer(Boolean flag)
+        public void OrderTimer(Boolean flag, int timer)
         {
             if (flag)
             {
                 stopwatch.Start();
                 Xamarin.Forms.Device.StartTimer(TimeSpan.FromSeconds(1), () =>
                 {
-                    int countdown = TimeLimit - stopwatch.Elapsed.Seconds;
-
-                    this.stopWatch = countdown.ToString() + " seconds";
-
-                    if (countdown == 1)
+                    if(isTimer)
                     {
-                        this.timeStatus = "Thank you.";
-                        Popup();
-                        flag = false;
+                        timer--;
+                        if (timer != 0 && timer > 0)
+                        {
+                            int min = timer / 60;
+                            int sec = timer % 60;
+                            string label = min > 1 ? " minutes" : min == 1 ? " minute" : " seconds";
+                            this.stopWatch = min + ":" + (sec >= 10 ? sec.ToString() : "0" + sec) + label;
+                        }
+                        else
+                        {
+                            this.timeStatus = "Thank you.";
+                            flag = false;
+                            return false;
+                        }
+
+                        return true;
+                    }
+                    else
+                    {
                         return false;
                     }
-
-                    return true;
                 });
             }
             else
@@ -343,6 +357,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
         }
         public async void Popup()
         {
+            OrderTimer(false, 0);
+            this.isOrderCompleted = StepStatus.Completed;
             App.Current.MainPage.Navigation.PopModalAsync();
             await PopupNavigation.PushAsync(new PopupRateDriver());
         }
@@ -354,7 +370,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    this.timeStatus = "Estimated Time of Accepting by Store. If not, your order will be automatically cancelled.";
                     Http.MobilePOS.Order.Instance.Listing("", odid, "", (bool success, string data) =>
                     {
                         if (success)
@@ -363,32 +378,58 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
                             for (int i = 0; i < order.data.Length; i++)
                             {
-                                PopupRateDriver.order_id = order.data[i].pubkey == "" ? "" : order.data[i].pubkey;
-                                PopupRateDriver.avatar = order.data[i].driver_avatar == "" ? "Avatar.png" : order.data[i].driver_avatar;
-                                PopupRateDriver.mover_name = order.data[i].driver_name == "" ? "Lorz Becislao" : order.data[i].driver_name;
-                                PopupRateDriver.mover_id = order.data[i].mover_id == "" ? "6" : order.data[i].mover_id;
-
                                 string stages = order.data[i].stages;
                                 if (stages == "Accepted")
                                 {
-                                    string logo = !string.IsNullOrEmpty(order.data[i].store_logo) ? order.data[i].store_logo : "";
-                                    AcceptedByStore(order.data[i].stid, order.data[i].store_name, logo);
+                                    string logos = !string.IsNullOrEmpty(order.data[i].store_logo) ? order.data[i].store_logo : "";
+                                    store_id = order.data[i].stid;
+                                    store_name = order.data[i].store_name;
+                                    store_logo = logos;
+                                    AcceptedByStore();
                                 }
                                 if (stages == "Ongoing")
                                 {
-                                    MoverFound(order.data[i].mover_id, order.data[i].driver_name, order.data[i].driver_avatar);
+                                    string logos = !string.IsNullOrEmpty(order.data[i].store_logo) ? order.data[i].store_logo : "";
+                                    store_id = order.data[i].stid;
+                                    store_name = order.data[i].store_name;
+                                    store_logo = logos;
+                                    mover_id = order.data[i].mover_id;
+                                    mover_name = order.data[i].driver_name;
+                                    mover_avatar = order.data[i].driver_avatar;
+                                    MoverFound();
                                 }
                                 if (stages == "Preparing")
                                 {
+                                    string logos = !string.IsNullOrEmpty(order.data[i].store_logo) ? order.data[i].store_logo : "";
+                                    store_id = order.data[i].stid;
+                                    store_name = order.data[i].store_name;
+                                    store_logo = logos;
+                                    mover_id = order.data[i].mover_id;
+                                    mover_name = order.data[i].driver_name;
+                                    mover_avatar = order.data[i].driver_avatar;
                                     StorePreparing();
                                 }
                                 if (stages == "Shipping")
                                 {
+                                    string logos = !string.IsNullOrEmpty(order.data[i].store_logo) ? order.data[i].store_logo : "";
+                                    store_id = order.data[i].stid;
+                                    store_name = order.data[i].store_name;
+                                    store_logo = logos;
+                                    mover_id = order.data[i].mover_id;
+                                    mover_name = order.data[i].driver_name;
+                                    mover_avatar = order.data[i].driver_avatar;
                                     OrderShipping();
                                 }
                                 if (stages == "Completed" || stages == "Cancelled")
                                 {
-                                    OrderCompleted();
+                                    string logos = !string.IsNullOrEmpty(order.data[i].store_logo) ? order.data[i].store_logo : "";
+                                    store_id = order.data[i].stid;
+                                    store_name = order.data[i].store_name;
+                                    store_logo = logos;
+                                    mover_id = order.data[i].mover_id;
+                                    mover_name = order.data[i].driver_name;
+                                    mover_avatar = order.data[i].driver_avatar;
+                                    OrderCompleted(order.data[i].driver_name, order.data[i].driver_avatar);
                                 }
                             }
                             IsRunning = false;
@@ -408,21 +449,14 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-        public void MoverFound(string moverid, string movername, string moveravatar)
+        public void MoverFound()
         {
-            mover_id = moverid;
-            mover_name = movername;
-            mover_avatar = moveravatar;
             isMover = true;
             this.isMoverFound = StepStatus.InProgress;
             this.timeStatus = "Estimated Time of Arrival.";
         }
-
-        public void AcceptedByStore(string stid, string storename, string store_avatar)
+        public void AcceptedByStore()
         {
-            store_id = stid;
-            store_name = storename;
-            store_logo = store_avatar;
             isStore = true;
             this.timeStatus = "Estimated Time of Accepting by Mover. If not, your order will be automatically cancelled.";
         }
@@ -431,10 +465,15 @@ namespace PasaBuy.App.ViewModels.Marketplace
             this.isOrderCompleted = StepStatus.Completed;
             this.timeStatus = "Confirm your order.";
         }
-        public void OrderCompleted()
+        public void OrderCompleted(string mover_name, string mover_avtar)
         {
+            PopupRateDriver.order_id = order_id;
+            PopupRateDriver.avatar = Local.PSAProc.GetUrl(mover_avtar);
+            PopupRateDriver.mover_name = mover_name;
+            PopupRateDriver.mover_id = mover_id;
             this.isOrderCompleted = StepStatus.InProgress;
             this.isOrderShiping = StepStatus.Completed;
+            Popup();
         }
         public void OrderShipping()
         {
