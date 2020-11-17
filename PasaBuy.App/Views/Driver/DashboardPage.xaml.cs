@@ -60,12 +60,12 @@ namespace PasaBuy.App.Views.Driver
                 if (_starttimer)
                 {
                     CheckQueuing();
-                    return true;
                 }
-                else
+                /*else
                 {
                     return false;
-                }
+                }*/
+                return true;
             });
         }
         public void CheckQueuing()
