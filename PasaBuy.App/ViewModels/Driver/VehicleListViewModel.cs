@@ -209,7 +209,7 @@ namespace PasaBuy.App.ViewModels.Driver
                 {
                     IsRunning = true;
                     _vehicleList.Clear();
-                    Http.HatidPress.Vehicle.Instance.Listing_Vehicle("", "", "", "", "", "", "", (bool success, string data) =>
+                    Http.HatidPress.Vehicle.Instance.Listing_Vehicle("", "", "", "", "", "", "active", (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -246,7 +246,7 @@ namespace PasaBuy.App.ViewModels.Driver
             try
             {
                 _vehicleList.Clear();
-                Http.HatidPress.Vehicle.Instance.Listing_Vehicle("", "", "", "", "", "", "", (bool success, string data) =>
+                Http.HatidPress.Vehicle.Instance.Listing_Vehicle("", "", "", "", "", "", "active", (bool success, string data) =>
                 {
                     if (success)
                     {
