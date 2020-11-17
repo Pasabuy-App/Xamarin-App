@@ -41,12 +41,7 @@ namespace PasaBuy.App.Views.Posts
                 new Alert("Error", "No camera available", "Failed");
             }
 
-            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
-            {
-                Directory = "StatusImageFolder",
-                SaveToAlbum = true,
-                CompressionQuality = 40
-            });
+            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions());
 
             if (file == null)
                 return;
@@ -70,10 +65,7 @@ namespace PasaBuy.App.Views.Posts
                 new Alert("Error", "No camera available", "Failed");
             }
 
-            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
-            {
-                CompressionQuality = 40
-            });
+            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions());
 
             if (file == null)
                 return;
