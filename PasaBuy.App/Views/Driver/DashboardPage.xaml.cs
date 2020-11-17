@@ -41,28 +41,67 @@ namespace PasaBuy.App.Views.Driver
         public static string order_id;
         public static string stages;
         public static bool locs = true;
+        public static bool _starttimer;
         public DashboardPage()
         {
             InitializeComponent();
             DisplayCurloc();
             map.IsTrafficEnabled = true;
             CheckDeliveries();
-
+            _starttimer = true;
+            StartTimer();
             _OrderList = new System.Collections.ObjectModel.ObservableCollection<Models.eCommerce.Transactions>();
             _OrderList.CollectionChanged += CollectionChages;
         }
-
+        public void StartTimer()
+        {
+            Xamarin.Forms.Device.StartTimer(TimeSpan.FromSeconds(5), () =>
+            {
+                if (_starttimer)
+                {
+                    CheckQueuing();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            });
+        }
+        public void CheckQueuing()
+        {
+            try
+            {
+                Http.HatidPress.Order.Instance.Queuing((bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        OrderDetailsModel order = JsonConvert.DeserializeObject<OrderDetailsModel>(data);
+                        for (int i = 0; i < order.data.Length; i++)
+                        {
+                            GetOrderDetails(order.data[i].order_id, Convert.ToInt32(order.data[i].countdown));
+                        }
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2ODR-Q1DP.", "OK");
+            }
+        }
         private void CollectionChages(object sender, EventArgs e)
         {
             if (_OrderList.Count > 0)
             {
-                Refresh.IsEnabled = false;
+                //Refresh.IsEnabled = false;
                 Pending_Order.IsVisible = true;
+                _starttimer = false;
             }
             else
             {
-                Refresh.IsEnabled = true;
+                //Refresh.IsEnabled = true;
                 Pending_Order.IsVisible = false;
+                _starttimer = true;
             }
         }
 
@@ -87,7 +126,7 @@ namespace PasaBuy.App.Views.Driver
                     }
                     else
                     {
-                        Refresh.IsEnabled = true;
+                        //Refresh.IsEnabled = true;
                         Pending_Order.IsVisible = false;
                     }
                 });
@@ -95,7 +134,7 @@ namespace PasaBuy.App.Views.Driver
             catch (Exception e)
             {
                 new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2ODR-V1DP.", "OK");
-                Refresh.IsEnabled = true;
+                //Refresh.IsEnabled = true;
                 Pending_Order.IsVisible = false;
             }
             //Check if have ongoing deliveries then set to visible the pending order and  set to false the visibility of refresh. ongoing, preparing and shipping status
@@ -132,6 +171,7 @@ namespace PasaBuy.App.Views.Driver
                             }
                             await Task.Delay(500);
                             PopupNavigation.Instance.PushAsync(new PopupAcceptOrder());
+                            _starttimer = false;
                         }
                         else
                         {
@@ -245,6 +285,7 @@ namespace PasaBuy.App.Views.Driver
             {
                 IsRunning.IsRunning = true;
                 await Navigation.PushModalAsync(new StartDeliveryPage());
+                _starttimer = false;
                 IsRunning.IsRunning = false;
             }
         }

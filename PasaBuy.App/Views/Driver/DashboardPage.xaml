@@ -18,7 +18,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     
-    <ContentPage.ToolbarItems>
+    <!--<ContentPage.ToolbarItems>
         <ToolbarItem
             Order="Primary"
             Clicked="RefreshClicked"
@@ -32,7 +32,7 @@
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
-    </ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>-->
 
     <ContentPage.Content>
         <Grid>
