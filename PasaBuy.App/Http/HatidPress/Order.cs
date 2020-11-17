@@ -165,6 +165,7 @@ namespace PasaBuy.App.Http.HatidPress
                 var dict = new Dictionary<string, string>();
                     dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
                     dict.Add("snky", PSACache.Instance.UserInfo.snky);
+                    dict.Add("mvid", PSACache.Instance.UserInfo.mvid);
                 var content = new FormUrlEncodedContent(dict);
 
                 var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/hatidpress/v2/deliveries/queuing/list", content);
