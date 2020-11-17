@@ -239,7 +239,7 @@
                            
                                                 </StackLayout>
 
-                                                <border:SfBorder BackgroundColor="{DynamicResource Green}" 
+                                                <border:SfBorder BackgroundColor="{DynamicResource PrimaryColor}" 
                                                                  WidthRequest="40"
                                                                  HeightRequest="20"
                                                                  HorizontalOptions="End"

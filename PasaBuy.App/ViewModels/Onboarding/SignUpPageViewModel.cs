@@ -36,6 +36,8 @@ namespace PasaBuy.App.ViewModels.Onboarding
 
         private string street;
 
+        private bool _termsChecked;
+
         #endregion
 
         #region Constructor
@@ -197,6 +199,19 @@ namespace PasaBuy.App.ViewModels.Onboarding
             }
         }
 
+        public bool TermsChecked
+        {
+            get
+            {
+                return _termsChecked;
+            }
+            set
+            {
+                _termsChecked = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region Command
@@ -235,20 +250,29 @@ namespace PasaBuy.App.ViewModels.Onboarding
                 if (!State)
                 {
                     State = true;
-                    Http.DataVice.Users.Instance.SignUp(Email, Fname, Lname, (bool success, string data) =>
+                    if (!_termsChecked)
                     {
-                        if (success)
+                        new Alert("Notice", "Please check terms and conditions and privacy policy", "Try Again");
+                        State = false;
+                    }
+                    else
+                    {
+                        Http.DataVice.Users.Instance.SignUp(Email, Fname, Lname, (bool success, string data) =>
                         {
-                            State = false;
-                            Application.Current.MainPage = new CreatePassword();
-                        }
+                            if (success)
+                            {
+                                State = false;
+                                Application.Current.MainPage = new CreatePassword();
+                            }
 
-                        else
-                        {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
-                            State = false;
-                        }
-                    });
+                            else
+                            {
+                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                State = false;
+                            }
+                        });
+                    }
+                   
                 }
             }
             catch (Exception e)

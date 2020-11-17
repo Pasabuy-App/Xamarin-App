@@ -128,6 +128,7 @@
                 <StackLayout Orientation="Horizontal">
                     <buttons:SfCheckBox CheckedColor="{DynamicResource PrimaryColor}"
                                         Padding="0"
+                                        IsChecked="{Binding TermsChecked}"
                                         HorizontalOptions="Start"/>
                     <Label VerticalTextAlignment="Center"
                            FontSize="{DynamicResource MediumSize}">
