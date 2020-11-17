@@ -20,6 +20,7 @@ namespace PasaBuy.App.Views.Onboarding
         public SignUpPage()
         {
             InitializeComponent();
+            
         }
 
         private void backButton_Clicked(object sender, System.EventArgs e)

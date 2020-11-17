@@ -478,4 +478,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\chat_white.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\chat_black.png" />
+  </ItemGroup>
 </Project>

@@ -7,7 +7,7 @@
              x:Class="PasaBuy.App.Views.Menu.MasterMenu"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:helper="clr-namespace:PasaBuy.App.Helpers"
-             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Menu" xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
+             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.Menu" xmlns:loading="clr-namespace:PasaBuy.App.UserControls" xmlns:effects="clr-namespace:Xamarin.Toolkit.Effects;assembly=Xamarin.Toolkit.Effects"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
 
@@ -102,7 +102,11 @@
                                                             Android=1.25}"
                                     MaxLines="2"
                                     Text="{Binding UserFullname}"
-                                    TextColor="{DynamicResource Gray-White}" />
+                                    TextColor="{DynamicResource Gray-White}">
+                                    <Label.Effects>
+                                        <effects:LabelSizeFontToFit />
+                                    </Label.Effects>
+                                </Label>
 
                                 <!--  UserEmail  -->
                                 <Label
