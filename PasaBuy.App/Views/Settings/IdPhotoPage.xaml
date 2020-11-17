@@ -69,7 +69,7 @@
                                       FontSize="{DynamicResource SmallSize}"
                                       FontFamily="{StaticResource Montserrat-Bold}"/>
 
-            <border:SfBorder Padding="0, 0, 0, 0"
+            <!--<border:SfBorder Padding="0, 0, 0, 0"
                              Grid.Row="1"
                                  Margin="0, 0, 0, 0"
                                  HeightRequest="250"
@@ -83,8 +83,20 @@
                                             x:Name="ImageId"
 			                                DownsampleToViewSize="true" FadeAnimationEnabled="True" >
                 </ffimageloading:CachedImage>
-            </border:SfBorder>
+            </border:SfBorder>-->
 
+            <Grid Grid.Row="1"
+                  Grid.ColumnSpan="2" 
+                  BackgroundColor="{DynamicResource Gray-200}"
+                  VerticalOptions="FillAndExpand" 
+                  HeightRequest="250"
+                  HorizontalOptions="FillAndExpand" >
+                <ffimageloading:CachedImage Aspect="AspectFill"
+                                            x:Name="ImageId"
+			                                DownsampleToViewSize="true" 
+                                            FadeAnimationEnabled="True">
+                </ffimageloading:CachedImage>
+            </Grid>
 
             <buttons:SfButton
                             Grid.Row="2"

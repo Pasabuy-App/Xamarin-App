@@ -42,13 +42,13 @@
                     Margin="0,40,0,0"
                     FontSize="23"
                     Style="{StaticResource PaymentDescriptionLabelStyle}"
-                    Text="PAYMENT SUCCESS" />
+                    Text="ORDER SUCCESS" />
 
                 <!--  Payment description label  -->
                 <Label
                     Margin="17,8"
                     Style="{StaticResource PaymentDescriptionLabelStyle}"
-                    Text="Thank you for your payment. An automated payment receipt will be sent to your registered email." />
+                    Text="Thank you for your order. An automated payment receipt will be sent to your registered email." />
 
                 <button:SfButton
                     Style="{StaticResource SfGradientButtonStyle}"

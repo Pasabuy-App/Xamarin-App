@@ -48,7 +48,7 @@ namespace PasaBuy.App.Views.Settings
                         {
                             if (success)
                             {
-                                Http.DataVice.Documents.Instance.Insert("face", "", selfiePath, ContactEntry.Text, NationalityEntry.Text, (bool success2, string data2) =>
+                                Http.DataVice.Documents.Instance.Insert("face", "", selfiePath, ContactEntry.Text, "", (bool success2, string data2) =>
                                 {
                                     if (success)
                                     {

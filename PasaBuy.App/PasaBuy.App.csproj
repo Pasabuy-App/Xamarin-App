@@ -54,10 +54,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CardsView" Version="2.6.5" />
-    <PackageReference Include="ExpandableView" Version="1.0.10" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.25" />
-    <PackageReference Include="Nancy" Version="2.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Plugin.LocalNotification" Version="5.1.0" />
     <PackageReference Include="Plugin.Multilingual" Version="1.0.2" />
@@ -90,7 +87,6 @@
     <PackageReference Include="Syncfusion.Xamarin.SfRotator" Version="18.1.0.57" />
     <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="18.1.0.57" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
-    <PackageReference Include="TouchView" Version="4.1.81" />
     <PackageReference Include="Websocket.Client" Version="4.3.21" />
     <PackageReference Include="Xam.Plugin.Geolocator" Version="4.5.0.6" />
     <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
