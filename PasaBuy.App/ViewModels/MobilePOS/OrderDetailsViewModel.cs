@@ -337,7 +337,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    Http.MobilePOS.Order.Instance.Listing(PSACache.Instance.UserInfo.stid, order_id, "", (bool success, string data) =>
+                    Http.MobilePOS.Order.Instance.Listing(PSACache.Instance.UserInfo.stid, order_id, "", "", (bool success, string data) =>
                     {
                         if (success)
                         {

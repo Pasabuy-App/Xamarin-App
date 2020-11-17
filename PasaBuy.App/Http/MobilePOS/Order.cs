@@ -106,7 +106,7 @@ namespace PasaBuy.App.Http.MobilePOS
         /// <summary>
         /// Customer create order using stid method, addid, msg and list.
         /// </summary>
-        public async void Listing(string stid, string odid, string stages, Action<bool, string> callback)
+        public async void Listing(string stid, string odid, string stages, string order_by, Action<bool, string> callback)
         {
             try
             {
@@ -116,6 +116,7 @@ namespace PasaBuy.App.Http.MobilePOS
                     dict.Add("stid", stid);
                     dict.Add("odid", odid);
                     dict.Add("stages", stages);
+                    dict.Add("order_by", order_by);
                 var content = new FormUrlEncodedContent(dict);
 
                 var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/mobilepos/v2/orders/list", content);

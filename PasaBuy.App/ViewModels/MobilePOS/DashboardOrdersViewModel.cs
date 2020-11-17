@@ -115,7 +115,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 {
                     IsRunning = true;
                     orderList.Clear();
-                    Http.MobilePOS.Order.Instance.Listing(PSACache.Instance.UserInfo.stid, "", stages, (bool success, string data) =>
+                    Http.MobilePOS.Order.Instance.Listing(PSACache.Instance.UserInfo.stid, "", stages, "", (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -163,7 +163,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             try
             {
                 orderList.Clear();
-                Http.MobilePOS.Order.Instance.Listing(PSACache.Instance.UserInfo.stid, "", stages, (bool success, string data) =>
+                Http.MobilePOS.Order.Instance.Listing(PSACache.Instance.UserInfo.stid, "", stages, "", (bool success, string data) =>
                 {
                     if (success)
                     {
