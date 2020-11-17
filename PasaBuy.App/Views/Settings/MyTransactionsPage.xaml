@@ -164,7 +164,7 @@
                                         TextColor="{DynamicResource Gray-700}" />
                                             </StackLayout>
 
-                                            <Label FontFamily="{StaticResource Montserrat-Medium}" IsVisible="{Binding isOngoing}"
+                                       <Label FontFamily="{StaticResource Montserrat-Medium}" IsVisible="{Binding isOngoing}"
                                        Grid.Row="2"
                                        helper:RTLHelper.Margin="8,0,16,0"
                                        Grid.Column="1"
@@ -173,7 +173,7 @@
                                         Text="{Binding Stages}"
                                        TextColor="{DynamicResource Green}"/>
 
-                                            <Label FontFamily="{StaticResource Montserrat-Medium}" IsVisible="{Binding isCompleted}"
+                                       <Label FontFamily="{StaticResource Montserrat-Medium}" IsVisible="{Binding isCompleted}"
                                        Grid.Row="2"
                                        helper:RTLHelper.Margin="8,0,16,0"
                                        Grid.Column="1"
@@ -182,7 +182,7 @@
                                         Text="{Binding Stages}"
                                        TextColor="{DynamicResource Orange}"/>
 
-                                            <Label FontFamily="{StaticResource Montserrat-Medium}" IsVisible="{Binding isCancelled}"
+                                       <Label FontFamily="{StaticResource Montserrat-Medium}" IsVisible="{Binding isCancelled}"
                                        Grid.Row="2"
                                        helper:RTLHelper.Margin="8,0,16,0"
                                        Grid.Column="1"

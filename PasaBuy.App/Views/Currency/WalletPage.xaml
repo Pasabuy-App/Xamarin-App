@@ -7,8 +7,10 @@
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:controls="clr-namespace:PasaBuy.App.Controls"
              xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
-             xmlns:wallet="clr-namespace:PasaBuy.App.Views.Currency" xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
+             xmlns:wallet="clr-namespace:PasaBuy.App.Views.Currency" 
+             xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
              x:Class="PasaBuy.App.Views.Currency.WalletPage"
+             BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
