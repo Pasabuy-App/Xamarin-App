@@ -430,7 +430,7 @@ namespace PasaBuy.App.ViewModels.Chat
                     {
                         ChatMessageListViewBehavior.isFirstLoad = false;
                         count = 1;
-                        Http.SocioPress.Message.Instance.Insert(this.NewMessage, user_id, PSACache.Instance.UserInfo.wpid, type, "", (bool success, string data) =>
+                        Http.SocioPress.Message.Instance.Insert(this.NewMessage, user_id, PSACache.Instance.UserInfo.wpid, type, odid, (bool success, string data) =>
                         {
                             if (success)
                             {
