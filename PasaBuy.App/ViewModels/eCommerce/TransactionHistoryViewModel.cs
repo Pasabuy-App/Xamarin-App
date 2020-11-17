@@ -84,10 +84,31 @@ namespace PasaBuy.App.ViewModels.eCommerce
                             CultureInfo provider = new CultureInfo("fr-FR");
                             Models.POSFeature.OrderModel order = JsonConvert.DeserializeObject<Models.POSFeature.OrderModel>(data);
 
+                            bool isongoing = false;
+                            bool iscompleted = false;
+                            bool iscancelled = false;
                             for (int i = 0; i < order.data.Length; i++)
                             {
                                 DateTime mydate = DateTime.ParseExact(order.data[i].date_created, "yyyy-MM-dd HH:mm:ss", provider);
                                 string _status = order.data[i].stages != "Cancelled" ? order.data[i].stages == "Completed" ? "Delivered" : "On-Going" : "Cancelled";
+                                if (_status == "Cancelled")
+                                {
+                                    iscancelled = true;
+                                    iscompleted = false;
+                                    isongoing = false;
+                                }
+                                if (_status == "Delivered")
+                                {
+                                    iscancelled = false;
+                                    iscompleted = true;
+                                    isongoing = false;
+                                }
+                                if (_status == "On-Going")
+                                {
+                                    iscancelled = false;
+                                    iscompleted = false;
+                                    isongoing = true;
+                                }
                                 transactionDetails.Add(new Models.POSFeature.OrderModel()
                                 {
                                     ID = order.data[i].pubkey,
@@ -102,9 +123,9 @@ namespace PasaBuy.App.ViewModels.eCommerce
                                     Stages = _status,
                                     Delivery_Charges = order.data[i].delivery_charges,
                                     DateCreated = mydate.ToString("MMM. dd, yyyy hh:mm tt"),
-                                    isOngoing = _status == "On-Going" ? true : false,
-                                    isCompleted = _status == "Completed" ? true : false,
-                                    isCancelled = _status == "Cancelled" ? true : false,
+                                    isOngoing = isongoing,
+                                    isCompleted = iscompleted,
+                                    isCancelled = iscancelled,
                                 });
                             }
                             IsRunning = false;
@@ -198,7 +219,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     ViewModels.Marketplace.OrderStatusViewModel._subtotal = item.TotalPrice;
                     ViewModels.Marketplace.OrderStatusViewModel._fee = Convert.ToDouble(item.Delivery_Charges);
                     ViewModels.Marketplace.OrderStatusViewModel._total = item.Total;
-                    ViewModels.Marketplace.OrderStatusViewModel.isTimer = true;
+                    //ViewModels.Marketplace.OrderStatusViewModel.isTimer = true;
                     await App.Current.MainPage.Navigation.PushModalAsync(new PasaBuy.App.Views.Marketplace.OrderStatusPage());
                 }
                 else
