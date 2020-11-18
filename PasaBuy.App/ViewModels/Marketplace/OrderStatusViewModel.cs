@@ -277,8 +277,9 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
             isTimer = true;
             myTimer = true;
-            CheckingOrder2(order_id);
-            //RefreshTimer();
+            //CheckingOrder2(order_id);
+            RefreshTimer();
+            //OrderTimer();
             this.StoreMessage = new Xamarin.Forms.Command<object>(StoreMessageClicked);
             this.MoverMessage = new Xamarin.Forms.Command<object>(MoverMessageClicked);
         }
@@ -286,6 +287,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
         public string mover_name;
         public string store_logo;
         public string mover_avatar;
+        public string order_status;
+        public int timer = 1800;
         public Xamarin.Forms.Command<object> StoreMessage { get; set; }
         private async void StoreMessageClicked(object obj)
         {
@@ -325,24 +328,12 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
         public void RefreshTimer()
         {
-            Xamarin.Forms.Device.StartTimer(TimeSpan.FromSeconds(5), () =>
+            Xamarin.Forms.Device.StartTimer(TimeSpan.FromSeconds(1), () =>
             {
                 if (myTimer)
                 {
                     CheckingOrder2(order_id);
                 }
-                /*else
-                {
-                    return false;
-                }*/
-                return true;
-            });
-        }
-        //Stopwatch stopwatch = new Stopwatch();
-        public void OrderTimer(int timer)
-        {
-            Xamarin.Forms.Device.StartTimer(TimeSpan.FromSeconds(1), () =>
-            {
                 timer--;
                 if (timer != 0 && timer > 0)
                 {
@@ -351,15 +342,32 @@ namespace PasaBuy.App.ViewModels.Marketplace
                     string label = min > 1 ? " minutes" : min == 1 ? " minute" : " seconds";
                     this.stopWatch = min + ":" + (sec >= 10 ? sec.ToString() : "0" + sec) + label;
                 }
-                /*if (isTimer)
+                return true;
+            });
+        }
+        //Stopwatch stopwatch = new Stopwatch();
+        public void OrderTimer()
+        {
+            Xamarin.Forms.Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+            {
+                if (isTimer)
                 {
-                    else
+                    //CheckingOrder2(order_id);
+                    /*timer--;
+                    if (timer != 0 && timer > 0)
+                    {
+                        int min = timer / 60;
+                        int sec = timer % 60;
+                        string label = min > 1 ? " minutes" : min == 1 ? " minute" : " seconds";
+                        this.stopWatch = min + ":" + (sec >= 10 ? sec.ToString() : "0" + sec) + label;
+                    }
+                    /*else
                     {
                         this.timeStatus = "Thank you.";
                         //flag = false;
                         return false;
-                    }
-                }*/
+                    }*/
+                }
                 return true;
             });
         }
@@ -381,11 +389,16 @@ namespace PasaBuy.App.ViewModels.Marketplace
                     if (success)
                     {
                         Models.POSFeature.OrderModel order = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.POSFeature.OrderModel>(data);
-
                         for (int i = 0; i < order.data.Length; i++)
                         {
-                            OrderTimer((order.data[i].expiry * 60));
                             string stages = order.data[i].stages;
+
+                            if (order_status != stages)
+                            {
+                                order_status = stages;
+                                timer = (order.data[i].expiry * 60);
+                            }
+
                             if (stages == "Accepted")
                             {
                                 string logos = !string.IsNullOrEmpty(order.data[i].store_logo) ? order.data[i].store_logo : "";
