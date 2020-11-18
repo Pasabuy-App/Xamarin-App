@@ -28,6 +28,7 @@ namespace PasaBuy.App.Models.POSFeature
         public string driver_name = string.Empty;
         public string driver_avatar = string.Empty;
         public string delivery_charges = string.Empty;
+        public int expiry = 0;
         public ObservableCollection<OrderDetailsModel> products;
     }
     public class OrderModel : INotifyPropertyChanged
