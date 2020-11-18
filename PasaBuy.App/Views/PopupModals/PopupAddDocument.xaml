@@ -184,7 +184,7 @@
                         </Grid.ColumnDefinitions>
                         <button:SfButton
                             Grid.Column="0"
-                            BackgroundColor="Green"
+                            BackgroundColor="{DynamicResource Green}"
                             BorderColor="{DynamicResource BlackColor}"
                             BorderWidth="2"
                             x:Name="OKModal"
@@ -197,7 +197,7 @@
                             VerticalOptions="Center" />
                         <button:SfButton
                             Grid.Column="1"
-                            BackgroundColor="Red"
+                            BackgroundColor="{DynamicResource Red}"
                             BorderColor="{StaticResource BlackColor}"
                             BorderWidth="2"
                             CornerRadius="4"

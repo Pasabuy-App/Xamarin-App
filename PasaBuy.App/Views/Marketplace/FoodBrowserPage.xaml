@@ -195,12 +195,10 @@
                                                                FontSize="{DynamicResource SmallSize}"
                                                                HorizontalOptions="Start" 
                                                                x:Name="StoreName"
+                                                               LineBreakMode="TailTruncation"
                                                                TextColor="{DynamicResource Gray-900}" 
                                                                FontFamily="{StaticResource Montserrat-SemiBold}" 
                                                                VerticalTextAlignment="Center">
-                                                            <Label.Effects>
-                                                                <effects:LabelSizeFontToFit />
-                                                            </Label.Effects>
                                                         </Label>
 
                                                         <!--  Store operational hours label  -->
