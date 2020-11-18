@@ -81,7 +81,7 @@ namespace PasaBuy.App.ViewModels.Driver
                                     Date_created = date.ToString("MMMM dd, yyyy"),
                                     Price = Convert.ToDouble(order.data[i].total_price),
                                     Method = order.data[i].method,
-                                    Status = order.data[i].stages == "completed" ? "Completed" : "Cancelled"
+                                    Status = order.data[i].stages
                                 });
                             }
                             IsBusy = false;
