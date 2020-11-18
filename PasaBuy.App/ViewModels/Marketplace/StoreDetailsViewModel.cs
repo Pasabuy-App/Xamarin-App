@@ -234,7 +234,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
                             this.AboutStore = !string.IsNullOrEmpty(store.data[i].info) ? store.data[i].info : "No information found.";
                             this.StoreBanner = store.data[i].banner == "None" || store.data[i].banner == "" ? "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg" : PSAProc.GetUrl(store.data[i].banner);
                         }
-                        IsRunning = false;
                     }
                     else
                     {
