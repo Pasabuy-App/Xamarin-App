@@ -15,12 +15,12 @@ namespace PasaBuy.App.Views.Settings
 
         public void BackButtonClicked(object sender, EventArgs e)
         {
-            ViewModels.Marketplace.OrderStatusViewModel.isTimer = false;
+            ViewModels.Marketplace.OrderStatusViewModel.myTimer = false;
             Navigation.PopModalAsync();
         }
         protected override bool OnBackButtonPressed()
         {
-            ViewModels.Marketplace.OrderStatusViewModel.isTimer = false;
+            ViewModels.Marketplace.OrderStatusViewModel.myTimer = false;
             return base.OnBackButtonPressed();
         }
 
