@@ -308,8 +308,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         {
             if (!IsRunning)
             {
-                IsRunning = true; // order_id // PSACache.Instance.UserInfo.stid // user_id
-                // get the user id, stid and odid
+                IsRunning = true;
                 ViewModels.Chat.StoreConversationViewModel.odid = order_id;
                 ViewModels.Chat.StoreConversationViewModel.user_id = user_id;
                 ViewModels.Chat.StoreConversationViewModel.ProfileNames = customer;
@@ -337,7 +336,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    Http.MobilePOS.Order.Instance.Listing(PSACache.Instance.UserInfo.stid, order_id, "", (bool success, string data) =>
+                    Http.MobilePOS.Order.Instance.Listing(PSACache.Instance.UserInfo.stid, order_id, "", "", (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -389,6 +388,8 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                             DashboardOrdersViewModel.stages = status;
                             DashboardOrdersViewModel.RefreshOrder(status);
                             await App.Current.MainPage.Navigation.PopModalAsync();
+
+                            ViewModels.MobilePOS.DashboardOrdersViewModel._starttimer = true;
                             IsRunning = false;
                         }
                         else

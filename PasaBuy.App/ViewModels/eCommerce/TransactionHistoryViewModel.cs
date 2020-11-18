@@ -70,6 +70,75 @@ namespace PasaBuy.App.ViewModels.eCommerce
             });
             LoadData();
         }
+
+        public static void LoadOrder()
+        {
+            try
+            {
+                transactionDetails.Clear();
+                Http.MobilePOS.Order.Instance.Listing("", "", "", PSACache.Instance.UserInfo.wpid, (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        CultureInfo provider = new CultureInfo("fr-FR");
+                        Models.POSFeature.OrderModel order = JsonConvert.DeserializeObject<Models.POSFeature.OrderModel>(data);
+
+                        bool isongoing = false;
+                        bool iscompleted = false;
+                        bool iscancelled = false;
+                        for (int i = 0; i < order.data.Length; i++)
+                        {
+                            DateTime mydate = DateTime.ParseExact(order.data[i].date_created, "yyyy-MM-dd HH:mm:ss", provider);
+                            string _status = order.data[i].stages != "Cancelled" ? order.data[i].stages == "Completed" ? "Delivered" : "On-Going" : "Cancelled";
+                            if (_status == "Cancelled")
+                            {
+                                iscancelled = true;
+                                iscompleted = false;
+                                isongoing = false;
+                            }
+                            if (_status == "Delivered")
+                            {
+                                iscancelled = false;
+                                iscompleted = true;
+                                isongoing = false;
+                            }
+                            if (_status == "On-Going")
+                            {
+                                iscancelled = false;
+                                iscompleted = false;
+                                isongoing = true;
+                            }
+                            transactionDetails.Add(new Models.POSFeature.OrderModel()
+                            {
+                                ID = order.data[i].pubkey,
+                                StoreName = order.data[i].store_name,
+                                Pubkey = "Order ID: #" + order.data[i].pubkey,
+                                StoreLogo = string.IsNullOrEmpty(order.data[i].store_logo) || order.data[i].store_logo == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg" : PSAProc.GetUrl(order.data[i].store_logo),
+                                TotalPrice = Convert.ToDouble(order.data[i].total_price),
+                                Total = Convert.ToDouble(order.data[i].total_price) + Convert.ToDouble(order.data[i].delivery_charges),
+                                StoreAddress = order.data[i].store_address,
+                                CustomerAddress = order.data[i].cutomer_address,
+                                Method = order.data[i].method,
+                                Stages = _status,
+                                Delivery_Charges = order.data[i].delivery_charges,
+                                DateCreated = mydate.ToString("MMM. dd, yyyy hh:mm tt"),
+                                isOngoing = isongoing,
+                                isCompleted = iscompleted,
+                                isCancelled = iscancelled,
+                            });
+                        }
+                    }
+                    else
+                    {
+                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ODR-L1THVM.", "OK");
+            }
+        }
         public void LoadData()
         {
             try
@@ -77,17 +146,38 @@ namespace PasaBuy.App.ViewModels.eCommerce
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    Http.MobilePOS.Order.Instance.Listing("", "", "", (bool success, string data) =>
+                    Http.MobilePOS.Order.Instance.Listing("", "", "", PSACache.Instance.UserInfo.wpid,(bool success, string data) =>
                     {
                         if (success)
                         {
                             CultureInfo provider = new CultureInfo("fr-FR");
                             Models.POSFeature.OrderModel order = JsonConvert.DeserializeObject<Models.POSFeature.OrderModel>(data);
 
+                            bool isongoing = false;
+                            bool iscompleted = false;
+                            bool iscancelled = false;
                             for (int i = 0; i < order.data.Length; i++)
                             {
                                 DateTime mydate = DateTime.ParseExact(order.data[i].date_created, "yyyy-MM-dd HH:mm:ss", provider);
                                 string _status = order.data[i].stages != "Cancelled" ? order.data[i].stages == "Completed" ? "Delivered" : "On-Going" : "Cancelled";
+                                if (_status == "Cancelled")
+                                {
+                                    iscancelled = true;
+                                    iscompleted = false;
+                                    isongoing = false;
+                                }
+                                if (_status == "Delivered")
+                                {
+                                    iscancelled = false;
+                                    iscompleted = true;
+                                    isongoing = false;
+                                }
+                                if (_status == "On-Going")
+                                {
+                                    iscancelled = false;
+                                    iscompleted = false;
+                                    isongoing = true;
+                                }
                                 transactionDetails.Add(new Models.POSFeature.OrderModel()
                                 {
                                     ID = order.data[i].pubkey,
@@ -102,9 +192,9 @@ namespace PasaBuy.App.ViewModels.eCommerce
                                     Stages = _status,
                                     Delivery_Charges = order.data[i].delivery_charges,
                                     DateCreated = mydate.ToString("MMM. dd, yyyy hh:mm tt"),
-                                    isOngoing = _status == "On-Going" ? true : false,
-                                    isCompleted = _status == "Completed" ? true : false,
-                                    isCancelled = _status == "Cancelled" ? true : false,
+                                    isOngoing = isongoing,
+                                    isCompleted = iscompleted,
+                                    isCancelled = iscancelled,
                                 });
                             }
                             IsRunning = false;
@@ -198,7 +288,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     ViewModels.Marketplace.OrderStatusViewModel._subtotal = item.TotalPrice;
                     ViewModels.Marketplace.OrderStatusViewModel._fee = Convert.ToDouble(item.Delivery_Charges);
                     ViewModels.Marketplace.OrderStatusViewModel._total = item.Total;
-                    ViewModels.Marketplace.OrderStatusViewModel.isTimer = true;
+                    //ViewModels.Marketplace.OrderStatusViewModel.isTimer = true;
                     await App.Current.MainPage.Navigation.PushModalAsync(new PasaBuy.App.Views.Marketplace.OrderStatusPage());
                 }
                 else

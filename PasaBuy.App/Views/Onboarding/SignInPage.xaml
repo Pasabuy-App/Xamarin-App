@@ -47,6 +47,9 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+
                         </Grid.RowDefinitions>
                         <!--  Logo to display the title of this page  -->
                         <Image Source="LogoHeader.png" 
@@ -104,37 +107,36 @@
                             Style="{StaticResource SfFlatButtonStyle}"
                             Text="FORGOT PASSWORD?" />
 
-                        <Grid Grid.Row="6">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="50*" />
-                                <ColumnDefinition Width="50*" />
-                            </Grid.ColumnDefinitions>
-
-                            <Label Text="Don't have an account?"
-                                   Grid.Column="0"
-                                   HorizontalOptions="EndAndExpand"
-                                   HorizontalTextAlignment="End"
+                    <Label Text="Don't have an account?"
+                           Grid.Row="6"
+                           Margin="0,10,0,0"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"
                                    FontSize="{DynamicResource SmallSize}"
                                    FontFamily="{StaticResource Montserrat-SemiBold}"
                                    TextColor="{DynamicResource Gray-900}"
                                    VerticalTextAlignment="Center">
-                                <Label.Effects>
-                                    <effects:LabelSizeFontToFit />
-                                </Label.Effects>
-                            </Label>
+                    </Label>
 
-                        <buttons:SfButton Grid.Column="1"
+                    <buttons:SfButton Grid.Row="7"
                                         x:Name="SignupButton"
                                         Clicked="SignUpClicked"
-                                        HorizontalOptions="End"
-                                        Margin="10,0,0,0"
+                                        HorizontalOptions="Center"
+                                        Margin="0,10,0,0"
                                         HorizontalTextAlignment="End"
                                         CornerRadius="4"
                                         Style="{StaticResource SfFlatButtonStyle}"
                                         TextColor="{DynamicResource PrimaryColor}"
                                         Text="REGISTER" />
 
-                        </Grid>
+                    <!--<StackLayout Grid.Row="6" HorizontalOptions="CenterAndExpand"
+                                     VerticalOptions="Center">
+
+                            
+
+                        
+
+                        </StackLayout>-->
 
 
                 </Grid>

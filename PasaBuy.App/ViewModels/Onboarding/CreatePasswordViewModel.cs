@@ -2,6 +2,7 @@
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Onboarding;
+using PasaBuy.App.Views;
 using PasaBuy.App.Views.Onboarding;
 using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
@@ -137,20 +138,24 @@ namespace PasaBuy.App.ViewModels.Onboarding
                     {
                         if (success1)
                         {
+                            
                             App.Current.MainPage = new SignInPage();
+                            await App.Current.MainPage.Navigation.PushModalAsync(new NoticePage());
 
-                            bool answer = await Application.Current.MainPage.DisplayAlert(
-                                "Verify Account?", "Congratulations! Thank you for downloading PasaBuy.App. " +
-                                "Ikaw ay makakatanggap ng Php500 sa iyong E-wallet. Sa ngayon ay " +
-                                "hindi pa magagamit ang App ngunit maaari ka ng mag-verify ng account. " +
-                                "Verify mo lang ang account mo at makakatanggap ka pa ng dagdag na Php300.", 
-                                "Confirm", "No, Later");
+                            //bool answer = await Application.Current.MainPage.DisplayAlert(
+                            //    "Verify Account?", "Congratulations! Thank you for downloading PasaBuy.App. " +
+                            //    "Ikaw ay makakatanggap ng Php500 sa iyong E-wallet. Sa ngayon ay " +
+                            //    "hindi pa magagamit ang App ngunit maaari ka ng mag-verify ng account. " +
+                            //    "Verify mo lang ang account mo at makakatanggap ka pa ng dagdag na Php300.", 
+                            //    "Confirm", "No, Later");
 
-                            if (answer)
-                            {
-                                //Check if user is Verified or Not.
-                                await PopupNavigation.Instance.PushAsync(new PopupStartup());
-                            }
+
+
+                            //if (answer)
+                            //{
+                            //    //Check if user is Verified or Not.
+                            //    await PopupNavigation.Instance.PushAsync(new PopupStartup());
+                            //}
                         }
                         else
                         {

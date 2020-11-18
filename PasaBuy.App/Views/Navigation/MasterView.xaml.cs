@@ -221,6 +221,8 @@ namespace PasaBuy.App.Views.Navigation
             {
                 DashboardPage.locs = false;
             }
+            DashboardPage._starttimer = false;
+            ViewModels.MobilePOS.DashboardOrdersViewModel._starttimer = false;
         }
 
         private async void isActive(object sender, Syncfusion.XForms.Buttons.SwitchStateChangedEventArgs e)

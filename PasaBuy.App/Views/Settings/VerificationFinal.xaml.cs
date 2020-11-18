@@ -27,9 +27,9 @@ namespace PasaBuy.App.Views.Settings
 
         private async void Continue()
         {
-            await Application.Current.MainPage.DisplayAlert(
-                "asdsads", "Ikaw na ay isang verified user ng PasaBuy.App! Makakatanggap ka ng Php300 sa E-wallet mo na magagamit mo sa PasaBuy Plus Promo. Maghintay lang ng updates mula sa amin upang malaman kung kailan niyo magagamit ang app.", "Continue", "");
-            //App.Current.MainPage = new MainTabs();
+            //await Application.Current.MainPage.DisplayAlert(
+            //    "asdsads", "Ikaw na ay isang verified user ng PasaBuy.App! Makakatanggap ka ng Php300 sa E-wallet mo na magagamit mo sa PasaBuy Plus Promo. Maghintay lang ng updates mula sa amin upang malaman kung kailan niyo magagamit ang app.", "Continue", "");
+             App.Current.MainPage = new MainTabs();
         }
     }
 }
