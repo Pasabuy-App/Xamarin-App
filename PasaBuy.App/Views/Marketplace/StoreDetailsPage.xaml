@@ -233,14 +233,14 @@
                                                         FadeAnimationEnabled="True">
                                 </ffimageloading:CachedImage>
 
-                                <Frame  CornerRadius="4" Opacity="0.25" BackgroundColor="{DynamicResource Gray-Black}"/>
+                                <Frame  CornerRadius="4" Opacity="0.1" BackgroundColor="{DynamicResource Gray-Black}"/>
 
                                 <border:SfBorder Grid.Row="1"
                                              CornerRadius="10,10,10,10" 
                                              BackgroundColor="{DynamicResource Gray-White}"
                                              BorderWidth="0" 
                                              Padding="16" 
-                                             Margin="0,-51,0,0">
+                                             Margin="0,5,0,0">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />

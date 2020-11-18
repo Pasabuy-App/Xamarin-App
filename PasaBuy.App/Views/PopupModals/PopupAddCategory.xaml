@@ -126,7 +126,7 @@
                         <button:SfButton
                             Grid.Row="2"
                             Grid.Column="0"
-                            BackgroundColor="Green"
+                            BackgroundColor="{DynamicResource Green}"
                             BorderColor="{DynamicResource BlackColor}"
                             BorderWidth="2"
                             Clicked="Insert_UpdateModal"
@@ -139,7 +139,7 @@
                         <button:SfButton
                             Grid.Row="2"
                             Grid.Column="1"
-                            BackgroundColor="Red"
+                            BackgroundColor="{DynamicResource Red}"
                             BorderColor="{StaticResource BlackColor}"
                             BorderWidth="2"
                             CornerRadius="4"
