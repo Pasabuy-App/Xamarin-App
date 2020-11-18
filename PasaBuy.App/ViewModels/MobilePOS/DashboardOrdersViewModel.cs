@@ -156,6 +156,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                 OrderDetailsViewModel.customer = item.CustomerName;
                 OrderDetailsViewModel.method = item.Method;
                 OrderDetailsViewModel.user_id = item.Order_By;
+                OrderDetailsViewModel.type = "store";
                 await App.Current.MainPage.Navigation.PushModalAsync(new Views.StoreViews.TransactionDetailsView());
                 _starttimer = false;
                 IsRunning = false;

@@ -240,6 +240,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
         public static string customer;
         public static string user_id;
         public static string method;
+        public static string type = string.Empty;
 
         #endregion
 
@@ -254,7 +255,10 @@ namespace PasaBuy.App.ViewModels.MobilePOS
             this.TotalPrice = totalprice;
             this.Method = method;
 
-            CheckPermission();
+            if (type != "mover")
+            {
+                CheckPermission();
+            }
 
             DeclinedCommand = new Command<object>(DeclinedClicked);
             AcceptedPreparingShippingCommand = new Command<object>(AcceptedPreparingShippingClicked);

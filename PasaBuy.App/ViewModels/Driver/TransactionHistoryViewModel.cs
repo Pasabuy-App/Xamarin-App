@@ -123,6 +123,7 @@ namespace PasaBuy.App.ViewModels.Driver
                 MobilePOS.OrderDetailsViewModel.totalprice = item.Price;
                 MobilePOS.OrderDetailsViewModel.stages = item.Status;
                 MobilePOS.OrderDetailsViewModel.method = item.Method;
+                MobilePOS.OrderDetailsViewModel.type = "mover";
                 await Application.Current.MainPage.Navigation.PushModalAsync(new Views.StoreViews.TransactionDetailsView());
                 IsBusy = false;
             }
