@@ -125,7 +125,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 Address = store.data[i].street + " " + store.data[i].brgy + " " + store.data[i].city + ", " + store.data[i].province,
                                 Title = store.data[i].title,
                                 Info = store.data[i].info,
-                                Logo = store.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(store.data[i].avatar),
+                                Logo = PSAProc.GetUrl(store.data[i].avatar),
                                 Banner = PSAProc.GetUrl(store.data[i].banner)
                             });
                         }
@@ -157,17 +157,18 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
                             for (int i = 0; i < store.data.Length; i++)
                             {
+                                string add = string.IsNullOrEmpty(store.data[i].brgy) || string.IsNullOrEmpty(store.data[i].city) ? "" : store.data[i].brgy + " " + store.data[i].city;
                                 storeList.Add(new Models.TindaFeature.StoreModel()
                                 {
                                     ID = store.data[i].hsid,
                                     Operation = store.data[i].operation_id,
                                     Title = store.data[i].title,
                                     Info = store.data[i].info,
-                                    Logo = store.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(store.data[i].avatar),
+                                    Logo = PSAProc.GetUrl(store.data[i].avatar),
                                     Offer = "50% off",
                                     Rating = store.data[i].rates == "No ratings yet" ? "0.0" : store.data[i].rates,
-                                    Banner = store.data[i].banner == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png" : PSAProc.GetUrl(store.data[i].banner),
-                                    Address = store.data[i].brgy + " " + store.data[i].city
+                                    Banner = PSAProc.GetUrl(store.data[i].banner),
+                                    Address = add
                                 });
                             }
                             IsRunning = false;
@@ -199,17 +200,18 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
                         for (int i = 0; i < store.data.Length; i++)
                         {
+                            string add = string.IsNullOrEmpty(store.data[i].brgy) || string.IsNullOrEmpty(store.data[i].city) ? "" : store.data[i].brgy + " " + store.data[i].city;
                             storeList.Add(new Models.TindaFeature.StoreModel()
                             {
                                 ID = store.data[i].hsid,
                                 Operation = store.data[i].operation_id,
                                 Title = store.data[i].title,
                                 Info = store.data[i].info,
-                                Logo = store.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(store.data[i].avatar),
+                                Logo = PSAProc.GetUrl(store.data[i].avatar),
                                 Offer = "50% off",
                                 Rating = store.data[i].rates == "No ratings yet" ? "0.0" : store.data[i].rates,
-                                Banner = store.data[i].banner == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png" : PSAProc.GetUrl(store.data[i].banner),
-                                Address = store.data[i].brgy + " " + store.data[i].city
+                                Banner = PSAProc.GetUrl(store.data[i].banner),
+                                Address = add
                             });
                         }
                     }
@@ -239,17 +241,18 @@ namespace PasaBuy.App.ViewModels.Marketplace
                             storeList.Clear();
                             for (int i = 0; i < store.data.Length; i++)
                             {
+                                string add = string.IsNullOrEmpty(store.data[i].brgy) || string.IsNullOrEmpty(store.data[i].city) ? "" : store.data[i].brgy + " " + store.data[i].city;
                                 storeList.Add(new Models.TindaFeature.StoreModel()
                                 {
                                     ID = store.data[i].hsid,
                                     Operation = store.data[i].operation_id,
                                     Title = store.data[i].title,
                                     Info = store.data[i].info,
-                                    Logo = store.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(store.data[i].avatar),
+                                    Logo = PSAProc.GetUrl(store.data[i].avatar),
                                     Offer = "50% off",
                                     Rating = store.data[i].rates == "No ratings yet" ? "0.0" : store.data[i].rates,
-                                    Banner = store.data[i].banner == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png" : PSAProc.GetUrl(store.data[i].banner),
-                                    Address = store.data[i].brgy + " " + store.data[i].city
+                                    Banner = PSAProc.GetUrl(store.data[i].banner),
+                                    Address = add
                                 });
                             }
                         }

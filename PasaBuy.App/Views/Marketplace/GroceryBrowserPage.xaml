@@ -230,7 +230,7 @@
                                                            Grid.Column="0"
                                                            FontSize="14"
                                                            HorizontalTextAlignment="Start"
-                                                           Text="Open Now"
+                                                           Text="{Binding Open_Close}"
                                                            TextColor="LightGreen"
                                                            VerticalTextAlignment="Center" />
 

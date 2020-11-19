@@ -77,7 +77,7 @@ namespace PasaBuy.App.ViewModels.Feeds
         {
             try
             {
-                MyProfile.LastIndex = 11;
+                MyProfile.LastIndex = 12;
                 Http.SocioPress.Post.Instance.Profile(uid, "", (bool success, string data) =>
                 {
                     if (success)
@@ -169,7 +169,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    MyProfile.LastIndex = 11;
+                    MyProfile.LastIndex = 12;
                     Http.SocioPress.Post.Instance.Profile(uid, "", (bool success, string data) =>
                     {
                         if (success)

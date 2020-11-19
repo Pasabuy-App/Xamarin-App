@@ -17,7 +17,7 @@ namespace PasaBuy.App.Views.Feeds
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MyProfile : ContentPage
     {
-        public static int LastIndex = 11;
+        public static int LastIndex;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MyProfile" /> class.
@@ -25,6 +25,22 @@ namespace PasaBuy.App.Views.Feeds
         public MyProfile()
         {
             InitializeComponent();
+            LastIndex = 12;
+            listView.Scrolled += OnCollectionViewScrolled;
+        }
+        async void OnCollectionViewScrolled(object sender, ItemsViewScrolledEventArgs e)
+        {
+            if (e.LastVisibleItemIndex > LastIndex)
+            {
+                if (IsRunning.IsRunning == false)
+                {
+                    IsRunning.IsRunning = true;
+                    MyProfileViewModel.LoadMore(LastIndex.ToString());
+                    LastIndex += 7;
+                    await Task.Delay(500);
+                    IsRunning.IsRunning = false;
+                }
+            }
         }
 
         /// <summary>
@@ -50,7 +66,7 @@ namespace PasaBuy.App.Views.Feeds
             });
         }
 
-        private void profileListView_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
+       /* private void profileListView_ItemAppearing(object sender, Syncfusion.ListView.XForms.ItemAppearingEventArgs e)
         {
             var item = e.ItemData as Post;
             if (MyProfileViewModel.profilePostList.Last() == item && MyProfileViewModel.profilePostList.Count() != 1)
@@ -61,6 +77,6 @@ namespace PasaBuy.App.Views.Feeds
                     MyProfileViewModel.LoadMore(item.Last_ID);
                 }
             }
-        }
+        }*/
     }
 }

@@ -124,8 +124,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 Address = store.data[i].street + " " + store.data[i].brgy + " " + store.data[i].city + ", " + store.data[i].province,
                                 Title = store.data[i].title,
                                 Info = store.data[i].info,
-                                Logo = store.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(store.data[i].avatar),
-                                Banner = PSAProc.GetUrl(store.data[i].banner)
+                                Logo = PSAProc.GetUrl(store.data[i].avatar),
+                                Banner = store.data[i].banner == "None" || string.IsNullOrEmpty(store.data[i].banner) || store.data[i].banner == "" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(store.data[i].banner)
                             });
                         }
                     }
@@ -156,14 +156,18 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
                             for (int i = 0; i < store.data.Length; i++)
                             {
+                                string open_close = string.IsNullOrEmpty(store.data[i].operation_id) ? "Closed" : "Open Now";
+                                string add = string.IsNullOrEmpty(store.data[i].street) || string.IsNullOrEmpty(store.data[i].brgy) || string.IsNullOrEmpty(store.data[i].city) || string.IsNullOrEmpty(store.data[i].province) ? "" : store.data[i].street + " " + store.data[i].brgy + " " + store.data[i].city + ", " + store.data[i].province;
+
                                 grocerystorelist.Add(new Models.TindaFeature.StoreModel()
                                 {
                                     ID = store.data[i].hsid,
                                     Operation = store.data[i].operation_id,
+                                    Open_Close = open_close,
                                     Title = store.data[i].title,
                                     Info = store.data[i].info,
-                                    Banner = store.data[i].banner == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(store.data[i].banner), //https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png
-                                    Address = store.data[i].street + ", " + store.data[i].brgy + ", " + store.data[i].city + ", " + store.data[i].province + ", " + store.data[i].country //"#4 Rainbow Ave Pacita 2 San Pedro City, Laguna"
+                                    Banner = store.data[i].banner == "None" || string.IsNullOrEmpty(store.data[i].banner) || store.data[i].banner == "" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(store.data[i].banner),
+                                    Address = add
                                 });
                             }
                             IsRunning = false;
@@ -197,14 +201,18 @@ namespace PasaBuy.App.ViewModels.Marketplace
                             grocerystorelist.Clear();
                             for (int i = 0; i < store.data.Length; i++)
                             {
+                                string open_close = string.IsNullOrEmpty(store.data[i].operation_id) ? "Closed" : "Open Now";
+                                string add = string.IsNullOrEmpty(store.data[i].street) || string.IsNullOrEmpty(store.data[i].brgy) || string.IsNullOrEmpty(store.data[i].city) || string.IsNullOrEmpty(store.data[i].province) ? "" : store.data[i].street + " " + store.data[i].brgy + " " + store.data[i].city + ", " + store.data[i].province;
+
                                 grocerystorelist.Add(new Models.TindaFeature.StoreModel()
                                 {
                                     ID = store.data[i].hsid,
                                     Operation = store.data[i].operation_id,
+                                    Open_Close = open_close,
                                     Title = store.data[i].title,
                                     Info = store.data[i].info,
-                                    Banner = store.data[i].banner == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(store.data[i].banner), //https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png
-                                    Address = store.data[i].street + ", " + store.data[i].brgy + ", " + store.data[i].city + ", " + store.data[i].province + ", " + store.data[i].country //"#4 Rainbow Ave Pacita 2 San Pedro City, Laguna"
+                                    Banner = store.data[i].banner == "None" || string.IsNullOrEmpty(store.data[i].banner) || store.data[i].banner == "" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(store.data[i].banner),
+                                    Address = add
                                 });
                             }
                         }
