@@ -66,10 +66,10 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Row="0" 
-                      Grid.ColumnSpan="3" 
-                      BackgroundColor="{DynamicResource Gray-300}"
-                      VerticalOptions="FillAndExpand" 
-                      HorizontalOptions="FillAndExpand" HeightRequest="220">
+                              Grid.ColumnSpan="3" 
+                              BackgroundColor="{DynamicResource Gray-300}"
+                              VerticalOptions="FillAndExpand" 
+                              HorizontalOptions="FillAndExpand" HeightRequest="{OnIdiom Default=300, Tablet=450}">
                             <ffimageloading:CachedImage Aspect="AspectFill"
                                                 x:Name="StatusImage"
 			                                    DownsampleToViewSize="true" 
@@ -87,17 +87,17 @@
                         <buttons:SfButton
                             Grid.Row="1"
                             Grid.Column="1"
-                            Grid.ColumnSpan="1"
+                            Grid.ColumnSpan="2"
                             Margin="0, 0, 0, 20"
                             CornerRadius="10"
                             Clicked="TakePhoto"
                             TextColor="White"
                             BackgroundColor="{DynamicResource PrimaryColor}"
                             Style="{StaticResource SfButtonStyle}"
-                            Text="Take Photo" />
+                            Text="Add Photo" />
 
                         <!--  Submit button  -->
-                        <buttons:SfButton
+                        <!--<buttons:SfButton
                             Grid.Row="1"
                             Grid.Column="2"
                             Grid.ColumnSpan="1"
@@ -107,7 +107,7 @@
                             TextColor="White"
                             BackgroundColor="{DynamicResource PrimaryColor}"
                             Style="{StaticResource SfButtonStyle}"
-                            Text="Upload Photo" />
+                            Text="Upload Photo" />-->
 
                         <border:SfBorder Padding="8, 0, 0, 0" 
                                  HeightRequest="120"

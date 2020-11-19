@@ -10,8 +10,8 @@
                    android:resource="@xml/file_paths">
         </meta-data>
 		</provider>
-		<!--Google Map-->
 	</application>
+
 	<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />

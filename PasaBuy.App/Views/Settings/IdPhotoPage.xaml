@@ -93,6 +93,7 @@
                   HorizontalOptions="FillAndExpand" >
                 <ffimageloading:CachedImage Aspect="AspectFill"
                                             x:Name="ImageId"
+                                            Source="Idcard.png"
 			                                DownsampleToViewSize="true" 
                                             FadeAnimationEnabled="True">
                 </ffimageloading:CachedImage>
