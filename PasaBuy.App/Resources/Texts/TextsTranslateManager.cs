@@ -1,4 +1,4 @@
-﻿using Plugin.Multilingual;
+﻿//using Plugin.Multilingual;
 using System;
 using System.Reflection;
 using System.Resources;
@@ -20,13 +20,13 @@ namespace PasaBuy.App.Resources.Texts
         {
             //Settings.LanguageSelected = CrossMultilingual.Current.CurrentCultureInfo.EnglishName;
             //CrossMultilingual.Current.CurrentCultureInfo = CrossMultilingual.Current.NeutralCultureInfoList.ToList().First(element => element.EnglishName.Contains(Settings.LanguageSelected.ToString()));
-            var ci = CrossMultilingual.Current.CurrentCultureInfo;
-            var translation = LazyResourceManager.Value.GetString(text, ci);
-            if (translation == null)
-            {
-                translation = text;
-            }
-            return translation;
+            //var ci = CrossMultilingual.Current.CurrentCultureInfo;
+            //var translation = LazyResourceManager.Value.GetString(text, ci);
+            //if (translation == null)
+            //{
+            //    translation = text;
+            //}
+            return text;
         }
     }
 
