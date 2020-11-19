@@ -61,6 +61,7 @@ namespace PasaBuy.App.iOS
             new SfAccordionRenderer();
             Rg.Plugins.Popup.Popup.Init();
             Plugin.LocalNotification.NotificationCenter.AskPermission();
+   
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

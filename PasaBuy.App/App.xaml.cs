@@ -4,6 +4,7 @@ using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using PasaBuy.App.Local;
 using PasaBuy.App.Local.Notice;
+using PasaBuy.App.Views;
 using PasaBuy.App.Views.Currency;
 using PasaBuy.App.Views.Driver;
 using PasaBuy.App.Views.Onboarding;

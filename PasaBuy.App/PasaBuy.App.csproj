@@ -99,9 +99,11 @@
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1560" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
     <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="3.3.0" />
+    <PackageReference Include="Xamarin.Forms.ImagePicker" Version="1.0.0" />
     <PackageReference Include="Xamarin.Forms.Pages" Version="4.8.0.1560" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
     <PackageReference Include="Xamarin.Google.iOS.Maps" Version="3.7.0.1" />
+    <PackageReference Include="Xamarin.Swift4" Version="4.0.0.2" />
     <PackageReference Include="Xamarin.Toolkit.Effects" Version="1.0.0" />
   </ItemGroup>
 
