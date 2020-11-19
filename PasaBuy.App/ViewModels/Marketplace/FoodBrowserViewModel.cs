@@ -134,8 +134,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 Address = store.data[i].street + " " + store.data[i].brgy + " " + store.data[i].city + ", " + store.data[i].province,
                                 Title = store.data[i].title,
                                 Info = store.data[i].info,
-                                Logo = store.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(store.data[i].avatar),
-                                Banner = PSAProc.GetUrl(store.data[i].banner)
+                                Logo = PSAProc.GetUrl(store.data[i].avatar),
+                                Banner = store.data[i].banner == "None" || string.IsNullOrEmpty(store.data[i].banner) || store.data[i].banner == "" ? "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg" : PSAProc.GetUrl(store.data[i].banner)
                             });
                         }
                     }
@@ -172,19 +172,19 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 DateTime open = DateTime.ParseExact(open_time, "HH:mm:ss", provider);
                                 DateTime close = DateTime.ParseExact(close_time, "HH:mm:ss", provider);
                                 string open_close = string.IsNullOrEmpty(store.data[i].operation_id) ? "Closed" : open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
-
+                                string add = string.IsNullOrEmpty(store.data[i].street) || string.IsNullOrEmpty(store.data[i].brgy) || string.IsNullOrEmpty(store.data[i].city) || string.IsNullOrEmpty(store.data[i].province) ? "" : store.data[i].street + " " + store.data[i].brgy + " " + store.data[i].city + ", " + store.data[i].province;
                                 foodstorelist.Add(new Models.TindaFeature.StoreModel()
                                 {
                                     ID = store.data[i].hsid,
                                     Operation = store.data[i].operation_id,
                                     Open_Close = open_close,
-                                    Address = store.data[i].street + " " + store.data[i].brgy + " " + store.data[i].city + ", " + store.data[i].province,
+                                    Address = add,
                                     City = store.data[i].city + ", " + store.data[i].province,
                                     Title = store.data[i].title,
                                     Info = store.data[i].info,
-                                    Logo = store.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(store.data[i].avatar),
+                                    Logo = PSAProc.GetUrl(store.data[i].avatar),
                                     Rating = store.data[i].rates == "No ratings yet" || string.IsNullOrEmpty(store.data[i].rates) ? "0.0" : store.data[i].rates,
-                                    Banner = store.data[i].banner == "None" || store.data[i].banner == "" ? "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg" : PSAProc.GetUrl(store.data[i].banner)
+                                    Banner = store.data[i].banner == "None" || string.IsNullOrEmpty(store.data[i].banner) || store.data[i].banner == "" ? "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg" : PSAProc.GetUrl(store.data[i].banner)
                                 });
                             }
                             IsRunning = false;
@@ -224,18 +224,19 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 DateTime open = DateTime.ParseExact(open_time, "HH:mm:ss", provider);
                                 DateTime close = DateTime.ParseExact(close_time, "HH:mm:ss", provider);
                                 string open_close = string.IsNullOrEmpty(store.data[i].operation_id) ? "Closed" : open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
+                                string add = string.IsNullOrEmpty(store.data[i].street) || string.IsNullOrEmpty(store.data[i].brgy) || string.IsNullOrEmpty(store.data[i].city) || string.IsNullOrEmpty(store.data[i].province) ? "" : store.data[i].street + " " + store.data[i].brgy + " " + store.data[i].city + ", " + store.data[i].province;
                                 foodstorelist.Add(new Models.TindaFeature.StoreModel()
                                 {
                                     ID = store.data[i].hsid,
                                     Operation = store.data[i].operation_id,
                                     Open_Close = open_close,
-                                    Address = store.data[i].street + " " + store.data[i].brgy + " " + store.data[i].city + ", " + store.data[i].province,
+                                    Address = add,
                                     City = store.data[i].city + ", " + store.data[i].province,
                                     Title = store.data[i].title,
                                     Info = store.data[i].info,
-                                    Logo = store.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(store.data[i].avatar),
+                                    Logo = PSAProc.GetUrl(store.data[i].avatar),
                                     Rating = store.data[i].rates == "No ratings yet" || string.IsNullOrEmpty(store.data[i].rates) ? "0.0" : store.data[i].rates,
-                                    Banner = store.data[i].banner == "None" || store.data[i].banner == "" ? "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg" : PSAProc.GetUrl(store.data[i].banner)
+                                    Banner = store.data[i].banner == "None" || string.IsNullOrEmpty(store.data[i].banner) || store.data[i].banner == "" ? "https://pasabuy.app/wp-content/uploads/2020/10/Food-Template.jpg" : PSAProc.GetUrl(store.data[i].banner)
                                 });
                             }
                         }

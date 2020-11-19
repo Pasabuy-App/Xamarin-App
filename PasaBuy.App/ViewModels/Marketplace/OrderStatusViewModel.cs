@@ -268,12 +268,11 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
             this.timeStatus = "Estimated Time of Accepting by Store. If not, your order will be automatically cancelled.";
 
-            /*RefreshCommand = new Xamarin.Forms.Command<string>((key) =>
+            RefreshCommand = new Xamarin.Forms.Command<string>((key) =>
             {
-                isTimer = false;
                 CheckingOrder(order_id);
                 IsRefreshing = false;
-            });*/
+            });
 
             isTimer = true;
             myTimer = true;
@@ -396,7 +395,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                             if (order_status != stages)
                             {
                                 order_status = stages;
-                                timer = (order.data[i].expiry * 60);
+                                timer = 1800;
                             }
 
                             if (stages == "Accepted")
