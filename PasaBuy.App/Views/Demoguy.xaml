@@ -9,7 +9,8 @@
              x:Class="PasaBuy.App.Views.Demoguy">
         <StackLayout Margin="0,35,0,0"
                  x:Name="stackLayout">
-            <Label Text="Click the button to create a local notification."
+        <Image x:Name="Img" HeightRequest="200" WidthRequest="150"/> 
+        <Label Text="Click the button to create a local notification."
                TextColor="Red"
                HorizontalOptions="Center"
                VerticalOptions="Start" />

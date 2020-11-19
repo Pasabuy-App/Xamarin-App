@@ -277,6 +277,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         {
                             HeaderSize = "0";
                         }
+                        Console.WriteLine(data);
                         for (int i = 0; i < store.data.Length; i++)
                         {
                             _bestSellers.Add(new Models.TindaFeature.StoreModel()

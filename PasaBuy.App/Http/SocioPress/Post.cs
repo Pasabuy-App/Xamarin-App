@@ -101,7 +101,7 @@ namespace PasaBuy.App.Http.SocioPress
             }
             catch (Exception e)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1PST-I1.", "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code:" + e, "OK");
             }
         }
 

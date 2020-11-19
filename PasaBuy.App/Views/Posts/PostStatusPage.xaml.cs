@@ -5,6 +5,7 @@ using Plugin.Media;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.ImagePicker;
 using Xamarin.Forms.Xaml;
 
 namespace PasaBuy.App.Views.Posts
@@ -14,8 +15,11 @@ namespace PasaBuy.App.Views.Posts
     {
         private Boolean btn = false;
         private string filePath = string.Empty;
+        IImagePickerService _imagePickerService;
+
         public PostStatusPage()
         {
+            _imagePickerService = DependencyService.Get<IImagePickerService>();
             InitializeComponent();
             
             //if (StatusImage.IsLoading)
@@ -35,50 +39,32 @@ namespace PasaBuy.App.Views.Posts
 
         async void AddStatusImage(object sender, EventArgs args)
         {
-            await CrossMedia.Current.Initialize();
-            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            var imageSource = await _imagePickerService.PickImageAsync();
+            await Task.Delay(500);
+            char[] charsToTrim = { ':', ' ' };
+            var fileName = imageSource.ToString().Remove(0, 4);
+
+            if (imageSource != null) // it will be null when user cancel
             {
-                new Alert("Error", "No camera available", "Failed");
+                StatusImage.Source = imageSource;
             }
-
-            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions());
-
-            if (file == null)
-                return;
-
-            ImageSource imageSource = ImageSource.FromStream(() =>
-            {
-                var stream = file.GetStream();
-                return stream;
-            });
-
-            StatusImage.Source = imageSource;
-            //var filePath = file.Path;
-            filePath = file.Path;
+            filePath = fileName.Trim(charsToTrim);
+            await Task.Delay(500);
         }
 
         async void TakePhoto(object sender, EventArgs args)
         {
-            await CrossMedia.Current.Initialize();
-            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            var imageSource = await _imagePickerService.PickImageAsync();
+            await Task.Delay(500);
+            char[] charsToTrim = { ':', ' ' };
+            var fileName = imageSource.ToString().Remove(0,4);
+
+            if (imageSource != null) // it will be null when user cancel
             {
-                new Alert("Error", "No camera available", "Failed");
+                StatusImage.Source = imageSource;
             }
-
-            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions());
-
-            if (file == null)
-                return;
-
-            ImageSource imageSource = ImageSource.FromStream(() =>
-            {
-                var stream = file.GetStream();
-                return stream;
-            });
-
-            StatusImage.Source = imageSource;
-            //var filePath = file.Path;
-            filePath = file.Path;
+            filePath = fileName.Trim(charsToTrim);
+            await Task.Delay(500);
 
         }
 
