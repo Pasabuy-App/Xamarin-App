@@ -90,11 +90,11 @@ namespace PasaBuy.App.ViewModels.Marketplace
             RefreshCommand = new Command<string>((key) =>
             {
                 grocerystorelist.Clear();
-                LoadGrocery("");
+                LoadGrocery();
                 IsRefreshing = false;
             });
             LoadBestSeller();
-            LoadGrocery("");
+            LoadGrocery();
 
         }
 
@@ -141,14 +141,14 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-        public void LoadGrocery(string lastid)
+        public void LoadGrocery()
         {
             try
             {
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    Http.TindaPress.Store.Instance.Listing("", "", "market", "", "", "active", (bool success, string data) =>
+                    Http.TindaPress.Store.Instance.Listing("", "", "market", "", "active", "", (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -187,18 +187,17 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-        public static void SearchStore(string search)
+        public static void SearchStore(string search, string lastid)
         {
             try
             {
-                Http.TindaPress.Store.Instance.Listing("", search, "market", "", "", "active", (bool success, string data) =>
+                Http.TindaPress.Store.Instance.Listing("", search, "market", "", "active", lastid, (bool success, string data) =>
                 {
                     if (success)
                     {
                         Models.TindaFeature.StoreModel store = JsonConvert.DeserializeObject<Models.TindaFeature.StoreModel>(data);
                         if (store.data.Length > 0)
                         {
-                            grocerystorelist.Clear();
                             for (int i = 0; i < store.data.Length; i++)
                             {
                                 string open_close = string.IsNullOrEmpty(store.data[i].operation_id) ? "Closed" : "Open Now";
