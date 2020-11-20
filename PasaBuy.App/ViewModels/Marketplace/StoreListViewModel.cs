@@ -88,8 +88,11 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
             RefreshCommand = new Command<string>((key) =>
             {
+                StoreListPage.LastIndex = 12;
+                _bestSellers.Clear();
                 storeList.Clear();
-                LoadRefresh(StoreListPage.catid, "");
+                LoadBestSeller();
+                LoadRefresh(StoreListPage.catid);
                 IsRefreshing = false;
             });
 
@@ -97,6 +100,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
             storeList = new ObservableCollection<Models.TindaFeature.StoreModel>();
             storeList.Clear();
             LoadBestSeller();
+            LoadRefresh(StoreListPage.catid);
         }
 
         public void LoadBestSeller()
@@ -142,14 +146,14 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-        public void LoadRefresh(string catid, string lastid)
+        public void LoadRefresh(string catid)
         {
             try
             {
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    Http.TindaPress.Store.Instance.Listing("", "", "pasamall", catid, "", "active", (bool success, string data) =>
+                    Http.TindaPress.Store.Instance.Listing("", "", "pasamall", catid, "active", "", (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -188,11 +192,11 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-        public static void LoadStore(string catid, string lastid)
+        public static void LoadStore(string lastid)
         {
             try
             {
-                Http.TindaPress.Store.Instance.Listing("", "", "pasamall", catid, "", "active", (bool success, string data) =>
+                Http.TindaPress.Store.Instance.Listing("", "", "pasamall", StoreListPage.catid, "active", lastid, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -231,7 +235,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             try
             {
-                Http.TindaPress.Store.Instance.Listing("", search, "pasamall", StoreListPage.catid, "", "active", (bool success, string data) =>
+                Http.TindaPress.Store.Instance.Listing("", search, "pasamall", StoreListPage.catid, "active", "", (bool success, string data) =>
                 {
                     if (success)
                     {

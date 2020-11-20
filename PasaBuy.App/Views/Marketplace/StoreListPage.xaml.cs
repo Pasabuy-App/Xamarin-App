@@ -1,6 +1,6 @@
 ﻿using PasaBuy.App.ViewModels.Marketplace;
 using System;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +10,7 @@ namespace PasaBuy.App.Views.Marketplace
     public partial class StoreListPage : ContentPage
     {
         public static string pageTitle;
-        public static int LastIndex = 11;
+        public static int LastIndex = 12;
         public static string catid = string.Empty;
         public bool isTapped;
         public StoreListPage()
@@ -21,6 +21,21 @@ namespace PasaBuy.App.Views.Marketplace
             isTapped = false;
             SearchEntry.Completed += (sender, args) => SearchStore(sender, args);
             StoreListViewModel.storeList.CollectionChanged += CollectionChanges;
+            StoreList.Scrolled += OnCollectionViewScrolled;
+        }
+        async void OnCollectionViewScrolled(object sender, ItemsViewScrolledEventArgs e)
+        {
+            if (e.LastVisibleItemIndex > LastIndex)
+            {
+                if (IsRunning.IsRunning == false)
+                {
+                    IsRunning.IsRunning = true;
+                    StoreListViewModel.LoadStore(LastIndex.ToString());
+                    LastIndex += 7;
+                    await Task.Delay(500);
+                    IsRunning.IsRunning = false;
+                }
+            }
         }
         private void CollectionChanges(object sender, EventArgs e)
         {
