@@ -1,5 +1,6 @@
 ﻿using PasaBuy.App.ViewModels.Marketplace;
 using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,6 +10,7 @@ namespace PasaBuy.App.Views.Marketplace
     public partial class PartnerBrowserPage : ContentView
     {
         public static bool isTapped = false;
+        public static int LastIndex = 12;
         public PartnerBrowserPage()
         {
             InitializeComponent();
@@ -17,7 +19,23 @@ namespace PasaBuy.App.Views.Marketplace
 
             SearchEntry.Completed += (sender, args) => SearchStore(sender, args);
             PartnerBrowserViewModel.storeList.CollectionChanged += CollectionChanges;
+            StoreList.Scrolled += OnCollectionViewScrolled;
         }
+        async void OnCollectionViewScrolled(object sender, ItemsViewScrolledEventArgs e)
+        {
+            if (e.LastVisibleItemIndex > LastIndex)
+            {
+                if (IsRunning.IsRunning == false)
+                {
+                    IsRunning.IsRunning = true;
+                    PartnerBrowserViewModel.SearchStore("", LastIndex.ToString());
+                    LastIndex += 7;
+                    await Task.Delay(500);
+                    IsRunning.IsRunning = false;
+                }
+            }
+        }
+    
         private void CollectionChanges(object sender, EventArgs e)
         {
             this.SearchButton.IsVisible = true;
@@ -40,16 +58,10 @@ namespace PasaBuy.App.Views.Marketplace
         }
         public void SearchStore(object sender, EventArgs e)
         {
-            try
+            if (!string.IsNullOrWhiteSpace(SearchEntry.Text))
             {
-                if (!string.IsNullOrWhiteSpace(SearchEntry.Text))
-                {
-                    PartnerBrowserViewModel.SearchStore(SearchEntry.Text);
-                }
-            }
-            catch (Exception ex)
-            {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
+                PartnerBrowserViewModel.storeList.Clear();
+                PartnerBrowserViewModel.SearchStore(SearchEntry.Text, "");
             }
         }
 

@@ -137,7 +137,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 {
                     IsRunning = true;
                     storeList.Clear();
-                    Http.TindaPress.Store.Instance.Listing("", "", "robinson", "", "", "active", (bool success, string data) =>
+                    Http.TindaPress.Store.Instance.Listing("", "", "robinson", "", "active", "", (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -182,12 +182,11 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-        public static void SearchStore(string search)
+        public static void SearchStore(string search, string lastid)
         {
             try
             {
-                storeList.Clear();
-                Http.TindaPress.Store.Instance.Listing("", search, "robinson", "", "" , "active", (bool success, string data) =>
+                Http.TindaPress.Store.Instance.Listing("", search, "robinson", "", "active", lastid, (bool success, string data) =>
                 {
                     if (success)
                     {
