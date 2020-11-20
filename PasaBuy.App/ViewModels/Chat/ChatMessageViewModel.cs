@@ -137,11 +137,11 @@ namespace PasaBuy.App.ViewModels.Chat
         /// </summary>
         private void OnMessage(USocketNet.Model.Message msg)
         {
-            if (myPage != "profile")
+            /*if (myPage != "profile")
             {
                 RecentChatViewModel.chatItems.Clear();
                 RecentChatViewModel.LoadMesssage("");
-            }
+            }*/
             if (msg.s == PSACache.Instance.UserInfo.wpid)
             {
                 ChatList.Add(new ChatListItem("0", "", DateTime.Now.AddMinutes(0), msg.m, false));
@@ -186,7 +186,7 @@ namespace PasaBuy.App.ViewModels.Chat
                     if (success)
                     {
                         ChatData chat = JsonConvert.DeserializeObject<ChatData>(data);
-                        isLoad = chat.data.Length < 7 ? false : true;
+                        isLoad = chat.data.Length < 11 || chat.data.Length < 7 ? false : true;
                         for (int i = 0; i < chat.data.Length; i++)
                         {
                             bool isreceived = chat.data[i].sender != PSACache.Instance.UserInfo.wpid ? true : false;
