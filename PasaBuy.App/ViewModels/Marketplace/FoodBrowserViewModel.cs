@@ -158,7 +158,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    Http.TindaPress.Store.Instance.Listing("", "", "food/drinks", "", "", "active", (bool success, string data) =>
+                    Http.TindaPress.Store.Instance.Listing("", "", "food/drinks", "", "active", "", (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -204,11 +204,11 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-        public static void SearchStore(string search)
+        public static void SearchStore(string search, string lastid)
         {
             try
             {
-                Http.TindaPress.Store.Instance.Listing("", search, "food/drinks", "", "", "active", (bool success, string data) =>
+                Http.TindaPress.Store.Instance.Listing("", search, "food/drinks", "", "active", lastid, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -216,7 +216,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         Models.TindaFeature.StoreModel store = JsonConvert.DeserializeObject<Models.TindaFeature.StoreModel>(data);
                         if (store.data.Length > 0)
                         {
-                            foodstorelist.Clear();
                             for (int i = 0; i < store.data.Length; i++)
                             {
                                 string open_time = string.IsNullOrEmpty(store.data[i].opening) ? "00:00:00" : store.data[i].opening;
