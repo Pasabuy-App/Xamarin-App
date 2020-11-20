@@ -1,6 +1,7 @@
 ﻿using PasaBuy.App.Controllers.Notice;
 using Plugin.Media;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -16,8 +17,17 @@ namespace PasaBuy.App.Views.Settings
         public VerificationSelfieStepPage()
         {
             InitializeComponent();
+            Instructions.Text = GetInstructions();
         }
 
+        private string GetInstructions()
+        {
+            var random = new Random();
+            var list = new List<string> { "• Make a selfie with peace hand sign.", "• Make a selfie with thumbs up hand sign.", "• Hold your chin while doing a selfie." , "• Hold your cheeks while doing a selfie.", "• Hold your right ears while doing a selfie.", "• Point your index finger upwards while doing a selfie" };
+            int index = random.Next(list.Count);
+            return list[index];
+
+        }
 
         async void TakePhoto(object sender, EventArgs args)
         {
@@ -90,6 +100,7 @@ namespace PasaBuy.App.Views.Settings
                 if (!isEnable)
                 {
                     VerificationFillPage.selfiePath = filePath;
+                    VerificationFillPage.instructions = Instructions.Text;
                     Navigation.PushModalAsync(new VerificationFillPage());
                     isEnable = true;
                     Device.BeginInvokeOnMainThread(async () =>

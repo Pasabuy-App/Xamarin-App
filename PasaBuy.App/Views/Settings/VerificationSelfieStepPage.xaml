@@ -6,7 +6,7 @@
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
-             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" xmlns:effects="clr-namespace:Xamarin.Toolkit.Effects;assembly=Xamarin.Toolkit.Effects"
              BackgroundColor="{StaticResource Gray-White}"
              x:Class="PasaBuy.App.Views.Settings.VerificationSelfieStepPage">
     <ContentPage.Resources>
@@ -21,7 +21,7 @@
     <ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0" >
-                <controls:TitleView Title="Upload a Selfie" 
+                <controls:TitleView Title="Take a Selfie" 
                                     BackgroundColor="{DynamicResource PrimaryColor}" >
                 </controls:TitleView>
                 <ContentPresenter />
@@ -39,7 +39,8 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -49,12 +50,12 @@
 
             <border:SfBorder Padding="0, 0, 0, 0"
                              Grid.Row="0"
-                                 Margin="0, 0, 0, 0"
-                                 HeightRequest="250"
-                                 Grid.ColumnSpan="2"
-                                 CornerRadius="10"
-                                 BackgroundColor="{DynamicResource Gray-200}"
-                                 Style="{StaticResource SfBorderStyle}">
+                             Margin="0, 0, 0, 0"
+                             HeightRequest="{OnIdiom Default=300,Tablet=420}"
+                             Grid.ColumnSpan="2"
+                             CornerRadius="10"
+                             BackgroundColor="{DynamicResource Gray-200}"
+                             Style="{StaticResource SfBorderStyle}">
                 <ffimageloading:CachedImage Aspect="AspectFit"
                                             Source="Avatar.png"
                                             x:Name="ImageId"
@@ -70,44 +71,79 @@
                     Margin="16,10,0,0"
                     FontFamily="{StaticResource Montserrat-Bold}"
                     Grid.Row="1"
-                    FontSize="14"
-                    HeightRequest="35"
+                    FontSize="{DynamicResource SmallSize}"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Instructions:"
+                    TextColor="{DynamicResource Gray-700}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center"/>
+
+            <Label  Grid.ColumnSpan="2"
+                    Margin="16,10,0,0"
+                    FontFamily="{StaticResource Montserrat-Bold}"
+                    Grid.Row="2"
+                    x:Name="Instructions"
+                    FontSize="{DynamicResource SmallerSize}"
+                    HorizontalOptions="FillAndExpand"
+                    Text="• Make a selfie with a peace hand sign"
+                    TextColor="{DynamicResource Gray-700}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center">
+                <Label.Effects>
+                    <effects:LabelSizeFontToFit />
+                </Label.Effects>
+            </Label>
+
+            <Label  Grid.ColumnSpan="2"
+                    Margin="16,0,0,0"
+                    FontFamily="{StaticResource Montserrat-Bold}"
+                    Grid.Row="3"
+                    FontSize="{DynamicResource SmallerSize}"
                     HorizontalOptions="FillAndExpand"
                     Text="• Make sure that the image is not blurry."
                     TextColor="{DynamicResource Gray-700}"
                     VerticalOptions="Center"
-                    VerticalTextAlignment="Center" />
+                    VerticalTextAlignment="Center">
+                <Label.Effects>
+                    <effects:LabelSizeFontToFit />
+                </Label.Effects>
+            </Label>
            
             <Label  Grid.ColumnSpan="2"
-                    Margin="16,-15,0,0"
+                    Margin="16,0,0,0"
                     FontFamily="{StaticResource Montserrat-Bold}"
-                    Grid.Row="2"
-                    FontSize="14"
-                    HeightRequest="35"
+                    Grid.Row="4"
+                    FontSize="{DynamicResource SmallerSize}"
                     HorizontalOptions="FillAndExpand"
                     Text="• Please remove any eyeglasses or facemasks."
                     TextColor="{DynamicResource Gray-700}"
                     VerticalOptions="Center"
-                    VerticalTextAlignment="Center" />
+                    VerticalTextAlignment="Center">
+                <Label.Effects>
+                    <effects:LabelSizeFontToFit />
+                </Label.Effects>
+            </Label>
 
             <Label  Grid.ColumnSpan="2"
-                    Margin="16,-15,0,0"
+                    Margin="16,0,0,0"
                     FontFamily="{StaticResource Montserrat-Bold}"
-                    Grid.Row="3"
-                    FontSize="14"
-                    HeightRequest="35"
+                    Grid.Row="5"
+                    FontSize="{DynamicResource SmallerSize}"
                     HorizontalOptions="FillAndExpand"
                     Text="• Ensure that the image covers your whole face."
                     TextColor="{DynamicResource Gray-700}"
                     VerticalOptions="Center"
-                    VerticalTextAlignment="Center" />
-
+                    VerticalTextAlignment="Center">
+                <Label.Effects>
+                    <effects:LabelSizeFontToFit />
+                </Label.Effects>
+            </Label>
 
             <buttons:SfButton
-                            Grid.Row="4"
+                            Grid.Row="6"
                             Grid.Column="0"
                             Grid.ColumnSpan="2"
-                            Margin="10, 40, 10, 20"
+                            Margin="10, 20, 10, 20"
                             CornerRadius="10"
                             Clicked="TakePhoto"
                             TextColor="White"
@@ -128,8 +164,8 @@
                             Text="Upload Photo" />-->
 
             <buttons:SfButton Grid.ColumnSpan="2"
-                                Grid.Row="5"
-                                Margin="10, 40, 10, 20"
+                                Grid.Row="7"
+                                Margin="10, 0, 10, 20"
                                 CornerRadius="10"
                                 Clicked="NextButtonClicked"
                                 TextColor="White"
