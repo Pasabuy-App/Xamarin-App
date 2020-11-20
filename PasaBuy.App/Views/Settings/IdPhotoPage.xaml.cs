@@ -31,11 +31,12 @@ namespace PasaBuy.App.Views.Settings
                new Alert("Error", "No camera available", "Failed");
             }
 
-            await Task.Delay(200);
+            await Task.Delay(500);
             var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
                 {
-                    CompressionQuality = 40
-                });
+                    CompressionQuality = 70,
+                    DefaultCamera = Plugin.Media.Abstractions.CameraDevice.Rear
+            });
 
             if (file == null)
                 return;
@@ -45,7 +46,7 @@ namespace PasaBuy.App.Views.Settings
                 var stream = file.GetStream();
                 return stream;
             });
-            await Task.Delay(200);
+            await Task.Delay(500);
             ImageId.Source = imageSource;
             filePath = file.Path;
 

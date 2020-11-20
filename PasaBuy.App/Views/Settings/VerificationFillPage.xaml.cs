@@ -15,6 +15,7 @@ namespace PasaBuy.App.Views.Settings
         public static string idDocType = string.Empty;
         public static string idPath = string.Empty;
         public static string selfiePath = string.Empty;
+        public static string instructions = string.Empty;
         private bool isEnable = false;
         public VerificationFillPage()
         {
@@ -44,11 +45,11 @@ namespace PasaBuy.App.Views.Settings
                     {
                         Loader.IsVisible = true;
                         isEnable = true;
-                        Http.DataVice.Documents.Instance.Insert("id", idDocType, idPath, idnumber, "", (bool success, string data) =>
+                        Http.DataVice.Documents.Instance.Insert("id", idDocType, idPath, idnumber, instructions, (bool success, string data) =>
                         {
                             if (success)
                             {
-                                Http.DataVice.Documents.Instance.Insert("face", "", selfiePath, ContactEntry.Text, "", (bool success2, string data2) =>
+                                Http.DataVice.Documents.Instance.Insert("face", "", selfiePath, ContactEntry.Text, instructions, (bool success2, string data2) =>
                                 {
                                     if (success)
                                     {

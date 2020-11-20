@@ -77,7 +77,7 @@ namespace PasaBuy.App.ViewModels.Feeds
         {
             try
             {
-                MyProfile.LastIndex = 11;
+                MyProfile.LastIndex = 12;
                 Http.SocioPress.Post.Instance.Profile(uid, "", (bool success, string data) =>
                 {
                     if (success)
@@ -169,7 +169,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    MyProfile.LastIndex = 11;
+                    MyProfile.LastIndex = 12;
                     Http.SocioPress.Post.Instance.Profile(uid, "", (bool success, string data) =>
                     {
                         if (success)
@@ -675,12 +675,14 @@ namespace PasaBuy.App.ViewModels.Feeds
             {
                 IsRunning = true;
                 //ChatMessageViewModel.LoadMessage(user_id, "");
-                ChatMessageViewModel.myPage = "profile";
                 ChatMessageViewModel.refresh = 0;
+                ChatMessageViewModel.myPage = "profile";
+                ChatMessageViewModel.odid = string.Empty;
+                ChatMessageViewModel.type = "user";
                 ChatMessageViewModel.ProfileNames = displayNames;
                 ChatMessageViewModel.ProfileImages = profileImages;
                 ChatMessageViewModel.user_id = user_id;
-                await(App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ChatMessagePage()));
+                await (App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new ChatMessagePage()));
                 IsRunning = false;
             }
         }

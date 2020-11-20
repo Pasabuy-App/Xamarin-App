@@ -186,7 +186,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
                             {
                                 Views.Marketplace.StoreListPage.catid = catid;
                                 Views.Marketplace.StoreListPage.pageTitle = title;
-                                StoreListViewModel.LoadStore(catid, "");
                                 await App.Current.MainPage.Navigation.PushModalAsync(new Views.Marketplace.StoreListPage());
                                 IsRunning = false;
                             }

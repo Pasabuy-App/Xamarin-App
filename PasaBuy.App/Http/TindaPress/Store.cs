@@ -46,7 +46,7 @@ namespace PasaBuy.App.Http.TindaPress
         /// <summary>
         /// Listing of store.
         /// </summary>
-        public async void Listing(string stid, string title, string type, string scid, string groups, string status, Action<bool, string> callback)
+        public async void Listing(string stid, string title, string type, string scid, string status, string lastid, Action<bool, string> callback)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace PasaBuy.App.Http.TindaPress
                     dict.Add("type", type);
                     dict.Add("status", status);
                     dict.Add("scid", scid);
-                    dict.Add("groups", groups);
+                    dict.Add("lastid", lastid);
                 var content = new FormUrlEncodedContent(dict);
 
                 var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/tindapress/v2/store/list", content);

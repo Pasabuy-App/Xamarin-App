@@ -1,3 +1,4 @@
+using Syncfusion.DataSource;
 using System;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
@@ -23,7 +24,7 @@ namespace PasaBuy.App.Views.Chat
                 PropertyName = "Time",
                 KeySelector = obj =>
                 {
-                    var item = obj as ChatListItem;
+                    var item = obj as Models.Chat.ChatListItem;
                     return item.Time.Date;
                 }
             });*/

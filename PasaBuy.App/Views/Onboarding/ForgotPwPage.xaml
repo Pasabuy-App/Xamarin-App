@@ -62,20 +62,13 @@
 
                     </Grid>
                     <Grid Grid.Row="1">
-                    <StackLayout
-                    Margin="{core:OnPlatformOrientationThickness PhonePortrait='20,32',
-                                                                 PhoneLandscape='150,32',
-                                                                 TabletPortrait='200,50',
-                                                                 TabletLandscape='300,50',
-                                                                 Desktop='30'}"
-                    Spacing="0"
-                    VerticalOptions="CenterAndExpand"
-                    HorizontalOptions="CenterAndExpand"
-                    WidthRequest="{OnPlatform Default='-1',
-                                              UWP='350'}">
+                    <StackLayout  Spacing="0"
+                                  Padding="10,0,10,0"
+                                  VerticalOptions="CenterAndExpand"
+                                  HorizontalOptions="CenterAndExpand">
 
                         <Grid RowSpacing="24" 
-                          VerticalOptions="CenterAndExpand">
+                              VerticalOptions="CenterAndExpand">
 
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="20*" />
@@ -88,7 +81,7 @@
                             <Label
                             Grid.Row="0"
                             FontFamily="{StaticResource Montserrat-SemiBold}"
-                            FontSize="25"
+                            FontSize="{DynamicResource LargerSize}"
                             HorizontalOptions="Center"
                             Style="{StaticResource TitleStyle}"
                             Text="Forgot Your Password?"
@@ -106,14 +99,14 @@
 
                             <!--  Entry to get email ID from user  -->
                             <border:SfBorder
-                            Grid.Row="2"
-                            Padding="15,0,0,0"
-                            BorderColor="{DynamicResource BlackColor}"
-                            Style="{StaticResource FormBorderStyle}">
+                                Grid.Row="2"
+                                Padding="15,0,0,0"
+                                BorderColor="{DynamicResource BlackColor}"
+                                Style="{StaticResource FormBorderStyle}">
                                 <control:BorderlessEntry PlaceholderColor="{DynamicResource Gray-900}" 
                                                          Placeholder="Email Address" 
                                                          x:Name="EmailAddress" 
-                                                         HeightRequest="40"  
+                                                         HeightRequest="34"  
                                                          TextColor="{DynamicResource BlackColor}"
                                                          Text="{Binding Email}"  
                                                          ReturnType="Next"
@@ -157,7 +150,7 @@
                         </StackLayout>
                         <StackLayout
                             HorizontalOptions="Center"
-                            Orientation="Horizontal"
+                            Orientation="Vertical"
                             Spacing="1"
                             Margin="0,5,0,0"
                             VerticalOptions="End">

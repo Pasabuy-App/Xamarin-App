@@ -90,11 +90,11 @@ namespace PasaBuy.App.ViewModels.Marketplace
             RefreshCommand = new Command<string>((key) =>
             {
                 grocerystorelist.Clear();
-                LoadGrocery("");
+                LoadGrocery();
                 IsRefreshing = false;
             });
             LoadBestSeller();
-            LoadGrocery("");
+            LoadGrocery();
 
         }
 
@@ -124,8 +124,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 Address = store.data[i].street + " " + store.data[i].brgy + " " + store.data[i].city + ", " + store.data[i].province,
                                 Title = store.data[i].title,
                                 Info = store.data[i].info,
-                                Logo = store.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(store.data[i].avatar),
-                                Banner = PSAProc.GetUrl(store.data[i].banner)
+                                Logo = PSAProc.GetUrl(store.data[i].avatar),
+                                Banner = store.data[i].banner == "None" || string.IsNullOrEmpty(store.data[i].banner) || store.data[i].banner == "" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(store.data[i].banner)
                             });
                         }
                     }
@@ -141,14 +141,14 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-        public void LoadGrocery(string lastid)
+        public void LoadGrocery()
         {
             try
             {
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    Http.TindaPress.Store.Instance.Listing("", "", "market", "", "", "active", (bool success, string data) =>
+                    Http.TindaPress.Store.Instance.Listing("", "", "market", "", "active", "", (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -156,14 +156,18 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
                             for (int i = 0; i < store.data.Length; i++)
                             {
+                                string open_close = string.IsNullOrEmpty(store.data[i].operation_id) ? "Closed" : "Open Now";
+                                string add = string.IsNullOrEmpty(store.data[i].street) || string.IsNullOrEmpty(store.data[i].brgy) || string.IsNullOrEmpty(store.data[i].city) || string.IsNullOrEmpty(store.data[i].province) ? "" : store.data[i].street + " " + store.data[i].brgy + " " + store.data[i].city + ", " + store.data[i].province;
+
                                 grocerystorelist.Add(new Models.TindaFeature.StoreModel()
                                 {
                                     ID = store.data[i].hsid,
                                     Operation = store.data[i].operation_id,
+                                    Open_Close = open_close,
                                     Title = store.data[i].title,
                                     Info = store.data[i].info,
-                                    Banner = store.data[i].banner == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(store.data[i].banner), //https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png
-                                    Address = store.data[i].street + ", " + store.data[i].brgy + ", " + store.data[i].city + ", " + store.data[i].province + ", " + store.data[i].country //"#4 Rainbow Ave Pacita 2 San Pedro City, Laguna"
+                                    Banner = store.data[i].banner == "None" || string.IsNullOrEmpty(store.data[i].banner) || store.data[i].banner == "" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(store.data[i].banner),
+                                    Address = add
                                 });
                             }
                             IsRunning = false;
@@ -183,28 +187,31 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-        public static void SearchStore(string search)
+        public static void SearchStore(string search, string lastid)
         {
             try
             {
-                Http.TindaPress.Store.Instance.Listing("", search, "market", "", "", "active", (bool success, string data) =>
+                Http.TindaPress.Store.Instance.Listing("", search, "market", "", "active", lastid, (bool success, string data) =>
                 {
                     if (success)
                     {
                         Models.TindaFeature.StoreModel store = JsonConvert.DeserializeObject<Models.TindaFeature.StoreModel>(data);
                         if (store.data.Length > 0)
                         {
-                            grocerystorelist.Clear();
                             for (int i = 0; i < store.data.Length; i++)
                             {
+                                string open_close = string.IsNullOrEmpty(store.data[i].operation_id) ? "Closed" : "Open Now";
+                                string add = string.IsNullOrEmpty(store.data[i].street) || string.IsNullOrEmpty(store.data[i].brgy) || string.IsNullOrEmpty(store.data[i].city) || string.IsNullOrEmpty(store.data[i].province) ? "" : store.data[i].street + " " + store.data[i].brgy + " " + store.data[i].city + ", " + store.data[i].province;
+
                                 grocerystorelist.Add(new Models.TindaFeature.StoreModel()
                                 {
                                     ID = store.data[i].hsid,
                                     Operation = store.data[i].operation_id,
+                                    Open_Close = open_close,
                                     Title = store.data[i].title,
                                     Info = store.data[i].info,
-                                    Banner = store.data[i].banner == "None" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(store.data[i].banner), //https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-banner.png
-                                    Address = store.data[i].street + ", " + store.data[i].brgy + ", " + store.data[i].city + ", " + store.data[i].province + ", " + store.data[i].country //"#4 Rainbow Ave Pacita 2 San Pedro City, Laguna"
+                                    Banner = store.data[i].banner == "None" || string.IsNullOrEmpty(store.data[i].banner) || store.data[i].banner == "" ? "https://pasabuy.app/wp-content/uploads/2020/10/Grocery-Template.jpg" : PSAProc.GetUrl(store.data[i].banner),
+                                    Address = add
                                 });
                             }
                         }

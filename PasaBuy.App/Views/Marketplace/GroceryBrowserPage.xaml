@@ -230,7 +230,7 @@
                                                            Grid.Column="0"
                                                            FontSize="14"
                                                            HorizontalTextAlignment="Start"
-                                                           Text="Open Now"
+                                                           Text="{Binding Open_Close}"
                                                            TextColor="LightGreen"
                                                            VerticalTextAlignment="Center" />
 
@@ -278,6 +278,7 @@
             </Grid>
             <loading:LoadingIndicator
                     Grid.RowSpan="3"
+                    x:Name="IsRunning"
                     HorizontalOptions="Fill"
                     IsRunning="{Binding IsRunning, Mode=TwoWay}"
                     VerticalOptions="Fill" />

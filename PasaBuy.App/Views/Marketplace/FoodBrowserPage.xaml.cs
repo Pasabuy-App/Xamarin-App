@@ -1,7 +1,7 @@
 ﻿
 using PasaBuy.App.ViewModels.Marketplace;
 using System;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,13 +11,29 @@ namespace PasaBuy.App.Views.Marketplace
     public partial class FoodBrowserPage : ContentView
     {
         public bool isTapped = false;
-        public static int LastIndex = 11;
+        public static int LastIndex = 12;
         public FoodBrowserPage()
         {
             InitializeComponent();
             this.BindingContext = new FoodBrowserViewModel();
             SearchEntry.Completed += (sender, args) => SearchStore(sender, args);
             FoodBrowserViewModel.foodstorelist.CollectionChanged += CollectionChanges;
+
+            StoreListStack.Scrolled += OnCollectionViewScrolled;
+        }
+        async void OnCollectionViewScrolled(object sender, ItemsViewScrolledEventArgs e)
+        {
+            if (e.LastVisibleItemIndex > LastIndex)
+            {
+                if (IsRunning.IsRunning == false)
+                {
+                    IsRunning.IsRunning = true;
+                    FoodBrowserViewModel.SearchStore("", LastIndex.ToString());
+                    LastIndex += 7;
+                    await Task.Delay(500);
+                    IsRunning.IsRunning = false;
+                }
+            }
         }
         private void CollectionChanges(object sender, EventArgs e)
         {
@@ -41,16 +57,10 @@ namespace PasaBuy.App.Views.Marketplace
         }
         public void SearchStore(object sender, EventArgs e)
         {
-            try
+            if (!string.IsNullOrWhiteSpace(SearchEntry.Text))
             {
-                if (!string.IsNullOrWhiteSpace(SearchEntry.Text))
-                {
-                    FoodBrowserViewModel.SearchStore(SearchEntry.Text);
-                }
-            }
-            catch (Exception ex)
-            {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
+                FoodBrowserViewModel.foodstorelist.Clear();
+                FoodBrowserViewModel.SearchStore(SearchEntry.Text, "");
             }
         }
 

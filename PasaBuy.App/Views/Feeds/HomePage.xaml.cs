@@ -9,6 +9,7 @@ using Syncfusion.GridCommon.ScrollAxis;
 using Syncfusion.ListView.XForms;
 using Syncfusion.XForms.Buttons;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -37,9 +38,30 @@ namespace PasaBuy.App.Views.Feeds
             //scrollRows.Changed += ScrollRows_Changed;
 
             LastIndex = 12;
+            listView.Scrolled += OnCollectionViewScrolled;
 
         }
-        private void ScrollRows_Changed(object sender, ScrollChangedEventArgs e)
+        async void OnCollectionViewScrolled(object sender, ItemsViewScrolledEventArgs e)
+        {
+            /*Debug.WriteLine("HorizontalDelta: " + e.HorizontalDelta);
+            Debug.WriteLine("VerticalDelta: " + e.VerticalDelta);
+            Debug.WriteLine("HorizontalOffset: " + e.HorizontalOffset);
+            Debug.WriteLine("VerticalOffset: " + e.VerticalOffset);
+            Debug.WriteLine("FirstVisibleItemIndex: " + e.FirstVisibleItemIndex);
+            Debug.WriteLine("CenterItemIndex: " + e.CenterItemIndex);*/
+            if (e.LastVisibleItemIndex > LastIndex)
+            {
+                if (IsRunning.IsRunning == false)
+                {
+                    IsRunning.IsRunning = true;
+                    HomepageViewModel.LoadData(LastIndex.ToString());
+                    LastIndex += 7;
+                    await Task.Delay(500);
+                    IsRunning.IsRunning = false;
+                }
+            }
+        }
+        private void ScrollRows_Changed(object sender, ScrollChangedEventArgs e) 
         {
            
 

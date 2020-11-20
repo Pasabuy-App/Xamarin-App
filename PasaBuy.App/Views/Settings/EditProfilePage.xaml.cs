@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using PasaBuy.App.Controllers.Notice;
+using Xamarin.Forms.ImagePicker;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Settings;
 using Plugin.Media;
@@ -16,9 +17,11 @@ namespace PasaBuy.App.Views.Settings
         public string avatarUrl;
         public string bannerUrl;
         private bool isEnable = false;
+        IImagePickerService _imagePickerService;
 
         public EditProfilePage()
         {
+            _imagePickerService = DependencyService.Get<IImagePickerService>();
             InitializeComponent();
             Avatar.IsEnabled = true;
             Banner.IsEnabled = true;
@@ -160,38 +163,22 @@ namespace PasaBuy.App.Views.Settings
 
         async void AddAvatar(object sender, EventArgs args)
         {
+            
             if (IsRunning.IsRunning == false)
             {
                 IsRunning.IsRunning = true;
                 Avatar.IsEnabled = false;
-                await CrossMedia.Current.Initialize();
-                if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
-                {
-                    new Alert("Error", "No camera available", "Failed");
-                    IsRunning.IsRunning = false ;
-                }
+                var imageSource = await _imagePickerService.PickImageAsync();
+                char[] charsToTrim = { ':', ' ' };
+                var fileName = imageSource.ToString().Remove(0, 4);
 
-                var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+                if (imageSource != null) // it will be null when user cancel
                 {
-                    PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
-                });
-
-
-                if (file == null)
-                {
+                    Avatar.Source = imageSource;
                     IsRunning.IsRunning = false;
-                    return;
                 }
+                avatarUrl = fileName.Trim(charsToTrim);
 
-                ImageSource imageSource = ImageSource.FromStream(() =>
-                {
-                    var stream = file.GetStream();
-                    IsRunning.IsRunning = false;
-                    return stream;
-                });
-
-                Avatar.Source = imageSource;
-                avatarUrl = file.Path;
                 IsRunning.IsRunning = false;
             }
         }
@@ -202,34 +189,17 @@ namespace PasaBuy.App.Views.Settings
             {
                 IsRunning.IsRunning = true;
                 Banner.IsEnabled = false;
-                await CrossMedia.Current.Initialize();
-                if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+                var imageSource = await _imagePickerService.PickImageAsync();
+                char[] charsToTrim = { ':', ' ' };
+                var fileName = imageSource.ToString().Remove(0, 4);
+
+                if (imageSource != null) // it will be null when user cancel
                 {
-                    new Alert("Error", "No camera available", "Failed");
+                    Banner.Source = imageSource;
                     IsRunning.IsRunning = false;
                 }
+                bannerUrl = fileName.Trim(charsToTrim);
 
-                var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
-                {
-                    PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
-                });
-
-
-                if (file == null)
-                {
-                    IsRunning.IsRunning = false;
-                    return;
-                }
-
-                ImageSource imageSource = ImageSource.FromStream(() =>
-                {
-                    IsRunning.IsRunning = false;
-                    var stream = file.GetStream();
-                    return stream;
-                });
-
-                Banner.Source = imageSource;
-                bannerUrl = file.Path;
                 IsRunning.IsRunning = false;
             }
 

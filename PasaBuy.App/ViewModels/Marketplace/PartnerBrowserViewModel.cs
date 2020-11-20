@@ -5,6 +5,7 @@ using PasaBuy.App.Models.Marketplace;
 using PasaBuy.App.Views.Marketplace;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -136,7 +137,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 {
                     IsRunning = true;
                     storeList.Clear();
-                    Http.TindaPress.Store.Instance.Listing("", "", "robinson", "", "", "active", (bool success, string data) =>
+                    Http.TindaPress.Store.Instance.Listing("", "", "robinson", "", "active", "", (bool success, string data) =>
                     {
                         if (success)
                         {
@@ -146,6 +147,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                             {
                                 for (int i = 0; i < store.data.Length; i++)
                                 {
+                                    string add = string.IsNullOrEmpty(store.data[i].brgy) || string.IsNullOrEmpty(store.data[i].city) ? "" : store.data[i].brgy + " " + store.data[i].city;
                                     storeList.Add(new Models.TindaFeature.StoreModel()
                                     {
                                         ID = store.data[i].hsid,
@@ -155,7 +157,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                         Logo = PSAProc.GetUrl(store.data[i].avatar),
                                         Offer = "50% off",
                                         Rating = store.data[i].rates == "No ratings yet" || string.IsNullOrEmpty(store.data[i].rates) ? "0.0" : store.data[i].rates,
-                                        Address = store.data[i].brgy + ", " + store.data[i].city
+                                        Address = add
                                     });
                                 }
                                 IsRunning = false;
@@ -180,12 +182,11 @@ namespace PasaBuy.App.ViewModels.Marketplace
             }
         }
 
-        public static void SearchStore(string search)
+        public static void SearchStore(string search, string lastid)
         {
             try
             {
-                storeList.Clear();
-                Http.TindaPress.Store.Instance.Listing("", search, "robinson", "", "" , "active", (bool success, string data) =>
+                Http.TindaPress.Store.Instance.Listing("", search, "robinson", "", "active", lastid, (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -195,6 +196,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
                             storeList.Clear();
                             for (int i = 0; i < store.data.Length; i++)
                             {
+                                string add = string.IsNullOrEmpty(store.data[i].brgy) || string.IsNullOrEmpty(store.data[i].city) ? "" : store.data[i].brgy + " " + store.data[i].city ;
+
                                 storeList.Add(new Models.TindaFeature.StoreModel()
                                 {
                                     ID = store.data[i].hsid,
@@ -204,7 +207,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                     Logo = PSAProc.GetUrl(store.data[i].avatar),
                                     Offer = "50% off",
                                     Rating = store.data[i].rates == "No ratings yet" || string.IsNullOrEmpty(store.data[i].rates) ? "0.0" : store.data[i].rates,
-                                    Address = store.data[i].brgy + ", " + store.data[i].city
+                                    Address = add
                                 });
                             }
                         }
@@ -285,7 +288,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 ID = store.data[i].hsid,
                                 Title = store.data[i].title,
                                 Info = store.data[i].info,
-                                Logo = store.data[i].avatar == "None" ? "https://pasabuy.app/wp-content/plugins/TindaPress/assets/images/default-store.png" : PSAProc.GetUrl(store.data[i].avatar),
+                                Logo = PSAProc.GetUrl(store.data[i].avatar),
                                 Banner = PSAProc.GetUrl(store.data[i].banner)
                             });
                         }
