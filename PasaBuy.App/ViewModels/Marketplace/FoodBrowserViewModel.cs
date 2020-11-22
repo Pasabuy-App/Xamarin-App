@@ -116,7 +116,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
                     if (success)
                     {
                         Models.TindaFeature.StoreModel store = JsonConvert.DeserializeObject<Models.TindaFeature.StoreModel>(data);
-                        Console.WriteLine(store.data.Length);
                         if (store.data.Length > 0)
                         {
                             HeaderSize = "280";

@@ -4,7 +4,8 @@
              xmlns:converter="clr-namespace:PasaBuy.App.Converters" 
              xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
-             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
              BackgroundColor="{DynamicResource Gray-White}"
              x:Class="PasaBuy.App.Views.Posts.PabiliPage">
     <ContentPage.Resources>
