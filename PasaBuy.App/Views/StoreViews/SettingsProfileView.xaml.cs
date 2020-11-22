@@ -4,6 +4,7 @@ using PasaBuy.App.Local;
 using PasaBuy.App.Models.Settings;
 using Plugin.Media;
 using System;
+using System.Diagnostics;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -108,21 +109,25 @@ namespace PasaBuy.App.Views.StoreViews
                             EditProfile datas = JsonConvert.DeserializeObject<EditProfile>(data);
                             if (!string.IsNullOrEmpty(banner))
                             {
-                                PSACache.Instance.UserInfo.store_banner = datas.data;
-                                new Alert("Success", "Avatar successfully updated.", "OK");
+                                new Alert("Success", "Banner successfully updated.", "OK");
+                                PSACache.Instance.UserInfo.store_banner = datas.banner;
+                                Views.Navigation.MasterView.Insertimage(datas.banner);
+                                PSACache.Instance.SaveUserData();
                             }
                             if (!string.IsNullOrEmpty(avatar))
                             {
-                                PSACache.Instance.UserInfo.store_logo = datas.data;
-                                new Alert("Success", "Banner successfully updated.", "OK");
+                                new Alert("Success", "Avatar successfully updated.", "OK");
+                                Views.Navigation.MasterView.Insertimage(datas.avatar);
+                                PSACache.Instance.UserInfo.store_logo = datas.avatar;
+                                PSACache.Instance.SaveUserData();
                             }
                             if (!string.IsNullOrEmpty(info))
                             {
+                                new Alert("Success", "Information successfully updated.", "OK");
                                 PSACache.Instance.UserInfo.store_info = info;
-                                new Alert("Success", "Information successfully updated.", "OK");;
+                                Views.Navigation.MasterView.Insertimage(datas.data);
+                                PSACache.Instance.SaveUserData();
                             }
-                            Views.Navigation.MasterView.Insertimage(datas.data);
-                            PSACache.Instance.SaveUserData();
                             IsRunning.IsRunning = false;
                         }
                         else
