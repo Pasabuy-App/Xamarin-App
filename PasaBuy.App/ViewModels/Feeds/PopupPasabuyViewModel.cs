@@ -67,7 +67,9 @@ namespace PasaBuy.App.ViewModels.Feeds
                 }
                 if (item.Title == "Pasakay")
                 {
-                    await App.Current.MainPage.Navigation.PushModalAsync(new PasakayPage());
+                    //await App.Current.MainPage.Navigation.PushModalAsync(new PasakayPage());
+                    await App.Current.MainPage.DisplayAlert("Notice", "This feature is not yet unavailable", "ok");
+
                 }
                 IsTapped = false;
             }

@@ -16,6 +16,10 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" Default="0, 0, 0, 0" />
+    </ContentPage.Padding>
+
     <ContentPage.Content>
         <Grid>
             <Grid.Padding>

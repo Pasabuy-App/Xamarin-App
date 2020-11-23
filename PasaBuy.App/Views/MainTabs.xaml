@@ -38,20 +38,20 @@
                 <!--TABS CONFIGS-->
                 <tabView:SfTabView.SelectionIndicatorSettings>
                     <tabView:SelectionIndicatorSettings
-                    AnimationDuration="400"
-                    Color="{DynamicResource PrimaryColor}" 
-                    Position="Bottom" 
-                    StrokeThickness="2"/>
+                        AnimationDuration="400"
+                        
+                        Color="{DynamicResource PrimaryColor}" 
+                        Position="Bottom" 
+                        StrokeThickness="2"/>
                 </tabView:SfTabView.SelectionIndicatorSettings>
 
-                
                 
                 <!--HOME TAB-->
                 <tabView:SfTabItem Title="Home" 
                                    TitleFontSize="{DynamicResource SmallerSize}"
-                                ImageSource="home.png"
-                                TitleFontColor="{DynamicResource Gray-900}"
-                                SelectionColor="{DynamicResource PrimaryColor}">
+                                    ImageSource="home.png"
+                                    TitleFontColor="{DynamicResource Gray-900}"
+                                    SelectionColor="{DynamicResource PrimaryColor}">
                     <tabView:SfTabItem.Content>
                         <home:HomePage/>
                     </tabView:SfTabItem.Content>

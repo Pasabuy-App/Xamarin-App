@@ -66,7 +66,7 @@
     <Color x:Key="BorderBackgroundColor">#20FFFFFF</Color>
 
 
-    <OnPlatform x:Key="ProfileIconPlatform" x:TypeArguments="x:String" iOS="Font Awesome 5 Free" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free" />
+    <OnPlatform x:Key="ProfileIconPlatform" x:TypeArguments="x:String" iOS="FontAwesome5Free" Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free" />
     <!--  Common style for profile page icon Label  -->
     <Style x:Key="ProfileIconLabelStyle" TargetType="Label">
         <Setter Property="Margin" Value="16,8" />
