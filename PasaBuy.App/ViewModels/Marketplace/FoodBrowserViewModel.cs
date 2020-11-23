@@ -126,11 +126,12 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         }
                         for (int i = 0; i < store.data.Length; i++)
                         {
+                            string add = string.IsNullOrEmpty(store.data[i].city) || string.IsNullOrEmpty(store.data[i].province) ? "" : store.data[i].city + ", " + store.data[i].province;
                             _bestSellers.Add(new Models.TindaFeature.StoreModel()
                             {
                                 ID = store.data[i].hsid,
                                 Operation = store.data[i].operation_id,
-                                Address = store.data[i].city + ", " + store.data[i].province,
+                                Address = add,
                                 Title = store.data[i].title,
                                 Info = store.data[i].info,
                                 Logo = PSAProc.GetUrl(store.data[i].avatar),
