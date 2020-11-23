@@ -126,7 +126,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         }
                         for (int i = 0; i < store.data.Length; i++)
                         {
-                            string add = string.IsNullOrEmpty(store.data[i].city) || string.IsNullOrEmpty(store.data[i].province) ? "" : store.data[i].city + ", " + store.data[i].province;
+                            string add = string.IsNullOrEmpty(store.data[i].brgy) || string.IsNullOrEmpty(store.data[i].city) ? "" : store.data[i].brgy + " " + store.data[i].city;
                             _bestSellers.Add(new Models.TindaFeature.StoreModel()
                             {
                                 ID = store.data[i].hsid,
@@ -172,7 +172,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 DateTime open = DateTime.ParseExact(open_time, "HH:mm:ss", provider);
                                 DateTime close = DateTime.ParseExact(close_time, "HH:mm:ss", provider);
                                 string open_close = string.IsNullOrEmpty(store.data[i].operation_id) ? "Closed" : open.ToString("HH:mm tt") + " - " + close.ToString("HH:mm tt");
-                                string add = string.IsNullOrEmpty(store.data[i].city) || string.IsNullOrEmpty(store.data[i].province) ? "" : store.data[i].city + ", " + store.data[i].province;
+                                string add = string.IsNullOrEmpty(store.data[i].brgy) || string.IsNullOrEmpty(store.data[i].city) ? "" : store.data[i].brgy + " " + store.data[i].city;
                                 foodstorelist.Add(new Models.TindaFeature.StoreModel()
                                 {
                                     ID = store.data[i].hsid,
@@ -222,7 +222,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 DateTime open = DateTime.ParseExact(open_time, "HH:mm:ss", provider);
                                 DateTime close = DateTime.ParseExact(close_time, "HH:mm:ss", provider);
                                 string open_close = string.IsNullOrEmpty(store.data[i].operation_id) ? "Closed" : open.ToString("HH:mm tt") + " - " + close.ToString("HH:mm tt");
-                                string add = string.IsNullOrEmpty(store.data[i].city) || string.IsNullOrEmpty(store.data[i].province) ? "" : store.data[i].city + ", " + store.data[i].province;
+                                string add = string.IsNullOrEmpty(store.data[i].brgy) || string.IsNullOrEmpty(store.data[i].city) ? "" : store.data[i].brgy + " " + store.data[i].city;
                                 foodstorelist.Add(new Models.TindaFeature.StoreModel()
                                 {
                                     ID = store.data[i].hsid,

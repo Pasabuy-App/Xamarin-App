@@ -120,7 +120,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         }
                         for (int i = 0; i < store.data.Length; i++)
                         {
-                            string add = string.IsNullOrEmpty(store.data[i].city) || string.IsNullOrEmpty(store.data[i].province) ? "" : store.data[i].city + ", " + store.data[i].province;
+                            string add = string.IsNullOrEmpty(store.data[i].brgy) || string.IsNullOrEmpty(store.data[i].city) ? "" : store.data[i].brgy + " " + store.data[i].city;
                             _bestSellers.Add(new Models.TindaFeature.StoreModel()
                             {
                                 ID = store.data[i].hsid,
@@ -161,7 +161,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                             for (int i = 0; i < store.data.Length; i++)
                             {
                                 string open_close = string.IsNullOrEmpty(store.data[i].operation_id) ? "Closed" : "Open Now";
-                                string add = string.IsNullOrEmpty(store.data[i].city) || string.IsNullOrEmpty(store.data[i].province) ? "" : store.data[i].city + ", " + store.data[i].province;
+                                string add = string.IsNullOrEmpty(store.data[i].brgy) || string.IsNullOrEmpty(store.data[i].city) ? "" : store.data[i].brgy + " " + store.data[i].city;
 
                                 grocerystorelist.Add(new Models.TindaFeature.StoreModel()
                                 {
@@ -205,7 +205,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                             for (int i = 0; i < store.data.Length; i++)
                             {
                                 string open_close = string.IsNullOrEmpty(store.data[i].operation_id) ? "Closed" : "Open Now";
-                                string add = string.IsNullOrEmpty(store.data[i].city) || string.IsNullOrEmpty(store.data[i].province) ? "" : store.data[i].city + ", " + store.data[i].province;
+                                string add = string.IsNullOrEmpty(store.data[i].brgy) || string.IsNullOrEmpty(store.data[i].city) ? "" : store.data[i].brgy + " " + store.data[i].city;
 
                                 grocerystorelist.Add(new Models.TindaFeature.StoreModel()
                                 {
