@@ -58,7 +58,7 @@ namespace PasaBuy.App.Http.TindaPress
                     dict.Add("type", type);
                     dict.Add("status", status);
                     dict.Add("scid", scid);
-                    dict.Add("lastid", lastid);
+                    dict.Add("lid", lastid);
                 var content = new FormUrlEncodedContent(dict);
 
                 var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/tindapress/v2/store/list", content);

@@ -35,9 +35,6 @@ namespace PasaBuy.App.Views
             });
 
             BindingContext = this;
-
-            
-
         }
 
 

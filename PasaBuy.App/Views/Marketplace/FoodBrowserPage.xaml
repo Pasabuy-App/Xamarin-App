@@ -209,7 +209,7 @@
                                                                 TextColor="{DynamicResource Gray-700}"/>
 
                                                     <!--  Distance label  -->
-                                                        <Label  Text="{Binding City}"  
+                                                        <Label  Text="{Binding Address}"  
                                                                 FontSize="12" 
                                                                 FontFamily="{StaticResource Montserrat-Medium}" 
                                                                 HorizontalOptions="Start" 
