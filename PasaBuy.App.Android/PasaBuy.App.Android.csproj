@@ -43,9 +43,10 @@
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <AndroidDexTool>d8</AndroidDexTool>
     <MandroidI18n />
-    <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
+    <AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
     <AndroidEnableMultiDex>false</AndroidEnableMultiDex>
     <AndroidUseAapt2>true</AndroidUseAapt2>
+    <AndroidPackageFormat>apk</AndroidPackageFormat>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
