@@ -12,32 +12,32 @@ namespace PasaBuy.App.Views.Marketplace
         public static string pageTitle;
         public static int LastIndex = 12;
         public static string catid = string.Empty;
-        public bool isTapped;
         public StoreListPage()
         {
             InitializeComponent();
             this.BindingContext = new StoreListViewModel();
             PageTitle.Text = pageTitle;
-            isTapped = false;
             SearchEntry.Completed += (sender, args) => SearchStore(sender, args);
-            StoreListViewModel.storeList.CollectionChanged += CollectionChanges;
+            //StoreListViewModel.storeList.CollectionChanged += CollectionChanges;
             StoreList.Scrolled += OnCollectionViewScrolled;
         }
+
         async void OnCollectionViewScrolled(object sender, ItemsViewScrolledEventArgs e)
         {
-            if (e.LastVisibleItemIndex > LastIndex)
+            if (e.LastVisibleItemIndex >= LastIndex)
             {
                 if (IsRunning.IsRunning == false)
                 {
                     IsRunning.IsRunning = true;
-                    StoreListViewModel.LoadStore(LastIndex.ToString());
+                    StoreListViewModel.SearchStore(SearchEntry.Text, LastIndex.ToString());
                     LastIndex += 7;
                     await Task.Delay(500);
                     IsRunning.IsRunning = false;
                 }
             }
         }
-        private void CollectionChanges(object sender, EventArgs e)
+
+        public void ClearSearch()
         {
             this.SearchButton.IsVisible = true;
             if (this.TitleView != null)
@@ -54,40 +54,24 @@ namespace PasaBuy.App.Views.Marketplace
                 TitleView.Width, 0, Easing.Linear);
                 shrinkAnimation.Commit(Search, "Shrink", 16, 250, Easing.Linear, (p, q) => this.SearchBoxAnimationCompleted());
             }
-
             SearchEntry.Text = string.Empty;
         }
-        public void SearchStore(object sender, EventArgs e)
+
+        public async void SearchStore(object sender, EventArgs e)
         {
-            try
+            if (!string.IsNullOrWhiteSpace(SearchEntry.Text))
             {
-                if (!string.IsNullOrWhiteSpace(SearchEntry.Text))
+                if (IsRunning.IsRunning == false)
                 {
-                    StoreListViewModel.SearchStore(SearchEntry.Text);
+                    IsRunning.IsRunning = true;
+                    StoreListViewModel.storeList.Clear();
+                    StoreListViewModel.SearchStore(SearchEntry.Text, "");
+                    ClearSearch();
+                    await Task.Delay(500);
+                    IsRunning.IsRunning = false;
                 }
             }
-            catch (Exception ex)
-            {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
-            }
         }
-
-        /*private async void StoreTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
-        {
-            if (!isTapped)
-            {
-                isTapped = true;
-                var item = e.ItemData as Store;
-                //App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
-                //StoreDetailsViewModel.loadcategory(item.Id);
-                //StoreDetailsViewModel.loadstoredetails(item.Id);
-
-                StoreDetailsViewModel.store_id = item.Id;
-                //StoreDetailsViewModel.Loadcategory(item.Id);
-                await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
-                isTapped = false;
-            }
-        }*/
 
         protected override void OnSizeAllocated(double width, double height)
         {

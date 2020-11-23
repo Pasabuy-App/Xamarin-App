@@ -28,7 +28,7 @@ namespace PasaBuy.App.Views.Marketplace
                 if (IsRunning.IsRunning == false)
                 {
                     IsRunning.IsRunning = true;
-                    FoodBrowserViewModel.SearchStore("", LastIndex.ToString());
+                    FoodBrowserViewModel.SearchStore(SearchEntry.Text, LastIndex.ToString());
                     LastIndex += 7;
                     await Task.Delay(500);
                     IsRunning.IsRunning = false;

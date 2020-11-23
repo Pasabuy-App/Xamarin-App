@@ -279,8 +279,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 StoreDetailsViewModel.operation_id = item.Operation;
                 await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
 
-                eCommerce.CartPageViewModel.action = string.Empty;
-                eCommerce.CartPageViewModel.amount = string.Empty;
                 eCommerce.CheckoutPageViewModel.charges = string.Empty;
                 IsRunning = false;
             }
@@ -301,8 +299,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 StoreDetailsViewModel.operation_id = item.Operation;
                 await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
 
-                eCommerce.CartPageViewModel.action = string.Empty;
-                eCommerce.CartPageViewModel.amount = string.Empty;
                 eCommerce.CheckoutPageViewModel.charges = string.Empty;
                 IsRunning = false;
             }

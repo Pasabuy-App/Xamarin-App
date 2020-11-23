@@ -122,11 +122,12 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         }
                         for (int i = 0; i < store.data.Length; i++)
                         {
+                            string add = string.IsNullOrEmpty(store.data[i].brgy) || string.IsNullOrEmpty(store.data[i].city) ? "" : store.data[i].brgy + " " + store.data[i].city;
                             _bestSellers.Add(new Models.TindaFeature.StoreModel()
                             {
                                 ID = store.data[i].hsid,
                                 Operation = store.data[i].operation_id,
-                                Address = store.data[i].street + " " + store.data[i].brgy + " " + store.data[i].city + ", " + store.data[i].province,
+                                Address = add,
                                 Title = store.data[i].title,
                                 Info = store.data[i].info,
                                 Logo = PSAProc.GetUrl(store.data[i].avatar),
@@ -169,7 +170,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                     Title = store.data[i].title,
                                     Info = store.data[i].info,
                                     Logo = PSAProc.GetUrl(store.data[i].avatar),
-                                    Offer = "50% off",
+                                    //Offer = "50% off",
                                     Rating = store.data[i].rates == "No ratings yet" ? "0.0" : store.data[i].rates,
                                     Banner = PSAProc.GetUrl(store.data[i].banner),
                                     Address = add
@@ -190,7 +191,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2STR-L2SLVM.", "OK");
                 IsRunning = false;
             }
-        }
+        }/*
 
         public static void LoadStore(string lastid)
         {
@@ -212,7 +213,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 Title = store.data[i].title,
                                 Info = store.data[i].info,
                                 Logo = PSAProc.GetUrl(store.data[i].avatar),
-                                Offer = "50% off",
+                                //Offer = "50% off",
                                 Rating = store.data[i].rates == "No ratings yet" ? "0.0" : store.data[i].rates,
                                 Banner = PSAProc.GetUrl(store.data[i].banner),
                                 Address = add
@@ -229,20 +230,19 @@ namespace PasaBuy.App.ViewModels.Marketplace
             {
                 new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2STR-L3SLVM.", "OK");
             }
-        }
+        }*/
 
-        public static void SearchStore(string search)
+        public static void SearchStore(string search, string lastid)
         {
             try
             {
-                Http.TindaPress.Store.Instance.Listing("", search, "pasamall", StoreListPage.catid, "active", "", (bool success, string data) =>
+                Http.TindaPress.Store.Instance.Listing("", search, "pasamall", StoreListPage.catid, "active", lastid, async (bool success, string data) =>
                 {
                     if (success)
                     {
                         Models.TindaFeature.StoreModel store = JsonConvert.DeserializeObject<Models.TindaFeature.StoreModel>(data);
                         if (store.data.Length > 0)
                         {
-                            storeList.Clear();
                             for (int i = 0; i < store.data.Length; i++)
                             {
                                 string add = string.IsNullOrEmpty(store.data[i].brgy) || string.IsNullOrEmpty(store.data[i].city) ? "" : store.data[i].brgy + " " + store.data[i].city;
@@ -253,7 +253,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                     Title = store.data[i].title,
                                     Info = store.data[i].info,
                                     Logo = PSAProc.GetUrl(store.data[i].avatar),
-                                    Offer = "50% off",
+                                    //Offer = "50% off",
                                     Rating = store.data[i].rates == "No ratings yet" ? "0.0" : store.data[i].rates,
                                     Banner = PSAProc.GetUrl(store.data[i].banner),
                                     Address = add
@@ -262,7 +262,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         }
                         else
                         {
-                            new Alert("Notice to User", "No store found.", "Try Again");
+                            SearchStore("", "");
+                            await(App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new Views.Notice.NoStoresPage()));
                         }
                     }
                     else
@@ -303,6 +304,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 StoreDetailsViewModel.address = item.Address;
                 StoreDetailsViewModel.operation_id = item.Operation;
                 await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+
+                eCommerce.CheckoutPageViewModel.charges = string.Empty;
                 IsRunning = false;
             }
         }
@@ -321,6 +324,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 StoreDetailsViewModel.address = item.Address;
                 StoreDetailsViewModel.operation_id = item.Operation;
                 await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+
+                eCommerce.CheckoutPageViewModel.charges = string.Empty;
                 IsRunning = false;
             }
         }
