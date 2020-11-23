@@ -7,6 +7,7 @@ using PasaBuy.App.Local.Notice;
 using PasaBuy.App.Views;
 using PasaBuy.App.Views.Currency;
 using PasaBuy.App.Views.Driver;
+using PasaBuy.App.Views.Marketplace;
 using PasaBuy.App.Views.Onboarding;
 using PasaBuy.App.Views.PopupModals;
 using PasaBuy.App.Views.Posts;

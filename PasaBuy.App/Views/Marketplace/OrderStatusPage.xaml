@@ -73,42 +73,40 @@
                             <ColumnDefinition Width="12*" />
                             <ColumnDefinition Width="25*" />
                         </Grid.ColumnDefinitions>
-                        <ffimageloading:CachedImage Aspect="AspectFill"
-                                                Grid.Column="0"
-                                                Source="https://cdn4.iconfinder.com/data/icons/delivery-5/512/delivery-04-512.png"
-			                                    DownsampleToViewSize="true" 
-                                                Transformations="{Binding TurnGreyScale}"
-                                                FadeAnimationEnabled="False" >
+                        <ffimageloading:CachedImage 
+                                                    Grid.Row="0"
+                                                    Grid.Column="0"
+                                                    Source="https://dev.pasabuy.app/wp-content/uploads/2020/11/motorcycle.png"
+			                                        DownsampleToViewSize="true" 
+                                                    Transformations="{Binding TurnGreyScale}"
+                                                    FadeAnimationEnabled="False" >
                         </ffimageloading:CachedImage>
-                        <ffimageloading:CachedImage Aspect="AspectFit"
-                                                Grid.Column="1"
-                                                Source="https://img.icons8.com/plasticine/2x/arrow.png"
-			                                    DownsampleToViewSize="true" 
-                                                Transformations="{Binding TurnGreyScale}"
-                                                FadeAnimationEnabled="False" >
+                        <ffimageloading:CachedImage Grid.Column="1"
+                                                    Source="https://img.icons8.com/plasticine/2x/arrow.png"
+			                                        DownsampleToViewSize="true" 
+                                                    Transformations="{Binding TurnGreyScale}"
+                                                    FadeAnimationEnabled="False" >
+                        </ffimageloading:CachedImage>
+
+                        <ffimageloading:CachedImage Grid.Column="2"
+                                                    Source="https://dev.pasabuy.app/wp-content/uploads/2020/11/resto.png"
+			                                        DownsampleToViewSize="true" 
+                                                    FadeAnimationEnabled="False" >
                         </ffimageloading:CachedImage>
 
                         <ffimageloading:CachedImage Aspect="AspectFit"
-                                                Grid.Column="2"
-                                                Source="https://www.clipartmax.com/png/middle/151-1515481_restaurant-icon-png-logo-for-hospitality-industry.png"
-			                                    DownsampleToViewSize="true" 
-                                                FadeAnimationEnabled="False" >
+                                                    Grid.Column="3"
+                                                    Source="https://img.icons8.com/plasticine/2x/arrow.png"
+			                                        DownsampleToViewSize="true" 
+                                                    Transformations="{Binding TurnGreyScale}"
+                                                    FadeAnimationEnabled="False" >
                         </ffimageloading:CachedImage>
 
-                        <ffimageloading:CachedImage Aspect="AspectFit"
-                                                Grid.Column="3"
-                                                Source="https://img.icons8.com/plasticine/2x/arrow.png"
-			                                    DownsampleToViewSize="true" 
-                                                Transformations="{Binding TurnGreyScale}"
-                                                FadeAnimationEnabled="False" >
-                        </ffimageloading:CachedImage>
-
-                        <ffimageloading:CachedImage Aspect="AspectFit"
-                                                Grid.Column="4"
-                                                Source="https://www.pikpng.com/pngl/b/243-2439658_customer-service-icon-png-transparent-customer-icon-png.png"
-			                                    DownsampleToViewSize="true" 
-                                                Transformations="{Binding TurnGreyScale}"
-                                                FadeAnimationEnabled="False" >
+                        <ffimageloading:CachedImage Grid.Column="4"
+                                                    Source="https://dev.pasabuy.app/wp-content/uploads/2020/11/customer.png"
+			                                        DownsampleToViewSize="true" 
+                                                    Transformations="{Binding TurnGreyScale}"
+                                                    FadeAnimationEnabled="False" >
                         </ffimageloading:CachedImage>
                         
                         <Grid Grid.Row="1"

@@ -112,27 +112,14 @@
                         <buttons:SfButton
                             Grid.Row="1"
                             Grid.Column="1"
-                            Grid.ColumnSpan="1"
-                            Margin="0, 0, 0, 20"
+                            Grid.ColumnSpan="2"
+                            Margin="0, 0, 0, 10"
                             Clicked="TakePhoto"
                             CornerRadius="10"
                             TextColor="White"
                             BackgroundColor="{DynamicResource PrimaryColor}"
                             Style="{StaticResource SfButtonStyle}"
-                            Text="Take Photo" />
-
-                        <!--  select photo button  -->
-                        <buttons:SfButton
-                            Grid.Row="1"
-                            Grid.Column="2"
-                            Grid.ColumnSpan="1"
-                            Margin="10, 0, 0, 20"
-                            Clicked="SelectPhoto"
-                            CornerRadius="10"
-                            TextColor="White"
-                            BackgroundColor="{DynamicResource PrimaryColor}"
-                            Style="{StaticResource SfButtonStyle}"
-                            Text="Upload Photo" />
+                            Text="Add Photo" />
 
                         <border:SfBorder
                     Grid.Row="2"
@@ -159,13 +146,11 @@
                                 <combobox:SfComboBox.DropDownButtonSettings>
                                     <combobox:DropDownButtonSettings>
                                         <combobox:DropDownButtonSettings.View>
-                                            <Label
-                                              FontFamily="{StaticResource FontIcons}"
-                                              FontSize="25"
-                                              HorizontalTextAlignment="Center"
-                                              Text="{StaticResource DropDownButtonIcon}"
-                                              TextColor="{DynamicResource Gray-600}"
-                                              VerticalTextAlignment="Center" />
+                                            <StackLayout Padding="10">
+                                                <Image Source="down.png"
+                                                   HeightRequest="25"
+                                                   WidthRequest="25"/>
+                                            </StackLayout>
                                         </combobox:DropDownButtonSettings.View>
                                     </combobox:DropDownButtonSettings>
                                 </combobox:SfComboBox.DropDownButtonSettings>
@@ -236,13 +221,11 @@
                                 <combobox:SfComboBox.DropDownButtonSettings>
                                     <combobox:DropDownButtonSettings>
                                         <combobox:DropDownButtonSettings.View>
-                                            <Label
-                                                    FontFamily="{StaticResource FontIcons}"
-                                                    FontSize="25"
-                                                    HorizontalTextAlignment="Center"
-                                                    Text="{StaticResource DropDownButtonIcon}"
-                                                    TextColor="{DynamicResource Gray-600}"
-                                                    VerticalTextAlignment="Center" />
+                                            <StackLayout Padding="10">
+                                                <Image Source="down.png"
+                                                   HeightRequest="25"
+                                                   WidthRequest="25"/>
+                                            </StackLayout>
                                         </combobox:DropDownButtonSettings.View>
                                     </combobox:DropDownButtonSettings>
                                 </combobox:SfComboBox.DropDownButtonSettings>

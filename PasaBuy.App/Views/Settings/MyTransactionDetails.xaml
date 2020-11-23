@@ -27,21 +27,20 @@
                 </Grid.RowDefinitions>
                 <Grid
                         Grid.Row="0"
-                        Padding="15,8,15,8"
+                        Padding="15,5,15,5"
                         BackgroundColor="{StaticResource PrimaryColor}"
                         HeightRequest="{OnPlatform Android='46',
-                                                   iOS='56'}">
+                                                   iOS='46'}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <buttons:SfButton
-                            x:Name="backButton"
-                            Clicked="backButton_Clicked"
-                            Grid.Column="0"
-                            CornerRadius="4"
-                            Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Back}" />
+                        
+                        <ImageButton Source="arrow_left.png"
+                                     HeightRequest="25"
+                                     WidthRequest="25"
+                                     BackgroundColor="Transparent"
+                                     Clicked="backButton_Clicked" />
                         <Label Grid.Column="1"
                                x:Name="TitleName"
                                FontFamily="{StaticResource Montserrat-Medium}"
@@ -94,20 +93,10 @@
                                x:Name="StoreName"
                                TextColor="{DynamicResource Gray-900}" />
 
-                    <!--<Label Grid.Row="1"
-                               Grid.Column="0"
-                               FontFamily="{StaticResource Montserrat-Medium}"
-                               Padding="10,0,0,0"
-                               FontSize="{DynamicResource SmallSize}" 
-                               VerticalTextAlignment="Center"
-                               HorizontalTextAlignment="End"
-                               Text="{Binding OrderID}"
-                               x:Name="OrderIDandOrderTime"
-                               TextColor="{DynamicResource Gray-900}" />-->
                     <Label  FontSize="{DynamicResource SmallSize}" 
                                Grid.Row="1" 
                                Grid.Column="1"
-                             Grid.ColumnSpan="2"
+                               Grid.ColumnSpan="2"
                                HorizontalTextAlignment="Start"
                                HorizontalOptions="Start"
                                Margin="10,0,0,0"
@@ -115,50 +104,42 @@
                                TextColor="{DynamicResource Gray-900}"
                                Text="{Binding OrderID}" />
 
-                    <Label FontSize="18"
-                               Grid.Row="2" 
-                               Grid.Column="0"
-                               VerticalTextAlignment="Center"
-                               HorizontalTextAlignment="End"
-                               HorizontalOptions="End"
-                               Margin="8,0,0,0"
-                               Style="{StaticResource ProfileIconLabelStyle}"
-                               TextColor="{DynamicResource BlackColor}"
-                               Text="&#xf2e7;" />
+                    <Image Grid.Row="2" 
+                           Grid.Column="0"
+                           HeightRequest="25"
+                           WidthRequest="25"
+                           Source="food.png"/>
+                    
                     <Label Grid.Row="2"
                                Grid.Column="1"
-                               Margin="0,-10,0,8"
+                               Margin="0,5,0,5"
                                Grid.ColumnSpan="2"
                                FontFamily="{StaticResource Montserrat-Medium}"
                                Padding="10,5,0,0"
-                               FontSize="{DynamicResource SmallSize}" 
+                               FontSize="{DynamicResource SmallerSize}" 
                                x:Name="StoreAddress"
                                VerticalTextAlignment="Center"
                                HorizontalTextAlignment="Start"
                                Text="{Binding StoreAddress}"
                                TextColor="{DynamicResource Gray-900}" />
-                    <Label FontSize="18"
-                               Grid.Row="3" 
-                               Grid.Column="0"
-                               VerticalTextAlignment="Center"
-                               HorizontalTextAlignment="End"
-                               HorizontalOptions="End"
-                               Margin="10,0,0,8"
-                               Style="{StaticResource ProfileIconLabelStyle}"
-                               TextColor="{DynamicResource BlackColor}"
-                               Text="&#xf015;" />
-                    <Label Grid.Row="3" 
+                    <Image Grid.Row="3" 
+                           Grid.Column="0"
+                           HeightRequest="25"
+                           WidthRequest="25"
+                           Source="home.png"/>
+                    <Label Grid.Row="3"
                                Grid.Column="1"
-                               Margin="10,-3,0,8"
+                               Margin="0,5,0,5"
                                Grid.ColumnSpan="2"
                                FontFamily="{StaticResource Montserrat-Medium}"
-                               FontSize="{DynamicResource SmallSize}" 
-                               MaxLines="3"
+                               Padding="10,5,0,0"
+                               FontSize="{DynamicResource SmallerSize}" 
+                               x:Name="ClientAddress"
                                VerticalTextAlignment="Center"
                                HorizontalTextAlignment="Start"
-                               x:Name="ClientAddress"
                                Text="{Binding MyAddress}"
                                TextColor="{DynamicResource Gray-900}" />
+           
                     <Label Grid.Row="4"
                                Grid.Column="0"
                                Margin="10,8,0,8"
