@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:converter="clr-namespace:PasaBuy.App.Converters" 
              xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
-             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:justified="clr-namespace:PasaBuy.App.CustomRenderers" xmlns:effects="clr-namespace:Xamarin.Toolkit.Effects;assembly=Xamarin.Toolkit.Effects"
              x:Class="PasaBuy.App.Views.Settings.VerifyAccountFront"
              BackgroundColor="{StaticResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
@@ -15,6 +15,9 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" Default="0, 0, 0, 0" />
+    </ContentPage.Padding>
 
     <ContentPage.ControlTemplate>
         <ControlTemplate>
@@ -22,12 +25,11 @@
                 <controls:TitleView Title="Get Verified" 
                                     BackgroundColor="{DynamicResource PrimaryColor}" >
                     <controls:TitleView.LeadingView >
-                        <buttons:SfButton
-                            x:Name="backButton"
-                            Clicked="BackButtonClicked"
-                            CornerRadius="4"
-                            Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Back}" />
+                        <ImageButton Source="arrow_left.png"
+                                     HeightRequest="25"
+                                     WidthRequest="25"
+                                     BackgroundColor="Transparent"
+                                     Clicked="BackButtonClicked" />
                     </controls:TitleView.LeadingView>
                 </controls:TitleView>
                 <ContentPresenter />
@@ -47,16 +49,20 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
+                
                 <Label Grid.Row="0"
                        Text="Your account is currently unverified"
                        FontFamily="{StaticResource Montserrat-SemiBold}"
                        TextColor="{DynamicResource Gray-900}"
                        FontSize="{DynamicResource MediumSize}"/>
-                <Label Grid.Row="1"
-                       FontFamily="{StaticResource Montserrat-Medium}"
-                       FontSize="{DynamicResource SmallSize}"
-                       HorizontalTextAlignment="Start"
-                       Text="Verify your account to ensure account security and gain access to all PasaBuy.App services."/>
+                
+                <justified:JustifiedLabel Text="Verify your account to ensure account security and gain access to all PasaBuy.App services."
+                                          LineHeight="1.2"
+                                          FontSize="{DynamicResource MediumSize}"
+                                          Grid.Row="1"
+                                          MaxLines="3"
+                                          TextColor="{DynamicResource Gray-900}" 
+                                          FontFamily="{StaticResource Montserrat-Medium}"/>
             </Grid>
 
             <Grid Grid.Row="1" Padding="15, 40, 15, 40" Margin="10,0,10,0" BackgroundColor="{DynamicResource Gray-100}">
@@ -73,69 +79,72 @@
                 
                 <Label Grid.Row="0"
                        Grid.Column="0"
-                       FontAttributes="Bold"
+                       FontFamily="{StaticResource Montserrat-SemiBold}"
+                       TextColor="{DynamicResource Gray-900}" 
                        HorizontalTextAlignment="Center"
                        VerticalTextAlignment="Center"
                        Text="Step 1"
-                       FontSize="16"/>
+                       FontSize="{DynamicResource LargeSize}"/>
                 <Label Grid.Row="0"
                        Grid.Column="1"
-                       FontAttributes="Bold"
+                       FontFamily="{StaticResource Montserrat-SemiBold}"
+                       TextColor="{DynamicResource Gray-900}" 
                        HorizontalTextAlignment="Center"
                        VerticalTextAlignment="Center"
                        Text="Step 2"
-                       FontSize="16"/>
+                       FontSize="{DynamicResource LargeSize}"/>
                 <Label Grid.Row="0"
                        Grid.Column="2"
-                       FontAttributes="Bold"
+                       FontFamily="{StaticResource Montserrat-SemiBold}"
+                       TextColor="{DynamicResource Gray-900}" 
                        HorizontalTextAlignment="Center"
                        VerticalTextAlignment="Center"
                        Text="Step 3"
-                       FontSize="16"/>
-                <Label  Grid.Row="1"
-                        Grid.Column="0"
-                        FontSize="90"
-                        Margin="10, 0, 0, 0"
-                        Style="{StaticResource IconLabelStyle}"
-                        TextColor="{DynamicResource PrimaryColor}"
-                        Text="{StaticResource Reminder}" />
-                <Label  Grid.Row="1"
-                        Grid.Column="1"
-                        FontSize="90"
-                        Margin="5, 0, 0, 0"
-                        HorizontalTextAlignment="End"
-                        VerticalTextAlignment="End"
-                        Style="{StaticResource IconLabelStyle}"
-                        TextColor="{DynamicResource PrimaryColor}"
-                        Text="{StaticResource Image}" />
-                <Label  Grid.Row="1"
-                        Grid.Column="2"
-                        FontSize="90"
-                        HorizontalTextAlignment="Center"
-                        VerticalTextAlignment="Center"
-                        Style="{StaticResource IconLabelStyle}"
-                        TextColor="{DynamicResource PrimaryColor}"
-                        Text="{StaticResource TermsofService}" />
+                       FontSize="{DynamicResource LargeSize}"/>
+                <Image Source="https://dev.pasabuy.app/wp-content/uploads/2020/11/idcard-prim.png"
+                       Grid.Row="1"
+                       Grid.Column="0"/>
+                <Image Source="https://dev.pasabuy.app/wp-content/uploads/2020/11/camera-prim.png"
+                       Grid.Row="1"
+                       Grid.Column="1"/>
+                <Image Source="https://dev.pasabuy.app/wp-content/uploads/2020/11/fill-prim.png"
+                       Grid.Row="1"
+                       Grid.Column="2"/>
                 <Label Grid.Row="2"
                        Grid.Column="0"
+                       FontFamily="{StaticResource Montserrat-Medium}"
+                       TextColor="{DynamicResource Gray-900}" 
                        HorizontalTextAlignment="Center"
                        VerticalTextAlignment="Center"
-                       Text="Take ID photo"
-                       FontSize="15"/>
+                       Text="Take ID photo">
+                    <Label.Effects>
+                        <effects:LabelSizeFontToFit />
+                    </Label.Effects>
+                </Label>
 
                 <Label Grid.Row="2"
                        Grid.Column="1"
+                       FontFamily="{StaticResource Montserrat-Medium}"
+                       TextColor="{DynamicResource Gray-900}"
                        HorizontalTextAlignment="Center"
                        VerticalTextAlignment="Center"
-                       Text="Upload a selfie"
-                       FontSize="15"/>
+                       Text="Upload a selfie">
+                    <Label.Effects>
+                        <effects:LabelSizeFontToFit />
+                    </Label.Effects>
+                </Label>
 
                 <Label Grid.Row="2"
                        Grid.Column="2"
+                       FontFamily="{StaticResource Montserrat-Medium}"
+                       TextColor="{DynamicResource Gray-900}"
                        HorizontalTextAlignment="Center"
                        VerticalTextAlignment="Center"
-                       Text="Fill information"
-                       FontSize="15"/>
+                       Text="Fill information">
+                    <Label.Effects>
+                        <effects:LabelSizeFontToFit />
+                    </Label.Effects>
+                </Label>
 
             </Grid>
 

@@ -52,7 +52,7 @@ namespace PasaBuy.App.ViewModels.Feeds
             if (!IsTapped)
             {
                 IsTapped = true;
-                PopupNavigation.Instance.PopAsync();
+                await PopupNavigation.Instance.PopAsync();
                 if (item.Title == "Pasabay")
                 {
                     await App.Current.MainPage.Navigation.PushModalAsync(new PasabayPage());
@@ -68,7 +68,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                 if (item.Title == "Pasakay")
                 {
                     //await App.Current.MainPage.Navigation.PushModalAsync(new PasakayPage());
-                    await App.Current.MainPage.DisplayAlert("Notice", "This feature is not yet unavailable", "ok");
+                    await App.Current.MainPage.DisplayAlert("Notice", "This feature is not yet available", "Ok");
 
                 }
                 IsTapped = false;
