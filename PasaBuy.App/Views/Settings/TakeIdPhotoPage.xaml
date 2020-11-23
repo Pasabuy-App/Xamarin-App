@@ -11,6 +11,9 @@
             <ResourceDictionary Source="Styles.xaml" />
         </ResourceDictionary>
     </ContentPage.Resources>
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" Default="0, 0, 0, 0" />
+    </ContentPage.Padding>
 
     <ContentPage.BindingContext>
         <viewModel:TakeIdPhotoViewModel />
@@ -19,15 +22,14 @@
     <ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0" >
-                <controls:TitleView Title="Take ID Photo" 
+                <controls:TitleView Title="Select ID" 
                                     BackgroundColor="{DynamicResource PrimaryColor}" >
                     <controls:TitleView.LeadingView>
-                        <buttons:SfButton
-                            x:Name="backButton"
-                            Clicked="BackButtonClicked"
-                            CornerRadius="4"
-                            Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Back}" />
+                        <ImageButton Source="arrow_left.png"
+                                     HeightRequest="25"
+                                     WidthRequest="25"
+                                     BackgroundColor="Transparent"
+                                     Clicked="BackButtonClicked" />
                     </controls:TitleView.LeadingView>
                 </controls:TitleView>
                 <ContentPresenter />
@@ -81,12 +83,14 @@
                         VerticalOptions="CenterAndExpand"
                         Style="{StaticResource LabelStyle}"
                         Text="UMID/SSS ID" />
-                    <Label
-                        Grid.Column="1"
-                        HorizontalOptions="End"
-                        VerticalOptions="CenterAndExpand"
-                        Style="{StaticResource IconLabelStyle}"
-                        Text="{StaticResource Next}" />
+                    <Image Source="next_black.png"
+                           HorizontalOptions="End"
+                           VerticalOptions="CenterAndExpand"
+                           HeightRequest="12"
+                           WidthRequest="12"
+                           Margin="0,0,12,0"
+                           BackgroundColor="Transparent"
+                           Grid.Column="1"/>
                 </controls:TapAnimationGrid>
                 <BoxView Style="{StaticResource SeparatorStyle}" />
 
@@ -107,12 +111,14 @@
                         VerticalOptions="CenterAndExpand"
                         Style="{StaticResource LabelStyle}"
                         Text="Driver's License" />
-                    <Label
-                        Grid.Column="1"
-                        HorizontalOptions="End"
-                        VerticalOptions="CenterAndExpand"
-                        Style="{StaticResource IconLabelStyle}"
-                        Text="{StaticResource Next}" />
+                    <Image Source="next_black.png"
+                           HorizontalOptions="End"
+                           VerticalOptions="CenterAndExpand"
+                           HeightRequest="12"
+                           WidthRequest="12"
+                           Margin="0,0,12,0"
+                           BackgroundColor="Transparent"
+                           Grid.Column="1"/>
                 </controls:TapAnimationGrid>
                 <BoxView Style="{StaticResource SeparatorStyle}" />
 
@@ -133,12 +139,14 @@
                         VerticalOptions="CenterAndExpand"
                         Style="{StaticResource LabelStyle}"
                         Text="Professional Identification ID (PRC ID)" />
-                    <Label
-                        Grid.Column="1"
-                        HorizontalOptions="End"
-                        VerticalOptions="CenterAndExpand"
-                        Style="{StaticResource IconLabelStyle}"
-                        Text="{StaticResource Next}" />
+                    <Image Source="next_black.png"
+                           HorizontalOptions="End"
+                           VerticalOptions="CenterAndExpand"
+                           HeightRequest="12"
+                           WidthRequest="12"
+                           Margin="0,0,12,0"
+                           BackgroundColor="Transparent"
+                           Grid.Column="1"/>
                 </controls:TapAnimationGrid>
                 <BoxView Style="{StaticResource SeparatorStyle}" />
 
@@ -159,12 +167,14 @@
                         VerticalOptions="CenterAndExpand"
                         Style="{StaticResource LabelStyle}"
                         Text="OFW e-CARD/OWWA ID" />
-                    <Label
-                        Grid.Column="1"
-                        HorizontalOptions="End"
-                        VerticalOptions="CenterAndExpand"
-                        Style="{StaticResource IconLabelStyle}"
-                        Text="{StaticResource Next}" />
+                    <Image Source="next_black.png"
+                           HorizontalOptions="End"
+                           VerticalOptions="CenterAndExpand"
+                           HeightRequest="12"
+                           WidthRequest="12"
+                           Margin="0,0,12,0"
+                           BackgroundColor="Transparent"
+                           Grid.Column="1"/>
                 </controls:TapAnimationGrid>
                 <BoxView Style="{StaticResource SeparatorStyle}" />
 
@@ -185,12 +195,14 @@
                         VerticalOptions="CenterAndExpand"
                         Style="{StaticResource LabelStyle}"
                         Text="Voter's ID" />
-                    <Label
-                        Grid.Column="1"
-                        HorizontalOptions="End"
-                        VerticalOptions="CenterAndExpand"
-                        Style="{StaticResource IconLabelStyle}"
-                        Text="{StaticResource Next}" />
+                    <Image Source="next_black.png"
+                           HorizontalOptions="End"
+                           VerticalOptions="CenterAndExpand"
+                           HeightRequest="12"
+                           WidthRequest="12"
+                           Margin="0,0,12,0"
+                           BackgroundColor="Transparent"
+                           Grid.Column="1"/>
                 </controls:TapAnimationGrid>
                 <BoxView Style="{StaticResource SeparatorStyle}" />
 
@@ -211,12 +223,14 @@
                         VerticalOptions="CenterAndExpand"
                         Style="{StaticResource LabelStyle}"
                         Text="Philippine National Police ID" />
-                    <Label
-                        Grid.Column="1"
-                        HorizontalOptions="End"
-                        VerticalOptions="CenterAndExpand"
-                        Style="{StaticResource IconLabelStyle}"
-                        Text="{StaticResource Next}" />
+                    <Image Source="next_black.png"
+                           HorizontalOptions="End"
+                           VerticalOptions="CenterAndExpand"
+                           HeightRequest="12"
+                           WidthRequest="12"
+                           Margin="0,0,12,0"
+                           BackgroundColor="Transparent"
+                           Grid.Column="1"/>
                 </controls:TapAnimationGrid>
                 <BoxView Style="{StaticResource SeparatorStyle}" />
 
@@ -237,12 +251,14 @@
                         VerticalOptions="CenterAndExpand"
                         Style="{StaticResource LabelStyle}"
                         Text="Senior Citizen's ID" />
-                    <Label
-                        Grid.Column="1"
-                        HorizontalOptions="End"
-                        VerticalOptions="CenterAndExpand"
-                        Style="{StaticResource IconLabelStyle}"
-                        Text="{StaticResource Next}" />
+                    <Image Source="next_black.png"
+                           HorizontalOptions="End"
+                           VerticalOptions="CenterAndExpand"
+                           HeightRequest="12"
+                           WidthRequest="12"
+                           Margin="0,0,12,0"
+                           BackgroundColor="Transparent"
+                           Grid.Column="1"/>
                 </controls:TapAnimationGrid>
                 <BoxView Style="{StaticResource SeparatorStyle}" />
 
@@ -263,12 +279,14 @@
                         VerticalOptions="CenterAndExpand"
                         Style="{StaticResource LabelStyle}"
                         Text="Postal ID" />
-                    <Label
-                        Grid.Column="1"
-                        HorizontalOptions="End"
-                        VerticalOptions="CenterAndExpand"
-                        Style="{StaticResource IconLabelStyle}"
-                        Text="{StaticResource Next}" />
+                    <Image Source="next_black.png"
+                           HorizontalOptions="End"
+                           VerticalOptions="CenterAndExpand"
+                           HeightRequest="12"
+                           WidthRequest="12"
+                           Margin="0,0,12,0"
+                           BackgroundColor="Transparent"
+                           Grid.Column="1"/>
                 </controls:TapAnimationGrid>
                 <BoxView Style="{StaticResource SeparatorStyle}" />
 
@@ -289,12 +307,14 @@
                         VerticalOptions="CenterAndExpand"
                         Style="{StaticResource LabelStyle}"
                         Text="School ID" />
-                    <Label
-                        Grid.Column="1"
-                        HorizontalOptions="End"
-                        VerticalOptions="CenterAndExpand"
-                        Style="{StaticResource IconLabelStyle}"
-                        Text="{StaticResource Next}" />
+                    <Image Source="next_black.png"
+                           HorizontalOptions="End"
+                           VerticalOptions="CenterAndExpand"
+                           HeightRequest="12"
+                           WidthRequest="12"
+                           Margin="0,0,12,0"
+                           BackgroundColor="Transparent"
+                           Grid.Column="1"/>
                 </controls:TapAnimationGrid>
                 <BoxView Style="{StaticResource SeparatorStyle}" />
 
@@ -315,12 +335,14 @@
                         VerticalOptions="CenterAndExpand"
                         Style="{StaticResource LabelStyle}"
                         Text="Passport" />
-                    <Label
-                        Grid.Column="1"
-                        HorizontalOptions="End"
-                        VerticalOptions="CenterAndExpand"
-                        Style="{StaticResource IconLabelStyle}"
-                        Text="{StaticResource Next}" />
+                    <Image Source="next_black.png"
+                           HorizontalOptions="End"
+                           VerticalOptions="CenterAndExpand"
+                           HeightRequest="12"
+                           WidthRequest="12"
+                           Margin="0,0,12,0"
+                           BackgroundColor="Transparent"
+                           Grid.Column="1"/>
                 </controls:TapAnimationGrid>
                 <BoxView Style="{StaticResource SeparatorStyle}" />
 

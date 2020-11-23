@@ -123,6 +123,10 @@ namespace PasaBuy.App.ViewModels.Marketplace
             _bestSellers.Clear();
             RefreshCommand = new Command<string>((key) =>
             {
+                PartnerBrowserPage.LastIndex = 12;
+                _bestSellers.Clear();
+                storeList.Clear();
+                LoadBestSeller();
                 LoadPartner();
                 IsRefreshing = false;
             });
@@ -136,7 +140,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 if (!IsRunning)
                 {
                     IsRunning = true;
-                    storeList.Clear();
                     Http.TindaPress.Store.Instance.Listing("", "", "robinson", "", "active", "", (bool success, string data) =>
                     {
                         if (success)
@@ -280,7 +283,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         {
                             HeaderSize = "0";
                         }
-                        Console.WriteLine(data);
+                 
                         for (int i = 0; i < store.data.Length; i++)
                         {
                             _bestSellers.Add(new Models.TindaFeature.StoreModel()

@@ -77,14 +77,14 @@
                     HorizontalOptions="Center"
                     Style="{StaticResource LabelStyle}"
                     MaxLines="3"
-                    Text="Please give time to process your verification request. Expect a call from one of our staffs within 1-2 days. Thank you!"
+                    Text="Please give us time to process your verification request. Expect a call from one of our staffs within 1-2 days. Thank you!"
                     VerticalTextAlignment="Center" />
             </StackLayout>
 
             <!--  Try again button  -->
             <button:SfButton 
                                 Margin="10, 0, 10, 60"
-                                CornerRadius="20"
+                                CornerRadius="6"
                                 Grid.Row ="1"
                                 Clicked="BackToHome"
                                 TextColor="White"

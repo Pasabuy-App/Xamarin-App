@@ -1,4 +1,6 @@
-﻿using PasaBuy.App.Views.Posts;
+﻿using PasaBuy.App.Controllers.Notice;
+using PasaBuy.App.ViewModels.Feeds;
+using PasaBuy.App.Views.Posts;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -13,11 +15,12 @@ namespace PasaBuy.App.Views.PopupModals
         public PopupPasabuy()
         {
             InitializeComponent();
+            this.BindingContext = new PopupPasabuyViewModel();
 
-            this.pasabayInfo.Text = "A mover posts items or his whereabouts and asks the community if someone wants to have the items bought by him. The mover will then deliver the items.";
-            this.pabiliInfo.Text = "A buyer requests a mover to buy items for him in a restaurant or store. The mover delivers the item right after the purchase.";
-            this.pahatidInfo.Text = "A mover drops off a passenger at a destination.";
-            this.pasakayInfo.Text = "A mover invites a passenger to share a ride towards a destination.";
+            //this.pasabayInfo.Text = "A mover posts items or his whereabouts and asks the community if someone wants to have the items bought by him. The mover will then deliver the items.";
+            //this.pabiliInfo.Text = "A buyer requests a mover to buy items for him in a restaurant or store. The mover delivers the item right after the purchase.";
+            //this.pahatidInfo.Text = "A mover drops off a passenger at a destination.";
+            //this.pasakayInfo.Text = "A mover invites a passenger to share a ride towards a destination.";
             isTapped = false;
 
         }
@@ -54,5 +57,12 @@ namespace PasaBuy.App.Views.PopupModals
                 isTapped = false;
             }
         }
+
+        private async void GoToPasakay(object sender, EventArgs e)
+        {
+            
+        }
+
+     
     }
 }

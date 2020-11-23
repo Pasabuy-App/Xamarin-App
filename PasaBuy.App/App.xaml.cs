@@ -10,6 +10,7 @@ using PasaBuy.App.Views.Driver;
 using PasaBuy.App.Views.Onboarding;
 using PasaBuy.App.Views.PopupModals;
 using PasaBuy.App.Views.Posts;
+using PasaBuy.App.Views.Settings;
 using PasaBuy.App.Views.StoreViews;
 using PasaBuy.App.Views.StoreViews.Management;
 using System;

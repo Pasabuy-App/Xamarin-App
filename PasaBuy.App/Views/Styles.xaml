@@ -8,8 +8,9 @@
 
     <OnPlatform x:TypeArguments="x:String" x:Key="FontFamily">
         <On Platform="Android" Value="Font Awesome 5 Free-Solid-900.otf" />
-        <On Platform="iOS" Value="Font Awesome 5" />
+        <On Platform="iOS" Value="FontAwesome5" />
     </OnPlatform>
+    
 
     <x:String x:Key="Home">&#xf015;</x:String>
     <x:String x:Key="Market">&#xf290;</x:String>

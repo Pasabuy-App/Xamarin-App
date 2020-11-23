@@ -97,7 +97,7 @@
                                                         Android=1.25}"
                                 MaxLines="2"
                                 x:Name="Store_name"
-                                TextColor="{DynamicResource Gray-White}" />
+                                TextColor="{DynamicResource BlackColor}" />
 
                             <!--  UserEmail  -->
                             <Label

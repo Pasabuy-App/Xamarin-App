@@ -115,23 +115,25 @@
                                                             VerticalOptions="FillAndExpand">
 
                                                                 <!--  Name of the item  -->
-                                                                <Label
-                                                            FontFamily="{StaticResource Montserrat-SemiBold}"
-                                                            FontSize="16"
-                                                            LineHeight="{OnPlatform Android=1.5,
-                                                                                    Default=-1}"
-                                                            Text="{Binding Title}"
-                                                            TextColor="{DynamicResource Gray-900}" />
+                                                                <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                                       LineBreakMode="TailTruncation"
+                                                                        FontSize="{DynamicResource SmallSize}"
+                                                                 
+                                                                        LineHeight="{OnPlatform Android=1.5,
+                                                                                                Default=-1}"
+                                                                        Text="{Binding Title}"
+                                                                        TextColor="{DynamicResource Gray-900}" />
 
                                                                 <!--  Description about the item  -->
-                                                                <Label
-                                                            Margin="0,4,0,8"
-                                                            FontFamily="{StaticResource Montserrat-Medium}"
-                                                            FontSize="12"
-                                                            LineHeight="{OnPlatform Android=1.25,
-                                                                                    Default=-1}"
-                                                            Text="{Binding Info}"
-                                                            TextColor="{DynamicResource Gray-700}" />
+                                                                <Label Margin="0,4,0,8"
+                                                                       MaxLines="2"
+                                                                       LineBreakMode="TailTruncation"
+                                                                        FontFamily="{StaticResource Montserrat-Medium}"
+                                                                        FontSize="12"
+                                                                        LineHeight="{OnPlatform Android=1.25,
+                                                                                                Default=-1}"
+                                                                        Text="{Binding Info}"
+                                                                        TextColor="{DynamicResource Gray-700}" />
 
                                                                 <!--  Average rating from the overall rating  -->
                                                                 <StackLayout

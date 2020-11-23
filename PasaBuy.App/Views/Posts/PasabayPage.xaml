@@ -17,12 +17,14 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
-
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" Default="0, 0, 0, 0" />
+    </ContentPage.Padding>
     <ContentPage.Content>
         <Grid>
             <Grid.Padding>
                 <OnIdiom x:TypeArguments="Thickness">
-                    <OnIdiom.Phone>0,5,0,0</OnIdiom.Phone>
+                    <OnIdiom.Phone>0,0,0,0</OnIdiom.Phone>
                     <OnIdiom.Tablet>50,0,50,0</OnIdiom.Tablet>
                 </OnIdiom>
             </Grid.Padding>
@@ -79,19 +81,17 @@
                             ContainerBackgroundColor="Transparent"
                             ContainerType="Outlined"
                             FocusedColor="{StaticResource BlackColor}"
-                            Hint="Destination" x:Name="Destinations"
+                            Hint="Destination" 
+                            x:Name="Destinations"
                             HorizontalOptions="Fill"
                             LeadingViewPosition="Inside">
                         <Entry MaxLength="50" ReturnType="Next" x:Name="Destination"/>
                         <inputLayout:SfTextInputLayout.LeadingView>
-                            <Label
-                                            Margin="0"
-                                            FontFamily="{StaticResource FontIcons}"
-                                            FontSize="25"
-                                            HorizontalTextAlignment="Center"
-                                            Text="{StaticResource MapPin}"
-                                            TextColor="{DynamicResource Gray-600}"
-                                            VerticalTextAlignment="Center" />
+                            <StackLayout Padding="10">
+                                <Image HeightRequest="25" 
+                                   WidthRequest="25" 
+                                   Source="https://dev.pasabuy.app/wp-content/uploads/2020/11/map-prim.png"/>
+                            </StackLayout>
                         </inputLayout:SfTextInputLayout.LeadingView>
                     </inputLayout:SfTextInputLayout>
 
@@ -107,14 +107,11 @@
                             LeadingViewPosition="Inside">
                         <Entry MaxLength="50" ReturnType="Next"  x:Name="ReturnPlace"/>
                         <inputLayout:SfTextInputLayout.LeadingView>
-                            <Label
-                                            Margin="0"
-                                            FontFamily="{StaticResource FontIcons}"
-                                            FontSize="25"
-                                            HorizontalTextAlignment="Center"
-                                            Text="{StaticResource MapPin}"
-                                            TextColor="{DynamicResource Gray-600}"
-                                            VerticalTextAlignment="Center" />
+                            <StackLayout Padding="10">
+                                <Image HeightRequest="25" 
+                                   WidthRequest="25" 
+                                   Source="https://dev.pasabuy.app/wp-content/uploads/2020/11/map-prim.png"/>
+                            </StackLayout>
                         </inputLayout:SfTextInputLayout.LeadingView>
                     </inputLayout:SfTextInputLayout>
 
@@ -133,14 +130,11 @@
                                 MaximumDate="{Binding MaxDate}"
                                 Date="{Binding SelectedDate}"  x:Name="DatePicker"/>
                         <inputLayout:SfTextInputLayout.LeadingView>
-                            <Label
-                                            Margin="0"
-                                            FontFamily="{StaticResource FontIcons}"
-                                            FontSize="25"
-                                            HorizontalTextAlignment="Center"
-                                            Text="{StaticResource Calendar}"
-                                            TextColor="{DynamicResource Gray-600}"
-                                            VerticalTextAlignment="Center" />
+                            <StackLayout Padding="10">
+                                <Image HeightRequest="25" 
+                                   WidthRequest="25" 
+                                   Source="https://dev.pasabuy.app/wp-content/uploads/2020/11/schedules-prim.png"/>
+                            </StackLayout>
                         </inputLayout:SfTextInputLayout.LeadingView>
                     </inputLayout:SfTextInputLayout>
                     <inputLayout:SfTextInputLayout
@@ -156,14 +150,11 @@
                             LeadingViewPosition="Inside">
                         <TimePicker Time="12:00"  x:Name="TimePicker"/>
                         <inputLayout:SfTextInputLayout.LeadingView>
-                            <Label
-                                            Margin="0"
-                                            FontFamily="{StaticResource FontIcons}"
-                                            FontSize="25"
-                                            HorizontalTextAlignment="Center"
-                                            Text="{StaticResource Bell}"
-                                            TextColor="{DynamicResource Gray-600}"
-                                            VerticalTextAlignment="Center" />
+                            <StackLayout Padding="10">
+                                <Image HeightRequest="25" 
+                                   WidthRequest="25" 
+                                   Source="https://dev.pasabuy.app/wp-content/uploads/2020/11/clock-prim.png"/>
+                            </StackLayout>
                         </inputLayout:SfTextInputLayout.LeadingView>
                     </inputLayout:SfTextInputLayout>
 

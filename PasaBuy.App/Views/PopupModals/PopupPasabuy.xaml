@@ -86,206 +86,69 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Text=" "/>
-                    <syncfusion:SfAccordion Grid.Row="1">
-                        <syncfusion:SfAccordion.Items>
+                    <syncfusion:SfAccordion x:Name="Accordion"
+                                            Grid.Row="1"
+                                            BindableLayout.ItemsSource="{Binding Info}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <syncfusion:AccordionItem>
+                                    <syncfusion:AccordionItem.Header>
+                                        <StackLayout>
+                                            <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                    Padding="10,0,0,0"
+                                                    HeightRequest="60" 
+                                                    FontSize="18"
+                                                    VerticalTextAlignment="Center"
+                                                    Text="{Binding Title}"
+                                                    TextColor="{DynamicResource Gray-900}" />
+                                        </StackLayout>
+                                    </syncfusion:AccordionItem.Header>
+                                    <syncfusion:AccordionItem.Content>
+                                        <StackLayout HorizontalOptions="FillAndExpand" Padding="0, 5, 0, 5" Spacing="0">
+                                            <Label Text="{Binding Details}"
+                                                    FontFamily="{StaticResource Montserrat-Medium}"
+                                                    Padding="10,0,0,0"
+                                                    HeightRequest="100" 
+                                                    FontSize="14"
+                                                    VerticalTextAlignment="Center"
+                                                    HorizontalTextAlignment="Start"
+                                                    TextColor="{DynamicResource Gray-900}" />
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="60*" />
+                                                    <ColumnDefinition Width="40*" />
+                                                </Grid.ColumnDefinitions>
+                                                <StackLayout Grid.Row="0"
+                                                             Grid.Column="1"
+                                                             Margin="0,0,10,0"
+                                                             Padding="15,5,15,5"
+                                                             Orientation="Horizontal"
+                                                             HorizontalOptions="End">
+                                                    <buttons:SfButton CornerRadius="5"
+                                                                      IsEnabled="{Binding isTapped}"
+                                                                      Command="{Binding BindingContext.TappedCommand,Source={x:Reference Accordion}}"
+                                                                      CommandParameter="{Binding .}"
+                                                                      Padding="15,5,15,5"
+                                                                      TextColor="White"
+                                                                      BackgroundColor="{DynamicResource PrimaryColor}"
+                                                                      Style="{StaticResource SfButtonStyle}"
+                                                                      Text="Proceed" />
 
-                            <!-- PASABAY -->
-                            <syncfusion:AccordionItem >
-                                <syncfusion:AccordionItem.Header>
-                                        <Label FontFamily="{StaticResource Montserrat-SemiBold}"
-                                            Padding="10,0,0,0"
-                                            HeightRequest="60" 
-                                            FontSize="18"
-                                            VerticalTextAlignment="Center"
-                                            Text="Pasabay"
-                                            TextColor="{DynamicResource Gray-900}" />
-                                </syncfusion:AccordionItem.Header>
-                                <syncfusion:AccordionItem.Content>
-                                    <StackLayout HorizontalOptions="FillAndExpand" Padding="0, 5, 0, 5" Spacing="0">
-                                        <Label
-                                            x:Name="pasabayInfo"
-                                            FontFamily="{StaticResource Montserrat-Medium}"
-                                            Padding="10,0,0,0"
-                                            HeightRequest="100" 
-                                            FontSize="14"
-                                            VerticalTextAlignment="Center"
-                                            HorizontalTextAlignment="Start"
-                                            TextColor="{DynamicResource Gray-900}" />
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto" />
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="60*" />
-                                                <ColumnDefinition Width="40*" />
-                                            </Grid.ColumnDefinitions>
-                                            <StackLayout Grid.Row="0"
-                                                         Grid.Column="1"
-                                                         Margin="0,0,10,0"
-                                                         Padding="15,5,15,5"
-                                                         Orientation="Horizontal"
-                                                         HorizontalOptions="End">
-
-                                                <buttons:SfButton Clicked="GoToPasabuy"
-                                                                    CornerRadius="5"
-                                                                  Padding="15,5,15,5"
-                                                                    TextColor="White"
-                                                                    BackgroundColor="{DynamicResource PrimaryColor}"
-                                                                    Style="{StaticResource SfButtonStyle}"
-                                                                    Text="Proceed" />
-
-                                            </StackLayout>
-                                        </Grid>
-                                    </StackLayout>
-                                </syncfusion:AccordionItem.Content>
-                            </syncfusion:AccordionItem>
-
-                            <!-- PABILI -->
-                            <syncfusion:AccordionItem>
-                                <syncfusion:AccordionItem.Header>
-                                    <Grid>
-                                        <Label
-                                            FontFamily="{StaticResource Montserrat-SemiBold}"
-                                            Padding="10,0,0,0"
-                                            HeightRequest="60" 
-                                            FontSize="18"
-                                            VerticalTextAlignment="Center"
-                                            Text="Pabili"
-                                            TextColor="{DynamicResource Gray-900}" />
-                                    </Grid>
-                                </syncfusion:AccordionItem.Header>
-                                <syncfusion:AccordionItem.Content>
-                                    <StackLayout HorizontalOptions="FillAndExpand" Padding="0, 5, 0, 5" Spacing="0">
-                                        <Label
-                                            x:Name="pabiliInfo"
-                                            FontFamily="{StaticResource Montserrat-Medium}"
-                                            Padding="10,0,0,0"
-                                            HeightRequest="100" 
-                                            FontSize="14"
-                                            VerticalTextAlignment="Center"
-                                            HorizontalTextAlignment="Start"
-                                            TextColor="{DynamicResource Gray-900}" />
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto" />
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="60*" />
-                                                <ColumnDefinition Width="40*" />
-                                            </Grid.ColumnDefinitions>
-                                            <StackLayout Grid.Row="0"
-                                                         Grid.Column="1"
-                                                         Margin="0,0,10,0"
-                                                         Padding="15,5,15,5"
-                                                         Orientation="Horizontal"
-                                                         HorizontalOptions="End">
-
-                                                <buttons:SfButton Clicked="GoToPabili"
-                                                                    CornerRadius="5"
-                                                                  Padding="15,5,15,5"
-                                                                    TextColor="White"
-                                                                    BackgroundColor="{DynamicResource PrimaryColor}"
-                                                                    Style="{StaticResource SfButtonStyle}"
-                                                                    Text="Proceed" />
-
-                                            </StackLayout>
-                                        </Grid>
-                                    </StackLayout>
-                                </syncfusion:AccordionItem.Content>
-                            </syncfusion:AccordionItem>
-
-                            <!-- PAHATID -->
-                            <syncfusion:AccordionItem>
-                                <syncfusion:AccordionItem.Header>
-                                    <Grid>
-                                        <Label
-                                            FontFamily="{StaticResource Montserrat-SemiBold}"
-                                            Padding="10,0,0,0"
-                                            HeightRequest="60" 
-                                            FontSize="18"
-                                            VerticalTextAlignment="Center"
-                                            Text="Pahatid"
-                                            TextColor="{DynamicResource Gray-900}" />
-                                    </Grid>
-                                </syncfusion:AccordionItem.Header>
-                                <syncfusion:AccordionItem.Content>
-                                    <StackLayout HorizontalOptions="FillAndExpand" Padding="0, 5, 0, 5" Spacing="0">
-                                        <Label
-                                            x:Name="pahatidInfo"
-                                            FontFamily="{StaticResource Montserrat-Medium}"
-                                            Padding="10,0,0,0"
-                                            HeightRequest="100" 
-                                            FontSize="14"
-                                            VerticalTextAlignment="Center"
-                                            HorizontalTextAlignment="Start"
-                                            TextColor="{DynamicResource Gray-900}" />
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto" />
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="60*" />
-                                                <ColumnDefinition Width="40*" />
-                                            </Grid.ColumnDefinitions>
-                                            <StackLayout Grid.Row="0"
-                                                         Grid.Column="1"
-                                                         Margin="0,0,10,0"
-                                                         Padding="15,5,15,5"
-                                                         Orientation="Horizontal"
-                                                         HorizontalOptions="End">
-
-                                                <buttons:SfButton Clicked="GoToPahatid"
-                                                                  CornerRadius="5"
-                                                                  Padding="15,5,15,5"
-                                                                    TextColor="White"
-                                                                    BackgroundColor="{DynamicResource PrimaryColor}"
-                                                                    Style="{StaticResource SfButtonStyle}"
-                                                                    Text="Proceed" />
-
-                                            </StackLayout>
-                                        </Grid>
-                                    </StackLayout>
-                                </syncfusion:AccordionItem.Content>
-                            </syncfusion:AccordionItem>
-
-                            <!-- PASAKAY -->
-                            <syncfusion:AccordionItem>
-                                <syncfusion:AccordionItem.Header>
-                                    <badge:SfBadgeView BadgeText="Coming Soon"  HorizontalOptions="Center" VerticalOptions="Center">
-                                        <badge:SfBadgeView.Content>
-                                            <Label
-                                                FontFamily="{StaticResource Montserrat-SemiBold}"
-                                                Padding="10,0,0,0"
-                                                HeightRequest="60" 
-                                                FontSize="18"
-                                                VerticalTextAlignment="Center"
-                                                Text="Pasakay"
-                                                TextColor="{DynamicResource Gray-900}" />
-                                        </badge:SfBadgeView.Content>
-                                        <badge:SfBadgeView.BadgeSettings>
-                                            <badge:BadgeSetting Offset="-15,25" BadgeType="None" BackgroundColor="{DynamicResource PrimaryColor}" BadgePosition="TopRight"/>
-                                        </badge:SfBadgeView.BadgeSettings>
-                                    </badge:SfBadgeView>
-                                </syncfusion:AccordionItem.Header>
-                                <syncfusion:AccordionItem.Content>
-                                    <StackLayout HorizontalOptions="FillAndExpand" Padding="0, 5, 0, 5" Spacing="0">
-                                        <Label
-                                            x:Name="pasakayInfo"
-                                            FontFamily="{StaticResource Montserrat-Medium}"
-                                            Padding="10,0,0,0"
-                                            HeightRequest="100" 
-                                            FontSize="14"
-                                            VerticalTextAlignment="Center"
-                                            HorizontalTextAlignment="Start"
-                                            TextColor="{DynamicResource Gray-900}" />
-                                    </StackLayout>
-                                </syncfusion:AccordionItem.Content>
-                            </syncfusion:AccordionItem>
-
-                        </syncfusion:SfAccordion.Items>
+                                                </StackLayout>
+                                            </Grid>
+                                        </StackLayout>
+                                    </syncfusion:AccordionItem.Content>
+                                </syncfusion:AccordionItem>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
                     </syncfusion:SfAccordion>
+                    <Label Grid.Row="2" Text=" "/>
                 </Grid>
             </StackLayout>
         </Frame>

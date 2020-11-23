@@ -89,7 +89,10 @@ namespace PasaBuy.App.ViewModels.Marketplace
             grocerystorelist.Clear();
             RefreshCommand = new Command<string>((key) =>
             {
+                GroceryBrowserPage.LastIndex = 12;
+                _bestSellers.Clear();
                 grocerystorelist.Clear();
+                LoadBestSeller();
                 LoadGrocery();
                 IsRefreshing = false;
             });

@@ -90,7 +90,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
             RefreshCommand = new Command<string>((key) =>
             {
-                //FoodBrowserPage.LastIndex = 11;
+                FoodBrowserPage.LastIndex = 12;
                 _bestSellers.Clear();
                 foodstorelist.Clear();
                 LoadBestSeller();
@@ -116,7 +116,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
                     if (success)
                     {
                         Models.TindaFeature.StoreModel store = JsonConvert.DeserializeObject<Models.TindaFeature.StoreModel>(data);
-                        Console.WriteLine(store.data.Length);
                         if (store.data.Length > 0)
                         {
                             HeaderSize = "280";
@@ -171,7 +170,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 string close_time = string.IsNullOrEmpty(store.data[i].closing) ? "00:00:00" : store.data[i].closing;
                                 DateTime open = DateTime.ParseExact(open_time, "HH:mm:ss", provider);
                                 DateTime close = DateTime.ParseExact(close_time, "HH:mm:ss", provider);
-                                string open_close = string.IsNullOrEmpty(store.data[i].operation_id) ? "Closed" : open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
+                                string open_close = string.IsNullOrEmpty(store.data[i].operation_id) ? "Closed" : open.ToString("HH:mm tt") + " - " + close.ToString("HH:mm tt");
                                 string add = string.IsNullOrEmpty(store.data[i].street) || string.IsNullOrEmpty(store.data[i].brgy) || string.IsNullOrEmpty(store.data[i].city) || string.IsNullOrEmpty(store.data[i].province) ? "" : store.data[i].street + " " + store.data[i].brgy + " " + store.data[i].city + ", " + store.data[i].province;
                                 foodstorelist.Add(new Models.TindaFeature.StoreModel()
                                 {
@@ -222,7 +221,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                 string close_time = string.IsNullOrEmpty(store.data[i].closing) ? "00:00:00" : store.data[i].closing;
                                 DateTime open = DateTime.ParseExact(open_time, "HH:mm:ss", provider);
                                 DateTime close = DateTime.ParseExact(close_time, "HH:mm:ss", provider);
-                                string open_close = string.IsNullOrEmpty(store.data[i].operation_id) ? "Closed" : open.ToString("hh:mm tt") + " - " + close.ToString("hh:mm tt");
+                                string open_close = string.IsNullOrEmpty(store.data[i].operation_id) ? "Closed" : open.ToString("HH:mm tt") + " - " + close.ToString("HH:mm tt");
                                 string add = string.IsNullOrEmpty(store.data[i].street) || string.IsNullOrEmpty(store.data[i].brgy) || string.IsNullOrEmpty(store.data[i].city) || string.IsNullOrEmpty(store.data[i].province) ? "" : store.data[i].street + " " + store.data[i].brgy + " " + store.data[i].city + ", " + store.data[i].province;
                                 foodstorelist.Add(new Models.TindaFeature.StoreModel()
                                 {

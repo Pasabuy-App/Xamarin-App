@@ -24,6 +24,9 @@
     <ContentPage.BindingContext>
         <viewModel:TakeIdPhotoViewModel />
     </ContentPage.BindingContext>
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" Default="0, 0, 0, 0" />
+    </ContentPage.Padding>
 
     <ContentPage.ControlTemplate>
         <ControlTemplate>
@@ -31,12 +34,11 @@
                 <controls:TitleView Title="Take ID Photo" 
                                     BackgroundColor="{DynamicResource PrimaryColor}" >
                     <controls:TitleView.LeadingView >
-                        <buttons:SfButton
-                            x:Name="backButton"
-                            Clicked="BackButtonClicked"
-                            CornerRadius="4"
-                            Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Back}" />
+                        <ImageButton Source="arrow_left.png"
+                                     HeightRequest="25"
+                                     WidthRequest="25"
+                                     BackgroundColor="Transparent"
+                                     Clicked="BackButtonClicked" />
                     </controls:TitleView.LeadingView>
                 </controls:TitleView>
                 <ContentPresenter />
@@ -62,7 +64,7 @@
 
             <justified:JustifiedLabel Grid.ColumnSpan="2"
                                       Grid.Row="0"
-                                      Margin="16,10,16,10"
+                                      Margin="10,10,10,10"
                                       TextColor="{DynamicResource Gray-800}"
                                       Text="Take a photo of your id. Make sure that the image is not blurry and the contents are readable."
                                       HorizontalOptions="FillAndExpand"
@@ -87,6 +89,7 @@
 
             <Grid Grid.Row="1"
                   Grid.ColumnSpan="2" 
+                  Margin="10,0,10,0"
                   BackgroundColor="{DynamicResource Gray-200}"
                   VerticalOptions="FillAndExpand" 
                   HeightRequest="250"

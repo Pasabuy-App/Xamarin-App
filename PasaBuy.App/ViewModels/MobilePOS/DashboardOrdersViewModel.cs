@@ -193,7 +193,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                     StoreAddress = order.data[i].store_address,
                                     CustomerAddress = order.data[i].cutomer_address,
                                     CustomerName = order.data[i].customer,
-                                    Avatar = PSAProc.GetUrl(order.data[i].avatar),
+                                    Avatar = string.IsNullOrEmpty(PSAProc.GetUrl(order.data[i].avatar)) || PSAProc.GetUrl(order.data[i].avatar) == "None" ? "Avatar.png" : PSAProc.GetUrl(order.data[i].avatar),
                                     Stages = order.data[i].stages
                                 });
                             }
