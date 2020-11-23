@@ -5,7 +5,7 @@
              xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
              xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
-             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:loading="clr-namespace:PasaBuy.App.UserControls" xmlns:effects="clr-namespace:Xamarin.Toolkit.Effects;assembly=Xamarin.Toolkit.Effects"
              x:Class="PasaBuy.App.Views.Settings.VerificationFillPage"
              BackgroundColor="{StaticResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
@@ -71,7 +71,11 @@
                         HeightRequest="20" 
                         FontSize="14"
                         Text="Dont worry! Your information is safe with us."
-                        TextColor="{DynamicResource Gray-800}" />
+                        TextColor="{DynamicResource Gray-800}">
+                        <Label.Effects>
+                            <effects:LabelSizeFontToFit />
+                        </Label.Effects>
+                    </Label>
 
 
                     <Label

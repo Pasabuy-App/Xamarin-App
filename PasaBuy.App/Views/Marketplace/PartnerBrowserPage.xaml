@@ -213,14 +213,11 @@
 
                                                 <!--  Description of store  -->
                                                  <Label Text="{Binding Info}"
-                                                           FontSize="{DynamicResource SmallSize}"
+                                                           FontSize="{DynamicResource SmallerSize}"
                                                            LineHeight="{OnPlatform Android=1.25,Default=-1}"
                                                            FontFamily="{StaticResource Montserrat-Medium}"
                                                            LineBreakMode="TailTruncation"
                                                            VerticalTextAlignment="Center">
-                                                        <Label.Effects>
-                                                            <effects:LabelSizeFontToFit />
-                                                        </Label.Effects>
                                                     </Label>
 
 
