@@ -170,9 +170,18 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2PDT-D1PVM.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: TPV2PDT-D1PVM", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-TPV2PDT-D1PVM-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2PDT-D1PVM.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-TPV2PDT-D1PVM-" + err.ToString());
+                }
                 IsRunning = false;
             }
         }
@@ -228,9 +237,18 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                     });
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2PDT-L1PVM.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: TPV2PDT-L1PVM", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-TPV2PDT-L1PVM-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2PDT-L1PVM.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-TPV2PDT-L1PVM-" + err.ToString());
+                }
                 IsRunning = false;
             }
         }
@@ -280,9 +298,18 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                     }
                 });
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2PDT-L2PVM.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: TPV2PDT-L1PVM", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-TPV2PDT-L1PVM-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2PDT-L1PVM.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-TPV2PDT-L1PVM-" + err.ToString());
+                }
             }
         }
     }

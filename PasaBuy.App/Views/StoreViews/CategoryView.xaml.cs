@@ -1,12 +1,7 @@
-﻿using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Local;
+﻿using PasaBuy.App.Local;
 using PasaBuy.App.ViewModels.MobilePOS;
-using PasaBuy.App.Views.PopupModals;
-using Rg.Plugins.Popup.Services;
 using System;
 using System.Linq;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -84,16 +79,25 @@ namespace PasaBuy.App.Views.StoreViews
                             }
                             else
                             {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                                 IsRunning.IsRunning = false;
                             }
                         });
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception err)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2CAT-D1.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: TPV2CAT-UD1CV", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-TPV2CAT-UD1CV-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2CAT-UD1CV.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-TPV2CAT-UD1CV-" + err.ToString());
+                }
                 IsRunning.IsRunning = false;
             }
         }

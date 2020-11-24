@@ -1,15 +1,9 @@
-﻿using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Local;
+﻿using PasaBuy.App.Local;
 using PasaBuy.App.ViewModels.MobilePOS;
 using Plugin.Media;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -57,16 +51,25 @@ namespace PasaBuy.App.Views.PopupModals
                             }
                             else
                             {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                                 IsRunning.IsRunning = false;
                             }
                         });
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2DOC-U1PUEDS.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: TPV2CAT-U1PUEDS", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-TPV2CAT-U1PUEDS-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2CAT-U1PUEDS.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-TPV2CAT-U1PUEDS-" + err.ToString());
+                }
                 IsRunning.IsRunning = false;
             }
 
@@ -85,7 +88,7 @@ namespace PasaBuy.App.Views.PopupModals
                 await CrossMedia.Current.Initialize();
                 if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
                 {
-                    new Alert("Error", "No camera available.", "Failed");
+                    new Controllers.Notice.Alert("Error", "No camera available.", "OK");
                     IsRunning.IsRunning = false;
                 }
 
@@ -123,7 +126,7 @@ namespace PasaBuy.App.Views.PopupModals
                 await CrossMedia.Current.Initialize();
                 if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
                 {
-                    new Alert("Error", "No camera available.", "Failed");
+                    new Controllers.Notice.Alert("Error", "No camera available.", "OK");
                     IsRunning.IsRunning = false;
                 }
 
