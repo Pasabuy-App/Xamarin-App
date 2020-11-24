@@ -96,7 +96,7 @@ namespace PasaBuy.App.ViewModels.Currency
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: CPV1WLT-T1PLSVM.", "OK");
             }
         }
 
@@ -125,7 +125,7 @@ namespace PasaBuy.App.ViewModels.Currency
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: CPV1WLT-C1PLSVM.", "OK");
             }
         }
 
@@ -148,7 +148,7 @@ namespace PasaBuy.App.ViewModels.Currency
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: CPV1WLT-B1PLSVM.", "OK");
             }
         }
     }

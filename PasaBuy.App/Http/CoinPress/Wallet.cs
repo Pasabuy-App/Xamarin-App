@@ -140,39 +140,6 @@ namespace PasaBuy.App.Http.CoinPress
             }
         }
 
-        public async void Listing(string type, Action<bool, string> callback)
-        {
-            try
-            {
-                var dict = new Dictionary<string, string>();
-                dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
-                dict.Add("snky", PSACache.Instance.UserInfo.snky);
-                dict.Add("type", type);
-                var content = new FormUrlEncodedContent(dict);
-
-                var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/coinpress/v1/user/wallet/list", content);
-                response.EnsureSuccessStatusCode();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    string result = await response.Content.ReadAsStringAsync();
-                    Token token = JsonConvert.DeserializeObject<Token>(result);
-
-                    bool success = token.status == "success" ? true : false;
-                    string data = token.status == "success" ? result : token.message;
-                    callback(success, data);
-                }
-                else
-                {
-                    callback(false, "Network Error! Check your connection.");
-                }
-            }
-            catch (Exception e)
-            {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: CPV1WLT-L1.", "OK");
-            }
-        }
-
         public async void Transactions(string query, string user, string cy, string lid, Action<bool, string> callback)
         {
             try

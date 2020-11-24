@@ -165,7 +165,7 @@ namespace PasaBuy.App.ViewModels.Currency
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: CPV1WLT-T1WSVM.", "OK");
             }
         }
         public void CreateWallet()
@@ -202,7 +202,7 @@ namespace PasaBuy.App.ViewModels.Currency
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: CPV1WLT-C1WSVM.", "OK");
                 IsRunning = false;
             }
         }
@@ -225,7 +225,7 @@ namespace PasaBuy.App.ViewModels.Currency
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: CPV1WLT-B1WSVM.", "OK");
             }
         }
         #endregion

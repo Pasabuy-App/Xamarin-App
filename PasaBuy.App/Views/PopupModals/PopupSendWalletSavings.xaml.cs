@@ -56,7 +56,7 @@ namespace PasaBuy.App.Views.PopupModals
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: CPV1WLT-V1PUSWS.", "OK");
                 IsRunning.IsRunning = false;
             }
         }
@@ -102,7 +102,7 @@ namespace PasaBuy.App.Views.PopupModals
             }
             catch (Exception ex)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: CPV1WLT-S1PUSWS.", "OK");
                 IsRunning.IsRunning = false;
             }
         }
