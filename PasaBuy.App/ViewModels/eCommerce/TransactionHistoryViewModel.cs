@@ -1,7 +1,5 @@
 ﻿using Newtonsoft.Json;
-using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
-using PasaBuy.App.Models.eCommerce;
 using PasaBuy.App.Views.Settings;
 using System;
 using System.Collections.ObjectModel;
@@ -130,13 +128,22 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     }
                     else
                     {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                     }
                 });
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ODR-L1THVM.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: MPV2ODR-L1THVM", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-MPV2ODR-L1THVM-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ODR-L1THVM.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-MPV2ODR-L1THVM-" + err.ToString());
+                }
             }
         }
         public void LoadData()
@@ -201,60 +208,26 @@ namespace PasaBuy.App.ViewModels.eCommerce
                         }
                         else
                         {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                             IsRunning = false;
                         }
                     });
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ODR-L1THVM.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: MPV2ODR-L1THVM", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-MPV2ODR-L1THVM-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ODR-L1THVM.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-MPV2ODR-L1THVM-" + err.ToString());
+                }
                 IsRunning = false;
             }
-        }
-        public void SampleData()
-        {
-            /*var randomNum = new Random(0123456789);
-            this.TransactionDetails = new ObservableCollection<Transactions>()
-            {
-                new Transactions
-                {
-                     CustomerName = "Lorz Dela Cruz",
-                     TransactionDescription = "Cashback",
-                     Image = PSAConfig.sfRootUrl + "ProfileImage15.png",
-                     TransactionAmount = "+ $70",
-                     Date = DateTime.Now.AddDays(randomNum.Next(-1000, 0)),
-                     IsCredited = true
-                },
-                new Transactions
-                {
-                     CustomerName = "Miguel San Miguel",
-                     TransactionDescription = "XXXXXXX6585",
-                     Image = PSAConfig.sfRootUrl + "ProfileImage10.png",
-                     TransactionAmount = "+ $80",
-                     Date = DateTime.Now.AddDays(randomNum.Next(-1000, 0)),
-                     IsCredited = true
-                },
-                new Transactions
-                {
-                     CustomerName = "Russel Desiguel",
-                     TransactionDescription = "Recharge",
-                     Image = PSAConfig.sfRootUrl + "ProfileImage11.png",
-                     TransactionAmount = "- $50",
-                     Date = DateTime.Now.AddDays(randomNum.Next(-1000, 0)),
-                     IsCredited = false
-                },
-                new Transactions
-                {
-                     CustomerName = "Caezar Baltazar",
-                     TransactionDescription = "Credit Card Bill",
-                     Image = PSAConfig.sfRootUrl + "ProfileImage12.png",
-                     TransactionAmount = "- $180",
-                     Date = DateTime.Now.AddDays(randomNum.Next(-1000, 0)),
-                     IsCredited = false
-                },
-            };*/
         }
         #endregion
 
