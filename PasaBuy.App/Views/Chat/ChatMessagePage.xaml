@@ -30,12 +30,12 @@
                 <controls:TitleView Title="Conversation" 
                                     BackgroundColor="{DynamicResource PrimaryColor}" >
                     <controls:TitleView.LeadingView>
-                        <buttons:SfButton
-                            x:Name="backButton"
-                            Clicked="BackButtonClicked"
-                            CornerRadius="4"
-                            Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Back}" />
+                        <ImageButton Source="arrow_left.png"
+                                 Grid.Column="0"
+                                     HeightRequest="25"
+                                     WidthRequest="25"
+                                     BackgroundColor="Transparent"
+                                     Clicked="BackButtonClicked" />
                     </controls:TitleView.LeadingView>
                 </controls:TitleView>
                 <ContentPresenter />
@@ -109,7 +109,7 @@
                                     Margin="8,0"
                                     BackgroundColor="{DynamicResource Gray-200}"
                                     Style="{StaticResource ProfileBorderStyle}">
-                                    <Image
+                                    <Image Aspect="AspectFill"
                                         HeightRequest="35"
                                         WidthRequest="35">
                                         <Image.Source>
@@ -213,15 +213,9 @@
                                     VerticalOptions="End"
                                     WidthRequest="40">
                                     <buttons:SfButton.Content>
-                                        <Label
-                                            Margin="0,2,2,0"
-                                            FontFamily="{StaticResource FontIcons}"
-                                            FontSize="18"
-                                            HorizontalOptions="Center"
-                                            Text="{StaticResource Send}"
-                                            TextColor="{DynamicResource Gray-White}"
-                                            VerticalOptions="Center"
-                                            VerticalTextAlignment="Center" />
+                                        <StackLayout Padding="10">
+                                            <Image Source="https://dev.pasabuy.app/wp-content/uploads/2020/11/send_white.png"/>
+                                        </StackLayout>
                                     </buttons:SfButton.Content>
                                 </buttons:SfButton>
 
