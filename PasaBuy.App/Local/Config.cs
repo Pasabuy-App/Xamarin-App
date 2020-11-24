@@ -14,6 +14,11 @@ namespace PasaBuy.App.Local
         public static bool onProduction { get; } = true;
 
         /// <summary>
+        /// Show stack trace on catch error.
+        /// </summary>
+        public static bool isDebuggable { get; } = true;
+
+        /// <summary>
         /// Does the current RestURL used SSL.
         /// </summary>
         public static bool onSSL { get; } = true;
