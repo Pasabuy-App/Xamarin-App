@@ -1,10 +1,7 @@
 ﻿using Newtonsoft.Json;
-using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Onboarding;
 using PasaBuy.App.Views.Onboarding;
-using PasaBuy.App.Views.PopupModals;
-using Rg.Plugins.Popup.Services;
 using System;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -154,7 +151,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
 
                         if (!token.isSuccess)
                         {
-                            new Alert("Something went Wrong", HtmlUtils.ConvertToPlainText(token.message), "OK");
+                            new Controllers.Notice.Alert("Something went Wrong", HtmlUtils.ConvertToPlainText(token.message), "OK");
                             State = false;
                             return;
                         }
@@ -204,28 +201,37 @@ namespace PasaBuy.App.ViewModels.Onboarding
 
                                 else
                                 {
-                                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data2), "Try Again");
+                                    new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data2), "Try Again");
                                     State = false;
                                 }
                             }
 
                             else
                             {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                                 State = false;
                             }
                         });
                     }
                     else
                     {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                         State = false;
                     }
                 });
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-A1SIVM.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: DVV1URS-A1SIVM", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-DVV1URS-A1SIVM-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-A1SIVM.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-DVV1URS-A1SIVM-" + err.ToString());
+                }
                 State = false;
             }
         }
@@ -236,21 +242,14 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void SignUpClicked(object obj)
         {
-            try
+            if (!State)
             {
-                if (!State)
+                State = true;
+                Device.BeginInvokeOnMainThread(async () =>
                 {
-                    State = true;
-                    Device.BeginInvokeOnMainThread(async () =>
-                   {
-                       await App.Current.MainPage.Navigation.PushModalAsync(new SignUpPage());
-                       State = false;
-                   });
-                }
-            }
-            catch (Exception e)
-            {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                    await App.Current.MainPage.Navigation.PushModalAsync(new SignUpPage());
+                    State = false;
+                });
             }
         }
 
@@ -260,21 +259,14 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// <param name="obj">The Object</param>
         private void ForgotPasswordClicked(object obj)
         {
-            try
+            if (!State)
             {
-                if (!State)
+                State = true;
+                Device.BeginInvokeOnMainThread(() =>
                 {
-                    State = true;
-                    Device.BeginInvokeOnMainThread(() =>
-                    {
-                        App.Current.MainPage.Navigation.PushModalAsync(new ForgotPwPage());
-                        State = false;
-                    });
-                }
-            }
-            catch (Exception e)
-            {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                    App.Current.MainPage.Navigation.PushModalAsync(new ForgotPwPage());
+                    State = false;
+                });
             }
         }
 
