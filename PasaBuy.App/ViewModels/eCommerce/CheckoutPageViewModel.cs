@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using PasaBuy.App.Commands;
-using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.eCommerce;
 using PasaBuy.App.Views.eCommerce;
@@ -102,13 +101,22 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     }
                     else
                     {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                     }
                 });
             }
-            catch (Exception ex)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2ODR-F1CPVM.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: HPV2ODR-F1CPVM", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-HPV2ODR-F1CPVM-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2ODR-F1CPVM.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-HPV2ODR-F1CPVM-" + err.ToString());
+                }
             }
         }
 
@@ -191,7 +199,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     }
                     else
                     {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
 
                     }
                 });
@@ -522,7 +530,7 @@ namespace PasaBuy.App.ViewModels.eCommerce
                     isRunning = true;
                     if (address_id == 0)
                     {
-                        new Alert("Notice to User", "Please select address.", "Try Again");
+                        new Controllers.Notice.Alert("Notice to User", "Please select address.", "Try Again");
                         isRunning = false;
                     }
                     else if (PaymentView.method != string.Empty)
@@ -553,21 +561,21 @@ namespace PasaBuy.App.ViewModels.eCommerce
                                 }
                                 else
                                 {
-                                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                    new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                                     isRunning = false;
                                 }
                             });
                         }
                     else
                     {
-                        new Alert("Notice to User", "Please select payment method.", "Try Again");
+                        new Controllers.Notice.Alert("Notice to User", "Please select payment method.", "Try Again");
                         isRunning = false;
                     }
                 }
             }
             catch (Exception e)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
                 isRunning = false;
             }
         }
