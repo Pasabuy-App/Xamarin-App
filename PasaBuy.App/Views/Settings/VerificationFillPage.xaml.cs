@@ -75,11 +75,20 @@ namespace PasaBuy.App.Views.Settings
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception err)
             {
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: DVV1DOC-I1VFP", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-DVV1DOC-I1VFP-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1DOC-I1VFP.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-DVV1DOC-I1VFP-" + err.ToString());
+                }
                 isEnable = false;
                 Loader.IsVisible = false;
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
             }
         }
     }
