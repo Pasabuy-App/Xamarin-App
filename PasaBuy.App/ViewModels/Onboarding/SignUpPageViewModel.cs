@@ -262,6 +262,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
                             if (success)
                             {
                                 State = false;
+                                CreatePasswordViewModel.user_email = Email;
                                 Application.Current.MainPage = new CreatePassword();
                             }
 
