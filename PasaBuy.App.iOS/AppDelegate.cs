@@ -59,6 +59,7 @@ namespace PasaBuy.App.iOS
             SfButtonRenderer.Init();
             new SfBusyIndicatorRenderer();
             new SfAccordionRenderer();
+            new SfComboBoxRenderer();
             Rg.Plugins.Popup.Popup.Init();
             Plugin.LocalNotification.NotificationCenter.AskPermission();
    

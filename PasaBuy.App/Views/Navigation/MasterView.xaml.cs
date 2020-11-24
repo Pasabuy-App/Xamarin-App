@@ -87,7 +87,7 @@ namespace PasaBuy.App.Views.Navigation
                     }
                 }
 
-                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Management"), Icon = "https://dev.pasabuy.appmanagement-prim.png", TargetType = typeof(ManagementView) });
+                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Management"), Icon = "https://dev.pasabuy.app/wp-content/uploads/2020/11/management-prim.png", TargetType = typeof(ManagementView) });
                 //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Categories"), Icon = "Idcard.png", TargetType = typeof(CategoryView) });/wp-content/uploads/2020/11/
                 //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Transactions"), Icon = "Idcard.png", TargetType = typeof(TransactionsView) });
                 //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Messages"), Icon = "https://pasabuy.app/wp-content/uploads/2020/10/messages.jpg", TargetType = typeof(MessagesView) });
@@ -127,8 +127,9 @@ namespace PasaBuy.App.Views.Navigation
             navigationDrawerList.ItemsSource = menuList;
             navigationDrawerList.SelectedItem = menuList.FirstOrDefault();
 
-
         }
+
+
 
         private void SwitchChanges(object sender, EventArgs e)
         {

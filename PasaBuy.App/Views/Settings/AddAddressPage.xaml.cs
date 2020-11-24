@@ -23,6 +23,7 @@ namespace PasaBuy.App.Views.Settings
             CountryPicker.BindingContext = country;
             CountryPicker.DataSource = country.CountryCollection;
             CountryPicker.DisplayMemberPath = "Name";
+            Console.WriteLine(country.CountryCollection);
         }
 
         public void BackButtonClicked(object sender, EventArgs e)

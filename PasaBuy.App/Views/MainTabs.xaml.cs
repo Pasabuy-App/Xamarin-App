@@ -37,6 +37,10 @@ namespace PasaBuy.App.Views
             BindingContext = this;
         }
 
+        protected override void OnAppearing()
+        {
+            MessagingCenter.Send<string>("0", "DisableGesture");
+        }
 
         public ICommand ShowPasabuyStores { private set; get; }
 
