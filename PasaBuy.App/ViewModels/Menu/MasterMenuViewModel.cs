@@ -1,11 +1,6 @@
-﻿
-using Newtonsoft.Json;
-using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Library;
+﻿using Newtonsoft.Json;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Driver;
-using PasaBuy.App.Models.MobilePOS;
-using PasaBuy.App.ViewModels.Chat;
 using PasaBuy.App.ViewModels.Driver;
 using PasaBuy.App.ViewModels.Feeds;
 using PasaBuy.App.Views.Advisory;
@@ -180,9 +175,18 @@ namespace PasaBuy.App.ViewModels.Menu
                     }
                 });
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2MVR-P1MMVM.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: HPV2MVR-P1MMVM", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-HPV2MVR-P1MMVM-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2MVR-P1MMVM.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-HPV2MVR-P1MMVM-" + err.ToString());
+                }
             }
         }
 
