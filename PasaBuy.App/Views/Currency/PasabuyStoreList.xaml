@@ -43,7 +43,12 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid>
+
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"   
+                     x:Name="rv"
+                     Command="{Binding RefreshCommand}">
+            <ScrollView>
+                <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -185,14 +190,14 @@
                                                    FontFamily="{StaticResource Montserrat-Medium}"
                                                    FontSize="{DynamicResource SmallerSize}"
                                                    LineHeight="{OnPlatform Android=1.2,Default=-1}"
-                                                   Text="{Binding Street}" />
+                                                   Text="{Binding Address}" />
 
                                             <Label LineBreakMode="TailTruncation"
                                                    Margin="0,4,0,0"
                                                    FontFamily="{StaticResource Montserrat-Medium}"
                                                    FontSize="{DynamicResource SmallerSize}"
                                                    LineHeight="{OnPlatform Android=1.25,Default=-1}"
-                                                   Text="{Binding TodayScheds}" />
+                                                   Text="{Binding Open_Close}" />
 
                                           
                                         </StackLayout>
@@ -209,10 +214,13 @@
             </StackLayout>
             <loading:LoadingIndicator
                     Grid.RowSpan="3"
+                    x:Name="IsRunning"
                     HorizontalOptions="Fill"
                     IsRunning="{Binding IsRunning, Mode=TwoWay}"
                     VerticalOptions="Fill" />
-        </Grid>
+                </Grid>
+            </ScrollView>
+        </RefreshView>
 
     </ContentPage.Content>
 </ContentPage>

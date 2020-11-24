@@ -13,10 +13,63 @@ namespace PasaBuy.App.Views.Currency
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PasabuyStoreList : ContentPage
     {
+        public static int LastIndex = 12;
         public PasabuyStoreList()
         {
             InitializeComponent();
             this.BindingContext = new PasabuyStoreListViewModel();
+            SearchEntry.Completed += (sender, args) => SearchStore(sender, args);
+            StoreList.Scrolled += OnCollectionViewScrolled;
+        }
+
+        public void ClearSearch()
+        {
+            this.SearchButton.IsVisible = true;
+            if (this.TitleView != null)
+            {
+                double opacity;
+
+                // Animating Width of the search box, from full width to 0 before it removed from view.
+                var shrinkAnimation = new Animation(property =>
+                {
+                    Search.WidthRequest = property;
+                    opacity = property / TitleView.Width;
+                    Search.Opacity = opacity;
+                },
+                TitleView.Width, 0, Easing.Linear);
+                shrinkAnimation.Commit(Search, "Shrink", 16, 250, Easing.Linear, (p, q) => this.SearchBoxAnimationCompleted());
+            }
+            SearchEntry.Text = string.Empty;
+        }
+
+        public async void SearchStore(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(SearchEntry.Text))
+            {
+                if (IsRunning.IsRunning == false)
+                {
+                    IsRunning.IsRunning = true;
+                    PasabuyStoreListViewModel._storeList.Clear();
+                    PasabuyStoreListViewModel.LoadMore(SearchEntry.Text, "");
+                    ClearSearch();
+                    await Task.Delay(500);
+                    IsRunning.IsRunning = false;
+                }
+            }
+        }
+        async void OnCollectionViewScrolled(object sender, ItemsViewScrolledEventArgs e)
+        {
+            if (e.LastVisibleItemIndex >= LastIndex)
+            {
+                if (IsRunning.IsRunning == false)
+                {
+                    IsRunning.IsRunning = true;
+                    PasabuyStoreListViewModel.LoadMore("", LastIndex.ToString());
+                    LastIndex += 7;
+                    await Task.Delay(500);
+                    IsRunning.IsRunning = false;
+                }
+            }
         }
 
         private async void backButton_Clicked(object sender, EventArgs e)
