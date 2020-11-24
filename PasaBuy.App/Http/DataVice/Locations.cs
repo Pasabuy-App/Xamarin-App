@@ -71,9 +71,18 @@ namespace PasaBuy.App.Http.DataVice
                     callback(false, "Network Error! Check your connection.");
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1LOC-B1.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: DVV1LOC-B1", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-DVV1LOC-B1-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1LOC-B1.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-DVV1LOC-B1-" + err.ToString());
+                }
             }
         }
 
@@ -106,9 +115,18 @@ namespace PasaBuy.App.Http.DataVice
                     callback(false, "Network Error! Check your connection.");
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1LOC-CT1.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: DVV1LOC-CT1", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-DVV1LOC-CT1-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1LOC-CT1.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-DVV1LOC-CT1-" + err.ToString());
+                }
             }
         }
 
@@ -140,9 +158,18 @@ namespace PasaBuy.App.Http.DataVice
                     callback(false, "Network Error! Check your connection.");
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1LOC-C1.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: DVV1LOC-C1", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-DVV1LOC-C1-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1LOC-C1.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-DVV1LOC-C1-" + err.ToString());
+                }
             }
         }
 
@@ -175,9 +202,18 @@ namespace PasaBuy.App.Http.DataVice
                     callback(false, "Network Error! Check your connection.");
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1LOC-P1.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: DVV1LOC-P1", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-DVV1LOC-P1-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1LOC-P1.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-DVV1LOC-P1-" + err.ToString());
+                }
             }
         }
 

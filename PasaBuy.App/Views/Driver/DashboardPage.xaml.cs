@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using PasaBuy.App.Local;
-using PasaBuy.App.Models.Driver;
 using PasaBuy.App.Views.PopupModals;
 using System;
 using Xamarin.Essentials;
@@ -8,8 +7,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 using Xamarin.Forms.Xaml;
 using Rg.Plugins.Popup.Services;
-using System.Linq;
-using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Models.MobilePOS;
 using System.Threading.Tasks;
 
@@ -84,9 +81,18 @@ namespace PasaBuy.App.Views.Driver
                     }
                 });
             }
-            catch (Exception ex)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2ODR-Q1DP.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: HPV2ODR-Q1DP", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-HPV2ODR-Q1DP-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2ODR-Q1DP.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-HPV2ODR-Q1DP-" + err.ToString());
+                }
             }
         }
         private void CollectionChages(object sender, EventArgs e)
@@ -131,9 +137,18 @@ namespace PasaBuy.App.Views.Driver
                     }
                 });
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2ODR-V1DP.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: HPV2ODR-V1DP", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-HPV2ODR-V1DP-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2ODR-V1DP.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-HPV2ODR-V1DP-" + err.ToString());
+                }
                 //Refresh.IsEnabled = true;
                 Pending_Order.IsVisible = false;
             }
@@ -198,13 +213,22 @@ namespace PasaBuy.App.Views.Driver
                     }
                     else
                     {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                     }
                 });
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ODR-L1DP.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: MPV2ODR-L1DP", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-MPV2ODR-L1DP-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ODR-L1DP.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-MPV2ODR-L1DP-" + err.ToString());
+                }
             }
         }
 
@@ -220,9 +244,18 @@ namespace PasaBuy.App.Views.Driver
                     }
                 });
             }
-            catch (Exception ex)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2MVR-L1DP.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: HPV2MVR-L1DP", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-HPV2MVR-L1DP-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2MVR-L1DP.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-HPV2MVR-L1DP-" + err.ToString());
+                }
             }
         }
 
@@ -319,9 +352,18 @@ namespace PasaBuy.App.Views.Driver
                     });
                 }
             }
-            catch (Exception ex)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2ODR-Q1DP.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: HPV2ODR-Q1DP", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-HPV2ODR-Q1DP-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2ODR-Q1DP.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-HPV2ODR-Q1DP-" + err.ToString());
+                }
                 IsRunning.IsRunning = false;
             }
         }

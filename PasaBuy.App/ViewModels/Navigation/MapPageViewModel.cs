@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.DataService;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Navigation;
@@ -9,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
@@ -83,15 +81,24 @@ namespace PasaBuy.App.ViewModels
                         }
                         else
                         {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                             IsBusy = false;
                         }
                     });
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ODR-L1MPVM.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: MPV2ODR-L1MPVM", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-MPV2ODR-L1MPVM-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ODR-L1MPVM.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-MPV2ODR-L1MPVM-" + err.ToString());
+                }
                 IsBusy = false;
             }
         }
@@ -134,16 +141,25 @@ namespace PasaBuy.App.ViewModels
                             }
                             else
                             {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                                 IsBusy = false;
                             }
                         });
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ODR-U1MPVM.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: MPV2ODR-U1MPVM", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-MPV2ODR-U1MPVM-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ODR-U1MPVM.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-MPV2ODR-U1MPVM-" + err.ToString());
+                }
                 IsBusy = false;
             }
         }

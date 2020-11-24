@@ -99,9 +99,18 @@ namespace PasaBuy.App.Http.SocioPress
                     callback(false, "Network Error! Check your connection.");
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code:" + e, "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: SPV1PST-I1", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-SPV1PST-I1-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1PST-I1.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-SPV1PST-I1-" + err.ToString());
+                }
             }
         }
 
@@ -134,9 +143,18 @@ namespace PasaBuy.App.Http.SocioPress
                     callback(false, "Network Error! Check your connection.");
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1PST-P1.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: SPV1PST-P1", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-SPV1PST-P1-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1PST-P1.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-SPV1PST-P1-" + err.ToString());
+                }
             }
         }
 
@@ -168,9 +186,18 @@ namespace PasaBuy.App.Http.SocioPress
                     callback(false, "Network Error! Check your connection.");
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1PST-H1.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: SPV1PST-H1", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-SPV1PST-H1-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1PST-H1.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-SPV1PST-H1-" + err.ToString());
+                }
             }
         }
 

@@ -1,6 +1,4 @@
-﻿
-using Newtonsoft.Json;
-using PasaBuy.App.Controllers.Notice;
+﻿using Newtonsoft.Json;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Marketplace;
 using PasaBuy.App.Views.eCommerce;
@@ -237,7 +235,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                     }
                     else
                     {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                     }
                 });
             }
@@ -388,14 +386,23 @@ namespace PasaBuy.App.ViewModels.Marketplace
                     }
                     else
                     {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                         IsRunning = false;
                     }
                 });
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error: TPV2CAT-PPC1SDVM.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: TPV2CAT-PPC1SDVM", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-TPV2CAT-PPC1SDVM-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2CAT-PPC1SDVM.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-TPV2CAT-PPC1SDVM-" + err.ToString());
+                }
                 IsRunning = false;
             }
         }

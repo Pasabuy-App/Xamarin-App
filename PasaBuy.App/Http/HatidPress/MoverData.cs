@@ -71,9 +71,18 @@ namespace PasaBuy.App.Http.HatidPress
                     callback(false, "Network Error! Check your connection.");
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2MVR-P1.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: HPV2MVR-P1", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-HPV2MVR-P1-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2MVR-P1.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-HPV2MVR-P1-" + err.ToString());
+                }
             }
         }
 
@@ -107,9 +116,18 @@ namespace PasaBuy.App.Http.HatidPress
                     callback(false, "Network Error! Check your connection.");
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2MVR-A1.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: HPV2MVR-A1", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-HPV2MVR-A1-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2MVR-A1.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-HPV2MVR-A1-" + err.ToString());
+                }
             }
         }
 
@@ -145,9 +163,18 @@ namespace PasaBuy.App.Http.HatidPress
                     callback(false, "Network Error! Check your connection.");
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2MVR-R1.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: HPV2MVR-R1", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-HPV2MVR-R1-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2MVR-R1.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-HPV2MVR-R1-" + err.ToString());
+                }
             }
         }
 
@@ -183,9 +210,18 @@ namespace PasaBuy.App.Http.HatidPress
                     callback(false, "Network Error! Check your connection.");
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2MVR-L1.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: HPV2MVR-L1", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-HPV2MVR-L1-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2MVR-L1.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-HPV2MVR-L1-" + err.ToString());
+                }
             }
         }
 

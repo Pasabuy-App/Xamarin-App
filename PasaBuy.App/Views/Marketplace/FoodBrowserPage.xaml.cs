@@ -17,25 +17,26 @@ namespace PasaBuy.App.Views.Marketplace
             InitializeComponent();
             this.BindingContext = new FoodBrowserViewModel();
             SearchEntry.Completed += (sender, args) => SearchStore(sender, args);
-            FoodBrowserViewModel.foodstorelist.CollectionChanged += CollectionChanges;
+            //FoodBrowserViewModel.foodstorelist.CollectionChanged += CollectionChanges;
 
             StoreListStack.Scrolled += OnCollectionViewScrolled;
         }
         async void OnCollectionViewScrolled(object sender, ItemsViewScrolledEventArgs e)
         {
-            if (e.LastVisibleItemIndex > LastIndex)
+            if (e.LastVisibleItemIndex >= LastIndex)
             {
                 if (IsRunning.IsRunning == false)
                 {
                     IsRunning.IsRunning = true;
-                    FoodBrowserViewModel.SearchStore("", LastIndex.ToString());
+                    FoodBrowserViewModel.SearchStore(SearchEntry.Text, LastIndex.ToString());
                     LastIndex += 7;
                     await Task.Delay(500);
                     IsRunning.IsRunning = false;
                 }
             }
         }
-        private void CollectionChanges(object sender, EventArgs e)
+
+        public void ClearSearch()
         {
             this.SearchButton.IsVisible = true;
             if (this.TitleView != null)
@@ -52,15 +53,22 @@ namespace PasaBuy.App.Views.Marketplace
                 TitleView.Width, 0, Easing.Linear);
                 shrinkAnimation.Commit(Search, "Shrink", 16, 250, Easing.Linear, (p, q) => this.SearchBoxAnimationCompleted());
             }
-
             SearchEntry.Text = string.Empty;
         }
-        public void SearchStore(object sender, EventArgs e)
+
+        public async void SearchStore(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(SearchEntry.Text))
             {
-                FoodBrowserViewModel.foodstorelist.Clear();
-                FoodBrowserViewModel.SearchStore(SearchEntry.Text, "");
+                if (IsRunning.IsRunning == false)
+                {
+                    IsRunning.IsRunning = true;
+                    FoodBrowserViewModel.foodstorelist.Clear();
+                    FoodBrowserViewModel.SearchStore(SearchEntry.Text, "");
+                    ClearSearch();
+                    await Task.Delay(500);
+                    IsRunning.IsRunning = false;
+                }
             }
         }
 

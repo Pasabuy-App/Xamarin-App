@@ -18,25 +18,25 @@ namespace PasaBuy.App.Views.Marketplace
             isTapped = false;
 
             SearchEntry.Completed += (sender, args) => SearchStore(sender, args);
-            PartnerBrowserViewModel.storeList.CollectionChanged += CollectionChanges;
+            //PartnerBrowserViewModel.storeList.CollectionChanged += CollectionChanges;
             StoreList.Scrolled += OnCollectionViewScrolled;
         }
         async void OnCollectionViewScrolled(object sender, ItemsViewScrolledEventArgs e)
         {
-            if (e.LastVisibleItemIndex > LastIndex)
+            if (e.LastVisibleItemIndex >= LastIndex)
             {
                 if (IsRunning.IsRunning == false)
                 {
                     IsRunning.IsRunning = true;
-                    PartnerBrowserViewModel.SearchStore("", LastIndex.ToString());
+                    PartnerBrowserViewModel.SearchStore(SearchEntry.Text, LastIndex.ToString());
                     LastIndex += 7;
                     await Task.Delay(500);
                     IsRunning.IsRunning = false;
                 }
             }
         }
-    
-        private void CollectionChanges(object sender, EventArgs e)
+
+        public void ClearSearch()
         {
             this.SearchButton.IsVisible = true;
             if (this.TitleView != null)
@@ -53,15 +53,22 @@ namespace PasaBuy.App.Views.Marketplace
                 TitleView.Width, 0, Easing.Linear);
                 shrinkAnimation.Commit(Search, "Shrink", 16, 250, Easing.Linear, (p, q) => this.SearchBoxAnimationCompleted());
             }
-
             SearchEntry.Text = string.Empty;
         }
-        public void SearchStore(object sender, EventArgs e)
+
+        public async void SearchStore(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(SearchEntry.Text))
             {
-                PartnerBrowserViewModel.storeList.Clear();
-                PartnerBrowserViewModel.SearchStore(SearchEntry.Text, "");
+                if (IsRunning.IsRunning == false)
+                {
+                    IsRunning.IsRunning = true;
+                    PartnerBrowserViewModel.storeList.Clear();
+                    PartnerBrowserViewModel.SearchStore(SearchEntry.Text, "");
+                    ClearSearch();
+                    await Task.Delay(500);
+                    IsRunning.IsRunning = false;
+                }
             }
         }
 

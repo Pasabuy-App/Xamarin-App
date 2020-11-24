@@ -1,13 +1,8 @@
-﻿using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Local;
+﻿using PasaBuy.App.Local;
 using PasaBuy.App.ViewModels.Driver;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -99,21 +94,30 @@ namespace PasaBuy.App.Views.PopupModals
                             }
                             else
                             {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                                 isClicked = false;
                             }
                         });
                     }
                     else
                     {
-                        new Alert("Notice to User", "Please select all.", "Try Again");
+                        new Controllers.Notice.Alert("Notice to User", "Please select all.", "Try Again");
                         isClicked = false;
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2VHE-IV1PUVD.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: HPV2VHE-IV1PUVD", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-HPV2VHE-IV1PUVD-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2VHE-IV1PUVD.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-HPV2VHE-IV1PUVD-" + err.ToString());
+                }
                 isClicked = false;
             }
         }

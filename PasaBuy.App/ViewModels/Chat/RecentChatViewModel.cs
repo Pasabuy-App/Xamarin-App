@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Chat;
 using PasaBuy.App.Views.Chat;
@@ -122,13 +121,22 @@ namespace PasaBuy.App.ViewModels.Chat
                     }
                     else
                     {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                     }
                 });
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1MSG-L1RCVM.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: SPV1MSG-L1RCVM", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-SPV1MSG-L1RCVM-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1MSG-L1RCVM.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-SPV1MSG-L1RCVM-" + err.ToString());
+                }
             }
         }
 
@@ -205,15 +213,24 @@ namespace PasaBuy.App.ViewModels.Chat
                         }
                         else
                         {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                             IsRunning = false;
                         }
                     });
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1MSG-L1RCVM.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: SPV1MSG-L1RCVM", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-SPV1MSG-L1RCVM-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1MSG-L1RCVM.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-SPV1MSG-L1RCVM-" + err.ToString());
+                }
                 IsRunning = false;
             }
         }

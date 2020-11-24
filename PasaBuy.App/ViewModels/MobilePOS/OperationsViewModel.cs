@@ -1,7 +1,5 @@
 ﻿using Newtonsoft.Json;
-using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
-using PasaBuy.App.Models.MobilePOS;
 using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -160,15 +158,24 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                         }
                         else
                         {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                             IsRunning = false;
                         }
                     });
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2OPE-L1OVM.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: MPV2OPE-L1OVM", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-MPV2OPE-L1OVM-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2OPE-L1OVM.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-MPV2OPE-L1OVM-" + err.ToString());
+                }
                 IsRunning = false;
             }
         }
@@ -202,13 +209,22 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                     }
                     else
                     {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                     }
                 });
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2OPE-L2OVM.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: MPV2OPE-L1OVM", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-MPV2OPE-L1OVM-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2OPE-L1OVM.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-MPV2OPE-L1OVM-" + err.ToString());
+                }
             }
         }
 

@@ -71,9 +71,18 @@ namespace PasaBuy.App.Http.DataVice
                     callback(false, "Network Error! Check your connection.");
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-A1.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: DVV1URS-A1", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-DVV1URS-A1-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-A1.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-DVV1URS-A1-" + err.ToString());
+                }
             }
         }
 
@@ -105,45 +114,18 @@ namespace PasaBuy.App.Http.DataVice
                     callback(false, "Network Error! Check your connection.");
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-F1.", "OK");
-            }
-        }
-
-        /// <summary>
-        /// Reset password using activation key, username and password.
-        /// </summary>
-        public async void Reset(string activation_key, string username, string password, Action<bool, string> callback)
-        {
-            try
-            {
-                var dict = new Dictionary<string, string>();
-                    dict.Add("ak", activation_key);
-                    dict.Add("un", username);
-                    dict.Add("pw", password);
-                var content = new FormUrlEncodedContent(dict);
-
-                var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/datavice/v1/user/reset", content);
-                response.EnsureSuccessStatusCode();
-
-                if (response.IsSuccessStatusCode)
+                if (PSAConfig.isDebuggable)
                 {
-                    string result = await response.Content.ReadAsStringAsync();
-                    Token token = JsonConvert.DeserializeObject<Token>(result);
-
-                    bool success = token.status == "success" ? true : false;
-                    string data = token.status == "success" ? result : token.message;
-                    callback(success, data);
+                    new Controllers.Notice.Alert("Error Code: DVV1URS-F1", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-DVV1URS-F1-" + err.ToString());
                 }
                 else
                 {
-                    callback(false, "Network Error! Check your connection.");
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-F1.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-DVV1URS-F1-" + err.ToString());
                 }
-            }
-            catch (Exception e)
-            {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-R1.", "OK");
             }
         }
 
@@ -178,9 +160,18 @@ namespace PasaBuy.App.Http.DataVice
                     callback(false, "Network Error! Check your connection.");
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-S1.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: DVV1URS-S1", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-DVV1URS-S1-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-S1.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-DVV1URS-S1-" + err.ToString());
+                }
             }
         }
 
@@ -216,9 +207,18 @@ namespace PasaBuy.App.Http.DataVice
                     callback(false, "Network Error! Check your connection.");
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-EP1.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: DVV1URS-EP1", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-DVV1URS-EP1-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-EP1.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-DVV1URS-EP1-" + err.ToString());
+                }
             }
         }
 
@@ -254,9 +254,18 @@ namespace PasaBuy.App.Http.DataVice
                     callback(false, "Network Error! Check your connection.");
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-CP1.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: DVV1URS-CP1", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-DVV1URS-CP1-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-CP1.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-DVV1URS-CP1-" + err.ToString());
+                }
             }
         }
 
@@ -290,9 +299,18 @@ namespace PasaBuy.App.Http.DataVice
                     callback(false, "Network Error! Check your connection.");
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-NP1.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: DVV1URS-NP1", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-DVV1URS-NP1-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-NP1.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-DVV1URS-NP1-" + err.ToString());
+                }
             }
         }
 
@@ -326,9 +344,18 @@ namespace PasaBuy.App.Http.DataVice
                     callback(false, "Network Error! Check your connection.");
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-SU1.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: DVV1URS-SU1", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-DVV1URS-SU1-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-SU1.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-DVV1URS-SU1-" + err.ToString());
+                }
             }
         }
 
@@ -361,9 +388,18 @@ namespace PasaBuy.App.Http.DataVice
                     callback(false, "Network Error! Check your connection.");
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-VU1.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: DVV1URS-VU1", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-DVV1URS-VU1-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-VU1.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-DVV1URS-VU1-" + err.ToString());
+                }
             }
         }
 
@@ -396,9 +432,59 @@ namespace PasaBuy.App.Http.DataVice
                     callback(false, "Network Error! Check your connection.");
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-AC1.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: DVV1URS-AC1", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-DVV1URS-AC1-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-AC1.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-DVV1URS-AC1-" + err.ToString());
+                }
+            }
+        }
+
+
+        public async void ResendCode(string un, Action<bool, string> callback)
+        {
+            try
+            {
+                var dict = new Dictionary<string, string>();
+                dict.Add("un", un);
+                var content = new FormUrlEncodedContent(dict);
+
+                var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/datavice/v1/user/verify/resend/activation", content);
+                response.EnsureSuccessStatusCode();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string result = await response.Content.ReadAsStringAsync();
+                    Token token = JsonConvert.DeserializeObject<Token>(result);
+
+                    bool success = token.status == "success" ? true : false;
+                    string data = token.status == "success" ? result : token.message;
+                    callback(success, data);
+                }
+                else
+                {
+                    callback(false, "Network Error! Check your connection.");
+                }
+            }
+            catch (Exception err)
+            {
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: DVV1URS-RAC1", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-DVV1URS-RAC1-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-RAC1.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-DVV1URS-RAC1-" + err.ToString());
+                }
             }
         }
 

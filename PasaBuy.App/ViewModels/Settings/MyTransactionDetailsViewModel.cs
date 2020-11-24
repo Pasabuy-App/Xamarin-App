@@ -1,7 +1,5 @@
 ﻿using Newtonsoft.Json;
-using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
-using PasaBuy.App.Models.Driver;
 using System;
 using System.Collections.ObjectModel;
 
@@ -191,15 +189,24 @@ namespace PasaBuy.App.ViewModels.Settings
                         }
                         else
                         {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                             IsBusy = false;
                         }
                     });
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ODR-L1MTDVM.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: MPV2ODR-L1MTDVM", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-MPV2ODR-L1MTDVM-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: MPV2ODR-L1MTDVM.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-MPV2ODR-L1MTDVM-" + err.ToString());
+                }
                 IsBusy = false;
             }
         }

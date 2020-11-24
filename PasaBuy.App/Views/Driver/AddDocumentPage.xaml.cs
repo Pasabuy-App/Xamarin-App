@@ -1,15 +1,8 @@
-﻿using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Local;
+﻿using PasaBuy.App.Local;
 using PasaBuy.App.ViewModels.Driver;
-using PasaBuy.App.ViewModels.MobilePOS;
 using PasaBuy.App.Views.Navigation;
 using Plugin.Media;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -38,58 +31,77 @@ namespace PasaBuy.App.Views.Driver
 
         async void OpenCameraCommand(object sender, EventArgs args)
         {
-            await CrossMedia.Current.Initialize();
-            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            if (!isRunning.IsRunning)
             {
-                new Alert("Error", "No camera available", "Ok");
+                isRunning.IsRunning = true;
+                await CrossMedia.Current.Initialize();
+                if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+                {
+                    new Controllers.Notice.Alert("Error", "No camera available", "Ok");
+                    isRunning.IsRunning = false;
+                }
+
+                var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+                {
+                    PhotoSize = Plugin.Media.Abstractions.PhotoSize.MaxWidthHeight,
+                    CompressionQuality = 30
+                });
+
+                if (file == null)
+                {
+                    isRunning.IsRunning = false;
+                    return;
+                }
+
+                ImageSource imageSource = ImageSource.FromStream(() =>
+                {
+                    var stream = file.GetStream();
+                    isRunning.IsRunning = false;
+                    return stream;
+                });
+
+                DocumentImage.Source = imageSource;
+                filepath = file.Path;
+                isRunning.IsRunning = false;
             }
-
-            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
-            {
-                PhotoSize = Plugin.Media.Abstractions.PhotoSize.MaxWidthHeight,
-                CompressionQuality = 30
-            });
-
-            if (file == null)
-                return;
-
-            ImageSource imageSource = ImageSource.FromStream(() =>
-            {
-                var stream = file.GetStream();
-                return stream;
-            });
-
-            DocumentImage.Source = imageSource;
-            filepath = file.Path;
         }
 
         async void BrowseGalleryCommand(object sender, EventArgs args)
         {
-            await CrossMedia.Current.Initialize();
-            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            if (!isRunning.IsRunning)
             {
-                new Alert("Error", "No camera available", "Ok");
+                isRunning.IsRunning = true;
+                await CrossMedia.Current.Initialize();
+                if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+                {
+                    new Controllers.Notice.Alert("Error", "No camera available", "Ok");
+                    isRunning.IsRunning = false;
+                }
+
+                var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+                {
+                    SaveMetaData = false,
+                    CompressionQuality = 30,
+                    MaxWidthHeight = 1024
+                });
+
+                if (file == null)
+                {
+                    isRunning.IsRunning = false;
+                    return;
+                }
+
+                ImageSource imageSource = ImageSource.FromStream(() =>
+                {
+                    var stream = file.GetStream();
+                    isRunning.IsRunning = false;
+                    return stream;
+                });
+
+                DocumentImage.Source = imageSource;
+                filepath = file.Path;
+                isRunning.IsRunning = false;
             }
-
-            var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
-            {
-                SaveMetaData = false,
-                CompressionQuality = 30,
-                MaxWidthHeight = 1024
-            });
-
-
-            if (file == null)
-                return;
-
-            ImageSource imageSource = ImageSource.FromStream(() =>
-            {
-                var stream = file.GetStream();
-                return stream;
-            });
-
-            DocumentImage.Source = imageSource;
-            filepath = file.Path;
 
         }
 
@@ -115,7 +127,7 @@ namespace PasaBuy.App.Views.Driver
                                 }
                                 else
                                 {
-                                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                    new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                                     isRunning.IsRunning = false;
                                 }
                             });
@@ -123,9 +135,18 @@ namespace PasaBuy.App.Views.Driver
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2DOC-I1ADP.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: HPV2DOC-I1ADP", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-HPV2DOC-I1ADP-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2DOC-I1ADP.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-HPV2DOC-I1ADP-" + err.ToString());
+                }
                 isRunning.IsRunning = false;
             }
         }

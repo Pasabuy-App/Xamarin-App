@@ -3,7 +3,9 @@ using PasaBuy.App.Local;
 using PasaBuy.App.ViewModels.Feeds;
 using Plugin.Media;
 using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.ImagePicker;
 using Xamarin.Forms.Xaml;
 
 namespace PasaBuy.App.Views.Posts
@@ -11,10 +13,12 @@ namespace PasaBuy.App.Views.Posts
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PostSellPage : ContentPage
     {
+        IImagePickerService _imagePickerService;
         private Boolean btn = false;
         private string filePath = string.Empty;
         public PostSellPage()
         {
+            _imagePickerService = DependencyService.Get<IImagePickerService>();
             InitializeComponent();
 
         }
@@ -71,17 +75,22 @@ namespace PasaBuy.App.Views.Posts
                     Loader.IsVisible = false;
                 }
             }
-            catch (Exception ex)
+            catch (Exception err)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
-                Loader.IsRunning = false;
-                Loader.IsVisible = false;
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: SPV1PST-I1PSLP", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-SPV1PST-I1PSLP-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1PST-I1PSLP.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-SPV1PST-I1PSLP-" + err.ToString());
+                }
             }
             Loader.IsRunning = false;
             Loader.IsVisible = false;
         }
-
-
 
 
         async void AddItemImage(object sender, EventArgs args)
@@ -115,30 +124,17 @@ namespace PasaBuy.App.Views.Posts
 
         async void TakePhoto(object sender, EventArgs args)
         {
-            await CrossMedia.Current.Initialize();
-            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            var imageSource = await _imagePickerService.PickImageAsync();
+            await Task.Delay(500);
+            char[] charsToTrim = { ':', ' ' };
+            var fileName = imageSource.ToString().Remove(0, 4);
+
+            if (imageSource != null) // it will be null when user cancel
             {
-                new Alert("Error", "No camera available", "Failed");
+                ItemImage.Source = imageSource;
             }
-
-            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
-            {
-                Directory = "Sample",
-                Name = "item-image.jpg"
-            });
-
-            if (file == null)
-                return;
-
-            ImageSource imageSource = ImageSource.FromStream(() =>
-            {
-                var stream = file.GetStream();
-                return stream;
-            });
-
-            ItemImage.Source = imageSource;
-            //var filePath = file.Path;
-            filePath = file.Path;
+            filePath = fileName.Trim(charsToTrim);
+            await Task.Delay(500);
         }
 
         async void SelectPhoto(object sender, EventArgs args)

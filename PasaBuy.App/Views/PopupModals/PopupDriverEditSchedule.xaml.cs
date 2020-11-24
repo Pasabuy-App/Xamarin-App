@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
@@ -33,7 +27,7 @@ namespace PasaBuy.App.Views.PopupModals
             days = day != "Monday" ? day != "Tuesday" ? day != "Wednesday" ? day != "Thursday" ? day != "Friday" ? day != "Saturday" ? "sun" : "sat" : "fri" : "thu" : "wed" : "tue" : "mon";
             if (Open.Time.ToString() == "00:00:00" || Close.Time.ToString() == "00:00:00")
             {
-                new Alert("Notice to User", "Please enter opening or closing time.", "Try Again");
+                new Controllers.Notice.Alert("Notice to User", "Please enter opening or closing time.", "Try Again");
             }
             else
             {
@@ -48,13 +42,22 @@ namespace PasaBuy.App.Views.PopupModals
                         }
                         else
                         {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                         }
                     });
                 }
-                catch (Exception ex)
+                catch (Exception err)
                 {
-                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2SCH-I1PUDES.", "OK");
+                    if (PSAConfig.isDebuggable)
+                    {
+                        new Controllers.Notice.Alert("Error Code: HPV2SCH-I1PUDES", err.ToString(), "OK");
+                        Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-HPV2SCH-I1PUDES-" + err.ToString());
+                    }
+                    else
+                    {
+                        new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2SCH-I1PUDES.", "OK");
+                        Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-HPV2SCH-I1PUDES-" + err.ToString());
+                    }
                 }
             }
         }

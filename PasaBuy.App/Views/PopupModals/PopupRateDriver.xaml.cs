@@ -1,12 +1,6 @@
 ﻿using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace PasaBuy.App.Views.PopupModals
@@ -48,9 +42,18 @@ namespace PasaBuy.App.Views.PopupModals
                     }
                 });
             }
-            catch (Exception ex)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2MVR-R1PURD.", "OK");
+                if (Local.PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: HPV2MVR-R1PURD", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-HPV2MVR-R1PURD-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2MVR-R1PURD.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-HPV2MVR-R1PURD-" + err.ToString());
+                }
             }
         }
     }

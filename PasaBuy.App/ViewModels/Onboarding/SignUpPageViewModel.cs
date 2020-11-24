@@ -1,5 +1,4 @@
-﻿using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Local;
+﻿using PasaBuy.App.Local;
 using PasaBuy.App.Models.Onboarding;
 using PasaBuy.App.Views.Onboarding;
 using System;
@@ -252,7 +251,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
                     State = true;
                     if (!_termsChecked)
                     {
-                        new Alert("Notice", "Please check terms and conditions and privacy policy", "Try Again");
+                        new Controllers.Notice.Alert("Notice", "Please check terms and conditions and privacy policy", "Try Again");
                         State = false;
                     }
                     else
@@ -262,12 +261,13 @@ namespace PasaBuy.App.ViewModels.Onboarding
                             if (success)
                             {
                                 State = false;
+                                CreatePasswordViewModel.user_email = Email;
                                 Application.Current.MainPage = new CreatePassword();
                             }
 
                             else
                             {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                                 State = false;
                             }
                         });
@@ -275,9 +275,18 @@ namespace PasaBuy.App.ViewModels.Onboarding
                    
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-S1SPVM.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: DVV1URS-S1SPVM", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-DVV1URS-S1SPVM-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-S1SPVM.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-DVV1URS-S1SPVM-" + err.ToString());
+                }
                 State = false;
             }
         }

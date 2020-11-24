@@ -1,14 +1,11 @@
 ﻿using Newtonsoft.Json;
-using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Driver;
 using PasaBuy.App.Views.PopupModals;
 using Rg.Plugins.Popup.Services;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -144,13 +141,22 @@ namespace PasaBuy.App.ViewModels.Driver
                     }
                     else
                     {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                     }
                 });
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2SCH-L1DSVM.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: HPV2SCH-L1DSVM", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-HPV2SCH-L1DSVM-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2SCH-L1DSVM.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-HPV2SCH-L1DSVM-" + err.ToString());
+                }
             }
         }
     }

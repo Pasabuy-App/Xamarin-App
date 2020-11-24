@@ -1,7 +1,4 @@
-﻿using Newtonsoft.Json;
-using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Local;
-using PasaBuy.App.Models.MobilePOS;
+﻿using PasaBuy.App.Local;
 using PasaBuy.App.ViewModels.MobilePOS;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
@@ -55,7 +52,7 @@ namespace PasaBuy.App.Views.PopupModals
                             }
                             else
                             {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                             }
                         });
                     }
@@ -70,15 +67,24 @@ namespace PasaBuy.App.Views.PopupModals
                             }
                             else
                             {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                             }
                         });
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception err)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2CAT-IAU.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: TPV2CAT-IU1PUAC", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-TPV2CAT-IU1PUAC-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2CAT-IU1PUAC.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-TPV2CAT-IU1PUAC-" + err.ToString());
+                }
             }
         }
     }

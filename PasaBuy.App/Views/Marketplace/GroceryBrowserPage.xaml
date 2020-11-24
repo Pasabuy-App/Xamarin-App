@@ -234,14 +234,12 @@
                                                            TextColor="LightGreen"
                                                            VerticalTextAlignment="Center" />
 
-                                                    <Label FontFamily="{StaticResource FontIcons}"
+                                                    <Image Source="right_arrow.png"
                                                            Grid.Row="0"
-                                                           Grid.Column="1"
-                                                           FontSize="27"
-                                                           HorizontalTextAlignment="End"
-                                                           Text="{StaticResource ArrowRight}"
-                                                           TextColor="{DynamicResource PrimaryColor}"
-                                                           VerticalTextAlignment="Center" />
+                                                           HorizontalOptions="End"
+                                                           Grid.Column="1"/>
+
+                                                  
                                                 </Grid>
 
                                                 <Grid Grid.Column="0"

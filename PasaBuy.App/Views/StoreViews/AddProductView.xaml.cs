@@ -1,7 +1,4 @@
-﻿using Newtonsoft.Json;
-using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Local;
-using PasaBuy.App.Models.MobilePOS;
+﻿using PasaBuy.App.Local;
 using PasaBuy.App.ViewModels.MobilePOS;
 using Plugin.Media;
 using System;
@@ -64,58 +61,78 @@ namespace PasaBuy.App.Views.StoreViews
 
         async void OpenCameraCommand(object sender, EventArgs args)
         {
-            await CrossMedia.Current.Initialize();
-            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            if (!IsRunning.IsRunning)
             {
-                new Alert("Error", "No camera available", "Ok");
+                IsRunning.IsRunning = true;
+                await CrossMedia.Current.Initialize();
+                if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+                {
+                    new Controllers.Notice.Alert("Error", "No camera available.", "OK");
+                    IsRunning.IsRunning = false;
+                }
+
+                var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+                {
+                    PhotoSize = Plugin.Media.Abstractions.PhotoSize.Small,
+                    CompressionQuality = 30
+                });
+
+                if (file == null)
+                {
+                    IsRunning.IsRunning = false;
+                    return;
+                }
+
+                ImageSource imageSource = ImageSource.FromStream(() =>
+                {
+                    var stream = file.GetStream();
+                    IsRunning.IsRunning = false;
+                    return stream;
+                });
+
+                productImage.Source = imageSource;
+                filePath = file.Path;
+                IsRunning.IsRunning = false;
             }
-
-            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
-            {
-                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Small,
-                CompressionQuality = 30
-            });
-
-            if (file == null)
-                return;
-
-            ImageSource imageSource = ImageSource.FromStream(() =>
-            {
-                var stream = file.GetStream();
-                return stream;
-            });
-
-            productImage.Source = imageSource;
-            filePath = file.Path;
         }
 
         async void BrowseGalleryCommand(object sender, EventArgs args)
         {
-            await CrossMedia.Current.Initialize();
-            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            if (!IsRunning.IsRunning)
             {
-                new Alert("Error", "No camera available", "Ok");
+                IsRunning.IsRunning = true;
+                await CrossMedia.Current.Initialize();
+                if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+                {
+                    new Controllers.Notice.Alert("Error", "No camera available.", "OK");
+                    IsRunning.IsRunning = false;
+                }
+
+                var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+                {
+                    SaveMetaData = false,
+                    CompressionQuality = 30,
+                    MaxWidthHeight = 1024
+                });
+
+
+                if (file == null)
+                {
+                    IsRunning.IsRunning = false;
+                    return;
+                }
+
+                ImageSource imageSource = ImageSource.FromStream(() =>
+                {
+                    var stream = file.GetStream();
+                    IsRunning.IsRunning = false;
+                    return stream;
+                });
+
+                productImage.Source = imageSource;
+                filePath = file.Path;
+                IsRunning.IsRunning = false;
             }
-
-            var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
-            {
-                SaveMetaData = false,
-                CompressionQuality = 30,
-                MaxWidthHeight = 1024
-            });
-
-
-            if (file == null)
-                return;
-
-            ImageSource imageSource = ImageSource.FromStream(() =>
-            {
-                var stream = file.GetStream();
-                return stream;
-            });
-
-            productImage.Source = imageSource;
-            filePath = file.Path;
 
         }
 
@@ -193,7 +210,7 @@ namespace PasaBuy.App.Views.StoreViews
                                 }
                                 else
                                 {
-                                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                    new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                                     IsRunning.IsRunning = false;
                                 }
                             });
@@ -226,7 +243,7 @@ namespace PasaBuy.App.Views.StoreViews
                                 }
                                 else
                                 {
-                                    new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                    new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                                     IsRunning.IsRunning = false;
                                 }
                             });
@@ -234,9 +251,18 @@ namespace PasaBuy.App.Views.StoreViews
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception err)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2PDT-IU1APV.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: TPV2PDT-IU1APV", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-TPV2PDT-IU1APV-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: TPV2PDT-IU1APV.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-TPV2PDT-IU1APV-" + err.ToString());
+                }
                 IsRunning.IsRunning = false;
             }
         }

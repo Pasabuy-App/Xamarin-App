@@ -36,7 +36,7 @@ namespace PasaBuy.App.Http.CoinPress
         }
         #endregion
 
-        #region Create Method
+        #region Method
 
         public async void Create(string query, Action<bool, string> callback)
         {
@@ -65,9 +65,18 @@ namespace PasaBuy.App.Http.CoinPress
                     callback(false, "Network Error! Check your connection.");
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: CPV1WLT-C1.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: CPV1WLT-C1", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-CPV1WLT-C1-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: CPV1WLT-C1.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-CPV1WLT-C1-" + err.ToString());
+                }
             }
         }
 
@@ -101,9 +110,18 @@ namespace PasaBuy.App.Http.CoinPress
                     callback(false, "Network Error! Check your connection.");
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: CPV1WLT-S1.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: CPV1WLT-S1", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-CPV1WLT-S1-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: CPV1WLT-S1.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-CPV1WLT-S1-" + err.ToString());
+                }
             }
         }
 
@@ -134,42 +152,18 @@ namespace PasaBuy.App.Http.CoinPress
                     callback(false, "Network Error! Check your connection.");
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: CPV1WLT-B1.", "OK");
-            }
-        }
-
-        public async void Listing(string type, Action<bool, string> callback)
-        {
-            try
-            {
-                var dict = new Dictionary<string, string>();
-                dict.Add("wpid", PSACache.Instance.UserInfo.wpid);
-                dict.Add("snky", PSACache.Instance.UserInfo.snky);
-                dict.Add("type", type);
-                var content = new FormUrlEncodedContent(dict);
-
-                var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/coinpress/v1/user/wallet/list", content);
-                response.EnsureSuccessStatusCode();
-
-                if (response.IsSuccessStatusCode)
+                if (PSAConfig.isDebuggable)
                 {
-                    string result = await response.Content.ReadAsStringAsync();
-                    Token token = JsonConvert.DeserializeObject<Token>(result);
-
-                    bool success = token.status == "success" ? true : false;
-                    string data = token.status == "success" ? result : token.message;
-                    callback(success, data);
+                    new Controllers.Notice.Alert("Error Code: CPV1WLT-B1", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-CPV1WLT-B1-" + err.ToString());
                 }
                 else
                 {
-                    callback(false, "Network Error! Check your connection.");
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: CPV1WLT-B1.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-CPV1WLT-B1-" + err.ToString());
                 }
-            }
-            catch (Exception e)
-            {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: CPV1WLT-L1.", "OK");
             }
         }
 
@@ -203,9 +197,18 @@ namespace PasaBuy.App.Http.CoinPress
                     callback(false, "Network Error! Check your connection.");
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: CPV1WLT-T1.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: CPV1WLT-T1", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-CPV1WLT-T1-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: CPV1WLT-T1.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-CPV1WLT-T1-" + err.ToString());
+                }
             }
         }
 
@@ -236,9 +239,18 @@ namespace PasaBuy.App.Http.CoinPress
                     callback(false, "Network Error! Check your connection.");
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: CPV1WLT-V1.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: CPV1WLT-V1", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-CPV1WLT-V1-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: CPV1WLT-V1.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-CPV1WLT-V1-" + err.ToString());
+                }
             }
         }
         #endregion

@@ -21,12 +21,13 @@
                 <controls:TitleView Title="Privacy Policy" 
                                     BackgroundColor="{DynamicResource PrimaryColor}" >
                     <controls:TitleView.LeadingView>
-                        <buttons:SfButton
-                            x:Name="backButton"
-                            Clicked="BackButtonClicked"
-                            CornerRadius="4"
-                            Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Back}" />
+                        <ImageButton Source="arrow_left.png"
+                                  Grid.Column="0"
+                                     HeightRequest="25"
+                                     WidthRequest="25"
+                                     BackgroundColor="Transparent"
+                                     Clicked="BackButtonClicked" />
+
                     </controls:TitleView.LeadingView>
                 </controls:TitleView>
                 <ContentPresenter />

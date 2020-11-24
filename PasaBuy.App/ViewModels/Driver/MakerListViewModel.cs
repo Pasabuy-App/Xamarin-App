@@ -1,9 +1,7 @@
 ﻿using Newtonsoft.Json;
-using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Driver;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 
@@ -42,17 +40,25 @@ namespace PasaBuy.App.ViewModels.Driver
                                 Title = type.data[i].title
                             });
                         }
-                        Console.WriteLine("data: " + data);
                     }
                     else
                     {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                     }
                 });
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2VHE-MV1MLVM.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: HPV2VHE-MV1MLVM", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-HPV2VHE-MV1MLVM-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2VHE-MV1MLVM.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-HPV2VHE-MV1MLVM-" + err.ToString());
+                }
             }
         }
     }

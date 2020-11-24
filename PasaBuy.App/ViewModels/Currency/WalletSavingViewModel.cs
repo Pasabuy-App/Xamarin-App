@@ -163,9 +163,18 @@ namespace PasaBuy.App.ViewModels.Currency
                     }
                 });
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: CPV1WLT-T1WSVM", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-CPV1WLT-T1WSVM-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: CPV1WLT-T1WSVM.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-CPV1WLT-T1WSVM-" + err.ToString());
+                }
             }
         }
         public void CreateWallet()
@@ -200,9 +209,18 @@ namespace PasaBuy.App.ViewModels.Currency
                     });
                 }
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: CPV1WLT-C1WSVM", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-CPV1WLT-C1WSVM-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: CPV1WLT-C1WSVM.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-CPV1WLT-C1WSVM-" + err.ToString());
+                }
                 IsRunning = false;
             }
         }
@@ -223,9 +241,18 @@ namespace PasaBuy.App.ViewModels.Currency
                     }
                 });
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: CPV1WLT-B1WSVM", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-CPV1WLT-B1WSVM-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: CPV1WLT-B1WSVM.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-CPV1WLT-B1WSVM-" + err.ToString());
+                }
             }
         }
         #endregion

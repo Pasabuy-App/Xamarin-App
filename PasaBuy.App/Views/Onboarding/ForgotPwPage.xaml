@@ -20,6 +20,9 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" Default="0, 0, 0, 0" />
+    </ContentPage.Padding>
 
     <!--  Binding context for forgot password page  -->
     <ContentPage.BindingContext>
@@ -39,20 +42,19 @@
                         Padding="15,5,15,5"
                         BackgroundColor="{StaticResource PrimaryColor}"
                         HeightRequest="{OnPlatform Android='46',
-                                                   iOS='56'}">
+                                                   iOS='46'}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <buttons:SfButton
-                            x:Name="backButton"
-                            Clicked="backButton_Clicked"
-                            Grid.Column="0"
-                            CornerRadius="4"
-                            BackgroundColor="Transparent"
-                            Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Back}" />
-                        <Label Grid.Column="1"
+                   
+                    <ImageButton Source="arrow_left.png"
+                                  Grid.Column="0"
+                                     HeightRequest="25"
+                                     WidthRequest="25"
+                                     BackgroundColor="Transparent"
+                                     Clicked="backButton_Clicked" />
+                    <Label Grid.Column="1"
                                     FontFamily="{StaticResource Montserrat-Medium}"
                                     FontSize="17"
                                     HorizontalOptions="Start"

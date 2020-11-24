@@ -291,9 +291,18 @@ namespace PasaBuy.App.ViewModels.Feeds
                     }
                 });
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: SPV1PST-H1HPVM", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-SPV1PST-H1HPVM-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1PST-H1HPVM.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-SPV1PST-H1HPVM-" + err.ToString());
+                }
             }
         }
 
@@ -375,10 +384,19 @@ namespace PasaBuy.App.ViewModels.Feeds
                     }
                 });
             }
-            catch (Exception e)
+            catch (Exception err)
             {
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: SPV1PST-H1HPVM", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-SPV1PST-H1HPVM-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1PST-H1HPVM.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-SPV1PST-H1HPVM-" + err.ToString());
+                }
                 IsRunning = false;
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + e, "OK");
             }
         }
         #endregion

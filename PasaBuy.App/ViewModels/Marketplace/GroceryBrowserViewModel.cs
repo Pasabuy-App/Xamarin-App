@@ -120,11 +120,12 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         }
                         for (int i = 0; i < store.data.Length; i++)
                         {
+                            string add = string.IsNullOrEmpty(store.data[i].brgy) || string.IsNullOrEmpty(store.data[i].city) ? "" : store.data[i].brgy + " " + store.data[i].city;
                             _bestSellers.Add(new Models.TindaFeature.StoreModel()
                             {
                                 ID = store.data[i].hsid,
                                 Operation = store.data[i].operation_id,
-                                Address = store.data[i].street + " " + store.data[i].brgy + " " + store.data[i].city + ", " + store.data[i].province,
+                                Address = add,
                                 Title = store.data[i].title,
                                 Info = store.data[i].info,
                                 Logo = PSAProc.GetUrl(store.data[i].avatar),
@@ -160,7 +161,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                             for (int i = 0; i < store.data.Length; i++)
                             {
                                 string open_close = string.IsNullOrEmpty(store.data[i].operation_id) ? "Closed" : "Open Now";
-                                string add = string.IsNullOrEmpty(store.data[i].street) || string.IsNullOrEmpty(store.data[i].brgy) || string.IsNullOrEmpty(store.data[i].city) || string.IsNullOrEmpty(store.data[i].province) ? "" : store.data[i].street + " " + store.data[i].brgy + " " + store.data[i].city + ", " + store.data[i].province;
+                                string add = string.IsNullOrEmpty(store.data[i].brgy) || string.IsNullOrEmpty(store.data[i].city) ? "" : store.data[i].brgy + " " + store.data[i].city;
 
                                 grocerystorelist.Add(new Models.TindaFeature.StoreModel()
                                 {
@@ -194,7 +195,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             try
             {
-                Http.TindaPress.Store.Instance.Listing("", search, "market", "", "active", lastid, (bool success, string data) =>
+                Http.TindaPress.Store.Instance.Listing("", search, "market", "", "active", lastid, async (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -204,7 +205,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                             for (int i = 0; i < store.data.Length; i++)
                             {
                                 string open_close = string.IsNullOrEmpty(store.data[i].operation_id) ? "Closed" : "Open Now";
-                                string add = string.IsNullOrEmpty(store.data[i].street) || string.IsNullOrEmpty(store.data[i].brgy) || string.IsNullOrEmpty(store.data[i].city) || string.IsNullOrEmpty(store.data[i].province) ? "" : store.data[i].street + " " + store.data[i].brgy + " " + store.data[i].city + ", " + store.data[i].province;
+                                string add = string.IsNullOrEmpty(store.data[i].brgy) || string.IsNullOrEmpty(store.data[i].city) ? "" : store.data[i].brgy + " " + store.data[i].city;
 
                                 grocerystorelist.Add(new Models.TindaFeature.StoreModel()
                                 {
@@ -220,7 +221,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         }
                         else
                         {
-                            new Alert("Notice to User", "No store found.", "Try Again");
+                            SearchStore("", "");
+                            await(App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new Views.Notice.NoStoresPage()));
                         }
                     }
                     else
@@ -262,6 +264,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 StoreDetailsViewModel.address = item.Address;
                 StoreDetailsViewModel.operation_id = item.Operation;
                 await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+
+                eCommerce.CheckoutPageViewModel.charges = string.Empty;
                 IsRunning = false;
             }
         }
@@ -279,6 +283,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 StoreDetailsViewModel.address = item.Address;
                 StoreDetailsViewModel.operation_id = item.Operation;
                 await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+
+                eCommerce.CheckoutPageViewModel.charges = string.Empty;
                 IsRunning = false;
             }
         }

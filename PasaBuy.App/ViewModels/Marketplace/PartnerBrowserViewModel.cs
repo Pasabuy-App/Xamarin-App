@@ -158,7 +158,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                         Title = store.data[i].title,
                                         Info = store.data[i].info,
                                         Logo = PSAProc.GetUrl(store.data[i].avatar),
-                                        Offer = "50% off",
+                                        //Offer = "50% off",
                                         Rating = store.data[i].rates == "No ratings yet" || string.IsNullOrEmpty(store.data[i].rates) ? "0.0" : store.data[i].rates,
                                         Address = add
                                     });
@@ -189,7 +189,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         {
             try
             {
-                Http.TindaPress.Store.Instance.Listing("", search, "robinson", "", "active", lastid, (bool success, string data) =>
+                Http.TindaPress.Store.Instance.Listing("", search, "robinson", "", "active", lastid, async (bool success, string data) =>
                 {
                     if (success)
                     {
@@ -199,7 +199,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                             storeList.Clear();
                             for (int i = 0; i < store.data.Length; i++)
                             {
-                                string add = string.IsNullOrEmpty(store.data[i].brgy) || string.IsNullOrEmpty(store.data[i].city) ? "" : store.data[i].brgy + " " + store.data[i].city ;
+                                string add = string.IsNullOrEmpty(store.data[i].brgy) || string.IsNullOrEmpty(store.data[i].city) ? "" : store.data[i].brgy + " " + store.data[i].city;
 
                                 storeList.Add(new Models.TindaFeature.StoreModel()
                                 {
@@ -208,7 +208,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
                                     Title = store.data[i].title,
                                     Info = store.data[i].info,
                                     Logo = PSAProc.GetUrl(store.data[i].avatar),
-                                    Offer = "50% off",
+                                    //Offer = "50% off",
                                     Rating = store.data[i].rates == "No ratings yet" || string.IsNullOrEmpty(store.data[i].rates) ? "0.0" : store.data[i].rates,
                                     Address = add
                                 });
@@ -216,7 +216,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         }
                         else
                         {
-                            new Alert("Notice to User", "No store found.", "Try Again");
+                            SearchStore("", "");
+                            await(App.Current.MainPage).Navigation.PushModalAsync(new NavigationPage(new Views.Notice.NoStoresPage()));
                         }
                     }
                     else
@@ -283,7 +284,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         {
                             HeaderSize = "0";
                         }
-                 
                         for (int i = 0; i < store.data.Length; i++)
                         {
                             _bestSellers.Add(new Models.TindaFeature.StoreModel()
@@ -333,6 +333,8 @@ namespace PasaBuy.App.ViewModels.Marketplace
                 StoreDetailsViewModel.address = item.Address;
                 StoreDetailsViewModel.operation_id = item.Operation;
                 await App.Current.MainPage.Navigation.PushModalAsync(new StoreDetailsPage());
+
+                eCommerce.CheckoutPageViewModel.charges = string.Empty;
                 IsRunning = false;
             }
         }

@@ -155,6 +155,7 @@
                                     Margin="0,14"
                                     FontFamily="{StaticResource Montserrat-SemiBold}"
                                     Style="{StaticResource ProfileLabelStyle}"
+                                    TextColor="{DynamicResource Gray-900}"
                                     Text="Profile" />
 
                                 <Grid.GestureRecognizers>
@@ -180,7 +181,7 @@
                                         Style="{StaticResource ProfileIconLabelStyle}"
                                         Text="&#xf4ad;" />
 
-                                <Label
+                                <Label  TextColor="{DynamicResource Gray-900}"
                                         Grid.Column="1"
                                         Margin="0,14"
                                         FontFamily="{StaticResource Montserrat-SemiBold}"
@@ -210,7 +211,7 @@
                                        WidthRequest="20"
                                        helper:RTLHelper.Margin="35, 0, 8, 0"/>
 
-                                <Label
+                                <Label  TextColor="{DynamicResource Gray-900}"
                                         Grid.Column="1"
                                         Margin="0,14"
                                         FontFamily="{StaticResource Montserrat-SemiBold}"
@@ -241,12 +242,12 @@
                                        WidthRequest="20"
                                        helper:RTLHelper.Margin="35, 0, 8, 0"/>
 
-                                <Label
-                                    Grid.Column="1"
-                                    Margin="0,14"
-                                    FontFamily="{StaticResource Montserrat-SemiBold}"
-                                    Style="{StaticResource ProfileLabelStyle}"
-                                    Text="My Wallets" />
+                                <Label  TextColor="{DynamicResource Gray-900}"
+                                        Grid.Column="1"
+                                        Margin="0,14"
+                                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                                        Style="{StaticResource ProfileLabelStyle}"
+                                        Text="My Wallets" />
 
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding WalletCommand}" CommandParameter="{x:Reference WalletGrid}" />
@@ -271,12 +272,12 @@
                                        WidthRequest="20"
                                        helper:RTLHelper.Margin="35, 0, 8, 0"/>
 
-                                <Label
-                                    Grid.Column="1"
-                                    Margin="0,12"
-                                    FontFamily="{StaticResource Montserrat-SemiBold}"
-                                    Style="{StaticResource ProfileLabelStyle}"
-                                    Text="My Drives" />
+                                <Label  TextColor="{DynamicResource Gray-900}"
+                                        Grid.Column="1"
+                                        Margin="0,12"
+                                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                                        Style="{StaticResource ProfileLabelStyle}"
+                                        Text="My Drives" />
 
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding DriverCommand}" CommandParameter="{x:Reference DriverGrid}" />
@@ -301,12 +302,12 @@
                                        WidthRequest="20"
                                        helper:RTLHelper.Margin="35, 0, 8, 0"/>
 
-                                <Label
-                                    Grid.Column="1"
-                                    Margin="0,14"
-                                    FontFamily="{StaticResource Montserrat-SemiBold}"
-                                    Style="{StaticResource ProfileLabelStyle}"
-                                    Text="My Stores" />
+                                <Label  TextColor="{DynamicResource Gray-900}"
+                                        Grid.Column="1"
+                                        Margin="0,14"
+                                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                                        Style="{StaticResource ProfileLabelStyle}"
+                                        Text="My Stores" />
 
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding StoreCommand}" CommandParameter="{x:Reference StoreGrid}" />
@@ -361,12 +362,12 @@
                                        WidthRequest="20"
                                        helper:RTLHelper.Margin="35, 0, 8, 0"/>
 
-                                <Label
-                                    Grid.Column="1"
-                                    Margin="0,14"
-                                    FontFamily="{StaticResource Montserrat-SemiBold}"
-                                    Style="{StaticResource ProfileLabelStyle}"
-                                    Text="Setting" />
+                                <Label  TextColor="{DynamicResource Gray-900}"
+                                        Grid.Column="1"
+                                        Margin="0,14"
+                                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                                        Style="{StaticResource ProfileLabelStyle}"
+                                        Text="Setting" />
 
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding SettingCommand}" CommandParameter="{x:Reference SettingGrid}" />
