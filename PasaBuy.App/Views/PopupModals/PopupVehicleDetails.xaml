@@ -169,13 +169,9 @@
                             <combobox:SfComboBox.DropDownButtonSettings>
                                 <combobox:DropDownButtonSettings>
                                     <combobox:DropDownButtonSettings.View>
-                                        <Label BackgroundColor="{DynamicResource Gray-White}"
-                                                    FontFamily="{StaticResource FontIcons}"
-                                                    FontSize="25"
-                                                    HorizontalTextAlignment="Center"
-                                                    Text="{StaticResource DropDownButtonIcon}"
-                                                    TextColor="{DynamicResource Gray-900}"
-                                                    VerticalTextAlignment="Center" />
+                                        <StackLayout Padding="12">
+                                            <Image Source="down.png"/>
+                                        </StackLayout>
                                     </combobox:DropDownButtonSettings.View>
                                 </combobox:DropDownButtonSettings>
                             </combobox:SfComboBox.DropDownButtonSettings>
@@ -203,13 +199,9 @@
                             <combobox:SfComboBox.DropDownButtonSettings>
                                 <combobox:DropDownButtonSettings>
                                     <combobox:DropDownButtonSettings.View>
-                                        <Label BackgroundColor="{DynamicResource Gray-White}"
-                                                    FontFamily="{StaticResource FontIcons}"
-                                                    FontSize="25"
-                                                    HorizontalTextAlignment="Center"
-                                                    Text="{StaticResource DropDownButtonIcon}"
-                                                    TextColor="{DynamicResource Gray-900}"
-                                                    VerticalTextAlignment="Center" />
+                                        <StackLayout Padding="12">
+                                            <Image Source="down.png"/>
+                                        </StackLayout>
                                     </combobox:DropDownButtonSettings.View>
                                 </combobox:DropDownButtonSettings>
                             </combobox:SfComboBox.DropDownButtonSettings>
@@ -237,13 +229,9 @@
                             <combobox:SfComboBox.DropDownButtonSettings>
                                 <combobox:DropDownButtonSettings>
                                     <combobox:DropDownButtonSettings.View>
-                                        <Label BackgroundColor="{DynamicResource Gray-White}"
-                                                    FontFamily="{StaticResource FontIcons}"
-                                                    FontSize="25"
-                                                    HorizontalTextAlignment="Center"
-                                                    Text="{StaticResource DropDownButtonIcon}"
-                                                    TextColor="{DynamicResource Gray-900}"
-                                                    VerticalTextAlignment="Center" />
+                                        <StackLayout Padding="12">
+                                            <Image Source="down.png"/>
+                                        </StackLayout>
                                     </combobox:DropDownButtonSettings.View>
                                 </combobox:DropDownButtonSettings>
                             </combobox:SfComboBox.DropDownButtonSettings>

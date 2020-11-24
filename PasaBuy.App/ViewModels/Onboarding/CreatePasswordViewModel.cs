@@ -24,6 +24,8 @@ namespace PasaBuy.App.ViewModels.Onboarding
 
         private Boolean _state = false;
 
+        public static string user_email = string.Empty;
+
         #endregion
 
         #region Constructor
@@ -34,8 +36,11 @@ namespace PasaBuy.App.ViewModels.Onboarding
         public CreatePasswordViewModel()
         {
             this.SubmitCommand = new Command(this.SfButton_Clicked);
+            this.ResendCodeCommand = new Command(this.ResendCode);
+
             State = false;
         }
+
 
         #endregion
 
@@ -117,6 +122,9 @@ namespace PasaBuy.App.ViewModels.Onboarding
         /// </summary>
         public Command SubmitCommand { get; set; }
 
+        public Command ResendCodeCommand { get; set; }
+
+
         #endregion
 
         #region Methods
@@ -168,6 +176,34 @@ namespace PasaBuy.App.ViewModels.Onboarding
             catch (Exception e)
             {
                 new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-A1CP.", "OK");
+            }
+        }
+
+        private void ResendCode(object obj)
+        {
+            try
+            {
+                if (!State)
+                {
+                    State = true;
+                    Http.DataVice.Users.Instance.ResendCode(user_email, async (bool success1, string data1) =>
+                    {
+                        if (success1)
+                        {
+                            await App.Current.MainPage.DisplayAlert("Success", "Please check your email for the new activation cod e", "Ok");
+                            State = false;
+                        }
+                        else
+                        {
+                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data1), "Try Again");
+                            State = false;
+                        }
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1URS-RAC1.", "OK");
             }
         }
         #endregion
