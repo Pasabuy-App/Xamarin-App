@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using PasaBuy.App.Behaviors.Chat;
-using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
 using PasaBuy.App.Models.Driver;
 using PasaBuy.App.ViewModels.Chat;
@@ -158,13 +157,22 @@ namespace PasaBuy.App.ViewModels.Driver
                     }
                     else
                     {
-                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                        new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                     }
                 });
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1MSG-GBR1DCMVM.", "OK");
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: SPV1MSG-GBR1DCMVM", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-SPV1MSG-GBR1DCMVM-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1MSG-GBR1DCMVM.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-SPV1MSG-GBR1DCMVM-" + err.ToString());
+                }
             }
         }
 
@@ -277,7 +285,7 @@ namespace PasaBuy.App.ViewModels.Driver
         /// <param name="obj">The object</param>
         private void VoiceCallClicked(object obj)
         {
-            new Alert("Demoguy Notice", "Voice call is not yet implemented, stay tune on our advisory section for updates. Thank you for your patience!", "AGREE");
+            new Controllers.Notice.Alert("Demoguy Notice", "Voice call is not yet implemented, stay tune on our advisory section for updates. Thank you for your patience!", "AGREE");
         }
 
         /// <summary>
@@ -286,7 +294,7 @@ namespace PasaBuy.App.ViewModels.Driver
         /// <param name="obj">The object</param>
         private void VideoCallClicked(object obj)
         {
-            new Alert("Demoguy Notice", "Video call is not yet implemented, stay tune on our advisory section for updates. Thank you for your patience!", "AGREE");
+            new Controllers.Notice.Alert("Demoguy Notice", "Video call is not yet implemented, stay tune on our advisory section for updates. Thank you for your patience!", "AGREE");
         }
 
         /// <summary>
@@ -295,7 +303,7 @@ namespace PasaBuy.App.ViewModels.Driver
         /// <param name="obj">The object</param>
         private void MenuClicked(object obj)
         {
-            new Alert("Demoguy Notice", "We plan to add a popup window as an action list for this current conversation. Thank you for your patience!", "AGREE");
+            new Controllers.Notice.Alert("Demoguy Notice", "We plan to add a popup window as an action list for this current conversation. Thank you for your patience!", "AGREE");
         }
 
         /// <summary>
@@ -304,7 +312,7 @@ namespace PasaBuy.App.ViewModels.Driver
         /// <param name="obj">The object</param>
         private void CameraClicked(object obj)
         {
-            new Alert("Demoguy Notice", "Sorry! Camera or Gallery upload is not yet implemented. Thank you for your patience!", "AGREE");
+            new Controllers.Notice.Alert("Demoguy Notice", "Sorry! Camera or Gallery upload is not yet implemented. Thank you for your patience!", "AGREE");
         }
 
         /// <summary>
@@ -351,15 +359,24 @@ namespace PasaBuy.App.ViewModels.Driver
                             }
                             else
                             {
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                             }
                         });
                         count = 0;
                     }
                 }
-                catch (Exception e)
+                catch (Exception err)
                 {
-                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1MSG-I1DCMVM.", "OK");
+                    if (PSAConfig.isDebuggable)
+                    {
+                        new Controllers.Notice.Alert("Error Code: SPV1MSG-I1DCMVM", err.ToString(), "OK");
+                        Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-SPV1MSG-I1DCMVM-" + err.ToString());
+                    }
+                    else
+                    {
+                        new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1MSG-I1DCMVM.", "OK");
+                        Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-SPV1MSG-I1DCMVM-" + err.ToString());
+                    }
                 }
             }
 

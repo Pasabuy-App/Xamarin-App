@@ -1,5 +1,4 @@
-﻿using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Local;
+﻿using PasaBuy.App.Local;
 using PasaBuy.App.ViewModels.Feeds;
 using PasaBuy.App.Views.PopupModals;
 using PasaBuy.App.Views.Posts;
@@ -49,18 +48,27 @@ namespace PasaBuy.App.Views.Feeds.Templates
                         }
                         else
                         {
-                            new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                            new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                         }
                     });
                 }
-                catch (Exception ex)
+                catch (Exception err)
                 {
-                    new Alert("Something went Wrong", "Please contact administrator.", "OK");
+                    if (PSAConfig.isDebuggable)
+                    {
+                        new Controllers.Notice.Alert("Error Code: SPV1PST-I1IE", err.ToString(), "OK");
+                        Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-SPV1PST-I1IE-" + err.ToString());
+                    }
+                    else
+                    {
+                        new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1PST-I1IE.", "OK");
+                        Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-SPV1PST-I1IE-" + err.ToString());
+                    }
                 }
             }
             else
             {
-                new Alert("Notice to user", "Please fill-up all fields.", "OK");
+                new Controllers.Notice.Alert("Notice to user", "Please fill-up all fields.", "OK");
             }
         }
 

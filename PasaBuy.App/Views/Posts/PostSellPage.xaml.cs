@@ -75,11 +75,18 @@ namespace PasaBuy.App.Views.Posts
                     Loader.IsVisible = false;
                 }
             }
-            catch (Exception ex)
+            catch (Exception err)
             {
-                new Alert("Something went Wrong", "Please contact administrator. Error: " + ex, "OK");
-                Loader.IsRunning = false;
-                Loader.IsVisible = false;
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: SPV1PST-I1PSLP", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-SPV1PST-I1PSLP-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: SPV1PST-I1PSLP.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-SPV1PST-I1PSLP-" + err.ToString());
+                }
             }
             Loader.IsRunning = false;
             Loader.IsVisible = false;
