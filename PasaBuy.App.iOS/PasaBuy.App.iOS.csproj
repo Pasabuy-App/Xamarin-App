@@ -534,4 +534,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\chat_black.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Avatar.png" />
+  </ItemGroup>
 </Project>

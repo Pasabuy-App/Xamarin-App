@@ -93,10 +93,11 @@
                                 </ffimageloading:CachedImage>
 
                                 <Label Text="{Binding CustomerName}"
+                                        FontFamily="{StaticResource Montserrat-SemiBold}"
                                                        Grid.Row="0"
                                                        Grid.Column="1"
                                                        HorizontalOptions="StartAndExpand"
-                                                       TextColor="{DynamicResource BlackColor}">
+                                                       TextColor="{DynamicResource Gray-900}">
                                 </Label>
                                 <Label Text="{Binding Pubkey}"
                                                        Grid.Row="1"
@@ -111,10 +112,11 @@
                                                        TextColor="{DynamicResource Gray-800}">
                                 </Label>
                                 <Label Text="{Binding TotalPrice, StringFormat='₱ {0:F2}'}"
+                                        FontFamily="{StaticResource Montserrat-SemiBold}"
                                                        Grid.Row="0"
                                                        Grid.Column="2"
                                                        HorizontalOptions="StartAndExpand"
-                                                       TextColor="{DynamicResource BlackColor}">
+                                                       TextColor="{DynamicResource Gray-900}">
                                 </Label>
                                 <Label Text="{Binding Stages}"
                                                        Grid.Row="2"
