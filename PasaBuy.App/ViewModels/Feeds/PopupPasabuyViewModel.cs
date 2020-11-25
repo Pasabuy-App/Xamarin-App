@@ -59,13 +59,13 @@ namespace PasaBuy.App.ViewModels.Feeds
             {
                 if (Local.PSAConfig.isDebuggable)
                 {
-                    new Controllers.Notice.Alert("Error Code: HPV2MVR-P1MMVM", err.ToString(), "OK");
-                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-HPV2MVR-P1MMVM-" + err.ToString());
+                    new Controllers.Notice.Alert("Error Code: HPV2MVR-P1PUPVM", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-HPV2MVR-P1PUPVM-" + err.ToString());
                 }
                 else
                 {
-                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2MVR-P1MMVM.", "OK");
-                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-HPV2MVR-P1MMVM-" + err.ToString());
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2MVR-P1PUPVM.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-HPV2MVR-P1PUPVM-" + err.ToString());
                 }
             }
         }

@@ -438,8 +438,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                 }
                 else
                 {
-                    isCity = true;
-                    this.City = "No address.";
+                    isCity = false;
                 }
                 this.Joined = "Joined at " + date.ToString("MMMM yyyy");
                 isRefered = false;
@@ -465,8 +464,7 @@ namespace PasaBuy.App.ViewModels.Feeds
                 }
                 else
                 {
-                    isCity = true;
-                    this.City = "No address.";
+                    isCity = false;
                 }
                 //this.Joined = "(ic) Joined at " + DateTime.Now.ToString("MMMM yyyy");
                 this.Joined = "Joined at " + joined;

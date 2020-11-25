@@ -188,12 +188,11 @@
                                                              TranslationY="-15"
                                                              Padding="50, 0, 50, 15">
                                                 <!--Address Stack-->
-                                                <StackLayout Orientation="Horizontal">
+                                                <StackLayout Orientation="Horizontal"  IsVisible="{Binding isCity}">
                                                     <Image Source="address_book.png"
                                                            HeightRequest="22"/>
                                                     <Label Text="{Binding City}" 
-                                                               Margin="0,12"
-                                                               IsVisible="{Binding isCity}"/>
+                                                               Margin="0,12" />
                                                 </StackLayout>
 
                                                 <!--Joined Date Stack-->
@@ -299,7 +298,7 @@
                                             </Grid>
 
                                         </StackLayout>
-                                        <local:InputEntry />
+                                        <local:InputEntry IsVisible="{Binding isInput}"/>
                                     </StackLayout>
                                 </Grid>
                             </CollectionView.Header>
