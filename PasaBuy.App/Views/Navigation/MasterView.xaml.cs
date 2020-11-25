@@ -56,6 +56,7 @@ namespace PasaBuy.App.Views.Navigation
             InitializeComponent();
             //UserName.Text = PSACache.Instance.UserInfo.dname;
             //Email.Text = PSACache.Instance.UserInfo.email;
+            IconImageSource = "https://dev.pasabuy.app/wp-content/uploads/2020/11/nav_menu.png";
 
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
             menuList = new List<MenuItem>();

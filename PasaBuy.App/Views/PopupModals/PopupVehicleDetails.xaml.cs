@@ -20,10 +20,8 @@ namespace PasaBuy.App.Views.PopupModals
         {
             InitializeComponent();
             //this.BindingContext = new VehicleListViewModel();
-            TypeListViewModel typelist = new TypeListViewModel();
-            combo_Type.BindingContext = typelist;
-            combo_Type.DataSource = typelist.TypeList;
-            combo_Type.DisplayMemberPath = "Title";
+            this.BindingContext = new TypeListViewModel();
+
             isClicked = false;
         }
 
