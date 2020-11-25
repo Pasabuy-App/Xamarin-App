@@ -1,7 +1,5 @@
-﻿using PasaBuy.App.Controllers.Notice;
-using PasaBuy.App.Local;
+﻿using PasaBuy.App.Local;
 using System;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -34,10 +32,9 @@ namespace PasaBuy.App.Views.Settings
         {
             try
             {
-                //TO DO :: Add validations
                 if (String.IsNullOrEmpty(IdTypeEntry.Text) || String.IsNullOrEmpty(IDNumberEntry.Text) || String.IsNullOrEmpty(ContactEntry.Text))
                 {
-                    new Alert("Failed", "Please complete all fields.", "Ok");
+                    new Controllers.Notice.Alert("Failed", "Please complete all fields.", "Ok");
                 }
                 else
                 {
@@ -45,31 +42,19 @@ namespace PasaBuy.App.Views.Settings
                     {
                         Loader.IsVisible = true;
                         isEnable = true;
-                        Http.DataVice.Documents.Instance.Insert("id", idDocType, idPath, idnumber, instructions, (bool success, string data) =>
+                        Http.DataVice.Documents.Instance.Insert("id", instructions, "face", idDocType, ContactEntry.Text,  idnumber, selfiePath, idPath, (bool success, string data) =>
                         {
                             if (success)
                             {
-                                Http.DataVice.Documents.Instance.Insert("face", "", selfiePath, ContactEntry.Text, instructions, (bool success2, string data2) =>
-                                {
-                                    if (success)
-                                    {
-                                        Navigation.PushModalAsync(new VerificationFinal());
-                                        Loader.IsVisible = false;
-                                        isEnable = false;
-                                    }
-                                    else
-                                    {
-                                        isEnable = false;
-                                        Loader.IsVisible = false;
-                                        new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data2), "Try Again");
-                                    }
-                                });
+                                Navigation.PushModalAsync(new VerificationFinal());
+                                Loader.IsVisible = false;
+                                isEnable = false;
                             }
                             else
                             {
                                 isEnable = false;
                                 Loader.IsVisible = false;
-                                new Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                                new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
                             }
                         });
                     }
