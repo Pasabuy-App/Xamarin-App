@@ -19,11 +19,8 @@ namespace PasaBuy.App.Views.Settings
         public AddAddressPage()
         {
             InitializeComponent();
-            CountryViewModel country = new CountryViewModel();
-            CountryPicker.BindingContext = country;
-            CountryPicker.DataSource = country.CountryCollection;
-            CountryPicker.DisplayMemberPath = "Name";
-            Console.WriteLine(country.CountryCollection);
+            this.BindingContext = new AddressViewModel();
+          
         }
 
         public void BackButtonClicked(object sender, EventArgs e)
@@ -106,6 +103,7 @@ namespace PasaBuy.App.Views.Settings
                 BrgyViewModel.ClearList();
             }
             AddressVar.co = CountryPicker.SelectedValue.ToString();
+            new Alert("Ok", AddressVar.co, "ok");
             ProvinceViewModel province = new ProvinceViewModel(CountryPicker.SelectedValue.ToString());
             ProvincePicker.BindingContext = province;
             ProvincePicker.DataSource = province.ProvinceCollection;

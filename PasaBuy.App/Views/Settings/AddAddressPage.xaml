@@ -160,15 +160,6 @@
                                             <x:String>Business</x:String>
                                         </ListCollection:List>
                                     </combobox:SfComboBox.ComboBoxSource>
-                                    <combobox:SfComboBox.DropDownButtonSettings>
-                                        <combobox:DropDownButtonSettings Width="30" Height="30">
-                                            <combobox:DropDownButtonSettings.View>
-                                                <StackLayout Padding="8">
-                                                    <Image Source="down.png"/>
-                                                </StackLayout>
-                                            </combobox:DropDownButtonSettings.View>
-                                        </combobox:DropDownButtonSettings>
-                                    </combobox:SfComboBox.DropDownButtonSettings>
                                 </combobox:SfComboBox>
                             </border:SfBorder>
 
@@ -178,25 +169,13 @@
                                              Style="{StaticResource FormBorderStyle}">
                                 <combobox:SfComboBox x:Name="CountryPicker"
                                                     SelectionChanged="CountryPicker_SelectionChanged"
-                                                     BorderColor="Transparent"
+                                                    BorderColor="Transparent"
                                                     SelectedValuePath="CountryCode"
+                                                    DataSource="{Binding CountryList}"
+                                                    DisplayMemberPath="Name"
                                                     Style="{StaticResource ComboBoxStyle}"
-                                                    Watermark="Select Country">
-                                    <combobox:SfComboBox.ComboBoxSource>
-                                        <ListCollection:List x:TypeArguments="x:String">
-                                            <x:String></x:String>
-                                        </ListCollection:List>
-                                    </combobox:SfComboBox.ComboBoxSource>
-                                    <combobox:SfComboBox.DropDownButtonSettings>
-                                        <combobox:DropDownButtonSettings Width="30" Height="30">
-                                            <combobox:DropDownButtonSettings.View>
-                                                <StackLayout Padding="8">
-                                                    <Image Source="down.png"/>
-                                                </StackLayout>
-                                            </combobox:DropDownButtonSettings.View>
-                                        </combobox:DropDownButtonSettings>
-                                    </combobox:SfComboBox.DropDownButtonSettings>
-                                </combobox:SfComboBox>
+                                                    Watermark="Select Country" />
+
                             </border:SfBorder>
 
                             <border:SfBorder Grid.Row="6"
@@ -214,15 +193,7 @@
                                             <x:String></x:String>
                                         </ListCollection:List>
                                     </combobox:SfComboBox.ComboBoxSource>
-                                    <combobox:SfComboBox.DropDownButtonSettings>
-                                        <combobox:DropDownButtonSettings Width="30" Height="30">
-                                            <combobox:DropDownButtonSettings.View>
-                                                <StackLayout Padding="8">
-                                                    <Image Source="down.png"/>
-                                                </StackLayout>
-                                            </combobox:DropDownButtonSettings.View>
-                                        </combobox:DropDownButtonSettings>
-                                    </combobox:SfComboBox.DropDownButtonSettings>
+                     
                                 </combobox:SfComboBox>
                             </border:SfBorder>
 
@@ -241,15 +212,6 @@
                                             <x:String></x:String>
                                         </ListCollection:List>
                                     </combobox:SfComboBox.ComboBoxSource>
-                                    <combobox:SfComboBox.DropDownButtonSettings>
-                                        <combobox:DropDownButtonSettings Width="30" Height="30">
-                                            <combobox:DropDownButtonSettings.View>
-                                                <StackLayout Padding="8">
-                                                    <Image Source="down.png"/>
-                                                </StackLayout>
-                                            </combobox:DropDownButtonSettings.View>
-                                        </combobox:DropDownButtonSettings>
-                                    </combobox:SfComboBox.DropDownButtonSettings>
                                 </combobox:SfComboBox>
                             </border:SfBorder>
 
@@ -268,15 +230,6 @@
                                             <x:String></x:String>
                                         </ListCollection:List>
                                     </combobox:SfComboBox.ComboBoxSource>
-                                    <combobox:SfComboBox.DropDownButtonSettings>
-                                        <combobox:DropDownButtonSettings Width="30" Height="30">
-                                            <combobox:DropDownButtonSettings.View>
-                                                <StackLayout Padding="8">
-                                                    <Image Source="down.png"/>
-                                                </StackLayout>
-                                            </combobox:DropDownButtonSettings.View>
-                                        </combobox:DropDownButtonSettings>
-                                    </combobox:SfComboBox.DropDownButtonSettings>
                                 </combobox:SfComboBox>
                             </border:SfBorder>
                             <border:SfBorder Grid.Row="9"
@@ -319,15 +272,6 @@
                                             <x:String>Email</x:String>
                                         </ListCollection:List>
                                     </combobox:SfComboBox.ComboBoxSource>
-                                    <combobox:SfComboBox.DropDownButtonSettings>
-                                        <combobox:DropDownButtonSettings Width="30" Height="30">
-                                            <combobox:DropDownButtonSettings.View>
-                                                <StackLayout Padding="8">
-                                                    <Image Source="down.png"/>
-                                                </StackLayout>
-                                            </combobox:DropDownButtonSettings.View>
-                                        </combobox:DropDownButtonSettings>
-                                    </combobox:SfComboBox.DropDownButtonSettings>
                                 </combobox:SfComboBox>
                             </border:SfBorder>
 
