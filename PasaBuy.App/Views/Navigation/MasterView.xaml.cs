@@ -111,7 +111,7 @@ namespace PasaBuy.App.Views.Navigation
                 Email.Text = PSACache.Instance.UserInfo.email;
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Dashboard"), Icon = "https://dev.pasabuy.app/wp-content/uploads/2020/11/dashboard-prim.png", TargetType = typeof(Views.Driver.DashboardPage) });
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Transactions"), Icon = "https://dev.pasabuy.app/wp-content/uploads/2020/11/transactions-prim.png", TargetType = typeof(TransactionsHistoryPage) });
-                menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("My Wallet"), Icon = "https://dev.pasabuy.app/wp-content/uploads/2020/11/wallet-prim.png", TargetType = typeof(DriverWalletView) });
+                //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("My Wallet"), Icon = "https://dev.pasabuy.app/wp-content/uploads/2020/11/wallet-prim.png", TargetType = typeof(DriverWalletView) });
                 //menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Messages"), Icon = "Idcard.png", TargetType = typeof(MessagesView) });
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Documents"), Icon = "https://dev.pasabuy.app/wp-content/uploads/2020/11/documents-prim.png", TargetType = typeof(DriverDocumentView) });
                 menuList.Add(new MenuItem() { Title = TextsTranslateManager.Translate("Schedules"), Icon = "https://dev.pasabuy.app/wp-content/uploads/2020/11/schedules-prim.png", TargetType = typeof(DriverScheduleView) });
