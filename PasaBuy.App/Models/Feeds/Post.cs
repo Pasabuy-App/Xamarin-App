@@ -101,15 +101,34 @@ namespace PasaBuy.App.Models.Feeds
                 }
                 else
                 {
-                    if (PSACache.Instance.UserInfo.user_type == "User")
+                    try
                     {
-                        HomeColSpan = 2;
-                        HomeCol = 0;
+                        Http.HatidPress.MoverData.Instance.GetData((bool success, string data) =>
+                        {
+                            if (success)
+                            {
+                                HomeColSpan = 1;
+                                HomeCol = 1;
+                            }
+                            else
+                            {
+                                HomeColSpan = 2;
+                                HomeCol = 0;
+                            }
+                        });
                     }
-                    else
+                    catch (Exception err)
                     {
-                        HomeColSpan = 1;
-                        HomeCol = 1;
+                        if (PSAConfig.isDebuggable)
+                        {
+                            new Controllers.Notice.Alert("Error Code: HPV2MVR-P1PSTMDL", err.ToString(), "OK");
+                            Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-HPV2MVR-P1PSTMDL-" + err.ToString());
+                        }
+                        else
+                        {
+                            new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2MVR-P1PSTMDL.", "OK");
+                            Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-HPV2MVR-P1PSTMDL-" + err.ToString());
+                        }
                     }
                 }
                 if (MyProfileViewModel.user_id == string.Empty)
@@ -119,15 +138,34 @@ namespace PasaBuy.App.Models.Feeds
                 }
                 else
                 {
-                    if (PSACache.Instance.UserInfo.user_type == "User")
+                    try
                     {
-                        ProfileColSpan = 2;
-                        ProfileCol = 0;
+                        Http.HatidPress.MoverData.Instance.GetData((bool success, string data) =>
+                        {
+                            if (success)
+                            {
+                                ProfileColSpan = 1;
+                                ProfileCol = 1;
+                            }
+                            else
+                            {
+                                ProfileColSpan = 2;
+                                ProfileCol = 0;
+                            }
+                        });
                     }
-                    else
+                    catch (Exception err)
                     {
-                        ProfileColSpan = 1;
-                        ProfileCol = 1;
+                        if (PSAConfig.isDebuggable)
+                        {
+                            new Controllers.Notice.Alert("Error Code: HPV2MVR-P1PSTMDL", err.ToString(), "OK");
+                            Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-HPV2MVR-P1PSTMDL-" + err.ToString());
+                        }
+                        else
+                        {
+                            new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2MVR-P1PSTMDL.", "OK");
+                            Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-HPV2MVR-P1PSTMDL-" + err.ToString());
+                        }
                     }
                 }
             }

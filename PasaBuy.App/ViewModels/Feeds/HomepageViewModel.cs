@@ -201,7 +201,7 @@ namespace PasaBuy.App.ViewModels.Feeds
             homePostList = new ObservableCollection<Post>();
             LoadData2();
 
-            this.InquireCommand = new Command(this.InquireClicked);
+            //this.InquireCommand = new Command(this.InquireClicked);
             this.Photo = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
 
             userinfoList = new ObservableCollection<Models.POSFeature.PersonnelModel>();
@@ -406,14 +406,14 @@ namespace PasaBuy.App.ViewModels.Feeds
 
         public ICommand InquireCommand { protected set; get; }
 
-        private void InquireClicked(object obj)
+        /*private void InquireClicked(object obj)
         {
             //Get display name, user avatar(already fetched), and user id
-            /*ChatMessageViewModel.ProfileNames = "test";
+            *//*ChatMessageViewModel.ProfileNames = "test";
             ChatMessageViewModel.ProfileImages = this.Photo;
             ChatMessageViewModel.user_id = "3";
-            await App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new ChatMessagePage()));*/
-        }
+            await App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new ChatMessagePage()));*//*
+        }*/
 
         bool _isRefreshing = false;
         public bool IsRefreshing

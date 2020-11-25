@@ -186,7 +186,7 @@ namespace PasaBuy.App.ViewModels.Onboarding
                                     PSACache.Instance.UserInfo.avatar = uinfo.data.avatar;
                                     PSACache.Instance.UserInfo.banner = uinfo.data.banner;
                                     PSACache.Instance.UserInfo.verify = uinfo.data.verify;
-                                    PSACache.Instance.UserInfo.user_type = uinfo.data.user_type;
+                                    //PSACache.Instance.UserInfo.user_type = uinfo.data.user_type;
 
                                     PSACache.Instance.SaveUserData();
 
