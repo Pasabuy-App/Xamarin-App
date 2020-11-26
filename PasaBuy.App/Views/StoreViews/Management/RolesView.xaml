@@ -7,7 +7,7 @@
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
              xmlns:local="clr-namespace:PasaBuy.App.UserControls"
              x:Class="PasaBuy.App.Views.StoreViews.Management.RolesView"
-             Title="Personnel Roles"
+             Title="Roles"
              x:Name="Role"
              BackgroundColor="{DynamicResource Gray-White}">
    
@@ -124,7 +124,7 @@
                                            Grid.Column="0"
                                            BackgroundColor="Transparent"
                                            HeightRequest="28"
-                                           Source="edit_white.png"
+                                           Source="https://dev.pasabuy.app/wp-content/uploads/2020/11/edit_white.png"
                                            WidthRequest="28" />
                                     </Grid>
                                 </Grid>
@@ -145,7 +145,7 @@
                                                Grid.Column="0"
                                                BackgroundColor="Transparent"
                                                HeightRequest="28"
-                                               Source="Delete.png"
+                                               Source="https://dev.pasabuy.app/wp-content/uploads/2020/11/Delete.png"
                                                WidthRequest="28" />
                                     </Grid>
                                 </Grid>

@@ -35,19 +35,21 @@
                         Padding="15,5,15,5"
                         BackgroundColor="{StaticResource PrimaryColor}"
                         HeightRequest="{OnPlatform Android='46',
-                                                   iOS='56'}">
+                                                   iOS='46'}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <buttons:SfButton
-                            x:Name="backButton"
-                            Clicked="backButton_Clicked"
-                            Grid.Column="0"
-                            CornerRadius="4"
-                            Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Back}" />
-                    <Label Grid.Column="1"
+               
+                            <ImageButton Source="arrow_left.png"
+                                             Grid.Column="0"
+                                             HeightRequest="25"
+                                             Margin="0,0,8,0"
+                                             x:Name="backButton"
+                                             WidthRequest="20"
+                                             BackgroundColor="Transparent"
+                                             Clicked="backButton_Clicked" />
+                            <Label Grid.Column="1"
                                     FontFamily="{StaticResource Montserrat-Medium}"
                                     FontSize="17"
                                     HorizontalOptions="Start"
@@ -96,12 +98,16 @@
                                         IsVisible="False"
                                         Orientation="Horizontal"
                                         Spacing="0">
-                                <buttons:SfButton x:Name="BackToTitle"
-                                                Clicked="BackToTitle_Clicked"
-                                                Style="{StaticResource NavigationBarButtonStyle}"
-                                                TextColor="{DynamicResource Gray-900}"
-                                                Text="{StaticResource Back}" />
-                                <border:SfBorder Style="{DynamicResource SfBorderStyle}">
+                        
+                                        <ImageButton Source="arrow_left_black.png"
+                                             Grid.Column="0"
+                                             HeightRequest="25"
+                                             Margin="0,0,8,0"
+                                             x:Name="BackToTitle"
+                                             WidthRequest="20"
+                                             BackgroundColor="Transparent"
+                                             Clicked="BackToTitle_Clicked" />
+                                        <border:SfBorder Style="{DynamicResource SfBorderStyle}">
                                     <controls:BorderlessEntry x:Name="SearchEntry"
                                                                 HorizontalOptions="FillAndExpand"
                                                                 Placeholder="Search here"
@@ -110,13 +116,16 @@
                                 </border:SfBorder>
                             </StackLayout>
                             <!--  Search Button  -->
-                            <buttons:SfButton x:Name="SearchButton"
-                                            IsVisible="True"
-                                            Clicked="SearchButton_Clicked"
-                                            TextColor="{DynamicResource Gray-900}"
-                                            Style="{StaticResource NavigationBarButtonStyle }"
-                                            Text="{StaticResource Search}" />
-                        </StackLayout>
+                     
+                                    <ImageButton Source="search_black.png"
+                                             Grid.Column="0"
+                                             HeightRequest="25"
+                                             Margin="0,0,8,0"
+                                             x:Name="SearchButton"
+                                             WidthRequest="20"
+                                             BackgroundColor="Transparent"
+                                             Clicked="SearchButton_Clicked" />
+                                </StackLayout>
 
                         <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}" />
 

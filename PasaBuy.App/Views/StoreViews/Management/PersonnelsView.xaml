@@ -6,11 +6,12 @@
              xmlns:pulltoRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms" 
              xmlns:syncListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
-             xmlns:texts="clr-namespace:PasaBuy.App.Resources.Texts;assembly=PasaBuy.App"
-             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" xmlns:controls="clr-namespace:PasaBuy.App.Controls" xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
+             xmlns:controls="clr-namespace:PasaBuy.App.Controls" 
+             xmlns:loading="clr-namespace:PasaBuy.App.UserControls"
              BackgroundColor="{DynamicResource Gray-White}"
              x:Class="PasaBuy.App.Views.StoreViews.Management.PersonnelsView"
-             Title="{texts:Translate PersonnelTitle}">
+             Title="Personnel">
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -23,11 +24,11 @@
             Order="Primary"
             Priority="1"
             x:Name="AddButton"
-            Clicked="AddTapped"
-            Text="asd">
+            Clicked="AddTapped">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="Android" Value="add_24.png" />
+                    <On Platform="iOS" Value="add_24.png" />
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
@@ -109,13 +110,16 @@
                                                 </ffimageloading:CachedImage>
 
                                                 <Label Text="{Binding FullName}"
+                                                       FontSize="{DynamicResource SmallerSize}"
                                                            Grid.Row="0"
                                                            Grid.Column="1"
+                                                           
                                                            HorizontalOptions="StartAndExpand"
                                                            FontFamily="{StaticResource Montserrat-SemiBold}" 
                                                            TextColor="{DynamicResource Gray-900}">
                                                 </Label>
                                                 <Label Text="{Binding Position}"
+                                                       FontSize="{DynamicResource SmallerSize}"
                                                            Grid.Row="1"
                                                            Grid.Column="1"
                                                            HorizontalOptions="StartAndExpand"
@@ -124,6 +128,7 @@
                                                 </Label>
 
                                                 <Label Text="{Binding DateCreated}"
+                                                       FontSize="{DynamicResource SmallerSize}"
                                                            Grid.Row="0"
                                                            Grid.Column="2"
                                                            HorizontalOptions="End"
@@ -131,6 +136,7 @@
                                                            TextColor="{DynamicResource Gray-900}">
                                                 </Label>
                                                 <Label Text="Employee Since"
+                                                       FontSize="{DynamicResource SmallerSize}"
                                                            Grid.Row="1"
                                                            Grid.Column="2"
                                                            HorizontalOptions="End"
@@ -166,7 +172,7 @@
                                                                     Grid.Column="0"
                                                                     BackgroundColor="Transparent"
                                                                     HeightRequest="28"
-                                                                    Source="edit_white.png"
+                                                                    Source="https://dev.pasabuy.app/wp-content/uploads/2020/11/edit_white.png"
                                                                     WidthRequest="28" />
                                                 </Grid>
                                             </Grid>
@@ -187,7 +193,7 @@
                                                                     Grid.Column="0"
                                                                     BackgroundColor="Transparent"
                                                                     HeightRequest="28"
-                                                                    Source="Delete.png"
+                                                                    Source="https://dev.pasabuy.app/wp-content/uploads/2020/11/Delete.png"
                                                                     WidthRequest="28" />
                                                 </Grid>
                                             </Grid>
