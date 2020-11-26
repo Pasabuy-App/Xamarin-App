@@ -7,9 +7,9 @@
              xmlns:syncListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
              xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
-             xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl" 
              xmlns:local="clr-namespace:PasaBuy.App.UserControls" 
-             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.MobilePOS" xmlns:controls="clr-namespace:PasaBuy.App.Controls"
+             xmlns:viewModel="clr-namespace:PasaBuy.App.ViewModels.MobilePOS"
+             xmlns:controls="clr-namespace:PasaBuy.App.Controls"
              x:Class="PasaBuy.App.Views.StoreViews.Management.VariantsView"
              Title="Products">
 

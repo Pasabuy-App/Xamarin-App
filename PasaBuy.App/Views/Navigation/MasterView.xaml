@@ -6,7 +6,6 @@
              xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              Title=" "
              x:Class="PasaBuy.App.Views.Navigation.MasterView"
-             Icon="menu.png"
              x:Name="MasterRoot">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -30,11 +29,11 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
+
     <ContentPage.Content>
         <StackLayout>
                 <!--  user view  -->
                 <Grid >
-
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>

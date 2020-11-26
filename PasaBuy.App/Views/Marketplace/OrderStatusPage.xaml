@@ -22,10 +22,7 @@
         <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" Default="0, 0, 0, 0" />
     </ContentPage.Padding>
     <ContentPage.Content>
-        <RefreshView IsRefreshing="{Binding IsRefreshing}"   
-                     x:Name="rv"
-                     Command="{Binding RefreshCommand}">
-            <ScrollView>
+        
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -108,7 +105,7 @@
                                                     Transformations="{Binding TurnGreyScale}"
                                                     FadeAnimationEnabled="False" >
                         </ffimageloading:CachedImage>
-                        
+
                         <Grid Grid.Row="1"
                               Grid.ColumnSpan="5">
                             <progressBar:SfStepProgressBar HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
@@ -154,7 +151,7 @@
                                 </Label>
 
                                 <BoxView Grid.Row="2" Style="{StaticResource SeparatorStyle}" />
-                                
+
                                 <Grid Grid.Row="3" >
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
@@ -288,8 +285,6 @@
                         HorizontalOptions="Fill"
                         VerticalOptions="Fill" />
                 </Grid>
-            </ScrollView>
-        </RefreshView>
 
     </ContentPage.Content>
 </ContentPage>

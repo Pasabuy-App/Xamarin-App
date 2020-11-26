@@ -165,7 +165,7 @@ namespace PasaBuy.App.ViewModels.Menu
                             DateTime date = DateTime.ParseExact(datas.data[i].date_created, "yyyy-MM-dd HH:mm:ss", provider);
                             PSACache.Instance.UserInfo.mvid = datas.data[i].mvid;
                             VehicleListViewModel.rating = datas.data[i].rate;
-                            VehicleListViewModel.status = datas.data[i].banned == false ? datas.data[i].mover_doc : "Banned";
+                            VehicleListViewModel.status = datas.data[i].banned == false ? "Active" : "Banned";
                             VehicleListViewModel.expiry = date.ToString("MMM. dd, yyyy");
                         }
                     }

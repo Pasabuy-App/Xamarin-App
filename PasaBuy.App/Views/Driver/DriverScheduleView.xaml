@@ -54,7 +54,18 @@
                                            VerticalOptions="CenterAndExpand"
                                            TextColor="{DynamicResource Gray-900}">
                         </Label>
-                        <buttons:SfButton
+                        <ImageButton Source="https://dev.pasabuy.app/wp-content/uploads/2020/11/fill-prim.png"
+                                     x:Name="backButton"
+                                     Grid.Row="0"
+                                     Grid.RowSpan="2"
+                                     Grid.Column="2"
+                                     HeightRequest="25"
+                                     WidthRequest="25"
+                                     ClassId="{Binding Day}"
+                                     Command="{Binding BindingContext.EditScheduleCommand,Source={x:Reference listView}}"
+                                     CommandParameter="{Binding Day}"
+                                     BackgroundColor="Transparent" />
+                        <!--<buttons:SfButton
                             x:Name="backButton"
                             Grid.Row="0"
                             Grid.RowSpan="2"
@@ -65,7 +76,8 @@
                             Command="{Binding BindingContext.EditScheduleCommand,Source={x:Reference listView}}"
                             CommandParameter="{Binding Day}"
                             Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource EditIcon}" />
+                            Text="{StaticResource EditIcon}" />-->
+                        
                     </Grid>
                     <BoxView Grid.Row="1" Margin="0,-1,0,0" Style="{DynamicResource SeparatorStyle}" />
                 </Grid>

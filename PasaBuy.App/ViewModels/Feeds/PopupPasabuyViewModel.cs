@@ -36,11 +36,38 @@ namespace PasaBuy.App.ViewModels.Feeds
             TappedCommand = new Command<object>(TappedClicked);
 
             Info = new ObservableCollection<PopupPasabuyModel>();
-            Info.Add(new PopupPasabuyModel() { Title = "Pasabay", Details = "A mover posts items or his whereabouts and asks the community if someone wants to have the items bought by him. The mover will then deliver the items."});
+            CheckMover();
+
             Info.Add(new PopupPasabuyModel() { Title = "Pabili", Details = "A buyer requests a mover to buy items for him in a restaurant or store. The mover delivers the item right after the purchase." });
             Info.Add(new PopupPasabuyModel() { Title = "Pahatid", Details = "A mover drops off a passenger at a destination." });
             Info.Add(new PopupPasabuyModel() { Title = "Pasakay", Details = "A mover invites a passenger to share a ride towards a destination." });
+        }
 
+        public void CheckMover()
+        {
+            try
+            {
+                Http.HatidPress.MoverData.Instance.GetData((bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        Info.Add(new PopupPasabuyModel() { Title = "Pasabay", Details = "A mover posts items or his whereabouts and asks the community if someone wants to have the items bought by him. The mover will then deliver the items." });
+                    }
+                });
+            }
+            catch (Exception err)
+            {
+                if (Local.PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: HPV2MVR-P1PUPVM", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-HPV2MVR-P1PUPVM-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: HPV2MVR-P1PUPVM.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-HPV2MVR-P1PUPVM-" + err.ToString());
+                }
+            }
         }
 
         public Command<object> TappedCommand { get; set; }

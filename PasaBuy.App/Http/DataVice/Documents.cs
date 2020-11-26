@@ -45,7 +45,7 @@ namespace PasaBuy.App.Http.DataVice
         /// <summary>
         /// Delete address.
         /// </summary>
-        public async void Insert(string type, string doctype, string img, string number_contact, string nationality, Action<bool, string> callback)
+        public async void Insert(string type_id, string instruction, string type_face, string doctype, string number_contact, string id_number, string face, string id, Action<bool, string> callback)
         {
             try
             {
@@ -53,13 +53,17 @@ namespace PasaBuy.App.Http.DataVice
 
                     multiForm.Add(new StringContent(PSACache.Instance.UserInfo.wpid), "wpid");
                     multiForm.Add(new StringContent(PSACache.Instance.UserInfo.snky), "snky");
-                    multiForm.Add(new StringContent(type), "type");
-                    multiForm.Add(new StringContent(number_contact), "number_contact");
-                    if (doctype != "") { multiForm.Add(new StringContent(doctype), "doctype"); }
-                    if (nationality != "") { multiForm.Add(new StringContent(nationality), "nationality"); }
+                    multiForm.Add(new StringContent(type_id), "data[0][type]");
+                    multiForm.Add(new StringContent(doctype), "data[0][doctype]");
+                    multiForm.Add(new StringContent(number_contact), "data[0][number_contact]");
+                    multiForm.Add(new StringContent(id_number), "data[0][id_number]");
+                    multiForm.Add(new StringContent(instruction), "data[1][instruction]");
+                    multiForm.Add(new StringContent(type_face), "data[1][type]");
 
-                    FileStream fs = File.OpenRead(img);
-                    multiForm.Add(new StreamContent(fs), "img", Path.GetFileName(img));
+                    FileStream fs = File.OpenRead(face);
+                    multiForm.Add(new StreamContent(fs), "face", Path.GetFileName(face));
+                    FileStream fs1 = File.OpenRead(id);
+                    multiForm.Add(new StreamContent(fs1), "id", Path.GetFileName(id));
 
                 var response = await client.PostAsync(PSAConfig.CurrentRestUrl + "/wp-json/datavice/v1/user/documents/insert", multiForm);
                 response.EnsureSuccessStatusCode();

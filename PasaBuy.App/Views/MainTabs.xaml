@@ -8,9 +8,8 @@
              xmlns:food="clr-namespace:PasaBuy.App.Views.Marketplace"
              xmlns:grocery="clr-namespace:PasaBuy.App.Views.Marketplace"
              xmlns:menu="clr-namespace:PasaBuy.App.Views.Menu" 
-             xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl"
              x:Class="PasaBuy.App.Views.MainTabs"
-             xmlns:pasabuyplus="clr-namespace:PasaBuy.App.Views.Currency"
+             xmlns:pasabuyplus="clr-namespace:PasaBuy.App.Views.Currency" xmlns:fab="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
              NavigationPage.HasNavigationBar="False"
              NavigationPage.HasBackButton="False">
 
@@ -113,7 +112,7 @@
                 </tabView:SfTabItem>
 
             </tabView:SfTabView>
-            <fab:FloatingActionButtonView
+            <!--<fab:FloatingActionButtonView
 				    ColorNormal="{StaticResource PrimaryColor}"
 				    ColorPressed="{StaticResource Orange}"
 				    ColorRipple="{StaticResource Yellow}"
@@ -126,7 +125,20 @@
                     HorizontalOptions="EndAndExpand"
 				    AbsoluteLayout.LayoutFlags="PositionProportional"
 				    AbsoluteLayout.LayoutBounds="0.95,0.95,80,80">
-            </fab:FloatingActionButtonView>
+            </fab:FloatingActionButtonView>-->
+            <fab:FloatingActionButton x:Name="ShowPasabuyStoresButton"
+                                      HorizontalOptions="EndAndExpand" 
+                                      WidthRequest="50"
+                                      Command="{Binding ShowPasabuyStores}"
+                                      CommandParameter="{x:Type pasabuyplus:PasabuyPlusPage}"
+                                      Margin="0,0,15,15"
+                                      IsVisible="True"
+                                      CornerRadius="25"
+                                      HeightRequest="50" 
+                                      BackgroundColor="{DynamicResource PrimaryColor}"
+                                      VerticalOptions="EndAndExpand" 
+                                      Image="plusofficial.png"
+                                      ButtonColor="#03A9F4"/>
         </Grid>
         
         

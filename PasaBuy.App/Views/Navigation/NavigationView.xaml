@@ -13,4 +13,5 @@
     <MasterDetailPage.Detail>
         <ContentPage BackgroundColor="Transparent" />
     </MasterDetailPage.Detail>
+
 </MasterDetailPage>

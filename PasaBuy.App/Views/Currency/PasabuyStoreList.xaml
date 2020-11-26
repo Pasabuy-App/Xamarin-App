@@ -71,14 +71,13 @@
                               Spacing="0"
                               VerticalOptions="FillAndExpand">
 
-                    <buttons:SfButton x:Name="backButton"
-                                      IsVisible="True"
-                                      Clicked="backButton_Clicked"
-                                      TextColor="{DynamicResource Gray-White}"
-                                      Style="{StaticResource NavigationBarButtonStyle }"
-                                      Text="{StaticResource Back}" />
+                            <ImageButton Source="arrow_left.png"
+                                     HeightRequest="25"
+                                     WidthRequest="25"
+                                     BackgroundColor="Transparent"
+                                     Clicked="backButton_Clicked" />
 
-                    <Label Margin="16,0"
+                            <Label Margin="16,0"
                            HeightRequest="24"
                            FontFamily="{StaticResource Montserrat-Medium}"
                            FontSize="16"
@@ -95,13 +94,15 @@
                              IsVisible="False"
                              Orientation="Horizontal"
                              Spacing="0">
-                    <buttons:SfButton x:Name="BackToTitle"
-                                      Clicked="BackToTitle_Clicked"
-                                      TextColor="White"
-                                      FontSize="22"
-                                      Style="{StaticResource NavigationBarButtonStyle}"
-                                      Text="{StaticResource ArrowRight}" />
-                    <border:SfBorder Style="{DynamicResource SfBorderStyle}"
+                            <ImageButton Source="arrow_left.png"
+                                     HeightRequest="25"
+                                     x:Name="BackToTitle"
+                                     Margin="0,0,7,0"
+                                     IsVisible="True"
+                                     WidthRequest="25"
+                                     BackgroundColor="Transparent"
+                                     Clicked="BackToTitle_Clicked" />
+                            <border:SfBorder Style="{DynamicResource SfBorderStyle}"
                                      Padding="15,0,0,0">
                         <controls:BorderlessEntry x:Name="SearchEntry"
                                                   HorizontalOptions="FillAndExpand"
@@ -113,13 +114,14 @@
                 </StackLayout>
 
                 <!--  Search Button  -->
-                <buttons:SfButton x:Name="SearchButton"
-                                  IsVisible="True"
-                                  Clicked="SearchButton_Clicked"
-                                  TextColor="{DynamicResource Gray-White}"
-                                  Style="{StaticResource NavigationBarButtonStyle }"
-                                  Text="{StaticResource Search}" />
-            </StackLayout>
+                        <ImageButton Source="search.png"
+                                     HeightRequest="25"
+                                     x:Name="SearchButton"
+                                     IsVisible="True"
+                                     WidthRequest="25"
+                                     BackgroundColor="Transparent"
+                                     Clicked="SearchButton_Clicked" />
+                    </StackLayout>
 
             <BoxView Grid.Row="1" 
                      Style="{StaticResource SeparatorStyle}" />
@@ -188,6 +190,7 @@
                                             <Label LineBreakMode="TailTruncation"
                                                    Margin="0,4,0,0"
                                                    FontFamily="{StaticResource Montserrat-Medium}"
+                                                   TextColor="{DynamicResource Gray-900}" 
                                                    FontSize="{DynamicResource SmallerSize}"
                                                    LineHeight="{OnPlatform Android=1.2,Default=-1}"
                                                    Text="{Binding Address}" />
@@ -196,6 +199,7 @@
                                                    Margin="0,4,0,0"
                                                    FontFamily="{StaticResource Montserrat-Medium}"
                                                    FontSize="{DynamicResource SmallerSize}"
+                                                   TextColor="{DynamicResource Gray-900}" 
                                                    LineHeight="{OnPlatform Android=1.25,Default=-1}"
                                                    Text="{Binding Open_Close}" />
 

@@ -20,6 +20,10 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+    <ContentPage.Padding>
+        <OnPlatform  x:TypeArguments="Thickness" iOS="0,20,0,0"  Default="0,0,0,0"/>
+    </ContentPage.Padding>
+
     <ContentPage.Content>
         <Grid>
             <Grid RowSpacing="0">
@@ -31,18 +35,17 @@
                        Padding="15,5,15,5"
                        BackgroundColor="{StaticResource PrimaryColor}"
                        HeightRequest="{OnPlatform Android='46',
-                                                   iOS='56'}">
+                                                   iOS='46'}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <buttons:SfButton x:Name="backButton"
-                                      Clicked="BackButtonClicked"
-                                      Grid.Column="0"
-                                      CornerRadius="4"
-                                      TextColor="White"
-                                      Style="{StaticResource IconButtonStyle}"
-                                      Text="{StaticResource Back}" />
+              
+                    <ImageButton Source="arrow_left.png"
+                                     HeightRequest="25"
+                                     WidthRequest="25"
+                                     BackgroundColor="Transparent"
+                                     Clicked="BackButtonClicked" />
                     <Label Grid.Column="1"
                                 FontFamily="{StaticResource Montserrat-Medium}"
                                 FontSize="17"
@@ -99,7 +102,6 @@
                                  Style="{StaticResource SfBorderStyle}">
 
                                 <ffimageloading:CachedImage Aspect="Fill"
-                                            Source="https://pasabuy.app/wp-content/uploads/2020/11/front-house.png"
                                             x:Name="HouseImage"
 			                                DownsampleToViewSize="true" 
                                             FadeAnimationEnabled="True" >
@@ -142,9 +144,12 @@
 
                             <border:SfBorder Grid.Row="4"
                                              Grid.ColumnSpan="2"
-                                             Padding="6,0,0,0"
+                                             Padding="{OnPlatform iOS='5,0,0,0',Default='6,0,0,0'}"
                                              Style="{StaticResource FormBorderStyle}">
                                 <combobox:SfComboBox x:Name="AddressTypePicker" 
+                                                     Grid.Row="4"
+                                                     BorderColor="Transparent"
+                                                     Grid.ColumnSpan="2"
                                                      SelectedValue="{Binding AddressTypePicker, Mode=TwoWay}"
                                                      Style="{StaticResource ComboBoxStyle}"
                                                      Watermark="Address Type">
@@ -155,19 +160,6 @@
                                             <x:String>Business</x:String>
                                         </ListCollection:List>
                                     </combobox:SfComboBox.ComboBoxSource>
-                                    <combobox:SfComboBox.DropDownButtonSettings>
-                                        <combobox:DropDownButtonSettings Width="30" Height="30">
-                                            <combobox:DropDownButtonSettings.View>
-                                                <Label Margin="0"
-                                                        FontFamily="{StaticResource FontIcons}"
-                                                        FontSize="25"
-                                                        HorizontalTextAlignment="Center"
-                                                        Text="{StaticResource DropDownButtonIcon}"
-                                                        TextColor="{DynamicResource Gray-600}"
-                                                        VerticalTextAlignment="Center" />
-                                            </combobox:DropDownButtonSettings.View>
-                                        </combobox:DropDownButtonSettings>
-                                    </combobox:SfComboBox.DropDownButtonSettings>
                                 </combobox:SfComboBox>
                             </border:SfBorder>
 
@@ -177,28 +169,13 @@
                                              Style="{StaticResource FormBorderStyle}">
                                 <combobox:SfComboBox x:Name="CountryPicker"
                                                     SelectionChanged="CountryPicker_SelectionChanged"
+                                                    BorderColor="Transparent"
                                                     SelectedValuePath="CountryCode"
+                                                    DataSource="{Binding CountryList}"
+                                                    DisplayMemberPath="Name"
                                                     Style="{StaticResource ComboBoxStyle}"
-                                                    Watermark="Select Country">
-                                    <combobox:SfComboBox.ComboBoxSource>
-                                        <ListCollection:List x:TypeArguments="x:String">
-                                            <x:String></x:String>
-                                        </ListCollection:List>
-                                    </combobox:SfComboBox.ComboBoxSource>
-                                    <combobox:SfComboBox.DropDownButtonSettings>
-                                        <combobox:DropDownButtonSettings Width="30" Height="30">
-                                            <combobox:DropDownButtonSettings.View>
-                                                <Label Margin="0"
-                                                        FontFamily="{StaticResource FontIcons}"
-                                                        FontSize="25"
-                                                        HorizontalTextAlignment="Center"
-                                                        Text="{StaticResource DropDownButtonIcon}"
-                                                        TextColor="{DynamicResource Gray-600}"
-                                                        VerticalTextAlignment="Center" />
-                                            </combobox:DropDownButtonSettings.View>
-                                        </combobox:DropDownButtonSettings>
-                                    </combobox:SfComboBox.DropDownButtonSettings>
-                                </combobox:SfComboBox>
+                                                    Watermark="Select Country" />
+
                             </border:SfBorder>
 
                             <border:SfBorder Grid.Row="6"
@@ -207,6 +184,7 @@
                                             Style="{StaticResource FormBorderStyle}">
                                 <combobox:SfComboBox x:Name="ProvincePicker"
                                                     SelectionChanged="ProvincePicker_SelectionChanged"
+                                                     BorderColor="Transparent"
                                                     SelectedValuePath="ProvinceCode"
                                                     Style="{StaticResource ComboBoxStyle}"
                                                     Watermark="Select Province">
@@ -215,19 +193,7 @@
                                             <x:String></x:String>
                                         </ListCollection:List>
                                     </combobox:SfComboBox.ComboBoxSource>
-                                    <combobox:SfComboBox.DropDownButtonSettings>
-                                        <combobox:DropDownButtonSettings Width="30" Height="30">
-                                            <combobox:DropDownButtonSettings.View>
-                                                <Label Margin="0"
-                                                        FontFamily="{StaticResource FontIcons}"
-                                                        FontSize="25"
-                                                        HorizontalTextAlignment="Center"
-                                                        Text="{StaticResource DropDownButtonIcon}"
-                                                        TextColor="{DynamicResource Gray-600}"
-                                                        VerticalTextAlignment="Center" />
-                                            </combobox:DropDownButtonSettings.View>
-                                        </combobox:DropDownButtonSettings>
-                                    </combobox:SfComboBox.DropDownButtonSettings>
+                     
                                 </combobox:SfComboBox>
                             </border:SfBorder>
 
@@ -238,6 +204,7 @@
                                 <combobox:SfComboBox x:Name="CityPicker"
                                                     SelectionChanged="CityPicker_SelectionChanged"
                                                     SelectedValuePath="CityCode"
+                                                     BorderColor="Transparent"
                                                     Style="{StaticResource ComboBoxStyle}"
                                                     Watermark="Select City">
                                     <combobox:SfComboBox.ComboBoxSource>
@@ -245,19 +212,6 @@
                                             <x:String></x:String>
                                         </ListCollection:List>
                                     </combobox:SfComboBox.ComboBoxSource>
-                                    <combobox:SfComboBox.DropDownButtonSettings>
-                                        <combobox:DropDownButtonSettings Width="30" Height="30">
-                                            <combobox:DropDownButtonSettings.View>
-                                                <Label Margin="0"
-                                                        FontFamily="{StaticResource FontIcons}"
-                                                        FontSize="25"
-                                                        HorizontalTextAlignment="Center"
-                                                        Text="{StaticResource DropDownButtonIcon}"
-                                                        TextColor="{DynamicResource Gray-600}"
-                                                        VerticalTextAlignment="Center" />
-                                            </combobox:DropDownButtonSettings.View>
-                                        </combobox:DropDownButtonSettings>
-                                    </combobox:SfComboBox.DropDownButtonSettings>
                                 </combobox:SfComboBox>
                             </border:SfBorder>
 
@@ -267,6 +221,7 @@
                                             Style="{StaticResource FormBorderStyle}">
                                 <combobox:SfComboBox x:Name="BarangayPicker"
                                                     SelectionChanged="BarangayPicker_SelectionChanged"
+                                                     BorderColor="Transparent"
                                                     SelectedValuePath="BrgyCode"
                                                     Style="{StaticResource ComboBoxStyle}"
                                                     Watermark="Select Barangay">
@@ -275,19 +230,6 @@
                                             <x:String></x:String>
                                         </ListCollection:List>
                                     </combobox:SfComboBox.ComboBoxSource>
-                                    <combobox:SfComboBox.DropDownButtonSettings>
-                                        <combobox:DropDownButtonSettings Width="30" Height="30">
-                                            <combobox:DropDownButtonSettings.View>
-                                                <Label Margin="0"
-                                                        FontFamily="{StaticResource FontIcons}"
-                                                        FontSize="25"
-                                                        HorizontalTextAlignment="Center"
-                                                        Text="{StaticResource DropDownButtonIcon}"
-                                                        TextColor="{DynamicResource Gray-600}"
-                                                        VerticalTextAlignment="Center" />
-                                            </combobox:DropDownButtonSettings.View>
-                                        </combobox:DropDownButtonSettings>
-                                    </combobox:SfComboBox.DropDownButtonSettings>
                                 </combobox:SfComboBox>
                             </border:SfBorder>
                             <border:SfBorder Grid.Row="9"
@@ -319,31 +261,17 @@
                                             Grid.ColumnSpan="2"
                                             Padding="6,0,0,0"
                                             Style="{StaticResource FormBorderStyle}">
-                                <combobox:SfComboBox
-                                        x:Name="ContactTypePicker"
-                                        SelectedValue="{Binding ContactTypePicker, Mode=TwoWay}"
-                                        Style="{StaticResource ComboBoxStyle}"
-                                        Watermark="Contact Type">
+                                <combobox:SfComboBox BorderColor="Transparent"
+                                                    x:Name="ContactTypePicker"
+                                                    SelectedValue="{Binding ContactTypePicker, Mode=TwoWay}"
+                                                    Style="{StaticResource ComboBoxStyle}"
+                                                    Watermark="Contact Type">
                                     <combobox:SfComboBox.ComboBoxSource>
                                         <ListCollection:List x:TypeArguments="x:String">
                                             <x:String>Phone</x:String>
                                             <x:String>Email</x:String>
                                         </ListCollection:List>
                                     </combobox:SfComboBox.ComboBoxSource>
-                                    <combobox:SfComboBox.DropDownButtonSettings>
-                                        <combobox:DropDownButtonSettings Width="30" Height="30">
-                                            <combobox:DropDownButtonSettings.View>
-                                                <Label
-                                                    Margin="0"
-                                                    FontFamily="{StaticResource FontIcons}"
-                                                    FontSize="25"
-                                                    HorizontalTextAlignment="Center"
-                                                    Text="{StaticResource DropDownButtonIcon}"
-                                                    TextColor="{DynamicResource Gray-600}"
-                                                    VerticalTextAlignment="Center" />
-                                            </combobox:DropDownButtonSettings.View>
-                                        </combobox:DropDownButtonSettings>
-                                    </combobox:SfComboBox.DropDownButtonSettings>
                                 </combobox:SfComboBox>
                             </border:SfBorder>
 

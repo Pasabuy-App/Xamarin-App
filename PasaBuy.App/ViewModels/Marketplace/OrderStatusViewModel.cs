@@ -258,9 +258,6 @@ namespace PasaBuy.App.ViewModels.Marketplace
         public static bool myTimer;
         public OrderStatusViewModel()
         {
-            this.Fee = _fee;
-            this.Total = _total;
-            this.SubTotal = _subtotal;
             TurnGreyScale = new List<ITransformation>()
             {
                 new CustomTransformationSelector(),
@@ -268,17 +265,9 @@ namespace PasaBuy.App.ViewModels.Marketplace
 
             this.timeStatus = "Estimated Time of Accepting by Store. If not, your order will be automatically cancelled.";
 
-            RefreshCommand = new Xamarin.Forms.Command<string>((key) =>
-            {
-                CheckingOrder(order_id);
-                IsRefreshing = false;
-            });
-
             isTimer = true;
             myTimer = true;
-            //CheckingOrder2(order_id);
             RefreshTimer();
-            //OrderTimer();
             this.StoreMessage = new Xamarin.Forms.Command<object>(StoreMessageClicked);
             this.MoverMessage = new Xamarin.Forms.Command<object>(MoverMessageClicked);
         }
@@ -287,7 +276,7 @@ namespace PasaBuy.App.ViewModels.Marketplace
         public string store_logo;
         public string mover_avatar;
         public string order_status;
-        public int timer = 1800;
+        public int timer;
         public Xamarin.Forms.Command<object> StoreMessage { get; set; }
         private async void StoreMessageClicked(object obj)
         {
@@ -392,10 +381,18 @@ namespace PasaBuy.App.ViewModels.Marketplace
                         {
                             string stages = order.data[i].stages;
 
+                            this.SubTotal = Convert.ToDouble(order.data[i].total_price);
+                            this.Fee = Convert.ToDouble(order.data[i].delivery_charges);
+                            this.Total = this.SubTotal + this.Fee;
+
+                            /*this.Fee = _fee;
+                            this.Total = _total;
+                            this.SubTotal = _subtotal;*/
+
                             if (order_status != stages)
                             {
                                 order_status = stages;
-                                timer = 1800;
+                                timer = (order.data[i].expiry * 60);
                             }
 
                             if (stages == "Accepted")

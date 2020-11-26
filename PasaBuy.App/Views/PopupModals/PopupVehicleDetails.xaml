@@ -111,7 +111,7 @@
             Margin="20,15,20,15"
             Padding="0,0,0,5"
             BackgroundColor="{DynamicResource Gray-White}"
-            CornerRadius="6"
+            CornerRadius="8"
             HorizontalOptions="Center">
             <StackLayout
                 Padding="0"
@@ -125,12 +125,10 @@
                     <Grid Grid.Row="0"
                           HorizontalOptions="End" 
                           VerticalOptions="Start">
-                        <Image
-                              Grid.Row="0"
-                              Grid.Column="0"
-                              HeightRequest="30"
-                              Source="cross_512.png"
-                              WidthRequest="30">
+                        <Image HeightRequest="30"
+                               Margin="0,-1,0,0"
+                               Source="https://dev.pasabuy.app/wp-content/uploads/2020/11/cross_512.png"
+                               WidthRequest="30">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="CloseModal" NumberOfTapsRequired="1"/>
                             </Image.GestureRecognizers>
@@ -153,29 +151,17 @@
                         Style="{StaticResource SfBorderStyle}">
                         <combobox:SfComboBox
                                 x:Name="combo_Type"
-                                SelectedValuePath="ID"
                                 SelectionChanged="combo_Type_SelectionChanged"
                                 Style="{StaticResource ComboBoxStyle}"
                                 Watermark="Vehicle Type"
+                                DataSource="{Binding TypeList}"
+                                DisplayMemberPath="Title"
+                                SelectedValuePath="ID"
                                 TextColor="Black"
                                 BackgroundColor="{DynamicResource Gray-White}"
                                 WatermarkColor="{DynamicResource Gray-900}"
-                                VerticalOptions="CenterAndExpand">
-                            <combobox:SfComboBox.ComboBoxSource>
-                                <ListCollection:List x:TypeArguments="x:String">
-                                    <x:String></x:String>
-                                </ListCollection:List>
-                            </combobox:SfComboBox.ComboBoxSource>
-                            <combobox:SfComboBox.DropDownButtonSettings>
-                                <combobox:DropDownButtonSettings>
-                                    <combobox:DropDownButtonSettings.View>
-                                        <StackLayout Padding="12">
-                                            <Image Source="down.png"/>
-                                        </StackLayout>
-                                    </combobox:DropDownButtonSettings.View>
-                                </combobox:DropDownButtonSettings>
-                            </combobox:SfComboBox.DropDownButtonSettings>
-                        </combobox:SfComboBox>
+                                VerticalOptions="CenterAndExpand" />
+
                     </border:SfBorder>
                     <border:SfBorder
                         BorderColor="Black"
@@ -196,15 +182,6 @@
                                     <x:String></x:String>
                                 </ListCollection:List>
                             </combobox:SfComboBox.ComboBoxSource>
-                            <combobox:SfComboBox.DropDownButtonSettings>
-                                <combobox:DropDownButtonSettings>
-                                    <combobox:DropDownButtonSettings.View>
-                                        <StackLayout Padding="12">
-                                            <Image Source="down.png"/>
-                                        </StackLayout>
-                                    </combobox:DropDownButtonSettings.View>
-                                </combobox:DropDownButtonSettings>
-                            </combobox:SfComboBox.DropDownButtonSettings>
                         </combobox:SfComboBox>
                     </border:SfBorder>
                     <border:SfBorder
@@ -226,15 +203,6 @@
                                     <x:String></x:String>
                                 </ListCollection:List>
                             </combobox:SfComboBox.ComboBoxSource>
-                            <combobox:SfComboBox.DropDownButtonSettings>
-                                <combobox:DropDownButtonSettings>
-                                    <combobox:DropDownButtonSettings.View>
-                                        <StackLayout Padding="12">
-                                            <Image Source="down.png"/>
-                                        </StackLayout>
-                                    </combobox:DropDownButtonSettings.View>
-                                </combobox:DropDownButtonSettings>
-                            </combobox:SfComboBox.DropDownButtonSettings>
                         </combobox:SfComboBox>
                     </border:SfBorder>
 

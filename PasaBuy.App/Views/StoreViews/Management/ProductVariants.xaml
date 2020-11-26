@@ -11,7 +11,6 @@
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
              xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
              xmlns:local="clr-namespace:PasaBuy.App.UserControls"
-             xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl"
              x:Class="PasaBuy.App.Views.StoreViews.Management.ProductVariants"
              BackgroundColor="{DynamicResource Gray-White}"
              NavigationPage.HasNavigationBar="False">
@@ -91,22 +90,23 @@
                             </Grid.RowDefinitions>
                             <Grid
                                 Grid.Row="0"
-                                Padding="15,15,15,25"
+                                Padding="15,15,15,15"
                                 BackgroundColor="{StaticResource PrimaryColor}"
                                 HeightRequest="{OnPlatform Android='46',
-                                                           iOS='56'}">
+                                                           iOS='46'}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto" />
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="auto" />
                                 </Grid.ColumnDefinitions>
-                                <buttons:SfButton
-                                    x:Name="backButton"
-                                    Clicked="backButton_Clicked"
-                                    Grid.Column="0"
-                                    CornerRadius="4"
-                                    Style="{StaticResource IconButtonStyle}"
-                                    Text="{StaticResource Back}" />
+                                <ImageButton Source="arrow_left.png"
+                                             Grid.Column="0"
+                                             HeightRequest="25"
+                                             Margin="0,0,8,0"
+                                             x:Name="backButton"
+                                             WidthRequest="20"
+                                             BackgroundColor="Transparent"
+                                             Clicked="backButton_Clicked" />
                                 <Label Grid.Column="1" x:Name="TitleName"
                                             FontFamily="{StaticResource Montserrat-Medium}"
                                             FontSize="17"
@@ -242,7 +242,7 @@
                                                                             Grid.Column="0"
                                                                             BackgroundColor="Transparent"
                                                                             HeightRequest="28"
-                                                                            Source="edit_white.png"
+                                                                            Source="https://dev.pasabuy.app/wp-content/uploads/2020/11/edit_white.png"
                                                                             WidthRequest="28" />
                                                             </Grid>
                                                         </Grid>
@@ -255,12 +255,11 @@
                                                                 <TapGestureRecognizer Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"/>
                                                             </Grid.GestureRecognizers>
                                                             <Grid HorizontalOptions="Center" VerticalOptions="Center">
-                                                                <Image
-                                                                            Grid.Row="0"
+                                                                <Image Grid.Row="0"
                                                                             Grid.Column="0"
                                                                             BackgroundColor="Transparent"
                                                                             HeightRequest="28"
-                                                                            Source="Delete.png"
+                                                                            Source="https://dev.pasabuy.app/wp-content/uploads/2020/11/Delete.png"
                                                                             WidthRequest="28" />
                                                             </Grid>
                                                         </Grid>

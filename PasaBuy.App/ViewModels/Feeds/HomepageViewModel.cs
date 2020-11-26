@@ -65,7 +65,7 @@ namespace PasaBuy.App.ViewModels.Feeds
 
         #region Constructor
         public Command<object> GoToProfileCommand { get; set; }
-        private async void OnTapped(object obj)
+        private void OnTapped(object obj)
         {
             var post = obj as Post;
             if (post.Post_author != PSACache.Instance.UserInfo.wpid)
@@ -76,8 +76,13 @@ namespace PasaBuy.App.ViewModels.Feeds
         public Command<object> ShareCommand { get; set; }
         private async void OnShared(object obj)
         {
-            var post = obj as Post;
-            await ShareUri(post.LinkPost);
+            if (!IsRunning)
+            {
+                IsRunning = true;
+                var post = obj as Post;
+                await ShareUri(post.LinkPost);
+                IsRunning = false;
+            }
         }
         public async Task ShareUri(string uri)
         {
@@ -87,10 +92,23 @@ namespace PasaBuy.App.ViewModels.Feeds
             });
         }
         public Command<object> AcceptCommand { get; set; }
-        private void OnAccepted(object obj)
+        private async void OnAccepted(object obj)
         {
-            var post = obj as Post;
-            GetProfile(post.Post_author);
+            if (!IsRunning)
+            {
+                IsRunning = true;
+                var post = obj as Post;
+
+                Chat.ChatMessageViewModel.refresh = 0;
+                Chat.ChatMessageViewModel.myPage = "home";
+                Chat.ChatMessageViewModel.odid = string.Empty;
+                Chat.ChatMessageViewModel.type = "user";
+                Chat.ChatMessageViewModel.ProfileNames = post.Author;
+                Chat.ChatMessageViewModel.ProfileImages = post.Photo;
+                Chat.ChatMessageViewModel.user_id = post.Post_author;
+                await App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new Views.Chat.ChatMessagePage())); 
+                IsRunning = false;
+            }
         }
         public void GetData(string uid)
         {
@@ -201,7 +219,7 @@ namespace PasaBuy.App.ViewModels.Feeds
             homePostList = new ObservableCollection<Post>();
             LoadData2();
 
-            this.InquireCommand = new Command(this.InquireClicked);
+            //this.InquireCommand = new Command(this.InquireClicked);
             this.Photo = PSAProc.GetUrl(PSACache.Instance.UserInfo.avatarUrl);
 
             userinfoList = new ObservableCollection<Models.POSFeature.PersonnelModel>();
@@ -406,14 +424,14 @@ namespace PasaBuy.App.ViewModels.Feeds
 
         public ICommand InquireCommand { protected set; get; }
 
-        private void InquireClicked(object obj)
+        /*private void InquireClicked(object obj)
         {
             //Get display name, user avatar(already fetched), and user id
-            /*ChatMessageViewModel.ProfileNames = "test";
+            *//*ChatMessageViewModel.ProfileNames = "test";
             ChatMessageViewModel.ProfileImages = this.Photo;
             ChatMessageViewModel.user_id = "3";
-            await App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new ChatMessagePage()));*/
-        }
+            await App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new ChatMessagePage()));*//*
+        }*/
 
         bool _isRefreshing = false;
         public bool IsRefreshing

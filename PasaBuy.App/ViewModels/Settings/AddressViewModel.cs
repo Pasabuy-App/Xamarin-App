@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
 using PasaBuy.App.Controllers.Notice;
 using PasaBuy.App.Local;
+using PasaBuy.App.Models.Locations;
+using PasaBuy.App.Models.Onboarding;
 using PasaBuy.App.Models.Settings;
 using PasaBuy.App.Views.Settings;
 using System;
@@ -21,8 +23,34 @@ namespace PasaBuy.App.ViewModels.Settings
 
         public static string addressID = string.Empty;
 
+        public static ObservableCollection<CountryData> _countryList;
+
+        public ObservableCollection<CountryData> CountryList
+        {
+            get
+            {
+                return _countryList;
+            }
+            set
+            {
+                _countryList = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
         public static ObservableCollection<Address> addressDetails;
-        public ObservableCollection<Address> AddressDetails { get { return addressDetails; } set { addressDetails = value; this.NotifyPropertyChanged(); } }
+        public ObservableCollection<Address> AddressDetails 
+        { 
+            get
+            {
+                return addressDetails; 
+            } 
+            set 
+            { 
+                addressDetails = value; 
+                this.NotifyPropertyChanged(); 
+            }
+        }
 
         bool _isRefreshing = false;
         public bool IsRefreshing
@@ -63,9 +91,10 @@ namespace PasaBuy.App.ViewModels.Settings
             this.EditCommand = new Command(this.EditButtonClicked);
             this.DeleteCommand = new Command(this.DeleteButtonClicked);
             this.AddCardCommand = new Command(this.AddCardButtonClicked);
-
+            _countryList = new ObservableCollection<CountryData>();
             addressDetails = new ObservableCollection<Address>();
             LoadAddress();
+            LoadCountry();
             RefreshCommand = new Command<string>((key) =>
             {
                 addressDetails.Clear();
@@ -73,6 +102,46 @@ namespace PasaBuy.App.ViewModels.Settings
                 IsRefreshing = false;
             });
         }
+
+        public void LoadCountry()
+        {
+            try
+            {
+                Http.DataVice.Locations.Instance.Countries("datavice", (bool success, string data) =>
+                {
+                    if (success)
+                    {
+                        CountryData country = JsonConvert.DeserializeObject<CountryData>(data);
+
+                        for (int i = 0; i < country.data.Length; i++)
+                        {
+                            Console.WriteLine("Demoguy! " + country.data[i].name);
+                            string code = country.data[i].code;
+                            string name = country.data[i].name;
+                            _countryList.Add(new CountryData() { CountryCode = code, Name = name });
+                        }
+                    }
+                    else
+                    {
+                        new Controllers.Notice.Alert("Notice to User", HtmlUtils.ConvertToPlainText(data), "Try Again");
+                    }
+                });
+            }
+            catch (Exception err)
+            {
+                if (PSAConfig.isDebuggable)
+                {
+                    new Controllers.Notice.Alert("Error Code: DVV1LOC-C1CVM", err.ToString(), "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("DEV-DVV1LOC-C1CVM-" + err.ToString());
+                }
+                else
+                {
+                    new Controllers.Notice.Alert("Something went Wrong", "Please contact administrator. Error Code: DVV1LOC-C1CVM.", "OK");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("LIVE-DVV1LOC-C1CVM-" + err.ToString());
+                }
+            }
+        }
+
         public void LoadAddress()
         {
             try

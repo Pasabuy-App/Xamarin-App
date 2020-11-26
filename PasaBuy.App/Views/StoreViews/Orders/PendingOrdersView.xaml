@@ -97,7 +97,7 @@
                                                        Grid.Row="0"
                                                        Grid.Column="1"
                                                        HorizontalOptions="StartAndExpand"
-                                                       TextColor="{DynamicResource BlackColor}">
+                                                       TextColor="{DynamicResource Gray-900}">
                                 </Label>
                                 <Label Text="{Binding Pubkey}"
                                                        Grid.Row="1"

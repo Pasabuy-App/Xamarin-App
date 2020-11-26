@@ -136,32 +136,27 @@
                                                                         TextColor="{DynamicResource Gray-700}" />
 
                                                                 <!--  Average rating from the overall rating  -->
-                                                                <StackLayout
-                                                            HorizontalOptions="FillAndExpand"
-                                                            Orientation="Horizontal"
-                                                            CompressedLayout.IsHeadless="True"
-                                                            Spacing="0"
-                                                            VerticalOptions="EndAndExpand">
-                                                                    <Label
-                                                                Margin="0,0,4,0"
-                                                                Style="{StaticResource RatingLabelStyle}"
-                                                                WidthRequest="16" />
-                                                                    <Label
-                                                                FontFamily="{StaticResource Montserrat-Regular}"
-                                                                FontSize="12"
-                                                                LineHeight="{OnPlatform Android=1.5,
-                                                                                        Default=-1}"
-                                                                Text="5"
-                                                                TextColor="{DynamicResource Gray-700}"
-                                                                VerticalOptions="Center">
+                                                                <StackLayout HorizontalOptions="FillAndExpand"
+                                                                            Orientation="Horizontal"
+                                                                            Spacing="0"
+                                                                            VerticalOptions="EndAndExpand">
+                                                                    <Image Source="https://dev.pasabuy.app/wp-content/uploads/2020/11/star.png"
+                                                                           HeightRequest="18"
+                                                                           WidthRequest="18"/>
+                                                                    <Label FontFamily="{StaticResource Montserrat-Regular}"
+                                                                           Margin="5,3,0,0"
+                                                                            FontSize="{DynamicResource SmallestSize}"
+                                                                            LineHeight="{OnPlatform Android=1.5,Default=-1}"
+                                                                            Text="5"
+                                                                            TextColor="{DynamicResource Gray-700}"
+                                                                            VerticalOptions="Center">
                                                                     </Label>
 
-                                                                    <!--  Navigation icon  -->
-                                                                    <Label
-                                                                HorizontalOptions="EndAndExpand"
-                                                                FontSize="20"
-                                                                TextColor="{DynamicResource PrimaryColor}"
-                                                                Style="{StaticResource RightArrowLabelStyle}" />
+                                                                    <Image Source="https://dev.pasabuy.app/wp-content/uploads/2020/11/arrow_right.png"
+                                                                           HeightRequest="18"
+                                                                           WidthRequest="18"
+                                                                           HorizontalOptions="EndAndExpand"/>
+                                                                    
                                                                 </StackLayout>
                                                             </StackLayout>
                                                         </Grid>

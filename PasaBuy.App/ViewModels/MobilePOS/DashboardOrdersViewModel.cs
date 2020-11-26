@@ -109,8 +109,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                     CultureInfo provider = new CultureInfo("fr-FR");
                                     string dates = string.IsNullOrEmpty(order.data[i].date_created) ? "0000-00-00 00:00:00" : order.data[i].date_created;
                                     DateTime date = DateTime.ParseExact(dates, "yyyy-MM-dd HH:mm:ss", provider);
-
-                                    OrderDetailsViewModel.avatar = PSAProc.GetUrl(order.data[i].avatar);
+                                    OrderDetailsViewModel.avatar = string.IsNullOrEmpty(PSAProc.GetUrl(order.data[i].avatar)) || PSAProc.GetUrl(order.data[i].avatar) == "None" ? "Avatar.png" : PSAProc.GetUrl(order.data[i].avatar);
                                     OrderDetailsViewModel.order_id = order.data[i].pubkey;
                                     OrderDetailsViewModel.datecreated = date.ToString("MMM. dd, yyyy hh:mm tt");
                                     OrderDetailsViewModel.totalprice = Convert.ToDouble(order.data[i].total_price);
@@ -257,7 +256,7 @@ namespace PasaBuy.App.ViewModels.MobilePOS
                                 StoreAddress = order.data[i].store_address,
                                 CustomerAddress = order.data[i].cutomer_address,
                                 CustomerName = order.data[i].customer,
-                                Avatar = PSAProc.GetUrl(order.data[i].avatar),
+                                Avatar = string.IsNullOrEmpty(PSAProc.GetUrl(order.data[i].avatar)) || PSAProc.GetUrl(order.data[i].avatar) == "None" ? "Avatar.png" : PSAProc.GetUrl(order.data[i].avatar),
                                 Stages = order.data[i].stages
                             });
                         }

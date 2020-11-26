@@ -28,8 +28,8 @@ namespace PasaBuy.App.Views.StoreViews
             {
                 if (per.action == "add_category" || per.action == "edit_category" || per.action == "delete_category")
                 {
-                    managementList.Add(new Models.MobilePOS.Management(typeof(CategoryView), "https://pasabuy.app/wp-content/uploads/2020/10/management-category.png", TextsTranslateManager.Translate("CategoriesTitle"),
-                                      TextsTranslateManager.Translate("CategoryManagementDescriptions")));
+                    managementList.Add(new Models.MobilePOS.Management(typeof(CategoryView), "https://pasabuy.app/wp-content/uploads/2020/10/management-category.png", TextsTranslateManager.Translate("Categories"),
+                                      TextsTranslateManager.Translate("View, add, edit, and delete product category.")));
                     break;
                 }
             }
@@ -39,8 +39,8 @@ namespace PasaBuy.App.Views.StoreViews
                 if (per.action == "add_products" || per.action == "edit_products" || per.action == "delete_products")
                 {
                     managementList.Add(new Models.MobilePOS.Management(
-                        typeof(ProductsView), "https://pasabuy.app/wp-content/uploads/2020/10/management-product.png", TextsTranslateManager.Translate("ProductsTitle"),
-                                              TextsTranslateManager.Translate("ProductManagementDescriptions"))
+                        typeof(ProductsView), "https://pasabuy.app/wp-content/uploads/2020/10/management-product.png", TextsTranslateManager.Translate("Products"),
+                                              TextsTranslateManager.Translate("View, add, edit, and delete products."))
                     );
                     break;
                 }
@@ -51,8 +51,8 @@ namespace PasaBuy.App.Views.StoreViews
                 if (per.action == "add_variant" || per.action == "edit_variant" || per.action == "delete_variant")
                 {
                     managementList.Add(new Models.MobilePOS.Management(
-                        typeof(VariantsView), "https://pasabuy.app/wp-content/uploads/2020/10/management-variants.png", TextsTranslateManager.Translate("VariantsTitle"),
-                                              TextsTranslateManager.Translate("VariantsManagementDescriptions"))
+                        typeof(VariantsView), "https://pasabuy.app/wp-content/uploads/2020/10/management-variants.png", TextsTranslateManager.Translate("Variants"),
+                                              TextsTranslateManager.Translate("View, add, edit, and delete product variants and options."))
                     );
                     break;
                 }
@@ -63,7 +63,7 @@ namespace PasaBuy.App.Views.StoreViews
                 if (per.action == "add_role" || per.action == "edit_role" || per.action == "delete_role")
                 {
                     managementList.Add(new Models.MobilePOS.Management(
-                        typeof(RolesView), "https://pasabuy.app/wp-content/uploads/2020/10/management.png", TextsTranslateManager.Translate("Personnel Roles"),
+                        typeof(RolesView), "https://pasabuy.app/wp-content/uploads/2020/10/management.png", TextsTranslateManager.Translate("Roles"),
                                               TextsTranslateManager.Translate("Manage access roles of your personnel"))
                     );
                     break;
@@ -76,7 +76,7 @@ namespace PasaBuy.App.Views.StoreViews
                 {
                     managementList.Add(new Models.MobilePOS.Management(
                         typeof(PersonnelsView), "https://pasabuy.app/wp-content/uploads/2020/10/management-personnel.jpg", TextsTranslateManager.Translate("Personnel"),
-                                              TextsTranslateManager.Translate("PersonnelManagementDescriptions"))
+                                              TextsTranslateManager.Translate("View, add, edit, and delete store personnel."))
                     );
                     break;
                 }
@@ -87,8 +87,8 @@ namespace PasaBuy.App.Views.StoreViews
                 if (per.action == "add_document" || per.action == "edit_document" || per.action == "delete_document")
                 {
                     managementList.Add(new Models.MobilePOS.Management(
-                        typeof(DocumentsView), "https://pasabuy.app/wp-content/uploads/2020/10/management-documents.jpg", TextsTranslateManager.Translate("DocumentsTitle"),
-                                              TextsTranslateManager.Translate("DocumentsManagementDescriptions"))
+                        typeof(DocumentsView), "https://pasabuy.app/wp-content/uploads/2020/10/management-documents.jpg", TextsTranslateManager.Translate("Documents"),
+                                              TextsTranslateManager.Translate("View, add, and delete store documents."))
                     );
                     break;
                 }
@@ -100,7 +100,7 @@ namespace PasaBuy.App.Views.StoreViews
                 {
                     managementList.Add(new Models.MobilePOS.Management(
                         typeof(SchedulesView), "https://pasabuy.app/wp-content/uploads/2020/10/management-schedule.png", TextsTranslateManager.Translate("Schedules"),
-                                              TextsTranslateManager.Translate("Add or update store schedule"))
+                                              TextsTranslateManager.Translate("View, add or update store schedule"))
                     );
                     break;
                 }

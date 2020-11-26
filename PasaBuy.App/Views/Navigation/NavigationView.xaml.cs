@@ -10,6 +10,7 @@ namespace PasaBuy.App.Views.Navigation
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NavigationView : MasterDetailPage
     {
+
         public NavigationView()
         {
             InitializeComponent();
@@ -22,6 +23,17 @@ namespace PasaBuy.App.Views.Navigation
                 Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(PasaBuy.App.Views.Driver.DashboardPage)));
             }
 
+            MessagingCenter.Subscribe<string>(this, "DisableGesture", (sender) =>
+            {
+                if (sender == "0")
+                {
+                    IsGestureEnabled = false;
+                }
+                else
+                {
+                    IsGestureEnabled = true;
+                }
+            });
 
         }
         protected override void OnAppearing()
