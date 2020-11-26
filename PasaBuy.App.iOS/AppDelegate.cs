@@ -3,6 +3,7 @@ using PasaBuy.App.Local;
 using Syncfusion.ListView.XForms.iOS;
 using Syncfusion.SfBusyIndicator.XForms.iOS;
 using Syncfusion.SfChart.XForms.iOS.Renderers;
+using Syncfusion.SfNumericUpDown.XForms.iOS;
 using Syncfusion.SfRating.XForms.iOS;
 using Syncfusion.SfRotator.XForms.iOS;
 using Syncfusion.XForms.iOS.Accordion;
@@ -60,6 +61,7 @@ namespace PasaBuy.App.iOS
             new SfBusyIndicatorRenderer();
             new SfAccordionRenderer();
             new SfComboBoxRenderer();
+            SfNumericUpDownRenderer.Init();
             Rg.Plugins.Popup.Popup.Init();
             Plugin.LocalNotification.NotificationCenter.AskPermission();
    

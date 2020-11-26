@@ -62,11 +62,11 @@
     <PackageReference Include="Plugin.LocalNotification" Version="5.1.0" />
     <PackageReference Include="Plugin.Permissions" Version="6.0.1" />
     <PackageReference Include="Plugin.Toast" Version="2.2.0" />
-    <PackageReference Include="Refractored.FloatingActionButtonForms" Version="2.1.0" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.6" />
     <PackageReference Include="SkiaSharp.Extended" Version="1.60.0" />
     <PackageReference Include="SkiaSharp.Svg" Version="1.60.0" />
     <PackageReference Include="SkiaSharp.Views.Forms" Version="2.80.2" />
+    <PackageReference Include="SuaveControls.FloatingActionButton" Version="2018.1.5" />
     <PackageReference Include="Syncfusion.Licensing" Version="18.1.0.57" />
     <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.1.0.57" />
     <PackageReference Include="Syncfusion.Xamarin.Cards" Version="18.1.0.57" />

@@ -49,7 +49,7 @@
                 Padding="10,5"
                 IsClippedToBounds="True"
                 Spacing="3">
-                <Grid RowSpacing="0" Padding="0,15,0,20">
+                <Grid RowSpacing="10" Padding="0,15,0,20">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
@@ -68,23 +68,25 @@
                             PlaceholderColor="{DynamicResource Gray-900}"
                             Text="{Binding Name}"
                             VerticalOptions="EndAndExpand" />
-                    <Editor
-                            x:Name="Description"
+
+                    <Entry  x:Name="Description"
                             Grid.Row="1"
                             Grid.Column="0"
                             Grid.ColumnSpan="2"
                             FontFamily="{StaticResource Montserrat-Regular}"
-                            MaxLength="250"
+                            MaxLength="100"
                             Placeholder="(Optional) Variant Description"
-                            Text="{Binding Description}"
                             PlaceholderColor="{DynamicResource Gray-900}"
+                            Text="{Binding Description}"
                             VerticalOptions="EndAndExpand" />
+                  
                     <button:SfCheckBox x:Name="checkBox"
                                        IsChecked="False"
                                        StateChanged="checkBox_StateChanged"
                                        Margin="0,10,0,10"
                                        FontFamily="{StaticResource Montserrat-Regular}"
                                        Grid.Row="2"
+                                       TextColor="{DynamicResource Gray-900}"
                                        CheckedColor="{DynamicResource PrimaryColor}"
                                        Text="Is Required?"/>
                     
